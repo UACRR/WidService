@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class RelEtRole : IRelEtRole
+    public partial class relEtRole : IrelEtRole
     {
-        public int RoleCode { get; set; }
-        public int EtRoleCode { get; set; }
+        public int roleCode { get; set; }
+        public int etRoleCode { get; set; }
 
-        public EtRole EtRoleCodeNavigation { get; set; }
-        public CreativeRoleType RoleCodeNavigation { get; set; }
+        public EtRole etRoleCodeNavigation { get; set; }
+        public CreativeRoleType roleCodeNavigation { get; set; }
     }
 }
 

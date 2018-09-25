@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             Register = new ObservableListSource<Register>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
         public ObservableListSource<Register> Register { get; set; }

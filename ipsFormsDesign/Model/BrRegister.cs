@@ -12,20 +12,20 @@ namespace ipsFormsDesign.Model
             Distribution = new ObservableListSource<Distribution>();
         }
 
-        public int RegId { get; set; }
-        public int? PeriodId { get; set; }
-        public int? CustId { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public decimal? FullAmount { get; set; }
-        public decimal? RAmount { get; set; }
-        public int? Status { get; set; }
-        public string FileName { get; set; }
-        public string UserId { get; set; }
+        public int regId { get; set; }
+        public int? periodId { get; set; }
+        public int? custId { get; set; }
+        public DateTime? createDate { get; set; }
+        public decimal? fullAmount { get; set; }
+        public decimal? rAmount { get; set; }
+        public int? status { get; set; }
+        public string fileName { get; set; }
+        public string userId { get; set; }
 
-        public Client Cust { get; set; }
-        public PaidPeriod Period { get; set; }
-        public RegisterStatus StatusNavigation { get; set; }
-        public AspNetUsers User { get; set; }
+        public Client cust { get; set; }
+        public PaidPeriod period { get; set; }
+        public RegisterStatus statusNavigation { get; set; }
+        public AspNetUsers user { get; set; }
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
     }

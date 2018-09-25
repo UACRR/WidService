@@ -5,15 +5,15 @@ namespace ipsmedserviceapp.Model
 {
     public partial class AnketaAddName
     {
-        public int CustId { get; set; }
-        public string Lang { get; set; }
-        public string NikName { get; set; }
-        public string FirstName { get; set; }
-        public string SurName { get; set; }
-        public string LastName { get; set; }
-        public string Name { get; set; }
-        public string ShortName { get; set; }
+        public int custId { get; set; }
+        public string lang { get; set; }
+        public string nikName { get; set; }
+        public string firstName { get; set; }
+        public string surName { get; set; }
+        public string lastName { get; set; }
+        public string name { get; set; }
+        public string shortName { get; set; }
 
-        public Customer Cust { get; set; }
+        public Customer cust { get; set; }
     }
 }

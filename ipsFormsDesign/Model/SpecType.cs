@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             SpecTypeTr = new ObservableListSource<SpecTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<ObjectRight> ObjectRight { get; set; }
         public ObservableListSource<SpecTypeTr> SpecTypeTr { get; set; }

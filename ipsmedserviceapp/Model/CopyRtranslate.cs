@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class CopyRtranslate
+    public partial class CopyRTranslate
     {
-        public int CRightId { get; set; }
-        public int? RoleCode { get; set; }
-        public string LangFrom { get; set; }
-        public string LangTo { get; set; }
+        public int cRightId { get; set; }
+        public int? roleCode { get; set; }
+        public string langFrom { get; set; }
+        public string langTo { get; set; }
 
-        public CopyRight CRight { get; set; }
-        public Language LangFromNavigation { get; set; }
-        public Language LangToNavigation { get; set; }
-        public CreativeTranslate RoleCodeNavigation { get; set; }
+        public CopyRight cRight { get; set; }
+        public Language langFromNavigation { get; set; }
+        public Language langToNavigation { get; set; }
+        public CreativeTranslate roleCodeNavigation { get; set; }
     }
 }

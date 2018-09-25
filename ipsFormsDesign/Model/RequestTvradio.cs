@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class RequestTvradio : IRequestTvradio
+    public partial class RequestTVRadio : IRequestTVRadio
     {
-        public RequestTvradio()
+        public RequestTVRadio()
         {
-            RelTvepisode = new ObservableListSource<RelTvepisode>();
+            RelTVEpisode = new ObservableListSource<RelTVEpisode>();
         }
 
-        public int ReqId { get; set; }
-        public string ShortTitle { get; set; }
-        public string NameTvchanel { get; set; }
-        public string EpisodeComment { get; set; }
+        public int reqId { get; set; }
+        public string shortTitle { get; set; }
+        public string nameTVChanel { get; set; }
+        public string episodeComment { get; set; }
 
-        public Request Req { get; set; }
-        public ObservableListSource<RelTvepisode> RelTvepisode { get; set; }
+        public Request req { get; set; }
+        public ObservableListSource<RelTVEpisode> RelTVEpisode { get; set; }
     }
 }
 

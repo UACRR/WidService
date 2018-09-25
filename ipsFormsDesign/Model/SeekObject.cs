@@ -6,13 +6,13 @@ namespace ipsFormsDesign.Model
 {
     public partial class SeekObject : ISeekObject
     {
-        public int Id { get; set; }
-        public int? CodeI { get; set; }
-        public int? ObjId { get; set; }
-        public string Name { get; set; }
+        public int id { get; set; }
+        public int? codeI { get; set; }
+        public int? objId { get; set; }
+        public string name { get; set; }
 
-        public SeekType CodeINavigation { get; set; }
-        public ObjectRight Obj { get; set; }
+        public SeekType codeINavigation { get; set; }
+        public ObjectRight obj { get; set; }
     }
 }
 

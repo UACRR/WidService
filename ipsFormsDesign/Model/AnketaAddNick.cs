@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class AnketaAddNick : IAnketaAddNick
     {
-        public int AddId { get; set; }
-        public int CustId { get; set; }
-        public string NikName { get; set; }
+        public int addId { get; set; }
+        public int custId { get; set; }
+        public string nikName { get; set; }
 
-        public RightHolder Cust { get; set; }
+        public RightHolder cust { get; set; }
     }
 }
 

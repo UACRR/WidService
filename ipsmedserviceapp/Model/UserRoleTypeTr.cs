@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class UserRoleTypeTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public UserRoleType CodeINavigation { get; set; }
+        public UserRoleType codeINavigation { get; set; }
     }
 }

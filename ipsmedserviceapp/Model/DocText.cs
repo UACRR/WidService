@@ -8,8 +8,8 @@ namespace ipsmedserviceapp.Model
         public int Id { get; set; }
         public int? DocTypeCode { get; set; }
         public string Code { get; set; }
-        public string TextUk { get; set; }
-        public string TextRu { get; set; }
-        public string TextEn { get; set; }
+        public string Text_Uk { get; set; }
+        public string Text_Ru { get; set; }
+        public string Text_En { get; set; }
     }
 }

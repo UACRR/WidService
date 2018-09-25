@@ -6,8 +6,8 @@ namespace ipsFormsDesign.Model
 {
     public partial class TableType : ITableType
     {
-        public string TName { get; set; }
-        public short? TType { get; set; }
+        public string tName { get; set; }
+        public short? tType { get; set; }
     }
 }
 

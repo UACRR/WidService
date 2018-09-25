@@ -14,11 +14,11 @@ namespace ipsmedserviceapp.Model
             UseMediaType = new HashSet<UseMediaType>();
         }
 
-        public int CodeI { get; set; }
-        public int CategoryCode { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public int categoryCode { get; set; }
+        public string name { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
         public ICollection<RelReqObj> RelReqObj { get; set; }
         public ICollection<Request> Request { get; set; }
         public ICollection<RequestTypeTr> RequestTypeTr { get; set; }

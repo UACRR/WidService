@@ -9,20 +9,20 @@ namespace ipsFormsDesign.Model
         public GenreType()
         {
             GenreTypeTr = new ObservableListSource<GenreTypeTr>();
-            RelEtGenre = new ObservableListSource<RelEtGenre>();
             RelGenrePercent = new ObservableListSource<RelGenrePercent>();
-            RelGenreRole = new ObservableListSource<RelGenreRole>();
+            relEtGenre = new ObservableListSource<relEtGenre>();
+            relGenreRole = new ObservableListSource<relGenreRole>();
         }
 
-        public int CodeI { get; set; }
-        public int CategoryCode { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public int categoryCode { get; set; }
+        public string name { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
         public ObservableListSource<GenreTypeTr> GenreTypeTr { get; set; }
-        public ObservableListSource<RelEtGenre> RelEtGenre { get; set; }
         public ObservableListSource<RelGenrePercent> RelGenrePercent { get; set; }
-        public ObservableListSource<RelGenreRole> RelGenreRole { get; set; }
+        public ObservableListSource<relEtGenre> relEtGenre { get; set; }
+        public ObservableListSource<relGenreRole> relGenreRole { get; set; }
     }
 }
 

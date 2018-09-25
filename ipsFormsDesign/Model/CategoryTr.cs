@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class CategoryTr : ICategoryTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public Category CodeINavigation { get; set; }
+        public Category codeINavigation { get; set; }
     }
 }
 

@@ -13,9 +13,9 @@ namespace ipsmedserviceapp.Model
             PartnerClient = new HashSet<PartnerClient>();
         }
 
-        public int CustId { get; set; }
+        public int custId { get; set; }
 
-        public Customer Cust { get; set; }
+        public Customer cust { get; set; }
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ICollection<Distribution> Distribution { get; set; }
         public ICollection<Fixation> Fixation { get; set; }

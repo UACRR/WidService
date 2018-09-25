@@ -10,9 +10,9 @@ namespace ipsmedserviceapp.Model
             PortalObjectRights = new HashSet<PortalObjectRights>();
         }
 
-        public int CRkindCode { get; set; }
+        public int cRKindCode { get; set; }
 
-        public CopyrightKind CRkindCodeNavigation { get; set; }
+        public CopyrightKind cRKindCodeNavigation { get; set; }
         public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
     }
 }

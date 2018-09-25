@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             PerformTypeTr = new HashSet<PerformTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<LicenseBigR> LicenseBigR { get; set; }
         public ICollection<PerformTypeTr> PerformTypeTr { get; set; }

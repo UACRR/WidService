@@ -10,17 +10,17 @@ namespace ipsmedserviceapp.Model
             RelEmployee = new HashSet<RelEmployee>();
         }
 
-        public int Emplid { get; set; }
-        public int? CustId { get; set; }
-        public string UserId { get; set; }
-        public string FirstName { get; set; }
-        public string SurName { get; set; }
-        public string LastName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Email { get; set; }
+        public int emplid { get; set; }
+        public int? custId { get; set; }
+        public string userId { get; set; }
+        public string firstName { get; set; }
+        public string surName { get; set; }
+        public string lastName { get; set; }
+        public string phoneNumber { get; set; }
+        public string email { get; set; }
 
-        public Customer Cust { get; set; }
-        public AspNetUsers User { get; set; }
+        public Customer cust { get; set; }
+        public AspNetUsers user { get; set; }
         public ICollection<RelEmployee> RelEmployee { get; set; }
     }
 }

@@ -8,29 +8,31 @@ namespace ipsmedserviceapp.Model
     {
         public AgreementMaster()
         {
-            AgreementAddBr = new HashSet<AgreementAddBr>();
+            AgreementAddBR = new HashSet<AgreementAddBR>();
             AgreementAddPartner = new HashSet<AgreementAddPartner>();
-            AgreementAddRh = new HashSet<AgreementAddRh>();
+            AgreementAddRH = new HashSet<AgreementAddRH>();
             LicenseAgreement = new HashSet<LicenseAgreement>();
         }
 
-        public int AgrId { get; set; }
-        public int CustId { get; set; }
-        public int? AgrStatus { get; set; }
-        public DateTime? ModifyDate { get; set; }
-        public string ModifyLogin { get; set; }
-        public int? AgrType { get; set; }
-        public int? Version { get; set; }
+        public int agrId { get; set; }
+        public int custId { get; set; }
+        public int? agrStatus { get; set; }
+        public DateTime? modifyDate { get; set; }
+        public string modifyLogin { get; set; }
+        public int? agrType { get; set; }
+        public int? version { get; set; }
 
         [JsonIgnore]
-        public AgreementStatus AgrStatusNavigation { get; set; }
+        public AgreementStatus agrStatusNavigation { get; set; }
         [JsonIgnore]
-        public AgreementType AgrTypeNavigation { get; set; }
+        public AgreementType agrTypeNavigation { get; set; }
         [JsonIgnore]
-        public Customer Cust { get; set; }
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        public Customer cust { get; set; }
+        [JsonIgnore]
+        public ICollection<AgreementAddBR> AgreementAddBR { get; set; }
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        [JsonIgnore]
+        public ICollection<AgreementAddRH> AgreementAddRH { get; set; }
         [JsonIgnore]
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
     }

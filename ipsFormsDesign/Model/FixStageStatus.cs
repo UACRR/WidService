@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Model
             Fixation = new ObservableListSource<Fixation>();
         }
 
-        public int CodeI { get; set; }
+        public int codeI { get; set; }
         public string StageName { get; set; }
         public string StatusName { get; set; }
         public int? StageCode { get; set; }

@@ -4,15 +4,15 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class RelGenreRole : IRelGenreRole
+    public partial class relGenreRole : IrelGenreRole
     {
-        public int RoleCode { get; set; }
-        public int GenreType { get; set; }
-        public decimal? Rate { get; set; }
-        public int ActCode { get; set; }
+        public int roleCode { get; set; }
+        public int genreType { get; set; }
+        public decimal? rate { get; set; }
+        public int actCode { get; set; }
 
-        public GenreType GenreTypeNavigation { get; set; }
-        public CreativeRoleType RoleCodeNavigation { get; set; }
+        public GenreType genreTypeNavigation { get; set; }
+        public CreativeRoleType roleCodeNavigation { get; set; }
     }
 }
 

@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class PayMethodTypeTr : IPayMethodTypeTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public PayMethodType CodeINavigation { get; set; }
+        public PayMethodType codeINavigation { get; set; }
     }
 }
 

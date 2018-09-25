@@ -6,16 +6,16 @@ namespace ipsFormsDesign.Model
 {
     public partial class License : ILicense
     {
-        public int LId { get; set; }
-        public int? PlaceId { get; set; }
-        public int? LicId { get; set; }
-        public int? LicVersion { get; set; }
-        public string LNum { get; set; }
-        public DateTime? LDate { get; set; }
-        public int? Status { get; set; }
+        public int lId { get; set; }
+        public int? placeId { get; set; }
+        public int? licId { get; set; }
+        public int? licVersion { get; set; }
+        public string lNum { get; set; }
+        public DateTime? lDate { get; set; }
+        public int? status { get; set; }
 
-        public LicenseAgrParam Lic { get; set; }
-        public ClnBusinessPlace Place { get; set; }
+        public LicenseAgrParam lic { get; set; }
+        public ClnBusinessPlace place { get; set; }
     }
 }
 

@@ -5,12 +5,12 @@ namespace ipsmedserviceapp.Model
 {
     public partial class TableColumnTech
     {
-        public decimal Id { get; set; }
-        public string Cname { get; set; }
-        public string Tname { get; set; }
-        public string DnameUk { get; set; }
-        public string DnameRu { get; set; }
-        public string DnameEn { get; set; }
-        public short? TypeTab { get; set; }
+        public decimal id { get; set; }
+        public string cname { get; set; }
+        public string tname { get; set; }
+        public string dnameUk { get; set; }
+        public string dnameRu { get; set; }
+        public string dnameEn { get; set; }
+        public short? typeTab { get; set; }
     }
 }

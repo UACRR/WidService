@@ -12,8 +12,8 @@ namespace ipsmedserviceapp.Model
             UsesTypeTr = new HashSet<UsesTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<Fixation> Fixation { get; set; }
         public ICollection<UsesKind> UsesKind { get; set; }

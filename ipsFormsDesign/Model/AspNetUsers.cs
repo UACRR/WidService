@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public AspNetUsers()
         {
-            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
+            AgreementAddRH = new ObservableListSource<AgreementAddRH>();
             AspNetUserClaims = new ObservableListSource<AspNetUserClaims>();
             AspNetUserLogins = new ObservableListSource<AspNetUserLogins>();
             AspNetUserRoles = new ObservableListSource<AspNetUserRoles>();
@@ -17,29 +17,29 @@ namespace ipsFormsDesign.Model
             Fixation = new ObservableListSource<Fixation>();
             Register = new ObservableListSource<Register>();
             Request = new ObservableListSource<Request>();
-            UserRole = new ObservableListSource<UserRole>();
+            userRole = new ObservableListSource<userRole>();
         }
 
-        public string Id { get; set; }
-        public int AccessFailedCount { get; set; }
-        public string ConcurrencyStamp { get; set; }
-        public string Email { get; set; }
-        public bool EmailConfirmed { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public bool LockoutEnabled { get; set; }
-        public DateTimeOffset? LockoutEnd { get; set; }
-        public string NormalizedEmail { get; set; }
-        public string NormalizedUserName { get; set; }
-        public string PasswordHash { get; set; }
-        public string PhoneNumber { get; set; }
-        public bool PhoneNumberConfirmed { get; set; }
-        public string SecurityStamp { get; set; }
-        public string SurName { get; set; }
-        public bool TwoFactorEnabled { get; set; }
-        public string UserName { get; set; }
+        public string id { get; set; }
+        public int accessFailedCount { get; set; }
+        public string concurrencyStamp { get; set; }
+        public string email { get; set; }
+        public bool emailConfirmed { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public bool lockoutEnabled { get; set; }
+        public DateTimeOffset? lockoutEnd { get; set; }
+        public string normalizedEmail { get; set; }
+        public string normalizedUserName { get; set; }
+        public string passwordHash { get; set; }
+        public string phoneNumber { get; set; }
+        public bool phoneNumberConfirmed { get; set; }
+        public string securityStamp { get; set; }
+        public string surName { get; set; }
+        public bool twoFactorEnabled { get; set; }
+        public string userName { get; set; }
 
-        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public ObservableListSource<AgreementAddRH> AgreementAddRH { get; set; }
         public ObservableListSource<AspNetUserClaims> AspNetUserClaims { get; set; }
         public ObservableListSource<AspNetUserLogins> AspNetUserLogins { get; set; }
         public ObservableListSource<AspNetUserRoles> AspNetUserRoles { get; set; }
@@ -48,7 +48,7 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<Fixation> Fixation { get; set; }
         public ObservableListSource<Register> Register { get; set; }
         public ObservableListSource<Request> Request { get; set; }
-        public ObservableListSource<UserRole> UserRole { get; set; }
+        public ObservableListSource<userRole> userRole { get; set; }
     }
 }
 

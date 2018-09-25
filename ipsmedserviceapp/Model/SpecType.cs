@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             SpecTypeTr = new HashSet<SpecTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<ObjectRight> ObjectRight { get; set; }
         public ICollection<SpecTypeTr> SpecTypeTr { get; set; }

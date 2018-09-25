@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             LangTr = new HashSet<LangTr>();
         }
 
-        public string CodeS { get; set; }
-        public string Name { get; set; }
+        public string codeS { get; set; }
+        public string name { get; set; }
 
         public ICollection<AnketaPerson> AnketaPerson { get; set; }
         public ICollection<LangTr> LangTr { get; set; }

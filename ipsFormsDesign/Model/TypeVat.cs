@@ -4,21 +4,21 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class TypeVat : ITypeVat
+    public partial class TypeVAT : ITypeVAT
     {
-        public TypeVat()
+        public TypeVAT()
         {
             AnketaCompany = new ObservableListSource<AnketaCompany>();
             AnketaPerson = new ObservableListSource<AnketaPerson>();
-            TypeVattr = new ObservableListSource<TypeVattr>();
+            TypeVATTr = new ObservableListSource<TypeVATTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
         public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
-        public ObservableListSource<TypeVattr> TypeVattr { get; set; }
+        public ObservableListSource<TypeVATTr> TypeVATTr { get; set; }
     }
 }
 

@@ -10,17 +10,17 @@ namespace ipsFormsDesign.Model
         {
             EtGenreRate = new ObservableListSource<EtGenreRate>();
             EtGenreRole = new ObservableListSource<EtGenreRole>();
-            RelEtGenre = new ObservableListSource<RelEtGenre>();
+            relEtGenre = new ObservableListSource<relEtGenre>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
-        public int? CategoryCode { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
+        public int? categoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
         public ObservableListSource<EtGenreRate> EtGenreRate { get; set; }
         public ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
-        public ObservableListSource<RelEtGenre> RelEtGenre { get; set; }
+        public ObservableListSource<relEtGenre> relEtGenre { get; set; }
     }
 }
 

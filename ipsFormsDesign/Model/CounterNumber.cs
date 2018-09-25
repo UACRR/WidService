@@ -8,17 +8,17 @@ namespace ipsFormsDesign.Model
     {
         public CounterNumber()
         {
-            RelCounterDoc = new ObservableListSource<RelCounterDoc>();
+            relCounterDoc = new ObservableListSource<relCounterDoc>();
         }
 
-        public int CounterId { get; set; }
-        public string Name { get; set; }
-        public int? CNum { get; set; }
-        public string Prefix { get; set; }
-        public string SymbolN { get; set; }
-        public short? TemplYear { get; set; }
+        public int counterId { get; set; }
+        public string name { get; set; }
+        public int? cNum { get; set; }
+        public string prefix { get; set; }
+        public string symbolN { get; set; }
+        public short? templYear { get; set; }
 
-        public ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
+        public ObservableListSource<relCounterDoc> relCounterDoc { get; set; }
     }
 }
 

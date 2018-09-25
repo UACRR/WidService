@@ -6,20 +6,20 @@ namespace ipsFormsDesign.Model
 {
     public partial class PaymentCase : IPaymentCase
     {
-        public int ReqId { get; set; }
-        public int? PayKind { get; set; }
-        public int? PayMethod { get; set; }
-        public int? PtId { get; set; }
-        public DateTime? DateForPay { get; set; }
-        public DateTime? DateInvoce { get; set; }
-        public DateTime? DatePay { get; set; }
-        public int? PayStatus { get; set; }
-        public DateTime? DatePayFact { get; set; }
-        public string OtherCase { get; set; }
+        public int reqId { get; set; }
+        public int? payKind { get; set; }
+        public int? payMethod { get; set; }
+        public int? ptId { get; set; }
+        public DateTime? dateForPay { get; set; }
+        public DateTime? dateInvoce { get; set; }
+        public DateTime? datePay { get; set; }
+        public int? payStatus { get; set; }
+        public DateTime? datePayFact { get; set; }
+        public string otherCase { get; set; }
 
-        public PaymentKind PayKindNavigation { get; set; }
-        public PayMethodType PayMethodNavigation { get; set; }
-        public Request Req { get; set; }
+        public PaymentKind payKindNavigation { get; set; }
+        public PayMethodType payMethodNavigation { get; set; }
+        public Request req { get; set; }
     }
 }
 

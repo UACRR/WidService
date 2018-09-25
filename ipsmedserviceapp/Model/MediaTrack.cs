@@ -10,22 +10,22 @@ namespace ipsmedserviceapp.Model
             MediaFile = new HashSet<MediaFile>();
         }
 
-        public int ObjId { get; set; }
-        public string Iswc { get; set; }
-        public string Name { get; set; }
-        public string Lyrics { get; set; }
-        public string Composers { get; set; }
-        public string Performers { get; set; }
+        public int objId { get; set; }
+        public string iswc { get; set; }
+        public string name { get; set; }
+        public string lyrics { get; set; }
+        public string composers { get; set; }
+        public string performers { get; set; }
         public string Album { get; set; }
-        public string Genre { get; set; }
-        public int? NumberInAlbum { get; set; }
-        public int? Year { get; set; }
-        public string Label { get; set; }
-        public DateTime? ModifyDate { get; set; }
-        public string ModifyLogin { get; set; }
-        public TimeSpan? Duration { get; set; }
+        public string genre { get; set; }
+        public int? numberInAlbum { get; set; }
+        public int? year { get; set; }
+        public string label { get; set; }
+        public DateTime? modifyDate { get; set; }
+        public string modifyLogin { get; set; }
+        public TimeSpan? duration { get; set; }
 
-        public ObjectRight Obj { get; set; }
+        public ObjectRight obj { get; set; }
         public ICollection<MediaFile> MediaFile { get; set; }
     }
 }

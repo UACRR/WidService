@@ -12,8 +12,8 @@ namespace ipsmedserviceapp.Model
             PaymentStatusTr = new HashSet<PaymentStatusTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<DocPreparePay> DocPreparePay { get; set; }
         public ICollection<PayTurn> PayTurn { get; set; }

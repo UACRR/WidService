@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             ObjectStatusTr = new HashSet<ObjectStatusTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<ObjectRight> ObjectRight { get; set; }
         public ICollection<ObjectStatusTr> ObjectStatusTr { get; set; }

@@ -7,8 +7,8 @@ namespace ipsFormsDesign.Model
     public partial class PopGenreTr : IPopGenreTr
     {
         public int Id { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
         public PopGenre IdNavigation { get; set; }
     }

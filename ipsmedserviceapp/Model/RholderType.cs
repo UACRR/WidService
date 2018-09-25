@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RholderType
+    public partial class RHolderType
     {
-        public RholderType()
+        public RHolderType()
         {
-            RholderTypeTr = new HashSet<RholderTypeTr>();
+            RHolderTypeTr = new HashSet<RHolderTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
-        public ICollection<RholderTypeTr> RholderTypeTr { get; set; }
+        public ICollection<RHolderTypeTr> RHolderTypeTr { get; set; }
     }
 }

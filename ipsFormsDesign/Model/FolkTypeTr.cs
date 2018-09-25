@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class FolkTypeTr : IFolkTypeTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public FolkType CodeINavigation { get; set; }
+        public FolkType codeINavigation { get; set; }
     }
 }
 

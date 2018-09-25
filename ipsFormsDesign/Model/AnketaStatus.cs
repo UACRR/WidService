@@ -13,8 +13,8 @@ namespace ipsFormsDesign.Model
             AnketaStatusTr = new ObservableListSource<AnketaStatusTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
         public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }

@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             RelEmployee = new HashSet<RelEmployee>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<PositionTypeTr> PositionTypeTr { get; set; }
         public ICollection<RelEmployee> RelEmployee { get; set; }

@@ -10,43 +10,44 @@ namespace ipsmedserviceapp.Model
         {
             BrRegItem = new HashSet<BrRegItem>();
             Fixation = new HashSet<Fixation>();
-            LicPlace = new HashSet<LicPlace>();
             LicenseAgrParam = new HashSet<LicenseAgrParam>();
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
             PaidPeriod = new HashSet<PaidPeriod>();
+            licPlace = new HashSet<licPlace>();
         }
 
-        public int LicId { get; set; }
-        public int LicCode { get; set; }
-        public int? LicType { get; set; }
-        public int? CustId { get; set; }
-        public int? LicStatus { get; set; }
-        public int LicClass { get; set; }
-        public int AgrId { get; set; }
-        public int? LicSize { get; set; }
-        public int? LicVersion { get; set; }
-        public int? ProlongVersion { get; set; }
+        public int licId { get; set; }
+        public int licCode { get; set; }
+        public int? licType { get; set; }
+        public int? custId { get; set; }
+        public int? licStatus { get; set; }
+        public int licClass { get; set; }
+        public int agrId { get; set; }
+        public int? licSize { get; set; }
+        public int? licVersion { get; set; }
+        public int? prolongVersion { get; set; }
 
-        public AgreementMaster Agr { get; set; }
         [JsonIgnore]
-        public Client Cust { get; set; }
+        public AgreementMaster agr { get; set; }
         [JsonIgnore]
-        public AgrLicenseType LicCodeNavigation { get; set; }
+        public Client cust { get; set; }
         [JsonIgnore]
-        public AgreementStatus LicStatusNavigation { get; set; }
+        public AgrLicenseType licCodeNavigation { get; set; }
         [JsonIgnore]
-        public LicenseType LicTypeNavigation { get; set; }
+        public AgreementStatus licStatusNavigation { get; set; }
+        [JsonIgnore]
+        public LicenseType licTypeNavigation { get; set; }
         public LicenseBigR LicenseBigR { get; set; }
         [JsonIgnore]
         public ICollection<BrRegItem> BrRegItem { get; set; }
         [JsonIgnore]
         public ICollection<Fixation> Fixation { get; set; }
-        [JsonIgnore]
-        public ICollection<LicPlace> LicPlace { get; set; }
         public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
         [JsonIgnore]
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ICollection<PaidPeriod> PaidPeriod { get; set; }
+        [JsonIgnore]
+        public ICollection<licPlace> licPlace { get; set; }
     }
 }
 

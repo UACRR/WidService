@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class MyCategory : IMyCategory
     {
-        public int CustId { get; set; }
-        public int CodeI { get; set; }
+        public int custId { get; set; }
+        public int codeI { get; set; }
 
-        public Category CodeINavigation { get; set; }
-        public MyAnketa Cust { get; set; }
+        public Category codeINavigation { get; set; }
+        public MyAnketa cust { get; set; }
     }
 }
 

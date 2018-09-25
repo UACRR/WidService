@@ -4,24 +4,24 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class WorkRh
+    public partial class WorkRH
     {
-        public int CRightId { get; set; }
-        public int? WorkTypeRh { get; set; }
-        public string WorkCommentRh { get; set; }
-        public DateTime? WorkDateRh { get; set; }
-        public int? WorkTypeCl { get; set; }
-        public DateTime? WorkDateCl { get; set; }
-        public string WorkCoommentCl { get; set; }
-        public DateTime? ModifyDate { get; set; }
-        public string ModifyLogin { get; set; }
+        public int cRightId { get; set; }
+        public int? workTypeRH { get; set; }
+        public string workCommentRH { get; set; }
+        public DateTime? workDateRH { get; set; }
+        public int? workTypeCl { get; set; }
+        public DateTime? workDateCl { get; set; }
+        public string workCoommentCl { get; set; }
+        public DateTime? modifyDate { get; set; }
+        public string modifyLogin { get; set; }
 
         [JsonIgnore]
-        public CopyRight CRight { get; set; }
+        public CopyRight cRight { get; set; }
         [JsonIgnore]
-        public WorkType WorkTypeClNavigation { get; set; }
+        public WorkType workTypeClNavigation { get; set; }
         [JsonIgnore]
-        public WorkType WorkTypeRhNavigation { get; set; }
+        public WorkType workTypeRHNavigation { get; set; }
     }
 }
 

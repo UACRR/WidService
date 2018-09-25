@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             ObjectStatusTr = new ObservableListSource<ObjectStatusTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<ObjectRight> ObjectRight { get; set; }
         public ObservableListSource<ObjectStatusTr> ObjectStatusTr { get; set; }

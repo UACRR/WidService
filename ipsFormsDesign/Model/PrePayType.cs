@@ -8,14 +8,14 @@ namespace ipsFormsDesign.Model
     {
         public PrePayType()
         {
-            LicAuthorBr = new ObservableListSource<LicAuthorBr>();
+            LicAuthorBR = new ObservableListSource<LicAuthorBR>();
             PrePayTypeTr = new ObservableListSource<PrePayTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
-        public ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
+        public ObservableListSource<LicAuthorBR> LicAuthorBR { get; set; }
         public ObservableListSource<PrePayTypeTr> PrePayTypeTr { get; set; }
     }
 }

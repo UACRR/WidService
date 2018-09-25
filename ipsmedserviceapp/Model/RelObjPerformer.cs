@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class RelObjPerformer
     {
-        public int ObjId { get; set; }
-        public int PerId { get; set; }
+        public int objId { get; set; }
+        public int perId { get; set; }
 
-        public ObjectRight Obj { get; set; }
-        public Performer Per { get; set; }
+        public ObjectRight obj { get; set; }
+        public Performer per { get; set; }
     }
 }

@@ -5,11 +5,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class FixFile
     {
-        public int FileId { get; set; }
-        public int? FixId { get; set; }
-        public string Name { get; set; }
-        public string Path { get; set; }
+        public int fileId { get; set; }
+        public int? fixId { get; set; }
+        public string name { get; set; }
+        public string path { get; set; }
 
-        public Fixation Fix { get; set; }
+        public Fixation fix { get; set; }
     }
 }

@@ -8,18 +8,18 @@ namespace ipsFormsDesign.Model
     {
         public UserRoleType()
         {
-            UserRole = new ObservableListSource<UserRole>();
             UserRoleTypeTr = new ObservableListSource<UserRoleTypeTr>();
+            userRole = new ObservableListSource<userRole>();
         }
 
-        public int CodeI { get; set; }
-        public int IsAdmin { get; set; }
-        public string TypeNameRu { get; set; }
-        public string TypeNameEn { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public int isAdmin { get; set; }
+        public string typeNameRu { get; set; }
+        public string typeNameEn { get; set; }
+        public string name { get; set; }
 
-        public ObservableListSource<UserRole> UserRole { get; set; }
         public ObservableListSource<UserRoleTypeTr> UserRoleTypeTr { get; set; }
+        public ObservableListSource<userRole> userRole { get; set; }
     }
 }
 

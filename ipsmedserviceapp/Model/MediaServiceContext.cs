@@ -22,9 +22,9 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<AccountStatusTr> AccountStatusTr { get; set; }
         public virtual DbSet<ActivityType> ActivityType { get; set; }
         public virtual DbSet<ActivityTypeTr> ActivityTypeTr { get; set; }
-        public virtual DbSet<AgreementAddBr> AgreementAddBr { get; set; }
+        public virtual DbSet<AgreementAddBR> AgreementAddBR { get; set; }
         public virtual DbSet<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public virtual DbSet<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual DbSet<AgreementAddRH> AgreementAddRH { get; set; }
         public virtual DbSet<AgreementMaster> AgreementMaster { get; set; }
         public virtual DbSet<AgreementStatus> AgreementStatus { get; set; }
         public virtual DbSet<AgreementStatusTr> AgreementStatusTr { get; set; }
@@ -73,17 +73,17 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<CopyrightKindTr> CopyrightKindTr { get; set; }
         public virtual DbSet<CopyrightType> CopyrightType { get; set; }
         public virtual DbSet<CopyrightTypeTr> CopyrightTypeTr { get; set; }
-        public virtual DbSet<CopyRtranslate> CopyRtranslate { get; set; }
+        public virtual DbSet<CopyRTranslate> CopyRTranslate { get; set; }
         public virtual DbSet<CounterNumber> CounterNumber { get; set; }
         public virtual DbSet<Country> Country { get; set; }
         public virtual DbSet<CountryTr> CountryTr { get; set; }
         public virtual DbSet<CreativeRoleType> CreativeRoleType { get; set; }
         public virtual DbSet<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
         public virtual DbSet<CreativeTranslate> CreativeTranslate { get; set; }
-        public virtual DbSet<CrightStatus> CrightStatus { get; set; }
-        public virtual DbSet<CrightStatusTr> CrightStatusTr { get; set; }
-        public virtual DbSet<CrkindGroup> CrkindGroup { get; set; }
-        public virtual DbSet<CrkindGroupTr> CrkindGroupTr { get; set; }
+        public virtual DbSet<CRightStatus> CRightStatus { get; set; }
+        public virtual DbSet<CRightStatusTr> CRightStatusTr { get; set; }
+        public virtual DbSet<CRKindGroup> CRKindGroup { get; set; }
+        public virtual DbSet<CRKindGroupTr> CRKindGroupTr { get; set; }
         public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<CurrencyCourse> CurrencyCourse { get; set; }
         public virtual DbSet<CustCmRight> CustCmRight { get; set; }
@@ -133,15 +133,15 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<KindFilmTr> KindFilmTr { get; set; }
         public virtual DbSet<KindSerial> KindSerial { get; set; }
         public virtual DbSet<KindSerialTr> KindSerialTr { get; set; }
-        public virtual DbSet<KlR030> KlR030 { get; set; }
-        public virtual DbSet<KlR030tr> KlR030tr { get; set; }
-        public virtual DbSet<KlR031> KlR031 { get; set; }
+        public virtual DbSet<KL_R030> KL_R030 { get; set; }
+        public virtual DbSet<KL_R030Tr> KL_R030Tr { get; set; }
+        public virtual DbSet<KL_R031> KL_R031 { get; set; }
         public virtual DbSet<Lang> Lang { get; set; }
         public virtual DbSet<LangTr> LangTr { get; set; }
         public virtual DbSet<Language> Language { get; set; }
         public virtual DbSet<LegalBasis> LegalBasis { get; set; }
         public virtual DbSet<LegalBasisTr> LegalBasisTr { get; set; }
-        public virtual DbSet<LicAuthorBr> LicAuthorBr { get; set; }
+        public virtual DbSet<LicAuthorBR> LicAuthorBR { get; set; }
         public virtual DbSet<License> License { get; set; }
         public virtual DbSet<LicenseAgreement> LicenseAgreement { get; set; }
         public virtual DbSet<LicenseAgrParam> LicenseAgrParam { get; set; }
@@ -149,7 +149,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<LicenseClass> LicenseClass { get; set; }
         public virtual DbSet<LicenseType> LicenseType { get; set; }
         public virtual DbSet<LicenseTypeTr> LicenseTypeTr { get; set; }
-        public virtual DbSet<LicPlace> LicPlace { get; set; }
+        public virtual DbSet<licPlace> licPlace { get; set; }
         public virtual DbSet<MediaFile> MediaFile { get; set; }
         public virtual DbSet<MediaSearchData> MediaSearchData { get; set; }
         public virtual DbSet<MediaTrack> MediaTrack { get; set; }
@@ -169,7 +169,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<MusicalDesign> MusicalDesign { get; set; }
         public virtual DbSet<MyAnketa> MyAnketa { get; set; }
         public virtual DbSet<MyCategory> MyCategory { get; set; }
-        public virtual DbSet<MyCopyRightType> MyCopyRightType { get; set; }
+        public virtual DbSet<myCopyRightType> myCopyRightType { get; set; }
         public virtual DbSet<ObjAct> ObjAct { get; set; }
         public virtual DbSet<ObjActTr> ObjActTr { get; set; }
         public virtual DbSet<ObjectRight> ObjectRight { get; set; }
@@ -219,24 +219,24 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<RegisterStatus> RegisterStatus { get; set; }
         public virtual DbSet<RegisterStatusTr> RegisterStatusTr { get; set; }
         public virtual DbSet<RelAdaptUseArea> RelAdaptUseArea { get; set; }
-        public virtual DbSet<RelCounterDoc> RelCounterDoc { get; set; }
+        public virtual DbSet<relCounterDoc> relCounterDoc { get; set; }
         public virtual DbSet<RelDocAgrType> RelDocAgrType { get; set; }
         public virtual DbSet<RelEmployee> RelEmployee { get; set; }
-        public virtual DbSet<RelEtGenre> RelEtGenre { get; set; }
-        public virtual DbSet<RelEtRole> RelEtRole { get; set; }
+        public virtual DbSet<relEtGenre> relEtGenre { get; set; }
+        public virtual DbSet<relEtRole> relEtRole { get; set; }
         public virtual DbSet<RelGenreAdapt> RelGenreAdapt { get; set; }
         public virtual DbSet<RelGenreMovie> RelGenreMovie { get; set; }
         public virtual DbSet<RelGenrePercent> RelGenrePercent { get; set; }
-        public virtual DbSet<RelGenreRole> RelGenreRole { get; set; }
+        public virtual DbSet<relGenreRole> relGenreRole { get; set; }
         public virtual DbSet<RelGenreSerial> RelGenreSerial { get; set; }
-        public virtual DbSet<RelLicCopyR> RelLicCopyR { get; set; }
+        public virtual DbSet<relLicCopyR> relLicCopyR { get; set; }
         public virtual DbSet<RelMovieEpisode> RelMovieEpisode { get; set; }
         public virtual DbSet<RelObjPerformer> RelObjPerformer { get; set; }
         public virtual DbSet<RelPopGenre> RelPopGenre { get; set; }
         public virtual DbSet<RelReqMedia> RelReqMedia { get; set; }
         public virtual DbSet<RelReqObj> RelReqObj { get; set; }
         public virtual DbSet<RelSerialEpisode> RelSerialEpisode { get; set; }
-        public virtual DbSet<RelTvepisode> RelTvepisode { get; set; }
+        public virtual DbSet<RelTVEpisode> RelTVEpisode { get; set; }
         public virtual DbSet<Reports> Reports { get; set; }
         public virtual DbSet<ReqAgreement> ReqAgreement { get; set; }
         public virtual DbSet<ReqAgreementStatus> ReqAgreementStatus { get; set; }
@@ -254,13 +254,13 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<RequestSerial> RequestSerial { get; set; }
         public virtual DbSet<RequestStatusType> RequestStatusType { get; set; }
         public virtual DbSet<RequestStatusTypeTr> RequestStatusTypeTr { get; set; }
-        public virtual DbSet<RequestTvradio> RequestTvradio { get; set; }
+        public virtual DbSet<RequestTVRadio> RequestTVRadio { get; set; }
         public virtual DbSet<RequestType> RequestType { get; set; }
         public virtual DbSet<RequestTypeTr> RequestTypeTr { get; set; }
         public virtual DbSet<ResidentType> ResidentType { get; set; }
         public virtual DbSet<ResidentTypeTr> ResidentTypeTr { get; set; }
-        public virtual DbSet<RholderType> RholderType { get; set; }
-        public virtual DbSet<RholderTypeTr> RholderTypeTr { get; set; }
+        public virtual DbSet<RHolderType> RHolderType { get; set; }
+        public virtual DbSet<RHolderTypeTr> RHolderTypeTr { get; set; }
         public virtual DbSet<RightHolder> RightHolder { get; set; }
         public virtual DbSet<SaldoDay> SaldoDay { get; set; }
         public virtual DbSet<SeekObject> SeekObject { get; set; }
@@ -288,24 +288,22 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<TypePlaceParam> TypePlaceParam { get; set; }
         public virtual DbSet<TypePlaceParamTr> TypePlaceParamTr { get; set; }
         public virtual DbSet<TypePlaceTr> TypePlaceTr { get; set; }
-        public virtual DbSet<TypeVat> TypeVat { get; set; }
-        public virtual DbSet<TypeVattr> TypeVattr { get; set; }
+        public virtual DbSet<TypeVAT> TypeVAT { get; set; }
+        public virtual DbSet<TypeVATTr> TypeVATTr { get; set; }
         public virtual DbSet<UseAreaType> UseAreaType { get; set; }
         public virtual DbSet<UseAreaTypeTr> UseAreaTypeTr { get; set; }
         public virtual DbSet<UseMediaType> UseMediaType { get; set; }
         public virtual DbSet<UseMediaTypeTr> UseMediaTypeTr { get; set; }
-        public virtual DbSet<UserRole> UserRole { get; set; }
+        public virtual DbSet<userRole> userRole { get; set; }
         public virtual DbSet<UserRoleType> UserRoleType { get; set; }
         public virtual DbSet<UserRoleTypeTr> UserRoleTypeTr { get; set; }
         public virtual DbSet<UsesKind> UsesKind { get; set; }
         public virtual DbSet<UsesKindTr> UsesKindTr { get; set; }
         public virtual DbSet<UsesType> UsesType { get; set; }
         public virtual DbSet<UsesTypeTr> UsesTypeTr { get; set; }
-        public virtual DbSet<WorkRh> WorkRh { get; set; }
+        public virtual DbSet<WorkRH> WorkRH { get; set; }
         public virtual DbSet<WorkType> WorkType { get; set; }
         public virtual DbSet<WorkTypeTr> WorkTypeTr { get; set; }
-
-        // Unable to generate entity type for table 'dbo.MusicalDesign_old'. Please see the warning messages.
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -320,3115 +318,2266 @@ namespace ipsmedserviceapp.Model
         {
             modelBuilder.Entity<Account>(entity =>
             {
-                entity.HasKey(e => e.AccId);
+                entity.HasKey(e => e.accId);
 
-                entity.HasIndex(e => new { e.R030, e.AccNls, e.AccStatus })
+                entity.HasIndex(e => new { e.r030, e.accNls, e.accStatus })
                     .HasName("AccountUI")
                     .IsUnique();
 
-                entity.Property(e => e.AccId).HasColumnName("accId");
-
-                entity.Property(e => e.AccDk).HasColumnName("accDK");
-
-                entity.Property(e => e.AccName)
-                    .HasColumnName("accName")
+                entity.Property(e => e.accName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccNls)
-                    .HasColumnName("accNls")
+                entity.Property(e => e.accNls)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccStatus).HasColumnName("accStatus");
+                entity.Property(e => e.dateClose).HasColumnType("date");
 
-                entity.Property(e => e.BalsCode).HasColumnName("balsCode");
+                entity.Property(e => e.dateModify).HasColumnType("datetime");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
+                entity.Property(e => e.dateOpen).HasColumnType("date");
 
-                entity.Property(e => e.DateClose)
-                    .HasColumnName("dateClose")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DateModify)
-                    .HasColumnName("dateModify")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.DateOpen)
-                    .HasColumnName("dateOpen")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.AccStatusNavigation)
+                entity.HasOne(d => d.accStatusNavigation)
                     .WithMany(p => p.Account)
-                    .HasForeignKey(d => d.AccStatus)
+                    .HasForeignKey(d => d.accStatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ACCOUNT_REFERENCE_ACCOUNTS");
 
-                entity.HasOne(d => d.BalsCodeNavigation)
+                entity.HasOne(d => d.balsCodeNavigation)
                     .WithMany(p => p.Account)
-                    .HasForeignKey(d => d.BalsCode)
+                    .HasForeignKey(d => d.balsCode)
                     .HasConstraintName("FK_ACCOUNT_REFERENCE_ACCOUNTB");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.Account)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_ACCOUNT_REFERENCE_CUSTOMER");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.Account)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_ACCOUNT_REFERENCE_OBJECTRI");
 
-                entity.HasOne(d => d.R030Navigation)
+                entity.HasOne(d => d.r030Navigation)
                     .WithMany(p => p.Account)
-                    .HasForeignKey(d => d.R030)
+                    .HasForeignKey(d => d.r030)
                     .HasConstraintName("FK_ACCOUNT_REFERENCE_CURRENCY");
             });
 
             modelBuilder.Entity<AccountBals>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.BalsType).HasColumnName("balsType");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<AccountBalsTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.AccountBalsTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ACCOUNTB_REFERENCE_ACCOUNTB");
             });
 
             modelBuilder.Entity<AccountStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<AccountStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.AccountStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ACCOUNTS_REFERENCE_ACCOUNTS");
             });
 
             modelBuilder.Entity<ActivityType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ActivityTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ActivityTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .HasConstraintName("FK_ACTIVITY_REFERENCE_ACTIVITY");
             });
 
-            modelBuilder.Entity<AgreementAddBr>(entity =>
+            modelBuilder.Entity<AgreementAddBR>(entity =>
             {
-                entity.HasKey(e => new { e.AgrId, e.Version });
+                entity.HasKey(e => new { e.agrId, e.version });
 
-                entity.ToTable("AgreementAddBR");
+                entity.Property(e => e.agrDate).HasColumnType("date");
 
-                entity.Property(e => e.AgrId).HasColumnName("agrId");
-
-                entity.Property(e => e.Version).HasColumnName("version");
-
-                entity.Property(e => e.AgrDate)
-                    .HasColumnName("agrDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.AgrNumber)
-                    .HasColumnName("agrNumber")
+                entity.Property(e => e.agrNumber)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AgrStatus).HasColumnName("agrStatus");
+                entity.Property(e => e.dateBegin).HasColumnType("date");
 
-                entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
+                entity.Property(e => e.dateEnd).HasColumnType("date");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.DateBegin)
-                    .HasColumnName("dateBegin")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DateEnd)
-                    .HasColumnName("dateEnd")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DayForPay).HasColumnName("dayForPay");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
-
-                entity.HasOne(d => d.Agr)
-                    .WithMany(p => p.AgreementAddBr)
-                    .HasForeignKey(d => d.AgrId)
+                entity.HasOne(d => d.agr)
+                    .WithMany(p => p.AgreementAddBR)
+                    .HasForeignKey(d => d.agrId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AGRBR_REFERENCE_AGRMASTER");
 
-                entity.HasOne(d => d.AgrStatusNavigation)
-                    .WithMany(p => p.AgreementAddBr)
-                    .HasForeignKey(d => d.AgrStatus)
+                entity.HasOne(d => d.agrStatusNavigation)
+                    .WithMany(p => p.AgreementAddBR)
+                    .HasForeignKey(d => d.agrStatus)
                     .HasConstraintName("FK_AGRBR_REFERENCE_AGRSTATUS");
 
-                entity.HasOne(d => d.Cust)
-                    .WithMany(p => p.AgreementAddBr)
-                    .HasForeignKey(d => d.CustId)
+                entity.HasOne(d => d.cust)
+                    .WithMany(p => p.AgreementAddBR)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.PeriodCodeNavigation)
-                    .WithMany(p => p.AgreementAddBr)
-                    .HasForeignKey(d => d.PeriodCode)
+                entity.HasOne(d => d.periodCodeNavigation)
+                    .WithMany(p => p.AgreementAddBR)
+                    .HasForeignKey(d => d.periodCode)
                     .HasConstraintName("FK_AGRBR_REFERENCE_PERIOD");
             });
 
             modelBuilder.Entity<AgreementAddPartner>(entity =>
             {
-                entity.HasKey(e => new { e.AgrId, e.Version });
+                entity.HasKey(e => new { e.agrId, e.version });
 
-                entity.Property(e => e.AgrId).HasColumnName("agrId");
+                entity.Property(e => e.agrDate).HasColumnType("date");
 
-                entity.Property(e => e.Version).HasColumnName("version");
-
-                entity.Property(e => e.AgrDate)
-                    .HasColumnName("agrDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.AgrNumber)
-                    .HasColumnName("agrNumber")
+                entity.Property(e => e.agrNumber)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AgrStatus).HasColumnName("agrStatus");
+                entity.Property(e => e.courtCompRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
+                entity.Property(e => e.courtRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.CourtCompRate)
-                    .HasColumnName("courtCompRate")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.dateBegin).HasColumnType("date");
 
-                entity.Property(e => e.CourtRate)
-                    .HasColumnName("courtRate")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.dateEnd).HasColumnType("date");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.DateBegin)
-                    .HasColumnName("dateBegin")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DateEnd)
-                    .HasColumnName("dateEnd")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DayForPay).HasColumnName("dayForPay");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NoCourtRate)
-                    .HasColumnName("noCourtRate")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.noCourtRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
+                entity.Property(e => e.pfFirstRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.PfFirstRate)
-                    .HasColumnName("pfFirstRate")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.pfMonthRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.PfMonthRate)
-                    .HasColumnName("pfMonthRate")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.srFirstRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.SrFirstRate)
-                    .HasColumnName("srFirstRate")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.srMonthRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.SrMonthRate)
-                    .HasColumnName("srMonthRate")
-                    .HasColumnType("numeric(10, 5)");
-
-                entity.HasOne(d => d.Agr)
+                entity.HasOne(d => d.agr)
                     .WithMany(p => p.AgreementAddPartner)
-                    .HasForeignKey(d => d.AgrId)
+                    .HasForeignKey(d => d.agrId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_AGREEMEN");
 
-                entity.HasOne(d => d.AgrStatusNavigation)
+                entity.HasOne(d => d.agrStatusNavigation)
                     .WithMany(p => p.AgreementAddPartner)
-                    .HasForeignKey(d => d.AgrStatus)
+                    .HasForeignKey(d => d.agrStatus)
                     .HasConstraintName("FK_AGREEMEN_REFER_AGREEMEN");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.AgreementAddPartner)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_PARTNER");
 
-                entity.HasOne(d => d.PeriodCodeNavigation)
+                entity.HasOne(d => d.periodCodeNavigation)
                     .WithMany(p => p.AgreementAddPartner)
-                    .HasForeignKey(d => d.PeriodCode)
+                    .HasForeignKey(d => d.periodCode)
                     .HasConstraintName("FK_AGREEMEN_REFER_PERIOD");
             });
 
-            modelBuilder.Entity<AgreementAddRh>(entity =>
+            modelBuilder.Entity<AgreementAddRH>(entity =>
             {
-                entity.HasKey(e => new { e.AgrId, e.Version });
+                entity.HasKey(e => new { e.agrId, e.version });
 
-                entity.ToTable("AgreementAddRH");
+                entity.Property(e => e.agrDate).HasColumnType("date");
 
-                entity.Property(e => e.AgrId).HasColumnName("agrId");
-
-                entity.Property(e => e.Version).HasColumnName("version");
-
-                entity.Property(e => e.AgrDate)
-                    .HasColumnName("agrDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.AgrNumber)
-                    .HasColumnName("agrNumber")
+                entity.Property(e => e.agrNumber)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AgrStatus).HasColumnName("agrStatus");
+                entity.Property(e => e.dateBegin).HasColumnType("date");
 
-                entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
+                entity.Property(e => e.dateEnd).HasColumnType("date");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.DateBegin)
-                    .HasColumnName("dateBegin")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DateEnd)
-                    .HasColumnName("dateEnd")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DayForPay).HasColumnName("dayForPay");
-
-                entity.Property(e => e.GetCode).HasColumnName("getCode");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
+                entity.Property(e => e.rateCommiss).HasColumnType("decimal(10, 5)");
 
-                entity.Property(e => e.RateCommiss)
-                    .HasColumnName("rateCommiss")
-                    .HasColumnType("decimal(10, 5)");
+                entity.Property(e => e.rateCourt).HasColumnType("decimal(10, 5)");
 
-                entity.Property(e => e.RateCourt)
-                    .HasColumnName("rateCourt")
-                    .HasColumnType("decimal(10, 5)");
+                entity.Property(e => e.responsUser).HasMaxLength(48);
 
-                entity.Property(e => e.ResponsUser)
-                    .HasColumnName("responsUser")
-                    .HasMaxLength(48);
-
-                entity.HasOne(d => d.Agr)
-                    .WithMany(p => p.AgreementAddRh)
-                    .HasForeignKey(d => d.AgrId)
+                entity.HasOne(d => d.agr)
+                    .WithMany(p => p.AgreementAddRH)
+                    .HasForeignKey(d => d.agrId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_AGREEM");
 
-                entity.HasOne(d => d.AgrStatusNavigation)
-                    .WithMany(p => p.AgreementAddRh)
-                    .HasForeignKey(d => d.AgrStatus)
+                entity.HasOne(d => d.agrStatusNavigation)
+                    .WithMany(p => p.AgreementAddRH)
+                    .HasForeignKey(d => d.agrStatus)
                     .HasConstraintName("FK_AGREEMEN_REF_AGREEMEN");
 
-                entity.HasOne(d => d.Cust)
-                    .WithMany(p => p.AgreementAddRh)
-                    .HasForeignKey(d => d.CustId)
+                entity.HasOne(d => d.cust)
+                    .WithMany(p => p.AgreementAddRH)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_RIGHTHOL");
 
-                entity.HasOne(d => d.GetCodeNavigation)
-                    .WithMany(p => p.AgreementAddRh)
-                    .HasForeignKey(d => d.GetCode)
+                entity.HasOne(d => d.getCodeNavigation)
+                    .WithMany(p => p.AgreementAddRH)
+                    .HasForeignKey(d => d.getCode)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_TYPEMETH");
 
-                entity.HasOne(d => d.PeriodCodeNavigation)
-                    .WithMany(p => p.AgreementAddRh)
-                    .HasForeignKey(d => d.PeriodCode)
+                entity.HasOne(d => d.periodCodeNavigation)
+                    .WithMany(p => p.AgreementAddRH)
+                    .HasForeignKey(d => d.periodCode)
                     .HasConstraintName("FK_AGREEMEN_REF_PERIOD");
 
-                entity.HasOne(d => d.ResponsUserNavigation)
-                    .WithMany(p => p.AgreementAddRh)
-                    .HasForeignKey(d => d.ResponsUser)
+                entity.HasOne(d => d.responsUserNavigation)
+                    .WithMany(p => p.AgreementAddRH)
+                    .HasForeignKey(d => d.responsUser)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<AgreementMaster>(entity =>
             {
-                entity.HasKey(e => e.AgrId);
+                entity.HasKey(e => e.agrId);
 
-                entity.Property(e => e.AgrId).HasColumnName("agrId");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.AgrStatus).HasColumnName("agrStatus");
-
-                entity.Property(e => e.AgrType).HasColumnName("agrType");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Version).HasColumnName("version");
-
-                entity.HasOne(d => d.AgrStatusNavigation)
+                entity.HasOne(d => d.agrStatusNavigation)
                     .WithMany(p => p.AgreementMaster)
-                    .HasForeignKey(d => d.AgrStatus)
+                    .HasForeignKey(d => d.agrStatus)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_STATUS");
 
-                entity.HasOne(d => d.AgrTypeNavigation)
+                entity.HasOne(d => d.agrTypeNavigation)
                     .WithMany(p => p.AgreementMaster)
-                    .HasForeignKey(d => d.AgrType)
+                    .HasForeignKey(d => d.agrType)
                     .HasConstraintName("FK_AGREEMEN_REF_AGRTYPE");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.AgreementMaster)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AGREEMEN_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<AgreementStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<AgreementStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.AgreementStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .HasConstraintName("FK_AGREEMENS_REF_AGREEMTR");
             });
 
             modelBuilder.Entity<AgreementType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TemplateName)
-                    .HasColumnName("templateName")
+                entity.Property(e => e.templateName)
                     .HasMaxLength(256)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<AgreementTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.AgreementTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AGREEMET_REFERENCE_AGREEMEN");
             });
 
             modelBuilder.Entity<AgrLicenseType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.AlgorithmId).HasColumnName("algorithmId");
-
-                entity.Property(e => e.KindCode).HasColumnName("kindCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NeedPlace).HasColumnName("needPlace");
-
-                entity.Property(e => e.SchemaId).HasColumnName("schemaId");
-
-                entity.Property(e => e.TemplateName)
-                    .HasColumnName("templateName")
+                entity.Property(e => e.templateName)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UsesKind).HasColumnName("usesKind");
-
-                entity.HasOne(d => d.Algorithm)
+                entity.HasOne(d => d.algorithm)
                     .WithMany(p => p.AgrLicenseType)
-                    .HasForeignKey(d => d.AlgorithmId)
+                    .HasForeignKey(d => d.algorithmId)
                     .HasConstraintName("FK_AGRLICENTYPE_REF_ALGORITH");
 
-                entity.HasOne(d => d.KindCodeNavigation)
+                entity.HasOne(d => d.kindCodeNavigation)
                     .WithMany(p => p.AgrLicenseType)
-                    .HasForeignKey(d => d.KindCode)
+                    .HasForeignKey(d => d.kindCode)
                     .HasConstraintName("FK_AGRLICEN_REFERENCE_COPYRIGH");
 
-                entity.HasOne(d => d.UsesKindNavigation)
+                entity.HasOne(d => d.usesKindNavigation)
                     .WithMany(p => p.AgrLicenseType)
-                    .HasForeignKey(d => d.UsesKind)
+                    .HasForeignKey(d => d.usesKind)
                     .HasConstraintName("FK_AGRLICEN_REFERENCE_USESKIND");
             });
 
             modelBuilder.Entity<AgrLicenseTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.AgrLicenseTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .HasConstraintName("FK_ARGLICEN_REFERENCE_ARGLICEN");
             });
 
             modelBuilder.Entity<AlgorithmType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<AnketaAddName>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.Lang });
+                entity.HasKey(e => new { e.custId, e.lang });
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FirstName)
-                    .HasColumnName("firstName")
+                entity.Property(e => e.firstName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LastName)
-                    .HasColumnName("lastName")
+                entity.Property(e => e.lastName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NikName)
-                    .HasColumnName("nikName")
+                entity.Property(e => e.nikName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ShortName)
-                    .HasColumnName("shortName")
+                entity.Property(e => e.shortName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SurName)
-                    .HasColumnName("surName")
+                entity.Property(e => e.surName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.AnketaAddName)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETAADN_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<AnketaAddNick>(entity =>
             {
-                entity.HasKey(e => e.AddId);
+                entity.HasKey(e => e.addId);
 
-                entity.Property(e => e.AddId).HasColumnName("addId");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.NikName)
-                    .HasColumnName("nikName")
+                entity.Property(e => e.nikName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.AnketaAddNick)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETAAD_REFERENCE_RIGHTHOL");
             });
 
             modelBuilder.Entity<AnketaAddParam>(entity =>
             {
-                entity.HasKey(e => new { e.ParamCode, e.LangCode });
+                entity.HasKey(e => new { e.paramCode, e.langCode });
 
-                entity.Property(e => e.ParamCode).HasColumnName("paramCode");
-
-                entity.Property(e => e.LangCode)
-                    .HasColumnName("langCode")
+                entity.Property(e => e.langCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.ParamName)
+                entity.Property(e => e.paramName)
                     .IsRequired()
-                    .HasColumnName("paramName")
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ParamValue)
-                    .HasColumnName("paramValue")
+                entity.Property(e => e.paramValue)
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.AnketaAddParam)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_ANKETAAD_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<AnketaCompany>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.Version });
+                entity.HasKey(e => new { e.custId, e.version });
 
-                entity.HasIndex(e => e.CustId)
+                entity.HasIndex(e => e.custId)
                     .HasName("Association26_FK");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.Version).HasColumnName("version");
-
-                entity.Property(e => e.ActivityCode).HasColumnName("activityCode");
-
-                entity.Property(e => e.BanAccId).HasColumnName("banAccId");
-
-                entity.Property(e => e.FaAddress)
-                    .HasColumnName("faAddress")
+                entity.Property(e => e.faAddress)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FaCity)
-                    .HasColumnName("faCity")
+                entity.Property(e => e.faCity)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FaCountry)
-                    .HasColumnName("faCountry")
+                entity.Property(e => e.faCountry)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FaRegion).HasColumnName("faRegion");
-
-                entity.Property(e => e.JaAddress)
-                    .HasColumnName("jaAddress")
+                entity.Property(e => e.jaAddress)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.JaCity)
-                    .HasColumnName("jaCity")
+                entity.Property(e => e.jaCity)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.JaCountry)
-                    .HasColumnName("jaCountry")
+                entity.Property(e => e.jaCountry)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.JaRegion).HasColumnName("jaRegion");
-
-                entity.Property(e => e.LeAddress)
-                    .HasColumnName("leAddress")
+                entity.Property(e => e.leAddress)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LeCity)
-                    .HasColumnName("leCity")
+                entity.Property(e => e.leCity)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LeCountry)
-                    .HasColumnName("leCountry")
+                entity.Property(e => e.leCountry)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LePostIndex)
-                    .HasColumnName("lePostIndex")
+                entity.Property(e => e.lePostIndex)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LeRegion).HasColumnName("leRegion");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NumberVat)
-                    .HasColumnName("numberVAT")
+                entity.Property(e => e.numberVAT)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Okpo)
-                    .HasColumnName("okpo")
+                entity.Property(e => e.okpo)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RegistrDate)
-                    .HasColumnName("registrDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.registrDate).HasColumnType("date");
 
-                entity.Property(e => e.RegistrNumber)
-                    .HasColumnName("registrNumber")
+                entity.Property(e => e.registrNumber)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RegistrWho)
-                    .HasColumnName("registrWho")
+                entity.Property(e => e.registrWho)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ShortName)
-                    .HasColumnName("shortName")
+                entity.Property(e => e.shortName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.Property(e => e.TypeVat).HasColumnName("typeVAT");
-
-                entity.HasOne(d => d.ActivityCodeNavigation)
+                entity.HasOne(d => d.activityCodeNavigation)
                     .WithMany(p => p.AnketaCompany)
-                    .HasForeignKey(d => d.ActivityCode)
+                    .HasForeignKey(d => d.activityCode)
                     .HasConstraintName("FK_ANKETACO_REFERENCE_ACTIVITY");
 
-                entity.HasOne(d => d.BanAcc)
+                entity.HasOne(d => d.banAcc)
                     .WithMany(p => p.AnketaCompany)
-                    .HasForeignKey(d => d.BanAccId)
+                    .HasForeignKey(d => d.banAccId)
                     .HasConstraintName("FK_ANKETACO_REFERENCE_BANKACCO");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.AnketaCompany)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETACO_ASSOCIATI_COMPANY");
 
-                entity.HasOne(d => d.CustNavigation)
+                entity.HasOne(d => d.custNavigation)
                     .WithMany(p => p.AnketaCompany)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETACO_ASSOCIATI_CUSTOMER");
 
-                entity.HasOne(d => d.FaCountryNavigation)
-                    .WithMany(p => p.AnketaCompanyFaCountryNavigation)
-                    .HasForeignKey(d => d.FaCountry)
+                entity.HasOne(d => d.faCountryNavigation)
+                    .WithMany(p => p.AnketaCompanyfaCountryNavigation)
+                    .HasForeignKey(d => d.faCountry)
                     .HasConstraintName("FK_ANKETACO_REF_FaCOUNTRY");
 
-                entity.HasOne(d => d.FaRegionNavigation)
-                    .WithMany(p => p.AnketaCompanyFaRegionNavigation)
-                    .HasForeignKey(d => d.FaRegion)
+                entity.HasOne(d => d.faRegionNavigation)
+                    .WithMany(p => p.AnketaCompanyfaRegionNavigation)
+                    .HasForeignKey(d => d.faRegion)
                     .HasConstraintName("FK_ANKETACO_REFERENCE_REGFA");
 
-                entity.HasOne(d => d.JaCountryNavigation)
-                    .WithMany(p => p.AnketaCompanyJaCountryNavigation)
-                    .HasForeignKey(d => d.JaCountry)
+                entity.HasOne(d => d.jaCountryNavigation)
+                    .WithMany(p => p.AnketaCompanyjaCountryNavigation)
+                    .HasForeignKey(d => d.jaCountry)
                     .HasConstraintName("FK_ANKETACO_REF_jaCOUNTRY");
 
-                entity.HasOne(d => d.JaRegionNavigation)
-                    .WithMany(p => p.AnketaCompanyJaRegionNavigation)
-                    .HasForeignKey(d => d.JaRegion)
+                entity.HasOne(d => d.jaRegionNavigation)
+                    .WithMany(p => p.AnketaCompanyjaRegionNavigation)
+                    .HasForeignKey(d => d.jaRegion)
                     .HasConstraintName("FK_ANKETACO_REFERENCE_REGJA");
 
-                entity.HasOne(d => d.LeCountryNavigation)
-                    .WithMany(p => p.AnketaCompanyLeCountryNavigation)
-                    .HasForeignKey(d => d.LeCountry)
+                entity.HasOne(d => d.leCountryNavigation)
+                    .WithMany(p => p.AnketaCompanyleCountryNavigation)
+                    .HasForeignKey(d => d.leCountry)
                     .HasConstraintName("FK_ANKETALE_REF_LECOUNTRY");
 
-                entity.HasOne(d => d.LeRegionNavigation)
-                    .WithMany(p => p.AnketaCompanyLeRegionNavigation)
-                    .HasForeignKey(d => d.LeRegion)
+                entity.HasOne(d => d.leRegionNavigation)
+                    .WithMany(p => p.AnketaCompanyleRegionNavigation)
+                    .HasForeignKey(d => d.leRegion)
                     .HasConstraintName("FK_ANKETACO_REF_LEREGION");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.AnketaCompany)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETACO_REFERENCE_ANKETAST");
 
-                entity.HasOne(d => d.TypeVatNavigation)
+                entity.HasOne(d => d.typeVATNavigation)
                     .WithMany(p => p.AnketaCompany)
-                    .HasForeignKey(d => d.TypeVat)
+                    .HasForeignKey(d => d.typeVAT)
                     .HasConstraintName("FK_ANKETACO_REFERENCE_TYPEVAT");
             });
 
             modelBuilder.Entity<AnketaExternal>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.Property(e => e.CustId)
-                    .HasColumnName("custId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.custId).ValueGeneratedNever();
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.InnOkpo)
-                    .HasColumnName("innOkpo")
+                entity.Property(e => e.innOkpo)
                     .HasMaxLength(12)
                     .IsUnicode(false);
 
-                entity.Property(e => e.InterCode)
-                    .HasColumnName("interCode")
+                entity.Property(e => e.interCode)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CountryCodeNavigation)
+                entity.HasOne(d => d.countryCodeNavigation)
                     .WithMany(p => p.AnketaExternal)
-                    .HasForeignKey(d => d.CountryCode)
+                    .HasForeignKey(d => d.countryCode)
                     .HasConstraintName("FK_ANKETAEX_REFERENCE_COUNTRY");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithOne(p => p.AnketaExternal)
-                    .HasForeignKey<AnketaExternal>(d => d.CustId)
+                    .HasForeignKey<AnketaExternal>(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETAEX_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<AnketaPerson>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.Version });
+                entity.HasKey(e => new { e.custId, e.version });
 
-                entity.HasIndex(e => e.CustId)
+                entity.HasIndex(e => e.custId)
                     .HasName("Association26_FK");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
+                entity.Property(e => e.birthDate).HasColumnType("date");
 
-                entity.Property(e => e.Version).HasColumnName("version");
+                entity.Property(e => e.buisDateRegistration).HasColumnType("date");
 
-                entity.Property(e => e.BanAccId).HasColumnName("banAccId");
-
-                entity.Property(e => e.BirthDate)
-                    .HasColumnName("birthDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.BuisDateRegistration)
-                    .HasColumnName("buisDateRegistration")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.BuisNumberPayer)
-                    .HasColumnName("buisNumberPayer")
+                entity.Property(e => e.buisNumberPayer)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.BuisNumberRegistration)
-                    .HasColumnName("buisNumberRegistration")
+                entity.Property(e => e.buisNumberRegistration)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.BuisSertNumberPayer)
-                    .HasColumnName("buisSertNumberPayer")
+                entity.Property(e => e.buisSertNumberPayer)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Citizenship)
-                    .HasColumnName("citizenship")
+                entity.Property(e => e.citizenship)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.EMail)
-                    .HasColumnName("eMail")
+                entity.Property(e => e.eMail)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FaAddress)
-                    .HasColumnName("faAddress")
+                entity.Property(e => e.faAddress)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FaCity)
-                    .HasColumnName("faCity")
+                entity.Property(e => e.faCity)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FaCountry)
-                    .HasColumnName("faCountry")
+                entity.Property(e => e.faCountry)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FaRegion).HasColumnName("faRegion");
-
-                entity.Property(e => e.FirstName)
-                    .HasColumnName("firstName")
+                entity.Property(e => e.firstName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Inn)
-                    .HasColumnName("inn")
+                entity.Property(e => e.inn)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LastName)
-                    .HasColumnName("lastName")
+                entity.Property(e => e.lastName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LeAddress)
-                    .HasColumnName("leAddress")
+                entity.Property(e => e.leAddress)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LeCity)
-                    .HasColumnName("leCity")
+                entity.Property(e => e.leCity)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LeCountry)
-                    .HasColumnName("leCountry")
+                entity.Property(e => e.leCountry)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LePostIndex)
-                    .HasColumnName("lePostIndex")
+                entity.Property(e => e.lePostIndex)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LeRegion).HasColumnName("leRegion");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NikName)
-                    .HasColumnName("nikName")
+                entity.Property(e => e.nikName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PFissuedDate)
-                    .HasColumnName("pFIssuedDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.pFIssuedDate).HasColumnType("date");
 
-                entity.Property(e => e.PFnumber)
-                    .HasColumnName("pFNumber")
+                entity.Property(e => e.pFNumber)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PFseries)
-                    .HasColumnName("pFSeries")
+                entity.Property(e => e.pFSeries)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PFvalidity)
-                    .HasColumnName("pFValidity")
-                    .HasColumnType("date");
+                entity.Property(e => e.pFValidity).HasColumnType("date");
 
-                entity.Property(e => e.PUissuedWhen)
-                    .HasColumnName("pUIssuedWhen")
-                    .HasColumnType("date");
+                entity.Property(e => e.pUIssuedWhen).HasColumnType("date");
 
-                entity.Property(e => e.PUissuedWho)
-                    .HasColumnName("pUIssuedWho")
+                entity.Property(e => e.pUIssuedWho)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PUnumber)
-                    .HasColumnName("pUNumber")
+                entity.Property(e => e.pUNumber)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PUseries)
-                    .HasColumnName("pUSeries")
+                entity.Property(e => e.pUSeries)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PhoneHome)
-                    .HasColumnName("phoneHome")
+                entity.Property(e => e.phoneHome)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PhoneMobileExtra)
-                    .HasColumnName("phoneMobileExtra")
+                entity.Property(e => e.phoneMobileExtra)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PhoneMobileMain)
-                    .HasColumnName("phoneMobileMain")
+                entity.Property(e => e.phoneMobileMain)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReAddress)
-                    .HasColumnName("reAddress")
+                entity.Property(e => e.reAddress)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReCity)
-                    .HasColumnName("reCity")
+                entity.Property(e => e.reCity)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReCountry)
-                    .HasColumnName("reCountry")
+                entity.Property(e => e.reCountry)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReRegion).HasColumnName("reRegion");
-
-                entity.Property(e => e.Residency).HasColumnName("residency");
-
-                entity.Property(e => e.Sex).HasColumnName("sex");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.Property(e => e.SurName)
-                    .HasColumnName("surName")
+                entity.Property(e => e.surName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TypeVat).HasColumnName("typeVAT");
-
-                entity.HasOne(d => d.BanAcc)
+                entity.HasOne(d => d.banAcc)
                     .WithMany(p => p.AnketaPerson)
-                    .HasForeignKey(d => d.BanAccId)
+                    .HasForeignKey(d => d.banAccId)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_BANKACCO");
 
-                entity.HasOne(d => d.CitizenshipNavigation)
-                    .WithMany(p => p.AnketaPersonCitizenshipNavigation)
-                    .HasForeignKey(d => d.Citizenship)
+                entity.HasOne(d => d.citizenshipNavigation)
+                    .WithMany(p => p.AnketaPersoncitizenshipNavigation)
+                    .HasForeignKey(d => d.citizenship)
                     .HasConstraintName("FK_ANKETAPE_REF_SitizCOUNTRY");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.AnketaPerson)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETAPE_ASSOCIATI_CUSTOMER");
 
-                entity.HasOne(d => d.CustNavigation)
+                entity.HasOne(d => d.custNavigation)
                     .WithMany(p => p.AnketaPerson)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETAPE_ASSOCIATI_PERSON");
 
-                entity.HasOne(d => d.FaCountryNavigation)
-                    .WithMany(p => p.AnketaPersonFaCountryNavigation)
-                    .HasForeignKey(d => d.FaCountry)
+                entity.HasOne(d => d.faCountryNavigation)
+                    .WithMany(p => p.AnketaPersonfaCountryNavigation)
+                    .HasForeignKey(d => d.faCountry)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_COUNTRY");
 
-                entity.HasOne(d => d.FaRegionNavigation)
-                    .WithMany(p => p.AnketaPersonFaRegionNavigation)
-                    .HasForeignKey(d => d.FaRegion)
+                entity.HasOne(d => d.faRegionNavigation)
+                    .WithMany(p => p.AnketaPersonfaRegionNavigation)
+                    .HasForeignKey(d => d.faRegion)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_REGFa");
 
-                entity.HasOne(d => d.LangNavigation)
+                entity.HasOne(d => d.langNavigation)
                     .WithMany(p => p.AnketaPerson)
-                    .HasForeignKey(d => d.Lang)
+                    .HasForeignKey(d => d.lang)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_LANG");
 
-                entity.HasOne(d => d.LeRegionNavigation)
-                    .WithMany(p => p.AnketaPersonLeRegionNavigation)
-                    .HasForeignKey(d => d.LeRegion)
+                entity.HasOne(d => d.leRegionNavigation)
+                    .WithMany(p => p.AnketaPersonleRegionNavigation)
+                    .HasForeignKey(d => d.leRegion)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_REGLe");
 
-                entity.HasOne(d => d.ReCountryNavigation)
-                    .WithMany(p => p.AnketaPersonReCountryNavigation)
-                    .HasForeignKey(d => d.ReCountry)
+                entity.HasOne(d => d.reCountryNavigation)
+                    .WithMany(p => p.AnketaPersonreCountryNavigation)
+                    .HasForeignKey(d => d.reCountry)
                     .HasConstraintName("FK_ANKETAPE_REF_RegistCOUNTRY");
 
-                entity.HasOne(d => d.ReRegionNavigation)
-                    .WithMany(p => p.AnketaPersonReRegionNavigation)
-                    .HasForeignKey(d => d.ReRegion)
+                entity.HasOne(d => d.reRegionNavigation)
+                    .WithMany(p => p.AnketaPersonreRegionNavigation)
+                    .HasForeignKey(d => d.reRegion)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_REGRe");
 
-                entity.HasOne(d => d.ResidencyNavigation)
+                entity.HasOne(d => d.residencyNavigation)
                     .WithMany(p => p.AnketaPerson)
-                    .HasForeignKey(d => d.Residency)
+                    .HasForeignKey(d => d.residency)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_RESIDENT");
 
-                entity.HasOne(d => d.SexNavigation)
+                entity.HasOne(d => d.sexNavigation)
                     .WithMany(p => p.AnketaPerson)
-                    .HasForeignKey(d => d.Sex)
+                    .HasForeignKey(d => d.sex)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_SEXTYPE");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.AnketaPerson)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_ANKETAST");
 
-                entity.HasOne(d => d.TypeVatNavigation)
+                entity.HasOne(d => d.typeVATNavigation)
                     .WithMany(p => p.AnketaPerson)
-                    .HasForeignKey(d => d.TypeVat)
+                    .HasForeignKey(d => d.typeVAT)
                     .HasConstraintName("FK_ANKETAPE_REFERENCE_TYPEVAT");
             });
 
             modelBuilder.Entity<AnketaStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<AnketaStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.AnketaStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .HasConstraintName("FK_ANKETAST_REFERENCE_ANKETAST");
             });
 
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
             {
-                entity.HasIndex(e => e.RoleId)
+                entity.HasIndex(e => e.roleId)
                     .HasName("IX_AspNetRoleClaims_RoleId");
 
-                entity.Property(e => e.Id).HasColumnName("id");
+                entity.Property(e => e.roleId).IsRequired();
 
-                entity.Property(e => e.ClaimType).HasColumnName("claimType");
-
-                entity.Property(e => e.ClaimValue).HasColumnName("claimValue");
-
-                entity.Property(e => e.RoleId)
-                    .IsRequired()
-                    .HasColumnName("roleId");
-
-                entity.HasOne(d => d.Role)
+                entity.HasOne(d => d.role)
                     .WithMany(p => p.AspNetRoleClaims)
-                    .HasForeignKey(d => d.RoleId)
+                    .HasForeignKey(d => d.roleId)
                     .HasConstraintName("FK_AspNetRoleClaims_AspNetRoles_RoleId");
             });
 
             modelBuilder.Entity<AspNetRoles>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedName)
+                entity.HasIndex(e => e.normalizedName)
                     .HasName("RoleNameIndex");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.id).ValueGeneratedNever();
 
-                entity.Property(e => e.ConcurrencyStamp).HasColumnName("concurrencyStamp");
+                entity.Property(e => e.description).HasMaxLength(256);
 
-                entity.Property(e => e.Description)
-                    .HasColumnName("description")
-                    .HasMaxLength(256);
+                entity.Property(e => e.name).HasMaxLength(256);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedName)
-                    .HasColumnName("normalizedName")
-                    .HasMaxLength(256);
+                entity.Property(e => e.normalizedName).HasMaxLength(256);
             });
 
             modelBuilder.Entity<AspNetUserClaims>(entity =>
             {
-                entity.HasIndex(e => e.UserId)
+                entity.HasIndex(e => e.userId)
                     .HasName("IX_AspNetUserClaims_UserId");
 
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.ClaimType).HasColumnName("claimType");
-
-                entity.Property(e => e.ClaimValue).HasColumnName("claimValue");
-
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.userId)
                     .IsRequired()
-                    .HasColumnName("userId")
                     .HasMaxLength(48);
 
-                entity.HasOne(d => d.User)
+                entity.HasOne(d => d.user)
                     .WithMany(p => p.AspNetUserClaims)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.userId)
                     .HasConstraintName("FK_AspNetUserClaims_AspNetUsers_UserId");
             });
 
             modelBuilder.Entity<AspNetUserLogins>(entity =>
             {
-                entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
+                entity.HasKey(e => new { e.loginProvider, e.providerKey });
 
-                entity.HasIndex(e => e.UserId)
+                entity.HasIndex(e => e.userId)
                     .HasName("IX_AspNetUserLogins_UserId");
 
-                entity.Property(e => e.LoginProvider).HasColumnName("loginProvider");
-
-                entity.Property(e => e.ProviderKey).HasColumnName("providerKey");
-
-                entity.Property(e => e.ProviderDisplayName).HasColumnName("providerDisplayName");
-
-                entity.Property(e => e.UserId)
+                entity.Property(e => e.userId)
                     .IsRequired()
-                    .HasColumnName("userId")
                     .HasMaxLength(48);
 
-                entity.HasOne(d => d.User)
+                entity.HasOne(d => d.user)
                     .WithMany(p => p.AspNetUserLogins)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.userId)
                     .HasConstraintName("FK_AspNetUserLogins_AspNetUsers_UserId");
             });
 
             modelBuilder.Entity<AspNetUserRoles>(entity =>
             {
-                entity.HasKey(e => new { e.UserId, e.RoleId });
+                entity.HasKey(e => new { e.userId, e.roleId });
 
-                entity.HasIndex(e => e.RoleId)
+                entity.HasIndex(e => e.roleId)
                     .HasName("IX_AspNetUserRoles_RoleId");
 
-                entity.HasIndex(e => e.UserId)
+                entity.HasIndex(e => e.userId)
                     .HasName("IX_AspNetUserRoles_UserId");
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.Property(e => e.RoleId).HasColumnName("roleId");
-
-                entity.HasOne(d => d.Role)
+                entity.HasOne(d => d.role)
                     .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.RoleId)
+                    .HasForeignKey(d => d.roleId)
                     .HasConstraintName("FK_AspNetUserRoles_AspNetRoles_RoleId");
 
-                entity.HasOne(d => d.User)
+                entity.HasOne(d => d.user)
                     .WithMany(p => p.AspNetUserRoles)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.userId)
                     .HasConstraintName("FK_AspNetUserRoles_AspNetUsers_UserId");
             });
 
             modelBuilder.Entity<AspNetUsers>(entity =>
             {
-                entity.HasIndex(e => e.NormalizedEmail)
+                entity.HasIndex(e => e.normalizedEmail)
                     .HasName("EmailIndex");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
+                entity.Property(e => e.id)
                     .HasMaxLength(48)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.AccessFailedCount).HasColumnName("accessFailedCount");
+                entity.Property(e => e.email).HasMaxLength(256);
 
-                entity.Property(e => e.ConcurrencyStamp).HasColumnName("concurrencyStamp");
+                entity.Property(e => e.firstName).HasMaxLength(256);
 
-                entity.Property(e => e.Email)
-                    .HasColumnName("email")
-                    .HasMaxLength(256);
+                entity.Property(e => e.lastName).HasMaxLength(256);
 
-                entity.Property(e => e.EmailConfirmed).HasColumnName("emailConfirmed");
+                entity.Property(e => e.normalizedEmail).HasMaxLength(256);
 
-                entity.Property(e => e.FirstName)
-                    .HasColumnName("firstName")
-                    .HasMaxLength(256);
+                entity.Property(e => e.normalizedUserName).HasMaxLength(256);
 
-                entity.Property(e => e.LastName)
-                    .HasColumnName("lastName")
-                    .HasMaxLength(256);
+                entity.Property(e => e.surName).HasMaxLength(256);
 
-                entity.Property(e => e.LockoutEnabled).HasColumnName("lockoutEnabled");
-
-                entity.Property(e => e.LockoutEnd).HasColumnName("lockoutEnd");
-
-                entity.Property(e => e.NormalizedEmail)
-                    .HasColumnName("normalizedEmail")
-                    .HasMaxLength(256);
-
-                entity.Property(e => e.NormalizedUserName)
-                    .HasColumnName("normalizedUserName")
-                    .HasMaxLength(256);
-
-                entity.Property(e => e.PasswordHash).HasColumnName("passwordHash");
-
-                entity.Property(e => e.PhoneNumber).HasColumnName("phoneNumber");
-
-                entity.Property(e => e.PhoneNumberConfirmed).HasColumnName("phoneNumberConfirmed");
-
-                entity.Property(e => e.SecurityStamp).HasColumnName("securityStamp");
-
-                entity.Property(e => e.SurName)
-                    .HasColumnName("surName")
-                    .HasMaxLength(256);
-
-                entity.Property(e => e.TwoFactorEnabled).HasColumnName("twoFactorEnabled");
-
-                entity.Property(e => e.UserName)
-                    .HasColumnName("userName")
-                    .HasMaxLength(256);
+                entity.Property(e => e.userName).HasMaxLength(256);
             });
 
             modelBuilder.Entity<AspNetUserTokens>(entity =>
             {
-                entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
-
-                entity.Property(e => e.UserId).HasColumnName("userId");
-
-                entity.Property(e => e.LoginProvider).HasColumnName("loginProvider");
-
-                entity.Property(e => e.Name).HasColumnName("name");
-
-                entity.Property(e => e.Value).HasColumnName("value");
+                entity.HasKey(e => new { e.userId, e.loginProvider, e.name });
             });
 
             modelBuilder.Entity<Authors>(entity =>
             {
-                entity.HasKey(e => e.AuthId);
+                entity.HasKey(e => e.authId);
 
-                entity.HasIndex(e => new { e.AuthorName, e.CustId })
+                entity.HasIndex(e => new { e.authorName, e.custId })
                     .HasName("IdxNames");
 
-                entity.Property(e => e.AuthId).HasColumnName("authId");
-
-                entity.Property(e => e.AuthorName)
+                entity.Property(e => e.authorName)
                     .IsRequired()
-                    .HasColumnName("authorName")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.FolkType).HasColumnName("folkType");
-
-                entity.Property(e => e.IsFolkOrUnknown).HasColumnName("isFolkOrUnknown");
-
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.Authors)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_AUTHORS_REFERENCE_RIGHTHOL");
 
-                entity.HasOne(d => d.FolkTypeNavigation)
+                entity.HasOne(d => d.folkTypeNavigation)
                     .WithMany(p => p.Authors)
-                    .HasForeignKey(d => d.FolkType)
+                    .HasForeignKey(d => d.folkType)
                     .HasConstraintName("FK_AUTHORS_REFERENCE_FOLKTYPE");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.Authors)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AUTHORS_REFERENCE_OBJECTRI");
 
-                entity.HasOne(d => d.RoleCodeNavigation)
+                entity.HasOne(d => d.roleCodeNavigation)
                     .WithMany(p => p.Authors)
-                    .HasForeignKey(d => d.RoleCode)
+                    .HasForeignKey(d => d.roleCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_AUTHORS_REFERENCE_CREATIVE");
             });
 
             modelBuilder.Entity<BankAccount>(entity =>
             {
-                entity.HasKey(e => e.BanAccId);
+                entity.HasKey(e => e.banAccID);
 
-                entity.Property(e => e.BanAccId).HasColumnName("banAccID");
-
-                entity.Property(e => e.AccountNumber)
-                    .HasColumnName("accountNumber")
+                entity.Property(e => e.accountNumber)
                     .HasMaxLength(32)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Currency)
-                    .HasColumnName("currency")
+                entity.Property(e => e.currency)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.Mfo).HasColumnName("mfo");
-
-                entity.Property(e => e.MfoName)
-                    .HasColumnName("mfoName")
+                entity.Property(e => e.mfoName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MfoOkpo)
-                    .HasColumnName("mfoOkpo")
+                entity.Property(e => e.mfoOkpo)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PAddress)
-                    .HasColumnName("pAddress")
+                entity.Property(e => e.pAddress)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PCity)
-                    .HasColumnName("pCity")
+                entity.Property(e => e.pCity)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PCountry)
-                    .HasColumnName("pCountry")
+                entity.Property(e => e.pCountry)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PIndex)
-                    .HasColumnName("pIndex")
+                entity.Property(e => e.pIndex)
                     .HasMaxLength(15)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PRegion).HasColumnName("pRegion");
-
-                entity.Property(e => e.TransitNumber)
-                    .HasColumnName("transitNumber")
+                entity.Property(e => e.transitNumber)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CurrencyNavigation)
+                entity.HasOne(d => d.currencyNavigation)
                     .WithMany(p => p.BankAccount)
-                    .HasForeignKey(d => d.Currency)
+                    .HasForeignKey(d => d.currency)
                     .HasConstraintName("FK_BANKACCO_REFERENCE_KL_R030");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.BankAccount)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_BANKACCO_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<BrRegister>(entity =>
             {
-                entity.HasKey(e => e.RegId);
+                entity.HasKey(e => e.regId);
 
-                entity.Property(e => e.RegId).HasColumnName("regId");
+                entity.Property(e => e.createDate).HasColumnType("date");
 
-                entity.Property(e => e.CreateDate)
-                    .HasColumnName("createDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.FileName)
-                    .HasColumnName("fileName")
+                entity.Property(e => e.fileName)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FullAmount)
-                    .HasColumnName("fullAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.fullAmount).HasColumnType("money");
 
-                entity.Property(e => e.PeriodId).HasColumnName("periodId");
+                entity.Property(e => e.rAmount).HasColumnType("money");
 
-                entity.Property(e => e.RAmount)
-                    .HasColumnName("rAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.BrRegister)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_BRREGIST_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.Period)
+                entity.HasOne(d => d.period)
                     .WithMany(p => p.BrRegister)
-                    .HasForeignKey(d => d.PeriodId)
+                    .HasForeignKey(d => d.periodId)
                     .HasConstraintName("FK_BRREGIST_REFERENCE_PAIDPERI");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.BrRegister)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .HasConstraintName("FK_BRREGIST_REFERENCE_REGISTER");
 
-                entity.HasOne(d => d.User)
+                entity.HasOne(d => d.user)
                     .WithMany(p => p.BrRegister)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.userId)
                     .HasConstraintName("FK_BRREGIST_REF_ASPNETUS");
             });
 
             modelBuilder.Entity<BrRegItem>(entity =>
             {
-                entity.HasKey(e => new { e.RegItemId, e.RegId });
-
-                entity.Property(e => e.RegItemId).HasColumnName("regItemId");
-
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.CountUse).HasColumnName("countUse");
-
-                entity.Property(e => e.FullAmount)
-                    .HasColumnName("fullAmount")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.FullRate)
-                    .HasColumnName("fullRate")
-                    .HasColumnType("decimal(10, 5)");
+                entity.HasKey(e => new { e.regItemId, e.regId });
 
                 entity.Property(e => e.ItemName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LicId).HasColumnName("licId");
+                entity.Property(e => e.fullAmount).HasColumnType("money");
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.fullRate).HasColumnType("decimal(10, 5)");
 
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
+
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MusicAmount)
-                    .HasColumnName("musicAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.musicAmount).HasColumnType("money");
 
-                entity.Property(e => e.MusicRate)
-                    .HasColumnName("musicRate")
-                    .HasColumnType("decimal(10, 5)");
+                entity.Property(e => e.musicRate).HasColumnType("decimal(10, 5)");
 
-                entity.Property(e => e.NumTicket).HasColumnName("numTicket");
+                entity.Property(e => e.rAmount).HasColumnType("money");
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.RAmount)
-                    .HasColumnName("rAmount")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.RegIdSr).HasColumnName("regIdSr");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.Lic)
+                entity.HasOne(d => d.lic)
                     .WithMany(p => p.BrRegItem)
-                    .HasForeignKey(d => d.LicId)
+                    .HasForeignKey(d => d.licId)
                     .HasConstraintName("FK_BRREGITE_REFERENCE_LICENSEA");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.BrRegItem)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_BRREGITE_REFERENCE_OBJECTRI");
 
-                entity.HasOne(d => d.Reg)
+                entity.HasOne(d => d.reg)
                     .WithMany(p => p.BrRegItem)
-                    .HasForeignKey(d => d.RegId)
+                    .HasForeignKey(d => d.regId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_BRREGITE_REFERENCE_BRREGIST");
 
-                entity.HasOne(d => d.RegIdSrNavigation)
+                entity.HasOne(d => d.regIdSrNavigation)
                     .WithMany(p => p.BrRegItem)
-                    .HasForeignKey(d => d.RegIdSr)
+                    .HasForeignKey(d => d.regIdSr)
                     .HasConstraintName("FK_BRREGITE_REFERENCE_REGISTER");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.BrRegItem)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .HasConstraintName("FK_BRREGITE_REFERENCE_ITEMSTAT");
             });
 
             modelBuilder.Entity<Category>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Comment)
-                    .HasColumnName("comment")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(256)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
                 entity.Property(e => e.TableObj)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Utype).HasColumnName("utype");
+                entity.Property(e => e.comment)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.Property(e => e.name)
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.Category)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .HasConstraintName("FK_CATEGORY_REFERENCE_CATEGORY");
             });
 
             modelBuilder.Entity<CategoryStatusType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<CategoryStatusTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.CategoryStatusTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .HasConstraintName("FK_CATEGORY_REFERENCE_CATSTTR");
             });
 
             modelBuilder.Entity<CategoryTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.CategoryTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CATEGORY_REF_CATEGORYTR");
             });
 
             modelBuilder.Entity<Client>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.Property(e => e.CustId)
-                    .HasColumnName("custId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.custId).ValueGeneratedNever();
 
-                entity.Property(e => e.ClientBrand)
-                    .HasColumnName("clientBrand")
+                entity.Property(e => e.clientBrand)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ClientGroup)
-                    .HasColumnName("clientGroup")
+                entity.Property(e => e.clientGroup)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithOne(p => p.Client)
-                    .HasForeignKey<Client>(d => d.CustId)
+                    .HasForeignKey<Client>(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CLIENT_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<ClientBrand>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ClientBrandTr>(entity =>
             {
-                entity.HasKey(e => new { e.Lang, e.CodeI });
+                entity.HasKey(e => new { e.lang, e.codeI });
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ClientBrandTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CLIENTBR_REFERENCE_CLIENTBR");
             });
 
             modelBuilder.Entity<ClientGroup>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ClientGroupTr>(entity =>
             {
-                entity.HasKey(e => new { e.Lang, e.CodeI });
+                entity.HasKey(e => new { e.lang, e.codeI });
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ClientGroupTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CLIENTGR_REFERENCE_CLIENTGR");
             });
 
             modelBuilder.Entity<ClnBusinessPlace>(entity =>
             {
-                entity.HasKey(e => e.PlaceId);
+                entity.HasKey(e => e.placeId);
 
-                entity.Property(e => e.PlaceId).HasColumnName("placeId");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.FreeEntry).HasColumnName("freeEntry");
-
-                entity.Property(e => e.PlCode).HasColumnName("plCode");
-
-                entity.Property(e => e.PlaceAddress)
-                    .HasColumnName("placeAddress")
+                entity.Property(e => e.placeAddress)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PlaceCity)
-                    .HasColumnName("placeCity")
+                entity.Property(e => e.placeCity)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PlaceCountry)
-                    .HasColumnName("placeCountry")
+                entity.Property(e => e.placeCountry)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PlaceName)
-                    .HasColumnName("placeName")
+                entity.Property(e => e.placeName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PlacePhone)
-                    .HasColumnName("placePhone")
+                entity.Property(e => e.placePhone)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PlaceRegion).HasColumnName("placeRegion");
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.ClnBusinessPlace)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_CLNBUSIN_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.PlCodeNavigation)
+                entity.HasOne(d => d.plCodeNavigation)
                     .WithMany(p => p.ClnBusinessPlace)
-                    .HasForeignKey(d => d.PlCode)
+                    .HasForeignKey(d => d.plCode)
                     .HasConstraintName("FK_CLNBUSIN_REFERENCE_TYPEPLAC");
             });
 
             modelBuilder.Entity<ClnPlaceHoll>(entity =>
             {
-                entity.HasKey(e => e.HollId);
+                entity.HasKey(e => e.hollId);
 
-                entity.Property(e => e.HollId).HasColumnName("hollId");
-
-                entity.Property(e => e.HollName)
-                    .HasColumnName("hollName")
+                entity.Property(e => e.hollName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PlaceId).HasColumnName("placeId");
-
-                entity.Property(e => e.ValueAdd)
-                    .HasColumnName("valueAdd")
+                entity.Property(e => e.valueAdd)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ValuePlace)
-                    .HasColumnName("valuePlace")
+                entity.Property(e => e.valuePlace)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Place)
+                entity.HasOne(d => d.place)
                     .WithMany(p => p.ClnPlaceHoll)
-                    .HasForeignKey(d => d.PlaceId)
+                    .HasForeignKey(d => d.placeId)
                     .HasConstraintName("FK_CLNPLACE_REFERENCE_CLNBUSIN");
             });
 
             modelBuilder.Entity<CommentCause>(entity =>
             {
-                entity.HasKey(e => e.CauseCode);
+                entity.HasKey(e => e.causeCode);
 
-                entity.Property(e => e.CauseCode)
-                    .HasColumnName("causeCode")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.causeCode).ValueGeneratedNever();
 
-                entity.Property(e => e.CauseNameEn)
-                    .HasColumnName("causeNameEn")
+                entity.Property(e => e.causeNameEn)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CauseNameRu)
-                    .HasColumnName("causeNameRu")
+                entity.Property(e => e.causeNameRu)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CauseNameUk)
-                    .HasColumnName("causeNameUk")
+                entity.Property(e => e.causeNameUk)
                     .HasMaxLength(256)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Community>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.Property(e => e.CustId)
-                    .HasColumnName("custId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.custId).ValueGeneratedNever();
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithOne(p => p.Community)
-                    .HasForeignKey<Community>(d => d.CustId)
+                    .HasForeignKey<Community>(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COMMUNIT_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<Company>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.HasIndex(e => e.CustId)
+                entity.HasIndex(e => e.custId)
                     .HasName("Association20_FK");
 
-                entity.HasIndex(e => new { e.CustId, e.Version })
+                entity.HasIndex(e => new { e.custId, e.version })
                     .HasName("Association25_FK");
 
-                entity.Property(e => e.CustId)
-                    .HasColumnName("custId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.custId).ValueGeneratedNever();
 
-                entity.Property(e => e.Version).HasColumnName("version");
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithOne(p => p.Company)
-                    .HasForeignKey<Company>(d => d.CustId)
+                    .HasForeignKey<Company>(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COMPANY_ASSOCIATI_CUSTOMER");
             });
 
             modelBuilder.Entity<Continent>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ContinentTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ContinentTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CONTINEN_REFERENCE_CONTINEN");
             });
 
             modelBuilder.Entity<CopyRight>(entity =>
             {
-                entity.HasKey(e => e.CRightId);
+                entity.HasKey(e => e.cRightId);
 
-                entity.HasIndex(e => e.CustId)
+                entity.HasIndex(e => e.custId)
                     .HasName("Association10_FK");
 
-                entity.Property(e => e.CRightId).HasColumnName("cRightId");
+                entity.Property(e => e.beginDate).HasColumnType("date");
 
-                entity.Property(e => e.BeginDate)
-                    .HasColumnName("beginDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.createDate).HasColumnType("datetime");
 
-                entity.Property(e => e.CreateDate)
-                    .HasColumnName("createDate")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.endDate).HasColumnType("date");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.EndDate)
-                    .HasColumnName("endDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.LBasis).HasColumnName("lBasis");
-
-                entity.Property(e => e.LBasisComment)
-                    .HasColumnName("lBasisComment")
+                entity.Property(e => e.lBasisComment)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
+                entity.Property(e => e.rate).HasColumnType("decimal(5, 2)");
 
-                entity.Property(e => e.ParentId).HasColumnName("parentId");
+                entity.Property(e => e.roleRate).HasColumnType("decimal(5, 2)");
 
-                entity.Property(e => e.PermCode).HasColumnName("permCode");
-
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("decimal(5, 2)");
-
-                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
-
-                entity.Property(e => e.RoleRate)
-                    .HasColumnName("roleRate")
-                    .HasColumnType("decimal(5, 2)");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.CopyRight)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COPYRIGH_ASSOCIATI_RIGHTHOL");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.CopyRight)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_OBJECTRI");
 
-                entity.HasOne(d => d.RoleCodeNavigation)
+                entity.HasOne(d => d.roleCodeNavigation)
                     .WithMany(p => p.CopyRight)
-                    .HasForeignKey(d => d.RoleCode)
+                    .HasForeignKey(d => d.roleCode)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_CREATIVE");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.CopyRight)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_CRIGHTST");
             });
 
             modelBuilder.Entity<CopyrightKind>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CrGroupCode).HasColumnName("crGroupCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(600)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CrGroupCodeNavigation)
+                entity.HasOne(d => d.crGroupCodeNavigation)
                     .WithMany(p => p.CopyrightKind)
-                    .HasForeignKey(d => d.CrGroupCode)
+                    .HasForeignKey(d => d.crGroupCode)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_CRKINDGR");
             });
 
             modelBuilder.Entity<CopyrightKindTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(600)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.CopyrightKindTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_COPYR");
             });
 
             modelBuilder.Entity<CopyrightType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<CopyrightTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.CopyrightTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_COPYRIGH");
             });
 
-            modelBuilder.Entity<CopyRtranslate>(entity =>
+            modelBuilder.Entity<CopyRTranslate>(entity =>
             {
-                entity.HasKey(e => e.CRightId);
+                entity.HasKey(e => e.cRightId);
 
-                entity.ToTable("CopyRTranslate");
+                entity.Property(e => e.cRightId).ValueGeneratedNever();
 
-                entity.Property(e => e.CRightId)
-                    .HasColumnName("cRightId")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.LangFrom)
-                    .HasColumnName("langFrom")
+                entity.Property(e => e.langFrom)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LangTo)
-                    .HasColumnName("langTo")
+                entity.Property(e => e.langTo)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
-
-                entity.HasOne(d => d.CRight)
-                    .WithOne(p => p.CopyRtranslate)
-                    .HasForeignKey<CopyRtranslate>(d => d.CRightId)
+                entity.HasOne(d => d.cRight)
+                    .WithOne(p => p.CopyRTranslate)
+                    .HasForeignKey<CopyRTranslate>(d => d.cRightId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COPYRTRA_REFERENCE_COPYRIGH");
 
-                entity.HasOne(d => d.LangFromNavigation)
-                    .WithMany(p => p.CopyRtranslateLangFromNavigation)
-                    .HasForeignKey(d => d.LangFrom)
+                entity.HasOne(d => d.langFromNavigation)
+                    .WithMany(p => p.CopyRTranslatelangFromNavigation)
+                    .HasForeignKey(d => d.langFrom)
                     .HasConstraintName("FK_CRTRAFROM_REFERENCE_LANGUAGE");
 
-                entity.HasOne(d => d.LangToNavigation)
-                    .WithMany(p => p.CopyRtranslateLangToNavigation)
-                    .HasForeignKey(d => d.LangTo)
+                entity.HasOne(d => d.langToNavigation)
+                    .WithMany(p => p.CopyRTranslatelangToNavigation)
+                    .HasForeignKey(d => d.langTo)
                     .HasConstraintName("FK_CPTRATO_REFERENCE_LANGUAGE");
 
-                entity.HasOne(d => d.RoleCodeNavigation)
-                    .WithMany(p => p.CopyRtranslate)
-                    .HasForeignKey(d => d.RoleCode)
+                entity.HasOne(d => d.roleCodeNavigation)
+                    .WithMany(p => p.CopyRTranslate)
+                    .HasForeignKey(d => d.roleCode)
                     .HasConstraintName("FK_COPYRTRA_REFERENCE_CREATIVE");
             });
 
             modelBuilder.Entity<CounterNumber>(entity =>
             {
-                entity.HasKey(e => e.CounterId);
+                entity.HasKey(e => e.counterId);
 
-                entity.Property(e => e.CounterId).HasColumnName("counterId");
-
-                entity.Property(e => e.CNum).HasColumnName("cNum");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Prefix)
-                    .HasColumnName("prefix")
+                entity.Property(e => e.prefix)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SymbolN)
-                    .HasColumnName("symbolN")
+                entity.Property(e => e.symbolN)
                     .HasMaxLength(1)
                     .IsUnicode(false);
-
-                entity.Property(e => e.TemplYear).HasColumnName("templYear");
             });
 
             modelBuilder.Entity<Country>(entity =>
             {
-                entity.HasKey(e => e.CountryCode);
+                entity.HasKey(e => e.countryCode);
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.A2)
-                    .HasColumnName("a2")
+                entity.Property(e => e.a2)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ContinentCode).HasColumnName("continentCode");
-
-                entity.Property(e => e.CountryName)
-                    .HasColumnName("countryName")
+                entity.Property(e => e.countryName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CountryNameShort)
-                    .HasColumnName("countryNameShort")
+                entity.Property(e => e.countryNameShort)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.KOdLit)
-                    .HasColumnName("kOD_LIT")
+                entity.Property(e => e.kOD_LIT)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.OrderBy).HasColumnName("orderBy");
-
-                entity.Property(e => e.ShortChoise).HasColumnName("shortChoise");
-
-                entity.HasOne(d => d.ContinentCodeNavigation)
+                entity.HasOne(d => d.continentCodeNavigation)
                     .WithMany(p => p.Country)
-                    .HasForeignKey(d => d.ContinentCode)
+                    .HasForeignKey(d => d.continentCode)
                     .HasConstraintName("FK_COUNTRY_REFERENCE_CONTINEN");
             });
 
             modelBuilder.Entity<CountryTr>(entity =>
             {
-                entity.HasKey(e => new { e.CountryCode, e.Lang })
+                entity.HasKey(e => new { e.countryCode, e.lang })
                     .ForSqlServerIsClustered(false);
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CountryName)
-                    .HasColumnName("countryName")
+                entity.Property(e => e.countryName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CountryNameShort)
-                    .HasColumnName("countryNameShort")
+                entity.Property(e => e.countryNameShort)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CountryCodeNavigation)
+                entity.HasOne(d => d.countryCodeNavigation)
                     .WithMany(p => p.CountryTr)
-                    .HasForeignKey(d => d.CountryCode)
+                    .HasForeignKey(d => d.countryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COUNTRYT_REFERENCE_COUNTRY");
             });
 
             modelBuilder.Entity<CreativeRoleType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Crtype).HasColumnName("CRType");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(128)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.CRTypeNavigation)
+                    .WithMany(p => p.CreativeRoleType)
+                    .HasForeignKey(d => d.CRType)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CREATIVE_REFERENCE_COPYRIGH");
 
                 entity.HasOne(d => d.CategoryCodeNavigation)
                     .WithMany(p => p.CreativeRoleType)
                     .HasForeignKey(d => d.CategoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CREATIVE_REFERENCE_CATEGORY");
-
-                entity.HasOne(d => d.CrtypeNavigation)
-                    .WithMany(p => p.CreativeRoleType)
-                    .HasForeignKey(d => d.Crtype)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CREATIVE_REFERENCE_COPYRIGH");
             });
 
             modelBuilder.Entity<CreativeRoleTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(64)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.CreativeRoleTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CREATIVE_REFERENCE_CREATIVE");
             });
 
             modelBuilder.Entity<CreativeTranslate>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithOne(p => p.CreativeTranslate)
-                    .HasForeignKey<CreativeTranslate>(d => d.CodeI)
+                    .HasForeignKey<CreativeTranslate>(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CTRANSLATE_REFERENCE_CREATIVE");
             });
 
-            modelBuilder.Entity<CrightStatus>(entity =>
+            modelBuilder.Entity<CRightStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.ToTable("CRightStatus");
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<CrightStatusTr>(entity =>
+            modelBuilder.Entity<CRightStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.ToTable("CRightStatusTr");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
-                    .WithMany(p => p.CrightStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                entity.HasOne(d => d.codeINavigation)
+                    .WithMany(p => p.CRightStatusTr)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CRIGHTST_REFERENCE_CRIGHTST");
             });
 
-            modelBuilder.Entity<CrkindGroup>(entity =>
+            modelBuilder.Entity<CRKindGroup>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.ToTable("CRKindGroup");
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<CrkindGroupTr>(entity =>
+            modelBuilder.Entity<CRKindGroupTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.ToTable("CRKindGroupTr");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
-                    .WithMany(p => p.CrkindGroupTr)
-                    .HasForeignKey(d => d.CodeI)
+                entity.HasOne(d => d.codeINavigation)
+                    .WithMany(p => p.CRKindGroupTr)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CRKINDGR_REFERENCE_CRKINDGR");
             });
 
             modelBuilder.Entity<Currency>(entity =>
             {
-                entity.HasKey(e => e.R030);
+                entity.HasKey(e => e.r030);
 
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.A3)
-                    .HasColumnName("a3")
+                entity.Property(e => e.a3)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NAim)
-                    .HasColumnName("nAIM")
+                entity.Property(e => e.nAIM)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NOmin).HasColumnName("nOMIN");
-
-                entity.Property(e => e.OrderBy).HasColumnName("orderBy");
-
-                entity.Property(e => e.PrNc).HasColumnName("prNC");
-
-                entity.Property(e => e.PrWork).HasColumnName("prWork");
-
-                entity.Property(e => e.R030NameEn)
-                    .HasColumnName("r030NameEn")
+                entity.Property(e => e.r030NameEn)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R030NameRu)
-                    .HasColumnName("r030NameRu")
+                entity.Property(e => e.r030NameRu)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R030NameUk)
-                    .HasColumnName("r030NameUk")
+                entity.Property(e => e.r030NameUk)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<CurrencyCourse>(entity =>
             {
-                entity.HasKey(e => new { e.R030, e.CDate });
+                entity.HasKey(e => new { e.r030, e.cDate });
 
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CDate)
-                    .HasColumnName("cDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.cDate).HasColumnType("date");
 
-                entity.Property(e => e.CAmount)
-                    .HasColumnName("cAmount")
-                    .HasColumnType("numeric(18, 5)");
+                entity.Property(e => e.cAmount).HasColumnType("numeric(18, 5)");
 
-                entity.Property(e => e.CAmountNbu)
-                    .HasColumnName("cAmountNBU")
-                    .HasColumnType("numeric(18, 5)");
+                entity.Property(e => e.cAmountNBU).HasColumnType("numeric(18, 5)");
 
-                entity.Property(e => e.CUnit).HasColumnName("cUnit");
-
-                entity.HasOne(d => d.R030Navigation)
+                entity.HasOne(d => d.r030Navigation)
                     .WithMany(p => p.CurrencyCourse)
-                    .HasForeignKey(d => d.R030)
+                    .HasForeignKey(d => d.r030)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CURRENCY_REFERENCE_KL_R030");
             });
 
             modelBuilder.Entity<CustCmRight>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.CRkindCode, e.DateBegin, e.CmCustId });
+                entity.HasKey(e => new { e.custId, e.cRKindCode, e.dateBegin, e.cmCustId });
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
+                entity.Property(e => e.dateBegin).HasColumnType("date");
 
-                entity.Property(e => e.CRkindCode).HasColumnName("cRKindCode");
+                entity.Property(e => e.dateEnd).HasColumnType("date");
 
-                entity.Property(e => e.DateBegin)
-                    .HasColumnName("dateBegin")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.CmCustId).HasColumnName("cmCustId");
-
-                entity.Property(e => e.DateEnd)
-                    .HasColumnName("dateEnd")
-                    .HasColumnType("date");
-
-                entity.HasOne(d => d.CmCust)
+                entity.HasOne(d => d.cmCust)
                     .WithMany(p => p.CustCmRight)
-                    .HasForeignKey(d => d.CmCustId)
+                    .HasForeignKey(d => d.cmCustId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CUSTCMRI_REFERENCE_COMMUNIT");
 
-                entity.HasOne(d => d.C)
+                entity.HasOne(d => d.c)
                     .WithMany(p => p.CustCmRight)
-                    .HasForeignKey(d => new { d.CustId, d.CRkindCode })
+                    .HasForeignKey(d => new { d.custId, d.cRKindCode })
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CUSTCMRI_REFERENCE_TERMSOFS");
             });
 
             modelBuilder.Entity<Customer>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.AnkMy).HasColumnName("ankMy");
-
-                entity.Property(e => e.AnkPublish).HasColumnName("ankPublish");
-
-                entity.Property(e => e.AnkTech).HasColumnName("ankTech");
-
-                entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
-
-                entity.Property(e => e.CustType).HasColumnName("custType");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.CustTypeNavigation)
+                entity.HasOne(d => d.custTypeNavigation)
                     .WithMany(p => p.Customer)
-                    .HasForeignKey(d => d.CustType)
+                    .HasForeignKey(d => d.custType)
                     .HasConstraintName("FK_CUSTOMER_REFERENCE_CUSTOMER");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.Customer)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CUSTOMER_REFERENCE_Status");
             });
 
             modelBuilder.Entity<CustomerStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<CustomerStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.CustomerStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CUSTOMER_REFERENCE_CUSTOMTr");
             });
 
             modelBuilder.Entity<CustomerType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<CustomerTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.CustomerTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CUSTOMER_REFERENCE_CUSTTR");
             });
 
             modelBuilder.Entity<DicCategoryItems>(entity =>
             {
-                entity.HasKey(e => e.DicName);
+                entity.HasKey(e => e.dicName);
 
-                entity.Property(e => e.DicName)
-                    .HasColumnName("dicName")
+                entity.Property(e => e.dicName)
                     .HasMaxLength(256)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Code).HasColumnName("code");
-
-                entity.Property(e => e.DicLevel).HasColumnName("dicLevel");
-
-                entity.Property(e => e.DicType)
-                    .HasColumnName("dicType")
+                entity.Property(e => e.dicType)
                     .HasMaxLength(1)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Url)
+                entity.Property(e => e.url)
                     .IsRequired()
-                    .HasColumnName("url")
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeNavigation)
+                entity.HasOne(d => d.codeNavigation)
                     .WithMany(p => p.DicCategoryItems)
-                    .HasForeignKey(d => d.Code)
+                    .HasForeignKey(d => d.code)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DICCATEG_REFERENCE_DICTCATE");
             });
 
             modelBuilder.Entity<DicList>(entity =>
             {
-                entity.HasKey(e => e.DicId);
+                entity.HasKey(e => e.dicId);
 
-                entity.Property(e => e.DicId).HasColumnName("dicId");
-
-                entity.Property(e => e.DCode).HasColumnName("dCode");
-
-                entity.Property(e => e.DKind)
+                entity.Property(e => e.dKind)
                     .IsRequired()
-                    .HasColumnName("dKind")
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DNameEn)
-                    .HasColumnName("dNameEn")
+                entity.Property(e => e.dNameEn)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DNameRu)
-                    .HasColumnName("dNameRu")
+                entity.Property(e => e.dNameRu)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DNameUk)
-                    .HasColumnName("dNameUk")
+                entity.Property(e => e.dNameUk)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<DictCategory>(entity =>
             {
-                entity.HasKey(e => e.Code);
+                entity.HasKey(e => e.code);
 
-                entity.Property(e => e.Code)
-                    .HasColumnName("code")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.code).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<DistribStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<DistribStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.DistribStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIBS_REFERENCE_DISTRIBS");
             });
 
             modelBuilder.Entity<DistribType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<DistribTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.DistribTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIBT_REFERENCE_DISTRIBT");
             });
 
             modelBuilder.Entity<Distribution>(entity =>
             {
-                entity.HasKey(e => e.DistId);
+                entity.HasKey(e => e.distId);
 
-                entity.Property(e => e.DistId).HasColumnName("distId");
+                entity.Property(e => e.amount).HasColumnType("money");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("money");
+                entity.Property(e => e.courtFee).HasColumnType("money");
 
-                entity.Property(e => e.CRkindCode).HasColumnName("cRKindCode");
+                entity.Property(e => e.distribDate).HasColumnType("date");
 
-                entity.Property(e => e.CourtFee)
-                    .HasColumnName("courtFee")
-                    .HasColumnType("money");
+                entity.Property(e => e.partnerCommiss).HasColumnType("money");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.DistType).HasColumnName("distType");
-
-                entity.Property(e => e.DistribDate)
-                    .HasColumnName("distribDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.IsCourt).HasColumnName("isCourt");
-
-                entity.Property(e => e.PartnerCommiss)
-                    .HasColumnName("partnerCommiss")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.PartnerId).HasColumnName("partnerId");
-
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.Property(e => e.RegIdBr).HasColumnName("regIdBr");
-
-                entity.Property(e => e.RmId).HasColumnName("rmId");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.CRkindCodeNavigation)
+                entity.HasOne(d => d.cRKindCodeNavigation)
                     .WithMany(p => p.Distribution)
-                    .HasForeignKey(d => d.CRkindCode)
+                    .HasForeignKey(d => d.cRKindCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_COPYRIGH");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.Distribution)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.Partner)
+                entity.HasOne(d => d.partner)
                     .WithMany(p => p.Distribution)
-                    .HasForeignKey(d => d.PartnerId)
+                    .HasForeignKey(d => d.partnerId)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_PARTNER");
 
-                entity.HasOne(d => d.Reg)
+                entity.HasOne(d => d.reg)
                     .WithMany(p => p.Distribution)
-                    .HasForeignKey(d => d.RegId)
+                    .HasForeignKey(d => d.regId)
                     .HasConstraintName("FK_DISTRIB_REF_REGISTER");
 
-                entity.HasOne(d => d.RegIdBrNavigation)
+                entity.HasOne(d => d.regIdBrNavigation)
                     .WithMany(p => p.Distribution)
-                    .HasForeignKey(d => d.RegIdBr)
+                    .HasForeignKey(d => d.regIdBr)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_BRREGIST");
 
-                entity.HasOne(d => d.Rm)
+                entity.HasOne(d => d.rm)
                     .WithMany(p => p.Distribution)
-                    .HasForeignKey(d => d.RmId)
+                    .HasForeignKey(d => d.rmId)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_REGISTER");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.Distribution)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_DISTRIBS");
             });
 
             modelBuilder.Entity<DistributionItem>(entity =>
             {
-                entity.HasKey(e => e.DistItemId);
+                entity.HasKey(e => e.distItemId);
 
-                entity.Property(e => e.DistItemId).HasColumnName("distItemId");
+                entity.Property(e => e.amount).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("numeric(20, 2)");
-
-                entity.Property(e => e.DistId).HasColumnName("distId");
-
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.Property(e => e.RegIdBr).HasColumnName("regIdBr");
-
-                entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
-
-                entity.Property(e => e.RegItemIdBr).HasColumnName("regItemIdBr");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.Dist)
+                entity.HasOne(d => d.dist)
                     .WithMany(p => p.DistributionItem)
-                    .HasForeignKey(d => d.DistId)
+                    .HasForeignKey(d => d.distId)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_DISTRIBU");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.DistributionItem)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_OBJECTRI");
             });
 
             modelBuilder.Entity<DocPreparePay>(entity =>
             {
-                entity.HasKey(e => new { e.DocPayId, e.DateWork });
+                entity.HasKey(e => new { e.docPayId, e.dateWork });
 
-                entity.Property(e => e.DocPayId)
-                    .HasColumnName("docPayId")
-                    .ValueGeneratedOnAdd();
+                entity.Property(e => e.docPayId).ValueGeneratedOnAdd();
 
-                entity.Property(e => e.DateWork)
-                    .HasColumnName("dateWork")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.dateWork).HasColumnType("datetime");
 
-                entity.Property(e => e.AccCredit)
-                    .HasColumnName("accCredit")
+                entity.Property(e => e.accCredit)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccDebet)
-                    .HasColumnName("accDebet")
+                entity.Property(e => e.accDebet)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccIdCredit).HasColumnName("accIdCredit");
+                entity.Property(e => e.amount).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.AccIdDebet).HasColumnName("accIdDebet");
+                entity.Property(e => e.amountCur).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.dateOper).HasColumnType("date");
 
-                entity.Property(e => e.AmountCur)
-                    .HasColumnName("amountCur")
-                    .HasColumnType("numeric(20, 2)");
-
-                entity.Property(e => e.CustIdRh).HasColumnName("custIdRh");
-
-                entity.Property(e => e.DateOper)
-                    .HasColumnName("dateOper")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DistId).HasColumnName("distId");
-
-                entity.Property(e => e.FlCourt).HasColumnName("flCourt");
-
-                entity.Property(e => e.ND)
-                    .HasColumnName("nD")
+                entity.Property(e => e.nD)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NDdate)
-                    .HasColumnName("nDDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.nDDate).HasColumnType("date");
 
-                entity.Property(e => e.Paidid).HasColumnName("paidid");
-
-                entity.Property(e => e.PayNote)
-                    .HasColumnName("payNote")
+                entity.Property(e => e.payNote)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PayStatus).HasColumnName("payStatus");
-
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.HasOne(d => d.PayStatusNavigation)
+                entity.HasOne(d => d.payStatusNavigation)
                     .WithMany(p => p.DocPreparePay)
-                    .HasForeignKey(d => d.PayStatus)
+                    .HasForeignKey(d => d.payStatus)
                     .HasConstraintName("FK_DOCPREPA_REFERENCE_PAYMENTS");
             });
 
             modelBuilder.Entity<DocReq>(entity =>
             {
-                entity.HasKey(e => new { e.DocId, e.ReqId });
+                entity.HasKey(e => new { e.docId, e.reqId });
 
-                entity.Property(e => e.DocId).HasColumnName("docId");
-
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.DocReq)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DOCREQ_REFERENCE_REQUEST");
             });
@@ -3439,537 +2588,390 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TextEn)
-                    .HasColumnName("Text_En")
+                entity.Property(e => e.Text_En)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TextRu)
-                    .HasColumnName("Text_Ru")
+                entity.Property(e => e.Text_Ru)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TextUk)
-                    .HasColumnName("Text_Uk")
+                entity.Property(e => e.Text_Uk)
                     .HasMaxLength(512)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<DocumentType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<DocumentTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.DocumentTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DOCUMENT_REFERENCE_DOCUMENT");
             });
 
             modelBuilder.Entity<Employee>(entity =>
             {
-                entity.HasKey(e => e.Emplid);
+                entity.HasKey(e => e.emplid);
 
-                entity.Property(e => e.Emplid).HasColumnName("emplid");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.Email)
-                    .HasColumnName("email")
+                entity.Property(e => e.email)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.FirstName)
-                    .HasColumnName("firstName")
+                entity.Property(e => e.firstName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LastName)
-                    .HasColumnName("lastName")
+                entity.Property(e => e.lastName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PhoneNumber)
-                    .HasColumnName("phoneNumber")
+                entity.Property(e => e.phoneNumber)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SurName)
-                    .HasColumnName("surName")
+                entity.Property(e => e.surName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.Employee)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_EMPLOYEE_REFERENCE_CUSTOMER");
 
-                entity.HasOne(d => d.User)
+                entity.HasOne(d => d.user)
                     .WithMany(p => p.Employee)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.userId)
                     .HasConstraintName("FK_EMPLOYEE_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<EpisodeType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<EpisodeTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.EpisodeTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_EPISODET_REFERENCE_EPISODET");
             });
 
             modelBuilder.Entity<EtGenre>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.EtGenre)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .HasConstraintName("FK_ETGENRE_REFERENCE_CATEGORY");
             });
 
             modelBuilder.Entity<EtGenreRate>(entity =>
             {
-                entity.HasKey(e => new { e.ActCode, e.GenreCode });
+                entity.HasKey(e => new { e.actCode, e.genreCode });
 
-                entity.Property(e => e.ActCode).HasColumnName("actCode");
+                entity.Property(e => e.rate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.GenreCode).HasColumnName("genreCode");
-
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("numeric(10, 5)");
-
-                entity.HasOne(d => d.ActCodeNavigation)
+                entity.HasOne(d => d.actCodeNavigation)
                     .WithMany(p => p.EtGenreRate)
-                    .HasForeignKey(d => d.ActCode)
+                    .HasForeignKey(d => d.actCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ETGENRER_REFERENCE_ACT");
 
-                entity.HasOne(d => d.GenreCodeNavigation)
+                entity.HasOne(d => d.genreCodeNavigation)
                     .WithMany(p => p.EtGenreRate)
-                    .HasForeignKey(d => d.GenreCode)
+                    .HasForeignKey(d => d.genreCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ETGENRER_REF_ETGENRE");
             });
 
             modelBuilder.Entity<EtGenreRole>(entity =>
             {
-                entity.HasKey(e => new { e.GenreCode, e.RoleCode, e.ActCode });
+                entity.HasKey(e => new { e.genreCode, e.roleCode, e.actCode });
 
-                entity.Property(e => e.GenreCode).HasColumnName("genreCode");
+                entity.Property(e => e.rate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
-
-                entity.Property(e => e.ActCode).HasColumnName("actCode");
-
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("numeric(10, 5)");
-
-                entity.HasOne(d => d.ActCodeNavigation)
+                entity.HasOne(d => d.actCodeNavigation)
                     .WithMany(p => p.EtGenreRole)
-                    .HasForeignKey(d => d.ActCode)
+                    .HasForeignKey(d => d.actCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ETGENRER_REFERENCE_OBJACT");
 
-                entity.HasOne(d => d.GenreCodeNavigation)
+                entity.HasOne(d => d.genreCodeNavigation)
                     .WithMany(p => p.EtGenreRole)
-                    .HasForeignKey(d => d.GenreCode)
+                    .HasForeignKey(d => d.genreCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ETGENRER_REFERENCE_ETGENRE");
 
-                entity.HasOne(d => d.RoleCodeNavigation)
+                entity.HasOne(d => d.roleCodeNavigation)
                     .WithMany(p => p.EtGenreRole)
-                    .HasForeignKey(d => d.RoleCode)
+                    .HasForeignKey(d => d.roleCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ETGENRER_REFERENCE_ETROLE");
             });
 
             modelBuilder.Entity<EtRole>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(128)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.EtRole)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .HasConstraintName("FK_ETROLE_REFERENCE_CATEGORY");
             });
 
             modelBuilder.Entity<ExternalPay>(entity =>
             {
-                entity.HasKey(e => e.PaidId);
+                entity.HasKey(e => e.paidId);
 
-                entity.Property(e => e.PaidId).HasColumnName("paidId");
-
-                entity.Property(e => e.Account)
-                    .HasColumnName("account")
+                entity.Property(e => e.account)
                     .HasMaxLength(30)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccountCorr)
-                    .HasColumnName("accountCorr")
+                entity.Property(e => e.accountCorr)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodeOper)
-                    .HasColumnName("codeOper")
+                entity.Property(e => e.codeOper)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DateOper)
-                    .HasColumnName("dateOper")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateOper).HasColumnType("date");
 
-                entity.Property(e => e.DocDate)
-                    .HasColumnName("docDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.docDate).HasColumnType("date");
 
-                entity.Property(e => e.DocNum)
-                    .HasColumnName("docNum")
+                entity.Property(e => e.docNum)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.InputDate)
-                    .HasColumnName("inputDate")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.inputDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Mfo)
-                    .HasColumnName("mfo")
+                entity.Property(e => e.mfo)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MfoCorr)
-                    .HasColumnName("mfoCorr")
+                entity.Property(e => e.mfoCorr)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NameCorr)
-                    .HasColumnName("nameCorr")
+                entity.Property(e => e.nameCorr)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NameMfoCorr)
-                    .HasColumnName("nameMfoCorr")
+                entity.Property(e => e.nameMfoCorr)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Nplat)
-                    .HasColumnName("nplat")
+                entity.Property(e => e.nplat)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.OkpoCorr)
-                    .HasColumnName("okpoCorr")
+                entity.Property(e => e.okpoCorr)
                     .HasMaxLength(15)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Okpol)
-                    .HasColumnName("okpol")
+                entity.Property(e => e.okpol)
                     .HasMaxLength(15)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.SCredit)
-                    .HasColumnName("sCredit")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.sCredit).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.SDebet)
-                    .HasColumnName("sDebet")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.sDebet).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.SNcCur)
-                    .HasColumnName("sNcCur")
-                    .HasColumnType("numeric(20, 2)");
-
-                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.sNcCur).HasColumnType("numeric(20, 2)");
             });
 
             modelBuilder.Entity<FileCustomer>(entity =>
             {
-                entity.HasKey(e => e.DocId);
+                entity.HasKey(e => e.docId);
 
-                entity.Property(e => e.DocId).HasColumnName("docId");
+                entity.Property(e => e.createDate).HasColumnType("datetime");
 
-                entity.Property(e => e.CreateDate)
-                    .HasColumnName("createDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.DocComment)
-                    .HasColumnName("docComment")
+                entity.Property(e => e.docComment)
                     .HasMaxLength(500)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DocFile)
-                    .HasColumnName("docFile")
+                entity.Property(e => e.docFile)
                     .HasMaxLength(255)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DocType).HasColumnName("docType");
-
-                entity.Property(e => e.MimeType)
-                    .HasColumnName("mimeType")
+                entity.Property(e => e.mimeType)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.FileCustomer)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_FILECUST_REFERENCE_CUSTOMER");
 
-                entity.HasOne(d => d.DocTypeNavigation)
+                entity.HasOne(d => d.docTypeNavigation)
                     .WithMany(p => p.FileCustomer)
-                    .HasForeignKey(d => d.DocType)
+                    .HasForeignKey(d => d.docType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_FILECUST_REFERENCE_TYPE");
             });
 
             modelBuilder.Entity<FileType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Fixation>(entity =>
             {
-                entity.HasKey(e => e.FixId);
+                entity.HasKey(e => e.fixId);
 
-                entity.Property(e => e.FixId)
-                    .HasColumnName("fixId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.address).HasMaxLength(255);
 
-                entity.Property(e => e.Address)
-                    .HasColumnName("address")
-                    .HasMaxLength(255);
+                entity.Property(e => e.city).HasMaxLength(255);
 
-                entity.Property(e => e.City)
-                    .HasColumnName("city")
-                    .HasMaxLength(255);
+                entity.Property(e => e.clientInnOkpo).HasMaxLength(12);
 
-                entity.Property(e => e.ClientCustId).HasColumnName("clientCustId");
+                entity.Property(e => e.clientName).HasMaxLength(255);
 
-                entity.Property(e => e.ClientInnOkpo)
-                    .HasColumnName("clientInnOkpo")
-                    .HasMaxLength(12);
+                entity.Property(e => e.courtFeeAmount).HasColumnType("money");
 
-                entity.Property(e => e.ClientName)
-                    .HasColumnName("clientName")
-                    .HasMaxLength(255);
+                entity.Property(e => e.eventDates).HasMaxLength(255);
 
-                entity.Property(e => e.CountPlace).HasColumnName("countPlace");
+                entity.Property(e => e.eventName).HasMaxLength(255);
 
-                entity.Property(e => e.CourtFeeAmount)
-                    .HasColumnName("courtFeeAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.fixationDate).HasColumnType("date");
 
-                entity.Property(e => e.EventDates)
-                    .HasColumnName("eventDates")
-                    .HasMaxLength(255);
+                entity.Property(e => e.placement).HasMaxLength(255);
 
-                entity.Property(e => e.EventName)
-                    .HasColumnName("eventName")
-                    .HasMaxLength(255);
+                entity.Property(e => e.rewardAmount).HasColumnType("money");
 
-                entity.Property(e => e.FixStageStatus).HasColumnName("fixStageStatus");
+                entity.Property(e => e.ticketPriceMax).HasColumnType("money");
 
-                entity.Property(e => e.FixationDate)
-                    .HasColumnName("fixationDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.ticketPriceMin).HasColumnType("money");
 
-                entity.Property(e => e.LicId).HasColumnName("licId");
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.Property(e => e.PartnerCustId).HasColumnName("partnerCustId");
-
-                entity.Property(e => e.Placement)
-                    .HasColumnName("placement")
-                    .HasMaxLength(255);
-
-                entity.Property(e => e.RewardAmount)
-                    .HasColumnName("rewardAmount")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.TicketPriceMax)
-                    .HasColumnName("ticketPriceMax")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.TicketPriceMin)
-                    .HasColumnName("ticketPriceMin")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
-
-                entity.Property(e => e.UsesType).HasColumnName("usesType");
-
-                entity.HasOne(d => d.ClientCust)
+                entity.HasOne(d => d.clientCust)
                     .WithMany(p => p.Fixation)
-                    .HasForeignKey(d => d.ClientCustId)
+                    .HasForeignKey(d => d.clientCustId)
                     .HasConstraintName("FK_FIXATION_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.FixStageStatusNavigation)
+                entity.HasOne(d => d.lic)
                     .WithMany(p => p.Fixation)
-                    .HasForeignKey(d => d.FixStageStatus)
+                    .HasForeignKey(d => d.licId)
+                    .HasConstraintName("FK_FIXATION_REFERENCE_LICENSEA");
+
+                entity.HasOne(d => d.partnerCust)
+                    .WithMany(p => p.Fixation)
+                    .HasForeignKey(d => d.partnerCustId)
+                    .HasConstraintName("FK_FIXATION_REFERENCE_PARTNER");
+
+                entity.HasOne(d => d.stageStatusNavigation)
+                    .WithMany(p => p.Fixation)
+                    .HasForeignKey(d => d.stageStatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_FIXATION_REFERENCE_FIXSTAGE");
 
-                entity.HasOne(d => d.Lic)
+                entity.HasOne(d => d.user)
                     .WithMany(p => p.Fixation)
-                    .HasForeignKey(d => d.LicId)
-                    .HasConstraintName("FK_FIXATION_REFERENCE_LICENSEA");
-
-                entity.HasOne(d => d.PartnerCust)
-                    .WithMany(p => p.Fixation)
-                    .HasForeignKey(d => d.PartnerCustId)
-                    .HasConstraintName("FK_FIXATION_REFERENCE_PARTNER");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Fixation)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.userId)
                     .HasConstraintName("FK_FIXATION_REF_ASPNETUSER");
 
-                entity.HasOne(d => d.UsesTypeNavigation)
+                entity.HasOne(d => d.usesTypeNavigation)
                     .WithMany(p => p.Fixation)
-                    .HasForeignKey(d => d.UsesType)
+                    .HasForeignKey(d => d.usesType)
                     .HasConstraintName("FK_FIXATION_REFERENCE_USESTYPE");
             });
 
             modelBuilder.Entity<FixFile>(entity =>
             {
-                entity.HasKey(e => e.FileId);
+                entity.HasKey(e => e.fileId);
 
-                entity.Property(e => e.FileId).HasColumnName("fileId");
-
-                entity.Property(e => e.FixId).HasColumnName("fixId");
-
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.Path)
+                entity.Property(e => e.path)
                     .IsRequired()
-                    .HasColumnName("path")
                     .HasMaxLength(255);
 
-                entity.HasOne(d => d.Fix)
+                entity.HasOne(d => d.fix)
                     .WithMany(p => p.FixFile)
-                    .HasForeignKey(d => d.FixId)
+                    .HasForeignKey(d => d.fixId)
                     .HasConstraintName("FK_FIXFILE_REF_FIXATION");
             });
 
             modelBuilder.Entity<FixStageStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
                 entity.Property(e => e.StageName).HasMaxLength(255);
 
@@ -3978,2269 +2980,1679 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<FixStorageDevice>(entity =>
             {
-                entity.HasKey(e => e.StorageId);
+                entity.HasKey(e => e.storageId);
 
-                entity.Property(e => e.StorageId).HasColumnName("storageId");
+                entity.Property(e => e.capacity).HasColumnType("numeric(18, 0)");
 
-                entity.Property(e => e.Capacity)
-                    .HasColumnName("capacity")
-                    .HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.FixId).HasColumnName("fixId");
-
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.SerialNumber)
+                entity.Property(e => e.serialNumber)
                     .IsRequired()
-                    .HasColumnName("serialNumber")
                     .HasMaxLength(255);
 
-                entity.HasOne(d => d.Fix)
+                entity.HasOne(d => d.fix)
                     .WithMany(p => p.FixStorageDevice)
-                    .HasForeignKey(d => d.FixId)
+                    .HasForeignKey(d => d.fixId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_FIXSTORAGE_REF_FIXATION");
             });
 
             modelBuilder.Entity<FolkType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<FolkTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.FolkTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_FOLKTYPE_REFERENCE_FOLKTYPE");
             });
 
             modelBuilder.Entity<GenreType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.GenreType)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OBJECTTY_REFERENCE_CATEGORY");
             });
 
             modelBuilder.Entity<GenreTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.GenreTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_GENRETYP_REFERENCE_GENRETYP");
             });
 
             modelBuilder.Entity<Invoice>(entity =>
             {
-                entity.HasKey(e => e.DocId);
+                entity.HasKey(e => e.docId);
 
-                entity.Property(e => e.DocId)
-                    .HasColumnName("docId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.docId).ValueGeneratedNever();
 
                 entity.Property(e => e.Amount).HasColumnType("money");
 
-                entity.Property(e => e.PayAnk).HasColumnName("payAnk");
-
-                entity.Property(e => e.PayCustId).HasColumnName("payCustId");
-
-                entity.Property(e => e.Purpose)
-                    .HasColumnName("purpose")
+                entity.Property(e => e.purpose)
                     .HasMaxLength(3000)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RecAnk).HasColumnName("recAnk");
-
-                entity.Property(e => e.RecBankName)
-                    .HasColumnName("recBankName")
+                entity.Property(e => e.recBankName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RecCustId).HasColumnName("recCustId");
-
-                entity.Property(e => e.RecMfo)
-                    .HasColumnName("recMFO")
+                entity.Property(e => e.recMFO)
                     .HasMaxLength(64)
                     .IsUnicode(false);
-
-                entity.Property(e => e.Status).HasColumnName("status");
             });
 
             modelBuilder.Entity<ItemStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ItemStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ItemStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_ITEMSTAT_REFERENCE_ITEMSTAT");
             });
 
             modelBuilder.Entity<KindComposition>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.KindComposition)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_KINDCOMP_REFERENCE_CATEGORY");
             });
 
             modelBuilder.Entity<KindCompositionTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.KindCompositionTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_KINDCOMP_REFERENCE_KINDCOMP");
             });
 
             modelBuilder.Entity<KindFilm>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<KindFilmTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.KindFilmTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_KINDFILM_REFERENCE_KINDFILM");
             });
 
             modelBuilder.Entity<KindSerial>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<KindSerialTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.KindSerialTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_KINDSERI_REFERENCE_KINDSERI");
             });
 
-            modelBuilder.Entity<KlR030>(entity =>
+            modelBuilder.Entity<KL_R030>(entity =>
             {
-                entity.HasKey(e => e.R030);
+                entity.HasKey(e => e.r030);
 
-                entity.ToTable("KL_R030");
-
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.A3)
-                    .HasColumnName("a3")
+                entity.Property(e => e.a3)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NAim)
-                    .HasColumnName("nAIM")
+                entity.Property(e => e.nAIM)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NOmin).HasColumnName("nOMIN");
-
-                entity.Property(e => e.PrWork).HasColumnName("pr_work");
-
-                entity.Property(e => e.R030Name)
-                    .HasColumnName("r030Name")
+                entity.Property(e => e.r030Name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R031).HasColumnName("r031");
-
-                entity.HasOne(d => d.CountryCodeNavigation)
-                    .WithMany(p => p.KlR030)
-                    .HasForeignKey(d => d.CountryCode)
+                entity.HasOne(d => d.countryCodeNavigation)
+                    .WithMany(p => p.KL_R030)
+                    .HasForeignKey(d => d.countryCode)
                     .HasConstraintName("FK_KL_R030_REFERENCE_COUNTRY");
 
-                entity.HasOne(d => d.R031Navigation)
-                    .WithMany(p => p.KlR030)
-                    .HasForeignKey(d => d.R031)
+                entity.HasOne(d => d.r031Navigation)
+                    .WithMany(p => p.KL_R030)
+                    .HasForeignKey(d => d.r031)
                     .HasConstraintName("FK_KL_R030_REFERENCE_KL_R031");
             });
 
-            modelBuilder.Entity<KlR030tr>(entity =>
+            modelBuilder.Entity<KL_R030Tr>(entity =>
             {
-                entity.HasKey(e => new { e.R030, e.Lang });
+                entity.HasKey(e => new { e.r030, e.lang });
 
-                entity.ToTable("KL_R030Tr");
-
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R030Name)
-                    .HasColumnName("r030Name")
+                entity.Property(e => e.r030Name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.R030Navigation)
-                    .WithMany(p => p.KlR030tr)
-                    .HasForeignKey(d => d.R030)
+                entity.HasOne(d => d.r030Navigation)
+                    .WithMany(p => p.KL_R030Tr)
+                    .HasForeignKey(d => d.r030)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_R030TR_REFERENCE_KL_R030");
             });
 
-            modelBuilder.Entity<KlR031>(entity =>
+            modelBuilder.Entity<KL_R031>(entity =>
             {
-                entity.HasKey(e => e.R031);
+                entity.HasKey(e => e.r031);
 
-                entity.ToTable("KL_R031");
+                entity.Property(e => e.r031).ValueGeneratedNever();
 
-                entity.Property(e => e.R031)
-                    .HasColumnName("r031")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.R031NameEn)
-                    .HasColumnName("r031NameEn")
+                entity.Property(e => e.r031NameEn)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R031NameRu)
-                    .HasColumnName("r031NameRu")
+                entity.Property(e => e.r031NameRu)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R031NameUk)
-                    .HasColumnName("r031NameUk")
+                entity.Property(e => e.r031NameUk)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Lang>(entity =>
             {
-                entity.HasKey(e => e.CodeS);
+                entity.HasKey(e => e.codeS);
 
-                entity.Property(e => e.CodeS)
-                    .HasColumnName("codeS")
+                entity.Property(e => e.codeS)
                     .HasMaxLength(2)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<LangTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeS, e.Lang });
+                entity.HasKey(e => new { e.codeS, e.lang });
 
-                entity.Property(e => e.CodeS)
-                    .HasColumnName("codeS")
+                entity.Property(e => e.codeS)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeSNavigation)
+                entity.HasOne(d => d.codeSNavigation)
                     .WithMany(p => p.LangTr)
-                    .HasForeignKey(d => d.CodeS)
+                    .HasForeignKey(d => d.codeS)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LANGTR_REFERENCE_LANG");
             });
 
             modelBuilder.Entity<Language>(entity =>
             {
-                entity.HasKey(e => e.CodeS);
+                entity.HasKey(e => e.codeS);
 
-                entity.Property(e => e.CodeS)
-                    .HasColumnName("codeS")
+                entity.Property(e => e.codeS)
                     .HasMaxLength(2)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NameId).HasColumnName("nameId");
-
-                entity.Property(e => e.NameSh3)
-                    .HasColumnName("nameSh3")
+                entity.Property(e => e.nameSh3)
                     .HasMaxLength(3)
                     .IsUnicode(false);
-
-                entity.Property(e => e.ShortChoise).HasColumnName("shortChoise");
             });
 
             modelBuilder.Entity<LegalBasis>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(254)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<LegalBasisTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.LegalBasisTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LEGALBAS_REFERENCE_LEGALBAS");
             });
 
-            modelBuilder.Entity<LicAuthorBr>(entity =>
+            modelBuilder.Entity<LicAuthorBR>(entity =>
             {
-                entity.HasKey(e => e.CRightId);
+                entity.HasKey(e => e.cRightId);
 
-                entity.ToTable("LicAuthorBR");
+                entity.Property(e => e.cRightId).ValueGeneratedNever();
 
-                entity.Property(e => e.CRightId)
-                    .HasColumnName("cRightId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.dateAccept).HasColumnType("date");
 
-                entity.Property(e => e.DateAccept)
-                    .HasColumnName("dateAccept")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateClose).HasColumnType("date");
 
-                entity.Property(e => e.DateClose)
-                    .HasColumnName("dateClose")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateCreate).HasColumnType("date");
 
-                entity.Property(e => e.DateCreate)
-                    .HasColumnName("dateCreate")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateModify).HasColumnType("date");
 
-                entity.Property(e => e.DateModify)
-                    .HasColumnName("dateModify")
-                    .HasColumnType("date");
+                entity.Property(e => e.prepayDateDo).HasColumnType("date");
 
-                entity.Property(e => e.PrepayDateDo)
-                    .HasColumnName("prepayDateDo")
-                    .HasColumnType("date");
+                entity.Property(e => e.prepayRest).HasColumnType("money");
 
-                entity.Property(e => e.PrepayRest)
-                    .HasColumnName("prepayRest")
-                    .HasColumnType("money");
+                entity.Property(e => e.prepaySum).HasColumnType("money");
 
-                entity.Property(e => e.PrepaySum)
-                    .HasColumnName("prepaySum")
-                    .HasColumnType("money");
+                entity.Property(e => e.prepaySumAuthor).HasColumnType("money");
 
-                entity.Property(e => e.PrepaySumAuthor)
-                    .HasColumnName("prepaySumAuthor")
-                    .HasColumnType("money");
+                entity.Property(e => e.prepayUsed).HasColumnType("money");
 
-                entity.Property(e => e.PrepayType).HasColumnName("prepayType");
-
-                entity.Property(e => e.PrepayUsed)
-                    .HasColumnName("prepayUsed")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.rate).HasColumnType("numeric(10, 5)");
 
-                entity.HasOne(d => d.CRight)
-                    .WithOne(p => p.LicAuthorBr)
-                    .HasForeignKey<LicAuthorBr>(d => d.CRightId)
+                entity.HasOne(d => d.cRight)
+                    .WithOne(p => p.LicAuthorBR)
+                    .HasForeignKey<LicAuthorBR>(d => d.cRightId)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_COPYRIGH");
 
-                entity.HasOne(d => d.PrepayTypeNavigation)
-                    .WithMany(p => p.LicAuthorBr)
-                    .HasForeignKey(d => d.PrepayType)
+                entity.HasOne(d => d.prepayTypeNavigation)
+                    .WithMany(p => p.LicAuthorBR)
+                    .HasForeignKey(d => d.prepayType)
                     .HasConstraintName("FK_LICAUTHO_REFERENCE_PREPAYTY");
             });
 
             modelBuilder.Entity<License>(entity =>
             {
-                entity.HasKey(e => e.LId);
+                entity.HasKey(e => e.lId);
 
-                entity.Property(e => e.LId).HasColumnName("lId");
+                entity.Property(e => e.lDate).HasColumnType("date");
 
-                entity.Property(e => e.LDate)
-                    .HasColumnName("lDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.LNum)
-                    .HasColumnName("lNum")
+                entity.Property(e => e.lNum)
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
-
-                entity.Property(e => e.PlaceId).HasColumnName("placeId");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.Place)
+                entity.HasOne(d => d.place)
                     .WithMany(p => p.License)
-                    .HasForeignKey(d => d.PlaceId)
+                    .HasForeignKey(d => d.placeId)
                     .HasConstraintName("FK_LICENSE_REFERENCE_CLNBUSIN");
 
-                entity.HasOne(d => d.Lic)
+                entity.HasOne(d => d.lic)
                     .WithMany(p => p.License)
-                    .HasForeignKey(d => new { d.LicId, d.LicVersion })
+                    .HasForeignKey(d => new { d.licId, d.licVersion })
                     .HasConstraintName("FK_LICENSE_REFERENCE_LICENSEA");
             });
 
             modelBuilder.Entity<LicenseAgreement>(entity =>
             {
-                entity.HasKey(e => e.LicId);
+                entity.HasKey(e => e.licId);
 
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.AgrId).HasColumnName("agrId");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.LicClass).HasColumnName("licClass");
-
-                entity.Property(e => e.LicCode).HasColumnName("licCode");
-
-                entity.Property(e => e.LicSize).HasColumnName("licSize");
-
-                entity.Property(e => e.LicStatus).HasColumnName("licStatus");
-
-                entity.Property(e => e.LicType).HasColumnName("licType");
-
-                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
-
-                entity.Property(e => e.ProlongVersion).HasColumnName("prolongVersion");
-
-                entity.HasOne(d => d.Agr)
+                entity.HasOne(d => d.agr)
                     .WithMany(p => p.LicenseAgreement)
-                    .HasForeignKey(d => d.AgrId)
+                    .HasForeignKey(d => d.agrId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICENSEA_REF_AGREEMEN");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.LicenseAgreement)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_LICENSEA_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.LicCodeNavigation)
+                entity.HasOne(d => d.licCodeNavigation)
                     .WithMany(p => p.LicenseAgreement)
-                    .HasForeignKey(d => d.LicCode)
+                    .HasForeignKey(d => d.licCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICENSEA_REFERENCE_ARGLICEN");
 
-                entity.HasOne(d => d.LicStatusNavigation)
+                entity.HasOne(d => d.licStatusNavigation)
                     .WithMany(p => p.LicenseAgreement)
-                    .HasForeignKey(d => d.LicStatus)
+                    .HasForeignKey(d => d.licStatus)
                     .HasConstraintName("FK_LICENSEA_REFERENCE_MASTER");
 
-                entity.HasOne(d => d.LicTypeNavigation)
+                entity.HasOne(d => d.licTypeNavigation)
                     .WithMany(p => p.LicenseAgreement)
-                    .HasForeignKey(d => d.LicType)
+                    .HasForeignKey(d => d.licType)
                     .HasConstraintName("FK_LICENSEA_REFERENCE_LICENSET");
             });
 
             modelBuilder.Entity<LicenseAgrParam>(entity =>
             {
-                entity.HasKey(e => new { e.LicId, e.LicVersion });
+                entity.HasKey(e => new { e.licId, e.licVersion });
 
-                entity.Property(e => e.LicId).HasColumnName("licId");
+                entity.Property(e => e.addRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.LicVersion).HasColumnName("licVersion");
-
-                entity.Property(e => e.AddRate)
-                    .HasColumnName("addRate")
-                    .HasColumnType("numeric(10, 5)");
-
-                entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
-
-                entity.Property(e => e.Comment)
-                    .HasColumnName("comment")
+                entity.Property(e => e.comment)
                     .HasMaxLength(2048)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DateBegin)
-                    .HasColumnName("dateBegin")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateBegin).HasColumnType("date");
 
-                entity.Property(e => e.DateEnd)
-                    .HasColumnName("dateEnd")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateEnd).HasColumnType("date");
 
-                entity.Property(e => e.DayForPay).HasColumnName("dayForPay");
+                entity.Property(e => e.indxInfl).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.IndxInfl)
-                    .HasColumnName("indxInfl")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.licDate).HasColumnType("date");
 
-                entity.Property(e => e.IsAutoprolog).HasColumnName("isAutoprolog");
-
-                entity.Property(e => e.LicDate)
-                    .HasColumnName("licDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.LicNum)
-                    .HasColumnName("licNum")
+                entity.Property(e => e.licNum)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LicStatus).HasColumnName("licStatus");
+                entity.Property(e => e.minAmount).HasColumnType("money");
 
-                entity.Property(e => e.MinAmount)
-                    .HasColumnName("minAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PeriodCode).HasColumnName("periodCode");
+                entity.Property(e => e.rateAmount).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.RateAmount)
-                    .HasColumnName("rateAmount")
-                    .HasColumnType("numeric(10, 5)");
-
-                entity.HasOne(d => d.Lic)
+                entity.HasOne(d => d.lic)
                     .WithMany(p => p.LicenseAgrParam)
-                    .HasForeignKey(d => d.LicId)
+                    .HasForeignKey(d => d.licId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICENSEA_REFERENCE_LICENSEA");
 
-                entity.HasOne(d => d.LicStatusNavigation)
+                entity.HasOne(d => d.licStatusNavigation)
                     .WithMany(p => p.LicenseAgrParam)
-                    .HasForeignKey(d => d.LicStatus)
+                    .HasForeignKey(d => d.licStatus)
                     .HasConstraintName("FK_LICENSEA_REFERENCE_AGREEMEN");
 
-                entity.HasOne(d => d.PeriodCodeNavigation)
+                entity.HasOne(d => d.periodCodeNavigation)
                     .WithMany(p => p.LicenseAgrParam)
-                    .HasForeignKey(d => d.PeriodCode)
+                    .HasForeignKey(d => d.periodCode)
                     .HasConstraintName("FK_LICENSEA_REF_PERIOD");
             });
 
             modelBuilder.Entity<LicenseBigR>(entity =>
             {
-                entity.HasKey(e => e.LicId);
+                entity.HasKey(e => e.licId);
 
-                entity.Property(e => e.LicId)
-                    .HasColumnName("licId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.licId).ValueGeneratedNever();
 
-                entity.Property(e => e.DatePremiere)
-                    .HasColumnName("datePremiere")
-                    .HasColumnType("date");
+                entity.Property(e => e.datePremiere).HasColumnType("date");
 
-                entity.Property(e => e.FillingRate)
-                    .HasColumnName("fillingRate")
-                    .HasColumnType("numeric(10, 5)");
+                entity.Property(e => e.fillingRate).HasColumnType("numeric(10, 5)");
 
-                entity.Property(e => e.IsTour).HasColumnName("isTour");
-
-                entity.Property(e => e.LangCode)
-                    .HasColumnName("langCode")
+                entity.Property(e => e.langCode)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LicTerm).HasColumnName("licTerm");
+                entity.Property(e => e.prepayRest).HasColumnType("money");
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
+                entity.Property(e => e.rate).HasColumnType("decimal(5, 2)");
 
-                entity.Property(e => e.PerformNumb).HasColumnName("performNumb");
+                entity.Property(e => e.rateMusic).HasColumnType("decimal(5, 2)");
 
-                entity.Property(e => e.PerformType).HasColumnName("performType");
+                entity.Property(e => e.ticketPriceNC).HasColumnType("money");
 
-                entity.Property(e => e.PrepayRest)
-                    .HasColumnName("prepayRest")
-                    .HasColumnType("money");
+                entity.Property(e => e.ticketPriceUSD).HasColumnType("money");
 
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("decimal(5, 2)");
-
-                entity.Property(e => e.RateMusic)
-                    .HasColumnName("rateMusic")
-                    .HasColumnType("decimal(5, 2)");
-
-                entity.Property(e => e.TicketPriceNc)
-                    .HasColumnName("ticketPriceNC")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.TicketPriceUsd)
-                    .HasColumnName("ticketPriceUSD")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.WhereTour)
-                    .HasColumnName("whereTour")
+                entity.Property(e => e.whereTour)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.LangCodeNavigation)
+                entity.HasOne(d => d.langCodeNavigation)
                     .WithMany(p => p.LicenseBigR)
-                    .HasForeignKey(d => d.LangCode)
+                    .HasForeignKey(d => d.langCode)
                     .HasConstraintName("FK_LICENSEB_REFERENCE_LANGUAGE");
 
-                entity.HasOne(d => d.Lic)
+                entity.HasOne(d => d.lic)
                     .WithOne(p => p.LicenseBigR)
-                    .HasForeignKey<LicenseBigR>(d => d.LicId)
+                    .HasForeignKey<LicenseBigR>(d => d.licId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICENSEB_REFERENCE_LICENSEA");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.LicenseBigR)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_LICENSEB_REFERENCE_OBJECTRI");
 
-                entity.HasOne(d => d.PerformTypeNavigation)
+                entity.HasOne(d => d.performTypeNavigation)
                     .WithMany(p => p.LicenseBigR)
-                    .HasForeignKey(d => d.PerformType)
+                    .HasForeignKey(d => d.performType)
                     .HasConstraintName("FK_LICENSEB_REFERENCE_PERFORMT");
             });
 
             modelBuilder.Entity<LicenseClass>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<LicenseType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(254)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<LicenseTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.LicenseTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICENSET_REFERENCE_LICENSET");
             });
 
-            modelBuilder.Entity<LicPlace>(entity =>
+            modelBuilder.Entity<licPlace>(entity =>
             {
-                entity.HasKey(e => new { e.LicId, e.PlaceId });
+                entity.HasKey(e => new { e.licId, e.placeId });
 
-                entity.ToTable("licPlace");
-
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.PlaceId).HasColumnName("placeId");
-
-                entity.HasOne(d => d.Lic)
-                    .WithMany(p => p.LicPlace)
-                    .HasForeignKey(d => d.LicId)
+                entity.HasOne(d => d.lic)
+                    .WithMany(p => p.licPlace)
+                    .HasForeignKey(d => d.licId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICPLACE_REFERENCE_LICENSEA");
 
-                entity.HasOne(d => d.Place)
-                    .WithMany(p => p.LicPlace)
-                    .HasForeignKey(d => d.PlaceId)
+                entity.HasOne(d => d.place)
+                    .WithMany(p => p.licPlace)
+                    .HasForeignKey(d => d.placeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_LICPLACE_REFERENCE_CLNBUSIN");
             });
 
             modelBuilder.Entity<MediaFile>(entity =>
             {
-                entity.Property(e => e.MediaFileId).HasColumnName("mediaFileId");
-
-                entity.Property(e => e.Compress).HasColumnName("compress");
-
-                entity.Property(e => e.FileType)
-                    .HasColumnName("fileType")
+                entity.Property(e => e.fileType)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.Path)
-                    .HasColumnName("path")
+                entity.Property(e => e.path)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PlayTime).HasColumnName("playTime");
-
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.MediaFile)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_MEDIAFIL_ASSOCIATI_MEDIATRA");
             });
 
             modelBuilder.Entity<MediaSearchData>(entity =>
             {
-                entity.HasIndex(e => new { e.TypeData, e.AlterNameNormalize, e.ObjId })
+                entity.HasIndex(e => new { e.typeData, e.alterNameNormalize, e.objId })
                     .HasName("search_idx");
 
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.AlterName)
+                entity.Property(e => e.alterName)
                     .IsRequired()
-                    .HasColumnName("alterName")
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AlterNameNormalize)
+                entity.Property(e => e.alterNameNormalize)
                     .IsRequired()
-                    .HasColumnName("alterNameNormalize")
                     .HasMaxLength(256)
                     .IsUnicode(false);
-
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.TypeData).HasColumnName("typeData");
             });
 
             modelBuilder.Entity<MediaTrack>(entity =>
             {
-                entity.HasKey(e => e.ObjId);
+                entity.HasKey(e => e.objId);
 
-                entity.Property(e => e.ObjId)
-                    .HasColumnName("objId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.objId).ValueGeneratedNever();
 
                 entity.Property(e => e.Album)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Composers)
-                    .HasColumnName("composers")
+                entity.Property(e => e.composers)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Duration).HasColumnName("duration");
-
-                entity.Property(e => e.Genre)
-                    .HasColumnName("genre")
+                entity.Property(e => e.genre)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Iswc)
-                    .HasColumnName("iswc")
+                entity.Property(e => e.iswc)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Label)
-                    .HasColumnName("label")
+                entity.Property(e => e.label)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Lyrics)
-                    .HasColumnName("lyrics")
+                entity.Property(e => e.lyrics)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NumberInAlbum).HasColumnName("numberInAlbum");
-
-                entity.Property(e => e.Performers)
-                    .HasColumnName("performers")
+                entity.Property(e => e.performers)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Year).HasColumnName("year");
-
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithOne(p => p.MediaTrack)
-                    .HasForeignKey<MediaTrack>(d => d.ObjId)
+                    .HasForeignKey<MediaTrack>(d => d.objId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MEDIATRA_ASSOCIATI_OBJECTRI");
             });
 
             modelBuilder.Entity<ModifyMusicType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.KindCompCode).HasColumnName("kindCompCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.ModifyMusicType)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MODIFYMU_REFERENCE_CATEGORY");
 
-                entity.HasOne(d => d.KindCompCodeNavigation)
+                entity.HasOne(d => d.kindCompCodeNavigation)
                     .WithMany(p => p.ModifyMusicType)
-                    .HasForeignKey(d => d.KindCompCode)
+                    .HasForeignKey(d => d.kindCompCode)
                     .HasConstraintName("FK_MODIFYMU_REFERENCE_KINDCOMP");
             });
 
             modelBuilder.Entity<ModifyMusicTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ModifyMusicTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MODIFYMU_REFERENCE_MODIFYMU");
             });
 
             modelBuilder.Entity<ModifyTextType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.KindCompCode).HasColumnName("kindCompCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.ModifyTextType)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MODIFYTE_REFERENCE_CATEGORY");
 
-                entity.HasOne(d => d.KindCompCodeNavigation)
+                entity.HasOne(d => d.kindCompCodeNavigation)
                     .WithMany(p => p.ModifyTextType)
-                    .HasForeignKey(d => d.KindCompCode)
+                    .HasForeignKey(d => d.kindCompCode)
                     .HasConstraintName("FK_MODIFYTE_REFERENCE_KINDCOMP");
             });
 
             modelBuilder.Entity<ModifyTextTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ModifyTextTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MODIFYTE_REFERENCE_MODIFYTE");
             });
 
             modelBuilder.Entity<ModifyType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.KindCompCode).HasColumnName("kindCompCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.ModifyType)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MODIFYTY_REFERENCE_CATEGORY");
 
-                entity.HasOne(d => d.KindCompCodeNavigation)
+                entity.HasOne(d => d.kindCompCodeNavigation)
                     .WithMany(p => p.ModifyType)
-                    .HasForeignKey(d => d.KindCompCode)
+                    .HasForeignKey(d => d.kindCompCode)
                     .HasConstraintName("FK_MODIFYTY_REFERENCE_KINDCOMP");
             });
 
             modelBuilder.Entity<ModifyTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ModifyTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MODIFYTY_REFERENCE_MODIFYTY");
             });
 
             modelBuilder.Entity<MoneyLinkStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<MoneyLinkStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.MoneyLinkStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYLIN_REFERENCE_MONEYLIN");
             });
 
             modelBuilder.Entity<MoneyPeriodLink>(entity =>
             {
-                entity.HasKey(e => new { e.PaidId, e.PeriodId, e.LicId });
+                entity.HasKey(e => new { e.paidId, e.periodId, e.licId });
 
-                entity.Property(e => e.PaidId).HasColumnName("paidId");
+                entity.Property(e => e.amount).HasColumnType("money");
 
-                entity.Property(e => e.PeriodId).HasColumnName("periodId");
+                entity.Property(e => e.modifyDate).HasColumnType("date");
 
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.Lic)
+                entity.HasOne(d => d.lic)
                     .WithMany(p => p.MoneyPeriodLink)
-                    .HasForeignKey(d => d.LicId)
+                    .HasForeignKey(d => d.licId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYPER_REFERENCE_LICENSEA");
 
-                entity.HasOne(d => d.Paid)
+                entity.HasOne(d => d.paid)
                     .WithMany(p => p.MoneyPeriodLink)
-                    .HasForeignKey(d => d.PaidId)
+                    .HasForeignKey(d => d.paidId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYPER_REFERENCE_MONEYREC");
 
-                entity.HasOne(d => d.Period)
+                entity.HasOne(d => d.period)
                     .WithMany(p => p.MoneyPeriodLink)
-                    .HasForeignKey(d => d.PeriodId)
+                    .HasForeignKey(d => d.periodId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYPER_REFERENCE_PAIDPERI");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.MoneyPeriodLink)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .HasConstraintName("FK_MONEYPER_REFERENCE_MONEYLIN");
             });
 
             modelBuilder.Entity<MoneyPrepayLink>(entity =>
             {
-                entity.HasKey(e => new { e.PaidId, e.CRightId });
+                entity.HasKey(e => new { e.paidId, e.cRightId });
 
-                entity.Property(e => e.PaidId).HasColumnName("paidId");
+                entity.Property(e => e.amount).HasColumnType("money");
 
-                entity.Property(e => e.CRightId).HasColumnName("cRightId");
-
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("money");
-
-                entity.HasOne(d => d.Paid)
+                entity.HasOne(d => d.paid)
                     .WithMany(p => p.MoneyPrepayLink)
-                    .HasForeignKey(d => d.PaidId)
+                    .HasForeignKey(d => d.paidId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYPRE_REFERENCE_MONEYREC");
             });
 
             modelBuilder.Entity<MoneyReceived>(entity =>
             {
-                entity.HasKey(e => e.PaidId);
+                entity.HasKey(e => e.paidId);
 
-                entity.Property(e => e.PaidId)
-                    .HasColumnName("paidId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.paidId).ValueGeneratedNever();
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("money");
+                entity.Property(e => e.amount).HasColumnType("money");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
+                entity.Property(e => e.dateInvoice).HasColumnType("date");
 
-                entity.Property(e => e.DateInvoice)
-                    .HasColumnName("dateInvoice")
-                    .HasColumnType("date");
+                entity.Property(e => e.destribAmount).HasColumnType("money");
 
-                entity.Property(e => e.DestribAmount)
-                    .HasColumnName("destribAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.destribPrepay).HasColumnType("money");
 
-                entity.Property(e => e.DestribPrepay)
-                    .HasColumnName("destribPrepay")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.GoalInvoice)
+                entity.Property(e => e.goalInvoice)
                     .IsRequired()
-                    .HasColumnName("goalInvoice")
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MoneyType).HasColumnName("moneyType");
-
-                entity.Property(e => e.NumberInvoice)
+                entity.Property(e => e.numberInvoice)
                     .IsRequired()
-                    .HasColumnName("numberInvoice")
                     .HasMaxLength(32)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.MoneyReceived)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYREC_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.MoneyTypeNavigation)
+                entity.HasOne(d => d.moneyTypeNavigation)
                     .WithMany(p => p.MoneyReceived)
-                    .HasForeignKey(d => d.MoneyType)
+                    .HasForeignKey(d => d.moneyType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYREC_REFERENCE_MONEYTYP");
             });
 
             modelBuilder.Entity<MoneyType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<MoneyTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.MoneyTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MONEYTYP_REFERENCE_MONEYTYP");
             });
 
             modelBuilder.Entity<MusicalDesign>(entity =>
             {
-                entity.HasKey(e => e.MdId);
+                entity.HasKey(e => e.mdId);
 
-                entity.Property(e => e.MdId).HasColumnName("mdId");
-
-                entity.Property(e => e.ActNumb).HasColumnName("actNumb");
-
-                entity.Property(e => e.AuthorText)
-                    .HasColumnName("authorText")
+                entity.Property(e => e.authorText)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Duration).HasColumnName("duration");
-
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.NameMusician)
-                    .HasColumnName("nameMusician")
+                entity.Property(e => e.nameMusician)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NameSinger)
-                    .HasColumnName("nameSinger")
+                entity.Property(e => e.nameSinger)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NumbPerfom).HasColumnName("numbPerfom");
-
-                entity.Property(e => e.ObjName)
-                    .HasColumnName("objName")
+                entity.Property(e => e.objName)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Objid).HasColumnName("objid");
-
-                entity.HasOne(d => d.Lic)
+                entity.HasOne(d => d.lic)
                     .WithMany(p => p.MusicalDesign)
-                    .HasForeignKey(d => d.LicId)
+                    .HasForeignKey(d => d.licId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MUSICALD_REFERENCE_LICENSEB");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.MusicalDesign)
-                    .HasForeignKey(d => d.Objid)
+                    .HasForeignKey(d => d.objid)
                     .HasConstraintName("FK_MUSICALD_REFERENCE_OBJECTRI");
             });
 
             modelBuilder.Entity<MyAnketa>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.Property(e => e.CustId)
-                    .HasColumnName("custId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.custId).ValueGeneratedNever();
 
-                entity.Property(e => e.AccCommission)
-                    .HasColumnName("accCommission")
+                entity.Property(e => e.accCommission)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccCompany)
-                    .HasColumnName("accCompany")
+                entity.Property(e => e.accCompany)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccCourt)
-                    .HasColumnName("accCourt")
+                entity.Property(e => e.accCourt)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccInCommission)
-                    .HasColumnName("accInCommission")
+                entity.Property(e => e.accInCommission)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithOne(p => p.MyAnketa)
-                    .HasForeignKey<MyAnketa>(d => d.CustId)
+                    .HasForeignKey<MyAnketa>(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MYANKETA_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<MyCategory>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.CodeI });
+                entity.HasKey(e => new { e.custId, e.codeI });
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.MyCategory)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MYCATEGO_REFERENCE_CATEGORY");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.MyCategory)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MYCATEGO_REFERENCE_MYANKETA");
             });
 
-            modelBuilder.Entity<MyCopyRightType>(entity =>
+            modelBuilder.Entity<myCopyRightType>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.CRtype });
+                entity.HasKey(e => new { e.custId, e.cRType });
 
-                entity.ToTable("myCopyRightType");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.CRtype).HasColumnName("cRType");
-
-                entity.HasOne(d => d.CRtypeNavigation)
-                    .WithMany(p => p.MyCopyRightType)
-                    .HasForeignKey(d => d.CRtype)
+                entity.HasOne(d => d.cRTypeNavigation)
+                    .WithMany(p => p.myCopyRightType)
+                    .HasForeignKey(d => d.cRType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MYCOPYRI_REFERENCE_COPYRIGH");
 
-                entity.HasOne(d => d.Cust)
-                    .WithMany(p => p.MyCopyRightType)
-                    .HasForeignKey(d => d.CustId)
+                entity.HasOne(d => d.cust)
+                    .WithMany(p => p.myCopyRightType)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_MYCOPYRI_REFERENCE_MYANKETA");
             });
 
             modelBuilder.Entity<ObjAct>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ObjActTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ObjActTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OBJACTTR_REFERENCE_OBJACT");
             });
 
             modelBuilder.Entity<ObjectRight>(entity =>
             {
-                entity.HasKey(e => e.ObjId);
+                entity.HasKey(e => e.objId);
 
-                entity.HasIndex(e => e.ReqId)
+                entity.HasIndex(e => e.reqId)
                     .HasName("Relationship_13_FK");
 
-                entity.HasIndex(e => new { e.Name, e.Author, e.Performer })
+                entity.HasIndex(e => new { e.name, e.author, e.performer })
                     .HasName("idx_name");
-
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.ActCode).HasColumnName("actCode");
-
-                entity.Property(e => e.Author)
-                    .HasColumnName("author")
-                    .HasMaxLength(254)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.CreateDate)
-                    .HasColumnName("createDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.GenreType).HasColumnName("genreType");
-
-                entity.Property(e => e.InnerCode)
-                    .HasColumnName("innerCode")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Loadid).HasColumnName("loadid");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(254)
-                    .IsUnicode(false);
 
                 entity.Property(e => e.ObjImg)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Performer)
-                    .HasColumnName("performer")
+                entity.Property(e => e.author)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
+                entity.Property(e => e.createDate).HasColumnType("datetime");
 
-                entity.Property(e => e.SpecType).HasColumnName("specType");
+                entity.Property(e => e.innerCode)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.HasOne(d => d.ActCodeNavigation)
+                entity.Property(e => e.modifyLogin)
+                    .HasMaxLength(48)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.name)
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.performer)
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.actCodeNavigation)
                     .WithMany(p => p.ObjectRight)
-                    .HasForeignKey(d => d.ActCode)
+                    .HasForeignKey(d => d.actCode)
                     .HasConstraintName("FK_OBJECTRI_REFERENCE_OBJACT");
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.ObjectRight)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OBJECTRI_REFERENCE_CATEGORY");
 
-                entity.HasOne(d => d.SpecTypeNavigation)
+                entity.HasOne(d => d.specTypeNavigation)
                     .WithMany(p => p.ObjectRight)
-                    .HasForeignKey(d => d.SpecType)
+                    .HasForeignKey(d => d.specType)
                     .HasConstraintName("FK_OBJECTRI_REFERENCE_SPECTYPE");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.ObjectRight)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .HasConstraintName("FK_OBJECTRI_REFERENCE_OBJECTST");
             });
 
             modelBuilder.Entity<ObjectStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ObjectStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ObjectStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OBJECTST_REFERENCE_OBJECTST");
             });
 
             modelBuilder.Entity<PaidPeriod>(entity =>
             {
-                entity.HasKey(e => e.PeriodId);
+                entity.HasKey(e => e.periodId);
 
-                entity.HasIndex(e => new { e.PeriodId, e.PeriodName })
+                entity.HasIndex(e => new { e.periodId, e.periodName })
                     .HasName("idx_paidPeriod01")
                     .IsUnique();
 
-                entity.HasIndex(e => new { e.LicId, e.BeginDate, e.EndDate })
+                entity.HasIndex(e => new { e.licId, e.beginDate, e.endDate })
                     .HasName("uipaidperiod_001")
                     .IsUnique();
 
-                entity.Property(e => e.PeriodId).HasColumnName("periodId");
+                entity.Property(e => e.amount).HasColumnType("money");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("money");
+                entity.Property(e => e.beginDate).HasColumnType("date");
 
-                entity.Property(e => e.BeginDate)
-                    .HasColumnName("beginDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateActPrint).HasColumnType("date");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
+                entity.Property(e => e.distribamount).HasColumnType("money");
 
-                entity.Property(e => e.DateActPrint)
-                    .HasColumnName("dateActPrint")
-                    .HasColumnType("date");
+                entity.Property(e => e.endDate).HasColumnType("date");
 
-                entity.Property(e => e.Distribamount)
-                    .HasColumnName("distribamount")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.EndDate)
-                    .HasColumnName("endDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.FagFirst).HasColumnName("fagFirst");
-
-                entity.Property(e => e.LicId).HasColumnName("licId");
-
-                entity.Property(e => e.PeriodName)
+                entity.Property(e => e.periodName)
                     .IsRequired()
-                    .HasColumnName("periodName")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PeriodType).HasColumnName("periodType");
+                entity.Property(e => e.undistribamount).HasColumnType("money");
 
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.Property(e => e.Undistribamount)
-                    .HasColumnName("undistribamount")
-                    .HasColumnType("money");
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.PaidPeriod)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PAIDPERI_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.Lic)
+                entity.HasOne(d => d.lic)
                     .WithMany(p => p.PaidPeriod)
-                    .HasForeignKey(d => d.LicId)
+                    .HasForeignKey(d => d.licId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PAIDPERI_REFERENCE_LICENSEA");
 
-                entity.HasOne(d => d.PeriodTypeNavigation)
+                entity.HasOne(d => d.periodTypeNavigation)
                     .WithMany(p => p.PaidPeriod)
-                    .HasForeignKey(d => d.PeriodType)
+                    .HasForeignKey(d => d.periodType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PAIDPERI_REFERENCE_PERIOD");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.PaidPeriod)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PAIDPERI_REFERENCE_PERIODST");
             });
 
             modelBuilder.Entity<ParametersListBox>(entity =>
             {
-                entity.HasKey(e => new { e.RepId, e.PId });
+                entity.HasKey(e => new { e.repId, e.pId });
 
-                entity.Property(e => e.RepId).HasColumnName("repId");
-
-                entity.Property(e => e.PId).HasColumnName("pId");
-
-                entity.Property(e => e.ValueName)
-                    .HasColumnName("valueName")
+                entity.Property(e => e.valueName)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ValuePar)
-                    .HasColumnName("valuePar")
+                entity.Property(e => e.valuePar)
                     .HasMaxLength(20)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ValueType)
-                    .HasColumnName("valueType")
+                entity.Property(e => e.valueType)
                     .HasMaxLength(20)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<Partner>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.Property(e => e.CustId)
-                    .HasColumnName("custId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.custId).ValueGeneratedNever();
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithOne(p => p.Partner)
-                    .HasForeignKey<Partner>(d => d.CustId)
+                    .HasForeignKey<Partner>(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PARTNER_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<PartnerClient>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.ClCustId });
+                entity.HasKey(e => new { e.custId, e.clCustId });
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.ClCustId).HasColumnName("clCustId");
-
-                entity.HasOne(d => d.ClCust)
+                entity.HasOne(d => d.clCust)
                     .WithMany(p => p.PartnerClient)
-                    .HasForeignKey(d => d.ClCustId)
+                    .HasForeignKey(d => d.clCustId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PARTNERC_REFERENCE_CLIENT");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.PartnerClient)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PARTNERC_REFERENCE_PARTNER");
             });
 
             modelBuilder.Entity<PaymentCase>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("reqId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.reqId).ValueGeneratedNever();
 
-                entity.Property(e => e.DateForPay)
-                    .HasColumnName("dateForPay")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateForPay).HasColumnType("date");
 
-                entity.Property(e => e.DateInvoce)
-                    .HasColumnName("dateInvoce")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateInvoce).HasColumnType("date");
 
-                entity.Property(e => e.DatePay)
-                    .HasColumnName("datePay")
-                    .HasColumnType("date");
+                entity.Property(e => e.datePay).HasColumnType("date");
 
-                entity.Property(e => e.DatePayFact)
-                    .HasColumnName("datePayFact")
-                    .HasColumnType("date");
+                entity.Property(e => e.datePayFact).HasColumnType("date");
 
-                entity.Property(e => e.OtherCase)
-                    .HasColumnName("otherCase")
+                entity.Property(e => e.otherCase)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PayKind).HasColumnName("payKind");
-
-                entity.Property(e => e.PayMethod).HasColumnName("payMethod");
-
-                entity.Property(e => e.PayStatus).HasColumnName("payStatus");
-
-                entity.Property(e => e.PtId).HasColumnName("ptId");
-
-                entity.HasOne(d => d.PayKindNavigation)
+                entity.HasOne(d => d.payKindNavigation)
                     .WithMany(p => p.PaymentCase)
-                    .HasForeignKey(d => d.PayKind)
+                    .HasForeignKey(d => d.payKind)
                     .HasConstraintName("FK_PAYMENTC_REFERENCE_PAYMENTK");
 
-                entity.HasOne(d => d.PayMethodNavigation)
+                entity.HasOne(d => d.payMethodNavigation)
                     .WithMany(p => p.PaymentCase)
-                    .HasForeignKey(d => d.PayMethod)
+                    .HasForeignKey(d => d.payMethod)
                     .HasConstraintName("FK_PAYMENTC_REFERENCE_PAYMETHO");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithOne(p => p.PaymentCase)
-                    .HasForeignKey<PaymentCase>(d => d.ReqId)
+                    .HasForeignKey<PaymentCase>(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PAYMENTC_REFERENCE_REQUEST");
             });
 
             modelBuilder.Entity<PaymentKind>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.HasIndex(e => e.CodeI)
+                entity.HasIndex(e => e.codeI)
                     .HasName("AK_KEY_1_PAYMENTK")
                     .IsUnique();
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PaymentKindTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.PaymentKindTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PAYMENTK_REFERENCE_PAYMENTK");
             });
 
             modelBuilder.Entity<PaymentStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PaymentStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.PaymentStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PAYMENTS_REFERENCE_PAYMENTS");
             });
 
             modelBuilder.Entity<PayMethodType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PayMethodTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.PayMethodTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PAYMETHO_REFERENCE_PAYMETHO");
             });
 
             modelBuilder.Entity<PayTurn>(entity =>
             {
-                entity.HasKey(e => new { e.TurnId, e.DateWork });
+                entity.HasKey(e => new { e.turnId, e.dateWork });
 
-                entity.HasIndex(e => e.DateOper)
+                entity.HasIndex(e => e.dateOper)
                     .HasName("date_idx");
 
-                entity.Property(e => e.TurnId).HasColumnName("turnId");
+                entity.Property(e => e.dateWork).HasColumnType("datetime");
 
-                entity.Property(e => e.DateWork)
-                    .HasColumnName("dateWork")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.AccCredit)
-                    .HasColumnName("accCredit")
+                entity.Property(e => e.accCredit)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccDebet)
-                    .HasColumnName("accDebet")
+                entity.Property(e => e.accDebet)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.AccIdCredit).HasColumnName("accIdCredit");
+                entity.Property(e => e.amount).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.AccIdDebet).HasColumnName("accIdDebet");
+                entity.Property(e => e.amountCur).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.dateOper).HasColumnType("date");
 
-                entity.Property(e => e.AmountCur)
-                    .HasColumnName("amountCur")
-                    .HasColumnType("numeric(20, 2)");
-
-                entity.Property(e => e.CustIdRh).HasColumnName("custIdRh");
-
-                entity.Property(e => e.DateOper)
-                    .HasColumnName("dateOper")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DistId).HasColumnName("distId");
-
-                entity.Property(e => e.ND)
-                    .HasColumnName("nD")
+                entity.Property(e => e.nD)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NDdate)
-                    .HasColumnName("nDDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.nDDate).HasColumnType("date");
 
-                entity.Property(e => e.PayNote)
-                    .HasColumnName("payNote")
+                entity.Property(e => e.payNote)
                     .HasMaxLength(160)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PayStatus).HasColumnName("payStatus");
-
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.HasOne(d => d.AccIdDebetNavigation)
+                entity.HasOne(d => d.accIdDebetNavigation)
                     .WithMany(p => p.PayTurn)
-                    .HasForeignKey(d => d.AccIdDebet)
+                    .HasForeignKey(d => d.accIdDebet)
                     .HasConstraintName("FK_PAYTURN_REFERENCE_ACCOUNT");
 
-                entity.HasOne(d => d.PayStatusNavigation)
+                entity.HasOne(d => d.payStatusNavigation)
                     .WithMany(p => p.PayTurn)
-                    .HasForeignKey(d => d.PayStatus)
+                    .HasForeignKey(d => d.payStatus)
                     .HasConstraintName("FK_PAYTURN_REFERENCE_PAYMENTS");
             });
 
             modelBuilder.Entity<Performer>(entity =>
             {
-                entity.HasKey(e => e.PerId);
+                entity.HasKey(e => e.perId);
 
-                entity.Property(e => e.PerId).HasColumnName("perId");
-
-                entity.Property(e => e.PerName)
-                    .HasColumnName("perName")
+                entity.Property(e => e.perName)
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PerformType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PerformTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.PerformTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PERFORMT_REFERENCE_PERFORMT");
             });
 
             modelBuilder.Entity<Period>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NameR)
-                    .HasColumnName("nameR")
+                entity.Property(e => e.nameR)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PeriodStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PeriodStatusTr>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Lang)
+                entity.Property(e => e.lang)
                     .IsRequired()
-                    .HasColumnName("lang")
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithOne(p => p.PeriodStatusTr)
-                    .HasForeignKey<PeriodStatusTr>(d => d.CodeI)
+                    .HasForeignKey<PeriodStatusTr>(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PERIODST_REFERENCE_PERIODST");
             });
 
             modelBuilder.Entity<PeriodTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NameR)
-                    .HasColumnName("nameR")
+                entity.Property(e => e.nameR)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.PeriodTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .HasConstraintName("FK_PERIODTR_REFERENCE_PERIOD");
             });
 
             modelBuilder.Entity<PermitType>(entity =>
             {
-                entity.HasKey(e => e.CodeB);
+                entity.HasKey(e => e.codeB);
 
-                entity.Property(e => e.CodeB).HasColumnName("codeB");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PermitTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeB, e.Lang });
+                entity.HasKey(e => new { e.codeB, e.lang });
 
-                entity.Property(e => e.CodeB).HasColumnName("codeB");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeBNavigation)
+                entity.HasOne(d => d.codeBNavigation)
                     .WithMany(p => p.PermitTypeTr)
-                    .HasForeignKey(d => d.CodeB)
+                    .HasForeignKey(d => d.codeB)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PERMITTY_REFERENCE_PERMITTY");
             });
 
             modelBuilder.Entity<Person>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.HasIndex(e => e.CustId)
+                entity.HasIndex(e => e.custId)
                     .HasName("Association21_FK");
 
-                entity.HasIndex(e => new { e.CustId, e.Version })
+                entity.HasIndex(e => new { e.custId, e.version })
                     .HasName("Association24_FK");
 
-                entity.Property(e => e.CustId)
-                    .HasColumnName("custId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.custId).ValueGeneratedNever();
 
-                entity.Property(e => e.Version).HasColumnName("version");
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithOne(p => p.Person)
-                    .HasForeignKey<Person>(d => d.CustId)
+                    .HasForeignKey<Person>(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PERSON_ASSOCIATI_CUSTOMER");
             });
 
             modelBuilder.Entity<PopGenre>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.PopGenre)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_GENRE_REFERENCE_CATEGORY");
             });
 
             modelBuilder.Entity<PopGenreTr>(entity =>
             {
-                entity.HasKey(e => new { e.Id, e.Lang });
+                entity.HasKey(e => new { e.Id, e.lang });
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
@@ -6253,2918 +4665,2185 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<PortalObjectRights>(entity =>
             {
-                entity.HasKey(e => new { e.ObjId, e.CRkindCode });
+                entity.HasKey(e => new { e.objId, e.cRKindCode });
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.CRkindCode).HasColumnName("cRKindCode");
-
-                entity.Property(e => e.Enable).HasColumnName("enable");
-
-                entity.HasOne(d => d.CRkindCodeNavigation)
+                entity.HasOne(d => d.cRKindCodeNavigation)
                     .WithMany(p => p.PortalObjectRights)
-                    .HasForeignKey(d => d.CRkindCode)
+                    .HasForeignKey(d => d.cRKindCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PORTALOB_REFERENCE_PORTALSU");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.PortalObjectRights)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PORTALOB_REFERENCE_OBJECTRI");
             });
 
             modelBuilder.Entity<PortalSupportRights>(entity =>
             {
-                entity.HasKey(e => e.CRkindCode);
+                entity.HasKey(e => e.cRKindCode);
 
-                entity.Property(e => e.CRkindCode)
-                    .HasColumnName("cRKindCode")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.cRKindCode).ValueGeneratedNever();
 
-                entity.HasOne(d => d.CRkindCodeNavigation)
+                entity.HasOne(d => d.cRKindCodeNavigation)
                     .WithOne(p => p.PortalSupportRights)
-                    .HasForeignKey<PortalSupportRights>(d => d.CRkindCode)
+                    .HasForeignKey<PortalSupportRights>(d => d.cRKindCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PORTALOB_REFERENCE_COPYRIGH");
             });
 
             modelBuilder.Entity<PositionType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PositionTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.PositionTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_POSITION_REFERENCE_POSITION");
             });
 
             modelBuilder.Entity<PrePayType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<PrePayTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.PrePayTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PREPAYTY_REFERENCE_PREPAYTY");
             });
 
             modelBuilder.Entity<Region>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<RegionTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.RegionTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGIONTR_REFERENCE_REGION");
             });
 
             modelBuilder.Entity<Register>(entity =>
             {
-                entity.HasKey(e => e.RegId);
+                entity.HasKey(e => e.regId);
 
-                entity.Property(e => e.RegId).HasColumnName("regId");
+                entity.Property(e => e.authAmount).HasColumnType("money");
 
-                entity.Property(e => e.AlgorithmId).HasColumnName("algorithmId");
+                entity.Property(e => e.authRate).HasColumnType("decimal(10, 5)");
 
-                entity.Property(e => e.AuthAmount)
-                    .HasColumnName("authAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.createDate).HasColumnType("datetime");
 
-                entity.Property(e => e.AuthRate)
-                    .HasColumnName("authRate")
-                    .HasColumnType("decimal(10, 5)");
-
-                entity.Property(e => e.CountRows).HasColumnName("countRows");
-
-                entity.Property(e => e.CreateDate)
-                    .HasColumnName("createDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.Durationticks).HasColumnName("durationticks");
-
-                entity.Property(e => e.FileName)
-                    .HasColumnName("fileName")
+                entity.Property(e => e.fileName)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.LicId).HasColumnName("licId");
+                entity.Property(e => e.musicAmount).HasColumnType("money");
 
-                entity.Property(e => e.MusicAmount)
-                    .HasColumnName("musicAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.musicRate).HasColumnType("decimal(10, 5)");
 
-                entity.Property(e => e.MusicRate)
-                    .HasColumnName("musicRate")
-                    .HasColumnType("decimal(10, 5)");
-
-                entity.Property(e => e.Number)
-                    .HasColumnName("number")
+                entity.Property(e => e.number)
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
-                entity.Property(e => e.PaidAmount)
-                    .HasColumnName("paidAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.paidAmount).HasColumnType("money");
 
-                entity.Property(e => e.PeriodId).HasColumnName("periodId");
+                entity.Property(e => e.regAmount).HasColumnType("money");
 
-                entity.Property(e => e.RegAmount)
-                    .HasColumnName("regAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.regRate).HasColumnType("decimal(5, 2)");
 
-                entity.Property(e => e.RegRate)
-                    .HasColumnName("regRate")
-                    .HasColumnType("decimal(5, 2)");
+                entity.Property(e => e.regRoyalty).HasColumnType("money");
 
-                entity.Property(e => e.RegRoyalty)
-                    .HasColumnName("regRoyalty")
-                    .HasColumnType("money");
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.Property(e => e.RgStatus).HasColumnName("rgStatus");
-
-                entity.Property(e => e.RmId).HasColumnName("rmId");
-
-                entity.Property(e => e.SchemaId).HasColumnName("schemaId");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
-
-                entity.HasOne(d => d.Algorithm)
+                entity.HasOne(d => d.algorithm)
                     .WithMany(p => p.Register)
-                    .HasForeignKey(d => d.AlgorithmId)
+                    .HasForeignKey(d => d.algorithmId)
                     .HasConstraintName("FK_REGISTER_REFERENCE_ALGORITH");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.Register)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REG_REF_CLIENT");
 
-                entity.HasOne(d => d.RgStatusNavigation)
+                entity.HasOne(d => d.rgStatusNavigation)
                     .WithMany(p => p.Register)
-                    .HasForeignKey(d => d.RgStatus)
+                    .HasForeignKey(d => d.rgStatus)
                     .HasConstraintName("FK_REGISTER_REFERENCE_REGISTER2");
 
-                entity.HasOne(d => d.Rm)
+                entity.HasOne(d => d.rm)
                     .WithMany(p => p.Register)
-                    .HasForeignKey(d => d.RmId)
+                    .HasForeignKey(d => d.rmId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REG_REF_REGRATELIST");
 
-                entity.HasOne(d => d.User)
+                entity.HasOne(d => d.user)
                     .WithMany(p => p.Register)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.userId)
                     .HasConstraintName("FK_REGISTER_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<RegisterAuthors>(entity =>
             {
-                entity.HasKey(e => new { e.RegId, e.RegIitemId, e.AuthId });
-
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
-
-                entity.Property(e => e.AuthId).HasColumnName("authId");
-
-                entity.Property(e => e.CodeRole).HasColumnName("codeRole");
+                entity.HasKey(e => new { e.regId, e.regIItemId, e.authId });
 
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeRoleNavigation)
+                entity.HasOne(d => d.codeRoleNavigation)
                     .WithMany(p => p.RegisterAuthors)
-                    .HasForeignKey(d => d.CodeRole)
+                    .HasForeignKey(d => d.codeRole)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REG_REF_CREAROLE");
             });
 
             modelBuilder.Entity<RegisterCount>(entity =>
             {
-                entity.HasKey(e => e.RegCntId);
+                entity.HasKey(e => e.regCntId);
 
-                entity.Property(e => e.RegCntId)
-                    .HasColumnName("regCntId")
+                entity.Property(e => e.regCntId)
                     .HasColumnType("numeric(18, 0)")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.CRkindCode).HasColumnName("cRKindCode");
+                entity.Property(e => e.prepaySum).HasColumnType("money");
 
-                entity.Property(e => e.CRtype).HasColumnName("cRType");
+                entity.Property(e => e.rate).HasColumnType("decimal(10, 5)");
 
-                entity.Property(e => e.CmCustId).HasColumnName("cmCustId");
+                entity.Property(e => e.rateCommiss).HasColumnType("decimal(10, 5)");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.PrepaySum)
-                    .HasColumnName("prepaySum")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("decimal(10, 5)");
-
-                entity.Property(e => e.RateCommiss)
-                    .HasColumnName("rateCommiss")
-                    .HasColumnType("decimal(10, 5)");
-
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.Property(e => e.RegIdBr).HasColumnName("regIdBr");
-
-                entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
-
-                entity.Property(e => e.RegItemIdBr).HasColumnName("regItemIdBr");
-
-                entity.HasOne(d => d.CRkindCodeNavigation)
+                entity.HasOne(d => d.cRKindCodeNavigation)
                     .WithMany(p => p.RegisterCount)
-                    .HasForeignKey(d => d.CRkindCode)
+                    .HasForeignKey(d => d.cRKindCode)
                     .HasConstraintName("FK_REGISTER_REFERENCE_COPYRIGH");
 
-                entity.HasOne(d => d.CmCust)
+                entity.HasOne(d => d.cmCust)
                     .WithMany(p => p.RegisterCount)
-                    .HasForeignKey(d => d.CmCustId)
+                    .HasForeignKey(d => d.cmCustId)
                     .HasConstraintName("FK_REGISTER_REFERENCE_COMMUNIT");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.RegisterCount)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_REGISTER_REFERENCE_RIGHTHOL");
 
-                entity.HasOne(d => d.RegI)
+                entity.HasOne(d => d.regI)
                     .WithMany(p => p.RegisterCount)
-                    .HasForeignKey(d => new { d.RegItemIdBr, d.RegIdBr })
+                    .HasForeignKey(d => new { d.regItemIdBr, d.regIdBr })
                     .HasConstraintName("FK_REGISTER_REFERENCE_BRREGITE");
             });
 
             modelBuilder.Entity<RegisterExtra>(entity =>
             {
-                entity.HasKey(e => e.RegExtraId);
+                entity.HasKey(e => e.regExtraId);
 
-                entity.Property(e => e.RegExtraId).HasColumnName("regExtraId");
-
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
-
-                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
-
-                entity.HasOne(d => d.RoleCodeNavigation)
+                entity.HasOne(d => d.roleCodeNavigation)
                     .WithMany(p => p.RegisterExtra)
-                    .HasForeignKey(d => d.RoleCode)
+                    .HasForeignKey(d => d.roleCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGEX_REF_CREATIVEROLE");
 
-                entity.HasOne(d => d.RegI)
+                entity.HasOne(d => d.regI)
                     .WithMany(p => p.RegisterExtra)
-                    .HasForeignKey(d => new { d.RegId, d.RegIitemId })
+                    .HasForeignKey(d => new { d.regId, d.regIItemId })
                     .HasConstraintName("FK_REGEX_REF_REGITEM");
             });
 
             modelBuilder.Entity<RegisterItem>(entity =>
             {
-                entity.HasKey(e => new { e.RegId, e.RegIitemId });
-
-                entity.Property(e => e.RegId).HasColumnName("regId");
-
-                entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
-
-                entity.Property(e => e.AuthorMusic)
-                    .HasColumnName("authorMusic")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.AuthorText)
-                    .HasColumnName("authorText")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.CodeItem).HasColumnName("codeItem");
-
-                entity.Property(e => e.CountUse).HasColumnName("countUse");
-
-                entity.Property(e => e.DurationItem).HasColumnName("durationItem");
-
-                entity.Property(e => e.DurationUse).HasColumnName("durationUse");
-
-                entity.Property(e => e.Durationticks).HasColumnName("durationticks");
-
-                entity.Property(e => e.IsAuto).HasColumnName("isAuto");
+                entity.HasKey(e => new { e.regId, e.regIItemId });
 
                 entity.Property(e => e.ItemName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
-                    .HasMaxLength(48)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.Performer)
-                    .HasColumnName("performer")
+                entity.Property(e => e.authorMusic)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Ticks).HasColumnName("ticks");
+                entity.Property(e => e.authorText)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeItemNavigation)
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
+
+                entity.Property(e => e.modifyLogin)
+                    .HasMaxLength(48)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.performer)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.codeItemNavigation)
                     .WithMany(p => p.RegisterItem)
-                    .HasForeignKey(d => d.CodeItem)
+                    .HasForeignKey(d => d.codeItem)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGITEM_REF_REGITEMTYPE");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.RegisterItem)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_REGITEM_REF_OBJRIGHT");
 
-                entity.HasOne(d => d.Reg)
+                entity.HasOne(d => d.reg)
                     .WithMany(p => p.RegisterItem)
-                    .HasForeignKey(d => d.RegId)
+                    .HasForeignKey(d => d.regId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGISTER_REF_REGITEM");
             });
 
             modelBuilder.Entity<RegisterItemType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<RegisterListStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<RegisterListStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.RegisterListStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGISTERList_REF_REGISTERSt");
             });
 
             modelBuilder.Entity<RegisterRatedList>(entity =>
             {
-                entity.HasKey(e => e.RmId);
+                entity.HasKey(e => e.rmId);
 
-                entity.Property(e => e.RmId).HasColumnName("rmId");
+                entity.Property(e => e.amount).HasColumnType("money");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("money");
+                entity.Property(e => e.createDate).HasColumnType("date");
 
-                entity.Property(e => e.CntReport).HasColumnName("cntReport");
+                entity.Property(e => e.paidAmount).HasColumnType("money");
 
-                entity.Property(e => e.CreateDate)
-                    .HasColumnName("createDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.royalty).HasColumnType("money");
 
-                entity.Property(e => e.PaidAmount)
-                    .HasColumnName("paidAmount")
-                    .HasColumnType("money");
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.Property(e => e.PeriodId).HasColumnName("periodId");
-
-                entity.Property(e => e.Royalty)
-                    .HasColumnName("royalty")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
-
-                entity.HasOne(d => d.Period)
+                entity.HasOne(d => d.period)
                     .WithMany(p => p.RegisterRatedList)
-                    .HasForeignKey(d => d.PeriodId)
+                    .HasForeignKey(d => d.periodId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGRATEDLIST_REF_PAIDPER");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.RegisterRatedList)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .HasConstraintName("FK_REGISTER_REF_REGISTERList");
             });
 
             modelBuilder.Entity<RegisterStatus>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<RegisterStatusTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.RegisterStatusTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGISTER_REFERENCE_REGISTER");
             });
 
             modelBuilder.Entity<RelAdaptUseArea>(entity =>
             {
-                entity.HasKey(e => new { e.ReqId, e.UseAreaTypeCode });
+                entity.HasKey(e => new { e.reqId, e.useAreaTypeCode });
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.Property(e => e.UseAreaTypeCode).HasColumnName("useAreaTypeCode");
-
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.RelAdaptUseArea)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELADAPT_REFERENCE_REQUESTA");
 
-                entity.HasOne(d => d.UseAreaTypeCodeNavigation)
+                entity.HasOne(d => d.useAreaTypeCodeNavigation)
                     .WithMany(p => p.RelAdaptUseArea)
-                    .HasForeignKey(d => d.UseAreaTypeCode)
+                    .HasForeignKey(d => d.useAreaTypeCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELADAPT_REFERENCE_USEAREAT");
             });
 
-            modelBuilder.Entity<RelCounterDoc>(entity =>
+            modelBuilder.Entity<relCounterDoc>(entity =>
             {
-                entity.HasKey(e => e.CDocId);
+                entity.HasKey(e => e.cDocId);
 
-                entity.ToTable("relCounterDoc");
-
-                entity.Property(e => e.CDocId).HasColumnName("cDocId");
-
-                entity.Property(e => e.CounterId).HasColumnName("counterId");
-
-                entity.Property(e => e.DocType).HasColumnName("docType");
-
-                entity.Property(e => e.LicType).HasColumnName("licType");
-
-                entity.HasOne(d => d.Counter)
-                    .WithMany(p => p.RelCounterDoc)
-                    .HasForeignKey(d => d.CounterId)
+                entity.HasOne(d => d.counter)
+                    .WithMany(p => p.relCounterDoc)
+                    .HasForeignKey(d => d.counterId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELCOUNT_REFERENCE_COUNTERN");
 
-                entity.HasOne(d => d.DocTypeNavigation)
-                    .WithMany(p => p.RelCounterDoc)
-                    .HasForeignKey(d => d.DocType)
+                entity.HasOne(d => d.docTypeNavigation)
+                    .WithMany(p => p.relCounterDoc)
+                    .HasForeignKey(d => d.docType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELCOUNT_REFERENCE_DOCUMENT");
 
-                entity.HasOne(d => d.LicTypeNavigation)
-                    .WithMany(p => p.RelCounterDoc)
-                    .HasForeignKey(d => d.LicType)
+                entity.HasOne(d => d.licTypeNavigation)
+                    .WithMany(p => p.relCounterDoc)
+                    .HasForeignKey(d => d.licType)
                     .HasConstraintName("FK_RELCOUNT_REFERENCE_AGRLICEN");
             });
 
             modelBuilder.Entity<RelDocAgrType>(entity =>
             {
-                entity.HasKey(e => new { e.AgrType, e.DocType });
+                entity.HasKey(e => new { e.agrType, e.docType });
 
-                entity.Property(e => e.AgrType).HasColumnName("agrType");
-
-                entity.Property(e => e.DocType).HasColumnName("docType");
-
-                entity.HasOne(d => d.AgrTypeNavigation)
+                entity.HasOne(d => d.agrTypeNavigation)
                     .WithMany(p => p.RelDocAgrType)
-                    .HasForeignKey(d => d.AgrType)
+                    .HasForeignKey(d => d.agrType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELDOCAG_REFERENCE_AGREEMEN");
 
-                entity.HasOne(d => d.DocTypeNavigation)
+                entity.HasOne(d => d.docTypeNavigation)
                     .WithMany(p => p.RelDocAgrType)
-                    .HasForeignKey(d => d.DocType)
+                    .HasForeignKey(d => d.docType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELDOCAG_REFERENCE_DOCUMENT");
             });
 
             modelBuilder.Entity<RelEmployee>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.Emplid, e.PositionCode });
+                entity.HasKey(e => new { e.custId, e.emplid, e.positionCode });
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.Emplid).HasColumnName("emplid");
-
-                entity.Property(e => e.PositionCode).HasColumnName("positionCode");
-
-                entity.Property(e => e.RelDocument)
-                    .HasColumnName("relDocument")
+                entity.Property(e => e.relDocument)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.RelEmployee)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELEMPLO_ASSOCIATI_COMPANY");
 
-                entity.HasOne(d => d.Empl)
+                entity.HasOne(d => d.empl)
                     .WithMany(p => p.RelEmployee)
-                    .HasForeignKey(d => d.Emplid)
+                    .HasForeignKey(d => d.emplid)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELEMPLO_ASSOCIATI_EMPLOYEE");
 
-                entity.HasOne(d => d.PositionCodeNavigation)
+                entity.HasOne(d => d.positionCodeNavigation)
                     .WithMany(p => p.RelEmployee)
-                    .HasForeignKey(d => d.PositionCode)
+                    .HasForeignKey(d => d.positionCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELEMPLO_REFERENCE_POSITION");
             });
 
-            modelBuilder.Entity<RelEtGenre>(entity =>
+            modelBuilder.Entity<relEtGenre>(entity =>
             {
-                entity.HasKey(e => new { e.GenreCode, e.EtGenreCode });
+                entity.HasKey(e => new { e.genreCode, e.etGenreCode });
 
-                entity.ToTable("relEtGenre");
-
-                entity.Property(e => e.GenreCode).HasColumnName("genreCode");
-
-                entity.Property(e => e.EtGenreCode).HasColumnName("etGenreCode");
-
-                entity.HasOne(d => d.EtGenreCodeNavigation)
-                    .WithMany(p => p.RelEtGenre)
-                    .HasForeignKey(d => d.EtGenreCode)
+                entity.HasOne(d => d.etGenreCodeNavigation)
+                    .WithMany(p => p.relEtGenre)
+                    .HasForeignKey(d => d.etGenreCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELETGEN_REFERENCE_ETGENRE");
 
-                entity.HasOne(d => d.GenreCodeNavigation)
-                    .WithMany(p => p.RelEtGenre)
-                    .HasForeignKey(d => d.GenreCode)
+                entity.HasOne(d => d.genreCodeNavigation)
+                    .WithMany(p => p.relEtGenre)
+                    .HasForeignKey(d => d.genreCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELETGEN_REFERENCE_GENRETYP");
             });
 
-            modelBuilder.Entity<RelEtRole>(entity =>
+            modelBuilder.Entity<relEtRole>(entity =>
             {
-                entity.HasKey(e => new { e.RoleCode, e.EtRoleCode });
+                entity.HasKey(e => new { e.roleCode, e.etRoleCode });
 
-                entity.ToTable("relEtRole");
-
-                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
-
-                entity.Property(e => e.EtRoleCode).HasColumnName("etRoleCode");
-
-                entity.HasOne(d => d.EtRoleCodeNavigation)
-                    .WithMany(p => p.RelEtRole)
-                    .HasForeignKey(d => d.EtRoleCode)
+                entity.HasOne(d => d.etRoleCodeNavigation)
+                    .WithMany(p => p.relEtRole)
+                    .HasForeignKey(d => d.etRoleCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELETROL_REFERENCE_ETROLE");
 
-                entity.HasOne(d => d.RoleCodeNavigation)
-                    .WithMany(p => p.RelEtRole)
-                    .HasForeignKey(d => d.RoleCode)
+                entity.HasOne(d => d.roleCodeNavigation)
+                    .WithMany(p => p.relEtRole)
+                    .HasForeignKey(d => d.roleCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELETROL_REFERENCE_CREATIVE");
             });
 
             modelBuilder.Entity<RelGenreAdapt>(entity =>
             {
-                entity.HasKey(e => new { e.ReqId, e.GenreId });
+                entity.HasKey(e => new { e.reqId, e.genreId });
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.Property(e => e.GenreId).HasColumnName("genreId");
-
-                entity.HasOne(d => d.Genre)
+                entity.HasOne(d => d.genre)
                     .WithMany(p => p.RelGenreAdapt)
-                    .HasForeignKey(d => d.GenreId)
+                    .HasForeignKey(d => d.genreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENREAD_REF_GENRE");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.RelGenreAdapt)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENRE_REFERENCE_REQUESTA");
             });
 
             modelBuilder.Entity<RelGenreMovie>(entity =>
             {
-                entity.HasKey(e => new { e.ReqId, e.GenreId });
+                entity.HasKey(e => new { e.reqId, e.genreId });
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.Property(e => e.GenreId).HasColumnName("genreId");
-
-                entity.HasOne(d => d.Genre)
+                entity.HasOne(d => d.genre)
                     .WithMany(p => p.RelGenreMovie)
-                    .HasForeignKey(d => d.GenreId)
+                    .HasForeignKey(d => d.genreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENRE_REFERENCE_GENRE");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.RelGenreMovie)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENRE_REFERENCE_REQUESTM");
             });
 
             modelBuilder.Entity<RelGenrePercent>(entity =>
             {
-                entity.HasKey(e => new { e.ActCode, e.GenreType });
+                entity.HasKey(e => new { e.actCode, e.genreType });
 
-                entity.Property(e => e.ActCode).HasColumnName("actCode");
+                entity.Property(e => e.rate).HasColumnType("decimal(5, 2)");
 
-                entity.Property(e => e.GenreType).HasColumnName("genreType");
-
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("decimal(5, 2)");
-
-                entity.HasOne(d => d.ActCodeNavigation)
+                entity.HasOne(d => d.actCodeNavigation)
                     .WithMany(p => p.RelGenrePercent)
-                    .HasForeignKey(d => d.ActCode)
+                    .HasForeignKey(d => d.actCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENRE_REFERENCE_OBJACT");
 
-                entity.HasOne(d => d.GenreTypeNavigation)
+                entity.HasOne(d => d.genreTypeNavigation)
                     .WithMany(p => p.RelGenrePercent)
-                    .HasForeignKey(d => d.GenreType)
+                    .HasForeignKey(d => d.genreType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGPerc_REFERENCE_GENRETYP");
             });
 
-            modelBuilder.Entity<RelGenreRole>(entity =>
+            modelBuilder.Entity<relGenreRole>(entity =>
             {
-                entity.HasKey(e => new { e.RoleCode, e.GenreType, e.ActCode });
+                entity.HasKey(e => new { e.roleCode, e.genreType, e.actCode });
 
-                entity.ToTable("relGenreRole");
+                entity.Property(e => e.rate).HasColumnType("decimal(5, 2)");
 
-                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
-
-                entity.Property(e => e.GenreType).HasColumnName("genreType");
-
-                entity.Property(e => e.ActCode).HasColumnName("actCode");
-
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("decimal(5, 2)");
-
-                entity.HasOne(d => d.GenreTypeNavigation)
-                    .WithMany(p => p.RelGenreRole)
-                    .HasForeignKey(d => d.GenreType)
+                entity.HasOne(d => d.genreTypeNavigation)
+                    .WithMany(p => p.relGenreRole)
+                    .HasForeignKey(d => d.genreType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENRE_REFERENCE_GENRETYP");
 
-                entity.HasOne(d => d.RoleCodeNavigation)
-                    .WithMany(p => p.RelGenreRole)
-                    .HasForeignKey(d => d.RoleCode)
+                entity.HasOne(d => d.roleCodeNavigation)
+                    .WithMany(p => p.relGenreRole)
+                    .HasForeignKey(d => d.roleCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENRE_REFERENCE_CREATIVE");
             });
 
             modelBuilder.Entity<RelGenreSerial>(entity =>
             {
-                entity.HasKey(e => new { e.ReqId, e.GenreId });
+                entity.HasKey(e => new { e.reqId, e.genreId });
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.Property(e => e.GenreId).HasColumnName("genreId");
-
-                entity.HasOne(d => d.Genre)
+                entity.HasOne(d => d.genre)
                     .WithMany(p => p.RelGenreSerial)
-                    .HasForeignKey(d => d.GenreId)
+                    .HasForeignKey(d => d.genreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENRE_REF_GENRESERI");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.RelGenreSerial)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELGENRE_REF_REQUESTSERI");
             });
 
-            modelBuilder.Entity<RelLicCopyR>(entity =>
+            modelBuilder.Entity<relLicCopyR>(entity =>
             {
-                entity.HasKey(e => new { e.AgrLlicCode, e.CRkindCode });
+                entity.HasKey(e => new { e.agrLlicCode, e.cRKindCode });
 
-                entity.ToTable("relLicCopyR");
-
-                entity.Property(e => e.AgrLlicCode).HasColumnName("agrLlicCode");
-
-                entity.Property(e => e.CRkindCode).HasColumnName("cRKindCode");
-
-                entity.HasOne(d => d.AgrLlicCodeNavigation)
-                    .WithMany(p => p.RelLicCopyR)
-                    .HasForeignKey(d => d.AgrLlicCode)
+                entity.HasOne(d => d.agrLlicCodeNavigation)
+                    .WithMany(p => p.relLicCopyR)
+                    .HasForeignKey(d => d.agrLlicCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELLICCO_REFERENCE_AGRLICEN");
 
-                entity.HasOne(d => d.CRkindCodeNavigation)
-                    .WithMany(p => p.RelLicCopyR)
-                    .HasForeignKey(d => d.CRkindCode)
+                entity.HasOne(d => d.cRKindCodeNavigation)
+                    .WithMany(p => p.relLicCopyR)
+                    .HasForeignKey(d => d.cRKindCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELLICCO_REFERENCE_COPYRIGH");
             });
 
             modelBuilder.Entity<RelMovieEpisode>(entity =>
             {
-                entity.HasKey(e => new { e.EpisodeTypeCode, e.ReqId });
+                entity.HasKey(e => new { e.episodeTypeCode, e.reqId });
 
-                entity.Property(e => e.EpisodeTypeCode).HasColumnName("episodeTypeCode");
-
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.Property(e => e.EpDuration).HasColumnName("epDuration");
-
-                entity.HasOne(d => d.EpisodeTypeCodeNavigation)
+                entity.HasOne(d => d.episodeTypeCodeNavigation)
                     .WithMany(p => p.RelMovieEpisode)
-                    .HasForeignKey(d => d.EpisodeTypeCode)
+                    .HasForeignKey(d => d.episodeTypeCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELMOVIE_REFERENCE_EPISODET");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.RelMovieEpisode)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELMOVIE_REFERENCE_REQUESTM");
             });
 
             modelBuilder.Entity<RelObjPerformer>(entity =>
             {
-                entity.HasKey(e => new { e.ObjId, e.PerId });
+                entity.HasKey(e => new { e.objId, e.perId });
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.PerId).HasColumnName("perId");
-
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.RelObjPerformer)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELOBJPE_REFERENCE_OBJECTRI");
 
-                entity.HasOne(d => d.Per)
+                entity.HasOne(d => d.per)
                     .WithMany(p => p.RelObjPerformer)
-                    .HasForeignKey(d => d.PerId)
+                    .HasForeignKey(d => d.perId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELOBJPE_REFERENCE_PERFOMER");
             });
 
             modelBuilder.Entity<RelPopGenre>(entity =>
             {
-                entity.HasKey(e => new { e.ObjId, e.GenreId });
+                entity.HasKey(e => new { e.objId, e.genreId });
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.GenreId).HasColumnName("genreId");
-
-                entity.HasOne(d => d.Genre)
+                entity.HasOne(d => d.genre)
                     .WithMany(p => p.RelPopGenre)
-                    .HasForeignKey(d => d.GenreId)
+                    .HasForeignKey(d => d.genreId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELOBJGE_REFERENCE_GENRE");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.RelPopGenre)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELOBJGE_REFERENCE_OBJECTRI");
             });
 
             modelBuilder.Entity<RelReqMedia>(entity =>
             {
-                entity.HasKey(e => new { e.UseMediaTypeCode, e.ReqId });
+                entity.HasKey(e => new { e.useMediaTypeCode, e.reqId });
 
-                entity.Property(e => e.UseMediaTypeCode).HasColumnName("useMediaTypeCode");
-
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.RelReqMedia)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELREQME_REFERENCE_REQUEST");
 
-                entity.HasOne(d => d.UseMediaTypeCodeNavigation)
+                entity.HasOne(d => d.useMediaTypeCodeNavigation)
                     .WithMany(p => p.RelReqMedia)
-                    .HasForeignKey(d => d.UseMediaTypeCode)
+                    .HasForeignKey(d => d.useMediaTypeCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELREQME_REFERENCE_USEMEDIA");
             });
 
             modelBuilder.Entity<RelReqObj>(entity =>
             {
-                entity.HasKey(e => new { e.CategoryCode, e.ReqType, e.KindGroupId });
+                entity.HasKey(e => new { e.categoryCode, e.reqType, e.kindGroupId });
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.ReqType).HasColumnName("reqType");
-
-                entity.Property(e => e.KindGroupId).HasColumnName("kindGroupId");
-
-                entity.Property(e => e.CrkindCode).HasColumnName("CRKindCode");
-
-                entity.HasOne(d => d.ReqTypeNavigation)
+                entity.HasOne(d => d.reqTypeNavigation)
                     .WithMany(p => p.RelReqObj)
-                    .HasForeignKey(d => d.ReqType)
+                    .HasForeignKey(d => d.reqType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELREQOB_REFERENCE_REQUESTT");
             });
 
             modelBuilder.Entity<RelSerialEpisode>(entity =>
             {
-                entity.HasKey(e => new { e.ReqId, e.EpisodeTypeCode });
+                entity.HasKey(e => new { e.reqId, e.episodeTypeCode });
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.Property(e => e.EpisodeTypeCode).HasColumnName("episodeTypeCode");
-
-                entity.Property(e => e.EpDuration).HasColumnName("epDuration");
-
-                entity.HasOne(d => d.EpisodeTypeCodeNavigation)
+                entity.HasOne(d => d.episodeTypeCodeNavigation)
                     .WithMany(p => p.RelSerialEpisode)
-                    .HasForeignKey(d => d.EpisodeTypeCode)
+                    .HasForeignKey(d => d.episodeTypeCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELSERIAEP_REF_EPISODET");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.RelSerialEpisode)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELSERIAEP_REF_REQSERIAL");
             });
 
-            modelBuilder.Entity<RelTvepisode>(entity =>
+            modelBuilder.Entity<RelTVEpisode>(entity =>
             {
-                entity.HasKey(e => new { e.ReqId, e.EpisodeTypeCode });
+                entity.HasKey(e => new { e.reqId, e.episodeTypeCode });
 
-                entity.ToTable("RelTVEpisode");
-
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.Property(e => e.EpisodeTypeCode).HasColumnName("episodeTypeCode");
-
-                entity.Property(e => e.EpDuration).HasColumnName("epDuration");
-
-                entity.HasOne(d => d.EpisodeTypeCodeNavigation)
-                    .WithMany(p => p.RelTvepisode)
-                    .HasForeignKey(d => d.EpisodeTypeCode)
+                entity.HasOne(d => d.episodeTypeCodeNavigation)
+                    .WithMany(p => p.RelTVEpisode)
+                    .HasForeignKey(d => d.episodeTypeCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELTVEPI_REFERENCE_EPISODET");
 
-                entity.HasOne(d => d.Req)
-                    .WithMany(p => p.RelTvepisode)
-                    .HasForeignKey(d => d.ReqId)
+                entity.HasOne(d => d.req)
+                    .WithMany(p => p.RelTVEpisode)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RELTVEPI_REFERENCE_REQUESTT");
             });
 
             modelBuilder.Entity<Reports>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.Repname)
-                    .HasColumnName("repname")
+                entity.Property(e => e.repname)
                     .HasMaxLength(64)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ReqAgreement>(entity =>
             {
-                entity.HasKey(e => e.RAgrId);
+                entity.HasKey(e => e.rAgrId);
 
-                entity.HasIndex(e => e.CustId)
+                entity.HasIndex(e => e.custId)
                     .HasName("Association16_FK");
 
-                entity.HasIndex(e => e.CustIdRh)
+                entity.HasIndex(e => e.custIdRh)
                     .HasName("Association15_FK");
 
-                entity.Property(e => e.RAgrId).HasColumnName("rAgrId");
+                entity.Property(e => e.agrDate).HasColumnType("datetime");
 
-                entity.Property(e => e.AgrDate)
-                    .HasColumnName("agrDate")
-                    .HasColumnType("datetime");
+                entity.Property(e => e.amount).HasColumnType("money");
 
-                entity.Property(e => e.Amount)
-                    .HasColumnName("amount")
-                    .HasColumnType("money");
+                entity.Property(e => e.costOffer).HasColumnType("money");
 
-                entity.Property(e => e.CostOffer)
-                    .HasColumnName("costOffer")
-                    .HasColumnType("money");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.CustIdRh).HasColumnName("custIdRh");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.R030)
+                entity.Property(e => e.r030)
                     .IsRequired()
-                    .HasColumnName("r030")
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.R030Offer)
-                    .HasColumnName("r030Offer")
+                entity.Property(e => e.r030Offer)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RAgrComment)
-                    .HasColumnName("rAgrComment")
+                entity.Property(e => e.rAgrComment)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
+                entity.Property(e => e.statusDate).HasColumnType("datetime");
 
-                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.Property(e => e.StatusDate)
-                    .HasColumnName("statusDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.TradeId).HasColumnName("tradeId");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.ReqAgreement)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQAGREE_REFERENCE_CUSTOMER");
 
-                entity.HasOne(d => d.CustIdRhNavigation)
+                entity.HasOne(d => d.custIdRhNavigation)
                     .WithMany(p => p.ReqAgreement)
-                    .HasForeignKey(d => d.CustIdRh)
+                    .HasForeignKey(d => d.custIdRh)
                     .HasConstraintName("FK_REQAGREE_REFERENCE_RIGHTHOL");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.ReqAgreement)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .HasConstraintName("FK_REQAGREE_REFERENCE_REQUEST");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.ReqAgreement)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQAGREE_REFERENCE_REQAGREE");
             });
 
             modelBuilder.Entity<ReqAgreementStatus>(entity =>
             {
-                entity.HasKey(e => e.StatusCode);
+                entity.HasKey(e => e.statusCode);
 
-                entity.Property(e => e.StatusCode)
-                    .HasColumnName("statusCode")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.statusCode).ValueGeneratedNever();
 
-                entity.Property(e => e.StatusNameEn)
-                    .HasColumnName("statusNameEn")
+                entity.Property(e => e.statusNameEn)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StatusNameRu)
-                    .HasColumnName("statusNameRu")
+                entity.Property(e => e.statusNameRu)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StatusNameUk)
-                    .HasColumnName("statusNameUk")
+                entity.Property(e => e.statusNameUk)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ReqCustomer>(entity =>
             {
-                entity.HasKey(e => e.ReqCustId);
+                entity.HasKey(e => e.reqCustId);
 
-                entity.Property(e => e.ReqCustId).HasColumnName("reqCustId");
-
-                entity.Property(e => e.ActivityCode).HasColumnName("activityCode");
-
-                entity.Property(e => e.Comment)
-                    .HasColumnName("comment")
+                entity.Property(e => e.comment)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NickName)
-                    .HasColumnName("nickName")
+                entity.Property(e => e.nickName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Okpo)
-                    .HasColumnName("okpo")
+                entity.Property(e => e.okpo)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.ActivityCodeNavigation)
+                entity.HasOne(d => d.activityCodeNavigation)
                     .WithMany(p => p.ReqCustomer)
-                    .HasForeignKey(d => d.ActivityCode)
+                    .HasForeignKey(d => d.activityCode)
                     .HasConstraintName("FK_REQCUSTO_REFERENCE_ACTIVITY");
 
-                entity.HasOne(d => d.CountryCodeNavigation)
+                entity.HasOne(d => d.countryCodeNavigation)
                     .WithMany(p => p.ReqCustomer)
-                    .HasForeignKey(d => d.CountryCode)
+                    .HasForeignKey(d => d.countryCode)
                     .HasConstraintName("FK_REQCUSTO_REFERENCE_COUNTRY");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.ReqCustomer)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_REQCUSTO_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<ReqLocationUse>(entity =>
             {
-                entity.HasKey(e => e.LocUsId);
+                entity.HasKey(e => e.locUsId);
 
-                entity.Property(e => e.LocUsId).HasColumnName("locUsId");
-
-                entity.Property(e => e.ContinentCode).HasColumnName("continentCode");
-
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.HasOne(d => d.ContinentCodeNavigation)
+                entity.HasOne(d => d.continentCodeNavigation)
                     .WithMany(p => p.ReqLocationUse)
-                    .HasForeignKey(d => d.ContinentCode)
+                    .HasForeignKey(d => d.continentCode)
                     .HasConstraintName("FK_REQLOCAT_REFERENCE_CONTINEN");
 
-                entity.HasOne(d => d.CountryCodeNavigation)
+                entity.HasOne(d => d.countryCodeNavigation)
                     .WithMany(p => p.ReqLocationUse)
-                    .HasForeignKey(d => d.CountryCode)
+                    .HasForeignKey(d => d.countryCode)
                     .HasConstraintName("FK_REQLOCAT_REFERENCE_COUNTRY");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.ReqLocationUse)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .HasConstraintName("FK_REQLOCAT_REFERENCE_REQUEST");
             });
 
             modelBuilder.Entity<ReqTrade>(entity =>
             {
-                entity.HasKey(e => e.TradeId);
+                entity.HasKey(e => e.tradeId);
 
-                entity.Property(e => e.TradeId).HasColumnName("tradeId");
+                entity.Property(e => e.costClient).HasColumnType("money");
 
-                entity.Property(e => e.CauseCode).HasColumnName("causeCode");
+                entity.Property(e => e.costRHolder).HasColumnType("money");
 
-                entity.Property(e => e.CostClient)
-                    .HasColumnName("costClient")
-                    .HasColumnType("money");
+                entity.Property(e => e.createDate).HasColumnType("datetime");
 
-                entity.Property(e => e.CostRholder)
-                    .HasColumnName("costRHolder")
-                    .HasColumnType("money");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.CreateDate)
-                    .HasColumnName("createDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.R030)
+                entity.Property(e => e.r030)
                     .IsRequired()
-                    .HasColumnName("r030")
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RAgrId).HasColumnName("rAgrId");
+                entity.Property(e => e.statusDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.Property(e => e.StatusDate)
-                    .HasColumnName("statusDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.TradeComment)
-                    .HasColumnName("tradeComment")
+                entity.Property(e => e.tradeComment)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CauseCodeNavigation)
+                entity.HasOne(d => d.causeCodeNavigation)
                     .WithMany(p => p.ReqTrade)
-                    .HasForeignKey(d => d.CauseCode)
+                    .HasForeignKey(d => d.causeCode)
                     .HasConstraintName("FK_REQTRADE_REFERENCE_COMMENTC");
 
-                entity.HasOne(d => d.RAgr)
+                entity.HasOne(d => d.rAgr)
                     .WithMany(p => p.ReqTrade)
-                    .HasForeignKey(d => d.RAgrId)
+                    .HasForeignKey(d => d.rAgrId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQTRADE_REFERENCE_REQAGREE");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithMany(p => p.ReqTrade)
-                    .HasForeignKey(d => d.ReqId)
+                    .HasForeignKey(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQTRADE_REFERENCE_REQUEST");
 
-                entity.HasOne(d => d.StatusNavigation)
+                entity.HasOne(d => d.statusNavigation)
                     .WithMany(p => p.ReqTrade)
-                    .HasForeignKey(d => d.Status)
+                    .HasForeignKey(d => d.status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQTRADE_REFERENCE_TRADESTA");
             });
 
             modelBuilder.Entity<Request>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
+                entity.Property(e => e.beginDate).HasColumnType("date");
 
-                entity.Property(e => e.BeginDate)
-                    .HasColumnName("beginDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.createDate).HasColumnType("datetime");
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
+                entity.Property(e => e.endDate).HasColumnType("date");
 
-                entity.Property(e => e.CountUse).HasColumnName("countUse");
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.CreateDate)
-                    .HasColumnName("createDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.DurationUse).HasColumnName("durationUse");
-
-                entity.Property(e => e.EndDate)
-                    .HasColumnName("endDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.KindCompCode).HasColumnName("kindCompCode");
-
-                entity.Property(e => e.LicCode).HasColumnName("licCode");
-
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReqAimCode).HasColumnName("reqAimCode");
+                entity.Property(e => e.reqAmount).HasColumnType("money");
 
-                entity.Property(e => e.ReqAmount)
-                    .HasColumnName("reqAmount")
-                    .HasColumnType("money");
-
-                entity.Property(e => e.ReqComment)
-                    .HasColumnName("reqComment")
+                entity.Property(e => e.reqComment)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReqCustId).HasColumnName("reqCustId");
+                entity.Property(e => e.reqDate).HasColumnType("date");
 
-                entity.Property(e => e.ReqDate)
-                    .HasColumnName("reqDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.Property(e => e.ReqType).HasColumnName("reqType");
-
-                entity.Property(e => e.Reqstatus).HasColumnName("reqstatus");
-
-                entity.Property(e => e.TermUseCode).HasColumnName("termUseCode");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
-
-                entity.Property(e => e.WorkName)
-                    .HasColumnName("workName")
+                entity.Property(e => e.workName)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .HasConstraintName("FK_REQUEST_REFERENCE_CATEGORY");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .HasConstraintName("FK_REQUEST_REFERENCE_CUSTOMER");
 
-                entity.HasOne(d => d.KindCompCodeNavigation)
+                entity.HasOne(d => d.kindCompCodeNavigation)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.KindCompCode)
+                    .HasForeignKey(d => d.kindCompCode)
                     .HasConstraintName("FK_REQUEST_REFERENCE_KINDCOMP");
 
-                entity.HasOne(d => d.LicCodeNavigation)
+                entity.HasOne(d => d.licCodeNavigation)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.LicCode)
+                    .HasForeignKey(d => d.licCode)
                     .HasConstraintName("FK_REQUEST_REFERENCE_LICENSET");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_REQUEST_REFERENCE_OBJECTRI");
 
-                entity.HasOne(d => d.ReqAimCodeNavigation)
+                entity.HasOne(d => d.reqAimCodeNavigation)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.ReqAimCode)
+                    .HasForeignKey(d => d.reqAimCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUEST_REFERENCE_REQUESTA");
 
-                entity.HasOne(d => d.ReqCust)
+                entity.HasOne(d => d.reqCust)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.ReqCustId)
+                    .HasForeignKey(d => d.reqCustId)
                     .HasConstraintName("FK_REQUEST_REFERENCE_REQCUSTO");
 
-                entity.HasOne(d => d.ReqTypeNavigation)
+                entity.HasOne(d => d.reqTypeNavigation)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.ReqType)
+                    .HasForeignKey(d => d.reqType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUEST_REFERENCE_REQUESTT");
 
-                entity.HasOne(d => d.ReqstatusNavigation)
+                entity.HasOne(d => d.reqstatusNavigation)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.Reqstatus)
+                    .HasForeignKey(d => d.reqstatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUEST_REFERENCE_REQUESTS");
 
-                entity.HasOne(d => d.TermUseCodeNavigation)
+                entity.HasOne(d => d.termUseCodeNavigation)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.TermUseCode)
+                    .HasForeignKey(d => d.termUseCode)
                     .HasConstraintName("FK_REQUEST_REFERENCE_TERMUSE");
 
-                entity.HasOne(d => d.User)
+                entity.HasOne(d => d.user)
                     .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.UserId)
+                    .HasForeignKey(d => d.userId)
                     .HasConstraintName("FK_REQUEST_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<RequestAdapt>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("reqId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.reqId).ValueGeneratedNever();
 
-                entity.Property(e => e.ExecNick)
-                    .HasColumnName("execNick")
+                entity.Property(e => e.execNick)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ModifyMusicType).HasColumnName("modifyMusicType");
-
-                entity.Property(e => e.ModifyMusictComment)
-                    .HasColumnName("modifyMusictComment")
+                entity.Property(e => e.modifyMusictComment)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ModifyTextComment)
-                    .HasColumnName("modifyTextComment")
+                entity.Property(e => e.modifyTextComment)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ModifyTextType).HasColumnName("modifyTextType");
-
-                entity.Property(e => e.ModifyType).HasColumnName("modifyType");
-
-                entity.Property(e => e.UseAreaComment)
-                    .HasColumnName("useAreaComment")
+                entity.Property(e => e.useAreaComment)
                     .HasMaxLength(256)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.ModifyMusicTypeNavigation)
+                entity.HasOne(d => d.modifyMusicTypeNavigation)
                     .WithMany(p => p.RequestAdapt)
-                    .HasForeignKey(d => d.ModifyMusicType)
+                    .HasForeignKey(d => d.modifyMusicType)
                     .HasConstraintName("FK_REQUESTA_REFERENCE_MODIFYMU");
 
-                entity.HasOne(d => d.ModifyTextTypeNavigation)
+                entity.HasOne(d => d.modifyTextTypeNavigation)
                     .WithMany(p => p.RequestAdapt)
-                    .HasForeignKey(d => d.ModifyTextType)
+                    .HasForeignKey(d => d.modifyTextType)
                     .HasConstraintName("FK_REQUESTA_REFERENCE_MODIFYTE");
 
-                entity.HasOne(d => d.ModifyTypeNavigation)
+                entity.HasOne(d => d.modifyTypeNavigation)
                     .WithMany(p => p.RequestAdapt)
-                    .HasForeignKey(d => d.ModifyType)
+                    .HasForeignKey(d => d.modifyType)
                     .HasConstraintName("FK_REQUESTA_REFERENCE_MODIFYTY");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithOne(p => p.RequestAdapt)
-                    .HasForeignKey<RequestAdapt>(d => d.ReqId)
+                    .HasForeignKey<RequestAdapt>(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTA_REF_REQUESTADA");
             });
 
             modelBuilder.Entity<RequestAdvertising>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("reqId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.reqId).ValueGeneratedNever();
 
-                entity.Property(e => e.DurationAll).HasColumnName("durationAll");
-
-                entity.Property(e => e.DurationShort).HasColumnName("durationShort");
-
-                entity.Property(e => e.TradeMark)
-                    .HasColumnName("tradeMark")
+                entity.Property(e => e.tradeMark)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithOne(p => p.RequestAdvertising)
-                    .HasForeignKey<RequestAdvertising>(d => d.ReqId)
+                    .HasForeignKey<RequestAdvertising>(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTA_REF_REQUESTADV");
             });
 
             modelBuilder.Entity<RequestAim>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReqType).HasColumnName("reqType");
-
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.RequestAim)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTA_REFERENCE_CATEGORY");
             });
 
             modelBuilder.Entity<RequestAimTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.RequestAimTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTA_REFERENCE_REQUESTA");
             });
 
             modelBuilder.Entity<RequestInternet>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("reqId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.reqId).ValueGeneratedNever();
 
-                entity.Property(e => e.TypeInternetObject).HasColumnName("typeInternetObject");
-
-                entity.Property(e => e.Url)
-                    .HasColumnName("url")
+                entity.Property(e => e.url)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UseDesc)
-                    .HasColumnName("useDesc")
+                entity.Property(e => e.useDesc)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithOne(p => p.RequestInternet)
-                    .HasForeignKey<RequestInternet>(d => d.ReqId)
+                    .HasForeignKey<RequestInternet>(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTI_REF_INTERNREQUEST");
 
-                entity.HasOne(d => d.TypeInternetObjectNavigation)
+                entity.HasOne(d => d.typeInternetObjectNavigation)
                     .WithMany(p => p.RequestInternet)
-                    .HasForeignKey(d => d.TypeInternetObject)
+                    .HasForeignKey(d => d.typeInternetObject)
                     .HasConstraintName("FK_REQUESTI_REFERENCE_TYPEINTE");
             });
 
             modelBuilder.Entity<RequestMovie>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("reqId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.reqId).ValueGeneratedNever();
 
-                entity.Property(e => e.EpisodeComment)
-                    .HasColumnName("episodeComment")
+                entity.Property(e => e.episodeComment)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.KindFilm).HasColumnName("kindFilm");
-
-                entity.HasOne(d => d.KindFilmNavigation)
+                entity.HasOne(d => d.kindFilmNavigation)
                     .WithMany(p => p.RequestMovie)
-                    .HasForeignKey(d => d.KindFilm)
+                    .HasForeignKey(d => d.kindFilm)
                     .HasConstraintName("FK_REQUESTM_REFERENCE_KINDFILM");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithOne(p => p.RequestMovie)
-                    .HasForeignKey<RequestMovie>(d => d.ReqId)
+                    .HasForeignKey<RequestMovie>(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTM_REFERENCE_REQUEST");
             });
 
             modelBuilder.Entity<RequestOther>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("reqId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.reqId).ValueGeneratedNever();
 
-                entity.Property(e => e.UseDesc)
+                entity.Property(e => e.useDesc)
                     .IsRequired()
-                    .HasColumnName("useDesc")
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithOne(p => p.RequestOther)
-                    .HasForeignKey<RequestOther>(d => d.ReqId)
+                    .HasForeignKey<RequestOther>(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTO_REFERENCE_REQUEST");
             });
 
             modelBuilder.Entity<RequestSerial>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("reqId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.reqId).ValueGeneratedNever();
 
-                entity.Property(e => e.CntSeries).HasColumnName("cntSeries");
-
-                entity.Property(e => e.EpisodeComment)
-                    .HasColumnName("episodeComment")
+                entity.Property(e => e.episodeComment)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.KindSerial).HasColumnName("kindSerial");
-
-                entity.HasOne(d => d.KindSerialNavigation)
+                entity.HasOne(d => d.kindSerialNavigation)
                     .WithMany(p => p.RequestSerial)
-                    .HasForeignKey(d => d.KindSerial)
+                    .HasForeignKey(d => d.kindSerial)
                     .HasConstraintName("FK_REQUESTS_REFERENCE_KINDSERI");
 
-                entity.HasOne(d => d.Req)
+                entity.HasOne(d => d.req)
                     .WithOne(p => p.RequestSerial)
-                    .HasForeignKey<RequestSerial>(d => d.ReqId)
+                    .HasForeignKey<RequestSerial>(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTS_REF_REQUESTS");
             });
 
             modelBuilder.Entity<RequestStatusType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<RequestStatusTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.RequestStatusTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTS_REFERENCE_REQUESTS");
             });
 
-            modelBuilder.Entity<RequestTvradio>(entity =>
+            modelBuilder.Entity<RequestTVRadio>(entity =>
             {
-                entity.HasKey(e => e.ReqId);
+                entity.HasKey(e => e.reqId);
 
-                entity.ToTable("RequestTVRadio");
+                entity.Property(e => e.reqId).ValueGeneratedNever();
 
-                entity.Property(e => e.ReqId)
-                    .HasColumnName("reqId")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.EpisodeComment)
-                    .HasColumnName("episodeComment")
+                entity.Property(e => e.episodeComment)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.NameTvchanel)
-                    .HasColumnName("nameTVChanel")
+                entity.Property(e => e.nameTVChanel)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ShortTitle)
-                    .HasColumnName("shortTitle")
+                entity.Property(e => e.shortTitle)
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.Req)
-                    .WithOne(p => p.RequestTvradio)
-                    .HasForeignKey<RequestTvradio>(d => d.ReqId)
+                entity.HasOne(d => d.req)
+                    .WithOne(p => p.RequestTVRadio)
+                    .HasForeignKey<RequestTVRadio>(d => d.reqId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTT_REF_TVREQUEST");
             });
 
             modelBuilder.Entity<RequestType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.RequestType)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTT_REFERENCE_CATEGORY");
             });
 
             modelBuilder.Entity<RequestTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(512)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.RequestTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUESTT_REF_REQUESTTR");
             });
 
             modelBuilder.Entity<ResidentType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<ResidentTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.ResidentTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RESIDENT_REFERENCE_RESIDENT");
             });
 
-            modelBuilder.Entity<RholderType>(entity =>
+            modelBuilder.Entity<RHolderType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.ToTable("RHolderType");
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<RholderTypeTr>(entity =>
+            modelBuilder.Entity<RHolderTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.ToTable("RHolderTypeTr");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
-                    .WithMany(p => p.RholderTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                entity.HasOne(d => d.codeINavigation)
+                    .WithMany(p => p.RHolderTypeTr)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RHOLDERT_REFERENCE_RHOLDERT");
             });
 
             modelBuilder.Entity<RightHolder>(entity =>
             {
-                entity.HasKey(e => e.CustId);
+                entity.HasKey(e => e.custId);
 
-                entity.Property(e => e.CustId)
-                    .HasColumnName("custId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.custId).ValueGeneratedNever();
 
-                entity.Property(e => e.AroundWord).HasColumnName("aroundWord");
-
-                entity.Property(e => e.InnerCode)
-                    .HasColumnName("innerCode")
+                entity.Property(e => e.innerCode)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.InterCode)
-                    .HasColumnName("interCode")
+                entity.Property(e => e.interCode)
                     .HasMaxLength(25)
                     .IsUnicode(false);
 
-                entity.Property(e => e.RHolderType)
-                    .HasColumnName("rHolderType")
-                    .HasDefaultValueSql("((1))");
+                entity.Property(e => e.rHolderType).HasDefaultValueSql("((1))");
 
-                entity.Property(e => e.SignP).HasColumnName("signP");
-
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithOne(p => p.RightHolder)
-                    .HasForeignKey<RightHolder>(d => d.CustId)
+                    .HasForeignKey<RightHolder>(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_RIGHTHOL_REFERENCE_CUSTOMER");
             });
 
             modelBuilder.Entity<SaldoDay>(entity =>
             {
-                entity.HasKey(e => new { e.AccId, e.DateBegin, e.DateEnd });
+                entity.HasKey(e => new { e.accId, e.dateBegin, e.dateEnd });
 
-                entity.Property(e => e.AccId).HasColumnName("accId");
+                entity.Property(e => e.dateBegin).HasColumnType("date");
 
-                entity.Property(e => e.DateBegin)
-                    .HasColumnName("dateBegin")
-                    .HasColumnType("date");
+                entity.Property(e => e.dateEnd).HasColumnType("date");
 
-                entity.Property(e => e.DateEnd)
-                    .HasColumnName("dateEnd")
-                    .HasColumnType("date");
+                entity.Property(e => e.deboborot).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.Deboborot)
-                    .HasColumnName("deboborot")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.deboborotCourt).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.DeboborotCourt)
-                    .HasColumnName("deboborotCourt")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.krdOborot).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.KrdOborot)
-                    .HasColumnName("krdOborot")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.krdOborotCourt).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.KrdOborotCourt)
-                    .HasColumnName("krdOborotCourt")
-                    .HasColumnType("numeric(20, 2)");
-
-                entity.Property(e => e.R030)
-                    .HasColumnName("r030")
+                entity.Property(e => e.r030)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Rest)
-                    .HasColumnName("rest")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.rest).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.RestBegin)
-                    .HasColumnName("restBegin")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.restBegin).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.RestBeginCourt)
-                    .HasColumnName("restBeginCourt")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.restBeginCourt).HasColumnType("numeric(20, 2)");
 
-                entity.Property(e => e.RestCourt)
-                    .HasColumnName("restCourt")
-                    .HasColumnType("numeric(20, 2)");
+                entity.Property(e => e.restCourt).HasColumnType("numeric(20, 2)");
             });
 
             modelBuilder.Entity<SeekObject>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("id");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ObjId).HasColumnName("objId");
-
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.SeekObject)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .HasConstraintName("FK_SEEKOBJE_REFERENCE_SEEKTYPE");
 
-                entity.HasOne(d => d.Obj)
+                entity.HasOne(d => d.obj)
                     .WithMany(p => p.SeekObject)
-                    .HasForeignKey(d => d.ObjId)
+                    .HasForeignKey(d => d.objId)
                     .HasConstraintName("FK_SEEKOBJE_REFERENCE_OBJECTRI");
             });
 
             modelBuilder.Entity<SeekType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<SeekTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.SeekTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SEEKTYPE_REFERENCE_SEEKTYPE");
             });
 
             modelBuilder.Entity<SexType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<SexTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.SexTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SEXTYPET_REFERENCE_SEXTYPE");
             });
 
             modelBuilder.Entity<SpecType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<SpecTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.SpecTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SPECTYPE_REFERENCE_SPECTYPE");
             });
 
             modelBuilder.Entity<TableColumn>(entity =>
             {
-                entity.HasKey(e => e.Id)
+                entity.HasKey(e => e.id)
                     .ForSqlServerIsClustered(false);
 
-                entity.HasIndex(e => new { e.Lang, e.TName, e.CName })
+                entity.HasIndex(e => new { e.lang, e.tName, e.cName })
                     .HasName("Index_Unique")
                     .ForSqlServerIsClustered();
 
-                entity.HasIndex(e => new { e.TName, e.CName, e.Lang })
+                entity.HasIndex(e => new { e.tName, e.cName, e.lang })
                     .HasName("TableColumn_UI")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
+                entity.Property(e => e.id)
                     .HasColumnType("numeric(18, 0)")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.CName)
-                    .HasColumnName("cName")
+                entity.Property(e => e.cName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DText)
-                    .HasColumnName("dText")
+                entity.Property(e => e.dText)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.HText)
-                    .HasColumnName("hText")
+                entity.Property(e => e.hText)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TName)
-                    .HasColumnName("tName")
+                entity.Property(e => e.tName)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<TableColumnTech>(entity =>
             {
-                entity.HasIndex(e => new { e.Tname, e.Cname })
+                entity.HasIndex(e => new { e.tname, e.cname })
                     .HasName("ITableColumn")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
+                entity.Property(e => e.id)
                     .HasColumnType("numeric(18, 0)")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.Cname)
-                    .HasColumnName("cname")
+                entity.Property(e => e.cname)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DnameEn)
-                    .HasColumnName("dnameEn")
+                entity.Property(e => e.dnameEn)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DnameRu)
-                    .HasColumnName("dnameRu")
+                entity.Property(e => e.dnameRu)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DnameUk)
-                    .HasColumnName("dnameUk")
+                entity.Property(e => e.dnameUk)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Tname)
-                    .HasColumnName("tname")
+                entity.Property(e => e.tname)
                     .HasMaxLength(100)
                     .IsUnicode(false);
-
-                entity.Property(e => e.TypeTab).HasColumnName("typeTab");
             });
 
             modelBuilder.Entity<TableObject>(entity =>
             {
-                entity.HasKey(e => e.Id)
+                entity.HasKey(e => e.id)
                     .ForSqlServerIsClustered(false);
 
-                entity.HasIndex(e => new { e.Lang, e.CName })
+                entity.HasIndex(e => new { e.lang, e.cName })
                     .HasName("uni_01")
                     .IsUnique();
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id")
+                entity.Property(e => e.id)
                     .HasColumnType("numeric(18, 0)")
                     .ValueGeneratedOnAdd();
 
-                entity.Property(e => e.CName)
+                entity.Property(e => e.cName)
                     .IsRequired()
-                    .HasColumnName("cName")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.DText)
-                    .HasColumnName("dText")
+                entity.Property(e => e.dText)
                     .HasMaxLength(2048)
                     .IsUnicode(false);
 
-                entity.Property(e => e.HText)
-                    .HasColumnName("hText")
+                entity.Property(e => e.hText)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<TableType>(entity =>
             {
-                entity.HasKey(e => e.TName)
+                entity.HasKey(e => e.tName)
                     .ForSqlServerIsClustered(false);
 
-                entity.HasIndex(e => e.TName)
+                entity.HasIndex(e => e.tName)
                     .HasName("Index_Unique")
                     .ForSqlServerIsClustered();
 
-                entity.Property(e => e.TName)
-                    .HasColumnName("tName")
+                entity.Property(e => e.tName)
                     .HasMaxLength(100)
                     .IsUnicode(false)
                     .ValueGeneratedNever();
-
-                entity.Property(e => e.TType).HasColumnName("tType");
             });
 
             modelBuilder.Entity<TermsOfService>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.CrkindCode });
+                entity.HasKey(e => new { e.custId, e.CRKindCode });
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.CrkindCode).HasColumnName("CRKindCode");
-
-                entity.Property(e => e.OurService).HasColumnName("ourService");
-
-                entity.HasOne(d => d.CrkindCodeNavigation)
+                entity.HasOne(d => d.CRKindCodeNavigation)
                     .WithMany(p => p.TermsOfService)
-                    .HasForeignKey(d => d.CrkindCode)
+                    .HasForeignKey(d => d.CRKindCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TERMSOFS_REFERENCE_COPYRIGH");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.TermsOfService)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TERMSOFS_REFERENCE_RIGHTHOL");
             });
 
             modelBuilder.Entity<TermUse>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<TermUseTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.TermUseTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TERMUSET_REFERENCE_TERMUSE");
             });
 
             modelBuilder.Entity<TerritoryExclude>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.CountryCode });
+                entity.HasKey(e => new { e.custId, e.countryCode });
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CountryCodeNavigation)
+                entity.HasOne(d => d.countryCodeNavigation)
                     .WithMany(p => p.TerritoryExclude)
-                    .HasForeignKey(d => d.CountryCode)
+                    .HasForeignKey(d => d.countryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TERRITOR_REFERENCE_COUNTRY");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.TerritoryExclude)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TERRITOR_REFERENCE_RIGHTHOL");
             });
 
             modelBuilder.Entity<TerritoryInclude>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.CountryCode });
+                entity.HasKey(e => new { e.custId, e.countryCode });
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
+                entity.Property(e => e.countryCode)
                     .HasMaxLength(3)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CountryCodeNavigation)
+                entity.HasOne(d => d.countryCodeNavigation)
                     .WithMany(p => p.TerritoryInclude)
-                    .HasForeignKey(d => d.CountryCode)
+                    .HasForeignKey(d => d.countryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SERVICEA_REFERENCE_COUNTRY2");
 
-                entity.HasOne(d => d.Cust)
+                entity.HasOne(d => d.cust)
                     .WithMany(p => p.TerritoryInclude)
-                    .HasForeignKey(d => d.CustId)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SERVICEA_REFERENCE_RIGHTHOL2");
             });
 
             modelBuilder.Entity<TradeStatus>(entity =>
             {
-                entity.HasKey(e => e.StatusCode);
+                entity.HasKey(e => e.statusCode);
 
-                entity.Property(e => e.StatusCode)
-                    .HasColumnName("statusCode")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.statusCode).ValueGeneratedNever();
 
-                entity.Property(e => e.StatusNameEn)
-                    .HasColumnName("statusNameEn")
+                entity.Property(e => e.statusNameEn)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StatusNameRu)
-                    .HasColumnName("statusNameRu")
+                entity.Property(e => e.statusNameRu)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.StatusNameUk)
-                    .HasColumnName("statusNameUk")
+                entity.Property(e => e.statusNameUk)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<TypeInternetObject>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TypeInetNameEn)
-                    .HasColumnName("typeInetNameEn")
+                entity.Property(e => e.typeInetNameEn)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TypeInetNameRu)
-                    .HasColumnName("typeInetNameRu")
+                entity.Property(e => e.typeInetNameRu)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<TypeInternetObjectTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.TypeInternetObjectTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TYPEINTE_REFERENCE_TYPEINTE");
             });
 
             modelBuilder.Entity<TypeMethodGet>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<TypeMethodGetTr>(entity =>
             {
-                entity.HasKey(e => new { e.Lang, e.CodeI });
+                entity.HasKey(e => new { e.lang, e.codeI });
 
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.TypeMethodGetTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TYPEMETH_REFERENCE_TYPEMETH");
             });
 
             modelBuilder.Entity<TypePlace>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.IsHoll).HasColumnName("isHoll");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ParamType).HasColumnName("paramType");
-
-                entity.HasOne(d => d.ParamTypeNavigation)
+                entity.HasOne(d => d.paramTypeNavigation)
                     .WithMany(p => p.TypePlace)
-                    .HasForeignKey(d => d.ParamType)
+                    .HasForeignKey(d => d.paramType)
                     .HasConstraintName("FK_TYPEPLAC_REF_TYPEPLAC");
             });
 
             modelBuilder.Entity<TypePlaceParam>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<TypePlaceParamTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.TypePlaceParamTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TYPEPLAC_REF_TYPEPLACTR");
             });
 
             modelBuilder.Entity<TypePlaceTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.TypePlaceTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TYPEPLAC_REFERENCE_TYPEPLAC");
             });
 
-            modelBuilder.Entity<TypeVat>(entity =>
+            modelBuilder.Entity<TypeVAT>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.ToTable("TypeVAT");
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
             });
 
-            modelBuilder.Entity<TypeVattr>(entity =>
+            modelBuilder.Entity<TypeVATTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.ToTable("TypeVATTr");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
-                    .WithMany(p => p.TypeVattr)
-                    .HasForeignKey(d => d.CodeI)
+                entity.HasOne(d => d.codeINavigation)
+                    .WithMany(p => p.TypeVATTr)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_TYPEVATT_REFERENCE_TYPEVAT");
             });
 
             modelBuilder.Entity<UseAreaType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReqType).HasColumnName("reqType");
-
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.UseAreaType)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USEAREAT_REFERENCE_CATEGORY");
 
-                entity.HasOne(d => d.ReqTypeNavigation)
+                entity.HasOne(d => d.reqTypeNavigation)
                     .WithMany(p => p.UseAreaType)
-                    .HasForeignKey(d => d.ReqType)
+                    .HasForeignKey(d => d.reqType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USEAREAT_REFERENCE_REQUESTT");
             });
 
             modelBuilder.Entity<UseAreaTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.UseAreaTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USEAREAT_REFERENCE_USEAREAT");
             });
 
             modelBuilder.Entity<UseMediaType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ReqType).HasColumnName("reqType");
-
-                entity.HasOne(d => d.CategoryCodeNavigation)
+                entity.HasOne(d => d.categoryCodeNavigation)
                     .WithMany(p => p.UseMediaType)
-                    .HasForeignKey(d => d.CategoryCode)
+                    .HasForeignKey(d => d.categoryCode)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USEMEDIA_REFERENCE_CATEGORY");
 
-                entity.HasOne(d => d.ReqTypeNavigation)
+                entity.HasOne(d => d.reqTypeNavigation)
                     .WithMany(p => p.UseMediaType)
-                    .HasForeignKey(d => d.ReqType)
+                    .HasForeignKey(d => d.reqType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USEMEDIA_REFERENCE_REQUESTT");
             });
 
             modelBuilder.Entity<UseMediaTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(200)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.UseMediaTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USEMEDIA_REFERENCE_USEMEDIA");
             });
 
-            modelBuilder.Entity<UserRole>(entity =>
+            modelBuilder.Entity<userRole>(entity =>
             {
-                entity.HasKey(e => new { e.CustId, e.RoleType, e.UserId });
+                entity.HasKey(e => new { e.custId, e.roleType, e.userId });
 
-                entity.ToTable("userRole");
+                entity.Property(e => e.userId).HasMaxLength(48);
 
-                entity.Property(e => e.CustId).HasColumnName("custId");
-
-                entity.Property(e => e.RoleType).HasColumnName("roleType");
-
-                entity.Property(e => e.UserId)
-                    .HasColumnName("userId")
-                    .HasMaxLength(48);
-
-                entity.Property(e => e.Status).HasColumnName("status");
-
-                entity.HasOne(d => d.Cust)
-                    .WithMany(p => p.UserRole)
-                    .HasForeignKey(d => d.CustId)
+                entity.HasOne(d => d.cust)
+                    .WithMany(p => p.userRole)
+                    .HasForeignKey(d => d.custId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USERROLE_REFERENCE_CUSTOMER");
 
-                entity.HasOne(d => d.RoleTypeNavigation)
-                    .WithMany(p => p.UserRole)
-                    .HasForeignKey(d => d.RoleType)
+                entity.HasOne(d => d.roleTypeNavigation)
+                    .WithMany(p => p.userRole)
+                    .HasForeignKey(d => d.roleType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USERROLE_REFERENCE_USERROLE");
 
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserRole)
-                    .HasForeignKey(d => d.UserId)
+                entity.HasOne(d => d.user)
+                    .WithMany(p => p.userRole)
+                    .HasForeignKey(d => d.userId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USERROLE_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<UserRoleType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.IsAdmin).HasColumnName("isAdmin");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TypeNameEn)
-                    .HasColumnName("typeNameEn")
+                entity.Property(e => e.typeNameEn)
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
-                entity.Property(e => e.TypeNameRu)
-                    .HasColumnName("typeNameRu")
+                entity.Property(e => e.typeNameRu)
                     .HasMaxLength(250)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<UserRoleTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(250)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.UserRoleTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USERROLE_REFERENCE_USERROLE2");
             });
 
             modelBuilder.Entity<UsesKind>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.Property(e => e.UsesType).HasColumnName("usesType");
-
-                entity.HasOne(d => d.UsesTypeNavigation)
+                entity.HasOne(d => d.usesTypeNavigation)
                     .WithMany(p => p.UsesKind)
-                    .HasForeignKey(d => d.UsesType)
+                    .HasForeignKey(d => d.usesType)
                     .HasConstraintName("FK_USESKIND_REFERENCE_USESTYPE");
             });
 
             modelBuilder.Entity<UsesKindTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.UsesKindTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USESKIND_REFERENCE_USESKIND");
             });
 
             modelBuilder.Entity<UsesType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
+                entity.Property(e => e.name)
                     .IsRequired()
-                    .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<UsesTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.UsesTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USESTYPE_REFERENCE_USESTYPE");
             });
 
-            modelBuilder.Entity<WorkRh>(entity =>
+            modelBuilder.Entity<WorkRH>(entity =>
             {
-                entity.HasKey(e => e.CRightId);
+                entity.HasKey(e => e.cRightId);
 
-                entity.ToTable("WorkRH");
+                entity.Property(e => e.cRightId).ValueGeneratedNever();
 
-                entity.Property(e => e.CRightId)
-                    .HasColumnName("cRightId")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.modifyDate).HasColumnType("datetime");
 
-                entity.Property(e => e.ModifyDate)
-                    .HasColumnName("modifyDate")
-                    .HasColumnType("datetime");
-
-                entity.Property(e => e.ModifyLogin)
-                    .HasColumnName("modifyLogin")
+                entity.Property(e => e.modifyLogin)
                     .HasMaxLength(48)
                     .IsUnicode(false);
 
-                entity.Property(e => e.WorkCommentRh)
-                    .HasColumnName("workCommentRH")
+                entity.Property(e => e.workCommentRH)
                     .HasMaxLength(2048)
                     .IsUnicode(false);
 
-                entity.Property(e => e.WorkCoommentCl)
-                    .HasColumnName("workCoommentCl")
+                entity.Property(e => e.workCoommentCl)
                     .HasMaxLength(2048)
                     .IsUnicode(false);
 
-                entity.Property(e => e.WorkDateCl)
-                    .HasColumnName("workDateCl")
-                    .HasColumnType("date");
+                entity.Property(e => e.workDateCl).HasColumnType("date");
 
-                entity.Property(e => e.WorkDateRh)
-                    .HasColumnName("workDateRH")
-                    .HasColumnType("date");
+                entity.Property(e => e.workDateRH).HasColumnType("date");
 
-                entity.Property(e => e.WorkTypeCl).HasColumnName("workTypeCl");
-
-                entity.Property(e => e.WorkTypeRh).HasColumnName("workTypeRH");
-
-                entity.HasOne(d => d.CRight)
-                    .WithOne(p => p.WorkRh)
-                    .HasForeignKey<WorkRh>(d => d.CRightId)
+                entity.HasOne(d => d.cRight)
+                    .WithOne(p => p.WorkRH)
+                    .HasForeignKey<WorkRH>(d => d.cRightId)
                     .HasConstraintName("FK_WORKRH_REFERENCE_COPYRIGH");
 
-                entity.HasOne(d => d.WorkTypeClNavigation)
-                    .WithMany(p => p.WorkRhWorkTypeClNavigation)
-                    .HasForeignKey(d => d.WorkTypeCl)
+                entity.HasOne(d => d.workTypeClNavigation)
+                    .WithMany(p => p.WorkRHworkTypeClNavigation)
+                    .HasForeignKey(d => d.workTypeCl)
                     .HasConstraintName("FK_WORKCL_REFERENCE_WORKTYPE");
 
-                entity.HasOne(d => d.WorkTypeRhNavigation)
-                    .WithMany(p => p.WorkRhWorkTypeRhNavigation)
-                    .HasForeignKey(d => d.WorkTypeRh)
+                entity.HasOne(d => d.workTypeRHNavigation)
+                    .WithMany(p => p.WorkRHworkTypeRHNavigation)
+                    .HasForeignKey(d => d.workTypeRH)
                     .HasConstraintName("FK_WORKRH_REFERENCE_WORKTYPE");
             });
 
             modelBuilder.Entity<WorkType>(entity =>
             {
-                entity.HasKey(e => e.CodeI);
+                entity.HasKey(e => e.codeI);
 
-                entity.Property(e => e.CodeI)
-                    .HasColumnName("codeI")
-                    .ValueGeneratedNever();
+                entity.Property(e => e.codeI).ValueGeneratedNever();
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
             });
 
             modelBuilder.Entity<WorkTypeTr>(entity =>
             {
-                entity.HasKey(e => new { e.CodeI, e.Lang });
+                entity.HasKey(e => new { e.codeI, e.lang });
 
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
+                entity.Property(e => e.lang)
                     .HasMaxLength(2)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
+                entity.Property(e => e.name)
                     .HasMaxLength(100)
                     .IsUnicode(false);
 
-                entity.HasOne(d => d.CodeINavigation)
+                entity.HasOne(d => d.codeINavigation)
                     .WithMany(p => p.WorkTypeTr)
-                    .HasForeignKey(d => d.CodeI)
+                    .HasForeignKey(d => d.codeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_WORKTYPE_REFERENCE_WORKTYPE");
             });

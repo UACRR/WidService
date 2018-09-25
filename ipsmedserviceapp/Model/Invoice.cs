@@ -5,16 +5,16 @@ namespace ipsmedserviceapp.Model
 {
     public partial class Invoice
     {
-        public int DocId { get; set; }
-        public int? PayCustId { get; set; }
-        public int? RecCustId { get; set; }
-        public int? PayAnk { get; set; }
-        public int? RecAnk { get; set; }
-        public string R030 { get; set; }
+        public int docId { get; set; }
+        public int? payCustId { get; set; }
+        public int? recCustId { get; set; }
+        public int? payAnk { get; set; }
+        public int? recAnk { get; set; }
+        public string r030 { get; set; }
         public decimal? Amount { get; set; }
-        public string RecMfo { get; set; }
-        public string RecBankName { get; set; }
-        public string Purpose { get; set; }
-        public int? Status { get; set; }
+        public string recMFO { get; set; }
+        public string recBankName { get; set; }
+        public string purpose { get; set; }
+        public int? status { get; set; }
     }
 }

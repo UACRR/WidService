@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             Register = new HashSet<Register>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<AgrLicenseType> AgrLicenseType { get; set; }
         public ICollection<Register> Register { get; set; }

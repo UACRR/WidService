@@ -13,34 +13,34 @@ namespace ipsFormsDesign.Model
             RegisterItem = new ObservableListSource<RegisterItem>();
         }
 
-        public int RegId { get; set; }
-        public int RmId { get; set; }
-        public string Number { get; set; }
-        public int CountRows { get; set; }
-        public int CustId { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public int Durationticks { get; set; }
-        public int? RgStatus { get; set; }
-        public string FileName { get; set; }
-        public string UserId { get; set; }
-        public int? PeriodId { get; set; }
-        public decimal? RegAmount { get; set; }
-        public decimal? RegRate { get; set; }
-        public decimal? RegRoyalty { get; set; }
-        public decimal? MusicAmount { get; set; }
-        public decimal? MusicRate { get; set; }
-        public decimal? AuthAmount { get; set; }
-        public decimal? AuthRate { get; set; }
-        public decimal? PaidAmount { get; set; }
-        public int LicId { get; set; }
-        public int? SchemaId { get; set; }
-        public int? AlgorithmId { get; set; }
+        public int regId { get; set; }
+        public int rmId { get; set; }
+        public string number { get; set; }
+        public int countRows { get; set; }
+        public int custId { get; set; }
+        public DateTime? createDate { get; set; }
+        public int durationticks { get; set; }
+        public int? rgStatus { get; set; }
+        public string fileName { get; set; }
+        public string userId { get; set; }
+        public int? periodId { get; set; }
+        public decimal? regAmount { get; set; }
+        public decimal? regRate { get; set; }
+        public decimal? regRoyalty { get; set; }
+        public decimal? musicAmount { get; set; }
+        public decimal? musicRate { get; set; }
+        public decimal? authAmount { get; set; }
+        public decimal? authRate { get; set; }
+        public decimal? paidAmount { get; set; }
+        public int licId { get; set; }
+        public int? schemaId { get; set; }
+        public int? algorithmId { get; set; }
 
-        public AlgorithmType Algorithm { get; set; }
-        public Client Cust { get; set; }
-        public RegisterStatus RgStatusNavigation { get; set; }
-        public RegisterRatedList Rm { get; set; }
-        public AspNetUsers User { get; set; }
+        public AlgorithmType algorithm { get; set; }
+        public Client cust { get; set; }
+        public RegisterStatus rgStatusNavigation { get; set; }
+        public RegisterRatedList rm { get; set; }
+        public AspNetUsers user { get; set; }
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
         public ObservableListSource<RegisterItem> RegisterItem { get; set; }

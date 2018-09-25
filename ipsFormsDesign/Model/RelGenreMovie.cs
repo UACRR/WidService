@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class RelGenreMovie : IRelGenreMovie
     {
-        public int ReqId { get; set; }
-        public int GenreId { get; set; }
+        public int reqId { get; set; }
+        public int genreId { get; set; }
 
-        public PopGenre Genre { get; set; }
-        public RequestMovie Req { get; set; }
+        public PopGenre genre { get; set; }
+        public RequestMovie req { get; set; }
     }
 }
 

@@ -6,12 +6,12 @@ namespace ipsFormsDesign.Model
 {
     public partial class AspNetRoleClaims : IAspNetRoleClaims
     {
-        public int Id { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
-        public string RoleId { get; set; }
+        public int id { get; set; }
+        public string claimType { get; set; }
+        public string claimValue { get; set; }
+        public string roleId { get; set; }
 
-        public AspNetRoles Role { get; set; }
+        public AspNetRoles role { get; set; }
     }
 }
 

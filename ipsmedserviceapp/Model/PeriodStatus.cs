@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             PaidPeriod = new HashSet<PaidPeriod>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public PeriodStatusTr PeriodStatusTr { get; set; }
         public ICollection<PaidPeriod> PaidPeriod { get; set; }

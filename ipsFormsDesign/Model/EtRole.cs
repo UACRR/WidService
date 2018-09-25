@@ -9,16 +9,16 @@ namespace ipsFormsDesign.Model
         public EtRole()
         {
             EtGenreRole = new ObservableListSource<EtGenreRole>();
-            RelEtRole = new ObservableListSource<RelEtRole>();
+            relEtRole = new ObservableListSource<relEtRole>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
-        public int? CategoryCode { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
+        public int? categoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
         public ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
-        public ObservableListSource<RelEtRole> RelEtRole { get; set; }
+        public ObservableListSource<relEtRole> relEtRole { get; set; }
     }
 }
 

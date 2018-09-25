@@ -6,35 +6,37 @@ namespace ipsmedserviceapp.Model
 {
     public partial class CopyRight
     {
-        public int CRightId { get; set; }
-        public int CustId { get; set; }
-        public int? ObjId { get; set; }
-        public int? LBasis { get; set; }
-        public decimal? Rate { get; set; }
-        public decimal? RoleRate { get; set; }
-        public DateTime? BeginDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public string LBasisComment { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public DateTime? ModifyDate { get; set; }
-        public string ModifyLogin { get; set; }
-        public bool? PermCode { get; set; }
-        public int? ParentId { get; set; }
-        public int? RoleCode { get; set; }
-        public int? Status { get; set; }
+        public int cRightId { get; set; }
+        public int custId { get; set; }
+        public int? objId { get; set; }
+        public int? lBasis { get; set; }
+        public decimal? rate { get; set; }
+        public decimal? roleRate { get; set; }
+        public DateTime? beginDate { get; set; }
+        public DateTime? endDate { get; set; }
+        public string lBasisComment { get; set; }
+        public DateTime? createDate { get; set; }
+        public DateTime? modifyDate { get; set; }
+        public string modifyLogin { get; set; }
+        public bool? permCode { get; set; }
+        public int? parentId { get; set; }
+        public int? roleCode { get; set; }
+        public int? status { get; set; }
 
         [JsonIgnore]
-        public RightHolder Cust { get; set; }
+        public RightHolder cust { get; set; }
         [JsonIgnore]
-        public ObjectRight Obj { get; set; }
+        public ObjectRight obj { get; set; }
         [JsonIgnore]
-        public CreativeRoleType RoleCodeNavigation { get; set; }
+        public CreativeRoleType roleCodeNavigation { get; set; }
         [JsonIgnore]
-        public CrightStatus StatusNavigation { get; set; }
+        public CRightStatus statusNavigation { get; set; }
         [JsonIgnore]
-        public CopyRtranslate CopyRtranslate { get; set; }
-        public LicAuthorBr LicAuthorBr { get; set; }
-        public WorkRh WorkRh { get; set; }
+        public CopyRTranslate CopyRTranslate { get; set; }
+        [JsonIgnore]
+        public LicAuthorBR LicAuthorBR { get; set; }
+        [JsonIgnore]
+        public WorkRH WorkRH { get; set; }
     }
 }
 

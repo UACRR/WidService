@@ -6,12 +6,12 @@ namespace ipsFormsDesign.Model
 {
     public partial class RelSerialEpisode : IRelSerialEpisode
     {
-        public int ReqId { get; set; }
-        public int EpisodeTypeCode { get; set; }
-        public double? EpDuration { get; set; }
+        public int reqId { get; set; }
+        public int episodeTypeCode { get; set; }
+        public double? epDuration { get; set; }
 
-        public EpisodeType EpisodeTypeCodeNavigation { get; set; }
-        public RequestSerial Req { get; set; }
+        public EpisodeType episodeTypeCodeNavigation { get; set; }
+        public RequestSerial req { get; set; }
     }
 }
 

@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             SeekTypeTr = new ObservableListSource<SeekTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<SeekObject> SeekObject { get; set; }
         public ObservableListSource<SeekTypeTr> SeekTypeTr { get; set; }

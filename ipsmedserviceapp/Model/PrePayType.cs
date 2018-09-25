@@ -7,14 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public PrePayType()
         {
-            LicAuthorBr = new HashSet<LicAuthorBr>();
+            LicAuthorBR = new HashSet<LicAuthorBR>();
             PrePayTypeTr = new HashSet<PrePayTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
-        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        public ICollection<LicAuthorBR> LicAuthorBR { get; set; }
         public ICollection<PrePayTypeTr> PrePayTypeTr { get; set; }
     }
 }

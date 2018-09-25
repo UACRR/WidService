@@ -12,12 +12,12 @@ namespace ipsFormsDesign.Model
             TypePlaceTr = new ObservableListSource<TypePlaceTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
-        public bool? IsHoll { get; set; }
-        public int? ParamType { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
+        public bool? isHoll { get; set; }
+        public int? paramType { get; set; }
 
-        public TypePlaceParam ParamTypeNavigation { get; set; }
+        public TypePlaceParam paramTypeNavigation { get; set; }
         public ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         public ObservableListSource<TypePlaceTr> TypePlaceTr { get; set; }
     }

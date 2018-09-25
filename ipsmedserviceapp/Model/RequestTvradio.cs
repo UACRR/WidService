@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RequestTvradio
+    public partial class RequestTVRadio
     {
-        public RequestTvradio()
+        public RequestTVRadio()
         {
-            RelTvepisode = new HashSet<RelTvepisode>();
+            RelTVEpisode = new HashSet<RelTVEpisode>();
         }
 
-        public int ReqId { get; set; }
-        public string ShortTitle { get; set; }
-        public string NameTvchanel { get; set; }
-        public string EpisodeComment { get; set; }
+        public int reqId { get; set; }
+        public string shortTitle { get; set; }
+        public string nameTVChanel { get; set; }
+        public string episodeComment { get; set; }
 
-        public Request Req { get; set; }
-        public ICollection<RelTvepisode> RelTvepisode { get; set; }
+        public Request req { get; set; }
+        public ICollection<RelTVEpisode> RelTVEpisode { get; set; }
     }
 }

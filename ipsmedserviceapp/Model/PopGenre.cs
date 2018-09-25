@@ -14,11 +14,11 @@ namespace ipsmedserviceapp.Model
             RelPopGenre = new HashSet<RelPopGenre>();
         }
 
-        public int CategoryCode { get; set; }
-        public string Name { get; set; }
-        public int Id { get; set; }
+        public int categoryCode { get; set; }
+        public string name { get; set; }
+        public int id { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
         public ICollection<PopGenreTr> PopGenreTr { get; set; }
         public ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
         public ICollection<RelGenreMovie> RelGenreMovie { get; set; }

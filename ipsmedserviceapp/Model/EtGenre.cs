@@ -9,16 +9,16 @@ namespace ipsmedserviceapp.Model
         {
             EtGenreRate = new HashSet<EtGenreRate>();
             EtGenreRole = new HashSet<EtGenreRole>();
-            RelEtGenre = new HashSet<RelEtGenre>();
+            relEtGenre = new HashSet<relEtGenre>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
-        public int? CategoryCode { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
+        public int? categoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
         public ICollection<EtGenreRate> EtGenreRate { get; set; }
         public ICollection<EtGenreRole> EtGenreRole { get; set; }
-        public ICollection<RelEtGenre> RelEtGenre { get; set; }
+        public ICollection<relEtGenre> relEtGenre { get; set; }
     }
 }

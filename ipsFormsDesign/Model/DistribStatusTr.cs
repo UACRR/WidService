@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class DistribStatusTr : IDistribStatusTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public DistribStatus CodeINavigation { get; set; }
+        public DistribStatus codeINavigation { get; set; }
     }
 }
 

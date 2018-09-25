@@ -15,11 +15,11 @@ namespace ipsFormsDesign.Model
             UseMediaType = new ObservableListSource<UseMediaType>();
         }
 
-        public int CodeI { get; set; }
-        public int CategoryCode { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public int categoryCode { get; set; }
+        public string name { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
         public ObservableListSource<RelReqObj> RelReqObj { get; set; }
         public ObservableListSource<Request> Request { get; set; }
         public ObservableListSource<RequestTypeTr> RequestTypeTr { get; set; }

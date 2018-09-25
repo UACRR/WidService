@@ -6,8 +6,8 @@ namespace ipsFormsDesign.Model
 {
     public partial class Reports : IReports
     {
-        public int Id { get; set; }
-        public string Repname { get; set; }
+        public int id { get; set; }
+        public string repname { get; set; }
     }
 }
 

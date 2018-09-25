@@ -3,20 +3,20 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class TypeVat
+    public partial class TypeVAT
     {
-        public TypeVat()
+        public TypeVAT()
         {
             AnketaCompany = new HashSet<AnketaCompany>();
             AnketaPerson = new HashSet<AnketaPerson>();
-            TypeVattr = new HashSet<TypeVattr>();
+            TypeVATTr = new HashSet<TypeVATTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<AnketaCompany> AnketaCompany { get; set; }
         public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<TypeVattr> TypeVattr { get; set; }
+        public ICollection<TypeVATTr> TypeVATTr { get; set; }
     }
 }

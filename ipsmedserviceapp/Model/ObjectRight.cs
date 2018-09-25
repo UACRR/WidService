@@ -22,27 +22,27 @@ namespace ipsmedserviceapp.Model
             SeekObject = new HashSet<SeekObject>();
         }
 
-        public int CategoryCode { get; set; }
-        public int ObjId { get; set; }
-        public int? ReqId { get; set; }
-        public int? GenreType { get; set; }
-        public string Name { get; set; }
-        public string Author { get; set; }
-        public string Performer { get; set; }
-        public int? Status { get; set; }
-        public DateTime? ModifyDate { get; set; }
-        public string ModifyLogin { get; set; }
-        public DateTime? CreateDate { get; set; }
+        public int categoryCode { get; set; }
+        public int objId { get; set; }
+        public int? reqId { get; set; }
+        public int? genreType { get; set; }
+        public string name { get; set; }
+        public string author { get; set; }
+        public string performer { get; set; }
+        public int? status { get; set; }
+        public DateTime? modifyDate { get; set; }
+        public string modifyLogin { get; set; }
+        public DateTime? createDate { get; set; }
         public string ObjImg { get; set; }
-        public int? Loadid { get; set; }
-        public int? SpecType { get; set; }
-        public int? ActCode { get; set; }
-        public string InnerCode { get; set; }
+        public int? loadid { get; set; }
+        public int? specType { get; set; }
+        public int? actCode { get; set; }
+        public string innerCode { get; set; }
 
-        public ObjAct ActCodeNavigation { get; set; }
-        public Category CategoryCodeNavigation { get; set; }
-        public SpecType SpecTypeNavigation { get; set; }
-        public ObjectStatus StatusNavigation { get; set; }
+        public ObjAct actCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
+        public SpecType specTypeNavigation { get; set; }
+        public ObjectStatus statusNavigation { get; set; }
         public MediaTrack MediaTrack { get; set; }
         public ICollection<Account> Account { get; set; }
         public ICollection<Authors> Authors { get; set; }

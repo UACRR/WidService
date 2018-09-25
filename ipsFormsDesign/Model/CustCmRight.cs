@@ -6,14 +6,14 @@ namespace ipsFormsDesign.Model
 {
     public partial class CustCmRight : ICustCmRight
     {
-        public int CustId { get; set; }
-        public int CRkindCode { get; set; }
-        public int CmCustId { get; set; }
-        public DateTime DateBegin { get; set; }
-        public DateTime DateEnd { get; set; }
+        public int custId { get; set; }
+        public int cRKindCode { get; set; }
+        public int cmCustId { get; set; }
+        public DateTime dateBegin { get; set; }
+        public DateTime dateEnd { get; set; }
 
-        public TermsOfService C { get; set; }
-        public Community CmCust { get; set; }
+        public TermsOfService c { get; set; }
+        public Community cmCust { get; set; }
     }
 }
 

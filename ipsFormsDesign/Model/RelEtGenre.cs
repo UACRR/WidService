@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class RelEtGenre : IRelEtGenre
+    public partial class relEtGenre : IrelEtGenre
     {
-        public int GenreCode { get; set; }
-        public int EtGenreCode { get; set; }
+        public int genreCode { get; set; }
+        public int etGenreCode { get; set; }
 
-        public EtGenre EtGenreCodeNavigation { get; set; }
-        public GenreType GenreCodeNavigation { get; set; }
+        public EtGenre etGenreCodeNavigation { get; set; }
+        public GenreType genreCodeNavigation { get; set; }
     }
 }
 

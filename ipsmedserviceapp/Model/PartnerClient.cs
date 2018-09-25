@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class PartnerClient
     {
-        public int CustId { get; set; }
-        public int ClCustId { get; set; }
+        public int custId { get; set; }
+        public int clCustId { get; set; }
 
-        public Client ClCust { get; set; }
-        public Partner Cust { get; set; }
+        public Client clCust { get; set; }
+        public Partner cust { get; set; }
     }
 }

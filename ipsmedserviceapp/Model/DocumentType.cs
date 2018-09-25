@@ -7,14 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public DocumentType()
         {
-            RelCounterDoc = new HashSet<RelCounterDoc>();
             RelDocAgrType = new HashSet<RelDocAgrType>();
+            relCounterDoc = new HashSet<relCounterDoc>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
-        public ICollection<RelCounterDoc> RelCounterDoc { get; set; }
         public ICollection<RelDocAgrType> RelDocAgrType { get; set; }
+        public ICollection<relCounterDoc> relCounterDoc { get; set; }
     }
 }

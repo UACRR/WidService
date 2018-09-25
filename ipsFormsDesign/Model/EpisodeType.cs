@@ -11,16 +11,16 @@ namespace ipsFormsDesign.Model
             EpisodeTypeTr = new ObservableListSource<EpisodeTypeTr>();
             RelMovieEpisode = new ObservableListSource<RelMovieEpisode>();
             RelSerialEpisode = new ObservableListSource<RelSerialEpisode>();
-            RelTvepisode = new ObservableListSource<RelTvepisode>();
+            RelTVEpisode = new ObservableListSource<RelTVEpisode>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<EpisodeTypeTr> EpisodeTypeTr { get; set; }
         public ObservableListSource<RelMovieEpisode> RelMovieEpisode { get; set; }
         public ObservableListSource<RelSerialEpisode> RelSerialEpisode { get; set; }
-        public ObservableListSource<RelTvepisode> RelTvepisode { get; set; }
+        public ObservableListSource<RelTVEpisode> RelTVEpisode { get; set; }
     }
 }
 

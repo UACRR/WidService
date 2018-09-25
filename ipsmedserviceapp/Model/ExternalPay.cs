@@ -5,25 +5,25 @@ namespace ipsmedserviceapp.Model
 {
     public partial class ExternalPay
     {
-        public int PaidId { get; set; }
-        public DateTime? InputDate { get; set; }
-        public string Mfo { get; set; }
-        public string Okpol { get; set; }
-        public string Account { get; set; }
-        public string R030 { get; set; }
-        public string CodeOper { get; set; }
-        public string MfoCorr { get; set; }
-        public string NameMfoCorr { get; set; }
-        public string AccountCorr { get; set; }
-        public string OkpoCorr { get; set; }
-        public string NameCorr { get; set; }
-        public string DocNum { get; set; }
-        public DateTime? DocDate { get; set; }
-        public decimal? SDebet { get; set; }
-        public decimal? SCredit { get; set; }
-        public string Nplat { get; set; }
-        public decimal? SNcCur { get; set; }
-        public int? Status { get; set; }
-        public DateTime? DateOper { get; set; }
+        public int paidId { get; set; }
+        public DateTime? inputDate { get; set; }
+        public string mfo { get; set; }
+        public string okpol { get; set; }
+        public string account { get; set; }
+        public string r030 { get; set; }
+        public string codeOper { get; set; }
+        public string mfoCorr { get; set; }
+        public string nameMfoCorr { get; set; }
+        public string accountCorr { get; set; }
+        public string okpoCorr { get; set; }
+        public string nameCorr { get; set; }
+        public string docNum { get; set; }
+        public DateTime? docDate { get; set; }
+        public decimal? sDebet { get; set; }
+        public decimal? sCredit { get; set; }
+        public string nplat { get; set; }
+        public decimal? sNcCur { get; set; }
+        public int? status { get; set; }
+        public DateTime? dateOper { get; set; }
     }
 }

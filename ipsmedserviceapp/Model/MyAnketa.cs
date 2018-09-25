@@ -8,17 +8,17 @@ namespace ipsmedserviceapp.Model
         public MyAnketa()
         {
             MyCategory = new HashSet<MyCategory>();
-            MyCopyRightType = new HashSet<MyCopyRightType>();
+            myCopyRightType = new HashSet<myCopyRightType>();
         }
 
-        public int CustId { get; set; }
-        public string AccCompany { get; set; }
-        public string AccCommission { get; set; }
-        public string AccInCommission { get; set; }
-        public string AccCourt { get; set; }
+        public int custId { get; set; }
+        public string accCompany { get; set; }
+        public string accCommission { get; set; }
+        public string accInCommission { get; set; }
+        public string accCourt { get; set; }
 
-        public Customer Cust { get; set; }
+        public Customer cust { get; set; }
         public ICollection<MyCategory> MyCategory { get; set; }
-        public ICollection<MyCopyRightType> MyCopyRightType { get; set; }
+        public ICollection<myCopyRightType> myCopyRightType { get; set; }
     }
 }

@@ -5,9 +5,9 @@ namespace ipsmedserviceapp.Model
 {
     public partial class RequestOther
     {
-        public int ReqId { get; set; }
-        public string UseDesc { get; set; }
+        public int reqId { get; set; }
+        public string useDesc { get; set; }
 
-        public Request Req { get; set; }
+        public Request req { get; set; }
     }
 }

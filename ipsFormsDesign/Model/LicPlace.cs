@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class LicPlace : ILicPlace
+    public partial class licPlace : IlicPlace
     {
-        public int LicId { get; set; }
-        public int PlaceId { get; set; }
+        public int licId { get; set; }
+        public int placeId { get; set; }
 
-        public LicenseAgreement Lic { get; set; }
-        public ClnBusinessPlace Place { get; set; }
+        public LicenseAgreement lic { get; set; }
+        public ClnBusinessPlace place { get; set; }
     }
 }
 

@@ -8,7 +8,7 @@ namespace ipsmedserviceapp.Model
     {
         public Client()
         {
-            AgreementAddBr = new HashSet<AgreementAddBr>();
+            AgreementAddBR = new HashSet<AgreementAddBR>();
             BrRegister = new HashSet<BrRegister>();
             ClnBusinessPlace = new HashSet<ClnBusinessPlace>();
             Distribution = new HashSet<Distribution>();
@@ -20,14 +20,14 @@ namespace ipsmedserviceapp.Model
             Register = new HashSet<Register>();
         }
 
-        public int CustId { get; set; }
-        public string ClientBrand { get; set; }
-        public string ClientGroup { get; set; }
+        public int custId { get; set; }
+        public string clientBrand { get; set; }
+        public string clientGroup { get; set; }
 
         [JsonIgnore]
-        public Customer Cust { get; set; }
+        public Customer cust { get; set; }
         [JsonIgnore]
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        public ICollection<AgreementAddBR> AgreementAddBR { get; set; }
         [JsonIgnore]
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }

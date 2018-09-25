@@ -11,8 +11,8 @@ namespace ipsFormsDesign.Model
             DistribTypeTr = new ObservableListSource<DistribTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<DistribTypeTr> DistribTypeTr { get; set; }
     }

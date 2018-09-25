@@ -26,14 +26,14 @@ namespace ipsmedserviceapp.Model
             UseMediaType = new HashSet<UseMediaType>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
-        public int? Status { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
+        public int? status { get; set; }
         public string TableObj { get; set; }
-        public int? Utype { get; set; }
-        public string Comment { get; set; }
+        public int? utype { get; set; }
+        public string comment { get; set; }
 
-        public CategoryStatusType StatusNavigation { get; set; }
+        public CategoryStatusType statusNavigation { get; set; }
         public ICollection<CategoryTr> CategoryTr { get; set; }
         public ICollection<CreativeRoleType> CreativeRoleType { get; set; }
         public ICollection<EtGenre> EtGenre { get; set; }

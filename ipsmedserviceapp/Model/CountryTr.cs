@@ -5,11 +5,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class CountryTr
     {
-        public string CountryCode { get; set; }
-        public string Lang { get; set; }
-        public string CountryName { get; set; }
-        public string CountryNameShort { get; set; }
+        public string countryCode { get; set; }
+        public string lang { get; set; }
+        public string countryName { get; set; }
+        public string countryNameShort { get; set; }
 
-        public Country CountryCodeNavigation { get; set; }
+        public Country countryCodeNavigation { get; set; }
     }
 }

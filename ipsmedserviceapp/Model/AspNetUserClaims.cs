@@ -5,11 +5,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class AspNetUserClaims
     {
-        public int Id { get; set; }
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
-        public string UserId { get; set; }
+        public int id { get; set; }
+        public string claimType { get; set; }
+        public string claimValue { get; set; }
+        public string userId { get; set; }
 
-        public AspNetUsers User { get; set; }
+        public AspNetUsers user { get; set; }
     }
 }

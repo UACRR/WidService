@@ -12,11 +12,11 @@ namespace ipsFormsDesign.Model
             UsesKindTr = new ObservableListSource<UsesKindTr>();
         }
 
-        public int CodeI { get; set; }
-        public int? UsesType { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public int? usesType { get; set; }
+        public string name { get; set; }
 
-        public UsesType UsesTypeNavigation { get; set; }
+        public UsesType usesTypeNavigation { get; set; }
         public ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
         public ObservableListSource<UsesKindTr> UsesKindTr { get; set; }
     }

@@ -10,35 +10,35 @@ namespace ipsFormsDesign.Model
         {
             BrRegItem = new ObservableListSource<BrRegItem>();
             Fixation = new ObservableListSource<Fixation>();
-            LicPlace = new ObservableListSource<LicPlace>();
             LicenseAgrParam = new ObservableListSource<LicenseAgrParam>();
             MoneyPeriodLink = new ObservableListSource<MoneyPeriodLink>();
             PaidPeriod = new ObservableListSource<PaidPeriod>();
+            licPlace = new ObservableListSource<licPlace>();
         }
 
-        public int LicId { get; set; }
-        public int LicCode { get; set; }
-        public int? LicType { get; set; }
-        public int? CustId { get; set; }
-        public int? LicStatus { get; set; }
-        public int LicClass { get; set; }
-        public int AgrId { get; set; }
-        public int? LicSize { get; set; }
-        public int? LicVersion { get; set; }
-        public int? ProlongVersion { get; set; }
+        public int licId { get; set; }
+        public int licCode { get; set; }
+        public int? licType { get; set; }
+        public int? custId { get; set; }
+        public int? licStatus { get; set; }
+        public int licClass { get; set; }
+        public int agrId { get; set; }
+        public int? licSize { get; set; }
+        public int? licVersion { get; set; }
+        public int? prolongVersion { get; set; }
 
-        public AgreementMaster Agr { get; set; }
-        public Client Cust { get; set; }
-        public AgrLicenseType LicCodeNavigation { get; set; }
-        public AgreementStatus LicStatusNavigation { get; set; }
-        public LicenseType LicTypeNavigation { get; set; }
+        public AgreementMaster agr { get; set; }
+        public Client cust { get; set; }
+        public AgrLicenseType licCodeNavigation { get; set; }
+        public AgreementStatus licStatusNavigation { get; set; }
+        public LicenseType licTypeNavigation { get; set; }
         public LicenseBigR LicenseBigR { get; set; }
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<Fixation> Fixation { get; set; }
-        public ObservableListSource<LicPlace> LicPlace { get; set; }
         public ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
         public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
+        public ObservableListSource<licPlace> licPlace { get; set; }
     }
 }
 

@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             RequestMovie = new HashSet<RequestMovie>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<KindFilmTr> KindFilmTr { get; set; }
         public ICollection<RequestMovie> RequestMovie { get; set; }

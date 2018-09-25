@@ -4,17 +4,17 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class RholderType : IRholderType
+    public partial class RHolderType : IRHolderType
     {
-        public RholderType()
+        public RHolderType()
         {
-            RholderTypeTr = new ObservableListSource<RholderTypeTr>();
+            RHolderTypeTr = new ObservableListSource<RHolderTypeTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
-        public ObservableListSource<RholderTypeTr> RholderTypeTr { get; set; }
+        public ObservableListSource<RHolderTypeTr> RHolderTypeTr { get; set; }
     }
 }
 

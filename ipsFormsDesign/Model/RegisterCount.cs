@@ -6,24 +6,24 @@ namespace ipsFormsDesign.Model
 {
     public partial class RegisterCount : IRegisterCount
     {
-        public decimal RegCntId { get; set; }
-        public int? RegId { get; set; }
-        public int? RegIitemId { get; set; }
-        public int? ObjId { get; set; }
-        public int? CustId { get; set; }
-        public int? CRtype { get; set; }
-        public int? CRkindCode { get; set; }
-        public decimal? Rate { get; set; }
-        public decimal? RateCommiss { get; set; }
-        public int? CmCustId { get; set; }
-        public int? RegIdBr { get; set; }
-        public int? RegItemIdBr { get; set; }
-        public decimal? PrepaySum { get; set; }
+        public decimal regCntId { get; set; }
+        public int? regId { get; set; }
+        public int? regIItemId { get; set; }
+        public int? objId { get; set; }
+        public int? custId { get; set; }
+        public int? cRType { get; set; }
+        public int? cRKindCode { get; set; }
+        public decimal? rate { get; set; }
+        public decimal? rateCommiss { get; set; }
+        public int? cmCustId { get; set; }
+        public int? regIdBr { get; set; }
+        public int? regItemIdBr { get; set; }
+        public decimal? prepaySum { get; set; }
 
-        public CopyrightKind CRkindCodeNavigation { get; set; }
-        public Community CmCust { get; set; }
-        public RightHolder Cust { get; set; }
-        public BrRegItem RegI { get; set; }
+        public CopyrightKind cRKindCodeNavigation { get; set; }
+        public Community cmCust { get; set; }
+        public RightHolder cust { get; set; }
+        public BrRegItem regI { get; set; }
     }
 }
 

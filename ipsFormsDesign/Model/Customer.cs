@@ -20,19 +20,19 @@ namespace ipsFormsDesign.Model
             ReqAgreement = new ObservableListSource<ReqAgreement>();
             ReqCustomer = new ObservableListSource<ReqCustomer>();
             Request = new ObservableListSource<Request>();
-            UserRole = new ObservableListSource<UserRole>();
+            userRole = new ObservableListSource<userRole>();
         }
 
-        public int CustId { get; set; }
-        public int? CustType { get; set; }
-        public int Status { get; set; }
-        public int? AnkVersion { get; set; }
-        public byte? AnkMy { get; set; }
-        public byte? AnkPublish { get; set; }
-        public byte? AnkTech { get; set; }
+        public int custId { get; set; }
+        public int? custType { get; set; }
+        public int status { get; set; }
+        public int? ankVersion { get; set; }
+        public byte? ankMy { get; set; }
+        public byte? ankPublish { get; set; }
+        public byte? ankTech { get; set; }
 
-        public CustomerType CustTypeNavigation { get; set; }
-        public CustomerStatus StatusNavigation { get; set; }
+        public CustomerType custTypeNavigation { get; set; }
+        public CustomerStatus statusNavigation { get; set; }
         public AnketaExternal AnketaExternal { get; set; }
         public Client Client { get; set; }
         public Community Community { get; set; }
@@ -53,7 +53,7 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
         public ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
         public ObservableListSource<Request> Request { get; set; }
-        public ObservableListSource<UserRole> UserRole { get; set; }
+        public ObservableListSource<userRole> userRole { get; set; }
     }
 }
 

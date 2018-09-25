@@ -11,8 +11,8 @@ namespace ipsFormsDesign.Model
             PaidPeriod = new ObservableListSource<PaidPeriod>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public PeriodStatusTr PeriodStatusTr { get; set; }
         public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }

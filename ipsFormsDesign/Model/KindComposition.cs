@@ -15,11 +15,11 @@ namespace ipsFormsDesign.Model
             Request = new ObservableListSource<Request>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
-        public int CategoryCode { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
+        public int categoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
+        public Category categoryCodeNavigation { get; set; }
         public ObservableListSource<KindCompositionTr> KindCompositionTr { get; set; }
         public ObservableListSource<ModifyMusicType> ModifyMusicType { get; set; }
         public ObservableListSource<ModifyTextType> ModifyTextType { get; set; }

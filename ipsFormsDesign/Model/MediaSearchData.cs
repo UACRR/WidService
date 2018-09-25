@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class MediaSearchData : IMediaSearchData
     {
-        public long Id { get; set; }
-        public int ObjId { get; set; }
-        public int TypeData { get; set; }
-        public string AlterName { get; set; }
-        public string AlterNameNormalize { get; set; }
+        public long id { get; set; }
+        public int objId { get; set; }
+        public int typeData { get; set; }
+        public string alterName { get; set; }
+        public string alterNameNormalize { get; set; }
     }
 }
 

@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class LangTr : ILangTr
     {
-        public string CodeS { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public string codeS { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public Lang CodeSNavigation { get; set; }
+        public Lang codeSNavigation { get; set; }
     }
 }
 

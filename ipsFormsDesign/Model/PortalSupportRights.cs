@@ -11,9 +11,9 @@ namespace ipsFormsDesign.Model
             PortalObjectRights = new ObservableListSource<PortalObjectRights>();
         }
 
-        public int CRkindCode { get; set; }
+        public int cRKindCode { get; set; }
 
-        public CopyrightKind CRkindCodeNavigation { get; set; }
+        public CopyrightKind cRKindCodeNavigation { get; set; }
         public ObservableListSource<PortalObjectRights> PortalObjectRights { get; set; }
     }
 }

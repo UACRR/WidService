@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             PaymentKindTr = new ObservableListSource<PaymentKindTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<PaymentCase> PaymentCase { get; set; }
         public ObservableListSource<PaymentKindTr> PaymentKindTr { get; set; }

@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class RelPopGenre : IRelPopGenre
     {
-        public int GenreId { get; set; }
-        public int ObjId { get; set; }
+        public int genreId { get; set; }
+        public int objId { get; set; }
 
-        public PopGenre Genre { get; set; }
-        public ObjectRight Obj { get; set; }
+        public PopGenre genre { get; set; }
+        public ObjectRight obj { get; set; }
     }
 }
 

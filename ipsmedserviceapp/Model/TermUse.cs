@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             TermUseTr = new HashSet<TermUseTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<Request> Request { get; set; }
         public ICollection<TermUseTr> TermUseTr { get; set; }

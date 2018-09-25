@@ -5,11 +5,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class RequestAdvertising
     {
-        public int ReqId { get; set; }
-        public string TradeMark { get; set; }
-        public TimeSpan? DurationAll { get; set; }
-        public TimeSpan? DurationShort { get; set; }
+        public int reqId { get; set; }
+        public string tradeMark { get; set; }
+        public TimeSpan? durationAll { get; set; }
+        public TimeSpan? durationShort { get; set; }
 
-        public Request Req { get; set; }
+        public Request req { get; set; }
     }
 }

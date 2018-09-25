@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             DicCategoryItems = new HashSet<DicCategoryItems>();
         }
 
-        public int Code { get; set; }
-        public string Name { get; set; }
+        public int code { get; set; }
+        public string name { get; set; }
 
         public ICollection<DicCategoryItems> DicCategoryItems { get; set; }
     }

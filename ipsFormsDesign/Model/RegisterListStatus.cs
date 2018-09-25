@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             RegisterRatedList = new ObservableListSource<RegisterRatedList>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<RegisterListStatusTr> RegisterListStatusTr { get; set; }
         public ObservableListSource<RegisterRatedList> RegisterRatedList { get; set; }

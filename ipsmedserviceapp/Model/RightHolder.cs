@@ -8,7 +8,7 @@ namespace ipsmedserviceapp.Model
     {
         public RightHolder()
         {
-            AgreementAddRh = new HashSet<AgreementAddRh>();
+            AgreementAddRH = new HashSet<AgreementAddRH>();
             AnketaAddNick = new HashSet<AnketaAddNick>();
             Authors = new HashSet<Authors>();
             CopyRight = new HashSet<CopyRight>();
@@ -19,16 +19,17 @@ namespace ipsmedserviceapp.Model
             TerritoryInclude = new HashSet<TerritoryInclude>();
         }
 
-        public int CustId { get; set; }
-        public byte? SignP { get; set; }
-        public bool? AroundWord { get; set; }
-        public string InterCode { get; set; }
-        public string InnerCode { get; set; }
-        public int? RHolderType { get; set; }
+        public int custId { get; set; }
+        public byte? signP { get; set; }
+        public bool? aroundWord { get; set; }
+        public string interCode { get; set; }
+        public string innerCode { get; set; }
+        public int? rHolderType { get; set; }
 
-        public Customer Cust { get; set; }
         [JsonIgnore]
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public Customer cust { get; set; }
+        [JsonIgnore]
+        public ICollection<AgreementAddRH> AgreementAddRH { get; set; }
         public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
         [JsonIgnore]
         public ICollection<Authors> Authors { get; set; }

@@ -11,11 +11,11 @@ namespace ipsmedserviceapp.Model
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
         }
 
-        public string Id { get; set; }
-        public string ConcurrencyStamp { get; set; }
-        public string Description { get; set; }
-        public string Name { get; set; }
-        public string NormalizedName { get; set; }
+        public string id { get; set; }
+        public string concurrencyStamp { get; set; }
+        public string description { get; set; }
+        public string name { get; set; }
+        public string normalizedName { get; set; }
 
         public ICollection<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }

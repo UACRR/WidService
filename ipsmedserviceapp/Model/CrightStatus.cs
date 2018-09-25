@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class CrightStatus
+    public partial class CRightStatus
     {
-        public CrightStatus()
+        public CRightStatus()
         {
+            CRightStatusTr = new HashSet<CRightStatusTr>();
             CopyRight = new HashSet<CopyRight>();
-            CrightStatusTr = new HashSet<CrightStatusTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
+        public ICollection<CRightStatusTr> CRightStatusTr { get; set; }
         public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<CrightStatusTr> CrightStatusTr { get; set; }
     }
 }

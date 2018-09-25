@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             RelObjPerformer = new HashSet<RelObjPerformer>();
         }
 
-        public int PerId { get; set; }
-        public string PerName { get; set; }
+        public int perId { get; set; }
+        public string perName { get; set; }
 
         public ICollection<RelObjPerformer> RelObjPerformer { get; set; }
     }

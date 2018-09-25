@@ -4,16 +4,16 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class RelCounterDoc : IRelCounterDoc
+    public partial class relCounterDoc : IrelCounterDoc
     {
-        public int CDocId { get; set; }
-        public int CounterId { get; set; }
-        public int DocType { get; set; }
-        public int? LicType { get; set; }
+        public int cDocId { get; set; }
+        public int counterId { get; set; }
+        public int docType { get; set; }
+        public int? licType { get; set; }
 
-        public CounterNumber Counter { get; set; }
-        public DocumentType DocTypeNavigation { get; set; }
-        public AgrLicenseType LicTypeNavigation { get; set; }
+        public CounterNumber counter { get; set; }
+        public DocumentType docTypeNavigation { get; set; }
+        public AgrLicenseType licTypeNavigation { get; set; }
     }
 }
 

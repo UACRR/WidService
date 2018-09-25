@@ -11,10 +11,10 @@ namespace ipsFormsDesign.Model
             AnketaPerson = new ObservableListSource<AnketaPerson>();
         }
 
-        public int CustId { get; set; }
-        public int Version { get; set; }
+        public int custId { get; set; }
+        public int version { get; set; }
 
-        public Customer Cust { get; set; }
+        public Customer cust { get; set; }
         public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
     }
 }

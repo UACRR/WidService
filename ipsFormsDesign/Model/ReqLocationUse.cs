@@ -6,14 +6,14 @@ namespace ipsFormsDesign.Model
 {
     public partial class ReqLocationUse : IReqLocationUse
     {
-        public int LocUsId { get; set; }
-        public int? ReqId { get; set; }
-        public string CountryCode { get; set; }
-        public int? ContinentCode { get; set; }
+        public int locUsId { get; set; }
+        public int? reqId { get; set; }
+        public string countryCode { get; set; }
+        public int? continentCode { get; set; }
 
-        public Continent ContinentCodeNavigation { get; set; }
-        public Country CountryCodeNavigation { get; set; }
-        public Request Req { get; set; }
+        public Continent continentCodeNavigation { get; set; }
+        public Country countryCodeNavigation { get; set; }
+        public Request req { get; set; }
     }
 }
 

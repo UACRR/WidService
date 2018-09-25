@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class ContinentTr : IContinentTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public Continent CodeINavigation { get; set; }
+        public Continent codeINavigation { get; set; }
     }
 }
 

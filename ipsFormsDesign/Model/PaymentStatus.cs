@@ -13,8 +13,8 @@ namespace ipsFormsDesign.Model
             PaymentStatusTr = new ObservableListSource<PaymentStatusTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<DocPreparePay> DocPreparePay { get; set; }
         public ObservableListSource<PayTurn> PayTurn { get; set; }

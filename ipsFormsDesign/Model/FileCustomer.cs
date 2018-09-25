@@ -6,18 +6,18 @@ namespace ipsFormsDesign.Model
 {
     public partial class FileCustomer : IFileCustomer
     {
-        public int DocId { get; set; }
-        public int CustId { get; set; }
-        public int DocType { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public string DocFile { get; set; }
-        public string DocComment { get; set; }
-        public string MimeType { get; set; }
-        public DateTime? ModifyDate { get; set; }
-        public string ModifyLogin { get; set; }
+        public int docId { get; set; }
+        public int custId { get; set; }
+        public int docType { get; set; }
+        public DateTime? createDate { get; set; }
+        public string docFile { get; set; }
+        public string docComment { get; set; }
+        public string mimeType { get; set; }
+        public DateTime? modifyDate { get; set; }
+        public string modifyLogin { get; set; }
 
-        public Customer Cust { get; set; }
-        public FileType DocTypeNavigation { get; set; }
+        public Customer cust { get; set; }
+        public FileType docTypeNavigation { get; set; }
     }
 }
 

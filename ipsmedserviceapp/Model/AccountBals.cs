@@ -11,9 +11,9 @@ namespace ipsmedserviceapp.Model
             AccountBalsTr = new HashSet<AccountBalsTr>();
         }
 
-        public int CodeI { get; set; }
-        public short? BalsType { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public short? balsType { get; set; }
+        public string name { get; set; }
 
         public ICollection<Account> Account { get; set; }
         public ICollection<AccountBalsTr> AccountBalsTr { get; set; }

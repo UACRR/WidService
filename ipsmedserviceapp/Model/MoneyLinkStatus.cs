@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             MoneyPeriodLink = new HashSet<MoneyPeriodLink>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<MoneyLinkStatusTr> MoneyLinkStatusTr { get; set; }
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }

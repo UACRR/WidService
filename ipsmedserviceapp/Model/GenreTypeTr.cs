@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class GenreTypeTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public GenreType CodeINavigation { get; set; }
+        public GenreType codeINavigation { get; set; }
     }
 }

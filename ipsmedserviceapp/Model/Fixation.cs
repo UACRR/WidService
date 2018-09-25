@@ -11,33 +11,33 @@ namespace ipsmedserviceapp.Model
             FixStorageDevice = new HashSet<FixStorageDevice>();
         }
 
-        public int FixId { get; set; }
-        public int? PartnerCustId { get; set; }
-        public int FixStageStatus { get; set; }
-        public int? ClientCustId { get; set; }
-        public int? LicId { get; set; }
-        public int? UsesType { get; set; }
-        public string EventName { get; set; }
-        public string EventDates { get; set; }
-        public string City { get; set; }
-        public string Address { get; set; }
-        public string Placement { get; set; }
-        public int? CountPlace { get; set; }
-        public decimal? TicketPriceMin { get; set; }
-        public decimal? TicketPriceMax { get; set; }
-        public DateTime? FixationDate { get; set; }
-        public decimal? RewardAmount { get; set; }
-        public decimal? CourtFeeAmount { get; set; }
-        public string ClientName { get; set; }
-        public string ClientInnOkpo { get; set; }
-        public string UserId { get; set; }
+        public int fixId { get; set; }
+        public int? partnerCustId { get; set; }
+        public int stageStatus { get; set; }
+        public int? clientCustId { get; set; }
+        public int? licId { get; set; }
+        public int? usesType { get; set; }
+        public string eventName { get; set; }
+        public string eventDates { get; set; }
+        public string city { get; set; }
+        public string address { get; set; }
+        public string placement { get; set; }
+        public int? countPlace { get; set; }
+        public decimal? ticketPriceMin { get; set; }
+        public decimal? ticketPriceMax { get; set; }
+        public DateTime? fixationDate { get; set; }
+        public decimal? rewardAmount { get; set; }
+        public decimal? courtFeeAmount { get; set; }
+        public string clientName { get; set; }
+        public string clientInnOkpo { get; set; }
+        public string userId { get; set; }
 
-        public Client ClientCust { get; set; }
-        public FixStageStatus FixStageStatusNavigation { get; set; }
-        public LicenseAgreement Lic { get; set; }
-        public Partner PartnerCust { get; set; }
-        public AspNetUsers User { get; set; }
-        public UsesType UsesTypeNavigation { get; set; }
+        public Client clientCust { get; set; }
+        public LicenseAgreement lic { get; set; }
+        public Partner partnerCust { get; set; }
+        public FixStageStatus stageStatusNavigation { get; set; }
+        public AspNetUsers user { get; set; }
+        public UsesType usesTypeNavigation { get; set; }
         public ICollection<FixFile> FixFile { get; set; }
         public ICollection<FixStorageDevice> FixStorageDevice { get; set; }
     }

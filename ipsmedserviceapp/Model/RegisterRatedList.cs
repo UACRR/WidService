@@ -11,18 +11,18 @@ namespace ipsmedserviceapp.Model
             Register = new HashSet<Register>();
         }
 
-        public int PeriodId { get; set; }
-        public int RmId { get; set; }
-        public decimal? Amount { get; set; }
-        public decimal? Royalty { get; set; }
-        public DateTime? CreateDate { get; set; }
-        public string UserId { get; set; }
-        public int? Status { get; set; }
-        public int? CntReport { get; set; }
-        public decimal? PaidAmount { get; set; }
+        public int periodId { get; set; }
+        public int rmId { get; set; }
+        public decimal? amount { get; set; }
+        public decimal? royalty { get; set; }
+        public DateTime? createDate { get; set; }
+        public string userId { get; set; }
+        public int? status { get; set; }
+        public int? cntReport { get; set; }
+        public decimal? paidAmount { get; set; }
 
-        public PaidPeriod Period { get; set; }
-        public RegisterListStatus StatusNavigation { get; set; }
+        public PaidPeriod period { get; set; }
+        public RegisterListStatus statusNavigation { get; set; }
         public ICollection<Distribution> Distribution { get; set; }
         public ICollection<Register> Register { get; set; }
     }

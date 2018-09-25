@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class AspNetUserRoles
     {
-        public string UserId { get; set; }
-        public string RoleId { get; set; }
+        public string userId { get; set; }
+        public string roleId { get; set; }
 
-        public AspNetRoles Role { get; set; }
-        public AspNetUsers User { get; set; }
+        public AspNetRoles role { get; set; }
+        public AspNetUsers user { get; set; }
     }
 }

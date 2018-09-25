@@ -5,12 +5,12 @@ namespace ipsmedserviceapp.Model
 {
     public partial class FixStorageDevice
     {
-        public int StorageId { get; set; }
-        public int FixId { get; set; }
-        public string Name { get; set; }
-        public string SerialNumber { get; set; }
-        public decimal? Capacity { get; set; }
+        public int storageId { get; set; }
+        public int fixId { get; set; }
+        public string name { get; set; }
+        public string serialNumber { get; set; }
+        public decimal? capacity { get; set; }
 
-        public Fixation Fix { get; set; }
+        public Fixation fix { get; set; }
     }
 }

@@ -8,14 +8,14 @@ namespace ipsFormsDesign.Model
     {
         public TypeMethodGet()
         {
-            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
+            AgreementAddRH = new ObservableListSource<AgreementAddRH>();
             TypeMethodGetTr = new ObservableListSource<TypeMethodGetTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
-        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public ObservableListSource<AgreementAddRH> AgreementAddRH { get; set; }
         public ObservableListSource<TypeMethodGetTr> TypeMethodGetTr { get; set; }
     }
 }

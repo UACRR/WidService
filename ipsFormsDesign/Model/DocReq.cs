@@ -6,10 +6,10 @@ namespace ipsFormsDesign.Model
 {
     public partial class DocReq : IDocReq
     {
-        public int DocId { get; set; }
-        public int ReqId { get; set; }
+        public int docId { get; set; }
+        public int reqId { get; set; }
 
-        public Request Req { get; set; }
+        public Request req { get; set; }
     }
 }
 

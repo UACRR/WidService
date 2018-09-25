@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class RelAdaptUseArea : IRelAdaptUseArea
     {
-        public int ReqId { get; set; }
-        public int UseAreaTypeCode { get; set; }
+        public int reqId { get; set; }
+        public int useAreaTypeCode { get; set; }
 
-        public RequestAdapt Req { get; set; }
-        public UseAreaType UseAreaTypeCodeNavigation { get; set; }
+        public RequestAdapt req { get; set; }
+        public UseAreaType useAreaTypeCodeNavigation { get; set; }
     }
 }
 

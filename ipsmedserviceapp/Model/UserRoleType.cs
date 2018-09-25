@@ -7,17 +7,17 @@ namespace ipsmedserviceapp.Model
     {
         public UserRoleType()
         {
-            UserRole = new HashSet<UserRole>();
             UserRoleTypeTr = new HashSet<UserRoleTypeTr>();
+            userRole = new HashSet<userRole>();
         }
 
-        public int CodeI { get; set; }
-        public int IsAdmin { get; set; }
-        public string TypeNameRu { get; set; }
-        public string TypeNameEn { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public int isAdmin { get; set; }
+        public string typeNameRu { get; set; }
+        public string typeNameEn { get; set; }
+        public string name { get; set; }
 
-        public ICollection<UserRole> UserRole { get; set; }
         public ICollection<UserRoleTypeTr> UserRoleTypeTr { get; set; }
+        public ICollection<userRole> userRole { get; set; }
     }
 }

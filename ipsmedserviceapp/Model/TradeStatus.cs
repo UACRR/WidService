@@ -10,10 +10,10 @@ namespace ipsmedserviceapp.Model
             ReqTrade = new HashSet<ReqTrade>();
         }
 
-        public int StatusCode { get; set; }
-        public string StatusNameUk { get; set; }
-        public string StatusNameRu { get; set; }
-        public string StatusNameEn { get; set; }
+        public int statusCode { get; set; }
+        public string statusNameUk { get; set; }
+        public string statusNameRu { get; set; }
+        public string statusNameEn { get; set; }
 
         public ICollection<ReqTrade> ReqTrade { get; set; }
     }

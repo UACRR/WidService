@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class RelGenreSerial : IRelGenreSerial
     {
-        public int ReqId { get; set; }
-        public int GenreId { get; set; }
+        public int reqId { get; set; }
+        public int genreId { get; set; }
 
-        public PopGenre Genre { get; set; }
-        public RequestSerial Req { get; set; }
+        public PopGenre genre { get; set; }
+        public RequestSerial req { get; set; }
     }
 }
 

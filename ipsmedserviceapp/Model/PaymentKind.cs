@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             PaymentKindTr = new HashSet<PaymentKindTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<PaymentCase> PaymentCase { get; set; }
         public ICollection<PaymentKindTr> PaymentKindTr { get; set; }

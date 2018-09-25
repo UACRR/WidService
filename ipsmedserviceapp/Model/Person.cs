@@ -11,11 +11,11 @@ namespace ipsmedserviceapp.Model
             AnketaPerson = new HashSet<AnketaPerson>();
         }
 
-        public int CustId { get; set; }
-        public int Version { get; set; }
+        public int custId { get; set; }
+        public int version { get; set; }
 
         [JsonIgnore]
-        public Customer Cust { get; set; }
+        public Customer cust { get; set; }
         public ICollection<AnketaPerson> AnketaPerson { get; set; }
     }
 }

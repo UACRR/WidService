@@ -8,21 +8,21 @@ namespace ipsFormsDesign.Model
     {
         public Period()
         {
-            AgreementAddBr = new ObservableListSource<AgreementAddBr>();
+            AgreementAddBR = new ObservableListSource<AgreementAddBR>();
             AgreementAddPartner = new ObservableListSource<AgreementAddPartner>();
-            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
+            AgreementAddRH = new ObservableListSource<AgreementAddRH>();
             LicenseAgrParam = new ObservableListSource<LicenseAgrParam>();
             PaidPeriod = new ObservableListSource<PaidPeriod>();
             PeriodTr = new ObservableListSource<PeriodTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
-        public string NameR { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
+        public string nameR { get; set; }
 
-        public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
+        public ObservableListSource<AgreementAddBR> AgreementAddBR { get; set; }
         public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public ObservableListSource<AgreementAddRH> AgreementAddRH { get; set; }
         public ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
         public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
         public ObservableListSource<PeriodTr> PeriodTr { get; set; }

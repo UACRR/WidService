@@ -5,11 +5,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class DicList
     {
-        public int DicId { get; set; }
-        public string DKind { get; set; }
-        public int DCode { get; set; }
-        public string DNameUk { get; set; }
-        public string DNameRu { get; set; }
-        public string DNameEn { get; set; }
+        public int dicId { get; set; }
+        public string dKind { get; set; }
+        public int dCode { get; set; }
+        public string dNameUk { get; set; }
+        public string dNameRu { get; set; }
+        public string dNameEn { get; set; }
     }
 }

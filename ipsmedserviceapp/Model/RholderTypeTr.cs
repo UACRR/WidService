@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class RholderTypeTr
+    public partial class RHolderTypeTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public RholderType CodeINavigation { get; set; }
+        public RHolderType codeINavigation { get; set; }
     }
 }

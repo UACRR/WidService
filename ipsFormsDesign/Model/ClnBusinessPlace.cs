@@ -9,26 +9,26 @@ namespace ipsFormsDesign.Model
         public ClnBusinessPlace()
         {
             ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>();
-            LicPlace = new ObservableListSource<LicPlace>();
             License = new ObservableListSource<License>();
+            licPlace = new ObservableListSource<licPlace>();
         }
 
-        public int PlaceId { get; set; }
-        public int? CustId { get; set; }
-        public int? PlCode { get; set; }
-        public string PlaceName { get; set; }
-        public string PlaceCountry { get; set; }
-        public int? PlaceRegion { get; set; }
-        public string PlaceCity { get; set; }
-        public string PlaceAddress { get; set; }
-        public string PlacePhone { get; set; }
-        public bool? FreeEntry { get; set; }
+        public int placeId { get; set; }
+        public int? custId { get; set; }
+        public int? plCode { get; set; }
+        public string placeName { get; set; }
+        public string placeCountry { get; set; }
+        public int? placeRegion { get; set; }
+        public string placeCity { get; set; }
+        public string placeAddress { get; set; }
+        public string placePhone { get; set; }
+        public bool? freeEntry { get; set; }
 
-        public Client Cust { get; set; }
-        public TypePlace PlCodeNavigation { get; set; }
+        public Client cust { get; set; }
+        public TypePlace plCodeNavigation { get; set; }
         public ObservableListSource<ClnPlaceHoll> ClnPlaceHoll { get; set; }
-        public ObservableListSource<LicPlace> LicPlace { get; set; }
         public ObservableListSource<License> License { get; set; }
+        public ObservableListSource<licPlace> licPlace { get; set; }
     }
 }
 

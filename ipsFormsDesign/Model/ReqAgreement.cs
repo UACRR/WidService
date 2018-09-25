@@ -11,26 +11,26 @@ namespace ipsFormsDesign.Model
             ReqTrade = new ObservableListSource<ReqTrade>();
         }
 
-        public int RAgrId { get; set; }
-        public int CustId { get; set; }
-        public int? CustIdRh { get; set; }
-        public int? ReqId { get; set; }
-        public string R030 { get; set; }
-        public decimal? Amount { get; set; }
-        public decimal? CostOffer { get; set; }
-        public int Status { get; set; }
-        public DateTime? AgrDate { get; set; }
-        public string UserId { get; set; }
-        public DateTime? ModifyDate { get; set; }
-        public int? TradeId { get; set; }
-        public string R030Offer { get; set; }
-        public DateTime? StatusDate { get; set; }
-        public string RAgrComment { get; set; }
+        public int rAgrId { get; set; }
+        public int custId { get; set; }
+        public int? custIdRh { get; set; }
+        public int? reqId { get; set; }
+        public string r030 { get; set; }
+        public decimal? amount { get; set; }
+        public decimal? costOffer { get; set; }
+        public int status { get; set; }
+        public DateTime? agrDate { get; set; }
+        public string userId { get; set; }
+        public DateTime? modifyDate { get; set; }
+        public int? tradeId { get; set; }
+        public string r030Offer { get; set; }
+        public DateTime? statusDate { get; set; }
+        public string rAgrComment { get; set; }
 
-        public Customer Cust { get; set; }
-        public RightHolder CustIdRhNavigation { get; set; }
-        public Request Req { get; set; }
-        public ReqAgreementStatus StatusNavigation { get; set; }
+        public Customer cust { get; set; }
+        public RightHolder custIdRhNavigation { get; set; }
+        public Request req { get; set; }
+        public ReqAgreementStatus statusNavigation { get; set; }
         public ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }

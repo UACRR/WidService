@@ -6,13 +6,13 @@ namespace ipsFormsDesign.Model
 {
     public partial class AnketaAddParam : IAnketaAddParam
     {
-        public int ParamCode { get; set; }
-        public string LangCode { get; set; }
-        public string ParamName { get; set; }
-        public int? CustId { get; set; }
-        public string ParamValue { get; set; }
+        public int paramCode { get; set; }
+        public string langCode { get; set; }
+        public string paramName { get; set; }
+        public int? custId { get; set; }
+        public string paramValue { get; set; }
 
-        public Customer Cust { get; set; }
+        public Customer cust { get; set; }
     }
 }
 

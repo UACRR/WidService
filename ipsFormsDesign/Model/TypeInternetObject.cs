@@ -12,10 +12,10 @@ namespace ipsFormsDesign.Model
             TypeInternetObjectTr = new ObservableListSource<TypeInternetObjectTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
-        public string TypeInetNameEn { get; set; }
-        public string TypeInetNameRu { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
+        public string typeInetNameEn { get; set; }
+        public string typeInetNameRu { get; set; }
 
         public ObservableListSource<RequestInternet> RequestInternet { get; set; }
         public ObservableListSource<TypeInternetObjectTr> TypeInternetObjectTr { get; set; }

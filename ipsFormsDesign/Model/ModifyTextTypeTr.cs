@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class ModifyTextTypeTr : IModifyTextTypeTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public ModifyTextType CodeINavigation { get; set; }
+        public ModifyTextType codeINavigation { get; set; }
     }
 }
 

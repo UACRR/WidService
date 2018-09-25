@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class CustomerTypeTr : ICustomerTypeTr
     {
-        public int CodeI { get; set; }
-        public string Lang { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string lang { get; set; }
+        public string name { get; set; }
 
-        public CustomerType CodeINavigation { get; set; }
+        public CustomerType codeINavigation { get; set; }
     }
 }
 

@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             ClientBrandTr = new HashSet<ClientBrandTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ICollection<ClientBrandTr> ClientBrandTr { get; set; }
     }

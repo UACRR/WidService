@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             ItemStatusTr = new ObservableListSource<ItemStatusTr>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<ItemStatusTr> ItemStatusTr { get; set; }

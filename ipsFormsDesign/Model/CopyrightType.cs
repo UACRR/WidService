@@ -10,15 +10,15 @@ namespace ipsFormsDesign.Model
         {
             CopyrightTypeTr = new ObservableListSource<CopyrightTypeTr>();
             CreativeRoleType = new ObservableListSource<CreativeRoleType>();
-            MyCopyRightType = new ObservableListSource<MyCopyRightType>();
+            myCopyRightType = new ObservableListSource<myCopyRightType>();
         }
 
-        public int CodeI { get; set; }
-        public string Name { get; set; }
+        public int codeI { get; set; }
+        public string name { get; set; }
 
         public ObservableListSource<CopyrightTypeTr> CopyrightTypeTr { get; set; }
         public ObservableListSource<CreativeRoleType> CreativeRoleType { get; set; }
-        public ObservableListSource<MyCopyRightType> MyCopyRightType { get; set; }
+        public ObservableListSource<myCopyRightType> myCopyRightType { get; set; }
     }
 }
 

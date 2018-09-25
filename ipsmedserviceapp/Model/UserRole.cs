@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class UserRole
+    public partial class userRole
     {
-        public int CustId { get; set; }
-        public int RoleType { get; set; }
-        public string UserId { get; set; }
-        public int? Status { get; set; }
+        public int custId { get; set; }
+        public int roleType { get; set; }
+        public string userId { get; set; }
+        public int? status { get; set; }
 
-        public Customer Cust { get; set; }
-        public UserRoleType RoleTypeNavigation { get; set; }
-        public AspNetUsers User { get; set; }
+        public Customer cust { get; set; }
+        public UserRoleType roleTypeNavigation { get; set; }
+        public AspNetUsers user { get; set; }
     }
 }
