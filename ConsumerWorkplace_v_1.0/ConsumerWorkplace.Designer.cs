@@ -167,7 +167,6 @@ namespace ConsumerWorkplace_v_1._0
             // mainGridSmallRight
             // 
             this.mainGridSmallRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainGridSmallRight.FilterString = "";
             this.mainGridSmallRight.Location = new System.Drawing.Point(199, 0);
             this.mainGridSmallRight.Name = "mainGridSmallRight";
             this.mainGridSmallRight.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
