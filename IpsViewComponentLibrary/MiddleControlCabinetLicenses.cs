@@ -50,6 +50,7 @@ namespace IpsViewComponentLibrary
         {
             _gridMainView = comsumerBigRightView;
             ctrlAgrInfo.DataSource = _gridMainView;
+            ctrlSearch.SetUsageGrid(gvViewLicences);
         }
 
         public void SetDictionary(AnketaDictionaties dictionaties)
@@ -94,58 +95,6 @@ namespace IpsViewComponentLibrary
             if(type != ButtonFunctionType.None)
             btnToAccept.Text = _btnDictionary[type];
         }
-
-        #region FILTERING (пошук)
-
-        private void gvViewConsumers_CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
-        {
-            //пустий фільтер - всі дані
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                gvViewLicences.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvViewLicences.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-
-                gvViewLicences.EndUpdate(false);
-                return;
-            }
-
-            //фільтр не пустий
-            gvViewLicences.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvViewLicences.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-
-                gvViewLicences.EndUpdate(false);
-            }
-            
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            gvViewLicences.MasterTemplate.Refresh();
-        }
-
-        #endregion
 
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {

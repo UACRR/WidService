@@ -45,6 +45,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             splitContainer.PanelCollapsing += SplitContainer_PanelCollapsing;
+            ctrlSearch.SetUsageGrid(gvViewRequests);
         }
 
         private void MiddleControlCabinetReqRef_Load(object sender, EventArgs e)
@@ -228,57 +229,6 @@ namespace IpsViewComponentLibrary
             if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
                 CallSaveRequest(item.LicId);
         }
-
-        #region FILTERING (пошук)
-
-        private void gvViewRequests_CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
-        {
-            //пустий фільтер - всі дані
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                gvViewRequests.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvViewRequests.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-
-                gvViewRequests.EndUpdate(false);
-                return;
-            }
-
-            //фільтр не пустий
-            gvViewRequests.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvViewRequests.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-
-                gvViewRequests.EndUpdate(false);
-            }
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            gvViewRequests.MasterTemplate.Refresh();
-        }
-
-        #endregion
 
         private List<WorkRh> _workRhList = new List<WorkRh>();
         private void gvCreativeRole_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
