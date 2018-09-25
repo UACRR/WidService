@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace IpsViewComponentLibrary.FixationControls
     {
         private readonly FixationView _view;
         private readonly FixationService _fixationService;
+        private readonly DialogService _dialogService;
         private Fixation _fixation;
         private bool _canClose;
 
@@ -21,11 +23,12 @@ namespace IpsViewComponentLibrary.FixationControls
             _view.Presenter = this;
 
             _fixationService = new FixationService();
+            _dialogService = new DialogService();
         }
 
         public void ShowNew()
         {
-            _fixation = new Fixation { UsesType = 1 };
+            _fixation = new Fixation { FixStageStatus = 1, UsesType = 1 };
             _view.Fixation = _fixation;
             _view.Run();
         }
@@ -35,6 +38,16 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixation = _fixationService.GetById(fixId);
             _view.Fixation = _fixation;
             _view.Run();
+        }
+
+        public void Save()
+        {
+            var result = _fixationService.Save(_fixation);
+
+            if (result)
+                _view.Close();
+            else
+                _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
         }
     }
 }
