@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Services;
+﻿using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace IpsViewComponentLibrary.FixationControls
     {
         private readonly FixationView _view;
         private readonly FixationService _fixationService;
+        private Fixation _fixation;
         private bool _canClose;
 
         public FixationPresenter(FixationView view)
@@ -21,10 +23,17 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixationService = new FixationService();
         }
 
+        public void ShowNew()
+        {
+            _fixation = new Fixation { UsesType = 1 };
+            _view.Fixation = _fixation;
+            _view.Run();
+        }
+
         public void Show(int fixId)
         {
-            var fixation = _fixationService.GetById(fixId);
-            _view.Fixation = fixation;
+            _fixation = _fixationService.GetById(fixId);
+            _view.Fixation = _fixation;
             _view.Run();
         }
     }
