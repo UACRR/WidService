@@ -8,15 +8,15 @@ namespace ipsmedserviceapp.Model
         public EtRole()
         {
             EtGenreRole = new HashSet<EtGenreRole>();
-            relEtRole = new HashSet<relEtRole>();
+            RelEtRole = new HashSet<RelEtRole>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
-        public int? categoryCode { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+        public int? CategoryCode { get; set; }
 
-        public Category categoryCodeNavigation { get; set; }
+        public Category CategoryCodeNavigation { get; set; }
         public ICollection<EtGenreRole> EtGenreRole { get; set; }
-        public ICollection<relEtRole> relEtRole { get; set; }
+        public ICollection<RelEtRole> RelEtRole { get; set; }
     }
 }

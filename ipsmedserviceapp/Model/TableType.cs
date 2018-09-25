@@ -5,7 +5,7 @@ namespace ipsmedserviceapp.Model
 {
     public partial class TableType
     {
-        public string tName { get; set; }
-        public short? tType { get; set; }
+        public string TName { get; set; }
+        public short? TType { get; set; }
     }
 }

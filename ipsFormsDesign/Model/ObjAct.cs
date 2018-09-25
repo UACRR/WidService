@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
             RelGenrePercent = new ObservableListSource<RelGenrePercent>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<EtGenreRate> EtGenreRate { get; set; }
         public ObservableListSource<EtGenreRole> EtGenreRole { get; set; }

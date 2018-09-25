@@ -6,12 +6,12 @@ namespace ipsFormsDesign.Model
 {
     public partial class AspNetUserLogins : IAspNetUserLogins
     {
-        public string loginProvider { get; set; }
-        public string providerKey { get; set; }
-        public string providerDisplayName { get; set; }
-        public string userId { get; set; }
+        public string LoginProvider { get; set; }
+        public string ProviderKey { get; set; }
+        public string ProviderDisplayName { get; set; }
+        public string UserId { get; set; }
 
-        public AspNetUsers user { get; set; }
+        public AspNetUsers User { get; set; }
     }
 }
 

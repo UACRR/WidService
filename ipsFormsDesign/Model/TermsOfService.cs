@@ -11,12 +11,12 @@ namespace ipsFormsDesign.Model
             CustCmRight = new ObservableListSource<CustCmRight>();
         }
 
-        public int custId { get; set; }
-        public int CRKindCode { get; set; }
-        public bool ourService { get; set; }
+        public int CustId { get; set; }
+        public int CrkindCode { get; set; }
+        public bool OurService { get; set; }
 
-        public CopyrightKind CRKindCodeNavigation { get; set; }
-        public RightHolder cust { get; set; }
+        public CopyrightKind CrkindCodeNavigation { get; set; }
+        public RightHolder Cust { get; set; }
         public ObservableListSource<CustCmRight> CustCmRight { get; set; }
     }
 }

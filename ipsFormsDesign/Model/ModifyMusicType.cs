@@ -12,13 +12,13 @@ namespace ipsFormsDesign.Model
             RequestAdapt = new ObservableListSource<RequestAdapt>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
-        public int? kindCompCode { get; set; }
-        public int categoryCode { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+        public int? KindCompCode { get; set; }
+        public int CategoryCode { get; set; }
 
-        public Category categoryCodeNavigation { get; set; }
-        public KindComposition kindCompCodeNavigation { get; set; }
+        public Category CategoryCodeNavigation { get; set; }
+        public KindComposition KindCompCodeNavigation { get; set; }
         public ObservableListSource<ModifyMusicTypeTr> ModifyMusicTypeTr { get; set; }
         public ObservableListSource<RequestAdapt> RequestAdapt { get; set; }
     }

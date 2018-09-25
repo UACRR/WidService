@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class AgreementStatusTr
     {
-        public int codeI { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public AgreementStatus codeINavigation { get; set; }
+        public AgreementStatus CodeINavigation { get; set; }
     }
 }

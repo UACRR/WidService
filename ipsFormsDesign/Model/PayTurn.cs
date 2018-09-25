@@ -6,26 +6,26 @@ namespace ipsFormsDesign.Model
 {
     public partial class PayTurn : IPayTurn
     {
-        public int turnId { get; set; }
-        public DateTime dateWork { get; set; }
-        public string nD { get; set; }
-        public DateTime? nDDate { get; set; }
-        public int? accIdDebet { get; set; }
-        public int? accIdCredit { get; set; }
-        public string accDebet { get; set; }
-        public string accCredit { get; set; }
-        public decimal? amount { get; set; }
-        public decimal? amountCur { get; set; }
-        public string payNote { get; set; }
-        public string r030 { get; set; }
-        public DateTime dateOper { get; set; }
-        public int? payStatus { get; set; }
-        public int? regId { get; set; }
-        public int? distId { get; set; }
-        public int? custIdRh { get; set; }
+        public int TurnId { get; set; }
+        public DateTime DateWork { get; set; }
+        public string ND { get; set; }
+        public DateTime? NDdate { get; set; }
+        public int? AccIdDebet { get; set; }
+        public int? AccIdCredit { get; set; }
+        public string AccDebet { get; set; }
+        public string AccCredit { get; set; }
+        public decimal? Amount { get; set; }
+        public decimal? AmountCur { get; set; }
+        public string PayNote { get; set; }
+        public string R030 { get; set; }
+        public DateTime DateOper { get; set; }
+        public int? PayStatus { get; set; }
+        public int? RegId { get; set; }
+        public int? DistId { get; set; }
+        public int? CustIdRh { get; set; }
 
-        public Account accIdDebetNavigation { get; set; }
-        public PaymentStatus payStatusNavigation { get; set; }
+        public Account AccIdDebetNavigation { get; set; }
+        public PaymentStatus PayStatusNavigation { get; set; }
     }
 }
 

@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             FileCustomer = new HashSet<FileCustomer>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<DocumentTypeTr> DocumentTypeTr { get; set; }
         public ICollection<FileCustomer> FileCustomer { get; set; }

@@ -7,40 +7,40 @@ namespace ipsmedserviceapp.Model
     {
         public Country()
         {
-            AnketaCompanyfaCountryNavigation = new HashSet<AnketaCompany>();
-            AnketaCompanyjaCountryNavigation = new HashSet<AnketaCompany>();
-            AnketaCompanyleCountryNavigation = new HashSet<AnketaCompany>();
+            AnketaCompanyFaCountryNavigation = new HashSet<AnketaCompany>();
+            AnketaCompanyJaCountryNavigation = new HashSet<AnketaCompany>();
+            AnketaCompanyLeCountryNavigation = new HashSet<AnketaCompany>();
             AnketaExternal = new HashSet<AnketaExternal>();
-            AnketaPersoncitizenshipNavigation = new HashSet<AnketaPerson>();
-            AnketaPersonfaCountryNavigation = new HashSet<AnketaPerson>();
-            AnketaPersonreCountryNavigation = new HashSet<AnketaPerson>();
+            AnketaPersonCitizenshipNavigation = new HashSet<AnketaPerson>();
+            AnketaPersonFaCountryNavigation = new HashSet<AnketaPerson>();
+            AnketaPersonReCountryNavigation = new HashSet<AnketaPerson>();
             CountryTr = new HashSet<CountryTr>();
-            KL_R030 = new HashSet<KL_R030>();
+            KlR030 = new HashSet<KlR030>();
             ReqCustomer = new HashSet<ReqCustomer>();
             ReqLocationUse = new HashSet<ReqLocationUse>();
             TerritoryExclude = new HashSet<TerritoryExclude>();
             TerritoryInclude = new HashSet<TerritoryInclude>();
         }
 
-        public int? continentCode { get; set; }
-        public string countryCode { get; set; }
-        public string countryName { get; set; }
-        public string a2 { get; set; }
-        public string kOD_LIT { get; set; }
-        public string countryNameShort { get; set; }
-        public short? shortChoise { get; set; }
-        public int? orderBy { get; set; }
+        public int? ContinentCode { get; set; }
+        public string CountryCode { get; set; }
+        public string CountryName { get; set; }
+        public string A2 { get; set; }
+        public string KOdLit { get; set; }
+        public string CountryNameShort { get; set; }
+        public short? ShortChoise { get; set; }
+        public int? OrderBy { get; set; }
 
-        public Continent continentCodeNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyfaCountryNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyjaCountryNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyleCountryNavigation { get; set; }
+        public Continent ContinentCodeNavigation { get; set; }
+        public ICollection<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
+        public ICollection<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
+        public ICollection<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
         public ICollection<AnketaExternal> AnketaExternal { get; set; }
-        public ICollection<AnketaPerson> AnketaPersoncitizenshipNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonfaCountryNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonreCountryNavigation { get; set; }
+        public ICollection<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
+        public ICollection<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
+        public ICollection<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }
         public ICollection<CountryTr> CountryTr { get; set; }
-        public ICollection<KL_R030> KL_R030 { get; set; }
+        public ICollection<KlR030> KlR030 { get; set; }
         public ICollection<ReqCustomer> ReqCustomer { get; set; }
         public ICollection<ReqLocationUse> ReqLocationUse { get; set; }
         public ICollection<TerritoryExclude> TerritoryExclude { get; set; }

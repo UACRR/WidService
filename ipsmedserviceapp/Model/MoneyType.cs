@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             MoneyTypeTr = new HashSet<MoneyTypeTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<MoneyReceived> MoneyReceived { get; set; }
         public ICollection<MoneyTypeTr> MoneyTypeTr { get; set; }

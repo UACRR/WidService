@@ -13,8 +13,8 @@ namespace ipsFormsDesign.Model
             Request = new ObservableListSource<Request>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
         public ObservableListSource<LicenseTypeTr> LicenseTypeTr { get; set; }

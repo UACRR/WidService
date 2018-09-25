@@ -4,38 +4,38 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AgreementAddRH
+    public partial class AgreementAddRh
     {
-        public int agrId { get; set; }
-        public decimal? rateCourt { get; set; }
-        public decimal? rateCommiss { get; set; }
-        public string responsUser { get; set; }
-        public int? custId { get; set; }
-        public int version { get; set; }
-        public string agrNumber { get; set; }
-        public DateTime? agrDate { get; set; }
-        public DateTime? dateBegin { get; set; }
-        public DateTime? dateEnd { get; set; }
-        public int? periodCode { get; set; }
-        public int? dayForPay { get; set; }
-        public int? ankVersion { get; set; }
-        public int? agrStatus { get; set; }
-        public int? getCode { get; set; }
-        public DateTime? modifyDate { get; set; }
-        public string modifyLogin { get; set; }
+        public int AgrId { get; set; }
+        public decimal? RateCourt { get; set; }
+        public decimal? RateCommiss { get; set; }
+        public string ResponsUser { get; set; }
+        public int? CustId { get; set; }
+        public int Version { get; set; }
+        public string AgrNumber { get; set; }
+        public DateTime? AgrDate { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
+        public int? PeriodCode { get; set; }
+        public int? DayForPay { get; set; }
+        public int? AnkVersion { get; set; }
+        public int? AgrStatus { get; set; }
+        public int? GetCode { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
 
         [JsonIgnore]
-        public AgreementMaster agr { get; set; }
+        public AgreementMaster Agr { get; set; }
         [JsonIgnore]
-        public AgreementStatus agrStatusNavigation { get; set; }
+        public AgreementStatus AgrStatusNavigation { get; set; }
         [JsonIgnore]
-        public RightHolder cust { get; set; }
+        public RightHolder Cust { get; set; }
         [JsonIgnore]
-        public TypeMethodGet getCodeNavigation { get; set; }
+        public TypeMethodGet GetCodeNavigation { get; set; }
         [JsonIgnore]
-        public Period periodCodeNavigation { get; set; }
+        public Period PeriodCodeNavigation { get; set; }
         [JsonIgnore]
-        public AspNetUsers responsUserNavigation { get; set; }
+        public AspNetUsers ResponsUserNavigation { get; set; }
     }
 }
 

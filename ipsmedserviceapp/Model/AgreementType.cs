@@ -12,9 +12,9 @@ namespace ipsmedserviceapp.Model
             RelDocAgrType = new HashSet<RelDocAgrType>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
-        public string templateName { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+        public string TemplateName { get; set; }
 
         public ICollection<AgreementMaster> AgreementMaster { get; set; }
         public ICollection<AgreementTypeTr> AgreementTypeTr { get; set; }

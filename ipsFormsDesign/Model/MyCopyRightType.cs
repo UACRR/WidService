@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class myCopyRightType : ImyCopyRightType
+    public partial class MyCopyRightType : IMyCopyRightType
     {
-        public int custId { get; set; }
-        public int cRType { get; set; }
+        public int CustId { get; set; }
+        public int CRtype { get; set; }
 
-        public CopyrightType cRTypeNavigation { get; set; }
-        public MyAnketa cust { get; set; }
+        public CopyrightType CRtypeNavigation { get; set; }
+        public MyAnketa Cust { get; set; }
     }
 }
 

@@ -7,12 +7,12 @@ namespace ipsmedserviceapp.Model
     {
         public CreativeTranslate()
         {
-            CopyRTranslate = new HashSet<CopyRTranslate>();
+            CopyRtranslate = new HashSet<CopyRtranslate>();
         }
 
-        public int codeI { get; set; }
+        public int CodeI { get; set; }
 
-        public CreativeRoleType codeINavigation { get; set; }
-        public ICollection<CopyRTranslate> CopyRTranslate { get; set; }
+        public CreativeRoleType CodeINavigation { get; set; }
+        public ICollection<CopyRtranslate> CopyRtranslate { get; set; }
     }
 }

@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class CRKindGroupTr : ICRKindGroupTr
+    public partial class CrkindGroupTr : ICrkindGroupTr
     {
-        public int codeI { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public CRKindGroup codeINavigation { get; set; }
+        public CrkindGroup CodeINavigation { get; set; }
     }
 }
 

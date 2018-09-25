@@ -11,10 +11,10 @@ namespace ipsFormsDesign.Model
             ReqTrade = new ObservableListSource<ReqTrade>();
         }
 
-        public int statusCode { get; set; }
-        public string statusNameUk { get; set; }
-        public string statusNameRu { get; set; }
-        public string statusNameEn { get; set; }
+        public int StatusCode { get; set; }
+        public string StatusNameUk { get; set; }
+        public string StatusNameRu { get; set; }
+        public string StatusNameEn { get; set; }
 
         public ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }

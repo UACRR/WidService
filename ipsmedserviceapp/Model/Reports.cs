@@ -5,7 +5,7 @@ namespace ipsmedserviceapp.Model
 {
     public partial class Reports
     {
-        public int id { get; set; }
-        public string repname { get; set; }
+        public int Id { get; set; }
+        public string Repname { get; set; }
     }
 }

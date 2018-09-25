@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             TypePlaceParamTr = new HashSet<TypePlaceParamTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<TypePlace> TypePlace { get; set; }
         public ICollection<TypePlaceParamTr> TypePlaceParamTr { get; set; }

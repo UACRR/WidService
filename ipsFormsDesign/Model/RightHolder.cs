@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public RightHolder()
         {
-            AgreementAddRH = new ObservableListSource<AgreementAddRH>();
+            AgreementAddRh = new ObservableListSource<AgreementAddRh>();
             AnketaAddNick = new ObservableListSource<AnketaAddNick>();
             Authors = new ObservableListSource<Authors>();
             CopyRight = new ObservableListSource<CopyRight>();
@@ -19,15 +19,15 @@ namespace ipsFormsDesign.Model
             TerritoryInclude = new ObservableListSource<TerritoryInclude>();
         }
 
-        public int custId { get; set; }
-        public byte? signP { get; set; }
-        public bool? aroundWord { get; set; }
-        public string interCode { get; set; }
-        public string innerCode { get; set; }
-        public int? rHolderType { get; set; }
+        public int CustId { get; set; }
+        public byte? SignP { get; set; }
+        public bool? AroundWord { get; set; }
+        public string InterCode { get; set; }
+        public string InnerCode { get; set; }
+        public int? RHolderType { get; set; }
 
-        public Customer cust { get; set; }
-        public ObservableListSource<AgreementAddRH> AgreementAddRH { get; set; }
+        public Customer Cust { get; set; }
+        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
         public ObservableListSource<AnketaAddNick> AnketaAddNick { get; set; }
         public ObservableListSource<Authors> Authors { get; set; }
         public ObservableListSource<CopyRight> CopyRight { get; set; }

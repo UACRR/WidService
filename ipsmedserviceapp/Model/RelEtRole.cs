@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class relEtRole
+    public partial class RelEtRole
     {
-        public int roleCode { get; set; }
-        public int etRoleCode { get; set; }
+        public int RoleCode { get; set; }
+        public int EtRoleCode { get; set; }
 
-        public EtRole etRoleCodeNavigation { get; set; }
-        public CreativeRoleType roleCodeNavigation { get; set; }
+        public EtRole EtRoleCodeNavigation { get; set; }
+        public CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }

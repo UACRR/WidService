@@ -6,18 +6,18 @@ namespace ipsFormsDesign.Model
 {
     public partial class Authors : IAuthors
     {
-        public int authId { get; set; }
-        public int objId { get; set; }
-        public int roleCode { get; set; }
-        public int? custId { get; set; }
-        public string authorName { get; set; }
-        public int? isFolkOrUnknown { get; set; }
-        public int? folkType { get; set; }
+        public int AuthId { get; set; }
+        public int ObjId { get; set; }
+        public int RoleCode { get; set; }
+        public int? CustId { get; set; }
+        public string AuthorName { get; set; }
+        public int? IsFolkOrUnknown { get; set; }
+        public int? FolkType { get; set; }
 
-        public RightHolder cust { get; set; }
-        public FolkType folkTypeNavigation { get; set; }
-        public ObjectRight obj { get; set; }
-        public CreativeRoleType roleCodeNavigation { get; set; }
+        public RightHolder Cust { get; set; }
+        public FolkType FolkTypeNavigation { get; set; }
+        public ObjectRight Obj { get; set; }
+        public CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }
 

@@ -9,25 +9,25 @@ namespace ipsmedserviceapp.Model
         {
             AgrLicenseTypeTr = new HashSet<AgrLicenseTypeTr>();
             LicenseAgreement = new HashSet<LicenseAgreement>();
-            relCounterDoc = new HashSet<relCounterDoc>();
-            relLicCopyR = new HashSet<relLicCopyR>();
+            RelCounterDoc = new HashSet<RelCounterDoc>();
+            RelLicCopyR = new HashSet<RelLicCopyR>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
-        public int? kindCode { get; set; }
-        public int? usesKind { get; set; }
-        public string templateName { get; set; }
-        public bool? needPlace { get; set; }
-        public int? schemaId { get; set; }
-        public int? algorithmId { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+        public int? KindCode { get; set; }
+        public int? UsesKind { get; set; }
+        public string TemplateName { get; set; }
+        public bool? NeedPlace { get; set; }
+        public int? SchemaId { get; set; }
+        public int? AlgorithmId { get; set; }
 
-        public AlgorithmType algorithm { get; set; }
-        public CopyrightKind kindCodeNavigation { get; set; }
-        public UsesKind usesKindNavigation { get; set; }
+        public AlgorithmType Algorithm { get; set; }
+        public CopyrightKind KindCodeNavigation { get; set; }
+        public UsesKind UsesKindNavigation { get; set; }
         public ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
-        public ICollection<relCounterDoc> relCounterDoc { get; set; }
-        public ICollection<relLicCopyR> relLicCopyR { get; set; }
+        public ICollection<RelCounterDoc> RelCounterDoc { get; set; }
+        public ICollection<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }

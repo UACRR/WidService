@@ -5,13 +5,13 @@ namespace ipsmedserviceapp.Model
 {
     public partial class RegisterExtra
     {
-        public int regExtraId { get; set; }
-        public int regId { get; set; }
-        public int regIItemId { get; set; }
-        public int roleCode { get; set; }
-        public string name { get; set; }
+        public int RegExtraId { get; set; }
+        public int RegId { get; set; }
+        public int RegIitemId { get; set; }
+        public int RoleCode { get; set; }
+        public string Name { get; set; }
 
-        public RegisterItem regI { get; set; }
-        public CreativeRoleType roleCodeNavigation { get; set; }
+        public RegisterItem RegI { get; set; }
+        public CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }

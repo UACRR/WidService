@@ -12,12 +12,12 @@ namespace ipsFormsDesign.Model
             RequestAimTr = new ObservableListSource<RequestAimTr>();
         }
 
-        public int codeI { get; set; }
-        public int reqType { get; set; }
-        public string name { get; set; }
-        public int categoryCode { get; set; }
+        public int CodeI { get; set; }
+        public int ReqType { get; set; }
+        public string Name { get; set; }
+        public int CategoryCode { get; set; }
 
-        public Category categoryCodeNavigation { get; set; }
+        public Category CategoryCodeNavigation { get; set; }
         public ObservableListSource<Request> Request { get; set; }
         public ObservableListSource<RequestAimTr> RequestAimTr { get; set; }
     }

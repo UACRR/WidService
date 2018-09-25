@@ -4,30 +4,30 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class AgreementAddBR
+    public partial class AgreementAddBr
     {
-        public int agrId { get; set; }
-        public int version { get; set; }
-        public string agrNumber { get; set; }
-        public DateTime? agrDate { get; set; }
-        public DateTime? dateBegin { get; set; }
-        public DateTime? dateEnd { get; set; }
-        public int? periodCode { get; set; }
-        public int? agrStatus { get; set; }
-        public int? dayForPay { get; set; }
-        public int? ankVersion { get; set; }
-        public DateTime? modifyDate { get; set; }
-        public string modifyLogin { get; set; }
-        public int? custId { get; set; }
+        public int AgrId { get; set; }
+        public int Version { get; set; }
+        public string AgrNumber { get; set; }
+        public DateTime? AgrDate { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
+        public int? PeriodCode { get; set; }
+        public int? AgrStatus { get; set; }
+        public int? DayForPay { get; set; }
+        public int? AnkVersion { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
+        public int? CustId { get; set; }
 
         [JsonIgnore]
-        public AgreementMaster agr { get; set; }
+        public AgreementMaster Agr { get; set; }
         [JsonIgnore]
-        public AgreementStatus agrStatusNavigation { get; set; }
+        public AgreementStatus AgrStatusNavigation { get; set; }
         [JsonIgnore]
-        public Client cust { get; set; }
+        public Client Cust { get; set; }
         [JsonIgnore]
-        public Period periodCodeNavigation { get; set; }
+        public Period PeriodCodeNavigation { get; set; }
     }
 }
 

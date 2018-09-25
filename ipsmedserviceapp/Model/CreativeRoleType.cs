@@ -12,24 +12,24 @@ namespace ipsmedserviceapp.Model
             CreativeRoleTypeTr = new HashSet<CreativeRoleTypeTr>();
             RegisterAuthors = new HashSet<RegisterAuthors>();
             RegisterExtra = new HashSet<RegisterExtra>();
-            relEtRole = new HashSet<relEtRole>();
-            relGenreRole = new HashSet<relGenreRole>();
+            RelEtRole = new HashSet<RelEtRole>();
+            RelGenreRole = new HashSet<RelGenreRole>();
         }
 
-        public int codeI { get; set; }
+        public int CodeI { get; set; }
         public int CategoryCode { get; set; }
-        public string name { get; set; }
-        public int CRType { get; set; }
+        public string Name { get; set; }
+        public int Crtype { get; set; }
 
-        public CopyrightType CRTypeNavigation { get; set; }
         public Category CategoryCodeNavigation { get; set; }
+        public CopyrightType CrtypeNavigation { get; set; }
         public CreativeTranslate CreativeTranslate { get; set; }
         public ICollection<Authors> Authors { get; set; }
         public ICollection<CopyRight> CopyRight { get; set; }
         public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
         public ICollection<RegisterAuthors> RegisterAuthors { get; set; }
         public ICollection<RegisterExtra> RegisterExtra { get; set; }
-        public ICollection<relEtRole> relEtRole { get; set; }
-        public ICollection<relGenreRole> relGenreRole { get; set; }
+        public ICollection<RelEtRole> RelEtRole { get; set; }
+        public ICollection<RelGenreRole> RelGenreRole { get; set; }
     }
 }

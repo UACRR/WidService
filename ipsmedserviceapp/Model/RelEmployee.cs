@@ -6,17 +6,16 @@ namespace ipsmedserviceapp.Model
 {
     public partial class RelEmployee
     {
-        public int emplid { get; set; }
-        public int custId { get; set; }
-        public int positionCode { get; set; }
-        public string relDocument { get; set; }
+        public int Emplid { get; set; }
+        public int CustId { get; set; }
+        public int PositionCode { get; set; }
+        public string RelDocument { get; set; }
 
         [JsonIgnore]
-        public Company cust { get; set; }
+        public Company Cust { get; set; }
+        public Employee Empl { get; set; }
         [JsonIgnore]
-        public Employee empl { get; set; }
-        [JsonIgnore]
-        public PositionType positionCodeNavigation { get; set; }
+        public PositionType PositionCodeNavigation { get; set; }
     }
 }
 

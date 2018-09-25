@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             CategoryStatusTypeTr = new ObservableListSource<CategoryStatusTypeTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<Category> Category { get; set; }
         public ObservableListSource<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }

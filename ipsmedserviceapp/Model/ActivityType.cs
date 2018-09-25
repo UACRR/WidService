@@ -12,8 +12,8 @@ namespace ipsmedserviceapp.Model
             ReqCustomer = new HashSet<ReqCustomer>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<ActivityTypeTr> ActivityTypeTr { get; set; }
         public ICollection<AnketaCompany> AnketaCompany { get; set; }

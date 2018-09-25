@@ -8,24 +8,24 @@ namespace ipsFormsDesign.Model
     {
         public Region()
         {
-            AnketaCompanyfaRegionNavigation = new ObservableListSource<AnketaCompany>();
-            AnketaCompanyjaRegionNavigation = new ObservableListSource<AnketaCompany>();
-            AnketaCompanyleRegionNavigation = new ObservableListSource<AnketaCompany>();
-            AnketaPersonfaRegionNavigation = new ObservableListSource<AnketaPerson>();
-            AnketaPersonleRegionNavigation = new ObservableListSource<AnketaPerson>();
-            AnketaPersonreRegionNavigation = new ObservableListSource<AnketaPerson>();
+            AnketaCompanyFaRegionNavigation = new ObservableListSource<AnketaCompany>();
+            AnketaCompanyJaRegionNavigation = new ObservableListSource<AnketaCompany>();
+            AnketaCompanyLeRegionNavigation = new ObservableListSource<AnketaCompany>();
+            AnketaPersonFaRegionNavigation = new ObservableListSource<AnketaPerson>();
+            AnketaPersonLeRegionNavigation = new ObservableListSource<AnketaPerson>();
+            AnketaPersonReRegionNavigation = new ObservableListSource<AnketaPerson>();
             RegionTr = new ObservableListSource<RegionTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
-        public ObservableListSource<AnketaCompany> AnketaCompanyfaRegionNavigation { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompanyjaRegionNavigation { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompanyleRegionNavigation { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonfaRegionNavigation { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonleRegionNavigation { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonreRegionNavigation { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompanyFaRegionNavigation { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompanyJaRegionNavigation { get; set; }
+        public ObservableListSource<AnketaCompany> AnketaCompanyLeRegionNavigation { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPersonFaRegionNavigation { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPersonLeRegionNavigation { get; set; }
+        public ObservableListSource<AnketaPerson> AnketaPersonReRegionNavigation { get; set; }
         public ObservableListSource<RegionTr> RegionTr { get; set; }
     }
 }

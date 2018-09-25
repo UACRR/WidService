@@ -15,11 +15,11 @@ namespace ipsFormsDesign.Model
             RelPopGenre = new ObservableListSource<RelPopGenre>();
         }
 
-        public int categoryCode { get; set; }
-        public string name { get; set; }
-        public int id { get; set; }
+        public int CategoryCode { get; set; }
+        public string Name { get; set; }
+        public int Id { get; set; }
 
-        public Category categoryCodeNavigation { get; set; }
+        public Category CategoryCodeNavigation { get; set; }
         public ObservableListSource<PopGenreTr> PopGenreTr { get; set; }
         public ObservableListSource<RelGenreAdapt> RelGenreAdapt { get; set; }
         public ObservableListSource<RelGenreMovie> RelGenreMovie { get; set; }

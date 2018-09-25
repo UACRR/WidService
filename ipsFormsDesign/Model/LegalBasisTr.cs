@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class LegalBasisTr : ILegalBasisTr
     {
-        public int codeI { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public LegalBasis codeINavigation { get; set; }
+        public LegalBasis CodeINavigation { get; set; }
     }
 }
 

@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             FolkTypeTr = new ObservableListSource<FolkTypeTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<Authors> Authors { get; set; }
         public ObservableListSource<FolkTypeTr> FolkTypeTr { get; set; }

@@ -13,25 +13,25 @@ namespace ipsFormsDesign.Model
             CreativeRoleTypeTr = new ObservableListSource<CreativeRoleTypeTr>();
             RegisterAuthors = new ObservableListSource<RegisterAuthors>();
             RegisterExtra = new ObservableListSource<RegisterExtra>();
-            relEtRole = new ObservableListSource<relEtRole>();
-            relGenreRole = new ObservableListSource<relGenreRole>();
+            RelEtRole = new ObservableListSource<RelEtRole>();
+            RelGenreRole = new ObservableListSource<RelGenreRole>();
         }
 
-        public int codeI { get; set; }
+        public int CodeI { get; set; }
         public int CategoryCode { get; set; }
-        public string name { get; set; }
-        public int CRType { get; set; }
+        public string Name { get; set; }
+        public int Crtype { get; set; }
 
-        public CopyrightType CRTypeNavigation { get; set; }
         public Category CategoryCodeNavigation { get; set; }
+        public CopyrightType CrtypeNavigation { get; set; }
         public CreativeTranslate CreativeTranslate { get; set; }
         public ObservableListSource<Authors> Authors { get; set; }
         public ObservableListSource<CopyRight> CopyRight { get; set; }
         public ObservableListSource<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
         public ObservableListSource<RegisterAuthors> RegisterAuthors { get; set; }
         public ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
-        public ObservableListSource<relEtRole> relEtRole { get; set; }
-        public ObservableListSource<relGenreRole> relGenreRole { get; set; }
+        public ObservableListSource<RelEtRole> RelEtRole { get; set; }
+        public ObservableListSource<RelGenreRole> RelGenreRole { get; set; }
     }
 }
 

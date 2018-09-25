@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             PermitTypeTr = new HashSet<PermitTypeTr>();
         }
 
-        public bool codeB { get; set; }
-        public string name { get; set; }
+        public bool CodeB { get; set; }
+        public string Name { get; set; }
 
         public ICollection<PermitTypeTr> PermitTypeTr { get; set; }
     }

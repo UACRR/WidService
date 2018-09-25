@@ -6,21 +6,20 @@ namespace ipsmedserviceapp.Model
 {
     public partial class MoneyPeriodLink
     {
-        public int periodId { get; set; }
-        public int paidId { get; set; }
-        public int licId { get; set; }
-        public DateTime modifyDate { get; set; }
-        public decimal amount { get; set; }
-        public int? status { get; set; }
+        public int PeriodId { get; set; }
+        public int PaidId { get; set; }
+        public int LicId { get; set; }
+        public DateTime ModifyDate { get; set; }
+        public decimal Amount { get; set; }
+        public int? Status { get; set; }
 
         [JsonIgnore]
-        public LicenseAgreement lic { get; set; }
+        public LicenseAgreement Lic { get; set; }
+        public MoneyReceived Paid { get; set; }
         [JsonIgnore]
-        public MoneyReceived paid { get; set; }
+        public PaidPeriod Period { get; set; }
         [JsonIgnore]
-        public PaidPeriod period { get; set; }
-        [JsonIgnore]
-        public MoneyLinkStatus statusNavigation { get; set; }
+        public MoneyLinkStatus StatusNavigation { get; set; }
     }
 }
 

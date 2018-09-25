@@ -5,13 +5,13 @@ namespace ipsmedserviceapp.Model
 {
     public partial class EtGenreRole
     {
-        public int genreCode { get; set; }
-        public int roleCode { get; set; }
-        public int actCode { get; set; }
-        public decimal? rate { get; set; }
+        public int GenreCode { get; set; }
+        public int RoleCode { get; set; }
+        public int ActCode { get; set; }
+        public decimal? Rate { get; set; }
 
-        public ObjAct actCodeNavigation { get; set; }
-        public EtGenre genreCodeNavigation { get; set; }
-        public EtRole roleCodeNavigation { get; set; }
+        public ObjAct ActCodeNavigation { get; set; }
+        public EtGenre GenreCodeNavigation { get; set; }
+        public EtRole RoleCodeNavigation { get; set; }
     }
 }

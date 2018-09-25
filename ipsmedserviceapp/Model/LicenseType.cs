@@ -12,8 +12,8 @@ namespace ipsmedserviceapp.Model
             Request = new HashSet<Request>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
         public ICollection<LicenseTypeTr> LicenseTypeTr { get; set; }

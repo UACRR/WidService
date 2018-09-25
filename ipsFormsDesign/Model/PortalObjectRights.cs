@@ -6,12 +6,12 @@ namespace ipsFormsDesign.Model
 {
     public partial class PortalObjectRights : IPortalObjectRights
     {
-        public int objId { get; set; }
-        public int cRKindCode { get; set; }
-        public int enable { get; set; }
+        public int ObjId { get; set; }
+        public int CRkindCode { get; set; }
+        public int Enable { get; set; }
 
-        public PortalSupportRights cRKindCodeNavigation { get; set; }
-        public ObjectRight obj { get; set; }
+        public PortalSupportRights CRkindCodeNavigation { get; set; }
+        public ObjectRight Obj { get; set; }
     }
 }
 

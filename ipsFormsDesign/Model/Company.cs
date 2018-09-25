@@ -12,10 +12,10 @@ namespace ipsFormsDesign.Model
             RelEmployee = new ObservableListSource<RelEmployee>();
         }
 
-        public int custId { get; set; }
-        public int version { get; set; }
+        public int CustId { get; set; }
+        public int Version { get; set; }
 
-        public Customer cust { get; set; }
+        public Customer Cust { get; set; }
         public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
         public ObservableListSource<RelEmployee> RelEmployee { get; set; }
     }

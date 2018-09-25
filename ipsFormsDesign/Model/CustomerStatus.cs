@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             CustomerStatusTr = new ObservableListSource<CustomerStatusTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<Customer> Customer { get; set; }
         public ObservableListSource<CustomerStatusTr> CustomerStatusTr { get; set; }

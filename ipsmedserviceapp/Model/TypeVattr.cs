@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class TypeVATTr
+    public partial class TypeVattr
     {
-        public int codeI { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public TypeVAT codeINavigation { get; set; }
+        public TypeVat CodeINavigation { get; set; }
     }
 }

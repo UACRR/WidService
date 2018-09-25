@@ -11,8 +11,8 @@ namespace ipsFormsDesign.Model
             DicCategoryItems = new ObservableListSource<DicCategoryItems>();
         }
 
-        public int code { get; set; }
-        public string name { get; set; }
+        public int Code { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<DicCategoryItems> DicCategoryItems { get; set; }
     }

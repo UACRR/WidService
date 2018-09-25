@@ -5,13 +5,13 @@ namespace ipsmedserviceapp.Model
 {
     public partial class AnketaExternal
     {
-        public int custId { get; set; }
-        public string name { get; set; }
-        public string interCode { get; set; }
-        public string countryCode { get; set; }
-        public string innOkpo { get; set; }
+        public int CustId { get; set; }
+        public string Name { get; set; }
+        public string InterCode { get; set; }
+        public string CountryCode { get; set; }
+        public string InnOkpo { get; set; }
 
-        public Country countryCodeNavigation { get; set; }
-        public Customer cust { get; set; }
+        public Country CountryCodeNavigation { get; set; }
+        public Customer Cust { get; set; }
     }
 }

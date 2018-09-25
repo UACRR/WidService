@@ -12,11 +12,11 @@ namespace ipsmedserviceapp.Model
             RelEmployee = new HashSet<RelEmployee>();
         }
 
-        public int custId { get; set; }
-        public int version { get; set; }
+        public int CustId { get; set; }
+        public int Version { get; set; }
 
         [JsonIgnore]
-        public Customer cust { get; set; }
+        public Customer Cust { get; set; }
         public ICollection<AnketaCompany> AnketaCompany { get; set; }
         public ICollection<RelEmployee> RelEmployee { get; set; }
     }

@@ -10,24 +10,24 @@ namespace ipsmedserviceapp.Model
             PayTurn = new HashSet<PayTurn>();
         }
 
-        public int accId { get; set; }
-        public int? balsCode { get; set; }
-        public int? custId { get; set; }
-        public int? objId { get; set; }
-        public string r030 { get; set; }
-        public string accNls { get; set; }
-        public DateTime? dateOpen { get; set; }
-        public DateTime? dateClose { get; set; }
-        public int accStatus { get; set; }
-        public string accName { get; set; }
-        public short? accDK { get; set; }
-        public DateTime? dateModify { get; set; }
+        public int AccId { get; set; }
+        public int? BalsCode { get; set; }
+        public int? CustId { get; set; }
+        public int? ObjId { get; set; }
+        public string R030 { get; set; }
+        public string AccNls { get; set; }
+        public DateTime? DateOpen { get; set; }
+        public DateTime? DateClose { get; set; }
+        public int AccStatus { get; set; }
+        public string AccName { get; set; }
+        public short? AccDk { get; set; }
+        public DateTime? DateModify { get; set; }
 
-        public AccountStatus accStatusNavigation { get; set; }
-        public AccountBals balsCodeNavigation { get; set; }
-        public Customer cust { get; set; }
-        public ObjectRight obj { get; set; }
-        public Currency r030Navigation { get; set; }
+        public AccountStatus AccStatusNavigation { get; set; }
+        public AccountBals BalsCodeNavigation { get; set; }
+        public Customer Cust { get; set; }
+        public ObjectRight Obj { get; set; }
+        public Currency R030Navigation { get; set; }
         public ICollection<PayTurn> PayTurn { get; set; }
     }
 }

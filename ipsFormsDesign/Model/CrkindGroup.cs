@@ -4,19 +4,19 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class CRKindGroup : ICRKindGroup
+    public partial class CrkindGroup : ICrkindGroup
     {
-        public CRKindGroup()
+        public CrkindGroup()
         {
-            CRKindGroupTr = new ObservableListSource<CRKindGroupTr>();
             CopyrightKind = new ObservableListSource<CopyrightKind>();
+            CrkindGroupTr = new ObservableListSource<CrkindGroupTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
-        public ObservableListSource<CRKindGroupTr> CRKindGroupTr { get; set; }
         public ObservableListSource<CopyrightKind> CopyrightKind { get; set; }
+        public ObservableListSource<CrkindGroupTr> CrkindGroupTr { get; set; }
     }
 }
 

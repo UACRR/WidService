@@ -14,8 +14,8 @@ namespace ipsmedserviceapp.Model
             RelGenrePercent = new HashSet<RelGenrePercent>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<EtGenreRate> EtGenreRate { get; set; }
         public ICollection<EtGenreRole> EtGenreRole { get; set; }

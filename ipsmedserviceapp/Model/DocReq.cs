@@ -5,9 +5,9 @@ namespace ipsmedserviceapp.Model
 {
     public partial class DocReq
     {
-        public int docId { get; set; }
-        public int reqId { get; set; }
+        public int DocId { get; set; }
+        public int ReqId { get; set; }
 
-        public Request req { get; set; }
+        public Request Req { get; set; }
     }
 }

@@ -4,26 +4,26 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class LicAuthorBR
+    public partial class LicAuthorBr
     {
-        public int cRightId { get; set; }
-        public int? prepayType { get; set; }
-        public DateTime? dateCreate { get; set; }
-        public DateTime? dateClose { get; set; }
-        public DateTime? dateModify { get; set; }
-        public DateTime? dateAccept { get; set; }
-        public decimal? rate { get; set; }
-        public decimal? prepaySum { get; set; }
-        public decimal? prepaySumAuthor { get; set; }
-        public string r030 { get; set; }
-        public DateTime? prepayDateDo { get; set; }
-        public decimal? prepayRest { get; set; }
-        public decimal? prepayUsed { get; set; }
+        public int CRightId { get; set; }
+        public int? PrepayType { get; set; }
+        public DateTime? DateCreate { get; set; }
+        public DateTime? DateClose { get; set; }
+        public DateTime? DateModify { get; set; }
+        public DateTime? DateAccept { get; set; }
+        public decimal? Rate { get; set; }
+        public decimal? PrepaySum { get; set; }
+        public decimal? PrepaySumAuthor { get; set; }
+        public string R030 { get; set; }
+        public DateTime? PrepayDateDo { get; set; }
+        public decimal? PrepayRest { get; set; }
+        public decimal? PrepayUsed { get; set; }
 
         [JsonIgnore]
-        public CopyRight cRight { get; set; }
+        public CopyRight CRight { get; set; }
         [JsonIgnore]
-        public PrePayType prepayTypeNavigation { get; set; }
+        public PrePayType PrepayTypeNavigation { get; set; }
     }
 }
 

@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class ParametersListBox
     {
-        public int repId { get; set; }
-        public int pId { get; set; }
-        public string valuePar { get; set; }
-        public string valueType { get; set; }
-        public string valueName { get; set; }
+        public int RepId { get; set; }
+        public int PId { get; set; }
+        public string ValuePar { get; set; }
+        public string ValueType { get; set; }
+        public string ValueName { get; set; }
     }
 }

@@ -10,15 +10,15 @@ namespace ipsmedserviceapp.Model
             EpisodeTypeTr = new HashSet<EpisodeTypeTr>();
             RelMovieEpisode = new HashSet<RelMovieEpisode>();
             RelSerialEpisode = new HashSet<RelSerialEpisode>();
-            RelTVEpisode = new HashSet<RelTVEpisode>();
+            RelTvepisode = new HashSet<RelTvepisode>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<EpisodeTypeTr> EpisodeTypeTr { get; set; }
         public ICollection<RelMovieEpisode> RelMovieEpisode { get; set; }
         public ICollection<RelSerialEpisode> RelSerialEpisode { get; set; }
-        public ICollection<RelTVEpisode> RelTVEpisode { get; set; }
+        public ICollection<RelTvepisode> RelTvepisode { get; set; }
     }
 }

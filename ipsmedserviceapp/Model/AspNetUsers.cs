@@ -7,7 +7,7 @@ namespace ipsmedserviceapp.Model
     {
         public AspNetUsers()
         {
-            AgreementAddRH = new HashSet<AgreementAddRH>();
+            AgreementAddRh = new HashSet<AgreementAddRh>();
             AspNetUserClaims = new HashSet<AspNetUserClaims>();
             AspNetUserLogins = new HashSet<AspNetUserLogins>();
             AspNetUserRoles = new HashSet<AspNetUserRoles>();
@@ -16,29 +16,29 @@ namespace ipsmedserviceapp.Model
             Fixation = new HashSet<Fixation>();
             Register = new HashSet<Register>();
             Request = new HashSet<Request>();
-            userRole = new HashSet<userRole>();
+            UserRole = new HashSet<UserRole>();
         }
 
-        public string id { get; set; }
-        public int accessFailedCount { get; set; }
-        public string concurrencyStamp { get; set; }
-        public string email { get; set; }
-        public bool emailConfirmed { get; set; }
-        public string firstName { get; set; }
-        public string lastName { get; set; }
-        public bool lockoutEnabled { get; set; }
-        public DateTimeOffset? lockoutEnd { get; set; }
-        public string normalizedEmail { get; set; }
-        public string normalizedUserName { get; set; }
-        public string passwordHash { get; set; }
-        public string phoneNumber { get; set; }
-        public bool phoneNumberConfirmed { get; set; }
-        public string securityStamp { get; set; }
-        public string surName { get; set; }
-        public bool twoFactorEnabled { get; set; }
-        public string userName { get; set; }
+        public string Id { get; set; }
+        public int AccessFailedCount { get; set; }
+        public string ConcurrencyStamp { get; set; }
+        public string Email { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public DateTimeOffset? LockoutEnd { get; set; }
+        public string NormalizedEmail { get; set; }
+        public string NormalizedUserName { get; set; }
+        public string PasswordHash { get; set; }
+        public string PhoneNumber { get; set; }
+        public bool PhoneNumberConfirmed { get; set; }
+        public string SecurityStamp { get; set; }
+        public string SurName { get; set; }
+        public bool TwoFactorEnabled { get; set; }
+        public string UserName { get; set; }
 
-        public ICollection<AgreementAddRH> AgreementAddRH { get; set; }
+        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
         public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
@@ -47,6 +47,6 @@ namespace ipsmedserviceapp.Model
         public ICollection<Fixation> Fixation { get; set; }
         public ICollection<Register> Register { get; set; }
         public ICollection<Request> Request { get; set; }
-        public ICollection<userRole> userRole { get; set; }
+        public ICollection<UserRole> UserRole { get; set; }
     }
 }

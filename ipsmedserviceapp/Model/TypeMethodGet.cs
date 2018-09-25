@@ -7,14 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public TypeMethodGet()
         {
-            AgreementAddRH = new HashSet<AgreementAddRH>();
+            AgreementAddRh = new HashSet<AgreementAddRh>();
             TypeMethodGetTr = new HashSet<TypeMethodGetTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
-        public ICollection<AgreementAddRH> AgreementAddRH { get; set; }
+        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         public ICollection<TypeMethodGetTr> TypeMethodGetTr { get; set; }
     }
 }

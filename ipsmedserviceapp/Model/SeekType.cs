@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             SeekTypeTr = new HashSet<SeekTypeTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<SeekObject> SeekObject { get; set; }
         public ICollection<SeekTypeTr> SeekTypeTr { get; set; }

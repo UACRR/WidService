@@ -5,12 +5,12 @@ namespace ipsmedserviceapp.Model
 {
     public partial class ClnPlaceHoll
     {
-        public int hollId { get; set; }
-        public int? placeId { get; set; }
-        public string hollName { get; set; }
-        public string valuePlace { get; set; }
-        public string valueAdd { get; set; }
+        public int HollId { get; set; }
+        public int? PlaceId { get; set; }
+        public string HollName { get; set; }
+        public string ValuePlace { get; set; }
+        public string ValueAdd { get; set; }
 
-        public ClnBusinessPlace place { get; set; }
+        public ClnBusinessPlace Place { get; set; }
     }
 }

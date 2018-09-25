@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             LangTr = new ObservableListSource<LangTr>();
         }
 
-        public string codeS { get; set; }
-        public string name { get; set; }
+        public string CodeS { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
         public ObservableListSource<LangTr> LangTr { get; set; }

@@ -10,28 +10,28 @@ namespace ipsmedserviceapp.Model
             License = new HashSet<License>();
         }
 
-        public int licId { get; set; }
-        public int licVersion { get; set; }
-        public string licNum { get; set; }
-        public DateTime? licDate { get; set; }
-        public DateTime? dateBegin { get; set; }
-        public DateTime? dateEnd { get; set; }
-        public decimal? minAmount { get; set; }
-        public decimal? rateAmount { get; set; }
-        public bool? isAutoprolog { get; set; }
-        public decimal? addRate { get; set; }
-        public decimal? indxInfl { get; set; }
-        public int? periodCode { get; set; }
-        public int? dayForPay { get; set; }
-        public int? licStatus { get; set; }
-        public DateTime? modifyDate { get; set; }
-        public string modifyLogin { get; set; }
-        public int? ankVersion { get; set; }
-        public string comment { get; set; }
+        public int LicId { get; set; }
+        public int LicVersion { get; set; }
+        public string LicNum { get; set; }
+        public DateTime? LicDate { get; set; }
+        public DateTime? DateBegin { get; set; }
+        public DateTime? DateEnd { get; set; }
+        public decimal? MinAmount { get; set; }
+        public decimal? RateAmount { get; set; }
+        public bool? IsAutoprolog { get; set; }
+        public decimal? AddRate { get; set; }
+        public decimal? IndxInfl { get; set; }
+        public int? PeriodCode { get; set; }
+        public int? DayForPay { get; set; }
+        public int? LicStatus { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
+        public int? AnkVersion { get; set; }
+        public string Comment { get; set; }
 
-        public LicenseAgreement lic { get; set; }
-        public AgreementStatus licStatusNavigation { get; set; }
-        public Period periodCodeNavigation { get; set; }
+        public LicenseAgreement Lic { get; set; }
+        public AgreementStatus LicStatusNavigation { get; set; }
+        public Period PeriodCodeNavigation { get; set; }
         public ICollection<License> License { get; set; }
     }
 }

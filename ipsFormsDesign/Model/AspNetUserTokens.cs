@@ -6,10 +6,10 @@ namespace ipsFormsDesign.Model
 {
     public partial class AspNetUserTokens : IAspNetUserTokens
     {
-        public string userId { get; set; }
-        public string loginProvider { get; set; }
-        public string name { get; set; }
-        public string value { get; set; }
+        public string UserId { get; set; }
+        public string LoginProvider { get; set; }
+        public string Name { get; set; }
+        public string Value { get; set; }
     }
 }
 

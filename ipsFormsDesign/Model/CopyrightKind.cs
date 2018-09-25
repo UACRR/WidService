@@ -12,22 +12,22 @@ namespace ipsFormsDesign.Model
             CopyrightKindTr = new ObservableListSource<CopyrightKindTr>();
             Distribution = new ObservableListSource<Distribution>();
             RegisterCount = new ObservableListSource<RegisterCount>();
+            RelLicCopyR = new ObservableListSource<RelLicCopyR>();
             TermsOfService = new ObservableListSource<TermsOfService>();
-            relLicCopyR = new ObservableListSource<relLicCopyR>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
-        public int? crGroupCode { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+        public int? CrGroupCode { get; set; }
 
-        public CRKindGroup crGroupCodeNavigation { get; set; }
+        public CrkindGroup CrGroupCodeNavigation { get; set; }
         public PortalSupportRights PortalSupportRights { get; set; }
         public ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
         public ObservableListSource<CopyrightKindTr> CopyrightKindTr { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
         public ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public ObservableListSource<RelLicCopyR> RelLicCopyR { get; set; }
         public ObservableListSource<TermsOfService> TermsOfService { get; set; }
-        public ObservableListSource<relLicCopyR> relLicCopyR { get; set; }
     }
 }
 

@@ -11,9 +11,9 @@ namespace ipsmedserviceapp.Model
             RegisterCount = new HashSet<RegisterCount>();
         }
 
-        public int custId { get; set; }
+        public int CustId { get; set; }
 
-        public Customer cust { get; set; }
+        public Customer Cust { get; set; }
         public ICollection<CustCmRight> CustCmRight { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
     }

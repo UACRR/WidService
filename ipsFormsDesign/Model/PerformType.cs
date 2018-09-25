@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             PerformTypeTr = new ObservableListSource<PerformTypeTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
         public ObservableListSource<PerformTypeTr> PerformTypeTr { get; set; }

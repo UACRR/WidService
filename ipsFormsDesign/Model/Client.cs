@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public Client()
         {
-            AgreementAddBR = new ObservableListSource<AgreementAddBR>();
+            AgreementAddBr = new ObservableListSource<AgreementAddBr>();
             BrRegister = new ObservableListSource<BrRegister>();
             ClnBusinessPlace = new ObservableListSource<ClnBusinessPlace>();
             Distribution = new ObservableListSource<Distribution>();
@@ -20,12 +20,12 @@ namespace ipsFormsDesign.Model
             Register = new ObservableListSource<Register>();
         }
 
-        public int custId { get; set; }
-        public string clientBrand { get; set; }
-        public string clientGroup { get; set; }
+        public int CustId { get; set; }
+        public string ClientBrand { get; set; }
+        public string ClientGroup { get; set; }
 
-        public Customer cust { get; set; }
-        public ObservableListSource<AgreementAddBR> AgreementAddBR { get; set; }
+        public Customer Cust { get; set; }
+        public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
         public ObservableListSource<BrRegister> BrRegister { get; set; }
         public ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }

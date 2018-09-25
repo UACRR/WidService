@@ -6,8 +6,8 @@ namespace ipsmedserviceapp.Model
     public partial class PopGenreTr
     {
         public int Id { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
         public PopGenre IdNavigation { get; set; }
     }

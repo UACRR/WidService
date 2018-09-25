@@ -11,18 +11,18 @@ namespace ipsFormsDesign.Model
             Request = new ObservableListSource<Request>();
         }
 
-        public int reqCustId { get; set; }
-        public int? custId { get; set; }
-        public string name { get; set; }
-        public string countryCode { get; set; }
-        public string okpo { get; set; }
-        public string nickName { get; set; }
-        public int? activityCode { get; set; }
-        public string comment { get; set; }
+        public int ReqCustId { get; set; }
+        public int? CustId { get; set; }
+        public string Name { get; set; }
+        public string CountryCode { get; set; }
+        public string Okpo { get; set; }
+        public string NickName { get; set; }
+        public int? ActivityCode { get; set; }
+        public string Comment { get; set; }
 
-        public ActivityType activityCodeNavigation { get; set; }
-        public Country countryCodeNavigation { get; set; }
-        public Customer cust { get; set; }
+        public ActivityType ActivityCodeNavigation { get; set; }
+        public Country CountryCodeNavigation { get; set; }
+        public Customer Cust { get; set; }
         public ObservableListSource<Request> Request { get; set; }
     }
 }

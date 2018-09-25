@@ -6,12 +6,12 @@ namespace ipsFormsDesign.Model
 {
     public partial class RelReqObj : IRelReqObj
     {
-        public int categoryCode { get; set; }
-        public int reqType { get; set; }
-        public int kindGroupId { get; set; }
-        public int? CRKindCode { get; set; }
+        public int CategoryCode { get; set; }
+        public int ReqType { get; set; }
+        public int KindGroupId { get; set; }
+        public int? CrkindCode { get; set; }
 
-        public RequestType reqTypeNavigation { get; set; }
+        public RequestType ReqTypeNavigation { get; set; }
     }
 }
 

@@ -11,35 +11,35 @@ namespace ipsmedserviceapp.Model
             DistributionItem = new HashSet<DistributionItem>();
         }
 
-        public int distId { get; set; }
-        public int? regId { get; set; }
-        public int? rmId { get; set; }
-        public int cRKindCode { get; set; }
-        public int status { get; set; }
-        public DateTime distribDate { get; set; }
-        public decimal amount { get; set; }
-        public decimal partnerCommiss { get; set; }
-        public decimal courtFee { get; set; }
-        public int? partnerId { get; set; }
-        public bool? isCourt { get; set; }
-        public int? regIdBr { get; set; }
-        public int? distType { get; set; }
-        public int custId { get; set; }
+        public int DistId { get; set; }
+        public int? RegId { get; set; }
+        public int? RmId { get; set; }
+        public int CRkindCode { get; set; }
+        public int Status { get; set; }
+        public DateTime DistribDate { get; set; }
+        public decimal Amount { get; set; }
+        public decimal PartnerCommiss { get; set; }
+        public decimal CourtFee { get; set; }
+        public int? PartnerId { get; set; }
+        public bool? IsCourt { get; set; }
+        public int? RegIdBr { get; set; }
+        public int? DistType { get; set; }
+        public int CustId { get; set; }
 
         [JsonIgnore]
-        public CopyrightKind cRKindCodeNavigation { get; set; }
+        public CopyrightKind CRkindCodeNavigation { get; set; }
         [JsonIgnore]
-        public Client cust { get; set; }
+        public Client Cust { get; set; }
         [JsonIgnore]
-        public Partner partner { get; set; }
+        public Partner Partner { get; set; }
         [JsonIgnore]
-        public Register reg { get; set; }
+        public Register Reg { get; set; }
         [JsonIgnore]
-        public BrRegister regIdBrNavigation { get; set; }
+        public BrRegister RegIdBrNavigation { get; set; }
         [JsonIgnore]
-        public RegisterRatedList rm { get; set; }
+        public RegisterRatedList Rm { get; set; }
         [JsonIgnore]
-        public DistribStatus statusNavigation { get; set; }
+        public DistribStatus StatusNavigation { get; set; }
         public ICollection<DistributionItem> DistributionItem { get; set; }
     }
 }

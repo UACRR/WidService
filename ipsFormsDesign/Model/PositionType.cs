@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             RelEmployee = new ObservableListSource<RelEmployee>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<PositionTypeTr> PositionTypeTr { get; set; }
         public ObservableListSource<RelEmployee> RelEmployee { get; set; }

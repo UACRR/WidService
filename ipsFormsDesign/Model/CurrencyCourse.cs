@@ -6,13 +6,13 @@ namespace ipsFormsDesign.Model
 {
     public partial class CurrencyCourse : ICurrencyCourse
     {
-        public string r030 { get; set; }
-        public DateTime cDate { get; set; }
-        public int? cUnit { get; set; }
-        public decimal? cAmount { get; set; }
-        public decimal? cAmountNBU { get; set; }
+        public string R030 { get; set; }
+        public DateTime CDate { get; set; }
+        public int? CUnit { get; set; }
+        public decimal? CAmount { get; set; }
+        public decimal? CAmountNbu { get; set; }
 
-        public KL_R030 r030Navigation { get; set; }
+        public KlR030 R030Navigation { get; set; }
     }
 }
 

@@ -11,8 +11,8 @@ namespace ipsFormsDesign.Model
             PermitTypeTr = new ObservableListSource<PermitTypeTr>();
         }
 
-        public bool codeB { get; set; }
-        public string name { get; set; }
+        public bool CodeB { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<PermitTypeTr> PermitTypeTr { get; set; }
     }

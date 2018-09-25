@@ -4,14 +4,14 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class RelTVEpisode : IRelTVEpisode
+    public partial class RelTvepisode : IRelTvepisode
     {
-        public int reqId { get; set; }
-        public int episodeTypeCode { get; set; }
-        public double? epDuration { get; set; }
+        public int ReqId { get; set; }
+        public int EpisodeTypeCode { get; set; }
+        public double? EpDuration { get; set; }
 
-        public EpisodeType episodeTypeCodeNavigation { get; set; }
-        public RequestTVRadio req { get; set; }
+        public EpisodeType EpisodeTypeCodeNavigation { get; set; }
+        public RequestTvradio Req { get; set; }
     }
 }
 

@@ -13,28 +13,28 @@ namespace ipsmedserviceapp.Model
             RegisterRatedList = new HashSet<RegisterRatedList>();
         }
 
-        public int periodId { get; set; }
-        public int custId { get; set; }
-        public int periodType { get; set; }
-        public int licId { get; set; }
-        public DateTime beginDate { get; set; }
-        public DateTime endDate { get; set; }
-        public int status { get; set; }
-        public decimal amount { get; set; }
-        public decimal undistribamount { get; set; }
-        public decimal distribamount { get; set; }
-        public string periodName { get; set; }
-        public bool? fagFirst { get; set; }
-        public DateTime? dateActPrint { get; set; }
+        public int PeriodId { get; set; }
+        public int CustId { get; set; }
+        public int PeriodType { get; set; }
+        public int LicId { get; set; }
+        public DateTime BeginDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int Status { get; set; }
+        public decimal Amount { get; set; }
+        public decimal Undistribamount { get; set; }
+        public decimal Distribamount { get; set; }
+        public string PeriodName { get; set; }
+        public bool? FagFirst { get; set; }
+        public DateTime? DateActPrint { get; set; }
 
         [JsonIgnore]
-        public Client cust { get; set; }
+        public Client Cust { get; set; }
         [JsonIgnore]
-        public LicenseAgreement lic { get; set; }
+        public LicenseAgreement Lic { get; set; }
         [JsonIgnore]
-        public Period periodTypeNavigation { get; set; }
+        public Period PeriodTypeNavigation { get; set; }
         [JsonIgnore]
-        public PeriodStatus statusNavigation { get; set; }
+        public PeriodStatus StatusNavigation { get; set; }
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ICollection<RegisterRatedList> RegisterRatedList { get; set; }

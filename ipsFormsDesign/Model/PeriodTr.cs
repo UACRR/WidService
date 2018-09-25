@@ -6,12 +6,12 @@ namespace ipsFormsDesign.Model
 {
     public partial class PeriodTr : IPeriodTr
     {
-        public int codeI { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
-        public string nameR { get; set; }
+        public int CodeI { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
+        public string NameR { get; set; }
 
-        public Period codeINavigation { get; set; }
+        public Period CodeINavigation { get; set; }
     }
 }
 

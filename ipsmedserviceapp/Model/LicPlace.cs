@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class licPlace
+    public partial class LicPlace
     {
-        public int licId { get; set; }
-        public int placeId { get; set; }
+        public int LicId { get; set; }
+        public int PlaceId { get; set; }
 
-        public LicenseAgreement lic { get; set; }
-        public ClnBusinessPlace place { get; set; }
+        public LicenseAgreement Lic { get; set; }
+        public ClnBusinessPlace Place { get; set; }
     }
 }

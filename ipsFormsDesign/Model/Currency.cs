@@ -11,17 +11,17 @@ namespace ipsFormsDesign.Model
             Account = new ObservableListSource<Account>();
         }
 
-        public string r030 { get; set; }
-        public string a3 { get; set; }
-        public string countryCode { get; set; }
-        public string r030NameEn { get; set; }
-        public string r030NameRu { get; set; }
-        public string r030NameUk { get; set; }
-        public int? nOMIN { get; set; }
-        public string nAIM { get; set; }
-        public short? prWork { get; set; }
-        public short? prNC { get; set; }
-        public int? orderBy { get; set; }
+        public string R030 { get; set; }
+        public string A3 { get; set; }
+        public string CountryCode { get; set; }
+        public string R030NameEn { get; set; }
+        public string R030NameRu { get; set; }
+        public string R030NameUk { get; set; }
+        public int? NOmin { get; set; }
+        public string NAim { get; set; }
+        public short? PrWork { get; set; }
+        public short? PrNc { get; set; }
+        public int? OrderBy { get; set; }
 
         public ObservableListSource<Account> Account { get; set; }
     }

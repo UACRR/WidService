@@ -11,22 +11,22 @@ namespace ipsmedserviceapp.Model
             AnketaPerson = new HashSet<AnketaPerson>();
         }
 
-        public int banAccID { get; set; }
-        public int? custId { get; set; }
-        public string accountNumber { get; set; }
-        public string currency { get; set; }
-        public string transitNumber { get; set; }
-        public int? mfo { get; set; }
-        public string mfoName { get; set; }
-        public string mfoOkpo { get; set; }
-        public string pIndex { get; set; }
-        public string pAddress { get; set; }
-        public string pCity { get; set; }
-        public string pCountry { get; set; }
-        public int? pRegion { get; set; }
+        public int BanAccId { get; set; }
+        public int? CustId { get; set; }
+        public string AccountNumber { get; set; }
+        public string Currency { get; set; }
+        public string TransitNumber { get; set; }
+        public int? Mfo { get; set; }
+        public string MfoName { get; set; }
+        public string MfoOkpo { get; set; }
+        public string PIndex { get; set; }
+        public string PAddress { get; set; }
+        public string PCity { get; set; }
+        public string PCountry { get; set; }
+        public int? PRegion { get; set; }
 
-        public KL_R030 currencyNavigation { get; set; }
-        public Customer cust { get; set; }
+        public KlR030 CurrencyNavigation { get; set; }
+        public Customer Cust { get; set; }
         public ICollection<AnketaCompany> AnketaCompany { get; set; }
         public ICollection<AnketaPerson> AnketaPerson { get; set; }
     }

@@ -5,22 +5,22 @@ namespace ipsmedserviceapp.Model
 {
     public partial class ReqTrade
     {
-        public int tradeId { get; set; }
-        public int reqId { get; set; }
-        public string r030 { get; set; }
-        public decimal? costRHolder { get; set; }
-        public DateTime? createDate { get; set; }
-        public int rAgrId { get; set; }
-        public int status { get; set; }
-        public DateTime? statusDate { get; set; }
-        public DateTime? modifyDate { get; set; }
-        public decimal? costClient { get; set; }
-        public string tradeComment { get; set; }
-        public int? causeCode { get; set; }
+        public int TradeId { get; set; }
+        public int ReqId { get; set; }
+        public string R030 { get; set; }
+        public decimal? CostRholder { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public int RAgrId { get; set; }
+        public int Status { get; set; }
+        public DateTime? StatusDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public decimal? CostClient { get; set; }
+        public string TradeComment { get; set; }
+        public int? CauseCode { get; set; }
 
-        public CommentCause causeCodeNavigation { get; set; }
-        public ReqAgreement rAgr { get; set; }
-        public Request req { get; set; }
-        public TradeStatus statusNavigation { get; set; }
+        public CommentCause CauseCodeNavigation { get; set; }
+        public ReqAgreement RAgr { get; set; }
+        public Request Req { get; set; }
+        public TradeStatus StatusNavigation { get; set; }
     }
 }

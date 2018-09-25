@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             CustomerTypeTr = new ObservableListSource<CustomerTypeTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<Customer> Customer { get; set; }
         public ObservableListSource<CustomerTypeTr> CustomerTypeTr { get; set; }

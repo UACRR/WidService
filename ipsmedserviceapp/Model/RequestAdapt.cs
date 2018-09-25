@@ -11,19 +11,19 @@ namespace ipsmedserviceapp.Model
             RelGenreAdapt = new HashSet<RelGenreAdapt>();
         }
 
-        public int reqId { get; set; }
-        public string execNick { get; set; }
-        public int? modifyType { get; set; }
-        public int? modifyTextType { get; set; }
-        public string modifyTextComment { get; set; }
-        public int? modifyMusicType { get; set; }
-        public string modifyMusictComment { get; set; }
-        public string useAreaComment { get; set; }
+        public int ReqId { get; set; }
+        public string ExecNick { get; set; }
+        public int? ModifyType { get; set; }
+        public int? ModifyTextType { get; set; }
+        public string ModifyTextComment { get; set; }
+        public int? ModifyMusicType { get; set; }
+        public string ModifyMusictComment { get; set; }
+        public string UseAreaComment { get; set; }
 
-        public ModifyMusicType modifyMusicTypeNavigation { get; set; }
-        public ModifyTextType modifyTextTypeNavigation { get; set; }
-        public ModifyType modifyTypeNavigation { get; set; }
-        public Request req { get; set; }
+        public ModifyMusicType ModifyMusicTypeNavigation { get; set; }
+        public ModifyTextType ModifyTextTypeNavigation { get; set; }
+        public ModifyType ModifyTypeNavigation { get; set; }
+        public Request Req { get; set; }
         public ICollection<RelAdaptUseArea> RelAdaptUseArea { get; set; }
         public ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
     }

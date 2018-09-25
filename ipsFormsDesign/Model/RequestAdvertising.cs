@@ -6,12 +6,12 @@ namespace ipsFormsDesign.Model
 {
     public partial class RequestAdvertising : IRequestAdvertising
     {
-        public int reqId { get; set; }
-        public string tradeMark { get; set; }
-        public TimeSpan? durationAll { get; set; }
-        public TimeSpan? durationShort { get; set; }
+        public int ReqId { get; set; }
+        public string TradeMark { get; set; }
+        public TimeSpan? DurationAll { get; set; }
+        public TimeSpan? DurationShort { get; set; }
 
-        public Request req { get; set; }
+        public Request Req { get; set; }
     }
 }
 

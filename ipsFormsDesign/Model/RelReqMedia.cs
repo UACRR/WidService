@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class RelReqMedia : IRelReqMedia
     {
-        public int useMediaTypeCode { get; set; }
-        public int reqId { get; set; }
+        public int UseMediaTypeCode { get; set; }
+        public int ReqId { get; set; }
 
-        public Request req { get; set; }
-        public UseMediaType useMediaTypeCodeNavigation { get; set; }
+        public Request Req { get; set; }
+        public UseMediaType UseMediaTypeCodeNavigation { get; set; }
     }
 }
 

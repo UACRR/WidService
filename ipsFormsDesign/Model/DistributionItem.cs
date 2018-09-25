@@ -6,18 +6,18 @@ namespace ipsFormsDesign.Model
 {
     public partial class DistributionItem : IDistributionItem
     {
-        public int distId { get; set; }
-        public int? regId { get; set; }
-        public int? regIItemId { get; set; }
-        public decimal? amount { get; set; }
-        public int? status { get; set; }
-        public int? regIdBr { get; set; }
-        public int? regItemIdBr { get; set; }
-        public int distItemId { get; set; }
-        public int? objId { get; set; }
+        public int DistId { get; set; }
+        public int? RegId { get; set; }
+        public int? RegIitemId { get; set; }
+        public decimal? Amount { get; set; }
+        public int? Status { get; set; }
+        public int? RegIdBr { get; set; }
+        public int? RegItemIdBr { get; set; }
+        public int DistItemId { get; set; }
+        public int? ObjId { get; set; }
 
-        public Distribution dist { get; set; }
-        public ObjectRight obj { get; set; }
+        public Distribution Dist { get; set; }
+        public ObjectRight Obj { get; set; }
     }
 }
 

@@ -12,9 +12,9 @@ namespace ipsFormsDesign.Model
             RegisterCount = new ObservableListSource<RegisterCount>();
         }
 
-        public int custId { get; set; }
+        public int CustId { get; set; }
 
-        public Customer cust { get; set; }
+        public Customer Cust { get; set; }
         public ObservableListSource<CustCmRight> CustCmRight { get; set; }
         public ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }

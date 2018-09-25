@@ -11,29 +11,29 @@ namespace ipsmedserviceapp.Model
             MusicalDesign = new HashSet<MusicalDesign>();
         }
 
-        public int licId { get; set; }
-        public DateTime? datePremiere { get; set; }
-        public int? objId { get; set; }
-        public decimal? fillingRate { get; set; }
-        public int? performNumb { get; set; }
-        public decimal? ticketPriceNC { get; set; }
-        public decimal? ticketPriceUSD { get; set; }
-        public bool? isTour { get; set; }
-        public string whereTour { get; set; }
-        public decimal? rate { get; set; }
-        public decimal? prepayRest { get; set; }
-        public string langCode { get; set; }
-        public int? performType { get; set; }
-        public short? licTerm { get; set; }
-        public decimal? rateMusic { get; set; }
+        public int LicId { get; set; }
+        public DateTime? DatePremiere { get; set; }
+        public int? ObjId { get; set; }
+        public decimal? FillingRate { get; set; }
+        public int? PerformNumb { get; set; }
+        public decimal? TicketPriceNc { get; set; }
+        public decimal? TicketPriceUsd { get; set; }
+        public bool? IsTour { get; set; }
+        public string WhereTour { get; set; }
+        public decimal? Rate { get; set; }
+        public decimal? PrepayRest { get; set; }
+        public string LangCode { get; set; }
+        public int? PerformType { get; set; }
+        public short? LicTerm { get; set; }
+        public decimal? RateMusic { get; set; }
 
         [JsonIgnore]
-        public Language langCodeNavigation { get; set; }
+        public Language LangCodeNavigation { get; set; }
         [JsonIgnore]
-        public LicenseAgreement lic { get; set; }
-        public ObjectRight obj { get; set; }
+        public LicenseAgreement Lic { get; set; }
+        public ObjectRight Obj { get; set; }
         [JsonIgnore]
-        public PerformType performTypeNavigation { get; set; }
+        public PerformType PerformTypeNavigation { get; set; }
         public ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }

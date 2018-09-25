@@ -14,9 +14,9 @@ namespace ipsFormsDesign.Model
             PartnerClient = new ObservableListSource<PartnerClient>();
         }
 
-        public int custId { get; set; }
+        public int CustId { get; set; }
 
-        public Customer cust { get; set; }
+        public Customer Cust { get; set; }
         public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
         public ObservableListSource<Fixation> Fixation { get; set; }

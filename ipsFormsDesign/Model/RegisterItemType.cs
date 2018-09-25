@@ -11,8 +11,8 @@ namespace ipsFormsDesign.Model
             RegisterItem = new ObservableListSource<RegisterItem>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<RegisterItem> RegisterItem { get; set; }
     }

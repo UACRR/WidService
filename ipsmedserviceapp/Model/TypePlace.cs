@@ -12,13 +12,13 @@ namespace ipsmedserviceapp.Model
             TypePlaceTr = new HashSet<TypePlaceTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
-        public bool? isHoll { get; set; }
-        public int? paramType { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
+        public bool? IsHoll { get; set; }
+        public int? ParamType { get; set; }
 
         [JsonIgnore]
-        public TypePlaceParam paramTypeNavigation { get; set; }
+        public TypePlaceParam ParamTypeNavigation { get; set; }
         [JsonIgnore]
         public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         [JsonIgnore]

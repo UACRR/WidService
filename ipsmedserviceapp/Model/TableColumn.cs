@@ -5,11 +5,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class TableColumn
     {
-        public decimal id { get; set; }
-        public string lang { get; set; }
-        public string cName { get; set; }
-        public string tName { get; set; }
-        public string dText { get; set; }
-        public string hText { get; set; }
+        public decimal Id { get; set; }
+        public string Lang { get; set; }
+        public string CName { get; set; }
+        public string TName { get; set; }
+        public string DText { get; set; }
+        public string HText { get; set; }
     }
 }

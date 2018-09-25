@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class LangTr
     {
-        public string codeS { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public string CodeS { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public Lang codeSNavigation { get; set; }
+        public Lang CodeSNavigation { get; set; }
     }
 }

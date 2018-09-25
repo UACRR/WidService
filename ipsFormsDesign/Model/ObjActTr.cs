@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class ObjActTr : IObjActTr
     {
-        public int codeI { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public ObjAct codeINavigation { get; set; }
+        public ObjAct CodeINavigation { get; set; }
     }
 }
 

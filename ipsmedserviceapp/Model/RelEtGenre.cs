@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
-    public partial class relEtGenre
+    public partial class RelEtGenre
     {
-        public int genreCode { get; set; }
-        public int etGenreCode { get; set; }
+        public int GenreCode { get; set; }
+        public int EtGenreCode { get; set; }
 
-        public EtGenre etGenreCodeNavigation { get; set; }
-        public GenreType genreCodeNavigation { get; set; }
+        public EtGenre EtGenreCodeNavigation { get; set; }
+        public GenreType GenreCodeNavigation { get; set; }
     }
 }

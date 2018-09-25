@@ -6,14 +6,14 @@ namespace ipsFormsDesign.Model
 {
     public partial class MediaFile : IMediaFile
     {
-        public int mediaFileId { get; set; }
-        public string fileType { get; set; }
-        public string path { get; set; }
-        public double? compress { get; set; }
-        public double? playTime { get; set; }
-        public int? objId { get; set; }
+        public int MediaFileId { get; set; }
+        public string FileType { get; set; }
+        public string Path { get; set; }
+        public double? Compress { get; set; }
+        public double? PlayTime { get; set; }
+        public int? ObjId { get; set; }
 
-        public MediaTrack obj { get; set; }
+        public MediaTrack Obj { get; set; }
     }
 }
 

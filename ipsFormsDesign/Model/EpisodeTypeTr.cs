@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class EpisodeTypeTr : IEpisodeTypeTr
     {
-        public int codeI { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public EpisodeType codeINavigation { get; set; }
+        public EpisodeType CodeINavigation { get; set; }
     }
 }
 

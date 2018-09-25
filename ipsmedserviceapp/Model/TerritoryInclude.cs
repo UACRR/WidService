@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class TerritoryInclude
     {
-        public int custId { get; set; }
-        public string countryCode { get; set; }
+        public int CustId { get; set; }
+        public string CountryCode { get; set; }
 
-        public Country countryCodeNavigation { get; set; }
-        public RightHolder cust { get; set; }
+        public Country CountryCodeNavigation { get; set; }
+        public RightHolder Cust { get; set; }
     }
 }

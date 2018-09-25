@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
             RegisterItem = new HashSet<RegisterItem>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<RegisterItem> RegisterItem { get; set; }
     }

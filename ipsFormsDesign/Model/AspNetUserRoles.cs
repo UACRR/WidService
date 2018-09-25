@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class AspNetUserRoles : IAspNetUserRoles
     {
-        public string userId { get; set; }
-        public string roleId { get; set; }
+        public string UserId { get; set; }
+        public string RoleId { get; set; }
 
-        public AspNetRoles role { get; set; }
-        public AspNetUsers user { get; set; }
+        public AspNetRoles Role { get; set; }
+        public AspNetUsers User { get; set; }
     }
 }
 

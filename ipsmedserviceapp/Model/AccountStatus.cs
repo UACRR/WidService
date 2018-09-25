@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             AccountStatusTr = new HashSet<AccountStatusTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<Account> Account { get; set; }
         public ICollection<AccountStatusTr> AccountStatusTr { get; set; }

@@ -10,29 +10,29 @@ namespace ipsmedserviceapp.Model
             RegisterCount = new HashSet<RegisterCount>();
         }
 
-        public int regItemId { get; set; }
-        public int regId { get; set; }
-        public int? objId { get; set; }
-        public int? licId { get; set; }
+        public int RegItemId { get; set; }
+        public int RegId { get; set; }
+        public int? ObjId { get; set; }
+        public int? LicId { get; set; }
         public string ItemName { get; set; }
-        public int? countUse { get; set; }
-        public int? numTicket { get; set; }
-        public decimal? fullAmount { get; set; }
-        public decimal? fullRate { get; set; }
-        public decimal? rAmount { get; set; }
-        public DateTime? modifyDate { get; set; }
-        public string modifyLogin { get; set; }
-        public int? status { get; set; }
-        public int? regIdSr { get; set; }
-        public decimal? musicRate { get; set; }
-        public decimal? musicAmount { get; set; }
-        public int? categoryCode { get; set; }
+        public int? CountUse { get; set; }
+        public int? NumTicket { get; set; }
+        public decimal? FullAmount { get; set; }
+        public decimal? FullRate { get; set; }
+        public decimal? RAmount { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
+        public int? Status { get; set; }
+        public int? RegIdSr { get; set; }
+        public decimal? MusicRate { get; set; }
+        public decimal? MusicAmount { get; set; }
+        public int? CategoryCode { get; set; }
 
-        public LicenseAgreement lic { get; set; }
-        public ObjectRight obj { get; set; }
-        public BrRegister reg { get; set; }
-        public Register regIdSrNavigation { get; set; }
-        public ItemStatus statusNavigation { get; set; }
+        public LicenseAgreement Lic { get; set; }
+        public ObjectRight Obj { get; set; }
+        public BrRegister Reg { get; set; }
+        public Register RegIdSrNavigation { get; set; }
+        public ItemStatus StatusNavigation { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
     }
 }

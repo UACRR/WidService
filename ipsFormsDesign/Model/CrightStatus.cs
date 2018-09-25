@@ -4,19 +4,19 @@ using System.Collections.Generic;
 
 namespace ipsFormsDesign.Model
 {
-    public partial class CRightStatus : ICRightStatus
+    public partial class CrightStatus : ICrightStatus
     {
-        public CRightStatus()
+        public CrightStatus()
         {
-            CRightStatusTr = new ObservableListSource<CRightStatusTr>();
             CopyRight = new ObservableListSource<CopyRight>();
+            CrightStatusTr = new ObservableListSource<CrightStatusTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
-        public ObservableListSource<CRightStatusTr> CRightStatusTr { get; set; }
         public ObservableListSource<CopyRight> CopyRight { get; set; }
+        public ObservableListSource<CrightStatusTr> CrightStatusTr { get; set; }
     }
 }
 

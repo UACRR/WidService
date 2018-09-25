@@ -15,42 +15,42 @@ namespace ipsFormsDesign.Model
             ReqTrade = new ObservableListSource<ReqTrade>();
         }
 
-        public int reqId { get; set; }
-        public int? categoryCode { get; set; }
-        public int reqType { get; set; }
-        public DateTime? reqDate { get; set; }
-        public int? countUse { get; set; }
-        public DateTime? beginDate { get; set; }
-        public DateTime? endDate { get; set; }
-        public int reqstatus { get; set; }
-        public int? custId { get; set; }
-        public string userId { get; set; }
-        public int reqAimCode { get; set; }
-        public int? objId { get; set; }
-        public int? kindCompCode { get; set; }
-        public int? termUseCode { get; set; }
-        public DateTime? createDate { get; set; }
-        public DateTime? modifyDate { get; set; }
-        public string modifyLogin { get; set; }
-        public int? licCode { get; set; }
-        public int? reqCustId { get; set; }
-        public string reqComment { get; set; }
-        public string r030 { get; set; }
-        public decimal? reqAmount { get; set; }
-        public string workName { get; set; }
-        public TimeSpan? durationUse { get; set; }
+        public int ReqId { get; set; }
+        public int? CategoryCode { get; set; }
+        public int ReqType { get; set; }
+        public DateTime? ReqDate { get; set; }
+        public int? CountUse { get; set; }
+        public DateTime? BeginDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public int Reqstatus { get; set; }
+        public int? CustId { get; set; }
+        public string UserId { get; set; }
+        public int ReqAimCode { get; set; }
+        public int? ObjId { get; set; }
+        public int? KindCompCode { get; set; }
+        public int? TermUseCode { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
+        public string ModifyLogin { get; set; }
+        public int? LicCode { get; set; }
+        public int? ReqCustId { get; set; }
+        public string ReqComment { get; set; }
+        public string R030 { get; set; }
+        public decimal? ReqAmount { get; set; }
+        public string WorkName { get; set; }
+        public TimeSpan? DurationUse { get; set; }
 
-        public Category categoryCodeNavigation { get; set; }
-        public Customer cust { get; set; }
-        public KindComposition kindCompCodeNavigation { get; set; }
-        public LicenseType licCodeNavigation { get; set; }
-        public ObjectRight obj { get; set; }
-        public RequestAim reqAimCodeNavigation { get; set; }
-        public ReqCustomer reqCust { get; set; }
-        public RequestType reqTypeNavigation { get; set; }
-        public RequestStatusType reqstatusNavigation { get; set; }
-        public TermUse termUseCodeNavigation { get; set; }
-        public AspNetUsers user { get; set; }
+        public Category CategoryCodeNavigation { get; set; }
+        public Customer Cust { get; set; }
+        public KindComposition KindCompCodeNavigation { get; set; }
+        public LicenseType LicCodeNavigation { get; set; }
+        public ObjectRight Obj { get; set; }
+        public RequestAim ReqAimCodeNavigation { get; set; }
+        public ReqCustomer ReqCust { get; set; }
+        public RequestType ReqTypeNavigation { get; set; }
+        public RequestStatusType ReqstatusNavigation { get; set; }
+        public TermUse TermUseCodeNavigation { get; set; }
+        public AspNetUsers User { get; set; }
         public PaymentCase PaymentCase { get; set; }
         public RequestAdapt RequestAdapt { get; set; }
         public RequestAdvertising RequestAdvertising { get; set; }
@@ -58,7 +58,7 @@ namespace ipsFormsDesign.Model
         public RequestMovie RequestMovie { get; set; }
         public RequestOther RequestOther { get; set; }
         public RequestSerial RequestSerial { get; set; }
-        public RequestTVRadio RequestTVRadio { get; set; }
+        public RequestTvradio RequestTvradio { get; set; }
         public ObservableListSource<DocReq> DocReq { get; set; }
         public ObservableListSource<RelReqMedia> RelReqMedia { get; set; }
         public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }

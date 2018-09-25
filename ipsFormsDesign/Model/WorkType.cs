@@ -8,16 +8,16 @@ namespace ipsFormsDesign.Model
     {
         public WorkType()
         {
-            WorkRHworkTypeClNavigation = new ObservableListSource<WorkRH>();
-            WorkRHworkTypeRHNavigation = new ObservableListSource<WorkRH>();
+            WorkRhWorkTypeClNavigation = new ObservableListSource<WorkRh>();
+            WorkRhWorkTypeRhNavigation = new ObservableListSource<WorkRh>();
             WorkTypeTr = new ObservableListSource<WorkTypeTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
-        public ObservableListSource<WorkRH> WorkRHworkTypeClNavigation { get; set; }
-        public ObservableListSource<WorkRH> WorkRHworkTypeRHNavigation { get; set; }
+        public ObservableListSource<WorkRh> WorkRhWorkTypeClNavigation { get; set; }
+        public ObservableListSource<WorkRh> WorkRhWorkTypeRhNavigation { get; set; }
         public ObservableListSource<WorkTypeTr> WorkTypeTr { get; set; }
     }
 }

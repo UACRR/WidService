@@ -8,19 +8,19 @@ namespace ipsmedserviceapp.Model
         public GenreType()
         {
             GenreTypeTr = new HashSet<GenreTypeTr>();
+            RelEtGenre = new HashSet<RelEtGenre>();
             RelGenrePercent = new HashSet<RelGenrePercent>();
-            relEtGenre = new HashSet<relEtGenre>();
-            relGenreRole = new HashSet<relGenreRole>();
+            RelGenreRole = new HashSet<RelGenreRole>();
         }
 
-        public int codeI { get; set; }
-        public int categoryCode { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public int CategoryCode { get; set; }
+        public string Name { get; set; }
 
-        public Category categoryCodeNavigation { get; set; }
+        public Category CategoryCodeNavigation { get; set; }
         public ICollection<GenreTypeTr> GenreTypeTr { get; set; }
+        public ICollection<RelEtGenre> RelEtGenre { get; set; }
         public ICollection<RelGenrePercent> RelGenrePercent { get; set; }
-        public ICollection<relEtGenre> relEtGenre { get; set; }
-        public ICollection<relGenreRole> relGenreRole { get; set; }
+        public ICollection<RelGenreRole> RelGenreRole { get; set; }
     }
 }

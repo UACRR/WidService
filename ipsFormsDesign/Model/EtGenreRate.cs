@@ -6,12 +6,12 @@ namespace ipsFormsDesign.Model
 {
     public partial class EtGenreRate : IEtGenreRate
     {
-        public int actCode { get; set; }
-        public int genreCode { get; set; }
-        public decimal? rate { get; set; }
+        public int ActCode { get; set; }
+        public int GenreCode { get; set; }
+        public decimal? Rate { get; set; }
 
-        public ObjAct actCodeNavigation { get; set; }
-        public EtGenre genreCodeNavigation { get; set; }
+        public ObjAct ActCodeNavigation { get; set; }
+        public EtGenre GenreCodeNavigation { get; set; }
     }
 }
 

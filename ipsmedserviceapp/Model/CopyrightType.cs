@@ -9,14 +9,14 @@ namespace ipsmedserviceapp.Model
         {
             CopyrightTypeTr = new HashSet<CopyrightTypeTr>();
             CreativeRoleType = new HashSet<CreativeRoleType>();
-            myCopyRightType = new HashSet<myCopyRightType>();
+            MyCopyRightType = new HashSet<MyCopyRightType>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<CopyrightTypeTr> CopyrightTypeTr { get; set; }
         public ICollection<CreativeRoleType> CreativeRoleType { get; set; }
-        public ICollection<myCopyRightType> myCopyRightType { get; set; }
+        public ICollection<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }

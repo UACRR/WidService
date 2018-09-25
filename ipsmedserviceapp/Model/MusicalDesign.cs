@@ -6,21 +6,20 @@ namespace ipsmedserviceapp.Model
 {
     public partial class MusicalDesign
     {
-        public int mdId { get; set; }
-        public int licId { get; set; }
-        public int? objid { get; set; }
-        public int? actNumb { get; set; }
-        public string objName { get; set; }
-        public string nameMusician { get; set; }
-        public string nameSinger { get; set; }
-        public string authorText { get; set; }
-        public TimeSpan? duration { get; set; }
-        public int? numbPerfom { get; set; }
+        public int MdId { get; set; }
+        public int LicId { get; set; }
+        public int? Objid { get; set; }
+        public int? ActNumb { get; set; }
+        public string ObjName { get; set; }
+        public string NameMusician { get; set; }
+        public string NameSinger { get; set; }
+        public string AuthorText { get; set; }
+        public TimeSpan? Duration { get; set; }
+        public int? NumbPerfom { get; set; }
 
         [JsonIgnore]
-        public LicenseBigR lic { get; set; }
-        [JsonIgnore]
-        public ObjectRight obj { get; set; }
+        public LicenseBigR Lic { get; set; }
+        public ObjectRight Obj { get; set; }
     }
 }
 

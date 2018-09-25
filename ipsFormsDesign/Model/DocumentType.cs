@@ -8,15 +8,15 @@ namespace ipsFormsDesign.Model
     {
         public DocumentType()
         {
+            RelCounterDoc = new ObservableListSource<RelCounterDoc>();
             RelDocAgrType = new ObservableListSource<RelDocAgrType>();
-            relCounterDoc = new ObservableListSource<relCounterDoc>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
+        public ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
         public ObservableListSource<RelDocAgrType> RelDocAgrType { get; set; }
-        public ObservableListSource<relCounterDoc> relCounterDoc { get; set; }
     }
 }
 

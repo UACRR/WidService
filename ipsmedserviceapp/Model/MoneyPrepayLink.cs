@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class MoneyPrepayLink
     {
-        public int paidId { get; set; }
-        public int cRightId { get; set; }
-        public decimal? amount { get; set; }
+        public int PaidId { get; set; }
+        public int CRightId { get; set; }
+        public decimal? Amount { get; set; }
 
-        public MoneyReceived paid { get; set; }
+        public MoneyReceived Paid { get; set; }
     }
 }

@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class RelDocAgrType : IRelDocAgrType
     {
-        public int agrType { get; set; }
-        public int docType { get; set; }
+        public int AgrType { get; set; }
+        public int DocType { get; set; }
 
-        public AgreementType agrTypeNavigation { get; set; }
-        public DocumentType docTypeNavigation { get; set; }
+        public AgreementType AgrTypeNavigation { get; set; }
+        public DocumentType DocTypeNavigation { get; set; }
     }
 }
 

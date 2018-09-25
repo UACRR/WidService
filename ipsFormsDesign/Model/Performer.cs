@@ -11,8 +11,8 @@ namespace ipsFormsDesign.Model
             RelObjPerformer = new ObservableListSource<RelObjPerformer>();
         }
 
-        public int perId { get; set; }
-        public string perName { get; set; }
+        public int PerId { get; set; }
+        public string PerName { get; set; }
 
         public ObservableListSource<RelObjPerformer> RelObjPerformer { get; set; }
     }

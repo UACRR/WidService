@@ -13,8 +13,8 @@ namespace ipsFormsDesign.Model
             ReqCustomer = new ObservableListSource<ReqCustomer>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<ActivityTypeTr> ActivityTypeTr { get; set; }
         public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }

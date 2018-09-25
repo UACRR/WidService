@@ -12,8 +12,8 @@ namespace ipsmedserviceapp.Model
             RegisterStatusTr = new HashSet<RegisterStatusTr>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<Register> Register { get; set; }

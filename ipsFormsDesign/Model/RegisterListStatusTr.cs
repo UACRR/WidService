@@ -6,11 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class RegisterListStatusTr : IRegisterListStatusTr
     {
-        public int codeI { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public RegisterListStatus codeINavigation { get; set; }
+        public RegisterListStatus CodeINavigation { get; set; }
     }
 }
 

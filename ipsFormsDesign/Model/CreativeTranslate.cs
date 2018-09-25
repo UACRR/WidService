@@ -8,13 +8,13 @@ namespace ipsFormsDesign.Model
     {
         public CreativeTranslate()
         {
-            CopyRTranslate = new ObservableListSource<CopyRTranslate>();
+            CopyRtranslate = new ObservableListSource<CopyRtranslate>();
         }
 
-        public int codeI { get; set; }
+        public int CodeI { get; set; }
 
-        public CreativeRoleType codeINavigation { get; set; }
-        public ObservableListSource<CopyRTranslate> CopyRTranslate { get; set; }
+        public CreativeRoleType CodeINavigation { get; set; }
+        public ObservableListSource<CopyRtranslate> CopyRtranslate { get; set; }
     }
 }
 

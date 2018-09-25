@@ -5,10 +5,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class PermitTypeTr
     {
-        public bool codeB { get; set; }
-        public string lang { get; set; }
-        public string name { get; set; }
+        public bool CodeB { get; set; }
+        public string Lang { get; set; }
+        public string Name { get; set; }
 
-        public PermitType codeBNavigation { get; set; }
+        public PermitType CodeBNavigation { get; set; }
     }
 }

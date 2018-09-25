@@ -6,10 +6,10 @@ namespace ipsFormsDesign.Model
 {
     public partial class RequestOther : IRequestOther
     {
-        public int reqId { get; set; }
-        public string useDesc { get; set; }
+        public int ReqId { get; set; }
+        public string UseDesc { get; set; }
 
-        public Request req { get; set; }
+        public Request Req { get; set; }
     }
 }
 

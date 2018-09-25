@@ -20,21 +20,21 @@ namespace ipsmedserviceapp.Model
             ReqAgreement = new HashSet<ReqAgreement>();
             ReqCustomer = new HashSet<ReqCustomer>();
             Request = new HashSet<Request>();
-            userRole = new HashSet<userRole>();
+            UserRole = new HashSet<UserRole>();
         }
 
-        public int custId { get; set; }
-        public int? custType { get; set; }
-        public int status { get; set; }
-        public int? ankVersion { get; set; }
-        public byte? ankMy { get; set; }
-        public byte? ankPublish { get; set; }
-        public byte? ankTech { get; set; }
+        public int CustId { get; set; }
+        public int? CustType { get; set; }
+        public int Status { get; set; }
+        public int? AnkVersion { get; set; }
+        public byte? AnkMy { get; set; }
+        public byte? AnkPublish { get; set; }
+        public byte? AnkTech { get; set; }
 
         [JsonIgnore]
-        public CustomerType custTypeNavigation { get; set; }
+        public CustomerType CustTypeNavigation { get; set; }
         [JsonIgnore]
-        public CustomerStatus statusNavigation { get; set; }
+        public CustomerStatus StatusNavigation { get; set; }
         [JsonIgnore]
         public AnketaExternal AnketaExternal { get; set; }
         public Client Client { get; set; }
@@ -66,7 +66,7 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public ICollection<Request> Request { get; set; }
         [JsonIgnore]
-        public ICollection<userRole> userRole { get; set; }
+        public ICollection<UserRole> UserRole { get; set; }
     }
 }
 

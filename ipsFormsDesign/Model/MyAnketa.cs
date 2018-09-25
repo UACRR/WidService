@@ -9,18 +9,18 @@ namespace ipsFormsDesign.Model
         public MyAnketa()
         {
             MyCategory = new ObservableListSource<MyCategory>();
-            myCopyRightType = new ObservableListSource<myCopyRightType>();
+            MyCopyRightType = new ObservableListSource<MyCopyRightType>();
         }
 
-        public int custId { get; set; }
-        public string accCompany { get; set; }
-        public string accCommission { get; set; }
-        public string accInCommission { get; set; }
-        public string accCourt { get; set; }
+        public int CustId { get; set; }
+        public string AccCompany { get; set; }
+        public string AccCommission { get; set; }
+        public string AccInCommission { get; set; }
+        public string AccCourt { get; set; }
 
-        public Customer cust { get; set; }
+        public Customer Cust { get; set; }
         public ObservableListSource<MyCategory> MyCategory { get; set; }
-        public ObservableListSource<myCopyRightType> myCopyRightType { get; set; }
+        public ObservableListSource<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }
 

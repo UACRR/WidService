@@ -11,8 +11,8 @@ namespace ipsmedserviceapp.Model
             RequestSerial = new HashSet<RequestSerial>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ICollection<KindSerialTr> KindSerialTr { get; set; }
         public ICollection<RequestSerial> RequestSerial { get; set; }

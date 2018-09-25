@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
             Distribution = new ObservableListSource<Distribution>();
         }
 
-        public int codeI { get; set; }
-        public string name { get; set; }
+        public int CodeI { get; set; }
+        public string Name { get; set; }
 
         public ObservableListSource<DistribStatusTr> DistribStatusTr { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
