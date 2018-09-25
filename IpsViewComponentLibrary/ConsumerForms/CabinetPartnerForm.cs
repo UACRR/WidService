@@ -24,7 +24,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public event SetPartnerEventHandler OnDetachClientInPartner;
         public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerEventHandler UpdateCustomer;
-        public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
 
 
         public CabinetPartnerForm(Customer customer)
@@ -98,12 +97,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlPartnerClients.OnAddClientToPartner += CtrlPartnerClients_OnAddClientToPartner;
             ctrlPartnerClients.OnDetachClientInPartner += CtrlPartnerClients_OnDetachClientInPartner;
             ctrlPartnerClients.UpdateData += CabinetPartnerForm_Load;
-            ctrlPartnerClients.OnLoadCustomerCabinetNeed += CtrlPartnerClients_OnLoadCustomerCabinetNeed;
-        }
-
-        private void CtrlPartnerClients_OnLoadCustomerCabinetNeed(int id)
-        {
-            OnLoadCustomerCabinetNeed?.Invoke(id);
         }
 
         private bool CtrlPartnerClients_OnDetachClientInPartner(int clientId, int partnerId)

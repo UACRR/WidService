@@ -34,7 +34,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.btnAddClient = new Telerik.WinControls.UI.RadButton();
@@ -150,7 +149,7 @@
             gridViewTextBoxColumn4.HeaderText = "Назва клієнта";
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "ClientName";
-            gridViewTextBoxColumn4.Width = 510;
+            gridViewTextBoxColumn4.Width = 544;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "AgrCount";
             gridViewTextBoxColumn5.HeaderText = "К-сть діючих договорів";
@@ -166,28 +165,13 @@
             gridViewTextBoxColumn6.MinWidth = 110;
             gridViewTextBoxColumn6.Name = "SumBorg";
             gridViewTextBoxColumn6.Width = 110;
-            gridViewCommandColumn1.AllowResize = false;
-            gridViewCommandColumn1.AllowSort = false;
-            gridViewCommandColumn1.DefaultText = "Відкрити";
-            gridViewCommandColumn1.FieldName = "btnView";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
-            gridViewCommandColumn1.MaxWidth = 35;
-            gridViewCommandColumn1.MinWidth = 35;
-            gridViewCommandColumn1.Name = "btnView";
-            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn1.Width = 35;
             this.gvViewClientsOfPartner.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewCommandColumn1});
+            gridViewTextBoxColumn6});
             this.gvViewClientsOfPartner.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewClientsOfPartner.MasterTemplate.EnableFiltering = true;
             this.gvViewClientsOfPartner.MasterTemplate.EnableGrouping = false;
@@ -198,7 +182,6 @@
             this.gvViewClientsOfPartner.Size = new System.Drawing.Size(956, 477);
             this.gvViewClientsOfPartner.TabIndex = 34;
             this.gvViewClientsOfPartner.ThemeName = "Office2013Light";
-            this.gvViewClientsOfPartner.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewClientsOfPartner_CommandCellClick);
             // 
             // btnDetach
             // 

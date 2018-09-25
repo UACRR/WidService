@@ -39,37 +39,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _partner.OnAddClientToPartner += AddClientToPartner;
             _partner.OnDetachClientInPartner += _partner_OnDetachClientInPartner;
             _partner.ChangeStatusAgr += AgreementPartnerStatusChange;
-            _partner.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
-        }
-
-        private void LoadCustomerCabinet(int id)
-        {
-            // великі права
-            var customer = _service.GetData(id);
-            var mainGridView = _service.getMainViewBR().SingleOrDefault(rec=>rec.CustId == id);//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - view основного гріда
-            var generalAgrView = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>(); // - - - - генеральні угоди
-            var licenseView = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();// - - - - - - ліцензії
-            var requestView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>(); //- - - - - - заявки
-            var referenceView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки
-            var licAutorsView = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>(); // - - автори для всіх типів ліцензій
-            var moneyUnattachedView = _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id).ToListOfType<UnattachedMoneyView>(); // - - - незакріплені кошти користувачів великих прав
-            var ratedListMainView = _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListMainBigRightView>(); // - - - Р/Л основні дані
-            var rlSpectacleView = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();// Р/Л вистави
-
-            _cabinetBigRightForm.cabinet.SetAllLoadData(customer, mainGridView, generalAgrView, licenseView, requestView, referenceView, licAutorsView, moneyUnattachedView, ratedListMainView, rlSpectacleView);
-            if (!_cabinetBigRightForm.Visible)
-                _cabinetBigRightForm.Show();
-
-            _cabinetBigRightForm.cabinet.UpdateCurentTab(CabinetTabType.Anketa);
-
-            ////малі права
-
-            //_cabinetSmallRightForm.SetCustomer(_service.GetData(id));
-            //_cabinetSmallRightForm.cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(id);
-            //if (!_cabinetSmallRightForm.Visible)
-            //    _cabinetSmallRightForm.Show();
-
-            //GC.Collect();
         }
 
         private bool _partner_OnDetachClientInPartner(int clientId, int partnerId)
