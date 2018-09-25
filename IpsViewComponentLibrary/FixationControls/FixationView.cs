@@ -41,16 +41,18 @@ namespace IpsViewComponentLibrary.FixationControls
         public FixationView()
         {
             InitializeComponent();
-        }
 
-        private void FixationView_Load(object sender, EventArgs e)
-        {
             ddlUsesType.SetDataSource(IpsGlobal.AnketaDictionaties.usesType);
         }
-
+        
         public void Run()
         {
             ShowDialog();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            _presenter.Save();
         }
     }
 }
