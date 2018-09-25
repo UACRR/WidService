@@ -229,5 +229,10 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _presenter.Add();
         }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
     }
 }
