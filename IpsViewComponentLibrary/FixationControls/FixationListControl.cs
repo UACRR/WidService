@@ -152,6 +152,15 @@ namespace IpsViewComponentLibrary.FixationControls
             UpdateList();
         }
 
+        private void tvFilters_SelectedNodeChanging(object sender, RadTreeViewCancelEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                // prevent selecting root node
+                e.Cancel = true;
+            }
+        }
+
         private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
         {
             if (e.Node.Level == 0)
@@ -191,6 +200,34 @@ namespace IpsViewComponentLibrary.FixationControls
         private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
+
+        private void gvFixationsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                OnEditCommandExecuted();
+            }
+        }
+
+        private void gvFixationsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column is GridViewCommandColumn)
+                return;
+
+            OnEditCommandExecuted();
+        }
+
+        protected virtual void OnEditCommandExecuted()
+        {
+            _presenter.Edit();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            _presenter.Add();
         }
     }
 }
