@@ -176,6 +176,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.dtDateBegin.TabStop = false;
             this.dtDateBegin.ThemeName = "Office2013Light";
             this.dtDateBegin.Value = new System.DateTime(((long)(0)));
+            this.dtDateBegin.ValueChanged += new System.EventHandler(this.dtDateBegin_ValueChanged);
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.dtDateBegin.GetChildAt(0))).Text = "";
             // 
             // dtAgrDate
