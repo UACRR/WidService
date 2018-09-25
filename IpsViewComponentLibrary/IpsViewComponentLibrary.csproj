@@ -1288,6 +1288,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.FileType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Fixation.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Language.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.License.datasource" />

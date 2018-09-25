@@ -23,6 +23,8 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void Show(int fixId)
         {
+            var fixation = _fixationService.GetById(fixId);
+            _view.Fixation = fixation;
             _view.Run();
         }
     }

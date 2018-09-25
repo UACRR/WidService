@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,7 +12,7 @@ using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
-    public partial class FixationView : Telerik.WinControls.UI.RadForm
+    public partial class FixationView : IpsViewComponentLibrary.Common.Form.IpsForm
     {
         private FixationPresenter _presenter;
         public FixationPresenter Presenter
@@ -24,9 +27,25 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        private Fixation _fixation;
+        public Fixation Fixation
+        {
+            get { return _fixation; }
+            set
+            {
+                _fixation = value;
+                bsFixation.DataSource = _fixation;
+            }
+        }
+
         public FixationView()
         {
             InitializeComponent();
+        }
+
+        private void FixationView_Load(object sender, EventArgs e)
+        {
+            ddlUsesType.SetDataSource(IpsGlobal.AnketaDictionaties.usesType);
         }
 
         public void Run()
