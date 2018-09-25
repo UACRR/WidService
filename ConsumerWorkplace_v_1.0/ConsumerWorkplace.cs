@@ -228,7 +228,7 @@ namespace ConsumerWorkplace_v_1._0
                     break;
             }
 
-            _partnerPresenter = new PartnerPresenter(_consumerMainService, ctrlPartner);
+            _partnerPresenter = new PartnerPresenter(_consumerMainService, ctrlPartner, _bigRightPresenter.Cabinet, _smallRightPresenter.Cabinet);
         }
         
         Customer _cust = null;

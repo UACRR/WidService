@@ -45,6 +45,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             new ReportsControlPresenter(_cabinetSmallRightForm.cabinet.pagesControl.reportsControl, _service);
         }
 
+        public CabinetSmallRightForm Cabinet => _cabinetSmallRightForm;
+
         private List<AnketaPerson> Cabinet_OnGetPartnerListNeed()
         {
             return _service.GetPartnerList();

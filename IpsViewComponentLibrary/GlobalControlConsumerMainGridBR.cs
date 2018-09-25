@@ -21,7 +21,6 @@ namespace IpsViewComponentLibrary
         {
             get => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
         }
-        public delegate void LoadCustomerCabinetBrEventHandler(int id);
         public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
         
         public event EventHandler OnAddNewCustomer;

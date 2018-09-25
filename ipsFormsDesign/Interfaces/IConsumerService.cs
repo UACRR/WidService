@@ -391,6 +391,8 @@ namespace ipsFormsDesign.Interfaces
     {
         public int CustId { get; set; }
         public int ClCustId { get; set; }
+        public int? CustType { get; set; }
+        public string CustTypeName { get; set; }
         public int? AgrCount { get; set; }
         public decimal SumBorg { get; set; }
         public string Innokpo { get; set; }

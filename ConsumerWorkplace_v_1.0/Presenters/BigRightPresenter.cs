@@ -73,6 +73,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnRemovePartner += RemovePartnerForCustomer;
         }
 
+        public CabinetBigRightForm Cabinet => _cabinetBigRightForm;
 
         #region - - - ОТРИМАННЯ ДАНИХ - - -
 

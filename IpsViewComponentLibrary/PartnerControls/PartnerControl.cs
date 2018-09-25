@@ -29,8 +29,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event SetPartnerEventHandler OnAddClientToPartner;
         public event SetPartnerEventHandler OnDetachClientInPartner;
         public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
-
-
+        public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
 
         public PartnerControl()
         {
@@ -172,7 +171,10 @@ namespace IpsViewComponentLibrary.PartnerControls
             {
                 case "viewBtn":
                     var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
-                    CabinetPartnerForm cabinetPartner = new CabinetPartnerForm(customer);
+                    CabinetPartnerForm cabinetPartner = new CabinetPartnerForm(customer)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen,
+                    };
                     cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
                     cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
                     cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
@@ -180,15 +182,20 @@ namespace IpsViewComponentLibrary.PartnerControls
                     cabinetPartner.OnDetachClientInPartner += CabinetPartner_OnDetachClientInPartner;
                     cabinetPartner.ChangeStatusAgr += CabinetPartner_ChangeStatusAgr;
                     cabinetPartner.UpdateCustomer += CabinetPartner_UpdateCustomer;
+                    cabinetPartner.OnLoadCustomerCabinetNeed += CabinetPartner_OnLoadCustomerCabinetNeed;
 
                     cabinetPartner.Show();
                     break;
             }
         }
 
+        private void CabinetPartner_OnLoadCustomerCabinetNeed(int id)
+        {
+            OnLoadCustomerCabinetNeed?.Invoke(id);
+        }
+
         private Customer CabinetPartner_UpdateCustomer(int custId)
         {
-
             return GetPartnerById?.Invoke(custId);
         }
 
