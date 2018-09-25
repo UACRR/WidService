@@ -118,14 +118,18 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             if (e.Node.Level == 0)
             {
+                var backColor = SystemColors.ControlLight;// Color.LightGray;
+                
                 // set font to bold for root node
                 e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
+                e.NodeElement.BackColor = backColor;
+                e.NodeElement.BorderColor = backColor;
 
                 if (e.NodeElement.IsMouseOver)
                 {
                     // prevent hover highligting root node
-                    e.NodeElement.BackColor = Color.White;
-                    e.NodeElement.BorderColor = Color.White;
+                    e.NodeElement.BackColor = backColor;
+                    e.NodeElement.BorderColor = backColor;
                 }
             }
 
