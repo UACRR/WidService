@@ -80,7 +80,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         [HttpPut("{fixId}/stagestatus")]
-        public async Task<IActionResult> SetStatus(int fixId, [FromBody] int newStageStatus)
+        public async Task<IActionResult> SetStageStatus(int fixId, [FromBody] int newStageStatus)
         {
             if (newStageStatus < 1 || newStageStatus > 22)
                 BadRequest();
