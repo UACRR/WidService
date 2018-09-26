@@ -26,16 +26,12 @@ namespace ipsFormsDesign.Services
         }
 
         // Запуск Word
-        internal async Task<Application> StartWordApp()
+        internal Application StartWordApp()
         {
-            return await System.Threading.Tasks.Task.Run(() => { 
-            
-                if (app == null)
-                    app = new Application();
+            if (app == null)
+                app = new Application();
 
-                return app;
-            }
-            );
+            return app;
         }
 
         /// <summary>
@@ -88,7 +84,7 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="pathTemplate"></param>
         /// <param name="rightHolder"></param>
-        public async System.Threading.Tasks.Task processRightHolder(string pathTemplate, Customer cust, AgreementMaster agr)
+        public void processRightHolder(string pathTemplate, Customer cust, AgreementMaster agr)
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -99,7 +95,7 @@ namespace ipsFormsDesign.Services
             File.Copy(pathTemplate, docFile);
             // відкрити шаблон
 
-            await System.Threading.Tasks.Task.Run(() => innerProcesRightHolder(cust, agr));
+            innerProcesRightHolder(cust, agr);
         }
         /// <summary>
         /// Формування документу (внутріній метод)
@@ -115,7 +111,7 @@ namespace ipsFormsDesign.Services
 
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             var regions = _dic.region.ToDictionary(rec => rec.CodeI);
-            app = StartWordApp().Result;
+            app = StartWordApp();
             innerDoc = app.Documents.Open(docFile);
             // отримати ControlContent
             var list = innerDoc.ContentControls;
@@ -203,7 +199,7 @@ namespace ipsFormsDesign.Services
                     case "docDateEnd":
                         item.Range.Text = $"{agrRh.DateEnd:dd.MM.yyyy}";
                         break;
-                    case "СstName":
+                    case "CstName":
                         item.Range.Text = customerName;
                         break;
                     case "СstPerson":
@@ -220,10 +216,8 @@ namespace ipsFormsDesign.Services
                     case "TableTrrUse":
                         formTableInUse(item.Range.Tables, cust.RightHolder);
                         break;
-                    case "TableTrrNotUse":
+                    case "TableTrrNotUs":
                         formTableExclude(item.Range.Tables, cust.RightHolder);
-                        //if (cust.RightHolder.TerritoryExclude.Count == 0)
-                        //    item.Delete();
                         break;
                     case "prcntARlt":
                         item.Range.Text = $"{agrRh.RateCommiss:0}";
@@ -303,9 +297,9 @@ namespace ipsFormsDesign.Services
         /// <param name="cust"></param>
         /// <param name="agr"></param>
         /// <param name="lic"></param>
-        public async System.Threading.Tasks.Task ProcessConsumer(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement lic)
+        public void ProcessConsumer(string pathTemplate, Customer cust, AgreementMaster agr, LicenseAgreement lic)
         {
-            await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
+            ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion ?? 1);
             //  await ProcessConsumer(pathTemplate, cust, lic, lic.LicVersion );
         }
         /// <summary>
@@ -313,14 +307,14 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="pathTemplate"></param>
         /// <param name="Consumer"></param> 
-        public async System.Threading.Tasks.Task ProcessConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
+        public void ProcessConsumer(string pathTemplate, Customer cust, LicenseAgreement agr, int version)
         {
             string docFile = PrepareWork();
             System.IO.File.Copy(pathTemplate, docFile);
 
             // відкрити шаблон
 
-            await System.Threading.Tasks.Task.Run(() => InnerProcessConsumer(cust, agr, version, docFile));
+            InnerProcessConsumer(cust, agr, version, docFile);
         }
 
         /// <summary>
@@ -354,7 +348,7 @@ namespace ipsFormsDesign.Services
             var regions = _dic.region.ToDictionary(rec => rec.CodeI);
             var period = _dic.period.ToDictionary(rec => rec.CodeI);
             var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
-            app = StartWordApp().Result;
+            app = StartWordApp();
             innerDoc = app.Documents.Open(docFile);
             // отримати ControlContent
             var list = innerDoc.ContentControls;
@@ -698,7 +692,7 @@ namespace ipsFormsDesign.Services
 
         private void InnerProcesCopyrightRequest(RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
         {
-            app = StartWordApp().Result;
+            app = StartWordApp();
             innerDoc = app.Documents.Open(Docx);
 
             var list = innerDoc.ContentControls;
@@ -779,7 +773,7 @@ namespace ipsFormsDesign.Services
             public string a3 { get; set; }
         }
 
-        public async System.Threading.Tasks.Task processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agrMain, LicenseAgreement licA)
+        public void processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agrMain, LicenseAgreement licA)
         {
 
             AgreementAddBr agr = agrMain.AgreementAddBr.Where(rec => rec.Version == agrMain.Version).First();
@@ -801,7 +795,7 @@ namespace ipsFormsDesign.Services
                          select new currency { r030 = kl.R030, countryCode = kl.CountryCode, a3 = kl.A3 }
             );
 
-            app = await StartWordApp();
+            app = StartWordApp();
             innerDoc = app.Documents.Open(docFile);
             // отримати ControlContent
             var list = innerDoc.ContentControls;
@@ -924,7 +918,7 @@ namespace ipsFormsDesign.Services
                           join crt in creativeRole on aut.RoleCode equals crt.CodeI
                           join cpr in copyright on aut.CustId equals cpr.CustId
                           select new TbAuthorPrc
-                          { RoleName = crt.Name, AuthorName = aut.AuthorName, RoleRate = cpr.RoleRate ?? 0 }).ToList();
+                          { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
 
             var TbAL = (from aut in authors
                         join crt in creativeRole on aut.RoleCode equals crt.CodeI
@@ -999,8 +993,7 @@ namespace ipsFormsDesign.Services
             foreach (ContentControl item in list)
             {
                 item.LockContentControl = false;
-                item.Temporary = true;
-
+                item.Temporary = false;
                 string title = item.Title.Trim();
 
                 switch (title)
@@ -1146,6 +1139,7 @@ namespace ipsFormsDesign.Services
                         break;
 
                 }
+
                 item.Delete();
             } // for each
             innerDoc.Save();
@@ -1196,7 +1190,7 @@ namespace ipsFormsDesign.Services
             var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
 
 
-            app = StartWordApp().Result;
+            app = StartWordApp();
             innerDoc = app.Documents.Open(docFile);
             // отримати ControlContent
             var list = innerDoc.ContentControls;
@@ -1222,22 +1216,22 @@ namespace ipsFormsDesign.Services
 
             LicNum = licAgr.LicNum;
             DocDate = $"{licAgr.LicDate:dd.MM.yyyy}";
-            CPaidPeriod = period.PeriodName;
+            CPaidPeriod = period?.PeriodName ;
             CPaidData = $"{ DateTime.Today:dd.MM.yyyy}";
             customerName = anketaCompany.Name;
             CstPersonReason = bossEmployee?.RelDocument;
             CstPerson = $"{Employee.LastName} {Employee.FirstName} {Employee.SurName ?? string.Empty}";
             CstBooker = $"{EmployeeBooker.LastName} {EmployeeBooker.FirstName} {EmployeeBooker.SurName ?? string.Empty}";
-            CPaidAmountGrn = period.Amount.ToString();
-            CPaidAmountGrnText = Utils.NumPhraseL(Convert.ToUInt32(period.Amount), false);
-            int CPaidAmountKopInt = ((int)((period.Amount - (int)period.Amount) * 100));
+            CPaidAmountGrn = period?.Amount.ToString();
+            CPaidAmountGrnText = Utils.NumPhraseL(Convert.ToUInt32(period?.Amount), false);
+            int CPaidAmountKopInt = ((int)((period?.Amount ?? 0 - period?.Amount ?? 0) * 100)  );
             CPaidAmountKop = CPaidAmountKopInt.ToString();
             if (CPaidAmountKopInt < 10)
             {
                 CPaidAmountKop = "0" + CPaidAmountKop;
             }
 
-            CPaidAmountKopText = Utils.NumPhraseL(Convert.ToUInt32(((int)((period.Amount - (int)period.Amount) * 100))), false);
+            CPaidAmountKopText = Utils.NumPhraseL(Convert.ToUInt32(((int)((period?.Amount ?? 0 - period?.Amount ?? 0) * 100))), false);
             CstCorrespAddress = anketaCompany.LeAddress != null ?
                 $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : CstCorrespAddress;
 
@@ -1474,6 +1468,8 @@ namespace ipsFormsDesign.Services
             Table table = tables[1];
             //if (table.Rows.Count > 0)
             //    table.Rows.Delete();
+
+            /*
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             foreach (var item in rightHolder.TerritoryExclude)
@@ -1481,6 +1477,37 @@ namespace ipsFormsDesign.Services
                 curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
                 curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
             }
+            */
+
+
+            var list = rightHolder.TerritoryExclude;
+
+            if (list.Count == 0)
+            {
+                table.Rows.Delete();
+                return;
+            }
+
+            for (int i = table.Rows.Count; i > 2; i--)
+                table.Rows[i].Delete();
+
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+
+            Row curRow = null;
+            if (rightHolder.AroundWord == true)
+            {
+                curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                curRow.Cells[1].Range.Text = "Всіх країн світу";
+            }
+            else
+                foreach (var item in rightHolder.TerritoryExclude)
+                {
+
+                    curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                    curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
+                }
+
+
         }
 
         private void formTableInUse(Tables tables, RightHolder rightHolder)
