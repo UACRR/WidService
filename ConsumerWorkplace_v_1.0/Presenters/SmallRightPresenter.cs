@@ -47,7 +47,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         public CabinetSmallRightForm Cabinet => _cabinetSmallRightForm;
 
-        private List<AnketaPerson> Cabinet_OnGetPartnerListNeed()
+        private List<Customer> Cabinet_OnGetPartnerListNeed()
         {
             return _service.GetPartnerList();
         }

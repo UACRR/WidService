@@ -79,7 +79,7 @@ namespace IpsViewComponentLibrary
             return result;
         }
 
-        private List<AnketaPerson> CtrlPartner_OnGetPartnerListNeed()
+        private List<Customer> CtrlPartner_OnGetPartnerListNeed()
         {
             return OnGetPartnerListNeed?.Invoke();
         }

@@ -277,7 +277,10 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> GetPartnersList()
         {
             var partner = await _dbContext.Partner.AsNoTracking().ToListAsync();
-            var list = await _dbContext.AnketaPerson.Where(rec => partner.Select(r => r.CustId).Contains(rec.CustId)).AsNoTracking().ToListAsync();
+            var list = await _dbContext.Customer.Where(rec => partner.Select(r => r.CustId).Contains(rec.CustId))
+                .Include(item => item.AgreementMaster).ThenInclude(agr => agr.AgreementAddPartner)
+                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .AsNoTracking().ToListAsync();
             return Json(list);
         }
 

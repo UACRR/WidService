@@ -60,7 +60,7 @@ namespace IpsViewComponentLibrary
             pagesControl.OnGetPartnerListNeed += PagesControl_OnGetPartnerListNeed;
         }
 
-        private List<AnketaPerson> PagesControl_OnGetPartnerListNeed()
+        private List<Customer> PagesControl_OnGetPartnerListNeed()
         {
             return OnGetPartnerListNeed?.Invoke();
         }

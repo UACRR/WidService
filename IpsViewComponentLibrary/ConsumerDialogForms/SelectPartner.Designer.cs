@@ -43,7 +43,7 @@
             this.lblMobile = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
-            this.lblAgrDateEnd = new Telerik.WinControls.UI.RadLabel();
+            this.lblAgrStatus = new Telerik.WinControls.UI.RadLabel();
             this.btnSelectPartner = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.gvPartnerList = new Telerik.WinControls.UI.RadGridView();
@@ -60,7 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblMobile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblAgrDateEnd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAgrStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectPartner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPartnerList)).BeginInit();
@@ -90,7 +90,7 @@
             this.radPanel1.Controls.Add(this.lblMobile);
             this.radPanel1.Controls.Add(this.radLabel7);
             this.radPanel1.Controls.Add(this.radLabel11);
-            this.radPanel1.Controls.Add(this.lblAgrDateEnd);
+            this.radPanel1.Controls.Add(this.lblAgrStatus);
             this.radPanel1.Location = new System.Drawing.Point(12, 172);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(645, 64);
@@ -253,33 +253,33 @@
             this.radLabel11.Text = "Тел. моб";
             this.radLabel11.ThemeName = "Office2013Light";
             // 
-            // lblAgrDateEnd
+            // lblAgrStatus
             // 
-            this.lblAgrDateEnd.AutoSize = false;
-            this.lblAgrDateEnd.BorderVisible = true;
-            this.lblAgrDateEnd.Location = new System.Drawing.Point(513, 15);
-            this.lblAgrDateEnd.Name = "lblAgrDateEnd";
+            this.lblAgrStatus.AutoSize = false;
+            this.lblAgrStatus.BorderVisible = true;
+            this.lblAgrStatus.Location = new System.Drawing.Point(513, 15);
+            this.lblAgrStatus.Name = "lblAgrStatus";
             // 
             // 
             // 
-            this.lblAgrDateEnd.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.lblAgrDateEnd.Size = new System.Drawing.Size(129, 19);
-            this.lblAgrDateEnd.TabIndex = 36;
-            this.lblAgrDateEnd.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lblAgrDateEnd.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblAgrDateEnd.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblAgrDateEnd.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblAgrDateEnd.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrDateEnd.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            this.lblAgrStatus.RootElement.MinSize = new System.Drawing.Size(0, 0);
+            this.lblAgrStatus.Size = new System.Drawing.Size(129, 19);
+            this.lblAgrStatus.TabIndex = 36;
+            this.lblAgrStatus.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblAgrStatus.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblAgrStatus.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblAgrStatus.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblAgrStatus.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblAgrStatus.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             // 
             // btnSelectPartner
             // 
@@ -391,7 +391,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblMobile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblAgrDateEnd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblAgrStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSelectPartner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPartnerList.MasterTemplate)).EndInit();
@@ -416,7 +416,7 @@
         private Telerik.WinControls.UI.RadLabel lblMobile;
         private Telerik.WinControls.UI.RadLabel radLabel7;
         private Telerik.WinControls.UI.RadLabel radLabel11;
-        private Telerik.WinControls.UI.RadLabel lblAgrDateEnd;
+        private Telerik.WinControls.UI.RadLabel lblAgrStatus;
         private Telerik.WinControls.UI.RadButton btnSelectPartner;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadGridView gvPartnerList;

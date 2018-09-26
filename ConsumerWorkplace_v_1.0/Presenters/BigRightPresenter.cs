@@ -339,7 +339,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
         //отримати список партнерів
-        private List<AnketaPerson> GetPartnerList()
+        private List<Customer> GetPartnerList()
         {
             return _service.GetPartnerList();
         }

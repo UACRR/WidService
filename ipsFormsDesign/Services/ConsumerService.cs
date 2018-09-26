@@ -443,10 +443,10 @@ namespace ipsFormsDesign.Services
         /// Отримати список представників
         /// </summary>
         /// <returns></returns>
-        public List<AnketaPerson> GetPartnerList()
+        public List<Customer> GetPartnerList()
         {
             string url = "partner/list";
-            return _webApi.GetList<AnketaPerson>(url);
+            return _webApi.GetList<Customer>(url);
         }
 
         /// <summary>

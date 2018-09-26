@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
 
@@ -13,8 +14,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     public partial class SelectPartner : Telerik.WinControls.UI.RadForm
     {
-        private List<AnketaPerson> _anketaPersons;
         private List<PartnerList> _partnerList = new List<PartnerList>();
+        private List<Customer> _customers;
 
         public SelectPartner(int? partnerId)
         {
@@ -26,16 +27,17 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         public int? PartnerId { get; private set; }
 
-        public void SetPartnerList(List<AnketaPerson> anketaPersons)
+        public void SetPartnerList(List<Customer> customers)
         {
-            _anketaPersons = anketaPersons;
+            _customers = customers;
             List<PartnerList> listTemp = new List<PartnerList>();
-            foreach (var person in anketaPersons)
+            foreach (var customer in _customers)
             {
+                var person = customer.Person?.AnketaPerson?.SingleOrDefault();
                 listTemp.Add(new PartnerList
                 {
-                    CustId = person.CustId,
-                    PartnerName = person.LastName + " " + person.FirstName + " " + person.SurName,
+                    CustId = customer.CustId,
+                    PartnerName = person?.LastName + " " + person?.FirstName + " " + person?.SurName,
                 });
             }
             _partnerList = listTemp.OrderBy(rec => rec.PartnerName).ToList();
@@ -52,12 +54,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void UpdateData(int custId)
         {
-            var item = _anketaPersons.SingleOrDefault(rec => rec.CustId == custId);
-            lblAgrDate.Text = "";
-            lblAgrDateEnd.Text = "";
-            lblAgrNumber.Text = "";
-            lblMobile.Text = item?.PhoneMobileMain;
-            lblEmail.Text = item?.EMail;
+            var person =  _customers.SingleOrDefault(rec => rec.CustId == custId)?.Person.AnketaPerson.SingleOrDefault();
+            var agreement = _customers.SingleOrDefault(rec => rec.CustId == custId)?.AgreementMaster.SingleOrDefault()?.AgreementAddPartner.SingleOrDefault();
+            lblAgrDate.Text = agreement?.AgrDate?.ToString("d");
+            lblAgrStatus.Text = IpsGlobal.AnketaDictionaties?.agreementStatus?.SingleOrDefault(r => r?.CodeI == agreement?.AgrStatus)?.Name;
+            lblAgrNumber.Text = agreement?.AgrNumber;
+            lblMobile.Text = person?.PhoneMobileMain;
+            lblEmail.Text = person?.EMail;
         }
 
         private void SelectPartner_Load(object sender, EventArgs e)

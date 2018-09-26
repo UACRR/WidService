@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary
     public delegate bool SaveRegisterRatedListEventHandler(RegisterRatedList list);
     public delegate Customer GetRegisterRatedList(int custId);
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
-    public delegate List<AnketaPerson> GetPartnerList();
+    public delegate List<Customer> GetPartnerList();
     public delegate Customer GetCustomerEventHandler(int custId);
 
     public delegate bool SetPartnerEventHandler(int clientId, int partnerId);
