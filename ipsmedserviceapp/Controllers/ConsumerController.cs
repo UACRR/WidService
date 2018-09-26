@@ -69,7 +69,8 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
                         .SingleOrDefaultAsync();
-
+            if (cust.Client == null)
+                return null;
             // Отримати дані по Контрактах
             await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                 .Query()
@@ -140,6 +141,8 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> GetConsumerById(int id)
         {
             var cust = await GetConsumerAllData(id);
+            if (cust == null)
+                return NotFound();
             return Json(cust);
         }
 
