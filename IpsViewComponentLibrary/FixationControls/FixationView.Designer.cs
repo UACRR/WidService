@@ -57,7 +57,6 @@
             this.txtPlacement = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ddlStage = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
@@ -100,7 +99,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPlacement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
@@ -134,7 +132,6 @@
             // 
             this.radPageViewPage1.Controls.Add(this.radGroupBox2);
             this.radPageViewPage1.Controls.Add(this.radGroupBox1);
-            this.radPageViewPage1.Controls.Add(this.radGroupBox3);
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(64F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
@@ -402,17 +399,6 @@
             this.radLabel1.Text = "Тип заходу";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
-            // radGroupBox3
-            // 
-            this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox3.HeaderText = "Стан подання";
-            this.radGroupBox3.Location = new System.Drawing.Point(445, 125);
-            this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(359, 86);
-            this.radGroupBox3.TabIndex = 21;
-            this.radGroupBox3.Text = "Стан подання";
-            this.radGroupBox3.ThemeName = "Office2013Light";
-            // 
             // ddlStatus
             // 
             this.ddlStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsFixation, "StageStatus", true));
@@ -524,6 +510,7 @@
             // 
             // bgbStatuses
             // 
+            this.bgbStatuses.DefaultButtonWidth = 160;
             this.bgbStatuses.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.bgbStatuses.Location = new System.Drawing.Point(0, 374);
             this.bgbStatuses.Name = "bgbStatuses";
@@ -591,7 +578,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPlacement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
@@ -645,7 +631,6 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBox2;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox1;
         private System.Windows.Forms.BindingSource bsFixation;
-        private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
         private Common.Editors.IpsDropDownList ddlStatus;
         private Common.Editors.IpsDropDownList ddlStage;
         private Telerik.WinControls.UI.RadLabel radLabel12;

@@ -19,6 +19,8 @@ namespace IpsViewComponentLibrary.Common
         private ButtonsCollection _buttons = new ButtonsCollection();
         public ButtonsCollection Buttons { get => _buttons; }
 
+        public int DefaultButtonWidth { get; set; } = 110;
+
         [Bindable(true)]
         [Browsable(true)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -47,6 +49,7 @@ namespace IpsViewComponentLibrary.Common
             {
                 btn.Click -= Btn_Click;
                 btn.Click += Btn_Click;
+                btn.Width = DefaultButtonWidth;
                 flowLayoutPanel.Controls.Add(btn);
             }
         }
