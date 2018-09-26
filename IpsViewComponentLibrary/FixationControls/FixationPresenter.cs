@@ -44,7 +44,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _view.Fixation = _fixation;
 
             if (_fixation.GetStage() == FixationStages.NegotiationBeforeFixation)
-                _view.ShowNegotiationStatusGroupBox = true;
+                _view.ShowStatusesGroupBox = true;
 
             _view.Run();
         }

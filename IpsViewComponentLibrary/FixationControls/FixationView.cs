@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.ViewModels.Fixations;
+using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
@@ -40,14 +41,14 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
-        private bool _showNegotioationStatusGroupBox = false;
-        public bool ShowNegotiationStatusGroupBox
+        private bool _showStatusesGroupBox = false;
+        public bool ShowStatusesGroupBox
         {
-            get { return _showNegotioationStatusGroupBox; }
+            get { return _showStatusesGroupBox; }
             set
             {
-                _showNegotioationStatusGroupBox = value;
-                gbNegotiationStatus.Visible = _showNegotioationStatusGroupBox;
+                _showStatusesGroupBox = value;
+                bgbStatuses.Visible = _showStatusesGroupBox;
             }
         }
 
@@ -59,10 +60,11 @@ namespace IpsViewComponentLibrary.FixationControls
             ddlStage.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StageName");
             ddlStatus.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StatusName");
 
-            flowLayoutPanel1.Controls.Add(new RadButton { Text = "Text 1" });
-            flowLayoutPanel1.Controls.Add(new RadButton { Text = "Text 2" });
-            flowLayoutPanel1.Controls.Add(new RadButton { Text = "Text 3" });
-            flowLayoutPanel1.Controls.Add(new RadButton { Text = "Text 4" });
+            bgbStatuses.Visible = _showStatusesGroupBox;
+
+            bgbStatuses.Buttons.AddButton("Направлене користувачу", FixationStageStatuses.NegotiationBeforeFixationDirectedToConsumer);
+            bgbStatuses.Buttons.AddButton("Відмова", FixationStageStatuses.NegotiationBeforeFixationRejected);
+            bgbStatuses.Buttons.AddButton("Погоджене", FixationStageStatuses.ClosedAgreedBeforeFixation);
         }
         
         public void Run()
@@ -75,21 +77,9 @@ namespace IpsViewComponentLibrary.FixationControls
             _presenter.Save();
         }
 
-        private void btnStatusDirected_Click(object sender, EventArgs e)
+        private void bgbStatuses_ValueSelected(object sender, ValueSelectedEventArgs e)
         {
-            _presenter.SetStatus(FixationStageStatuses.NegotiationBeforeFixationDirectedToConsumer);
-            bsFixation.ResetCurrentItem();
-        }
-
-        private void btnStatusRejected_Click(object sender, EventArgs e)
-        {
-            _presenter.SetStatus(FixationStageStatuses.NegotiationBeforeFixationRejected);
-            bsFixation.ResetCurrentItem();
-        }
-
-        private void btnStatusClosed_Click(object sender, EventArgs e)
-        {
-            _presenter.SetStatus(FixationStageStatuses.ClosedAgreedBeforeFixation);
+            _presenter.SetStatus((FixationStageStatuses)e.Value);
             bsFixation.ResetCurrentItem();
         }
     }
