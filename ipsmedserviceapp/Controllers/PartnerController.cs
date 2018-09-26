@@ -307,8 +307,11 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("list/{custId}")]
         public async Task<IActionResult> GetPartnerAnketaById(int custId)
         {
-            var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec => rec.CustId == custId);
-            return Json(anketaPerson);
+            var partner = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(item => item.AgreementMaster).ThenInclude(agr => agr.AgreementAddPartner)
+                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .SingleOrDefaultAsync();
+            return Json(partner);
         }
 
         [HttpGet("{custId}")]
