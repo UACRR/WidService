@@ -78,7 +78,7 @@ namespace TestWord_1
 // для теста берем agrid=13;
                     AgreementMaster agreementMaster = cust.AgreementMaster?.Where(rec => rec.AgrId == 13).Single();
 // для теста берем agrid=13 и licid=3;
-                    LicenseAgreement licA = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 13 &  rec.LicId == 3)).Single();
+                    LicenseAgreement licA = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 13 &  rec.LicId == 7)).Single();
                     wordApp.processConsumerBR(template, cust, agreementMaster , licA);
                     break;
 
