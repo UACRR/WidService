@@ -79,6 +79,25 @@ namespace ipsmedserviceapp.Controllers
             return Ok(fixation);
         }
 
+        [HttpPut("{fixId}/stagestatus")]
+        public async Task<IActionResult> SetStatus(int fixId, [FromBody] int newStageStatus)
+        {
+            if (newStageStatus < 1 || newStageStatus > 22)
+                BadRequest();
+
+            var fixation = await GetFixationById(fixId);
+
+            if (fixation == null)
+                return NotFound();
+
+            // TODO: check if status is acceptable (like as in RHController)
+
+            fixation.StageStatus = newStageStatus;
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+
         private async Task<Fixation> GetFixationById(int fixId)
         {
             var fixation = await _dbContext.Fixation

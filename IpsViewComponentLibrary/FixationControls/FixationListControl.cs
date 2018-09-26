@@ -88,6 +88,7 @@ namespace IpsViewComponentLibrary.FixationControls
         private void FixationListControl_Load(object sender, EventArgs e)
         {
             gvFixationsList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvFixationsList.SetCommandColumnImageAlignment("SetStatusColumn", ContentAlignment.MiddleCenter);
 
             if (!IsDesignMode)
             {
@@ -117,22 +118,28 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             if (e.Node.Level == 0)
             {
+                var backColor = SystemColors.ControlLight;// Color.LightGray;
+                
                 // set font to bold for root node
                 e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
+                e.NodeElement.BackColor = backColor;
+                e.NodeElement.BorderColor = backColor;
 
                 if (e.NodeElement.IsMouseOver)
                 {
                     // prevent hover highligting root node
-                    e.NodeElement.BackColor = Color.White;
-                    e.NodeElement.BorderColor = Color.White;
+                    e.NodeElement.BackColor = backColor;
+                    e.NodeElement.BorderColor = backColor;
                 }
             }
-            else if (e.Node.Level == 1)
+
+            if (e.Node.Level == 1)
             {
                 // set font to bold for nodes with level 1
                 e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
             }
-            else
+
+            if (e.Node.Level != 0)
             {
                 // blue highlight (instead of gray) selected node even if tree veiw is inactive
                 bool isInactive = (bool)e.NodeElement.GetValue(TreeNodeElement.IsControlInactiveProperty);
@@ -147,6 +154,7 @@ namespace IpsViewComponentLibrary.FixationControls
                     e.NodeElement.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local);
                 }
             }
+
         }
 
         private void gvFixationsList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
@@ -161,6 +169,10 @@ namespace IpsViewComponentLibrary.FixationControls
             if (currentColumnName == "EditColumn")
             {
                 OnEditCommandExecuted();
+            }
+            else if (currentColumnName == "SetStatusColumn")
+            {
+                ShowChangeStatusMenu();
             }
         }
 
@@ -238,6 +250,39 @@ namespace IpsViewComponentLibrary.FixationControls
 
             tvFilters.Nodes.Add(rootNode);
             tvFilters.ExpandAll();
+        }
+
+        private void ShowChangeStatusMenu()
+        {
+            var fixation = SelectedFixation;
+
+            if (fixation == null)
+                return;
+
+            var menu = FixationStageStatusMenuFactory.Create((FixationStageStatuses)fixation.StageStatusId, FixationStatusMenu_Click);
+
+            if (!menu.Items.Any())
+                return;
+
+            Point absolutePosition = gvFixationsList.CurrentCell.PointToScreen(gvFixationsList.CurrentCell.Location);
+            absolutePosition.Y += gvFixationsList.CurrentCell.Size.Height;
+
+            menu.Show(absolutePosition);
+            menu.SizeChanged += (s, e) =>
+            {
+                // set position of menu after size changed, because before menu is showed his width = 0
+                menu.Left = absolutePosition.X - menu.Width + gvFixationsList.CurrentCell.Size.Width;
+            };
+        }
+
+        private void FixationStatusMenu_Click(object sender, EventArgs e)
+        {
+            if (sender is RadMenuItem menuItem)
+            {
+                var newStatus = (FixationStageStatuses)menuItem.Tag;
+
+                _presenter.SetStatus(newStatus);
+            }
         }
 
         public void HandleEvent(FixationUpdatedEvent e)
