@@ -38,6 +38,17 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        private bool _showNegotioationStatusGroupBox = false;
+        public bool ShowNegotiationStatusGroupBox
+        {
+            get { return _showNegotioationStatusGroupBox; }
+            set
+            {
+                _showNegotioationStatusGroupBox = value;
+                gbNegotiationStatus.Visible = _showNegotioationStatusGroupBox;
+            }
+        }
+
         public FixationView()
         {
             InitializeComponent();

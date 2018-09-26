@@ -65,6 +65,11 @@
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.gbNegotiationStatus = new Telerik.WinControls.UI.RadGroupBox();
+            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.btnSetStatus = new Telerik.WinControls.UI.RadButton();
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
+            this.radButton2 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).BeginInit();
             this.mainPageView.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
@@ -105,30 +110,38 @@
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbNegotiationStatus)).BeginInit();
+            this.gbNegotiationStatus.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
+            this.radPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSetStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // mainPageView
             // 
+            this.mainPageView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.mainPageView.Controls.Add(this.radPageViewPage1);
-            this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
             this.mainPageView.SelectedPage = this.radPageViewPage1;
-            this.mainPageView.Size = new System.Drawing.Size(830, 364);
+            this.mainPageView.Size = new System.Drawing.Size(821, 427);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             // 
             // radPageViewPage1
             // 
-            this.radPageViewPage1.Controls.Add(this.radGroupBox3);
-            this.radPageViewPage1.Controls.Add(this.radGroupBox2);
-            this.radPageViewPage1.Controls.Add(this.radGroupBox1);
+            this.radPageViewPage1.Controls.Add(this.radPanel2);
+            this.radPageViewPage1.Controls.Add(this.gbNegotiationStatus);
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(64F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(820, 328);
+            this.radPageViewPage1.Size = new System.Drawing.Size(811, 391);
             this.radPageViewPage1.Text = "Основне";
             // 
             // radGroupBox3
@@ -139,7 +152,7 @@
             this.radGroupBox3.Controls.Add(this.radLabel12);
             this.radGroupBox3.Controls.Add(this.radLabel13);
             this.radGroupBox3.HeaderText = "Стан подання";
-            this.radGroupBox3.Location = new System.Drawing.Point(445, 115);
+            this.radGroupBox3.Location = new System.Drawing.Point(445, 127);
             this.radGroupBox3.Name = "radGroupBox3";
             this.radGroupBox3.Size = new System.Drawing.Size(359, 86);
             this.radGroupBox3.TabIndex = 21;
@@ -196,7 +209,7 @@
             this.radGroupBox2.Controls.Add(this.radLabel11);
             this.radGroupBox2.Controls.Add(this.radLabel2);
             this.radGroupBox2.HeaderText = "Дані клієнта";
-            this.radGroupBox2.Location = new System.Drawing.Point(445, 3);
+            this.radGroupBox2.Location = new System.Drawing.Point(445, 15);
             this.radGroupBox2.Name = "radGroupBox2";
             this.radGroupBox2.Size = new System.Drawing.Size(359, 86);
             this.radGroupBox2.TabIndex = 20;
@@ -261,7 +274,7 @@
             this.radGroupBox1.Controls.Add(this.radLabel6);
             this.radGroupBox1.Controls.Add(this.radLabel1);
             this.radGroupBox1.HeaderText = "Дані заходу";
-            this.radGroupBox1.Location = new System.Drawing.Point(7, 3);
+            this.radGroupBox1.Location = new System.Drawing.Point(7, 15);
             this.radGroupBox1.Name = "radGroupBox1";
             this.radGroupBox1.Size = new System.Drawing.Size(414, 291);
             this.radGroupBox1.TabIndex = 19;
@@ -452,10 +465,10 @@
             this.radPanel1.Controls.Add(this.btnSave);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radPanel1.Location = new System.Drawing.Point(0, 333);
+            this.radPanel1.Location = new System.Drawing.Point(0, 429);
             this.radPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(830, 31);
+            this.radPanel1.Size = new System.Drawing.Size(821, 31);
             this.radPanel1.TabIndex = 19;
             this.radPanel1.ThemeName = "Office2013Light";
             // 
@@ -463,7 +476,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(652, 4);
+            this.btnCancel.Location = new System.Drawing.Point(643, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(175, 24);
             this.btnCancel.TabIndex = 17;
@@ -473,7 +486,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(471, 4);
+            this.btnSave.Location = new System.Drawing.Point(462, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(175, 24);
             this.btnSave.TabIndex = 16;
@@ -481,11 +494,68 @@
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // gbNegotiationStatus
+            // 
+            this.gbNegotiationStatus.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.gbNegotiationStatus.Controls.Add(this.radButton2);
+            this.gbNegotiationStatus.Controls.Add(this.radButton1);
+            this.gbNegotiationStatus.Controls.Add(this.btnSetStatus);
+            this.gbNegotiationStatus.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gbNegotiationStatus.HeaderText = "Статус";
+            this.gbNegotiationStatus.Location = new System.Drawing.Point(0, 336);
+            this.gbNegotiationStatus.Name = "gbNegotiationStatus";
+            this.gbNegotiationStatus.Size = new System.Drawing.Size(811, 55);
+            this.gbNegotiationStatus.TabIndex = 22;
+            this.gbNegotiationStatus.Text = "Статус";
+            this.gbNegotiationStatus.ThemeName = "Office2013Light";
+            this.gbNegotiationStatus.Visible = false;
+            ((Telerik.WinControls.UI.RadGroupBoxElement)(this.gbNegotiationStatus.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
+            // 
+            // radPanel2
+            // 
+            this.radPanel2.Controls.Add(this.radGroupBox2);
+            this.radPanel2.Controls.Add(this.radGroupBox1);
+            this.radPanel2.Controls.Add(this.radGroupBox3);
+            this.radPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radPanel2.Location = new System.Drawing.Point(0, 0);
+            this.radPanel2.Name = "radPanel2";
+            this.radPanel2.Size = new System.Drawing.Size(811, 336);
+            this.radPanel2.TabIndex = 23;
+            this.radPanel2.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
+            // 
+            // btnSetStatus
+            // 
+            this.btnSetStatus.Location = new System.Drawing.Point(7, 21);
+            this.btnSetStatus.Name = "btnSetStatus";
+            this.btnSetStatus.Size = new System.Drawing.Size(160, 24);
+            this.btnSetStatus.TabIndex = 1;
+            this.btnSetStatus.Text = "Напралене користувачу";
+            this.btnSetStatus.ThemeName = "Office2013Light";
+            // 
+            // radButton1
+            // 
+            this.radButton1.Location = new System.Drawing.Point(173, 21);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(160, 24);
+            this.radButton1.TabIndex = 2;
+            this.radButton1.Text = "Відмовлено";
+            this.radButton1.ThemeName = "Office2013Light";
+            // 
+            // radButton2
+            // 
+            this.radButton2.Location = new System.Drawing.Point(339, 21);
+            this.radButton2.Name = "radButton2";
+            this.radButton2.Size = new System.Drawing.Size(160, 24);
+            this.radButton2.TabIndex = 3;
+            this.radButton2.Text = "Погоджене";
+            this.radButton2.ThemeName = "Office2013Light";
+            // 
             // FixationView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 364);
+            this.ClientSize = new System.Drawing.Size(821, 460);
             this.Controls.Add(this.radPanel1);
             this.Controls.Add(this.mainPageView);
             this.Name = "FixationView";
@@ -538,6 +608,13 @@
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gbNegotiationStatus)).EndInit();
+            this.gbNegotiationStatus.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
+            this.radPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSetStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -581,5 +658,10 @@
         private Common.Editors.IpsDropDownList ddlStage;
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadLabel radLabel13;
+        private Telerik.WinControls.UI.RadPanel radPanel2;
+        private Telerik.WinControls.UI.RadGroupBox gbNegotiationStatus;
+        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton radButton1;
+        private Telerik.WinControls.UI.RadButton btnSetStatus;
     }
 }
