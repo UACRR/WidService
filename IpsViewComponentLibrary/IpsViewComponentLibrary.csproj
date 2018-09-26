@@ -220,6 +220,12 @@
     <Compile Include="Common\SearchTextBoxControl.Designer.cs">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommunityControls\CommunityControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityControl.Designer.cs">
+      <DependentUpon>CommunityControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -934,6 +940,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityControl.resx">
+      <DependentUpon>CommunityControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
