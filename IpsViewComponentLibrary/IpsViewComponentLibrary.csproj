@@ -181,11 +181,11 @@
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
-    <Compile Include="Common\ButtonGroupBoxControls.cs">
+    <Compile Include="Common\ButtonGroupBoxControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Common\ButtonGroupBoxControls.Designer.cs">
-      <DependentUpon>ButtonGroupBoxControls.cs</DependentUpon>
+    <Compile Include="Common\ButtonGroupBoxControl.Designer.cs">
+      <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\Editors\IpsDateTimePicker.cs">
       <SubType>Component</SubType>
@@ -923,8 +923,8 @@
     <EmbeddedResource Include="AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Common\ButtonGroupBoxControls.resx">
-      <DependentUpon>ButtonGroupBoxControls.cs</DependentUpon>
+    <EmbeddedResource Include="Common\ButtonGroupBoxControl.resx">
+      <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
       <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
