@@ -64,5 +64,12 @@ namespace IpsViewComponentLibrary.FixationControls
                 _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
             }
         }
+
+        public void SetStatus(FixationStageStatuses newStatus)
+        {
+            // TODO: check for correct status
+
+            _fixation.StageStatus = (int)newStatus;
+        }
     }
 }

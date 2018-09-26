@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
@@ -56,6 +58,11 @@ namespace IpsViewComponentLibrary.FixationControls
             ddlUsesType.SetDataSource(IpsGlobal.AnketaDictionaties.usesType);
             ddlStage.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StageName");
             ddlStatus.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StatusName");
+
+            flowLayoutPanel1.Controls.Add(new RadButton { Text = "Text 1" });
+            flowLayoutPanel1.Controls.Add(new RadButton { Text = "Text 2" });
+            flowLayoutPanel1.Controls.Add(new RadButton { Text = "Text 3" });
+            flowLayoutPanel1.Controls.Add(new RadButton { Text = "Text 4" });
         }
         
         public void Run()
@@ -66,6 +73,24 @@ namespace IpsViewComponentLibrary.FixationControls
         private void btnSave_Click(object sender, EventArgs e)
         {
             _presenter.Save();
+        }
+
+        private void btnStatusDirected_Click(object sender, EventArgs e)
+        {
+            _presenter.SetStatus(FixationStageStatuses.NegotiationBeforeFixationDirectedToConsumer);
+            bsFixation.ResetCurrentItem();
+        }
+
+        private void btnStatusRejected_Click(object sender, EventArgs e)
+        {
+            _presenter.SetStatus(FixationStageStatuses.NegotiationBeforeFixationRejected);
+            bsFixation.ResetCurrentItem();
+        }
+
+        private void btnStatusClosed_Click(object sender, EventArgs e)
+        {
+            _presenter.SetStatus(FixationStageStatuses.ClosedAgreedBeforeFixation);
+            bsFixation.ResetCurrentItem();
         }
     }
 }
