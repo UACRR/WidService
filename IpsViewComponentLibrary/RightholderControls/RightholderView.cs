@@ -145,7 +145,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             waitbarAgreement.StartWaiting();
 
             var wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
-            await wordEngine.processRightHolder(template, customer, customer.AgreementMaster.First());
+            wordEngine.processRightHolder(template, customer, customer.AgreementMaster.First());
 
             pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
             waitbarAgreement.StopWaiting();

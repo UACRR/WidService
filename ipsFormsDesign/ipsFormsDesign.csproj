@@ -431,6 +431,7 @@
     <Compile Include="Services\Utils.cs" />
     <Compile Include="Services\WordEngine.cs" />
     <Compile Include="Interfaces\ActiveAgreementData.cs" />
+    <Compile Include="Utilities\FixationExtensions.cs" />
     <Compile Include="Utilities\ObjectRightExtensions.cs" />
     <Compile Include="ViewModels\Fixations\FixationListViewModel.cs" />
     <Compile Include="ViewModels\Fixations\FixationQuery.cs" />
