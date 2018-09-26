@@ -19,6 +19,16 @@ namespace IpsViewComponentLibrary.Common
         private ButtonsCollection _buttons = new ButtonsCollection();
         public ButtonsCollection Buttons { get => _buttons; }
 
+        [Bindable(true)]
+        [Browsable(true)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        [EditorBrowsable(EditorBrowsableState.Always)]
+        public override string Text
+        {
+            get => groupBox.Text;
+            set => groupBox.Text = value;
+        }
+
         public ButtonGroupBoxControl()
         {
             InitializeComponent();
