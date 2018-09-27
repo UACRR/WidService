@@ -31,6 +31,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _community.SaveCommunity += SaveCommunity;
         }
 
+        /// <summary>
+        /// збереження спільноти
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         private bool SaveCommunity(Customer customer)
         {
             return _service.SaveCommunity(customer);
