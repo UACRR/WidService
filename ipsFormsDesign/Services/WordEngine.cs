@@ -1147,6 +1147,278 @@ namespace ipsFormsDesign.Services
             innerDoc.Close();
         }
 
+
+
+        public void processPartner(string pathTemplate, Customer cust, AgreementMaster agrMain)
+        {
+
+            AgreementAddPartner agr = agrMain.AgreementAddPartner.Where(rec => rec.Version == agrMain.Version).First();
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var docFile = tempFileName + ".docx";
+
+            if (File.Exists(docFile))
+                File.Delete(docFile);
+
+            File.Copy(pathTemplate, docFile);
+            // відкрити шаблон
+
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            var regions = _dic.region.ToDictionary(rec => rec.CodeI);
+            var period = _dic.period.ToDictionary(rec => rec.CodeI);
+            var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
+            var KL030 = (from kl in _dic.klR030
+                         select new currency { r030 = kl.R030, countryCode = kl.CountryCode, a3 = kl.A3 }
+            );
+
+            app = StartWordApp();
+            innerDoc = app.Documents.Open(docFile);
+            // отримати ControlContent
+            var list = innerDoc.ContentControls;
+
+            // замінити вміст
+
+            AnketaPerson anketaPerson = cust.Person?.AnketaPerson.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
+            BankAccount bankacc = cust.BankAccount.FirstOrDefault();
+            AgreementAddPartner agreementAddPartner;
+            agreementAddPartner = agr;
+
+            string docNumberP = string.Empty;
+            string docDateP = string.Empty;
+            string appeal = string.Empty;
+            string CstName = string.Empty;
+            string CstPasportIssued = string.Empty;
+            string CstResidentialAddress = string.Empty;
+            string CstINN = string.Empty;
+            string docDateBeginP = string.Empty;
+            string docDateEndP = string.Empty;
+            string firstMonthRate = string.Empty;
+            string firstMonthRateText = string.Empty;
+            string monthRate = string.Empty;
+            string pfMonthRateText = string.Empty;
+            string cstPasport = string.Empty;
+            string CstBankName = string.Empty;
+            string CstBankMFO = string.Empty;
+            string CstBankEDRPOU = string.Empty;
+            string CstAcc = string.Empty;
+            string CstPhone = string.Empty;
+
+            string leAddress = string.Empty;
+            string reAddress = string.Empty;
+            string faAddress = string.Empty;
+            string phoneHome = string.Empty;
+            string phoneWork = string.Empty;
+            string phone = string.Empty;
+            string eMail = string.Empty;
+            DateTime? createDate = DateTime.Today;
+            string Okpo = string.Empty;
+            string СstPersonReason = string.Empty;
+            string registerDate = string.Empty;
+            string registerNumber = string.Empty;
+            string numberVAT = string.Empty;
+            string typeVat = string.Empty;
+            string cstPerson = string.Empty;
+            string cstContPerson = string.Empty;
+            string cstContPersonPhone = string.Empty;
+            string fop = String.Empty;
+            string vOsobi = String.Empty;
+            string naPidstavi = String.Empty;
+            string GdocNumber = String.Empty;
+            string GdocDateC = String.Empty;
+            string GdocDateBeginC = String.Empty;
+            string GdocDateEndC = String.Empty;
+            string ShowName = String.Empty;
+            string ShowAct = String.Empty;
+            string docNumberC = String.Empty;
+            string docDateC = String.Empty;
+            string docDateEndС = String.Empty;
+            string prcntShow = string.Empty;
+            string prcntShowText = string.Empty;
+            string pPayShowGrnText = string.Empty;
+            string pPayShowKop = string.Empty;
+            string PayShowDataDo = string.Empty;
+            string aPayShowGrnText = string.Empty;
+            string aPayShowKop = string.Empty;
+            {
+                CstName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
+                CstPasportIssued =$"{anketaPerson.PUissuedWho } {anketaPerson.PUissuedWhen:dd.MM.yyyy}";
+                leAddress = anketaPerson.LeAddress != null ?
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
+                reAddress = anketaPerson.ReAddress != null ?
+                    $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
+                faAddress = anketaPerson.FaAddress != null ?
+                    $"{countries[anketaPerson.FaCountry ?? "804"].CountryName} {anketaPerson.FaCity} {anketaPerson.FaAddress}" : faAddress;
+
+                phoneHome = anketaPerson.PhoneHome;
+                phoneWork = anketaPerson.PhoneMobileExtra;
+                phone = anketaPerson.PhoneMobileMain;
+                eMail = anketaPerson.EMail;
+                createDate = anketaPerson.BirthDate;
+                Okpo = anketaPerson.Inn;
+                cstPerson = CstName;
+                
+                cstContPersonPhone = phoneWork;
+  
+            }
+
+            docDateP = $"{agreementAddPartner?.AgrDate:dd.MM.yyyy}";
+            docDateBeginP = $"{agreementAddPartner?.DateBegin:dd.MM.yyyy}";
+            docDateEndP = $"{agreementAddPartner?.DateEnd:dd.MM.yyyy}";
+            docNumberP = agreementAddPartner?.AgrNumber?.ToString() ?? agr.AgrNumber?.ToString();
+            appeal = "Громадянин";
+            if (anketaPerson.Sex == 1)
+                appeal = "Громадянка";
+
+            foreach (ContentControl item in list)
+            {
+                item.LockContentControl = false;
+                item.Temporary = false;
+                string title = item.Title.Trim();
+
+                switch (title)
+
+                {
+                    case "docNumberP":
+                        item.Range.Text = docNumberP;
+                        break;
+                    case "docDateP":
+                        item.Range.Text = docDateP;
+                        break;
+                    case "docDateBeginP":
+                        item.Range.Text = docDateBeginP;
+                        break;
+                    case "docDateEndP":
+                        item.Range.Text = docDateEndP;
+                        break;
+                    case "CstName":
+                        item.Range.Text = CstName;
+                        break;
+                    case "appeal":
+                        item.Range.Text = appeal;
+                        break;
+                    case "CstPasportIssued":
+                        item.Range.Text = CstPasportIssued;
+                        break;
+
+                    case "CstPerson":
+                        item.Range.Text = cstPerson;
+                        break;
+                    case "naPidstavi":
+                        item.Range.Text = naPidstavi;
+                        break;
+                    case "CstPersonReason":
+                        item.Range.Text = СstPersonReason;
+                        break;
+
+
+                    case "CstLegalAddress":
+                        item.Range.Text = reAddress;
+                        break;
+                    case "CstResidentialAddress":
+                        item.Range.Text = faAddress;
+                        break;
+                    case "СstCorrespAddress":
+                        item.Range.Text = leAddress;
+                        break;
+                    case "СstPhone":
+                        item.Range.Text = phone;
+                        break;
+                    case "CstEDRPOU":
+                        item.Range.Text = Okpo;
+                        break;
+                    case "CstBankName":
+                        item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
+                        break;
+                    case "CstBankMfo":
+                        item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
+                        break;
+                    case "CstAcc":
+                        item.Range.Text = $"{bankacc?.AccountNumber ?? string.Empty}";
+                        break;
+                    case "CstRegNumber":
+                        item.Range.Text = registerNumber;
+                        break;
+                    case "CstRegData":
+                        item.Range.Text = registerDate;
+                        break;
+                    case "CstVAT":
+                        item.Range.Text = numberVAT;
+                        break;
+                    case "CstVATType":
+                        item.Range.Text = typeVat;
+                        break;
+                    case "CstEmail":
+                        item.Range.Text = eMail;
+                        break;
+                    case "CstContPerson":
+                        item.Range.Text = cstContPerson;
+                        break;
+                    case "CstContPersonPhone":
+                        item.Range.Text = cstContPersonPhone;
+                        break;
+                    case "ShowName":
+                        item.Range.Text = ShowName;
+                        break;
+                    case "ShowAct":
+                        item.Range.Text = ShowAct;
+                        break;
+                    case "docNumberC":
+                        item.Range.Text = docNumberC;
+                        break;
+                    case "docDateC":
+                        item.Range.Text = docDateC;
+                        break;
+                    case "prcntShow":
+                        item.Range.Text = prcntShow;
+                        break;
+                    case "prcntShowText":
+                        item.Range.Text = prcntShowText;
+                        break;
+                    case "pPayShowGrnText":
+                        item.Range.Text = pPayShowGrnText;
+                        break;
+                    case "pPayShowKop":
+                        item.Range.Text = pPayShowKop;
+                        break;
+                    case "aPayShowGrnText":
+                        item.Range.Text = aPayShowGrnText;
+                        break;
+                    case "aPayShowKop":
+                        item.Range.Text = aPayShowKop;
+                        break;
+                    case "PayShowDataDo":
+                        item.Range.Text = PayShowDataDo;
+                        break;
+                    case "docDateEndС":
+                        item.Range.Text = docDateEndС;
+                        break;
+                    case "TableAvtor":
+                        //formTableAvtor(item.Range.Tables, array_licAuthorB);
+                        break;
+
+                    default:
+
+                        break;
+
+                }
+
+                item.Delete();
+            } // for each
+            innerDoc.Save();
+            innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
+            innerDoc.Close();
+        }
+
+
+
+
+
+
+
+
+
+
+
         private string PrepareWork()
         {
             // копіювати в тимчасову папку
