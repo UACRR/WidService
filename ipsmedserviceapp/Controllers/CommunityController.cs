@@ -41,26 +41,92 @@ namespace ipsmedserviceapp.Controllers
 
         };
 
-        [HttpGet("listall")]
-        public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? custId)
+        [HttpGet("list/all")]
+        public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId)
         {
             if (viewName == null || !_communityViewList.Keys.Contains(viewName))
                 return BadRequest();
 
-            string QueryStr = string.Concat("select * from ", _communityViewList[viewName]);
+            string queryStr = string.Concat("select * from ", _communityViewList[viewName]);
             // Немає параметру по Споживачу
-            if (custId == null)
+            if (paramId == null)
             {
-                var list = await _dbContext.getViewData(QueryStr, null);
+                var list = await _dbContext.getViewData(queryStr, null);
                 return Json(list);
             }
             else
             {
-                QueryStr = string.Concat(QueryStr, " where custId = @custId");
-                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId) });
+                queryStr = string.Concat(queryStr, " where custId = @custId");
+                var list = await _dbContext.getViewData(queryStr, new[] { new SqlParameter("@custId", paramId) });
                 return Json(list);
-
             }
         }
+
+        [HttpGet("template")]
+        public IActionResult GetCommunityTemplate()
+        {
+            try
+            {
+                Customer communityCustomer = new Customer
+                {
+                    CustType = 3, // спільнота юр особа
+                    AnkVersion = 1,
+                    Status = 2,
+                    Company = new Company
+                    {
+                        AnketaCompany = new List<AnketaCompany>
+                        {
+                            new AnketaCompany
+                            {
+                                Version = 1,
+                                Status = 2,
+                            }
+                        },
+                        Version = 1
+                    },
+                    AgreementMaster = new List<AgreementMaster>
+                    {
+                        new AgreementMaster
+                        {
+                            AgrStatus = 2,
+                            AgrType = 4,
+                            Version = 1,
+                            //agreementaddcomunity agr type = 4
+                        }
+                    },
+                    RightHolder = new RightHolder
+                    {
+                        // community RH rholdertype = 2
+                    }
+                };
+
+                // Договор з Споживачем
+                //var agreementAddCommunity = new AgreementAddCommunity
+                //{
+                //    AgrStatus = 2,
+                //    Agr = agreementMaster,
+                //    Version = 1,
+                //    AnkVersion = 1,
+                //};
+                
+
+                return Json(communityCustomer);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        //[HttpGet("list")]
+        //public async Task<IActionResult> GetTest()
+        //{
+
+        //    string QueryStr = string.Concat("select * from vTsk_1_ListCommunity", "");
+        //    // Немає параметру по Споживачу;
+        //    var list = await _dbContext.getViewData(QueryStr, null);
+        //    return Json(list);
+
+        //}
     }
 }

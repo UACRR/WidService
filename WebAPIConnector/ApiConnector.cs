@@ -188,7 +188,8 @@ namespace WebAPIConnector
         /// <returns></returns>
         public T GetItemById<T>(string url, string id)
         {
-            string idUrl = $"{url}/{id}";
+            string idUrl = !string.IsNullOrEmpty(id) ? $"{url}/{id}" : $"{url}";
+
             string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
             if (retApiString == "null")
                 retApiString = string.Empty;

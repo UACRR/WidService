@@ -30,9 +30,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
         // завантажити список спільнот на грід
-        private List<CommunytiListView> SetCommunityList(int custId)
+        private List<CommunytiListView> SetCommunityList(int paramId)
         {
-            return _service.GetView<CommunytiListView>(typeof(CommunytiListView), "vTsk_1_ListCommunity", custId);
+            return _service.GetView<CommunytiListView>(typeof(CommunytiListView), "vTsk_1_ListCommunity");
         }
     }
 }
