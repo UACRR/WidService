@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
@@ -17,28 +18,22 @@ namespace ipsmedserviceapp.Controllers
         public string WebSecurity { get; private set; }
 
         [HttpGet("userinfo")]
-        public async Task<IActionResult> GetGroups()
+        public IActionResult GetGroups()
         {
             try
             {
-                var wi = (WindowsIdentity)User.Identity;
-                if (wi == null)
-                    return BadRequest();
+                List<string> fullName = new List<string>();
 
-                var groups = new List<string>();
-                await Task.Run(() =>
+                using (var context = new PrincipalContext(ContextType.Domain))
                 {
+                    var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+                    fullName.Add($"{principal.Surname} {principal.Name} -- ({User.Identity.Name})");
+                    var groups = principal.GetGroups();
+                    foreach (var group in groups)
+                        fullName.Add(group.Name);
+                }
 
-                    foreach (var item in wi.Groups)
-                    {
-                        groups.Add(item.Translate(typeof(NTAccount)).ToString());
-                    }
-
-                    groups.Add(wi.Name);
-
-                });
-
-                return Json(groups.ToArray());
+                return Ok(fullName);
             }
             catch( Exception ex )
             {
@@ -46,26 +41,28 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+
+
         [Authorize]
         [HttpGet("toch")]
         public IActionResult Toch()
         {
-            var wi = (WindowsIdentity)User.Identity;
-            if (wi == null)
-                return BadRequest();
 
-            var myPrincipal = new WindowsPrincipal(wi);
-            return Json(myPrincipal.UserClaims.Select(rec => rec.Value).ToArray());
+            bool inGroup = false;
 
-            //System.Security.Principal.WindowsIdentity wi = WindowsIdentity.GetCurrent();
-            //string[] a = User.Identity.Name.Split('\\');
+            using (var context = new PrincipalContext(ContextType.Domain))
+            {
+                var FixingGroup = GroupPrincipal.FindByIdentity(context, IdentityType.Name, "Фіксація Порушень");
+                if(FixingGroup != null)
+                {
+                    var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+                    inGroup = principal.IsMemberOf(FixingGroup);
 
+                }
 
-            //System.DirectoryServices.DirectoryEntry ADEntry = new System.DirectoryServices.DirectoryEntry("WinNT://" + a[0] + "/" + a[1]);
-            //string Name = ADEntry.Properties["FullName"].Value.ToString();
+            }
 
-
-            //return Json(Name);
+            return Ok(inGroup);
         }
 
     }
