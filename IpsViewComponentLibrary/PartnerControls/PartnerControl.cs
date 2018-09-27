@@ -21,7 +21,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
-        public event GetCustomerEventHandler GetPartnerById;
+        public event GetCustomerByIdEventHandler GetPartnerById;
         public delegate List<T> ReturnPartnerViewEventHandler<T>();
         public event ReturnPartnerViewEventHandler<PartnerView> GetPartnersView;
         public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;

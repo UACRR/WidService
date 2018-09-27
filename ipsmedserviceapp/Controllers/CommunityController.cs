@@ -41,7 +41,13 @@ namespace ipsmedserviceapp.Controllers
 
         };
 
-        [HttpGet("list/all")]
+        /// <summary>
+        /// повернути дані обраної VIEW 
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <param name="paramId"></param>
+        /// <returns></returns>
+        [HttpGet("list/view")]
         public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId)
         {
             if (viewName == null || !_communityViewList.Keys.Contains(viewName))
@@ -62,54 +68,33 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// отримати всі дані по спільноті
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("list/{custId}")]
+        public async Task<IActionResult> GetCommunity(int custId)
+        {
+            var community = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                .Include(item => item.AgreementMaster)
+                .Include(item => item.BankAccount)
+                .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
+                .Include(item => item.RightHolder).SingleOrDefaultAsync();
+            return Json(community);
+        }
+
+        /// <summary>
+        /// створити шаблон для створення нової спільноти
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("template")]
         public IActionResult GetCommunityTemplate()
         {
             try
             {
-                Customer communityCustomer = new Customer
-                {
-                    CustType = 3, // спільнота юр особа
-                    AnkVersion = 1,
-                    Status = 2,
-                    Company = new Company
-                    {
-                        AnketaCompany = new List<AnketaCompany>
-                        {
-                            new AnketaCompany
-                            {
-                                Version = 1,
-                                Status = 2,
-                            }
-                        },
-                        Version = 1
-                    },
-                    AgreementMaster = new List<AgreementMaster>
-                    {
-                        new AgreementMaster
-                        {
-                            AgrStatus = 2,
-                            AgrType = 4,
-                            Version = 1,
-                            //agreementaddcomunity agr type = 4
-                        }
-                    },
-                    RightHolder = new RightHolder
-                    {
-                        // community RH rholdertype = 2
-                    }
-                };
-
-                // Договор з Споживачем
-                //var agreementAddCommunity = new AgreementAddCommunity
-                //{
-                //    AgrStatus = 2,
-                //    Agr = agreementMaster,
-                //    Version = 1,
-                //    AnkVersion = 1,
-                //};
-                
-
+                var communityCustomer = GetTemplate();
                 return Json(communityCustomer);
             }
             catch (Exception ex)
@@ -118,15 +103,166 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        //[HttpGet("list")]
-        //public async Task<IActionResult> GetTest()
-        //{
+        /// <summary>
+        /// Зберегти нову спільноту
+        /// </summary>
+        /// <param name="sourceCustomer"></param>
+        /// <returns></returns>
+        [HttpPost("createcommunity")]
+        public async Task<IActionResult> SaveCommunity([FromBody] Customer sourceCustomer)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var newCommunity = GetTemplate();
+                _dbContext.Customer.Add(newCommunity);
+                SyncCommunityObjects(sourceCustomer, newCommunity);
 
-        //    string QueryStr = string.Concat("select * from vTsk_1_ListCommunity", "");
-        //    // Немає параметру по Споживачу;
-        //    var list = await _dbContext.getViewData(QueryStr, null);
-        //    return Json(list);
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
 
-        //}
+                return await GetCommunity(newCommunity.CustId);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Оновити дані спільноти
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="sourceCustomer"></param>
+        /// <returns></returns>
+        [HttpPut("updatecommunity/{custId}")]
+        public async Task<IActionResult> UpdateCommunity(int custId, [FromBody] Customer sourceCustomer)
+        {
+            var destination = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                .Include(item => item.AgreementMaster)
+                .Include(item => item.BankAccount)
+                .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
+                .Include(item => item.RightHolder).SingleOrDefaultAsync();
+
+            return null;
+        }
+
+        #region Винесені методи та додаткові методи синхронізацій
+
+        /// <summary>
+        /// Синхронізація даних для спільноти
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
+        private void SyncCommunityObjects(Customer source, Customer destination)
+        {
+            var excludeFields = new string[] { "CustId" };
+            if (source == null)
+                throw new Exception("New comunity object is empty!");
+            if (!(source.CustType > 0 && source.CustType < 4))
+                throw new Exception("Bad customer type for new comunity");
+
+            // Збереження Customer
+            destination.SetFields(source, excludeFields);
+
+            // Збереження BankAccount
+            if (source.BankAccount.Count > 0)
+                _dbContext.UpdateList(source.BankAccount, destination.BankAccount, rec => { }, (l, r) => l.BanAccId == r.BanAccId);
+
+            // збереження Community
+            destination.Community.SetFields(source.Community);
+
+            //збереження Company + AnketaCompany
+            destination.Company.SetFields(source.Company);
+            var sorsList = source.Company.AnketaCompany.ToList();
+            _dbContext.UpdateList(sorsList, destination.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+
+            // --  збереження договору
+            // --  збереження vAgreementMaster
+            var sorsAgrMasterList = source.AgreementMaster.ToList();
+            _dbContext.UpdateList(sorsAgrMasterList, destination.AgreementMaster, rec => { }, (s ,d) => s.Version == d.Version);
+
+            //_dbContext.UpdateList(sorsAgrAddCommunity, destination.Community.AgreementAddCommunity, rec => { }, (s, d) => s.Version == d.Version);
+
+            var sorsAgrAddCommunity = source.Community.AgreementAddCommunity.ToList();
+            var destAgrAddCommunity = destination?.Community?.AgreementAddCommunity.ToList();
+            var agrList = destAgrAddCommunity?.Where(row => sorsAgrAddCommunity.All(item => item.AgrId != row.AgrId)).ToList();
+            // Delete
+            agrList?.ForEach(item => _dbContext.AgreementAddCommunity.RemoveRange(item));
+            // Modify
+            {
+                agrList = destAgrAddCommunity?.Where(row => sorsAgrAddCommunity.Any(item => item.AgrId == row.AgrId)).ToList();
+                var sorsDic = sorsAgrAddCommunity.ToDictionary(rec => rec.AgrId);
+                agrList?.ForEach(item =>
+                {
+                    var sorsItem = sorsDic[item.AgrId];
+                    item.SetFields(sorsItem);
+                });
+            }
+            // Add
+            {
+                agrList = sorsAgrAddCommunity.Where(row => !destAgrAddCommunity?.Any(item => item.AgrId == row.AgrId) ?? false).ToList();
+                agrList.ForEach(item => destination.Community.AgreementAddCommunity.Add(item));
+            }
+            // збереження RightHolder
+            destination.RightHolder.SetFields(source.RightHolder);
+
+        }
+
+        private Customer GetTemplate()
+        {
+            return new Customer
+            {
+                CustType = 3, // спільнота юр особа
+                AnkVersion = 1,
+                Status = 2,
+                Company = new Company
+                {
+                    AnketaCompany = new List<AnketaCompany>
+                    {
+                        new AnketaCompany
+                        {
+                            Version = 1,
+                            Status = 2,
+                        }
+                    },
+                    Version = 1
+                },
+                AgreementMaster = new List<AgreementMaster>
+                {
+                    new AgreementMaster
+                    {
+                        AgrStatus = 2,
+                        AgrType = 4,
+                        Version = 1,
+                        AgreementAddCommunity = new List<AgreementAddCommunity>
+                        {
+                            new AgreementAddCommunity
+                            {
+                                AgrStatus = 2,
+                                AnkVersion = 1,
+                                Version = 1,
+                            }
+                        },
+                    },
+                },
+                Community = new Community(),
+                RightHolder = new RightHolder
+                {
+                    RHolderType = 2,
+                },
+                BankAccount = new List<BankAccount>
+                {
+                    new BankAccount()
+                }
+
+            };
+        }
+
+        #endregion
     }
 }
