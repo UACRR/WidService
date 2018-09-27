@@ -73,40 +73,7 @@ namespace ipsmedserviceapp.Controllers
             if (fixation == null)
                 NotFound();
 
-            Debug.WriteLine("\r\nBefore mapping:");
-            foreach (var entry in _dbContext.ChangeTracker.Entries())
-            {
-                Debug.WriteLine($"Entity: {entry.Entity}, State: {entry.State}");
-
-                //if (entry.Entity is FixStorageDevice device)
-                //{
-                //    Debug.WriteLine($"Hash code: {device.GetHashCode()} - StorageId: {device.StorageId}, FixId: {device.FixId}, Name: {device.Name}, Fix: {device.Fix}");
-                //}
-                if (entry.Entity is FixFile file)
-                {
-                    Debug.WriteLine($"Hash code: {file.GetHashCode()} - FileId: {file.FileId}, FixId: {file.FixId}, Name: {file.Name}, Fix: {file.Fix}");
-                }
-            }
-
             _mapper.Map(updFixation, fixation);
-            //fixation.FixStorageDevice.Clear();
-
-            //_dbContext.ChangeTracker.TrackGraph(fixation, e => Debug.WriteLine($"Entity: {e.Entry.Entity}, State: {e.Entry.State}"));
-
-            Debug.WriteLine("\r\nAfter mapping:");
-            foreach (var entry in _dbContext.ChangeTracker.Entries())
-            {
-                Debug.WriteLine($"Entity: {entry.Entity}, State: {entry.State}");
-
-                //if (entry.Entity is FixStorageDevice device)
-                //{
-                //    Debug.WriteLine($"Hash code: {device.GetHashCode()} - StorageId: {device.StorageId}, FixId: {device.FixId}, Name: {device.Name}, Fix: {device.Fix}");
-                //}
-                if (entry.Entity is FixFile file)
-                {
-                    Debug.WriteLine($"Hash code: {file.GetHashCode()} - FileId: {file.FileId}, FixId: {file.FixId}, Name: {file.Name}, Fix: {file.Fix}");
-                }
-            }
 
             await _dbContext.SaveChangesAsync();
 
