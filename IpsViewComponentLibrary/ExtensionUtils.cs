@@ -21,15 +21,17 @@ namespace IpsViewComponentLibrary
     public delegate Customer GetRegisterRatedList(int custId);
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);
     public delegate List<Customer> GetPartnerList();
-    public delegate Customer GetCustomerEventHandler(int custId);
 
     public delegate bool SetPartnerEventHandler(int clientId, int partnerId);
     public delegate bool ChangePartnerEventHandler(int clientId, int partnerId, int oldPartnerId);
 
     public delegate void LoadCustomerCabinetBrEventHandler(int id);
-    public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate void UpdateCustomerDataEventHandler(int id);
 
+    public delegate void EmptyEventHandler();
+    public delegate bool SaveCustomerEventHandler(Customer customer);
+    public delegate Customer GetCustomerEventHandler();
+    public delegate Customer GetCustomerByIdEventHandler(int custId);
     public delegate List<T> ReturnViewEventHandler<T>(int custId);
     public delegate T ReturnObjectEventHandler<out T>(int custId);
 

@@ -26,7 +26,7 @@ namespace ipsFormsDesign.Services
         /// <returns>необхідна View</returns>
         public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null) where T:class
         {
-            string url = _prefix + "list/all";
+            string url = _prefix + "list/view";
             List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("viewName", viewName) };
             if (paramId != null)
                 param.Add(new KeyValuePair<string, string>("paramidId", paramId.ToString()));
@@ -38,10 +38,29 @@ namespace ipsFormsDesign.Services
             return typeList;
         }
 
-        public Customer GetTemplteComunity()
+        /// <summary>
+        /// тримати шаблон для створення нової спільноти 
+        /// </summary>
+        /// <returns></returns>
+        public Customer GetTemplateComunity()
         {
             var customerComunity = _webApi.GetItemById<Customer>("template", null);
             return customerComunity;
         }
+
+        /// <summary>
+        /// Збереження нової або існуючої спільноти
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
+        public bool SaveCommunity(Customer customer)
+        {
+            return customer.CustId == 0 ? 
+                _webApi.NewItem<Customer>(_prefix + "createcommunity", customer) : 
+                _webApi.UpdateItem<Customer>(_prefix + "updatecommunity", customer.CustId.ToString(), customer);
+        }
+
+
+
     }
 }

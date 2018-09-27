@@ -41,7 +41,13 @@ namespace ipsmedserviceapp.Controllers
 
         };
 
-        [HttpGet("list/all")]
+        /// <summary>
+        /// повернути дані обраної VIEW 
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <param name="paramId"></param>
+        /// <returns></returns>
+        [HttpGet("list/view")]
         public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId)
         {
             if (viewName == null || !_communityViewList.Keys.Contains(viewName))
@@ -62,6 +68,27 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// отримати всі дані по спільноті
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("list/{custId}")]
+        public async Task<IActionResult> GetCommunity(int custId)
+        {
+            var community = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                .Include(item => item.AgreementMaster)
+                .Include(item => item.BankAccount)
+                .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
+                .Include(item => item.RightHolder).SingleOrDefaultAsync();
+            return Json(community);
+        }
+
+        /// <summary>
+        /// створити шаблон для створення нової спільноти
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("template")]
         public IActionResult GetCommunityTemplate()
         {
@@ -91,24 +118,28 @@ namespace ipsmedserviceapp.Controllers
                             AgrStatus = 2,
                             AgrType = 4,
                             Version = 1,
-                            //agreementaddcomunity agr type = 4
-                        }
+                            AgreementAddCommunity = new List<AgreementAddCommunity>
+                            {
+                                new AgreementAddCommunity
+                                {
+                                    AgrStatus = 2,
+                                    AnkVersion = 1,
+                                    Version = 1,
+                                }
+                            },
+                        },
                     },
+                    Community = new Community(),
                     RightHolder = new RightHolder
                     {
-                        // community RH rholdertype = 2
+                        RHolderType = 2,
+                    },
+                    BankAccount = new List<BankAccount>
+                    {
+                        new BankAccount()
                     }
-                };
 
-                // Договор з Споживачем
-                //var agreementAddCommunity = new AgreementAddCommunity
-                //{
-                //    AgrStatus = 2,
-                //    Agr = agreementMaster,
-                //    Version = 1,
-                //    AnkVersion = 1,
-                //};
-                
+                };
 
                 return Json(communityCustomer);
             }
@@ -118,15 +149,129 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        //[HttpGet("list")]
-        //public async Task<IActionResult> GetTest()
-        //{
+        /// <summary>
+        /// Зберегти нову спільноту
+        /// </summary>
+        /// <param name="sourceCustomer"></param>
+        /// <returns></returns>
+        [HttpPost("createcommunity")]
+        public async Task<IActionResult> SaveCommunity([FromBody] Customer sourceCustomer)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var newCommunity = new Customer();
+                _dbContext.Customer.Add(newCommunity);
+                SyncCommunityObjects(sourceCustomer, newCommunity);
 
-        //    string QueryStr = string.Concat("select * from vTsk_1_ListCommunity", "");
-        //    // Немає параметру по Споживачу;
-        //    var list = await _dbContext.getViewData(QueryStr, null);
-        //    return Json(list);
 
-        //}
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+                return await GetCommunity(newCommunity.CustId);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Оновити дані спільноти
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="sourceCustomer"></param>
+        /// <returns></returns>
+        [HttpPut("updatecommunity/{custId}")]
+        public async Task<IActionResult> UpdateCommunity(int custId, [FromBody] Customer sourceCustomer)
+        {
+
+            return null;
+        }
+
+        #region Винесені методи та додаткові методи синхронізацій
+
+        /// <summary>
+        /// Синхронізація даних для спільноти
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
+        private void SyncCommunityObjects(Customer source, Customer destination)
+        {
+            var excludeFields = new string[] { "CustId" };
+            if (source == null)
+                throw new Exception("New comunity object is empty!");
+            if (!(source.CustType > 0 && source.CustType < 4))
+                throw new Exception("Bad customer type for new comunity");
+
+            // Збереження Customer
+            destination.SetFields(source, excludeFields);
+
+            // Збереження BankAccount
+            if (source.BankAccount.Count > 0)
+                _dbContext.UpdateList(source.BankAccount, destination.BankAccount, rec => { }, (l, r) => l.BanAccId == r.BanAccId);
+
+            destination.Client.SetFields(source.Client);
+            // збереження договору
+            var destAgrList = destination.AgreementMaster.ToList();
+            var sorsAgrList = source.AgreementMaster.ToList();
+            List<AgreementMaster> agrList = destAgrList.Where(row => !sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+            // Delete
+            agrList.ForEach(item =>
+            {
+                _dbContext.AgreementAddPartner.RemoveRange(item.AgreementAddPartner);
+            });
+            _dbContext.AgreementMaster.RemoveRange(agrList);
+            // Modify
+            {
+
+                agrList = destAgrList.Where(row => sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+                var sorsDic = sorsAgrList.ToDictionary(rec => rec.AgrId);
+                agrList.ForEach(item =>
+                {
+                    var sorsItem = sorsDic[item.AgrId];
+                    item.SetFields(sorsItem);
+                    _dbContext.UpdateList(sorsItem.AgreementAddPartner, item.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
+                });
+            }
+            // Add
+            {
+                agrList = sorsAgrList.Where(row => !destAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+                agrList.ForEach(item =>
+                {
+                    // створено 1
+                    var agreement = new AgreementMaster();
+                    // оновлення з ресурсу 1
+                    agreement.SetFields(item);
+                    // оновлення AgreementAddPartner
+                    _dbContext.AppendList(item.AgreementAddPartner, agreement.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
+
+                    destination.Partner = new Partner();
+                    foreach (var addPartner in agreement.AgreementAddPartner)
+                        destination.Partner.AgreementAddPartner.Add(addPartner);
+
+                    destination.AgreementMaster.Add(agreement); // додано 1
+                });
+            }
+
+            // Збереження Person та AnketaPerson
+            if (destination.CustType == 1)
+            {
+                if (source.Person == null)
+                    throw new Exception("Not input data for Person!");
+                if (destination.Person == null) destination.Person = new Person();
+                destination.Person.SetFields(source.Person, excludeFields);
+
+                if (source.Person.AnketaPerson.Count == 0)
+                    throw new Exception("Not input data for AnketaPerson");
+
+                _dbContext.UpdateList(source.Person.AnketaPerson, destination.Person.AnketaPerson, rec => { }, (l, r) => l.Version == r.Version);
+            }
+        }
+
+        #endregion
     }
 }

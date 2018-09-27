@@ -226,6 +226,12 @@
     <Compile Include="CommunityControls\CommunityControl.Designer.cs">
       <DependentUpon>CommunityControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommunityControls\CommunityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityForm.Designer.cs">
+      <DependentUpon>CommunityForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -943,6 +949,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityControl.resx">
       <DependentUpon>CommunityControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityForm.resx">
+      <DependentUpon>CommunityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>

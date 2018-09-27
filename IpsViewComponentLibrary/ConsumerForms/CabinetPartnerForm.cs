@@ -23,7 +23,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public event SetPartnerEventHandler OnAddClientToPartner;
         public event SetPartnerEventHandler OnDetachClientInPartner;
         public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
-        public event GetCustomerEventHandler UpdateCustomer;
+        public event GetCustomerByIdEventHandler UpdateCustomer;
 
 
         public CabinetPartnerForm(Customer customer)
