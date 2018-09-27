@@ -1152,7 +1152,8 @@ namespace ipsFormsDesign.Services
         public void processPartner(string pathTemplate, Customer cust, AgreementMaster agrMain)
         {
 
-            AgreementAddPartner agr = agrMain.AgreementAddPartner.Where(rec => rec.Version == agrMain.Version).First();
+            AgreementAddPartner agr = cust.Partner.AgreementAddPartner.
+                Where(rec => (rec.Version == agrMain.Version) &(rec.AgrId == agrMain.AgrId)).First();
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
             var docFile = tempFileName + ".docx";
@@ -1192,73 +1193,32 @@ namespace ipsFormsDesign.Services
             string CstINN = string.Empty;
             string docDateBeginP = string.Empty;
             string docDateEndP = string.Empty;
-            string firstMonthRate = string.Empty;
-            string firstMonthRateText = string.Empty;
-            string monthRate = string.Empty;
-            string pfMonthRateText = string.Empty;
             string cstPasport = string.Empty;
             string CstBankName = string.Empty;
             string CstBankMFO = string.Empty;
             string CstBankEDRPOU = string.Empty;
             string CstAcc = string.Empty;
             string CstPhone = string.Empty;
-
-            string leAddress = string.Empty;
-            string reAddress = string.Empty;
-            string faAddress = string.Empty;
-            string phoneHome = string.Empty;
-            string phoneWork = string.Empty;
-            string phone = string.Empty;
+            
+         string faAddress = string.Empty;
             string eMail = string.Empty;
-            DateTime? createDate = DateTime.Today;
-            string Okpo = string.Empty;
-            string СstPersonReason = string.Empty;
-            string registerDate = string.Empty;
-            string registerNumber = string.Empty;
-            string numberVAT = string.Empty;
-            string typeVat = string.Empty;
-            string cstPerson = string.Empty;
-            string cstContPerson = string.Empty;
-            string cstContPersonPhone = string.Empty;
-            string fop = String.Empty;
-            string vOsobi = String.Empty;
-            string naPidstavi = String.Empty;
-            string GdocNumber = String.Empty;
-            string GdocDateC = String.Empty;
-            string GdocDateBeginC = String.Empty;
-            string GdocDateEndC = String.Empty;
-            string ShowName = String.Empty;
-            string ShowAct = String.Empty;
-            string docNumberC = String.Empty;
-            string docDateC = String.Empty;
-            string docDateEndС = String.Empty;
-            string prcntShow = string.Empty;
-            string prcntShowText = string.Empty;
-            string pPayShowGrnText = string.Empty;
-            string pPayShowKop = string.Empty;
-            string PayShowDataDo = string.Empty;
-            string aPayShowGrnText = string.Empty;
-            string aPayShowKop = string.Empty;
+
             {
                 CstName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 CstPasportIssued =$"{anketaPerson.PUissuedWho } {anketaPerson.PUissuedWhen:dd.MM.yyyy}";
-                leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
-                reAddress = anketaPerson.ReAddress != null ?
-                    $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
+                cstPasport  = $"{anketaPerson.PUseries} {anketaPerson.PUnumber} ";
+                CstINN = $"{anketaPerson.Inn}";
+                CstBankName = $"{bankacc.MfoName}";
+                CstBankMFO = $"{bankacc.Mfo}";
+                CstBankEDRPOU = $"{bankacc.MfoOkpo}";
+                CstAcc = $"{bankacc.TransitNumber}";
+                CstPhone = $"{anketaPerson.PhoneMobileMain}";
                 faAddress = anketaPerson.FaAddress != null ?
                     $"{countries[anketaPerson.FaCountry ?? "804"].CountryName} {anketaPerson.FaCity} {anketaPerson.FaAddress}" : faAddress;
+                faAddress = $"{countries[anketaPerson.FaCountry ?? "804"].CountryName}{","} {anketaPerson.FaCity}{","} {anketaPerson.FaAddress}" ;
 
-                phoneHome = anketaPerson.PhoneHome;
-                phoneWork = anketaPerson.PhoneMobileExtra;
-                phone = anketaPerson.PhoneMobileMain;
                 eMail = anketaPerson.EMail;
-                createDate = anketaPerson.BirthDate;
-                Okpo = anketaPerson.Inn;
-                cstPerson = CstName;
-                
-                cstContPersonPhone = phoneWork;
-  
+      
             }
 
             docDateP = $"{agreementAddPartner?.AgrDate:dd.MM.yyyy}";
@@ -1268,6 +1228,29 @@ namespace ipsFormsDesign.Services
             appeal = "Громадянин";
             if (anketaPerson.Sex == 1)
                 appeal = "Громадянка";
+
+            string firstMonthRate = string.Empty;
+            string firstMonthRateText = string.Empty;
+
+            string monthRate = string.Empty;
+            string monthRateText = string.Empty;
+
+            string pfFirstRate = string.Empty;
+            string pfFirstRateText = string.Empty;
+
+            decimal fprcntrate = Convert.ToDecimal(agreementAddPartner?.SrFirstRate);
+            firstMonthRate = fprcntrate.ToString("F");
+            firstMonthRateText = Utils.PrcnPhrase(fprcntrate);
+
+            decimal mprcntrate = Convert.ToDecimal(agreementAddPartner?.SrMonthRate);
+            monthRate = mprcntrate.ToString("F");
+            monthRateText = Utils.PrcnPhrase(mprcntrate);
+
+            decimal pprcntrate = Convert.ToDecimal(agreementAddPartner?.PfFirstRate);
+            pfFirstRate = pprcntrate.ToString("F");
+            pfFirstRateText = Utils.PrcnPhrase(pprcntrate);
+
+      
 
             foreach (ContentControl item in list)
             {
@@ -1299,103 +1282,56 @@ namespace ipsFormsDesign.Services
                     case "CstPasportIssued":
                         item.Range.Text = CstPasportIssued;
                         break;
-
-                    case "CstPerson":
-                        item.Range.Text = cstPerson;
-                        break;
-                    case "naPidstavi":
-                        item.Range.Text = naPidstavi;
-                        break;
-                    case "CstPersonReason":
-                        item.Range.Text = СstPersonReason;
-                        break;
-
-
-                    case "CstLegalAddress":
-                        item.Range.Text = reAddress;
-                        break;
                     case "CstResidentialAddress":
                         item.Range.Text = faAddress;
                         break;
-                    case "СstCorrespAddress":
-                        item.Range.Text = leAddress;
+                    case "firstMonthRate":
+                        item.Range.Text = firstMonthRate;
                         break;
-                    case "СstPhone":
-                        item.Range.Text = phone;
+                    case "firstMonthRateText":
+                        item.Range.Text = firstMonthRateText;
                         break;
-                    case "CstEDRPOU":
-                        item.Range.Text = Okpo;
+                    case "monthRate":
+                        item.Range.Text = monthRate;
                         break;
-                    case "CstBankName":
-                        item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
-                        break;
-                    case "CstBankMfo":
-                        item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
-                        break;
-                    case "CstAcc":
-                        item.Range.Text = $"{bankacc?.AccountNumber ?? string.Empty}";
-                        break;
-                    case "CstRegNumber":
-                        item.Range.Text = registerNumber;
-                        break;
-                    case "CstRegData":
-                        item.Range.Text = registerDate;
-                        break;
-                    case "CstVAT":
-                        item.Range.Text = numberVAT;
-                        break;
-                    case "CstVATType":
-                        item.Range.Text = typeVat;
-                        break;
-                    case "CstEmail":
-                        item.Range.Text = eMail;
-                        break;
-                    case "CstContPerson":
-                        item.Range.Text = cstContPerson;
-                        break;
-                    case "CstContPersonPhone":
-                        item.Range.Text = cstContPersonPhone;
-                        break;
-                    case "ShowName":
-                        item.Range.Text = ShowName;
-                        break;
-                    case "ShowAct":
-                        item.Range.Text = ShowAct;
-                        break;
-                    case "docNumberC":
-                        item.Range.Text = docNumberC;
-                        break;
-                    case "docDateC":
-                        item.Range.Text = docDateC;
-                        break;
-                    case "prcntShow":
-                        item.Range.Text = prcntShow;
-                        break;
-                    case "prcntShowText":
-                        item.Range.Text = prcntShowText;
-                        break;
-                    case "pPayShowGrnText":
-                        item.Range.Text = pPayShowGrnText;
-                        break;
-                    case "pPayShowKop":
-                        item.Range.Text = pPayShowKop;
-                        break;
-                    case "aPayShowGrnText":
-                        item.Range.Text = aPayShowGrnText;
-                        break;
-                    case "aPayShowKop":
-                        item.Range.Text = aPayShowKop;
-                        break;
-                    case "PayShowDataDo":
-                        item.Range.Text = PayShowDataDo;
-                        break;
-                    case "docDateEndС":
-                        item.Range.Text = docDateEndС;
-                        break;
-                    case "TableAvtor":
-                        //formTableAvtor(item.Range.Tables, array_licAuthorB);
+                    case "monthRateText":
+                        item.Range.Text = monthRateText;
                         break;
 
+                    case "pfFirstRate":
+                        item.Range.Text = pfFirstRate;
+                        break;
+                    case "pfFirstRateText":
+                        item.Range.Text = pfFirstRateText;
+                        break;
+                    case "cstPasport":
+                        item.Range.Text = cstPasport;
+                        break;
+                    case "CstINN":
+                        item.Range.Text = CstINN;
+                        break;
+                    case "CstBankName":
+                        item.Range.Text = CstBankName;
+                        break;
+                    case "CstBankMFO":
+                        item.Range.Text = CstBankMFO;
+                        break;
+                    case "CstBankEDRPOU":
+                        item.Range.Text = CstBankEDRPOU;
+                        break;
+                    case "CstAcc":
+                        item.Range.Text = CstAcc;
+                        break;
+                    case "CstPhone":
+                        item.Range.Text = CstPhone;
+                        break;
+
+
+
+
+                 case "CstEmail":
+                        item.Range.Text = eMail;
+                        break;
                     default:
 
                         break;
