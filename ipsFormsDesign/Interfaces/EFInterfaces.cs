@@ -938,11 +938,12 @@ public interface IFixation
          string ClientName { get; set; }
          string ClientInnOkpo { get; set; }
          string UserId { get; set; }
+         string FixationTime { get; set; }
 }
 public interface IFixFile
     {
+         int FixId { get; set; }
          int FileId { get; set; }
-         int? FixId { get; set; }
          string Name { get; set; }
          string Path { get; set; }
 }
@@ -955,8 +956,8 @@ public interface IFixStageStatus
 }
 public interface IFixStorageDevice
     {
-         int StorageId { get; set; }
          int FixId { get; set; }
+         int StorageId { get; set; }
          string Name { get; set; }
          string SerialNumber { get; set; }
          decimal? Capacity { get; set; }
