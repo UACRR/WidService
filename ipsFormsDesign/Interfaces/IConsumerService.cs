@@ -411,6 +411,19 @@ namespace ipsFormsDesign.Interfaces
         public string Jacity { get; set; }
     }
 
+    /// <summary>
+    /// Список існуючих спільнот
+    /// </summary>
+    public class CommunytiListView
+    {
+        public int CustId { get; set; }
+        public string Name { get; set; }
+        public string InnerCode { get; set; }
+        public string InterCode { get; set; }
+        public DateTime? RegistrDate { get; set; }
+        public int CountAuthors { get; set; }
+    }
+
     #region класи для створення ієрархії
 
     public class ParentTemplate : IParentTemplate

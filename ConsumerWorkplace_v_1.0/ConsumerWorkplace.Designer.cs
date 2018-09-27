@@ -48,6 +48,7 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvPartners = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPartner = new IpsViewComponentLibrary.PartnerControls.PartnerControl();
             this.radPageViewPage5 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage6 = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
@@ -66,7 +67,7 @@ namespace ConsumerWorkplace_v_1._0
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlPartner = new IpsViewComponentLibrary.PartnerControls.PartnerControl();
+            this.ctrlCommunity = new IpsViewComponentLibrary.CommunityControls.CommunityControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pageBigRights.SuspendLayout();
@@ -78,6 +79,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.SuspendLayout();
             this.pvConsumers.SuspendLayout();
             this.pvPartners.SuspendLayout();
+            this.radPageViewPage5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).BeginInit();
@@ -250,9 +252,17 @@ namespace ConsumerWorkplace_v_1._0
             this.pvPartners.Size = new System.Drawing.Size(1266, 601);
             this.pvPartners.Text = "Представники";
             // 
+            // ctrlPartner
+            // 
+            this.ctrlPartner.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPartner.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPartner.Name = "ctrlPartner";
+            this.ctrlPartner.Size = new System.Drawing.Size(1266, 601);
+            this.ctrlPartner.TabIndex = 0;
+            // 
             // radPageViewPage5
             // 
-            this.radPageViewPage5.Enabled = false;
+            this.radPageViewPage5.Controls.Add(this.ctrlCommunity);
             this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(72F, 27F);
             this.radPageViewPage5.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage5.Name = "radPageViewPage5";
@@ -328,13 +338,13 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
             // 
-            // ctrlPartner
+            // ctrlCommunity
             // 
-            this.ctrlPartner.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPartner.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPartner.Name = "ctrlPartner";
-            this.ctrlPartner.Size = new System.Drawing.Size(1266, 601);
-            this.ctrlPartner.TabIndex = 0;
+            this.ctrlCommunity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlCommunity.Location = new System.Drawing.Point(0, 0);
+            this.ctrlCommunity.Name = "ctrlCommunity";
+            this.ctrlCommunity.Size = new System.Drawing.Size(1266, 601);
+            this.ctrlCommunity.TabIndex = 0;
             // 
             // ConsumerWorkplace
             // 
@@ -363,6 +373,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
             this.pvPartners.ResumeLayout(false);
+            this.radPageViewPage5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).EndInit();
@@ -419,5 +430,6 @@ namespace ConsumerWorkplace_v_1._0
         private IpsViewComponentLibrary.GlobalControlConsumerMainGrid mainGridSmallRight;
         private IpsViewComponentLibrary.GlobalControlConsumerMainGridBR mainGridBigRight;
         private IpsViewComponentLibrary.PartnerControls.PartnerControl ctrlPartner;
+        private IpsViewComponentLibrary.CommunityControls.CommunityControl ctrlCommunity;
     }
 }

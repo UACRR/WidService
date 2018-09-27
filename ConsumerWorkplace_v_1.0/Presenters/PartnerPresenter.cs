@@ -16,14 +16,10 @@ namespace ConsumerWorkplace_v_1._0.Presenters
     {
         private readonly ConsumerService _service;
         private readonly PartnerControl _partner;
-        private readonly CabinetBigRightForm _cabinetBigRightForm;
-        private readonly CabinetSmallRightForm _cabinetSmallRightForm;
-        public PartnerPresenter(ConsumerService service, PartnerControl partner, CabinetBigRightForm cabinetBigRightForm, CabinetSmallRightForm cabinetSmallRightForm)
+        public PartnerPresenter(ConsumerService service, PartnerControl partner)
         {
             _service = service;
             _partner = partner;
-            _cabinetBigRightForm = cabinetBigRightForm;
-            _cabinetSmallRightForm = cabinetSmallRightForm;
             SubscribeEvents();
         }
 

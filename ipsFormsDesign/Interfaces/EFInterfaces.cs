@@ -62,6 +62,24 @@ public interface IAgreementAddBr
          string ModifyLogin { get; set; }
          int? CustId { get; set; }
 }
+public interface IAgreementAddCommunity
+    {
+         int AgrId { get; set; }
+         int Version { get; set; }
+         decimal? RateCourt { get; set; }
+         decimal? RateCommiss { get; set; }
+         int? CustId { get; set; }
+         string AgrNumber { get; set; }
+         DateTime? AgrDate { get; set; }
+         DateTime? DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
+         int? PeriodCode { get; set; }
+         int? DayForPay { get; set; }
+         int? AnkVersion { get; set; }
+         int? AgrStatus { get; set; }
+         DateTime? ModifyDate { get; set; }
+         string ModifyLogin { get; set; }
+}
 public interface IAgreementAddPartner
     {
          int AgrId { get; set; }
@@ -920,11 +938,12 @@ public interface IFixation
          string ClientName { get; set; }
          string ClientInnOkpo { get; set; }
          string UserId { get; set; }
+         string FixationTime { get; set; }
 }
 public interface IFixFile
     {
+         int FixId { get; set; }
          int FileId { get; set; }
-         int? FixId { get; set; }
          string Name { get; set; }
          string Path { get; set; }
 }
@@ -937,8 +956,8 @@ public interface IFixStageStatus
 }
 public interface IFixStorageDevice
     {
-         int StorageId { get; set; }
          int FixId { get; set; }
+         int StorageId { get; set; }
          string Name { get; set; }
          string SerialNumber { get; set; }
          decimal? Capacity { get; set; }

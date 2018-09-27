@@ -23,8 +23,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public event SetPartnerEventHandler OnAddClientToPartner;
         public event SetPartnerEventHandler OnDetachClientInPartner;
         public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
-        public event GetCustomerEventHandler UpdateCustomer;
-
+        public event GetCustomerByIdEventHandler UpdateCustomer;
 
         public CabinetPartnerForm(Customer customer)
         {
@@ -79,13 +78,13 @@ namespace IpsViewComponentLibrary.ConsumerForms
             bsBankAccount.DataSource = _customer?.BankAccount.FirstOrDefault();
 
             // договір
-            ctrlAgreement.AgreementDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
+            ctrlAgreement.AgreementDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
             // статус договору
-            var statusid = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
+            var statusid = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
             lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
 
             // умови договору
-            ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
+            ctrlConditions.AgreementAddPartnerDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
 
             //найменування клієнта
             ctrlPartnerClients.ClientName = anketaPerson;
