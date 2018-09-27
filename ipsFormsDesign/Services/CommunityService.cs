@@ -40,8 +40,8 @@ namespace ipsFormsDesign.Services
 
         public Customer GetTemplteComunity()
         {
-            string url = _prefix + "template";
-
+            var customerComunity = _webApi.GetItemById<Customer>("template", null);
+            return customerComunity;
         }
     }
 }
