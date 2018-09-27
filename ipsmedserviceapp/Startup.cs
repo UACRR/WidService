@@ -23,6 +23,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using AutoMapper.EquivalencyExpression;
 
 namespace ipsmedserviceapp
 {
@@ -40,9 +41,11 @@ namespace ipsmedserviceapp
         {
 
             // options => options.UseSqlServer(Configuration.GetConnectionString("MediaServiceContext"))
-            services.AddDbContext<MediaServiceContext>(
-                options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MediaServiceContext")));
+            services.AddDbContext<MediaServiceContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("MediaServiceContext"));
+            });
+
             services.AddMvc()
                 .AddJsonOptions(options =>
                 {
@@ -91,6 +94,7 @@ namespace ipsmedserviceapp
 
             services.AddAutoMapper(cfg =>
             {
+                cfg.AddCollectionMappers();
                 cfg.CreateMissingTypeMaps = false;
             });
         }
