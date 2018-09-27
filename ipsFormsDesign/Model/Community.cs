@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public Community()
         {
+            AgreementAddCommunity = new ObservableListSource<AgreementAddCommunity>();
             CustCmRight = new ObservableListSource<CustCmRight>();
             RegisterCount = new ObservableListSource<RegisterCount>();
         }
@@ -15,6 +16,7 @@ namespace ipsFormsDesign.Model
         public int CustId { get; set; }
 
         public Customer Cust { get; set; }
+        public ObservableListSource<AgreementAddCommunity> AgreementAddCommunity { get; set; }
         public ObservableListSource<CustCmRight> CustCmRight { get; set; }
         public ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }

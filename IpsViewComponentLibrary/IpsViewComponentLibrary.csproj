@@ -181,6 +181,12 @@
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\ButtonGroupBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\ButtonGroupBoxControl.Designer.cs">
+      <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Editors\IpsDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -213,6 +219,18 @@
     </Compile>
     <Compile Include="Common\SearchTextBoxControl.Designer.cs">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityControl.Designer.cs">
+      <DependentUpon>CommunityControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityForm.Designer.cs">
+      <DependentUpon>CommunityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
       <SubType>UserControl</SubType>
@@ -917,6 +935,9 @@
     <EmbeddedResource Include="AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\ButtonGroupBoxControl.resx">
+      <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
       <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -925,6 +946,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityControl.resx">
+      <DependentUpon>CommunityControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityForm.resx">
+      <DependentUpon>CommunityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>

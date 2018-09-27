@@ -1,6 +1,9 @@
-﻿using ipsFormsDesign.Events;
+﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Utilities;
+using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System;
@@ -39,6 +42,10 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _fixation = _fixationService.GetById(fixId);
             _view.Fixation = _fixation;
+
+            if (_fixation.GetStage() == FixationStages.NegotiationBeforeFixation)
+                _view.ShowStatusesGroupBox = true;
+
             _view.Run();
         }
 
@@ -56,6 +63,13 @@ namespace IpsViewComponentLibrary.FixationControls
             {
                 _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
             }
+        }
+
+        public void SetStatus(FixationStageStatuses newStatus)
+        {
+            // TODO: check for correct status
+
+            _fixation.StageStatus = (int)newStatus;
         }
     }
 }

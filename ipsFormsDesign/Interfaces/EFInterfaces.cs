@@ -62,6 +62,24 @@ public interface IAgreementAddBr
          string ModifyLogin { get; set; }
          int? CustId { get; set; }
 }
+public interface IAgreementAddCommunity
+    {
+         int AgrId { get; set; }
+         int Version { get; set; }
+         decimal? RateCourt { get; set; }
+         decimal? RateCommiss { get; set; }
+         int? CustId { get; set; }
+         string AgrNumber { get; set; }
+         DateTime? AgrDate { get; set; }
+         DateTime? DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
+         int? PeriodCode { get; set; }
+         int? DayForPay { get; set; }
+         int? AnkVersion { get; set; }
+         int? AgrStatus { get; set; }
+         DateTime? ModifyDate { get; set; }
+         string ModifyLogin { get; set; }
+}
 public interface IAgreementAddPartner
     {
          int AgrId { get; set; }
