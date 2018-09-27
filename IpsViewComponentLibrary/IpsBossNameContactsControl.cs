@@ -36,14 +36,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string DataMember
-        {
-            get { return employeeBindingSource.DataMember; }
-            set { employeeBindingSource.DataMember = value; }
-        }
-
         #region Edit controls
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]

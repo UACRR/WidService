@@ -226,6 +226,18 @@
     <Compile Include="CommunityControls\CommunityAddressControl.Designer.cs">
       <DependentUpon>CommunityAddressControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommunityControls\CommunityAddressLetterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressLetterControl.Designer.cs">
+      <DependentUpon>CommunityAddressLetterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAgreementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAgreementControl.Designer.cs">
+      <DependentUpon>CommunityAgreementControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommunityControls\CommunityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -956,6 +968,12 @@
     <EmbeddedResource Include="CommunityControls\CommunityAddressControl.resx">
       <DependentUpon>CommunityAddressControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAddressLetterControl.resx">
+      <DependentUpon>CommunityAddressLetterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAgreementControl.resx">
+      <DependentUpon>CommunityAgreementControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityControl.resx">
       <DependentUpon>CommunityControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1312,6 +1330,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddCommunity.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddPartner.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
@@ -1324,6 +1343,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Employee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.FileType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Fixation.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />

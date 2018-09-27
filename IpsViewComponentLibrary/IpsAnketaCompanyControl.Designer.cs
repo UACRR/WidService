@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtShortName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtName = new RadTextBoxAuto();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.txtName = new IpsViewComponentLibrary.RadTextBoxAuto();
+            this.lblShortName = new Telerik.WinControls.UI.RadLabel();
+            this.lblFullName = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShortName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblShortName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).BeginInit();
             this.SuspendLayout();
             // 
             // anketaCompanyBindingSource
@@ -72,23 +72,23 @@
             this.txtName.TabIndex = 0;
             this.txtName.ThemeName = "Office2013Light";
             // 
-            // radLabel2
+            // lblShortName
             // 
-            this.radLabel2.Location = new System.Drawing.Point(2, 27);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(91, 19);
-            this.radLabel2.TabIndex = 1;
-            this.radLabel2.Text = "Коротка назва:";
-            this.radLabel2.ThemeName = "Office2013Light";
+            this.lblShortName.Location = new System.Drawing.Point(2, 27);
+            this.lblShortName.Name = "lblShortName";
+            this.lblShortName.Size = new System.Drawing.Size(91, 19);
+            this.lblShortName.TabIndex = 1;
+            this.lblShortName.Text = "Коротка назва:";
+            this.lblShortName.ThemeName = "Office2013Light";
             // 
-            // radLabel1
+            // lblFullName
             // 
-            this.radLabel1.Location = new System.Drawing.Point(2, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(86, 19);
-            this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Назва клієнта:";
-            this.radLabel1.ThemeName = "Office2013Light";
+            this.lblFullName.Location = new System.Drawing.Point(2, 3);
+            this.lblFullName.Name = "lblFullName";
+            this.lblFullName.Size = new System.Drawing.Size(86, 19);
+            this.lblFullName.TabIndex = 0;
+            this.lblFullName.Text = "Назва клієнта:";
+            this.lblFullName.ThemeName = "Office2013Light";
             // 
             // IpsAnketaCompanyControl
             // 
@@ -96,8 +96,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.txtShortName);
             this.Controls.Add(this.txtName);
-            this.Controls.Add(this.radLabel2);
-            this.Controls.Add(this.radLabel1);
+            this.Controls.Add(this.lblShortName);
+            this.Controls.Add(this.lblFullName);
             this.MaximumSize = new System.Drawing.Size(900, 47);
             this.MinimumSize = new System.Drawing.Size(400, 47);
             this.Name = "IpsAnketaCompanyControl";
@@ -105,8 +105,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtShortName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblShortName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFullName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,8 +115,8 @@
         #endregion
         private Telerik.WinControls.UI.RadTextBox txtShortName;
         private RadTextBoxAuto txtName;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabel lblShortName;
+        private Telerik.WinControls.UI.RadLabel lblFullName;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
     }
 }

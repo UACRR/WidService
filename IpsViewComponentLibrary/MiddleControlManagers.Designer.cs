@@ -160,7 +160,6 @@
             // 
             this.ctrlHeadBoss.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.DataMember = "";
             this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlHeadBoss.Location = new System.Drawing.Point(55, 84);
             this.ctrlHeadBoss.Name = "ctrlHeadBoss";
@@ -245,7 +244,6 @@
             // 
             this.ctrlBookkeeper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.DataMember = "";
             this.ctrlBookkeeper.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlBookkeeper.Location = new System.Drawing.Point(55, 173);
             this.ctrlBookkeeper.Name = "ctrlBookkeeper";
@@ -330,7 +328,6 @@
             // 
             this.ctrlContactPerson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.DataMember = "";
             this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlContactPerson.Location = new System.Drawing.Point(55, 262);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
