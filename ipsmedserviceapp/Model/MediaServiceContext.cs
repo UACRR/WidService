@@ -3937,9 +3937,11 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<FixFile>(entity =>
             {
-                entity.HasKey(e => e.FileId);
+                entity.HasKey(e => new { e.FixId, e.FileId } );
 
-                entity.Property(e => e.FileId).HasColumnName("fileId");
+                entity.Property(e => e.FileId)
+                    .HasColumnName("fileId")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.FixId).HasColumnName("fixId");
 
@@ -3949,13 +3951,13 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(255);
 
                 entity.Property(e => e.Path)
-                    .IsRequired()
                     .HasColumnName("path")
                     .HasMaxLength(255);
 
                 entity.HasOne(d => d.Fix)
                     .WithMany(p => p.FixFile)
                     .HasForeignKey(d => d.FixId)
+                    //.OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_FIXFILE_REF_FIXATION");
             });
 
@@ -3974,9 +3976,11 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<FixStorageDevice>(entity =>
             {
-                entity.HasKey(e => e.StorageId);
+                entity.HasKey(e => new { e.FixId, e.StorageId } );
 
-                entity.Property(e => e.StorageId).HasColumnName("storageId");
+                entity.Property(e => e.StorageId)
+                    .HasColumnName("storageId")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Capacity)
                     .HasColumnName("capacity")
@@ -3997,7 +4001,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.Fix)
                     .WithMany(p => p.FixStorageDevice)
                     .HasForeignKey(d => d.FixId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_FIXSTORAGE_REF_FIXATION");
             });
 
