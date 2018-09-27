@@ -60,6 +60,9 @@ namespace IpsViewComponentLibrary.FixationControls
             ddlStage.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StageName");
             ddlStatus.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StatusName");
 
+            gvStorages.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+            gvFiles.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+
             bgbStatuses.Visible = _showStatusesGroupBox;
 
             bgbStatuses.Buttons.AddButton("Направлене користувачу", FixationStageStatuses.NegotiationBeforeFixationDirectedToConsumer);
@@ -81,6 +84,38 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _presenter.SetStatus((FixationStageStatuses)e.Value);
             bsFixation.ResetCurrentItem();
+        }
+
+        private void btnAddStorage_Click(object sender, EventArgs e)
+        {
+            var newRow = gvStorages.Rows.AddNew();
+            newRow.Cells["Name"].BeginEdit();
+        }
+
+        private void gvStorages_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "DeleteColumn")
+            {
+                gvStorages.Rows.Remove(gvStorages.CurrentRow);
+            }
+        }
+
+        private void btnAddFile_Click(object sender, EventArgs e)
+        {
+            var newRow = gvFiles.Rows.AddNew();
+            newRow.Cells["Name"].BeginEdit();
+        }
+
+        private void gvFiles_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "DeleteColumn")
+            {
+                gvFiles.Rows.Remove(gvFiles.CurrentRow);
+            }
         }
     }
 }
