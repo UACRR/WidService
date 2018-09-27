@@ -156,11 +156,10 @@ namespace ipsmedserviceapp.Controllers
             IDbContextTransaction tran = null;
             // основна інформація
             var destinationCustomer = await _dbContext.Customer.Where(item => item.CustId == custId)
-                .Include(item => item.AgreementMaster).ThenInclude(agr => agr.AgreementAddPartner)
+                .Include(item => item.AgreementMaster)
                 .Include(item => item.Partner).ThenInclude(pcl => pcl.PartnerClient)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
-                .Include(item => item.Client)
                 .SingleOrDefaultAsync();
             try
             {
@@ -272,12 +271,21 @@ namespace ipsmedserviceapp.Controllers
 
         }
 
-        //список представників
+        /// <summary>
+        /// Список всіх представників
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("list")]
         public async Task<IActionResult> GetPartnersList()
         {
             var partner = await _dbContext.Partner.AsNoTracking().ToListAsync();
-            var list = await _dbContext.AnketaPerson.Where(rec => partner.Select(r => r.CustId).Contains(rec.CustId)).AsNoTracking().ToListAsync();
+            var list = await _dbContext.Customer.Where(rec => partner.Select(r => r.CustId).Contains(rec.CustId))
+                .Include(item => item.AgreementMaster)
+                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
+                .Include(partcl => partcl.Partner.PartnerClient)
+                .Include(item => item.BankAccount)
+                .AsNoTracking().ToListAsync();
             return Json(list);
         }
 
@@ -288,16 +296,36 @@ namespace ipsmedserviceapp.Controllers
             var partnerId = await _dbContext.PartnerClient.SingleOrDefaultAsync(rec => rec.ClCustId == clientId);
             if (partnerId == null)
                 return Json(null);
-            var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec => rec.CustId == partnerId.CustId);
-            return Json(anketaPerson);
+
+            var partner = await _dbContext.Customer.Where(rec => rec.CustId == partnerId.CustId)
+                .Include(item => item.AgreementMaster)
+                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
+                .Include(partcl => partcl.Partner.PartnerClient)
+                .SingleOrDefaultAsync();
+
+            // old call
+            //var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec => rec.CustId == partnerId.CustId);
+
+            return Json(partner);
         }
 
-        //отримати анкету представника по ID представника
+        /// <summary>
+        /// отримати всі дані представника по ID представника
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         [HttpGet("list/{custId}")]
         public async Task<IActionResult> GetPartnerAnketaById(int custId)
         {
-            var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec => rec.CustId == custId);
-            return Json(anketaPerson);
+            var partner = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(item => item.AgreementMaster)
+                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
+                .Include(partcl => partcl.Partner.PartnerClient)
+                .Include(item => item.BankAccount)
+                .SingleOrDefaultAsync();
+            return Json(partner);
         }
 
         [HttpGet("{custId}")]
@@ -305,11 +333,11 @@ namespace ipsmedserviceapp.Controllers
         {
             // основна інформація
             var customer = await _dbContext.Customer.Where(item => item.CustId == custId)
-                .Include(item => item.AgreementMaster).ThenInclude(agr => agr.AgreementAddPartner)
-                .Include(item => item.Partner).ThenInclude(pcl => pcl.PartnerClient)
-                .Include(item => item.BankAccount)
+                .Include(item => item.AgreementMaster)
                 .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
-                .Include(item => item.Client)
+                .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
+                .Include(partcl => partcl.Partner.PartnerClient)
+                .Include(item => item.BankAccount)
                 .SingleOrDefaultAsync();
 
             return Json(customer);

@@ -46,7 +46,6 @@ namespace IpsViewComponentLibrary
             this.gvViewLicences = new Telerik.WinControls.UI.RadGridView();
             this.separator = new Telerik.WinControls.UI.RadSeparator();
             this.btnCloseAgr = new Telerik.WinControls.UI.RadButton();
-            this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.btnToProlongation = new Telerik.WinControls.UI.RadButton();
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
@@ -56,11 +55,11 @@ namespace IpsViewComponentLibrary
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
+            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseAgr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToProlongation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
@@ -173,11 +172,11 @@ namespace IpsViewComponentLibrary
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "viewBtn";
             gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
             this.gvViewLicences.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -203,7 +202,6 @@ namespace IpsViewComponentLibrary
             this.gvViewLicences.ThemeName = "Office2013Light";
             this.gvViewLicences.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewLicences_CurrentRowChanged);
             this.gvViewLicences.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewLicences_CommandCellClick);
-            this.gvViewLicences.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvViewConsumers_CustomFiltering);
             // 
             // separator
             // 
@@ -226,32 +224,6 @@ namespace IpsViewComponentLibrary
             this.btnCloseAgr.TextWrap = true;
             this.btnCloseAgr.ThemeName = "Office2013Light";
             this.btnCloseAgr.Click += new System.EventHandler(this.btnCloseAgr_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(3, 107);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.NullText = "Пошук";
-            this.txtSearch.Size = new System.Drawing.Size(480, 20);
-            this.txtSearch.TabIndex = 10;
-            this.txtSearch.ThemeName = "Office2013Light";
-            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImage = null;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).HorizontalLineWidth = 0;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).RightToLeft = false;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ScaleTransform = new System.Drawing.SizeF(1F, 1F);
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Image = null;
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
-            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
-            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
             // 
             // btnToProlongation
             // 
@@ -352,13 +324,22 @@ namespace IpsViewComponentLibrary
             this.ctrlAgrInfo.Size = new System.Drawing.Size(705, 79);
             this.ctrlAgrInfo.TabIndex = 0;
             // 
+            // ctrlSearch
+            // 
+            this.ctrlSearch.Location = new System.Drawing.Point(3, 106);
+            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
+            this.ctrlSearch.Name = "ctrlSearch";
+            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
+            this.ctrlSearch.TabIndex = 14;
+            // 
             // MiddleControlCabinetLicenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.pageView);
             this.Controls.Add(this.btnToAccept);
-            this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.separator);
             this.Controls.Add(this.gvViewLicences);
             this.Controls.Add(this.ctrlAgrInfo);
@@ -369,7 +350,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseAgr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToProlongation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
@@ -386,7 +366,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadGridView gvViewLicences;
         private Telerik.WinControls.UI.RadSeparator separator;
         private Telerik.WinControls.UI.RadButton btnCloseAgr;
-        private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private Telerik.WinControls.UI.RadButton btnToProlongation;
         private Telerik.WinControls.UI.RadButton btnToAccept;
         private Telerik.WinControls.UI.RadPageView pageView;
@@ -395,5 +374,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadPageViewPage pvHistory;
         private ConsumerControls.BigRight.AgrDetailInfoBr ctrlAgrDetailInfo;
         private Telerik.WinControls.UI.RadButton btnPrint;
+        private Common.SearchTextBoxControl ctrlSearch;
     }
 }

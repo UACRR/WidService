@@ -127,6 +127,9 @@
   <data name="unlink-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unlink-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="print-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\print-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="angle-right-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\angle-right-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -139,20 +142,20 @@
   <data name="unlink-solid1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\unlink-solid1.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="angle-double-right-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\angle-double-right-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="angle-left-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\angle-left-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="deleteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\deleteIcon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="angle-double-right-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\angle-double-right-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="link-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\link-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="deleteIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\deleteIcon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="angle-left-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\angle-left-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="angle-double-left-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\angle-double-left-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -160,7 +163,7 @@
   <data name="editIcon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\editIcon.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="print-solid" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\print-solid.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="status-change" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\status-change.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -11,10 +11,13 @@ using Telerik.WinControls.UI;
 using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.EventAggregator;
+using ipsFormsDesign.Events;
+using IpsViewComponentLibrary.AppController;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
-    public partial class FixationListControl : UserControl
+    public partial class FixationListControl : UserControl, ISubscriber<FixationUpdatedEvent>
     {
         private FixationListPresenter _presenter;
 
@@ -77,12 +80,15 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             InitializeComponent();
 
+            ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
+
             _presenter = new FixationListPresenter(this);
         }
 
         private void FixationListControl_Load(object sender, EventArgs e)
         {
             gvFixationsList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvFixationsList.SetCommandColumnImageAlignment("SetStatusColumn", ContentAlignment.MiddleCenter);
 
             if (!IsDesignMode)
             {
@@ -92,6 +98,105 @@ namespace IpsViewComponentLibrary.FixationControls
 
                 tvFilters.SelectedNode = tvFilters.Nodes[0].Nodes[0];
             }
+        }
+
+        private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void tvFilters_SelectedNodeChanging(object sender, RadTreeViewCancelEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                // prevent selecting root node
+                e.Cancel = true;
+            }
+        }
+
+        private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
+        {
+            if (e.Node.Level == 0)
+            {
+                var backColor = SystemColors.ControlLight;// Color.LightGray;
+                
+                // set font to bold for root node
+                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
+                e.NodeElement.BackColor = backColor;
+                e.NodeElement.BorderColor = backColor;
+
+                if (e.NodeElement.IsMouseOver)
+                {
+                    // prevent hover highligting root node
+                    e.NodeElement.BackColor = backColor;
+                    e.NodeElement.BorderColor = backColor;
+                }
+            }
+
+            if (e.Node.Level == 1)
+            {
+                // set font to bold for nodes with level 1
+                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
+            }
+
+            if (e.Node.Level != 0)
+            {
+                // blue highlight (instead of gray) selected node even if tree veiw is inactive
+                bool isInactive = (bool)e.NodeElement.GetValue(TreeNodeElement.IsControlInactiveProperty);
+                if (isInactive && e.NodeElement.IsSelected)
+                {
+                    e.NodeElement.BackColor = Color.FromArgb(255, 146, 192, 224);
+                    e.NodeElement.BorderColor = Color.FromArgb(255, 146, 192, 224);
+                }
+                else
+                {
+                    e.NodeElement.ResetValue(LightVisualElement.BackColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                    e.NodeElement.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local);
+                }
+            }
+
+        }
+
+        private void gvFixationsList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
+        }
+
+        private void gvFixationsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "EditColumn")
+            {
+                OnEditCommandExecuted();
+            }
+            else if (currentColumnName == "SetStatusColumn")
+            {
+                ShowChangeStatusMenu();
+            }
+        }
+
+        private void gvFixationsList_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column is GridViewCommandColumn)
+                return;
+
+            OnEditCommandExecuted();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            _presenter.Add();
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        protected virtual void OnEditCommandExecuted()
+        {
+            _presenter.Edit();
         }
 
         private void UpdateList()
@@ -147,50 +252,42 @@ namespace IpsViewComponentLibrary.FixationControls
             tvFilters.ExpandAll();
         }
 
-        private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        private void ShowChangeStatusMenu()
+        {
+            var fixation = SelectedFixation;
+
+            if (fixation == null)
+                return;
+
+            var menu = FixationStageStatusMenuFactory.Create((FixationStageStatuses)fixation.StageStatusId, FixationStatusMenu_Click);
+
+            if (!menu.Items.Any())
+                return;
+
+            Point absolutePosition = gvFixationsList.CurrentCell.PointToScreen(gvFixationsList.CurrentCell.Location);
+            absolutePosition.Y += gvFixationsList.CurrentCell.Size.Height;
+
+            menu.Show(absolutePosition);
+            menu.SizeChanged += (s, e) =>
+            {
+                // set position of menu after size changed, because before menu is showed his width = 0
+                menu.Left = absolutePosition.X - menu.Width + gvFixationsList.CurrentCell.Size.Width;
+            };
+        }
+
+        private void FixationStatusMenu_Click(object sender, EventArgs e)
+        {
+            if (sender is RadMenuItem menuItem)
+            {
+                var newStatus = (FixationStageStatuses)menuItem.Tag;
+
+                _presenter.SetStatus(newStatus);
+            }
+        }
+
+        public void HandleEvent(FixationUpdatedEvent e)
         {
             UpdateList();
-        }
-
-        private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)
-        {
-            if (e.Node.Level == 0)
-            {
-                // set font to bold for root node
-                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
-
-                if (e.NodeElement.IsMouseOver)
-                {
-                    // prevent hover highligting root node
-                    e.NodeElement.BackColor = Color.White;
-                    e.NodeElement.BorderColor = Color.White;
-                }
-            }
-            else if (e.Node.Level == 1)
-            {
-                // set font to bold for nodes with level 1
-                e.NodeElement.Font = new Font(this.Font, FontStyle.Bold);
-            }
-            else
-            {
-                // blue highlight (instead of gray) selected node even if tree veiw is inactive
-                bool isInactive = (bool)e.NodeElement.GetValue(TreeNodeElement.IsControlInactiveProperty);
-                if (isInactive && e.NodeElement.IsSelected)
-                {
-                    e.NodeElement.BackColor = Color.FromArgb(255, 146, 192, 224);
-                    e.NodeElement.BorderColor = Color.FromArgb(255, 146, 192, 224);
-                }
-                else
-                {
-                    e.NodeElement.ResetValue(LightVisualElement.BackColorProperty, Telerik.WinControls.ValueResetFlags.Local);
-                    e.NodeElement.ResetValue(LightVisualElement.BorderColorProperty, Telerik.WinControls.ValueResetFlags.Local);
-                }
-            }
-        }
-
-        private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
-        {
-            IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
     }
 }

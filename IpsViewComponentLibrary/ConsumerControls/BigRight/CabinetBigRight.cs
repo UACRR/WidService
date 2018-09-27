@@ -68,7 +68,7 @@ namespace IpsViewComponentLibrary
         public event ReturnViewEventHandler<RatedListSpectacleBigRightView> GetRatedListSpectacleView;
         public event ReturnViewEventHandler<RatedListMusicDesignBigRightView> GetMusicDesignView;
         public event GetPartnerList OnGetPartnerListNeed;
-        public event ReturnObjectEventHandler<AnketaPerson> GetPartner;
+        public event ReturnObjectEventHandler<Customer> GetPartner;
 
         #endregion
 
@@ -294,7 +294,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private List<AnketaPerson> CtrlPartner_OnGetPartnerListNeed()
+        private List<Customer> CtrlPartner_OnGetPartnerListNeed()
         {
             return OnGetPartnerListNeed?.Invoke();
         }

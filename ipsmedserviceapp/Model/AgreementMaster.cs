@@ -9,6 +9,7 @@ namespace ipsmedserviceapp.Model
         public AgreementMaster()
         {
             AgreementAddBr = new HashSet<AgreementAddBr>();
+            AgreementAddCommunity = new HashSet<AgreementAddCommunity>();
             AgreementAddPartner = new HashSet<AgreementAddPartner>();
             AgreementAddRh = new HashSet<AgreementAddRh>();
             LicenseAgreement = new HashSet<LicenseAgreement>();
@@ -29,6 +30,9 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public Customer Cust { get; set; }
         public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        [JsonIgnore]
+        public ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
+        [JsonIgnore]
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         [JsonIgnore]

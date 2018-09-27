@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices.AccountManagement;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,27 +18,22 @@ namespace ipsmedserviceapp.Controllers
         public string WebSecurity { get; private set; }
 
         [HttpGet("userinfo")]
-        public async Task<IActionResult> GetGroups()
+        public IActionResult GetGroups()
         {
             try
             {
-                var wi = (WindowsIdentity)User.Identity;
-                if (wi == null)
-                    return BadRequest();
+                List<string> fullName = new List<string>();
 
-                var groups = new List<string>();
-                await Task.Run(() =>
+                using (var context = new PrincipalContext(ContextType.Domain))
                 {
+                    var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+                    fullName.Add($"{principal.Surname} {principal.Name} -- ({User.Identity.Name})");
+                    var groups = principal.GetGroups();
+                    foreach (var group in groups)
+                        fullName.Add(group.Name);
+                }
 
-                    foreach (var item in wi.Groups)
-                    {
-                        groups.Add(item.Translate(typeof(NTAccount)).ToString());
-                    }
-
-                    groups.Add(wi.Name);
-                });
-
-                return Json(groups.ToArray());
+                return Ok(fullName);
             }
             catch( Exception ex )
             {
@@ -44,11 +41,28 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+
+
         [Authorize]
         [HttpGet("toch")]
         public IActionResult Toch()
         {
-            return Json("Toch");
+
+            bool inGroup = false;
+
+            using (var context = new PrincipalContext(ContextType.Domain))
+            {
+                var FixingGroup = GroupPrincipal.FindByIdentity(context, IdentityType.Name, "Фіксація Порушень");
+                if(FixingGroup != null)
+                {
+                    var principal = UserPrincipal.FindByIdentity(context, User.Identity.Name);
+                    inGroup = principal.IsMemberOf(FixingGroup);
+
+                }
+
+            }
+
+            return Ok(inGroup);
         }
 
     }

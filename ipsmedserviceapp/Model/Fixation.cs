@@ -13,7 +13,7 @@ namespace ipsmedserviceapp.Model
 
         public int FixId { get; set; }
         public int? PartnerCustId { get; set; }
-        public int FixStageStatus { get; set; }
+        public int StageStatus { get; set; }
         public int? ClientCustId { get; set; }
         public int? LicId { get; set; }
         public int? UsesType { get; set; }
@@ -31,11 +31,12 @@ namespace ipsmedserviceapp.Model
         public string ClientName { get; set; }
         public string ClientInnOkpo { get; set; }
         public string UserId { get; set; }
+        public string FixationTime { get; set; }
 
         public Client ClientCust { get; set; }
-        public FixStageStatus FixStageStatusNavigation { get; set; }
         public LicenseAgreement Lic { get; set; }
         public Partner PartnerCust { get; set; }
+        public FixStageStatus StageStatusNavigation { get; set; }
         public AspNetUsers User { get; set; }
         public UsesType UsesTypeNavigation { get; set; }
         public ICollection<FixFile> FixFile { get; set; }

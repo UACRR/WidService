@@ -7,6 +7,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.PartnerControls;
 
 namespace ConsumerWorkplace_v_1._0.Presenters

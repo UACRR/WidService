@@ -73,6 +73,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnRemovePartner += RemovePartnerForCustomer;
         }
 
+        public CabinetBigRightForm Cabinet => _cabinetBigRightForm;
 
         #region - - - ОТРИМАННЯ ДАНИХ - - -
 
@@ -338,13 +339,13 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
         //отримати список партнерів
-        private List<AnketaPerson> GetPartnerList()
+        private List<Customer> GetPartnerList()
         {
             return _service.GetPartnerList();
         }
 
         //отримати представника по ID слієнта
-        private AnketaPerson GetPartnerAnketa(int clientId)
+        private Customer GetPartnerAnketa(int clientId)
         {
             return _service.GetPartnerAnketa(clientId);
         }

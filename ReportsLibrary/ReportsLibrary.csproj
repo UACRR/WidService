@@ -94,6 +94,12 @@
     <Compile Include="ReportS.Designer.cs">
       <DependentUpon>ReportS.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_14_RegisterSR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_14_RegisterSR.Designer.cs">
+      <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_17_Balance.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -184,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportS.resx">
       <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_14_RegisterSR.resx">
+      <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_Balance.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>

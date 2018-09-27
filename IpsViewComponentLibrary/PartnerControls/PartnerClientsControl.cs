@@ -20,6 +20,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
         public event EventHandler UpdateData;
 
+
         private int _partnerId = default(int);
         public PartnerClientsControl()
         {
@@ -58,11 +59,6 @@ namespace IpsViewComponentLibrary.PartnerControls
         private bool SelectClient_OnAddSelectedClient(int clientId)
         {
             return OnAddClientToPartner?.Invoke(clientId, _partnerId) ?? false;
-        }
-
-        private void gvViewClientsOfPartner_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            // open client cabinet
         }
 
         private void btnDetach_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
@@ -21,21 +22,23 @@ namespace IpsViewComponentLibrary
 
         public event GetPartnerList OnGetPartnerListNeed;
         private List<AnketaPerson> _anketaPersons;
-        private AnketaPerson _partner;
+        private Customer _customer;
         private int _cientId;
         public MiddleControlCabinetPartner()
         {
             InitializeComponent();
         }
 
-        public void SetPartnerData(AnketaPerson item, int cientId)
+        public void SetPartnerData(Customer customer, int cientId)
         {
-            _partner = item;
+            var item = customer.Person.AnketaPerson.SingleOrDefault();
+            var agreement = customer.AgreementMaster.SingleOrDefault()?.AgreementAddPartner.SingleOrDefault();
+            _customer = customer;
             _cientId = cientId;
             lblFullName.Text = item?.LastName + " " + item?.FirstName + " " + item?.SurName;
-            lblAgrDate.Text = "";
-            lblAgrDateEnd.Text = "";
-            lblAgrNumber.Text = "";
+            lblAgrDate.Text = agreement?.AgrDate?.ToString("d");
+            lblAgrStatus.Text = IpsGlobal.AnketaDictionaties?.agreementStatus?.SingleOrDefault(r => r?.CodeI == agreement?.AgrStatus)?.Name;
+            lblAgrNumber.Text = agreement?.AgrNumber;
             lblMobile.Text = item?.PhoneMobileMain;
             lblEmail.Text = item?.EMail;
         }
@@ -43,7 +46,7 @@ namespace IpsViewComponentLibrary
         //змінити представника
         private void btnChangePartner_Click(object sender, EventArgs e)
         {
-            SelectPartner selectPartner = new SelectPartner(_partner?.CustId)
+            SelectPartner selectPartner = new SelectPartner(_customer?.CustId)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -53,10 +56,10 @@ namespace IpsViewComponentLibrary
             {
                 if(selectPartner.PartnerId != null)
                 {
-                    if(_partner?.CustId == null) // додати
+                    if(_customer?.CustId == null) // додати
                         OnSetPartner?.Invoke(_cientId, (int)selectPartner.PartnerId);
-                    if(_partner?.CustId != null) // змінити
-                        OnChangePartner?.Invoke(_cientId, (int)selectPartner.PartnerId, _partner.CustId);
+                    if(_customer?.CustId != null) // змінити
+                        OnChangePartner?.Invoke(_cientId, (int)selectPartner.PartnerId, _customer.CustId);
                 }
             }
         }
@@ -64,8 +67,8 @@ namespace IpsViewComponentLibrary
         //видалити представника
         private void btnRemovePartner_Click(object sender, EventArgs e)
         {
-            if (_partner?.CustId != null)
-                OnRemovePartner?.Invoke(_cientId, _partner.CustId);
+            if (_customer?.CustId != null)
+                OnRemovePartner?.Invoke(_cientId, _customer.CustId);
         }
     }
 }

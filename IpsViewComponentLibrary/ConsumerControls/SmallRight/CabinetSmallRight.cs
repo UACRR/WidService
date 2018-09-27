@@ -31,7 +31,7 @@ namespace IpsViewComponentLibrary
         public event UpdateCustomerDataEventHandler OnUpdateCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
-        public event ReturnObjectEventHandler<AnketaPerson> GetPartner;
+        public event ReturnObjectEventHandler<Customer> GetPartner;
 
         #region ПРЕДСТАВНИК events
 
@@ -60,7 +60,7 @@ namespace IpsViewComponentLibrary
             pagesControl.OnGetPartnerListNeed += PagesControl_OnGetPartnerListNeed;
         }
 
-        private List<AnketaPerson> PagesControl_OnGetPartnerListNeed()
+        private List<Customer> PagesControl_OnGetPartnerListNeed()
         {
             return OnGetPartnerListNeed?.Invoke();
         }
@@ -80,7 +80,7 @@ namespace IpsViewComponentLibrary
             return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
-        private AnketaPerson PagesControl_GetPartner(int custId)
+        private Customer PagesControl_GetPartner(int custId)
         {
             return GetPartner?.Invoke(custId);
         }

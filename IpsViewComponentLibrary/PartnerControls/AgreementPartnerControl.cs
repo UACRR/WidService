@@ -41,5 +41,10 @@ namespace IpsViewComponentLibrary.PartnerControls
             dtDateEnd.Value = checkForever.Checked ? dtDateEnd.MaxDate : DateTime.Today;
             dtDateEnd.Enabled = !checkForever.Checked;
         }
+
+        private void dtDateBegin_ValueChanged(object sender, EventArgs e)
+        {
+            dtDateEnd.MinDate = dtDateBegin.Value.AddDays(1);
+        }
     }
 }

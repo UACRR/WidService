@@ -1,4 +1,5 @@
-﻿using ipsmedserviceapp.Controllers.Resources;
+﻿using AutoMapper;
+using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +16,12 @@ namespace ipsmedserviceapp.Controllers
     public class FixationsController : Controller
     {
         private readonly MediaServiceContext _dbContext;
+        private readonly IMapper _mapper;
 
-        public FixationsController(MediaServiceContext dbContext)
+        public FixationsController(MediaServiceContext dbContext, IMapper mapper)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> GetFixations([FromQuery] FixationQueryResource query)
@@ -42,6 +45,57 @@ namespace ipsmedserviceapp.Controllers
                 NotFound();
 
             return Ok(fixation);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] Fixation newFixation)
+        {
+            if (newFixation == null)
+                BadRequest();
+
+            var fixation = _mapper.Map<Fixation, Fixation>(newFixation);
+
+            _dbContext.Fixation.Add(fixation);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(fixation);
+        }
+
+        [HttpPut("{fixId}")]
+        public async Task<IActionResult> Update(int fixId, [FromBody] Fixation updFixation)
+        {
+            if (updFixation == null)
+                BadRequest();
+
+            var fixation = await GetFixationById(fixId);
+
+            if (fixation == null)
+                NotFound();
+
+            _mapper.Map(updFixation, fixation);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(fixation);
+        }
+
+        [HttpPut("{fixId}/stagestatus")]
+        public async Task<IActionResult> SetStageStatus(int fixId, [FromBody] int newStageStatus)
+        {
+            if (newStageStatus < 1 || newStageStatus > 22)
+                BadRequest();
+
+            var fixation = await GetFixationById(fixId);
+
+            if (fixation == null)
+                return NotFound();
+
+            // TODO: check if status is acceptable (like as in RHController)
+
+            fixation.StageStatus = newStageStatus;
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
         }
 
         private async Task<Fixation> GetFixationById(int fixId)

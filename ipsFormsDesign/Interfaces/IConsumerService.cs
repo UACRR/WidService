@@ -391,6 +391,8 @@ namespace ipsFormsDesign.Interfaces
     {
         public int CustId { get; set; }
         public int ClCustId { get; set; }
+        public int? CustType { get; set; }
+        public string CustTypeName { get; set; }
         public int? AgrCount { get; set; }
         public decimal SumBorg { get; set; }
         public string Innokpo { get; set; }
@@ -407,6 +409,19 @@ namespace ipsFormsDesign.Interfaces
         public string Innokpo { get; set; }
         public string ClientName { get; set; }
         public string Jacity { get; set; }
+    }
+
+    /// <summary>
+    /// Список існуючих спільнот
+    /// </summary>
+    public class CommunytiListView
+    {
+        public int CustId { get; set; }
+        public string Name { get; set; }
+        public string InnerCode { get; set; }
+        public string InterCode { get; set; }
+        public DateTime? RegistrDate { get; set; }
+        public int CountAuthors { get; set; }
     }
 
     #region класи для створення ієрархії

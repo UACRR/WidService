@@ -181,6 +181,12 @@
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\ButtonGroupBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\ButtonGroupBoxControl.Designer.cs">
+      <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Editors\IpsDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -213,6 +219,18 @@
     </Compile>
     <Compile Include="Common\SearchTextBoxControl.Designer.cs">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityControl.Designer.cs">
+      <DependentUpon>CommunityControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityForm.Designer.cs">
+      <DependentUpon>CommunityForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
       <SubType>UserControl</SubType>
@@ -325,6 +343,13 @@
       <DependentUpon>FixationListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="FixationControls\FixationListPresenter.cs" />
+    <Compile Include="FixationControls\FixationPresenter.cs" />
+    <Compile Include="FixationControls\FixationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FixationControls\FixationView.Designer.cs">
+      <DependentUpon>FixationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="LicenseAgreementListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -515,6 +540,7 @@
     <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.Designer.cs">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\FixationStageStatusMenuFactory.cs" />
     <Compile Include="_trash\CabinetBigRightOld.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -909,6 +935,9 @@
     <EmbeddedResource Include="AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\ButtonGroupBoxControl.resx">
+      <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
       <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -917,6 +946,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityControl.resx">
+      <DependentUpon>CommunityControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityForm.resx">
+      <DependentUpon>CommunityForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
@@ -972,6 +1007,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FixationControls\FixationListControl.resx">
       <DependentUpon>FixationListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FixationControls\FixationView.resx">
+      <DependentUpon>FixationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LicenseAgreementListControl.resx">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
@@ -1278,6 +1316,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.FileType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Fixation.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Language.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.License.datasource" />
@@ -1369,6 +1408,7 @@
     <Content Include="Resources\link-solid.ico" />
     <Content Include="Resources\plus-square-solid.ico" />
     <None Include="Resources\print-solid.ico" />
+    <Content Include="Resources\status-change.ico" />
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>

@@ -54,7 +54,12 @@ namespace ipsmedserviceapp.Controllers
                             .ThenInclude(rh => rh.AnketaAddNick)
                         .SingleOrDefaultAsync();
 
+            if (cust.RightHolder == null)
+                return null;
+
             var currDate = DateTime.Now.Date;
+
+
 
             if (!forSync)
                 await _dbContext.TermsOfService.FromSql(@"select @custid as custId, t1.CodeI as CRKindCode, isnull(t2.ourService,1) as ourService
@@ -411,7 +416,8 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         public async Task<IActionResult> getRh(int rhId)
         {
             var customer = await GetRightHolderAllData(rhId);
-
+            if (customer == null)
+                return NotFound();
             return Json(customer);
         }
 

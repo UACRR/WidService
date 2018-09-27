@@ -21,7 +21,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
-        public event GetCustomerEventHandler GetPartnerById;
+        public event GetCustomerByIdEventHandler GetPartnerById;
         public delegate List<T> ReturnPartnerViewEventHandler<T>();
         public event ReturnPartnerViewEventHandler<PartnerView> GetPartnersView;
         public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
@@ -30,12 +30,11 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event SetPartnerEventHandler OnDetachClientInPartner;
         public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
 
-
-
         public PartnerControl()
         {
             InitializeComponent();
             InitTemplate();
+            ctrlSearch.SetUsageGrid(gvViewPartners);
         }
 
         public void LoadData()
@@ -116,55 +115,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             }
         }
 
-
-        #region ФІЛЬТРАЦІЯ (пошук)
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            gvViewPartners.MasterTemplate.Refresh();
-        }
-
-        private void gvViewConsumers_CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
-        {
-            //пустий фільтер - всі дані
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                gvViewPartners.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvViewPartners.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvViewPartners.EndUpdate(false);
-                return;
-            }
-            //фільтр не пустий
-            gvViewPartners.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvViewPartners.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvViewPartners.EndUpdate(false);
-            }
-        }
-
-        #endregion
-
         private void gvViewPartners_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var row = e.Row.DataBoundItem as PartnerView;
@@ -172,7 +122,10 @@ namespace IpsViewComponentLibrary.PartnerControls
             {
                 case "viewBtn":
                     var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
-                    CabinetPartnerForm cabinetPartner = new CabinetPartnerForm(customer);
+                    CabinetPartnerForm cabinetPartner = new CabinetPartnerForm(customer)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen,
+                    };
                     cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
                     cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
                     cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
@@ -188,7 +141,6 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private Customer CabinetPartner_UpdateCustomer(int custId)
         {
-
             return GetPartnerById?.Invoke(custId);
         }
 

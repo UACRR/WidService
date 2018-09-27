@@ -21,7 +21,6 @@ namespace IpsViewComponentLibrary
         {
             get => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
         }
-        public delegate void LoadCustomerCabinetBrEventHandler(int id);
         public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
         
         public event EventHandler OnAddNewCustomer;
@@ -30,6 +29,7 @@ namespace IpsViewComponentLibrary
         public GlobalControlConsumerMainGridBR()
         {
             InitializeComponent();
+            ctrlSearch.SetUsageGrid(gvViewConsumers);
         }
 
 
@@ -63,58 +63,10 @@ namespace IpsViewComponentLibrary
             _rowId = (int?)e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
         }
 
-
         private void btnNewConsumer_Click(object sender, EventArgs e)
         {
             OnAddNewCustomer?.Invoke(sender, e);
         }
 
-        #region ФІЛЬТРАЦІЯ (пошук)
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            gvViewConsumers.MasterTemplate.Refresh();
-        }
-
-        private void gvViewConsumers_CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
-        {
-            //пустий фільтер - всі дані
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                gvViewConsumers.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvViewConsumers.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvViewConsumers.EndUpdate(false);
-                return;
-            }
-            //фільтр не пустий
-            gvViewConsumers.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvViewConsumers.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
-
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvViewConsumers.EndUpdate(false);
-            }
-        }
-
-        #endregion
     }
 }

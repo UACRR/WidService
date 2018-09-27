@@ -9,6 +9,7 @@ namespace ipsFormsDesign.Model
         public AgreementMaster()
         {
             AgreementAddBr = new ObservableListSource<AgreementAddBr>();
+            AgreementAddCommunity = new ObservableListSource<AgreementAddCommunity>();
             AgreementAddPartner = new ObservableListSource<AgreementAddPartner>();
             AgreementAddRh = new ObservableListSource<AgreementAddRh>();
             LicenseAgreement = new ObservableListSource<LicenseAgreement>();
@@ -26,6 +27,7 @@ namespace ipsFormsDesign.Model
         public AgreementType AgrTypeNavigation { get; set; }
         public Customer Cust { get; set; }
         public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
+        public ObservableListSource<AgreementAddCommunity> AgreementAddCommunity { get; set; }
         public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
         public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
