@@ -212,5 +212,12 @@ namespace IpsViewComponentLibrary
             if(txtPhone.Text == phoneCode)
                 txtPhone.Clear();
         }
+
+        public void UnsubscribePhoneVldt()
+        {
+            txtPhone.Leave -= txtPhone_Leave;
+            txtPhone.Enter -= txtPhone_Enter;
+            txtPhone.NullText = string.Empty;
+        }
     }
 }

@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
+            ctrlContactPerson.UnsubscribePhoneVldt();
         }
 
     }
