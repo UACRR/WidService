@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -34,6 +35,7 @@ namespace ipsmedserviceapp.Controllers
                     }
 
                     groups.Add(wi.Name);
+
                 });
 
                 return Json(groups.ToArray());
@@ -48,7 +50,22 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("toch")]
         public IActionResult Toch()
         {
-            return Json("Toch");
+            var wi = (WindowsIdentity)User.Identity;
+            if (wi == null)
+                return BadRequest();
+
+            var myPrincipal = new WindowsPrincipal(wi);
+            return Json(myPrincipal.UserClaims.Select(rec => rec.Value).ToArray());
+
+            //System.Security.Principal.WindowsIdentity wi = WindowsIdentity.GetCurrent();
+            //string[] a = User.Identity.Name.Split('\\');
+
+
+            //System.DirectoryServices.DirectoryEntry ADEntry = new System.DirectoryServices.DirectoryEntry("WinNT://" + a[0] + "/" + a[1]);
+            //string Name = ADEntry.Properties["FullName"].Value.ToString();
+
+
+            //return Json(Name);
         }
 
     }
