@@ -120,6 +120,7 @@
     <Compile Include="Model\ActivityType.cs" />
     <Compile Include="Model\ActivityTypeTr.cs" />
     <Compile Include="Model\AgreementAddBr.cs" />
+    <Compile Include="Model\AgreementAddCommunity.cs" />
     <Compile Include="Model\AgreementAddPartner.cs" />
     <Compile Include="Model\AgreementAddRh.cs" />
     <Compile Include="Model\AgreementMaster.cs" />
@@ -243,6 +244,9 @@
     <Compile Include="Model\KlR030.cs" />
     <Compile Include="Model\KlR030tr.cs" />
     <Compile Include="Model\KlR031.cs" />
+    <Compile Include="Model\KL_R030.cs" />
+    <Compile Include="Model\KL_R030Tr.cs" />
+    <Compile Include="Model\KL_R031.cs" />
     <Compile Include="Model\Lang.cs" />
     <Compile Include="Model\LangTr.cs" />
     <Compile Include="Model\Language.cs" />
