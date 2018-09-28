@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Utilities;
@@ -64,12 +65,18 @@ namespace IpsViewComponentLibrary.FixationControls
             gvFiles.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             bgbStatuses.Visible = _showStatusesGroupBox;
-
-            bgbStatuses.Buttons.AddButton("Направлене користувачу", FixationStageStatuses.NegotiationBeforeFixationDirectedToConsumer);
-            bgbStatuses.Buttons.AddButton("Відмова", FixationStageStatuses.NegotiationBeforeFixationRejected);
-            bgbStatuses.Buttons.AddButton("Погоджене", FixationStageStatuses.ClosedAgreedBeforeFixation);
         }
-        
+
+        public void SetAvailableStageStatuses(IEnumerable<FixationStageStatuses> stageStatuses)
+        {
+            bgbStatuses.Buttons.Clear();
+
+            foreach (var ss in stageStatuses)
+            {
+                bgbStatuses.Buttons.AddButton(EnumUtility.GetDescription(ss), ss);
+            }
+        }
+
         public void Run()
         {
             ShowDialog();
