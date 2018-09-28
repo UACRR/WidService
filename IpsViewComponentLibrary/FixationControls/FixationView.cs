@@ -2,16 +2,13 @@
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
+using ipsFormsDesign.ViewModels.Users;
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.FixationControls
@@ -39,6 +36,17 @@ namespace IpsViewComponentLibrary.FixationControls
             {
                 _fixation = value;
                 bsFixation.DataSource = _fixation;
+            }
+        }
+
+        private UserViewModel _responsible;
+        public UserViewModel Responsible
+        {
+            get { return _responsible; }
+            set
+            {
+                _responsible = value;
+                ddlResponsible.Text = _responsible.FullName;
             }
         }
 
@@ -123,6 +131,13 @@ namespace IpsViewComponentLibrary.FixationControls
             {
                 gvFiles.Rows.Remove(gvFiles.CurrentRow);
             }
+        }
+
+        private void ddlResponsible_PopupOpening(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+
+            _presenter.SelectResponsible();
         }
     }
 }
