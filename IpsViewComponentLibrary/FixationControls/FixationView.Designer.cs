@@ -89,6 +89,8 @@
             this.ddlResponsible = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.dtFixationDate = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
+            this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.registerItemListControl1 = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ddlStage = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
@@ -154,6 +156,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlResponsible)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDate)).BeginInit();
+            this.radPageViewPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
@@ -175,10 +178,11 @@
             // 
             this.mainPageView.Controls.Add(this.radPageViewPage1);
             this.mainPageView.Controls.Add(this.radPageViewPage2);
+            this.mainPageView.Controls.Add(this.radPageViewPage3);
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.radPageViewPage2;
+            this.mainPageView.SelectedPage = this.radPageViewPage3;
             this.mainPageView.Size = new System.Drawing.Size(822, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -504,7 +508,6 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
-            this.splitPanel1.ThemeName = "Office2013Light";
             // 
             // radLabel18
             // 
@@ -614,7 +617,6 @@
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
-            this.splitPanel2.ThemeName = "Office2013Light";
             // 
             // radLabel19
             // 
@@ -770,6 +772,37 @@
             this.dtFixationDate.TabStop = false;
             this.dtFixationDate.ThemeName = "Office2013Light";
             this.dtFixationDate.Value = new System.DateTime(((long)(0)));
+            // 
+            // radPageViewPage3
+            // 
+            this.radPageViewPage3.Controls.Add(this.registerItemListControl1);
+            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(184F, 27F);
+            this.radPageViewPage3.Location = new System.Drawing.Point(5, 31);
+            this.radPageViewPage3.Name = "radPageViewPage3";
+            this.radPageViewPage3.Size = new System.Drawing.Size(812, 361);
+            this.radPageViewPage3.Text = "Ідентифікація правовласників";
+            // 
+            // registerItemListControl1
+            // 
+            this.registerItemListControl1.AllowCreateObjectCommand = true;
+            this.registerItemListControl1.AllowEditList = true;
+            this.registerItemListControl1.AllowFindCommand = true;
+            this.registerItemListControl1.AllowLinkCommand = true;
+            this.registerItemListControl1.AllowShowObjectCommand = true;
+            this.registerItemListControl1.AllowUnlinkCommand = true;
+            this.registerItemListControl1.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.registerItemListControl1.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
+            this.registerItemListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.registerItemListControl1.Location = new System.Drawing.Point(0, 0);
+            this.registerItemListControl1.MultiSelect = false;
+            this.registerItemListControl1.Name = "registerItemListControl1";
+            this.registerItemListControl1.SelectedRegisterItem = null;
+            this.registerItemListControl1.ShowAuthors = true;
+            this.registerItemListControl1.ShowDurationUse = true;
+            this.registerItemListControl1.ShowLinked = true;
+            this.registerItemListControl1.ShowObjectInfo = true;
+            this.registerItemListControl1.Size = new System.Drawing.Size(812, 361);
+            this.registerItemListControl1.TabIndex = 0;
             // 
             // ddlStatus
             // 
@@ -976,6 +1009,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlResponsible)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDate)).EndInit();
+            this.radPageViewPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
@@ -1056,5 +1090,7 @@
         private System.Windows.Forms.BindingSource bsFixFile;
         private Telerik.WinControls.UI.RadLabel radLabel18;
         private Telerik.WinControls.UI.RadLabel radLabel19;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
+        private RegisterControls.RegisterItemListControl registerItemListControl1;
     }
 }
