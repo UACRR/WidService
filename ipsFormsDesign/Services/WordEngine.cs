@@ -123,6 +123,7 @@ namespace ipsFormsDesign.Services
             AnketaCompany anketaCompany = cust.Company?.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
             BankAccount bankacc = cust.BankAccount.FirstOrDefault();
             //   AnketaCompany anketaComp = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
+            RightHolder rightHolder = cust.RightHolder;
 
             string customerName = string.Empty;
             string leAddress = string.Empty;
@@ -134,6 +135,17 @@ namespace ipsFormsDesign.Services
             string eMail = string.Empty;
             DateTime? createDate = DateTime.Today;
             string Okpo = string.Empty;
+            string СstRegNumber = string.Empty;
+            string CstRegData = string.Empty;
+            string CstVAT = string.Empty;
+            string CstVATType = string.Empty;
+
+            string fop = string.Empty;
+            string CstName = string.Empty;
+            string vOsobi = string.Empty;
+            string CstPerson = string.Empty;
+            string naPidstavi = string.Empty;
+            string CstPersonReason = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
             {
@@ -144,15 +156,23 @@ namespace ipsFormsDesign.Services
                     $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
                     $"{countries[anketaPerson.FaCountry ?? "804"].CountryName} {anketaPerson.FaCity} {anketaPerson.FaAddress}" : faAddress;
-
+                
                 phoneHome = anketaPerson.PhoneHome;
                 phoneWork = anketaPerson.PhoneMobileExtra;
                 phone = anketaPerson.PhoneMobileMain;
                 eMail = anketaPerson.EMail;
                 createDate = anketaPerson.BirthDate;
                 Okpo = anketaPerson.Inn;
-
-            }
+                СstRegNumber = $"{anketaPerson.BuisNumberRegistration}";
+                CstRegData = $"{anketaPerson.BuisDateRegistration:dd.MM.yyyy}";
+                CstVAT = $"{anketaPerson.BuisNumberPayer}";
+                CstVATType = "є платником";
+                if ( $"{anketaPerson.TypeVat}".ToString() == "2")
+                    CstVATType = "не є платником";
+                if (cust.CustType == 2)
+                    fop = "Фізична особа-підприємець ";
+                vOsobi = " в особі ";
+            }   
             else // юр. особа
             {
                 customerName = anketaCompany.Name;
@@ -162,15 +182,43 @@ namespace ipsFormsDesign.Services
                     $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
                     $"{countries[anketaCompany.FaCountry ?? "804"].CountryName} {anketaCompany.FaCity} {anketaCompany.FaAddress}" : faAddress;
+                СstRegNumber = $"{anketaCompany.RegistrNumber}";
 
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
                 phoneWork = bossEmployee?.Empl.PhoneNumber ?? string.Empty;
                 eMail = bossEmployee?.Empl.Email ?? string.Empty;
                 createDate = anketaCompany.RegistrDate;
                 Okpo = anketaCompany.Okpo;
+                CstRegData = $"{anketaCompany.RegistrDate:dd.MM.yyyy}";
+                CstVAT = $"{anketaCompany.NumberVat}";
+                CstVATType = "є платником";
+                if ($"{anketaCompany.TypeVat}".ToString() == "2")
+                    CstVATType = "не є платником";
+
+                Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
+                Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
+
+                CstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
+                naPidstavi = " ,що діє на підставі";
+                CstPersonReason = bossEmployee?.RelDocument;
+
 
             }
 
+   
+            string prcntARlt = string.Empty;
+            string prcntARltText = string.Empty;
+
+          
+            decimal RateComiiss = Convert.ToDecimal(agrRh?.RateCommiss);
+            prcntARlt = RateComiiss.ToString("F");
+            prcntARltText = Utils.PrcnPhrase(RateComiiss);
+
+            string prcntARltJ = string.Empty;
+            string prcntARltJText = string.Empty;
+            decimal RateCourt = Convert.ToDecimal($"{agrRh.RateCourt:0}");
+            prcntARltJ = RateCourt.ToString("F");
+            prcntARltJText = Utils.PrcnPhrase(RateCourt);
 
             foreach (ContentControl item in list)
             {
@@ -203,8 +251,19 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = customerName;
                         break;
                     case "СstPerson":
-                        // item.Range.Text = $"{anketa.LastName} {anketa.FirstName} {anketa.SurName ?? string.Empty}";
+                        item.Range.Text = CstPerson;
                         break;
+                    case "fop":
+                        item.Range.Text = fop;
+                        break;
+                    case "naPidstavi":
+                        item.Range.Text = naPidstavi;
+                        break;
+
+                    case "CstPersonReason":
+                        item.Range.Text = CstPersonReason;
+                        break;
+                        
 
 
                     case "СstNikName":
@@ -214,22 +273,28 @@ namespace ipsFormsDesign.Services
                         formTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
                         break;
                     case "TableTrrUse":
-                        formTableInUse(item.Range.Tables, cust.RightHolder);
+                        if (rightHolder.AroundWord == true)
+                            item.Range.Text = "Всіх країн світу"; 
+                        else
+                            formTableInUse(item.Range.Tables, cust.RightHolder);
                         break;
                     case "TableTrrNotUs":
-                        formTableExclude(item.Range.Tables, cust.RightHolder);
+                        if (rightHolder.AroundWord == false)
+                            item.Range.Text = "";
+                        else
+                            formTableExclude(item.Range.Tables, cust.RightHolder);
                         break;
                     case "prcntARlt":
-                        item.Range.Text = $"{agrRh.RateCommiss:0}";
+                        item.Range.Text = prcntARlt;
                         break;
                     case "prcntARltText":
-                        item.Range.Text = Utils.NumPhrase(Convert.ToUInt32(agrRh.RateCommiss), true);
+                        item.Range.Text = prcntARltText;
                         break;
                     case "prcntARltJ":
-                        item.Range.Text = $"{agrRh.RateCourt:0}";
+                        item.Range.Text = prcntARltJ;
                         break;
                     case "prcntARltJText":
-                        item.Range.Text = Utils.NumPhrase(Convert.ToUInt32(agrRh.RateCourt), true); ;
+                        item.Range.Text = prcntARltJText;
                         break;
                     case "СstLegalAddress":
                         item.Range.Text = reAddress;
@@ -244,6 +309,9 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = createDate == null ? string.Empty : $"{createDate:dd.MM.yyyy}";
                         break;
                     case "СstINN":
+                        item.Range.Text = Okpo;
+                        break;
+                    case "СstEDRPOU":
                         item.Range.Text = Okpo;
                         break;
                     case "СstPasport":
@@ -279,6 +347,23 @@ namespace ipsFormsDesign.Services
                     case "СstEmail":
                         item.Range.Text = eMail;
                         break;
+
+                    case "СstRegNumber":
+                        item.Range.Text = СstRegNumber;
+                        break;
+
+                    case "CstRegData":
+                        item.Range.Text = CstRegData;
+                        break;
+                    case "CstVAT":
+                        item.Range.Text = CstVAT;
+                        break;
+                    case "CstVATType":
+                        item.Range.Text = CstVATType;
+                        break;
+
+
+
                     default:
                         item.Delete();
                         break;
@@ -453,6 +538,7 @@ namespace ipsFormsDesign.Services
                 cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
                 vOsobi = " в особі ";
                 naPidstavi = "  що діє на підставі ";
+
             }
 
 

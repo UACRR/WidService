@@ -41,7 +41,8 @@ namespace TestWord_1
                     Filename = "F_Акт_публічне сповіщення кTV.docx";
                         Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
             //            Filename = "F_Лицензионный договор на спектакль (БП).docx";
-            Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
+          //  Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
+            Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
             ProcessWord(template, Filename);
@@ -61,6 +62,11 @@ namespace TestWord_1
             switch (Filename)
             {
                 case "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx":
+                    cust = service1.GetData(131);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
+                    break;
+                case "F_ГО УААСП Правовласник-Видавництво.docx":
                     cust = service1.GetData(131);
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
