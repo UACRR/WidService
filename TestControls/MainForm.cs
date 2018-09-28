@@ -72,7 +72,7 @@ namespace TestControls
             var listPays = _service.GetCustomerPays(_curItem.CustId);
             ObservableListSource<ExternalPay> listSource = new ObservableListSource<ExternalPay>(listPays);
             bindingSource2.DataSource = listSource;
-            checkBox1.Text = _curItem.Name;
+            //checkBox1.Text = _curItem.Name;
 
             Task.Run(() =>
             {
@@ -142,7 +142,7 @@ namespace TestControls
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            radSplitContainer1.SplitPanels[0].Collapsed = !checkBox1.Checked;
+            // radSplitContainer1.SplitPanels[0].Collapsed = !checkBox1.Checked;
         }
 
         #region ФІЛЬТРАЦІЯ (пошук)
@@ -194,6 +194,11 @@ namespace TestControls
         #endregion
 
         private void radButton4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radPageViewPage3_Resize(object sender, EventArgs e)
         {
 
         }
