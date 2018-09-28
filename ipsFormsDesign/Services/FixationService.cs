@@ -1,9 +1,6 @@
 ﻿using ipsFormsDesign.Model;
 using ipsFormsDesign.ViewModels.Fixations;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using WebAPIConnector;
 
