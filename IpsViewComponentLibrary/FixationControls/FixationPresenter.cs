@@ -4,7 +4,9 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
+using ipsFormsDesign.ViewModels.Users;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
@@ -18,6 +20,7 @@ namespace IpsViewComponentLibrary.FixationControls
     {
         private readonly FixationView _view;
         private readonly FixationService _fixationService;
+        private readonly UserService _userService;
         private readonly DialogService _dialogService;
         private Fixation _fixation;
         private bool _canClose;
@@ -28,6 +31,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _view.Presenter = this;
 
             _fixationService = new FixationService();
+            _userService = new UserService();
             _dialogService = new DialogService();
         }
 
@@ -43,8 +47,19 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixation = _fixationService.GetById(fixId);
             _view.Fixation = _fixation;
 
-            if (_fixation.GetStage() == FixationStages.NegotiationBeforeFixation)
+            if (_fixation.UserId != null)
+            {
+                var responsible = _userService.GetById(_fixation.UserId);
+                _view.Responsible = responsible;
+            }
+
+            var currentStage = _fixation.GetStage();
+
+            if (currentStage == FixationStages.NegotiationBeforeFixation || currentStage == FixationStages.Fixation)
+            {
+                _view.SetAvailableStageStatuses(_fixation.GetAvailableStageStatuses());
                 _view.ShowStatusesGroupBox = true;
+            }
 
             _view.Run();
         }
@@ -70,6 +85,20 @@ namespace IpsViewComponentLibrary.FixationControls
             // TODO: check for correct status
 
             _fixation.StageStatus = (int)newStatus;
+        }
+
+        public void SelectResponsible()
+        {
+            using (var selectionView = new UserSelectionView())
+            {
+                selectionView.SelectedUser = _view.Responsible;
+                selectionView.UserSelected += (s, selectedUser) =>
+                {
+                    _view.Responsible = selectedUser;
+                    _fixation.UserId = selectedUser.UserId;
+                };
+                selectionView.ShowDialog();
+            }
         }
     }
 }

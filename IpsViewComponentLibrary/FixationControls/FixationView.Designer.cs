@@ -29,6 +29,20 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.mainPageView = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
@@ -57,6 +71,24 @@
             this.txtPlacement = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.radLabel18 = new Telerik.WinControls.UI.RadLabel();
+            this.btnAddStorage = new Telerik.WinControls.UI.RadButton();
+            this.gvStorages = new Telerik.WinControls.UI.RadGridView();
+            this.bsFixStorageDevice = new System.Windows.Forms.BindingSource(this.components);
+            this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.radLabel19 = new Telerik.WinControls.UI.RadLabel();
+            this.btnAddFile = new Telerik.WinControls.UI.RadButton();
+            this.gvFiles = new Telerik.WinControls.UI.RadGridView();
+            this.bsFixFile = new System.Windows.Forms.BindingSource(this.components);
+            this.txtFixationTime = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
+            this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlResponsible = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.dtFixationDate = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ddlStage = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
@@ -99,6 +131,29 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPlacement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            this.radPageViewPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
+            this.radSplitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
+            this.splitPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddStorage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStorages)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStorages.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFixStorageDevice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
+            this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvFiles.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFixFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFixationTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlResponsible)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtFixationDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
@@ -119,11 +174,12 @@
             // mainPageView
             // 
             this.mainPageView.Controls.Add(this.radPageViewPage1);
+            this.mainPageView.Controls.Add(this.radPageViewPage2);
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.radPageViewPage1;
-            this.mainPageView.Size = new System.Drawing.Size(822, 338);
+            this.mainPageView.SelectedPage = this.radPageViewPage2;
+            this.mainPageView.Size = new System.Drawing.Size(822, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -135,7 +191,7 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(64F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(812, 302);
+            this.radPageViewPage1.Size = new System.Drawing.Size(812, 361);
             this.radPageViewPage1.Text = "Основне";
             // 
             // radGroupBox2
@@ -399,6 +455,322 @@
             this.radLabel1.Text = "Тип заходу";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.Controls.Add(this.radSplitContainer1);
+            this.radPageViewPage2.Controls.Add(this.txtFixationTime);
+            this.radPageViewPage2.Controls.Add(this.radLabel17);
+            this.radPageViewPage2.Controls.Add(this.radLabel16);
+            this.radPageViewPage2.Controls.Add(this.ddlResponsible);
+            this.radPageViewPage2.Controls.Add(this.radLabel15);
+            this.radPageViewPage2.Controls.Add(this.dtFixationDate);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(61F, 27F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(812, 361);
+            this.radPageViewPage2.Text = "Фіксація";
+            // 
+            // radSplitContainer1
+            // 
+            this.radSplitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSplitContainer1.Controls.Add(this.splitPanel1);
+            this.radSplitContainer1.Controls.Add(this.splitPanel2);
+            this.radSplitContainer1.Location = new System.Drawing.Point(0, 68);
+            this.radSplitContainer1.Name = "radSplitContainer1";
+            // 
+            // 
+            // 
+            this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.radSplitContainer1.Size = new System.Drawing.Size(812, 295);
+            this.radSplitContainer1.SplitterWidth = 5;
+            this.radSplitContainer1.TabIndex = 27;
+            this.radSplitContainer1.TabStop = false;
+            this.radSplitContainer1.ThemeName = "Office2013Light";
+            // 
+            // splitPanel1
+            // 
+            this.splitPanel1.Controls.Add(this.radLabel18);
+            this.splitPanel1.Controls.Add(this.btnAddStorage);
+            this.splitPanel1.Controls.Add(this.gvStorages);
+            this.splitPanel1.Location = new System.Drawing.Point(0, 0);
+            this.splitPanel1.Name = "splitPanel1";
+            // 
+            // 
+            // 
+            this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel1.Size = new System.Drawing.Size(404, 295);
+            this.splitPanel1.TabIndex = 0;
+            this.splitPanel1.TabStop = false;
+            this.splitPanel1.Text = "splitPanel1";
+            this.splitPanel1.ThemeName = "Office2013Light";
+            // 
+            // radLabel18
+            // 
+            this.radLabel18.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radLabel18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel18.Location = new System.Drawing.Point(3, 3);
+            this.radLabel18.Name = "radLabel18";
+            this.radLabel18.Size = new System.Drawing.Size(36, 19);
+            this.radLabel18.TabIndex = 73;
+            this.radLabel18.Text = "Носії";
+            // 
+            // btnAddStorage
+            // 
+            this.btnAddStorage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddStorage.Location = new System.Drawing.Point(3, 266);
+            this.btnAddStorage.Name = "btnAddStorage";
+            this.btnAddStorage.Size = new System.Drawing.Size(110, 24);
+            this.btnAddStorage.TabIndex = 10;
+            this.btnAddStorage.Text = "Додати";
+            this.btnAddStorage.ThemeName = "Office2013Light";
+            this.btnAddStorage.Click += new System.EventHandler(this.btnAddStorage_Click);
+            // 
+            // gvStorages
+            // 
+            this.gvStorages.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvStorages.Location = new System.Drawing.Point(3, 30);
+            // 
+            // 
+            // 
+            this.gvStorages.MasterTemplate.AllowAddNewRow = false;
+            this.gvStorages.MasterTemplate.AutoGenerateColumns = false;
+            this.gvStorages.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewDecimalColumn1.DataType = typeof(int);
+            gridViewDecimalColumn1.FieldName = "StorageId";
+            gridViewDecimalColumn1.HeaderText = "StorageId";
+            gridViewDecimalColumn1.IsAutoGenerated = true;
+            gridViewDecimalColumn1.IsVisible = false;
+            gridViewDecimalColumn1.Name = "StorageId";
+            gridViewDecimalColumn1.Width = 67;
+            gridViewDecimalColumn2.DataType = typeof(int);
+            gridViewDecimalColumn2.FieldName = "FixId";
+            gridViewDecimalColumn2.HeaderText = "FixId";
+            gridViewDecimalColumn2.IsAutoGenerated = true;
+            gridViewDecimalColumn2.IsVisible = false;
+            gridViewDecimalColumn2.Name = "FixId";
+            gridViewDecimalColumn2.Width = 80;
+            gridViewTextBoxColumn1.FieldName = "Name";
+            gridViewTextBoxColumn1.HeaderText = "Назва";
+            gridViewTextBoxColumn1.IsAutoGenerated = true;
+            gridViewTextBoxColumn1.Name = "Name";
+            gridViewTextBoxColumn1.Width = 118;
+            gridViewTextBoxColumn2.FieldName = "SerialNumber";
+            gridViewTextBoxColumn2.HeaderText = "Серійний номер";
+            gridViewTextBoxColumn2.IsAutoGenerated = true;
+            gridViewTextBoxColumn2.Name = "SerialNumber";
+            gridViewTextBoxColumn2.Width = 118;
+            gridViewDecimalColumn3.DataType = typeof(System.Nullable<decimal>);
+            gridViewDecimalColumn3.FieldName = "Capacity";
+            gridViewDecimalColumn3.HeaderText = "Об\'єм";
+            gridViewDecimalColumn3.IsAutoGenerated = true;
+            gridViewDecimalColumn3.Name = "Capacity";
+            gridViewDecimalColumn3.Width = 134;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "DeleteColumn";
+            gridViewCommandColumn1.Width = 30;
+            this.gvStorages.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn1,
+            gridViewDecimalColumn2,
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewDecimalColumn3,
+            gridViewCommandColumn1});
+            this.gvStorages.MasterTemplate.DataSource = this.bsFixStorageDevice;
+            this.gvStorages.MasterTemplate.EnableFiltering = true;
+            this.gvStorages.MasterTemplate.ShowFilteringRow = false;
+            this.gvStorages.MasterTemplate.ShowRowHeaderColumn = false;
+            this.gvStorages.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvStorages.Name = "gvStorages";
+            this.gvStorages.ShowGroupPanel = false;
+            this.gvStorages.Size = new System.Drawing.Size(398, 230);
+            this.gvStorages.TabIndex = 9;
+            this.gvStorages.ThemeName = "Office2013Light";
+            this.gvStorages.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvStorages_CommandCellClick);
+            // 
+            // bsFixStorageDevice
+            // 
+            this.bsFixStorageDevice.DataMember = "FixStorageDevice";
+            this.bsFixStorageDevice.DataSource = this.bsFixation;
+            // 
+            // splitPanel2
+            // 
+            this.splitPanel2.Controls.Add(this.radLabel19);
+            this.splitPanel2.Controls.Add(this.btnAddFile);
+            this.splitPanel2.Controls.Add(this.gvFiles);
+            this.splitPanel2.Location = new System.Drawing.Point(409, 0);
+            this.splitPanel2.Name = "splitPanel2";
+            // 
+            // 
+            // 
+            this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel2.Size = new System.Drawing.Size(403, 295);
+            this.splitPanel2.TabIndex = 1;
+            this.splitPanel2.TabStop = false;
+            this.splitPanel2.Text = "splitPanel2";
+            this.splitPanel2.ThemeName = "Office2013Light";
+            // 
+            // radLabel19
+            // 
+            this.radLabel19.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.radLabel19.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel19.Location = new System.Drawing.Point(3, 3);
+            this.radLabel19.Name = "radLabel19";
+            this.radLabel19.Size = new System.Drawing.Size(46, 19);
+            this.radLabel19.TabIndex = 74;
+            this.radLabel19.Text = "Файли";
+            // 
+            // btnAddFile
+            // 
+            this.btnAddFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddFile.Location = new System.Drawing.Point(2, 266);
+            this.btnAddFile.Name = "btnAddFile";
+            this.btnAddFile.Size = new System.Drawing.Size(110, 24);
+            this.btnAddFile.TabIndex = 11;
+            this.btnAddFile.Text = "Додати";
+            this.btnAddFile.ThemeName = "Office2013Light";
+            this.btnAddFile.Click += new System.EventHandler(this.btnAddFile_Click);
+            // 
+            // gvFiles
+            // 
+            this.gvFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvFiles.Location = new System.Drawing.Point(2, 30);
+            // 
+            // 
+            // 
+            this.gvFiles.MasterTemplate.AllowAddNewRow = false;
+            this.gvFiles.MasterTemplate.AutoGenerateColumns = false;
+            this.gvFiles.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewDecimalColumn4.DataType = typeof(int);
+            gridViewDecimalColumn4.FieldName = "FixId";
+            gridViewDecimalColumn4.HeaderText = "FixId";
+            gridViewDecimalColumn4.IsAutoGenerated = true;
+            gridViewDecimalColumn4.IsVisible = false;
+            gridViewDecimalColumn4.Name = "FixId";
+            gridViewDecimalColumn4.Width = 80;
+            gridViewTextBoxColumn3.FieldName = "Name";
+            gridViewTextBoxColumn3.HeaderText = "Назва";
+            gridViewTextBoxColumn3.IsAutoGenerated = true;
+            gridViewTextBoxColumn3.Name = "Name";
+            gridViewTextBoxColumn3.Width = 368;
+            gridViewDecimalColumn5.DataType = typeof(int);
+            gridViewDecimalColumn5.FieldName = "FileId";
+            gridViewDecimalColumn5.HeaderText = "FileId";
+            gridViewDecimalColumn5.IsAutoGenerated = true;
+            gridViewDecimalColumn5.IsVisible = false;
+            gridViewDecimalColumn5.Name = "FileId";
+            gridViewDecimalColumn5.Width = 67;
+            gridViewTextBoxColumn4.FieldName = "Path";
+            gridViewTextBoxColumn4.HeaderText = "Path";
+            gridViewTextBoxColumn4.IsAutoGenerated = true;
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.Name = "Path";
+            gridViewTextBoxColumn4.Width = 80;
+            gridViewTextBoxColumn5.DataType = typeof(ipsFormsDesign.Model.Fixation);
+            gridViewTextBoxColumn5.FieldName = "Fix";
+            gridViewTextBoxColumn5.HeaderText = "Fix";
+            gridViewTextBoxColumn5.IsAutoGenerated = true;
+            gridViewTextBoxColumn5.IsVisible = false;
+            gridViewTextBoxColumn5.Name = "Fix";
+            gridViewTextBoxColumn5.Width = 132;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "DeleteColumn";
+            gridViewCommandColumn2.Width = 30;
+            this.gvFiles.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn4,
+            gridViewTextBoxColumn3,
+            gridViewDecimalColumn5,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewCommandColumn2});
+            this.gvFiles.MasterTemplate.DataSource = this.bsFixFile;
+            this.gvFiles.MasterTemplate.EnableFiltering = true;
+            this.gvFiles.MasterTemplate.ShowFilteringRow = false;
+            this.gvFiles.MasterTemplate.ShowRowHeaderColumn = false;
+            this.gvFiles.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvFiles.Name = "gvFiles";
+            this.gvFiles.ShowGroupPanel = false;
+            this.gvFiles.Size = new System.Drawing.Size(398, 230);
+            this.gvFiles.TabIndex = 10;
+            this.gvFiles.ThemeName = "Office2013Light";
+            this.gvFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvFiles_CommandCellClick);
+            // 
+            // bsFixFile
+            // 
+            this.bsFixFile.DataMember = "FixFile";
+            this.bsFixFile.DataSource = this.bsFixation;
+            // 
+            // txtFixationTime
+            // 
+            this.txtFixationTime.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsFixation, "FixationTime", true));
+            this.txtFixationTime.Location = new System.Drawing.Point(92, 39);
+            this.txtFixationTime.Name = "txtFixationTime";
+            this.txtFixationTime.Size = new System.Drawing.Size(118, 21);
+            this.txtFixationTime.TabIndex = 26;
+            this.txtFixationTime.ThemeName = "Office2013Light";
+            // 
+            // radLabel17
+            // 
+            this.radLabel17.Location = new System.Drawing.Point(7, 40);
+            this.radLabel17.Name = "radLabel17";
+            this.radLabel17.Size = new System.Drawing.Size(73, 19);
+            this.radLabel17.TabIndex = 25;
+            this.radLabel17.Text = "Час фіксації";
+            this.radLabel17.ThemeName = "Office2013Light";
+            // 
+            // radLabel16
+            // 
+            this.radLabel16.Location = new System.Drawing.Point(249, 12);
+            this.radLabel16.Name = "radLabel16";
+            this.radLabel16.Size = new System.Drawing.Size(95, 19);
+            this.radLabel16.TabIndex = 24;
+            this.radLabel16.Text = "Відповідальний";
+            this.radLabel16.ThemeName = "Office2013Light";
+            // 
+            // ddlResponsible
+            // 
+            this.ddlResponsible.Location = new System.Drawing.Point(350, 12);
+            this.ddlResponsible.Name = "ddlResponsible";
+            this.ddlResponsible.ReadOnly = true;
+            this.ddlResponsible.Size = new System.Drawing.Size(273, 21);
+            this.ddlResponsible.TabIndex = 23;
+            this.ddlResponsible.ThemeName = "Office2013Light";
+            this.ddlResponsible.PopupOpening += new System.ComponentModel.CancelEventHandler(this.ddlResponsible_PopupOpening);
+            // 
+            // radLabel15
+            // 
+            this.radLabel15.Location = new System.Drawing.Point(7, 12);
+            this.radLabel15.Name = "radLabel15";
+            this.radLabel15.Size = new System.Drawing.Size(79, 19);
+            this.radLabel15.TabIndex = 22;
+            this.radLabel15.Text = "Дата фіксації";
+            this.radLabel15.ThemeName = "Office2013Light";
+            // 
+            // dtFixationDate
+            // 
+            this.dtFixationDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsFixation, "FixationDate", true));
+            this.dtFixationDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFixationDate.Location = new System.Drawing.Point(92, 11);
+            this.dtFixationDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
+            this.dtFixationDate.Name = "dtFixationDate";
+            this.dtFixationDate.NullText = "Оберіть дату";
+            this.dtFixationDate.Size = new System.Drawing.Size(118, 21);
+            this.dtFixationDate.TabIndex = 19;
+            this.dtFixationDate.TabStop = false;
+            this.dtFixationDate.ThemeName = "Office2013Light";
+            this.dtFixationDate.Value = new System.DateTime(((long)(0)));
+            // 
             // ddlStatus
             // 
             this.ddlStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsFixation, "StageStatus", true));
@@ -444,7 +816,7 @@
             this.radPanel1.Controls.Add(this.btnSave);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radPanel1.Location = new System.Drawing.Point(0, 434);
+            this.radPanel1.Location = new System.Drawing.Point(0, 493);
             this.radPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(822, 31);
@@ -512,7 +884,7 @@
             // 
             this.bgbStatuses.DefaultButtonWidth = 160;
             this.bgbStatuses.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.bgbStatuses.Location = new System.Drawing.Point(0, 374);
+            this.bgbStatuses.Location = new System.Drawing.Point(0, 433);
             this.bgbStatuses.Name = "bgbStatuses";
             this.bgbStatuses.Size = new System.Drawing.Size(822, 60);
             this.bgbStatuses.TabIndex = 21;
@@ -525,7 +897,7 @@
             this.radPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPanel3.Location = new System.Drawing.Point(0, 36);
             this.radPanel3.Name = "radPanel3";
-            this.radPanel3.Size = new System.Drawing.Size(822, 338);
+            this.radPanel3.Size = new System.Drawing.Size(822, 397);
             this.radPanel3.TabIndex = 22;
             this.radPanel3.ThemeName = "Office2013Light";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
@@ -534,7 +906,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 465);
+            this.ClientSize = new System.Drawing.Size(822, 524);
             this.Controls.Add(this.radPanel3);
             this.Controls.Add(this.bgbStatuses);
             this.Controls.Add(this.radPanel2);
@@ -578,6 +950,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPlacement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            this.radPageViewPage2.ResumeLayout(false);
+            this.radPageViewPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
+            this.radSplitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
+            this.splitPanel1.ResumeLayout(false);
+            this.splitPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel18)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddStorage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStorages.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvStorages)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFixStorageDevice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
+            this.splitPanel2.ResumeLayout(false);
+            this.splitPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel19)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvFiles.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFixFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFixationTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlResponsible)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtFixationDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
@@ -640,5 +1038,23 @@
         private Common.Editors.IpsTextBox txtNumber;
         private Common.ButtonGroupBoxControl bgbStatuses;
         private Telerik.WinControls.UI.RadPanel radPanel3;
+        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
+        private Telerik.WinControls.UI.RadLabel radLabel15;
+        private Common.Editors.IpsDateTimePicker dtFixationDate;
+        private Telerik.WinControls.UI.RadLabel radLabel16;
+        private Telerik.WinControls.UI.RadDropDownList ddlResponsible;
+        private Common.Editors.IpsTextBox txtFixationTime;
+        private Telerik.WinControls.UI.RadLabel radLabel17;
+        private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
+        private Telerik.WinControls.UI.SplitPanel splitPanel1;
+        private Telerik.WinControls.UI.SplitPanel splitPanel2;
+        private System.Windows.Forms.BindingSource bsFixStorageDevice;
+        private Telerik.WinControls.UI.RadGridView gvStorages;
+        private Telerik.WinControls.UI.RadButton btnAddStorage;
+        private Telerik.WinControls.UI.RadButton btnAddFile;
+        private Telerik.WinControls.UI.RadGridView gvFiles;
+        private System.Windows.Forms.BindingSource bsFixFile;
+        private Telerik.WinControls.UI.RadLabel radLabel18;
+        private Telerik.WinControls.UI.RadLabel radLabel19;
     }
 }

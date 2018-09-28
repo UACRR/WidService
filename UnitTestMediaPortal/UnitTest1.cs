@@ -13,6 +13,7 @@ using ipsFormsDesign.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using Autofac;
 
 namespace UnitTestMediaPortal
 {
@@ -28,7 +29,7 @@ namespace UnitTestMediaPortal
             api = new ApiConnector();
         }
 
-        [TestMethod]
+        [TestMethod, Timeout(500)]
         public void TestRegisterRatedList()
         {
             var service = new ConsumerService();
@@ -43,7 +44,7 @@ namespace UnitTestMediaPortal
             service.SaveRegisterRatedList(addRate, out addRate);
             Assert.IsNotNull(addRate);
             string fileName = DateTime.Now.ToLongTimeString();
-            addRate.Register.Add( new Register { FileName = fileName, Durationticks = 1, RgStatus = 0, CustId = cust.CustId });
+            addRate.Register.Add(new Register { FileName = fileName, Durationticks = 1, RgStatus = 0, CustId = cust.CustId });
 
             service.SaveRegisterRatedList(addRate, out addRate);
             Assert.IsNotNull(addRate);
@@ -74,6 +75,39 @@ namespace UnitTestMediaPortal
             form.ShowDialog();
         }
 
+        interface ITestDI
+        {
+            string testTxt { get; }
+        }
+
+        class TestDI : ITestDI
+        {
+            public string testTxt => "Test DI !!!";
+        }
+
+        [TestMethod]
+        public void TestAutoFac()
+        {
+            var builder = new ContainerBuilder();
+            var testObj = new TestDI();
+            builder.RegisterInstance(testObj)
+                .ExternallyOwned()
+                .As<ITestDI>();
+
+            var Container = builder.Build();
+
+            using (var scope = Container.BeginLifetimeScope())
+            {
+                var test = scope.Resolve<ITestDI>();
+                Assert.AreEqual(test.testTxt, testObj.testTxt );
+            }
+
+            using (var scope = Container.BeginLifetimeScope())
+            {
+                var test = scope.Resolve<ITestDI>();
+                Assert.AreEqual(test.testTxt, testObj.testTxt);
+            }
+        }
 
     }
 }

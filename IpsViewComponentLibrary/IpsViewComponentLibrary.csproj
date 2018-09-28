@@ -220,6 +220,12 @@
     <Compile Include="Common\SearchTextBoxControl.Designer.cs">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\UserSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\UserSelectionView.Designer.cs">
+      <DependentUpon>UserSelectionView.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommunityControls\CommunityAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -965,6 +971,9 @@
     <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\UserSelectionView.resx">
+      <DependentUpon>UserSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityAddressControl.resx">
       <DependentUpon>CommunityAddressControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1368,6 +1377,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.FixationListViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\Settings.settings">

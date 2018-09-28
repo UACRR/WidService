@@ -14,6 +14,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
 using IpsViewComponentLibrary.AppController;
+using ipsFormsDesign.Utilities;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
@@ -259,7 +260,7 @@ namespace IpsViewComponentLibrary.FixationControls
             if (fixation == null)
                 return;
 
-            var menu = FixationStageStatusMenuFactory.Create((FixationStageStatuses)fixation.StageStatusId, FixationStatusMenu_Click);
+            var menu = FixationStageStatusMenuFactory.Create(fixation.GetAvailableStageStatuses(), FixationStatusMenu_Click);
 
             if (!menu.Items.Any())
                 return;

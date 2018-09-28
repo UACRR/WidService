@@ -1,16 +1,14 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
+using ipsFormsDesign.ViewModels.Users;
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.FixationControls
@@ -41,6 +39,17 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        private UserViewModel _responsible;
+        public UserViewModel Responsible
+        {
+            get { return _responsible; }
+            set
+            {
+                _responsible = value;
+                ddlResponsible.Text = _responsible.FullName;
+            }
+        }
+
         private bool _showStatusesGroupBox = false;
         public bool ShowStatusesGroupBox
         {
@@ -60,13 +69,22 @@ namespace IpsViewComponentLibrary.FixationControls
             ddlStage.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StageName");
             ddlStatus.SetDataSource(IpsGlobal.AnketaDictionaties.fixStageStatus, "CodeI", "StatusName");
 
-            bgbStatuses.Visible = _showStatusesGroupBox;
+            gvStorages.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+            gvFiles.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
-            bgbStatuses.Buttons.AddButton("Направлене користувачу", FixationStageStatuses.NegotiationBeforeFixationDirectedToConsumer);
-            bgbStatuses.Buttons.AddButton("Відмова", FixationStageStatuses.NegotiationBeforeFixationRejected);
-            bgbStatuses.Buttons.AddButton("Погоджене", FixationStageStatuses.ClosedAgreedBeforeFixation);
+            bgbStatuses.Visible = _showStatusesGroupBox;
         }
-        
+
+        public void SetAvailableStageStatuses(IEnumerable<FixationStageStatuses> stageStatuses)
+        {
+            bgbStatuses.Buttons.Clear();
+
+            foreach (var ss in stageStatuses)
+            {
+                bgbStatuses.Buttons.AddButton(EnumUtility.GetDescription(ss), ss);
+            }
+        }
+
         public void Run()
         {
             ShowDialog();
@@ -81,6 +99,45 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _presenter.SetStatus((FixationStageStatuses)e.Value);
             bsFixation.ResetCurrentItem();
+        }
+
+        private void btnAddStorage_Click(object sender, EventArgs e)
+        {
+            var newRow = gvStorages.Rows.AddNew();
+            newRow.Cells["Name"].BeginEdit();
+        }
+
+        private void gvStorages_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "DeleteColumn")
+            {
+                gvStorages.Rows.Remove(gvStorages.CurrentRow);
+            }
+        }
+
+        private void btnAddFile_Click(object sender, EventArgs e)
+        {
+            var newRow = gvFiles.Rows.AddNew();
+            newRow.Cells["Name"].BeginEdit();
+        }
+
+        private void gvFiles_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "DeleteColumn")
+            {
+                gvFiles.Rows.Remove(gvFiles.CurrentRow);
+            }
+        }
+
+        private void ddlResponsible_PopupOpening(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+
+            _presenter.SelectResponsible();
         }
     }
 }
