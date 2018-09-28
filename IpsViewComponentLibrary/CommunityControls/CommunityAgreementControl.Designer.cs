@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.CommunityControls
+﻿using System.Windows.Forms;
+
+namespace IpsViewComponentLibrary.CommunityControls
 {
     partial class CommunityAgreementControl
     {

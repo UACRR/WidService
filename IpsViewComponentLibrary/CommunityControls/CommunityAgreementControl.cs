@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
@@ -39,8 +40,17 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void checkForever_CheckStateChanged(object sender, EventArgs e)
         {
-            dtDateEnd.Value = checkForever.Checked ? dtDateEnd.MaxDate : DateTime.Today;
+            if (checkForever.Checked)
+            {
+                dtDateEnd.Value = dtDateEnd.MaxDate;
+                dtDateEnd.Select();
+            }
+            else
+                dtDateEnd.Value = DateTime.Today;
             dtDateEnd.Enabled = !checkForever.Checked;
+
+            if(bsAgreementAddCommunity.DataSource is AgreementAddCommunity item)
+                item.DateEnd = dtDateEnd.Value.Date;
         }
 
         private void dtDateBegin_ValueChanged(object sender, EventArgs e)

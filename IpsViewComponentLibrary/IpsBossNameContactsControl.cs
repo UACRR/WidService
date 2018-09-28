@@ -17,11 +17,14 @@ namespace IpsViewComponentLibrary
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsBossNameContactsControl : UserControl
     {
+        public bool OutsidePhone { get; set; } = false;
         private const string phoneCode = "+380";
         public IpsBossNameContactsControl()
         {
             InitializeComponent();
             txtPhone.Text = phoneCode;
+            txtPhone.Leave += txtPhone_Leave;
+            txtPhone.Enter += txtPhone_Enter;
         }
 
         [Category("Data")]
@@ -163,52 +166,62 @@ namespace IpsViewComponentLibrary
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtPhone.SelectionLength == txtPhone.TextLength)
+            if (!OutsidePhone)
             {
-                e.Handled = true;
+                if (txtPhone.SelectionLength == txtPhone.TextLength)
+                {
+                    e.Handled = true;
 
-                txtPhone.Text = phoneCode + (e.KeyChar == 8 ? string.Empty : e.KeyChar.ToString());
+                    txtPhone.Text = phoneCode + (e.KeyChar == 8 ? string.Empty : e.KeyChar.ToString());
 
-                //txtPhone.Text = phoneCode + e.KeyChar;
-                txtPhone.Select(txtPhone.Text.Length, 0);
+                    //txtPhone.Text = phoneCode + e.KeyChar;
+                    txtPhone.Select(txtPhone.Text.Length, 0);
+                }
+
+                if (txtPhone.SelectionStart < 4 && e.KeyChar != 8)
+                    e.Handled = true;
+
+                char ch = e.KeyChar;
+                if (ch == 8 && txtPhone.Text == phoneCode)
+                    e.Handled = true;
+
+                if (!char.IsDigit(ch) && ch != 8)
+                {
+                    e.Handled = true;
+                }
+
+                if (txtPhone.Text == string.Empty && char.IsDigit(ch))
+                {
+                    e.Handled = true;
+                    txtPhone.Text = phoneCode + e.KeyChar;
+                    txtPhone.Select(txtPhone.Text.Length, 0);
+                }
             }
-
-            if (txtPhone.SelectionStart < 4 && e.KeyChar != 8)
-                e.Handled = true;
-
-            char ch = e.KeyChar;
-            if (ch == 8 && txtPhone.Text == phoneCode)
-                e.Handled = true;
-
-            if (!char.IsDigit(ch) && ch != 8)
+            else
             {
-                e.Handled = true;
-            }
-
-            if (txtPhone.Text == string.Empty && char.IsDigit(ch))
-            {
-                e.Handled = true;
-                txtPhone.Text = phoneCode + e.KeyChar;
-                txtPhone.Select(txtPhone.Text.Length, 0);
+                char ch = e.KeyChar;
+                if (!char.IsDigit(ch) && ch != 8 && ch != 43)
+                {
+                    e.Handled = true;
+                }
             }
         }
 
         private void txtPhone_Enter(object sender, EventArgs e)
         {
-            if (txtPhone.Text == string.Empty)
+            if (!OutsidePhone && txtPhone.Text == string.Empty)
                 txtPhone.Text = phoneCode;
         }
 
         private void txtPhone_Leave(object sender, EventArgs e)
         {
-            if(txtPhone.Text == phoneCode)
+            if(!OutsidePhone && txtPhone.Text == phoneCode)
                 txtPhone.Clear();
         }
 
         public void UnsubscribePhoneVldt()
         {
-            txtPhone.Leave -= txtPhone_Leave;
-            txtPhone.Enter -= txtPhone_Enter;
+            OutsidePhone = true;
             txtPhone.NullText = string.Empty;
         }
     }

@@ -44,7 +44,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public Customer GetTemplateComunity()
         {
-            var customerComunity = _webApi.GetItemById<Customer>("template", null);
+            var customerComunity = _webApi.GetItemById<Customer>(_prefix + "template", null);
             return customerComunity;
         }
 

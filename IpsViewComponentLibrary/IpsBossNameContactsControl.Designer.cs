@@ -91,9 +91,7 @@
             this.txtPhone.Size = new System.Drawing.Size(173, 21);
             this.txtPhone.TabIndex = 3;
             this.txtPhone.ThemeName = "Office2013Light";
-            this.txtPhone.Enter += new System.EventHandler(this.txtPhone_Enter);
             this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
-            this.txtPhone.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // employeeBindingSource
             // 

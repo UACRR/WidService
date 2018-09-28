@@ -14,6 +14,10 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityAddressControl : UserControl
     {
+        private string _cityMember = string.Empty;
+        private string _addressMember = string.Empty;
+        private string _countryMember = string.Empty;
+
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public CommunityAddressControl()
@@ -31,31 +35,34 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         public string CountryDataMember
         {
-            get => ddlCountry.DataMember;
+            get => _countryMember;
             set
             {
-                    ddlCountry.DataBindings.Clear();
-                    ddlCountry.DataBindings.Add("SelectedValue", bsAnketaCompany, value, true, DataSourceUpdateMode.OnPropertyChanged, 0);
+                _countryMember = value;
+                ddlCountry.DataBindings.Clear();
+                ddlCountry.DataBindings.Add("SelectedValue", bsAnketaCompany, _countryMember, true, DataSourceUpdateMode.OnPropertyChanged, 0);
             }
         }
         
         public string CityDataMember
         {
-            get => txtCity.DataBindings["DataMember"]?.PropertyName;
+            get => _cityMember;
             set
             {
-                    txtCity.DataBindings.Clear();
-                    txtCity.DataBindings.Add("Text", bsAnketaCompany, value, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+                _cityMember = value;
+                txtCity.DataBindings.Clear();
+                txtCity.DataBindings.Add("Text", bsAnketaCompany, _cityMember, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
             }
         }
 
         public string AddressDataMember
         {
-            get => txtAddress.DataBindings["DataMember"]?.PropertyName;
+            get => _addressMember;
             set
             {
-                    txtAddress.DataBindings.Clear();
-                    txtAddress.DataBindings.Add("Text", bsAnketaCompany, value, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
+                _addressMember = value;
+                txtAddress.DataBindings.Clear();
+                txtAddress.DataBindings.Add("Text", bsAnketaCompany, _addressMember, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
             }
         }
     }

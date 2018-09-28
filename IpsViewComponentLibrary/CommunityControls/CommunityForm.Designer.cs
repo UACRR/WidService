@@ -330,9 +330,9 @@
             // 
             // ctrlAddressFa
             // 
-            this.ctrlAddressFa.AddressDataMember = null;
+            this.ctrlAddressFa.AddressDataMember = "";
             this.ctrlAddressFa.AnketaCompanyDataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            this.ctrlAddressFa.CityDataMember = null;
+            this.ctrlAddressFa.CityDataMember = "";
             this.ctrlAddressFa.CountryDataMember = "";
             this.ctrlAddressFa.Location = new System.Drawing.Point(140, 137);
             this.ctrlAddressFa.Name = "ctrlAddressFa";
@@ -341,9 +341,9 @@
             // 
             // ctrlAddressJu
             // 
-            this.ctrlAddressJu.AddressDataMember = null;
+            this.ctrlAddressJu.AddressDataMember = "";
             this.ctrlAddressJu.AnketaCompanyDataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            this.ctrlAddressJu.CityDataMember = null;
+            this.ctrlAddressJu.CityDataMember = "";
             this.ctrlAddressJu.CountryDataMember = "";
             this.ctrlAddressJu.Location = new System.Drawing.Point(140, 33);
             this.ctrlAddressJu.Name = "ctrlAddressJu";

@@ -38,9 +38,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             // - - адреса
             // юридична
             ctrlAddressJu.AnketaCompanyDataSource = anketaCompany;
-            ctrlAddressJu.AddressDataMember = "JuAddress";
-            ctrlAddressJu.CityDataMember = "JuCity";
-            ctrlAddressJu.CountryDataMember = "JuCountry";;
+            ctrlAddressJu.AddressDataMember = "JaAddress";
+            ctrlAddressJu.CityDataMember = "JaCity";
+            ctrlAddressJu.CountryDataMember = "JaCountry";;
             // фактична
             ctrlAddressFa.AnketaCompanyDataSource = anketaCompany;
             ctrlAddressFa.AddressDataMember = "FaAddress";
@@ -51,6 +51,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             ctrlAddressLe.AddressDataMember = "LeAddress";
             ctrlAddressLe.CityDataMember = "LeCity";
             ctrlAddressLe.CountryDataMember = "LeCountry";
+            ctrlAddressLe.PostIndexDataMember = "LePostIndex";
 
             // банківські дані
             var bank = _customer.BankAccount.SingleOrDefault();
