@@ -13,7 +13,7 @@ using ipsFormsDesign.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using Autofac;
+//using Autofac;
 
 namespace UnitTestMediaPortal
 {
@@ -85,29 +85,29 @@ namespace UnitTestMediaPortal
             public string testTxt => "Test DI !!!";
         }
 
-        [TestMethod]
-        public void TestAutoFac()
-        {
-            var builder = new ContainerBuilder();
-            var testObj = new TestDI();
-            builder.RegisterInstance(testObj)
-                .ExternallyOwned()
-                .As<ITestDI>();
+        //[TestMethod]
+        //public void TestAutoFac()
+        //{
+        //    var builder = new ContainerBuilder();
+        //    var testObj = new TestDI();
+        //    builder.RegisterInstance(testObj)
+        //        .ExternallyOwned()
+        //        .As<ITestDI>();
 
-            var Container = builder.Build();
+        //    var Container = builder.Build();
 
-            using (var scope = Container.BeginLifetimeScope())
-            {
-                var test = scope.Resolve<ITestDI>();
-                Assert.AreEqual(test.testTxt, testObj.testTxt );
-            }
+        //    using (var scope = Container.BeginLifetimeScope())
+        //    {
+        //        var test = scope.Resolve<ITestDI>();
+        //        Assert.AreEqual(test.testTxt, testObj.testTxt );
+        //    }
 
-            using (var scope = Container.BeginLifetimeScope())
-            {
-                var test = scope.Resolve<ITestDI>();
-                Assert.AreEqual(test.testTxt, testObj.testTxt);
-            }
-        }
+        //    using (var scope = Container.BeginLifetimeScope())
+        //    {
+        //        var test = scope.Resolve<ITestDI>();
+        //        Assert.AreEqual(test.testTxt, testObj.testTxt);
+        //    }
+        //}
 
     }
 }
