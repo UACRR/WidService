@@ -43,8 +43,13 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixation = _fixationService.GetById(fixId);
             _view.Fixation = _fixation;
 
-            if (_fixation.GetStage() == FixationStages.NegotiationBeforeFixation)
+            var currentStage = _fixation.GetStage();
+
+            if (currentStage == FixationStages.NegotiationBeforeFixation || currentStage == FixationStages.Fixation)
+            {
+                _view.SetAvailableStageStatuses(_fixation.GetAvailableStageStatuses());
                 _view.ShowStatusesGroupBox = true;
+            }
 
             _view.Run();
         }
