@@ -220,6 +220,12 @@
     <Compile Include="Common\SearchTextBoxControl.Designer.cs">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\SideMenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\SideMenuControl.Designer.cs">
+      <DependentUpon>SideMenuControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\UserSelectionView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -976,6 +982,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\SideMenuControl.resx">
+      <DependentUpon>SideMenuControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\UserSelectionView.resx">
       <DependentUpon>UserSelectionView.cs</DependentUpon>
