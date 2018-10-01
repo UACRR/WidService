@@ -60,6 +60,7 @@ namespace IpsViewComponentLibrary.FixationControls
             {
                 _consumer = value;
                 ddlConsumer.Text = _consumer.Name;
+                txtClientInnOkpo.Text = _consumer.Innokpo;
             }
         }
 
