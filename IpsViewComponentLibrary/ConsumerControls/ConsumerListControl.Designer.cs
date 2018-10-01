@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.FixationControls
+﻿namespace IpsViewComponentLibrary.ConsumerControls
 {
     partial class ConsumerListControl
     {

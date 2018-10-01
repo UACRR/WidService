@@ -3,7 +3,7 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.Utilities;
 
-namespace IpsViewComponentLibrary.FixationControls
+namespace IpsViewComponentLibrary.ConsumerControls
 {
     public class ConsumerListPresenter
     {

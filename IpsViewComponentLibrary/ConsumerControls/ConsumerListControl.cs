@@ -14,8 +14,8 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.Common;
 using ipsFormsDesign.Interfaces;
 
-namespace IpsViewComponentLibrary.FixationControls
-{
+namespace IpsViewComponentLibrary.ConsumerControls
+{ 
     public partial class ConsumerListControl : UserControl // , ISubscriber<FixationUpdatedEvent> // to fix
     {
         private ConsumerListPresenter _presenter;
