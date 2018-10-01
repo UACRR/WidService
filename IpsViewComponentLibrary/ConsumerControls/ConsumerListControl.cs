@@ -53,15 +53,20 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 {
                     _selectedConsumer = value;
 
-                    if (_selectedConsumer != null)
-                    {
-                        var row = gvConsumerList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _selectedConsumer.CustId);
-                        if (row != null)
-                        {
-                            gvConsumerList.CurrentRow = row;
-                            gvConsumerList.TableElement.ScrollToRow(row);
-                        }
-                    }
+                    UpdateCurrentRow();
+                }
+            }
+        }
+
+        private void UpdateCurrentRow()
+        {
+            if (_selectedConsumer != null)
+            {
+                var row = gvConsumerList.Rows.FirstOrDefault(r => (int)r.Cells["CustId"].Value == _selectedConsumer.CustId);
+                if (row != null)
+                {
+                    gvConsumerList.CurrentRow = row;
+                    gvConsumerList.TableElement.ScrollToRow(row);
                 }
             }
         }
@@ -129,6 +134,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private void UpdateList()
         {
             _presenter.UpdateList();
+            UpdateCurrentRow();
         }
 
         //public void HandleEvent(FixationUpdatedEvent e) // to fix
