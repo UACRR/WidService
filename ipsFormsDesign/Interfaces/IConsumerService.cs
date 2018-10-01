@@ -13,6 +13,7 @@ namespace ipsFormsDesign.Interfaces
         public string Name { get; set; }
         public int CountAgree { get; set; }
         public decimal Undistribamount { get; set; }
+        public bool IsAnkExtrn { get; set; }
     }
 
     /// <summary>

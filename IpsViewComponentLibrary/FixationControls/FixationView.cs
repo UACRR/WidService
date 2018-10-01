@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
@@ -48,6 +49,18 @@ namespace IpsViewComponentLibrary.FixationControls
             {
                 _responsible = value;
                 ddlResponsible.Text = _responsible.FullName;
+            }
+        }
+
+        private ConsumerMainView _consumer;
+        public ConsumerMainView Consumer
+        {
+            get { return _consumer; }
+            set
+            {
+                _consumer = value;
+                ddlConsumer.Text = _consumer.Name;
+                txtClientInnOkpo.Text = _consumer.Innokpo;
             }
         }
 
@@ -143,6 +156,13 @@ namespace IpsViewComponentLibrary.FixationControls
             e.Cancel = true;
 
             _presenter.SelectResponsible();
+        }
+
+        private void ddlConsumer_PopupOpening(object sender, CancelEventArgs e)
+        {
+            e.Cancel = true;
+
+            _presenter.SelectConsumer();
         }
     }
 }

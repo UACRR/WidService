@@ -372,12 +372,19 @@
     <Compile Include="ConsumerForms\PartnerJurForm.Designer.cs">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ConsumerListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerListControl.Designer.cs">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FixationControls\FixationListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FixationControls\FixationListControl.Designer.cs">
       <DependentUpon>FixationListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ConsumerListPresenter.cs" />
     <Compile Include="FixationControls\FixationListPresenter.cs" />
     <Compile Include="FixationControls\FixationPresenter.cs" />
     <Compile Include="FixationControls\FixationView.cs">
@@ -434,6 +441,12 @@
     </Compile>
     <Compile Include="RightholderControls\NewRightholderView.Designer.cs">
       <DependentUpon>NewRightholderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerSelectionView.Designer.cs">
+      <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\RightholderView.cs">
       <SubType>Form</SubType>
@@ -1059,6 +1072,9 @@
     <EmbeddedResource Include="ConsumerForms\PartnerJurForm.resx">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerListControl.resx">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FixationControls\FixationListControl.resx">
       <DependentUpon>FixationListControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1160,6 +1176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerSelectionView.resx">
+      <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\CabinetBigRightOld.resx">
       <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
@@ -1352,6 +1371,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ChildTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />

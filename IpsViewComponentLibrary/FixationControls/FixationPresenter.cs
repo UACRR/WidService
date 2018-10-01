@@ -1,13 +1,12 @@
-﻿using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Events;
+﻿using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Utilities;
-using System.ComponentModel;
 using System.Linq;
 
 namespace IpsViewComponentLibrary.FixationControls
@@ -17,6 +16,7 @@ namespace IpsViewComponentLibrary.FixationControls
         private readonly FixationView _view;
         private readonly FixationService _fixationService;
         private readonly UserService _userService;
+        private readonly ConsumerService _consumerService;
         private readonly DialogService _dialogService;
         private Fixation _fixation;
         private bool _canClose;
@@ -28,6 +28,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
             _fixationService = new FixationService();
             _userService = new UserService();
+            _consumerService = new ConsumerService();
             _dialogService = new DialogService();
         }
 
@@ -47,6 +48,10 @@ namespace IpsViewComponentLibrary.FixationControls
             {
                 var responsible = _userService.GetById(_fixation.UserId);
                 _view.Responsible = responsible;
+            }
+            if (_fixation.ClientCustId != null)
+            {
+                _view.Consumer = _consumerService.GetShortInfoById((int)_fixation.ClientCustId);
             }
 
             var currentStage = _fixation.GetStage();
@@ -107,6 +112,20 @@ namespace IpsViewComponentLibrary.FixationControls
                 {
                     _view.Responsible = selectedUser;
                     _fixation.UserId = selectedUser.UserId;
+                };
+                selectionView.ShowDialog();
+            }
+        }
+
+        public void SelectConsumer()
+        {
+            using (var selectionView = new ConsumerSelectionView())
+            {
+                selectionView.SelectedConsumer = _view.Consumer;
+                selectionView.ConsumerSelected += (s, selectedConsumer) =>
+                {
+                    _view.Consumer = selectedConsumer;
+                    _fixation.ClientCustId = selectedConsumer.CustId;
                 };
                 selectionView.ShowDialog();
             }
