@@ -132,5 +132,11 @@ namespace IpsViewComponentLibrary.CommunityControls
                 BeginBindings();
             }
         }
+
+        //додати автора
+        private void btnAddCommunity_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
