@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
         public event SetPartnerEventHandler OnAddClientToPartner;
         public event SetPartnerEventHandler OnDetachClientInPartner;
-        public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
+        public event AgreementStatusChangeEventHandler ChangeStatusAgr;
 
         public PartnerControl()
         {

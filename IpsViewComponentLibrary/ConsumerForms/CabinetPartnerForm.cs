@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
         public event SetPartnerEventHandler OnAddClientToPartner;
         public event SetPartnerEventHandler OnDetachClientInPartner;
-        public event PartnerAgreementStatusChangeEventHandler ChangeStatusAgr;
+        public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerByIdEventHandler UpdateCustomer;
 
         public CabinetPartnerForm(Customer customer)
@@ -121,7 +121,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //cancel changes
+            //TODO: cancel changes
         }
 
         private void btnSave_Click(object sender, EventArgs e)

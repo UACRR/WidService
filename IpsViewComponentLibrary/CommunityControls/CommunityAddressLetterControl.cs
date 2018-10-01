@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
@@ -71,5 +72,10 @@ namespace IpsViewComponentLibrary.CommunityControls
                     txtPostIndex.DataBindings.Add("Text", bsAnketaCompany, value, true, DataSourceUpdateMode.OnPropertyChanged, string.Empty);
             }
         }
+
+        public RadDropDownList DdlCountry => ddlCountry;
+        public RadTextBox TxtCity => txtCity;
+        public RadTextBox TxtAddress => txtAddress;
+        public RadTextBox TxtPostIndex => txtPostIndex;
     }
 }

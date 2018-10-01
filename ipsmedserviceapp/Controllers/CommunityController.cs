@@ -78,6 +78,7 @@ namespace ipsmedserviceapp.Controllers
         {
             var community = await _dbContext.Customer.Where(rec => rec.CustId == custId)
                 .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                .Include(item => item.Company).ThenInclude(relempl => relempl.RelEmployee).ThenInclude(empl => empl.Empl)
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
@@ -143,12 +144,30 @@ namespace ipsmedserviceapp.Controllers
         {
             var destination = await _dbContext.Customer.Where(rec => rec.CustId == custId)
                 .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                .Include(item => item.Company).ThenInclude(relempl => relempl.RelEmployee).ThenInclude(empl => empl.Empl)
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
                 .Include(item => item.RightHolder).SingleOrDefaultAsync();
 
-            return null;
+            IDbContextTransaction tran = null;
+            try
+            {
+                // Customer
+                SyncCommunityObjects(sourceCustomer, destination);
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+                return Json(destination);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
         }
 
         #region Винесені методи та додаткові методи синхронізацій
@@ -266,9 +285,11 @@ namespace ipsmedserviceapp.Controllers
                 var community = new Community();
                 community.SetFields(source.Community);
                 destination.Community = community;
-                
             }
             destination.Community.SetFields(source.Community);
+            var addCommunity = source.Community.AgreementAddCommunity.Where(row => destination.AgreementMaster.ToList().All(item => item.AgrId != row.AgrId)).ToList();
+            foreach (var i in addCommunity)
+                destination.Community.AgreementAddCommunity.Add(i);
 
             // збереження RightHolder
             if (destination.RightHolder == null)

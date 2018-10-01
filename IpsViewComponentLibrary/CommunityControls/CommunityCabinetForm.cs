@@ -6,13 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityCabinetForm : Telerik.WinControls.UI.RadForm
     {
+        public event SaveCustomerEventHandler SaveCustomer;
+        public event AgreementStatusChangeEventHandler ChangeStatusAgr;
+        public event GetCustomerByIdEventHandler UpdateCustomer;
+
         private Customer _customer;
         public CommunityCabinetForm(Customer customer)
         {
@@ -22,15 +28,17 @@ namespace IpsViewComponentLibrary.CommunityControls
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
             ctrlSearch.SetUsageGrid(gvViewAutors);
 
-            SetBindings();
+            BeginBindings();
         }
 
         private void CtrlTabNavigation_SaveClick(object sender, EventArgs e)
         {
-            // call save
+            var result = SaveCustomer?.Invoke(_customer) ?? false;
+            if(result)
+                ExtensionUtils.ShowInfoMessage("Зміни збережено!", "Успішно", MessageBoxIcon.Information);
         }
 
-        private void SetBindings()
+        private void BeginBindings()
         {
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
@@ -39,6 +47,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             ctrlClientName.DataSource = anketaCompany;
             var empl = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3)?.Empl;
             ctrlContactPerson.DataSource = empl;
+            ctrlContactPerson.OutsidePhone = true;
+            ctrlContactPerson.TxtPhone.NullText = string.Empty;
 
             // - - адреса
             // юридична
@@ -64,6 +74,63 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             // договір
             ctrlAgreement.AgreementDataSource = agreement;
+            var statusid = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
+            lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
+        }
+
+        #region КОПІЮВАННЯ АДРЕС
+
+        private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)
+        {
+            ctrlAddressFa.DdlCountry.SelectedValue = ctrlAddressJu.DdlCountry.SelectedValue;
+            ctrlAddressFa.TxtCity.Select();
+            ctrlAddressFa.TxtCity.Text = ctrlAddressJu.TxtCity.Text;
+            ctrlAddressFa.TxtAddress.Select();
+            ctrlAddressFa.TxtAddress.Text = ctrlAddressJu.TxtAddress.Text;
+        }
+
+        private void btnCopyFromLiveToLett_Click(object sender, EventArgs e)
+        {
+            ctrlAddressLe.DdlCountry.SelectedValue = ctrlAddressJu.DdlCountry.SelectedValue;
+            ctrlAddressLe.TxtCity.Select();
+            ctrlAddressLe.TxtCity.Text = ctrlAddressJu.TxtCity.Text;
+            ctrlAddressLe.TxtAddress.Select();
+            ctrlAddressLe.TxtAddress.Text = ctrlAddressJu.TxtAddress.Text;
+            ctrlAddressLe.TxtPostIndex.Select();
+        }
+
+        private void btnCopyFromRegToLett_Click(object sender, EventArgs e)
+        {
+            ctrlAddressLe.DdlCountry.SelectedValue = ctrlAddressFa.DdlCountry.SelectedValue;
+            ctrlAddressLe.TxtCity.Select();
+            ctrlAddressLe.TxtCity.Text = ctrlAddressFa.TxtCity.Text;
+            ctrlAddressLe.TxtAddress.Select();
+            ctrlAddressLe.TxtAddress.Text = ctrlAddressFa.TxtAddress.Text;
+            ctrlAddressLe.TxtPostIndex.Select();
+        }
+
+        #endregion
+
+        // підтвердження договору
+        private void btnAcceptAgr_Click(object sender, EventArgs e)
+        {
+            var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Activate);
+            if (result ?? false)
+            {
+                _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                BeginBindings();
+            }
+        }
+
+        // закривання договору
+        private void btnCloseAgr_Click(object sender, EventArgs e)
+        {
+            var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Close);
+            if (result ?? false)
+            {
+                _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                BeginBindings();
+            }
         }
     }
 }

@@ -17,6 +17,9 @@ namespace IpsViewComponentLibrary
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsBossNameContactsControl : UserControl
     {
+        /// <summary>
+        /// Зовнішній номер телефону
+        /// </summary>
         public bool OutsidePhone { get; set; } = false;
         private const string phoneCode = "+380";
         public IpsBossNameContactsControl()

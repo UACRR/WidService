@@ -34,7 +34,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     btnBack.Enabled = false;
                     btnNext.Text = _pageView.Pages[1].Text + " >";
                     btnSave.DialogResult = DialogResult.OK;
-                    btnSave.Click += BtnSave_Click;
                     break;
                 case FLoadType.View:
                     break;
@@ -42,6 +41,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     btnBack.Visible = false;
                     btnNext.Visible = false;
                     btnSave.Enabled = true;
+                    btnSave.Click += BtnSave_Click;
                     break;
             }
 

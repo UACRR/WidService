@@ -50,8 +50,8 @@
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.ctrlAgreement = new IpsViewComponentLibrary.CommunityControls.CommunityAgreementControl();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvCommunityName.SuspendLayout();
@@ -119,6 +119,7 @@
             this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlContactPerson.Location = new System.Drawing.Point(21, 87);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
+            this.ctrlContactPerson.OutsidePhone = false;
             this.ctrlContactPerson.Size = new System.Drawing.Size(600, 56);
             this.ctrlContactPerson.TabIndex = 2;
             // 
@@ -258,6 +259,7 @@
             this.btnCopyFromLiveToReg.TabIndex = 57;
             this.btnCopyFromLiveToReg.Text = "Копіювати з юридичної адреси";
             this.btnCopyFromLiveToReg.ThemeName = "Office2013Light";
+            this.btnCopyFromLiveToReg.Click += new System.EventHandler(this.btnCopyFromLiveToReg_Click);
             // 
             // radLabel9
             // 
@@ -301,6 +303,7 @@
             this.btnCopyFromRegToLett.TabIndex = 59;
             this.btnCopyFromRegToLett.Text = "Копіювати з фактичної адреси";
             this.btnCopyFromRegToLett.ThemeName = "Office2013Light";
+            this.btnCopyFromRegToLett.Click += new System.EventHandler(this.btnCopyFromRegToLett_Click);
             // 
             // btnCopyFromLiveToLett
             // 
@@ -310,6 +313,7 @@
             this.btnCopyFromLiveToLett.TabIndex = 58;
             this.btnCopyFromLiveToLett.Text = "Копіювати з юридичної адреси";
             this.btnCopyFromLiveToLett.ThemeName = "Office2013Light";
+            this.btnCopyFromLiveToLett.Click += new System.EventHandler(this.btnCopyFromLiveToLett_Click);
             // 
             // radLabel7
             // 
@@ -376,6 +380,14 @@
             this.pvAgreement.Size = new System.Drawing.Size(872, 498);
             this.pvAgreement.Text = "Договір";
             // 
+            // ctrlAgreement
+            // 
+            this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddCommunity);
+            this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
+            this.ctrlAgreement.Name = "ctrlAgreement";
+            this.ctrlAgreement.Size = new System.Drawing.Size(641, 260);
+            this.ctrlAgreement.TabIndex = 0;
+            // 
             // ctrlTabNavigation
             // 
             this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -385,14 +397,6 @@
             this.ctrlTabNavigation.Name = "ctrlTabNavigation";
             this.ctrlTabNavigation.Size = new System.Drawing.Size(1011, 31);
             this.ctrlTabNavigation.TabIndex = 13;
-            // 
-            // ctrlAgreement
-            // 
-            this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddCommunity);
-            this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
-            this.ctrlAgreement.Name = "ctrlAgreement";
-            this.ctrlAgreement.Size = new System.Drawing.Size(641, 260);
-            this.ctrlAgreement.TabIndex = 0;
             // 
             // CommunityForm
             // 

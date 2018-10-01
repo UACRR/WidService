@@ -44,8 +44,8 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public Customer GetTemplateComunity()
         {
-            var customerComunity = _webApi.GetItemById<Customer>(_prefix + "template", null);
-            return customerComunity;
+            var templateComunity = _webApi.GetItemById<Customer>(_prefix + "template", null);
+            return templateComunity;
         }
 
         /// <summary>
@@ -58,6 +58,12 @@ namespace ipsFormsDesign.Services
             return customer.CustId == 0 ? 
                 _webApi.NewItem<Customer>(_prefix + "createcommunity", customer) : 
                 _webApi.UpdateItem<Customer>(_prefix + "updatecommunity", customer.CustId.ToString(), customer);
+        }
+
+        public Customer GetComunity(int custId)
+        {
+            var comunity = _webApi.GetItemById<Customer>(_prefix + "list", custId.ToString());
+            return comunity;
         }
 
 

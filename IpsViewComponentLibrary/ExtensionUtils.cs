@@ -35,7 +35,7 @@ namespace IpsViewComponentLibrary
     public delegate List<T> ReturnViewEventHandler<T>(int custId);
     public delegate T ReturnObjectEventHandler<out T>(int custId);
 
-    public delegate bool PartnerAgreementStatusChangeEventHandler(int partnerId, CPartnerObjectStatus status);
+    public delegate bool AgreementStatusChangeEventHandler(int partnerId, CPartnerObjectStatus status);
     public delegate List<PaidPeriod> SaveAndReturnNewPeriodListEventHandler(int custId, List<PaidPeriod> periods);
 
     public static class ExtensionUtils

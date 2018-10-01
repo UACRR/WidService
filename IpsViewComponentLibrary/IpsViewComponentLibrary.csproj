@@ -244,6 +244,12 @@
     <Compile Include="CommunityControls\CommunityAgreementControl.Designer.cs">
       <DependentUpon>CommunityAgreementControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommunityControls\CommunityAutorsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAutorsControl.Designer.cs">
+      <DependentUpon>CommunityAutorsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommunityControls\CommunityCabinetForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -988,6 +994,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityAgreementControl.resx">
       <DependentUpon>CommunityAgreementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAutorsControl.resx">
+      <DependentUpon>CommunityAutorsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityCabinetForm.resx">
       <DependentUpon>CommunityCabinetForm.cs</DependentUpon>

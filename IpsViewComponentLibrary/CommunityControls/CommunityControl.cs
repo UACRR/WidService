@@ -14,8 +14,9 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityControl : UserControl
     {
-        public event ReturnViewEventHandler<CommunytiListView> SetCommunityList;
+        public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
         public event GetCustomerEventHandler GetTemplateCommunity;
+        public event GetCustomerByIdEventHandler GetCommunity;
         public event SaveCustomerEventHandler SaveCommunity;
         
 
@@ -45,8 +46,34 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void gvViewPartners_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            CommunityCabinetForm cabinetForm = new CommunityCabinetForm(new Customer());
-            cabinetForm.Show();
+            if (e.Row.DataBoundItem is CommunityListView item)
+            {
+                var customer = GetCommunity?.Invoke(item.CustId);
+                var cabinetForm = new CommunityCabinetForm(customer)
+                {
+                    StartPosition = FormStartPosition.CenterScreen,
+                };
+                cabinetForm.SaveCustomer += CabinetForm_SaveCustomer;
+                cabinetForm.UpdateCustomer += CabinetForm_UpdateCustomer;
+                cabinetForm.ChangeStatusAgr += CabinetForm_ChangeStatusAgr;
+
+                cabinetForm.Show();
+            }
+        }
+
+        private bool CabinetForm_ChangeStatusAgr(int partnerId, ipsFormsDesign.Services.CPartnerObjectStatus status)
+        {
+            throw new NotImplementedException();
+        }
+
+        private Customer CabinetForm_UpdateCustomer(int custId)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CabinetForm_SaveCustomer(Customer customer)
+        {
+            return SaveCommunity?.Invoke(customer) ?? false;
         }
     }
 }

@@ -62,5 +62,34 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         }
 
+        private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)
+        {
+            ctrlAddressFa.DdlCountry.SelectedValue = ctrlAddressJu.DdlCountry.SelectedValue;
+            ctrlAddressFa.TxtCity.Select();
+            ctrlAddressFa.TxtCity.Text = ctrlAddressJu.TxtCity.Text;
+            ctrlAddressFa.TxtAddress.Select();
+            ctrlAddressFa.TxtAddress.Text = ctrlAddressJu.TxtAddress.Text;
+        }
+
+        private void btnCopyFromLiveToLett_Click(object sender, EventArgs e)
+        {
+            ctrlAddressLe.DdlCountry.SelectedValue = ctrlAddressJu.DdlCountry.SelectedValue;
+            ctrlAddressLe.TxtCity.Select();
+            ctrlAddressLe.TxtCity.Text = ctrlAddressJu.TxtCity.Text;
+            ctrlAddressLe.TxtAddress.Select();
+            ctrlAddressLe.TxtAddress.Text = ctrlAddressJu.TxtAddress.Text;
+            ctrlAddressLe.TxtPostIndex.Select();
+        }
+
+        private void btnCopyFromRegToLett_Click(object sender, EventArgs e)
+        {
+            ctrlAddressLe.DdlCountry.SelectedValue = ctrlAddressFa.DdlCountry.SelectedValue;
+            ctrlAddressLe.TxtCity.Select();
+            ctrlAddressLe.TxtCity.Text = ctrlAddressFa.TxtCity.Text;
+            ctrlAddressLe.TxtAddress.Select();
+            ctrlAddressLe.TxtAddress.Text = ctrlAddressFa.TxtAddress.Text;
+            ctrlAddressLe.TxtPostIndex.Select();
+        }
+
     }
 }
