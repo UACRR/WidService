@@ -665,6 +665,14 @@ namespace ipsmedserviceapp.Controllers
             return Json(List);
         }
 
+        [HttpGet("listall")]
+        public async Task<IActionResult> GetListAll(int whatId)
+        {
+            string query = "select * from vTsk_1_ListConsumer";
+            var List = await _dbContext.getViewData(query, null);
+            return Ok(List);
+        }
+
         #region Зміні для фільтрів
         Dictionary<ConsumerFilterEnum, string> validQueryForAllDocs = new Dictionary<ConsumerFilterEnum, string> {
             { ConsumerFilterEnum.ForDistribution, "statusUndistribute=1"},

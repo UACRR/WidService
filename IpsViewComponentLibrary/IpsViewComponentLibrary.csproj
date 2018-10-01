@@ -372,12 +372,19 @@
     <Compile Include="ConsumerForms\PartnerJurForm.Designer.cs">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ConsumerListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerListControl.Designer.cs">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FixationControls\FixationListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FixationControls\FixationListControl.Designer.cs">
       <DependentUpon>FixationListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ConsumerListPresenter.cs" />
     <Compile Include="FixationControls\FixationListPresenter.cs" />
     <Compile Include="FixationControls\FixationPresenter.cs" />
     <Compile Include="FixationControls\FixationView.cs">
@@ -1059,6 +1066,9 @@
     <EmbeddedResource Include="ConsumerForms\PartnerJurForm.resx">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerListControl.resx">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FixationControls\FixationListControl.resx">
       <DependentUpon>FixationListControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1352,6 +1362,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ChildTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />

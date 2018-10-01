@@ -77,9 +77,12 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             InitializeComponent();
 
-            ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
+            if (!IsDesignMode)
+            {
+                ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
-            _presenter = new FixationListPresenter(this);
+                _presenter = new FixationListPresenter(this);
+            }
         }
 
         private void FixationListControl_Load(object sender, EventArgs e)
