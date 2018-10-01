@@ -1,18 +1,14 @@
-﻿using ipsFormsDesign.Data;
+﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
-using ipsFormsDesign.ViewModels.Users;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Utilities;
-using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
@@ -66,6 +62,21 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void Save()
         {
+            if (_fixation.Lic == null && _view.RegisterItemList.Any())
+            {
+                // create structure for storing Register, RegisterItems and RegisterCount
+
+                _fixation.Lic = new LicenseAgreement();
+            }
+
+
+
+
+
+
+
+
+
             var result = _fixationService.Save(_fixation);
 
             if (result)

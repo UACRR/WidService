@@ -1,4 +1,5 @@
 ﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
@@ -61,6 +62,8 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        public BindingList<RegisterItemViewModel> RegisterItemList { get; } = new BindingList<RegisterItemViewModel>();
+
         public FixationView()
         {
             InitializeComponent();
@@ -73,6 +76,8 @@ namespace IpsViewComponentLibrary.FixationControls
             gvFiles.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             bgbStatuses.Visible = _showStatusesGroupBox;
+
+            ctrlRegisterItemList.DataSource = RegisterItemList;
         }
 
         public void SetAvailableStageStatuses(IEnumerable<FixationStageStatuses> stageStatuses)
