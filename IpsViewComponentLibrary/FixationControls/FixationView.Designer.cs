@@ -98,6 +98,7 @@
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.mebCourtFeeAmount = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
             this.mebRewardAmount = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
+            this.radPageViewPage5 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ddlStage = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
@@ -110,7 +111,7 @@
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.bgbStatuses = new IpsViewComponentLibrary.Common.ButtonGroupBoxControl();
             this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
-            this.radPageViewPage5 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ddlConsumer = new Telerik.WinControls.UI.RadDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).BeginInit();
             this.mainPageView.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
@@ -186,6 +187,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
             this.radPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,7 +201,7 @@
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.radPageViewPage3;
+            this.mainPageView.SelectedPage = this.radPageViewPage1;
             this.mainPageView.Size = new System.Drawing.Size(822, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -207,6 +209,7 @@
             // 
             // radPageViewPage1
             // 
+            this.radPageViewPage1.Controls.Add(this.ddlConsumer);
             this.radPageViewPage1.Controls.Add(this.radGroupBox2);
             this.radPageViewPage1.Controls.Add(this.radGroupBox1);
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(64F, 27F);
@@ -903,6 +906,14 @@
             this.mebRewardAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mebRewardAmount.ThemeName = "Office2013Light";
             // 
+            // radPageViewPage5
+            // 
+            this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(106F, 27F);
+            this.radPageViewPage5.Location = new System.Drawing.Point(5, 31);
+            this.radPageViewPage5.Name = "radPageViewPage5";
+            this.radPageViewPage5.Size = new System.Drawing.Size(812, 361);
+            this.radPageViewPage5.Text = "Розподіл коштів";
+            // 
             // ddlStatus
             // 
             this.ddlStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsFixation, "StageStatus", true));
@@ -1034,13 +1045,15 @@
             this.radPanel3.ThemeName = "Office2013Light";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.radPanel3.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            // radPageViewPage5
+            // ddlConsumer
             // 
-            this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(106F, 27F);
-            this.radPageViewPage5.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage5.Name = "radPageViewPage5";
-            this.radPageViewPage5.Size = new System.Drawing.Size(812, 361);
-            this.radPageViewPage5.Text = "Розподіл коштів";
+            this.ddlConsumer.Location = new System.Drawing.Point(523, 143);
+            this.ddlConsumer.Name = "ddlConsumer";
+            this.ddlConsumer.ReadOnly = true;
+            this.ddlConsumer.Size = new System.Drawing.Size(270, 21);
+            this.ddlConsumer.TabIndex = 24;
+            this.ddlConsumer.ThemeName = "Office2013Light";
+            this.ddlConsumer.PopupOpening += new System.ComponentModel.CancelEventHandler(this.ddlConsumer_PopupOpening);
             // 
             // FixationView
             // 
@@ -1061,6 +1074,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).EndInit();
             this.mainPageView.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
+            this.radPageViewPage1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox2)).EndInit();
             this.radGroupBox2.ResumeLayout(false);
             this.radGroupBox2.PerformLayout();
@@ -1140,6 +1154,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
             this.radPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ddlConsumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1215,5 +1230,6 @@
         private Telerik.WinControls.UI.RadButton btnPrintAct;
         private Telerik.WinControls.UI.RadButton btnPrintSlugbova;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage5;
+        private Telerik.WinControls.UI.RadDropDownList ddlConsumer;
     }
 }
