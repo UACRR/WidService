@@ -442,6 +442,12 @@
     <Compile Include="RightholderControls\NewRightholderView.Designer.cs">
       <DependentUpon>NewRightholderView.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ConsumerSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerSelectionView.Designer.cs">
+      <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\RightholderView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1170,6 +1176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerSelectionView.resx">
+      <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\CabinetBigRightOld.resx">
       <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
