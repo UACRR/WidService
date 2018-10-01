@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
@@ -44,7 +45,8 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void gvViewPartners_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            // load cabinet
+            CommunityCabinetForm cabinetForm = new CommunityCabinetForm(new Customer());
+            cabinetForm.Show();
         }
     }
 }

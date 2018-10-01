@@ -15,11 +15,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
     {
         private RadPageView _pageView;
         private bool _buttonClick = false;
+        public event EventHandler SaveClick;
 
         public TabNavigationControl()
         {
             InitializeComponent();
-            btnSave.DialogResult = DialogResult.OK;
             btnCancel.DialogResult = DialogResult.Cancel;
         }
 
@@ -33,6 +33,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     btnBack.Text = "< ";
                     btnBack.Enabled = false;
                     btnNext.Text = _pageView.Pages[1].Text + " >";
+                    btnSave.DialogResult = DialogResult.OK;
+                    btnSave.Click += BtnSave_Click;
                     break;
                 case FLoadType.View:
                     break;
@@ -43,6 +45,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     break;
             }
 
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            SaveClick?.Invoke(sender, e);
         }
 
         private void TabNavigateAction(NavigateType navigateType)
