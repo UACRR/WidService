@@ -16,7 +16,7 @@ using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 { 
-    public partial class ConsumerListControl : UserControl // , ISubscriber<FixationUpdatedEvent> // to fix
+    public partial class ConsumerListControl : UserControl, ISubscriber<ConsumerExternalUpdatedEvent>
     {
         private ConsumerListPresenter _presenter;
 
@@ -79,10 +79,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
             if (!IsDesignMode)
             {
-                //ApplicationController.Instance.EventAggregator.SubsribeEvent(this); // to fix
+                ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
                 _presenter = new ConsumerListPresenter(this);
             }
+        }
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+
+            ApplicationController.Instance.EventAggregator.UnsubscribeEvent(this);
+
+            base.Dispose(disposing);
         }
 
         private void ConsumerListControl_Load(object sender, EventArgs e)
@@ -162,10 +178,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             UpdateCurrentRow();
         }
 
-        //public void HandleEvent(FixationUpdatedEvent e) // to fix
-        //{
-        //    UpdateList();
-        //}
+        public void HandleEvent(ConsumerExternalUpdatedEvent e)
+        {
+            UpdateList();
+        }
 
         #region Search consumer
 
