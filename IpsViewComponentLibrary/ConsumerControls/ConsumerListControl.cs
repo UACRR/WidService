@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
     {
         private ConsumerListPresenter _presenter;
 
+        public event CancelEventHandler ConsumerSelected;
+
         protected bool IsDesignMode
         {
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
@@ -113,7 +115,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            OnEditCommandExecuted();
+            OnConsumerSelected();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -129,6 +131,29 @@ namespace IpsViewComponentLibrary.ConsumerControls
         protected virtual void OnEditCommandExecuted()
         {
             _presenter.Edit();
+        }
+
+        protected virtual void OnConsumerSelected()
+        {
+            if (ConsumerSelected != null)
+            {
+                var args = new CancelEventArgs();
+
+                var handlers = ConsumerSelected.GetInvocationList();
+
+                foreach (CancelEventHandler handler in handlers)
+                {
+                    handler(this, args);
+
+                    if (args.Cancel)
+                    {
+                        return;
+                    }
+                }
+            }
+
+            // default behavior is editing current entity
+            OnEditCommandExecuted();
         }
 
         private void UpdateList()
