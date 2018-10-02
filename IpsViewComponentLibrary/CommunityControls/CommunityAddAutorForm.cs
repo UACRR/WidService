@@ -43,4 +43,9 @@ namespace IpsViewComponentLibrary.CommunityControls
                 gvRightLimitations.DataSource = null;
         }
     }
+
+    public class RightLimitationsView
+    {
+
+    }
 }
