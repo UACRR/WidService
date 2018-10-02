@@ -24,6 +24,12 @@ namespace ipsmedserviceapp.Mappings
                 .ForMember(sd => sd.StorageId, opt => opt.Ignore())
                 .ForMember(sd => sd.Fix, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.StorageId == to.StorageId);
+
+            CreateMap<Customer, Customer>()
+                .ForMember(c => c.CustId, opt => opt.Ignore());
+
+            //CreateMap<Customer, Customer>()
+            //    .ForMember(c => c.CustId, opt => opt.Ignore());
         }
     }
 }

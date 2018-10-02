@@ -16,9 +16,11 @@ using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 { 
-    public partial class ConsumerListControl : UserControl // , ISubscriber<FixationUpdatedEvent> // to fix
+    public partial class ConsumerListControl : UserControl, ISubscriber<ConsumerExternalUpdatedEvent>
     {
         private ConsumerListPresenter _presenter;
+
+        public event CancelEventHandler ConsumerSelected;
 
         protected bool IsDesignMode
         {
@@ -40,19 +42,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private ConsumerMainView _selectedConsumer;
         public ConsumerMainView SelectedConsumer
         {
-            get
-            {
-                if (gvConsumerList.CurrentRow == null)
-                    return null;
-
-                return gvConsumerList.CurrentRow.DataBoundItem as ConsumerMainView;
-            }
+            get { return _selectedConsumer; }                
             set
             {
                 if (_selectedConsumer != value)
                 {
                     _selectedConsumer = value;
-
                     UpdateCurrentRow();
                 }
             }
@@ -77,10 +72,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
             if (!IsDesignMode)
             {
-                //ApplicationController.Instance.EventAggregator.SubsribeEvent(this); // to fix
+                ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
                 _presenter = new ConsumerListPresenter(this);
             }
+        }
+
+        /// <summary> 
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+
+            ApplicationController.Instance.EventAggregator.UnsubscribeEvent(this);
+
+            base.Dispose(disposing);
         }
 
         private void ConsumerListControl_Load(object sender, EventArgs e)
@@ -113,7 +124,16 @@ namespace IpsViewComponentLibrary.ConsumerControls
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            OnEditCommandExecuted();
+            OnConsumerSelected();
+        }
+
+        private void gvConsumerList_SelectionChanged(object sender, EventArgs e)
+        {
+            if (gvConsumerList.CurrentRow == null)
+                SelectedConsumer = null;
+
+            _selectedConsumer = gvConsumerList.CurrentRow.DataBoundItem as ConsumerMainView;
+            // fire OnSelectedEntityChanged ivent if it is neened
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -131,16 +151,41 @@ namespace IpsViewComponentLibrary.ConsumerControls
             _presenter.Edit();
         }
 
+        protected virtual void OnConsumerSelected()
+        {
+            if (ConsumerSelected != null)
+            {
+                var args = new CancelEventArgs();
+
+                var handlers = ConsumerSelected.GetInvocationList();
+
+                foreach (CancelEventHandler handler in handlers)
+                {
+                    handler(this, args);
+
+                    if (args.Cancel)
+                    {
+                        return;
+                    }
+                }
+            }
+
+            // default behavior is editing current entity
+            OnEditCommandExecuted();
+        }
+
         private void UpdateList()
         {
+            var tmp = _selectedConsumer;
             _presenter.UpdateList();
+            _selectedConsumer = tmp;
             UpdateCurrentRow();
         }
 
-        //public void HandleEvent(FixationUpdatedEvent e) // to fix
-        //{
-        //    UpdateList();
-        //}
+        public void HandleEvent(ConsumerExternalUpdatedEvent e)
+        {
+            UpdateList();
+        }
 
         #region Search consumer
 

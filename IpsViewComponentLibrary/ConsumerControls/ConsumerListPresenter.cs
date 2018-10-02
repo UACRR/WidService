@@ -1,6 +1,7 @@
 ﻿using System;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.ViewModels.Fixations;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.ConsumerControls
@@ -26,22 +27,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public void Add()
         {
-            // to fix
-            //using (var fixationView = new FixationView())
-            //{
-            //    var fixationPresenter = new FixationPresenter(fixationView);
-            //    fixationPresenter.ShowNew();
-            //}
+            using (var consumerExternalView = new ConsumerExternalView())
+            {
+                var consumerExternalPresenter = new ConsumerExternalPresenter(consumerExternalView);
+                consumerExternalPresenter.ShowNew();
+            }
         }
 
         public void Edit()
-        { 
-            // to fix
-            //using (var fixationView = new FixationView())
-            //{
-            //    var fixationPresenter = new FixationPresenter(fixationView);
-            //    fixationPresenter.Show(_view.SelectedFixation.CustId);
-            //}
+        {
+            if (!_view.SelectedConsumer.IsAnkExtrn)
+            {
+                _dialogService.ShowMessage(_view, "Редагувати дозволяється тільки зовнішніх споживачів.");
+                return;
+            }
+
+            using (var consumerExternalView = new ConsumerExternalView())
+            {
+                var consumerExternalPresenter = new ConsumerExternalPresenter(consumerExternalView);
+                consumerExternalPresenter.Show(_view.SelectedConsumer.CustId);
+            }
         }
     }
 }
