@@ -38,6 +38,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             SelectAndClose();
         }
 
+        private void ctrlConsumerList_ConsumerSelected(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            SelectAndClose();
+        }
+
         protected void OnConsumerSelected(ConsumerMainView item)
         {
             ConsumerSelected?.Invoke(this, item);

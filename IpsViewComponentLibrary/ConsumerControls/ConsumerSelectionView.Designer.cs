@@ -84,6 +84,7 @@
             this.ctrlConsumerList.SelectedConsumer = null;
             this.ctrlConsumerList.Size = new System.Drawing.Size(803, 358);
             this.ctrlConsumerList.TabIndex = 24;
+            this.ctrlConsumerList.ConsumerSelected += new System.ComponentModel.CancelEventHandler(this.ctrlConsumerList_ConsumerSelected);
             // 
             // ConsumerSelectionView
             // 
