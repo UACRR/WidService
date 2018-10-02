@@ -10,6 +10,7 @@
         <noignore>AgreementMaster</noignore>
         <noignore>FileCustomer</noignore>
         <noignore>Partner</noignore>
+        <noignore>AnketaExternal</noignore>
     </item>
     <item name="Client">
         <noignore>ClnBusinessPlace</noignore>
