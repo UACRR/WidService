@@ -42,19 +42,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private ConsumerMainView _selectedConsumer;
         public ConsumerMainView SelectedConsumer
         {
-            get
-            {
-                if (gvConsumerList.CurrentRow == null)
-                    return null;
-
-                return gvConsumerList.CurrentRow.DataBoundItem as ConsumerMainView;
-            }
+            get { return _selectedConsumer; }                
             set
             {
                 if (_selectedConsumer != value)
                 {
                     _selectedConsumer = value;
-
                     UpdateCurrentRow();
                 }
             }
@@ -134,6 +127,15 @@ namespace IpsViewComponentLibrary.ConsumerControls
             OnConsumerSelected();
         }
 
+        private void gvConsumerList_SelectionChanged(object sender, EventArgs e)
+        {
+            if (gvConsumerList.CurrentRow == null)
+                SelectedConsumer = null;
+
+            _selectedConsumer = gvConsumerList.CurrentRow.DataBoundItem as ConsumerMainView;
+            // fire OnSelectedEntityChanged ivent if it is neened
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             _presenter.Add();
@@ -174,7 +176,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void UpdateList()
         {
+            var tmp = _selectedConsumer;
             _presenter.UpdateList();
+            _selectedConsumer = tmp;
             UpdateCurrentRow();
         }
 

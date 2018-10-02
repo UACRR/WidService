@@ -204,6 +204,7 @@
             this.gvConsumerList.Size = new System.Drawing.Size(744, 339);
             this.gvConsumerList.TabIndex = 28;
             this.gvConsumerList.ThemeName = "Office2013Light";
+            this.gvConsumerList.SelectionChanged += new System.EventHandler(this.gvConsumerList_SelectionChanged);
             this.gvConsumerList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvConsumerList_CellDoubleClick);
             this.gvConsumerList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvConsumerList_CommandCellClick);
             this.gvConsumerList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.gvConsumerList_CustomFiltering);
