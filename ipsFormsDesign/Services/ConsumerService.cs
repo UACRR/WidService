@@ -43,6 +43,13 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
         }
+
+        public IList<ConsumerMainView> GetListAll()
+        {
+            var list = _webApi.GetList<ConsumerMainView>("consumer/listall");
+            return list;
+        }
+
         #region BigRight
         public IList<MainGridConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
