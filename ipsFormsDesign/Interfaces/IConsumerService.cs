@@ -424,6 +424,22 @@ namespace ipsFormsDesign.Interfaces
         public int? CountAuthors { get; set; }
     }
 
+    public class CommunityAutorsListView
+    {
+        public DateTime RegistrDate { get; set; }
+        public int CustId { get; set; }
+        public int? CmCustId { get; set; }
+        public int CustStatus { get; set; }
+        public int? AgrStatus { get; set; }
+        public int CntObj { get; set; }
+        public decimal YearProfit { get; set; }
+        public string InnerCode { get; set; }
+        public string InterCode { get; set; }
+        public string Name { get; set; }
+        public string Community_name { get; set; }
+        public string Country { get; set; }
+    }
+
     #region класи для створення ієрархії
 
     public class ParentTemplate : IParentTemplate

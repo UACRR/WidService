@@ -409,17 +409,6 @@ namespace IpsViewComponentLibrary
             _saveNeedStatus = SaveNeedStatus.No;
         }
 
-        private void btnToReference_Click(object sender, EventArgs e)
-        {
-            if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
-            {
-                if(OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec=>rec.LicId == item.LicId), ConsumerService.LicType.Reference) ?? false)
-                    ExtensionUtils.ShowInfoMessage("Заявка переведена в довідку", "Успішно", MessageBoxIcon.Information);
-                else
-                    ExtensionUtils.ShowInfoMessage("Не можливо створити довідку з заявки", "Помилка",MessageBoxIcon.Error);
-            }
-        }
-
         private void gvViewRequests_CurrentRowChanging(object sender, Telerik.WinControls.UI.CurrentRowChangingEventArgs e)
         {
             if (_saveNeedStatus == SaveNeedStatus.Yes && e?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
@@ -474,7 +463,13 @@ namespace IpsViewComponentLibrary
 
         private void btnChangeToReference_Click(object sender, EventArgs e)
         {
-
+            if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
+            {
+                if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.Reference) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Заявка переведена в довідку", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Не можливо створити довідку з заявки", "Помилка", MessageBoxIcon.Error);
+            }
         }
 
         private void btnChangeToLicense_Click(object sender, EventArgs e)
@@ -487,8 +482,6 @@ namespace IpsViewComponentLibrary
                     ExtensionUtils.ShowInfoMessage("Не можливо створити ліцензію з довідки", "Помилка", MessageBoxIcon.Error);
             }
         }
-
-
     }
 
     public enum SaveNeedStatus

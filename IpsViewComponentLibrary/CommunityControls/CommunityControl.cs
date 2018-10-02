@@ -15,6 +15,8 @@ namespace IpsViewComponentLibrary.CommunityControls
     public partial class CommunityControl : UserControl
     {
         public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
+        public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
+        public event ReturnViewEventHandler<CommunityAutorsListView> GetCommunityAutorsList;
         public event GetCustomerEventHandler GetTemplateCommunity;
         public event GetCustomerByIdEventHandler GetCommunity;
         public event SaveCustomerEventHandler SaveCommunity;
@@ -49,16 +51,22 @@ namespace IpsViewComponentLibrary.CommunityControls
             if (e.Row.DataBoundItem is CommunityListView item)
             {
                 var customer = GetCommunity?.Invoke(item.CustId);
-                var cabinetForm = new CommunityCabinetForm(customer)
+                var autors = GetCommunityAutorsList?.Invoke(item.CustId);
+                var cabinetForm = new CommunityCabinetForm(customer, autors)
                 {
                     StartPosition = FormStartPosition.CenterScreen,
                 };
                 cabinetForm.SaveCustomer += CabinetForm_SaveCustomer;
                 cabinetForm.UpdateCustomer += CabinetForm_UpdateCustomer;
                 cabinetForm.ChangeStatusAgr += CabinetForm_ChangeStatusAgr;
-
+                cabinetForm.GetAutorsList += CabinetForm_GetAutorsList;
                 cabinetForm.Show();
             }
+        }
+
+        private List<CommunityAutorsListView> CabinetForm_GetAutorsList()
+        {
+            return GetAutorsList?.Invoke();
         }
 
         private bool CabinetForm_ChangeStatusAgr(int partnerId, ipsFormsDesign.Services.CPartnerObjectStatus status)

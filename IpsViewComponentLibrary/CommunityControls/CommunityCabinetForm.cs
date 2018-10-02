@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using Telerik.WinControls;
@@ -18,12 +19,15 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerByIdEventHandler UpdateCustomer;
+        public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
 
+        private List<CommunityAutorsListView> _list;
         private Customer _customer;
-        public CommunityCabinetForm(Customer customer)
+        public CommunityCabinetForm(Customer customer, List<CommunityAutorsListView> list)
         {
             InitializeComponent();
             _customer = customer;
+            _list = list;
             ctrlTabNavigation.SetDefaultState(pageViewAnketa, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
             ctrlSearch.SetUsageGrid(gvViewAutors);
@@ -40,6 +44,10 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void BeginBindings()
         {
+            //grid
+            gvViewAutors.DataSource = _list;
+
+
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
 
@@ -136,7 +144,16 @@ namespace IpsViewComponentLibrary.CommunityControls
         //додати автора
         private void btnAddCommunity_Click(object sender, EventArgs e)
         {
+            var autorsList = GetAutorsList?.Invoke();
+            var addAutorForm = new CommunityAddAutorForm(autorsList)
+            {
+                StartPosition = FormStartPosition.CenterScreen,
+            };
 
+            if (addAutorForm.ShowDialog() == DialogResult.OK)
+            {
+                //TODO: save call
+            }
         }
     }
 }

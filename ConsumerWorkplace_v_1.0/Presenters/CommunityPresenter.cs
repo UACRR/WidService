@@ -30,6 +30,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _community.GetTemplateCommunity += CreateNewCommunity;
             _community.SaveCommunity += SaveCommunity;
             _community.GetCommunity += GetCommunity;
+            _community.GetCommunityAutorsList += GetCommunityAutorsView;
+            _community.GetAutorsList += GetAllAutorsView;
         }
 
         private Customer GetCommunity(int custId)
@@ -56,6 +58,16 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private Customer CreateNewCommunity()
         {
             return _service.GetTemplateComunity();
+        }
+
+        private List<CommunityAutorsListView> GetCommunityAutorsView(int cmId)
+        {
+            return _service.GetView<CommunityAutorsListView>(typeof(CommunityAutorsListView), "vTsk_1_ListRHCommunity", cmId, "cmCustId");
+        }
+
+        private List<CommunityAutorsListView> GetAllAutorsView()
+        {
+            return _service.GetView<CommunityAutorsListView>(typeof(CommunityAutorsListView), "vTsk_1_ListRHCommunity");
         }
     }
 }

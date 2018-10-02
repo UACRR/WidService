@@ -33,6 +33,8 @@ namespace IpsViewComponentLibrary
     public delegate Customer GetCustomerEventHandler();
     public delegate Customer GetCustomerByIdEventHandler(int custId);
     public delegate List<T> ReturnViewEventHandler<T>(int custId);
+    public delegate List<T> ReturnFullViewEventHandler<T>();
+
     public delegate T ReturnObjectEventHandler<out T>(int custId);
 
     public delegate bool AgreementStatusChangeEventHandler(int partnerId, CPartnerObjectStatus status);

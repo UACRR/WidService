@@ -69,9 +69,9 @@ namespace IpsViewComponentLibrary
             this.btnStatusAccept = new Telerik.WinControls.UI.RadMenuItem();
             this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
             this.spHeader = new Telerik.WinControls.UI.SplitPanel();
+            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
             this.spFooter = new Telerik.WinControls.UI.SplitPanel();
-            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).BeginInit();
@@ -433,6 +433,7 @@ namespace IpsViewComponentLibrary
             this.btnStatusAccept.Name = "btnStatusAccept";
             this.btnStatusAccept.Text = "На погодження";
             this.btnStatusAccept.UseCompatibleTextRendering = false;
+            this.btnStatusAccept.Click += new System.EventHandler(this.btnToAccept_Click);
             // 
             // splitContainer
             // 
@@ -508,6 +509,15 @@ namespace IpsViewComponentLibrary
             this.spHeader.Text = "splitPanel1";
             this.spHeader.ThemeName = "Office2013Light";
             // 
+            // ctrlSearch
+            // 
+            this.ctrlSearch.Location = new System.Drawing.Point(3, 104);
+            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
+            this.ctrlSearch.Name = "ctrlSearch";
+            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
+            this.ctrlSearch.TabIndex = 24;
+            // 
             // ctrlAgrInfo
             // 
             this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
@@ -534,15 +544,6 @@ namespace IpsViewComponentLibrary
             this.spFooter.TabStop = false;
             this.spFooter.Text = "splitPanel2";
             this.spFooter.ThemeName = "Office2013Light";
-            // 
-            // ctrlSearch
-            // 
-            this.ctrlSearch.Location = new System.Drawing.Point(3, 104);
-            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
-            this.ctrlSearch.Name = "ctrlSearch";
-            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
-            this.ctrlSearch.TabIndex = 24;
             // 
             // MiddleControlCabinetReqRef
             // 

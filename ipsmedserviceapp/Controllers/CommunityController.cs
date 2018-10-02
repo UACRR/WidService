@@ -38,7 +38,13 @@ namespace ipsmedserviceapp.Controllers
         {
             // список спільнот
             {"vTsk_1_ListCommunity", "vTsk_1_ListCommunity"},
+            {"vTsk_1_ListRHCommunity", "vTsk_1_ListRHCommunity"},
 
+        };
+
+        private readonly Dictionary<string, string> _columnNames = new Dictionary<string, string>
+        {
+            {"cmCustId", "cmCustId"}// TODO: придумати ідентифікатор
         };
 
         /// <summary>
@@ -46,9 +52,10 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="viewName"></param>
         /// <param name="paramId"></param>
+        /// <param name="columnName"></param>
         /// <returns></returns>
         [HttpGet("list/view")]
-        public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId)
+        public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId, [FromQuery] string columnName)
         {
             if (viewName == null || !_communityViewList.Keys.Contains(viewName))
                 return BadRequest();
@@ -62,8 +69,9 @@ namespace ipsmedserviceapp.Controllers
             }
             else
             {
-                queryStr = string.Concat(queryStr, " where custId = @custId");
-                var list = await _dbContext.getViewData(queryStr, new[] { new SqlParameter("@custId", paramId) });
+                queryStr = string.Concat(queryStr, " where " + _columnNames[columnName] + " = @paramId");
+                //queryStr = string.Concat(queryStr, " where custId = @paramId");
+                var list = await _dbContext.getViewData(queryStr, new[] { new SqlParameter("@paramId", paramId) });
                 return Json(list);
             }
         }

@@ -24,12 +24,16 @@ namespace ipsFormsDesign.Services
         /// <typeparam name="T">Бажаний тип</typeparam>
         /// <param name="nameView">назва View</param>
         /// <returns>необхідна View</returns>
-        public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null) where T:class
+        public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null, string columnName = null) where T:class
         {
             string url = _prefix + "list/view";
-            List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("viewName", viewName) };
-            if (paramId != null)
-                param.Add(new KeyValuePair<string, string>("paramidId", paramId.ToString()));
+            List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("viewName", viewName),
+                new KeyValuePair<string, string>("paramId", paramId.ToString()),
+                new KeyValuePair<string, string>("columnName", columnName),
+            };
+            //if (paramId != null)
             var list = _webApi.GetTypedList(typeResult, url, param.ToArray());
 
             var typeList = new List<T>();

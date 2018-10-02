@@ -226,6 +226,12 @@
     <Compile Include="Common\UserSelectionView.Designer.cs">
       <DependentUpon>UserSelectionView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CommunityControls\CommunityAddAutorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddAutorForm.Designer.cs">
+      <DependentUpon>CommunityAddAutorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommunityControls\CommunityAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -979,6 +985,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\UserSelectionView.resx">
       <DependentUpon>UserSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAddAutorForm.resx">
+      <DependentUpon>CommunityAddAutorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityAddressControl.resx">
       <DependentUpon>CommunityAddressControl.cs</DependentUpon>
