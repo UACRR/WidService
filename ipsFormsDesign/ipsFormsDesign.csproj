@@ -95,6 +95,7 @@
     <Compile Include="EventAggregator\EventAggregator.cs" />
     <Compile Include="EventAggregator\IEventAggregator.cs" />
     <Compile Include="EventAggregator\ISubscriber.cs" />
+    <Compile Include="Events\ConsumerExternalEvents.cs" />
     <Compile Include="Events\FixationEvents.cs" />
     <Compile Include="Events\ObjectRightEvents.cs" />
     <Compile Include="Events\RegisterEvents.cs" />

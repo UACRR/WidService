@@ -360,6 +360,13 @@
     <Compile Include="ConsumerForms\CabinetSmallRightForm.Designer.cs">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerForms\ConsumerExternalPresenter.cs" />
+    <Compile Include="ConsumerForms\ConsumerExternalView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\ConsumerExternalView.Designer.cs">
+      <DependentUpon>ConsumerExternalView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerForms\PartnerPhisForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1066,6 +1073,9 @@
     <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\ConsumerExternalView.resx">
+      <DependentUpon>ConsumerExternalView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\PartnerPhisForm.resx">
       <DependentUpon>PartnerPhisForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1382,6 +1392,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaExternal.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BrRegister.datasource" />
