@@ -20,7 +20,9 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event GetCustomerEventHandler GetTemplateCommunity;
         public event GetCustomerByIdEventHandler GetCommunity;
         public event SaveCustomerEventHandler SaveCommunity;
-        
+        public event GetCommunityRightList GetCommunityRightList;
+
+
 
         public CommunityControl()
         {
@@ -60,8 +62,14 @@ namespace IpsViewComponentLibrary.CommunityControls
                 cabinetForm.UpdateCustomer += CabinetForm_UpdateCustomer;
                 cabinetForm.ChangeStatusAgr += CabinetForm_ChangeStatusAgr;
                 cabinetForm.GetAutorsList += CabinetForm_GetAutorsList;
+                cabinetForm.GetCommunityRightList += CabinetForm_GetCommunityRightList;
                 cabinetForm.Show();
             }
+        }
+
+        private List<CustCmRight> CabinetForm_GetCommunityRightList(int custId)
+        {
+            return GetCommunityRightList?.Invoke(custId);
         }
 
         private List<CommunityAutorsListView> CabinetForm_GetAutorsList()

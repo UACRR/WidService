@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerByIdEventHandler UpdateCustomer;
         public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
+        public event GetCommunityRightList GetCommunityRightList;
+
 
         private List<CommunityAutorsListView> _list;
         private Customer _customer;
@@ -149,11 +151,17 @@ namespace IpsViewComponentLibrary.CommunityControls
             {
                 StartPosition = FormStartPosition.CenterScreen,
             };
+            addAutorForm.GetCommunityRightList += AddAutorForm_GetCommunityRightList;
 
             if (addAutorForm.ShowDialog() == DialogResult.OK)
             {
                 //TODO: save call
             }
+        }
+
+        private List<CustCmRight> AddAutorForm_GetCommunityRightList(int custId)
+        {
+            return GetCommunityRightList?.Invoke(custId);
         }
     }
 }

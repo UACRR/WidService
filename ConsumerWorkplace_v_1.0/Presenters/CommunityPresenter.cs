@@ -32,6 +32,13 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _community.GetCommunity += GetCommunity;
             _community.GetCommunityAutorsList += GetCommunityAutorsView;
             _community.GetAutorsList += GetAllAutorsView;
+            _community.GetCommunityRightList += GetCommunityRightList;
+        }
+
+        private List<CustCmRight> GetCommunityRightList(int custId)
+        {
+            // TODO:
+            return _service.GetCommunityRightList(int custId);
         }
 
         private Customer GetCommunity(int custId)

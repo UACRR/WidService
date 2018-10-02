@@ -152,12 +152,11 @@ namespace IpsViewComponentLibrary
         //додати виставу
         private void btnAddCheckedSpectacle_Click(object sender, EventArgs e)
         {
-            var curRow = gvViewPayslipsItems.CurrentRow.DataBoundItem as PayslipsGridDataSource;
             _registerRatedList.Register.Add(new Register
             {
                 RgStatus = 0,
                 CustId = _customer.CustId,
-                LicId = curRow?.LicId ?? default(int),
+                LicId = default(int),
                 RegisterItem = new ObservableListSource<RegisterItem> { new RegisterItem
                     {
                         Ticks = 1,
@@ -199,7 +198,7 @@ namespace IpsViewComponentLibrary
                         reg.AuthRate = sw?.Rate;
                         reg.MusicRate = sw?.RateMusic;
                         item.LicId = sw?.LicId;
-                        reg.LicId = (int)sw?.LicId;
+                        reg.LicId = (sw?.LicId ?? default(int));
                         //var mus = _customer?.Client?.LicenseAgreementChange?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
                     }
                     else if (e.Column.FieldName == "Amount")

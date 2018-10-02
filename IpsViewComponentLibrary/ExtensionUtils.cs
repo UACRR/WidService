@@ -28,6 +28,8 @@ namespace IpsViewComponentLibrary
     public delegate void LoadCustomerCabinetBrEventHandler(int id);
     public delegate void UpdateCustomerDataEventHandler(int id);
 
+    public delegate List<CustCmRight> GetCommunityRightList(int custId);
+
     public delegate void EmptyEventHandler();
     public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate Customer GetCustomerEventHandler();

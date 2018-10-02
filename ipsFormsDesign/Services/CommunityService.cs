@@ -70,6 +70,12 @@ namespace ipsFormsDesign.Services
             return comunity;
         }
 
+        public List<CustCmRight> GetCommunityRightList(int custId)
+        {
+            string url = _prefix + "cmautors/" + custId;
+            var rightlist = _webApi.GetList<CustCmRight>(url);
+            return rightlist;
+        }
 
 
     }

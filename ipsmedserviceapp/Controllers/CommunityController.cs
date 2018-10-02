@@ -178,6 +178,25 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Отримати список правовласників для обраної спільноти
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("cmautors/{custId}")]
+        public async Task<IActionResult> GetCommunityAutorsListById(int custId)
+        {
+            try
+            {
+                var cmRights = await _dbContext.CustCmRight.Where(items => items.CustId == custId).ToListAsync();
+                return Json(cmRights);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         #region Винесені методи та додаткові методи синхронізацій
 
         /// <summary>
