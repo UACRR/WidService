@@ -191,12 +191,12 @@ namespace ipsmedserviceapp.Controllers
             IDbContextTransaction tran = null;
             try
             {
-                var destinationAgr = _dbContext.AgreementAddBr.SingleOrDefault(rec => rec.AgrId == agrId);
+                var destinationAgr = await _dbContext.AgreementAddBr.SingleOrDefaultAsync(rec => rec.AgrId == agrId);
                 var sourceAgr = licenseAgreement.Agr.AgreementAddBr.SingleOrDefault();
                 destinationAgr.SetFields(sourceAgr, new []{ "CustId", "AgrId" });
 
-                tran = _dbContext.Database.BeginTransaction();
-                _dbContext.SaveChanges();
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
                 tran.Commit();
                 tran = null;
 
