@@ -28,13 +28,14 @@ namespace IpsViewComponentLibrary.CommunityControls
         public CommunityAddAutorForm(List<CommunityAutorsListView> autorList)
         {
             InitializeComponent();
-            ctrlSearch.SetUsageGrid(gvViewAutors);
-            gvViewAutors.DataSource = autorList;
             if (!IsDesignMode)
             {
                 _copyrightKinds = IpsGlobal.AnketaDictionaties.copyrightKind.ToList();
                 _communities = IpsGlobal.AnketaDictionaties.communities.ToList();
             }
+            ctrlSearch.SetUsageGrid(gvViewAutors);
+            gvViewAutors.DataSource = autorList;
+            
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -66,7 +67,7 @@ namespace IpsViewComponentLibrary.CommunityControls
                     CmCustId = right?.CmCustId,
                     KindCode = kind.CodeI,
                     KindName = kind.Name,
-                    CommunityName = _communities.SingleOrDefault(rec => rec?.CustId == right?.CustId)?.Name,
+                    CommunityName = _communities.SingleOrDefault(rec => rec?.CustId == right?.CmCustId)?.Name,
                     Check = right != null,
                     DateBegin = right?.DateBegin ?? DateTime.Today,
                     DateEnd = right?.DateEnd ?? new DateTime(3000, 1, 1)
