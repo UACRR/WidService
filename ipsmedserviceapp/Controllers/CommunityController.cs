@@ -38,7 +38,13 @@ namespace ipsmedserviceapp.Controllers
         {
             // список спільнот
             {"vTsk_1_ListCommunity", "vTsk_1_ListCommunity"},
+            {"vTsk_1_ListRHCommunity", "vTsk_1_ListRHCommunity"},
 
+        };
+
+        private readonly Dictionary<string, string> _columnNames = new Dictionary<string, string>
+        {
+            {"cmCustId", "cmCustId"}// TODO: придумати ідентифікатор
         };
 
         /// <summary>
@@ -46,9 +52,10 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="viewName"></param>
         /// <param name="paramId"></param>
+        /// <param name="columnName"></param>
         /// <returns></returns>
         [HttpGet("list/view")]
-        public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId)
+        public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId, [FromQuery] string columnName)
         {
             if (viewName == null || !_communityViewList.Keys.Contains(viewName))
                 return BadRequest();
@@ -62,8 +69,9 @@ namespace ipsmedserviceapp.Controllers
             }
             else
             {
-                queryStr = string.Concat(queryStr, " where custId = @custId");
-                var list = await _dbContext.getViewData(queryStr, new[] { new SqlParameter("@custId", paramId) });
+                queryStr = string.Concat(queryStr, " where " + _columnNames[columnName] + " = @paramId");
+                //queryStr = string.Concat(queryStr, " where custId = @paramId");
+                var list = await _dbContext.getViewData(queryStr, new[] { new SqlParameter("@paramId", paramId) });
                 return Json(list);
             }
         }
@@ -78,6 +86,7 @@ namespace ipsmedserviceapp.Controllers
         {
             var community = await _dbContext.Customer.Where(rec => rec.CustId == custId)
                 .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                .Include(item => item.Company).ThenInclude(relempl => relempl.RelEmployee).ThenInclude(empl => empl.Empl)
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
@@ -94,53 +103,7 @@ namespace ipsmedserviceapp.Controllers
         {
             try
             {
-                Customer communityCustomer = new Customer
-                {
-                    CustType = 3, // спільнота юр особа
-                    AnkVersion = 1,
-                    Status = 2,
-                    Company = new Company
-                    {
-                        AnketaCompany = new List<AnketaCompany>
-                        {
-                            new AnketaCompany
-                            {
-                                Version = 1,
-                                Status = 2,
-                            }
-                        },
-                        Version = 1
-                    },
-                    AgreementMaster = new List<AgreementMaster>
-                    {
-                        new AgreementMaster
-                        {
-                            AgrStatus = 2,
-                            AgrType = 4,
-                            Version = 1,
-                            AgreementAddCommunity = new List<AgreementAddCommunity>
-                            {
-                                new AgreementAddCommunity
-                                {
-                                    AgrStatus = 2,
-                                    AnkVersion = 1,
-                                    Version = 1,
-                                }
-                            },
-                        },
-                    },
-                    Community = new Community(),
-                    RightHolder = new RightHolder
-                    {
-                        RHolderType = 2,
-                    },
-                    BankAccount = new List<BankAccount>
-                    {
-                        new BankAccount()
-                    }
-
-                };
-
+                var communityCustomer = GetTemplate();
                 return Json(communityCustomer);
             }
             catch (Exception ex)
@@ -163,7 +126,6 @@ namespace ipsmedserviceapp.Controllers
                 var newCommunity = new Customer();
                 _dbContext.Customer.Add(newCommunity);
                 SyncCommunityObjects(sourceCustomer, newCommunity);
-
 
                 tran = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
@@ -188,8 +150,51 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("updatecommunity/{custId}")]
         public async Task<IActionResult> UpdateCommunity(int custId, [FromBody] Customer sourceCustomer)
         {
+            var destination = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                .Include(item => item.Company).ThenInclude(relempl => relempl.RelEmployee).ThenInclude(empl => empl.Empl)
+                .Include(item => item.AgreementMaster)
+                .Include(item => item.BankAccount)
+                .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
+                .Include(item => item.RightHolder).SingleOrDefaultAsync();
 
-            return null;
+            IDbContextTransaction tran = null;
+            try
+            {
+                // Customer
+                SyncCommunityObjects(sourceCustomer, destination);
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+                return Json(destination);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Отримати список правовласників для обраної спільноти
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("cmautors/{custId}")]
+        public async Task<IActionResult> GetCommunityAutorsListById(int custId)
+        {
+            try
+            {
+                var cmRights = await _dbContext.CustCmRight.Where(items => items.CustId == custId).ToListAsync();
+                return Json(cmRights);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         #region Винесені методи та додаткові методи синхронізацій
@@ -214,62 +219,169 @@ namespace ipsmedserviceapp.Controllers
             if (source.BankAccount.Count > 0)
                 _dbContext.UpdateList(source.BankAccount, destination.BankAccount, rec => { }, (l, r) => l.BanAccId == r.BanAccId);
 
-            destination.Client.SetFields(source.Client);
-            // збереження договору
-            var destAgrList = destination.AgreementMaster.ToList();
-            var sorsAgrList = source.AgreementMaster.ToList();
-            List<AgreementMaster> agrList = destAgrList.Where(row => !sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
-            // Delete
-            agrList.ForEach(item =>
+            //збереження Company + AnketaCompany
+            if(destination.Company == null)
+                destination.Company = new Company();
+            destination.Company.SetFields(source.Company);
+            var sorsListAncComp = source.Company.AnketaCompany.ToList();
+            _dbContext.UpdateList(sorsListAncComp, destination.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+
+            // контактна особа
+            var relEmployeeList = source.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
+
+            var listRel = destination.Company.RelEmployee.Where(rec => !relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+            listRel.ForEach(delitem =>
             {
-                _dbContext.AgreementAddPartner.RemoveRange(item.AgreementAddPartner);
+                _dbContext.Employee.Remove(delitem.Empl);
+                _dbContext.RelEmployee.Remove(delitem);
+                destination.Company.RelEmployee.Remove(delitem);
             });
-            _dbContext.AgreementMaster.RemoveRange(agrList);
+
+            listRel = destination.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+            listRel.ForEach(updItem =>
+            {
+                var sorsItem = listRel.SingleOrDefault(item => item.Emplid == updItem.Emplid && item.PositionCode == updItem.PositionCode);
+                updItem.SetFields(sorsItem);
+                updItem.Empl.SetFields(sorsItem?.Empl);
+            });
+
+            var relEmpl = source.Company.RelEmployee.Select(items => items.Empl).ToList();
+            listRel = destination.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+
+            listRel.ForEach(updEmpl =>
+            {
+                var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
+                updEmpl.SetFields(source.Company.RelEmployee.SingleOrDefault(item => item.Emplid == updEmpl.Emplid && item.PositionCode == updEmpl.PositionCode));
+                updEmpl.Empl.SetFields(sourceItem);
+            });
+
+            listRel = relEmployeeList.Where(rec => !destination.Company.RelEmployee.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+            listRel.ForEach(addItem =>
+            {
+                Employee addEmpl = new Employee();
+                addEmpl.SetFields(addItem.Empl);
+                RelEmployee addRelItem = new RelEmployee { Empl = addEmpl };
+                addRelItem.SetFields(addItem);
+                addEmpl.CustId = addRelItem.CustId;
+                destination.Employee.Add(addEmpl);
+                destination.Company.RelEmployee.Add(addRelItem);
+            });
+            
+            // --  збереження договору
+            // збереження AgreementAddCommunity
+            var sorsAgrAddCommunity = source.Community.AgreementAddCommunity.ToList();
+            var destAgrAddCommunity = destination?.Community?.AgreementAddCommunity.ToList();
+            var agrList = destAgrAddCommunity?.Where(row => sorsAgrAddCommunity.All(item => item.AgrId != row.AgrId)).ToList();
+            // Delete
+            agrList?.ForEach(item => _dbContext.AgreementAddCommunity.RemoveRange(item));
             // Modify
             {
-
-                agrList = destAgrList.Where(row => sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
-                var sorsDic = sorsAgrList.ToDictionary(rec => rec.AgrId);
-                agrList.ForEach(item =>
+                agrList = destAgrAddCommunity?.Where(row => sorsAgrAddCommunity.Any(item => item.AgrId == row.AgrId)).ToList();
+                var sorsDic = sorsAgrAddCommunity.ToDictionary(rec => rec.AgrId);
+                agrList?.ForEach(item =>
                 {
                     var sorsItem = sorsDic[item.AgrId];
-                    item.SetFields(sorsItem);
-                    _dbContext.UpdateList(sorsItem.AgreementAddPartner, item.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
+                    item.SetFields(sorsItem, new[] { "AgrId" });
                 });
             }
             // Add
             {
-                agrList = sorsAgrList.Where(row => !destAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
-                agrList.ForEach(item =>
+                var sorsAgrList = source.AgreementMaster.ToList();
+                var destAgrList = destination.AgreementMaster.ToList();
+                var agreementMasters = sorsAgrList.Where(row => destAgrList.All(item => item.AgrId != row.AgrId)).ToList();
+                var agrs = source.Community.AgreementAddCommunity.Where(row => destAgrList.All(item => item.AgrId != row.AgrId)).ToList();
+
+                agreementMasters.ForEach(item =>
                 {
                     // створено 1
                     var agreement = new AgreementMaster();
                     // оновлення з ресурсу 1
                     agreement.SetFields(item);
-                    // оновлення AgreementAddPartner
-                    _dbContext.AppendList(item.AgreementAddPartner, agreement.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
-
-                    destination.Partner = new Partner();
-                    foreach (var addPartner in agreement.AgreementAddPartner)
-                        destination.Partner.AgreementAddPartner.Add(addPartner);
+                    foreach(var i in agrs)
+                        item.AgreementAddCommunity.Add(i);
+                    // оновлення AgreementAddCommunity
+                    _dbContext.AppendList(item.AgreementAddCommunity, agreement.AgreementAddCommunity, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
 
                     destination.AgreementMaster.Add(agreement); // додано 1
                 });
             }
-
-            // Збереження Person та AnketaPerson
-            if (destination.CustType == 1)
+            
+            // збереження Community
+            if (destination.Community == null)
             {
-                if (source.Person == null)
-                    throw new Exception("Not input data for Person!");
-                if (destination.Person == null) destination.Person = new Person();
-                destination.Person.SetFields(source.Person, excludeFields);
-
-                if (source.Person.AnketaPerson.Count == 0)
-                    throw new Exception("Not input data for AnketaPerson");
-
-                _dbContext.UpdateList(source.Person.AnketaPerson, destination.Person.AnketaPerson, rec => { }, (l, r) => l.Version == r.Version);
+                var community = new Community();
+                community.SetFields(source.Community);
+                destination.Community = community;
             }
+            destination.Community.SetFields(source.Community);
+            var addCommunity = source.Community.AgreementAddCommunity.Where(row => destination.AgreementMaster.ToList().All(item => item.AgrId != row.AgrId)).ToList();
+            foreach (var i in addCommunity)
+                destination.Community.AgreementAddCommunity.Add(i);
+
+            // збереження RightHolder
+            if (destination.RightHolder == null)
+                destination.RightHolder = new RightHolder();
+            destination.RightHolder.SetFields(source.RightHolder);
+        }
+
+        private Customer GetTemplate()
+        {
+            return new Customer
+            {
+                CustType = 3, // спільнота юр особа
+                AnkVersion = 1,
+                Status = 2,
+                Company = new Company
+                {
+                    AnketaCompany = new List<AnketaCompany>
+                    {
+                        new AnketaCompany
+                        {
+                            Version = 1,
+                            Status = 2,
+                        }
+                    },
+                    Version = 1,
+                    RelEmployee = new List<RelEmployee>
+                    {
+                        new RelEmployee
+                        {
+                            PositionCode = 3,
+                            Empl = new Employee(),
+                        }
+                    }
+                },
+                AgreementMaster = new List<AgreementMaster>
+                {
+                    new AgreementMaster
+                    {
+                        AgrStatus = 2,
+                        AgrType = 4,
+                        Version = 1,
+                    },
+                },
+                Community = new Community
+                {
+                    AgreementAddCommunity = new List<AgreementAddCommunity>
+                    {
+                        new AgreementAddCommunity
+                        {
+                            AgrStatus = 2,
+                            AnkVersion = 1,
+                            Version = 1,
+                        }
+                    },
+                },
+                RightHolder = new RightHolder
+                {
+                    RHolderType = 2,
+                },
+                BankAccount = new List<BankAccount>
+                {
+                    new BankAccount()
+                }
+
+            };
         }
 
         #endregion

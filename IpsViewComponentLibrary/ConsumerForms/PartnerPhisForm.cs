@@ -66,9 +66,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
             bsBankAccount.DataSource = _customer?.BankAccount.FirstOrDefault();
             
             // договір
-            ctrlAgreement.AgreementDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
+            ctrlAgreement.AgreementDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
             // умови договору
-            ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
+            ctrlConditions.AgreementAddPartnerDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
 
             #endregion
         }

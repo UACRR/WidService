@@ -35,7 +35,6 @@ namespace ipsmedserviceapp.Model
         public CustomerType CustTypeNavigation { get; set; }
         [JsonIgnore]
         public CustomerStatus StatusNavigation { get; set; }
-        [JsonIgnore]
         public AnketaExternal AnketaExternal { get; set; }
         public Client Client { get; set; }
         public Community Community { get; set; }

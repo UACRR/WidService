@@ -31,6 +31,7 @@ namespace ipsmedserviceapp.Model
         public string ClientName { get; set; }
         public string ClientInnOkpo { get; set; }
         public string UserId { get; set; }
+        public string FixationTime { get; set; }
 
         public Client ClientCust { get; set; }
         public LicenseAgreement Lic { get; set; }

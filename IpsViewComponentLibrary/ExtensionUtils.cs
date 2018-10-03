@@ -28,14 +28,18 @@ namespace IpsViewComponentLibrary
     public delegate void LoadCustomerCabinetBrEventHandler(int id);
     public delegate void UpdateCustomerDataEventHandler(int id);
 
+    public delegate List<CustCmRight> GetCommunityRightList(int custId);
+
     public delegate void EmptyEventHandler();
     public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate Customer GetCustomerEventHandler();
     public delegate Customer GetCustomerByIdEventHandler(int custId);
     public delegate List<T> ReturnViewEventHandler<T>(int custId);
+    public delegate List<T> ReturnFullViewEventHandler<T>();
+
     public delegate T ReturnObjectEventHandler<out T>(int custId);
 
-    public delegate bool PartnerAgreementStatusChangeEventHandler(int partnerId, CPartnerObjectStatus status);
+    public delegate bool AgreementStatusChangeEventHandler(int partnerId, CPartnerObjectStatus status);
     public delegate List<PaidPeriod> SaveAndReturnNewPeriodListEventHandler(int custId, List<PaidPeriod> periods);
 
     public static class ExtensionUtils

@@ -13,6 +13,7 @@ namespace ipsFormsDesign.Interfaces
         public string Name { get; set; }
         public int CountAgree { get; set; }
         public decimal Undistribamount { get; set; }
+        public bool IsAnkExtrn { get; set; }
     }
 
     /// <summary>
@@ -414,14 +415,30 @@ namespace ipsFormsDesign.Interfaces
     /// <summary>
     /// Список існуючих спільнот
     /// </summary>
-    public class CommunytiListView
+    public class CommunityListView
     {
         public int CustId { get; set; }
         public string Name { get; set; }
         public string InnerCode { get; set; }
         public string InterCode { get; set; }
         public DateTime? RegistrDate { get; set; }
-        public int CountAuthors { get; set; }
+        public int? CountAuthors { get; set; }
+    }
+
+    public class CommunityAutorsListView
+    {
+        public DateTime RegistrDate { get; set; }
+        public int CustId { get; set; }
+        public int? CmCustId { get; set; }
+        public int CustStatus { get; set; }
+        public int? AgrStatus { get; set; }
+        public int CntObj { get; set; }
+        public decimal YearProfit { get; set; }
+        public string InnerCode { get; set; }
+        public string InterCode { get; set; }
+        public string Name { get; set; }
+        public string Community_name { get; set; }
+        public string Country { get; set; }
     }
 
     #region класи для створення ієрархії

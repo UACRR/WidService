@@ -30,6 +30,17 @@ namespace IpsViewComponentLibrary.PartnerControls
             }
         }
 
+        public object AgreementCommunityDataSource
+        {
+            get => bsAgreementAddPartner.DataSource;
+            set
+            {
+                if (IpsGlobal.AnketaDictionaties?.period != null)
+                    bsDictPaidPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
+                bsAgreementAddPartner.DataSource = value;
+            }
+        }
+
         private void txtDayForPay_TextChanged(object sender, EventArgs e)
         {
             if (Int32.TryParse(txtDayForPay.Text, out int val) && val > 31)

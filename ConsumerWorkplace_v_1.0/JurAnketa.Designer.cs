@@ -686,7 +686,6 @@
             // 
             // clientNameCtrlAnketaCompany
             // 
-            this.clientNameCtrlAnketaCompany.DataMember = "";
             this.clientNameCtrlAnketaCompany.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             this.clientNameCtrlAnketaCompany.Location = new System.Drawing.Point(4, 4);
             this.clientNameCtrlAnketaCompany.Margin = new System.Windows.Forms.Padding(4);
@@ -887,7 +886,6 @@
             // 
             // managersCtrlBossNameContactsContactPerson
             // 
-            this.managersCtrlBossNameContactsContactPerson.DataMember = "";
             this.managersCtrlBossNameContactsContactPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.managersCtrlBossNameContactsContactPerson.Location = new System.Drawing.Point(57, 364);
             this.managersCtrlBossNameContactsContactPerson.Margin = new System.Windows.Forms.Padding(4);
@@ -967,7 +965,6 @@
             // 
             // managersCtrlBossNameContactsBookkeeper
             // 
-            this.managersCtrlBossNameContactsBookkeeper.DataMember = "";
             this.managersCtrlBossNameContactsBookkeeper.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.managersCtrlBossNameContactsBookkeeper.Location = new System.Drawing.Point(57, 245);
             this.managersCtrlBossNameContactsBookkeeper.Margin = new System.Windows.Forms.Padding(4);
@@ -1047,7 +1044,6 @@
             // 
             // managersCtrlBossNameContactsHead
             // 
-            this.managersCtrlBossNameContactsHead.DataMember = "";
             this.managersCtrlBossNameContactsHead.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.managersCtrlBossNameContactsHead.Location = new System.Drawing.Point(57, 159);
             this.managersCtrlBossNameContactsHead.Margin = new System.Windows.Forms.Padding(4);

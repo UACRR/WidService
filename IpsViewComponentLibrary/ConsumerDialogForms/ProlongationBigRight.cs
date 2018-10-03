@@ -61,16 +61,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             Close();
         }
 
-        private void btnPrintAgr_Click(object sender, EventArgs e)
-        {
-            ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: IpsGlobal.AnketaDictionaties, customer: _customer, licenseAgreement: _licenseAgreement)
-            {
-                WindowState = FormWindowState.Maximized,
-                StartPosition = FormStartPosition.CenterScreen
-            };
-            print.ShowDialog();
-        }
-
         private void ProlongationBigRight_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (DialogResult != DialogResult.OK)

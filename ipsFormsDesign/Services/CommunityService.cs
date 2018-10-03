@@ -24,12 +24,16 @@ namespace ipsFormsDesign.Services
         /// <typeparam name="T">Бажаний тип</typeparam>
         /// <param name="nameView">назва View</param>
         /// <returns>необхідна View</returns>
-        public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null) where T:class
+        public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null, string columnName = null) where T:class
         {
             string url = _prefix + "list/view";
-            List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("viewName", viewName) };
-            if (paramId != null)
-                param.Add(new KeyValuePair<string, string>("paramidId", paramId.ToString()));
+            List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("viewName", viewName),
+                new KeyValuePair<string, string>("paramId", paramId.ToString()),
+                new KeyValuePair<string, string>("columnName", columnName),
+            };
+            //if (paramId != null)
             var list = _webApi.GetTypedList(typeResult, url, param.ToArray());
 
             var typeList = new List<T>();
@@ -44,8 +48,8 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public Customer GetTemplateComunity()
         {
-            var customerComunity = _webApi.GetItemById<Customer>("template", null);
-            return customerComunity;
+            var templateComunity = _webApi.GetItemById<Customer>(_prefix + "template", null);
+            return templateComunity;
         }
 
         /// <summary>
@@ -60,6 +64,18 @@ namespace ipsFormsDesign.Services
                 _webApi.UpdateItem<Customer>(_prefix + "updatecommunity", customer.CustId.ToString(), customer);
         }
 
+        public Customer GetComunity(int custId)
+        {
+            var comunity = _webApi.GetItemById<Customer>(_prefix + "list", custId.ToString());
+            return comunity;
+        }
+
+        public List<CustCmRight> GetCommunityRightList(int custId)
+        {
+            string url = _prefix + "cmautors/" + custId;
+            var rightlist = _webApi.GetList<CustCmRight>(url);
+            return rightlist;
+        }
 
 
     }

@@ -15,23 +15,15 @@ namespace IpsViewComponentLibrary
 {
     public partial class GlobalControlConsumerMainGridBR : UserControl
     {
-        private int _rowId;
-
-        public MainGridConsumerBigRightView ViewRow
-        {
-            get => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
-        }
+        public MainGridConsumerBigRightView ViewRow => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
         public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
-        
         public event EventHandler OnAddNewCustomer;
-
 
         public GlobalControlConsumerMainGridBR()
         {
             InitializeComponent();
             ctrlSearch.SetUsageGrid(gvViewConsumers);
         }
-
 
         /// <summary>
         /// Обрати рядок по ID
@@ -55,18 +47,13 @@ namespace IpsViewComponentLibrary
 
         private void gvViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            OnLoadCustomerCabinetNeed?.Invoke(_rowId);
-        }
-
-        private void gvViewConsumers_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-            _rowId = (int?)e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
+            var row = e.Row.DataBoundItem as MainGridConsumerBigRightView;
+            OnLoadCustomerCabinetNeed?.Invoke(row.CustId);
         }
 
         private void btnNewConsumer_Click(object sender, EventArgs e)
         {
             OnAddNewCustomer?.Invoke(sender, e);
         }
-
     }
 }

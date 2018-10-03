@@ -74,7 +74,7 @@ namespace ipsmedserviceapp.Controllers
             // Отримати дані по Контрактах
             await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                 .Query()
-                .Where(agree => agree.LicStatus < 4)
+                .Where(agree => agree.LicStatus != 4)
                 .Include(item => item.Agr)
                 .Include(item => item.LicCodeNavigation)
                 .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign).ThenInclude(md => md.Obj).ThenInclude(obj => obj.MediaTrack)
@@ -128,7 +128,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("info/{id}")]
         public async Task<IActionResult> GetConsumerShortInfoById(int id)
         {
-            var list = await _dbContext.getViewData($"select * from vTsk_1_ListConsumer01 where custId={id}", null);
+            var list = await _dbContext.getViewData($"select * from vTsk_1_ListConsumer where custId={id}", null);
             return Ok(list.FirstOrDefault());
         }
 
@@ -663,6 +663,14 @@ namespace ipsmedserviceapp.Controllers
             }
             var List = await _dbContext.getViewData(queue, null);
             return Json(List);
+        }
+
+        [HttpGet("listall")]
+        public async Task<IActionResult> GetListAll(int whatId)
+        {
+            string query = "select * from vTsk_1_ListConsumer";
+            var List = await _dbContext.getViewData(query, null);
+            return Ok(List);
         }
 
         #region Зміні для фільтрів
