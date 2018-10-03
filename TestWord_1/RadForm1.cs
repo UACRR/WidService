@@ -36,7 +36,7 @@ namespace TestWord_1
                         
                         Filename = "F_6_МТЦ.docx";
                         Filename = "F_Акт_публічне виконання.docx";  
-                     Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+                     
                       Filename = "F_Акт_публічне сповіщення TV+радио.docx";
                     Filename = "F_Акт_публічне сповіщення кTV.docx";
                         Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
@@ -44,6 +44,7 @@ namespace TestWord_1
             //  Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
             //   Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
             //Filename = "F_3_МБВ.docx";
+            Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
             ProcessWord(template, Filename);
@@ -119,11 +120,11 @@ namespace TestWord_1
                     wordApp.processAction(template, cust, licAgr2, Period3);
                     break;
                 case "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx":
-                    cust = service.GetData(142);
+                    cust = service.GetData(321);
                     // для теста берем agrid=13;
-                    AgreementMaster agreementMaster11 = cust.AgreementMaster?.Where(rec => rec.AgrId == 13).Single();
+                    AgreementMaster agreementMaster11 = cust.AgreementMaster?.Where(rec => rec.AgrId == 2334).Single();
                     // для теста берем agrid=13 и licid=3;
-                    LicenseAgreement licA11 = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 13 & rec.LicId == 3)).Single();
+                    LicenseAgreement licA11 = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 2334 & rec.LicId == 1201)).Single();
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.processConsumerBR(template, cust, agreementMaster11, licA11);
                     break;
