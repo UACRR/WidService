@@ -278,8 +278,11 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("list")]
         public async Task<IActionResult> GetPartnersList()
         {
-            var partner = await _dbContext.Partner.AsNoTracking().ToListAsync();
-            var list = await _dbContext.Customer.Where(rec => partner.Select(r => r.CustId).Contains(rec.CustId))
+            
+            var list = await _dbContext.Customer.FromSql(@"
+select t1.* from Customer t1 
+join Partner t2 on t2.custId = t1.custId 
+")
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
                 .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
