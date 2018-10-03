@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
@@ -58,7 +59,7 @@ namespace IpsViewComponentLibrary
             _dictionaties = dictionaties;
         }
 
-        public void SetData(Customer customer, object sourceGrid)
+        public void SetData(Customer customer, List<LicenseAgreementBigRightView> sourceGrid)
         {
             _customer = customer;
             gvViewLicences.DataSource = sourceGrid;
@@ -153,12 +154,27 @@ namespace IpsViewComponentLibrary
 
         private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
-            RequestForm viewLicenseForm = new RequestForm(_customer, _gridMainView, _dictionaties, FormType.View, licId)
+            switch (e.Column.FieldName)
             {
-                StartPosition = FormStartPosition.CenterParent
-            };
-            viewLicenseForm.ShowDialog();
+                case "viewBtn":
+                    var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
+                    RequestForm viewLicenseForm = new RequestForm(_customer, _gridMainView, _dictionaties, FormType.View, licId)
+                    {
+                        StartPosition = FormStartPosition.CenterParent
+                    };
+                    viewLicenseForm.ShowDialog();
+                    break;
+                case "printBtn":
+                    var row = e.Row.DataBoundItem as LicenseAgreementBigRightView;
+                    var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
+                    var print = new ViewAndPrintAgreement(IpsGlobal.AnketaDictionaties, _customer, licenseAgreement)
+                    {
+                        WindowState = FormWindowState.Maximized,
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
+                    print.ShowDialog();
+                    break;
+            }
         }
 
         private void btnPrint_Click(object sender, EventArgs e)

@@ -64,7 +64,14 @@ namespace IpsViewComponentLibrary
                     ViewAgreemet();
                     break;
                 case "printBtn":
-                    //TODO: method print call
+                    var row = e.Row.DataBoundItem as GeneralAgreementBigRightView;
+                    var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
+                    var print = new ViewAndPrintAgreement(IpsGlobal.AnketaDictionaties, _customer, licenseAgreement)
+                    {
+                        WindowState = FormWindowState.Maximized,
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
+                    print.ShowDialog();
                     break;
             }
         }
