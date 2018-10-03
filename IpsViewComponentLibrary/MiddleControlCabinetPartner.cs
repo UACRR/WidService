@@ -31,8 +31,8 @@ namespace IpsViewComponentLibrary
 
         public void SetPartnerData(Customer customer, int cientId)
         {
-            var item = customer.Person.AnketaPerson.SingleOrDefault();
-            var agreement = customer.AgreementMaster.SingleOrDefault()?.AgreementAddPartner.SingleOrDefault();
+            var item = customer?.Person?.AnketaPerson?.SingleOrDefault();
+            var agreement = customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
             _customer = customer;
             _cientId = cientId;
             lblFullName.Text = item?.LastName + " " + item?.FirstName + " " + item?.SurName;

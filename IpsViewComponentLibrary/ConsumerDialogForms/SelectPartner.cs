@@ -52,10 +52,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             PartnerId = custId;
         }
 
-        private void UpdateData(int custId)
+        private void UpdateData(int? custId)
         {
+            if(custId == null) return;
+
             var person =  _customers.SingleOrDefault(rec => rec.CustId == custId)?.Person.AnketaPerson.SingleOrDefault();
-            var agreement = _customers.SingleOrDefault(rec => rec.CustId == custId)?.AgreementMaster.SingleOrDefault()?.AgreementAddPartner.SingleOrDefault();
+            var agreement = _customers.SingleOrDefault(rec => rec.CustId == custId)?.Partner?.AgreementAddPartner.SingleOrDefault();
             lblAgrDate.Text = agreement?.AgrDate?.ToString("d");
             lblAgrStatus.Text = IpsGlobal.AnketaDictionaties?.agreementStatus?.SingleOrDefault(r => r?.CodeI == agreement?.AgrStatus)?.Name;
             lblAgrNumber.Text = agreement?.AgrNumber;
@@ -66,10 +68,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private void SelectPartner_Load(object sender, EventArgs e)
         {
             gvPartnerList.CurrentRowChanged += SelectedPartnerChanged;
-            gvPartnerList.CurrentRow = 
-                    PartnerId != null ? 
-                    gvPartnerList.Rows.SingleOrDefault(rec => (rec.DataBoundItem as PartnerList)?.CustId == PartnerId) : 
-                    gvPartnerList.Rows.FirstOrDefault();
+            if (PartnerId != null)
+            {
+                gvPartnerList.CurrentRow = gvPartnerList.Rows.SingleOrDefault(rec => (rec.DataBoundItem as PartnerList)?.CustId == PartnerId);
+                UpdateData(PartnerId);
+            }
+            else
+                UpdateData((gvPartnerList?.Rows?.FirstOrDefault()?.DataBoundItem as PartnerList)?.CustId);
         }
 
         private void btnSelectPartner_Click(object sender, EventArgs e)

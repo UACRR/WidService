@@ -62,6 +62,7 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.currentAgreementController1 = new IpsViewComponentLibrary.Utilities.CurrentAgreementController();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPartner = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
@@ -95,7 +96,6 @@ namespace IpsViewComponentLibrary
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
-            this.ctrlPartner = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
             this.pvAgent.SuspendLayout();
             this.pvContacts.SuspendLayout();
             this.pvPayments.SuspendLayout();
@@ -135,6 +135,13 @@ namespace IpsViewComponentLibrary
             this.pvAgent.Name = "pvAgent";
             this.pvAgent.Size = new System.Drawing.Size(1072, 679);
             this.pvAgent.Text = "Представник";
+            // 
+            // ctrlPartner
+            // 
+            this.ctrlPartner.Location = new System.Drawing.Point(4, 4);
+            this.ctrlPartner.Name = "ctrlPartner";
+            this.ctrlPartner.Size = new System.Drawing.Size(655, 135);
+            this.ctrlPartner.TabIndex = 0;
             // 
             // pvFiles
             // 
@@ -445,7 +452,6 @@ namespace IpsViewComponentLibrary
             // 
             this.radPageViewPage1.AutoScroll = true;
             this.radPageViewPage1.Controls.Add(this.ctrlAgrDetailInfoMore);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(63, 15);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(1004, 247);
@@ -463,7 +469,6 @@ namespace IpsViewComponentLibrary
             // 
             // radPageViewPage2
             // 
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(63, 15);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(914, 282);
@@ -661,7 +666,6 @@ namespace IpsViewComponentLibrary
             // 
             this.pvAgreement.AutoScroll = true;
             this.pvAgreement.Controls.Add(this.ctrlAgrDetailInfo);
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(63, 15);
             this.pvAgreement.Name = "pvAgreement";
             this.pvAgreement.Size = new System.Drawing.Size(1004, 282);
@@ -679,7 +683,6 @@ namespace IpsViewComponentLibrary
             // 
             // pvHistory
             // 
-            this.pvHistory.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.pvHistory.Location = new System.Drawing.Point(63, 15);
             this.pvHistory.Name = "pvHistory";
             this.pvHistory.Size = new System.Drawing.Size(914, 282);
@@ -760,13 +763,6 @@ namespace IpsViewComponentLibrary
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.Auto;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            // 
-            // ctrlPartner
-            // 
-            this.ctrlPartner.Location = new System.Drawing.Point(4, 4);
-            this.ctrlPartner.Name = "ctrlPartner";
-            this.ctrlPartner.Size = new System.Drawing.Size(655, 135);
-            this.ctrlPartner.TabIndex = 0;
             // 
             // PagesCabinetControl
             // 
