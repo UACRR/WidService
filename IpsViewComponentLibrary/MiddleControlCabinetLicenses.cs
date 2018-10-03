@@ -18,7 +18,6 @@ namespace IpsViewComponentLibrary
     {
 
         private Customer _customer;
-        private AnketaDictionaties _dictionaties;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
         public event SaveCustomerEventHandler OnSaveCustomer;
         private MainGridConsumerBigRightView _gridMainView;
@@ -52,11 +51,6 @@ namespace IpsViewComponentLibrary
             _gridMainView = comsumerBigRightView;
             ctrlAgrInfo.DataSource = _gridMainView;
             ctrlSearch.SetUsageGrid(gvViewLicences);
-        }
-
-        public void SetDictionary(AnketaDictionaties dictionaties)
-        {
-            _dictionaties = dictionaties;
         }
 
         public void SetData(Customer customer, List<LicenseAgreementBigRightView> sourceGrid)
@@ -158,7 +152,7 @@ namespace IpsViewComponentLibrary
             {
                 case "viewBtn":
                     var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
-                    RequestForm viewLicenseForm = new RequestForm(_customer, _gridMainView, _dictionaties, FormType.View, licId)
+                    RequestForm viewLicenseForm = new RequestForm(_customer, _gridMainView, IpsGlobal.AnketaDictionaties, FormType.View, licId)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
@@ -175,11 +169,6 @@ namespace IpsViewComponentLibrary
                     print.ShowDialog();
                     break;
             }
-        }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

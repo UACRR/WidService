@@ -228,7 +228,6 @@ namespace IpsViewComponentLibrary
             this.gvViewRequests.TabIndex = 8;
             this.gvViewRequests.ThemeName = "Office2013Light";
             this.gvViewRequests.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRequests_CurrentRowChanged);
-            this.gvViewRequests.CurrentRowChanging += new Telerik.WinControls.UI.CurrentRowChangingEventHandler(this.gvViewRequests_CurrentRowChanging);
             this.gvViewRequests.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRequests_CommandCellClick);
             // 
             // separator
@@ -384,8 +383,6 @@ namespace IpsViewComponentLibrary
             this.gvCreativeRole.Size = new System.Drawing.Size(1060, 220);
             this.gvCreativeRole.TabIndex = 19;
             this.gvCreativeRole.ThemeName = "Office2013Light";
-            this.gvCreativeRole.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvCreativeRole_CellBeginEdit);
-            this.gvCreativeRole.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCreativeRole_CellValueChanged);
             // 
             // bindingSource1
             // 
@@ -553,7 +550,6 @@ namespace IpsViewComponentLibrary
             this.Name = "MiddleControlCabinetReqRef";
             this.Size = new System.Drawing.Size(1060, 587);
             this.Load += new System.EventHandler(this.MiddleControlCabinetReqRef_Load);
-            this.Leave += new System.EventHandler(this.MiddleControlCabinetReqRef_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).EndInit();
