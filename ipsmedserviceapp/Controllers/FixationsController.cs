@@ -110,6 +110,14 @@ namespace ipsmedserviceapp.Controllers
             return await _dbContext.Fixation
                 .Include(f => f.FixStorageDevice)
                 .Include(f => f.FixFile)
+                .Include(f => f.Lic)
+                    .ThenInclude(l => l.Agr)
+                .Include(f => f.Lic)
+                    .ThenInclude(l => l.PaidPeriod)
+                        .ThenInclude(pp => pp.RegisterRatedList)
+                            .ThenInclude(rr => rr.Register)
+                                .ThenInclude(r => r.RegisterItem)
+                                    //.ThenInclude(ri => ri.RegisterCount) // TODO
                 .FirstOrDefaultAsync(f => f.FixId == fixId);
         }
     }
