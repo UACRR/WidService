@@ -287,6 +287,7 @@ namespace IpsViewComponentLibrary
             this.btnPrint.Text = "Друкувати ліцензію";
             this.btnPrint.TextWrap = true;
             this.btnPrint.ThemeName = "Office2013Light";
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // ctrlAgrDetailInfo
             // 

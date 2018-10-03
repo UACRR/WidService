@@ -26,7 +26,7 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }// = new WordEngine();
 
-        private async Task LoadDocument(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)
+        private  void LoadDocument(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)
         {
             radWaitingBar1.StartWaiting();
             wordEngine = new WordEngine(dictionaties);
@@ -44,7 +44,7 @@ namespace IpsViewComponentLibrary
         public ViewAndPrintAgreement(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)
         {
             InitializeComponent();
-            var task = LoadDocument(dictionaties, customer, licenseAgreement);
+            LoadDocument(dictionaties, customer, licenseAgreement);
         }
 
         public async void ShowCopyrightRequest(RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)

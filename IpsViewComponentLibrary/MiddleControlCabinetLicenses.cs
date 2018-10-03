@@ -160,5 +160,10 @@ namespace IpsViewComponentLibrary
             };
             viewLicenseForm.ShowDialog();
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
