@@ -1883,12 +1883,19 @@ where t1.custId = @custId
             if (item == null)
                 return BadRequest();
 
+            
             _dbContext.Register.RemoveRange(item.Register);
             _dbContext.RegisterRatedList.Remove(item);
 
             IDbContextTransaction tran = await _dbContext.Database.BeginTransactionAsync();
             try
             {
+                await _dbContext.Database.ExecuteSqlCommandAsync(@"
+delete RegisterItem
+from RegisterItem t1
+join Register t2 on t2.regId = t1.regId
+where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
+
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
                 tran = null;
