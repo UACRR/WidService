@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Dictionary;
+using System.Runtime.InteropServices;
 
 namespace ipsFormsDesign.Services
 {
@@ -53,7 +54,11 @@ namespace ipsFormsDesign.Services
         {
             clearFiles();
             if (app != null)
+            {
                 app.Quit();
+                Marshal.ReleaseComObject(app);
+                app = null;
+            }
         }
 
         public string Pdf { get { return tempFileName + ".pdf"; } }
@@ -289,6 +294,8 @@ namespace ipsFormsDesign.Services
             innerDoc.Save();
             innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
             innerDoc.Close();
+            Marshal.ReleaseComObject(innerDoc);
+            innerDoc = null;
         }
         /// <summary>
         /// Друк доп угоди по ліцензійному договору with Stream
@@ -669,6 +676,8 @@ namespace ipsFormsDesign.Services
             innerDoc.Save();
             innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
             innerDoc.Close();
+            Marshal.ReleaseComObject(innerDoc);
+            innerDoc = null;
 
 
         }
@@ -720,6 +729,9 @@ namespace ipsFormsDesign.Services
             innerDoc.Save();
             innerDoc.SaveAs2(Pdf, WdSaveFormat.wdFormatPDF);
             innerDoc.Close();
+            Marshal.ReleaseComObject(innerDoc);
+            innerDoc = null;
+
         }
 
         private void PopulateTableObjects(Tables tables, IEnumerable<ObjectRightNotAccepted> objectRightList)
@@ -1145,6 +1157,9 @@ namespace ipsFormsDesign.Services
             innerDoc.Save();
             innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
             innerDoc.Close();
+            Marshal.ReleaseComObject(innerDoc);
+            innerDoc = null;
+
         }
 
         private string PrepareWork()
@@ -1292,6 +1307,9 @@ namespace ipsFormsDesign.Services
             innerDoc.Save();
             innerDoc.SaveAs2(tempFileName + ".pdf", WdSaveFormat.wdFormatPDF);
             innerDoc.Close();
+            Marshal.ReleaseComObject(innerDoc);
+            innerDoc = null;
+
 
         }
 
