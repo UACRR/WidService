@@ -7,6 +7,7 @@ using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Utilities;
+using System;
 using System.Linq;
 
 namespace IpsViewComponentLibrary.FixationControls
@@ -34,7 +35,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void ShowNew()
         {
-            _fixation = new Fixation { StageStatus = 1, UsesType = 1 };
+            _fixation = _fixationService.New();
             _view.Fixation = _fixation;
             _view.Run();
         }
@@ -67,21 +68,6 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void Save()
         {
-            if (_fixation.Lic == null && _view.RegisterItemList.Any())
-            {
-                // create structure for storing Register, RegisterItems and RegisterCount
-
-                _fixation.Lic = new LicenseAgreement();
-            }
-
-
-
-
-
-
-
-
-
             var result = _fixationService.Save(_fixation);
 
             if (result)

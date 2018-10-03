@@ -76,6 +76,8 @@ namespace IpsViewComponentLibrary
         public event SetPartnerEventHandler OnRemovePartner;
         public event ChangePartnerEventHandler OnChangePartner;
 
+        public event SaveObjectByIdEventHandler<LicenseAgreement> SaveAgreementAddBrChanges;
+
         /// <summary>
         /// Виникиє при необхідності зберегти Customer
         /// </summary>
@@ -111,6 +113,7 @@ namespace IpsViewComponentLibrary
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
             ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
+            ctrlGeneralAgreement.ProlongationSave += CtrlGeneralAgreement_ProlongationSave; ;
             ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
             ctrlReference.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
             ctrlRequest.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
@@ -148,6 +151,11 @@ namespace IpsViewComponentLibrary
                 {CabinetTabType.Prepays, pvAvances},
                 {CabinetTabType.Contacts, pvContacts}
             };
+        }
+
+        private bool CtrlGeneralAgreement_ProlongationSave(int id, LicenseAgreement saveObj)
+        {
+            return SaveAgreementAddBrChanges?.Invoke(id, saveObj) ?? false;
         }
 
         private bool CtrlPartner_OnRemovePartner(int clientId, int partnerId)

@@ -185,6 +185,32 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPut("genagrprol/{agrId}")]
+        public async Task<IActionResult> SaveGeneralAgreement(int agrId, [FromBody] LicenseAgreement licenseAgreement)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var destinationAgr = _dbContext.AgreementAddBr.SingleOrDefault(rec => rec.AgrId == agrId);
+                var sourceAgr = licenseAgreement.Agr.AgreementAddBr.SingleOrDefault();
+                destinationAgr.SetFields(sourceAgr, new []{ "CustId", "AgrId" });
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+
+                return Json(null);
+            }
+            catch (Exception ex)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
         /// <summary>
         /// Внутрішній метод збереження змін по Споживачу
         /// </summary>
