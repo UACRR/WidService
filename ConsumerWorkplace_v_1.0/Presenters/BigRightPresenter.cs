@@ -71,6 +71,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnSetPartner += SetPartnerForCustomer;
             _cabinetBigRightForm.cabinet.OnChangePartner += ChangePartnerForCustomer;
             _cabinetBigRightForm.cabinet.OnRemovePartner += RemovePartnerForCustomer;
+            _cabinetBigRightForm.cabinet.SaveAgreementAddBrChanges += SaveAgreementAddBrChanges;
         }
 
         public CabinetBigRightForm Cabinet => _cabinetBigRightForm;
@@ -216,6 +217,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var relust = _service.Save(customer);
             UpdateData(customer.CustId);
             return relust;
+        }
+
+        private bool SaveAgreementAddBrChanges(int agrId, LicenseAgreement licenseAgreement)
+        {
+            return _service.SaveAgreementAddBrById(agrId, licenseAgreement);
         }
 
         //додати новий документ

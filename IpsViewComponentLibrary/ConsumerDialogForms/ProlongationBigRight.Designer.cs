@@ -55,7 +55,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(554, 116);
+            this.btnCancel.Location = new System.Drawing.Point(440, 116);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(84, 24);
             this.btnCancel.TabIndex = 2;
@@ -80,7 +80,7 @@
             this.lblTitleClientName.Location = new System.Drawing.Point(89, 12);
             this.lblTitleClientName.Name = "lblTitleClientName";
             this.lblTitleClientName.Padding = new System.Windows.Forms.Padding(0, 0, 60, 0);
-            this.lblTitleClientName.Size = new System.Drawing.Size(549, 22);
+            this.lblTitleClientName.Size = new System.Drawing.Size(435, 22);
             this.lblTitleClientName.TabIndex = 22;
             this.lblTitleClientName.Text = "Назва «Клієнта»";
             this.lblTitleClientName.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -109,7 +109,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(650, 152);
+            this.ClientSize = new System.Drawing.Size(536, 152);
             this.Controls.Add(this.ctrlAgrMain);
             this.Controls.Add(this.lblTitleClientName);
             this.Controls.Add(this.label1);

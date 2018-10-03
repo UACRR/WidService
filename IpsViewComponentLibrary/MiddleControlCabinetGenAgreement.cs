@@ -11,6 +11,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
+using IpsViewComponentLibrary.ConsumerDialogForms;
 
 namespace IpsViewComponentLibrary
 {
@@ -20,6 +21,7 @@ namespace IpsViewComponentLibrary
         private MainGridConsumerBigRightView _bigRightView;
         public event LisenseStatusChangeEventHandler OnLicStatusChange;
         public event SaveCustomerEventHandler OnLicenseSaveNeed;
+        public event SaveObjectByIdEventHandler<LicenseAgreement> ProlongationSave; 
 
 
         public MiddleControlCabinetGenAgreement()
@@ -139,17 +141,17 @@ namespace IpsViewComponentLibrary
         //пролонгувати
         private void btnProlongationGenAgr_Click(object sender, EventArgs e)
         {
-            //if (!(gvViewLicences.CurrentRow.DataBoundItem is LicenseAgreementBigRightView item)) return;
-            //var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec?.LicId == item.LicId);
-            //ProlongationBigRight prolongation = new ProlongationBigRight(_customer, license, item.Name);
-            //if (prolongation.ShowDialog() == DialogResult.OK)
-            //{
-            //    var result = OnSaveCustomer?.Invoke(_customer);
-            //    if (result ?? false)
-            //        ExtensionUtils.ShowInfoMessage("Ліцензійний договір пролонговано!", "Успішно", MessageBoxIcon.Information);
-            //    else
-            //        ExtensionUtils.ShowInfoMessage("Неможливо пролонгувати ліцензійний договір!", "Помилка", MessageBoxIcon.Error);
-            //}
+            if (!(gvGenAgrLicences.CurrentRow.DataBoundItem is GeneralAgreementBigRightView item)) return;
+            var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec?.LicId == item.LicId);
+            ProlongationGeneralAgreement prolongation = new ProlongationGeneralAgreement(license, item.CustName);
+            if (prolongation.ShowDialog() == DialogResult.OK)
+            {
+                var result = ProlongationSave?.Invoke(license.AgrId, license);
+                if (result ?? false)
+                    ExtensionUtils.ShowInfoMessage("Генеральний договір пролонговано!", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Неможливо пролонгувати генеральний договір!", "Помилка", MessageBoxIcon.Error);
+            }
         }
 
         //змінити/редагувати договір

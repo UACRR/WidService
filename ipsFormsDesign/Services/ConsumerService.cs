@@ -316,6 +316,17 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Використовується для збереження змін генерального договору великих прав
+        /// </summary>
+        /// <param name="agrId">ID agreementAddBr</param>
+        /// <param name="agreement">Генеральна угода</param>
+        /// <returns></returns>
+        public bool SaveAgreementAddBrById(int agrId, LicenseAgreement agreement)
+        {
+            return _webApi.UpdateItem<LicenseAgreement>("consumer/genagrprol", agrId.ToString(), agreement);
+        }
+
+        /// <summary>
         /// Запис файла на сервер
         /// </summary>
         /// <param name="custId">Ід користувача</param>
