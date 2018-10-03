@@ -38,7 +38,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private List<CustCmRight> GetCommunityRightList(int custId)
         {
             // TODO:
-            return _service.GetCommunityRightList(int custId);
+            return _service.GetCommunityRightList(custId);
         }
 
         private Customer GetCommunity(int custId)
