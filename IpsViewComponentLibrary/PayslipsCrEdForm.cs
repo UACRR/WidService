@@ -37,8 +37,8 @@ namespace IpsViewComponentLibrary
         public PayslipsCrEdForm(FormType formType, Customer customer, IList<BigRightSpectacleView> spectacleViews, RegisterRatedList registerRatedList)
         {
             InitializeComponent();
+            Load += PayslipsCrEdForm_Load;
             _type = formType;
-            InitFormType(_type);
             ddlPeriod.SelectedValueChanged -= ddlPeriod_SelectedValueChanged;
             DialogResult = DialogResult.None;
             //передача ссилок
@@ -51,16 +51,29 @@ namespace IpsViewComponentLibrary
             bsPeriodList.DataSource = paidPeriods;
             
             bsRegisterRatedList.DataSource = _registerRatedList;
-            bsRegister.DataSource = _registerRatedList.Register;
 
             bsSpectacleView.DataSource = _spectacleViews.Where(rec => rec.CustId == _customer.CustId);
+            bsRegister.DataSource = _registerRatedList.Register;
 
-            ddlPeriod.SelectedValueChanged += ddlPeriod_SelectedValueChanged;
-            if(ddlPeriod.Items.Any() && _type == FormType.Create)
-                ddlPeriod.SelectedIndex = ddlPeriod.Items.First.Index;
+            if(_type == FormType.Create)
+                ddlPeriod.SelectedValueChanged += ddlPeriod_SelectedValueChanged;
 
-            if(_registerRatedList.Register != null)
+            if (_registerRatedList.Register != null)
                 UpdateRegisterGridDataSource();
+
+        }
+
+        private void PayslipsCrEdForm_Load(object sender, EventArgs e)
+        {
+            if (ddlPeriod.Items.Any() && _type == FormType.Create)
+                ddlPeriod.SelectedIndex = ddlPeriod.Items.First.Index;
+            else if (ddlPeriod.Items.Any())
+            {
+                var index = ddlPeriod.Items.SingleOrDefault(rec => (int)rec?.Value == _registerRatedList.PeriodId).Index;
+                ddlPeriod.SelectedIndex = index;
+            }
+
+            InitFormType(_type);
         }
 
         private void UpdateRegisterGridDataSource()
@@ -244,8 +257,12 @@ namespace IpsViewComponentLibrary
         private void btnSave_Click(object sender, EventArgs e)
         {
             if(!_registerRatedList.Register.Any())
-                ExtensionUtils.ShowInfoMessage("Не додано жодної вистави!", "Не можливо зберегти", MessageBoxIcon.Stop);
-            if(_type == FormType.Create)
+            {
+                ExtensionUtils.ShowInfoMessage("Не додано жодної вистави!", "Неможливо зберегти!", MessageBoxIcon.Stop);
+                return;
+            }
+
+            if (_type == FormType.Create)
                 foreach (var item in _registerRatedList.Register)
                 {
                     item.RegId = 0;

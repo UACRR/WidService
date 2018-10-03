@@ -74,7 +74,10 @@ namespace IpsViewComponentLibrary
                 Status = 0,
             };
             
-            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Create, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);
+            var addform = new PayslipsCrEdForm(FormType.Create, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
             addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
             if (addform.ShowDialog() == DialogResult.OK)
             {
@@ -99,8 +102,7 @@ namespace IpsViewComponentLibrary
 
                     if (row?.Status == 0)
                     {
-                        PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer,
-                            OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                        PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
                         {
                             StartPosition = FormStartPosition.CenterParent
                         };
@@ -116,8 +118,7 @@ namespace IpsViewComponentLibrary
                     }
                     else if (row?.Status == 1)
                     {
-                        PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.View, _customer,
-                            OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                        PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.View, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
                         {
                             StartPosition = FormStartPosition.CenterParent
                         };
