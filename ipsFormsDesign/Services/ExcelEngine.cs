@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Services
 
         public ExcelEngine()
         {
-            GetApp().GetAwaiter();
+            // GetApp().GetAwaiter();
         }
 
         ~ExcelEngine()
@@ -33,10 +33,8 @@ namespace ipsFormsDesign.Services
             excelApp = null;
         }
 
-        private async Task<Excel.Application> GetApp()
+        private Excel.Application GetApp()
         {
-            return await Task.Run(() =>
-            {
                 lock (this)
                 {
                     if (excelApp != null)
@@ -44,7 +42,6 @@ namespace ipsFormsDesign.Services
                     excelApp = new Excel.Application();
                     return excelApp;
                 }
-            });
         }
 
         private string GetFirst( object sors, int length )
@@ -73,7 +70,7 @@ namespace ipsFormsDesign.Services
             try
             {
 
-                excelAppWorkbook = Task.Run(() => GetApp()).GetAwaiter().GetResult().Workbooks.Open(FileName, 0, true, 5, null, null, false,
+                excelAppWorkbook = GetApp().Workbooks.Open(FileName, 0, true, 5, null, null, false,
                 Excel.XlPlatform.xlWindows, null, null, null);
                 var excelAppWorksheets = excelAppWorkbook.Worksheets;
                 var excelSheet = (Excel.Worksheet)excelAppWorksheets.Item[1];

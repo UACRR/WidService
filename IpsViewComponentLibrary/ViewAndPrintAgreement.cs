@@ -34,10 +34,14 @@ namespace IpsViewComponentLibrary
             string templateName = dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
             templateName = string.Concat(@"Templates\", templateName);
             // Ліцензія не належить великим правам
-            if (! (licenseAgreement.Agr != null && licenseAgreement.Agr.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Count() > 0 ) )
+            if (!(licenseAgreement.Agr != null && licenseAgreement.Agr.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Count() > 0))
                 wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
             else // Належить великим правам
+            {
                 wordEngine.processConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
+
+
+            }
 
             var pdf = wordEngine.Pdf;
             radWaitingBar1.StopWaiting();

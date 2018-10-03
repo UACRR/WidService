@@ -204,7 +204,7 @@ namespace IpsViewComponentLibrary
             this.gvViewLicences.MasterTemplate.EnableFiltering = true;
             this.gvViewLicences.MasterTemplate.EnableGrouping = false;
             this.gvViewLicences.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewLicences.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvViewLicences.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewLicences.Name = "gvViewLicences";
             this.gvViewLicences.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvViewLicences.Size = new System.Drawing.Size(987, 180);
