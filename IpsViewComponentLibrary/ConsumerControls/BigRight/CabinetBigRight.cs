@@ -94,7 +94,7 @@ namespace IpsViewComponentLibrary
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
-        
+        public event ActionWithTwoId DeleteRegisterRatedList;
 
 
         public CabinetBigRight()
@@ -105,30 +105,37 @@ namespace IpsViewComponentLibrary
                 ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
                 ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
             }
-
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
-
+            
+            // файли
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
-            ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
+            // генеральна угода
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
-            ctrlGeneralAgreement.ProlongationSave += CtrlGeneralAgreement_ProlongationSave; ;
-            ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
-            ctrlReference.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
-            ctrlRequest.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
-            ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
-            ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
-            ctrlRequest.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
-            ctrlReference.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlGeneralAgreement.ProlongationSave += CtrlGeneralAgreement_ProlongationSave;
+            // ліцензія
             ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
+            // заявка
+            ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+            ctrlRequest.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
+            ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
+            ctrlRequest.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            // довідка
+            ctrlReference.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
+            ctrlReference.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
             ctrlReference.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
+            // розрахункові листи
+            ctrlPayslips.OnSpectacleViewNeed += CtrlPayslips_OnSpectacleViewNeed;
             ctrlPayslips.OnSavePayslip += CtrlPayslips_OnSavePayslip;
+            ctrlPayslips.DeleteRegisterRatedList += CtrlPayslips_DeleteRegisterRatedList;
             ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
             ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
             ctrlPayslips.GetMusicDesing += DataNeedRatedList_GetMusicDesing;
+            // представник
             ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
             ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
             ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
@@ -151,6 +158,11 @@ namespace IpsViewComponentLibrary
                 {CabinetTabType.Prepays, pvAvances},
                 {CabinetTabType.Contacts, pvContacts}
             };
+        }
+
+        private bool CtrlPayslips_DeleteRegisterRatedList(int custId, int id)
+        {
+            return DeleteRegisterRatedList?.Invoke(custId, id) ?? false;
         }
 
         private bool CtrlGeneralAgreement_ProlongationSave(int id, LicenseAgreement saveObj)

@@ -31,6 +31,8 @@ namespace IpsViewComponentLibrary
     public delegate List<CustCmRight> GetCommunityRightList(int custId);
 
     public delegate void EmptyEventHandler();
+
+    public delegate bool ActionWithTwoId(int custId, int id);
     public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate bool SaveObjectByIdEventHandler<T>(int id, T saveObj);
     public delegate Customer GetCustomerEventHandler();

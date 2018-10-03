@@ -28,6 +28,8 @@ namespace IpsViewComponentLibrary
         public event GetRegisterRatedList OnGetRegisterRatedList;
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
+        public event ActionWithTwoId DeleteRegisterRatedList;
+
 
         public delegate List<RatedListMusicDesignBigRightView> MusicDesingEventHandler();
         /// <summary>
@@ -70,7 +72,6 @@ namespace IpsViewComponentLibrary
             {
                 CreateDate = DateTime.Today,
                 Status = 0,
-                
             };
             
             PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Create, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);
@@ -79,20 +80,21 @@ namespace IpsViewComponentLibrary
             {
                 if(OnSavePayslip?.Invoke(ratedList) ?? false)
                     ExtensionUtils.ShowInfoMessage("Додано новий розрахунковий лист!","Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Неможливо додати розрахунковий лист!", "Помилка", MessageBoxIcon.Error);
             }
             else
                 ratedList = null;
 
         }
 
-        //редагування р/р
+        // кнопки грід
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
+            var row = e?.Row?.DataBoundItem as RatedListMainBigRightView;
             switch (e.Column.FieldName)
             {
                 case "editBtn":
-                    var row = e?.Row?.DataBoundItem as RatedListMainBigRightView;
-                    btnToAccept.Enabled = row?.Status == 0;
                     var payslip = GetRatedList(row);
 
                     if (row?.Status == 0)
@@ -123,10 +125,16 @@ namespace IpsViewComponentLibrary
                     }
                     break;
                 case "deleteBtn":
-                    //TODO : реалізація видалення р/л
+                    if (row.Status == 0 && MessageBox.Show("Видалити обраний розрахунковий лист?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        var result = DeleteRegisterRatedList?.Invoke(_customer.CustId, row.RmId);
+                        if (result ?? false)
+                            ExtensionUtils.ShowInfoMessage("Розрахунковий лист видалено!", "Успішно", MessageBoxIcon.Information);
+                        else
+                            ExtensionUtils.ShowInfoMessage("Неможливо видалити розрахунковий лист!", "Помилка", MessageBoxIcon.Error);
+                    }
                     break;
             }
-            
         }
 
         private RegisterRatedList GetRatedList(RatedListMainBigRightView reg)
