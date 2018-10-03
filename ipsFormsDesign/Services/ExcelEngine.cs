@@ -27,6 +27,7 @@ namespace ipsFormsDesign.Services
                 {
                     excelApp.Quit();
                     Marshal.ReleaseComObject(excelApp);
+                    excelApp = null;
                 }
 
             }
