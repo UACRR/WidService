@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public RegisterItem()
         {
+            RegisterCount = new ObservableListSource<RegisterCount>();
             RegisterExtra = new ObservableListSource<RegisterExtra>();
         }
 
@@ -32,6 +33,7 @@ namespace ipsFormsDesign.Model
         public RegisterItemType CodeItemNavigation { get; set; }
         public ObjectRight Obj { get; set; }
         public Register Reg { get; set; }
+        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
         public ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
     }
 }
