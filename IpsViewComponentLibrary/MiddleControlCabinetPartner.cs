@@ -19,6 +19,7 @@ namespace IpsViewComponentLibrary
         public event SetPartnerEventHandler OnSetPartner;
         public event SetPartnerEventHandler OnRemovePartner;
         public event ChangePartnerEventHandler OnChangePartner;
+        public event EmptyEventHandler UpdateData;
 
         public event GetPartnerList OnGetPartnerListNeed;
         private List<AnketaPerson> _anketaPersons;
@@ -61,6 +62,7 @@ namespace IpsViewComponentLibrary
                     if(_customer?.CustId != null) // змінити
                         OnChangePartner?.Invoke(_cientId, (int)selectPartner.PartnerId, _customer.CustId);
                 }
+                UpdateData?.Invoke();
             }
         }
 
@@ -68,7 +70,10 @@ namespace IpsViewComponentLibrary
         private void btnRemovePartner_Click(object sender, EventArgs e)
         {
             if (_customer?.CustId != null)
+            {
                 OnRemovePartner?.Invoke(_cientId, _customer.CustId);
+                UpdateData?.Invoke();
+            }
         }
     }
 }

@@ -141,6 +141,8 @@ namespace IpsViewComponentLibrary
             ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
             ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
 
+            SubscribeUpdateDataEvents();
+
             // static pages, call this in constructor
             _tab = new Dictionary<CabinetTabType, RadPageViewPage>
             {
@@ -158,6 +160,21 @@ namespace IpsViewComponentLibrary
                 {CabinetTabType.Prepays, pvAvances},
                 {CabinetTabType.Contacts, pvContacts}
             };
+        }
+
+        private void SubscribeUpdateDataEvents()
+        {
+            ctrlGeneralAgreement.UpdateData += UpdateData;
+            ctrlLicense.UpdateData += UpdateData;
+            ctrlRequest.UpdateData += UpdateData;
+            ctrlReference.UpdateData += UpdateData;
+            ctrlPayslips.UpdateData += UpdateData;
+            ctrlPartner.UpdateData += UpdateData;
+        }
+
+        private void UpdateData()
+        {
+            UpdateCurentTab(_currenCabinetTab);
         }
 
         private bool CtrlPayslips_DeleteRegisterRatedList(int custId, int id)

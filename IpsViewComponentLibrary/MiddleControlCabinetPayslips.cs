@@ -29,7 +29,7 @@ namespace IpsViewComponentLibrary
         public event GetRegisterItemsEventHandler OnRegisterItemListNeed;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
         public event ActionWithTwoId DeleteRegisterRatedList;
-
+        public event EmptyEventHandler UpdateData;
 
         public delegate List<RatedListMusicDesignBigRightView> MusicDesingEventHandler();
         /// <summary>
@@ -62,7 +62,6 @@ namespace IpsViewComponentLibrary
             _payslipsSpectacleViews = payslipsSpectacleViews;
             ctrlHeaderInfo.DataSource = _bigRightView;
             gvViewRl.DataSource = registers;
-
         }
 
         //додавання нового р/р
@@ -82,7 +81,10 @@ namespace IpsViewComponentLibrary
             if (addform.ShowDialog() == DialogResult.OK)
             {
                 if(OnSavePayslip?.Invoke(ratedList) ?? false)
+                {
                     ExtensionUtils.ShowInfoMessage("Додано новий розрахунковий лист!","Успішно", MessageBoxIcon.Information);
+                    UpdateData?.Invoke();
+                }
                 else
                     ExtensionUtils.ShowInfoMessage("Неможливо додати розрахунковий лист!", "Помилка", MessageBoxIcon.Error);
             }
@@ -94,47 +96,67 @@ namespace IpsViewComponentLibrary
         // кнопки грід
         private void gvViewRl_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            var row = e?.Row?.DataBoundItem as RatedListMainBigRightView;
-            switch (e.Column.FieldName)
+            if(e?.Row?.DataBoundItem is RatedListMainBigRightView row)
             {
-                case "editBtn":
-                    var payslip = GetRatedList(row);
+                bool result = false;
+                int? currentRow = null;
+                switch (e?.Column?.FieldName)
+                {
+                    case "editBtn":
+                        var payslip = GetRatedList(row);
+                        if (row?.Status == 0) // edit
+                        {
+                            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer,
+                                OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                            {
+                                StartPosition = FormStartPosition.CenterParent
+                            };
+                            addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
+                            if (addform.ShowDialog() == DialogResult.OK)
+                            {
+                                result = OnSavePayslip?.Invoke(payslip) ?? false;
+                                if (result)
+                                {
+                                    ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно", MessageBoxIcon.Information);
+                                    currentRow = e.Row.Index;
+                                }
+                                else
+                                    ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка",
+                                        MessageBoxIcon.Error);
+                            }
+                        }
+                        else if (row?.Status == 1) // view
+                        {
+                            PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.View, _customer,
+                                OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                            {
+                                StartPosition = FormStartPosition.CenterParent
+                            };
+                            addform.ShowDialog();
+                        }
 
-                    if (row?.Status == 0)
-                    {
-                        PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
+                        break;
+                    case "deleteBtn":
+                        if (row?.Status == 0 && MessageBox.Show("Видалити обраний розрахунковий лист?", "Підтвердження",
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
-                            StartPosition = FormStartPosition.CenterParent
-                        };
-                        addform.SavePariodCommandExecuted += Addform_SavePariodCommandExecuted;
-                        if (addform.ShowDialog() == DialogResult.OK)
-                        {
-                            if (OnSavePayslip?.Invoke(payslip) ?? false)
-                                ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно",
+                            result = DeleteRegisterRatedList?.Invoke(_customer.CustId, row.RmId) ?? false;
+                            if (result)
+                                ExtensionUtils.ShowInfoMessage("Розрахунковий лист видалено!", "Успішно",
                                     MessageBoxIcon.Information);
                             else
-                                ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
+                                ExtensionUtils.ShowInfoMessage("Неможливо видалити розрахунковий лист!", "Помилка",
+                                    MessageBoxIcon.Error);
                         }
-                    }
-                    else if (row?.Status == 1)
-                    {
-                        PayslipsCrEdForm addform = new PayslipsCrEdForm(FormType.View, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip)
-                        {
-                            StartPosition = FormStartPosition.CenterParent
-                        };
-                        addform.ShowDialog();
-                    }
-                    break;
-                case "deleteBtn":
-                    if (row.Status == 0 && MessageBox.Show("Видалити обраний розрахунковий лист?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        var result = DeleteRegisterRatedList?.Invoke(_customer.CustId, row.RmId);
-                        if (result ?? false)
-                            ExtensionUtils.ShowInfoMessage("Розрахунковий лист видалено!", "Успішно", MessageBoxIcon.Information);
-                        else
-                            ExtensionUtils.ShowInfoMessage("Неможливо видалити розрахунковий лист!", "Помилка", MessageBoxIcon.Error);
-                    }
-                    break;
+
+                        break;
+                }
+                if (result)
+                {
+                    UpdateData?.Invoke();
+                    if(currentRow != null)
+                        gvViewRl.CurrentRow = gvViewRl.Rows.SingleOrDefault(r => r.Index == currentRow);
+                }
             }
         }
 
@@ -162,10 +184,13 @@ namespace IpsViewComponentLibrary
 
         private List<PaidPeriod> Addform_SavePariodCommandExecuted(int id, List<PaidPeriod> e)
         {
-            return SavePariodCommandExecuted?.Invoke(id, e);
+            var result = SavePariodCommandExecuted?.Invoke(id, e);
+            if(result != null)
+                UpdateData?.Invoke();
+            return result;
         }
 
-        private void gvViewRl_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        private void gvViewRl_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             if (pageView.SelectedPage != pvSpectacle)
                 pageView.SelectedPage = pvSpectacle;
@@ -279,7 +304,10 @@ namespace IpsViewComponentLibrary
 
                 var result = OnSavePayslip?.Invoke(ratedlist) ?? false;
                 if (result)
+                {
                     ExtensionUtils.ShowInfoMessage("Перелік вистав погоджено!", "Успішно", MessageBoxIcon.Information);
+                    UpdateData?.Invoke();
+                }
                 else
                     ExtensionUtils.ShowInfoMessage("Неможливо погодити перелік вистав!", "Помилка", MessageBoxIcon.Error);
             }

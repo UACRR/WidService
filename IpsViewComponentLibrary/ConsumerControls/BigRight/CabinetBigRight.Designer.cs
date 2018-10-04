@@ -250,9 +250,9 @@
             // 
             this.pvAvances.Controls.Add(this.middleControlCabinetAvances1);
             this.pvAvances.ItemSize = new System.Drawing.SizeF(55F, 27F);
-            this.pvAvances.Location = new System.Drawing.Point(5, 29);
+            this.pvAvances.Location = new System.Drawing.Point(5, 31);
             this.pvAvances.Name = "pvAvances";
-            this.pvAvances.Size = new System.Drawing.Size(1136, 586);
+            this.pvAvances.Size = new System.Drawing.Size(1136, 584);
             this.pvAvances.Text = "Аванси";
             // 
             // middleControlCabinetAvances1
@@ -260,7 +260,7 @@
             this.middleControlCabinetAvances1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.middleControlCabinetAvances1.Location = new System.Drawing.Point(0, 0);
             this.middleControlCabinetAvances1.Name = "middleControlCabinetAvances1";
-            this.middleControlCabinetAvances1.Size = new System.Drawing.Size(1136, 586);
+            this.middleControlCabinetAvances1.Size = new System.Drawing.Size(1136, 584);
             this.middleControlCabinetAvances1.TabIndex = 0;
             // 
             // pvContacts

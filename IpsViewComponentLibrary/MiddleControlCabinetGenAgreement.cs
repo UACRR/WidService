@@ -21,7 +21,8 @@ namespace IpsViewComponentLibrary
         private MainGridConsumerBigRightView _bigRightView;
         public event LisenseStatusChangeEventHandler OnLicStatusChange;
         public event SaveCustomerEventHandler OnLicenseSaveNeed;
-        public event SaveObjectByIdEventHandler<LicenseAgreement> ProlongationSave; 
+        public event SaveObjectByIdEventHandler<LicenseAgreement> ProlongationSave;
+        public event EmptyEventHandler UpdateData;
 
 
         public MiddleControlCabinetGenAgreement()
@@ -97,6 +98,7 @@ namespace IpsViewComponentLibrary
             {
                 var resust = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
                 ExtensionUtils.ShowMessage(resust, MessageType.GeneralAgreementChange);
+                UpdateData?.Invoke();
             }
         }
         
@@ -120,6 +122,7 @@ namespace IpsViewComponentLibrary
             {
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
                 OnLicStatusChange?.Invoke(license, licrow.Version, 2, false);
+                UpdateData?.Invoke();
             }
         }
 
@@ -132,6 +135,7 @@ namespace IpsViewComponentLibrary
                 {
                     var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licrow?.LicId);
                     var result = OnLicStatusChange?.Invoke(license, licrow.Version, 4, false);
+                    UpdateData?.Invoke();
                 }
             }
         }
@@ -148,7 +152,10 @@ namespace IpsViewComponentLibrary
             {
                 var result = ProlongationSave?.Invoke(license.AgrId, license);
                 if (result ?? false)
+                {
                     ExtensionUtils.ShowInfoMessage("Генеральний договір пролонговано!", "Успішно", MessageBoxIcon.Information);
+                    UpdateData?.Invoke();
+                }
                 else
                     ExtensionUtils.ShowInfoMessage("Неможливо пролонгувати генеральний договір!", "Помилка", MessageBoxIcon.Error);
             }
