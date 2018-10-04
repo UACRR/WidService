@@ -8,6 +8,7 @@ namespace ipsmedserviceapp.Model
     {
         public RegisterItem()
         {
+            RegisterCount = new HashSet<RegisterCount>();
             RegisterExtra = new HashSet<RegisterExtra>();
         }
 
@@ -34,6 +35,8 @@ namespace ipsmedserviceapp.Model
         public ObjectRight Obj { get; set; }
         [JsonIgnore]
         public Register Reg { get; set; }
+        [JsonIgnore]
+        public ICollection<RegisterCount> RegisterCount { get; set; }
         public ICollection<RegisterExtra> RegisterExtra { get; set; }
     }
 }
