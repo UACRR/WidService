@@ -45,6 +45,11 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixation = _fixationService.GetById(fixId);
             _view.Fixation = _fixation;
 
+            foreach (var rvm in _fixation.GetRegister().GetRegisterItemsList())
+            {
+                _view.RegisterItemList.Add(rvm);
+            }
+
             if (_fixation.UserId != null)
             {
                 var responsible = _userService.GetById(_fixation.UserId);
@@ -68,6 +73,41 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void Save()
         {
+
+            var register = _fixation.GetRegister();
+            var maxId = register.RegisterItem.Max(rvm => rvm.RegIitemId);
+
+            register.RegisterItem.Clear();
+
+            foreach (var rvm in _view.RegisterItemList)
+            {
+                var foundedRegisterItem = register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
+
+                if (foundedRegisterItem == null)
+                {
+                    foundedRegisterItem = new RegisterItem();
+                    register.RegisterItem.Add(foundedRegisterItem);
+                }
+
+                if (rvm.RegIitemId == 0)
+                    foundedRegisterItem.RegIitemId = ++maxId;
+                else
+                    foundedRegisterItem.RegIitemId = rvm.RegIitemId;
+
+                foundedRegisterItem.ItemName = rvm.ItemName;
+                foundedRegisterItem.AuthorMusic = rvm.AuthorMusic;
+                foundedRegisterItem.AuthorText = rvm.AuthorText;
+                foundedRegisterItem.CategoryCode = rvm.CategoryCode;
+                foundedRegisterItem.CountUse = rvm.CountUse;
+                foundedRegisterItem.DurationItem = rvm.DurationItem;
+                foundedRegisterItem.DurationUse = rvm.DurationUse;
+                foundedRegisterItem.Performer = rvm.Performer;
+                foundedRegisterItem.RegId = rvm.RegId;
+                foundedRegisterItem.ObjId = rvm.ObjId;
+                foundedRegisterItem.IsAuto = rvm.IsAuto;
+                foundedRegisterItem.CodeItem = 1;
+            }
+
             var result = _fixationService.Save(_fixation);
 
             if (result)

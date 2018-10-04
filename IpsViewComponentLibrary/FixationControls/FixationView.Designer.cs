@@ -49,11 +49,11 @@
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.ddlConsumer = new Telerik.WinControls.UI.RadDropDownList();
             this.txtClientInnOkpo = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
-            this.bsFixation = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
             this.ddlUsesType = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
+            this.bsFixation = new System.Windows.Forms.BindingSource(this.components);
             this.txtEventName = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
@@ -118,12 +118,12 @@
             this.radGroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientInnOkpo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFixation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).BeginInit();
             this.radGroupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlUsesType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFixation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEventName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
@@ -199,7 +199,7 @@
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.radPageViewPage1;
+            this.mainPageView.SelectedPage = this.radPageViewPage3;
             this.mainPageView.Size = new System.Drawing.Size(822, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -248,10 +248,6 @@
             this.txtClientInnOkpo.Size = new System.Drawing.Size(270, 21);
             this.txtClientInnOkpo.TabIndex = 7;
             this.txtClientInnOkpo.ThemeName = "Office2013Light";
-            // 
-            // bsFixation
-            // 
-            this.bsFixation.DataSource = typeof(ipsFormsDesign.Model.Fixation);
             // 
             // radLabel11
             // 
@@ -308,6 +304,10 @@
             this.ddlUsesType.Size = new System.Drawing.Size(273, 21);
             this.ddlUsesType.TabIndex = 0;
             this.ddlUsesType.ThemeName = "Office2013Light";
+            // 
+            // bsFixation
+            // 
+            this.bsFixation.DataSource = typeof(ipsFormsDesign.Model.Fixation);
             // 
             // txtEventName
             // 
@@ -526,6 +526,7 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
+            this.splitPanel1.ThemeName = "Office2013Light";
             // 
             // radLabel18
             // 
@@ -635,6 +636,7 @@
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
+            this.splitPanel2.ThemeName = "Office2013Light";
             // 
             // radLabel19
             // 
@@ -1065,13 +1067,13 @@
             this.radGroupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlConsumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtClientInnOkpo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsFixation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox1)).EndInit();
             this.radGroupBox1.ResumeLayout(false);
             this.radGroupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlUsesType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsFixation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEventName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();

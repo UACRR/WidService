@@ -55,6 +55,8 @@ namespace ipsmedserviceapp.Controllers
                 BadRequest();
 
             var fixation = _mapper.Map<Fixation, Fixation>(newFixation);
+            fixation.Lic.Agr = newFixation.Lic.Agr;
+            fixation.Lic.Agr.CustId = newFixation.ClientCustId.Value;
 
             _dbContext.Fixation.Add(fixation);
             await _dbContext.SaveChangesAsync();
@@ -74,6 +76,9 @@ namespace ipsmedserviceapp.Controllers
                 NotFound();
 
             _mapper.Map(updFixation, fixation);
+
+            var agr = _dbContext.AgreementMaster.Find(updFixation.Lic.AgrId);
+            agr.CustId = updFixation.ClientCustId.Value;
 
             await _dbContext.SaveChangesAsync();
 
