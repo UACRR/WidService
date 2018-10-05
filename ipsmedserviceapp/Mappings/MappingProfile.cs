@@ -14,16 +14,10 @@ namespace ipsmedserviceapp.Mappings
         {
             CreateMap<Fixation, Fixation>()
                 .ForMember(f => f.FixId, opt => opt.Ignore())
-                .ForPath(f => f.Lic.Agr.LicenseAgreement, opt => opt.Ignore())
-                .AfterMap((source, dest, context) => {
-
-                    if (source.FixId == 0)
-                    {
-                        dest.Lic = context.Mapper.Map<LicenseAgreement>(source.Lic);
-                    }
+                .AfterMap((source, dest) =>
+                {
 
                     dest.Lic.CustId = dest.ClientCustId.Value;
-                    dest.Lic.Agr.CustId = dest.ClientCustId.Value;
                     var paidPeriod = dest.Lic.PaidPeriod.First();
                     paidPeriod.CustId = dest.ClientCustId.Value;
                     var registerRatedList = paidPeriod.RegisterRatedList.First();
@@ -46,7 +40,9 @@ namespace ipsmedserviceapp.Mappings
                 .EqualityComparison((from, to) => from.CustId == to.CustId);
 
             CreateMap<LicenseAgreement, LicenseAgreement>()
-                .ForMember(c => c.LicId, opt => opt.Ignore())
+                .ForMember(la => la.LicId, opt => opt.Ignore())
+                .ForMember(la => la.Agr, opt => opt.Ignore())
+                .ForMember(la => la.Fixation, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.LicId == to.LicId);
 
             CreateMap<AgreementMaster, AgreementMaster>()
@@ -54,24 +50,29 @@ namespace ipsmedserviceapp.Mappings
                 .EqualityComparison((from, to) => from.AgrId == to.AgrId);
 
             CreateMap<PaidPeriod, PaidPeriod>()
-                .ForMember(c => c.PeriodId, opt => opt.Ignore())
+                .ForMember(pp => pp.PeriodId, opt => opt.Ignore())
+                .ForMember(pp => pp.Lic, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.PeriodId == to.PeriodId);
 
             CreateMap<RegisterRatedList, RegisterRatedList>()
-                .ForMember(c => c.RmId, opt => opt.Ignore())
+                .ForMember(rr => rr.RmId, opt => opt.Ignore())
+                .ForMember(rr => rr.Period, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.RmId == to.RmId);
 
             CreateMap<Register, Register>()
-                .ForMember(c => c.RegId, opt => opt.Ignore())
+                .ForMember(r => r.RegId, opt => opt.Ignore())
+                .ForMember(r => r.Rm, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.RegId == to.RegId);
 
             CreateMap<RegisterItem, RegisterItem>()
-                .ForMember(c => c.RegId, opt => opt.Ignore())
-                .ForMember(c => c.RegIitemId, opt => opt.Ignore())
+                .ForMember(ri => ri.RegId, opt => opt.Ignore())
+                //.ForMember(ri => ri.RegIitemId, opt => opt.Ignore()) // becouse RegIitemId in not an autoincrement field, and it value sets on the client side
+                .ForMember(ri => ri.Reg, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.RegId == to.RegId && from.RegIitemId == to.RegIitemId);
 
             CreateMap<RegisterCount, RegisterCount>()
-                .ForMember(c => c.RegCntId, opt => opt.Ignore())
+                .ForMember(rc => rc.RegCntId, opt => opt.Ignore())
+                //.ForMember(rc => rc.RegItem, opt => opt.Ignore()) // TODO
                 .EqualityComparison((from, to) => from.RegCntId == to.RegCntId);
         }
     }

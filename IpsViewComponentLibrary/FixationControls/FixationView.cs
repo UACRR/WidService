@@ -76,6 +76,7 @@ namespace IpsViewComponentLibrary.FixationControls
         }
 
         public BindingList<RegisterItemViewModel> RegisterItemList { get; } = new BindingList<RegisterItemViewModel>();
+        public BindingList<RegisterCountViewModel> RegisterCountList { get; } = new BindingList<RegisterCountViewModel>();
 
         public FixationView()
         {
@@ -91,6 +92,7 @@ namespace IpsViewComponentLibrary.FixationControls
             bgbStatuses.Visible = _showStatusesGroupBox;
 
             ctrlRegisterItemList.DataSource = RegisterItemList;
+            ctrlRegisterItemList.DataSourceRegisterCount = RegisterCountList;
         }
 
         public void SetAvailableStageStatuses(IEnumerable<FixationStageStatuses> stageStatuses)
@@ -163,6 +165,11 @@ namespace IpsViewComponentLibrary.FixationControls
             e.Cancel = true;
 
             _presenter.SelectConsumer();
+        }
+
+        private void ctrlRegisterItemList_ObjectLinked(object sender, RegisterControls.ObjectLinkedEventArgs e)
+        {
+            _presenter.LinkObject(e.RegisterItem, e.ObjectRight);
         }
     }
 }

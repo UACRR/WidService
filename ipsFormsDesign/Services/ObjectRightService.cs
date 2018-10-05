@@ -2,6 +2,7 @@
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
+using ipsFormsDesign.ViewModels.ObjectsRight;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -50,10 +51,15 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
-        public ContainerForObjectRihgt GetData(int objId)
+        public ContainerForObjectRihgt GetObjectById(int objId)
         {
             var item = _webApi.GetItemById<ContainerForObjectRihgt>("objectright/detail", objId.ToString());
             return item;
+        }
+
+        public List<ObjectRightholderViewModel> GetObjectRightholders(int objId)
+        {
+            return _webApi.GetList<ObjectRightholderViewModel>($"objectright/{objId}/rightholders");
         }
 
         public bool Save(ObjectRight item)
@@ -86,7 +92,7 @@ namespace ipsFormsDesign.Services
 
         public bool AddAuthorRightholderForObject(int objId, ObjectAuthorRightholder objectAuthorRightholder, out string error)
         {
-            var objectRightContainer = GetData(objId);
+            var objectRightContainer = GetObjectById(objId);
             var objectRight = objectRightContainer.objectRight;
 
             if (objectRight.CopyRight.GetTotalRate() >= 100)

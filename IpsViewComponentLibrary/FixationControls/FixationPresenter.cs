@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Events;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
@@ -15,10 +16,11 @@ namespace IpsViewComponentLibrary.FixationControls
     public class FixationPresenter
     {
         private readonly FixationView _view;
-        private readonly FixationService _fixationService;
-        private readonly UserService _userService;
         private readonly ConsumerService _consumerService;
         private readonly DialogService _dialogService;
+        private readonly FixationService _fixationService;
+        private readonly ObjectRightService _objectRightService;
+        private readonly UserService _userService;
         private Fixation _fixation;
         private bool _canClose;
 
@@ -27,10 +29,11 @@ namespace IpsViewComponentLibrary.FixationControls
             _view = view;
             _view.Presenter = this;
 
-            _fixationService = new FixationService();
-            _userService = new UserService();
             _consumerService = new ConsumerService();
             _dialogService = new DialogService();
+            _fixationService = new FixationService();
+            _objectRightService = new ObjectRightService();
+            _userService = new UserService();
         }
 
         public void ShowNew()
@@ -44,6 +47,11 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _fixation = _fixationService.GetById(fixId);
             _view.Fixation = _fixation;
+
+            foreach (var rvm in _fixation.GetRegister().GetRegisterItemsList())
+            {
+                _view.RegisterItemList.Add(rvm);
+            }
 
             if (_fixation.UserId != null)
             {
@@ -68,6 +76,41 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void Save()
         {
+
+            var register = _fixation.GetRegister();
+            var maxId = register.RegisterItem.Max(rvm => rvm.RegIitemId);
+
+            register.RegisterItem.Clear();
+
+            foreach (var rvm in _view.RegisterItemList)
+            {
+                var foundedRegisterItem = register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
+
+                if (foundedRegisterItem == null)
+                {
+                    foundedRegisterItem = new RegisterItem();
+                    register.RegisterItem.Add(foundedRegisterItem);
+                }
+
+                if (rvm.RegIitemId == 0)
+                    foundedRegisterItem.RegIitemId = ++maxId;
+                else
+                    foundedRegisterItem.RegIitemId = rvm.RegIitemId;
+
+                foundedRegisterItem.ItemName = rvm.ItemName;
+                foundedRegisterItem.AuthorMusic = rvm.AuthorMusic;
+                foundedRegisterItem.AuthorText = rvm.AuthorText;
+                foundedRegisterItem.CategoryCode = rvm.CategoryCode;
+                foundedRegisterItem.CountUse = rvm.CountUse;
+                foundedRegisterItem.DurationItem = rvm.DurationItem;
+                foundedRegisterItem.DurationUse = rvm.DurationUse;
+                foundedRegisterItem.Performer = rvm.Performer;
+                foundedRegisterItem.RegId = rvm.RegId;
+                foundedRegisterItem.ObjId = rvm.ObjId;
+                foundedRegisterItem.IsAuto = rvm.IsAuto;
+                foundedRegisterItem.CodeItem = 1;
+            }
+
             var result = _fixationService.Save(_fixation);
 
             if (result)
@@ -115,6 +158,28 @@ namespace IpsViewComponentLibrary.FixationControls
                 };
                 selectionView.ShowDialog();
             }
+        }
+
+        public void LinkObject(RegisterItemViewModel registerItem, ObjectRightMainView objectRight)
+        {
+            var rightholders = _objectRightService.GetObjectRightholders(objectRight.ObjId);
+
+            // TODO: clear
+
+            foreach (var rightholder in rightholders)
+            {
+                _view.RegisterCountList.Add(new RegisterCountViewModel
+                {
+                    RegId = registerItem.RegId,
+                    RegIitemId = registerItem.RegIitemId,
+                    CustId = rightholder.CustId,
+                    Name = rightholder.Name,
+                    CreativeRoles = rightholder.CreativeRoles,
+                    OwnershipRate = rightholder.TotalRate,
+                    Rate = 100m / rightholders.Count,
+                });
+            }
+
         }
     }
 }

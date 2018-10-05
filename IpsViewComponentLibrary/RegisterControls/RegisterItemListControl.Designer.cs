@@ -72,6 +72,18 @@
             Telerik.WinControls.UI.GridViewColumnGroup gridViewColumnGroup3 = new Telerik.WinControls.UI.GridViewColumnGroup();
             Telerik.WinControls.UI.GridViewColumnGroupRow gridViewColumnGroupRow3 = new Telerik.WinControls.UI.GridViewColumnGroupRow();
             Telerik.WinControls.UI.GridViewRelation gridViewRelation1 = new Telerik.WinControls.UI.GridViewRelation();
+            Telerik.WinControls.UI.GridViewRelation gridViewRelation2 = new Telerik.WinControls.UI.GridViewRelation();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn11 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn12 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn13 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn14 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn15 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn16 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn17 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn7 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.RadListDataItem radListDataItem1 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem2 = new Telerik.WinControls.UI.RadListDataItem();
             Telerik.WinControls.UI.RadListDataItem radListDataItem3 = new Telerik.WinControls.UI.RadListDataItem();
@@ -79,6 +91,8 @@
             this.bsRegisterExtra = new System.Windows.Forms.BindingSource(this.components);
             this.gvRegisterItemList = new Telerik.WinControls.UI.RadGridView();
             this.bsRegisterItemViewModel = new System.Windows.Forms.BindingSource(this.components);
+            this.templateRegisterCount = new Telerik.WinControls.UI.GridViewTemplate();
+            this.bsRegisterCountViewModel = new System.Windows.Forms.BindingSource(this.components);
             this.ddlLinkedStatus = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
@@ -88,6 +102,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateRegisterCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterCountViewModel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLinkedStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -402,10 +418,12 @@
             gridViewCommandColumn6});
             this.gvRegisterItemList.MasterTemplate.DataSource = this.bsRegisterItemViewModel;
             this.gvRegisterItemList.MasterTemplate.EnableFiltering = true;
+            this.gvRegisterItemList.MasterTemplate.ShowChildViewCaptions = true;
             this.gvRegisterItemList.MasterTemplate.ShowFilteringRow = false;
             this.gvRegisterItemList.MasterTemplate.ShowRowHeaderColumn = false;
             this.gvRegisterItemList.MasterTemplate.Templates.AddRange(new Telerik.WinControls.UI.GridViewTemplate[] {
-            this.templateRegisterExtra});
+            this.templateRegisterExtra,
+            this.templateRegisterCount});
             gridViewColumnGroup1.Name = "registerGroup";
             gridViewColumnGroupRow1.ColumnNames.Add("Linked");
             gridViewColumnGroupRow1.ColumnNames.Add("ItemName");
@@ -451,14 +469,22 @@
             gridViewRelation1.ParentColumnNames = ((System.Collections.Specialized.StringCollection)(resources.GetObject("gridViewRelation1.ParentColumnNames")));
             gridViewRelation1.ParentTemplate = this.gvRegisterItemList.MasterTemplate;
             gridViewRelation1.RelationName = "Rel";
+            gridViewRelation2.ChildColumnNames = ((System.Collections.Specialized.StringCollection)(resources.GetObject("gridViewRelation2.ChildColumnNames")));
+            gridViewRelation2.ChildTemplate = this.templateRegisterCount;
+            gridViewRelation2.ParentColumnNames = ((System.Collections.Specialized.StringCollection)(resources.GetObject("gridViewRelation2.ParentColumnNames")));
+            gridViewRelation2.ParentTemplate = this.gvRegisterItemList.MasterTemplate;
+            gridViewRelation2.RelationName = "RelCount";
             this.gvRegisterItemList.Relations.AddRange(new Telerik.WinControls.UI.GridViewRelation[] {
-            gridViewRelation1});
+            gridViewRelation1,
+            gridViewRelation2});
             this.gvRegisterItemList.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gvRegisterItemList.ShowChildViewCaptions = true;
             this.gvRegisterItemList.ShowGroupPanel = false;
             this.gvRegisterItemList.Size = new System.Drawing.Size(694, 317);
             this.gvRegisterItemList.TabIndex = 36;
             this.gvRegisterItemList.ThemeName = "Office2013Light";
             this.gvRegisterItemList.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvRegisterItemList_RowFormatting);
+            this.gvRegisterItemList.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvRegisterItemList_ViewCellFormatting);
             this.gvRegisterItemList.SelectionChanged += new System.EventHandler(this.gvRegisterItemList_SelectionChanged);
             this.gvRegisterItemList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRegisterItemList_CommandCellClick);
             this.gvRegisterItemList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRegisterItemList_ToolTipTextNeeded);
@@ -466,6 +492,86 @@
             // bsRegisterItemViewModel
             // 
             this.bsRegisterItemViewModel.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            // 
+            // templateRegisterCount
+            // 
+            this.templateRegisterCount.AllowAddNewRow = false;
+            this.templateRegisterCount.AllowDeleteRow = false;
+            this.templateRegisterCount.AllowEditRow = false;
+            this.templateRegisterCount.Caption = "123";
+            gridViewDecimalColumn11.FieldName = "RegCntId";
+            gridViewDecimalColumn11.HeaderText = "RegCntId";
+            gridViewDecimalColumn11.IsAutoGenerated = true;
+            gridViewDecimalColumn11.IsVisible = false;
+            gridViewDecimalColumn11.Name = "RegCntId";
+            gridViewDecimalColumn12.DataType = typeof(int);
+            gridViewDecimalColumn12.FieldName = "RegId";
+            gridViewDecimalColumn12.HeaderText = "RegId";
+            gridViewDecimalColumn12.IsAutoGenerated = true;
+            gridViewDecimalColumn12.IsVisible = false;
+            gridViewDecimalColumn12.Name = "RegId";
+            gridViewDecimalColumn13.DataType = typeof(int);
+            gridViewDecimalColumn13.FieldName = "RegIitemId";
+            gridViewDecimalColumn13.HeaderText = "RegIitemId";
+            gridViewDecimalColumn13.IsAutoGenerated = true;
+            gridViewDecimalColumn13.IsVisible = false;
+            gridViewDecimalColumn13.Name = "RegIitemId";
+            gridViewDecimalColumn14.DataType = typeof(int);
+            gridViewDecimalColumn14.FieldName = "ObjId";
+            gridViewDecimalColumn14.HeaderText = "ObjId";
+            gridViewDecimalColumn14.IsAutoGenerated = true;
+            gridViewDecimalColumn14.IsVisible = false;
+            gridViewDecimalColumn14.Name = "ObjId";
+            gridViewDecimalColumn15.DataType = typeof(int);
+            gridViewDecimalColumn15.FieldName = "CustId";
+            gridViewDecimalColumn15.HeaderText = "CustId";
+            gridViewDecimalColumn15.IsAutoGenerated = true;
+            gridViewDecimalColumn15.IsVisible = false;
+            gridViewDecimalColumn15.Name = "CustId";
+            gridViewTextBoxColumn15.FieldName = "CreativeRoles";
+            gridViewTextBoxColumn15.HeaderText = "Творчі ролі";
+            gridViewTextBoxColumn15.IsAutoGenerated = true;
+            gridViewTextBoxColumn15.Name = "CreativeRoles";
+            gridViewTextBoxColumn15.Width = 150;
+            gridViewTextBoxColumn16.FieldName = "Name";
+            gridViewTextBoxColumn16.HeaderText = "Правовласник";
+            gridViewTextBoxColumn16.IsAutoGenerated = true;
+            gridViewTextBoxColumn16.Name = "Name";
+            gridViewTextBoxColumn16.Width = 200;
+            gridViewDecimalColumn16.FieldName = "OwnershipRate";
+            gridViewDecimalColumn16.FormatString = "{0:N2}";
+            gridViewDecimalColumn16.HeaderText = "Відсоток володіння";
+            gridViewDecimalColumn16.IsAutoGenerated = true;
+            gridViewDecimalColumn16.Name = "OwnershipRate";
+            gridViewDecimalColumn17.FieldName = "Rate";
+            gridViewDecimalColumn17.FormatString = "{0:N2}";
+            gridViewDecimalColumn17.HeaderText = "Відсоток";
+            gridViewDecimalColumn17.IsAutoGenerated = true;
+            gridViewDecimalColumn17.Name = "Rate";
+            gridViewCommandColumn7.DefaultText = "Видалити правовласника з розподілу";
+            gridViewCommandColumn7.HeaderText = "";
+            gridViewCommandColumn7.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn7.MaxWidth = 30;
+            gridViewCommandColumn7.MinWidth = 30;
+            gridViewCommandColumn7.Name = "DeleteRhColumn";
+            gridViewCommandColumn7.Width = 30;
+            this.templateRegisterCount.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewDecimalColumn11,
+            gridViewDecimalColumn12,
+            gridViewDecimalColumn13,
+            gridViewDecimalColumn14,
+            gridViewDecimalColumn15,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewDecimalColumn16,
+            gridViewDecimalColumn17,
+            gridViewCommandColumn7});
+            this.templateRegisterCount.DataSource = this.bsRegisterCountViewModel;
+            this.templateRegisterCount.ViewDefinition = tableViewDefinition2;
+            // 
+            // bsRegisterCountViewModel
+            // 
+            this.bsRegisterCountViewModel.DataSource = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
             // 
             // ddlLinkedStatus
             // 
@@ -517,6 +623,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItemViewModel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.templateRegisterCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegisterCountViewModel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLinkedStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
@@ -535,5 +643,7 @@
         private Telerik.WinControls.UI.RadButton btnAdd;
         private Telerik.WinControls.UI.GridViewTemplate templateRegisterExtra;
         private System.Windows.Forms.BindingSource bsRegisterExtra;
+        private Telerik.WinControls.UI.GridViewTemplate templateRegisterCount;
+        private System.Windows.Forms.BindingSource bsRegisterCountViewModel;
     }
 }
