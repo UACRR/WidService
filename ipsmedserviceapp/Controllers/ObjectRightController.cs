@@ -31,8 +31,11 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="objid"></param>
         /// <returns></returns>
-        private async Task<ObjectRight> getObjectRightById(int objid)
+        private async Task<ObjectRight> GetObjectRightById(int objid, bool includeRelated = false)
         {
+            if (!includeRelated)
+                return _dbContext.ObjectRight.FirstOrDefault(o => o.ObjId == objid);
+
             var objectRight = await _dbContext.ObjectRight.Where(rec => rec.ObjId == objid)
                 .Include(rec => rec.Authors)
                 .Include(rec => rec.SeekObject)
@@ -104,7 +107,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("detail/{objid}")]
         public async Task<IActionResult> GetObjectById(int objid)
         {
-            var or = await getObjectRightById(objid);
+            var or = await GetObjectRightById(objid, includeRelated: true);
             var rhList = await _dbContext.getViewData($"select * from ft_ObjectRightCustomerForm01({objid})", null);
 
             return Json(new { objectRight = or, rhList });
@@ -121,7 +124,7 @@ namespace ipsmedserviceapp.Controllers
             IDbContextTransaction tran = null;
             try
             {
-                ObjectRight dest = await getObjectRightById(objid);
+                ObjectRight dest = await GetObjectRightById(objid, includeRelated: true);
                 updateObjectRight(body, dest);
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
@@ -260,6 +263,24 @@ namespace ipsmedserviceapp.Controllers
 
             queryText += $" ORDER BY ObjId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
             return queryText;
+        }
+
+        [HttpGet("{objId}/rightholders")]
+        public async Task<IActionResult> GetObjectRightholders(int? objId)
+        {
+            if (objId == null)
+                BadRequest("Object Id can not be null.");
+
+            var obj = await GetObjectRightById(objId.Value);
+
+            if (obj == null)
+                NotFound($"Object with Id '{objId}' not found.");
+
+            var rightholders = await _dbContext.getViewData("select * from ft_Tsk_7_ObjectRightholders( @objId )", new[] {
+                new SqlParameter("@objId", objId)
+            });
+
+            return Ok(rightholders);
         }
 
         #region Big right

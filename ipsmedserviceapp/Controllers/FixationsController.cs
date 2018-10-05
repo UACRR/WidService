@@ -45,6 +45,23 @@ namespace ipsmedserviceapp.Controllers
             if (fixation == null)
                 NotFound();
 
+            //var regCountList = fixation.Lic.PaidPeriod.First().RegisterRatedList.First().Register.First().RegisterItem.SelectMany(ri => ri.RegisterCount);
+            //var regCL = regCountList.Join(
+            //    _dbContext.CopyRight,
+            //    rc => new { rc.ObjId, rc.CustId },
+            //    cr => new { cr.ObjId, cr.CustId },
+            //    (rc, cr) => new RegisterCountResource {
+            //        RegCntId = rc.RegCntId,
+            //        RegId = rc.RegId.Value,
+            //        RegIitemId = rc.RegIitemId.Value,
+            //        RoleCode = cr.RoleCode.Value,
+            //        //AuthorName = cr.
+            //    });
+
+            //var responce = new FixationResponceResource();
+            //responce.Fixation = fixation;
+            
+
             return Ok(fixation);
         }
 
@@ -112,7 +129,7 @@ namespace ipsmedserviceapp.Controllers
                     .FirstOrDefaultAsync(f => f.FixId == fixId);
             }
 
-            return await _dbContext.Fixation
+            var fixation = await _dbContext.Fixation
                 .Include(f => f.FixStorageDevice)
                 .Include(f => f.FixFile)
                 .Include(f => f.Lic)
@@ -122,8 +139,10 @@ namespace ipsmedserviceapp.Controllers
                         .ThenInclude(pp => pp.RegisterRatedList)
                             .ThenInclude(rr => rr.Register)
                                 .ThenInclude(r => r.RegisterItem)
-                                    //.ThenInclude(ri => ri.RegisterCount) // TODO
+                                    .ThenInclude(ri => ri.RegisterCount)
                 .FirstOrDefaultAsync(f => f.FixId == fixId);
+
+            return fixation;
         }
     }
 }
