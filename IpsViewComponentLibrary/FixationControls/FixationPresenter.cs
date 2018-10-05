@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Events;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
@@ -15,10 +16,11 @@ namespace IpsViewComponentLibrary.FixationControls
     public class FixationPresenter
     {
         private readonly FixationView _view;
-        private readonly FixationService _fixationService;
-        private readonly UserService _userService;
         private readonly ConsumerService _consumerService;
         private readonly DialogService _dialogService;
+        private readonly FixationService _fixationService;
+        private readonly ObjectRightService _objectRightService;
+        private readonly UserService _userService;
         private Fixation _fixation;
         private bool _canClose;
 
@@ -27,10 +29,11 @@ namespace IpsViewComponentLibrary.FixationControls
             _view = view;
             _view.Presenter = this;
 
-            _fixationService = new FixationService();
-            _userService = new UserService();
             _consumerService = new ConsumerService();
             _dialogService = new DialogService();
+            _fixationService = new FixationService();
+            _objectRightService = new ObjectRightService();
+            _userService = new UserService();
         }
 
         public void ShowNew()
@@ -155,6 +158,28 @@ namespace IpsViewComponentLibrary.FixationControls
                 };
                 selectionView.ShowDialog();
             }
+        }
+
+        public void LinkObject(RegisterItemViewModel registerItem, ObjectRightMainView objectRight)
+        {
+            var rightholders = _objectRightService.GetObjectRightholders(objectRight.ObjId);
+
+            // TODO: clear
+
+            foreach (var rightholder in rightholders)
+            {
+                _view.RegisterCountList.Add(new RegisterCountViewModel
+                {
+                    RegId = registerItem.RegId,
+                    RegIitemId = registerItem.RegIitemId,
+                    CustId = rightholder.CustId,
+                    Name = rightholder.Name,
+                    CreativeRoles = rightholder.CreativeRoles,
+                    OwnershipRate = rightholder.TotalRate,
+                    Rate = 100m / rightholders.Count,
+                });
+            }
+
         }
     }
 }

@@ -526,7 +526,6 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
-            this.splitPanel1.ThemeName = "Office2013Light";
             // 
             // radLabel18
             // 
@@ -636,7 +635,6 @@
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
-            this.splitPanel2.ThemeName = "Office2013Light";
             // 
             // radLabel19
             // 
@@ -823,6 +821,7 @@
             this.ctrlRegisterItemList.ShowObjectInfo = true;
             this.ctrlRegisterItemList.Size = new System.Drawing.Size(812, 361);
             this.ctrlRegisterItemList.TabIndex = 0;
+            this.ctrlRegisterItemList.ObjectLinked += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.ObjectLinkedEventArgs>(this.ctrlRegisterItemList_ObjectLinked);
             // 
             // radPageViewPage4
             // 
