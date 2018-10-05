@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
         public event SaveCustomerEventHandler OnSaveCustomer;
         private MainGridConsumerBigRightView _gridMainView;
+        public event EmptyEventHandler UpdateData;
 
 
         private ButtonFunctionType _functionType;
@@ -57,7 +58,6 @@ namespace IpsViewComponentLibrary
         {
             _customer = customer;
             gvViewLicences.DataSource = sourceGrid;
-
         }
 
         private void gvViewLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
@@ -97,7 +97,10 @@ namespace IpsViewComponentLibrary
             {
                 if (MessageBox.Show("Ліцензія буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                     if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 4, false) ?? false)
+                    {
                         ExtensionUtils.ShowInfoMessage("Ліцензію закрито", "Успішно", MessageBoxIcon.Information);
+                        UpdateData?.Invoke();
+                    }
                     else
                         ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
             }
@@ -113,7 +116,10 @@ namespace IpsViewComponentLibrary
             {
                 var result = OnSaveCustomer?.Invoke(_customer);
                 if (result ?? false)
+                {
                     ExtensionUtils.ShowInfoMessage("Ліцензійний договір пролонговано!","Успішно", MessageBoxIcon.Information);
+                    UpdateData?.Invoke();
+                }
                 else
                     ExtensionUtils.ShowInfoMessage("Неможливо пролонгувати ліцензійний договір!", "Помилка", MessageBoxIcon.Error);
             }
@@ -123,13 +129,16 @@ namespace IpsViewComponentLibrary
         private void btnToAccept_Click(object sender, EventArgs e)
         {
             if (gvViewLicences?.CurrentRow?.DataBoundItem is LicenseAgreementBigRightView item)
+            {
+                bool result = false;
                 switch (_functionType)
                 {
                     case ButtonFunctionType.None:
                         break;
                     case ButtonFunctionType.Accept:
                     {
-                        if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false) ?? false)
+                        result = OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false) ?? false;
+                        if (result)
                             ExtensionUtils.ShowInfoMessage("Акцептовано!", "Успішно", MessageBoxIcon.Information);
                         else
                             ExtensionUtils.ShowInfoMessage("Не можливо акцептувати", "Помилка!", MessageBoxIcon.Error);
@@ -137,13 +146,17 @@ namespace IpsViewComponentLibrary
                         break;
                     case ButtonFunctionType.Agree:
                     {
-                        if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 3, false) ?? false)
+                        result = OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 3, false) ?? false;
+                        if (result)
                             ExtensionUtils.ShowInfoMessage("Відправлено на погодження!", "Успішно", MessageBoxIcon.Information);
                         else
                             ExtensionUtils.ShowInfoMessage("Не можливо відправити на погодження", "Помилка!", MessageBoxIcon.Error);
                     }
                         break;
                 }
+                if (result)
+                    UpdateData?.Invoke();
+            }
         }
 
         private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

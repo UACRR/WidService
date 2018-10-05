@@ -742,7 +742,7 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.pvMain.RootElement.MinSize = new System.Drawing.Size(962, 456);
-            this.pvMain.SelectedPage = this.pvAnketa;
+            this.pvMain.SelectedPage = this.pvPayments;
             this.pvMain.Size = new System.Drawing.Size(1082, 725);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";

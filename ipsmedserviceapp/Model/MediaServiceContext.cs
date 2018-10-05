@@ -310,8 +310,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -6660,6 +6660,12 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_REGISTER_REFERENCE_RIGHTHOL");
 
                 entity.HasOne(d => d.RegI)
+                    .WithMany(p => p.RegisterCount)
+                    .HasForeignKey(d => new { d.RegId, d.RegIitemId })
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_REGISTER_REFEREN_REGISTER");
+
+                entity.HasOne(d => d.RegINavigation)
                     .WithMany(p => p.RegisterCount)
                     .HasForeignKey(d => new { d.RegItemIdBr, d.RegIdBr })
                     .HasConstraintName("FK_REGISTER_REFERENCE_BRREGITE");

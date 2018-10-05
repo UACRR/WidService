@@ -95,6 +95,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "Name";
             gridViewTextBoxColumn4.HeaderText = "Назва клієнта";
+            gridViewTextBoxColumn4.MinWidth = 150;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "Name";
             gridViewTextBoxColumn4.Width = 183;

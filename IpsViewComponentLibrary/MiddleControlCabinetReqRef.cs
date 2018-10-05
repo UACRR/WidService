@@ -26,6 +26,7 @@ namespace IpsViewComponentLibrary
         public event ChangeLicenseTypeEventHandler OnLicenseTypeChange;
         public event SaveCustomerEventHandler OnLicenseSaveNeed;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
+        public event EmptyEventHandler UpdateData;
 
         private Customer _customer;
         private MainGridConsumerBigRightView _bigRightView;
@@ -177,6 +178,7 @@ namespace IpsViewComponentLibrary
                 {
                     OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
                     MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateData?.Invoke();
                 }
                 else
                     MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -236,8 +238,11 @@ namespace IpsViewComponentLibrary
                     if(requestForm.ShowDialog() == DialogResult.OK)
                     {
                         if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
-                            MessageBox.Show("Нову завявку додано!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        else
+                            {
+                                MessageBox.Show("Нову завявку додано!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                UpdateData?.Invoke();
+                            }
+                            else
                             MessageBox.Show("Не можливо зберегти нову заявку!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }break;
@@ -252,13 +257,16 @@ namespace IpsViewComponentLibrary
         private void btnToAccept_Click(object sender, EventArgs e)
         {
             if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
+            {
+                bool result = false;
                 switch (_functionType)
                 {
                     case ButtonFunctionType.None:
                         break;
                     case ButtonFunctionType.Accept:
                     {
-                        if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false) ?? false)
+                        result = OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false) ?? false;
+                        if(result)
                             ExtensionUtils.ShowInfoMessage("Акцептовано!", "Успішно", MessageBoxIcon.Information);
                         else
                             ExtensionUtils.ShowInfoMessage("Не можливо акцептувати", "Помилка!", MessageBoxIcon.Error);
@@ -266,13 +274,17 @@ namespace IpsViewComponentLibrary
                         break;
                     case ButtonFunctionType.Agree:
                     {
-                        if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 3, false) ?? false)
+                        result = OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 3, false) ?? false;
+                        if(result)
                             ExtensionUtils.ShowInfoMessage("Відправлено на погодження!", "Успішно", MessageBoxIcon.Information);
                         else
                             ExtensionUtils.ShowInfoMessage("Не можливо відправити на погодження", "Помилка!", MessageBoxIcon.Error);
                     }
                         break;
                 }
+                if(result)
+                    UpdateData?.Invoke();
+            }
         }
 
         private void DeleteLicense()
@@ -288,7 +300,10 @@ namespace IpsViewComponentLibrary
                 if (MessageBox.Show(reqref + "а буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec=> rec.LicId == item.LicId),item.LicVersion,4, false) ?? false)
+                    {
                         ExtensionUtils.ShowInfoMessage(reqref + "у закрито!", "Успішно", MessageBoxIcon.Information);
+                        UpdateData?.Invoke();
+                    }
                     else
                         ExtensionUtils.ShowInfoMessage("Не можливо закрити " + reqrefl, "Помилка", MessageBoxIcon.Error);
                 }
@@ -300,7 +315,10 @@ namespace IpsViewComponentLibrary
             if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
             {
                 if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.Reference) ?? false)
+                {
                     ExtensionUtils.ShowInfoMessage("Заявка переведена в довідку", "Успішно", MessageBoxIcon.Information);
+                    UpdateData?.Invoke();
+                }
                 else
                     ExtensionUtils.ShowInfoMessage("Не можливо створити довідку з заявки", "Помилка", MessageBoxIcon.Error);
             }
@@ -311,7 +329,10 @@ namespace IpsViewComponentLibrary
             if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
             {
                 if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.License) ?? false)
+                {
                     ExtensionUtils.ShowInfoMessage("Довідка переведена в Ліцензію", "Успішно", MessageBoxIcon.Information);
+                    UpdateData?.Invoke();
+                }
                 else
                     ExtensionUtils.ShowInfoMessage("Не можливо створити ліцензію з довідки", "Помилка", MessageBoxIcon.Error);
             }

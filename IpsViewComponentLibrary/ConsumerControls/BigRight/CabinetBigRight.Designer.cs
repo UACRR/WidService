@@ -88,7 +88,7 @@
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvLicence;
+            this.pageView.SelectedPage = this.pvGeneralAgreement;
             this.pageView.Size = new System.Drawing.Size(1146, 620);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
@@ -233,9 +233,9 @@
             // 
             this.pvPays.Controls.Add(this.middleControlCabinetPayments1);
             this.pvPays.ItemSize = new System.Drawing.SizeF(60F, 27F);
-            this.pvPays.Location = new System.Drawing.Point(5, 29);
+            this.pvPays.Location = new System.Drawing.Point(5, 31);
             this.pvPays.Name = "pvPays";
-            this.pvPays.Size = new System.Drawing.Size(1136, 586);
+            this.pvPays.Size = new System.Drawing.Size(1136, 584);
             this.pvPays.Text = "Платежі";
             // 
             // middleControlCabinetPayments1
@@ -243,16 +243,16 @@
             this.middleControlCabinetPayments1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.middleControlCabinetPayments1.Location = new System.Drawing.Point(0, 0);
             this.middleControlCabinetPayments1.Name = "middleControlCabinetPayments1";
-            this.middleControlCabinetPayments1.Size = new System.Drawing.Size(1136, 586);
+            this.middleControlCabinetPayments1.Size = new System.Drawing.Size(1136, 584);
             this.middleControlCabinetPayments1.TabIndex = 0;
             // 
             // pvAvances
             // 
             this.pvAvances.Controls.Add(this.middleControlCabinetAvances1);
             this.pvAvances.ItemSize = new System.Drawing.SizeF(55F, 27F);
-            this.pvAvances.Location = new System.Drawing.Point(5, 29);
+            this.pvAvances.Location = new System.Drawing.Point(5, 31);
             this.pvAvances.Name = "pvAvances";
-            this.pvAvances.Size = new System.Drawing.Size(1136, 586);
+            this.pvAvances.Size = new System.Drawing.Size(1136, 584);
             this.pvAvances.Text = "Аванси";
             // 
             // middleControlCabinetAvances1
@@ -260,7 +260,7 @@
             this.middleControlCabinetAvances1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.middleControlCabinetAvances1.Location = new System.Drawing.Point(0, 0);
             this.middleControlCabinetAvances1.Name = "middleControlCabinetAvances1";
-            this.middleControlCabinetAvances1.Size = new System.Drawing.Size(1136, 586);
+            this.middleControlCabinetAvances1.Size = new System.Drawing.Size(1136, 584);
             this.middleControlCabinetAvances1.TabIndex = 0;
             // 
             // pvContacts

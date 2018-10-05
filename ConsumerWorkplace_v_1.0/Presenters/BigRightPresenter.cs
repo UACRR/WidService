@@ -36,6 +36,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid = mainGrid;
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             SubscribeEvents();
+
+            new CalculationInfoControlPresenter(_cabinetBigRightForm.cabinet.ctrlCalculation, _service);
+            //new ReportsControlPresenter(_cabinetBigRightForm.cabinet..reportsControl, _service);
         }
 
         //всі підписки на події в контролах
@@ -66,11 +69,13 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnRequestWorkRhSaveNeed += SaveWorkRh;
             _cabinetBigRightForm.cabinet.SavePariodCommandExecuted += SavePariodCommandExecuted;
             _cabinetBigRightForm.cabinet.OnGetSpectacleNeed += GetSpectacle;
+            _cabinetBigRightForm.cabinet.DeleteRegisterRatedList += DeleteRegisterRatedLists;
             _cabinetBigRightForm.cabinet.OnGetPartnerListNeed += GetPartnerList;
             _cabinetBigRightForm.cabinet.GetPartner += GetPartnerAnketa;
             _cabinetBigRightForm.cabinet.OnSetPartner += SetPartnerForCustomer;
             _cabinetBigRightForm.cabinet.OnChangePartner += ChangePartnerForCustomer;
             _cabinetBigRightForm.cabinet.OnRemovePartner += RemovePartnerForCustomer;
+            _cabinetBigRightForm.cabinet.SaveAgreementAddBrChanges += SaveAgreementAddBrChanges;
         }
 
         public CabinetBigRightForm Cabinet => _cabinetBigRightForm;
@@ -218,6 +223,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             return relust;
         }
 
+        private bool SaveAgreementAddBrChanges(int agrId, LicenseAgreement licenseAgreement)
+        {
+            return _service.SaveAgreementAddBrById(agrId, licenseAgreement);
+        }
+
         //додати новий документ
         private void AddNewDocument(int custId, int typeDocument, string fileName, string comment)
         {
@@ -315,6 +325,14 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
             if (outlist?.Register?.FirstOrDefault()?.CustId is int id)
                 UpdateData(id);
+            return result;
+        }
+
+        //видалння розрахункового листа
+        private bool DeleteRegisterRatedLists(int custId, int rmId)
+        {
+            var result = _service.DeleteRatedList(rmId);
+            UpdateData(custId);
             return result;
         }
 

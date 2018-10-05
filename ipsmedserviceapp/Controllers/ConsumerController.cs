@@ -185,6 +185,32 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPut("genagrprol/{agrId}")]
+        public async Task<IActionResult> SaveGeneralAgreement(int agrId, [FromBody] LicenseAgreement licenseAgreement)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var destinationAgr = await _dbContext.AgreementAddBr.SingleOrDefaultAsync(rec => rec.AgrId == agrId);
+                var sourceAgr = licenseAgreement.Agr.AgreementAddBr.SingleOrDefault();
+                destinationAgr.SetFields(sourceAgr, new []{ "CustId", "AgrId" });
+
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+
+                return Json(null);
+            }
+            catch (Exception ex)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
         /// <summary>
         /// Внутрішній метод збереження змін по Споживачу
         /// </summary>
@@ -1883,12 +1909,19 @@ where t1.custId = @custId
             if (item == null)
                 return BadRequest();
 
+            
             _dbContext.Register.RemoveRange(item.Register);
             _dbContext.RegisterRatedList.Remove(item);
 
             IDbContextTransaction tran = await _dbContext.Database.BeginTransactionAsync();
             try
             {
+                await _dbContext.Database.ExecuteSqlCommandAsync(@"
+delete RegisterItem
+from RegisterItem t1
+join Register t2 on t2.regId = t1.regId
+where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
+
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
                 tran = null;
