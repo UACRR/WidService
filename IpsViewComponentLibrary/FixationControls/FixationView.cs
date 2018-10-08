@@ -181,5 +181,10 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _presenter.UnlinkObject(registerItem);
         }
+
+        private void ctrlRegisterItemList_RegisterCountDeleted(object sender, RegisterCountViewModel registerCount)
+        {
+            _presenter.RegisterCountDeleted(registerCount);
+        }
     }
 }
