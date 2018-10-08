@@ -56,7 +56,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void Show(int objId)
         {
-            var objectContainer = _objectRightService.GetData(objId);
+            var objectContainer = _objectRightService.GetObjectById(objId);
 
             Run(objectContainer.objectRight, objectContainer.rhList);
         }
@@ -75,7 +75,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void ObjectNameAutocompliteListItemSelected(int objId)
         {
-            var objectContainer = _objectRightService.GetData(objId);
+            var objectContainer = _objectRightService.GetObjectById(objId);
             SetObjectRigth(objectContainer.objectRight, objectContainer.rhList);
         }
 

@@ -440,10 +440,13 @@
     <Compile Include="Utilities\EnumUtility.cs" />
     <Compile Include="Utilities\FixationExtensions.cs" />
     <Compile Include="Utilities\ObjectRightExtensions.cs" />
+    <Compile Include="Utilities\RegisterExtensions.cs" />
     <Compile Include="ViewModels\Fixations\FixationListViewModel.cs" />
     <Compile Include="ViewModels\Fixations\FixationQuery.cs" />
     <Compile Include="ViewModels\Fixations\FixationStages.cs" />
     <Compile Include="ViewModels\Fixations\FixationStageStatuses.cs" />
+    <Compile Include="ViewModels\Fixations\RegisterCountViewModel.cs" />
+    <Compile Include="ViewModels\ObjectsRight\ObjectRightholderViewModel.cs" />
     <Compile Include="ViewModels\Users\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

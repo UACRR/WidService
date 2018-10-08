@@ -49,6 +49,18 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        public object DataSourceRegisterCount
+        {
+            get { return bsRegisterCountViewModel.DataSource; }
+            set
+            {
+                if (bsRegisterCountViewModel.DataSource != value)
+                {
+                    bsRegisterCountViewModel.DataSource = value;
+                }
+            }
+        }
+
         //TODO: повернути значення
         public IList<RegisterItemViewModel> GetDataSource => ((System.Windows.Forms.BindingSource)gvRegisterItemList.DataSource).List as IList<RegisterItemViewModel>;
 
@@ -239,6 +251,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<RegisterItemViewModel> LinkCommandExecuted;
         public event EventHandler<RegisterItemViewModel> UnlinkCommandExecuted;
         public event EventHandler SelectedRegisterItemChanged;
+        public event EventHandler<ObjectLinkedEventArgs> ObjectLinked;
+        public event EventHandler<RegisterItemAddedEventArgs> RegisterItemAdded;
 
         public RegisterItemListControl()
         {
@@ -254,6 +268,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.SetCommandColumnImageAlignment("ShowObjectColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("CreateObjectColumn", ContentAlignment.MiddleCenter);
             gvRegisterItemList.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+            (gvRegisterItemList.Templates[1].Columns["DeleteRhColumn"] as GridViewCommandColumn).ImageAlignment = ContentAlignment.MiddleCenter;
 
             if (!IsDesignMode)
             {
@@ -305,6 +320,13 @@ namespace IpsViewComponentLibrary.RegisterControls
 
                 gvRegisterItemList.Rows.Remove(gvRegisterItemList.CurrentRow);
             }
+            else if (currentColumnName == "DeleteRhColumn")
+            {
+                if (!_allowEditList)
+                    return;
+
+                gvRegisterItemList.Templates[1].Rows.Remove(gvRegisterItemList.CurrentRow);
+            }
         }
 
         private void gvRegisterItemList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
@@ -334,7 +356,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
 
             // gray colour and bold font for row if it is a parent row and there is records in the register extra list
-            if (bsRegisterExtra.List.Count > 0)
+            if (bsRegisterExtra.List.Count > 0 || bsRegisterCountViewModel.List.Count > 0)
             {
                 if (e.RowElement.ViewTemplate.Parent == null)
                 {
@@ -342,6 +364,25 @@ namespace IpsViewComponentLibrary.RegisterControls
                     e.RowElement.GradientStyle = GradientStyles.Solid;
                     e.RowElement.BackColor = Color.LightGray;
                     e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+                }
+            }
+        }
+
+        private void gvRegisterItemList_ViewCellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            // collapse page tabs, as in one moment only one tab must be visible (RegisterExtra or RegisterCount)
+            GridDetailViewCellElement detailCell = e.CellElement as GridDetailViewCellElement;
+            if (detailCell != null)
+            {
+                detailCell.PageViewElement.Header.Visibility = ElementVisibility.Collapsed;
+
+                RadPageViewStripElement el = detailCell.PageViewElement as RadPageViewStripElement;
+                if (el != null)
+                {
+                    foreach (RadPageViewItem item in el.Items)
+                    {
+                        item.Visibility = ElementVisibility.Collapsed;
+                    }
                 }
             }
         }
@@ -356,8 +397,18 @@ namespace IpsViewComponentLibrary.RegisterControls
             if (!_allowEditList)
                 return;
 
-            gvRegisterItemList.Rows.AddNew();
+            var newRow = gvRegisterItemList.Rows.AddNew();
+
+            OnRegisterItemAdded(newRow.DataBoundItem as RegisterItemViewModel);
+
             gvRegisterItemList.CurrentRow.Cells[1].BeginEdit();
+        }
+
+        private void OnRegisterItemAdded(RegisterItemViewModel registerItem)
+        {
+            var args = new RegisterItemAddedEventArgs { NewRegisterItem = registerItem };
+
+            RegisterItemAdded?.Invoke(this, args);
         }
 
         private void ddlLinkedStatus_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
@@ -428,6 +479,13 @@ namespace IpsViewComponentLibrary.RegisterControls
                 selectedObject.Performer,
                 selectedObject.Duration
             );
+
+            OnObjectLinked(selectedObject);
+        }
+
+        private void OnObjectLinked(ObjectRightMainView linkedObject)
+        {
+            ObjectLinked?.Invoke(this, new ObjectLinkedEventArgs { RegisterItem = SelectedRegisterItem, ObjectRight = linkedObject });
         }
 
         private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
@@ -488,5 +546,16 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             gvRegisterItemList.Columns[columnName].IsVisible = isVisible;
         }
+    }
+
+    public class RegisterItemAddedEventArgs : EventArgs
+    {
+        public RegisterItemViewModel NewRegisterItem { get; set; }
+    }
+
+    public class ObjectLinkedEventArgs : EventArgs
+    {
+        public RegisterItemViewModel RegisterItem { get; set; }
+        public ObjectRightMainView ObjectRight { get; set; }
     }
 }

@@ -14,6 +14,11 @@ namespace ipsFormsDesign.Utilities
             return (FixationStages)IpsGlobal.AnketaDictionaties.fixStageStatus.First(ss => ss.CodeI == fixation.StageStatus).StageCode;
         }
 
+        public static Register GetRegister(this Fixation fixation)
+        {
+            return fixation.Lic.PaidPeriod.First().RegisterRatedList.First().Register.First();
+        }
+
         public static IEnumerable<FixationStageStatuses> GetAvailableStageStatuses(this FixationListViewModel fixationViewModel)
         {
             var currentStageStatus = (FixationStageStatuses)fixationViewModel.StageStatusId;
