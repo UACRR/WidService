@@ -72,7 +72,7 @@ namespace ipsmedserviceapp.Mappings
 
             CreateMap<RegisterCount, RegisterCount>()
                 .ForMember(rc => rc.RegCntId, opt => opt.Ignore())
-                //.ForMember(rc => rc.RegItem, opt => opt.Ignore()) // TODO
+                .ForMember(rc => rc.RegI, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.RegCntId == to.RegCntId);
         }
     }
