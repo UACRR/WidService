@@ -64,6 +64,12 @@ namespace ipsFormsDesign.Services
                 _webApi.UpdateItem<Customer>(_prefix + "updatecommunity", customer.CustId.ToString(), customer);
         }
 
+        public bool SaveLimitRights(int cmCustId, List<CustCmRight> listObj)
+        {
+            var result = _webApi.UpdateItem(_prefix + "lrightsupd", cmCustId.ToString(), listObj);
+            return result;
+        }
+
         public Customer GetComunity(int custId)
         {
             var comunity = _webApi.GetItemById<Customer>(_prefix + "list", custId.ToString());

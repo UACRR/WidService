@@ -33,6 +33,12 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _community.GetCommunityAutorsList += GetCommunityAutorsView;
             _community.GetAutorsList += GetAllAutorsView;
             _community.GetCommunityRightList += GetCommunityRightList;
+            _community.SaveLimitRights += SaveLimitRights;
+        }
+
+        private bool SaveLimitRights(int cmCustId, List<CustCmRight> listObj)
+        {
+            return _service.SaveLimitRights(cmCustId, listObj);
         }
 
         private List<CustCmRight> GetCommunityRightList(int custId)

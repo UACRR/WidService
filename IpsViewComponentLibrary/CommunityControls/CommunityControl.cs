@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
@@ -21,8 +22,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event GetCustomerByIdEventHandler GetCommunity;
         public event SaveCustomerEventHandler SaveCommunity;
         public event GetCommunityRightList GetCommunityRightList;
-
-
+        public event SaveObjectListEventHandler<CustCmRight> SaveLimitRights;
 
         public CommunityControl()
         {
@@ -63,8 +63,14 @@ namespace IpsViewComponentLibrary.CommunityControls
                 cabinetForm.ChangeStatusAgr += CabinetForm_ChangeStatusAgr;
                 cabinetForm.GetAutorsList += CabinetForm_GetAutorsList;
                 cabinetForm.GetCommunityRightList += CabinetForm_GetCommunityRightList;
+                cabinetForm.SaveLimitRights += CabinetForm_SaveLimitRights;
                 cabinetForm.Show();
             }
+        }
+
+        private bool CabinetForm_SaveLimitRights(int cmCustId, List<CustCmRight> listObj)
+        {
+            return SaveLimitRights?.Invoke(cmCustId, listObj) ?? false;
         }
 
         private List<CustCmRight> CabinetForm_GetCommunityRightList(int custId)
@@ -77,7 +83,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             return GetAutorsList?.Invoke();
         }
 
-        private bool CabinetForm_ChangeStatusAgr(int partnerId, ipsFormsDesign.Services.CPartnerObjectStatus status)
+        private bool CabinetForm_ChangeStatusAgr(int partnerId, CPartnerObjectStatus status)
         {
             throw new NotImplementedException();
         }

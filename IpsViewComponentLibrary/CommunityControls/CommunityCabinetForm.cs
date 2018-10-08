@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event GetCustomerByIdEventHandler UpdateCustomer;
         public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
         public event GetCommunityRightList GetCommunityRightList;
+        public event SaveObjectListEventHandler<CustCmRight> SaveLimitRights; 
 
 
         private List<CommunityAutorsListView> _list;
@@ -147,7 +148,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void btnAddCommunity_Click(object sender, EventArgs e)
         {
             var autorsList = GetAutorsList?.Invoke();
-            var addAutorForm = new CommunityAddAutorForm(autorsList)
+            var addAutorForm = new CommunityAddAutorForm(autorsList, _customer.CustId)
             {
                 StartPosition = FormStartPosition.CenterScreen,
             };
@@ -155,7 +156,11 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             if (addAutorForm.ShowDialog() == DialogResult.OK)
             {
-                //TODO: save call
+                var result = SaveLimitRights?.Invoke(_customer.CustId, addAutorForm.LimitRights) ?? false;
+                if(result)
+                    ExtensionUtils.ShowInfoMessage("Нового автора додано!", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Неможливо додати нового автора!", "Помика", MessageBoxIcon.Error);
             }
         }
 

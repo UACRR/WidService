@@ -2,20 +2,12 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.IdentityModel.Protocols;
 
 // URLs:
 // community/
@@ -196,6 +188,69 @@ namespace ipsmedserviceapp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut("lrightsupd/{cmCustId}")]
+        public async Task<IActionResult> SaveLimitRights(int cmCustId, [FromBody] List<CustCmRight> sourceList)
+        {
+            IDbContextTransaction tran = null;
+            var destinationList = await _dbContext.CustCmRight.Where(rec => rec.CmCustId == cmCustId).ToListAsync();
+
+            try
+            {
+                // remove
+                var removeList = destinationList.Where(dest => !sourceList.Any(sors => sors.CmCustId == dest.CmCustId && sors.CRkindCode == dest.CRkindCode)).ToList();
+                removeList.ForEach(item =>
+                {
+                    destinationList.Remove(item);
+                    _dbContext.CustCmRight.Remove(item);
+                    var terms = _dbContext.TermsOfService.SingleOrDefault(r => r.CustId == item.CustId && r.CrkindCode == item.CRkindCode);
+                    if (terms != null)
+                        terms.OurService = true;
+                });
+
+                // add new
+                var addList = sourceList.Where(sors => !destinationList.Any(dest => dest.CustId == sors.CustId && dest.CRkindCode == sors.CRkindCode) && sors.CmCustId == 0).ToList();
+                addList.ForEach(item =>
+                {
+                    var right = new CustCmRight
+                    {
+                        CmCustId = cmCustId
+                    };
+                    right.SetFields(item, new []{ "CmCustId" });
+
+                    destinationList.Add(right);
+                    _dbContext.CustCmRight.Add(right);
+                    var terms = _dbContext.TermsOfService.SingleOrDefault(r => r.CustId == item.CustId && r.CrkindCode == item.CRkindCode);
+                    if (terms != null)
+                        terms.OurService = false;
+                });
+
+                // update
+                var updList = sourceList.Where(rec => rec.CmCustId != 0 && rec.CmCustId != cmCustId).ToList();
+                updList.ForEach(item =>
+                {
+                    _dbContext.CustCmRight.Remove(item);
+                    var newItem = new CustCmRight();
+                    newItem.SetFields(item);
+                    newItem.CmCustId = cmCustId;
+                    destinationList.Add(newItem);
+                    _dbContext.CustCmRight.Add(newItem);
+                });
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+                return Json(destinationList);
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         #region Винесені методи та додаткові методи синхронізацій
 
