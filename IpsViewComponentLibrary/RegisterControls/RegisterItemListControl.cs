@@ -252,6 +252,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<RegisterItemViewModel> UnlinkCommandExecuted;
         public event EventHandler SelectedRegisterItemChanged;
         public event EventHandler<ObjectLinkedEventArgs> ObjectLinked;
+        public event EventHandler<RegisterItemAddedEventArgs> RegisterItemAdded;
 
         public RegisterItemListControl()
         {
@@ -396,8 +397,18 @@ namespace IpsViewComponentLibrary.RegisterControls
             if (!_allowEditList)
                 return;
 
-            gvRegisterItemList.Rows.AddNew();
+            var newRow = gvRegisterItemList.Rows.AddNew();
+
+            OnRegisterItemAdded(newRow.DataBoundItem as RegisterItemViewModel);
+
             gvRegisterItemList.CurrentRow.Cells[1].BeginEdit();
+        }
+
+        private void OnRegisterItemAdded(RegisterItemViewModel registerItem)
+        {
+            var args = new RegisterItemAddedEventArgs { NewRegisterItem = registerItem };
+
+            RegisterItemAdded?.Invoke(this, args);
         }
 
         private void ddlLinkedStatus_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
@@ -535,6 +546,11 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             gvRegisterItemList.Columns[columnName].IsVisible = isVisible;
         }
+    }
+
+    public class RegisterItemAddedEventArgs : EventArgs
+    {
+        public RegisterItemViewModel NewRegisterItem { get; set; }
     }
 
     public class ObjectLinkedEventArgs : EventArgs
