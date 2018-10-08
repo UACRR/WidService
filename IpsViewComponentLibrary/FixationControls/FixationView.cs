@@ -176,5 +176,10 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _presenter.NewRegisterItemAdded(e.NewRegisterItem);
         }
+
+        private void ctrlRegisterItemList_UnlinkCommandExecuted(object sender, RegisterItemViewModel registerItem)
+        {
+            _presenter.UnlinkObject(registerItem);
+        }
     }
 }

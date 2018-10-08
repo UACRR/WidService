@@ -46,12 +46,18 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void Show(int fixId)
         {
-            _fixation = _fixationService.GetById(fixId);
+            var fixationModel = _fixationService.GetById(fixId);
+            _fixation = fixationModel.Fixation;
             _view.Fixation = _fixation;
 
             foreach (var rvm in _fixation.GetRegister().GetRegisterItemsList())
             {
                 _view.RegisterItemList.Add(rvm);
+            }
+
+            foreach (var rcvm in fixationModel.RegisterCounts)
+            {
+                _view.RegisterCountList.Add(rcvm);
             }
 
             if (_fixation.UserId != null)
@@ -179,7 +185,7 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             var rightholders = _objectRightService.GetObjectRightholders(objectRight.ObjId);
 
-            // TODO: clear
+            RemoveRegisterCountForRegisterItem(registerItem);
 
             foreach (var rightholder in rightholders)
             {
@@ -197,6 +203,11 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        public void UnlinkObject(RegisterItemViewModel registerItem)
+        {
+            RemoveRegisterCountForRegisterItem(registerItem);
+        }
+
         private int GetNextRegisterItemId()
         {
             if (_lastId == 0)
@@ -205,6 +216,12 @@ namespace IpsViewComponentLibrary.FixationControls
             }
 
             return ++_lastId;
+        }
+
+        private void RemoveRegisterCountForRegisterItem(RegisterItemViewModel registerItem)
+        {
+            var regCountToDelete = _view.RegisterCountList.Where(rc => rc.RegId == registerItem.RegId && rc.RegIitemId == registerItem.RegIitemId).ToList();
+            regCountToDelete.ForEach(rc => _view.RegisterCountList.Remove(rc));
         }
     }
 }
