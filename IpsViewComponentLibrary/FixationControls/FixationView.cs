@@ -117,8 +117,6 @@ namespace IpsViewComponentLibrary.FixationControls
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ValidateChildren();
-
             _presenter.Save();
         }
 
