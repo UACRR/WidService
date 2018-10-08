@@ -79,8 +79,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
         DateTime? LicDate { get; }
         string PeriodName { get; }
         string PeriodStatus { get; }
-        decimal PeriodAmount { get; }
-        decimal PayAmount { get; }
+        decimal? PeriodAmount { get; }
+        decimal? PayAmount { get; }
     }
 
     class PeriodView : IPeriodView
@@ -93,16 +93,15 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             _periodlink = periodlink;
             _period = periodlink.Period;
-            _license = _period.Lic.LicenseAgrParam.Single(rec => rec.LicVersion == _period.Lic.LicVersion);
-            _periodStatus = IpsGlobal.AnketaDictionaties.periodStatus.Single(rec => rec.CodeI == _period.Status);
+            _license = _period?.Lic?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == _period?.Lic?.LicVersion);
+            _periodStatus = IpsGlobal.AnketaDictionaties?.periodStatus?.SingleOrDefault(rec => rec?.CodeI == _period?.Status);
         }
 
-        public string LicNum { get => _license.LicNum; }
-        public DateTime? LicDate { get => _license.LicDate; }
-        public string PeriodName { get => _period.PeriodName; }
-        public string PeriodStatus { get => _periodStatus.Name; }
-        public decimal PayAmount { get => _periodlink.Amount; }
-
-        public decimal PeriodAmount { get => _period.Amount; }
+        public string LicNum { get => _license?.LicNum; }
+        public DateTime? LicDate { get => _license?.LicDate; }
+        public string PeriodName { get => _period?.PeriodName; }
+        public string PeriodStatus { get => _periodStatus?.Name; }
+        public decimal? PayAmount { get => _periodlink?.Amount; }
+        public decimal? PeriodAmount { get => _period?.Amount; }
     }
 }

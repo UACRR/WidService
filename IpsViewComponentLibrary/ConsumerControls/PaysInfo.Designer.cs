@@ -64,8 +64,9 @@
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.gvPeriod = new Telerik.WinControls.UI.RadGridView();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.bindingPeriod = new System.Windows.Forms.BindingSource(this.components);
+            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -79,9 +80,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriod.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -126,6 +127,7 @@
             this.radLabel1.Size = new System.Drawing.Size(52, 19);
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "Платежі";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // gvMoneyResived
             // 
@@ -289,6 +291,7 @@
             this.gvMoneyResived.ShowGroupPanel = false;
             this.gvMoneyResived.Size = new System.Drawing.Size(764, 215);
             this.gvMoneyResived.TabIndex = 0;
+            this.gvMoneyResived.ThemeName = "Office2013Light";
             this.gvMoneyResived.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvMoneyResived_CurrentRowChanged);
             // 
             // bindingMoney
@@ -321,6 +324,7 @@
             this.radLabel2.Size = new System.Drawing.Size(104, 19);
             this.radLabel2.TabIndex = 2;
             this.radLabel2.Text = "Розподілені суми";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // gvPeriod
             // 
@@ -420,6 +424,11 @@
             this.gvPeriod.ShowGroupPanel = false;
             this.gvPeriod.Size = new System.Drawing.Size(764, 226);
             this.gvPeriod.TabIndex = 0;
+            this.gvPeriod.ThemeName = "Office2013Light";
+            // 
+            // bindingPeriod
+            // 
+            this.bindingPeriod.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.IPeriodView);
             // 
             // radPanel1
             // 
@@ -430,11 +439,6 @@
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(764, 501);
             this.radPanel1.TabIndex = 1;
-            this.radPanel1.Text = "radPanel1";
-            // 
-            // bindingPeriod
-            // 
-            this.bindingPeriod.DataSource = typeof(IpsViewComponentLibrary.ConsumerControls.IPeriodView);
             // 
             // PaysInfo
             // 
@@ -459,9 +463,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriod.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriod)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingPeriod)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -478,5 +482,6 @@
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private System.Windows.Forms.BindingSource bindingMoney;
         private System.Windows.Forms.BindingSource bindingPeriod;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

@@ -285,7 +285,7 @@ namespace IpsViewComponentLibrary
 
                 case CabinetTabType.Payments:
                 {
-
+                    ctrlPaysInfo.Customer = _customer;
                 }
                     break;
 

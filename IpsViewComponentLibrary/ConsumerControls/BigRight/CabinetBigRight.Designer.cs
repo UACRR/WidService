@@ -45,7 +45,6 @@
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCalculation = new IpsViewComponentLibrary.CalculationInfoControl();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
-            this.middleControlCabinetPayments1 = new IpsViewComponentLibrary.MiddleControlCabinetPayments();
             this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
             this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
@@ -54,6 +53,7 @@
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartner = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
+            this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -88,7 +88,7 @@
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvGeneralAgreement;
+            this.pageView.SelectedPage = this.pvAnketa;
             this.pageView.Size = new System.Drawing.Size(1146, 620);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
@@ -231,20 +231,12 @@
             // 
             // pvPays
             // 
-            this.pvPays.Controls.Add(this.middleControlCabinetPayments1);
+            this.pvPays.Controls.Add(this.ctrlPaysInfo);
             this.pvPays.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvPays.Location = new System.Drawing.Point(5, 31);
             this.pvPays.Name = "pvPays";
             this.pvPays.Size = new System.Drawing.Size(1136, 584);
             this.pvPays.Text = "Платежі";
-            // 
-            // middleControlCabinetPayments1
-            // 
-            this.middleControlCabinetPayments1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.middleControlCabinetPayments1.Location = new System.Drawing.Point(0, 0);
-            this.middleControlCabinetPayments1.Name = "middleControlCabinetPayments1";
-            this.middleControlCabinetPayments1.Size = new System.Drawing.Size(1136, 584);
-            this.middleControlCabinetPayments1.TabIndex = 0;
             // 
             // pvAvances
             // 
@@ -318,6 +310,16 @@
             this.ctrlPartner.Size = new System.Drawing.Size(1136, 584);
             this.ctrlPartner.TabIndex = 0;
             // 
+            // ctrlPaysInfo
+            // 
+            this.ctrlPaysInfo.Customer = null;
+            this.ctrlPaysInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPaysInfo.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPaysInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.ctrlPaysInfo.Name = "ctrlPaysInfo";
+            this.ctrlPaysInfo.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlPaysInfo.TabIndex = 0;
+            // 
             // CabinetBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,10 +369,10 @@
         private Telerik.WinControls.UI.RadPageViewPage pvContacts;
         private MiddleControlCabinetPayslips ctrlPayslips;
         private MiddleControlCabinetAvances middleControlCabinetAvances1;
-        private MiddleControlCabinetPayments middleControlCabinetPayments1;
         public CalculationInfoControl ctrlCalculation;
         private Telerik.WinControls.UI.RadPageViewPage pvAnketa;
         private ConsumerControls.ConsumerHeaderInfo ctrlContactHeader;
         private AnketaConsumer ctrlAnketaConsumer;
+        private ConsumerControls.PaysInfo ctrlPaysInfo;
     }
 }
