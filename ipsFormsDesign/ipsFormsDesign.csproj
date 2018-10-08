@@ -74,6 +74,7 @@
     <Compile Include="Dictionary\DictionaryBaseControl.cs" />
     <Compile Include="Dictionary\DictTr.cs" />
     <Compile Include="Dictionary\EditableObjectBase.cs" />
+    <Compile Include="Dictionary\FixationModel.cs" />
     <Compile Include="Dictionary\LicenseAgreementQuery.cs" />
     <Compile Include="Dictionary\LicenseTypes.cs" />
     <Compile Include="Dictionary\ObjectAuthorRightholder.cs" />

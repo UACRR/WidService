@@ -66,6 +66,7 @@ namespace ipsmedserviceapp.Mappings
 
             CreateMap<RegisterItem, RegisterItem>()
                 .ForMember(ri => ri.RegId, opt => opt.Ignore())
+                .ForMember(ri => ri.Obj, opt => opt.Ignore())
                 //.ForMember(ri => ri.RegIitemId, opt => opt.Ignore()) // becouse RegIitemId in not an autoincrement field, and it value sets on the client side
                 .ForMember(ri => ri.Reg, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.RegId == to.RegId && from.RegIitemId == to.RegIitemId);
@@ -74,6 +75,10 @@ namespace ipsmedserviceapp.Mappings
                 .ForMember(rc => rc.RegCntId, opt => opt.Ignore())
                 .ForMember(rc => rc.RegI, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.RegCntId == to.RegCntId);
+
+            CreateMap<ObjectRight, ObjectRight>()
+                .ForMember(o => o.ObjId, opt => opt.Ignore())
+                .EqualityComparison((from, to) => from.ObjId == to.ObjId);
         }
     }
 }
