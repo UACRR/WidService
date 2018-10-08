@@ -822,6 +822,7 @@
             this.ctrlRegisterItemList.ShowObjectInfo = true;
             this.ctrlRegisterItemList.Size = new System.Drawing.Size(812, 361);
             this.ctrlRegisterItemList.TabIndex = 0;
+            this.ctrlRegisterItemList.UnlinkCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.RegisterItemViewModel>(this.ctrlRegisterItemList_UnlinkCommandExecuted);
             this.ctrlRegisterItemList.ObjectLinked += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.ObjectLinkedEventArgs>(this.ctrlRegisterItemList_ObjectLinked);
             this.ctrlRegisterItemList.RegisterItemAdded += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.RegisterItemAddedEventArgs>(this.ctrlRegisterItemList_RegisterItemAdded);
             // 

@@ -45,24 +45,15 @@ namespace ipsmedserviceapp.Controllers
             if (fixation == null)
                 NotFound();
 
-            //var regCountList = fixation.Lic.PaidPeriod.First().RegisterRatedList.First().Register.First().RegisterItem.SelectMany(ri => ri.RegisterCount);
-            //var regCL = regCountList.Join(
-            //    _dbContext.CopyRight,
-            //    rc => new { rc.ObjId, rc.CustId },
-            //    cr => new { cr.ObjId, cr.CustId },
-            //    (rc, cr) => new RegisterCountResource {
-            //        RegCntId = rc.RegCntId,
-            //        RegId = rc.RegId.Value,
-            //        RegIitemId = rc.RegIitemId.Value,
-            //        RoleCode = cr.RoleCode.Value,
-            //        //AuthorName = cr.
-            //    });
+            var regId = fixation.Lic.PaidPeriod.First().RegisterRatedList.First().Register.First().RegId;
 
-            //var responce = new FixationResponceResource();
-            //responce.Fixation = fixation;
-            
+            var response = new FixationResponseResource();
+            response.Fixation = fixation;
+            response.RegisterCounts = await _dbContext.getViewData($"select * from ft_Tsk_7_RegisterRegisterCounts(@regId)", new[] {
+                new SqlParameter("regId", regId),
+            });
 
-            return Ok(fixation);
+            return Ok(response);
         }
 
         [HttpPost]
@@ -140,6 +131,12 @@ namespace ipsmedserviceapp.Controllers
                             .ThenInclude(rr => rr.Register)
                                 .ThenInclude(r => r.RegisterItem)
                                     .ThenInclude(ri => ri.RegisterCount)
+                .Include(f => f.Lic)
+                    .ThenInclude(l => l.PaidPeriod)
+                        .ThenInclude(pp => pp.RegisterRatedList)
+                            .ThenInclude(rr => rr.Register)
+                                .ThenInclude(r => r.RegisterItem)
+                                    .ThenInclude(ri => ri.Obj)
                 .FirstOrDefaultAsync(f => f.FixId == fixId);
 
             return fixation;

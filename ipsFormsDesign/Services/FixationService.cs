@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Model;
+﻿using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.ViewModels.Fixations;
 using System;
 using System.Collections.Generic;
@@ -47,9 +48,9 @@ namespace ipsFormsDesign.Services
             return fixation;
         }
 
-        public Fixation GetById(int fixId)
+        public FixationModel GetById(int fixId)
         {
-            var item = _webApi.GetItemById<Fixation>("fixations", fixId.ToString());
+            var item = _webApi.GetItemById<FixationModel>("fixations", fixId.ToString());
             return item;
         }
 
