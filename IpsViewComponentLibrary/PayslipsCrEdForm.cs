@@ -85,8 +85,8 @@ namespace IpsViewComponentLibrary
                 _source.Add(new PayslipsGridDataSource
                 {
                     CustId = register.CustId,
-                    AuthRate = (register?.AuthRate ?? 0m) + (register?.MusicRate ?? 0m),
-                    MusicRate = register.MusicRate,
+                    AuthRate = register?.AuthRate ?? 0m,
+                    MusicRate = register?.MusicRate ?? 0m,
                     AuthAmount = register.AuthAmount,
                     MusicAmount = register.MusicAmount,
                     ObjId = register.RegisterItem.FirstOrDefault()?.ObjId,
