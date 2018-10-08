@@ -171,5 +171,10 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _presenter.LinkObject(e.RegisterItem, e.ObjectRight);
         }
+
+        private void ctrlRegisterItemList_RegisterItemAdded(object sender, RegisterControls.RegisterItemAddedEventArgs e)
+        {
+            _presenter.NewRegisterItemAdded(e.NewRegisterItem);
+        }
     }
 }

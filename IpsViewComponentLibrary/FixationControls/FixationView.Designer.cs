@@ -809,6 +809,7 @@
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
             this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemList.DataSourceRegisterCount = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
             this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
@@ -822,6 +823,7 @@
             this.ctrlRegisterItemList.Size = new System.Drawing.Size(812, 361);
             this.ctrlRegisterItemList.TabIndex = 0;
             this.ctrlRegisterItemList.ObjectLinked += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.ObjectLinkedEventArgs>(this.ctrlRegisterItemList_ObjectLinked);
+            this.ctrlRegisterItemList.RegisterItemAdded += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.RegisterItemAddedEventArgs>(this.ctrlRegisterItemList_RegisterItemAdded);
             // 
             // radPageViewPage4
             // 
