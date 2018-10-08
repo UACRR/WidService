@@ -74,6 +74,7 @@ namespace IpsViewComponentLibrary
             }
 
             InitFormType(_type);
+            UpdFullSum();
         }
 
         private void UpdateRegisterGridDataSource()
@@ -84,7 +85,7 @@ namespace IpsViewComponentLibrary
                 _source.Add(new PayslipsGridDataSource
                 {
                     CustId = register.CustId,
-                    AuthRate = register.AuthRate,
+                    AuthRate = (register?.AuthRate ?? 0m) + (register?.MusicRate ?? 0m),
                     MusicRate = register.MusicRate,
                     AuthAmount = register.AuthAmount,
                     MusicAmount = register.MusicAmount,
@@ -112,7 +113,7 @@ namespace IpsViewComponentLibrary
             {
                 var item = items.DataBoundItem as PayslipsGridDataSource;
                 amount += item?.Amount ?? 0m;
-                royalty += (item?.MusicAmount + item?.AuthAmount) ?? 0;
+                royalty += (item?.MusicAmount ?? 0m) + (item?.AuthAmount ?? 0m);
             }
             
             lblRoyalty.Text = amount.ToString("#,###0.00 грн");
@@ -120,8 +121,8 @@ namespace IpsViewComponentLibrary
 
             decimal.TryParse(txtAmount.Text, out decimal amnt);
             decimal.TryParse(txtRoyalty.Text, out decimal rlt );
-            lblAmount.ForeColor = Math.Abs(rlt - royalty) < 0.01m ? DefaultForeColor : Color.Red;
-            lblRoyalty.ForeColor = Math.Abs(amnt - amount) < 0.01m ? DefaultForeColor : Color.Red;
+            lblAmount.ForeColor = Math.Round(rlt, 2) == Math.Round(royalty, 2) ? DefaultForeColor : Color.Red;
+            lblRoyalty.ForeColor = Math.Round(amnt,2) == Math.Round(amount, 2) ? DefaultForeColor : Color.Red;
 
         }
 

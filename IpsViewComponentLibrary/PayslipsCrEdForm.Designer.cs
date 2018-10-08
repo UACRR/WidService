@@ -370,13 +370,13 @@
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "MusicRate";
             gridViewTextBoxColumn7.FormatString = "{0:0.00 \'%\'}";
-            gridViewTextBoxColumn7.HeaderText = "% Муз супроводу";
-            gridViewTextBoxColumn7.MaxWidth = 70;
-            gridViewTextBoxColumn7.MinWidth = 70;
+            gridViewTextBoxColumn7.HeaderText = "У т.ч. % муз. супроводу";
+            gridViewTextBoxColumn7.MaxWidth = 80;
+            gridViewTextBoxColumn7.MinWidth = 80;
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "MusicRate";
             gridViewTextBoxColumn7.ReadOnly = true;
-            gridViewTextBoxColumn7.Width = 70;
+            gridViewTextBoxColumn7.Width = 80;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.DataType = typeof(decimal);
             gridViewTextBoxColumn8.EnableExpressionEditor = true;
@@ -389,7 +389,7 @@
             gridViewTextBoxColumn8.Name = "MusicAmount";
             gridViewTextBoxColumn8.ReadOnly = true;
             gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn8.Width = 153;
+            gridViewTextBoxColumn8.Width = 143;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
