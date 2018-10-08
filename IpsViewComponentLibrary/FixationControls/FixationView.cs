@@ -75,6 +75,11 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        public bool IsValid
+        {
+            get => ValidateChildren();
+        }
+
         public BindingList<RegisterItemViewModel> RegisterItemList { get; } = new BindingList<RegisterItemViewModel>();
         public BindingList<RegisterCountViewModel> RegisterCountList { get; } = new BindingList<RegisterCountViewModel>();
 
@@ -112,6 +117,8 @@ namespace IpsViewComponentLibrary.FixationControls
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            ValidateChildren();
+
             _presenter.Save();
         }
 
@@ -186,5 +193,75 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _presenter.RegisterCountDeleted(registerCount);
         }
+
+        #region Validation
+
+        private void ddlConsumer_Validating(object sender, CancelEventArgs e)
+        {
+            if (!_presenter.ValidateConsumer())
+            {
+                errorProvider.SetError(ddlConsumer, "Користувач є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(ddlConsumer, "");
+        }
+
+        private void txtEventName_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEventName.Text))
+            {
+                errorProvider.SetError(txtEventName, "Назва заходу є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(txtEventName, "");
+        }
+
+        private void txtEventDates_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEventDates.Text))
+            {
+                errorProvider.SetError(txtEventDates, "Дати заходу є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(txtEventDates, "");
+        }
+
+        private void txtCity_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtCity.Text))
+            {
+                errorProvider.SetError(txtCity, "Місто є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(txtCity, "");
+        }
+
+        private void txtAddress_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtAddress.Text))
+            {
+                errorProvider.SetError(txtAddress, "Адреса є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(txtAddress, "");
+        }
+
+        private void txtPlacement_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPlacement.Text))
+            {
+                errorProvider.SetError(txtPlacement, "Приміщення є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(txtPlacement, "");
+        }
+
+        #endregion
     }
 }

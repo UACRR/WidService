@@ -86,6 +86,12 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void Save()
         {
+            if (!_view.IsValid)
+            {
+                _dialogService.ShowError(_view, "Не вірно введені дані. Об'єкт не записаний.");
+                return;
+            }
+
             var register = _fixation.GetRegister();
             var registerCountList = _view.RegisterCountList.ToList();
 
@@ -215,6 +221,11 @@ namespace IpsViewComponentLibrary.FixationControls
         public void UnlinkObject(RegisterItemViewModel registerItem)
         {
             RemoveRegisterCountForRegisterItem(registerItem);
+        }
+
+        public bool ValidateConsumer()
+        {
+            return _fixation.ClientCustId.HasValue;
         }
 
         private int GetNextRegisterItemId()
