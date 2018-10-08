@@ -15,6 +15,7 @@ using IpsViewComponentLibrary.AppController;
 using ipsFormsDesign.Events;
 using ipsFormsDesign.Data;
 using System.ComponentModel;
+using ipsFormsDesign.ViewModels.Fixations;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -253,6 +254,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler SelectedRegisterItemChanged;
         public event EventHandler<ObjectLinkedEventArgs> ObjectLinked;
         public event EventHandler<RegisterItemAddedEventArgs> RegisterItemAdded;
+        public event EventHandler<RegisterCountViewModel> RegisterCountDeleted;
+
 
         public RegisterItemListControl()
         {
@@ -325,7 +328,11 @@ namespace IpsViewComponentLibrary.RegisterControls
                 if (!_allowEditList)
                     return;
 
+                var registerCount = gvRegisterItemList.CurrentRow.DataBoundItem as RegisterCountViewModel;
+
                 gvRegisterItemList.Templates[1].Rows.Remove(gvRegisterItemList.CurrentRow);
+
+                OnRegisterCountDeleted(registerCount);
             }
         }
 
@@ -540,6 +547,11 @@ namespace IpsViewComponentLibrary.RegisterControls
         private void OnSelectedRegisterItemChanged()
         {
             SelectedRegisterItemChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnRegisterCountDeleted(RegisterCountViewModel registerCount)
+        {
+            RegisterCountDeleted.Invoke(this, registerCount);
         }
 
         private void SetColumnVisible(string columnName, bool isVisible)
