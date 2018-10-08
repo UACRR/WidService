@@ -804,7 +804,7 @@
             // 
             this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
             this.ctrlRegisterItemList.AllowEditList = true;
-            this.ctrlRegisterItemList.AllowFindCommand = true;
+            this.ctrlRegisterItemList.AllowFindCommand = false;
             this.ctrlRegisterItemList.AllowLinkCommand = true;
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
@@ -825,6 +825,7 @@
             this.ctrlRegisterItemList.UnlinkCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.RegisterItemViewModel>(this.ctrlRegisterItemList_UnlinkCommandExecuted);
             this.ctrlRegisterItemList.ObjectLinked += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.ObjectLinkedEventArgs>(this.ctrlRegisterItemList_ObjectLinked);
             this.ctrlRegisterItemList.RegisterItemAdded += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.RegisterItemAddedEventArgs>(this.ctrlRegisterItemList_RegisterItemAdded);
+            this.ctrlRegisterItemList.RegisterCountDeleted += new System.EventHandler<ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel>(this.ctrlRegisterItemList_RegisterCountDeleted);
             // 
             // radPageViewPage4
             // 

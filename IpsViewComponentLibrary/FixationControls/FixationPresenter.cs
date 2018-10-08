@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary.FixationControls
         private readonly FixationService _fixationService;
         private readonly ObjectRightService _objectRightService;
         private readonly UserService _userService;
+        private readonly AmountDistributor _percentDistributor;
         private Fixation _fixation;
         private bool _canClose;
         private int _lastId = 0;
@@ -35,6 +36,8 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixationService = new FixationService();
             _objectRightService = new ObjectRightService();
             _userService = new UserService();
+            _percentDistributor = new AmountDistributor();
+            _percentDistributor.Amount = 100;
         }
 
         public void ShowNew()
@@ -162,11 +165,6 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
-        public void NewRegisterItemAdded(RegisterItemViewModel newRegisterItem)
-        {
-            newRegisterItem.RegIitemId = GetNextRegisterItemId();
-        }
-
         public void SelectConsumer()
         {
             using (var selectionView = new ConsumerSelectionView())
@@ -179,6 +177,16 @@ namespace IpsViewComponentLibrary.FixationControls
                 };
                 selectionView.ShowDialog();
             }
+        }
+
+        public void NewRegisterItemAdded(RegisterItemViewModel newRegisterItem)
+        {
+            newRegisterItem.RegIitemId = GetNextRegisterItemId();
+        }
+
+        public void RegisterCountDeleted(RegisterCountViewModel registerCount)
+        {
+            DistributePercentForRegisterItem(registerCount.RegId, registerCount.RegIitemId);
         }
 
         public void LinkObject(RegisterItemViewModel registerItem, ObjectRightMainView objectRight)
@@ -198,9 +206,10 @@ namespace IpsViewComponentLibrary.FixationControls
                     Name = rightholder.Name,
                     CreativeRoles = rightholder.CreativeRoles,
                     OwnershipRate = rightholder.TotalRate,
-                    Rate = 100m / rightholders.Count,
                 });
             }
+
+            DistributePercentForRegisterItem(registerItem);
         }
 
         public void UnlinkObject(RegisterItemViewModel registerItem)
@@ -216,6 +225,18 @@ namespace IpsViewComponentLibrary.FixationControls
             }
 
             return ++_lastId;
+        }
+
+        private void DistributePercentForRegisterItem(RegisterItemViewModel registerItem)
+        {
+            DistributePercentForRegisterItem(registerItem.RegId, registerItem.RegIitemId);
+        }
+
+        private void DistributePercentForRegisterItem(int regId, int regItemId)
+        {
+            var list = _view.RegisterCountList.Where(rc => rc.RegId == regId && rc.RegIitemId == regItemId).ToList();
+
+            _percentDistributor.DistributeByEqualAmount(list, rc => rc.Rate);
         }
 
         private void RemoveRegisterCountForRegisterItem(RegisterItemViewModel registerItem)
