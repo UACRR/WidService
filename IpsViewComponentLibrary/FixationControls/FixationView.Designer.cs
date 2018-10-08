@@ -804,7 +804,7 @@
             // 
             this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
             this.ctrlRegisterItemList.AllowEditList = true;
-            this.ctrlRegisterItemList.AllowFindCommand = true;
+            this.ctrlRegisterItemList.AllowFindCommand = false;
             this.ctrlRegisterItemList.AllowLinkCommand = true;
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
