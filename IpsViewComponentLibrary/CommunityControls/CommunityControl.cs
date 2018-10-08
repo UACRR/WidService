@@ -18,6 +18,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
         public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
         public event ReturnViewEventHandler<CommunityAutorsListView> GetCommunityAutorsList;
+        public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerEventHandler GetTemplateCommunity;
         public event GetCustomerByIdEventHandler GetCommunity;
         public event SaveCustomerEventHandler SaveCommunity;
@@ -83,14 +84,14 @@ namespace IpsViewComponentLibrary.CommunityControls
             return GetAutorsList?.Invoke();
         }
 
-        private bool CabinetForm_ChangeStatusAgr(int partnerId, CPartnerObjectStatus status)
+        private bool CabinetForm_ChangeStatusAgr(int communityId, CPartnerObjectStatus status)
         {
-            throw new NotImplementedException();
+            return ChangeStatusAgr?.Invoke(communityId, status) ?? false;
         }
 
         private Customer CabinetForm_UpdateCustomer(int custId)
         {
-            throw new NotImplementedException();
+            return GetCommunity?.Invoke(custId);
         }
 
         private bool CabinetForm_SaveCustomer(Customer customer)

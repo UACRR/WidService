@@ -34,6 +34,12 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _community.GetAutorsList += GetAllAutorsView;
             _community.GetCommunityRightList += GetCommunityRightList;
             _community.SaveLimitRights += SaveLimitRights;
+            _community.ChangeStatusAgr += ChangeStatusAgr;
+        }
+
+        private bool ChangeStatusAgr(int communityId, CPartnerObjectStatus status)
+        {
+            return _service.ChangeStatusAgr(communityId, status);
         }
 
         private bool SaveLimitRights(int cmCustId, List<CustCmRight> listObj)

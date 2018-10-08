@@ -85,8 +85,9 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             // договір
             ctrlAgreement.AgreementDataSource = agreement;
-            var statusid = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
+            var statusid = _customer?.Community?.AgreementAddCommunity?.SingleOrDefault()?.AgrStatus;
             lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
+            lblCommunityName.Text = anketaCompany?.Name;
         }
 
         #region КОПІЮВАННЯ АДРЕС
@@ -158,9 +159,13 @@ namespace IpsViewComponentLibrary.CommunityControls
             {
                 var result = SaveLimitRights?.Invoke(_customer.CustId, addAutorForm.LimitRights) ?? false;
                 if(result)
-                    ExtensionUtils.ShowInfoMessage("Нового автора додано!", "Успішно", MessageBoxIcon.Information);
+                {
+                    ExtensionUtils.ShowInfoMessage("Внесені зміни збережено!", "Успішно", MessageBoxIcon.Information);
+                    _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                    BeginBindings();
+                }
                 else
-                    ExtensionUtils.ShowInfoMessage("Неможливо додати нового автора!", "Помика", MessageBoxIcon.Error);
+                    ExtensionUtils.ShowInfoMessage("Неможливо зберегти внесені зміни!", "Помика", MessageBoxIcon.Error);
             }
         }
 

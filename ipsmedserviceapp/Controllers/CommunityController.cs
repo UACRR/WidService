@@ -189,6 +189,12 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Зберегти змінені обмеження прав
+        /// </summary>
+        /// <param name="cmCustId"></param>
+        /// <param name="sourceList"></param>
+        /// <returns></returns>
         [HttpPut("lrightsupd/{cmCustId}")]
         public async Task<IActionResult> SaveLimitRights(int cmCustId, [FromBody] List<CustCmRight> sourceList)
         {
@@ -251,6 +257,31 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPut("agrstatuschange/{communityId}/{status}")]
+        public async Task<IActionResult> ChangeAgreementStatus(int communityId, int status)
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                var agrMaster = await _dbContext.AgreementMaster.SingleOrDefaultAsync(rec => rec.CustId == communityId);
+                var agrAdd = await _dbContext.AgreementAddCommunity.SingleOrDefaultAsync(rec=>rec.CustId == communityId);
+
+                agrMaster.AgrStatus = status;
+                agrAdd.AgrStatus = status;
+
+                tran = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                tran.Commit();
+                tran = null;
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                tran?.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
 
         #region Винесені методи та додаткові методи синхронізацій
 

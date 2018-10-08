@@ -83,6 +83,13 @@ namespace ipsFormsDesign.Services
             return rightlist;
         }
 
+        public bool ChangeStatusAgr(int communityId, CPartnerObjectStatus status)
+        {
+            string url = _prefix + "agrstatuschange/" + $"{communityId}/{(int)status}";
+            var result = _webApi.UpdateItem<object>(url, null, null);
+            return result;
+        }
+
 
     }
 }

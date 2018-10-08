@@ -62,8 +62,8 @@
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.pvAgrData = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pageViewAgreement = new Telerik.WinControls.UI.RadPageView();
-            this.pvAgrAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.lblCommunityName = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ddbtnChangeAgrStatus = new Telerik.WinControls.UI.RadSplitButton();
             this.btnAcceptAgr = new Telerik.WinControls.UI.RadMenuItem();
@@ -71,9 +71,6 @@
             this.lblStatusName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlAgreement = new IpsViewComponentLibrary.CommunityControls.CommunityAgreementControl();
-            this.pvAgrRightLimit = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvAgrTerritoryLimit = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvAgrPrint = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvAutorsData = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnAddCommunity = new Telerik.WinControls.UI.RadButton();
             this.gvViewAutors = new Telerik.WinControls.UI.RadGridView();
@@ -104,9 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             this.pvBank.SuspendLayout();
             this.pvAgrData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pageViewAgreement)).BeginInit();
-            this.pageViewAgreement.SuspendLayout();
-            this.pvAgrAgreement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCommunityName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnChangeAgrStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).BeginInit();
@@ -451,49 +447,45 @@
             // 
             // pvAgrData
             // 
-            this.pvAgrData.Controls.Add(this.pageViewAgreement);
+            this.pvAgrData.Controls.Add(this.lblCommunityName);
+            this.pvAgrData.Controls.Add(this.radLabel2);
+            this.pvAgrData.Controls.Add(this.groupBox1);
+            this.pvAgrData.Controls.Add(this.ctrlAgreement);
             this.pvAgrData.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.pvAgrData.Location = new System.Drawing.Point(5, 31);
             this.pvAgrData.Name = "pvAgrData";
             this.pvAgrData.Size = new System.Drawing.Size(966, 500);
             this.pvAgrData.Text = "Договір";
             // 
-            // pageViewAgreement
+            // lblCommunityName
             // 
-            this.pageViewAgreement.Controls.Add(this.pvAgrAgreement);
-            this.pageViewAgreement.Controls.Add(this.pvAgrRightLimit);
-            this.pageViewAgreement.Controls.Add(this.pvAgrTerritoryLimit);
-            this.pageViewAgreement.Controls.Add(this.pvAgrPrint);
-            this.pageViewAgreement.DefaultPage = this.pvAgrAgreement;
-            this.pageViewAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pageViewAgreement.Location = new System.Drawing.Point(0, 0);
-            this.pageViewAgreement.Name = "pageViewAgreement";
-            this.pageViewAgreement.SelectedPage = this.pvAgrAgreement;
-            this.pageViewAgreement.Size = new System.Drawing.Size(966, 500);
-            this.pageViewAgreement.TabIndex = 2;
-            this.pageViewAgreement.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewAgreement.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewAgreement.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewAgreement.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
+            this.lblCommunityName.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblCommunityName.Location = new System.Drawing.Point(18, 29);
+            this.lblCommunityName.Name = "lblCommunityName";
+            this.lblCommunityName.Size = new System.Drawing.Size(37, 19);
+            this.lblCommunityName.TabIndex = 6;
+            this.lblCommunityName.Text = "name";
+            this.lblCommunityName.ThemeName = "Office2013Light";
             // 
-            // pvAgrAgreement
+            // radLabel2
             // 
-            this.pvAgrAgreement.Controls.Add(this.groupBox1);
-            this.pvAgrAgreement.Controls.Add(this.ctrlAgreement);
-            this.pvAgrAgreement.Location = new System.Drawing.Point(141, 5);
-            this.pvAgrAgreement.Name = "pvAgrAgreement";
-            this.pvAgrAgreement.Size = new System.Drawing.Size(820, 490);
-            this.pvAgrAgreement.Text = "Договір";
+            this.radLabel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.radLabel2.Location = new System.Drawing.Point(18, 4);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(202, 19);
+            this.radLabel2.TabIndex = 5;
+            this.radLabel2.Text = "Тип договору: Угода зі спільнотою";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.ddbtnChangeAgrStatus);
             this.groupBox1.Controls.Add(this.lblStatusName);
             this.groupBox1.Controls.Add(this.radLabel1);
-            this.groupBox1.Location = new System.Drawing.Point(25, 272);
+            this.groupBox1.Location = new System.Drawing.Point(10, 320);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(501, 56);
-            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Налаштування договору";
             // 
@@ -537,10 +529,10 @@
             this.lblStatusName.RootElement.MinSize = new System.Drawing.Size(120, 18);
             this.lblStatusName.Size = new System.Drawing.Size(143, 18);
             this.lblStatusName.TabIndex = 42;
-            this.lblStatusName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.lblStatusName.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.lblStatusName.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
@@ -565,31 +557,10 @@
             // ctrlAgreement
             // 
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddCommunity);
-            this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
+            this.ctrlAgreement.Location = new System.Drawing.Point(7, 54);
             this.ctrlAgreement.Name = "ctrlAgreement";
             this.ctrlAgreement.Size = new System.Drawing.Size(641, 260);
-            this.ctrlAgreement.TabIndex = 1;
-            // 
-            // pvAgrRightLimit
-            // 
-            this.pvAgrRightLimit.Location = new System.Drawing.Point(141, 5);
-            this.pvAgrRightLimit.Name = "pvAgrRightLimit";
-            this.pvAgrRightLimit.Size = new System.Drawing.Size(820, 490);
-            this.pvAgrRightLimit.Text = "Обмеження прав";
-            // 
-            // pvAgrTerritoryLimit
-            // 
-            this.pvAgrTerritoryLimit.Location = new System.Drawing.Point(141, 5);
-            this.pvAgrTerritoryLimit.Name = "pvAgrTerritoryLimit";
-            this.pvAgrTerritoryLimit.Size = new System.Drawing.Size(820, 490);
-            this.pvAgrTerritoryLimit.Text = "Обмеження території";
-            // 
-            // pvAgrPrint
-            // 
-            this.pvAgrPrint.Location = new System.Drawing.Point(141, 5);
-            this.pvAgrPrint.Name = "pvAgrPrint";
-            this.pvAgrPrint.Size = new System.Drawing.Size(820, 490);
-            this.pvAgrPrint.Text = "Друк";
+            this.ctrlAgreement.TabIndex = 3;
             // 
             // pvAutorsData
             // 
@@ -609,7 +580,7 @@
             this.btnAddCommunity.Name = "btnAddCommunity";
             this.btnAddCommunity.Size = new System.Drawing.Size(220, 24);
             this.btnAddCommunity.TabIndex = 14;
-            this.btnAddCommunity.Text = "Додати Автора";
+            this.btnAddCommunity.Text = "Обмеження прав правовласників";
             this.btnAddCommunity.ThemeName = "Office2013Light";
             this.btnAddCommunity.Click += new System.EventHandler(this.btnAddCommunity_Click);
             // 
@@ -661,7 +632,7 @@
             gridViewTextBoxColumn5.HeaderText = "Правовласник";
             gridViewTextBoxColumn5.MinWidth = 80;
             gridViewTextBoxColumn5.Name = "Name";
-            gridViewTextBoxColumn5.Width = 485;
+            gridViewTextBoxColumn5.Width = 484;
             gridViewTextBoxColumn6.FieldName = "RegistrDate";
             gridViewTextBoxColumn6.FormatString = "{0:d}";
             gridViewTextBoxColumn6.HeaderText = "Дата народження/ Дата створення";
@@ -772,9 +743,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             this.pvBank.ResumeLayout(false);
             this.pvAgrData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pageViewAgreement)).EndInit();
-            this.pageViewAgreement.ResumeLayout(false);
-            this.pvAgrAgreement.ResumeLayout(false);
+            this.pvAgrData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCommunityName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnChangeAgrStatus)).EndInit();
@@ -819,20 +790,17 @@
         private Telerik.WinControls.UI.RadPageViewPage pvBank;
         private IpsBankAccountControl ctrlBankAccount;
         private ConsumerControls.TabNavigationControl ctrlTabNavigation;
-        private Telerik.WinControls.UI.RadPageView pageViewAgreement;
-        private Telerik.WinControls.UI.RadPageViewPage pvAgrAgreement;
-        private CommunityAgreementControl ctrlAgreement;
-        private Telerik.WinControls.UI.RadPageViewPage pvAgrRightLimit;
-        private Telerik.WinControls.UI.RadPageViewPage pvAgrTerritoryLimit;
-        private Telerik.WinControls.UI.RadPageViewPage pvAgrPrint;
         private Common.SearchTextBoxControl ctrlSearch;
         private Telerik.WinControls.UI.RadGridView gvViewAutors;
         private Telerik.WinControls.UI.RadButton btnAddCommunity;
+        private Telerik.WinControls.UI.RadLabel lblCommunityName;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.Windows.Forms.GroupBox groupBox1;
         private Telerik.WinControls.UI.RadSplitButton ddbtnChangeAgrStatus;
         private Telerik.WinControls.UI.RadMenuItem btnAcceptAgr;
         private Telerik.WinControls.UI.RadMenuItem btnCloseAgr;
         private Telerik.WinControls.UI.RadLabel lblStatusName;
         private Telerik.WinControls.UI.RadLabel radLabel1;
+        private CommunityAgreementControl ctrlAgreement;
     }
 }
