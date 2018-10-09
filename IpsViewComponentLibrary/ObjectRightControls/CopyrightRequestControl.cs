@@ -86,6 +86,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public CopyrightRequestControl()
         {
             InitializeComponent();
+
+            gvRightholdersList.SetCommandColumnImageAlignment("PrintColumn", ContentAlignment.MiddleCenter);
         }
 
         private void SetDictionaries()
@@ -105,9 +107,22 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void gvRightholdersList_SelectionChanged(object sender, EventArgs e)
         {
-            var custId = ((RightolderWithNotAcceptedCopyrightViewModel)gvRightholdersList.CurrentRow.DataBoundItem).CustId;
+            _presenter.UpdateObjectsList();
+        }
 
-            _presenter.UpdateObjectsList(custId);
+        private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            var currentColumnName = e.Column.Name;
+
+            if (currentColumnName == "PrintColumn")
+            {
+                _presenter.Print();
+            }
+        }
+
+        private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        {
+            Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -161,15 +176,5 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         }
 
         #endregion
-
-        private void gvRightholdersList_CommandCellClick(object sender, GridViewCellEventArgs e)
-        {
-            var currentColumnName = e.Column.Name;
-
-            if (currentColumnName == "PrintColumn")
-            {
-                _presenter.Print();
-            }
-        }
     }
 }

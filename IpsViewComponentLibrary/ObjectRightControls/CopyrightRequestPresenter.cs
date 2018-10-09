@@ -28,9 +28,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             _view.RightholderListDataSource = rightholderList;
         }
 
-        public void UpdateObjectsList(int custId)
+        public void UpdateObjectsList()
         {
-            var objectRightList = _rightholderService.GetNotAcceptedObjectsByRightholder(custId);
+            var objectRightList = _rightholderService.GetNotAcceptedObjectsByRightholder(_view.SelectedRightholder.CustId);
             _view.ObjectRightListDataSource = objectRightList;
         }
 
@@ -65,7 +65,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             if (result)
             {
-                UpdateObjectsList(_view.SelectedRightholder.CustId);
+                UpdateObjectsList();
             }
             else
                 _dialogService.ShowError(_view, "Не вдалося зберегти зміни.");
@@ -84,6 +84,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void UpdateStatusAndDate(ICollection<ObjectRightNotAccepted> objectRightList)
         {
+            _view.SelectedRightholder.WorkDateRH = DateTime.Now;
+
             foreach (var obj in objectRightList)
             {
                 obj.WorkDateRH = DateTime.Now;
