@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace ipsFormsDesign.Interfaces
@@ -19,7 +20,7 @@ namespace ipsFormsDesign.Interfaces
         public string Country { get; set; }
     }
 
-    public class RightolderWithNotAcceptedCopyrightViewModel
+    public class RightolderWithNotAcceptedCopyrightViewModel : INotifyPropertyChanged
     {
         public int CustId { get; set; }
         public string InnerCode { get; set; }
@@ -27,7 +28,25 @@ namespace ipsFormsDesign.Interfaces
         public string Name { get; set; }
         public int CntObj { get; set; }
         public DateTime? RegistrDate { get; set; }
-        public DateTime? WorkDateRH { get; set; }
+        private DateTime? _workDateRH;
+        public DateTime? WorkDateRH
+        {
+            get { return _workDateRH; }
+            set
+            {
+                _workDateRH = value;
+                OnPropertyChanged(nameof(WorkDateRH));
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            var args = new PropertyChangedEventArgs(propertyName);
+
+            PropertyChanged?.Invoke(this, args);
+        }
     }
 
     public interface IRightHolderService : IModel
