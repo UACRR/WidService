@@ -21,14 +21,14 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void gvMoneyResived_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvMoneyResived.CurrentRow == null || !(gvMoneyResived.CurrentRow.DataBoundItem is MoneyReceived))
+            if (!(gvMoneyResived.CurrentRow?.DataBoundItem is MoneyReceived))
             {
                 bindingPeriod.DataSource = typeof(IPeriodView);
                 return;
             }
 
-            var list = (gvMoneyResived.CurrentRow.DataBoundItem as MoneyReceived).MoneyPeriodLink
-                        .Select(rec => new PeriodView(rec)).ToList();
+            var list = ((MoneyReceived) gvMoneyResived.CurrentRow.DataBoundItem).MoneyPeriodLink
+                .Select(rec => new PeriodView(rec, _customer.Client.LicenseAgreement.SingleOrDefault(i => i?.LicId == rec?.LicId)?.Agr?.AgreementAddBr?.SingleOrDefault())).ToList();
 
             bindingPeriod.DataSource = list;
         }
@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Customer _customer;
         public Customer Customer
         {
-            get { return _customer; }
+            get => _customer;
             set
             {
                 _customer = value;
@@ -68,6 +68,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
                             if (!link.Paid.MoneyPeriodLink.Contains(link))
                                 link.Paid.MoneyPeriodLink.Add(link);
                         }
+
+                        if (link.Period == null)
+                        {
+                            link.Period = period;
+                        }
                     }
             }
         }
@@ -89,16 +94,18 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private LicenseAgrParam _license;
         private MoneyPeriodLink _periodlink;
         private PeriodStatus _periodStatus;
-        public PeriodView(MoneyPeriodLink periodlink)
+        private AgreementAddBr _agreementAddBr;
+        public PeriodView(MoneyPeriodLink periodlink, AgreementAddBr agreementAddBr = null)
         {
             _periodlink = periodlink;
             _period = periodlink.Period;
+            _agreementAddBr = agreementAddBr;
             _license = _period?.Lic?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == _period?.Lic?.LicVersion);
             _periodStatus = IpsGlobal.AnketaDictionaties?.periodStatus?.SingleOrDefault(rec => rec?.CodeI == _period?.Status);
         }
 
-        public string LicNum { get => _license?.LicNum; }
-        public DateTime? LicDate { get => _license?.LicDate; }
+        public string LicNum { get => _license?.LicNum ?? _agreementAddBr?.AgrNumber; }
+        public DateTime? LicDate { get => _license?.LicDate ?? _agreementAddBr?.AgrDate; }
         public string PeriodName { get => _period?.PeriodName; }
         public string PeriodStatus { get => _periodStatus?.Name; }
         public decimal? PayAmount { get => _periodlink?.Amount; }

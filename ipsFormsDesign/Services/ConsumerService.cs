@@ -18,8 +18,8 @@ namespace ipsFormsDesign.Services
         private readonly string _prefix = "consumer/";
         public Customer GetData(int custId)
         {
-            var anketaDic = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString());
-            return anketaDic;
+            var consumer = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString());
+            return consumer;
         }
 
         public ConsumerMainView GetShortInfoById(int custId)

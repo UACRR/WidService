@@ -99,7 +99,6 @@ namespace WebAPIConnector
 
         }
 
-
         /// <summary>
         /// Получити список об'єктів з серверу додатків
         /// </summary>

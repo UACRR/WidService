@@ -336,7 +336,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             return result;
         }
 
-        // TODO: ??
         private bool SaveWorkRh(int licId, List<WorkRh> workRhList)
         {
             if (workRhList == null)
@@ -383,7 +382,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         {
             return _service.RemovePartnerForCustomer(clientId, partnerId);
         }
-
 
         // TODO: перехід на точечне оновлення
         private void UpdateData(int id)

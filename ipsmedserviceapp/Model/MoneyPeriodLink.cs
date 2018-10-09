@@ -16,7 +16,6 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
         public MoneyReceived Paid { get; set; }
-        [JsonIgnore]
         public PaidPeriod Period { get; set; }
         [JsonIgnore]
         public MoneyLinkStatus StatusNavigation { get; set; }

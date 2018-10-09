@@ -46,6 +46,8 @@ namespace ipsmedserviceapp.Controllers
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors)
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.CopyRight)
                     .LoadAsync();
+                
+                await _dbContext.Entry(item).Collection(rec => rec.MoneyPeriodLink).Query().Include(rec => rec.Period).LoadAsync();
 
                 foreach (var royalty in item.LicenseBigR.Obj.CopyRight)
                 {
@@ -101,7 +103,8 @@ namespace ipsmedserviceapp.Controllers
                     .Include(rec => rec.License)
                     .LoadAsync();
 
-                await _dbContext.Entry(licAgreement).Collection(rec => rec.MoneyPeriodLink).LoadAsync();
+                await _dbContext.Entry(licAgreement).Collection(rec => rec.MoneyPeriodLink).Query()
+                    .Include(r => r.Period).LoadAsync();
                 // Великі права
             }
             // Великі права
