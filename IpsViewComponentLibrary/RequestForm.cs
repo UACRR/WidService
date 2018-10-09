@@ -142,7 +142,8 @@ namespace IpsViewComponentLibrary
 
             #endregion
 
-            ReadOnly = GetReadOnly();
+            if (GetReadOnly() == true) // TODO: read only must be a enum
+                ReadOnly = true;
             SetControlsVisibility();
         }
 
