@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
+using ipsmedserviceapp.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
@@ -25,12 +26,16 @@ namespace ipsmedserviceapp.Controllers
     [Route("api/Consumer")]
     public class ConsumerController : Controller
     {
+        private readonly AmountDistributor _rateDistributor;
         private MediaServiceContext _dbContext;
         private IConfiguration _config;
+
         public ConsumerController(MediaServiceContext dbContext, IConfiguration config)
         {
             _dbContext = dbContext;
             _config = config;
+            _rateDistributor = new AmountDistributor();
+            _rateDistributor.Amount = 100;
         }
 
         /// <summary>
@@ -488,6 +493,9 @@ namespace ipsmedserviceapp.Controllers
                         }
 
                     }, (l, r) => l.CRightId == r.CRightId);
+
+                // calculate Rate by RoleRate
+                _rateDistributor.DistributeByProperty(license.LicenseBigR.Obj.CopyRight, cr => cr.RoleRate, cr => cr.Rate);
 
                 _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
 
