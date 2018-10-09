@@ -45,6 +45,9 @@ namespace IpsViewComponentLibrary
                             FormMode formMode = FormMode.ForBigRightAdmin)
         {
             InitializeComponent();
+
+            SetDictionaries();
+
             txtMusicRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             txtVinagoroda.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             dictionaties = IpsGlobal.AnketaDictionaties;
@@ -110,7 +113,6 @@ namespace IpsViewComponentLibrary
             {
                 bsConsumerBigRightView.DataSource = bigRightView;
                 _licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
-
                 bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
                 bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
                 bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == _licenseAgreement.LicVersion)?.License;
@@ -134,13 +136,21 @@ namespace IpsViewComponentLibrary
                 }
             }
 
+            bsLicenseAgreement.DataSource = _licenseAgreement;
             ctrlMusicalDesignList.ShowDurationUse = false;
             ctrlMusicalDesignList.ShowLinked = false;
 
             #endregion
 
-            ReadOnly = GetReadOnly();
+            if (GetReadOnly() == true) // TODO: read only must be a enum
+                ReadOnly = true;
             SetControlsVisibility();
+        }
+
+        private void SetDictionaries()
+        {
+            ddlState.SetDataSource(IpsGlobal.AnketaDictionaties.licenseType);
+            ddlStatus.SetDataSource(IpsGlobal.AnketaDictionaties.agreementStatus);
         }
 
         private bool GetReadOnly()
@@ -454,28 +464,16 @@ namespace IpsViewComponentLibrary
 
         private void btnSetActiveStatus_Click(object sender, EventArgs e)
         {
-            var result = _consumerService.SetLicAgreementStatus(_licenseAgreement, _licenseAgreement.LicVersion.Value, 2);
-
-            if (result)
-            {
-                _dialogService.ShowMessage(this, "Переведено до статусу: Активний.");
-                panelStatusees.Enabled = false;
-            }
-            else
-                _dialogService.ShowError(this, "Не вдалося змінити статус.");
+            _licenseAgreement.LicStatus = 2;
+            _licenseAgreement.LicenseAgrParam.First().LicStatus = 2;
+            bsLicAgrParam.ResetCurrentItem();
         }
 
         private void btnSetCanceledStatus_Click(object sender, EventArgs e)
         {
-            var result = _consumerService.SetLicAgreementStatus(_licenseAgreement, _licenseAgreement.LicVersion.Value, 5);
-
-            if (result)
-            {
-                _dialogService.ShowMessage(this, "Переведено до статусу: Відхилений.");
-                panelStatusees.Enabled = false;
-            }
-            else
-                _dialogService.ShowError(this, "Не вдалося змінити статус.");
+            _licenseAgreement.LicStatus = 5;
+            _licenseAgreement.LicenseAgrParam.First().LicStatus = 5;
+            bsLicAgrParam.ResetCurrentItem();
         }
 
         private void ddlPerformType_Leave(object sender, EventArgs e)
