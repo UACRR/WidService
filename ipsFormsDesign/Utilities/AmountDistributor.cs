@@ -19,11 +19,11 @@ namespace ipsFormsDesign.Utilities
             var count = list.Count();
             decimal newAmount = Amount / count;
             decimal newRoundAmount = Math.Round(newAmount, 2);
-            var delta = (newAmount - newRoundAmount) * count;
+            var delta = Math.Round((newAmount - newRoundAmount) * count, 2);
 
             foreach (var item in list)
             {
-                var distrAmount = Amount / count + delta;
+                var distrAmount = newRoundAmount + delta;
                 propertyInfo.SetValue(item, distrAmount, null);
 
                 delta = 0;
