@@ -156,6 +156,11 @@ namespace IpsViewComponentLibrary.RegisterControls
             dtCreateDateTill.Value = DateTime.MinValue;
         }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
         private void EditRegister(RegisterListViewModel selectedRegister)
         {
             using (var view = new RegisterView())

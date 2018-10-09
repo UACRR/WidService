@@ -159,20 +159,11 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             if (status == RegisterStatusType.OnDistribution && _view.RegisterItemList.Any(item => item.ObjId == null))
             {
-                _dialogService.ShowError(_view, "Не визначені всі об'єкти. Закінчіть роботу зі звітом.");
+                _dialogService.ShowError(_view, "Не всі об'єкти прив'язані. Закінчіть роботу зі звітом.");
                 return;
             }
 
-            var result = _registerService.SetStatus(_register.RegId, status);
-
-            if (result)
-            {
-                _register.RgStatus = (int)status;
-                
-                _view.SetStatus(status);
-            }
-            else
-                _dialogService.ShowError(_view, "Не вдалося змінити статус.");
+            _register.RgStatus = (int)status;
         }
 
         public void Save()
