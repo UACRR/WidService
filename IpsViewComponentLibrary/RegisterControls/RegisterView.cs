@@ -207,11 +207,13 @@ namespace IpsViewComponentLibrary.RegisterControls
         private void btnSetStatus_Click(object sender, EventArgs e)
         {
             _presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag);
+            bsRegister.ResetCurrentItem();
         }
 
         private void btnSetCanceledStatus_Click(object sender, EventArgs e)
         {
             _presenter.SetStatus(RegisterStatusType.Canceled);
+            bsRegister.ResetCurrentItem();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
