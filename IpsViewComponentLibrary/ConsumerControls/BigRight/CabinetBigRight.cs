@@ -170,6 +170,7 @@ namespace IpsViewComponentLibrary
             ctrlReference.UpdateData += UpdateData;
             ctrlPayslips.UpdateData += UpdateData;
             ctrlPartner.UpdateData += UpdateData;
+            ctrlCalculation.UpdateData += UpdateData;
         }
 
         private void UpdateData()

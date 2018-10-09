@@ -90,7 +90,7 @@ namespace ConsumerWorkplace_v_1._0
                 //cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
                 cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
                 cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
-                cabinet.pagesControl.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
+                //cabinet.pagesControl.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
                 //cabinet.SetDictionary(_service.GetDictionary());
                 //cabinet.SetGridDataSource(getMainView());
                 cabinet.Dock = DockStyle.Fill;

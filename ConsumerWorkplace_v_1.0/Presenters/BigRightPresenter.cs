@@ -139,7 +139,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         #endregion
 
-
         //зміна даних по фільтру
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {

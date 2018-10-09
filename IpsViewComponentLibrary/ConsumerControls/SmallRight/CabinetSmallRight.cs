@@ -23,9 +23,6 @@ namespace IpsViewComponentLibrary
         private int _customerId;
         private Customer _customer;
 
-        // на майбутнє (при зміні рядка оновлення даних)
-        public event UpdateCustomerDataEventHandler OnGridRowSelectedChaged;
-
         public delegate void CallEditCustomer(int id);
 
         public event UpdateCustomerDataEventHandler OnUpdateCustomerNeed;
@@ -52,12 +49,17 @@ namespace IpsViewComponentLibrary
             pagesControl.Rights = TypeRights.SmallRights;
             pagesControl.OnCustomerSave += SaveCustomer;
             pagesControl.OnChangeLicenseStatus += PagesControlOnChangeLicenseStatus;
-            pagesControl.OnUpdateCustomerNeed += PagesControl_OnUpdateCustomerNeed;
             pagesControl.GetPartner += PagesControl_GetPartner;
             pagesControl.OnSetPartner += PagesControl_OnSetPartner;
             pagesControl.OnChangePartner += PagesControl_OnChangePartner;
             pagesControl.OnRemovePartner += PagesControl_OnRemovePartner;
             pagesControl.OnGetPartnerListNeed += PagesControl_OnGetPartnerListNeed;
+            pagesControl.calculationCtrl.UpdateData += UpdateCustomer;
+        }
+
+        private void CalculationCtrl_UpdateData()
+        {
+            OnUpdateCustomerNeed?.Invoke(_customer.CustId);
         }
 
         private List<Customer> PagesControl_OnGetPartnerListNeed()
@@ -85,7 +87,7 @@ namespace IpsViewComponentLibrary
             return GetPartner?.Invoke(custId);
         }
 
-        private void PagesControl_OnUpdateCustomerNeed(int id)
+        private void UpdateCustomer()
         {
             OnUpdateCustomerNeed?.Invoke(_customerId);
         }

@@ -30,7 +30,6 @@ namespace IpsViewComponentLibrary
         public event GetPartnerList OnGetPartnerListNeed;
 
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
-        public event UpdateCustomerDataEventHandler OnUpdateCustomerNeed;
 
         /// <summary>
         /// Тип прав (великі або малі права)

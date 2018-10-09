@@ -74,6 +74,7 @@
             this.btnDistribute = new Telerik.WinControls.UI.RadMenuItem();
             this.btnCancelDistribute = new Telerik.WinControls.UI.RadMenuItem();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paidPeriodBindingSource)).BeginInit();
@@ -97,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel3)).BeginInit();
             this.splitPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnAction)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
             this.SuspendLayout();
             // 
             // gvPeriodsPayment
@@ -406,6 +408,7 @@
             // 
             // splitPanel1
             // 
+            this.splitPanel1.Controls.Add(this.btnUpdate);
             this.splitPanel1.Controls.Add(this.gvUserMoneys);
             this.splitPanel1.Controls.Add(this.radLabel1);
             this.splitPanel1.Location = new System.Drawing.Point(0, 0);
@@ -486,6 +489,17 @@
             this.btnCancelDistribute.Name = "btnCancelDistribute";
             this.btnCancelDistribute.Text = "Скасувати прив\'язку";
             // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdate.Location = new System.Drawing.Point(854, 3);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(95, 24);
+            this.btnUpdate.TabIndex = 14;
+            this.btnUpdate.Text = "Оновити";
+            this.btnUpdate.ThemeName = "Office2013Light";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // CalculationInfoControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -517,6 +531,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel3)).EndInit();
             this.splitPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnAction)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -542,5 +557,6 @@
         private Telerik.WinControls.UI.RadMenuItem btnDistribute;
         private Telerik.WinControls.UI.RadMenuItem btnCancelDistribute;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadButton btnUpdate;
     }
 }

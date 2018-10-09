@@ -23,9 +23,8 @@ namespace IpsViewComponentLibrary
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
         public event EventHandler<List<MoneyPeriodLink>> SaveLinkCommandExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
+        public event EmptyEventHandler UpdateData;
 
-        public delegate void UpdateCustomerDataEventHandler(int id);
-        public event UpdateCustomerDataEventHandler UpdateData;
         private GridDataRowElement dragRow;
         private GridDataRowElement dropRow;
         private ButtonController buttonController;
@@ -315,7 +314,7 @@ namespace IpsViewComponentLibrary
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 SavePariodCommandExecuted(this, currentAgree.Lic.PaidPeriod.ToList());
-                UpdateData?.Invoke(_customer.CustId);
+                UpdateData?.Invoke();
                 SetupAllBinding();
             }
         }
@@ -448,6 +447,12 @@ namespace IpsViewComponentLibrary
         private void gvPeriodsPayment_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             buttonController.changePeriod(e.CurrentRow?.DataBoundItem as PaidPeriod);
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateData?.Invoke();
+            SetupAllBinding();
         }
     }
 
