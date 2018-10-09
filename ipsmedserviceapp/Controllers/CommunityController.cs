@@ -257,6 +257,12 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Зміна статусу договору спільноти
+        /// </summary>
+        /// <param name="communityId"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         [HttpPut("agrstatuschange/{communityId}/{status}")]
         public async Task<IActionResult> ChangeAgreementStatus(int communityId, int status)
         {

@@ -129,6 +129,22 @@ namespace IpsViewComponentLibrary
             return itemsList;
         }
 
+        /// <summary>
+        /// Метод ігнорування дублікатів в списку
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <typeparam name="TKey"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="keySelector"></param>
+        /// <returns></returns>
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
+        {
+            HashSet<TKey> seenKeys = new HashSet<TKey>();
+            foreach (TSource item in source)
+                if (seenKeys.Add(keySelector(item)))
+                    yield return item;
+        }
+
         public static void ShowMessage(bool result, MessageType messageType)
         {
             string msgText = string.Empty;

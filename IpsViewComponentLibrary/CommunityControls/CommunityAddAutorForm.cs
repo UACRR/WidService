@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         private readonly List<CopyrightKind> _copyrightKinds = null;
         private List<RightLimitationsView> _rightLimitationsViews = null;
         private readonly List<CommunityInfo> _communities;
-        private List<CommunityAutorsListView> _autorList;
+        private readonly List<CommunityAutorsListView> _autorList;
         private readonly int _communityCustId;
 
         public List<CustCmRight> LimitRights { get; private set; } = new List<CustCmRight>();
@@ -71,7 +71,10 @@ namespace IpsViewComponentLibrary.CommunityControls
             var rightList = GetCommunityRightList?.Invoke(cmnt.CustId);
             var items = rightList?.Where(rec => rec?.CmCustId == _communityCustId).ToList();
             if(items != null)
+            {
+                LimitRights.Clear();
                 LimitRights.AddRange(items);
+            }
 
             foreach (var kind in _copyrightKinds)
             {

@@ -148,7 +148,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         //додати автора
         private void btnAddCommunity_Click(object sender, EventArgs e)
         {
-            var autorsList = GetAutorsList?.Invoke();
+            var autorsList = GetAutorsList?.Invoke().DistinctBy(rec => rec.CustId).ToList();
             var addAutorForm = new CommunityAddAutorForm(autorsList, _customer.CustId)
             {
                 StartPosition = FormStartPosition.CenterScreen,
