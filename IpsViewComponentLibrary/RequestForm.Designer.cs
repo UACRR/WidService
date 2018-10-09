@@ -113,6 +113,11 @@ namespace IpsViewComponentLibrary
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlState = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
+            this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
+            this.bsLicenseAgreement = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAuthors.SuspendLayout();
@@ -196,6 +201,11 @@ namespace IpsViewComponentLibrary
             this.radPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlState)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -210,7 +220,7 @@ namespace IpsViewComponentLibrary
             this.pageView.DefaultPage = this.pvAuthors;
             this.pageView.Location = new System.Drawing.Point(0, 222);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvMusicalArrangement;
+            this.pageView.SelectedPage = this.pvAuthors;
             this.pageView.Size = new System.Drawing.Size(1077, 414);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
@@ -523,6 +533,7 @@ namespace IpsViewComponentLibrary
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlMusicalDesignList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlMusicalDesignList.DataSourceRegisterCount = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
             this.ctrlMusicalDesignList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlMusicalDesignList.Location = new System.Drawing.Point(0, 46);
             this.ctrlMusicalDesignList.MultiSelect = false;
@@ -663,6 +674,7 @@ namespace IpsViewComponentLibrary
             this.txtStatusName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "StatusName", true));
             this.txtStatusName.Location = new System.Drawing.Point(148, 123);
             this.txtStatusName.Name = "txtStatusName";
+            this.txtStatusName.ReadOnly = true;
             this.txtStatusName.Size = new System.Drawing.Size(189, 21);
             this.txtStatusName.TabIndex = 103;
             this.txtStatusName.ThemeName = "Office2013Light";
@@ -676,6 +688,7 @@ namespace IpsViewComponentLibrary
             this.txtAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "AgrDate", true));
             this.txtAgrDate.Location = new System.Drawing.Point(370, 95);
             this.txtAgrDate.Name = "txtAgrDate";
+            this.txtAgrDate.ReadOnly = true;
             this.txtAgrDate.Size = new System.Drawing.Size(167, 21);
             this.txtAgrDate.TabIndex = 102;
             this.txtAgrDate.ThemeName = "Office2013Light";
@@ -685,6 +698,7 @@ namespace IpsViewComponentLibrary
             this.txtClientAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "JaAddress", true));
             this.txtClientAddress.Location = new System.Drawing.Point(148, 42);
             this.txtClientAddress.Name = "txtClientAddress";
+            this.txtClientAddress.ReadOnly = true;
             this.txtClientAddress.Size = new System.Drawing.Size(389, 21);
             this.txtClientAddress.TabIndex = 101;
             this.txtClientAddress.ThemeName = "Office2013Light";
@@ -694,6 +708,7 @@ namespace IpsViewComponentLibrary
             this.txtAgrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "AgrNumber", true));
             this.txtAgrNumber.Location = new System.Drawing.Point(148, 95);
             this.txtAgrNumber.Name = "txtAgrNumber";
+            this.txtAgrNumber.ReadOnly = true;
             this.txtAgrNumber.Size = new System.Drawing.Size(189, 21);
             this.txtAgrNumber.TabIndex = 100;
             this.txtAgrNumber.ThemeName = "Office2013Light";
@@ -703,6 +718,7 @@ namespace IpsViewComponentLibrary
             this.txtInnOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "Innokpo", true));
             this.txtInnOkpo.Location = new System.Drawing.Point(148, 68);
             this.txtInnOkpo.Name = "txtInnOkpo";
+            this.txtInnOkpo.ReadOnly = true;
             this.txtInnOkpo.Size = new System.Drawing.Size(189, 21);
             this.txtInnOkpo.TabIndex = 99;
             this.txtInnOkpo.ThemeName = "Office2013Light";
@@ -712,6 +728,7 @@ namespace IpsViewComponentLibrary
             this.txtClientName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "Name", true));
             this.txtClientName.Location = new System.Drawing.Point(148, 15);
             this.txtClientName.Name = "txtClientName";
+            this.txtClientName.ReadOnly = true;
             this.txtClientName.Size = new System.Drawing.Size(389, 21);
             this.txtClientName.TabIndex = 98;
             this.txtClientName.ThemeName = "Office2013Light";
@@ -1018,11 +1035,57 @@ namespace IpsViewComponentLibrary
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(531, 11);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(33, 19);
+            this.radLabel2.TabIndex = 98;
+            this.radLabel2.Text = "Стан";
+            this.radLabel2.ThemeName = "Office2013Light";
+            // 
+            // radLabel9
+            // 
+            this.radLabel9.Location = new System.Drawing.Point(735, 11);
+            this.radLabel9.Name = "radLabel9";
+            this.radLabel9.Size = new System.Drawing.Size(42, 19);
+            this.radLabel9.TabIndex = 99;
+            this.radLabel9.Text = "Статус";
+            this.radLabel9.ThemeName = "Office2013Light";
+            // 
+            // ddlState
+            // 
+            this.ddlState.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseAgreement, "LicType", true));
+            this.ddlState.Location = new System.Drawing.Point(570, 9);
+            this.ddlState.Name = "ddlState";
+            this.ddlState.ReadOnly = true;
+            this.ddlState.Size = new System.Drawing.Size(147, 21);
+            this.ddlState.TabIndex = 100;
+            this.ddlState.ThemeName = "Office2013Light";
+            // 
+            // ddlStatus
+            // 
+            this.ddlStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicAgrParam, "LicStatus", true));
+            this.ddlStatus.Location = new System.Drawing.Point(783, 9);
+            this.ddlStatus.Name = "ddlStatus";
+            this.ddlStatus.ReadOnly = true;
+            this.ddlStatus.Size = new System.Drawing.Size(147, 21);
+            this.ddlStatus.TabIndex = 101;
+            this.ddlStatus.ThemeName = "Office2013Light";
+            // 
+            // bsLicenseAgreement
+            // 
+            this.bsLicenseAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            // 
             // RequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1082, 675);
+            this.Controls.Add(this.ddlStatus);
+            this.Controls.Add(this.ddlState);
+            this.Controls.Add(this.radLabel9);
+            this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.radPanel2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radLabel1);
@@ -1129,6 +1192,11 @@ namespace IpsViewComponentLibrary
             this.radPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlState)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1219,5 +1287,10 @@ namespace IpsViewComponentLibrary
         private IpsViewComponentLibrary.Common.Editors.IpsTextBox txtClientName;
         private Telerik.WinControls.UI.RadLabel label13;
         private Telerik.WinControls.UI.RadLabel label18;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
+        private Telerik.WinControls.UI.RadLabel radLabel9;
+        private Common.Editors.IpsDropDownList ddlState;
+        private Common.Editors.IpsDropDownList ddlStatus;
+        private BindingSource bsLicenseAgreement;
     }
 }
