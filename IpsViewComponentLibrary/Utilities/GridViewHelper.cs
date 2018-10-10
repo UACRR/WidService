@@ -33,6 +33,39 @@ namespace IpsViewComponentLibrary.Utilities
             }
         }
 
+        public static void DisplayErrors(object sender, CellFormattingEventArgs e)
+        {
+            GridDataCellElement cell = e.CellElement as GridDataCellElement;
+            if (cell != null)
+            {
+                if (cell.ContainsErrors)
+                {
+                    cell.DrawBorder = true;
+                    cell.BorderBoxStyle = BorderBoxStyle.FourBorders;
+                    cell.BorderBottomColor = cell.BorderTopColor = cell.BorderRightShadowColor = cell.BorderLeftShadowColor = Color.Transparent;
+                    cell.BorderBottomShadowColor = cell.BorderTopShadowColor = cell.BorderRightColor = cell.BorderLeftColor = Color.Red;
+                    cell.BorderBottomWidth = cell.BorderTopWidth = cell.BorderRightWidth = cell.BorderLeftWidth = 1;
+                    cell.BorderDrawMode = BorderDrawModes.HorizontalOverVertical; cell.ZIndex = 2;
+                }
+                else
+                {
+                    cell.ResetValue(LightVisualElement.DrawBorderProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderBoxStyleProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderBottomColorProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderBottomShadowColorProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderBottomWidthProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderTopColorProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderTopShadowColorProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderTopWidthProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderLeftColorProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderLeftShadowColorProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderLeftWidthProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.BorderDrawModeProperty, ValueResetFlags.Local);
+                    cell.ResetValue(LightVisualElement.ZIndexProperty, ValueResetFlags.Local);
+                }
+            }
+        }
+
         public static void SetComboboxColumnDataSource(this RadGridView gridView, string columnName, object dataSource, string valueMember, string displayMember)
         {
             var column = GetColumnByName(gridView, columnName) as GridViewComboBoxColumn;
