@@ -710,7 +710,8 @@ namespace ipsmedserviceapp.Controllers
             return Ok(List);
         }
 
-        #region Зміні для фільтрів
+        #region * * * Змінні для фільтрів * * *
+
         Dictionary<ConsumerFilterEnum, string> validQueryForAllDocs = new Dictionary<ConsumerFilterEnum, string> {
             { ConsumerFilterEnum.ForDistribution, "statusUndistribute=1"},
             { ConsumerFilterEnum.Debt, "isnull(borg,0)>0"},
@@ -740,7 +741,62 @@ namespace ipsmedserviceapp.Controllers
                 { ConsumerFilterEnum.NotActive, "statusLic3Noactive=1"}
             } }
         };
+        
         #endregion
+
+
+        #region * * * ВЕЛИКІ ПРАВА * * *
+
+        /// <summary>
+        /// Список SQL VIEW для великих прав
+        /// </summary>
+        private Dictionary<string, string> listBrView = new Dictionary<string, string>
+        {
+            {"vTsk_vBRLicense", "vTsk_vBRLicense"},
+            {"vTsk_1_ListConsumer01", "vTsk_1_ListConsumer01"},
+            {"vTsk_1_ListConsumer02", "vTsk_1_ListConsumer02"},
+            {"vTsk_1_BRBid", "vTsk_1_BRBid"},
+            {"vTsk_1_BRBidAuthors", "vTsk_1_BRBidAuthors"},
+            {"vTsk_1_BRNotice", "vTsk_1_BRNotice"},
+            {"vTSK_1_BRMaster", "vTSK_1_BRMaster"},
+            {"vTSK_1_BRRegister", "vTSK_1_BRRegister"},
+            {"vTsk_1_MoneyUndescrib", "vTsk_1_MoneyUndescrib"},
+            {"vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay"},
+            {"vTSK_1_BRObjects", "vTSK_1_BRObjects"},
+            {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"},
+            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"},
+            {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
+            {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
+            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"}
+        };
+
+        /// <summary>
+        /// Отримати VIEW по назві
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("BR/view/list")]
+        public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
+        {
+            if (viewName == null || !listBrView.Keys.Contains(viewName))
+                return BadRequest();
+
+            string QueryStr = string.Concat("select * from ", listBrView[viewName]);
+            // Немає параметру по Споживачу
+            if (custId == null)
+            {
+                var list = await _dbContext.getViewData(QueryStr, null);
+                return Json(list);
+            }
+            else
+            {
+                QueryStr = string.Concat(QueryStr, " where custId = @custId");
+                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId) });
+                return Json(list);
+
+            }
+        }
 
         /// <summary>
         /// Отримати список Споживачів Великих прав
@@ -782,60 +838,6 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(List);
         }
-        #region BR ******************************************************
-
-        /// <summary>
-        /// Список представлень для великих прав
-        /// </summary>
-        private Dictionary<string, string> listBrView = new Dictionary<string, string>
-        {
-            {"vTsk_vBRLicense", "vTsk_vBRLicense"},
-            {"vTsk_1_ListConsumer01", "vTsk_1_ListConsumer01"},
-            {"vTsk_1_ListConsumer02", "vTsk_1_ListConsumer02"},
-            {"vTsk_1_BRBid", "vTsk_1_BRBid"},
-            {"vTsk_1_BRBidAuthors", "vTsk_1_BRBidAuthors"},
-            {"vTsk_1_BRNotice", "vTsk_1_BRNotice"},
-            {"vTSK_1_BRMaster", "vTSK_1_BRMaster"},
-            {"vTSK_1_BRRegister", "vTSK_1_BRRegister"},
-            {"vTsk_1_MoneyUndescrib", "vTsk_1_MoneyUndescrib"},
-            {"vTSK_1_BRMoneyPrepay", "vTSK_1_BRMoneyPrepay"},
-            {"vTSK_1_BRObjects", "vTSK_1_BRObjects"},
-            {"vTsk_1_BRAuthorsDistributed", "vTsk_1_BRAuthorsDistributed"},
-            {"vTsk_1_BRMusic", "vTsk_1_BRMusic"},
-            {"vTsk_6_ListPartner", "vTsk_6_ListPartner"},
-            {"vTsk_6_ListPClient", "vTsk_6_ListPClient"},
-            {"vTsk_6_ListFreeCln", "vTsk_6_ListFreeCln"}
-        };
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="viewName"></param>
-        /// <param name="custId"></param>
-        /// <returns></returns>
-        [HttpGet("BR/view/list")]
-        public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
-        {
-            if (viewName == null || !listBrView.Keys.Contains(viewName))
-                return BadRequest();
-
-            string QueryStr = string.Concat("select * from ", listBrView[viewName]);
-            // Немає параметру по Споживачу
-            if (custId == null)
-            {
-                var list = await _dbContext.getViewData(QueryStr, null);
-                return Json(list);
-            }
-            else
-            {
-                QueryStr = string.Concat(QueryStr, " where custId = @custId");
-                var list = await _dbContext.getViewData(QueryStr, new[] { new SqlParameter("@custId", custId) });
-                return Json(list);
-
-            }
-        }
 
         [HttpGet("listBR/agrmaster/{custId}")]
         public async Task<IActionResult> GetAgrForCustId(int custId)
@@ -858,6 +860,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(List);
         }
+
         /// <summary>
         /// Збереження Погодження Користувача
         /// </summary>
@@ -910,6 +913,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok();
         }
+
         #endregion
 
         [HttpGet("listAll/{filter}")]
@@ -1251,11 +1255,8 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 else
                     destItem.Durationticks = destItem.RegisterItem.Count(rec => rec.Ticks != 0);
             }
-
-
-
-
         }
+
         /// <summary>
         /// Змінити звіт періоду
         /// </summary>
@@ -1833,6 +1834,7 @@ where t1.custId = @custId
                 .AsNoTracking().ToListAsync();
             return Json(list);
         }
+
         /// <summary>
         /// Створити звіту періоду
         /// </summary>
