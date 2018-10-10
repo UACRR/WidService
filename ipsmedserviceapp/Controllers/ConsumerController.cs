@@ -1132,23 +1132,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     return BadRequest();
 
                 period.Status = stateid;
-                // Зафіксувати або Закрити
-                if ((new int[] { 2, 7 }).Contains(stateid))
-                {
-                    await _dbContext.Entry(period).Collection(rec => rec.RegisterRatedList).Query()
-                        .Include(rec => rec.Register)
-                        .LoadAsync();
 
-                    foreach (var item in period.RegisterRatedList)
-                    {
-                        item.Status = 1;
-                        if (stateid == 7) // Для закритого періоду
-                        {
-                            foreach (var reg in item.Register)
-                                reg.RgStatus = 4; // Виконано
-                        }
-                    }
-                }
 
                 tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
@@ -1378,6 +1362,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             {
 
                 Register deleteItem = await _dbContext.Register.Where(rec => rec.RegId == regId)
+                                        // .Include( rec=>rec.Rm )
                                         .Include(rec => rec.RegisterItem)
                                         .SingleOrDefaultAsync();
                 if (deleteItem == null)

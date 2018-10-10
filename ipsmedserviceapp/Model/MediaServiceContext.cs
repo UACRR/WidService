@@ -213,6 +213,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<RegisterCount> RegisterCount { get; set; }
         public virtual DbSet<RegisterExtra> RegisterExtra { get; set; }
         public virtual DbSet<RegisterItem> RegisterItem { get; set; }
+        public virtual DbSet<RegisterItemFix> RegisterItemFix { get; set; }
         public virtual DbSet<RegisterItemType> RegisterItemType { get; set; }
         public virtual DbSet<RegisterListStatus> RegisterListStatus { get; set; }
         public virtual DbSet<RegisterListStatusTr> RegisterListStatusTr { get; set; }
@@ -310,8 +311,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -3924,14 +3925,6 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.ClientCustId).HasColumnName("clientCustId");
 
-                entity.Property(e => e.ClientInnOkpo)
-                    .HasColumnName("clientInnOkpo")
-                    .HasMaxLength(12);
-
-                entity.Property(e => e.ClientName)
-                    .HasColumnName("clientName")
-                    .HasMaxLength(255);
-
                 entity.Property(e => e.CountPlace).HasColumnName("countPlace");
 
                 entity.Property(e => e.CourtFeeAmount)
@@ -3946,13 +3939,13 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("eventName")
                     .HasMaxLength(255);
 
-                entity.Property(e => e.FixationDate)
-                    .HasColumnName("fixationDate")
-                    .HasColumnType("date");
+                entity.Property(e => e.FixationDtBegin)
+                    .HasColumnName("fixationDtBegin")
+                    .HasColumnType("datetime");
 
-                entity.Property(e => e.FixationTime)
-                    .HasColumnName("fixationTime")
-                    .HasMaxLength(100);
+                entity.Property(e => e.FixationDtEnd)
+                    .HasColumnName("fixationDtEnd")
+                    .HasColumnType("datetime");
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
@@ -6771,6 +6764,25 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.RegId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REGISTER_REF_REGITEM");
+            });
+
+            modelBuilder.Entity<RegisterItemFix>(entity =>
+            {
+                entity.HasKey(e => new { e.RegId, e.RegItemId });
+
+                entity.Property(e => e.RegId).HasColumnName("regId");
+
+                entity.Property(e => e.RegItemId).HasColumnName("regItemId");
+
+                entity.Property(e => e.TimeEnd).HasColumnName("timeEnd");
+
+                entity.Property(e => e.TimeStart).HasColumnName("timeStart");
+
+                entity.HasOne(d => d.RegI)
+                    .WithOne(p => p.RegisterItemFix)
+                    .HasForeignKey<RegisterItemFix>(d => new { d.RegId, d.RegItemId })
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_REGITEM_REF_REGITEMFIX");
             });
 
             modelBuilder.Entity<RegisterItemType>(entity =>

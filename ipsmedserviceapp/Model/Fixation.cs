@@ -25,13 +25,11 @@ namespace ipsmedserviceapp.Model
         public int? CountPlace { get; set; }
         public decimal? TicketPriceMin { get; set; }
         public decimal? TicketPriceMax { get; set; }
-        public DateTime? FixationDate { get; set; }
+        public DateTime? FixationDtBegin { get; set; }
+        public DateTime? FixationDtEnd { get; set; }
         public decimal? RewardAmount { get; set; }
         public decimal? CourtFeeAmount { get; set; }
-        public string ClientName { get; set; }
-        public string ClientInnOkpo { get; set; }
         public string UserId { get; set; }
-        public string FixationTime { get; set; }
 
         public Client ClientCust { get; set; }
         public LicenseAgreement Lic { get; set; }

@@ -932,13 +932,11 @@ public interface IFixation
          int? CountPlace { get; set; }
          decimal? TicketPriceMin { get; set; }
          decimal? TicketPriceMax { get; set; }
-         DateTime? FixationDate { get; set; }
+         DateTime? FixationDtBegin { get; set; }
+         DateTime? FixationDtEnd { get; set; }
          decimal? RewardAmount { get; set; }
          decimal? CourtFeeAmount { get; set; }
-         string ClientName { get; set; }
-         string ClientInnOkpo { get; set; }
          string UserId { get; set; }
-         string FixationTime { get; set; }
 }
 public interface IFixFile
     {
@@ -1707,6 +1705,13 @@ public interface IRegisterItem
          int? Durationticks { get; set; }
          int? Ticks { get; set; }
          bool IsAuto { get; set; }
+}
+public interface IRegisterItemFix
+    {
+         int RegId { get; set; }
+         int RegItemId { get; set; }
+         TimeSpan? TimeStart { get; set; }
+         TimeSpan? TimeEnd { get; set; }
 }
 public interface IRegisterItemType
     {    int CodeI { get; set; }
