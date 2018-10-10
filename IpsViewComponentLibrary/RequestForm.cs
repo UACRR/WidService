@@ -12,7 +12,6 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
-using Telerik.WinControls.UI;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
@@ -26,6 +25,7 @@ namespace IpsViewComponentLibrary
         private BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
+        private ObjectRight _objectRight;
         private FormType _formType;
         private FormMode _formMode;
         private bool _deleteLicense = true;
@@ -93,9 +93,7 @@ namespace IpsViewComponentLibrary
                 bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam
                     .SingleOrDefault()?.License;
                 _percent = dictionaties.relGenrePercent;
-                bsObjectRight.DataSource = _licenseAgreement?.LicenseBigR?.Obj;
                 bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-                SetObjectRightData(_licenseAgreement?.LicenseBigR?.Obj);
 
                 bsDictObjAct.DataSource = dictionaties.objAct;
                 bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
@@ -117,11 +115,7 @@ namespace IpsViewComponentLibrary
                 bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
                 bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == _licenseAgreement.LicVersion)?.License;
                 _percent = dictionaties.relGenrePercent;
-                bsObjectRight.DataSource = _licenseAgreement?.LicenseBigR?.Obj;
                 bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-                //ObjectRightService _service = new ObjectRightService();
-                var obj = _licenseAgreement?.LicenseBigR?.Obj;
-                SetObjectRightData(obj);
 
                 bsDictObjAct.DataSource = dictionaties.objAct;
                 bsDictPerformType.DataSource = dictionaties.performType;
@@ -135,6 +129,10 @@ namespace IpsViewComponentLibrary
                     panelStatusees.Enabled = false;
                 }
             }
+
+            _objectRight = _licenseAgreement?.LicenseBigR?.Obj;
+            bsObjectRight.DataSource = _objectRight;
+            SetObjectRightData(_objectRight);
 
             bsLicenseAgreement.DataSource = _licenseAgreement;
             ctrlMusicalDesignList.ShowDurationUse = false;
@@ -234,27 +232,13 @@ namespace IpsViewComponentLibrary
 
         public void ParseAuthors()
         {
-            ObjectRight objectRight = null;
-            if (_licId == null)
-            {
-                objectRight = _customer.Client.LicenseAgreement.LastOrDefault()?.LicenseBigR?.Obj;
-                if (objectRight == null)
-                    return;
-            }
-            else
-            {
-                objectRight = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == _licId)?.LicenseBigR?.Obj;
-                if (objectRight == null)
-                    return;
-            }
-
             // map from single table to Authors, Copyright, LicAuthorBr and WorkRh tables
-            objectRight.Authors.Clear();
-            objectRight.CopyRight.Clear();
+            _objectRight.Authors.Clear();
+            _objectRight.CopyRight.Clear();
 
             foreach (var ar in _authorRightholderList)
             {
-                objectRight.AddObjectBrAuthorRightholder(ar);
+                _objectRight.AddObjectBrAuthorRightholder(ar);
             }
         }
 
@@ -409,6 +393,12 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (!ValidateMinRewardAndTotalRate())
+            {
+                _dialogService.ShowError(this, "Не вірно введені дані. Запит не записаний.");
+                return;
+            }
+
             _deleteLicense = false;
             ParseAuthors();
             ParseMusicalDisign();
@@ -491,6 +481,32 @@ namespace IpsViewComponentLibrary
             if (Int32.TryParse(txtMusicRate.Text, out int val))
                 if (val > 100)
                     txtMusicRate.Text = "100";
+        }
+
+        private void ctrlAuthorRightholderList_CurrentAuthorRightholderChanged(object sender, EventArgs e)
+        {
+            ValidateMinRewardAndTotalRate();
+        }
+
+        private bool ValidateMinRewardAndTotalRate()
+        {
+            var errorText = "";
+
+            if (Int32.TryParse(txtVinagoroda.Text, out int minReward))
+            {
+                var tolalRate = _objectRight.CopyRight.GetTotalRoleRate();
+
+
+                if (minReward != tolalRate)
+                    errorText = "Мінімальна ставка винагороди повинна співпадати з сумою долей.";
+                else
+                    errorText = "";
+
+                errorProvider.SetError(txtVinagoroda, errorText);
+                ctrlAuthorRightholderList.RoleRateErrorText = errorText;
+            }
+
+            return errorText == "";
         }
     }
 }
