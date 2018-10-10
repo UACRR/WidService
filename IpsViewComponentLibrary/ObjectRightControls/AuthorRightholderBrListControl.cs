@@ -65,6 +65,17 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        private string _roleRateErrorText = "";
+        public string RoleRateErrorText
+        {
+            get { return _roleRateErrorText; }
+            set
+            {
+                _roleRateErrorText = value;
+                SetErrorText();
+            }
+        }
+
         private ObjectAuthorRightholderBrViewModel _authorRightholder;
         public ObjectAuthorRightholderBrViewModel SelectedAuthorRightholder
         {
@@ -81,6 +92,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
+        public event EventHandler CurrentAuthorRightholderChanged;
+
         public AuthorRightholderBrListControl()
         {
             InitializeComponent();
@@ -91,6 +104,14 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             if (!IsDesignMode)
             {
                 SetDictionaries();
+            }
+        }
+
+        private void SetErrorText()
+        {
+            foreach (var row in gvAuthorRightholderList.Rows)
+            {
+                row.Cells["RoleRate"].ErrorText = RoleRateErrorText;
             }
         }
 
@@ -223,6 +244,21 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             if (!SelectedAuthorRightholder.IsRightholder && readOnlyColumns.Contains(e.Column.Name))
                 e.Cancel = true;
+        }
+
+        private void gvAuthorRightholderList_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
+        }
+
+        private void gvAuthorRightholderList_CellValueChanged(object sender, GridViewCellEventArgs e)
+        {
+            OnCurrentAuthorRightholderChanged();
+        }
+
+        protected virtual void OnCurrentAuthorRightholderChanged()
+        {
+            CurrentAuthorRightholderChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
