@@ -19,6 +19,7 @@ namespace IpsViewComponentLibrary
     public partial class RequestForm : IpsViewComponentLibrary.Common.Form.IpsForm
     {
         private readonly ConsumerService _consumerService = new ConsumerService();
+        private readonly ObjectRightService _objectRightService = new ObjectRightService();
         private readonly DialogService _dialogService = new DialogService();
 
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
@@ -131,8 +132,9 @@ namespace IpsViewComponentLibrary
             }
 
             _objectRight = _licenseAgreement?.LicenseBigR?.Obj;
+            var rightholderList = _objectRightService.GetDataBr(_objectRight.ObjId).rhList;
             bsObjectRight.DataSource = _objectRight;
-            SetObjectRightData(_objectRight);
+            SetObjectRightData(_objectRight, rightholderList);
 
             bsLicenseAgreement.DataSource = _licenseAgreement;
             ctrlMusicalDesignList.ShowDurationUse = false;
