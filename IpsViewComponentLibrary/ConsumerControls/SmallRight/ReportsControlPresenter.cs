@@ -25,8 +25,14 @@ namespace IpsViewComponentLibrary
             _control.SetRegisterStateExecuted += _control_SetRegisterStateExecuted;
             _control.SetPeriodStateExecuted += _control_SetPeriodStateExecuted;
             _control.SavePariodCommandExecuted += SavePariodCommandExecuted;
+            _control.UpdateData += UpdateData;
 
+        }
 
+        private void UpdateData(int custId)
+        {
+            var data = _service.GetData(custId);
+            _control.Customer = data;
         }
 
         private void SaveRegisterExecuted(object sender, Register e)

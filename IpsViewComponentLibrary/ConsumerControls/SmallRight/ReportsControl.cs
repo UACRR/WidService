@@ -30,6 +30,7 @@ namespace IpsViewComponentLibrary
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
+        public event UpdateCustomerDataEventHandler UpdateData;
 
         public Func<int, List<RegisterItem>> GetRegisterItems;
         private ButtonEnableControl buttonController;
@@ -104,7 +105,6 @@ namespace IpsViewComponentLibrary
             }
             else
                 IpsGlobal.AnketaDictionatiesChanged += subscribeDictionary;
-
         }
 
         private void subscribeDictionary(object sender, EventArgs args)
@@ -119,7 +119,7 @@ namespace IpsViewComponentLibrary
 
         public Customer Customer
         {
-            get { return _customer; }
+            get => _customer;
             set
             {
                 _customer = value;
@@ -316,6 +316,7 @@ namespace IpsViewComponentLibrary
             //btnViewReport.Enabled = enabled;
             //btnDeleteReport.Enabled = enabled;
         }
+
         // * * * [Додати звіт]
         private void btnAddReport_Click(object sender, EventArgs e)
         {
@@ -653,6 +654,12 @@ namespace IpsViewComponentLibrary
                 SavePariodCommandExecuted?.Invoke(this, list);
                 bindingPaidPeriod.DataSource = list;
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateData?.Invoke(_customer.CustId);
+            SetupBindings();
         }
     }
 
