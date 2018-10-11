@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using Telerik.WinControls;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
@@ -20,7 +18,25 @@ namespace IpsViewComponentLibrary.Common.Editors
             }
         }
 
-        protected void SetupAppearance()
+        public IpsDateTimePicker()
+        {
+            SetupDefaultAppearance();
+
+            Culture = new CultureInfo("uk-UA");
+
+            DateTimePickerElement.TextBoxElement.MaskType = MaskType.FreeFormDateTime;
+        }
+
+        private void SetupDefaultAppearance()
+        {
+            DateTimePickerElement.Calendar.HeaderNavigationMode = HeaderNavigationMode.Zoom;
+            DateTimePickerElement.Calendar.ShowFooter = true;
+            DateTimePickerElement.Calendar.CalendarElement.CalendarStatusElement.LabelFormat = "dd.MM.yyyy";
+            DateTimePickerElement.Calendar.ClearButton.Visibility = ElementVisibility.Collapsed;
+            DateTimePickerElement.Calendar.TodayButton.Text = "Сьогодні";
+        }
+
+        protected void SetupReadOnlyAppearance()
         {
             var borderPrimitive = DateTimePickerElement.FindDescendant<BorderPrimitive>();
             var arrowButton = DateTimePickerElement.FindDescendant<RadDateTimePickerArrowButtonElement>();
@@ -50,7 +66,7 @@ namespace IpsViewComponentLibrary.Common.Editors
         {
             ReadOnly = readOnly;
 
-            SetupAppearance();
+            SetupReadOnlyAppearance();
         }
     }
 }
