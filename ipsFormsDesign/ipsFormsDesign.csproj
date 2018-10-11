@@ -330,6 +330,7 @@
     <Compile Include="Model\RegisterCount.cs" />
     <Compile Include="Model\RegisterExtra.cs" />
     <Compile Include="Model\RegisterItem.cs" />
+    <Compile Include="Model\RegisterItemFix.cs" />
     <Compile Include="Model\RegisterItemType.cs" />
     <Compile Include="Model\RegisterListStatus.cs" />
     <Compile Include="Model\RegisterListStatusTr.cs" />

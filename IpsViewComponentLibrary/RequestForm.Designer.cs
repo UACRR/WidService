@@ -116,8 +116,9 @@ namespace IpsViewComponentLibrary
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.ddlState = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
-            this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.bsLicenseAgreement = new System.Windows.Forms.BindingSource(this.components);
+            this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAuthors.SuspendLayout();
@@ -204,8 +205,9 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlState)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -251,6 +253,7 @@ namespace IpsViewComponentLibrary
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
             this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1069, 363);
             this.ctrlAuthorRightholderList.TabIndex = 2;
+            this.ctrlAuthorRightholderList.CurrentAuthorRightholderChanged += new System.EventHandler(this.ctrlAuthorRightholderList_CurrentAuthorRightholderChanged);
             // 
             // pvConditions
             // 
@@ -1063,6 +1066,10 @@ namespace IpsViewComponentLibrary
             this.ddlState.TabIndex = 100;
             this.ddlState.ThemeName = "Office2013Light";
             // 
+            // bsLicenseAgreement
+            // 
+            this.bsLicenseAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            // 
             // ddlStatus
             // 
             this.ddlStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicAgrParam, "LicStatus", true));
@@ -1073,9 +1080,10 @@ namespace IpsViewComponentLibrary
             this.ddlStatus.TabIndex = 101;
             this.ddlStatus.ThemeName = "Office2013Light";
             // 
-            // bsLicenseAgreement
+            // errorProvider
             // 
-            this.bsLicenseAgreement.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
             // 
             // RequestForm
             // 
@@ -1195,8 +1203,9 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlState)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1292,5 +1301,6 @@ namespace IpsViewComponentLibrary
         private Common.Editors.IpsDropDownList ddlState;
         private Common.Editors.IpsDropDownList ddlStatus;
         private BindingSource bsLicenseAgreement;
+        private ErrorProvider errorProvider;
     }
 }

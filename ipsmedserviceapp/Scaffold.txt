@@ -197,6 +197,7 @@
 "RegisterCount",
 "RegisterExtra",
 "RegisterItem",
+"RegisterItemFix",
 "RegisterItemType",
 "RegisterListStatus",
 "RegisterListStatusTr",
