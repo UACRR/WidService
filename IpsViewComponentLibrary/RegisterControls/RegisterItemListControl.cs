@@ -137,7 +137,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _allowFindCommand = value;
-                SetColumnVisible("FindColumn", _allowFindCommand);
+                gvRegisterItemList.SetColumnVisibility("FindColumn", _allowFindCommand);
             }
         }
 
@@ -148,7 +148,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _allowShowObjectCommand = value;
-                SetColumnVisible("ShowObjectColumn", _allowShowObjectCommand);
+                gvRegisterItemList.SetColumnVisibility("ShowObjectColumn", _allowShowObjectCommand);
             }
         }
 
@@ -159,7 +159,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _allowCreateObjectCommand = value;
-                SetColumnVisible("CreateObjectColumn", _allowCreateObjectCommand);
+                gvRegisterItemList.SetColumnVisibility("CreateObjectColumn", _allowCreateObjectCommand);
             }
         }
 
@@ -170,7 +170,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _allowLinkCommand = value;
-                SetColumnVisible("LinkColumn", _allowLinkCommand);
+                gvRegisterItemList.SetColumnVisibility("LinkColumn", _allowLinkCommand);
             }
         }
 
@@ -181,7 +181,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _allowUnlinkCommand = value;
-                SetColumnVisible("UnlinkColumn", _allowUnlinkCommand);
+                gvRegisterItemList.SetColumnVisibility("UnlinkColumn", _allowUnlinkCommand);
             }
         }
 
@@ -192,7 +192,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _showDurationUse = value;
-                SetColumnVisible("DurationUse", _showDurationUse);
+                gvRegisterItemList.SetColumnVisibility("DurationUse", _showDurationUse);
             }
         }
 
@@ -203,7 +203,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             set
             {
                 _showLinked = value;
-                SetColumnVisible("Linked", _showLinked);
+                gvRegisterItemList.SetColumnVisibility("Linked", _showLinked);
             }
         }
 
@@ -552,11 +552,6 @@ namespace IpsViewComponentLibrary.RegisterControls
         private void OnRegisterCountDeleted(RegisterCountViewModel registerCount)
         {
             RegisterCountDeleted.Invoke(this, registerCount);
-        }
-
-        private void SetColumnVisible(string columnName, bool isVisible)
-        {
-            gvRegisterItemList.Columns[columnName].IsVisible = isVisible;
         }
     }
 
