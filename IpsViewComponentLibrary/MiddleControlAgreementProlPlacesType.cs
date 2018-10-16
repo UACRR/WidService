@@ -206,8 +206,13 @@ namespace IpsViewComponentLibrary
                 gvPlaces.CellValueChanged -= gvPlaces_CellValueChanged;
                 foreach (var item in _licenseAgr.License)
                 {
-                    gvPlaces.Rows.SingleOrDefault(row => Convert.ToInt32(row.Cells["PlaceId"]?.Value) == item.PlaceId).Cells["CheckIn"].Value = true;
-                    var place = gvPlaces.Rows.SingleOrDefault(rec => (int?)rec?.Cells["PlaceId"]?.Value == item.PlaceId)?.DataBoundItem as IntermediateDataSourcePlaces;
+                    // Оптимизация доступ к строке грида в переменную
+                    // Патлякевич 
+                    var gvPlacesRow = gvPlaces.Rows.SingleOrDefault(row => Convert.ToInt32(row.Cells["PlaceId"]?.Value) == item.PlaceId);
+                    if (gvPlacesRow == null)
+                        continue;
+                    gvPlacesRow.Cells["CheckIn"].Value = true;
+                    var place = gvPlacesRow?.DataBoundItem as IntermediateDataSourcePlaces;
                     CalculateMinAmount(CalculationMinAmountType.AddCalcValue, place);
                 }
                 gvPlaces.CellValueChanged += gvPlaces_CellValueChanged;
