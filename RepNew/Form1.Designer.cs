@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.TypeReportSource typeReportSource2 = new Telerik.Reporting.TypeReportSource();
             this.reportViewer1 = new Telerik.ReportViewer.WinForms.ReportViewer();
             this.SuspendLayout();
