@@ -45,6 +45,18 @@
     <Reference Include="Telerik.ReportViewer.WinForms, Version=12.1.18.620, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
       <SpecificVersion>True</SpecificVersion>
     </Reference>
+    <Reference Include="Telerik.WinControls, Version=2018.3.911.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.911.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2018.3.911.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.911.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2018.3.911.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.911.40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LIcAgr.cs">
@@ -99,6 +111,18 @@
     </Compile>
     <Compile Include="R_5_14_RegisterSR.Designer.cs">
       <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_15_RegisterBRSum.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_15_RegisterBRSum.Designer.cs">
+      <DependentUpon>R_5_15_RegisterBRSum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_15_RegisterSR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_15_RegisterSR.Designer.cs">
+      <DependentUpon>R_5_15_RegisterSR.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_17_Balance.cs">
       <SubType>Component</SubType>
@@ -193,6 +217,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_14_RegisterSR.resx">
       <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_15_RegisterBRSum.resx">
+      <DependentUpon>R_5_15_RegisterBRSum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_15_RegisterSR.resx">
+      <DependentUpon>R_5_15_RegisterSR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_Balance.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>

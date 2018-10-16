@@ -25,5 +25,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Password=robot11235813</Value>
     </Setting>
+    <Setting Name="Баланс" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

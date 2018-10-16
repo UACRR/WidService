@@ -1817,17 +1817,21 @@ namespace ipsFormsDesign.Services
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
 
             Row curRow = null;
-            if (rightHolder.AroundWord == true)
+
+            WdRowAlignment aa;
+            
+  /*          if (rightHolder.AroundWord == true)
             {
                 curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
                 curRow.Cells[1].Range.Text = "Всіх країн світу";
             }
             else
-                foreach (var item in rightHolder.TerritoryExclude)
+  */              foreach (var item in rightHolder.TerritoryExclude)
                 {
 
                     curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
                     curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
+                
                 }
 
 
@@ -1862,7 +1866,9 @@ namespace ipsFormsDesign.Services
                 {
 
                     curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                    
                     curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
+                    
                 }
         }
 
