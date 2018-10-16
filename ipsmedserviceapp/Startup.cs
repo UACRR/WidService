@@ -115,7 +115,7 @@ namespace ipsmedserviceapp
 
             // loggerFactory.AddConsole();
             app.UseAuthentication();
-            loggerFactory.AddDebug();
+            //loggerFactory.AddDebug();
             loggerFactory.AddConsole();
             
 
