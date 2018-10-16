@@ -71,6 +71,23 @@ namespace IpsViewComponentLibrary
             radWaitingBar1.StopWaiting();
         }
 
+        public async void ShowFixationOrder(Fixation fixation)
+        {
+            Show();
+
+            radWaitingBar1.StartWaiting();
+
+            var wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_Наказ на фіксацію.docx");
+
+            await wordEngine.ProcessFixationOrder(template, fixation);
+
+            radPdfViewer.LoadDocument(wordEngine.Pdf);
+
+            radWaitingBar1.StopWaiting();
+        }
+
         private void radWaitingBar1_WaitingStarted(object sender, EventArgs e)
         {
             radWaitingBar1.Visible = true;

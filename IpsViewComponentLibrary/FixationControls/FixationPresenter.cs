@@ -229,6 +229,13 @@ namespace IpsViewComponentLibrary.FixationControls
             return _fixation.ClientCustId.HasValue;
         }
 
+        public void PrintOrderFixation()
+        {
+            var printView = new ViewAndPrintAgreement();
+            printView.Text = "Наказ на фіксацію - " + _fixation.EventName;
+            printView.ShowFixationOrder(_fixation);
+        }
+
         private int GetNextRegisterItemId()
         {
             if (_lastId == 0)
