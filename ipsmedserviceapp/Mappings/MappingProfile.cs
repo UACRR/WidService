@@ -71,6 +71,34 @@ namespace ipsmedserviceapp.Mappings
                 .ForMember(ri => ri.Reg, opt => opt.Ignore())
                 .EqualityComparison((from, to) => from.RegId == to.RegId && from.RegIitemId == to.RegIitemId);
 
+            CreateMap<RegisterItemFix, RegisterItemFix>()
+                .ForMember(rf => rf.RegId, opt => opt.Ignore())
+                .ForMember(rf => rf.RegItemId, opt => opt.Ignore())
+                .ForMember(rf => rf.RegI, opt => opt.Ignore())
+                .ForMember(rf => rf.TimeStart, opt => opt.ResolveUsing((source) =>
+                {
+                    if (source.TimeStart == TimeSpan.Zero)
+                        return null;
+
+                    return source.TimeStart;
+                }))
+                .ForMember(rf => rf.TimeEnd, opt => opt.ResolveUsing((source) =>
+                {
+                    if (source.TimeEnd == TimeSpan.Zero)
+                        return null;
+
+                    return source.TimeEnd;
+                }))
+                .EqualityComparison((from, to) => from.RegId == to.RegId && from.RegItemId == to.RegItemId)
+                .AfterMap((source, dest) =>
+                {
+                    if (dest.TimeStart == null && dest.TimeEnd == null)
+                    {
+                        // remove this record from db
+                        dest.RegI = null;
+                    }
+                });
+
             CreateMap<RegisterCount, RegisterCount>()
                 .ForMember(rc => rc.RegCntId, opt => opt.Ignore())
                 .ForMember(rc => rc.RegI, opt => opt.Ignore())

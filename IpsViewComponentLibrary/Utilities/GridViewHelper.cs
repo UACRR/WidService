@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -105,6 +106,19 @@ namespace IpsViewComponentLibrary.Utilities
                 throw new Exception($"Column '{columnName}' should be of type GridViewCommandColumn.");
 
             column.ImageAlignment = alignment;
+        }
+
+        public static void SetColumnTimeSpanEditor(this RadGridView gridView, string columnName)
+        {
+            var column = GetColumnByName(gridView, columnName) as GridViewDateTimeColumn;
+
+            if (column == null)
+                throw new Exception($"Column '{columnName}' should be of type GridViewDateTimeColumn.");
+
+            column.DataTypeConverter = new TimeSpanToDateTimeConverter();
+            column.Format = DateTimePickerFormat.Custom;
+            column.CustomFormat = "HH:mm:ss";
+            column.EditorType = GridViewDateTimeEditorType.TimePicker;
         }
 
         private static GridViewDataColumn GetColumnByName(this RadGridView gridView, string columnName)

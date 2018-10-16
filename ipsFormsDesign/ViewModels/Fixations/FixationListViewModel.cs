@@ -14,7 +14,7 @@ namespace ipsFormsDesign.ViewModels.Fixations
         public string StageName { get; set; }
         public string StatusName { get; set; }
         public string Responsible { get; set; }
-        public DateTime? FixationDate { get; set; }
+        public DateTime? FixationDtBegin { get; set; }
         public decimal? RewardAmount { get; set; }
         public decimal? CourtFeeAmount { get; set; }
         public decimal? IncomeAmount { get; set; }

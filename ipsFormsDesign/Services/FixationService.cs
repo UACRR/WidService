@@ -42,7 +42,7 @@ namespace ipsFormsDesign.Services
             fixation.Lic.PaidPeriod.Add(paidPeriod);
             var registerRatedList = new RegisterRatedList { Status = 1 };
             paidPeriod.RegisterRatedList.Add(registerRatedList);
-            var register = new Register { SchemaId = 1, AlgorithmId = 1 };
+            var register = new Register { SchemaId = 1, AlgorithmId = 2 };
             registerRatedList.Register.Add(register);
 
             return fixation;

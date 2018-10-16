@@ -137,7 +137,27 @@ namespace ipsmedserviceapp.Controllers
                             .ThenInclude(rr => rr.Register)
                                 .ThenInclude(r => r.RegisterItem)
                                     .ThenInclude(ri => ri.Obj)
+                .Include(f => f.Lic)
+                    .ThenInclude(l => l.PaidPeriod)
+                        .ThenInclude(pp => pp.RegisterRatedList)
+                            .ThenInclude(rr => rr.Register)
+                                .ThenInclude(r => r.RegisterItem)
+                                    .ThenInclude(ri => ri.RegisterItemFix)
                 .FirstOrDefaultAsync(f => f.FixId == fixId);
+
+            //await _dbContext.Entry(fixation.Lic).Collection(lic => lic.PaidPeriod).Query()
+            //        .Include(pp => pp.RegisterRatedList).ThenInclude(rr => rr.Register).LoadAsync();
+
+            //foreach (var period in fixation.Lic.PaidPeriod)
+            //    foreach (var ratedList in period.RegisterRatedList)
+            //        foreach (var reg in ratedList.Register)
+            //        {
+            //            await _dbContext.Entry(reg).Collection(rec => rec.RegisterItem).Query()
+            //                .Include(rec => rec.RegisterCount)
+            //                .Include(rec => rec.Obj)
+            //                .Include(rec => rec.RegisterItemFix)
+            //                .LoadAsync();
+            //        }
 
             return fixation;
         }

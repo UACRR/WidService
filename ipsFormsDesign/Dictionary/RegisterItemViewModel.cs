@@ -79,9 +79,15 @@ namespace ipsFormsDesign.Dictionary
             }
         }
 
-        public RegisterItemViewModel() { }
+        public RegisterItemFix RegisterItemFix { get; set; }
+        public List<RegisterExtra> RegisterExtraList { get; set; } = new List<RegisterExtra>();
 
-        public RegisterItemViewModel(MusicalDesign musicalDesign)
+        public RegisterItemViewModel()
+        {
+            RegisterItemFix = new RegisterItemFix();
+        }
+
+        public RegisterItemViewModel(MusicalDesign musicalDesign) : this()
         {
 
             ItemName = musicalDesign.ObjName;
@@ -142,7 +148,5 @@ namespace ipsFormsDesign.Dictionary
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public List<RegisterExtra> RegisterExtraList { get; set; } = new List<RegisterExtra>();
     }
 }

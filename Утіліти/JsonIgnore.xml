@@ -87,6 +87,7 @@
         <noignore>Obj</noignore>
         <noignore>RegisterCount</noignore>
         <noignore>RegisterExtra</noignore>
+        <noignore>RegisterItemFix</noignore>
     </item>
     <item Name="Distribution">
         <noignore>DistributionItem</noignore>
