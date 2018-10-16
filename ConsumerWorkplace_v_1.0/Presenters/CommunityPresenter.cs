@@ -29,22 +29,51 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _community.SetCommunityList += SetCommunityList;
             _community.GetTemplateCommunity += CreateNewCommunity;
             _community.SaveCommunity += SaveCommunity;
+            _community.GetCommunity += GetCommunity;
+            _community.GetCommunityAutorsList += GetCommunityAutorsView;
+            _community.GetAutorsList += GetAllAutorsView;
+            _community.GetCommunityRightList += GetCommunityRightList;
         }
 
+        private List<CustCmRight> GetCommunityRightList(int custId)
+        {
+            return _service.GetCommunityRightList(custId);
+        }
+
+        private Customer GetCommunity(int custId)
+        {
+            return _service.GetComunity(custId);
+        }
+
+        /// <summary>
+        /// збереження спільноти
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <returns></returns>
         private bool SaveCommunity(Customer customer)
         {
             return _service.SaveCommunity(customer);
         }
 
         // завантажити список спільнот на грід
-        private List<CommunytiListView> SetCommunityList(int paramId)
+        private List<CommunityListView> SetCommunityList(int paramId)
         {
-            return _service.GetView<CommunytiListView>(typeof(CommunytiListView), "vTsk_1_ListCommunity");
+            return _service.GetView<CommunityListView>(typeof(CommunityListView), "vTsk_1_ListCommunity");
         }
 
         private Customer CreateNewCommunity()
         {
             return _service.GetTemplateComunity();
+        }
+
+        private List<CommunityAutorsListView> GetCommunityAutorsView(int cmId)
+        {
+            return _service.GetView<CommunityAutorsListView>(typeof(CommunityAutorsListView), "vTsk_1_ListRHCommunity", cmId, "cmCustId");
+        }
+
+        private List<CommunityAutorsListView> GetAllAutorsView()
+        {
+            return _service.GetView<CommunityAutorsListView>(typeof(CommunityAutorsListView), "vTsk_1_ListRHCommunity");
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
@@ -17,7 +18,6 @@ namespace IpsViewComponentLibrary
     {
 
         private Customer _customer;
-        private AnketaDictionaties _dictionaties;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
         public event SaveCustomerEventHandler OnSaveCustomer;
         private MainGridConsumerBigRightView _gridMainView;
@@ -53,12 +53,7 @@ namespace IpsViewComponentLibrary
             ctrlSearch.SetUsageGrid(gvViewLicences);
         }
 
-        public void SetDictionary(AnketaDictionaties dictionaties)
-        {
-            _dictionaties = dictionaties;
-        }
-
-        public void SetData(Customer customer, object sourceGrid)
+        public void SetData(Customer customer, List<LicenseAgreementBigRightView> sourceGrid)
         {
             _customer = customer;
             gvViewLicences.DataSource = sourceGrid;
@@ -153,12 +148,27 @@ namespace IpsViewComponentLibrary
 
         private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
-            RequestForm viewLicenseForm = new RequestForm(_customer, _gridMainView, _dictionaties, FormType.View, licId)
+            switch (e.Column.FieldName)
             {
-                StartPosition = FormStartPosition.CenterParent
-            };
-            viewLicenseForm.ShowDialog();
+                case "viewBtn":
+                    var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
+                    RequestForm viewLicenseForm = new RequestForm(_customer, _gridMainView, IpsGlobal.AnketaDictionaties, FormType.View, licId)
+                    {
+                        StartPosition = FormStartPosition.CenterParent
+                    };
+                    viewLicenseForm.ShowDialog();
+                    break;
+                case "printBtn":
+                    var row = e.Row.DataBoundItem as LicenseAgreementBigRightView;
+                    var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
+                    var print = new ViewAndPrintAgreement(IpsGlobal.AnketaDictionaties, _customer, licenseAgreement)
+                    {
+                        WindowState = FormWindowState.Maximized,
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
+                    print.ShowDialog();
+                    break;
+            }
         }
     }
 }

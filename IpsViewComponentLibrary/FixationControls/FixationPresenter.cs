@@ -1,16 +1,13 @@
-﻿using ipsFormsDesign.Data;
-using ipsFormsDesign.Events;
+﻿using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Utilities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IpsViewComponentLibrary.FixationControls
 {
@@ -18,6 +15,8 @@ namespace IpsViewComponentLibrary.FixationControls
     {
         private readonly FixationView _view;
         private readonly FixationService _fixationService;
+        private readonly UserService _userService;
+        private readonly ConsumerService _consumerService;
         private readonly DialogService _dialogService;
         private Fixation _fixation;
         private bool _canClose;
@@ -28,6 +27,8 @@ namespace IpsViewComponentLibrary.FixationControls
             _view.Presenter = this;
 
             _fixationService = new FixationService();
+            _userService = new UserService();
+            _consumerService = new ConsumerService();
             _dialogService = new DialogService();
         }
 
@@ -43,14 +44,44 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixation = _fixationService.GetById(fixId);
             _view.Fixation = _fixation;
 
-            if (_fixation.GetStage() == FixationStages.NegotiationBeforeFixation)
+            if (_fixation.UserId != null)
+            {
+                var responsible = _userService.GetById(_fixation.UserId);
+                _view.Responsible = responsible;
+            }
+            if (_fixation.ClientCustId != null)
+            {
+                _view.Consumer = _consumerService.GetShortInfoById((int)_fixation.ClientCustId);
+            }
+
+            var currentStage = _fixation.GetStage();
+
+            if (currentStage == FixationStages.NegotiationBeforeFixation || currentStage == FixationStages.Fixation)
+            {
+                _view.SetAvailableStageStatuses(_fixation.GetAvailableStageStatuses());
                 _view.ShowStatusesGroupBox = true;
+            }
 
             _view.Run();
         }
 
         public void Save()
         {
+            if (_fixation.Lic == null && _view.RegisterItemList.Any())
+            {
+                // create structure for storing Register, RegisterItems and RegisterCount
+
+                _fixation.Lic = new LicenseAgreement();
+            }
+
+
+
+
+
+
+
+
+
             var result = _fixationService.Save(_fixation);
 
             if (result)
@@ -70,6 +101,34 @@ namespace IpsViewComponentLibrary.FixationControls
             // TODO: check for correct status
 
             _fixation.StageStatus = (int)newStatus;
+        }
+
+        public void SelectResponsible()
+        {
+            using (var selectionView = new UserSelectionView())
+            {
+                selectionView.SelectedUser = _view.Responsible;
+                selectionView.UserSelected += (s, selectedUser) =>
+                {
+                    _view.Responsible = selectedUser;
+                    _fixation.UserId = selectedUser.UserId;
+                };
+                selectionView.ShowDialog();
+            }
+        }
+
+        public void SelectConsumer()
+        {
+            using (var selectionView = new ConsumerSelectionView())
+            {
+                selectionView.SelectedConsumer = _view.Consumer;
+                selectionView.ConsumerSelected += (s, selectedConsumer) =>
+                {
+                    _view.Consumer = selectedConsumer;
+                    _fixation.ClientCustId = selectedConsumer.CustId;
+                };
+                selectionView.ShowDialog();
+            }
         }
     }
 }

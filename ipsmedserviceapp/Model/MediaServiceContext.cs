@@ -3950,6 +3950,10 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("fixationDate")
                     .HasColumnType("date");
 
+                entity.Property(e => e.FixationTime)
+                    .HasColumnName("fixationTime")
+                    .HasMaxLength(100);
+
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
                 entity.Property(e => e.PartnerCustId).HasColumnName("partnerCustId");
@@ -4012,9 +4016,11 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<FixFile>(entity =>
             {
-                entity.HasKey(e => e.FileId);
+                entity.HasKey(e => new { e.FileId, e.FixId });
 
-                entity.Property(e => e.FileId).HasColumnName("fileId");
+                entity.Property(e => e.FileId)
+                    .HasColumnName("fileId")
+                    .ValueGeneratedOnAdd();
 
                 entity.Property(e => e.FixId).HasColumnName("fixId");
 
@@ -4024,13 +4030,13 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(255);
 
                 entity.Property(e => e.Path)
-                    .IsRequired()
                     .HasColumnName("path")
                     .HasMaxLength(255);
 
                 entity.HasOne(d => d.Fix)
                     .WithMany(p => p.FixFile)
                     .HasForeignKey(d => d.FixId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_FIXFILE_REF_FIXATION");
             });
 
@@ -4049,15 +4055,17 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<FixStorageDevice>(entity =>
             {
-                entity.HasKey(e => e.StorageId);
+                entity.HasKey(e => new { e.StorageId, e.FixId });
 
-                entity.Property(e => e.StorageId).HasColumnName("storageId");
+                entity.Property(e => e.StorageId)
+                    .HasColumnName("storageId")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.FixId).HasColumnName("fixId");
 
                 entity.Property(e => e.Capacity)
                     .HasColumnName("capacity")
                     .HasColumnType("numeric(18, 0)");
-
-                entity.Property(e => e.FixId).HasColumnName("fixId");
 
                 entity.Property(e => e.Name)
                     .IsRequired()

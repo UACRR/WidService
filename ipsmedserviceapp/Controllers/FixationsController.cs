@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,7 +40,7 @@ namespace ipsmedserviceapp.Controllers
             if (fixId == null)
                 BadRequest();
 
-            var fixation = await GetFixationById((int)fixId);
+            var fixation = await GetFixationById((int)fixId, includeRelated: true);
 
             if (fixation == null)
                 NotFound();
@@ -67,7 +68,7 @@ namespace ipsmedserviceapp.Controllers
             if (updFixation == null)
                 BadRequest();
 
-            var fixation = await GetFixationById(fixId);
+            var fixation = await GetFixationById(fixId, includeRelated: true);
 
             if (fixation == null)
                 NotFound();
@@ -98,12 +99,18 @@ namespace ipsmedserviceapp.Controllers
             return Ok();
         }
 
-        private async Task<Fixation> GetFixationById(int fixId)
+        private async Task<Fixation> GetFixationById(int fixId, bool includeRelated = false )
         {
-            var fixation = await _dbContext.Fixation
-                .FirstOrDefaultAsync(f => f.FixId == fixId);
+            if (!includeRelated)
+            {
+                return await _dbContext.Fixation
+                    .FirstOrDefaultAsync(f => f.FixId == fixId);
+            }
 
-            return fixation;
+            return await _dbContext.Fixation
+                .Include(f => f.FixStorageDevice)
+                .Include(f => f.FixFile)
+                .FirstOrDefaultAsync(f => f.FixId == fixId);
         }
     }
 }

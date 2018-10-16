@@ -115,20 +115,20 @@ namespace IpsViewComponentLibrary
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "editBtn";
             gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn1.ImageAlignment = ContentAlignment.MiddleCenter;
             gridViewCommandColumn2.FieldName = "printBtn";
             gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
             gridViewCommandColumn2.HeaderText = "";
             gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn2.MaxWidth = 30;
             gridViewCommandColumn2.MinWidth = 30;
             gridViewCommandColumn2.Name = "printBtn";
             gridViewCommandColumn2.Width = 30;
-            gridViewCommandColumn2.ImageAlignment = ContentAlignment.MiddleCenter;
             this.gvGenAgrLicences.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

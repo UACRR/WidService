@@ -220,6 +220,48 @@
     <Compile Include="Common\SearchTextBoxControl.Designer.cs">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\SideMenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\SideMenuControl.Designer.cs">
+      <DependentUpon>SideMenuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\UserSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\UserSelectionView.Designer.cs">
+      <DependentUpon>UserSelectionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddAutorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddAutorForm.Designer.cs">
+      <DependentUpon>CommunityAddAutorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressControl.Designer.cs">
+      <DependentUpon>CommunityAddressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressLetterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressLetterControl.Designer.cs">
+      <DependentUpon>CommunityAddressLetterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAgreementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAgreementControl.Designer.cs">
+      <DependentUpon>CommunityAgreementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityCabinetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityCabinetForm.Designer.cs">
+      <DependentUpon>CommunityCabinetForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommunityControls\CommunityControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -324,6 +366,13 @@
     <Compile Include="ConsumerForms\CabinetSmallRightForm.Designer.cs">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerForms\ConsumerExternalPresenter.cs" />
+    <Compile Include="ConsumerForms\ConsumerExternalView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\ConsumerExternalView.Designer.cs">
+      <DependentUpon>ConsumerExternalView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerForms\PartnerPhisForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -336,12 +385,19 @@
     <Compile Include="ConsumerForms\PartnerJurForm.Designer.cs">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ConsumerListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerListControl.Designer.cs">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FixationControls\FixationListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="FixationControls\FixationListControl.Designer.cs">
       <DependentUpon>FixationListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ConsumerListPresenter.cs" />
     <Compile Include="FixationControls\FixationListPresenter.cs" />
     <Compile Include="FixationControls\FixationPresenter.cs" />
     <Compile Include="FixationControls\FixationView.cs">
@@ -398,6 +454,12 @@
     </Compile>
     <Compile Include="RightholderControls\NewRightholderView.Designer.cs">
       <DependentUpon>NewRightholderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerSelectionView.Designer.cs">
+      <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\RightholderView.cs">
       <SubType>Form</SubType>
@@ -947,6 +1009,27 @@
     <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
       <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Common\SideMenuControl.resx">
+      <DependentUpon>SideMenuControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\UserSelectionView.resx">
+      <DependentUpon>UserSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAddAutorForm.resx">
+      <DependentUpon>CommunityAddAutorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAddressControl.resx">
+      <DependentUpon>CommunityAddressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAddressLetterControl.resx">
+      <DependentUpon>CommunityAddressLetterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAgreementControl.resx">
+      <DependentUpon>CommunityAgreementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityCabinetForm.resx">
+      <DependentUpon>CommunityCabinetForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityControl.resx">
       <DependentUpon>CommunityControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -999,11 +1082,17 @@
     <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
       <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\ConsumerExternalView.resx">
+      <DependentUpon>ConsumerExternalView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\PartnerPhisForm.resx">
       <DependentUpon>PartnerPhisForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\PartnerJurForm.resx">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerListControl.resx">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FixationControls\FixationListControl.resx">
       <DependentUpon>FixationListControl.cs</DependentUpon>
@@ -1106,6 +1195,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerSelectionView.resx">
+      <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\CabinetBigRightOld.resx">
       <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
@@ -1298,15 +1390,18 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ChildTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddCommunity.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddPartner.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaExternal.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BrRegister.datasource" />
@@ -1315,6 +1410,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Employee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.FileType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Fixation.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
@@ -1339,6 +1435,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.FixationListViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\Settings.settings">

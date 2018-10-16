@@ -228,7 +228,7 @@ namespace IpsViewComponentLibrary
                 {
                     _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
                     ctrlLicense.SetDataSources(_gridMainView);
-                    ctrlLicense.SetData(_customer, _licenseAgreementView);
+                    ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
                 }
                     break;
 

@@ -29,29 +29,16 @@
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.btnPrintAgr = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitleClientName = new Telerik.WinControls.UI.RadLabel();
             this.ctrlAgrMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnPrintAgr
-            // 
-            this.btnPrintAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPrintAgr.Location = new System.Drawing.Point(152, 116);
-            this.btnPrintAgr.Name = "btnPrintAgr";
-            this.btnPrintAgr.Size = new System.Drawing.Size(123, 24);
-            this.btnPrintAgr.TabIndex = 0;
-            this.btnPrintAgr.Text = "Друкувати договір";
-            this.btnPrintAgr.ThemeName = "Office2013Light";
-            this.btnPrintAgr.Click += new System.EventHandler(this.btnPrintAgr_Click);
             // 
             // btnSave
             // 
@@ -100,6 +87,7 @@
             // 
             // ctrlAgrMain
             // 
+            this.ctrlAgrMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgrMain.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
@@ -108,6 +96,7 @@
             this.ctrlAgrMain.DateEndDataMember = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgrMain.DateEndNullText = "";
+            this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
             this.ctrlAgrMain.Location = new System.Drawing.Point(12, 40);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";
@@ -126,7 +115,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnPrintAgr);
             this.MinimumSize = new System.Drawing.Size(500, 183);
             this.Name = "ProlongationBigRight";
             // 
@@ -137,7 +125,6 @@
             this.Text = "Пролонгація";
             this.ThemeName = "Office2013Light";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProlongationBigRight_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).EndInit();
@@ -150,7 +137,6 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private Telerik.WinControls.UI.RadButton btnPrintAgr;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private System.Windows.Forms.Label label1;

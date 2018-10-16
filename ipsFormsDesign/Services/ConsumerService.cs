@@ -43,6 +43,29 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetList<ConsumerMainView>(url);
             return anketaDic;
         }
+
+        public IList<ConsumerMainView> GetListAll()
+        {
+            var list = _webApi.GetList<ConsumerMainView>("consumer/listall");
+            return list;
+        }
+
+        public Customer GetExternalById(int custId)
+        {
+            var item = _webApi.GetItemById<Customer>("consumers/external", custId.ToString());
+            return item;
+        }
+
+        public bool SaveExternal(Customer customer)
+        {
+            if (customer.CustId == 0) // Новий споживач
+            {
+                return _webApi.NewItem("consumers/external", customer);
+            }
+
+            return _webApi.UpdateItem("consumers/external", customer.CustId.ToString(), customer);
+        }
+
         #region BigRight
         public IList<MainGridConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {

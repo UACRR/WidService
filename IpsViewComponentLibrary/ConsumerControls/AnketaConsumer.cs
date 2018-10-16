@@ -597,10 +597,12 @@ namespace IpsViewComponentLibrary
             int version = licenseAgreement?.LicVersion ?? default(int);
             string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
             templateName = string.Concat(@"Templates\", templateName);
-            await wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version);
-            wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version);
 
-            return wordEngine;
+            return await Task.Run(() => {
+                wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version);
+                return wordEngine;
+            });
+
         }
 
         private void btnLoadPdf_Click(object sender, EventArgs e)

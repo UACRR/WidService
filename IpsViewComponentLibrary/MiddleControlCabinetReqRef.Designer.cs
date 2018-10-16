@@ -69,9 +69,9 @@ namespace IpsViewComponentLibrary
             this.btnStatusAccept = new Telerik.WinControls.UI.RadMenuItem();
             this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
             this.spHeader = new Telerik.WinControls.UI.SplitPanel();
+            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
             this.spFooter = new Telerik.WinControls.UI.SplitPanel();
-            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).BeginInit();
@@ -228,7 +228,6 @@ namespace IpsViewComponentLibrary
             this.gvViewRequests.TabIndex = 8;
             this.gvViewRequests.ThemeName = "Office2013Light";
             this.gvViewRequests.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRequests_CurrentRowChanged);
-            this.gvViewRequests.CurrentRowChanging += new Telerik.WinControls.UI.CurrentRowChangingEventHandler(this.gvViewRequests_CurrentRowChanging);
             this.gvViewRequests.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRequests_CommandCellClick);
             // 
             // separator
@@ -384,8 +383,6 @@ namespace IpsViewComponentLibrary
             this.gvCreativeRole.Size = new System.Drawing.Size(1060, 220);
             this.gvCreativeRole.TabIndex = 19;
             this.gvCreativeRole.ThemeName = "Office2013Light";
-            this.gvCreativeRole.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvCreativeRole_CellBeginEdit);
-            this.gvCreativeRole.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCreativeRole_CellValueChanged);
             // 
             // bindingSource1
             // 
@@ -433,6 +430,7 @@ namespace IpsViewComponentLibrary
             this.btnStatusAccept.Name = "btnStatusAccept";
             this.btnStatusAccept.Text = "На погодження";
             this.btnStatusAccept.UseCompatibleTextRendering = false;
+            this.btnStatusAccept.Click += new System.EventHandler(this.btnToAccept_Click);
             // 
             // splitContainer
             // 
@@ -508,6 +506,15 @@ namespace IpsViewComponentLibrary
             this.spHeader.Text = "splitPanel1";
             this.spHeader.ThemeName = "Office2013Light";
             // 
+            // ctrlSearch
+            // 
+            this.ctrlSearch.Location = new System.Drawing.Point(3, 104);
+            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
+            this.ctrlSearch.Name = "ctrlSearch";
+            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
+            this.ctrlSearch.TabIndex = 24;
+            // 
             // ctrlAgrInfo
             // 
             this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
@@ -535,15 +542,6 @@ namespace IpsViewComponentLibrary
             this.spFooter.Text = "splitPanel2";
             this.spFooter.ThemeName = "Office2013Light";
             // 
-            // ctrlSearch
-            // 
-            this.ctrlSearch.Location = new System.Drawing.Point(3, 104);
-            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
-            this.ctrlSearch.Name = "ctrlSearch";
-            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
-            this.ctrlSearch.TabIndex = 24;
-            // 
             // MiddleControlCabinetReqRef
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -552,7 +550,6 @@ namespace IpsViewComponentLibrary
             this.Name = "MiddleControlCabinetReqRef";
             this.Size = new System.Drawing.Size(1060, 587);
             this.Load += new System.EventHandler(this.MiddleControlCabinetReqRef_Load);
-            this.Leave += new System.EventHandler(this.MiddleControlCabinetReqRef_Leave);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).EndInit();

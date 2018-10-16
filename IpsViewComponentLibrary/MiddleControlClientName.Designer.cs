@@ -140,7 +140,6 @@
             // 
             this.ctrlAnketaCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAnketaCompany.DataMember = "";
             this.ctrlAnketaCompany.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             this.ctrlAnketaCompany.Location = new System.Drawing.Point(4, 4);
             this.ctrlAnketaCompany.MaximumSize = new System.Drawing.Size(900, 47);

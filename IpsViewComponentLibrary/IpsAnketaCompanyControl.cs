@@ -25,6 +25,11 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
+        public void SetLabelName(string fullName)
+        {
+            lblFullName.Text = fullName;
+        }
+
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
@@ -35,14 +40,6 @@ namespace IpsViewComponentLibrary
                 if (anketaCompanyBindingSource.DataSource != value)
                     anketaCompanyBindingSource.DataSource = value;
             }
-        }
-
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string DataMember
-        {
-            get { return anketaCompanyBindingSource.DataMember; }
-            set { anketaCompanyBindingSource.DataMember = value; }
         }
 
         #region Activity code dictionary
@@ -59,11 +56,11 @@ namespace IpsViewComponentLibrary
 
             if (txtName.Text == string.Empty)
             {
-                radLabel1.ForeColor = Color.FromArgb(180, 255, 0, 2);
+                lblFullName.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
             }
             else
-                radLabel1.ForeColor = Color.Black;
+                lblFullName.ForeColor = Color.Black;
 
 
             return isValid;

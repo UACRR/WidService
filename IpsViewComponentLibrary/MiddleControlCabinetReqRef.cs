@@ -224,65 +224,6 @@ namespace IpsViewComponentLibrary
                 btnStatusAccept.Text = _btnDictionary[type];
         }
 
-        private void MiddleControlCabinetReqRef_Leave(object sender, EventArgs e)
-        {
-            if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
-                CallSaveRequest(item.LicId);
-        }
-
-        private List<WorkRh> _workRhList = new List<WorkRh>();
-        private void gvCreativeRole_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            
-            if (e?.Row?.DataBoundItem is AuthorsForLicenseBigRightView item/* && _typeControl == ControlRequestOrReferenceType.Request*/)
-            {
-                _saveNeedStatus = SaveNeedStatus.Yes;
-                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.Obj;
-                var copyRight = obj?.CopyRight?.SingleOrDefault(rec => rec.CRightId == item.CRightId);
-                var workRh = copyRight?.WorkRh;
-                if(workRh != null)
-                {
-                    workRh.WorkTypeCl = item?.WorkRh?.WorkTypeCl;
-                    workRh.WorkCoommentCl = _dictionaties.workType.SingleOrDefault(rec=>rec.CodeI == item.WorkRh.WorkTypeCl)?.Name;
-                }
-
-                if (_workRhList.Contains(workRh))
-                {
-                    _workRhList.Remove(workRh);
-                    _workRhList.Add(workRh);
-                }
-                else
-                    _workRhList.Add(workRh);
-                
-
-            }
-        }
-
-        private void gvCreativeRole_CellBeginEdit(object sender, Telerik.WinControls.UI.GridViewCellCancelEventArgs e)
-        {
-            if (_workRhs == null /*&& _typeControl == ControlRequestOrReferenceType.Request*/ && e?.Row?.DataBoundItem is AuthorsForLicenseBigRightView item)
-            {
-                var obj = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.Obj;
-                var copyRight = obj?.CopyRight?.SingleOrDefault(rec => rec.CRightId == item.CRightId);
-
-                if (obj != null)
-                    foreach (var right in obj.CopyRight) // заліпить null id
-                    {
-                        if (right.WorkRh == null)
-                            right.WorkRh = new WorkRh();
-                        right.WorkRh.CRightId = right.CRightId;
-                        //_authors.SingleOrDefault(rec=>rec.LicId == item.LicId)?.WorkTypeCl
-                    }
-
-                if (_workRhs == null && obj != null) //зберегти поточний стан об'єктів
-                    Serialization(obj.CopyRight);
-            }
-            else if (_typeControl == ControlRequestOrReferenceType.Reference)
-            {
-
-            }
-        }
-
         private void btnCreate_Click(object sender, EventArgs e)
         {
             switch (_typeControl)
@@ -306,124 +247,6 @@ namespace IpsViewComponentLibrary
 
                 }break;
             }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (_typeControl == ControlRequestOrReferenceType.Request)
-            {
-                if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
-                    CallSaveRequest(item.LicId, true);
-            }
-            else if (_typeControl == ControlRequestOrReferenceType.Reference)
-            {
-                //some code
-                if (gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
-                    CallSaveRequest(item.LicId, true);
-                //copypast ^ ^ ^
-            }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            if (_typeControl == ControlRequestOrReferenceType.Request)
-            {
-                _saveNeedStatus = SaveNeedStatus.No;
-                Deserialization();
-            }
-            else if (_typeControl == ControlRequestOrReferenceType.Reference)
-            {
-                //some code
-            }
-        }
-
-        #region save state obj
-
-        private List<WorkRh> _workRhs;
-        private ObservableListSource<CopyRight> _copyRightReferense;
-        private IList<AuthorsForLicenseBigRightView> _authorsTempSerialize;
-        private void Serialization(ObservableListSource<CopyRight> copyRight)
-        {
-            _authorsTempSerialize = new List<AuthorsForLicenseBigRightView>();
-            foreach (var author in _authors)
-            {
-                var item = new AuthorsForLicenseBigRightView();
-                item.SetFields(author);
-                item.WorkRh = new WorkRh();
-                item.WorkRh.SetFields(author.WorkRh);
-                _authorsTempSerialize.Add(item);
-            }
-
-            _copyRightReferense = copyRight;
-            _workRhs = new List<WorkRh>();
-            foreach (var item in copyRight)
-            {
-                var workRh = new WorkRh();
-                workRh.SetFields(item.WorkRh);
-                _workRhs.Add(workRh);
-            }
-        }
-        private void Deserialization()
-        {
-            _workRhList.Clear();
-            var source = gvViewRequests.CurrentRow.DataBoundItem as RequestsOrReferenceBigRightView;
-
-            foreach (var item in _workRhs)
-                _copyRightReferense?.SingleOrDefault(rec => rec.CRightId == item.CRightId)?.WorkRh.SetFields(item);
-
-            _workRhs = null;
-
-            //оновити грід
-            bindingSource1.DataSource = typeof(AuthorsForLicenseBigRightView);
-            _authors.Clear();
-            foreach (var authors in _authorsTempSerialize)
-                _authors.Add(authors);
-
-            _authorsTempSerialize = null;
-            bindingSource1.DataSource = _authors.Where(rec => rec.LicId == source?.LicId).ToList();
-            gvCreativeRole.MasterTemplate.Refresh();
-        }
-
-        #endregion
-
-        //повідомлення про не збережені зміни
-        private void CallSaveRequest(int idRow, bool isBtnSave = false)
-        {
-            if (_saveNeedStatus == SaveNeedStatus.Yes)
-                if (isBtnSave || RadMessageBox.Show("Зберегти внесені зміни?", "Внесені зміни не були збережені!", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes)
-                {
-                    if (OnWorkRhSave?.Invoke(idRow, _workRhList) ?? false)
-                        MessageBox.Show("Зміни успішно збережено!", "Повідомлення", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    else
-                    {
-                        MessageBox.Show("Помилка збереження!", "Повідомлення", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    _workRhs = null;
-                    _workRhList.Clear();
-                }
-                else
-                {
-                    Deserialization();
-                }
-
-            _saveNeedStatus = SaveNeedStatus.No;
-        }
-
-        private void btnToReference_Click(object sender, EventArgs e)
-        {
-            if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
-            {
-                if(OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec=>rec.LicId == item.LicId), ConsumerService.LicType.Reference) ?? false)
-                    ExtensionUtils.ShowInfoMessage("Заявка переведена в довідку", "Успішно", MessageBoxIcon.Information);
-                else
-                    ExtensionUtils.ShowInfoMessage("Не можливо створити довідку з заявки", "Помилка",MessageBoxIcon.Error);
-            }
-        }
-
-        private void gvViewRequests_CurrentRowChanging(object sender, Telerik.WinControls.UI.CurrentRowChangingEventArgs e)
-        {
-            if (_saveNeedStatus == SaveNeedStatus.Yes && e?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item)
-                CallSaveRequest(item.LicId);
         }
 
         private void btnToAccept_Click(object sender, EventArgs e)
@@ -474,7 +297,13 @@ namespace IpsViewComponentLibrary
 
         private void btnChangeToReference_Click(object sender, EventArgs e)
         {
-
+            if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
+            {
+                if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.Reference) ?? false)
+                    ExtensionUtils.ShowInfoMessage("Заявка переведена в довідку", "Успішно", MessageBoxIcon.Information);
+                else
+                    ExtensionUtils.ShowInfoMessage("Не можливо створити довідку з заявки", "Помилка", MessageBoxIcon.Error);
+            }
         }
 
         private void btnChangeToLicense_Click(object sender, EventArgs e)
@@ -487,8 +316,6 @@ namespace IpsViewComponentLibrary
                     ExtensionUtils.ShowInfoMessage("Не можливо створити ліцензію з довідки", "Помилка", MessageBoxIcon.Error);
             }
         }
-
-
     }
 
     public enum SaveNeedStatus

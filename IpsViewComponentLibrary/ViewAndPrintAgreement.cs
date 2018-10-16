@@ -26,16 +26,23 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }// = new WordEngine();
 
-        private async Task LoadDocument(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)
+        private void LoadDocument(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)
         {
             radWaitingBar1.StartWaiting();
             wordEngine = new WordEngine(dictionaties);
             int version = licenseAgreement?.LicVersion ?? default(int);
             string templateName = dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
             templateName = string.Concat(@"Templates\", templateName);
+            // Ліцензія не належить великим правам
+            if (!(licenseAgreement.Agr != null && licenseAgreement.Agr.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Count() > 0))
+                wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
+            else // Належить великим правам
+            {
+                wordEngine.processConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
 
 
-            wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
+            }
+
             var pdf = wordEngine.Pdf;
             radWaitingBar1.StopWaiting();
             radPdfViewer.LoadDocument(pdf);
@@ -44,7 +51,7 @@ namespace IpsViewComponentLibrary
         public ViewAndPrintAgreement(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)
         {
             InitializeComponent();
-            var task = LoadDocument(dictionaties, customer, licenseAgreement);
+            LoadDocument(dictionaties, customer, licenseAgreement);
         }
 
         public async void ShowCopyrightRequest(RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
@@ -77,7 +84,7 @@ namespace IpsViewComponentLibrary
         private void radWaitingBar1_ParentChanged(object sender, EventArgs e)
         {
             var clnSize = radWaitingBar1.Size;
-            radWaitingBar1.Location = new Point(Size.Width / 2 - clnSize.Width / 2, Size.Height / 2 - clnSize.Height / 2); 
+            radWaitingBar1.Location = new Point(Size.Width / 2 - clnSize.Width / 2, Size.Height / 2 - clnSize.Height / 2);
         }
     }
 }
