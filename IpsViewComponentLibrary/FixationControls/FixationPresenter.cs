@@ -75,11 +75,11 @@ namespace IpsViewComponentLibrary.FixationControls
 
             var currentStage = _fixation.GetStage();
 
-            if (currentStage == FixationStages.NegotiationBeforeFixation || currentStage == FixationStages.Fixation)
-            {
+            //if (currentStage == FixationStages.NegotiationBeforeFixation || currentStage == FixationStages.Fixation)
+            //{
                 _view.SetAvailableStageStatuses(_fixation.GetAvailableStageStatuses());
                 _view.ShowStatusesGroupBox = true;
-            }
+            //}
 
             _view.Run();
         }
@@ -119,6 +119,7 @@ namespace IpsViewComponentLibrary.FixationControls
                 foundedRegisterItem.RegId = rvm.RegId;
                 foundedRegisterItem.ObjId = rvm.ObjId;
                 foundedRegisterItem.IsAuto = rvm.IsAuto;
+                foundedRegisterItem.RegisterItemFix = rvm.RegisterItemFix;
                 foundedRegisterItem.CodeItem = 1;
 
                 var registerCountForItem = _view.RegisterCountList.Where(rc => rc.RegId == rvm.RegId && rc.RegIitemId == rvm.RegIitemId);

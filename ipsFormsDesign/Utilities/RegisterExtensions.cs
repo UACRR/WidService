@@ -30,6 +30,7 @@ namespace ipsFormsDesign.Utilities
                     RegIitemId = r.RegIitemId,
                     IsAuto = r.IsAuto,
                     CodeItem = r.CodeItem,
+                    RegisterItemFix = r.RegisterItemFix ?? new RegisterItemFix { TimeStart = new TimeSpan(), TimeEnd = new TimeSpan() },
                 };
 
                 if (r.Obj != null)
