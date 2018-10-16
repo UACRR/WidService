@@ -644,6 +644,7 @@ namespace ReportsLibrary
             // R_5_17_Balance
             // 
             this.Action = null;
+            this.DocumentName = global::ReportsLibrary.Properties.Settings.Default.Баланс;
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.pageHeaderSection1,
             this.detailSection1,
