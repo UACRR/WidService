@@ -72,6 +72,7 @@
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.btnOrderFixation = new Telerik.WinControls.UI.RadButton();
             this.dtFixationDtEnd = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
@@ -92,7 +93,7 @@
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.btnPrintAct = new Telerik.WinControls.UI.RadButton();
+            this.btnPrintIdentificationAct = new Telerik.WinControls.UI.RadButton();
             this.btnPrintSlugbova = new Telerik.WinControls.UI.RadButton();
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
@@ -112,7 +113,7 @@
             this.bgbStatuses = new IpsViewComponentLibrary.Common.ButtonGroupBoxControl();
             this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.btnOrderFixation = new Telerik.WinControls.UI.RadButton();
+            this.btnPrintFixationAct = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).BeginInit();
             this.mainPageView.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
@@ -144,6 +145,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.radPageViewPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOrderFixation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
@@ -168,7 +170,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtBegin)).BeginInit();
             this.radPageViewPage3.SuspendLayout();
             this.radPageViewPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintAct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintIdentificationAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintSlugbova)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
@@ -189,7 +191,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
             this.radPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOrderFixation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintFixationAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -204,7 +206,7 @@
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.radPageViewPage2;
+            this.mainPageView.SelectedPage = this.radPageViewPage4;
             this.mainPageView.Size = new System.Drawing.Size(828, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -503,6 +505,17 @@
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(818, 361);
             this.radPageViewPage2.Text = "Фіксація";
+            // 
+            // btnOrderFixation
+            // 
+            this.btnOrderFixation.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            this.btnOrderFixation.Location = new System.Drawing.Point(539, 39);
+            this.btnOrderFixation.Name = "btnOrderFixation";
+            this.btnOrderFixation.Size = new System.Drawing.Size(152, 24);
+            this.btnOrderFixation.TabIndex = 30;
+            this.btnOrderFixation.Text = "Наказ на фіксацію";
+            this.btnOrderFixation.ThemeName = "Office2013Light";
+            this.btnOrderFixation.Click += new System.EventHandler(this.btnOrderFixation_Click);
             // 
             // dtFixationDtEnd
             // 
@@ -858,7 +871,8 @@
             // 
             // radPageViewPage4
             // 
-            this.radPageViewPage4.Controls.Add(this.btnPrintAct);
+            this.radPageViewPage4.Controls.Add(this.btnPrintFixationAct);
+            this.radPageViewPage4.Controls.Add(this.btnPrintIdentificationAct);
             this.radPageViewPage4.Controls.Add(this.btnPrintSlugbova);
             this.radPageViewPage4.Controls.Add(this.radLabel21);
             this.radPageViewPage4.Controls.Add(this.radLabel20);
@@ -870,20 +884,20 @@
             this.radPageViewPage4.Size = new System.Drawing.Size(818, 361);
             this.radPageViewPage4.Text = "Судова робота";
             // 
-            // btnPrintAct
+            // btnPrintIdentificationAct
             // 
-            this.btnPrintAct.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            this.btnPrintAct.Location = new System.Drawing.Point(326, 42);
-            this.btnPrintAct.Name = "btnPrintAct";
-            this.btnPrintAct.Size = new System.Drawing.Size(152, 24);
-            this.btnPrintAct.TabIndex = 12;
-            this.btnPrintAct.Text = "Акт ідентифікації";
-            this.btnPrintAct.ThemeName = "Office2013Light";
+            this.btnPrintIdentificationAct.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            this.btnPrintIdentificationAct.Location = new System.Drawing.Point(326, 70);
+            this.btnPrintIdentificationAct.Name = "btnPrintIdentificationAct";
+            this.btnPrintIdentificationAct.Size = new System.Drawing.Size(152, 24);
+            this.btnPrintIdentificationAct.TabIndex = 12;
+            this.btnPrintIdentificationAct.Text = "Акт ідентифікації";
+            this.btnPrintIdentificationAct.ThemeName = "Office2013Light";
             // 
             // btnPrintSlugbova
             // 
             this.btnPrintSlugbova.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            this.btnPrintSlugbova.Location = new System.Drawing.Point(326, 12);
+            this.btnPrintSlugbova.Location = new System.Drawing.Point(326, 40);
             this.btnPrintSlugbova.Name = "btnPrintSlugbova";
             this.btnPrintSlugbova.Size = new System.Drawing.Size(152, 24);
             this.btnPrintSlugbova.TabIndex = 11;
@@ -1080,16 +1094,16 @@
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
-            // btnOrderFixation
+            // btnPrintFixationAct
             // 
-            this.btnOrderFixation.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            this.btnOrderFixation.Location = new System.Drawing.Point(539, 39);
-            this.btnOrderFixation.Name = "btnOrderFixation";
-            this.btnOrderFixation.Size = new System.Drawing.Size(152, 24);
-            this.btnOrderFixation.TabIndex = 30;
-            this.btnOrderFixation.Text = "Наказ на фіксацію";
-            this.btnOrderFixation.ThemeName = "Office2013Light";
-            this.btnOrderFixation.Click += new System.EventHandler(this.btnOrderFixation_Click);
+            this.btnPrintFixationAct.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            this.btnPrintFixationAct.Location = new System.Drawing.Point(326, 10);
+            this.btnPrintFixationAct.Name = "btnPrintFixationAct";
+            this.btnPrintFixationAct.Size = new System.Drawing.Size(152, 24);
+            this.btnPrintFixationAct.TabIndex = 12;
+            this.btnPrintFixationAct.Text = "Акт фіксації";
+            this.btnPrintFixationAct.ThemeName = "Office2013Light";
+            this.btnPrintFixationAct.Click += new System.EventHandler(this.btnPrintFixationAct_Click);
             // 
             // FixationView
             // 
@@ -1142,6 +1156,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.radPageViewPage2.ResumeLayout(false);
             this.radPageViewPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnOrderFixation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
@@ -1169,7 +1184,7 @@
             this.radPageViewPage3.ResumeLayout(false);
             this.radPageViewPage4.ResumeLayout(false);
             this.radPageViewPage4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintAct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintIdentificationAct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintSlugbova)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
@@ -1191,7 +1206,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
             this.radPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOrderFixation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPrintFixationAct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1261,7 +1276,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel20;
         private Common.Editors.IpsMaskedEditBox mebCourtFeeAmount;
         private Common.Editors.IpsMaskedEditBox mebRewardAmount;
-        private Telerik.WinControls.UI.RadButton btnPrintAct;
+        private Telerik.WinControls.UI.RadButton btnPrintIdentificationAct;
         private Telerik.WinControls.UI.RadButton btnPrintSlugbova;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage5;
         private Telerik.WinControls.UI.RadDropDownList ddlConsumer;
@@ -1269,5 +1284,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel17;
         private Common.Editors.IpsDateTimePicker dtFixationDtEnd;
         private Telerik.WinControls.UI.RadButton btnOrderFixation;
+        private Telerik.WinControls.UI.RadButton btnPrintFixationAct;
     }
 }

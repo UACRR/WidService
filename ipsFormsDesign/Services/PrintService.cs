@@ -33,6 +33,20 @@ namespace ipsFormsDesign.Services
             _previewView.LoadPdf(_wordEngine.Pdf);
             _previewView.StopWaiting();
         }
+
+        public async void PrintFixationAct(Fixation fixation)
+        {
+            _previewView.SetHeader("Акт фіксації - " + fixation.EventName);
+            _previewView.Show();
+            _previewView.StartWaiting();
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_Акт фіксації_друк.docx");
+
+            await _wordEngine.ProcessFixationAct(template, fixation);
+
+            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.StopWaiting();
+        }
     }
 
     public interface IPreviewView
