@@ -273,6 +273,9 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
             (gvRegisterItemList.Templates[1].Columns["DeleteRhColumn"] as GridViewCommandColumn).ImageAlignment = ContentAlignment.MiddleCenter;
 
+            gvRegisterItemList.SetColumnTimeSpanEditor("TimeStart");
+            gvRegisterItemList.SetColumnTimeSpanEditor("TimeEnd");
+
             if (!IsDesignMode)
             {
                 SetDictionaries();
