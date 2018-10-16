@@ -192,6 +192,15 @@ namespace IpsViewComponentLibrary.FixationControls
             _presenter.RegisterCountDeleted(registerCount);
         }
 
+        #region Print documents
+
+        private void btnOrderFixation_Click(object sender, EventArgs e)
+        {
+            _presenter.PrintOrderFixation();
+        }
+
+        #endregion
+
         #region Validation
 
         private void ddlConsumer_Validating(object sender, CancelEventArgs e)

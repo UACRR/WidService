@@ -38,7 +38,7 @@ namespace ipsFormsDesign.Services
 
             fixation.Lic = new LicenseAgreement { LicType = 1, LicStatus = 2, LicVersion = 1, LicCode = 29 };
             fixation.Lic.Agr = new AgreementMaster { AgrStatus = 2, AgrType = 2 };
-            var paidPeriod = new PaidPeriod { BeginDate = beginMonth, EndDate = endMonth, Status = 1, PeriodType = 1, PeriodName = $"{beginMonth.ToShortDateString()} - {endMonth.ToShortDateString()}" };
+            var paidPeriod = new PaidPeriod { BeginDate = beginMonth, EndDate = endMonth, Status = 4, PeriodType = 1, PeriodName = $"{beginMonth.ToShortDateString()} - {endMonth.ToShortDateString()}" };
             fixation.Lic.PaidPeriod.Add(paidPeriod);
             var registerRatedList = new RegisterRatedList { Status = 1 };
             paidPeriod.RegisterRatedList.Add(registerRatedList);

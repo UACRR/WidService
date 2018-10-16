@@ -848,6 +848,80 @@ namespace ipsFormsDesign.Services
 
         #endregion
 
+        #region Fixation Order
+
+        public async System.Threading.Tasks.Task ProcessFixationOrder(string pathTemplate, Fixation fixation)
+        {
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            clearFiles();
+
+            var docFile = tempFileName + ".docx";
+
+            File.Copy(pathTemplate, docFile);
+
+            // відкрити шаблон
+            await System.Threading.Tasks.Task.Run(() => InnerProcessFixationOrder(fixation));
+
+        }
+
+        private void InnerProcessFixationOrder(Fixation fixation)
+        {
+            var userService = new UserService();
+            var responsible = userService.GetById(fixation.UserId);
+
+            var consumerService = new ConsumerService();
+            var consumer = consumerService.GetShortInfoById(fixation.ClientCustId.Value);
+
+            app = StartWordApp();
+            innerDoc = app.Documents.Open(Docx);
+
+            var list = innerDoc.ContentControls;
+
+            foreach (ContentControl item in list)
+            {
+                item.LockContentControl = false;
+                item.Temporary = true;
+                string title = item.Title.Trim();
+
+                switch (title)
+                {
+                    case "data":
+                        item.Range.Text = DateTime.Today.ToShortDateString() + " р.";
+                        break;
+                    case "fixEmployee":
+                        item.Range.Text = responsible.FIO;
+                        break;
+                    case "fixDate":
+                        item.Range.Text = fixation.FixationDtBegin.Value.ToShortDateString();
+                        break;
+                    case "fixTime":
+                        item.Range.Text = fixation.FixationDtBegin.Value.ToShortTimeString();
+                        break;
+                    case "fixPlacement":
+                        item.Range.Text = fixation.Placement;
+                        break;
+                    case "fixAddress":
+                        item.Range.Text = fixation.Address;
+                        break;
+                    case "fixClientName":
+                        item.Range.Text = consumer.Name;
+                        break;
+                    case "fixClientInnOkpo":
+                        item.Range.Text = consumer.Innokpo;
+                        break;
+                }
+            }
+
+            innerDoc.Save();
+            innerDoc.SaveAs2(Pdf, WdSaveFormat.wdFormatPDF);
+            innerDoc.Close();
+            Marshal.ReleaseComObject(innerDoc);
+            innerDoc = null;
+        }
+
+        #endregion
+
         class TbAuthorPrc
         {
             public string RoleName { get; set; }
