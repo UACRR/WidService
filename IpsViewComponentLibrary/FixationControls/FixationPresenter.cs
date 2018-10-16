@@ -241,6 +241,12 @@ namespace IpsViewComponentLibrary.FixationControls
             printService.PrintFixationAct(_fixation);
         }
 
+        public void PrintFixationIdentificationAct()
+        {
+            var printService = new PrintService(new ViewAndPrintAgreement());
+            printService.PrintFixationIdentificationAct(_fixation, _view.RegisterCountList);
+        }
+
         private int GetNextRegisterItemId()
         {
             if (_lastId == 0)

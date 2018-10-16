@@ -204,6 +204,11 @@ namespace IpsViewComponentLibrary.FixationControls
             _presenter.PrintFixationAct();
         }
 
+        private void btnPrintIdentificationAct_Click(object sender, EventArgs e)
+        {
+            _presenter.PrintFixationIdentificationAct();
+        }
+
         #endregion
 
         #region Validation

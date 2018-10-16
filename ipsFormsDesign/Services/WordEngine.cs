@@ -10,6 +10,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Dictionary;
 using System.Runtime.InteropServices;
 using ipsFormsDesign.Utilities;
+using ipsFormsDesign.ViewModels.Fixations;
 
 namespace ipsFormsDesign.Services
 {
@@ -1010,7 +1011,7 @@ namespace ipsFormsDesign.Services
 
             foreach(var device in fixStorageDevices)
             {
-                result += result == "" ? "" : ", ";
+                result += result == "" ? "" : "; ";
                 result += $"{device.Name}, {device.SerialNumber}, {device.Capacity} Gb";
             }
 
@@ -1034,6 +1035,116 @@ namespace ipsFormsDesign.Services
                 for (var i = 1; i <= newRow.Cells.Count; i++)
                 {
                     newRow.Cells[i].Range.Font.Bold = 0;
+                }
+            }
+        }
+
+        #endregion
+
+        #region Fixation Identification Act
+
+        public async System.Threading.Tasks.Task ProcessFixationIdentificationAct(string pathTemplate, Fixation fixation, IEnumerable<RegisterCountViewModel> registerCountList)
+        {
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            clearFiles();
+
+            var docFile = tempFileName + ".docx";
+
+            File.Copy(pathTemplate, docFile);
+
+            // відкрити шаблон
+            await System.Threading.Tasks.Task.Run(() => InnerProcessFixationIdentificationAct(fixation, registerCountList));
+        }
+
+        private void InnerProcessFixationIdentificationAct(Fixation fixation, IEnumerable<RegisterCountViewModel> registerCountList)
+        {
+            var consumerService = new ConsumerService();
+            var consumer = consumerService.GetShortInfoById(fixation.ClientCustId.Value);
+
+            app = StartWordApp();
+            innerDoc = app.Documents.Open(Docx);
+
+            var list = innerDoc.ContentControls;
+
+            foreach (ContentControl item in list)
+            {
+                item.LockContentControl = false;
+                item.Temporary = true;
+                string title = item.Title.Trim();
+
+                switch (title)
+                {
+                    case "data":
+                        item.Range.Text = DateTime.Today.ToShortDateString() + " р.";
+                        break;
+                    case "fixDate":
+                        item.Range.Text = fixation.FixationDtBegin.Value.ToShortDateString();
+                        break;
+                    case "fixClientName":
+                        item.Range.Text = consumer.Name;
+                        break;
+                    case "fixEventName":
+                        item.Range.Text = fixation.EventName;
+                        break;
+                    case "fixDevice":
+                        item.Range.Text = GetStringOfDeviceList(fixation.FixStorageDevice);
+                        break;
+                    case "TableObjFixIdent":
+                        PopulateTableObjectsIdent(item.Range.Tables, fixation.GetRegister().RegisterItem, registerCountList);
+                        break;
+                }
+            }
+
+            innerDoc.Save();
+            innerDoc.SaveAs2(Pdf, WdSaveFormat.wdFormatPDF);
+            innerDoc.Close();
+            Marshal.ReleaseComObject(innerDoc);
+            innerDoc = null;
+        }
+
+        private void PopulateTableObjectsIdent(Tables tables, IEnumerable<RegisterItem> registerItemList, IEnumerable<RegisterCountViewModel> registerCountList)
+        {
+            if (tables.Count == 0)
+                return;
+
+            Table tableObjects = tables[1];
+
+            var rowNo = 0;
+
+            foreach (var item in registerItemList)
+            {
+                var newRow = tableObjects.Rows.Add();
+                newRow.Cells[1].Range.Text = (++rowNo).ToString();
+                newRow.Cells[2].Range.Text = item.Obj.Name;
+                newRow.Cells[3].Range.Text = item.Obj.Performer;
+                newRow.Cells[4].Range.Text = item.RegisterItemFix.TimeStart.ToString();
+                newRow.Cells[5].Range.Text = item.RegisterItemFix.TimeEnd.ToString();
+
+                for (var i = 1; i <= newRow.Cells.Count; i++)
+                {
+                    newRow.Cells[i].Range.Font.Bold = 0;
+                }
+
+                var countList = registerCountList
+                    .Where(rc => rc.RegId == item.RegId && rc.RegIitemId == item.RegIitemId)
+                    .ToList();
+
+                foreach (var countItem in countList)
+                {
+                    if (countList.IndexOf(countItem) > 0)
+                    {
+                        newRow = tableObjects.Rows.Add();
+
+                        for (var i = 1; i <= newRow.Cells.Count; i++)
+                        {
+                            newRow.Cells[i].Range.Font.Bold = 0;
+                        }
+                    }
+
+                    newRow.Cells[6].Range.Text = countItem.CreativeRoles;
+                    newRow.Cells[7].Range.Text = countItem.Name;
+                    newRow.Cells[9].Range.Text = countItem.Rate.ToString();
                 }
             }
         }

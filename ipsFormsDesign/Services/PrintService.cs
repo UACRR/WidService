@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.ViewModels.Fixations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -43,6 +44,20 @@ namespace ipsFormsDesign.Services
             var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_Акт фіксації_друк.docx");
 
             await _wordEngine.ProcessFixationAct(template, fixation);
+
+            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.StopWaiting();
+        }
+
+        public async void PrintFixationIdentificationAct(Fixation fixation, IEnumerable<RegisterCountViewModel> registerCountList)
+        {
+            _previewView.SetHeader("Акт ідентифікації - " + fixation.EventName);
+            _previewView.Show();
+            _previewView.StartWaiting();
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_АКТ Ідентифікація.docx");
+
+            await _wordEngine.ProcessFixationIdentificationAct(template, fixation, registerCountList);
 
             _previewView.LoadPdf(_wordEngine.Pdf);
             _previewView.StopWaiting();
