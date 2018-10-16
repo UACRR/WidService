@@ -226,6 +226,7 @@
     <None Include="Templates\F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\F_Наказ на фіксацію.docx" />
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

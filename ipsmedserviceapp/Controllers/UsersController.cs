@@ -19,7 +19,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> GetUsersWithRoleFixation(string userId)
+        public async Task<IActionResult> GetUserById(string userId)
         {
             if (userId == null)
                 BadRequest("UserId can not be null.");
