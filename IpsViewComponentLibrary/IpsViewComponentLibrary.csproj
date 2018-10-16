@@ -609,6 +609,7 @@
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\FixationStageStatusMenuFactory.cs" />
+    <Compile Include="Utilities\TimeSpanToDateTimeConverter.cs" />
     <Compile Include="_trash\CabinetBigRightOld.cs">
       <SubType>UserControl</SubType>
     </Compile>
