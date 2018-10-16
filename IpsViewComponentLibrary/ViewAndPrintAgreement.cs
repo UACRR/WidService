@@ -18,7 +18,7 @@ using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class ViewAndPrintAgreement : Telerik.WinControls.UI.RadForm
+    public partial class ViewAndPrintAgreement : Telerik.WinControls.UI.RadForm, IPreviewView
     {
         WordEngine wordEngine = null;
         public ViewAndPrintAgreement()
@@ -103,5 +103,29 @@ namespace IpsViewComponentLibrary
             var clnSize = radWaitingBar1.Size;
             radWaitingBar1.Location = new Point(Size.Width / 2 - clnSize.Width / 2, Size.Height / 2 - clnSize.Height / 2);
         }
+
+        #region implementation IPreviewView interface
+
+        public void StartWaiting()
+        {
+            radWaitingBar1.StartWaiting();
+        }
+
+        public void StopWaiting()
+        {
+            radWaitingBar1.StopWaiting();
+        }
+
+        public void LoadPdf(string path)
+        {
+            radPdfViewer.LoadDocument(path);
+        }
+
+        public void SetHeader(string header)
+        {
+            Text = header;
+        }
+
+        #endregion
     }
 }

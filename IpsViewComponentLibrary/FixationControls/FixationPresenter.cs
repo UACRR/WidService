@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary.FixationControls
         private readonly FixationService _fixationService;
         private readonly ObjectRightService _objectRightService;
         private readonly UserService _userService;
+        private readonly PrintService _printService;
         private readonly AmountDistributor _percentDistributor;
         private Fixation _fixation;
         private bool _canClose;
@@ -36,6 +37,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixationService = new FixationService();
             _objectRightService = new ObjectRightService();
             _userService = new UserService();
+            _printService = new PrintService(new ViewAndPrintAgreement());
             _percentDistributor = new AmountDistributor();
             _percentDistributor.Amount = 100;
         }
@@ -231,9 +233,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void PrintOrderFixation()
         {
-            var printView = new ViewAndPrintAgreement();
-            printView.Text = "Наказ на фіксацію - " + _fixation.EventName;
-            printView.ShowFixationOrder(_fixation);
+            _printService.PrintFixationOrder(_fixation);
         }
 
         private int GetNextRegisterItemId()
