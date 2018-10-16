@@ -35,7 +35,6 @@ namespace ipsmedserviceapp.Model
         public ObjectRight Obj { get; set; }
         [JsonIgnore]
         public Register Reg { get; set; }
-        [JsonIgnore]
         public RegisterItemFix RegisterItemFix { get; set; }
         public ICollection<RegisterCount> RegisterCount { get; set; }
         public ICollection<RegisterExtra> RegisterExtra { get; set; }

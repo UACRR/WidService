@@ -12,11 +12,15 @@ namespace ipsmedserviceapp.Utilities
         
         public void DistributeByEqualAmount<TSource>(IEnumerable<TSource> list, Expression<Func<TSource, decimal?>> propertySelector)
         {
+            var count = list.Count();
+
+            if (count == 0)
+                return;
+
             var memberSelectorExpression = propertySelector.Body as MemberExpression;
             PropertyInfo propertyInfo;
             propertyInfo = memberSelectorExpression.Member as PropertyInfo;
 
-            var count = list.Count();
             decimal newAmount = Amount / count;
             decimal newRoundAmount = Math.Round(newAmount, 2);
             var delta = Math.Round((newAmount - newRoundAmount) * count, 2);
@@ -32,6 +36,9 @@ namespace ipsmedserviceapp.Utilities
 
         public void DistributeByProperty<TSource>(IEnumerable<TSource> list, Func<TSource, decimal?> amountBasePropertySelector, Expression<Func<TSource, decimal?>> targetPropertySelector)
         {
+            if (!list.Any())
+                return;
+
             var memberSelectorExpression = targetPropertySelector.Body as MemberExpression;
             PropertyInfo propertyInfo;
             propertyInfo = memberSelectorExpression.Member as PropertyInfo;
