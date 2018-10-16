@@ -196,7 +196,12 @@ namespace IpsViewComponentLibrary.FixationControls
 
         private void btnOrderFixation_Click(object sender, EventArgs e)
         {
-            _presenter.PrintOrderFixation();
+            _presenter.PrintFixationOrder();
+        }
+
+        private void btnPrintFixationAct_Click(object sender, EventArgs e)
+        {
+            _presenter.PrintFixationAct();
         }
 
         #endregion
