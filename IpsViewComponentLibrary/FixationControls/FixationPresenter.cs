@@ -231,6 +231,18 @@ namespace IpsViewComponentLibrary.FixationControls
             return _fixation.ClientCustId.HasValue;
         }
 
+        public void UpdateAmountDistribution()
+        {
+            _view.DistributionList.Clear();
+
+            var distrList = _fixationService.GetAmountDistribution(_fixation.FixId);
+            
+            foreach(var distr in distrList)
+            {
+                _view.DistributionList.Add(distr);
+            }
+        }
+
         public void PrintFixationOrder()
         {
             var printService = new PrintService(new ViewAndPrintAgreement());
