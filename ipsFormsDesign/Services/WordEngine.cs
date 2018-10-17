@@ -841,10 +841,7 @@ namespace ipsFormsDesign.Services
                 newRow.Cells[7].Range.Text = item.Rate.ToString();
                 newRow.Cells[8].Range.Text = item.Performer;
 
-                for (var i = 1; i <= 8; i++)
-                {
-                    newRow.Cells[i].Range.Font.Bold = 0;
-                }
+                DisableBoldFont(newRow);
             }
         }
 
@@ -1032,10 +1029,7 @@ namespace ipsFormsDesign.Services
                 newRow.Cells[2].Range.Text = item.ItemName;
                 newRow.Cells[3].Range.Text = item.Performer;
 
-                for (var i = 1; i <= newRow.Cells.Count; i++)
-                {
-                    newRow.Cells[i].Range.Font.Bold = 0;
-                }
+                DisableBoldFont(newRow);
             }
         }
 
@@ -1180,10 +1174,7 @@ namespace ipsFormsDesign.Services
                 newRow.Cells[4].Range.Text = item.RegisterItemFix.TimeStart.ToString();
                 newRow.Cells[5].Range.Text = item.RegisterItemFix.TimeEnd.ToString();
 
-                for (var i = 1; i <= newRow.Cells.Count; i++)
-                {
-                    newRow.Cells[i].Range.Font.Bold = 0;
-                }
+                DisableBoldFont(newRow);
 
                 var countList = registerCountList
                     .Where(rc => rc.RegId == item.RegId && rc.RegIitemId == item.RegIitemId)
@@ -1195,16 +1186,21 @@ namespace ipsFormsDesign.Services
                     {
                         newRow = tableObjects.Rows.Add();
 
-                        for (var i = 1; i <= newRow.Cells.Count; i++)
-                        {
-                            newRow.Cells[i].Range.Font.Bold = 0;
-                        }
+                        DisableBoldFont(newRow);
                     }
 
                     newRow.Cells[6].Range.Text = countItem.CreativeRoles;
                     newRow.Cells[7].Range.Text = countItem.Name;
                     newRow.Cells[9].Range.Text = countItem.Rate.ToString();
                 }
+            }
+        }
+
+        private static void DisableBoldFont(Row newRow)
+        {
+            for (var i = 1; i <= newRow.Cells.Count; i++)
+            {
+                newRow.Cells[i].Range.Font.Bold = 0;
             }
         }
 
