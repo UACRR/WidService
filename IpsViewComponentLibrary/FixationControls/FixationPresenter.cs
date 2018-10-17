@@ -133,6 +133,8 @@ namespace IpsViewComponentLibrary.FixationControls
                         CustId = rcvm.CustId,
                         ObjId = rcvm.ObjId,
                         Rate = rcvm.Rate,
+                        CRtype = 1,
+                        CRkindCode = 1,
                     });
                 }
             }
