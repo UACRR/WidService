@@ -17,6 +17,8 @@ namespace IpsViewComponentLibrary.FixationControls
 {
     public partial class FixationView : IpsViewComponentLibrary.Common.Form.IpsForm
     {
+        private bool firstShowDistribution = true;
+
         private FixationPresenter _presenter;
         public FixationPresenter Presenter
         {
@@ -82,6 +84,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public BindingList<RegisterItemViewModel> RegisterItemList { get; } = new BindingList<RegisterItemViewModel>();
         public BindingList<RegisterCountViewModel> RegisterCountList { get; } = new BindingList<RegisterCountViewModel>();
+        public BindingList<AmountDistributionViewModel> DistributionList { get; } = new BindingList<AmountDistributionViewModel>();
 
         public FixationView()
         {
@@ -98,6 +101,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
             ctrlRegisterItemList.DataSource = RegisterItemList;
             ctrlRegisterItemList.DataSourceRegisterCount = RegisterCountList;
+            bsAmountDistributionViewModel.DataSource = DistributionList;
         }
 
         public void SetAvailableStageStatuses(IEnumerable<FixationStageStatuses> stageStatuses)
@@ -190,6 +194,31 @@ namespace IpsViewComponentLibrary.FixationControls
         private void ctrlRegisterItemList_RegisterCountDeleted(object sender, RegisterCountViewModel registerCount)
         {
             _presenter.RegisterCountDeleted(registerCount);
+        }
+
+        private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
+        {
+            if (mainPageView.SelectedPage == distributionPage && firstShowDistribution)
+            {
+                firstShowDistribution = false;
+                _presenter.UpdateAmountDistribution();
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            _presenter.UpdateAmountDistribution();
+        }
+
+        private void gvDistribution_GroupSummaryEvaluate(object sender, GroupSummaryEvaluationEventArgs e)
+        {
+            if (e.SummaryItem.Name == "ObjName")
+            {
+                var distr = e.Group[0].DataBoundItem as AmountDistributionViewModel;
+
+                if (distr != null)
+                    e.FormatString = $"Твір: {distr.ObjName}, Автори: {distr.Author}";
+            }
         }
 
         #region Print documents
