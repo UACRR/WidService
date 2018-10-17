@@ -229,6 +229,7 @@
     <None Include="Templates\F_АКТ Ідентифікація.docx" />
     <None Include="Templates\F_Акт фіксації_друк.docx" />
     <None Include="Templates\F_Наказ на фіксацію.docx" />
+    <None Include="Templates\F_Службова до юридичного деп.docx" />
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

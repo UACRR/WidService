@@ -913,6 +913,7 @@
             this.btnPrintSlugbova.TabIndex = 11;
             this.btnPrintSlugbova.Text = "Службова";
             this.btnPrintSlugbova.ThemeName = "Office2013Light";
+            this.btnPrintSlugbova.Click += new System.EventHandler(this.btnPrintSlugbova_Click);
             // 
             // radLabel21
             // 

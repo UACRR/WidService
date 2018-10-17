@@ -49,6 +49,20 @@ namespace ipsFormsDesign.Services
             _previewView.StopWaiting();
         }
 
+        public async void PrintFixationSlugbova(Fixation fixation)
+        {
+            _previewView.SetHeader("Службова - " + fixation.EventName);
+            _previewView.Show();
+            _previewView.StartWaiting();
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_Службова до юридичного деп.docx");
+
+            await _wordEngine.ProcessFixationSlugbova(template, fixation);
+
+            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.StopWaiting();
+        }
+
         public async void PrintFixationIdentificationAct(Fixation fixation, IEnumerable<RegisterCountViewModel> registerCountList)
         {
             _previewView.SetHeader("Акт ідентифікації - " + fixation.EventName);

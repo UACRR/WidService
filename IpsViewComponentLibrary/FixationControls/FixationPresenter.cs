@@ -241,6 +241,12 @@ namespace IpsViewComponentLibrary.FixationControls
             printService.PrintFixationAct(_fixation);
         }
 
+        public void PrintFixationSlugbova()
+        {
+            var printService = new PrintService(new ViewAndPrintAgreement());
+            printService.PrintFixationSlugbova(_fixation);
+        }
+
         public void PrintFixationIdentificationAct()
         {
             var printService = new PrintService(new ViewAndPrintAgreement());

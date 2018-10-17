@@ -1041,6 +1041,65 @@ namespace ipsFormsDesign.Services
 
         #endregion
 
+        #region Fixation Slugbova
+
+        public async System.Threading.Tasks.Task ProcessFixationSlugbova(string pathTemplate, Fixation fixation)
+        {
+            // копіювати в тимчасову папку
+            tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            clearFiles();
+
+            var docFile = tempFileName + ".docx";
+
+            File.Copy(pathTemplate, docFile);
+
+            // відкрити шаблон
+            await System.Threading.Tasks.Task.Run(() => InnerProcessFixationSlugbova(fixation));
+
+        }
+
+        private void InnerProcessFixationSlugbova(Fixation fixation)
+        {
+            var userService = new UserService();
+            var responsible = userService.GetById(fixation.UserId);
+
+            var consumerService = new ConsumerService();
+            var consumer = consumerService.GetShortInfoById(fixation.ClientCustId.Value);
+
+            app = StartWordApp();
+            innerDoc = app.Documents.Open(Docx);
+
+            var list = innerDoc.ContentControls;
+
+            foreach (ContentControl item in list)
+            {
+                item.LockContentControl = false;
+                item.Temporary = true;
+                string title = item.Title.Trim();
+
+                switch (title)
+                {
+                    case "fixDate":
+                        item.Range.Text = fixation.FixationDtBegin.Value.ToShortDateString();
+                        break;
+                    case "fixClientName":
+                        item.Range.Text = consumer.Name;
+                        break;
+                    case "fixDevice":
+                        item.Range.Text = GetStringOfDeviceList(fixation.FixStorageDevice);
+                        break;
+                }
+            }
+
+            innerDoc.Save();
+            innerDoc.SaveAs2(Pdf, WdSaveFormat.wdFormatPDF);
+            innerDoc.Close();
+            Marshal.ReleaseComObject(innerDoc);
+            innerDoc = null;
+        }
+
+        #endregion
+
         #region Fixation Identification Act
 
         public async System.Threading.Tasks.Task ProcessFixationIdentificationAct(string pathTemplate, Fixation fixation, IEnumerable<RegisterCountViewModel> registerCountList)
