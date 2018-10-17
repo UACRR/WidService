@@ -989,7 +989,7 @@ namespace ipsFormsDesign.Services
                     case "fixEventName":
                         item.Range.Text = fixation.EventName;
                         break;
-                    case "fixDeviceName":
+                    case "fixDevice":
                         item.Range.Text = GetStringOfDeviceList(fixation.FixStorageDevice);
                         break;
                     case "TableObjFix":
