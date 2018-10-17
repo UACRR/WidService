@@ -55,6 +55,7 @@ namespace IpsViewComponentLibrary
             else
                 gvPlaces.Enabled = false;
 
+            ctrlAgrMain.DataSource = _licenseAgr;
             ctrlAgrMain.DateTimeType = agreementInitType;
             bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
             {

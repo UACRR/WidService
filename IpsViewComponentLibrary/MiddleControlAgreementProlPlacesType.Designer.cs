@@ -103,19 +103,12 @@
             // ctrlAgrMain
             // 
             this.ctrlAgrMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
-            this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DataSource = this.bindingSourceAgr;
-            this.ctrlAgrMain.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
-            this.ctrlAgrMain.DateBeginDataMember = "";
-            this.ctrlAgrMain.DateDataMember = "";
-            this.ctrlAgrMain.DateEndDataMember = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
-            this.ctrlAgrMain.DateEndNullText = "";
             this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
             this.ctrlAgrMain.Location = new System.Drawing.Point(14, 31);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";
-            this.ctrlAgrMain.NumberDataMember = "";
             this.ctrlAgrMain.Size = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.TabIndex = 23;
             // 

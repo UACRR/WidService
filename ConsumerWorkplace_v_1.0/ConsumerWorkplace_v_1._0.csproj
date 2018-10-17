@@ -194,13 +194,13 @@
       <DependentUpon>ConsumerWorkplace.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPresenter.cs" />
-    <Compile Include="JurAnketa.cs">
+    <Compile Include="Trash\JurAnketa.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="JurAnketa.Designer.cs">
+    <Compile Include="Trash\JurAnketa.Designer.cs">
       <DependentUpon>JurAnketa.cs</DependentUpon>
     </Compile>
-    <Compile Include="ListConsumers.cs" />
+    <Compile Include="Trash\ListConsumers.cs" />
     <Compile Include="PdfEngine.cs" />
     <Compile Include="Presenters\BigRightPresenter.cs" />
     <Compile Include="Presenters\SmallRightPresenter.cs" />
@@ -218,7 +218,7 @@
       <DependentUpon>ConsumerWorkplace.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="JurAnketa.resx">
+    <EmbeddedResource Include="Trash\JurAnketa.resx">
       <DependentUpon>JurAnketa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
