@@ -112,6 +112,24 @@ namespace ipsmedserviceapp.Controllers
             return Ok();
         }
 
+        [HttpGet("{fixId}/amountdistribution")]
+        public async Task<IActionResult> GetAmountDistribution(int? fixId)
+        {
+            if (fixId == null)
+                BadRequest();
+
+            var fixation = await GetFixationById(fixId.Value);
+
+            if (fixation == null)
+                NotFound();
+
+            var list = await _dbContext.getViewData($"select * from ft_tsk_7_FixDistr01(@licId)", new[] {
+                new SqlParameter("licId", fixation.LicId),
+            });
+
+            return Ok(list);
+        }
+
         private async Task<Fixation> GetFixationById(int fixId, bool includeRelated = false )
         {
             if (!includeRelated)

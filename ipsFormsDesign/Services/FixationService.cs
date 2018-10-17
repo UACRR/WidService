@@ -70,5 +70,11 @@ namespace ipsFormsDesign.Services
         {
             return _webApi.UpdateItem($"fixations/{fixId}/stagestatus", null, newStageStatus);
         }
+
+        public List<AmountDistributionViewModel> GetAmountDistribution(int fixId)
+        {
+            var list = _webApi.GetList<AmountDistributionViewModel>($"fixations/{fixId}/amountdistribution");
+            return list;
+        }
     }
 }
