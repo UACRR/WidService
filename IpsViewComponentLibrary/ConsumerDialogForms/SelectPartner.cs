@@ -29,7 +29,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         public void SetPartnerList(List<Customer> customers)
         {
-            _customers = customers;
+            _customers = customers.Where(i => i.Partner?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus == 2).ToList();
             List<PartnerList> listTemp = new List<PartnerList>();
             foreach (var customer in _customers)
             {
@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void SelectedPartnerChanged(object sender, EventArgs e)
         {
-            if (!((gvPartnerList.CurrentRow.DataBoundItem as PartnerList)?.CustId is int custId)) return;
+            if (!((gvPartnerList?.CurrentRow?.DataBoundItem as PartnerList)?.CustId is int custId)) return;
 
             UpdateData(custId);
             PartnerId = custId;
