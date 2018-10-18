@@ -233,6 +233,9 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void UpdateAmountDistribution()
         {
+            if (_fixation.FixId == 0)
+                return;
+
             _view.DistributionList.Clear();
 
             var distrList = _fixationService.GetAmountDistribution(_fixation.FixId);

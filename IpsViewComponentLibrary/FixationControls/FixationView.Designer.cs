@@ -84,7 +84,7 @@
             this.txtPlacement = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pageFixation = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnOrderFixation = new Telerik.WinControls.UI.RadButton();
             this.dtFixationDtEnd = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
@@ -103,9 +103,9 @@
             this.ddlResponsible = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.dtFixationDtBegin = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
-            this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pageIdentification = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
-            this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pageJudicalWork = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnPrintFixationAct = new Telerik.WinControls.UI.RadButton();
             this.btnPrintIdentificationAct = new Telerik.WinControls.UI.RadButton();
             this.btnPrintSlugbova = new Telerik.WinControls.UI.RadButton();
@@ -113,7 +113,7 @@
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.mebCourtFeeAmount = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
             this.mebRewardAmount = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
-            this.distributionPage = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pageDistribution = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnRefresh = new Telerik.WinControls.UI.RadButton();
             this.gvDistribution = new Telerik.WinControls.UI.RadGridView();
             this.bsAmountDistributionViewModel = new System.Windows.Forms.BindingSource(this.components);
@@ -160,7 +160,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPlacement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            this.radPageViewPage2.SuspendLayout();
+            this.pageFixation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOrderFixation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
@@ -184,8 +184,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlResponsible)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtBegin)).BeginInit();
-            this.radPageViewPage3.SuspendLayout();
-            this.radPageViewPage4.SuspendLayout();
+            this.pageIdentification.SuspendLayout();
+            this.pageJudicalWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintFixationAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintIdentificationAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintSlugbova)).BeginInit();
@@ -193,7 +193,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebCourtFeeAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebRewardAmount)).BeginInit();
-            this.distributionPage.SuspendLayout();
+            this.pageDistribution.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistribution)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistribution.MasterTemplate)).BeginInit();
@@ -219,15 +219,15 @@
             // mainPageView
             // 
             this.mainPageView.Controls.Add(this.radPageViewPage1);
-            this.mainPageView.Controls.Add(this.radPageViewPage2);
-            this.mainPageView.Controls.Add(this.radPageViewPage3);
-            this.mainPageView.Controls.Add(this.radPageViewPage4);
-            this.mainPageView.Controls.Add(this.distributionPage);
+            this.mainPageView.Controls.Add(this.pageFixation);
+            this.mainPageView.Controls.Add(this.pageIdentification);
+            this.mainPageView.Controls.Add(this.pageJudicalWork);
+            this.mainPageView.Controls.Add(this.pageDistribution);
             this.mainPageView.DefaultPage = this.radPageViewPage1;
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.radPageViewPage2;
+            this.mainPageView.SelectedPage = this.pageFixation;
             this.mainPageView.Size = new System.Drawing.Size(828, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -512,21 +512,21 @@
             this.radLabel1.Text = "Тип заходу";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
-            // radPageViewPage2
+            // pageFixation
             // 
-            this.radPageViewPage2.Controls.Add(this.btnOrderFixation);
-            this.radPageViewPage2.Controls.Add(this.dtFixationDtEnd);
-            this.radPageViewPage2.Controls.Add(this.radLabel17);
-            this.radPageViewPage2.Controls.Add(this.radSplitContainer1);
-            this.radPageViewPage2.Controls.Add(this.radLabel16);
-            this.radPageViewPage2.Controls.Add(this.ddlResponsible);
-            this.radPageViewPage2.Controls.Add(this.radLabel15);
-            this.radPageViewPage2.Controls.Add(this.dtFixationDtBegin);
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(61F, 27F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(818, 361);
-            this.radPageViewPage2.Text = "Фіксація";
+            this.pageFixation.Controls.Add(this.btnOrderFixation);
+            this.pageFixation.Controls.Add(this.dtFixationDtEnd);
+            this.pageFixation.Controls.Add(this.radLabel17);
+            this.pageFixation.Controls.Add(this.radSplitContainer1);
+            this.pageFixation.Controls.Add(this.radLabel16);
+            this.pageFixation.Controls.Add(this.ddlResponsible);
+            this.pageFixation.Controls.Add(this.radLabel15);
+            this.pageFixation.Controls.Add(this.dtFixationDtBegin);
+            this.pageFixation.ItemSize = new System.Drawing.SizeF(61F, 27F);
+            this.pageFixation.Location = new System.Drawing.Point(5, 31);
+            this.pageFixation.Name = "pageFixation";
+            this.pageFixation.Size = new System.Drawing.Size(818, 361);
+            this.pageFixation.Text = "Фіксація";
             // 
             // btnOrderFixation
             // 
@@ -855,14 +855,14 @@
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.dtFixationDtBegin.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadMaskedEditBoxElement)(this.dtFixationDtBegin.GetChildAt(0).GetChildAt(2).GetChildAt(1))).Text = "";
             // 
-            // radPageViewPage3
+            // pageIdentification
             // 
-            this.radPageViewPage3.Controls.Add(this.ctrlRegisterItemList);
-            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(184F, 27F);
-            this.radPageViewPage3.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage3.Name = "radPageViewPage3";
-            this.radPageViewPage3.Size = new System.Drawing.Size(818, 361);
-            this.radPageViewPage3.Text = "Ідентифікація правовласників";
+            this.pageIdentification.Controls.Add(this.ctrlRegisterItemList);
+            this.pageIdentification.ItemSize = new System.Drawing.SizeF(184F, 27F);
+            this.pageIdentification.Location = new System.Drawing.Point(5, 31);
+            this.pageIdentification.Name = "pageIdentification";
+            this.pageIdentification.Size = new System.Drawing.Size(818, 361);
+            this.pageIdentification.Text = "Ідентифікація правовласників";
             // 
             // ctrlRegisterItemList
             // 
@@ -891,20 +891,20 @@
             this.ctrlRegisterItemList.RegisterItemAdded += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.RegisterItemAddedEventArgs>(this.ctrlRegisterItemList_RegisterItemAdded);
             this.ctrlRegisterItemList.RegisterCountDeleted += new System.EventHandler<ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel>(this.ctrlRegisterItemList_RegisterCountDeleted);
             // 
-            // radPageViewPage4
+            // pageJudicalWork
             // 
-            this.radPageViewPage4.Controls.Add(this.btnPrintFixationAct);
-            this.radPageViewPage4.Controls.Add(this.btnPrintIdentificationAct);
-            this.radPageViewPage4.Controls.Add(this.btnPrintSlugbova);
-            this.radPageViewPage4.Controls.Add(this.radLabel21);
-            this.radPageViewPage4.Controls.Add(this.radLabel20);
-            this.radPageViewPage4.Controls.Add(this.mebCourtFeeAmount);
-            this.radPageViewPage4.Controls.Add(this.mebRewardAmount);
-            this.radPageViewPage4.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.radPageViewPage4.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage4.Name = "radPageViewPage4";
-            this.radPageViewPage4.Size = new System.Drawing.Size(818, 361);
-            this.radPageViewPage4.Text = "Судова робота";
+            this.pageJudicalWork.Controls.Add(this.btnPrintFixationAct);
+            this.pageJudicalWork.Controls.Add(this.btnPrintIdentificationAct);
+            this.pageJudicalWork.Controls.Add(this.btnPrintSlugbova);
+            this.pageJudicalWork.Controls.Add(this.radLabel21);
+            this.pageJudicalWork.Controls.Add(this.radLabel20);
+            this.pageJudicalWork.Controls.Add(this.mebCourtFeeAmount);
+            this.pageJudicalWork.Controls.Add(this.mebRewardAmount);
+            this.pageJudicalWork.ItemSize = new System.Drawing.SizeF(99F, 27F);
+            this.pageJudicalWork.Location = new System.Drawing.Point(5, 31);
+            this.pageJudicalWork.Name = "pageJudicalWork";
+            this.pageJudicalWork.Size = new System.Drawing.Size(818, 361);
+            this.pageJudicalWork.Text = "Судова робота";
             // 
             // btnPrintFixationAct
             // 
@@ -985,15 +985,15 @@
             this.mebRewardAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mebRewardAmount.ThemeName = "Office2013Light";
             // 
-            // distributionPage
+            // pageDistribution
             // 
-            this.distributionPage.Controls.Add(this.btnRefresh);
-            this.distributionPage.Controls.Add(this.gvDistribution);
-            this.distributionPage.ItemSize = new System.Drawing.SizeF(106F, 27F);
-            this.distributionPage.Location = new System.Drawing.Point(5, 31);
-            this.distributionPage.Name = "distributionPage";
-            this.distributionPage.Size = new System.Drawing.Size(818, 361);
-            this.distributionPage.Text = "Розподіл коштів";
+            this.pageDistribution.Controls.Add(this.btnRefresh);
+            this.pageDistribution.Controls.Add(this.gvDistribution);
+            this.pageDistribution.ItemSize = new System.Drawing.SizeF(106F, 27F);
+            this.pageDistribution.Location = new System.Drawing.Point(5, 31);
+            this.pageDistribution.Name = "pageDistribution";
+            this.pageDistribution.Size = new System.Drawing.Size(818, 361);
+            this.pageDistribution.Text = "Розподіл коштів";
             // 
             // btnRefresh
             // 
@@ -1300,8 +1300,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPlacement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            this.radPageViewPage2.ResumeLayout(false);
-            this.radPageViewPage2.PerformLayout();
+            this.pageFixation.ResumeLayout(false);
+            this.pageFixation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnOrderFixation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
@@ -1327,9 +1327,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlResponsible)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtBegin)).EndInit();
-            this.radPageViewPage3.ResumeLayout(false);
-            this.radPageViewPage4.ResumeLayout(false);
-            this.radPageViewPage4.PerformLayout();
+            this.pageIdentification.ResumeLayout(false);
+            this.pageJudicalWork.ResumeLayout(false);
+            this.pageJudicalWork.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintFixationAct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintIdentificationAct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintSlugbova)).EndInit();
@@ -1337,7 +1337,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebCourtFeeAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebRewardAmount)).EndInit();
-            this.distributionPage.ResumeLayout(false);
+            this.pageDistribution.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistribution.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistribution)).EndInit();
@@ -1404,7 +1404,7 @@
         private Common.Editors.IpsTextBox txtNumber;
         private Common.ButtonGroupBoxControl bgbStatuses;
         private Telerik.WinControls.UI.RadPanel radPanel3;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
+        private Telerik.WinControls.UI.RadPageViewPage pageFixation;
         private Telerik.WinControls.UI.RadLabel radLabel15;
         private Common.Editors.IpsDateTimePicker dtFixationDtBegin;
         private Telerik.WinControls.UI.RadLabel radLabel16;
@@ -1420,16 +1420,16 @@
         private System.Windows.Forms.BindingSource bsFixFile;
         private Telerik.WinControls.UI.RadLabel radLabel18;
         private Telerik.WinControls.UI.RadLabel radLabel19;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
+        private Telerik.WinControls.UI.RadPageViewPage pageIdentification;
         private RegisterControls.RegisterItemListControl ctrlRegisterItemList;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage4;
+        private Telerik.WinControls.UI.RadPageViewPage pageJudicalWork;
         private Telerik.WinControls.UI.RadLabel radLabel21;
         private Telerik.WinControls.UI.RadLabel radLabel20;
         private Common.Editors.IpsMaskedEditBox mebCourtFeeAmount;
         private Common.Editors.IpsMaskedEditBox mebRewardAmount;
         private Telerik.WinControls.UI.RadButton btnPrintIdentificationAct;
         private Telerik.WinControls.UI.RadButton btnPrintSlugbova;
-        private Telerik.WinControls.UI.RadPageViewPage distributionPage;
+        private Telerik.WinControls.UI.RadPageViewPage pageDistribution;
         private Telerik.WinControls.UI.RadDropDownList ddlConsumer;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private Telerik.WinControls.UI.RadLabel radLabel17;
