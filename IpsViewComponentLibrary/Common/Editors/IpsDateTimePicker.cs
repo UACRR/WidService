@@ -25,6 +25,9 @@ namespace IpsViewComponentLibrary.Common.Editors
             Culture = new CultureInfo("uk-UA");
 
             DateTimePickerElement.TextBoxElement.MaskType = MaskType.FreeFormDateTime;
+
+            var calendarBehavior = DateTimePickerElement.GetCurrentBehavior() as RadDateTimePickerCalendar;
+            calendarBehavior.PopupControl.Opening += PopupControl_Opening;
         }
 
         private void SetupDefaultAppearance()
@@ -34,6 +37,10 @@ namespace IpsViewComponentLibrary.Common.Editors
             DateTimePickerElement.Calendar.CalendarElement.CalendarStatusElement.LabelFormat = "dd.MM.yyyy";
             DateTimePickerElement.Calendar.ClearButton.Visibility = ElementVisibility.Collapsed;
             DateTimePickerElement.Calendar.TodayButton.Text = "Сьогодні";
+
+            DateTimePickerElement.Calendar.MaximumSize = new Size(220, 180);
+            DateTimePickerElement.Calendar.MinimumSize = new Size(220, 180);
+            DateTimePickerElement.CalendarSize = new Size(220, 180);
         }
 
         protected void SetupReadOnlyAppearance()
@@ -60,6 +67,12 @@ namespace IpsViewComponentLibrary.Common.Editors
                 borderPrimitive.RightColor = SystemColors.ControlDark;
                 borderPrimitive.TopColor = SystemColors.ControlDark;
             }
+        }
+
+        private void PopupControl_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (Value == NullDate)
+                DateTimePickerElement.Calendar.FocusedDate = DateTime.Now;
         }
 
         public virtual void SetReadOnly(bool readOnly)
