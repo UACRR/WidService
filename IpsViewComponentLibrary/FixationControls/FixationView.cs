@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.FixationControls
@@ -40,6 +41,7 @@ namespace IpsViewComponentLibrary.FixationControls
             {
                 _fixation = value;
                 bsFixation.DataSource = _fixation;
+                ShowAllowedPages();
             }
         }
 
@@ -128,6 +130,7 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             _presenter.SetStatus((FixationStageStatuses)e.Value);
             bsFixation.ResetCurrentItem();
+            ShowAllowedPages();
         }
 
         private void btnAddStorage_Click(object sender, EventArgs e)
@@ -198,7 +201,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
         private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            if (mainPageView.SelectedPage == distributionPage && firstShowDistribution)
+            if (mainPageView.SelectedPage == pageDistribution && firstShowDistribution)
             {
                 firstShowDistribution = false;
                 _presenter.UpdateAmountDistribution();
@@ -314,5 +317,54 @@ namespace IpsViewComponentLibrary.FixationControls
         }
 
         #endregion
+
+        private void ShowAllowedPages()
+        {
+            var fixationVisibility = 
+                _fixation.StageStatus >= (int)FixationStageStatuses.FixationNotScheduled ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+
+            var identificatioVisibility =
+                _fixation.StageStatus >= (int)FixationStageStatuses.RightholderIdentificationOnIdentification ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+
+            var judicalVisibility =
+                _fixation.StageStatus >= (int)FixationStageStatuses.JudicalWorkOnJudicalWork ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+
+            var distributionVisibility =
+                _fixation.StageStatus >= (int)FixationStageStatuses.IncomeMonitoring ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+
+            if (_fixation.StageStatus == (int)FixationStageStatuses.ClosedWithoutViolation || _fixation.StageStatus == (int)FixationStageStatuses.ClosedAgreedBeforeFixation)
+            {
+                fixationVisibility = ElementVisibility.Collapsed;
+                identificatioVisibility = ElementVisibility.Collapsed;
+                judicalVisibility = ElementVisibility.Collapsed;
+                distributionVisibility = ElementVisibility.Collapsed;
+            }
+            else if (_fixation.StageStatus == (int)FixationStageStatuses.ClosedAgreedAfterFixation)
+            {
+                fixationVisibility = ElementVisibility.Visible;
+                identificatioVisibility = ElementVisibility.Visible;
+                judicalVisibility = ElementVisibility.Collapsed;
+                distributionVisibility = ElementVisibility.Collapsed;
+            }
+            else if (_fixation.StageStatus == (int)FixationStageStatuses.ClosedByCourt)
+            {
+                fixationVisibility = ElementVisibility.Visible;
+                identificatioVisibility = ElementVisibility.Visible;
+                judicalVisibility = ElementVisibility.Visible;
+                distributionVisibility = ElementVisibility.Collapsed;
+            }
+            else if (_fixation.StageStatus == (int)FixationStageStatuses.ClosedIncomeRecieved)
+            {
+                fixationVisibility = ElementVisibility.Visible;
+                identificatioVisibility = ElementVisibility.Visible;
+                judicalVisibility = ElementVisibility.Visible;
+                distributionVisibility = ElementVisibility.Visible;
+            }
+
+            pageFixation.Item.Visibility = fixationVisibility;
+            pageIdentification.Item.Visibility = identificatioVisibility;
+            pageJudicalWork.Item.Visibility = judicalVisibility;
+            pageDistribution.Item.Visibility = distributionVisibility;
+        }
     }
 }
