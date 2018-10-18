@@ -588,6 +588,7 @@
             // 
             // ctrlAgreement
             // 
+            this.ctrlAgreement.AgreementCommunityDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
             this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
             this.ctrlAgreement.MaximumSize = new System.Drawing.Size(500, 140);

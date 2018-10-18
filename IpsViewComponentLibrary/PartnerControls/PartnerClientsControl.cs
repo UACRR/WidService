@@ -46,9 +46,9 @@ namespace IpsViewComponentLibrary.PartnerControls
             }
         }
 
+        // додати новго клієнта
         private void btnAddClient_Click(object sender, EventArgs e)
         {
-            //add client
             var list = GetFreeClientList?.Invoke(-1);
             SelectClient selectClient = new SelectClient(list);
             selectClient.OnAddSelectedClient += SelectClient_OnAddSelectedClient;

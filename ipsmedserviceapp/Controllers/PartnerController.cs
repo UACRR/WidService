@@ -156,7 +156,7 @@ namespace ipsmedserviceapp.Controllers
             IDbContextTransaction tran = null;
             // основна інформація
             var destinationCustomer = await _dbContext.Customer.Where(item => item.CustId == custId)
-                .Include(item => item.AgreementMaster)
+                .Include(item => item.AgreementMaster).ThenInclude( agrAdd => agrAdd.AgreementAddPartner)
                 .Include(item => item.Partner).ThenInclude(pcl => pcl.PartnerClient)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
@@ -227,7 +227,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     var sorsItem = sorsDic[item.AgrId];
                     item.SetFields(sorsItem);
-                    _dbContext.UpdateList(sorsItem.AgreementAddPartner, item.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version);
+                    _dbContext.AppendList(sorsItem.AgreementAddPartner, item.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "CustId", "AgrId" });
                 });
             }
             // Add

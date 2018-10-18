@@ -189,7 +189,6 @@
             this.gvViewPartners.TabIndex = 9;
             this.gvViewPartners.ThemeName = "Office2013Light";
             this.gvViewPartners.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewPartners_CommandCellClick);
-            this.gvViewPartners.HyperlinkOpening += new Telerik.WinControls.UI.HyperlinkOpeningEventHandler(this.gvViewPartners_HyperlinkOpening);
             // 
             // rddBtnNewPartner
             // 

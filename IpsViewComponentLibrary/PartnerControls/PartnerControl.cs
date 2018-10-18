@@ -41,28 +41,9 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             treeView.SelectedNode = treeView.Nodes[0];
-
         }
 
-        private void InitTemplate()
-        {
-            RadTreeNode[] list = 
-            {
-                new RadTreeNode {Text = "Всі", Value = PartnerFilter.All},
-                new RadTreeNode {Text = "Активні", Value = PartnerFilter.Active},
-                new RadTreeNode {Text = "На акцепті", Value = PartnerFilter.OnAccept},
-                new RadTreeNode {Text = "Не підтверджені", Value = PartnerFilter.NotAccept}
-            };
-
-            foreach (var item in list)
-                treeView.Nodes.Add(item);   
-        }
-
-        private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
-        {
-            SetDataOfFilter(e.Node);
-        }
-
+        // оновлення даних
         private void SetDataOfFilter(RadTreeNode node)
         {
             var partnerList = GetPartnersView?.Invoke();
@@ -87,18 +68,42 @@ namespace IpsViewComponentLibrary.PartnerControls
             }
         }
 
+        private void InitTemplate()
+        {
+            RadTreeNode[] list = 
+            {
+                new RadTreeNode {Text = "Всі", Value = PartnerFilter.All},
+                new RadTreeNode {Text = "Активні", Value = PartnerFilter.Active},
+                new RadTreeNode {Text = "На акцепті", Value = PartnerFilter.OnAccept},
+                new RadTreeNode {Text = "Не підтверджені", Value = PartnerFilter.NotAccept}
+            };
+
+            foreach (var item in list)
+                treeView.Nodes.Add(item);   
+        }
+
+        private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
+        {
+            SetDataOfFilter(e.Node);
+        }
+
+        #region * * * СТВОРЕННЯ НОВОГО ПРЕДСТАВНИКА * * *
+
+        // юридична особа
         private void btnNewPartnerJur_Click(object sender, EventArgs e)
         {
             var customer = OnCreateNewCustomerNeed?.Invoke(3);
             LoadForm(customer, FLoadType.Create);
         }
 
+        //фізична особа
         private void btnNewPartnerPhis_Click(object sender, EventArgs e)
         {
             var customer = OnCreateNewCustomerNeed?.Invoke(1);
             LoadForm(customer, FLoadType.Create);
         }
 
+        // виклик форми необхідної форми
         private void LoadForm(Customer customer, FLoadType loadFormType)
         {
             if (customer.CustType == 1)
@@ -121,6 +126,9 @@ namespace IpsViewComponentLibrary.PartnerControls
             }
         }
 
+        #endregion
+
+        // кнопка перегляду/редагування на грід
         private void gvViewPartners_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var row = e.Row.DataBoundItem as PartnerView;
@@ -179,20 +187,14 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             var result = OnSaveCustomer?.Invoke(customer);
             if (result ?? false)
+            {
                 ExtensionUtils.ShowInfoMessage("Успішно збережено!", "Успішно", MessageBoxIcon.Information);
+                SetDataOfFilter(treeView.SelectedNode);
+            }
             else
                 ExtensionUtils.ShowInfoMessage("Не можливо зберегти!", "Помилка", MessageBoxIcon.Error);
 
             return result ?? false;
-        }
-
-        private void gvViewPartners_HyperlinkOpening(object sender, HyperlinkOpeningEventArgs e)
-        {
-            if (e.Row.DataBoundItem is PartnerView item)
-            {
-                //TODO: call partner cabinet
-            }
-            
         }
     }
 
