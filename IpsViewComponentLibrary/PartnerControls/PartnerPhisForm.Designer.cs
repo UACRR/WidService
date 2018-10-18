@@ -57,7 +57,7 @@
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
+            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ConsumerControls.TabNavigationExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
@@ -436,6 +436,7 @@
             // 
             // ctrlAgreement
             // 
+            this.ctrlAgreement.AgreementCommunityDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
             this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
             this.ctrlAgreement.MaximumSize = new System.Drawing.Size(504, 140);
@@ -461,15 +462,15 @@
             this.ctrlConditions.Size = new System.Drawing.Size(702, 357);
             this.ctrlConditions.TabIndex = 0;
             // 
-            // ctrlTabNavigation
+            // ctrlTabNavigationExpanded
             // 
-            this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 567);
-            this.ctrlTabNavigation.MaximumSize = new System.Drawing.Size(2000, 31);
-            this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
-            this.ctrlTabNavigation.Name = "ctrlTabNavigation";
-            this.ctrlTabNavigation.Size = new System.Drawing.Size(1000, 31);
-            this.ctrlTabNavigation.TabIndex = 11;
+            this.ctrlTabNavigationExpanded.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlTabNavigationExpanded.Location = new System.Drawing.Point(0, 567);
+            this.ctrlTabNavigationExpanded.MaximumSize = new System.Drawing.Size(2000, 31);
+            this.ctrlTabNavigationExpanded.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlTabNavigationExpanded.Name = "ctrlTabNavigationExpanded";
+            this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(1000, 31);
+            this.ctrlTabNavigationExpanded.TabIndex = 11;
             // 
             // PartnerPhisForm
             // 
@@ -477,7 +478,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 598);
             this.Controls.Add(this.pageView);
-            this.Controls.Add(this.ctrlTabNavigation);
+            this.Controls.Add(this.ctrlTabNavigationExpanded);
             this.Name = "PartnerPhisForm";
             // 
             // 
@@ -529,7 +530,6 @@
         private PassportControl ctrlInternalPassport;
         private PartnerControls.PartnerNameControl ctrlPartnerName;
         private Telerik.WinControls.UI.RadPageViewPage pvContact;
-        private ConsumerControls.TabNavigationControl ctrlTabNavigation;
         private System.Windows.Forms.BindingSource bsBankAccount;
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
         private PartnerControls.AgreementPartnerControl ctrlAgreement;
@@ -547,5 +547,6 @@
         private IpsAddressControl ctrlAddressRegister;
         private IpsAddressControl ctrlAddressLive;
         private DebugFormForControls.ContactsPersonControl ctrlContacts;
+        private ConsumerControls.TabNavigationExpandedControl ctrlTabNavigationExpanded;
     }
 }

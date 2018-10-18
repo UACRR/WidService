@@ -20,7 +20,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
             InitializeComponent();
             DialogResult = DialogResult.None;
             _customer = customer;
-            ctrlTabNavigation.SetDefaultState(pageView, loadType);
+            ctrlTabNavigationExpanded.SetDefaultState(pageView, loadType);
+            ctrlTabNavigationExpanded.SaveClick += SaveClick;
 
             #region BINDINGS
 
@@ -66,11 +67,25 @@ namespace IpsViewComponentLibrary.ConsumerForms
             bsBankAccount.DataSource = _customer?.BankAccount.FirstOrDefault();
             
             // договір
-            ctrlAgreement.AgreementDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
+            ctrlAgreement.AgreementDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
             // умови договору
-            ctrlConditions.AgreementAddPartnerDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
+            ctrlConditions.AgreementAddPartnerDataSource = _customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
 
             #endregion
+        }
+
+        private void SaveClick(object sender, DialogResult e)
+        {
+            string name = ((Telerik.WinControls.RadElement) sender).Name;
+            if (name == "btnSaveAccepted" && _customer != null)
+            {
+                // підтверджений представник
+                _customer.Status = 2;
+                _customer.AgreementMaster.SingleOrDefault().AgrStatus = 2;
+                _customer.AgreementMaster.SingleOrDefault().AgreementAddPartner.SingleOrDefault().AgrStatus = 2;
+                _customer.Person.AnketaPerson.SingleOrDefault().Status = 2;
+            }
+            DialogResult = e;
         }
 
         private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)

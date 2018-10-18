@@ -360,10 +360,10 @@
     <Compile Include="ConsumerForms\CabinetBigRightForm.Designer.cs">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerForms\CabinetPartnerForm.cs">
+    <Compile Include="PartnerControls\CabinetPartnerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerForms\CabinetPartnerForm.Designer.cs">
+    <Compile Include="PartnerControls\CabinetPartnerForm.Designer.cs">
       <DependentUpon>CabinetPartnerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerForms\CabinetSmallRightForm.cs">
@@ -379,16 +379,16 @@
     <Compile Include="ConsumerForms\ConsumerExternalView.Designer.cs">
       <DependentUpon>ConsumerExternalView.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerForms\PartnerPhisForm.cs">
+    <Compile Include="PartnerControls\PartnerPhisForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerForms\PartnerPhisForm.Designer.cs">
+    <Compile Include="PartnerControls\PartnerPhisForm.Designer.cs">
       <DependentUpon>PartnerPhisForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerForms\PartnerJurForm.cs">
+    <Compile Include="PartnerControls\PartnerJurForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerForms\PartnerJurForm.Designer.cs">
+    <Compile Include="PartnerControls\PartnerJurForm.Designer.cs">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\ConsumerListControl.cs">
@@ -447,6 +447,12 @@
     </Compile>
     <Compile Include="PartnerControls\PartnerClientsControl.Designer.cs">
       <DependentUpon>PartnerClientsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\TabNavigationExpandedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\TabNavigationExpandedControl.Designer.cs">
+      <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterControls\RegisterItemListControl.cs">
       <SubType>UserControl</SubType>
@@ -1086,7 +1092,7 @@
     <EmbeddedResource Include="ConsumerForms\CabinetBigRightForm.resx">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerForms\CabinetPartnerForm.resx">
+    <EmbeddedResource Include="PartnerControls\CabinetPartnerForm.resx">
       <DependentUpon>CabinetPartnerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
@@ -1095,10 +1101,10 @@
     <EmbeddedResource Include="ConsumerForms\ConsumerExternalView.resx">
       <DependentUpon>ConsumerExternalView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerForms\PartnerPhisForm.resx">
+    <EmbeddedResource Include="PartnerControls\PartnerPhisForm.resx">
       <DependentUpon>PartnerPhisForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerForms\PartnerJurForm.resx">
+    <EmbeddedResource Include="PartnerControls\PartnerJurForm.resx">
       <DependentUpon>PartnerJurForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ConsumerListControl.resx">
@@ -1145,6 +1151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerNameControl.resx">
       <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\TabNavigationExpandedControl.resx">
+      <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
       <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>

@@ -60,10 +60,15 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
+            SetDataOfFilter(e.Node);
+        }
+
+        private void SetDataOfFilter(RadTreeNode node)
+        {
             var partnerList = GetPartnersView?.Invoke();
             if (partnerList == null) return;
 
-            switch (e.Node.Value is PartnerFilter @enum ? @enum : PartnerFilter.None)
+            switch (node.Value is PartnerFilter @enum ? @enum : PartnerFilter.None)
             {
                 case PartnerFilter.None:
                     break;
@@ -104,8 +109,9 @@ namespace IpsViewComponentLibrary.PartnerControls
                 };
                 if (partnerPhis.ShowDialog() == DialogResult.OK)
                 {
-                    //додавання
                     SaveAnketaPartner(customer);
+                    //оновлення даних
+                    SetDataOfFilter(treeView.SelectedNode);
                 }
             }
             else if (customer.CustType == 3)

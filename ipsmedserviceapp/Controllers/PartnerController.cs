@@ -452,6 +452,12 @@ join Partner t2 on t2.custId = t1.custId
             }
         }
 
+        /// <summary>
+        /// зміна статусу представника
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         [HttpPut("{custId}/statuschange/{status}")]
         public async Task<IActionResult> ChangePartnerStatus(int custId, int status)
         {
