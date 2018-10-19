@@ -130,7 +130,13 @@ namespace IpsViewComponentLibrary.FixationControls
             if (newStatus == FixationStageStatuses.FixationNotScheduled
                 || newStatus == FixationStageStatuses.FixationScheduled
                 || newStatus == FixationStageStatuses.FixationFixationCompleted)
+
                 mainPageView.SelectedPage = pageFixation;
+
+            else if (newStatus == FixationStageStatuses.RightholderIdentificationOnIdentification
+                || newStatus == FixationStageStatuses.NegotiationAfterFixationOnNegotioation)
+
+                mainPageView.SelectedPage = pageIdentification;
 
             Run();
         }
