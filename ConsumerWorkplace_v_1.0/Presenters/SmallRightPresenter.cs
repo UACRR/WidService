@@ -83,12 +83,46 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         //відкрити кабінет користувача
         private void LoadCustomerCabinet(int custId)
         {
-            _cabinetSmallRightForm.SetCustomer(_service.GetData(custId));
-            _cabinetSmallRightForm.cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(custId);
+            Customer mainCust = null, regCust = null;
+            Task[] getCustData = new Task[2];
+
+            getCustData[0] = Task.Run(() => { mainCust = _service.GetData(custId); });
+            getCustData[1] = Task.Run(() => { regCust = _service.GetRatedListForCust(custId); });
+            Task.WaitAll(getCustData);
+
+            CloneRegisterRL(mainCust, regCust);
+
+            _cabinetSmallRightForm.SetCustomer(mainCust);
+            _cabinetSmallRightForm.cabinet.pagesControl.reportsControl.Customer = regCust;
             if (!_cabinetSmallRightForm.Visible)
                 _cabinetSmallRightForm.Show();
 
             GC.Collect();
+        }
+
+        private static void CloneRegisterRL(Customer mainCust, Customer regCust)
+        {
+            if (mainCust == null || regCust == null)
+                return;
+            // Прив'язати розрахункові листи до договорів
+            foreach (var mainLic in mainCust.Client.LicenseAgreement)
+            {
+                var destLic = regCust.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == mainLic.LicId);
+                if (destLic == null) continue;
+
+                foreach (var mainPeriod in mainLic.PaidPeriod)
+                {
+                    var destPeriod = destLic.PaidPeriod.SingleOrDefault(rec => rec.PeriodId == mainPeriod.PeriodId);
+                    if (destPeriod == null) continue;
+
+                    foreach (var destRl in destPeriod.RegisterRatedList)
+                    {
+                        var mainRl = mainPeriod.RegisterRatedList.SingleOrDefault(rec => rec.RmId == destRl.RmId);
+                        if (mainRl == null)
+                            mainPeriod.RegisterRatedList.Add(destRl);
+                    }
+                }
+            }
         }
 
         //оновлення customer за вимогою контролів
