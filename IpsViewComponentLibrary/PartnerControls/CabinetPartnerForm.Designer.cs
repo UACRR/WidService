@@ -57,21 +57,22 @@
             this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pageViewAgreement = new Telerik.WinControls.UI.RadPageView();
+            this.pvAgrMain = new Telerik.WinControls.UI.RadPageViewPage();
             this.separator = new Telerik.WinControls.UI.RadSeparator();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ddbtnChangeAgrStatus = new Telerik.WinControls.UI.RadSplitButton();
             this.btnAcceptAgr = new Telerik.WinControls.UI.RadMenuItem();
             this.btnCloseAgr = new Telerik.WinControls.UI.RadMenuItem();
             this.lblStatusName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
-            this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvAgrTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.pageView = new Telerik.WinControls.UI.RadPageView();
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             this.pvClients.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -97,19 +98,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             this.pvBank.SuspendLayout();
-            this.pvAgreement.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddbtnChangeAgrStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            this.pvTerms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
+            this.pvAgreement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pageViewAgreement)).BeginInit();
+            this.pageViewAgreement.SuspendLayout();
+            this.pvAgrMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbtnChangeAgrStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
+            this.pvAgrTerms.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -160,8 +163,6 @@
             this.pageViewAnketa.Controls.Add(this.pvContact);
             this.pageViewAnketa.Controls.Add(this.pvPasport);
             this.pageViewAnketa.Controls.Add(this.pvBank);
-            this.pageViewAnketa.Controls.Add(this.pvAgreement);
-            this.pageViewAnketa.Controls.Add(this.pvTerms);
             this.pageViewAnketa.DefaultPage = this.pvPartnerName;
             this.pageViewAnketa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewAnketa.Location = new System.Drawing.Point(0, 0);
@@ -177,10 +178,10 @@
             // pvPartnerName
             // 
             this.pvPartnerName.Controls.Add(this.ctrlPartnerName);
-            this.pvPartnerName.ItemSize = new System.Drawing.SizeF(133F, 27F);
-            this.pvPartnerName.Location = new System.Drawing.Point(137, 5);
+            this.pvPartnerName.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvPartnerName.Location = new System.Drawing.Point(134, 5);
             this.pvPartnerName.Name = "pvPartnerName";
-            this.pvPartnerName.Size = new System.Drawing.Size(923, 469);
+            this.pvPartnerName.Size = new System.Drawing.Size(926, 469);
             this.pvPartnerName.Text = "Представник";
             // 
             // ctrlPartnerName
@@ -206,10 +207,10 @@
             this.pvContact.Controls.Add(this.ctrlAddressRegister);
             this.pvContact.Controls.Add(this.ctrlAddressLive);
             this.pvContact.Controls.Add(this.ctrlContacts);
-            this.pvContact.ItemSize = new System.Drawing.SizeF(133F, 27F);
-            this.pvContact.Location = new System.Drawing.Point(134, 5);
+            this.pvContact.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvContact.Location = new System.Drawing.Point(137, 5);
             this.pvContact.Name = "pvContact";
-            this.pvContact.Size = new System.Drawing.Size(926, 469);
+            this.pvContact.Size = new System.Drawing.Size(923, 469);
             this.pvContact.Text = "Контакти";
             // 
             // radSeparator3
@@ -218,7 +219,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator3.Location = new System.Drawing.Point(152, 191);
             this.radSeparator3.Name = "radSeparator3";
-            this.radSeparator3.Size = new System.Drawing.Size(771, 19);
+            this.radSeparator3.Size = new System.Drawing.Size(768, 19);
             this.radSeparator3.TabIndex = 46;
             this.radSeparator3.ThemeName = "Office2013Light";
             // 
@@ -228,7 +229,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(150, 87);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(773, 19);
+            this.radSeparator1.Size = new System.Drawing.Size(770, 19);
             this.radSeparator1.TabIndex = 45;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
@@ -238,7 +239,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator2.Location = new System.Drawing.Point(152, 8);
             this.radSeparator2.Name = "radSeparator2";
-            this.radSeparator2.Size = new System.Drawing.Size(771, 19);
+            this.radSeparator2.Size = new System.Drawing.Size(768, 19);
             this.radSeparator2.TabIndex = 44;
             this.radSeparator2.ThemeName = "Office2013Light";
             // 
@@ -446,10 +447,10 @@
             // pvPasport
             // 
             this.pvPasport.Controls.Add(this.radGroupBox3);
-            this.pvPasport.ItemSize = new System.Drawing.SizeF(133F, 27F);
-            this.pvPasport.Location = new System.Drawing.Point(134, 5);
+            this.pvPasport.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvPasport.Location = new System.Drawing.Point(137, 5);
             this.pvPasport.Name = "pvPasport";
-            this.pvPasport.Size = new System.Drawing.Size(926, 469);
+            this.pvPasport.Size = new System.Drawing.Size(923, 469);
             this.pvPasport.Text = "Паспортні дані";
             // 
             // radGroupBox3
@@ -476,10 +477,10 @@
             // pvBank
             // 
             this.pvBank.Controls.Add(this.ctrlBankAccount);
-            this.pvBank.ItemSize = new System.Drawing.SizeF(133F, 27F);
-            this.pvBank.Location = new System.Drawing.Point(134, 5);
+            this.pvBank.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvBank.Location = new System.Drawing.Point(137, 5);
             this.pvBank.Name = "pvBank";
-            this.pvBank.Size = new System.Drawing.Size(926, 469);
+            this.pvBank.Size = new System.Drawing.Size(923, 469);
             this.pvBank.Text = "Банківські реквізити";
             // 
             // ctrlBankAccount
@@ -489,130 +490,6 @@
             this.ctrlBankAccount.Name = "ctrlBankAccount";
             this.ctrlBankAccount.Size = new System.Drawing.Size(409, 127);
             this.ctrlBankAccount.TabIndex = 0;
-            // 
-            // pvAgreement
-            // 
-            this.pvAgreement.Controls.Add(this.separator);
-            this.pvAgreement.Controls.Add(this.groupBox1);
-            this.pvAgreement.Controls.Add(this.ctrlAgreement);
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(133F, 27F);
-            this.pvAgreement.Location = new System.Drawing.Point(134, 5);
-            this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(926, 469);
-            this.pvAgreement.Text = "Договір";
-            // 
-            // separator
-            // 
-            this.separator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.separator.Location = new System.Drawing.Point(3, 153);
-            this.separator.Name = "separator";
-            this.separator.Size = new System.Drawing.Size(920, 10);
-            this.separator.TabIndex = 2;
-            this.separator.ThemeName = "Office2013Light";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.ddbtnChangeAgrStatus);
-            this.groupBox1.Controls.Add(this.lblStatusName);
-            this.groupBox1.Controls.Add(this.radLabel7);
-            this.groupBox1.Location = new System.Drawing.Point(25, 169);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(501, 56);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Налаштування договору";
-            // 
-            // ddbtnChangeAgrStatus
-            // 
-            this.ddbtnChangeAgrStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddbtnChangeAgrStatus.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.btnAcceptAgr,
-            this.btnCloseAgr});
-            this.ddbtnChangeAgrStatus.Location = new System.Drawing.Point(318, 22);
-            this.ddbtnChangeAgrStatus.Name = "ddbtnChangeAgrStatus";
-            this.ddbtnChangeAgrStatus.Size = new System.Drawing.Size(177, 19);
-            this.ddbtnChangeAgrStatus.TabIndex = 54;
-            this.ddbtnChangeAgrStatus.Text = "Змінити статус договору";
-            this.ddbtnChangeAgrStatus.ThemeName = "Office2013Light";
-            // 
-            // btnAcceptAgr
-            // 
-            this.btnAcceptAgr.Name = "btnAcceptAgr";
-            this.btnAcceptAgr.Text = "Підтвердити договір";
-            this.btnAcceptAgr.Click += new System.EventHandler(this.btnAcceptAgr_Click);
-            // 
-            // btnCloseAgr
-            // 
-            this.btnCloseAgr.Name = "btnCloseAgr";
-            this.btnCloseAgr.Text = "Закрити договір";
-            this.btnCloseAgr.Click += new System.EventHandler(this.btnCloseAgr_Click);
-            // 
-            // lblStatusName
-            // 
-            this.lblStatusName.AutoSize = false;
-            this.lblStatusName.BorderVisible = true;
-            this.lblStatusName.Location = new System.Drawing.Point(169, 23);
-            this.lblStatusName.MinimumSize = new System.Drawing.Size(120, 18);
-            this.lblStatusName.Name = "lblStatusName";
-            // 
-            // 
-            // 
-            this.lblStatusName.RootElement.MinSize = new System.Drawing.Size(120, 18);
-            this.lblStatusName.Size = new System.Drawing.Size(143, 18);
-            this.lblStatusName.TabIndex = 42;
-            this.lblStatusName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.lblStatusName.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).BorderVisible = true;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).Text = "";
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
-            // 
-            // radLabel7
-            // 
-            this.radLabel7.Location = new System.Drawing.Point(6, 22);
-            this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(157, 19);
-            this.radLabel7.TabIndex = 41;
-            this.radLabel7.Text = "Поточний статус договору";
-            this.radLabel7.ThemeName = "Office2013Light";
-            // 
-            // ctrlAgreement
-            // 
-            this.ctrlAgreement.AgreementCommunityDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
-            this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
-            this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
-            this.ctrlAgreement.MaximumSize = new System.Drawing.Size(500, 140);
-            this.ctrlAgreement.MinimumSize = new System.Drawing.Size(394, 140);
-            this.ctrlAgreement.Name = "ctrlAgreement";
-            this.ctrlAgreement.Size = new System.Drawing.Size(498, 140);
-            this.ctrlAgreement.TabIndex = 0;
-            // 
-            // pvTerms
-            // 
-            this.pvTerms.Controls.Add(this.ctrlConditions);
-            this.pvTerms.ItemSize = new System.Drawing.SizeF(133F, 27F);
-            this.pvTerms.Location = new System.Drawing.Point(134, 5);
-            this.pvTerms.Name = "pvTerms";
-            this.pvTerms.Size = new System.Drawing.Size(926, 469);
-            this.pvTerms.Text = "Умови представника";
-            // 
-            // ctrlConditions
-            // 
-            this.ctrlConditions.AgreementAddPartnerDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
-            this.ctrlConditions.Location = new System.Drawing.Point(22, 6);
-            this.ctrlConditions.Name = "ctrlConditions";
-            this.ctrlConditions.Size = new System.Drawing.Size(702, 357);
-            this.ctrlConditions.TabIndex = 0;
             // 
             // radPanel1
             // 
@@ -653,17 +530,156 @@
             // pageView
             // 
             this.pageView.Controls.Add(this.pvAnketa);
+            this.pageView.Controls.Add(this.pvAgreement);
             this.pageView.Controls.Add(this.pvClients);
             this.pageView.Controls.Add(this.pvFiles);
-            this.pageView.DefaultPage = this.pvAnketa;
+            this.pageView.DefaultPage = this.pvClients;
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvAnketa;
+            this.pageView.SelectedPage = this.pvClients;
             this.pageView.Size = new System.Drawing.Size(1075, 546);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            // 
+            // pvAgreement
+            // 
+            this.pvAgreement.Controls.Add(this.pageViewAgreement);
+            this.pvAgreement.ItemSize = new System.Drawing.SizeF(59F, 27F);
+            this.pvAgreement.Location = new System.Drawing.Point(5, 31);
+            this.pvAgreement.Name = "pvAgreement";
+            this.pvAgreement.Size = new System.Drawing.Size(1065, 510);
+            this.pvAgreement.Text = "Договір";
+            // 
+            // pageViewAgreement
+            // 
+            this.pageViewAgreement.Controls.Add(this.pvAgrMain);
+            this.pageViewAgreement.Controls.Add(this.pvAgrTerms);
+            this.pageViewAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pageViewAgreement.Location = new System.Drawing.Point(0, 0);
+            this.pageViewAgreement.Name = "pageViewAgreement";
+            this.pageViewAgreement.SelectedPage = this.pvAgrMain;
+            this.pageViewAgreement.Size = new System.Drawing.Size(1065, 510);
+            this.pageViewAgreement.TabIndex = 0;
+            this.pageViewAgreement.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewAgreement.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewAgreement.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
+            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewAgreement.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
+            // 
+            // pvAgrMain
+            // 
+            this.pvAgrMain.Controls.Add(this.ddbtnChangeAgrStatus);
+            this.pvAgrMain.Controls.Add(this.separator);
+            this.pvAgrMain.Controls.Add(this.lblStatusName);
+            this.pvAgrMain.Controls.Add(this.radLabel7);
+            this.pvAgrMain.Controls.Add(this.ctrlAgreement);
+            this.pvAgrMain.ItemSize = new System.Drawing.SizeF(136F, 27F);
+            this.pvAgrMain.Location = new System.Drawing.Point(140, 5);
+            this.pvAgrMain.Name = "pvAgrMain";
+            this.pvAgrMain.Size = new System.Drawing.Size(920, 500);
+            this.pvAgrMain.Text = "Інформація договору";
+            // 
+            // separator
+            // 
+            this.separator.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.separator.Location = new System.Drawing.Point(6, 150);
+            this.separator.Name = "separator";
+            this.separator.Size = new System.Drawing.Size(911, 20);
+            this.separator.TabIndex = 5;
+            this.separator.ThemeName = "Office2013Light";
+            // 
+            // ddbtnChangeAgrStatus
+            // 
+            this.ddbtnChangeAgrStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddbtnChangeAgrStatus.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnAcceptAgr,
+            this.btnCloseAgr});
+            this.ddbtnChangeAgrStatus.Location = new System.Drawing.Point(337, 176);
+            this.ddbtnChangeAgrStatus.Name = "ddbtnChangeAgrStatus";
+            this.ddbtnChangeAgrStatus.Size = new System.Drawing.Size(177, 19);
+            this.ddbtnChangeAgrStatus.TabIndex = 54;
+            this.ddbtnChangeAgrStatus.Text = "Змінити статус договору";
+            this.ddbtnChangeAgrStatus.ThemeName = "Office2013Light";
+            // 
+            // btnAcceptAgr
+            // 
+            this.btnAcceptAgr.Name = "btnAcceptAgr";
+            this.btnAcceptAgr.Text = "Підтвердити договір";
+            this.btnAcceptAgr.UseCompatibleTextRendering = false;
+            // 
+            // btnCloseAgr
+            // 
+            this.btnCloseAgr.Name = "btnCloseAgr";
+            this.btnCloseAgr.Text = "Закрити договір";
+            this.btnCloseAgr.UseCompatibleTextRendering = false;
+            // 
+            // lblStatusName
+            // 
+            this.lblStatusName.AutoSize = false;
+            this.lblStatusName.BorderVisible = true;
+            this.lblStatusName.Location = new System.Drawing.Point(188, 177);
+            this.lblStatusName.MinimumSize = new System.Drawing.Size(120, 18);
+            this.lblStatusName.Name = "lblStatusName";
+            // 
+            // 
+            // 
+            this.lblStatusName.RootElement.MinSize = new System.Drawing.Size(120, 18);
+            this.lblStatusName.Size = new System.Drawing.Size(143, 18);
+            this.lblStatusName.TabIndex = 42;
+            this.lblStatusName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.lblStatusName.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStatusName.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // radLabel7
+            // 
+            this.radLabel7.Location = new System.Drawing.Point(25, 176);
+            this.radLabel7.Name = "radLabel7";
+            this.radLabel7.Size = new System.Drawing.Size(157, 19);
+            this.radLabel7.TabIndex = 41;
+            this.radLabel7.Text = "Поточний статус договору";
+            this.radLabel7.ThemeName = "Office2013Light";
+            // 
+            // ctrlAgreement
+            // 
+            this.ctrlAgreement.AgreementCommunityDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlAgreement.Location = new System.Drawing.Point(25, 3);
+            this.ctrlAgreement.MaximumSize = new System.Drawing.Size(500, 140);
+            this.ctrlAgreement.MinimumSize = new System.Drawing.Size(394, 140);
+            this.ctrlAgreement.Name = "ctrlAgreement";
+            this.ctrlAgreement.Size = new System.Drawing.Size(498, 140);
+            this.ctrlAgreement.TabIndex = 3;
+            // 
+            // pvAgrTerms
+            // 
+            this.pvAgrTerms.Controls.Add(this.ctrlConditions);
+            this.pvAgrTerms.ItemSize = new System.Drawing.SizeF(136F, 27F);
+            this.pvAgrTerms.Location = new System.Drawing.Point(140, 5);
+            this.pvAgrTerms.Name = "pvAgrTerms";
+            this.pvAgrTerms.Size = new System.Drawing.Size(920, 500);
+            this.pvAgrTerms.Text = "Умови представника";
+            // 
+            // ctrlConditions
+            // 
+            this.ctrlConditions.AgreementAddPartnerDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlConditions.Location = new System.Drawing.Point(25, 3);
+            this.ctrlConditions.Name = "ctrlConditions";
+            this.ctrlConditions.Size = new System.Drawing.Size(702, 357);
+            this.ctrlConditions.TabIndex = 1;
             // 
             // CabinetPartnerForm
             // 
@@ -704,20 +720,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.pvBank.ResumeLayout(false);
-            this.pvAgreement.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddbtnChangeAgrStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            this.pvTerms.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
+            this.pvAgreement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pageViewAgreement)).EndInit();
+            this.pageViewAgreement.ResumeLayout(false);
+            this.pvAgrMain.ResumeLayout(false);
+            this.pvAgrMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbtnChangeAgrStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
+            this.pvAgrTerms.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -747,26 +765,27 @@
         private PassportControl ctrlInternalPassport;
         private Telerik.WinControls.UI.RadPageViewPage pvBank;
         private IpsBankAccountControl ctrlBankAccount;
-        private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
-        private Telerik.WinControls.UI.RadSeparator separator;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private Telerik.WinControls.UI.RadSplitButton ddbtnChangeAgrStatus;
-        private Telerik.WinControls.UI.RadMenuItem btnCloseAgr;
-        private Telerik.WinControls.UI.RadLabel lblStatusName;
-        private Telerik.WinControls.UI.RadLabel radLabel7;
-        private PartnerControls.AgreementPartnerControl ctrlAgreement;
-        private Telerik.WinControls.UI.RadPageViewPage pvTerms;
-        private PartnerControls.ConditionsControl ctrlConditions;
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadPageView pageView;
-        private Telerik.WinControls.UI.RadMenuItem btnAcceptAgr;
         private Telerik.WinControls.UI.RadButton btnCopyFromRegToLett;
         private Telerik.WinControls.UI.RadButton btnCopyFromLiveToLett;
         private Telerik.WinControls.UI.RadButton btnCopyFromLiveToReg;
         private Telerik.WinControls.UI.RadSeparator radSeparator3;
         private Telerik.WinControls.UI.RadSeparator radSeparator1;
         private Telerik.WinControls.UI.RadSeparator radSeparator2;
+        private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
+        private Telerik.WinControls.UI.RadPageView pageViewAgreement;
+        private Telerik.WinControls.UI.RadPageViewPage pvAgrMain;
+        private Telerik.WinControls.UI.RadPageViewPage pvAgrTerms;
+        private Telerik.WinControls.UI.RadSeparator separator;
+        private Telerik.WinControls.UI.RadSplitButton ddbtnChangeAgrStatus;
+        private Telerik.WinControls.UI.RadMenuItem btnAcceptAgr;
+        private Telerik.WinControls.UI.RadMenuItem btnCloseAgr;
+        private Telerik.WinControls.UI.RadLabel lblStatusName;
+        private Telerik.WinControls.UI.RadLabel radLabel7;
+        private PartnerControls.AgreementPartnerControl ctrlAgreement;
+        private PartnerControls.ConditionsControl ctrlConditions;
     }
 }
