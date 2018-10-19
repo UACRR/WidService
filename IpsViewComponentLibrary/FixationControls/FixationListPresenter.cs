@@ -45,12 +45,25 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void SetStatus(FixationStageStatuses newStatus)
         {
-            var result = _fixationService.SetStatus(_view.SelectedFixation.FixId, newStatus);
-
-            if (result)
-                UpdateList();
+            if (newStatus == FixationStageStatuses.FixationNotScheduled
+                || newStatus == FixationStageStatuses.FixationScheduled
+                || newStatus == FixationStageStatuses.FixationFixationCompleted)
+            {
+                using (var fixationView = new FixationView())
+                {
+                    var fixationPresenter = new FixationPresenter(fixationView);
+                    fixationPresenter.ShowForSpecifyRequiredValues(_view.SelectedFixation.FixId, newStatus);
+                }
+            }
             else
-                _dialogService.ShowError(_view, "Не вдалося змінити статус.");
+            {
+                var result = _fixationService.SetStatus(_view.SelectedFixation.FixId, newStatus);
+
+                if (result)
+                    UpdateList();
+                else
+                    _dialogService.ShowError(_view, "Не вдалося змінити статус.");
+            }
         }
     }
 }
