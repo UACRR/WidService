@@ -138,6 +138,10 @@ namespace IpsViewComponentLibrary.FixationControls
 
                 mainPageView.SelectedPage = pageIdentification;
 
+            else if (newStatus == FixationStageStatuses.JudicalWorkWinned)
+
+                mainPageView.SelectedPage = pageJudicalWork;
+
             Run();
         }
 
@@ -547,6 +551,34 @@ namespace IpsViewComponentLibrary.FixationControls
                     e.Row.Cells["ObjectName"].ErrorText = "";
                 }
             }
+        }
+
+        private void mebRewardAmount_Validating(object sender, CancelEventArgs e)
+        {
+            if (_fixation.StageStatus < (int)FixationStageStatuses.JudicalWorkWinned)
+                return;
+
+            if (string.IsNullOrEmpty(mebRewardAmount.Text))
+            {
+                errorProvider.SetError(mebRewardAmount, "Сума винагороди є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(mebRewardAmount, "");
+        }
+
+        private void mebCourtFeeAmount_Validating(object sender, CancelEventArgs e)
+        {
+            if (_fixation.StageStatus < (int)FixationStageStatuses.JudicalWorkWinned)
+                return;
+
+            if (string.IsNullOrEmpty(mebCourtFeeAmount.Text))
+            {
+                errorProvider.SetError(mebCourtFeeAmount, "Сума судового збору є обов'язковим полем.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider.SetError(mebCourtFeeAmount, "");
         }
 
         #endregion

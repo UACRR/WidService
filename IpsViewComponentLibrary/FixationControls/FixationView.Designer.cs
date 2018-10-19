@@ -227,7 +227,7 @@
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.pageIdentification;
+            this.mainPageView.SelectedPage = this.pageJudicalWork;
             this.mainPageView.Size = new System.Drawing.Size(828, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -984,6 +984,7 @@
             this.mebCourtFeeAmount.Text = "0,00";
             this.mebCourtFeeAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mebCourtFeeAmount.ThemeName = "Office2013Light";
+            this.mebCourtFeeAmount.Validating += new System.ComponentModel.CancelEventHandler(this.mebCourtFeeAmount_Validating);
             // 
             // mebRewardAmount
             // 
@@ -998,6 +999,7 @@
             this.mebRewardAmount.Text = "0,00";
             this.mebRewardAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mebRewardAmount.ThemeName = "Office2013Light";
+            this.mebRewardAmount.Validating += new System.ComponentModel.CancelEventHandler(this.mebRewardAmount_Validating);
             // 
             // pageDistribution
             // 
