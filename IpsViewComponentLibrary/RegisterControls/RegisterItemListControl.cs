@@ -246,6 +246,8 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        public RegisterItemListMode Mode { get; set; } = RegisterItemListMode.Default;
+
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> CreateObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
@@ -376,6 +378,11 @@ namespace IpsViewComponentLibrary.RegisterControls
                     e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
                 }
             }
+        }
+
+        private void gvRegisterItemList_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
         }
 
         private void gvRegisterItemList_ViewCellFormatting(object sender, CellFormattingEventArgs e)
@@ -556,6 +563,80 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             RegisterCountDeleted.Invoke(this, registerCount);
         }
+
+        #region Validation
+
+        private void gvRegisterItemList_Validating(object sender, CancelEventArgs e)
+        {
+            if (Mode != RegisterItemListMode.RightholderIdentification)
+                return;
+
+            if (gvRegisterItemList.Rows.Count == 0)
+            {
+                gvRegisterItemList.TableElement.Text = "Вкажіть хоча б один твір.";
+                errorProvider.SetError(btnAdd, "Вкажіть хоча б один твір.");
+                e.Cancel = true;
+            }
+            else
+            {
+                gvRegisterItemList.TableElement.Text = "";
+                errorProvider.SetError(btnAdd, "");
+            }
+        }
+
+        private void gvRegisterItemList_RowValidating(object sender, RowValidatingEventArgs e)
+        {
+            if (Mode != RegisterItemListMode.RightholderIdentification)
+                return;
+
+            if (string.IsNullOrEmpty((string)e.Row.Cells["ItemName"].Value))
+            {
+                e.Row.Cells["ItemName"].ErrorText = "Назва твору є обов'язковим полем.";
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Row.Cells["ItemName"].ErrorText = "";
+            }
+
+            if (string.IsNullOrEmpty((string)e.Row.Cells["Performer"].Value))
+            {
+                e.Row.Cells["Performer"].ErrorText = "Виконавець є обов'язковим полем.";
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Row.Cells["Performer"].ErrorText = "";
+            }
+
+            if (e.Row.Cells["TimeStart"].Value == null)
+            {
+                e.Row.Cells["TimeStart"].ErrorText = "Час початку звучання є обов'язковим полем.";
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Row.Cells["TimeStart"].ErrorText = "";
+            }
+
+            if (e.Row.Cells["TimeEnd"].Value == null)
+            {
+                e.Row.Cells["TimeEnd"].ErrorText = "Час завершення звучання є обов'язковим полем.";
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Row.Cells["TimeEnd"].ErrorText = "";
+            }
+        }
+
+        #endregion
+    }
+
+    public enum RegisterItemListMode
+    {
+        Default = 0,
+        RightholderIdentification = 1,
     }
 
     public class RegisterItemAddedEventArgs : EventArgs
