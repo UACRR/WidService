@@ -220,7 +220,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
         private void ctrlRegisterItemList_ObjectLinked(object sender, RegisterControls.ObjectLinkedEventArgs e)
         {
-            _presenter.LinkObject(e.RegisterItem, e.ObjectRight);
+            _presenter.LinkObject(e.RegisterItem, e.ObjId);
         }
 
         private void ctrlRegisterItemList_RegisterItemAdded(object sender, RegisterControls.RegisterItemAddedEventArgs e)

@@ -215,9 +215,9 @@ namespace IpsViewComponentLibrary.FixationControls
             DistributePercentForRegisterItem(registerCount.RegId, registerCount.RegIitemId);
         }
 
-        public void LinkObject(RegisterItemViewModel registerItem, ObjectRightMainView objectRight)
+        public void LinkObject(RegisterItemViewModel registerItem, int objId)
         {
-            var rightholders = _objectRightService.GetObjectRightholders(objectRight.ObjId);
+            var rightholders = _objectRightService.GetObjectRightholders(objId);
 
             RemoveRegisterCountForRegisterItem(registerItem);
 
