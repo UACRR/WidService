@@ -47,7 +47,10 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             if (newStatus == FixationStageStatuses.FixationNotScheduled
                 || newStatus == FixationStageStatuses.FixationScheduled
-                || newStatus == FixationStageStatuses.FixationFixationCompleted)
+                || newStatus == FixationStageStatuses.FixationFixationCompleted
+                || newStatus == FixationStageStatuses.RightholderIdentificationOnIdentification
+                || newStatus == FixationStageStatuses.NegotiationAfterFixationOnNegotioation
+                || newStatus == FixationStageStatuses.JudicalWorkWinned)
             {
                 using (var fixationView = new FixationView())
                 {

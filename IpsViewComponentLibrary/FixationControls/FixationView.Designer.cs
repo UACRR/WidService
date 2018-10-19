@@ -227,7 +227,7 @@
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.pageFixation;
+            this.mainPageView.SelectedPage = this.pageJudicalWork;
             this.mainPageView.Size = new System.Drawing.Size(828, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -604,7 +604,6 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
-            this.splitPanel1.ThemeName = "Office2013Light";
             // 
             // lblStorages
             // 
@@ -717,7 +716,6 @@
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
-            this.splitPanel2.ThemeName = "Office2013Light";
             // 
             // lblFiles
             // 
@@ -890,6 +888,7 @@
             this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemList.Mode = IpsViewComponentLibrary.RegisterControls.RegisterItemListMode.RightholderIdentification;
             this.ctrlRegisterItemList.MultiSelect = false;
             this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
@@ -903,6 +902,8 @@
             this.ctrlRegisterItemList.ObjectLinked += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.ObjectLinkedEventArgs>(this.ctrlRegisterItemList_ObjectLinked);
             this.ctrlRegisterItemList.RegisterItemAdded += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.RegisterItemAddedEventArgs>(this.ctrlRegisterItemList_RegisterItemAdded);
             this.ctrlRegisterItemList.RegisterCountDeleted += new System.EventHandler<ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel>(this.ctrlRegisterItemList_RegisterCountDeleted);
+            this.ctrlRegisterItemList.RegisterItemListValidating += new System.EventHandler<System.ComponentModel.CancelEventArgs>(this.ctrlRegisterItemList_RegisterItemListValidating);
+            this.ctrlRegisterItemList.RegisterItemRowValidating += new System.EventHandler<Telerik.WinControls.UI.RowValidatingEventArgs>(this.ctrlRegisterItemList_RegisterItemRowValidating);
             // 
             // pageJudicalWork
             // 
@@ -983,6 +984,7 @@
             this.mebCourtFeeAmount.Text = "0,00";
             this.mebCourtFeeAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mebCourtFeeAmount.ThemeName = "Office2013Light";
+            this.mebCourtFeeAmount.Validating += new System.ComponentModel.CancelEventHandler(this.mebCourtFeeAmount_Validating);
             // 
             // mebRewardAmount
             // 
@@ -997,6 +999,7 @@
             this.mebRewardAmount.Text = "0,00";
             this.mebRewardAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.mebRewardAmount.ThemeName = "Office2013Light";
+            this.mebRewardAmount.Validating += new System.ComponentModel.CancelEventHandler(this.mebRewardAmount_Validating);
             // 
             // pageDistribution
             // 

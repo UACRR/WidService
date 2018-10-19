@@ -6781,7 +6781,7 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.RegI)
                     .WithOne(p => p.RegisterItemFix)
                     .HasForeignKey<RegisterItemFix>(d => new { d.RegId, d.RegItemId })
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_REGITEM_REF_REGITEMFIX");
             });
 
