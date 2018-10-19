@@ -491,6 +491,8 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
+            var tmp = SelectedRegisterItem;
+
             SelectedRegisterItem.SetObjectData(
                 selectedObject.ObjId,
                 selectedObject.Name,
@@ -499,12 +501,23 @@ namespace IpsViewComponentLibrary.RegisterControls
                 selectedObject.Duration
             );
 
-            OnObjectLinked(selectedObject);
+            OnObjectLinked(tmp, selectedObject.ObjId);
         }
 
-        private void OnObjectLinked(ObjectRightMainView linkedObject)
+        private void bsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)
         {
-            ObjectLinked?.Invoke(this, new ObjectLinkedEventArgs { RegisterItem = SelectedRegisterItem, ObjectRight = linkedObject });
+            if (e.ListChangedType == ListChangedType.ItemChanged && e.PropertyDescriptor.Name == "ObjId")
+            {
+                var registerItem = bsRegisterItemViewModel.List[e.NewIndex] as RegisterItemViewModel;
+
+                if (registerItem.ObjId.HasValue)
+                    OnObjectLinked(registerItem, registerItem.ObjId.Value);
+            }
+        }
+
+        private void OnObjectLinked(RegisterItemViewModel registerItem, int objId)
+        {
+            ObjectLinked?.Invoke(this, new ObjectLinkedEventArgs { RegisterItem = registerItem, ObjId = objId });
         }
 
         private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
@@ -607,6 +620,6 @@ namespace IpsViewComponentLibrary.RegisterControls
     public class ObjectLinkedEventArgs : EventArgs
     {
         public RegisterItemViewModel RegisterItem { get; set; }
-        public ObjectRightMainView ObjectRight { get; set; }
+        public int ObjId { get; set; }
     }
 }
