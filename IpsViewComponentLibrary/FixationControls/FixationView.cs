@@ -466,6 +466,83 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        private void ctrlRegisterItemList_RegisterItemListValidating(object sender, CancelEventArgs e)
+        {
+            if (_fixation.StageStatus < (int)FixationStageStatuses.RightholderIdentificationOnIdentification)
+                return;
+
+            var gv = (RadGridView)sender;
+
+            if (gv.Rows.Count == 0)
+            {
+                gv.TableElement.Text = "Вкажіть хоча б один твір.";
+                e.Cancel = true;
+            }
+            else
+            {
+                gv.TableElement.Text = "";
+            }
+        }
+
+        private void ctrlRegisterItemList_RegisterItemRowValidating(object sender, RowValidatingEventArgs e)
+        {
+            if (_fixation.StageStatus < (int)FixationStageStatuses.RightholderIdentificationOnIdentification)
+                return;
+
+            if (string.IsNullOrEmpty((string)e.Row.Cells["ItemName"].Value))
+            {
+                e.Row.Cells["ItemName"].ErrorText = "Назва твору є обов'язковим полем.";
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Row.Cells["ItemName"].ErrorText = "";
+            }
+
+            if (string.IsNullOrEmpty((string)e.Row.Cells["Performer"].Value))
+            {
+                e.Row.Cells["Performer"].ErrorText = "Виконавець є обов'язковим полем.";
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Row.Cells["Performer"].ErrorText = "";
+            }
+
+            if (e.Row.Cells["TimeStart"].Value == null)
+            {
+                e.Row.Cells["TimeStart"].ErrorText = "Час початку звучання є обов'язковим полем.";
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Row.Cells["TimeStart"].ErrorText = "";
+            }
+
+            if (e.Row.Cells["TimeEnd"].Value == null)
+            {
+                e.Row.Cells["TimeEnd"].ErrorText = "Час завершення звучання є обов'язковим полем.";
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Row.Cells["TimeEnd"].ErrorText = "";
+            }
+
+            if (_fixation.StageStatus >= (int)FixationStageStatuses.NegotiationAfterFixationOnNegotioation)
+            {
+                if (e.Row.Cells["ObjId"].Value == null)
+                {
+                    e.Row.Cells["ObjectName"].ErrorText = "Необхідно прив'язати об'єкт права.";
+                    e.Cancel = true;
+                }
+                else
+                {
+                    e.Row.Cells["ObjectName"].ErrorText = "";
+                }
+            }
+        }
+
         #endregion
 
         private void ShowAllowedPages()

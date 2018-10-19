@@ -902,6 +902,8 @@
             this.ctrlRegisterItemList.ObjectLinked += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.ObjectLinkedEventArgs>(this.ctrlRegisterItemList_ObjectLinked);
             this.ctrlRegisterItemList.RegisterItemAdded += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.RegisterItemAddedEventArgs>(this.ctrlRegisterItemList_RegisterItemAdded);
             this.ctrlRegisterItemList.RegisterCountDeleted += new System.EventHandler<ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel>(this.ctrlRegisterItemList_RegisterCountDeleted);
+            this.ctrlRegisterItemList.RegisterItemListValidating += new System.EventHandler<System.ComponentModel.CancelEventArgs>(this.ctrlRegisterItemList_RegisterItemListValidating);
+            this.ctrlRegisterItemList.RegisterItemRowValidating += new System.EventHandler<Telerik.WinControls.UI.RowValidatingEventArgs>(this.ctrlRegisterItemList_RegisterItemRowValidating);
             // 
             // pageJudicalWork
             // 

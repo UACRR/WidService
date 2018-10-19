@@ -257,6 +257,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<ObjectLinkedEventArgs> ObjectLinked;
         public event EventHandler<RegisterItemAddedEventArgs> RegisterItemAdded;
         public event EventHandler<RegisterCountViewModel> RegisterCountDeleted;
+        public event EventHandler<CancelEventArgs> RegisterItemListValidating;
+        public event EventHandler<RowValidatingEventArgs> RegisterItemRowValidating;
 
 
         public RegisterItemListControl()
@@ -564,70 +566,28 @@ namespace IpsViewComponentLibrary.RegisterControls
             RegisterCountDeleted.Invoke(this, registerCount);
         }
 
+        private void OnRegisterItemListValidating(object sender, CancelEventArgs e)
+        {
+            RegisterItemListValidating?.Invoke(sender, e);
+        }
+
+        private void OnRegisterItemRowValidating(object sender, RowValidatingEventArgs e)
+        {
+            RegisterItemRowValidating?.Invoke(sender, e);
+        }
+
         #region Validation
 
         private void gvRegisterItemList_Validating(object sender, CancelEventArgs e)
         {
-            if (Mode != RegisterItemListMode.RightholderIdentification)
-                return;
-
-            if (gvRegisterItemList.Rows.Count == 0)
-            {
-                gvRegisterItemList.TableElement.Text = "Вкажіть хоча б один твір.";
-                errorProvider.SetError(btnAdd, "Вкажіть хоча б один твір.");
-                e.Cancel = true;
-            }
-            else
-            {
-                gvRegisterItemList.TableElement.Text = "";
-                errorProvider.SetError(btnAdd, "");
-            }
+            OnRegisterItemListValidating(sender, e);
         }
 
         private void gvRegisterItemList_RowValidating(object sender, RowValidatingEventArgs e)
         {
-            if (Mode != RegisterItemListMode.RightholderIdentification)
-                return;
-
-            if (string.IsNullOrEmpty((string)e.Row.Cells["ItemName"].Value))
-            {
-                e.Row.Cells["ItemName"].ErrorText = "Назва твору є обов'язковим полем.";
-                e.Cancel = true;
-            }
-            else
-            {
-                e.Row.Cells["ItemName"].ErrorText = "";
-            }
-
-            if (string.IsNullOrEmpty((string)e.Row.Cells["Performer"].Value))
-            {
-                e.Row.Cells["Performer"].ErrorText = "Виконавець є обов'язковим полем.";
-                e.Cancel = true;
-            }
-            else
-            {
-                e.Row.Cells["Performer"].ErrorText = "";
-            }
-
-            if (e.Row.Cells["TimeStart"].Value == null)
-            {
-                e.Row.Cells["TimeStart"].ErrorText = "Час початку звучання є обов'язковим полем.";
-                e.Cancel = true;
-            }
-            else
-            {
-                e.Row.Cells["TimeStart"].ErrorText = "";
-            }
-
-            if (e.Row.Cells["TimeEnd"].Value == null)
-            {
-                e.Row.Cells["TimeEnd"].ErrorText = "Час завершення звучання є обов'язковим полем.";
-                e.Cancel = true;
-            }
-            else
-            {
-                e.Row.Cells["TimeEnd"].ErrorText = "";
-            }
+            // this event is for register item validation only (not reg. count ang reg. fix)
+            if (e.Row.ViewTemplate == gvRegisterItemList.MasterTemplate)
+                OnRegisterItemRowValidating(sender, e);
         }
 
         #endregion
