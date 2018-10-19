@@ -73,7 +73,7 @@ namespace IpsViewComponentLibrary
             if (row != null && row.IsCurrent == false)
             {
                 row.IsCurrent = true;
-                if(row.IsVisible == false) row.IsVisible = true;
+                if (row.IsVisible == false) row.IsVisible = true;
             }
         }
 
@@ -124,19 +124,34 @@ namespace IpsViewComponentLibrary
 
         #region Drag & drop logic *****************************************************************************
 
+        private bool ValidPeriodForPay( PaidPeriod period )
+        {
+            // Прийом звітів
+            if (period.Status == 1) return false;
+            // Беремо тільки Погоджені РЛ
+            var rrl = period.RegisterRatedList.Where(rec => rec.Status == 1).ToList();
+            // Сумуємо кількість звітів, які можно оплачувати
+            var cnt = rrl.Sum(rec => rec.Register.Count(reg => ((reg.AuthAmount ?? 0) + (reg.MusicAmount ?? 0) == 0 || (reg.PaidAmount ?? 0) == 0)));
+            return cnt > 0;
+        }
         /// <summary>
-        /// 
+        /// Старт процедури DragDrop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void svc_PreviewDragStart(object sender, PreviewDragStartEventArgs e)
         {
-            e.CanStart = true;
             RadItem target = e.DragInstance as RadItem;
             var row = target as GridDataRowElement;
 
             dragRow = row;
             dropRow = null;
+            if (row.RowInfo.DataBoundItem is PaidPeriod @period)
+            {
+                e.CanStart = true; // ValidPeriodForPay(@period);
+            }
+            else
+                e.CanStart = true;
 
         }
 
@@ -289,7 +304,7 @@ namespace IpsViewComponentLibrary
             {
                 var licItem = (IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem;
                 // Event ChangeCurrentActiveAgreement
-                if (CurrentAgreementController != null 
+                if (CurrentAgreementController != null
                     && !CurrentAgreementController.Broadcast
                     && CurrentAgreementController.LicId != licItem.Lic.LicId)
                 {
@@ -357,7 +372,7 @@ namespace IpsViewComponentLibrary
                 {
                     period = destRow.RowInfo.DataBoundItem as PaidPeriod;
 
-                    licParam = ActiveAgreementDataFactory.CreateAgreementData( period.Lic );
+                    licParam = ActiveAgreementDataFactory.CreateAgreementData(period.Lic);
 
                 }
                 else // Drop to LicenceAgreement
