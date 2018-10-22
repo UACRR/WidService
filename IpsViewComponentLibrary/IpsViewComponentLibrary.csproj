@@ -360,6 +360,8 @@
     <Compile Include="ConsumerForms\CabinetBigRightForm.Designer.cs">
       <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\Architector.cs" />
+    <Compile Include="Extensions\CustomerEnums.cs" />
     <Compile Include="PartnerControls\CabinetPartnerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -379,17 +381,30 @@
     <Compile Include="ConsumerForms\ConsumerExternalView.Designer.cs">
       <DependentUpon>ConsumerExternalView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PartnerControls\PartnerAnketaJurControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerAnketaJurControl.Designer.cs">
+      <DependentUpon>PartnerAnketaJurControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerAnketaPhisControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerAnketaPhisControl.Designer.cs">
+      <DependentUpon>PartnerAnketaPhisControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerInterfaces.cs" />
     <Compile Include="PartnerControls\PartnerPhisForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="PartnerControls\PartnerPhisForm.Designer.cs">
       <DependentUpon>PartnerPhisForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartnerControls\PartnerJurForm.cs">
+    <Compile Include="PartnerControls\CreatePartnerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartnerControls\PartnerJurForm.Designer.cs">
-      <DependentUpon>PartnerJurForm.cs</DependentUpon>
+    <Compile Include="PartnerControls\CreatePartnerForm.Designer.cs">
+      <DependentUpon>CreatePartnerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\ConsumerListControl.cs">
       <SubType>UserControl</SubType>
@@ -1101,11 +1116,17 @@
     <EmbeddedResource Include="ConsumerForms\ConsumerExternalView.resx">
       <DependentUpon>ConsumerExternalView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerAnketaJurControl.resx">
+      <DependentUpon>PartnerAnketaJurControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerAnketaPhisControl.resx">
+      <DependentUpon>PartnerAnketaPhisControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerPhisForm.resx">
       <DependentUpon>PartnerPhisForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartnerControls\PartnerJurForm.resx">
-      <DependentUpon>PartnerJurForm.cs</DependentUpon>
+    <EmbeddedResource Include="PartnerControls\CreatePartnerForm.resx">
+      <DependentUpon>CreatePartnerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ConsumerListControl.resx">
       <DependentUpon>ConsumerListControl.cs</DependentUpon>

@@ -98,7 +98,7 @@
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvPartnerName;
-            this.pageView.Size = new System.Drawing.Size(1000, 567);
+            this.pageView.Size = new System.Drawing.Size(992, 538);
             this.pageView.TabIndex = 10;
             this.pageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -111,7 +111,7 @@
             this.pvPartnerName.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPartnerName.Location = new System.Drawing.Point(134, 5);
             this.pvPartnerName.Name = "pvPartnerName";
-            this.pvPartnerName.Size = new System.Drawing.Size(861, 557);
+            this.pvPartnerName.Size = new System.Drawing.Size(853, 528);
             this.pvPartnerName.Text = "Представник";
             // 
             // ctrlPartnerName
@@ -465,18 +465,18 @@
             // ctrlTabNavigationExpanded
             // 
             this.ctrlTabNavigationExpanded.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlTabNavigationExpanded.Location = new System.Drawing.Point(0, 567);
+            this.ctrlTabNavigationExpanded.Location = new System.Drawing.Point(0, 538);
             this.ctrlTabNavigationExpanded.MaximumSize = new System.Drawing.Size(2000, 31);
             this.ctrlTabNavigationExpanded.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlTabNavigationExpanded.Name = "ctrlTabNavigationExpanded";
-            this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(1000, 31);
+            this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(992, 31);
             this.ctrlTabNavigationExpanded.TabIndex = 11;
             // 
             // PartnerPhisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 598);
+            this.ClientSize = new System.Drawing.Size(992, 569);
             this.Controls.Add(this.pageView);
             this.Controls.Add(this.ctrlTabNavigationExpanded);
             this.Name = "PartnerPhisForm";

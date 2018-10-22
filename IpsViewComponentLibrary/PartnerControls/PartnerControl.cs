@@ -35,6 +35,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             InitializeComponent();
             InitTemplate();
             ctrlSearch.SetUsageGrid(gvViewPartners);
+            btnNewPartnerJur.Enabled = false; // заблокувати кнопку
         }
 
         public void LoadData()
@@ -93,37 +94,25 @@ namespace IpsViewComponentLibrary.PartnerControls
         private void btnNewPartnerJur_Click(object sender, EventArgs e)
         {
             var customer = OnCreateNewCustomerNeed?.Invoke(3);
-            LoadForm(customer, FLoadType.Create);
+            LoadForm(customer);
         }
 
         //фізична особа
         private void btnNewPartnerPhis_Click(object sender, EventArgs e)
         {
             var customer = OnCreateNewCustomerNeed?.Invoke(1);
-            LoadForm(customer, FLoadType.Create);
+            LoadForm(customer);
         }
 
         // виклик форми необхідної форми
-        private void LoadForm(Customer customer, FLoadType loadFormType)
+        private void LoadForm(Customer customer)
         {
-            if (customer.CustType == 1)
-            {
-                PartnerPhisForm partnerPhis = new PartnerPhisForm(customer, loadFormType)
-                {
-                    StartPosition = FormStartPosition.CenterScreen,
-                };
-                if (partnerPhis.ShowDialog() == DialogResult.OK)
-                {
-                    SaveAnketaPartner(customer);
-                    //оновлення даних
-                    SetDataOfFilter(treeView.SelectedNode);
-                }
-            }
-            else if (customer.CustType == 3)
-            {
-                //some code
-                //call juridical form
-            }
+            var newPartner = new CreatePartnerForm(customer) {
+                StartPosition = FormStartPosition.CenterScreen,
+            };
+
+            if (newPartner.ShowDialog() == DialogResult.OK)
+                SaveAnketaPartner(customer);
         }
 
         #endregion

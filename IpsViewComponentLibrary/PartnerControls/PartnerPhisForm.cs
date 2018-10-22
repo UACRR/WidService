@@ -74,10 +74,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
             #endregion
         }
 
-        private void SaveClick(object sender, DialogResult e)
+        private void SaveClick(object sender, bool accept)
         {
-            string name = ((Telerik.WinControls.RadElement) sender).Name;
-            if (name == "btnSaveAccepted" && _customer != null)
+            if (accept && _customer != null)
             {
                 // підтверджений представник
                 _customer.Status = 2;
@@ -85,7 +84,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 _customer.AgreementMaster.SingleOrDefault().AgreementAddPartner.SingleOrDefault().AgrStatus = 2;
                 _customer.Person.AnketaPerson.SingleOrDefault().Status = 2;
             }
-            DialogResult = e;
+            DialogResult = DialogResult.OK;
         }
 
         private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)

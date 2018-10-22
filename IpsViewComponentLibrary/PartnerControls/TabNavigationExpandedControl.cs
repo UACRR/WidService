@@ -15,7 +15,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
     {
         private RadPageView _pageView;
         private bool _buttonClick = false;
-        public event EventHandler<DialogResult> SaveClick;
+        public event EventHandler<bool> SaveClick;
 
         public TabNavigationExpandedControl()
         {
@@ -47,7 +47,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
         // зберегти / ..та погодити
         private void Save_Click(object sender, EventArgs e)
         {
-            SaveClick?.Invoke(sender, DialogResult.OK);
+            var accept = ((Telerik.WinControls.RadElement) sender).Name == btnSaveAccepted.Name;
+            SaveClick?.Invoke(sender, accept);
         }
 
         private void TabNavigateAction(NavigateType navigateType)
