@@ -24,6 +24,7 @@ namespace IpsViewComponentLibrary.FixationControls
         private readonly ObjectRightService _objectRightService;
         private readonly UserService _userService;
         private readonly AmountDistributor _percentDistributor;
+        private readonly RegisterService _registerService;
         private Fixation _fixation;
         private bool _canClose;
         private int _lastId = 0;
@@ -39,6 +40,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _objectRightService = new ObjectRightService();
             _userService = new UserService();
             _percentDistributor = new AmountDistributor();
+            _registerService = new RegisterService();
             _percentDistributor.Amount = 100;
         }
 
@@ -77,11 +79,13 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixation = fixationModel.Fixation;
             _view.Fixation = _fixation;
 
+            _view.RegisterItemList.Clear();
             foreach (var rvm in _fixation.GetRegister().GetRegisterItemsList())
             {
                 _view.RegisterItemList.Add(rvm);
             }
 
+            _view.RegisterCountList.Clear();
             foreach (var rcvm in fixationModel.RegisterCounts)
             {
                 _view.RegisterCountList.Add(rcvm);
@@ -329,16 +333,18 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             // TODO: copy-paste from RegisterPresenter
 
-            //var result = _registerService.AutoSearch(_register.RegId);
+            var list = _registerService.GetAutoLinkedObjects(_fixation.GetRegister().RegId);
 
-            //if (!result)
-            //{
-            //    _dialogService.ShowError(_view, "Не вдалося виконати автоматичну прив'язку об'єктів права.");
-            //    return;
-            //}
+            foreach (var item in list)
+            {
+                var itemToUpdate = _view.RegisterItemList.FirstOrDefault(i => i.RegId == item.RegId && i.RegIitemId == item.RegIitemId);
 
-            //_register = _registerService.GetById(_register.RegId);
-            //UpdateDataBindings();
+                if (itemToUpdate != null)
+                {
+                    itemToUpdate.SetObjectData(item.ObjId, item.ObjectName, item.ObjectAuthors, item.ObjectPerformers, item.ObjectDuration);
+                    itemToUpdate.IsAuto = true;
+                }
+            }
         }
 
         public void SearchObjectsForAll()
@@ -347,7 +353,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
             using (var view = new SearchObjectView())
             {
-                var presenter = new SearchObjectPresenter(view, new RegisterService());
+                var presenter = new SearchObjectPresenter(view, _registerService);
                 presenter.Show(_view.RegisterItemList);
             }
         }
@@ -362,7 +368,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
             using (var view = new SearchObjectView())
             {
-                var presenter = new SearchObjectPresenter(view, new RegisterService());
+                var presenter = new SearchObjectPresenter(view, _registerService);
                 presenter.Show(registerItemList);
             }
         }
