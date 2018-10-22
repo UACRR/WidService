@@ -65,31 +65,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         //TODO: повернути значення
         public IList<RegisterItemViewModel> GetDataSource => ((System.Windows.Forms.BindingSource)gvRegisterItemList.DataSource).List as IList<RegisterItemViewModel>;
 
-        private RegisterItemViewModel _registerItem;
+        private RegisterItemViewModel _selectedRegisterItem;
         public RegisterItemViewModel SelectedRegisterItem
         {
-            get
-            {
-                if (gvRegisterItemList.CurrentRow == null)
-                    return null;
-
-                return gvRegisterItemList.CurrentRow.DataBoundItem as RegisterItemViewModel;
-            }
+            get { return _selectedRegisterItem; }
             set
             {
-                if (_registerItem != value)
-                {
-                    _registerItem = value;
-
-                    if (_registerItem != null)
-                    {
-                        var row = gvRegisterItemList.Rows.FirstOrDefault(r => (int)r.Cells["RegIitemId"].Value == _registerItem.RegIitemId);
-                        if (row != null)
-                        {
-                            gvRegisterItemList.CurrentRow = row;
-                        }
-                    }
-                }
+                _selectedRegisterItem = value;
+                OnSelectedRegisterItemChanged();
             }
         }
 
@@ -408,7 +391,13 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void gvRegisterItemList_SelectionChanged(object sender, EventArgs e)
         {
-            OnSelectedRegisterItemChanged();
+            if (gvRegisterItemList.CurrentRow == null)
+                return;
+
+            if (gvRegisterItemList.CurrentRow.DataBoundItem is RegisterItemViewModel registerItem)
+            {
+                SelectedRegisterItem = registerItem;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -491,8 +480,6 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
-            var tmp = SelectedRegisterItem;
-
             SelectedRegisterItem.SetObjectData(
                 selectedObject.ObjId,
                 selectedObject.Name,
@@ -500,8 +487,6 @@ namespace IpsViewComponentLibrary.RegisterControls
                 selectedObject.Performer,
                 selectedObject.Duration
             );
-
-            OnObjectLinked(tmp, selectedObject.ObjId);
         }
 
         private void bsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)
