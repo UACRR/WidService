@@ -355,12 +355,27 @@ namespace IpsViewComponentLibrary.RegisterControls
             // gray colour and bold font for row if it is a parent row and there is records in the register extra list
             if (bsRegisterExtra.List.Count > 0 || bsRegisterCountViewModel.List.Count > 0)
             {
-                if (e.RowElement.ViewTemplate.Parent == null)
+                if (registerItem != null && registerItem.IsAuto && !e.RowElement.IsCurrent && !e.RowElement.IsSelected)
                 {
                     e.RowElement.DrawFill = true;
                     e.RowElement.GradientStyle = GradientStyles.Solid;
-                    e.RowElement.BackColor = Color.LightGray;
-                    e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+                    e.RowElement.BackColor = Color.LemonChiffon;
+                }
+                else
+                {
+                    if (e.RowElement.ViewTemplate.Parent == null)
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LightGray;
+                        e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+                    }
+                    else
+                    {
+                        e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
+                        e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
+                    }
                 }
             }
         }
