@@ -104,6 +104,10 @@
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
             this.dtFixationDtBegin = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.pageIdentification = new Telerik.WinControls.UI.RadPageViewPage();
+            this.gboxSearch = new Telerik.WinControls.UI.RadGroupBox();
+            this.btnSearchAll = new Telerik.WinControls.UI.RadButton();
+            this.btnSearchNotLinked = new Telerik.WinControls.UI.RadButton();
+            this.btnSearchAuto = new Telerik.WinControls.UI.RadButton();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.pageJudicalWork = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnPrintFixationAct = new Telerik.WinControls.UI.RadButton();
@@ -185,6 +189,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtBegin)).BeginInit();
             this.pageIdentification.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gboxSearch)).BeginInit();
+            this.gboxSearch.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchAll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchNotLinked)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchAuto)).BeginInit();
             this.pageJudicalWork.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintFixationAct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintIdentificationAct)).BeginInit();
@@ -868,6 +877,7 @@
             // 
             // pageIdentification
             // 
+            this.pageIdentification.Controls.Add(this.gboxSearch);
             this.pageIdentification.Controls.Add(this.ctrlRegisterItemList);
             this.pageIdentification.ItemSize = new System.Drawing.SizeF(184F, 27F);
             this.pageIdentification.Location = new System.Drawing.Point(5, 31);
@@ -875,18 +885,65 @@
             this.pageIdentification.Size = new System.Drawing.Size(818, 361);
             this.pageIdentification.Text = "Ідентифікація правовласників";
             // 
+            // gboxSearch
+            // 
+            this.gboxSearch.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.gboxSearch.Controls.Add(this.btnSearchAll);
+            this.gboxSearch.Controls.Add(this.btnSearchNotLinked);
+            this.gboxSearch.Controls.Add(this.btnSearchAuto);
+            this.gboxSearch.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gboxSearch.HeaderText = "Дії з об\'єктами";
+            this.gboxSearch.Location = new System.Drawing.Point(0, 304);
+            this.gboxSearch.Name = "gboxSearch";
+            this.gboxSearch.Size = new System.Drawing.Size(818, 57);
+            this.gboxSearch.TabIndex = 20;
+            this.gboxSearch.Text = "Дії з об\'єктами";
+            this.gboxSearch.ThemeName = "Office2013Light";
+            // 
+            // btnSearchAll
+            // 
+            this.btnSearchAll.Location = new System.Drawing.Point(167, 21);
+            this.btnSearchAll.Name = "btnSearchAll";
+            this.btnSearchAll.Size = new System.Drawing.Size(155, 24);
+            this.btnSearchAll.TabIndex = 1;
+            this.btnSearchAll.Text = "Шукати для всіх";
+            this.btnSearchAll.ThemeName = "Office2013Light";
+            this.btnSearchAll.Click += new System.EventHandler(this.btnSearchAll_Click);
+            // 
+            // btnSearchNotLinked
+            // 
+            this.btnSearchNotLinked.Location = new System.Drawing.Point(328, 21);
+            this.btnSearchNotLinked.Name = "btnSearchNotLinked";
+            this.btnSearchNotLinked.Size = new System.Drawing.Size(155, 24);
+            this.btnSearchNotLinked.TabIndex = 2;
+            this.btnSearchNotLinked.Text = "Шукати для не знайдених";
+            this.btnSearchNotLinked.ThemeName = "Office2013Light";
+            this.btnSearchNotLinked.Click += new System.EventHandler(this.btnSearchNotLinked_Click);
+            // 
+            // btnSearchAuto
+            // 
+            this.btnSearchAuto.Location = new System.Drawing.Point(5, 21);
+            this.btnSearchAuto.Name = "btnSearchAuto";
+            this.btnSearchAuto.Size = new System.Drawing.Size(156, 24);
+            this.btnSearchAuto.TabIndex = 0;
+            this.btnSearchAuto.Text = "Прив\'язати автоматично";
+            this.btnSearchAuto.ThemeName = "Office2013Light";
+            this.btnSearchAuto.Click += new System.EventHandler(this.btnSearchAuto_Click);
+            // 
             // ctrlRegisterItemList
             // 
-            this.ctrlRegisterItemList.AllowCreateObjectCommand = true;
+            this.ctrlRegisterItemList.AllowCreateObjectCommand = false;
             this.ctrlRegisterItemList.AllowEditList = true;
             this.ctrlRegisterItemList.AllowFindCommand = true;
             this.ctrlRegisterItemList.AllowLinkCommand = true;
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
+            this.ctrlRegisterItemList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
             this.ctrlRegisterItemList.DataSourceRegisterCount = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
             this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
-            this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
             this.ctrlRegisterItemList.Mode = IpsViewComponentLibrary.RegisterControls.RegisterItemListMode.RightholderIdentification;
             this.ctrlRegisterItemList.MultiSelect = false;
@@ -896,7 +953,7 @@
             this.ctrlRegisterItemList.ShowDurationUse = true;
             this.ctrlRegisterItemList.ShowLinked = true;
             this.ctrlRegisterItemList.ShowObjectInfo = true;
-            this.ctrlRegisterItemList.Size = new System.Drawing.Size(818, 361);
+            this.ctrlRegisterItemList.Size = new System.Drawing.Size(818, 298);
             this.ctrlRegisterItemList.TabIndex = 0;
             this.ctrlRegisterItemList.UnlinkCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.RegisterItemViewModel>(this.ctrlRegisterItemList_UnlinkCommandExecuted);
             this.ctrlRegisterItemList.ObjectLinked += new System.EventHandler<IpsViewComponentLibrary.RegisterControls.ObjectLinkedEventArgs>(this.ctrlRegisterItemList_ObjectLinked);
@@ -1344,6 +1401,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtBegin)).EndInit();
             this.pageIdentification.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gboxSearch)).EndInit();
+            this.gboxSearch.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchAll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchNotLinked)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSearchAuto)).EndInit();
             this.pageJudicalWork.ResumeLayout(false);
             this.pageJudicalWork.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnPrintFixationAct)).EndInit();
@@ -1455,5 +1517,9 @@
         private Telerik.WinControls.UI.RadButton btnRefresh;
         private System.Windows.Forms.BindingSource bsAmountDistributionViewModel;
         private Telerik.WinControls.UI.RadGridView gvDistribution;
+        private Telerik.WinControls.UI.RadGroupBox gboxSearch;
+        private Telerik.WinControls.UI.RadButton btnSearchAll;
+        private Telerik.WinControls.UI.RadButton btnSearchNotLinked;
+        private Telerik.WinControls.UI.RadButton btnSearchAuto;
     }
 }

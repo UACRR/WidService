@@ -263,6 +263,21 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
+        private void btnSearchAuto_Click(object sender, EventArgs e)
+        {
+            _presenter.SearchObjectsAuto();
+        }
+
+        private void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            _presenter.SearchObjectsForAll();
+        }
+
+        private void btnSearchNotLinked_Click(object sender, EventArgs e)
+        {
+            _presenter.SearchObjectsForNotLinked();
+        }
+
         #region Print documents
 
         private void btnOrderFixation_Click(object sender, EventArgs e)

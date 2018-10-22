@@ -7,8 +7,10 @@ using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.RegisterControls;
 using IpsViewComponentLibrary.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace IpsViewComponentLibrary.FixationControls
@@ -321,6 +323,48 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             var regCountToDelete = _view.RegisterCountList.Where(rc => rc.RegId == registerItem.RegId && rc.RegIitemId == registerItem.RegIitemId).ToList();
             regCountToDelete.ForEach(rc => _view.RegisterCountList.Remove(rc));
+        }
+
+        public void SearchObjectsAuto()
+        {
+            // TODO: copy-paste from RegisterPresenter
+
+            //var result = _registerService.AutoSearch(_register.RegId);
+
+            //if (!result)
+            //{
+            //    _dialogService.ShowError(_view, "Не вдалося виконати автоматичну прив'язку об'єктів права.");
+            //    return;
+            //}
+
+            //_register = _registerService.GetById(_register.RegId);
+            //UpdateDataBindings();
+        }
+
+        public void SearchObjectsForAll()
+        {
+            // TODO: copy-paste from RegisterPresenter
+
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, new RegisterService());
+                presenter.Show(_view.RegisterItemList);
+            }
+        }
+
+        public void SearchObjectsForNotLinked()
+        {
+            // TODO: copy-paste from RegisterPresenter
+
+            var registerItemList = new List<RegisterItemViewModel>();
+
+            registerItemList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
+
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, new RegisterService());
+                presenter.Show(registerItemList);
+            }
         }
     }
 }
