@@ -523,6 +523,7 @@
             // bsRegisterItemViewModel
             // 
             this.bsRegisterItemViewModel.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.bsRegisterItemViewModel.ListChanged += new System.ComponentModel.ListChangedEventHandler(this.bsRegisterItemViewModel_ListChanged);
             // 
             // templateRegisterCount
             // 

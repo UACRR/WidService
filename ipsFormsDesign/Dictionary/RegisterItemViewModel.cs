@@ -17,7 +17,6 @@ namespace ipsFormsDesign.Dictionary
         public int LicId { get; set; }
         public int? LicVersion { get; set; }
 
-        public int? ObjId { get; set; }
         public string ItemName { get; set; }
         public int? CategoryCode { get; set; }
         public string Performer { get; set; }
@@ -27,6 +26,17 @@ namespace ipsFormsDesign.Dictionary
         public TimeSpan? DurationUse { get; set; }
         public TimeSpan? DurationItem { get; set; }
         public int CodeItem { get; set; }
+
+        private int? _objId;
+        public int? ObjId
+        {
+            get { return _objId; }
+            set
+            {
+                _objId = value;
+                OnPropertyChanged(nameof(ObjId));
+            }
+        }
 
         private string _objectName;
         public string ObjectName

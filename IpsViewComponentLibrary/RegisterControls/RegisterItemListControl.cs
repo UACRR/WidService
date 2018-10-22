@@ -65,31 +65,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         //TODO: повернути значення
         public IList<RegisterItemViewModel> GetDataSource => ((System.Windows.Forms.BindingSource)gvRegisterItemList.DataSource).List as IList<RegisterItemViewModel>;
 
-        private RegisterItemViewModel _registerItem;
+        private RegisterItemViewModel _selectedRegisterItem;
         public RegisterItemViewModel SelectedRegisterItem
         {
-            get
-            {
-                if (gvRegisterItemList.CurrentRow == null)
-                    return null;
-
-                return gvRegisterItemList.CurrentRow.DataBoundItem as RegisterItemViewModel;
-            }
+            get { return _selectedRegisterItem; }
             set
             {
-                if (_registerItem != value)
-                {
-                    _registerItem = value;
-
-                    if (_registerItem != null)
-                    {
-                        var row = gvRegisterItemList.Rows.FirstOrDefault(r => (int)r.Cells["RegIitemId"].Value == _registerItem.RegIitemId);
-                        if (row != null)
-                        {
-                            gvRegisterItemList.CurrentRow = row;
-                        }
-                    }
-                }
+                _selectedRegisterItem = value;
+                OnSelectedRegisterItemChanged();
             }
         }
 
@@ -350,34 +333,37 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void gvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
-            // yellow colour for row with automatically founded object
             var registerItem = e.RowElement.RowInfo.DataBoundItem as RegisterItemViewModel;
 
             if (registerItem != null)
             {
-                if (registerItem.IsAuto && !e.RowElement.IsCurrent && !e.RowElement.IsSelected)
+                if (!e.RowElement.IsCurrent && !e.RowElement.IsSelected)
                 {
-                    e.RowElement.DrawFill = true;
-                    e.RowElement.GradientStyle = GradientStyles.Solid;
-                    e.RowElement.BackColor = Color.LemonChiffon;
+                    // yellow colour for row with automatically founded object
+                    if (registerItem.IsAuto)
+                    {
+                        e.RowElement.DrawFill = true;
+                        e.RowElement.GradientStyle = GradientStyles.Solid;
+                        e.RowElement.BackColor = Color.LemonChiffon;
+                    }
+                    // gray colour and bold font for row if it is a parent row and there is records in the register extra list
+                    else if (bsRegisterExtra.List.Count > 0 || bsRegisterCountViewModel.List.Count > 0)
+                    {
+                        if (e.RowElement.ViewTemplate.Parent == null)
+                        {
+                            e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+                            e.RowElement.DrawFill = true;
+                            e.RowElement.GradientStyle = GradientStyles.Solid;
+                            e.RowElement.BackColor = Color.LightGray;
+                        }
+                    }
                 }
                 else
                 {
                     e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
                     e.RowElement.ResetValue(LightVisualElement.GradientStyleProperty, ValueResetFlags.Local);
                     e.RowElement.ResetValue(LightVisualElement.DrawFillProperty, ValueResetFlags.Local);
-                }
-            }
-
-            // gray colour and bold font for row if it is a parent row and there is records in the register extra list
-            if (bsRegisterExtra.List.Count > 0 || bsRegisterCountViewModel.List.Count > 0)
-            {
-                if (e.RowElement.ViewTemplate.Parent == null)
-                {
-                    e.RowElement.DrawFill = true;
-                    e.RowElement.GradientStyle = GradientStyles.Solid;
-                    e.RowElement.BackColor = Color.LightGray;
-                    e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
+                    e.RowElement.ResetValue(LightVisualElement.BackColorProperty, ValueResetFlags.Local);
                 }
             }
         }
@@ -408,7 +394,13 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void gvRegisterItemList_SelectionChanged(object sender, EventArgs e)
         {
-            OnSelectedRegisterItemChanged();
+            if (gvRegisterItemList.CurrentRow == null)
+                return;
+
+            if (gvRegisterItemList.CurrentRow.DataBoundItem is RegisterItemViewModel registerItem)
+            {
+                SelectedRegisterItem = registerItem;
+            }
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -498,13 +490,22 @@ namespace IpsViewComponentLibrary.RegisterControls
                 selectedObject.Performer,
                 selectedObject.Duration
             );
-
-            OnObjectLinked(selectedObject);
         }
 
-        private void OnObjectLinked(ObjectRightMainView linkedObject)
+        private void bsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)
         {
-            ObjectLinked?.Invoke(this, new ObjectLinkedEventArgs { RegisterItem = SelectedRegisterItem, ObjectRight = linkedObject });
+            if (e.ListChangedType == ListChangedType.ItemChanged && e.PropertyDescriptor.Name == "ObjId")
+            {
+                var registerItem = bsRegisterItemViewModel.List[e.NewIndex] as RegisterItemViewModel;
+
+                if (registerItem.ObjId.HasValue)
+                    OnObjectLinked(registerItem, registerItem.ObjId.Value);
+            }
+        }
+
+        private void OnObjectLinked(RegisterItemViewModel registerItem, int objId)
+        {
+            ObjectLinked?.Invoke(this, new ObjectLinkedEventArgs { RegisterItem = registerItem, ObjId = objId });
         }
 
         private void OnShowObjectCommandExecuted(RegisterItemViewModel selectedRegisterItem)
@@ -607,6 +608,6 @@ namespace IpsViewComponentLibrary.RegisterControls
     public class ObjectLinkedEventArgs : EventArgs
     {
         public RegisterItemViewModel RegisterItem { get; set; }
-        public ObjectRightMainView ObjectRight { get; set; }
+        public int ObjId { get; set; }
     }
 }

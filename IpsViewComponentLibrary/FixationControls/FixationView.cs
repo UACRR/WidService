@@ -220,7 +220,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
         private void ctrlRegisterItemList_ObjectLinked(object sender, RegisterControls.ObjectLinkedEventArgs e)
         {
-            _presenter.LinkObject(e.RegisterItem, e.ObjectRight);
+            _presenter.LinkObject(e.RegisterItem, e.ObjId);
         }
 
         private void ctrlRegisterItemList_RegisterItemAdded(object sender, RegisterControls.RegisterItemAddedEventArgs e)
@@ -261,6 +261,21 @@ namespace IpsViewComponentLibrary.FixationControls
                 if (distr != null)
                     e.FormatString = $"Твір: {distr.ObjName}, Автори: {distr.Author}";
             }
+        }
+
+        private void btnSearchAuto_Click(object sender, EventArgs e)
+        {
+            _presenter.SearchObjectsAuto();
+        }
+
+        private void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            _presenter.SearchObjectsForAll();
+        }
+
+        private void btnSearchNotLinked_Click(object sender, EventArgs e)
+        {
+            _presenter.SearchObjectsForNotLinked();
         }
 
         #region Print documents
