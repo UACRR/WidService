@@ -39,9 +39,6 @@ namespace IpsViewComponentLibrary
             ctrlAnketaCompany.DataSource = anketa;
 
             ctrlRegistrationsCompany.DataSource = anketa;
-            ctrlRegistrationsCompany.TypesVatDataSource = dictionaties?.typeVat;
-            ctrlRegistrationsCompany.TypesVatDisplayMember = "Name";
-            ctrlRegistrationsCompany.TypesVatValueMember = "CodeI";
             ctrlRegistrationsCompany.TypeVatDataMember = "TypeVat";
 
             ctrlRegistrationsCompany.NumberVatDataMember = "NumberVat";

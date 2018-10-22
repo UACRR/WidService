@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using IpsViewComponentLibrary.Utilities;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary
 {
@@ -27,6 +29,21 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             dtRegisterDate.SetUserCalendarSettingsm();
+
+            if (!IsDesignMode)
+            {
+                SetDictionaries();
+            }
+        }
+
+        private void SetDictionaries()
+        {
+            ddlTypeVat.SetDataSource(IpsGlobal.AnketaDictionaties.typeVat);
+        }
+
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
         }
 
         [Category("Data")]
@@ -144,44 +161,6 @@ namespace IpsViewComponentLibrary
                 }
             }
         }
-
-        #region Type VAT dictionary
-
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object TypesVatDataSource
-        {
-            get { return ddlTypeVat.DataSource; }
-            set
-            {
-                if (ddlTypeVat.DataSource != value)
-                    ddlTypeVat.DataSource = value;
-            }
-        }
-
-        [Category("Dictionaries")]
-        public string TypesVatDataMember
-        {
-            get { return ddlTypeVat.DataMember; }
-            set { ddlTypeVat.DataMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string TypesVatDisplayMember
-        {
-            get { return ddlTypeVat.DisplayMember; }
-            set { ddlTypeVat.DisplayMember = value; }
-        }
-
-        [Category("Dictionaries")]
-        public string TypesVatValueMember
-        {
-            get { return ddlTypeVat.ValueMember; }
-            set { ddlTypeVat.ValueMember = value; }
-        }
-
-
-        #endregion
 
         #region Edit controls
 

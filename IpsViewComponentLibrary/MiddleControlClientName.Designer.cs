@@ -131,10 +131,6 @@
             this.ctrlRegistrationsCompany.TxtRegisterWho.RootElement.StretchVertically = true;
             this.ctrlRegistrationsCompany.TxtRegisterWho.Size = new System.Drawing.Size(268, 20);
             this.ctrlRegistrationsCompany.TxtRegisterWho.TabIndex = 3;
-            this.ctrlRegistrationsCompany.TypesVatDataMember = "";
-            this.ctrlRegistrationsCompany.TypesVatDataSource = null;
-            this.ctrlRegistrationsCompany.TypesVatDisplayMember = "";
-            this.ctrlRegistrationsCompany.TypesVatValueMember = "";
             // 
             // ctrlAnketaCompany
             // 

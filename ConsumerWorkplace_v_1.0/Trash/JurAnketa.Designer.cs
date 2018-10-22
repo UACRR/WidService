@@ -679,10 +679,6 @@
             this.clientNameCtrlRegistrationsCompany.Name = "clientNameCtrlRegistrationsCompany";
             this.clientNameCtrlRegistrationsCompany.Size = new System.Drawing.Size(868, 123);
             this.clientNameCtrlRegistrationsCompany.TabIndex = 2;
-            this.clientNameCtrlRegistrationsCompany.TypesVatDataMember = "";
-            this.clientNameCtrlRegistrationsCompany.TypesVatDataSource = null;
-            this.clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "";
-            this.clientNameCtrlRegistrationsCompany.TypesVatValueMember = "";
             // 
             // clientNameCtrlAnketaCompany
             // 
