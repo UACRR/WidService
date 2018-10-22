@@ -134,11 +134,11 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// збереження НОВОГО представника ФІЗИЧНОЇ особи
+        /// збереження НОВОГО представника ФІЗИЧНОЇ/ЮРИДИЧНОЇ особи
         /// </summary>
         /// <param name="sourceCustomer"></param>
         /// <returns></returns>
-        [HttpPost("newpartnerphis")]
+        [HttpPost("addnewpartner")]
         public async Task<IActionResult> SaveNewPartnerPhis([FromBody] Customer sourceCustomer)
         {
             return await SavePartner(sourceCustomer, sourceCustomer.CustType);
@@ -181,12 +181,6 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        //збереження нового представника юридичної особи
-        [HttpPost("newpartnerjur")]
-        public async Task<IActionResult> SaveNewPartnerJur([FromBody] Customer sourceCustomer)
-        {
-            return await SavePartner(sourceCustomer, sourceCustomer.CustType);
-        }
 
         /// <summary>
         /// синхронізація даних для ФІЗИНИХ осіб
@@ -265,7 +259,11 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        // сихнронізація для юр. осіб
+        /// <summary>
+        /// сихнронізація даних для ЮРИДИЧНИХ ОСІБ
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
         private void UpdatePartnerDataJ(Customer source, Customer destination)
         {
 
