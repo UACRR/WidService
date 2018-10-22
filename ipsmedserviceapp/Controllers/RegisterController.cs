@@ -175,12 +175,14 @@ namespace ipsmedserviceapp.Controllers
             return Ok();
         }
 
-        [HttpPut("autosearch/{regId}")]
-        public async Task<IActionResult> AutoSearch(int regId)
+        [HttpGet("{regId}/autolinkedobjects")]
+        public async Task<IActionResult> GetAutoLinkedObjects(int regId)
         {
-            var rowsAffected = await _dbContext.Database.ExecuteSqlCommandAsync($"exec pTsk_3_AutoLink {@regId}");
+            var list = await _dbContext.getViewData($"select * from ft_Tsk_3_AutoLink( @regId )", new[] {
+                new SqlParameter("regId", regId),
+            });
 
-            return Ok(rowsAffected);
+            return Ok(list);
         }
     }
 }

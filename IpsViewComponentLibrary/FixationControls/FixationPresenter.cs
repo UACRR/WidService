@@ -7,8 +7,10 @@ using ipsFormsDesign.ViewModels.Fixations;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.RegisterControls;
 using IpsViewComponentLibrary.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace IpsViewComponentLibrary.FixationControls
@@ -22,6 +24,7 @@ namespace IpsViewComponentLibrary.FixationControls
         private readonly ObjectRightService _objectRightService;
         private readonly UserService _userService;
         private readonly AmountDistributor _percentDistributor;
+        private readonly RegisterService _registerService;
         private Fixation _fixation;
         private bool _canClose;
         private int _lastId = 0;
@@ -37,6 +40,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _objectRightService = new ObjectRightService();
             _userService = new UserService();
             _percentDistributor = new AmountDistributor();
+            _registerService = new RegisterService();
             _percentDistributor.Amount = 100;
         }
 
@@ -75,11 +79,13 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixation = fixationModel.Fixation;
             _view.Fixation = _fixation;
 
+            _view.RegisterItemList.Clear();
             foreach (var rvm in _fixation.GetRegister().GetRegisterItemsList())
             {
                 _view.RegisterItemList.Add(rvm);
             }
 
+            _view.RegisterCountList.Clear();
             foreach (var rcvm in fixationModel.RegisterCounts)
             {
                 _view.RegisterCountList.Add(rcvm);
@@ -215,9 +221,9 @@ namespace IpsViewComponentLibrary.FixationControls
             DistributePercentForRegisterItem(registerCount.RegId, registerCount.RegIitemId);
         }
 
-        public void LinkObject(RegisterItemViewModel registerItem, ObjectRightMainView objectRight)
+        public void LinkObject(RegisterItemViewModel registerItem, int objId)
         {
-            var rightholders = _objectRightService.GetObjectRightholders(objectRight.ObjId);
+            var rightholders = _objectRightService.GetObjectRightholders(objId);
 
             RemoveRegisterCountForRegisterItem(registerItem);
 
@@ -321,6 +327,50 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             var regCountToDelete = _view.RegisterCountList.Where(rc => rc.RegId == registerItem.RegId && rc.RegIitemId == registerItem.RegIitemId).ToList();
             regCountToDelete.ForEach(rc => _view.RegisterCountList.Remove(rc));
+        }
+
+        public void SearchObjectsAuto()
+        {
+            // TODO: copy-paste from RegisterPresenter
+
+            var list = _registerService.GetAutoLinkedObjects(_fixation.GetRegister().RegId);
+
+            foreach (var item in list)
+            {
+                var itemToUpdate = _view.RegisterItemList.FirstOrDefault(i => i.RegId == item.RegId && i.RegIitemId == item.RegIitemId);
+
+                if (itemToUpdate != null)
+                {
+                    itemToUpdate.SetObjectData(item.ObjId, item.ObjectName, item.ObjectAuthors, item.ObjectPerformers, item.ObjectDuration);
+                    itemToUpdate.IsAuto = true;
+                }
+            }
+        }
+
+        public void SearchObjectsForAll()
+        {
+            // TODO: copy-paste from RegisterPresenter
+
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, _registerService);
+                presenter.Show(_view.RegisterItemList);
+            }
+        }
+
+        public void SearchObjectsForNotLinked()
+        {
+            // TODO: copy-paste from RegisterPresenter
+
+            var registerItemList = new List<RegisterItemViewModel>();
+
+            registerItemList.AddRange(_view.RegisterItemList.Where(r => r.ObjId == null));
+
+            using (var view = new SearchObjectView())
+            {
+                var presenter = new SearchObjectPresenter(view, _registerService);
+                presenter.Show(registerItemList);
+            }
         }
     }
 }
