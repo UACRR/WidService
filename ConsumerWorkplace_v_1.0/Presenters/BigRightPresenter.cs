@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,25 +20,40 @@ namespace ConsumerWorkplace_v_1._0.Presenters
     class BigRightPresenter
     {
         //кабінет великих прав
-        private readonly CabinetBigRightForm _cabinetBigRightForm = new CabinetBigRightForm
+
+        private CabinetBigRightForm _localcabinetBigRightForm = null;
+        private CabinetBigRightForm _cabinetBigRightForm
         {
-            StartPosition = FormStartPosition.CenterParent,
-            WindowState = FormWindowState.Maximized
-        };
+            get
+            {
+                if (_localcabinetBigRightForm == null)
+                {
+                    _localcabinetBigRightForm = new CabinetBigRightForm
+                    {
+                        StartPosition = FormStartPosition.CenterParent,
+                        WindowState = FormWindowState.Maximized
+                    };
+                }
+                return _localcabinetBigRightForm;
+            }
+        }
+
+
         private readonly ConsumerService _service;
         private readonly GlobalControlConsumerMainGridBR _mainGrid;
 
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
+        private RadForm _parentForm = null;
 
-        public BigRightPresenter(ConsumerService service, RadTreeView treeView, GlobalControlConsumerMainGridBR mainGrid)
+        public BigRightPresenter(ConsumerService service, RadTreeView treeView, GlobalControlConsumerMainGridBR mainGrid, RadForm parentForm)
         {
+            _parentForm = parentForm;
             _service = service;
             _mainGrid = mainGrid;
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             SubscribeEvents();
 
-            new CalculationInfoControlPresenter(_cabinetBigRightForm.cabinet.ctrlCalculation, _service);
             //new ReportsControlPresenter(_cabinetBigRightForm.cabinet..reportsControl, _service);
         }
 
@@ -47,6 +63,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid.OnAddNewCustomer += CreateNewCustomer;
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
 
+            //SubscribeBRCabinet();
+        }
+
+        private void SubscribeBRCabinet()
+        {
             _cabinetBigRightForm.cabinet.GetCustomer += DataNeed_GetCustomer;
             _cabinetBigRightForm.cabinet.GetMainGridView += DataNeed_GetMainGridView;
             _cabinetBigRightForm.cabinet.GetGeneralAgreementView += DataNeed_GetGeneralAgreementView;
@@ -76,6 +97,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnChangePartner += ChangePartnerForCustomer;
             _cabinetBigRightForm.cabinet.OnRemovePartner += RemovePartnerForCustomer;
             _cabinetBigRightForm.cabinet.SaveAgreementAddBrChanges += SaveAgreementAddBrChanges;
+            new CalculationInfoControlPresenter(_cabinetBigRightForm.cabinet.ctrlCalculation, _service);
+            _cabinetBigRightForm.IsInit = true;
         }
 
         public CabinetBigRightForm Cabinet => _cabinetBigRightForm;
@@ -178,23 +201,39 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         //відкрити кабінет
         private void LoadCustomerCabinet(int id)
         {
-            var customer = _service.GetData(id);
-            var mainGridView = _mainGrid.ViewRow;//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - view основного гріда
-            var generalAgrView = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>(); // - - - - генеральні угоди
-            var licenseView = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();// - - - - - - ліцензії
-            var requestView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>(); //- - - - - - заявки
-            var referenceView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки
-            var licAutorsView = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>(); // - - автори для всіх типів ліцензій
-            var moneyUnattachedView = _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id).ToListOfType<UnattachedMoneyView>(); // - - - незакріплені кошти користувачів великих прав
-            var ratedListMainView = _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListMainBigRightView>(); // - - - Р/Л основні дані
-            var rlSpectacleView = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();// Р/Л вистави
 
-            _cabinetBigRightForm.cabinet.SetAllLoadData(customer, mainGridView, generalAgrView, licenseView,requestView, referenceView, licAutorsView, moneyUnattachedView, ratedListMainView, rlSpectacleView);
-            if(!_cabinetBigRightForm.Visible)
+            if (!_cabinetBigRightForm.IsInit)
+            {
+                SubscribeBRCabinet();
+            }
+            _cabinetBigRightForm.radWaitingBar1.StartWaiting();
+
+            if (!_cabinetBigRightForm.Visible)
                 _cabinetBigRightForm.Show();
 
-            _cabinetBigRightForm.cabinet.UpdateCurentTab(CabinetTabType.Anketa);
 
+
+            Task.Run(() =>
+            {
+                var customer = _service.GetData(id);
+                var mainGridView = _mainGrid.ViewRow;//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - view основного гріда
+                var generalAgrView = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>(); // - - - - генеральні угоди
+                var licenseView = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();// - - - - - - ліцензії
+                var requestView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>(); //- - - - - - заявки
+                var referenceView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки
+                var licAutorsView = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>(); // - - автори для всіх типів ліцензій
+                var moneyUnattachedView = _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id).ToListOfType<UnattachedMoneyView>(); // - - - незакріплені кошти користувачів великих прав
+                var ratedListMainView = _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListMainBigRightView>(); // - - - Р/Л основні дані
+                var rlSpectacleView = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();// Р/Л вистави
+
+                _cabinetBigRightForm.Invoke((MethodInvoker)delegate ()
+                   {
+                       _cabinetBigRightForm.cabinet.SetAllLoadData(customer, mainGridView, generalAgrView, licenseView, requestView, referenceView, licAutorsView, moneyUnattachedView, ratedListMainView, rlSpectacleView);
+                       _cabinetBigRightForm.cabinet.UpdateCurentTab(CabinetTabType.Anketa);
+                       _cabinetBigRightForm.radWaitingBar1.StopWaiting();
+
+                   });
+            });
         }
 
         // Редагування існуючого споживача юридичної особи
