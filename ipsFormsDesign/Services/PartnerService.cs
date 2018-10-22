@@ -25,7 +25,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public IList<object> GetView(Type typeResult, string viewName, int? custId)
         {
-            string url = "consumer/BR/view/list";
+            string url = "consumer/BR/view/list"; // TODO: винести в інший контролер
             List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("viewName", viewName) };
             if (custId != null)
                 param.Add(new KeyValuePair<string, string>("custId", custId.ToString()));
@@ -40,7 +40,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public Customer GetPartnerTemplate(int custType)
         {
-            var customer = _webApi.GetItemById<Customer>("partner/newpartner", custType.ToString());
+            var customer = _webApi.GetItemById<Customer>(Prefix + "newpartner", custType.ToString());
             return customer;
         }
 
@@ -50,7 +50,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public List<Customer> GetPartnerList()
         {
-            string url = "partner/list";
+            string url = Prefix + "list";
             return _webApi.GetList<Customer>(url);
         }
 
@@ -59,7 +59,7 @@ namespace ipsFormsDesign.Services
         /// </summary>
         public Customer GetPartnerAnketa(int clientId)
         {
-            var anketaPerson = _webApi.GetItemById<Customer>("partner/listcl", clientId.ToString());
+            var anketaPerson = _webApi.GetItemById<Customer>(Prefix + "listcl", clientId.ToString());
             return anketaPerson;
         }
 
@@ -82,34 +82,59 @@ namespace ipsFormsDesign.Services
             // update
             switch (cust.CustType)
             {
-                case 1: return _webApi.UpdateItem<Customer>("partner/partnerphis", cust.CustId.ToString(), cust); // фіз. особа
-                case 3: return false; // юр. особа
+                case 1: return _webApi.UpdateItem(Prefix + "partnerphis", cust.CustId.ToString(), cust); // фіз. особа
+                case 3: return _webApi.UpdateItem(Prefix + "partnerjur", cust.CustId.ToString(), cust);  // юр. особа
             }
             return false;
         }
 
-        // додати представника клієнту
+        #region  * * * ПРЕДСТАВНИК + КЛІЄНТ * * *
+
+        /// <summary>
+        /// додати представника клієнту
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="partnerId"></param>
+        /// <returns></returns>
         public bool SetPartnerForCustomer(int clientId, int partnerId)
         {
             return _webApi.ChangePartnerForCustomer("insert", clientId, partnerId);
         }
 
-        // змінити представника в клієнта
+        /// <summary>
+        /// змінити представника в клієнта
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="partnerId"></param>
+        /// <param name="oldClientId"></param>
+        /// <returns></returns>
         public bool ChangePartnerForCustomer(int clientId, int partnerId, int oldClientId)
         {
             return _webApi.ChangePartnerForCustomer("update", clientId, partnerId, oldClientId);
         }
 
-        //вилучити представника в клієнта
+        /// <summary>
+        /// вилучити представника в клієнта
+        /// </summary>
+        /// <param name="clientId"></param>
+        /// <param name="partnerId"></param>
+        /// <returns></returns>
         public bool RemovePartnerForCustomer(int clientId, int partnerId)
         {
             return _webApi.ChangePartnerForCustomer("remove", clientId, partnerId);
         }
 
-        // змінити поточний статус представника
+        #endregion
+
+        /// <summary>
+        /// змінити поточний статус представника
+        /// </summary>
+        /// <param name="partnerId"></param>
+        /// <param name="status"></param>
+        /// <returns></returns>
         public bool AgreementPartnerStatusChange(int partnerId, CPartnerObjectStatus status)
         {
-            string url = "partner/" + $"{partnerId}/statuschange";
+            string url = Prefix + $"{partnerId}/statuschange";
             return _webApi.UpdateItem<object>(url, status.ToString("D"), null);
         }
     }

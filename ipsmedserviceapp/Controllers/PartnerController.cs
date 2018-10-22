@@ -45,7 +45,7 @@ namespace ipsmedserviceapp.Controllers
                 };
                 partnerCustomer.Partner = new Partner();
 
-                // Договор з Споживачем
+                // договір
                 var agreementMaster = new AgreementMaster {
                     AgrStatus = 0,
                     AgrType = 3,
@@ -69,13 +69,23 @@ namespace ipsmedserviceapp.Controllers
                 {
                     // Компанія
                     partnerCustomer.Company = new Company();
-                    // Анкета
-                    partnerCustomer.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status = 0 });
+                    // Анкета компанії
+                    partnerCustomer.Company.AnketaCompany.Add(new AnketaCompany
+                    {
+                        Version = 1,
+                        Status = 0,
+                        FaCountry = "804",
+                        LeCountry = "804",
+                        JaCountry = "804",
+                        FaRegion = 25,
+                        LeRegion = 25,
+                        JaRegion = 25,
+                    });
                 }
                 else if (custType == 1) // Фіз. особа
                 {
                     partnerCustomer.Person = new Person();
-                    // Анкета
+                    // Анкета особи
                     partnerCustomer.Person.AnketaPerson.Add(new AnketaPerson
                     {
                         Version = 1,
@@ -181,7 +191,6 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-
         /// <summary>
         /// синхронізація даних для ФІЗИНИХ осіб
         /// </summary>
@@ -260,13 +269,146 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
+        /// збереження ІСНУЮЧОГО представника ЮРИДИЧНОЇ особи
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="sourceCustomer"></param>
+        /// <returns></returns>
+        [HttpPut("partnerjur/{custId}")]
+        public async Task<IActionResult> SaveExistPartnerJur(int custId, [FromBody] Customer sourceCustomer)
+        {
+            IDbContextTransaction transaction = null;
+            var destinationCustomer = await _dbContext.Customer.Where(item => item.CustId == custId)
+                .Include(item => item.AgreementMaster).ThenInclude(agrAdd => agrAdd.AgreementAddCommunity)
+                .Include(item => item.Partner).ThenInclude(pcl => pcl.PartnerClient)
+                .Include(item => item.BankAccount)
+                .Include(item => item.Company).ThenInclude(rempl => rempl.RelEmployee).ThenInclude(empl => empl.Empl)
+                .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                .SingleOrDefaultAsync();
+            try
+            {
+                UpdatePartnerDataJ(sourceCustomer, destinationCustomer);
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+                transaction = null;
+
+                return Json(destinationCustomer);
+            }
+            catch (Exception ex)
+            {
+                if(transaction != null)
+                    transaction.Rollback();
+                return BadRequest(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// сихнронізація даних для ЮРИДИЧНИХ ОСІБ
         /// </summary>
         /// <param name="source"></param>
         /// <param name="destination"></param>
         private void UpdatePartnerDataJ(Customer source, Customer destination)
         {
+            destination.SetFields(source);
+            // банківські
+            _dbContext.UpdateList(source.BankAccount, destination.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
+            // клієнт * партнер?
+            //if (destination.Client == null)
+            //    destination.Client = new Client();
+            //destination.Client.SetFields(source.Client);
 
+            // збереження договору
+            var destAgrList = destination.AgreementMaster.ToList();
+            var sorsAgrList = source.AgreementMaster.ToList();
+            List<AgreementMaster> agrList = destAgrList.Where(row => !sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+            // Delete
+            agrList.ForEach(item =>
+            {
+                _dbContext.AgreementAddPartner.RemoveRange(item.AgreementAddPartner);
+            });
+            _dbContext.AgreementMaster.RemoveRange(agrList);
+            // Modify
+            {
+
+                agrList = destAgrList.Where(row => sorsAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+                var sorsDic = sorsAgrList.ToDictionary(rec => rec.AgrId);
+                agrList.ForEach(item =>
+                {
+                    var sorsItem = sorsDic[item.AgrId];
+                    item.SetFields(sorsItem, new []{ "AgrId" });
+                    //_dbContext.AppendList(sorsItem.AgreementAddPartner, item.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "CustId", "AgrId" });
+                });
+            }
+            // Add
+            {
+                agrList = sorsAgrList.Where(row => !destAgrList.Any(item => item.AgrId == row.AgrId)).ToList();
+                agrList.ForEach(item =>
+                {
+                    // створено 1
+                    var agreement = new AgreementMaster();
+                    // оновлення з ресурсу 1
+                    agreement.SetFields(item);
+                    // оновлення AgreementAddPartner
+                    _dbContext.AppendList(item.AgreementAddPartner, agreement.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
+
+                    destination.Partner = new Partner();
+                    foreach (var addPartner in agreement.AgreementAddPartner)
+                        destination.Partner.AgreementAddPartner.Add(addPartner);
+
+                    destination.AgreementMaster.Add(agreement); // додано 1
+                });
+            }
+
+            if (destination.CustType == 3) // Company
+            {
+                if (destination.Company == null)
+                    destination.Company = new Company();
+
+                var sorsList = source.Company.AnketaCompany.ToList();
+                _dbContext.UpdateList(sorsList, destination.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
+
+                //керівники
+                var relEmployeeList = source.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
+                var listRel = destination.Company.RelEmployee.Where(rec => !relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                listRel.ForEach(delitem =>
+                {
+                    _dbContext.Employee.Remove(delitem.Empl);
+                    _dbContext.RelEmployee.Remove(delitem);
+                    destination.Company.RelEmployee.Remove(delitem);
+                });
+
+                listRel = destination.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                listRel.ForEach(updItem =>
+                {
+                    var sorsItem = listRel.SingleOrDefault(item => item.Emplid == updItem.Emplid && item.PositionCode == updItem.PositionCode);
+                    updItem.SetFields(sorsItem);
+                    updItem.Empl.SetFields(sorsItem?.Empl);
+                });
+
+                var relEmpl = source.Company.RelEmployee.Select(items => items.Empl).ToList();
+                listRel = destination.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+
+                listRel.ForEach(updEmpl =>
+                {
+                    var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
+                    updEmpl.SetFields(source.Company.RelEmployee.SingleOrDefault(item => item.Emplid == updEmpl.Emplid && item.PositionCode == updEmpl.PositionCode));
+                    updEmpl.Empl.SetFields(sourceItem);
+                });
+
+                listRel = relEmployeeList.Where(rec => !destination.Company.RelEmployee.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
+                listRel.ForEach(addItem =>
+                {
+                    Employee addEmpl = new Employee();
+                    addEmpl.SetFields(addItem.Empl);
+                    RelEmployee addRelItem = new RelEmployee { Empl = addEmpl };
+                    addRelItem.SetFields(addItem);
+                    addEmpl.CustId = addRelItem.CustId;
+                    destination.Employee.Add(addEmpl);
+                    destination.Company.RelEmployee.Add(addRelItem);
+                });
+
+            }
         }
 
         /// <summary>
@@ -332,14 +474,30 @@ join Partner t2 on t2.custId = t1.custId
         [HttpGet("{custId}")]
         public async Task<IActionResult> GetPartnerAllData(int custId)
         {
+            Customer customer = null;
             // основна інформація
-            var customer = await _dbContext.Customer.Where(item => item.CustId == custId)
-                .Include(item => item.AgreementMaster)
-                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
-                .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
-                .Include(partcl => partcl.Partner.PartnerClient)
-                .Include(item => item.BankAccount)
-                .SingleOrDefaultAsync();
+            var custType = _dbContext.Customer.Where(item => item.CustId == custId).SingleOrDefault().CustType;
+            if(custType == 1) // фізична особа 
+            {
+                customer = await _dbContext.Customer.Where(item => item.CustId == custId)
+                    .Include(item => item.AgreementMaster)
+                    .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                    .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
+                    .Include(partcl => partcl.Partner.PartnerClient)
+                    .Include(item => item.BankAccount)
+                    .SingleOrDefaultAsync();
+            }
+            else if (custType == 3) // юридична особа
+            {
+                customer = await _dbContext.Customer.Where(item => item.CustId == custId)
+                    .Include(item => item.AgreementMaster)
+                    .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                    .Include(item => item.Company).ThenInclude(rempl => rempl.RelEmployee).ThenInclude(empl => empl.Empl)
+                    .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
+                    .Include(partcl => partcl.Partner.PartnerClient)
+                    .Include(item => item.BankAccount)
+                    .SingleOrDefaultAsync();
+            }
 
             return Json(customer);
         }

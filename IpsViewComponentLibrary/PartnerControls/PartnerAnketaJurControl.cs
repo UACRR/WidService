@@ -24,52 +24,19 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         public void BeginBindings(Customer customer)
         {
-            //var anketaPerson = customer.Person.AnketaPerson.SingleOrDefault();
-            //// представник
-            //ctrlPartnerName.DataSourceAnketa = anketaPerson;
-
-            //// контакти
-            //ctrlContacts.DataSource = anketaPerson;
-            //// - проживання
-            //ctrlAddressLive.DataSource = anketaPerson;
-            //ctrlAddressLive.AddressDataMember = "ReAddress";
-            //ctrlAddressLive.CityDataMember = "ReCity";
-            //ctrlAddressLive.CountryDataMember = "ReCountry";
-            //ctrlAddressLive.RegionDataMember = "ReRegion";
-            //// - фактична
-            //ctrlAddressRegister.DataSource = anketaPerson;
-            //ctrlAddressRegister.AddressDataMember = "FaAddress";
-            //ctrlAddressRegister.CityDataMember = "FaCity";
-            //ctrlAddressRegister.CountryDataMember = "FaCountry";
-            //ctrlAddressRegister.RegionDataMember = "FaRegion";
-            ////- -поштова
-
-
-            ////поштова
-            //ctrlAddressLetter.DataSource = anketaPerson;
-            //ctrlAddressLetter.AddressDataMember = "LeAddress";
-            //ctrlAddressLetter.CityDataMember = "LeCity";
-            //ctrlAddressLetter.CountryDataMember = "LeCountry";
-            //ctrlAddressLetter.CountriesDataSource = IpsGlobal.AnketaDictionaties.country;
-            //ctrlAddressLetter.CountriesValueMember = "countryCode";
-            //ctrlAddressLetter.CountriesDisplayMember = "countryName";
-            //ctrlAddressLetter.RegionDataMember = "LeRegion";
-            //ctrlAddressLetter.RegionsDataSource = IpsGlobal.AnketaDictionaties.region;
-            //ctrlAddressLetter.RegionsValueMember = "codeI";
-            //ctrlAddressLetter.RegionsDisplayMember = "name";
-            //ctrlAddressLetter.PostIndexDataMember = "LePostIndex";
-
-            //// паспортні дані
-            //ctrlInternalPassport.DataSource = anketaPerson;
-
-            //// банківські реквізити
-            //ctrlBankAccount.DataSource = customer?.BankAccount.FirstOrDefault();
-
-            //// договір
-            //ctrlAgreement.AgreementDataSource = customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
-            //// умови договору
-            //ctrlConditions.AgreementAddPartnerDataSource = customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
-
+            var dict = IpsGlobal.AnketaDictionaties;
+            // представник
+            ctrlClientName.SetDataSources(customer, dict);
+            // контакти
+            ctrlAddress.SetDataSources(customer, dict);
+            // керівники
+            ctrlManagers.SetDataSources(customer,dict);
+            // банківські реквізити
+            ctrlBankAccount.DataSource = customer?.BankAccount.FirstOrDefault();
+            // договір
+            ctrlAgreement.AgreementDataSource = customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
+            // умови договору
+            ctrlConditions.AgreementAddPartnerDataSource = customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
         }
 
         private void Save(object sender, bool accept)

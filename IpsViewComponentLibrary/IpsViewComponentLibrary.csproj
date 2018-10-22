@@ -381,6 +381,12 @@
     <Compile Include="ConsumerForms\ConsumerExternalView.Designer.cs">
       <DependentUpon>ConsumerExternalView.cs</DependentUpon>
     </Compile>
+    <Compile Include="PartnerControls\JurPersonName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\JurPersonName.Designer.cs">
+      <DependentUpon>JurPersonName.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartnerControls\PartnerAnketaJurControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -393,11 +399,23 @@
     <Compile Include="PartnerControls\PartnerAnketaPhisControl.Designer.cs">
       <DependentUpon>PartnerAnketaPhisControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="PartnerControls\PartnerCabinetAnketaJurControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerCabinetAnketaJurControl.Designer.cs">
+      <DependentUpon>PartnerCabinetAnketaJurControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerCabinetAnketaPhisControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerCabinetAnketaPhisControl.Designer.cs">
+      <DependentUpon>PartnerCabinetAnketaPhisControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="PartnerControls\PartnerInterfaces.cs" />
-    <Compile Include="PartnerControls\PartnerPhisForm.cs">
+    <Compile Include="_trash\PartnerPhisForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PartnerControls\PartnerPhisForm.Designer.cs">
+    <Compile Include="_trash\PartnerPhisForm.Designer.cs">
       <DependentUpon>PartnerPhisForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PartnerControls\CreatePartnerForm.cs">
@@ -1116,13 +1134,22 @@
     <EmbeddedResource Include="ConsumerForms\ConsumerExternalView.resx">
       <DependentUpon>ConsumerExternalView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\JurPersonName.resx">
+      <DependentUpon>JurPersonName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerAnketaJurControl.resx">
       <DependentUpon>PartnerAnketaJurControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\PartnerAnketaPhisControl.resx">
       <DependentUpon>PartnerAnketaPhisControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartnerControls\PartnerPhisForm.resx">
+    <EmbeddedResource Include="PartnerControls\PartnerCabinetAnketaJurControl.resx">
+      <DependentUpon>PartnerCabinetAnketaJurControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerCabinetAnketaPhisControl.resx">
+      <DependentUpon>PartnerCabinetAnketaPhisControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_trash\PartnerPhisForm.resx">
       <DependentUpon>PartnerPhisForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\CreatePartnerForm.resx">
