@@ -81,11 +81,6 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem("register/setstatus", regId.ToString(), status);
         }
 
-        public bool AutoSearch(int regId)
-        {
-            return _webApi.UpdateItem<Register>("register/autosearch", regId.ToString(), null);
-        }
-
         public List<RegisterItemViewModel> GetAutoLinkedObjects(int regId)
         {
             var list = _webApi.GetList<RegisterItemViewModel>($"register/{regId}/autolinkedobjects");

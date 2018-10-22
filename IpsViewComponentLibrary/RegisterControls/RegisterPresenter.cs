@@ -60,16 +60,18 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public void SearchObjectsAuto()
         {
-            var result =_registerService.AutoSearch(_register.RegId);
+            var list = _registerService.GetAutoLinkedObjects(_register.RegId);
 
-            if (!result)
+            foreach (var item in list)
             {
-                _dialogService.ShowError(_view, "Не вдалося виконати автоматичну прив'язку об'єктів права.");
-                return;
-            }
+                var itemToUpdate = _view.RegisterItemList.FirstOrDefault(i => i.RegId == item.RegId && i.RegIitemId == item.RegIitemId);
 
-            _register = _registerService.GetById(_register.RegId);
-            UpdateDataBindings();
+                if (itemToUpdate != null)
+                {
+                    itemToUpdate.SetObjectData(item.ObjId, item.ObjectName, item.ObjectAuthors, item.ObjectPerformers, item.ObjectDuration);
+                    itemToUpdate.IsAuto = true;
+                }
+            }
         }
 
         public void SearchObjectsForAll()
