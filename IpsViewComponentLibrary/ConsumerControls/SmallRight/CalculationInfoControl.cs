@@ -135,6 +135,24 @@ namespace IpsViewComponentLibrary
             return cnt > 0;
         }
         /// <summary>
+        /// Перевірка можливості оплати Ліцензійного договору
+        /// </summary>
+        /// <param name="licAgr"></param>
+        /// <returns></returns>
+        private bool ValidLicAgrForPay(IAgreementData licAgr)
+        {
+            if (licAgr.Lic.LicStatus != 2)
+                return false;
+
+            foreach( var period in licAgr.Lic.PaidPeriod )
+            {
+                bool checkPeriod = ValidPeriodForPay(period);
+                if (checkPeriod == true) return true;
+            }
+
+            return false;
+        }
+        /// <summary>
         /// Старт процедури DragDrop
         /// </summary>
         /// <param name="sender"></param>
@@ -148,20 +166,26 @@ namespace IpsViewComponentLibrary
             dropRow = null;
             if (row.RowInfo.DataBoundItem is PaidPeriod @period)
             {
-                e.CanStart = true; // ValidPeriodForPay(@period);
+                e.CanStart = ValidPeriodForPay(@period);
+            }
+            else if(row.RowInfo.DataBoundItem is IAgreementData @licAgr)
+            {
+                e.CanStart = ValidLicAgrForPay(@licAgr);
             }
             else
                 e.CanStart = true;
 
         }
 
+
         List<KeyValuePair<Type, Type>> validDragDrop = new List<KeyValuePair<Type, Type>>
         {
-            new KeyValuePair<Type, Type>( typeof( MoneyReceived), typeof(LicenseAgrParam )),
+            new KeyValuePair<Type, Type>( typeof( MoneyReceived), typeof(IAgreementData )),
             new KeyValuePair<Type, Type>( typeof( MoneyReceived), typeof(PaidPeriod )),
             new KeyValuePair<Type, Type>( typeof(PaidPeriod ), typeof( MoneyReceived)),
-            new KeyValuePair<Type, Type>( typeof(LicenseAgrParam ), typeof( MoneyReceived)),
+            new KeyValuePair<Type, Type>( typeof(IAgreementData ), typeof( MoneyReceived)),
         };
+ 
         /// <summary>
         /// 
         /// </summary>
@@ -178,7 +202,8 @@ namespace IpsViewComponentLibrary
             dropRow = dropTargetRow;
 
             KeyValuePair<Type, Type> search = new KeyValuePair<Type, Type>(dragRow.RowInfo.DataBoundItem.GetType(), dropRow.RowInfo.DataBoundItem.GetType());
-            if (!validDragDrop.Contains(search))
+
+            if (!validDragDrop.Exists( row => row.Key.IsAssignableFrom( search.Key ) && row.Value.IsAssignableFrom( search.Value ) ))
                 return;
 
             boolRunFromDragDrop = true;
@@ -207,7 +232,15 @@ namespace IpsViewComponentLibrary
                     return;
 
                 KeyValuePair<Type, Type> search = new KeyValuePair<Type, Type>(dragRow.RowInfo.DataBoundItem.GetType(), hitRow.RowInfo.DataBoundItem.GetType());
-                e.CanDrop = validDragDrop.Contains(search);
+                if (!validDragDrop.Exists(row => row.Key.IsAssignableFrom(search.Key) && row.Value.IsAssignableFrom(search.Value)))
+                    return;
+
+                if (hitRow.RowInfo.DataBoundItem is PaidPeriod @period)
+                    e.CanDrop = ValidPeriodForPay(@period);
+                else if (hitRow.RowInfo.DataBoundItem is IAgreementData @lic)
+                    e.CanDrop = ValidLicAgrForPay(@lic);
+                else
+                    e.CanDrop = true;
 
             }
         }

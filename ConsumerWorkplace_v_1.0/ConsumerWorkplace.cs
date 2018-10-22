@@ -110,7 +110,7 @@ namespace ConsumerWorkplace_v_1._0
                     foreach (var item in list)
                         treeViewBR.Nodes.Add(item);
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight, this );
                     // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
                         
@@ -223,7 +223,7 @@ namespace ConsumerWorkplace_v_1._0
                     foreach (var item in list2)
                         treeViewBR.Nodes.Add(item);
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight, this );
                     treeViewBR.SelectedNode = treeViewBR.Nodes[0];
 
                     }

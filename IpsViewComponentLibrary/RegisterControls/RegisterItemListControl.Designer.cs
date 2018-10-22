@@ -99,6 +99,7 @@
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.templateRegisterExtra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterExtra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterItemList)).BeginInit();
@@ -109,6 +110,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlLinkedStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // templateRegisterExtra
@@ -510,10 +512,13 @@
             this.gvRegisterItemList.TabIndex = 36;
             this.gvRegisterItemList.ThemeName = "Office2013Light";
             this.gvRegisterItemList.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvRegisterItemList_RowFormatting);
+            this.gvRegisterItemList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvRegisterItemList_CellFormatting);
             this.gvRegisterItemList.ViewCellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvRegisterItemList_ViewCellFormatting);
+            this.gvRegisterItemList.RowValidating += new Telerik.WinControls.UI.RowValidatingEventHandler(this.gvRegisterItemList_RowValidating);
             this.gvRegisterItemList.SelectionChanged += new System.EventHandler(this.gvRegisterItemList_SelectionChanged);
             this.gvRegisterItemList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRegisterItemList_CommandCellClick);
             this.gvRegisterItemList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvRegisterItemList_ToolTipTextNeeded);
+            this.gvRegisterItemList.Validating += new System.ComponentModel.CancelEventHandler(this.gvRegisterItemList_Validating);
             // 
             // bsRegisterItemViewModel
             // 
@@ -645,6 +650,11 @@
             this.btnAdd.ThemeName = "Office2013Light";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errorProvider.ContainerControl = this;
+            // 
             // RegisterItemListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -665,6 +675,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlLinkedStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -682,5 +693,6 @@
         private System.Windows.Forms.BindingSource bsRegisterExtra;
         private Telerik.WinControls.UI.GridViewTemplate templateRegisterCount;
         private System.Windows.Forms.BindingSource bsRegisterCountViewModel;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

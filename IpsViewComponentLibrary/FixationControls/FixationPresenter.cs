@@ -50,6 +50,28 @@ namespace IpsViewComponentLibrary.FixationControls
         public void Show(int fixId)
         {
             var fixationModel = _fixationService.GetById(fixId);
+
+            SetViewData(fixationModel);
+
+            _view.Run();
+        }
+
+        public void ShowForSpecifyRequiredValues(int fixId, FixationStageStatuses newStatus)
+        {
+            var fixationModel = _fixationService.GetById(fixId);
+
+            fixationModel.Fixation.StageStatus = (int)newStatus;
+
+            SetViewData(fixationModel);
+
+            // force validation for mark controls which need to be specified
+            _view.IsValid();
+
+            _view.RunForSpecifyRequiredValues(newStatus);
+        }
+
+        private void SetViewData(FixationModel fixationModel)
+        {
             _fixation = fixationModel.Fixation;
             _view.Fixation = _fixation;
 
@@ -75,18 +97,13 @@ namespace IpsViewComponentLibrary.FixationControls
 
             var currentStage = _fixation.GetStage();
 
-            //if (currentStage == FixationStages.NegotiationBeforeFixation || currentStage == FixationStages.Fixation)
-            //{
-                _view.SetAvailableStageStatuses(_fixation.GetAvailableStageStatuses());
-                _view.ShowStatusesGroupBox = true;
-            //}
-
-            _view.Run();
+            _view.SetAvailableStageStatuses(_fixation.GetAvailableStageStatuses());
+            _view.ShowStatusesGroupBox = true;
         }
 
         public void Save()
         {
-            if (!_view.IsValid)
+            if (!_view.IsValid())
             {
                 _dialogService.ShowError(_view, "Не вірно введені дані. Об'єкт не записаний.");
                 return;
@@ -229,6 +246,14 @@ namespace IpsViewComponentLibrary.FixationControls
         public bool ValidateConsumer()
         {
             return _fixation.ClientCustId.HasValue;
+        }
+
+        public bool ValidateResponsible()
+        {
+            if (_fixation.StageStatus < (int)FixationStageStatuses.FixationNotScheduled)
+                return true;
+
+            return _fixation.UserId != null;
         }
 
         public void UpdateAmountDistribution()

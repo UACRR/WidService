@@ -19,6 +19,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
             cabinet.SetDictionaries(IpsGlobal.AnketaDictionaties);
         }
 
+        public bool IsInit { get; set; } = false;
+
         private void CabinetBigRightForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             e.Cancel = true;

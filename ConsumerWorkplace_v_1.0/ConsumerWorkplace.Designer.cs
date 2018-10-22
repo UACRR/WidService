@@ -50,6 +50,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pvPartners = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartner = new IpsViewComponentLibrary.PartnerControls.PartnerControl();
             this.radPageViewPage5 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlCommunity = new IpsViewComponentLibrary.CommunityControls.CommunityControl();
             this.radPageViewPage6 = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -67,7 +68,7 @@ namespace ConsumerWorkplace_v_1._0
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlCommunity = new IpsViewComponentLibrary.CommunityControls.CommunityControl();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pageBigRights.SuspendLayout();
@@ -140,6 +141,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.mainGridBigRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainGridBigRight.Location = new System.Drawing.Point(199, 0);
+            this.mainGridBigRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mainGridBigRight.Name = "mainGridBigRight";
             this.mainGridBigRight.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.mainGridBigRight.Size = new System.Drawing.Size(1051, 563);
@@ -170,6 +172,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.mainGridSmallRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainGridSmallRight.Location = new System.Drawing.Point(199, 0);
+            this.mainGridSmallRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.mainGridSmallRight.Name = "mainGridSmallRight";
             this.mainGridSmallRight.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
             this.mainGridSmallRight.Size = new System.Drawing.Size(1051, 563);
@@ -256,6 +259,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.ctrlPartner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlPartner.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPartner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ctrlPartner.Name = "ctrlPartner";
             this.ctrlPartner.Size = new System.Drawing.Size(1266, 601);
             this.ctrlPartner.TabIndex = 0;
@@ -268,6 +272,15 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage5.Name = "radPageViewPage5";
             this.radPageViewPage5.Size = new System.Drawing.Size(1266, 601);
             this.radPageViewPage5.Text = "Спільноти";
+            // 
+            // ctrlCommunity
+            // 
+            this.ctrlCommunity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlCommunity.Location = new System.Drawing.Point(0, 0);
+            this.ctrlCommunity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ctrlCommunity.Name = "ctrlCommunity";
+            this.ctrlCommunity.Size = new System.Drawing.Size(1266, 601);
+            this.ctrlCommunity.TabIndex = 0;
             // 
             // radPageViewPage6
             // 
@@ -338,17 +351,9 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
             // 
-            // ctrlCommunity
-            // 
-            this.ctrlCommunity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlCommunity.Location = new System.Drawing.Point(0, 0);
-            this.ctrlCommunity.Name = "ctrlCommunity";
-            this.ctrlCommunity.Size = new System.Drawing.Size(1266, 601);
-            this.ctrlCommunity.TabIndex = 0;
-            // 
             // ConsumerWorkplace
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1276, 637);
             this.Controls.Add(this.pageViewOwner);
@@ -431,5 +436,6 @@ namespace ConsumerWorkplace_v_1._0
         private IpsViewComponentLibrary.GlobalControlConsumerMainGridBR mainGridBigRight;
         private IpsViewComponentLibrary.PartnerControls.PartnerControl ctrlPartner;
         private IpsViewComponentLibrary.CommunityControls.CommunityControl ctrlCommunity;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }

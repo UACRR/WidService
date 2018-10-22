@@ -246,6 +246,8 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        public RegisterItemListMode Mode { get; set; } = RegisterItemListMode.Default;
+
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> CreateObjectCommandExecuted;
         public event EventHandler<RegisterItemViewModel> FindCommandExecuted;
@@ -255,6 +257,8 @@ namespace IpsViewComponentLibrary.RegisterControls
         public event EventHandler<ObjectLinkedEventArgs> ObjectLinked;
         public event EventHandler<RegisterItemAddedEventArgs> RegisterItemAdded;
         public event EventHandler<RegisterCountViewModel> RegisterCountDeleted;
+        public event EventHandler<CancelEventArgs> RegisterItemListValidating;
+        public event EventHandler<RowValidatingEventArgs> RegisterItemRowValidating;
 
 
         public RegisterItemListControl()
@@ -376,6 +380,11 @@ namespace IpsViewComponentLibrary.RegisterControls
                     e.RowElement.Font = new Font(e.RowElement.Font, FontStyle.Bold);
                 }
             }
+        }
+
+        private void gvRegisterItemList_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
         }
 
         private void gvRegisterItemList_ViewCellFormatting(object sender, CellFormattingEventArgs e)
@@ -556,6 +565,38 @@ namespace IpsViewComponentLibrary.RegisterControls
         {
             RegisterCountDeleted.Invoke(this, registerCount);
         }
+
+        private void OnRegisterItemListValidating(object sender, CancelEventArgs e)
+        {
+            RegisterItemListValidating?.Invoke(sender, e);
+        }
+
+        private void OnRegisterItemRowValidating(object sender, RowValidatingEventArgs e)
+        {
+            RegisterItemRowValidating?.Invoke(sender, e);
+        }
+
+        #region Validation
+
+        private void gvRegisterItemList_Validating(object sender, CancelEventArgs e)
+        {
+            OnRegisterItemListValidating(sender, e);
+        }
+
+        private void gvRegisterItemList_RowValidating(object sender, RowValidatingEventArgs e)
+        {
+            // this event is for register item validation only (not reg. count ang reg. fix)
+            if (e.Row.ViewTemplate == gvRegisterItemList.MasterTemplate)
+                OnRegisterItemRowValidating(sender, e);
+        }
+
+        #endregion
+    }
+
+    public enum RegisterItemListMode
+    {
+        Default = 0,
+        RightholderIdentification = 1,
     }
 
     public class RegisterItemAddedEventArgs : EventArgs
