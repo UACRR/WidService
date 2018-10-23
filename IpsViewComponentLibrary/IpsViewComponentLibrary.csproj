@@ -475,11 +475,11 @@
     <Compile Include="RegisterControls\RegisterItemListControl.Designer.cs">
       <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderControl.cs">
+    <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderControl.Designer.cs">
-      <DependentUpon>AnketaCompanyRightholderControl.cs</DependentUpon>
+    <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.Designer.cs">
+      <DependentUpon>AnketaCompanyRightholderPage.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\Anketa\AnketaPersonRightholderPage.cs">
       <SubType>UserControl</SubType>
@@ -1209,8 +1209,8 @@
     <EmbeddedResource Include="AnketaPersonControl.resx">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RightholderControls\Anketa\AnketaCompanyRightholderControl.resx">
-      <DependentUpon>AnketaCompanyRightholderControl.cs</DependentUpon>
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.resx">
+      <DependentUpon>AnketaCompanyRightholderPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.resx">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>

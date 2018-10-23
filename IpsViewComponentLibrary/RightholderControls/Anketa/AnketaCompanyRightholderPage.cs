@@ -7,7 +7,7 @@ using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
-    public partial class AnketaCompanyRightholderControl : UserControl
+    public partial class AnketaCompanyRightholderPage : UserControl
     {
         protected bool IsDesignMode
         {
@@ -30,7 +30,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             set => bsRightHolder.DataSource = value;
         }
 
-        public AnketaCompanyRightholderControl()
+        public AnketaCompanyRightholderPage()
         {
             InitializeComponent();
 

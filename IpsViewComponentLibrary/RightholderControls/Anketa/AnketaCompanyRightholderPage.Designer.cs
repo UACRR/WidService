@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
-    partial class AnketaCompanyRightholderControl
+    partial class AnketaCompanyRightholderPage
     {
         /// <summary> 
         /// Required designer variable.
