@@ -33,6 +33,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<RegisterStatus> registerStatus { get; set; }
         public IList<RegisterListStatus> registerListStatus { get; set; }
         public IList<ResidentType> residentType { get; set; }
+        public IList<RholderType> rholderType { get; set; }
         public IList<SexType> sexType { get; set; }
         public IList<TypePlace> typePlace { get; set; }
         public IList<TypeVat> typeVat { get; set; }
