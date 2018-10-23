@@ -35,22 +35,12 @@ namespace IpsViewComponentLibrary
             _cust = cust;
             _dictionaties = dictionaties;
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == cust.AnkVersion);
-            anketa.TypeVat = 1;
+            
             ctrlAnketaCompany.DataSource = anketa;
 
             ctrlRegistrationsCompany.DataSource = anketa;
-            ctrlRegistrationsCompany.TypeVatDataMember = "TypeVat";
 
-            ctrlRegistrationsCompany.NumberVatDataMember = "NumberVat";
-
-            
-            ctrlRegistrationsCompany.OkpoDataMember = "Okpo";
-            
-            ctrlRegistrationsCompany.RegisterDateDataMember = "RegistrDate";
-            ctrlRegistrationsCompany.RegisterNumberDataMember = "RegistrNumber";
-            ctrlRegistrationsCompany.RegisterWhoDataMember = "RegistrWho";
-            ctrlRegistrationsCompany.SetDefaultState();
-            checkClientName.Checked = cust != null && cust?.Client?.ClnBusinessPlace?.Count != 0;
+            checkClientName.Checked = cust != null && cust.Client?.ClnBusinessPlace?.Count != 0;
         }
 
         public bool Validator()
@@ -85,11 +75,6 @@ namespace IpsViewComponentLibrary
         private void checkClientName_CheckStateChanged(object sender, EventArgs e)
         {
             OnContainPlacesChanged?.Invoke(this, e);
-        }
-
-        internal void SetDefaultState()
-        {
-            ctrlRegistrationsCompany.SetDefaultState();
         }
 
         internal void SetAutoComplete(Func<string, IList<AutoCompleteData>> _getAutoCompList, Func<int, Customer> _getCustomerAnketa)

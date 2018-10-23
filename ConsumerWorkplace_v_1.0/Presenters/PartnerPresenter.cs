@@ -14,9 +14,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 {
     class PartnerPresenter
     {
-        private readonly ConsumerService _service;
+        private readonly PartnerService _service;
         private readonly PartnerControl _partner;
-        public PartnerPresenter(ConsumerService service, PartnerControl partner)
+        public PartnerPresenter(PartnerService service, PartnerControl partner)
         {
             _service = service;
             _partner = partner;
@@ -49,17 +49,17 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         private List<PartnerView> GetPartnersView()
         {
-            return _service.getBRView(typeof(PartnerView), "vTsk_6_ListPartner", null).ToListOfType<PartnerView>();
+            return _service.GetView(typeof(PartnerView), "vTsk_6_ListPartner", null).ToListOfType<PartnerView>();
         }
 
         private List<PartnerClientListView> GetPartnerClientsView(int custId)
         {
-            return _service.getBRView(typeof(PartnerClientListView), "vTsk_6_ListPClient", custId).ToListOfType<PartnerClientListView>();
+            return _service.GetView(typeof(PartnerClientListView), "vTsk_6_ListPClient", custId).ToListOfType<PartnerClientListView>();
         }
 
         private List<PartnerAllFreeClientsView> GetClientsView(int custid)
         {
-            return _service.getBRView(typeof(PartnerAllFreeClientsView), "vTsk_6_ListFreeCln", null).ToListOfType<PartnerAllFreeClientsView>();
+            return _service.GetView(typeof(PartnerAllFreeClientsView), "vTsk_6_ListFreeCln", null).ToListOfType<PartnerAllFreeClientsView>();
         }
 
         //створити Customer

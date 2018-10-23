@@ -35,7 +35,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             InitializeComponent();
             InitTemplate();
             ctrlSearch.SetUsageGrid(gvViewPartners);
-            btnNewPartnerJur.Enabled = false; // заблокувати кнопку
+            //btnNewPartnerJur.Enabled = false; // заблокувати кнопку
         }
 
         public void LoadData()

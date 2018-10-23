@@ -28,17 +28,18 @@ namespace IpsViewComponentLibrary.ConsumerForms
             InitializeComponent();
             _customer = customer;
             DialogResult = DialogResult.None;
-            // представник юридична особа
-            if (customer.CustType == 3)
-            {
-                Text = TitleJur;
-                _anketaControl = Architector.IncludeInstanceWhithReturn(this, _jurControl);
-            }
-            //представник фізична особа
-            else if (customer.CustType == 1)
+
+            // представник фізична особа
+            if (customer.CustType == 1)
             {
                 Text = TitlePhis;
                 _anketaControl = Architector.IncludeInstanceWhithReturn(this, _phisControl);
+            }
+            // представник юридична особа
+            else if (customer.CustType == 3)
+            {
+                Text = TitleJur;
+                _anketaControl = Architector.IncludeInstanceWhithReturn(this, _jurControl);
             }
 
             _anketaControl.BeginBindings(_customer);
@@ -53,7 +54,10 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 _customer.Status = 2;
                 _customer.AgreementMaster.SingleOrDefault().AgrStatus = 2;
                 _customer.AgreementMaster.SingleOrDefault().AgreementAddPartner.SingleOrDefault().AgrStatus = 2;
-                _customer.Person.AnketaPerson.SingleOrDefault().Status = 2;
+                if(_customer.CustType == 1) //  фізична особа
+                    _customer.Person.AnketaPerson.SingleOrDefault().Status = 2;
+                else if (_customer.CustType == 3) // юридична особа
+                    _customer.Company.AnketaCompany.SingleOrDefault().Status = 2;
             }
             DialogResult = DialogResult.OK;
         }

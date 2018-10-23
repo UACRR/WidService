@@ -672,8 +672,6 @@
             // 
             // clientNameCtrlRegistrationsCompany
             // 
-            this.clientNameCtrlRegistrationsCompany.DataMember = "";
-            this.clientNameCtrlRegistrationsCompany.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             this.clientNameCtrlRegistrationsCompany.Location = new System.Drawing.Point(4, 146);
             this.clientNameCtrlRegistrationsCompany.Margin = new System.Windows.Forms.Padding(4);
             this.clientNameCtrlRegistrationsCompany.Name = "clientNameCtrlRegistrationsCompany";

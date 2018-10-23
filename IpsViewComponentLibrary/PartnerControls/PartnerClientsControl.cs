@@ -38,10 +38,15 @@ namespace IpsViewComponentLibrary.PartnerControls
             get => lblPartnerName.Text;
             set
             {
-                if (value is AnketaPerson anketa)
+                if (value is AnketaPerson person)
                 {
-                    _partnerId = anketa.CustId;
-                    lblPartnerName.Text = anketa.LastName + " " + anketa.FirstName + " " + anketa.SurName;
+                    _partnerId = person.CustId;
+                    lblPartnerName.Text = person.LastName + " " + person.FirstName + " " + person.SurName;
+                }
+                else if (value is AnketaCompany company)
+                {
+                    _partnerId = company.CustId;
+                    lblPartnerName.Text = company.Name;
                 }
             }
         }

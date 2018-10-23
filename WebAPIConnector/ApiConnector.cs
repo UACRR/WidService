@@ -506,6 +506,14 @@ namespace WebAPIConnector
             }
         }
 
+        /// <summary>
+        /// Змінити 'представника' для 'клієнта'
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="clientId"></param>
+        /// <param name="partnerId"></param>
+        /// <param name="oldClientId"></param>
+        /// <returns></returns>
         public bool ChangePartnerForCustomer(string url, int clientId, int partnerId, int? oldClientId = null)
         {
             string fullUrl = "partner/" + $"{clientId}/{url}/{partnerId}";

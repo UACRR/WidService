@@ -40,16 +40,18 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
 
         private readonly ConsumerService _service;
+        private readonly PartnerService _partnerService;
         private readonly GlobalControlConsumerMainGridBR _mainGrid;
 
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
-        private RadForm _parentForm = null;
+        private ConsumerWorkplace _parentForm = null;
 
-        public BigRightPresenter(ConsumerService service, RadTreeView treeView, GlobalControlConsumerMainGridBR mainGrid, RadForm parentForm)
+        public BigRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, GlobalControlConsumerMainGridBR mainGrid, ConsumerWorkplace parentForm)
         {
             _parentForm = parentForm;
             _service = service;
+            _partnerService = partnerService;
             _mainGrid = mainGrid;
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             SubscribeEvents();
@@ -201,17 +203,15 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         //відкрити кабінет
         private void LoadCustomerCabinet(int id)
         {
-
             if (!_cabinetBigRightForm.IsInit)
             {
                 SubscribeBRCabinet();
             }
             _cabinetBigRightForm.radWaitingBar1.StartWaiting();
-
             if (!_cabinetBigRightForm.Visible)
+            {
                 _cabinetBigRightForm.Show();
-
-
+            }
 
             Task.Run(() =>
             {
@@ -396,29 +396,29 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         //отримати список партнерів
         private List<Customer> GetPartnerList()
         {
-            return _service.GetPartnerList();
+            return _partnerService.GetPartnerList();
         }
 
         //отримати представника по ID слієнта
         private Customer GetPartnerAnketa(int clientId)
         {
-            return _service.GetPartnerAnketa(clientId);
+            return _partnerService.GetPartnerAnketa(clientId);
         }
 
         //зберегти клієнту обраного представника 
         private bool SetPartnerForCustomer(int clientId, int partnerId)
         {
-            return _service.SetPartnerForCustomer(clientId, partnerId);
+            return _partnerService.SetPartnerForCustomer(clientId, partnerId);
         }
 
         private bool ChangePartnerForCustomer(int clientId, int partnerId, int oldClientId)
         {
-            return _service.ChangePartnerForCustomer(clientId, partnerId, oldClientId);
+            return _partnerService.ChangePartnerForCustomer(clientId, partnerId, oldClientId);
         }
 
         private bool RemovePartnerForCustomer(int clientId, int partnerId)
         {
-            return _service.RemovePartnerForCustomer(clientId, partnerId);
+            return _partnerService.RemovePartnerForCustomer(clientId, partnerId);
         }
 
         // TODO: перехід на точечне оновлення

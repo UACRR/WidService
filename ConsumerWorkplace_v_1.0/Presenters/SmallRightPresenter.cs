@@ -23,12 +23,14 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         };
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private readonly ConsumerService _service;
+        private PartnerService _partnerService;
         private readonly GlobalControlConsumerMainGrid _mainGrid;
 
-        public SmallRightPresenter(ConsumerService service, RadTreeView treeView, GlobalControlConsumerMainGrid mainGrid)
+        public SmallRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, GlobalControlConsumerMainGrid mainGrid)
         {
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _service = service;
+            _partnerService = partnerService;
             _mainGrid = mainGrid;
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
@@ -49,27 +51,27 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         private List<Customer> Cabinet_OnGetPartnerListNeed()
         {
-            return _service.GetPartnerList();
+            return _partnerService.GetPartnerList();
         }
 
         private bool Cabinet_OnRemovePartner(int clientId, int partnerId)
         {
-            return _service.RemovePartnerForCustomer(clientId, partnerId);
+            return _partnerService.RemovePartnerForCustomer(clientId, partnerId);
         }
 
         private bool Cabinet_OnChangePartner(int clientId, int partnerId, int oldPartnerId)
         {
-            return _service.ChangePartnerForCustomer(clientId, partnerId,oldPartnerId);
+            return _partnerService.ChangePartnerForCustomer(clientId, partnerId,oldPartnerId);
         }
 
         private bool Cabinet_OnSetPartner(int clientId, int partnerId)
         {
-            return _service.SetPartnerForCustomer(clientId, partnerId);
+            return _partnerService.SetPartnerForCustomer(clientId, partnerId);
         }
 
         private Customer Cabinet_GetPartner(int custId)
         {
-            return _service.GetPartnerAnketa(custId);
+            return _partnerService.GetPartnerAnketa(custId);
         }
 
         //зміна фільтра
