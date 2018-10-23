@@ -99,12 +99,19 @@ namespace IpsViewComponentLibrary.RightholderControls
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
                 mainPageView.SelectedPage = rightholderCompanyPage;
+
+                contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                ctrlMiddleControlAddress.SetDataSources((Customer)bsCustomer.Current, IpsGlobal.AnketaDictionaties);
             }
             else
             {
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
                 mainPageView.SelectedPage = rightholderPersonPage;
+
+                contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
             }
 
             mainPageView.SelectedPageChanging += mainPageView_SelectedPageChanging;
@@ -147,7 +154,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 isValid = ctrlAnketaPersonRightholderPage.Validator() & ctrlServiceComissionControl.ValidateChildren();
             }
-            else if (selectedPage == contactsPage)
+            else if (selectedPage == contactsPersonPage)
             {
                 isValid = ctrlContacts.Validator();
             }

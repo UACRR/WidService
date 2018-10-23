@@ -99,12 +99,19 @@ namespace IpsViewComponentLibrary.RightholderControls
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
                 anketaPageView.SelectedPage = rightholderCompanyPage;
+
+                contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                ctrlMiddleControlAddress.SetDataSources((Customer)bsCustomer.Current, IpsGlobal.AnketaDictionaties);
             }
             else
             {
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
                 anketaPageView.SelectedPage = rightholderPersonPage;
+
+                contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
             }
 
             ShowDialog();
