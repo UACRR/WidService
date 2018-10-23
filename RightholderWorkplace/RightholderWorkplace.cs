@@ -42,11 +42,21 @@ namespace RightholderWorkplace
 
         private void miNewRightholderPerson_Click(object sender, EventArgs e)
         {
+            ShowNewRightholder(1);
+        }
+
+        private void miNewRigthholderCompany_Click(object sender, EventArgs e)
+        {
+            ShowNewRightholder(3);
+        }
+
+        private static void ShowNewRightholder(int custType)
+        {
             // TODO: move to rightholder list control + add AllowAdd property
             using (var rightholderView = new NewRightholderView())
             {
                 var rightholderPresenter = new RightholderPresenter(rightholderView);
-                rightholderPresenter.ShowNew(1);
+                rightholderPresenter.ShowNew(custType);
             }
         }
 

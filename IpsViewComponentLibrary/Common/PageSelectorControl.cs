@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Common
@@ -20,18 +21,31 @@ namespace IpsViewComponentLibrary.Common
             {
                 if (_relatedPageView != value)
                 {
-                    if (_relatedPageView != null)
-                    {
-                        _relatedPageView.SelectedPageChanged -= RelatedPageView_SelectedPageChanged;
-                    }
-                    _relatedPageView = value;
-                    _relatedPageView.SelectedPageChanged += RelatedPageView_SelectedPageChanged;
-                    UpdateButtonsState();
+                    SetRelatedPageView(value);
                 }
             }
         }
 
+        private void SetRelatedPageView(RadPageView value)
+        {
+            if (_relatedPageView != null)
+            {
+                UnwireEvents();
+            }
+
+            _relatedPageView = value;
+
+            WireEvents();
+
+            UpdateButtonsState();
+        }
+
         private void RelatedPageView_SelectedPageChanged(object sender, EventArgs e)
+        {
+            UpdateButtonsState();
+        }
+
+        private void RelatedOageView_VisibleChanged(object sender, EventArgs e)
         {
             UpdateButtonsState();
         }
@@ -41,16 +55,6 @@ namespace IpsViewComponentLibrary.Common
             get => _relatedPageView.Pages.IndexOf(_relatedPageView.SelectedPage);
         }
 
-        public bool IsFirstPageSelected
-        {
-            get => SelectedPageIndex == 0;
-        }
-
-        public bool IsLastPageSelected
-        {
-            get => SelectedPageIndex == _relatedPageView.Pages.Count - 1;
-        }
-
         public PageSelectorControl()
         {
             InitializeComponent();
@@ -58,20 +62,22 @@ namespace IpsViewComponentLibrary.Common
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            if (IsFirstPageSelected)
-                return;
-
-            _relatedPageView.SelectedPage = _relatedPageView.Pages[SelectedPageIndex - 1];
-            UpdateButtonsState();
+            var prevPage = GetPrevPage();
+            if (prevPage != null)
+            {
+                _relatedPageView.SelectedPage = prevPage;
+                UpdateButtonsState();
+            }
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (IsLastPageSelected)
-                return;
-
-            _relatedPageView.SelectedPage = _relatedPageView.Pages[SelectedPageIndex + 1];
-            UpdateButtonsState();
+            var nextPage = GetNextPage();
+            if (nextPage != null)
+            {
+                _relatedPageView.SelectedPage = nextPage;
+                UpdateButtonsState();
+            }
         }
 
         private void UpdateButtonsState()
@@ -79,27 +85,68 @@ namespace IpsViewComponentLibrary.Common
             if (IsDesignMode)
                 return;
 
-            btnPrev.Text = GetPrevButtonText();
-            btnNext.Text = GetNextButtonText();
+            var prevPage = GetPrevPage();
+            var nextPage = GetNextPage();
 
-            btnPrev.Visible = !IsFirstPageSelected;
-            btnNext.Visible = !IsLastPageSelected;
+            btnPrev.Text = prevPage == null ? "" : "< " + prevPage.Text;
+            btnNext.Text = nextPage == null ? "" : nextPage.Text + " >";
+
+            btnPrev.Visible = prevPage != null;
+            btnNext.Visible = nextPage != null;
         }
 
-        private string GetNextButtonText()
+        private RadPageViewPage GetPrevPage()
         {
-            if (IsLastPageSelected)
-                return "";
+            if (SelectedPageIndex == 0)
+                return null;
 
-            return _relatedPageView.Pages[SelectedPageIndex + 1].Text + " >";
+            // looking for prev visible page
+            for (var i = SelectedPageIndex - 1; i >= 0; i--)
+            {
+                if (_relatedPageView.Pages[i].Item.Visibility != ElementVisibility.Visible)
+                    continue;
+
+                return _relatedPageView.Pages[i];
+            }
+
+            return null;
         }
 
-        private string GetPrevButtonText()
+        private RadPageViewPage GetNextPage()
         {
-            if (IsFirstPageSelected)
-                return "";
+            if (SelectedPageIndex == _relatedPageView.Pages.Count - 1)
+                return null;
+            
+            // looking for next visible page
+            for (var i = SelectedPageIndex + 1; i <= _relatedPageView.Pages.Count; i++)
+            {
+                if (_relatedPageView.Pages[i].Item.Visibility != ElementVisibility.Visible)
+                    continue;
 
-            return "< " + _relatedPageView.Pages[SelectedPageIndex - 1].Text;
+                return _relatedPageView.Pages[i];
+            }
+
+            return null;
+        }
+
+        private void WireEvents()
+        {
+            _relatedPageView.SelectedPageChanged += RelatedPageView_SelectedPageChanged;
+
+            foreach (var page in _relatedPageView.Pages)
+            {
+                page.VisibleChanged += RelatedOageView_VisibleChanged;
+            }
+        }
+
+        private void UnwireEvents()
+        {
+            _relatedPageView.SelectedPageChanged -= RelatedPageView_SelectedPageChanged;
+
+            foreach (var page in _relatedPageView.Pages)
+            {
+                page.VisibleChanged -= RelatedOageView_VisibleChanged;
+            }
         }
     }
 }

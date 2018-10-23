@@ -14,6 +14,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class RightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
     {
+        private bool _isCompany;
+
         private IRightholderPresenter _presenter;
         public IRightholderPresenter Presenter
         {
@@ -39,6 +41,12 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             get => bsAnketaPerson.DataSource;
             set => bsAnketaPerson.DataSource = value;
+        }
+
+        public object AnketaCompanyDataSource
+        {
+            get => bsAnketaCompany.DataSource;
+            set => bsAnketaCompany.DataSource = value;
         }
 
         public object BankAccountDataSource
@@ -82,6 +90,37 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void Run()
         {
+            var customer = (Customer)bsCustomer.Current;
+
+            _isCompany = customer.CustType == 3;
+
+            if (_isCompany)
+            {
+                rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                anketaPageView.SelectedPage = rightholderCompanyPage;
+
+                contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                ctrlMiddleControlAddress.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
+
+                managersPage.Item.Visibility = ElementVisibility.Visible;
+                passportPage.Item.Visibility = ElementVisibility.Collapsed;
+                ctrlMiddleControlManagers.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
+            }
+            else
+            {
+                rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
+                anketaPageView.SelectedPage = rightholderPersonPage;
+
+                contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
+
+                managersPage.Item.Visibility = ElementVisibility.Collapsed;
+                passportPage.Item.Visibility = ElementVisibility.Visible;
+            }
+
             ShowDialog();
         }
 
@@ -89,7 +128,18 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             get
             {
-                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrations.Validator();
+                var result = true;
+
+                if (_isCompany)
+                {
+                    result = ctrlAnketaPersonRightholderPage.Validator();
+                }
+                else
+                {
+                    result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
+                }
+
+                return result & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator();
             }
         }
 
@@ -100,19 +150,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            // TODO: move to presenter
-            var anketa = bsAnketaPerson.Current as AnketaPerson;
 
-            if (anketa == null)
-                return;
-
-            if (anketaPageView.SelectedPage == createRightholderPassportPage)
-            {
-                if (anketa.Citizenship == "804")
-                    passportPageView.SelectedPage = createRightholderInternalPasportPage;
-                else
-                    passportPageView.SelectedPage = createRightholderForeignPassportPage;
-            }
         }
 
         private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

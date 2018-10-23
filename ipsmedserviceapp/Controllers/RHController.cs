@@ -182,18 +182,33 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             newCust.BankAccount.Add(new BankAccount());
             if (custType < 3) // jur
             {
+                newCust.RightHolder.RHolderType = 1;
                 newCust.Person = new Person();
                 newCust.Person.AnketaPerson.Add(new AnketaPerson
                 {
                     Version = 1,
                     NikName = string.Empty,
                     FaCountry = "804",
-                    FaRegion = 25,
+                    FaRegion = 9,
                     ReCountry = "804",
-                    ReRegion = 25,
+                    ReRegion = 9,
                     LeCountry = "804",
-                    LeRegion = 25,
-
+                    LeRegion = 9,
+                });
+            }
+            else if (custType == 3)
+            {
+                newCust.RightHolder.RHolderType = 2;
+                newCust.Company = new Company();
+                newCust.Company.AnketaCompany.Add(new AnketaCompany
+                {
+                    Version = 1,
+                    FaCountry = "804",
+                    FaRegion = 9,
+                    JaCountry = "804",
+                    JaRegion = 9,
+                    LeCountry = "804",
+                    LeRegion = 9,
                 });
             }
 
@@ -344,19 +359,17 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                 var sorsList = sorsCust.Company.AnketaCompany.ToList();
                 _dbContext.UpdateList(sorsList, destCustomer.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
                 //.Include(comp => comp.RelEmployee)
-                _dbContext.UpdateList(sorsCust.Company.RelEmployee, destCustomer.Company.RelEmployee, rec => { },
-                                    (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
+                _dbContext.UpdateListExtra(sorsCust.Company.RelEmployee, destCustomer.Company.RelEmployee,
+                    (isNew, sors, dest) =>
+                    {
+                        if (dest.Empl == null && sors.Empl != null)
+                            dest.Empl = new Employee();
 
-                var newEmployee = sorsCust.Company.RelEmployee.Where(rec => rec.Emplid == 0).ToList();
-                newEmployee.ForEach(item =>
-                   {
-                       var destEmpl = destCustomer.Company.RelEmployee.Where(rec => rec.Emplid == 0 && rec.PositionCode == item.PositionCode).SingleOrDefault();
-
-                       Employee addEmpl = new Employee();
-                       addEmpl.SetFields(item.Empl);
-                       destEmpl.Empl = addEmpl;
-                   });
-
+                        dest.Empl.SetFields(sors.Empl);
+                    },
+                    (sorsItem, destItem) =>
+                        sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid
+                );
             }
             else
             {

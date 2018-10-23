@@ -38,7 +38,6 @@ namespace IpsViewComponentLibrary
             
             ctrlAnketaCompany.DataSource = anketa;
 
-            ctrlRegistrationsCompany.TypeVatDictionaryDataSource = dictionaties?.typeVat;
             ctrlRegistrationsCompany.DataSource = anketa;
 
             checkClientName.Checked = cust != null && cust.Client?.ClnBusinessPlace?.Count != 0;

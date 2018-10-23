@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using IpsViewComponentLibrary.Utilities;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary
 {
@@ -18,6 +20,21 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             dtRegisterDate.SetUserCalendarSettingsm();
+
+            if (!IsDesignMode)
+            {
+                SetDictionaries();
+            }
+        }
+
+        private void SetDictionaries()
+        {
+            ddlTypeVat.SetDataSource(IpsGlobal.AnketaDictionaties.typeVat);
+        }
+
+        protected bool IsDesignMode
+        {
+            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
         }
 
         [Category("Data")]
@@ -32,15 +49,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        [Category("Dictionaries")]
-        [AttributeProvider(typeof(IListSource))]
-        public object TypeVatDictionaryDataSource
-        {
-            get => bsDictTypeVat.DataSource;
-            set => bsDictTypeVat.DataSource = value;
-        }
-
-        #region * * * Edit controls * * *
+        #region Edit controls
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public RadTextBox TxtOkpo => txtOkpo;

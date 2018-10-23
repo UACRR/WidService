@@ -12,6 +12,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class NewRightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
     {
+        private bool _isCompany;
+
         private IRightholderPresenter _presenter;
         public IRightholderPresenter Presenter
         {
@@ -37,6 +39,12 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             get => bsAnketaPerson.DataSource;
             set => bsAnketaPerson.DataSource = value;
+        }
+
+        public object AnketaCompanyDataSource
+        {
+            get => bsAnketaCompany.DataSource;
+            set => bsAnketaCompany.DataSource = value;
         }
 
         public object BankAccountDataSource
@@ -82,6 +90,39 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void Run()
         {
+            var customer = (Customer)bsCustomer.Current;
+
+            _isCompany = customer.CustType == 3;
+
+            if (_isCompany)
+            {
+                rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                mainPageView.SelectedPage = rightholderCompanyPage;
+
+                contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                ctrlMiddleControlAddress.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
+
+                managersPage.Item.Visibility = ElementVisibility.Visible;
+                passportPage.Item.Visibility = ElementVisibility.Collapsed;
+                ctrlMiddleControlManagers.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
+            }
+            else
+            {
+                rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
+                mainPageView.SelectedPage = rightholderPersonPage;
+
+                contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
+
+                managersPage.Item.Visibility = ElementVisibility.Collapsed;
+                passportPage.Item.Visibility = ElementVisibility.Visible;
+            }
+
+            mainPageView.SelectedPageChanging += mainPageView_SelectedPageChanging;
+
             ShowDialog();
         }
 
@@ -89,7 +130,18 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             get
             {
-                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrations.Validator();
+                var result = true;
+
+                if (_isCompany)
+                {
+                    result = ctrlAnketaPersonRightholderPage.Validator();
+                }
+                else
+                {
+                    result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
+                }
+
+                return result & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator();
             }
         }
 
@@ -104,13 +156,21 @@ namespace IpsViewComponentLibrary.RightholderControls
             var selectedPage = mainPageView.SelectedPage;
             var isValid = true;
 
-            if (selectedPage == rightholderPage)
+            if (selectedPage == rightholderPersonPage)
             {
-                isValid = ctrlAnketaPerson.Validator() & ctrlRegistrations.Validator() & ctrlServiceComissionControl.ValidateChildren();
+                isValid = ctrlAnketaPersonRightholderPage.Validator() & ctrlServiceComissionControl.ValidateChildren();
             }
-            else if (selectedPage == contactsPage)
+            else if (selectedPage == rightholderCompanyPage)
+            {
+                isValid = ctrlAnketaCompanyRightholderPage.Validator();
+            }
+            else if (selectedPage == contactsPersonPage)
             {
                 isValid = ctrlContacts.Validator();
+            }
+            else if (selectedPage == managersPage)
+            {
+                isValid = ctrlMiddleControlManagers.Validator();
             }
             else if (selectedPage == agreementPage)
             {
@@ -217,7 +277,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void DisablePagesAndSaveButton()
         {
             sbSave.Enabled = false;
-            for (int i = 1; i < mainPageView.Pages.Count; i++)
+            for (int i = 2; i < mainPageView.Pages.Count; i++)
             {
                 mainPageView.Pages[i].Enabled = false;
             }

@@ -107,6 +107,32 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        [Category("Data")]
+        [AttributeProvider(typeof(IListSource))]
+        [DefaultValue(typeof(AgreementAddRh))]
+        public object DataSourceRh
+        {
+            get => bsAgreementAddRh.DataSource;
+            set
+            {
+                rtxtBoxContrNumber.DataBindings.Clear();
+                rdtPickerAgrDate.DataBindings.Clear();
+                rdtPickerDateBegin.DataBindings.Clear();
+                rdtPickerDateEnd.DataBindings.Clear();
+
+                bsAgreementAddRh.DataSource = value;
+
+                rtxtBoxContrNumber.DataBindings.Add(new Binding("Text", bsAgreementAddRh, "AgrNumber", true,
+                    DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+                rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "AgrDate", true,
+                    DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "DateBegin", true,
+                    DataSourceUpdateMode.OnPropertyChanged));
+                rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "DateEnd", true,
+                    DataSourceUpdateMode.OnPropertyChanged));
+            }
+        }
+
         #region Data members
 
         [Category("Data")]

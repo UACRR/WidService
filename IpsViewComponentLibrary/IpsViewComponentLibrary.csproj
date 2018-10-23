@@ -493,6 +493,18 @@
     <Compile Include="RegisterControls\RegisterItemListControl.Designer.cs">
       <DependentUpon>RegisterItemListControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.Designer.cs">
+      <DependentUpon>AnketaCompanyRightholderPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightholderPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightholderPage.Designer.cs">
+      <DependentUpon>AnketaPersonRightholderPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\RightholderPresenter.cs" />
     <Compile Include="RightholderControls\NewRightholderView.cs">
       <SubType>Form</SubType>
@@ -1224,6 +1236,9 @@
     <EmbeddedResource Include="AnketaPersonControl.resx">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.resx">
+      <DependentUpon>AnketaCompanyRightholderPage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.resx">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1265,6 +1280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ConsumerSelectionView.resx">
       <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightholderPage.resx">
+      <DependentUpon>AnketaPersonRightholderPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\CabinetBigRightOld.resx">
       <DependentUpon>CabinetBigRightOld.cs</DependentUpon>

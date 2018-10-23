@@ -45,6 +45,7 @@ namespace IpsViewComponentLibrary
             this.lblContrDo = new Telerik.WinControls.UI.RadLabel();
             this.bsAgreementAddBr = new System.Windows.Forms.BindingSource(this.components);
             this.bsLicenseAgrParamBr = new System.Windows.Forms.BindingSource(this.components);
+            this.bsAgreementAddRh = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgrParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
@@ -57,6 +58,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgrParamBr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddRh)).BeginInit();
             this.SuspendLayout();
             // 
             // rdtPickerAgrDate
@@ -169,6 +171,10 @@ namespace IpsViewComponentLibrary
             // 
             this.bsLicenseAgrParamBr.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
+            // bsAgreementAddRh
+            // 
+            this.bsAgreementAddRh.DataSource = typeof(ipsFormsDesign.Model.AgreementAddRh);
+            // 
             // ContractConsumerMainControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,6 +203,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgrParamBr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddRh)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,5 +223,6 @@ namespace IpsViewComponentLibrary
         private BindingSource bsLicenseAgrParam;
         private BindingSource bsAgreementAddBr;
         private BindingSource bsLicenseAgrParamBr;
+        private BindingSource bsAgreementAddRh;
     }
 }

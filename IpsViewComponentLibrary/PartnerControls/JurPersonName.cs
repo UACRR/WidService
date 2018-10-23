@@ -30,7 +30,6 @@ namespace IpsViewComponentLibrary
             
             ctrlAnketaCompany.DataSource = anketa;
 
-            ctrlRegistrationsCompany.TypeVatDictionaryDataSource = dictionaties?.typeVat;
             ctrlRegistrationsCompany.DataSource = anketa;   
         }
 
