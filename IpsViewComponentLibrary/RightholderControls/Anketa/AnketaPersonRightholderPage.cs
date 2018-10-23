@@ -40,5 +40,10 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             get => bsRightHolder.DataSource;
             set => bsRightHolder.DataSource = value;
         }
+
+        public bool Validator()
+        {
+            return ctrlAnketaPerson.Validator() & ctrlRegistrationsPerson.Validator();
+        }
     }
 }
