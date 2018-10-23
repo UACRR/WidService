@@ -35,6 +35,10 @@
             this.ctrlRegistrationsCompany = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
             this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
+            this.txtInnerCode = new Telerik.WinControls.UI.RadTextBox();
+            this.txtInterCode = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRightholderType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -44,6 +48,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterWho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInnerCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInterCode)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlRightholderType
@@ -91,7 +99,7 @@
             this.ctrlRegistrationsCompany.DtRegisterDate.TabStop = false;
             this.ctrlRegistrationsCompany.DtRegisterDate.ThemeName = "Office2013Light";
             this.ctrlRegistrationsCompany.DtRegisterDate.Value = new System.DateTime(((long)(0)));
-            this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(14, 113);
+            this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(14, 154);
             this.ctrlRegistrationsCompany.Name = "ctrlRegistrationsCompany";
             this.ctrlRegistrationsCompany.NumberVatDataMember = "NumberVat";
             this.ctrlRegistrationsCompany.OkpoDataMember = "Okpo";
@@ -174,16 +182,56 @@
             this.ctrlAnketaCompany.Size = new System.Drawing.Size(452, 47);
             this.ctrlAnketaCompany.TabIndex = 16;
             // 
-            // AnketaCompanyRightholderControl
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(6, 92);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(44, 19);
+            this.radLabel1.TabIndex = 30;
+            this.radLabel1.Text = "Шифр:";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
+            // radLabel12
+            // 
+            this.radLabel12.Location = new System.Drawing.Point(6, 119);
+            this.radLabel12.Name = "radLabel12";
+            this.radLabel12.Size = new System.Drawing.Size(23, 19);
+            this.radLabel12.TabIndex = 31;
+            this.radLabel12.Text = "IPI:";
+            this.radLabel12.ThemeName = "Office2013Light";
+            // 
+            // txtInnerCode
+            // 
+            this.txtInnerCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "InnerCode", true));
+            this.txtInnerCode.Location = new System.Drawing.Point(122, 91);
+            this.txtInnerCode.Name = "txtInnerCode";
+            this.txtInnerCode.Size = new System.Drawing.Size(283, 21);
+            this.txtInnerCode.TabIndex = 32;
+            this.txtInnerCode.ThemeName = "Office2013Light";
+            // 
+            // txtInterCode
+            // 
+            this.txtInterCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "InterCode", true));
+            this.txtInterCode.Location = new System.Drawing.Point(122, 118);
+            this.txtInterCode.Name = "txtInterCode";
+            this.txtInterCode.Size = new System.Drawing.Size(283, 21);
+            this.txtInterCode.TabIndex = 33;
+            this.txtInterCode.ThemeName = "Office2013Light";
+            // 
+            // AnketaCompanyRightholderPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radLabel1);
+            this.Controls.Add(this.radLabel12);
+            this.Controls.Add(this.txtInnerCode);
+            this.Controls.Add(this.txtInterCode);
             this.Controls.Add(this.ddlRightholderType);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.ctrlRegistrationsCompany);
             this.Controls.Add(this.ctrlAnketaCompany);
-            this.Name = "AnketaCompanyRightholderControl";
-            this.Size = new System.Drawing.Size(670, 226);
+            this.Name = "AnketaCompanyRightholderPage";
+            this.Size = new System.Drawing.Size(670, 268);
             ((System.ComponentModel.ISupportInitialize)(this.ddlRightholderType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -193,6 +241,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterWho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInnerCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInterCode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,5 +258,9 @@
         private IpsAnketaCompanyControl ctrlAnketaCompany;
         private System.Windows.Forms.BindingSource bsRightHolder;
         private System.Windows.Forms.BindingSource bsAnketaCompany;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabel radLabel12;
+        private Telerik.WinControls.UI.RadTextBox txtInnerCode;
+        private Telerik.WinControls.UI.RadTextBox txtInterCode;
     }
 }
