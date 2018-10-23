@@ -43,7 +43,8 @@ namespace IpsViewComponentLibrary
             this.lbledrpou = new Telerik.WinControls.UI.RadLabel();
             this.lblTypeTaxpayer = new Telerik.WinControls.UI.RadLabel();
             this.ddlTypeVat = new Telerik.WinControls.UI.RadDropDownList();
-            this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictTypeVat = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterWho)).BeginInit();
@@ -56,11 +57,13 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lbledrpou)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypeTaxpayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeVat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictTypeVat)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNumberVat
             // 
+            this.txtNumberVat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "NumberVat", true));
             this.txtNumberVat.Enabled = false;
             this.txtNumberVat.Location = new System.Drawing.Point(436, 85);
             this.txtNumberVat.MaxLength = 12;
@@ -72,6 +75,7 @@ namespace IpsViewComponentLibrary
             // 
             // txtRegisterNumber
             // 
+            this.txtRegisterNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "RegistrNumber", true));
             this.txtRegisterNumber.Location = new System.Drawing.Point(106, 43);
             this.txtRegisterNumber.Name = "txtRegisterNumber";
             this.txtRegisterNumber.Size = new System.Drawing.Size(134, 21);
@@ -82,6 +86,7 @@ namespace IpsViewComponentLibrary
             // 
             this.txtRegisterWho.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtRegisterWho.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "RegistrWho", true));
             this.txtRegisterWho.Location = new System.Drawing.Point(436, 43);
             this.txtRegisterWho.Name = "txtRegisterWho";
             this.txtRegisterWho.Size = new System.Drawing.Size(215, 21);
@@ -90,6 +95,7 @@ namespace IpsViewComponentLibrary
             // 
             // dtRegisterDate
             // 
+            this.dtRegisterDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAnketaCompany, "RegistrDate", true));
             this.dtRegisterDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtRegisterDate.Location = new System.Drawing.Point(278, 43);
             this.dtRegisterDate.MaxDate = new System.DateTime(2018, 7, 2, 0, 0, 0, 0);
@@ -102,6 +108,7 @@ namespace IpsViewComponentLibrary
             // 
             // txtOkpo
             // 
+            this.txtOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "Okpo", true));
             this.txtOkpo.Location = new System.Drawing.Point(106, 2);
             this.txtOkpo.MaxLength = 10;
             this.txtOkpo.Name = "txtOkpo";
@@ -169,8 +176,10 @@ namespace IpsViewComponentLibrary
             // ddlTypeVat
             // 
             this.ddlTypeVat.AutoScroll = true;
-            this.ddlTypeVat.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.iAnketaCompanyBindingSource, "TypeVat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.ddlTypeVat.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaCompany, "TypeVat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.ddlTypeVat.DataSource = this.bsDictTypeVat;
             this.ddlTypeVat.DefaultItemsCountInDropDown = 5;
+            this.ddlTypeVat.DisplayMember = "Name";
             this.ddlTypeVat.DropDownMaxSize = new System.Drawing.Size(300, 120);
             this.ddlTypeVat.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlTypeVat.Location = new System.Drawing.Point(106, 85);
@@ -178,14 +187,19 @@ namespace IpsViewComponentLibrary
             this.ddlTypeVat.Size = new System.Drawing.Size(134, 21);
             this.ddlTypeVat.TabIndex = 4;
             this.ddlTypeVat.ThemeName = "Office2013Light";
+            this.ddlTypeVat.ValueMember = "CodeI";
             this.ddlTypeVat.SelectedValueChanged += new System.EventHandler(this.ddlTypeVat_SelectedValueChanged);
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSize = true;
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.FitToAvailableSize;
             // 
-            // iAnketaCompanyBindingSource
+            // bsAnketaCompany
             // 
-            this.iAnketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
+            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
+            // 
+            // bsDictTypeVat
+            // 
+            this.bsDictTypeVat.DataSource = typeof(ipsFormsDesign.Model.TypeVat);
             // 
             // IpsRegistrationsCompanyControl
             // 
@@ -217,7 +231,8 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lbledrpou)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypeTaxpayer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeVat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictTypeVat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -237,6 +252,7 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadLabel lbledrpou;
         private Telerik.WinControls.UI.RadLabel lblTypeTaxpayer;
         private Telerik.WinControls.UI.RadDropDownList ddlTypeVat;
-        private System.Windows.Forms.BindingSource iAnketaCompanyBindingSource;
+        private System.Windows.Forms.BindingSource bsAnketaCompany;
+        private System.Windows.Forms.BindingSource bsDictTypeVat;
     }
 }

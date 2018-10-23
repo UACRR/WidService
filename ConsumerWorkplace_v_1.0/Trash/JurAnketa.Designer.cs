@@ -672,17 +672,11 @@
             // 
             // clientNameCtrlRegistrationsCompany
             // 
-            this.clientNameCtrlRegistrationsCompany.DataMember = "";
-            this.clientNameCtrlRegistrationsCompany.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             this.clientNameCtrlRegistrationsCompany.Location = new System.Drawing.Point(4, 146);
             this.clientNameCtrlRegistrationsCompany.Margin = new System.Windows.Forms.Padding(4);
             this.clientNameCtrlRegistrationsCompany.Name = "clientNameCtrlRegistrationsCompany";
             this.clientNameCtrlRegistrationsCompany.Size = new System.Drawing.Size(868, 123);
             this.clientNameCtrlRegistrationsCompany.TabIndex = 2;
-            this.clientNameCtrlRegistrationsCompany.TypesVatDataMember = "";
-            this.clientNameCtrlRegistrationsCompany.TypesVatDataSource = null;
-            this.clientNameCtrlRegistrationsCompany.TypesVatDisplayMember = "";
-            this.clientNameCtrlRegistrationsCompany.TypesVatValueMember = "";
             // 
             // clientNameCtrlAnketaCompany
             // 

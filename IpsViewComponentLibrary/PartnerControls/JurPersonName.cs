@@ -27,24 +27,11 @@ namespace IpsViewComponentLibrary
         {
             _dictionaties = dictionaties;
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == cust.AnkVersion);
-            anketa.TypeVat = 1;
+            
             ctrlAnketaCompany.DataSource = anketa;
 
-            ctrlRegistrationsCompany.DataSource = anketa;
-            ctrlRegistrationsCompany.TypesVatDataSource = dictionaties?.typeVat;
-            ctrlRegistrationsCompany.TypesVatDisplayMember = "Name";
-            ctrlRegistrationsCompany.TypesVatValueMember = "CodeI";
-            ctrlRegistrationsCompany.TypeVatDataMember = "TypeVat";
-
-            ctrlRegistrationsCompany.NumberVatDataMember = "NumberVat";
-
-            
-            ctrlRegistrationsCompany.OkpoDataMember = "Okpo";
-            
-            ctrlRegistrationsCompany.RegisterDateDataMember = "RegistrDate";
-            ctrlRegistrationsCompany.RegisterNumberDataMember = "RegistrNumber";
-            ctrlRegistrationsCompany.RegisterWhoDataMember = "RegistrWho";
-            ctrlRegistrationsCompany.SetDefaultState();
+            ctrlRegistrationsCompany.TypeVatDictionaryDataSource = dictionaties?.typeVat;
+            ctrlRegistrationsCompany.DataSource = anketa;   
         }
 
         public bool Validator()

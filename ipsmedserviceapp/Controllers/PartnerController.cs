@@ -74,6 +74,7 @@ namespace ipsmedserviceapp.Controllers
                     {
                         Version = 1,
                         Status = 0,
+                        TypeVat = 1,
                         FaCountry = "804",
                         LeCountry = "804",
                         JaCountry = "804",

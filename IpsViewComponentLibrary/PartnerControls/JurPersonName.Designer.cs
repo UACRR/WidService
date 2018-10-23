@@ -41,8 +41,6 @@
             // 
             this.ctrlRegistrationsCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRegistrationsCompany.DataMember = "";
-            this.ctrlRegistrationsCompany.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             // 
             // 
             // 
@@ -61,11 +59,6 @@
             this.ctrlRegistrationsCompany.DtRegisterDate.Value = new System.DateTime(((long)(0)));
             this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(4, 57);
             this.ctrlRegistrationsCompany.Name = "ctrlRegistrationsCompany";
-            this.ctrlRegistrationsCompany.NumberVatDataMember = null;
-            this.ctrlRegistrationsCompany.OkpoDataMember = null;
-            this.ctrlRegistrationsCompany.RegisterDateDataMember = null;
-            this.ctrlRegistrationsCompany.RegisterNumberDataMember = null;
-            this.ctrlRegistrationsCompany.RegisterWhoDataMember = null;
             this.ctrlRegistrationsCompany.Size = new System.Drawing.Size(704, 109);
             this.ctrlRegistrationsCompany.TabIndex = 3;
             // 
@@ -120,11 +113,6 @@
             this.ctrlRegistrationsCompany.TxtRegisterWho.RootElement.StretchVertically = true;
             this.ctrlRegistrationsCompany.TxtRegisterWho.Size = new System.Drawing.Size(268, 20);
             this.ctrlRegistrationsCompany.TxtRegisterWho.TabIndex = 3;
-            this.ctrlRegistrationsCompany.TypesVatDataMember = "";
-            this.ctrlRegistrationsCompany.TypesVatDataSource = null;
-            this.ctrlRegistrationsCompany.TypesVatDisplayMember = "";
-            this.ctrlRegistrationsCompany.TypesVatValueMember = "";
-            this.ctrlRegistrationsCompany.TypeVatDataMember = null;
             // 
             // ctrlAnketaCompany
             // 

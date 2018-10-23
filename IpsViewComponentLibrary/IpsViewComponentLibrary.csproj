@@ -1500,6 +1500,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.TypeVat.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.AmountDistributionViewModel.datasource" />

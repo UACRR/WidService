@@ -532,14 +532,14 @@ namespace ipsmedserviceapp.Controllers
                     // Компанія
                     newCust.Company = new Company();
                     // Анкета
-                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status = 2 });
+                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status = 2, TypeVat = 1});
                 }
                 else
                 {
                     // Фіз. особа
                     newCust.Person = new Person();
                     // Анкета
-                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, Status = 2 });
+                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, Status = 2});
                 }
 
                 return Json(newCust);
