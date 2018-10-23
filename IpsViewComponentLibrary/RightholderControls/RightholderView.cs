@@ -41,6 +41,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => bsAnketaPerson.DataSource = value;
         }
 
+        public object AnketaCompanyDataSource
+        {
+            get => bsAnketaCompany.DataSource;
+            set => bsAnketaCompany.DataSource = value;
+        }
+
         public object BankAccountDataSource
         {
             get => bsBankAccount.DataSource;
@@ -89,7 +95,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             get
             {
-                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrations.Validator();
+                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrationsPerson.Validator();
             }
         }
 

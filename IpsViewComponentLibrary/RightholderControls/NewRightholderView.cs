@@ -39,6 +39,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => bsAnketaPerson.DataSource = value;
         }
 
+        public object AnketaCompanyDataSource
+        {
+            get => bsAnketaCompany.DataSource;
+            set => bsAnketaCompany.DataSource = value;
+        }
+
         public object BankAccountDataSource
         {
             get => bsBankAccount.DataSource;
@@ -104,7 +110,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             var selectedPage = mainPageView.SelectedPage;
             var isValid = true;
 
-            if (selectedPage == rightholderPage)
+            if (selectedPage == rightholderPersonPage)
             {
                 isValid = ctrlAnketaPerson.Validator() & ctrlRegistrations.Validator() & ctrlServiceComissionControl.ValidateChildren();
             }

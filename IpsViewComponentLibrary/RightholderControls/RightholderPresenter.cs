@@ -22,6 +22,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Customer _customer;
         private AgreementAddRh _agreementAddRh;
         private AnketaPerson _anketaPerson;
+        private AnketaCompany _anketaCompany;
+        private bool _isCompany;
         private bool _canClose;
 
         public RightholderPresenter(IRightholderView view)
@@ -46,20 +48,36 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _customer = _rightholderService.GetData(custId);
             SetViewData();
-            _view.SetHeader(String.Format("{0} {1} {2}", _anketaPerson.LastName, _anketaPerson.FirstName, _anketaPerson.SurName));
+
+            if (_isCompany)
+                _view.SetHeader(_anketaCompany.Name);
+            else
+                _view.SetHeader(String.Format("{0} {1} {2}", _anketaPerson.LastName, _anketaPerson.FirstName, _anketaPerson.SurName));
+
             _view.Run();
         }
 
         private void SetViewData()
         {
             _view.CustomerDataSource = _customer;
-            _anketaPerson = _customer.Person.AnketaPerson.FirstOrDefault();
-            _view.AnketaPersonDataSource = _anketaPerson;
             _agreementAddRh = _customer.AgreementMaster.FirstOrDefault()?.AgreementAddRh?.FirstOrDefault();
             _view.AgreementAddRhDataSource = _agreementAddRh;
             _view.RightholderDataSource = _customer.RightHolder;
             _view.BankAccountDataSource = _customer.BankAccount;
             _view.TermsOfServiceDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
+
+            _isCompany = _customer.CustType == 3;
+
+            if (_isCompany)
+            {
+                _anketaCompany = _customer.Company.AnketaCompany.FirstOrDefault();
+                _view.AnketaCompanyDataSource = _anketaCompany;
+            }
+            else
+            {
+                _anketaPerson = _customer.Person.AnketaPerson.FirstOrDefault();
+                _view.AnketaPersonDataSource = _anketaPerson;
+            }
         }
 
         public void SetAgreementRightholderStatus(AgreementStatuses newStatus)

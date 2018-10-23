@@ -4,6 +4,7 @@
     {
         object AgreementAddRhDataSource { get; set; }
         object AnketaPersonDataSource { get; set; }
+        object AnketaCompanyDataSource { get; set; }
         object BankAccountDataSource { get; set; }
         object CustomerDataSource { get; set; }
         bool IsValid { get; }
