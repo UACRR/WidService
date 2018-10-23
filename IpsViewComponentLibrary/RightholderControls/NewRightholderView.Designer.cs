@@ -42,7 +42,7 @@
             this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlRegistrations = new IpsViewComponentLibrary.RegistrationPersonsControl();
             this.rightholderCompanyPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.anketaCompanyRightholderControl1 = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaCompanyRightholderControl();
+            this.anketaCompanyRightholderControl1 = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaCompanyRightholderPage();
             this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.contactsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
@@ -968,7 +968,7 @@
         private Telerik.WinControls.UI.RadButton btnCopyAddressFaRe;
         private IpsAddressControl ctrlReAddress;
         private Telerik.WinControls.UI.RadPageViewPage rightholderCompanyPage;
-        private Anketa.AnketaCompanyRightholderControl anketaCompanyRightholderControl1;
+        private Anketa.AnketaCompanyRightholderPage anketaCompanyRightholderControl1;
         private System.Windows.Forms.BindingSource bsAnketaCompany;
     }
 }
