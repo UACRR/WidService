@@ -79,7 +79,6 @@
             // 
             // ctrlRegistrationsCompany
             // 
-            this.ctrlRegistrationsCompany.DataMember = "";
             this.ctrlRegistrationsCompany.DataSource = this.bsAnketaCompany;
             // 
             // 
@@ -101,11 +100,6 @@
             this.ctrlRegistrationsCompany.DtRegisterDate.Value = new System.DateTime(((long)(0)));
             this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(14, 154);
             this.ctrlRegistrationsCompany.Name = "ctrlRegistrationsCompany";
-            this.ctrlRegistrationsCompany.NumberVatDataMember = "NumberVat";
-            this.ctrlRegistrationsCompany.OkpoDataMember = "Okpo";
-            this.ctrlRegistrationsCompany.RegisterDateDataMember = "RegistrDate";
-            this.ctrlRegistrationsCompany.RegisterNumberDataMember = "RegistrNumber";
-            this.ctrlRegistrationsCompany.RegisterWhoDataMember = "RegistrWho";
             this.ctrlRegistrationsCompany.Size = new System.Drawing.Size(654, 110);
             this.ctrlRegistrationsCompany.TabIndex = 17;
             // 
@@ -166,7 +160,6 @@
             this.ctrlRegistrationsCompany.TxtRegisterWho.Size = new System.Drawing.Size(215, 21);
             this.ctrlRegistrationsCompany.TxtRegisterWho.TabIndex = 3;
             this.ctrlRegistrationsCompany.TxtRegisterWho.ThemeName = "Office2013Light";
-            this.ctrlRegistrationsCompany.TypeVatDataMember = "TypeVat";
             // 
             // bsAnketaCompany
             // 

@@ -167,7 +167,7 @@
             this.mainPageView.DefaultPage = this.rightholderPersonPage;
             this.mainPageView.Location = new System.Drawing.Point(1, 1);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.rightholderPersonPage;
+            this.mainPageView.SelectedPage = this.rightholderCompanyPage;
             this.mainPageView.Size = new System.Drawing.Size(995, 437);
             this.mainPageView.TabIndex = 2;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -222,7 +222,7 @@
             this.ctrlAnketaCompanyRightholderPage.Location = new System.Drawing.Point(3, 3);
             this.ctrlAnketaCompanyRightholderPage.Name = "ctrlAnketaCompanyRightholderPage";
             this.ctrlAnketaCompanyRightholderPage.RightholderDataSource = this.bsRightHolder;
-            this.ctrlAnketaCompanyRightholderPage.Size = new System.Drawing.Size(670, 226);
+            this.ctrlAnketaCompanyRightholderPage.Size = new System.Drawing.Size(670, 271);
             this.ctrlAnketaCompanyRightholderPage.TabIndex = 0;
             // 
             // bsAnketaCompany
