@@ -136,8 +136,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                 }
                 else
                 {
-                    // TODO
-                    //result = ctrlAnketaCompanyRightholderPage.Validator();
+                    result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
                 }
 
                 return result & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator();

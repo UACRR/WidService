@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
+using System;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
@@ -43,6 +44,11 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
         private void SetDictionaries()
         {
             ddlRightholderType.SetDataSource(IpsGlobal.AnketaDictionaties.rholderType.Where(t => t.CodeI != 1));
+        }
+
+        public bool Validator()
+        {
+            return ctrlAnketaCompany.Validator() & ctrlRegistrationsCompany.Validator();
         }
     }
 }

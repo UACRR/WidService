@@ -138,8 +138,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                 }
                 else
                 {
-                    // TODO
-                    //result = ctrlAnketaCompanyRightholderPage.Validator();
+                    result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
                 }
 
                 return result & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator();
@@ -161,9 +160,17 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 isValid = ctrlAnketaPersonRightholderPage.Validator() & ctrlServiceComissionControl.ValidateChildren();
             }
+            else if (selectedPage == rightholderCompanyPage)
+            {
+                isValid = ctrlAnketaCompanyRightholderPage.Validator();
+            }
             else if (selectedPage == contactsPersonPage)
             {
                 isValid = ctrlContacts.Validator();
+            }
+            else if (selectedPage == managersPage)
+            {
+                isValid = ctrlMiddleControlManagers.Validator();
             }
             else if (selectedPage == agreementPage)
             {
