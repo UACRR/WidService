@@ -12,6 +12,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class NewRightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
     {
+        private bool _isCompany;
+
         private IRightholderPresenter _presenter;
         public IRightholderPresenter Presenter
         {
@@ -90,7 +92,9 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             var customer = (Customer)bsCustomer.Current;
 
-            if (customer.CustType == 3)
+            _isCompany = customer.CustType == 3;
+
+            if (_isCompany)
             {
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
@@ -112,7 +116,19 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             get
             {
-                return ctrlAnketaPerson.Validator() & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator() & ctrlRegistrations.Validator();
+                var result = true;
+
+                if (_isCompany)
+                {
+                    result = ctrlAnketaPersonRightholderPage.Validator();
+                }
+                else
+                {
+                    // TODO
+                    //result = ctrlAnketaCompanyRightholderPage.Validator();
+                }
+
+                return result & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator();
             }
         }
 
@@ -129,7 +145,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (selectedPage == rightholderPersonPage)
             {
-                isValid = ctrlAnketaPerson.Validator() & ctrlRegistrations.Validator() & ctrlServiceComissionControl.ValidateChildren();
+                isValid = ctrlAnketaPersonRightholderPage.Validator() & ctrlServiceComissionControl.ValidateChildren();
             }
             else if (selectedPage == contactsPage)
             {
