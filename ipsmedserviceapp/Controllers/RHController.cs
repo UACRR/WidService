@@ -359,19 +359,17 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                 var sorsList = sorsCust.Company.AnketaCompany.ToList();
                 _dbContext.UpdateList(sorsList, destCustomer.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
                 //.Include(comp => comp.RelEmployee)
-                _dbContext.UpdateList(sorsCust.Company.RelEmployee, destCustomer.Company.RelEmployee, rec => { },
-                                    (sorsItem, destItem) => sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid);
+                _dbContext.UpdateListExtra(sorsCust.Company.RelEmployee, destCustomer.Company.RelEmployee,
+                    (isNew, sors, dest) =>
+                    {
+                        if (dest.Empl == null && sors.Empl != null)
+                            dest.Empl = new Employee();
 
-                var newEmployee = sorsCust.Company.RelEmployee.Where(rec => rec.Emplid == 0).ToList();
-                newEmployee.ForEach(item =>
-                   {
-                       var destEmpl = destCustomer.Company.RelEmployee.Where(rec => rec.Emplid == 0 && rec.PositionCode == item.PositionCode).SingleOrDefault();
-
-                       Employee addEmpl = new Employee();
-                       addEmpl.SetFields(item.Empl);
-                       destEmpl.Empl = addEmpl;
-                   });
-
+                        dest.Empl.SetFields(sors.Empl);
+                    },
+                    (sorsItem, destItem) =>
+                        sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid
+                );
             }
             else
             {
