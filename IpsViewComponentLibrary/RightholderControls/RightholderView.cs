@@ -88,6 +88,21 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void Run()
         {
+            var customer = (Customer)bsCustomer.Current;
+
+            if (customer.CustType == 3)
+            {
+                rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                anketaPageView.SelectedPage = rightholderCompanyPage;
+            }
+            else
+            {
+                rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
+                anketaPageView.SelectedPage = rightholderPersonPage;
+            }
+
             ShowDialog();
         }
 
@@ -106,19 +121,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void mainPageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            // TODO: move to presenter
-            var anketa = bsAnketaPerson.Current as AnketaPerson;
 
-            if (anketa == null)
-                return;
-
-            if (anketaPageView.SelectedPage == createRightholderPassportPage)
-            {
-                if (anketa.Citizenship == "804")
-                    passportPageView.SelectedPage = createRightholderInternalPasportPage;
-                else
-                    passportPageView.SelectedPage = createRightholderForeignPassportPage;
-            }
         }
 
         private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)

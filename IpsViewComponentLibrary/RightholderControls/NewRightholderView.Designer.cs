@@ -168,11 +168,10 @@
             this.mainPageView.DefaultPage = this.rightholderPersonPage;
             this.mainPageView.Location = new System.Drawing.Point(1, 1);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.rightholderPersonPage;
+            this.mainPageView.SelectedPage = this.rightholderCompanyPage;
             this.mainPageView.Size = new System.Drawing.Size(995, 437);
             this.mainPageView.TabIndex = 2;
             this.mainPageView.ThemeName = "Office2013Light";
-            this.mainPageView.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.mainPageView_SelectedPageChanging);
             this.mainPageView.SelectedPageChanged += new System.EventHandler(this.mainPageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.mainPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;

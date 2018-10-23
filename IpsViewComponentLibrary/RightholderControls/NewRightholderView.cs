@@ -88,6 +88,23 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void Run()
         {
+            var customer = (Customer)bsCustomer.Current;
+
+            if (customer.CustType == 3)
+            {
+                rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                mainPageView.SelectedPage = rightholderCompanyPage;
+            }
+            else
+            {
+                rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
+                mainPageView.SelectedPage = rightholderPersonPage;
+            }
+
+            mainPageView.SelectedPageChanging += mainPageView_SelectedPageChanging;
+
             ShowDialog();
         }
 
@@ -223,7 +240,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void DisablePagesAndSaveButton()
         {
             sbSave.Enabled = false;
-            for (int i = 1; i < mainPageView.Pages.Count; i++)
+            for (int i = 2; i < mainPageView.Pages.Count; i++)
             {
                 mainPageView.Pages[i].Enabled = false;
             }

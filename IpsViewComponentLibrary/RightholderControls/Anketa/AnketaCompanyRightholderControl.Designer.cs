@@ -30,30 +30,35 @@
         {
             this.components = new System.ComponentModel.Container();
             this.ddlRightholderType = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsRightHolder = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlRegistrationsCompany = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
-            this.ctrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
-            this.bsRightHolder = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRightholderType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.DtRegisterDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtNumberVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterWho)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlRightholderType
             // 
             this.ddlRightholderType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRightHolder, "RHolderType", true));
+            this.ddlRightholderType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlRightholderType.Location = new System.Drawing.Point(122, 64);
             this.ddlRightholderType.Name = "ddlRightholderType";
             this.ddlRightholderType.Size = new System.Drawing.Size(218, 21);
             this.ddlRightholderType.TabIndex = 19;
             this.ddlRightholderType.ThemeName = "Office2013Light";
+            // 
+            // bsRightHolder
+            // 
+            this.bsRightHolder.DataSource = typeof(ipsFormsDesign.Model.RightHolder);
             // 
             // radLabel2
             // 
@@ -155,6 +160,10 @@
             this.ctrlRegistrationsCompany.TxtRegisterWho.ThemeName = "Office2013Light";
             this.ctrlRegistrationsCompany.TypeVatDataMember = "TypeVat";
             // 
+            // bsAnketaCompany
+            // 
+            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
+            // 
             // ctrlAnketaCompany
             // 
             this.ctrlAnketaCompany.DataSource = this.bsAnketaCompany;
@@ -164,14 +173,6 @@
             this.ctrlAnketaCompany.Name = "ctrlAnketaCompany";
             this.ctrlAnketaCompany.Size = new System.Drawing.Size(452, 47);
             this.ctrlAnketaCompany.TabIndex = 16;
-            // 
-            // bsRightHolder
-            // 
-            this.bsRightHolder.DataSource = typeof(ipsFormsDesign.Model.RightHolder);
-            // 
-            // bsAnketaCompany
-            // 
-            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // AnketaCompanyRightholderControl
             // 
@@ -184,13 +185,13 @@
             this.Name = "AnketaCompanyRightholderControl";
             this.Size = new System.Drawing.Size(670, 226);
             ((System.ComponentModel.ISupportInitialize)(this.ddlRightholderType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.DtRegisterDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtNumberVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterWho)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
