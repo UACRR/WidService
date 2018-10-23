@@ -604,7 +604,7 @@ namespace IpsViewComponentLibrary.FixationControls
                 _fixation.StageStatus >= (int)FixationStageStatuses.FixationNotScheduled ? ElementVisibility.Visible : ElementVisibility.Collapsed;
 
             var identificatioVisibility =
-                _fixation.StageStatus >= (int)FixationStageStatuses.RightholderIdentificationOnIdentification ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+                _fixation.StageStatus >= (int)FixationStageStatuses.FixationFixationCompleted ? ElementVisibility.Visible : ElementVisibility.Collapsed;
 
             var judicalVisibility =
                 _fixation.StageStatus >= (int)FixationStageStatuses.JudicalWorkOnJudicalWork ? ElementVisibility.Visible : ElementVisibility.Collapsed;
