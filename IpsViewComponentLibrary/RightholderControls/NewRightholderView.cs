@@ -102,7 +102,11 @@ namespace IpsViewComponentLibrary.RightholderControls
 
                 contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
                 contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
-                ctrlMiddleControlAddress.SetDataSources((Customer)bsCustomer.Current, IpsGlobal.AnketaDictionaties);
+                ctrlMiddleControlAddress.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
+
+                managersPage.Item.Visibility = ElementVisibility.Visible;
+                passportPage.Item.Visibility = ElementVisibility.Collapsed;
+                ctrlMiddleControlManagers.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
             }
             else
             {
@@ -112,6 +116,9 @@ namespace IpsViewComponentLibrary.RightholderControls
 
                 contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
                 contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
+
+                managersPage.Item.Visibility = ElementVisibility.Collapsed;
+                passportPage.Item.Visibility = ElementVisibility.Visible;
             }
 
             mainPageView.SelectedPageChanging += mainPageView_SelectedPageChanging;
