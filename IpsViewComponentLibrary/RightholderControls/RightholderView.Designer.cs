@@ -193,7 +193,7 @@
             this.anketaPageView.DefaultPage = this.rightholderPersonPage;
             this.anketaPageView.Location = new System.Drawing.Point(0, 0);
             this.anketaPageView.Name = "anketaPageView";
-            this.anketaPageView.SelectedPage = this.managersPage;
+            this.anketaPageView.SelectedPage = this.rightholderCompanyPage;
             this.anketaPageView.Size = new System.Drawing.Size(1006, 444);
             this.anketaPageView.TabIndex = 2;
             this.anketaPageView.ThemeName = "Office2013Light";
@@ -249,7 +249,7 @@
             this.ctrlAnketaCompanyRightholderPage.Location = new System.Drawing.Point(3, 3);
             this.ctrlAnketaCompanyRightholderPage.Name = "ctrlAnketaCompanyRightholderPage";
             this.ctrlAnketaCompanyRightholderPage.RightholderDataSource = this.bsRightHolder;
-            this.ctrlAnketaCompanyRightholderPage.Size = new System.Drawing.Size(670, 267);
+            this.ctrlAnketaCompanyRightholderPage.Size = new System.Drawing.Size(670, 269);
             this.ctrlAnketaCompanyRightholderPage.TabIndex = 16;
             // 
             // bsAnketaCompany
@@ -263,9 +263,9 @@
             this.contactsPersonPage.Controls.Add(this.radGroupBox2);
             this.contactsPersonPage.Controls.Add(this.ctrlContacts);
             this.contactsPersonPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.contactsPersonPage.Location = new System.Drawing.Point(103, 5);
+            this.contactsPersonPage.Location = new System.Drawing.Point(101, 5);
             this.contactsPersonPage.Name = "contactsPersonPage";
-            this.contactsPersonPage.Size = new System.Drawing.Size(898, 434);
+            this.contactsPersonPage.Size = new System.Drawing.Size(900, 434);
             this.contactsPersonPage.Text = "Контакти";
             // 
             // radGroupBox1
@@ -395,9 +395,9 @@
             // 
             this.contactsCompanyPage.Controls.Add(this.ctrlMiddleControlAddress);
             this.contactsCompanyPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.contactsCompanyPage.Location = new System.Drawing.Point(103, 5);
+            this.contactsCompanyPage.Location = new System.Drawing.Point(101, 5);
             this.contactsCompanyPage.Name = "contactsCompanyPage";
-            this.contactsCompanyPage.Size = new System.Drawing.Size(898, 434);
+            this.contactsCompanyPage.Size = new System.Drawing.Size(900, 434);
             this.contactsCompanyPage.Text = "Контакти";
             // 
             // ctrlMiddleControlAddress
@@ -494,9 +494,9 @@
             // 
             this.managersPage.Controls.Add(this.ctrlMiddleControlManagers);
             this.managersPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.managersPage.Location = new System.Drawing.Point(103, 5);
+            this.managersPage.Location = new System.Drawing.Point(101, 5);
             this.managersPage.Name = "managersPage";
-            this.managersPage.Size = new System.Drawing.Size(898, 434);
+            this.managersPage.Size = new System.Drawing.Size(900, 434);
             this.managersPage.Text = "Керівники";
             // 
             // ctrlMiddleControlManagers
@@ -507,7 +507,7 @@
             this.ctrlMiddleControlManagers.MaximumSize = new System.Drawing.Size(1200, 343);
             this.ctrlMiddleControlManagers.MinimumSize = new System.Drawing.Size(600, 343);
             this.ctrlMiddleControlManagers.Name = "ctrlMiddleControlManagers";
-            this.ctrlMiddleControlManagers.Size = new System.Drawing.Size(896, 343);
+            this.ctrlMiddleControlManagers.Size = new System.Drawing.Size(898, 343);
             this.ctrlMiddleControlManagers.TabIndex = 0;
             // 
             // royaltyPage
