@@ -481,6 +481,12 @@
     <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderControl.Designer.cs">
       <DependentUpon>AnketaCompanyRightholderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightholderPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightholderPage.Designer.cs">
+      <DependentUpon>AnketaPersonRightholderPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="RightholderControls\RightholderPresenter.cs" />
     <Compile Include="RightholderControls\NewRightholderView.cs">
       <SubType>Form</SubType>
@@ -1247,6 +1253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ConsumerSelectionView.resx">
       <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightholderPage.resx">
+      <DependentUpon>AnketaPersonRightholderPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\CabinetBigRightOld.resx">
       <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
