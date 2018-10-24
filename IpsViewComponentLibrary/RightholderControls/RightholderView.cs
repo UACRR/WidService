@@ -319,5 +319,10 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             _presenter.AddExistingObject();
         }
+
+        private void btnUploadFromExcel_Click(object sender, EventArgs e)
+        {
+            _presenter.LoadFromExcel();
+        }
     }
 }

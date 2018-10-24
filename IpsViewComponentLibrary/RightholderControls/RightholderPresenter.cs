@@ -176,6 +176,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        public void LoadFromExcel()
+        {
+
+        }
+
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
             var selectedRightholder = new RightholderMainView { CustId = _customer.CustId, Name = String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName) }; ;
