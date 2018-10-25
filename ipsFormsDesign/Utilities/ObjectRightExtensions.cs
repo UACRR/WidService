@@ -1,5 +1,6 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services.ObjectUploading;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,6 +25,33 @@ namespace ipsFormsDesign.Utilities
             foreach (var re in registerItem.RegisterExtraList)
             {
                 objectRight.Authors.Add(new Authors { AuthorName = re.Name, FolkType = 1, RoleCode = re.RoleCode });
+            }
+        }
+
+        public static void SetDataFromObjectRightData(this ObjectRight objectRight, ObjectRightData objectData)
+        {
+            objectRight.Name = objectData.Name;
+            objectRight.GenreType = objectData.GenreId;
+
+            foreach (var rightholder in objectData.Rightholders)
+            {
+                if (rightholder.CreativeRole == "виконавець")
+                {
+                    objectRight.SeekObject.Add(new SeekObject { CodeI = 2, Name = rightholder.Name });
+                }
+                else
+                {
+                    objectRight.AddObjectAuthorRightholder(new ObjectAuthorRightholder
+                    {
+                        IsRightholder = true,
+                        AuthorName = rightholder.Name,
+                        CustId = rightholder.CustId,
+                        CopyrightStatus = 0,
+                        FolkType = 1,
+                        RoleCode = rightholder.RoleId.Value,
+                        Rate = rightholder.Rate,
+                    });
+                }
             }
         }
 

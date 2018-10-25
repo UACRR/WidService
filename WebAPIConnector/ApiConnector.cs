@@ -255,6 +255,18 @@ namespace WebAPIConnector
                 return null;
         }
 
+        public List<T> NewListItemWithResult<T>(string url, List<T> data) where T : class
+        {
+            var result = client.PostAsJson(url, data);
+
+            if (result.IsSuccessStatusCode)
+            {
+                return result.Content.ReadAsList<T>();
+            }
+            else
+                return null;
+        }
+
         public T UpdateItemWithResult<T>(string url, string id, T data) where T : class
         {
             string idUrl = $"{url}/{id}";

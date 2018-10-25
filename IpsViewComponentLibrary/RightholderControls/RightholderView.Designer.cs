@@ -109,6 +109,7 @@
             this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.btnUploadFromExcel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -176,6 +177,7 @@
             this.pageObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -193,7 +195,7 @@
             this.anketaPageView.DefaultPage = this.rightholderPersonPage;
             this.anketaPageView.Location = new System.Drawing.Point(0, 0);
             this.anketaPageView.Name = "anketaPageView";
-            this.anketaPageView.SelectedPage = this.rightholderCompanyPage;
+            this.anketaPageView.SelectedPage = this.rightholderPersonPage;
             this.anketaPageView.Size = new System.Drawing.Size(1006, 444);
             this.anketaPageView.TabIndex = 2;
             this.anketaPageView.ThemeName = "Office2013Light";
@@ -797,7 +799,7 @@
             this.pageViewMain.DefaultPage = this.radPageViewPage1;
             this.pageViewMain.Location = new System.Drawing.Point(0, 1);
             this.pageViewMain.Name = "pageViewMain";
-            this.pageViewMain.SelectedPage = this.radPageViewPage1;
+            this.pageViewMain.SelectedPage = this.pageObjects;
             this.pageViewMain.Size = new System.Drawing.Size(1019, 481);
             this.pageViewMain.TabIndex = 20;
             this.pageViewMain.ThemeName = "Office2013Light";
@@ -946,6 +948,7 @@
             // 
             // pageObjects
             // 
+            this.pageObjects.Controls.Add(this.btnUploadFromExcel);
             this.pageObjects.Controls.Add(this.btnAddExistingObjectRightForRightholder);
             this.pageObjects.Controls.Add(this.ddbAddObjectRightForRightholder);
             this.pageObjects.Controls.Add(this.ctrlRightholdersObjectsRight);
@@ -1006,6 +1009,17 @@
             this.radPageViewPage4.Name = "radPageViewPage4";
             this.radPageViewPage4.Size = new System.Drawing.Size(1009, 445);
             this.radPageViewPage4.Text = "Файли";
+            // 
+            // btnUploadFromExcel
+            // 
+            this.btnUploadFromExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUploadFromExcel.Location = new System.Drawing.Point(292, 420);
+            this.btnUploadFromExcel.Name = "btnUploadFromExcel";
+            this.btnUploadFromExcel.Size = new System.Drawing.Size(140, 24);
+            this.btnUploadFromExcel.TabIndex = 11;
+            this.btnUploadFromExcel.Text = "Завантажити з Excel";
+            this.btnUploadFromExcel.ThemeName = "Office2013Light";
+            this.btnUploadFromExcel.Click += new System.EventHandler(this.btnUploadFromExcel_Click);
             // 
             // RightholderView
             // 
@@ -1096,6 +1110,7 @@
             this.pageObjects.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1183,5 +1198,6 @@
         private MiddleControlAddress ctrlMiddleControlAddress;
         private Telerik.WinControls.UI.RadPageViewPage managersPage;
         private MiddleControlManagers ctrlMiddleControlManagers;
+        private Telerik.WinControls.UI.RadButton btnUploadFromExcel;
     }
 }
