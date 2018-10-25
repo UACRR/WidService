@@ -418,6 +418,7 @@
       <DependentUpon>PartnerCabinetAnketaPhisControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PartnerControls\PartnerInterfaces.cs" />
+    <Compile Include="Utilities\ObjectRightLoaderFacade.cs" />
     <Compile Include="_trash\PartnerPhisForm.cs">
       <SubType>Form</SubType>
     </Compile>
