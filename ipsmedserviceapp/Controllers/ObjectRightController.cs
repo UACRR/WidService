@@ -146,7 +146,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="body"></param>
         /// <returns></returns>
         [HttpPost("newobject")]
-        public async Task<IActionResult> createObjectRight([FromBody] ObjectRight body)
+        public async Task<IActionResult> Create([FromBody] ObjectRight body)
         {
             ObjectRight addObject = new ObjectRight { CategoryCode = body.CategoryCode };
             IDbContextTransaction tran = null;
@@ -169,6 +169,27 @@ namespace ipsmedserviceapp.Controllers
                 tran?.Rollback();
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("newobjects")]
+        public async Task<IActionResult> Create([FromBody] List<ObjectRight> objectList)
+        {
+            var list = new List<ObjectRight>();
+
+            foreach(var obj in objectList)
+            {
+                var addObject = new ObjectRight { CategoryCode = obj.CategoryCode };
+
+                updateObjectRight(obj, addObject);
+
+                _dbContext.ObjectRight.Add(addObject);
+
+                list.Add(addObject);
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(list);
         }
 
         [HttpPost("validate")]

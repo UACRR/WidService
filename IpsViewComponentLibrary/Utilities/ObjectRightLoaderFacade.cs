@@ -1,7 +1,9 @@
-﻿using ipsFormsDesign.Model;
+﻿using ipsFormsDesign.Events;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Services.ObjectUploading;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.AppController;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -71,7 +73,15 @@ namespace IpsViewComponentLibrary.Utilities
                 list.Add(newObj);
             }
 
-            //_objectRightService.Save();
+            if (!list.Any())
+                return;
+
+            var result = _objectRightService.Save(list);
+
+            if (result)
+                ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+            else
+                _dialogService.ShowError("Не вдалося завантажити об'єкти права.");
         }
     }
 }

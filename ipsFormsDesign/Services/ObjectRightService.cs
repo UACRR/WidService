@@ -6,6 +6,7 @@ using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.ObjectsRight;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WebAPIConnector;
 
@@ -100,11 +101,12 @@ namespace ipsFormsDesign.Services
                 return false;
         }
 
-        //public ObjectRight NewObjectRight(int category)
-        //{
-        //    var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
-        //    return item;
-        //}
+        public bool Save(List<ObjectRight> objectList)
+        {
+            var result = _webApi.NewListItemWithResult("objectright/newobjects", objectList);
+
+            return result.Any();
+        }
 
         public List<ObjectRightData> ValidateObjectsRight(List<ObjectRightData> objectRightList)
         {
