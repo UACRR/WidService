@@ -49,7 +49,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void ShowNew(int category)
         {
-            var newObjectRight = _objectRightService.NewObjectRight(category);
+            var newObjectRight = _objectRightService.New(category);
 
             Run(newObjectRight);
         }
@@ -83,7 +83,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             if (_objectRight != null)
             {
-                var newObjectRight = _objectRightService.NewObjectRight(_objectRight.CategoryCode);
+                var newObjectRight = _objectRightService.New(_objectRight.CategoryCode);
 
                 newObjectRight.Name = _objectRight.Name;
 

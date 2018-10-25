@@ -141,29 +141,6 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// Сформувати каркас для нового об'єкту права
-        /// </summary>
-        /// <param name="CategoryCode"></param>
-        /// <returns></returns>
-        [HttpGet("new/{CategoryCode}")]
-        public IActionResult getObjectRightWildCard(int CategoryCode)
-        {
-            ObjectRight addObject = new ObjectRight { CategoryCode = CategoryCode };
-            switch (CategoryCode)
-            {
-                case 5:
-                    {
-                        addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0, 0, 0) };
-                        addObject.GenreType = 96;
-                        addObject.SpecType = 1;
-                    }
-                    break;
-            }
-
-            return Json(addObject);
-        }
-
-        /// <summary>
         /// Створення нового об'єкту права
         /// </summary>
         /// <param name="body"></param>

@@ -129,7 +129,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             foreach (var registerItem in registerItemList)
             {
-                var newObject = objectRightService.NewObjectRight(5);
+                var newObject = objectRightService.New(5);
                 newObject.SetDataFromRegisterItem(registerItem);
 
                 var result = objectRightService.Save(newObject);

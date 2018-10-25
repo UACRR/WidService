@@ -100,11 +100,11 @@ namespace ipsFormsDesign.Services
                 return false;
         }
 
-        public ObjectRight NewObjectRight(int category)
-        {
-            var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
-            return item;
-        }
+        //public ObjectRight NewObjectRight(int category)
+        //{
+        //    var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
+        //    return item;
+        //}
 
         public List<ObjectRightData> ValidateObjectsRight(List<ObjectRightData> objectRightList)
         {
