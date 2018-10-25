@@ -204,7 +204,7 @@ namespace ipsmedserviceapp.Controllers
 
             var foundedObjects = _dbContext.ObjectRight.Where(obj => objNames.Contains(obj.Name.ToUpper())).ToList();
             var foundedGenres = _dbContext.GenreType.Where(g => genres.Contains(g.Name.ToUpper())).ToList();
-            var foundedRoles = _dbContext.CreativeRoleType.Where(r => roles.Contains(r.Name.ToUpper())).ToList();
+            var foundedRoles = _dbContext.CreativeRoleType.Where(r => r.CategoryCode == 5 && roles.Contains(r.Name.ToUpper())).ToList();
             var rhNames = "'" + string.Join("', '", rightholders) + "'";
             var foundedRightholders = await _dbContext.getViewData($"select * from vTsk_1_ListRightHolder01 where Upper(name) in ({rhNames})", null);
 
