@@ -194,6 +194,37 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPost("validate")]
+        public async Task<IActionResult> ValidateObjectsRight([FromBody] List<ObjectRightValidateResource> objectRightList)
+        {
+            var objNames = objectRightList.Select(obj => obj.Name.ToUpper());
+            var genres = objectRightList.Select(obj => obj.Genre.ToUpper()).Distinct();
+            var roles = objectRightList.SelectMany(obj => obj.Rightholders).Select(r => r.CreativeRole.ToUpper()).Distinct();
+            var rightholders = objectRightList.SelectMany(obj => obj.Rightholders).Select(r => r.Name.ToUpper()).Distinct();
+
+            var foundedObjects = _dbContext.ObjectRight.Where(obj => objNames.Contains(obj.Name.ToUpper())).ToList();
+            var foundedGenres = _dbContext.GenreType.Where(g => genres.Contains(g.Name.ToUpper())).ToList();
+            var foundedRoles = _dbContext.CreativeRoleType.Where(r => roles.Contains(r.Name.ToUpper())).ToList();
+            var rhNames = "'" + string.Join("', '", rightholders) + "'";
+            var foundedRightholders = await _dbContext.getViewData($"select * from vTsk_1_ListRightHolder01 where Upper(name) in ({rhNames})", null);
+
+            foreach (var obj in objectRightList)
+            {
+                obj.ObjId = foundedObjects.FirstOrDefault(o => o.Name.ToUpper() == obj.Name.ToUpper())?.ObjId;
+                obj.GenreId = foundedGenres.FirstOrDefault(g => g.Name.ToUpper() == obj.Genre.ToUpper())?.CodeI;
+
+                foreach (var rh in obj.Rightholders)
+                {
+                    rh.RoleId = foundedRoles.FirstOrDefault(r => r.Name.ToUpper() == rh.CreativeRole.ToUpper())?.CodeI;
+                    var rhdict = foundedRightholders.FirstOrDefault(dict => dict["name"].ToString().Trim().ToUpper() == rh.Name.ToUpper());
+                    if (rhdict != null)
+                        rh.CustId = (int)rhdict["custId"];
+                }
+            }
+
+            return Ok(objectRightList);
+        }
+
         [HttpGet]
         public async Task<IActionResult> GetObjectRights([FromQuery] ObjectRightQueryResource query)
         {

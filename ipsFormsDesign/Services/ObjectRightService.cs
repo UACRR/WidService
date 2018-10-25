@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services.ObjectUploading;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.ObjectsRight;
 using System;
@@ -88,6 +89,11 @@ namespace ipsFormsDesign.Services
         {
             var item = _webApi.GetItemById<ObjectRight>("objectright/new", category.ToString());
             return item;
+        }
+
+        public List<ObjectRightData> ValidateObjectsRight(List<ObjectRightData> objectRightList)
+        {
+            return _webApi.NewListItemWithResult("objectright/validate", objectRightList);
         }
 
         public bool AddAuthorRightholderForObject(int objId, ObjectAuthorRightholder objectAuthorRightholder, out string error)
