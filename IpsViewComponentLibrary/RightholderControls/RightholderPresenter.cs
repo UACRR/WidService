@@ -178,14 +178,12 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void UploadFromExcel()
         {
-            //var openDialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
-            //if (openDialog.ShowDialog() == DialogResult.OK)
-            //{
-            //    _objectRightService.LoadFromExcel(openDialog.FileName);
-            //}
-
-            var _uploader = new ObjectRightLoaderFacade();
-            _uploader.UploadFromExcel(@"d:\tmp\ReestrObjects.xlsx");
+            var openDialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
+            if (openDialog.ShowDialog() == DialogResult.OK)
+            {
+                var _uploader = new ObjectRightLoaderFacade();
+                _uploader.UploadFromExcel(openDialog.FileName);
+            }
         }
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
