@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace ipsFormsDesign.Services.ObjectUploading
 {
@@ -27,6 +28,27 @@ namespace ipsFormsDesign.Services.ObjectUploading
                     ValidateStringIsNotEmpty("ПІБ автора", rightholder.Name, rightholder.RowNum);
                 }
             }
+        }
+
+        public string GetWarningsErrorsSescription()
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine("Помилки:");
+            sb.AppendLine();
+            foreach (var err in Errors)
+            {
+                sb.AppendLine(err);
+            }
+            sb.AppendLine();
+            sb.AppendLine("Попередження:");
+            sb.AppendLine();
+            foreach (var warn in Warnings)
+            {
+                sb.AppendLine(warn);
+            }
+
+            return sb.ToString();
         }
 
         private void ValidateStringIsNotEmpty(string fieldName, string value, int row)
