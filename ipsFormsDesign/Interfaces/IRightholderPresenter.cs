@@ -14,6 +14,6 @@ namespace ipsFormsDesign.Interfaces
         void CopyAddressRegisterToLetter();
         void AddNewObject(int category);
         void AddExistingObject();
-        void LoadFromExcel();
+        void UploadFromExcel();
     }
 }

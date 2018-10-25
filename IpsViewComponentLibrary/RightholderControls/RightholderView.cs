@@ -322,7 +322,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void btnUploadFromExcel_Click(object sender, EventArgs e)
         {
-            _presenter.LoadFromExcel();
+            _presenter.UploadFromExcel();
         }
     }
 }

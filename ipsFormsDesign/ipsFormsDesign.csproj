@@ -432,10 +432,15 @@
     <Compile Include="Services\ExcelEngine.cs" />
     <Compile Include="Services\FixationService.cs" />
     <Compile Include="Services\LicenseDataService.cs" />
+    <Compile Include="Services\ObjectUploading\ObjectRightData.cs" />
+    <Compile Include="Services\ObjectUploading\ObjectRightDataClientSideValidator.cs" />
+    <Compile Include="Services\ObjectUploading\ObjectRightDataParser.cs" />
+    <Compile Include="Services\ObjectRightLoaderFacade.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
     <Compile Include="Services\PartnerService.cs" />
     <Compile Include="Services\PrintService.cs" />
     <Compile Include="Services\RegisterService.cs" />
+    <Compile Include="Services\ObjectUploading\RightholderData.cs" />
     <Compile Include="Services\RightHolderService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Utils.cs" />
@@ -504,5 +509,6 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
