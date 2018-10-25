@@ -12,6 +12,7 @@ using ipsmedserviceapp.Controllers;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data.SqlClient;
+using System.Collections;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -106,6 +107,11 @@ namespace ipsmedserviceapp.Controllers
         {
             var listTemp = sors.ToList();
             listTemp.ForEach(item => { dest.First(destItem => CompareTr(item, destItem)).SetFields(item); });
+        }
+        public void Update(List<TTr> dest, List<TTr> sors, string[] fieldExclude)
+        {
+            var listTemp = sors.ToList();
+            listTemp.ForEach(item => { dest.First(destItem => CompareTr(item, destItem)).SetFields(item, fieldExclude); });
         }
         public void runActionByTr(T rec, Action<object> exec)
         {
@@ -383,10 +389,7 @@ namespace ipsmedserviceapp.Controllers
             var listOut = list.Where(rec => rec.DicCategoryItems.Count > 0).ToList();
             return Json(listOut);
         }
-
-
-
-
+        
 
         [HttpGet("base/{dictionay}")]
         public async Task<ActionResult> GetBaseDictionaryList(string dictionay)
@@ -462,37 +465,43 @@ namespace ipsmedserviceapp.Controllers
         }
 
         [HttpPut("base/{dictionay}/{id}")]
-        public async Task<ActionResult> UpdateBaseItem(string dictionay, string id, [FromBody]JObject data)
+        public async Task<IActionResult> UpdateBaseItem(string dictionay, string id, [FromBody]JObject data)
         {
-            string normalizeName = dictionay.ToLower();
+            IDbContextTransaction transaction = null;
+            try
+            {
+                string normalizeName = dictionay.ToLower();
 
-            if (!baseEng.Keys.Contains(normalizeName))
-                return BadRequest();
+                if (!baseEng.Keys.Contains(normalizeName))
+                    return BadRequest();
 
-            // BaseDictionaryEng<ActivityType, ActivityTypeTr, DictBaseTypeI> eng = (BaseDictionaryEng<ActivityType, ActivityTypeTr, DictBaseTypeI>)baseEng[normalizeName];
-            dynamic eng = baseEng[normalizeName];
-            var dest = await eng.GetById(id);
-            var sors = eng.ConvertFromBase(eng.ToObject(data));
+                dynamic eng = baseEng[normalizeName];
+                var dest = await eng.GetById(id);
+                var sors = eng.ConvertFromBase(eng.ToObject(data));
 
-            ((object)dest).SetFields((object)sors);
-            Type trType = (Type)eng.dicTrType;
+                ((object) dest).SetFields((object) sors, new[] { "CategoryCode", "Crtype" });
 
-            var listDst = eng.GetTr(dest);
-            var listSrs = eng.GetTr(sors);
+                var listDst = eng.GetTr(dest);
+                var listSrs = eng.GetTr(sors);
 
-            eng.DeleteAbsent(listDst, listSrs);
-            eng.InserNew(listDst, listSrs);
-            eng.Update(listDst, listSrs);
+                eng.DeleteAbsent(listDst, listSrs);
+                eng.InserNew(listDst, listSrs);
+                eng.Update(listDst, listSrs);
+                //eng.Update(listDst, listSrs, new[]{ "" });
 
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+                transaction = null;
 
-            await _dbContext.SaveChangesAsync();
-
-            return Ok();
-
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                return BadRequest(ex.Message);
+            }
         }
-
-        //CrkindGroup
-
 
         [HttpGet("extra/crkindgroup")]
         public async Task<ActionResult> GetCrkindgroup()

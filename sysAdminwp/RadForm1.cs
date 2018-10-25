@@ -62,26 +62,17 @@ namespace sysAdminwp
         /// <returns></returns>
         private List<ViewTable> GetData(List<DictBaseTypeI> l)
         {
-            List<ViewTable> view = new List<ViewTable>();
-            ViewTable temp;
+            var view = new List<ViewTable>();
             foreach (var items in l)
             {
-                temp = new ViewTable
+                view.Add(new ViewTable
                 {
-                    Code = items.CodeI
-                };
-                foreach (var itemName in items.DictTrI)
-                {
-                    if (itemName.Lang == "Uk")
-                        temp.NameUk = itemName.Name;
-                    if (itemName.Lang == "Ru")
-                        temp.NameRu = itemName.Name;
-                    if (itemName.Lang == "En")
-                        temp.NameEn = itemName.Name;
-                }
-                view.Add(temp);
+                    Code = items.CodeI,
+                    NameUk = items.DictTrI?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? items.Name,
+                    NameRu = items.DictTrI?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                    NameEn = items.DictTrI?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                });
             }
-
             return view;
         }
 
@@ -157,10 +148,11 @@ namespace sysAdminwp
 
             if (radGridView1?.CurrentRow?.DataBoundItem is ViewTable items)
             {
-                radTBCode.Text = items.Code.ToString();
-                radTBNameUa.Text = items.NameUk;
-                radTBNameRu.Text = items.NameRu;
-                radTBNameEn.Text = items.NameEn;
+                var item = _list.SingleOrDefault(rec => rec.CodeI == items.Code);
+                radTBCode.Text = item?.CodeI.ToString();
+                radTBNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                radTBNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                radTBNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
             }
             else
             {
@@ -251,7 +243,7 @@ namespace sysAdminwp
         //оновлення панелі редагування
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-                UpdateEditPanel();
+            UpdateEditPanel();
         }
 
         //додавання нового рядка
