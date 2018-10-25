@@ -39,6 +39,21 @@ namespace ipsFormsDesign.Services
             return await Task.Factory.StartNew(() => GetObjectRights(query));
         }
 
+        public ObjectRight New(int categoryCode)
+        {
+            ObjectRight newObject = new ObjectRight { CategoryCode = categoryCode };
+            switch (categoryCode)
+            {
+                case 5:
+                    newObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0, 0, 0) };
+                    newObject.GenreType = 96;
+                    newObject.SpecType = 1;
+                    break;
+            }
+
+            return newObject;
+        }
+
         public List<ObjectRightMainView> GetObjectsByFilter( string filter )
         {
             string url = string.Concat("objectright/filteredObjectRights/", filter);
