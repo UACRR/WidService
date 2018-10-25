@@ -216,7 +216,10 @@ namespace ipsmedserviceapp.Controllers
                     rh.RoleId = foundedRoles.FirstOrDefault(r => r.Name.ToUpper() == rh.CreativeRole.ToUpper())?.CodeI;
                     var rhdict = foundedRightholders.FirstOrDefault(dict => dict["name"].ToString().Trim().ToUpper() == rh.Name.ToUpper());
                     if (rhdict != null)
+                    {
                         rh.CustId = (int)rhdict["custId"];
+                        rh.Name = rhdict["name"].ToString().Trim();
+                    }
                 }
             }
 
