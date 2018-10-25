@@ -22,6 +22,7 @@ namespace ipsmedserviceapp.Model
         public int? RegId { get; set; }
         public int? DistId { get; set; }
         public int? CustIdRh { get; set; }
+        public int? RegIitemId { get; set; }
 
         public Account AccIdDebetNavigation { get; set; }
         public PaymentStatus PayStatusNavigation { get; set; }

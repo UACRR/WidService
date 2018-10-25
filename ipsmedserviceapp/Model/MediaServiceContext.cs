@@ -6078,6 +6078,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
+                entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
+
                 entity.HasOne(d => d.AccIdDebetNavigation)
                     .WithMany(p => p.PayTurn)
                     .HasForeignKey(d => d.AccIdDebet)
@@ -6781,7 +6783,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.RegI)
                     .WithOne(p => p.RegisterItemFix)
                     .HasForeignKey<RegisterItemFix>(d => new { d.RegId, d.RegItemId })
-                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK_REGITEM_REF_REGITEMFIX");
             });
 
