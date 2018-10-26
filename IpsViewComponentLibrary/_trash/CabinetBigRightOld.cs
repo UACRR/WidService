@@ -252,7 +252,7 @@ namespace IpsViewComponentLibrary
         public void SetTab(CabinetTabType tabType)
         {
             ctrlCabinet.CurentTab = tabType;
-            ctrlCabinet.UpdateCurentTab(tabType);
+            //ctrlCabinet.UpdateCurentTab(tabType);
         }
 
         private void gvConsumerList_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)

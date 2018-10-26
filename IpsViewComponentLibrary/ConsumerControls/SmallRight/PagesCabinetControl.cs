@@ -43,6 +43,8 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             pvMain.SelectedPage = pvAnketa;
+            ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
+            ctrlTabNavigation.SaveClick += OnSaveCommentNeed;
             ctrlAgrDetailInfo.OnSaveCommentNeed += OnSaveCommentNeed;
             ctrlAgrDetailInfoMore.OnSaveCommentNeed += OnSaveCommentNeed;
             ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
@@ -198,20 +200,20 @@ namespace IpsViewComponentLibrary
             gvLicenseAgr.Update();
         }
 
-        bool inCurrentRowChanged = false;
+        bool _inCurrentRowChanged = false;
         // при зміні рядка грід
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (inCurrentRowChanged) return;
+            if (_inCurrentRowChanged) return;
             if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow))
             {
                 ctrlAgrDetailInfo.ClearData();
                 return;
             }
-            inCurrentRowChanged = true;
+            _inCurrentRowChanged = true;
             SetAgrInfoData(curRow.LicId, GridCallMethod.ActiveAgreementGrid);
             currentAgreementController1?.ChangeCurrentLicenseAgreement(this, curRow.LicenseAgreement);
-            inCurrentRowChanged = false;
+            _inCurrentRowChanged = false;
 
         }
 
@@ -627,14 +629,14 @@ namespace IpsViewComponentLibrary
 
         private void currentAgreementController1_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
         {
-            if (inCurrentRowChanged) return;
-            inCurrentRowChanged = true;
+            if (_inCurrentRowChanged) return;
+            _inCurrentRowChanged = true;
 
             var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as GridLicenseAgrView)?.LicId == e.LicId);
             if (row != null && row.IsCurrent != true)
                 row.IsCurrent = true;
 
-            inCurrentRowChanged = false;
+            _inCurrentRowChanged = false;
         }
 
         private void gvMoreLicenseAgr_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

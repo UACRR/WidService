@@ -105,9 +105,45 @@ namespace IpsViewComponentLibrary
                 ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
                 ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
             }
+
+            ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
+            ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
+
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
-            
+
+            this.VisibleChanged += OnVisibleChanged;
+            SubscribeEvents();
+            SubscribeUpdateDataEvents();
+
+            // static pages, call this in constructor
+            _tab = new Dictionary<CabinetTabType, RadPageViewPage>
+            {
+                {CabinetTabType.None, null},
+                {CabinetTabType.Anketa, pvAnketa},
+                {CabinetTabType.GeneralAgreement, pvGeneralAgreement},
+                {CabinetTabType.Licenses, pvLicence},
+                {CabinetTabType.Requests, pvRequest},
+                {CabinetTabType.References, pvReference},
+                {CabinetTabType.Calculations, pvCalculation},
+                {CabinetTabType.Payslips, pvPayslips},
+                {CabinetTabType.Files, pvFiles},
+                {CabinetTabType.Agent, pvAgent},
+                {CabinetTabType.Payments, pvPays},
+                {CabinetTabType.Prepays, pvAvances},
+                {CabinetTabType.Contacts, pvContacts}
+            };
+        }
+
+        private void OnVisibleChanged(object sender, EventArgs e)
+        {
+            if (pageView.SelectedPage != pvGeneralAgreement)
+                pageView.SelectedPage = pvGeneralAgreement;
+        }
+
+        // підписка на події контролів
+        private void SubscribeEvents()
+        {
             // файли
             ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
@@ -140,28 +176,9 @@ namespace IpsViewComponentLibrary
             ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
             ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
             ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
-
-            SubscribeUpdateDataEvents();
-
-            // static pages, call this in constructor
-            _tab = new Dictionary<CabinetTabType, RadPageViewPage>
-            {
-                {CabinetTabType.None, null},
-                {CabinetTabType.Anketa, pvAnketa},
-                {CabinetTabType.GeneralAgreement, pvGeneralAgreement},
-                {CabinetTabType.Licenses, pvLicence},
-                {CabinetTabType.Requests, pvRequest},
-                {CabinetTabType.References, pvReference},
-                {CabinetTabType.Calculations, pvCalculation},
-                {CabinetTabType.Payslips, pvPayslips},
-                {CabinetTabType.Files, pvFiles},
-                {CabinetTabType.Agent, pvAgent},
-                {CabinetTabType.Payments, pvPays},
-                {CabinetTabType.Prepays, pvAvances},
-                {CabinetTabType.Contacts, pvContacts}
-            };
         }
 
+        // підписка на події * * ОНОВЛЕННЯ ДАНИХ * *
         private void SubscribeUpdateDataEvents()
         {
             ctrlGeneralAgreement.UpdateData += UpdateData;
@@ -172,10 +189,20 @@ namespace IpsViewComponentLibrary
             ctrlPartner.UpdateData += UpdateData;
             ctrlCalculation.UpdateData += UpdateData;
         }
-
+        // оновлення даних
         private void UpdateData()
         {
             UpdateCurentTab(_currenCabinetTab);
+        }
+
+        // збереження анкети
+        private void CtrlTabNavigation_SaveClick(object sender, EventArgs e)
+        {
+            var result = OnSaveCustomerNeed?.Invoke(_customer) ?? false;
+            if (result)
+                MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private bool CtrlPayslips_DeleteRegisterRatedList(int custId, int id)
@@ -203,38 +230,32 @@ namespace IpsViewComponentLibrary
             return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
-
-        /// <summary>
-        /// Передати та встановити дані 
-        /// </summary>
-        /// <param name="customer"></param>
-        /// <param name="gridMainView"></param>
-        /// <param name="generalAgreementView"></param>
-        /// <param name="licenseAgreementView"></param>
-        /// <param name="requestsLicenseView"></param>
-        /// <param name="referenceLicenseView"></param>
-        /// <param name="authorsForLicenseView"></param>
-        /// <param name="unattachedMoneyView"></param>
-        /// <param name="registerRatedListView"></param>
-        /// <param name="rlSpectacleView"></param>
-        public void SetAllLoadData(Customer customer, MainGridConsumerBigRightView gridMainView, IList<GeneralAgreementBigRightView> generalAgreementView,
-            IList<LicenseAgreementBigRightView> licenseAgreementView, IList<RequestsOrReferenceBigRightView> requestsLicenseView, IList<RequestsOrReferenceBigRightView> referenceLicenseView,
-            IList<AuthorsForLicenseBigRightView> authorsForLicenseView, IList<UnattachedMoneyView> unattachedMoneyView, IList<RatedListMainBigRightView> registerRatedListView,
-            IList<RatedListSpectacleBigRightView> rlSpectacleView)
+        public void LoadData(int custId)
         {
-            _customer = customer;
-            _gridMainView = gridMainView;
-            _generalAgreementView = generalAgreementView;
-            _licenseAgreementView = licenseAgreementView;
-            _requestsLicenseView = requestsLicenseView;
-            _referenceLicenseView = referenceLicenseView;
-            _authorsForLicenseView = authorsForLicenseView;
-            _unattachedMoneyView = unattachedMoneyView;
-            _registerRatedListView = registerRatedListView;
-            _rlSpectacleView = rlSpectacleView;
+            
+            _gridMainView = GetMainGridView?.Invoke(custId);
+            _customer = GetCustomer?.Invoke(custId);
+            _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
+            _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
+            _registerRatedListView = GetRatedListMainView?.Invoke(custId);
+            _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
+            _requestsLicenseView = GetRequestsView?.Invoke(custId);
+            _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
+            _referenceLicenseView = GetReferenceView?.Invoke(custId);
 
-            if (pageView.SelectedPage != pvAnketa)
-                pageView.SelectedPage = pvAnketa;
+            ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _anketaDictionaties);
+            ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
+            ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
+            ctrlLicense.SetDataSources(_gridMainView);
+            ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
+            ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
+            ctrlCalculation.Customer = _customer;
+            ctrlPaysInfo.Customer = _customer;
+            ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
+            ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
+            ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
+            ctrlFiles.SetAndUpdateData(_customer, _gridMainView);
+            ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
         }
 
         //оновлення даних обаної вкладки
@@ -242,12 +263,18 @@ namespace IpsViewComponentLibrary
         {
             if (_customer == null) return;
             int custId = _customer.CustId;
+
+            if (tab == CabinetTabType.All)
+            {
+                LoadData(custId);
+                return;
+            }
+
             _customer = GetCustomer?.Invoke(custId);
             _gridMainView = GetMainGridView?.Invoke(custId);
             switch (tab)
             {
-                case CabinetTabType.None:
-                    break;
+                case CabinetTabType.None: break;
 
                 case CabinetTabType.Anketa:
                     ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _anketaDictionaties);
@@ -416,9 +443,10 @@ namespace IpsViewComponentLibrary
         //оновлення даних на вкладкі при переході на іншу
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
-            _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
-            UpdateCurentTab(_currenCabinetTab);
+            // ** Disable update when tab change
+            //string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
+            //_currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
+            //UpdateCurentTab(_currenCabinetTab);
         }
     }
 }

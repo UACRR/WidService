@@ -105,7 +105,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         public CabinetBigRightForm Cabinet => _cabinetBigRightForm;
 
-        #region - - - ОТРИМАННЯ ДАНИХ - - -
+        #region * * * ОТРИМАННЯ ДАНИХ VIEW * * * 
 
         private Customer DataNeed_GetCustomer(int custId)
         {
@@ -207,50 +207,26 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             {
                 SubscribeBRCabinet();
             }
-            _cabinetBigRightForm.radWaitingBar1.StartWaiting();
+            //_cabinetBigRightForm.radWaitingBar1.StartWaiting();
             if (!_cabinetBigRightForm.Visible)
             {
                 _cabinetBigRightForm.Show();
             }
+            // завантаження даних
+            _cabinetBigRightForm.cabinet.LoadData(_mainGrid.ViewRow.CustId);
 
-            Task.Run(() =>
-            {
-                var customer = _service.GetData(id);
-                var mainGridView = _mainGrid.ViewRow;//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - view основного гріда
-                var generalAgrView = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>(); // - - - - генеральні угоди
-                var licenseView = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();// - - - - - - ліцензії
-                var requestView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>(); //- - - - - - заявки
-                var referenceView = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки
-                var licAutorsView = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>(); // - - автори для всіх типів ліцензій
-                var moneyUnattachedView = _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", id).ToListOfType<UnattachedMoneyView>(); // - - - незакріплені кошти користувачів великих прав
-                var ratedListMainView = _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListMainBigRightView>(); // - - - Р/Л основні дані
-                var rlSpectacleView = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();// Р/Л вистави
+            //var customer = _service.GetData(id);
+            //var view = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>();
+            // vTSK_1_BRMaster - - - - - - - генеральні угоди
+            // vTsk_vBRLicense - - - - - - - ліцензії
+            // vTsk_1_BRBid  - - - - - - - - заявки
+            // vTsk_1_BRNotice - - - - - - - довідки
+            // vTsk_1_BRBidAuthors - - - - - автори для всіх типів ліцензій
+            // vTsk_1_MoneyUndescrib - - - - незакріплені кошти користувачів великих прав
+            // vTSK_1_BRRegister - - - - - - Р/Л основні дані
+            // vTsk_1_BRAuthorsDistributed - Р/Л вистави
 
-                _cabinetBigRightForm.Invoke((MethodInvoker)delegate ()
-                   {
-                       _cabinetBigRightForm.cabinet.SetAllLoadData(customer, mainGridView, generalAgrView, licenseView, requestView, referenceView, licAutorsView, moneyUnattachedView, ratedListMainView, rlSpectacleView);
-                       _cabinetBigRightForm.cabinet.UpdateCurentTab(CabinetTabType.Anketa);
-                       _cabinetBigRightForm.radWaitingBar1.StopWaiting();
-
-                   });
-            });
-        }
-
-        // Редагування існуючого споживача юридичної особи
-        private void EditJuridicalConsumer(int custId)
-        {
-            var _cust = _service.GetData(custId);
-            var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData, false, TypeRights.BigRights) { StartPosition = FormStartPosition.CenterParent };
-            form.OnSaveCustomerNeed += SaveCustomer;
-            form.ShowDialog();
-            if (!form.Disposing)
-            {
-                form.Dispose();
-                form = null;
-                GC.Collect();
-            }
-            UpdateData(_cust.CustId);
+            //_cabinetBigRightForm.radWaitingBar1.StopWaiting();
         }
 
         //ЗБЕРЕЖЕННЯ Customer

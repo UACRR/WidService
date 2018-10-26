@@ -401,7 +401,11 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Контакти
         /// </summary>
-        Contacts
+        Contacts,
+        /// <summary>
+        /// Всі вкладки
+        /// </summary>
+        All
     }
 
     /// <summary>

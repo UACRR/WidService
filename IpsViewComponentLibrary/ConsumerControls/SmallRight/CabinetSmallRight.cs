@@ -110,13 +110,9 @@ namespace IpsViewComponentLibrary
         {
             var result = OnSaveCustomer?.Invoke(customer) ?? false;
             if (result)
-            {
                 MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
             else
-            {
                 MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
     }

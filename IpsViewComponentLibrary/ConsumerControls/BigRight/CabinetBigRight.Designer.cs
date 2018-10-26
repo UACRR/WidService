@@ -32,6 +32,7 @@
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
             this.pvLicence = new Telerik.WinControls.UI.RadPageViewPage();
@@ -45,6 +46,7 @@
             this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCalculation = new IpsViewComponentLibrary.CalculationInfoControl();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
             this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
@@ -53,7 +55,6 @@
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartner = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
-            this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -88,7 +89,7 @@
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvAnketa;
+            this.pageView.SelectedPage = this.pvGeneralAgreement;
             this.pageView.Size = new System.Drawing.Size(1146, 620);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
@@ -101,6 +102,7 @@
             // pvAnketa
             // 
             this.pvAnketa.Controls.Add(this.ctrlAnketaConsumer);
+            this.pvAnketa.Controls.Add(this.ctrlTabNavigation);
             this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvAnketa.Location = new System.Drawing.Point(5, 31);
             this.pvAnketa.Name = "pvAnketa";
@@ -113,9 +115,19 @@
             this.ctrlAnketaConsumer.IsContainPlaces = false;
             this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
             this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
-            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1136, 553);
             this.ctrlAnketaConsumer.TabIndex = 0;
             this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
+            // 
+            // ctrlTabNavigation
+            // 
+            this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 553);
+            this.ctrlTabNavigation.MaximumSize = new System.Drawing.Size(2000, 31);
+            this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlTabNavigation.Name = "ctrlTabNavigation";
+            this.ctrlTabNavigation.Size = new System.Drawing.Size(1136, 31);
+            this.ctrlTabNavigation.TabIndex = 15;
             // 
             // pvGeneralAgreement
             // 
@@ -238,6 +250,16 @@
             this.pvPays.Size = new System.Drawing.Size(1136, 584);
             this.pvPays.Text = "Платежі";
             // 
+            // ctrlPaysInfo
+            // 
+            this.ctrlPaysInfo.Customer = null;
+            this.ctrlPaysInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPaysInfo.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPaysInfo.Margin = new System.Windows.Forms.Padding(2);
+            this.ctrlPaysInfo.Name = "ctrlPaysInfo";
+            this.ctrlPaysInfo.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlPaysInfo.TabIndex = 0;
+            // 
             // pvAvances
             // 
             this.pvAvances.Controls.Add(this.middleControlCabinetAvances1);
@@ -310,16 +332,6 @@
             this.ctrlPartner.Size = new System.Drawing.Size(1136, 584);
             this.ctrlPartner.TabIndex = 0;
             // 
-            // ctrlPaysInfo
-            // 
-            this.ctrlPaysInfo.Customer = null;
-            this.ctrlPaysInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPaysInfo.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPaysInfo.Margin = new System.Windows.Forms.Padding(2);
-            this.ctrlPaysInfo.Name = "ctrlPaysInfo";
-            this.ctrlPaysInfo.Size = new System.Drawing.Size(1136, 584);
-            this.ctrlPaysInfo.TabIndex = 0;
-            // 
             // CabinetBigRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -374,5 +386,6 @@
         private ConsumerControls.ConsumerHeaderInfo ctrlContactHeader;
         private AnketaConsumer ctrlAnketaConsumer;
         private ConsumerControls.PaysInfo ctrlPaysInfo;
+        private ConsumerControls.TabNavigationControl ctrlTabNavigation;
     }
 }
