@@ -1524,6 +1524,7 @@ public interface IPayTurn
          int? RegId { get; set; }
          int? DistId { get; set; }
          int? CustIdRh { get; set; }
+         int? RegIitemId { get; set; }
 }
 public interface IPerformer
     {    int PerId { get; set; }

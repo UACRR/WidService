@@ -533,7 +533,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             CreateObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
 
             var service = new ipsFormsDesign.Services.ObjectRightService(); // TODO: move to presenter or application controller
-            var newObject = service.NewObjectRight(5);
+            var newObject = service.New(5);
             newObject.SetDataFromRegisterItem(selectedRegisterItem);
 
             using (var view = new ObjectRightSrView())

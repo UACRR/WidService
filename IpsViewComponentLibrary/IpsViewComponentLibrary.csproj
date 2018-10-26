@@ -187,6 +187,12 @@
     <Compile Include="Common\ButtonGroupBoxControl.Designer.cs">
       <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Common\ConfirmationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\ConfirmationView.Designer.cs">
+      <DependentUpon>ConfirmationView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Common\Editors\IpsDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -412,6 +418,7 @@
       <DependentUpon>PartnerCabinetAnketaPhisControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PartnerControls\PartnerInterfaces.cs" />
+    <Compile Include="Utilities\ObjectRightLoaderFacade.cs" />
     <Compile Include="_trash\PartnerPhisForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1057,6 +1064,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Common\ButtonGroupBoxControl.resx">
       <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\ConfirmationView.resx">
+      <DependentUpon>ConfirmationView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
       <DependentUpon>NavigatorPanelControl.cs</DependentUpon>

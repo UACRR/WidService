@@ -45,13 +45,17 @@ namespace ipsFormsDesign.Services
                 }
         }
 
-        private string GetFirst( object sors, int length )
+        private string GetFirst( object sors, int length = 0)
         {
             if (sors == null)
                 return string.Empty;
 
             var sorsStr = sors.ToString().Trim();
-            return sorsStr.Substring(0, Math.Min(sorsStr.Length, length));
+
+            if (length != 0)
+                sorsStr = sorsStr.Substring(0, Math.Min(sorsStr.Length, length));
+
+            return sorsStr;
         }
 
         private TimeSpan GetDuration( object source)
@@ -138,6 +142,59 @@ namespace ipsFormsDesign.Services
             {
                 MessageBox.Show(excp.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw new ApplicationException( $"{excp.Message} on row = {index}");    
+            }
+            finally
+            {
+                excelAppWorkbook?.Close(false);
+                Marshal.ReleaseComObject(excelAppWorkbook);
+            }
+            return list;
+        }
+
+        public List<List<string>> ReadData(string FileName)
+        {
+            // TODO: extract OpenWorkbook(), CloseWorkbook() methods
+
+            var list = new List<List<string>>();
+            var i = 0;
+
+            Excel.Workbook excelAppWorkbook = null;
+            try
+            {
+                excelAppWorkbook = GetApp().Workbooks.Open(FileName, 0, true, 5, null, null, false,
+                    Excel.XlPlatform.xlWindows, null, null, null);
+                var excelAppWorksheets = excelAppWorkbook.Worksheets;
+                var excelSheet = (Excel.Worksheet)excelAppWorksheets.Item[1];
+
+                Excel.Range excelRange = excelSheet.UsedRange;
+
+                int maxCol;
+                int maxRow;
+
+                maxCol = excelRange.Columns.Count;
+                maxRow = excelRange.Rows.Count;
+
+                var dim = excelRange.Value;
+
+                for (i = 1; i <= maxRow; i++)
+                {
+                    if (dim?[i, 1] == null) continue;
+                    if (!(dim?[i, 1] is double)) continue;
+
+                    var rowList = new List<string>();
+
+                    for (var j = 1; j <= maxCol; j++)
+                    {
+                        rowList.Add(GetFirst(dim[i, j]));
+                    }
+
+                    list.Add(rowList);
+                }
+            }
+            catch (Exception excp)
+            {
+                MessageBox.Show(excp.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw new ApplicationException($"{excp.Message} on row = {i}");
             }
             finally
             {

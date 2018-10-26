@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using IpsViewComponentLibrary.Common;
+using System.Windows.Forms;
 using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.Utilities
@@ -54,6 +55,23 @@ namespace IpsViewComponentLibrary.Utilities
         public bool ClosingIsConfirmed(IWin32Window parent)
         {
             return RadMessageBox.Show(parent, "Закрити без збереження?", "Питання", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.Yes;
+        }
+
+        public void ShowErrorView(string header, string message)
+        {
+            var v = new ConfirmationView();
+            v.Text = header;
+            v.InformationText = message;
+            v.ShowDialog();
+        }
+
+        public bool ShowConfirmationView(string header, string message)
+        {
+            var v = new ConfirmationView();
+            v.Text = header;
+            v.InformationText = message;
+            v.ShowAcceptButton = true;
+            return v.ShowDialog() == DialogResult.OK;
         }
     }
 }

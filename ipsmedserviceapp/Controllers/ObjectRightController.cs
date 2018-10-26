@@ -141,35 +141,12 @@ namespace ipsmedserviceapp.Controllers
         }
 
         /// <summary>
-        /// Сформувати каркас для нового об'єкту права
-        /// </summary>
-        /// <param name="CategoryCode"></param>
-        /// <returns></returns>
-        [HttpGet("new/{CategoryCode}")]
-        public IActionResult getObjectRightWildCard(int CategoryCode)
-        {
-            ObjectRight addObject = new ObjectRight { CategoryCode = CategoryCode };
-            switch (CategoryCode)
-            {
-                case 5:
-                    {
-                        addObject.MediaTrack = new MediaTrack { Duration = new TimeSpan(0, 0, 0) };
-                        addObject.GenreType = 96;
-                        addObject.SpecType = 1;
-                    }
-                    break;
-            }
-
-            return Json(addObject);
-        }
-
-        /// <summary>
         /// Створення нового об'єкту права
         /// </summary>
         /// <param name="body"></param>
         /// <returns></returns>
         [HttpPost("newobject")]
-        public async Task<IActionResult> createObjectRight([FromBody] ObjectRight body)
+        public async Task<IActionResult> Create([FromBody] ObjectRight body)
         {
             ObjectRight addObject = new ObjectRight { CategoryCode = body.CategoryCode };
             IDbContextTransaction tran = null;
@@ -192,6 +169,61 @@ namespace ipsmedserviceapp.Controllers
                 tran?.Rollback();
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("newobjects")]
+        public async Task<IActionResult> Create([FromBody] List<ObjectRight> objectList)
+        {
+            var list = new List<ObjectRight>();
+
+            foreach(var obj in objectList)
+            {
+                var addObject = new ObjectRight { CategoryCode = obj.CategoryCode };
+
+                updateObjectRight(obj, addObject);
+
+                _dbContext.ObjectRight.Add(addObject);
+
+                list.Add(addObject);
+            }
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(list);
+        }
+
+        [HttpPost("validate")]
+        public async Task<IActionResult> ValidateObjectsRight([FromBody] List<ObjectRightValidateResource> objectRightList)
+        {
+            var objNames = objectRightList.Select(obj => obj.Name.ToUpper());
+            var genres = objectRightList.Select(obj => obj.Genre.ToUpper()).Distinct();
+            var roles = objectRightList.SelectMany(obj => obj.Rightholders).Select(r => r.CreativeRole.ToUpper()).Distinct();
+            var rightholders = objectRightList.SelectMany(obj => obj.Rightholders).Select(r => r.Name.ToUpper()).Distinct();
+
+            var foundedObjects = _dbContext.ObjectRight.Where(obj => objNames.Contains(obj.Name.ToUpper())).ToList();
+            var foundedGenres = _dbContext.GenreType.Where(g => genres.Contains(g.Name.ToUpper())).ToList();
+            var foundedRoles = _dbContext.CreativeRoleType.Where(r => r.CategoryCode == 5 && roles.Contains(r.Name.ToUpper())).ToList();
+            var rhNames = "'" + string.Join("', '", rightholders) + "'";
+            var foundedRightholders = await _dbContext.getViewData($"select * from vTsk_1_ListRightHolder01 where Upper(name) in ({rhNames})", null);
+
+            foreach (var obj in objectRightList)
+            {
+                obj.ObjId = foundedObjects.FirstOrDefault(o => o.Name.ToUpper() == obj.Name.ToUpper())?.ObjId;
+                obj.GenreId = foundedGenres.FirstOrDefault(g => g.Name.ToUpper() == obj.Genre.ToUpper())?.CodeI;
+
+                foreach (var rh in obj.Rightholders)
+                {
+                    rh.RoleId = foundedRoles.FirstOrDefault(r => r.Name.ToUpper() == rh.CreativeRole.ToUpper())?.CodeI;
+                    var rhdict = foundedRightholders.FirstOrDefault(dict => dict["name"].ToString().Trim().ToUpper() == rh.Name.ToUpper());
+                    if (rhdict != null)
+                    {
+                        rh.CustId = (int)rhdict["custId"];
+                        rh.Name = rhdict["name"].ToString().Trim();
+                    }
+                }
+            }
+
+            return Ok(objectRightList);
         }
 
         [HttpGet]
