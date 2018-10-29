@@ -29,6 +29,8 @@ namespace IpsViewComponentLibrary
         public event SaveCustomerEventHandler OnSaveCustomer;
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
         public event ReturnObjectEventHandler<Customer> GetPartner;
+        public event ReturnObjectEventHandler<Customer> GetCustomer;
+
 
         #region ПРЕДСТАВНИК events
 
@@ -54,12 +56,8 @@ namespace IpsViewComponentLibrary
             pagesControl.OnChangePartner += PagesControl_OnChangePartner;
             pagesControl.OnRemovePartner += PagesControl_OnRemovePartner;
             pagesControl.OnGetPartnerListNeed += PagesControl_OnGetPartnerListNeed;
+            pagesControl.UpdateData += UpdateCustomer;
             pagesControl.calculationCtrl.UpdateData += UpdateCustomer;
-        }
-
-        private void CalculationCtrl_UpdateData()
-        {
-            OnUpdateCustomerNeed?.Invoke(_customer.CustId);
         }
 
         private List<Customer> PagesControl_OnGetPartnerListNeed()

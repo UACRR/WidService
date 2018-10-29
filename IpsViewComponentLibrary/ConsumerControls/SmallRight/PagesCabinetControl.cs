@@ -23,6 +23,7 @@ namespace IpsViewComponentLibrary
         public delegate void CustomerSave(Customer customer);
         public event CustomerSave OnCustomerSave;
         public event ReturnObjectEventHandler<Customer> GetPartner;
+        public event EmptyEventHandler UpdateData;
 
         public event SetPartnerEventHandler OnSetPartner;
         public event SetPartnerEventHandler OnRemovePartner;
@@ -45,12 +46,19 @@ namespace IpsViewComponentLibrary
             pvMain.SelectedPage = pvAnketa;
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += OnSaveCommentNeed;
+            ctrlTabNavigation.CancelClick += GetCustomerWithUpdate;
+            
             ctrlAgrDetailInfo.OnSaveCommentNeed += OnSaveCommentNeed;
             ctrlAgrDetailInfoMore.OnSaveCommentNeed += OnSaveCommentNeed;
             ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
             ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
             ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
             ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
+        }
+
+        private void GetCustomerWithUpdate(object sender, EventArgs e)
+        {
+            UpdateData?.Invoke();
         }
 
         //присвоїти представника
