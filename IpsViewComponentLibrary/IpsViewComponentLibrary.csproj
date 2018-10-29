@@ -419,12 +419,6 @@
     </Compile>
     <Compile Include="PartnerControls\PartnerInterfaces.cs" />
     <Compile Include="Utilities\ObjectRightLoaderFacade.cs" />
-    <Compile Include="_trash\PartnerPhisForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="_trash\PartnerPhisForm.Designer.cs">
-      <DependentUpon>PartnerPhisForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="PartnerControls\CreatePartnerForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -662,12 +656,6 @@
     </Compile>
     <Compile Include="Utilities\FixationStageStatusMenuFactory.cs" />
     <Compile Include="Utilities\TimeSpanToDateTimeConverter.cs" />
-    <Compile Include="_trash\CabinetBigRightOld.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\CabinetBigRightOld.Designer.cs">
-      <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
-    </Compile>
     <Compile Include="GlobalControlConsumerMainGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -697,12 +685,6 @@
     </Compile>
     <Compile Include="InformationFooterGenAgrBigRight.Designer.cs">
       <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\InformationOfUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\InformationOfUserControl.Designer.cs">
-      <DependentUpon>InformationOfUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsAnketaCompanyControl.cs">
       <SubType>UserControl</SubType>
@@ -866,11 +848,11 @@
     <Compile Include="MiddleControlClientName.Designer.cs">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\PagesCabinetControl.cs">
+    <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\PagesCabinetControl.Designer.cs">
-      <DependentUpon>PagesCabinetControl.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.Designer.cs">
+      <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlManagers.cs">
       <SubType>UserControl</SubType>
@@ -1165,9 +1147,6 @@
     <EmbeddedResource Include="PartnerControls\PartnerCabinetAnketaPhisControl.resx">
       <DependentUpon>PartnerCabinetAnketaPhisControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\PartnerPhisForm.resx">
-      <DependentUpon>PartnerPhisForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="PartnerControls\CreatePartnerForm.resx">
       <DependentUpon>CreatePartnerForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1285,9 +1264,6 @@
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightholderPage.resx">
       <DependentUpon>AnketaPersonRightholderPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\CabinetBigRightOld.resx">
-      <DependentUpon>CabinetBigRightOld.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GlobalControlConsumerMainGrid.resx">
       <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
     </EmbeddedResource>
@@ -1302,9 +1278,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InformationFooterGenAgrBigRight.resx">
       <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\InformationOfUserControl.resx">
-      <DependentUpon>InformationOfUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsAnketaCompanyControl.resx">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
@@ -1375,8 +1348,8 @@
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\PagesCabinetControl.resx">
-      <DependentUpon>PagesCabinetControl.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
+      <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlManagers.resx">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
@@ -1598,6 +1571,9 @@
     <Content Include="Resources\status-change.ico" />
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_trash\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

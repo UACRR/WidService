@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.cabinet = new IpsViewComponentLibrary.PagesCabinetControl();
+            this.cabinet = new IpsViewComponentLibrary.CabinetSmallRight();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +65,6 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        public PagesCabinetControl cabinet;
+        public CabinetSmallRight cabinet;
     }
 }

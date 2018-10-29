@@ -2,7 +2,7 @@
 
 namespace IpsViewComponentLibrary
 {
-    partial class PagesCabinetControl
+    partial class CabinetSmallRight
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -778,13 +778,13 @@ namespace IpsViewComponentLibrary
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.Auto;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
             // 
-            // PagesCabinetControl
+            // CabinetSmallRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pvMain);
             this.MinimumSize = new System.Drawing.Size(962, 665);
-            this.Name = "PagesCabinetControl";
+            this.Name = "CabinetSmallRight";
             this.Size = new System.Drawing.Size(1082, 725);
             this.pvAgent.ResumeLayout(false);
             this.pvContacts.ResumeLayout(false);

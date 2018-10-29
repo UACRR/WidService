@@ -14,7 +14,7 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class PagesCabinetControl : UserControl
+    public partial class CabinetSmallRight : UserControl
     {
         private Customer _customer;
         private AnketaDictionaties _dictionaties;
@@ -38,7 +38,7 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Default constructor
         /// </summary>
-        public PagesCabinetControl()
+        public CabinetSmallRight()
         {
             InitializeComponent();
             pvMain.SelectedPage = pvAnketa;
