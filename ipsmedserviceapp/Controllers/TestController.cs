@@ -13,7 +13,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet]
         public IActionResult Test()
         {
-            return Ok("yeeeee");
+            return Ok("yeeeee2");
         }
     }
 }
