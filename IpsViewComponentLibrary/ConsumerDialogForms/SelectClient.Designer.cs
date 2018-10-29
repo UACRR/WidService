@@ -33,6 +33,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvViewFreeClientList = new Telerik.WinControls.UI.RadGridView();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
@@ -78,32 +79,38 @@
             gridViewTextBoxColumn2.MinWidth = 80;
             gridViewTextBoxColumn2.Name = "Innokpo";
             gridViewTextBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn2.Width = 100;
+            gridViewTextBoxColumn2.Width = 94;
             gridViewTextBoxColumn3.FieldName = "ClientName";
             gridViewTextBoxColumn3.HeaderText = "Назва клієнта";
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ClientName";
-            gridViewTextBoxColumn3.Width = 534;
+            gridViewTextBoxColumn3.Width = 437;
             gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.FieldName = "AgrCount";
-            gridViewTextBoxColumn4.HeaderText = "К-сть договорів";
-            gridViewTextBoxColumn4.MaxWidth = 80;
-            gridViewTextBoxColumn4.MinWidth = 80;
-            gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "AgrCount";
-            gridViewTextBoxColumn4.Width = 80;
-            gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.FieldName = "Jacity";
-            gridViewTextBoxColumn5.HeaderText = "Місто";
-            gridViewTextBoxColumn5.MinWidth = 100;
-            gridViewTextBoxColumn5.Name = "Jacity";
-            gridViewTextBoxColumn5.Width = 109;
+            gridViewTextBoxColumn4.FieldName = "RegionName";
+            gridViewTextBoxColumn4.HeaderText = "Регіон";
+            gridViewTextBoxColumn4.MinWidth = 110;
+            gridViewTextBoxColumn4.Name = "RegionName";
+            gridViewTextBoxColumn4.Width = 110;
+            gridViewTextBoxColumn5.FieldName = "AgrCount";
+            gridViewTextBoxColumn5.HeaderText = "К-сть договорів";
+            gridViewTextBoxColumn5.MaxWidth = 80;
+            gridViewTextBoxColumn5.MinWidth = 80;
+            gridViewTextBoxColumn5.Multiline = true;
+            gridViewTextBoxColumn5.Name = "AgrCount";
+            gridViewTextBoxColumn5.Width = 80;
+            gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.FieldName = "Jacity";
+            gridViewTextBoxColumn6.HeaderText = "Місто";
+            gridViewTextBoxColumn6.MinWidth = 100;
+            gridViewTextBoxColumn6.Name = "Jacity";
+            gridViewTextBoxColumn6.Width = 103;
             this.gvViewFreeClientList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6});
             this.gvViewFreeClientList.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewFreeClientList.MasterTemplate.EnableFiltering = true;
             this.gvViewFreeClientList.MasterTemplate.EnableGrouping = false;

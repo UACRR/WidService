@@ -409,7 +409,9 @@ namespace ipsFormsDesign.Interfaces
         public int? AgrCount { get; set; }
         public string Innokpo { get; set; }
         public string ClientName { get; set; }
-        public string Jacity { get; set; }
+        public string Jacity { get; set; }    
+        public int? JaRegion { get; set; }
+        public string RegionName { get; set; }
     }
 
     /// <summary>
