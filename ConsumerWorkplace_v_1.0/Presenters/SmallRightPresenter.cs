@@ -36,15 +36,15 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
 
             _cabinetSmallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
-            _cabinetSmallRightForm.cabinet.OnSaveCustomer += SaveCustomer;
+            _cabinetSmallRightForm.cabinet.SaveCustomer += SaveCustomer;
             _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
             _cabinetSmallRightForm.cabinet.GetPartner += Cabinet_GetPartner;
             _cabinetSmallRightForm.cabinet.OnSetPartner += Cabinet_OnSetPartner;
             _cabinetSmallRightForm.cabinet.OnChangePartner += Cabinet_OnChangePartner;
             _cabinetSmallRightForm.cabinet.OnRemovePartner += Cabinet_OnRemovePartner;
             _cabinetSmallRightForm.cabinet.OnGetPartnerListNeed += Cabinet_OnGetPartnerListNeed;
-            new CalculationInfoControlPresenter(_cabinetSmallRightForm.cabinet.pagesControl.calculationCtrl, _service);
-            new ReportsControlPresenter(_cabinetSmallRightForm.cabinet.pagesControl.reportsControl, _service);
+            new CalculationInfoControlPresenter(_cabinetSmallRightForm.cabinet.calculationCtrl, _service);
+            new ReportsControlPresenter(_cabinetSmallRightForm.cabinet.reportsControl, _service);
         }
 
         public CabinetSmallRightForm Cabinet => _cabinetSmallRightForm;
@@ -95,7 +95,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             CloneRegisterRL(mainCust, regCust);
 
             _cabinetSmallRightForm.SetCustomer(mainCust);
-            _cabinetSmallRightForm.cabinet.pagesControl.reportsControl.Customer = regCust;
+            _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;
             if (!_cabinetSmallRightForm.Visible)
                 _cabinetSmallRightForm.Show();
 
@@ -141,25 +141,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var _dict = _service.GetDictionary();
             AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData) { StartPosition = FormStartPosition.CenterParent };
 
-            form.OnSaveCustomerNeed += SaveCustomer;
-            form.ShowDialog();
-            if (!form.Disposing)
-            {
-                form.Dispose();
-                form = null;
-                GC.Collect();
-            }
-
-            //оновлення даних
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
-        }
-
-        // Редагування існуючого споживача юридичної особи
-        private void EditExistCustomerAnketa(int custId)
-        {
-            var _cust = GetAndReturnCustomer(custId);
-            var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData, false) { StartPosition = FormStartPosition.CenterParent };
             form.OnSaveCustomerNeed += SaveCustomer;
             form.ShowDialog();
             if (!form.Disposing)

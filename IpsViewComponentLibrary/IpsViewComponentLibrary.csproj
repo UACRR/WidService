@@ -660,12 +660,6 @@
     <Compile Include="ConsumerControls\AnketaConsumer.Designer.cs">
       <DependentUpon>AnketaConsumer.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.Designer.cs">
-      <DependentUpon>CabinetSmallRight.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utilities\FixationStageStatusMenuFactory.cs" />
     <Compile Include="Utilities\TimeSpanToDateTimeConverter.cs" />
     <Compile Include="_trash\CabinetBigRightOld.cs">
@@ -1284,9 +1278,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\AnketaConsumer.resx">
       <DependentUpon>AnketaConsumer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
-      <DependentUpon>CabinetSmallRight.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ConsumerSelectionView.resx">
       <DependentUpon>ConsumerSelectionView.cs</DependentUpon>

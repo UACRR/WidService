@@ -18,19 +18,17 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private AnketaDictionaties _dictionaties;
-        private int _idItem;
+        
+        public event SaveCustomerEventHandler SaveCustomer;
+        public event UpdateCustomerDataEventHandler UpdateData;
+        public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
 
-        public delegate void CustomerSave(Customer customer);
-        public event CustomerSave OnCustomerSave;
         public event ReturnObjectEventHandler<Customer> GetPartner;
-        public event EmptyEventHandler UpdateData;
-
         public event SetPartnerEventHandler OnSetPartner;
         public event SetPartnerEventHandler OnRemovePartner;
         public event ChangePartnerEventHandler OnChangePartner;
         public event GetPartnerList OnGetPartnerListNeed;
 
-        public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
 
         /// <summary>
         /// Тип прав (великі або малі права)
@@ -46,7 +44,7 @@ namespace IpsViewComponentLibrary
             pvMain.SelectedPage = pvAnketa;
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += OnSaveCommentNeed;
-            ctrlTabNavigation.CancelClick += GetCustomerWithUpdate;
+            ctrlTabNavigation.CancelClick += UpdateCustomer;
             
             ctrlAgrDetailInfo.OnSaveCommentNeed += OnSaveCommentNeed;
             ctrlAgrDetailInfoMore.OnSaveCommentNeed += OnSaveCommentNeed;
@@ -54,11 +52,13 @@ namespace IpsViewComponentLibrary
             ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
             ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
             ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
+
+            calculationCtrl.UpdateData += UpdateCustomer;
         }
 
-        private void GetCustomerWithUpdate(object sender, EventArgs e)
+        private void UpdateCustomer()
         {
-            UpdateData?.Invoke();
+            UpdateData?.Invoke(_customer.CustId);
         }
 
         //присвоїти представника
@@ -538,7 +538,6 @@ namespace IpsViewComponentLibrary
         {
             if (idItem == null) return;
 
-            _idItem = (int)idItem;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == idItem).FirstOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.LicVersion);
             switch (methodType)
@@ -569,7 +568,13 @@ namespace IpsViewComponentLibrary
         //збереження Customer
         private void OnSaveCommentNeed(object sender, EventArgs e)
         {
-            OnCustomerSave?.Invoke(_customer);
+            var result = SaveCustomer?.Invoke(_customer) ?? false;
+            if (result)
+                MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //OnCustomerSave?.Invoke(_customer);
         }
 
         /// <summary>

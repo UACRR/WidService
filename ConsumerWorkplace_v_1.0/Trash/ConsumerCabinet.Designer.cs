@@ -34,7 +34,7 @@
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2010BlueTheme1 = new Telerik.WinControls.Themes.Office2010BlueTheme();
-            this.gcConsumerCabinet = new IpsViewComponentLibrary.CabinetSmallRight();
+            //this.gcConsumerCabinet = new IpsViewComponentLibrary.CabinetSmallRight();
             this.globalControlConsumerAnketa1 = new IpsViewComponentLibrary.AnketaConsumer();
             ((System.ComponentModel.ISupportInitialize)(this.dtTetsDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
@@ -79,7 +79,7 @@
             // 
             // radPageViewPage1
             // 
-            this.radPageViewPage1.Controls.Add(this.gcConsumerCabinet);
+            //this.radPageViewPage1.Controls.Add(this.gcConsumerCabinet);
             this.radPageViewPage1.Controls.Add(this.dtTetsDate);
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(51F, 24F);
             this.radPageViewPage1.Location = new System.Drawing.Point(12, 34);
@@ -98,13 +98,13 @@
             // 
             // gcConsumerCabinet
             // 
-            this.gcConsumerCabinet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gcConsumerCabinet.Location = new System.Drawing.Point(3, 29);
-            this.gcConsumerCabinet.Name = "gcConsumerCabinet";
-            this.gcConsumerCabinet.Size = new System.Drawing.Size(1343, 640);
-            this.gcConsumerCabinet.TabIndex = 0;
+            //this.gcConsumerCabinet.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            //| System.Windows.Forms.AnchorStyles.Left) 
+            //| System.Windows.Forms.AnchorStyles.Right)));
+            //this.gcConsumerCabinet.Location = new System.Drawing.Point(3, 29);
+            //this.gcConsumerCabinet.Name = "gcConsumerCabinet";
+            //this.gcConsumerCabinet.Size = new System.Drawing.Size(1343, 640);
+            //this.gcConsumerCabinet.TabIndex = 0;
             // 
             // globalControlConsumerAnketa1
             // 
@@ -144,7 +144,7 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
-        private IpsViewComponentLibrary.CabinetSmallRight gcConsumerCabinet;
+        //private IpsViewComponentLibrary.CabinetSmallRight gcConsumerCabinet;
         private Telerik.WinControls.UI.RadDateTimePicker dtTetsDate;
         private Telerik.WinControls.UI.RadPageView radPageView1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;

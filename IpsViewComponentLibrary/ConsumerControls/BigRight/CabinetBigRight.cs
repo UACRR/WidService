@@ -108,6 +108,7 @@ namespace IpsViewComponentLibrary
 
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
+            ctrlTabNavigation.CancelClick += CancelChange;
 
             ctrlReference.TypeControl = ControlRequestOrReferenceType.Reference;
             ctrlRequest.TypeControl = ControlRequestOrReferenceType.Request;
@@ -189,6 +190,14 @@ namespace IpsViewComponentLibrary
             ctrlPartner.UpdateData += UpdateData;
             ctrlCalculation.UpdateData += UpdateData;
         }
+
+        private void CancelChange()
+        {
+            _customer = GetCustomer?.Invoke(_customer.CustId);
+            ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _anketaDictionaties);
+            ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
+        }
+
         // оновлення даних
         private void UpdateData()
         {

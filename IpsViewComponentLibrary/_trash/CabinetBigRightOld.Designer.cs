@@ -38,7 +38,7 @@
             this.btnEditAgr = new Telerik.WinControls.UI.RadButton();
             this.btnBack = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlCabinet = new IpsViewComponentLibrary.CabinetBigRight();
+            //this.ctrlCabinet = new IpsViewComponentLibrary.CabinetBigRight();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
             this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
             this.gvConsumerList = new Telerik.WinControls.UI.RadGridView();

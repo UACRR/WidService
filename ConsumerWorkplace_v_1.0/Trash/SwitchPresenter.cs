@@ -16,7 +16,7 @@ namespace ConsumerWorkplace_v_1._0
     public class SwitchPresenter
     {
         private readonly MainViewSwitcher _switcher;
-        private CabinetSmallRight cabinet = null;
+        //private CabinetSmallRight cabinet = null;
         private GlobalControlConsumerMainGrid mainGrid = null;
         private Control _currentControl = null;
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
@@ -81,32 +81,32 @@ namespace ConsumerWorkplace_v_1._0
 
         public void SwitchToCabinet(int id)
         {
-            if (cabinet == null)
+            //if (cabinet == null)
             {
                 //cabinet = new CabinetSmallRight(TypeRights.SmallRights);
                 //cabinet.OnGridRowSelectedChaged += Cabinet_OnGridRowSelectedChaged;
                 //cabinet.OnButtonBackClick += Cabinet_OnButtonBackClick;
                 //cabinet.OnAddNewCustomer += Cabinet_OnAddNewCustomer;
                 //cabinet.OnEditCustomer += Cabinet_OnEditCustomer1;
-                cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
-                cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
+                //cabinet.OnSaveCustomer += Cabinet_OnSaveCustomer;
+                //cabinet.OnChangeLicenseStatus += Cabinet_OnChangeLicenseStatus;
                 //cabinet.pagesControl.calculationCtrl.UpdateData += CalculationCtrl_UpdateData;
                 //cabinet.SetDictionary(_service.GetDictionary());
                 //cabinet.SetGridDataSource(getMainView());
-                cabinet.Dock = DockStyle.Fill;
+                //cabinet.Dock = DockStyle.Fill;
             }
 
-            cabinet.Rights = TypeRights.SmallRights;
+            //cabinet.Rights = TypeRights.SmallRights;
             //cabinet.FilterString = mainGrid?.FilterString ?? string.Empty;
             //cabinet.SetSelectCustomer(id);
-            _currentControl = cabinet;
-            _switcher.SwitchView(cabinet);
+            //_currentControl = cabinet;
+            //_switcher.SwitchView(cabinet);
         }
 
         private void CalculationCtrl_UpdateData(int id)
         {
-            cabinet.pagesControl.SetCustomerData(_service.GetData(id));
-            cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(id);
+            //cabinet.pagesControl.SetCustomerData(_service.GetData(id));
+            //cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(id);
 
         }
 
@@ -188,7 +188,7 @@ namespace ConsumerWorkplace_v_1._0
 
         private void UpdateData(int id)
         {
-            if (_currentControl == cabinet)
+            //if (_currentControl == cabinet)
             {
                 //cabinet?.SetGridDataSource(getMainView());
                 //cabinet?.SetSelectCustomer(id);
@@ -212,7 +212,7 @@ namespace ConsumerWorkplace_v_1._0
             //if (_currentControl == cabinet)
                 //Task.Run(() => {
             //var Customer = _service.GetCustomerRegisterRatedList(id);
-            cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(id);
+            //cabinet.pagesControl.reportsControl.Customer = _service.GetRatedListForCust(id);
             
             //cabinet.pagesControl.reportsControl.BeginInvoke((Action)(() => ));
         //});

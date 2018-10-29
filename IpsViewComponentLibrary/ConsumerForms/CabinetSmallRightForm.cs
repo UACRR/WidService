@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
@@ -22,8 +23,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public CabinetSmallRightForm()
         {
             InitializeComponent();
+            cabinet.SetDictionary(IpsGlobal.AnketaDictionaties);
             cabinet.Rights = TypeRights.SmallRights;
-            cabinet.OnUpdateCustomerNeed += Cabinet_OnUpdateCustomerNeed;
+            cabinet.UpdateData += Cabinet_OnUpdateCustomerNeed;
         }
 
         public void SetCustomer(Customer customer)

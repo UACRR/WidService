@@ -29,19 +29,17 @@
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.cabinet = new IpsViewComponentLibrary.CabinetSmallRight();
+            this.cabinet = new IpsViewComponentLibrary.PagesCabinetControl();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // cabinet
             // 
-            this.cabinet.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.cabinet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.cabinet.CausesValidation = false;
             this.cabinet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cabinet.Location = new System.Drawing.Point(0, 0);
+            this.cabinet.MinimumSize = new System.Drawing.Size(962, 665);
             this.cabinet.Name = "cabinet";
-            this.cabinet.Rights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
+            this.cabinet.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             this.cabinet.Size = new System.Drawing.Size(1070, 774);
             this.cabinet.TabIndex = 0;
             // 
@@ -67,6 +65,6 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        public CabinetSmallRight cabinet;
+        public PagesCabinetControl cabinet;
     }
 }
