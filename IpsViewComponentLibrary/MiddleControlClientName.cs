@@ -30,17 +30,18 @@ namespace IpsViewComponentLibrary
             ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
         }
 
+        private AnketaCompany anketa;
         public void SetDataSources(Customer cust, AnketaDictionaties dictionaties )
         {
             _cust = cust;
             _dictionaties = dictionaties;
-            AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == cust.AnkVersion);
+            anketa = _cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == _cust.AnkVersion);
             
             ctrlAnketaCompany.DataSource = anketa;
 
             ctrlRegistrationsCompany.DataSource = anketa;
 
-            checkClientName.Checked = cust != null && cust.Client?.ClnBusinessPlace?.Count != 0;
+            checkClientName.Checked = _cust != null && _cust.Client?.ClnBusinessPlace?.Count != 0;
         }
 
         public bool Validator()

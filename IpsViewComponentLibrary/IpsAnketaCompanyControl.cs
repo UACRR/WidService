@@ -53,6 +53,7 @@ namespace IpsViewComponentLibrary
         public bool Validator()
         {
             bool isValid = true;
+            var test = txtShortName.Text;
 
             if (txtName.Text == string.Empty)
             {
@@ -143,5 +144,15 @@ namespace IpsViewComponentLibrary
 
 
         #endregion
+
+        //private void txtShortName_BindingContextChanged(object sender, EventArgs e)
+        //{
+        //    var test = sender;
+        //}
+
+        //private void anketaCompanyBindingSource_BindingComplete(object sender, BindingCompleteEventArgs e)
+        //{
+        //    var test = sender;
+        //}
     }
 }

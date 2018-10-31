@@ -192,7 +192,7 @@
             this.ctrlPlaces.Location = new System.Drawing.Point(4, 64);
             this.ctrlPlaces.MinimumSize = new System.Drawing.Size(800, 512);
             this.ctrlPlaces.Name = "ctrlPlaces";
-            this.ctrlPlaces.Size = new System.Drawing.Size(1003, 512);
+            this.ctrlPlaces.Size = new System.Drawing.Size(1005, 512);
             this.ctrlPlaces.TabIndex = 11;
             // 
             // ctrlPlacesTitle
@@ -300,6 +300,7 @@
             this.radPdfViewer.TabIndex = 3;
             this.radPdfViewer.ThemeName = "Office2013Light";
             this.radPdfViewer.ThumbnailsScaleFactor = 0.15F;
+            ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).MinimumThumbWidth = 34;
             ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadPdfViewerContainer)(this.radPdfViewer.GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Visible;
             ((Telerik.WinControls.UI.ThumbnailListElement)(this.radPdfViewer.GetChildAt(0).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;

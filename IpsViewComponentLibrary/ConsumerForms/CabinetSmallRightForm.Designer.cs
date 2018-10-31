@@ -35,13 +35,11 @@
             // 
             // cabinet
             // 
-            this.cabinet.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.cabinet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.cabinet.CausesValidation = false;
             this.cabinet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cabinet.Location = new System.Drawing.Point(0, 0);
+            this.cabinet.MinimumSize = new System.Drawing.Size(962, 665);
             this.cabinet.Name = "cabinet";
-            this.cabinet.Rights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
+            this.cabinet.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             this.cabinet.Size = new System.Drawing.Size(1070, 774);
             this.cabinet.TabIndex = 0;
             // 
