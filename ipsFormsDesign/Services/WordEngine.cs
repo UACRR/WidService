@@ -40,7 +40,7 @@ namespace ipsFormsDesign.Services
         /// <summary>
         /// Видалення тимчасових файлів
         /// </summary>
-        private void clearFiles()
+        private void ClearFiles()
         {
             if (tempFileName == null) return;
 
@@ -54,7 +54,7 @@ namespace ipsFormsDesign.Services
         }
         ~WordEngine()
         {
-            clearFiles();
+            ClearFiles();
             if (app != null)
             {
                 app.Quit();
@@ -72,10 +72,10 @@ namespace ipsFormsDesign.Services
         /// <param name="streamTemplate"></param>
         /// <param name="cust"></param>
         /// <param name="agr"></param>
-        public async System.Threading.Tasks.Task processRightHolder(Stream streamTemplate, Customer cust, AgreementMaster agr)
+        public async System.Threading.Tasks.Task ProcessRightHolder(Stream streamTemplate, Customer cust, AgreementMaster agr)
         {
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            clearFiles();
+            ClearFiles();
 
             var docFile = tempFileName + ".docx";
             using (var docStream = new FileStream(docFile, FileMode.CreateNew))
@@ -95,7 +95,7 @@ namespace ipsFormsDesign.Services
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            clearFiles();
+            ClearFiles();
 
             var docFile = tempFileName + ".docx";
 
@@ -776,7 +776,7 @@ namespace ipsFormsDesign.Services
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            clearFiles();
+            ClearFiles();
 
             var docFile = tempFileName + ".docx";
 
@@ -853,7 +853,7 @@ namespace ipsFormsDesign.Services
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            clearFiles();
+            ClearFiles();
 
             var docFile = tempFileName + ".docx";
 
@@ -927,7 +927,7 @@ namespace ipsFormsDesign.Services
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            clearFiles();
+            ClearFiles();
 
             var docFile = tempFileName + ".docx";
 
@@ -1041,7 +1041,7 @@ namespace ipsFormsDesign.Services
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            clearFiles();
+            ClearFiles();
 
             var docFile = tempFileName + ".docx";
 
@@ -1100,7 +1100,7 @@ namespace ipsFormsDesign.Services
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
-            clearFiles();
+            ClearFiles();
 
             var docFile = tempFileName + ".docx";
 
