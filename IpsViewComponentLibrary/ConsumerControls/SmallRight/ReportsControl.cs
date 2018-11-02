@@ -384,7 +384,9 @@ namespace IpsViewComponentLibrary
             if (gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period)
             {
                 if (!period.RegisterRatedList.Any())
-                    return;
+                {
+                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
+                }
 
                 //об'єкт звіт
                 var registerTemp = new Register
@@ -395,7 +397,8 @@ namespace IpsViewComponentLibrary
                     CustId = _customer.CustId,
                     RgStatusNavigation = dicRegStatus[0],
                     LicId = period.LicId,
-                    AlgorithmId = 2
+                    AlgorithmId = 2,
+                    PeriodId = period.PeriodId,
                 };
 
                 // для визначення рапортички
