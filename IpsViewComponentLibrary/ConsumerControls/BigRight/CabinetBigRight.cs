@@ -100,7 +100,7 @@ namespace IpsViewComponentLibrary
         public CabinetBigRight()
         {
             InitializeComponent();
-            if(IpsGlobal.AnketaDictionaties != null)
+            if (IpsGlobal.AnketaDictionaties != null)
             {
                 ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
                 ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
@@ -241,7 +241,7 @@ namespace IpsViewComponentLibrary
 
         public void LoadData(int custId)
         {
-            
+
             _gridMainView = GetMainGridView?.Invoke(custId);
             _customer = GetCustomer?.Invoke(custId);
             _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
@@ -292,79 +292,105 @@ namespace IpsViewComponentLibrary
                     break;
 
                 case CabinetTabType.GeneralAgreement:
-                {
-                    _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
-                    ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
-                }
+                    {
+                        _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
+                        ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
+                    }
                     break;
 
                 case CabinetTabType.Licenses:
-                {
-                    _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
-                    ctrlLicense.SetDataSources(_gridMainView);
-                    ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
-                }
+                    {
+                        _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
+                        ctrlLicense.SetDataSources(_gridMainView);
+                        ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
+                    }
                     break;
 
                 case CabinetTabType.Payslips:
-                {
-                    _registerRatedListView = GetRatedListMainView?.Invoke(custId);
-                    _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
-                    ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
-                }
+                    {
+                        _registerRatedListView = GetRatedListMainView?.Invoke(custId);
+                        _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
+                        ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
+                    }
                     break;
 
                 case CabinetTabType.Calculations:
-                {
-                    ctrlCalculation.Customer = _customer;
-                }
+                    {
+                        var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
+                        setupRl(_customer, custRl);
+                        ctrlCalculation.Customer = _customer;
+                    }
                     break;
 
                 case CabinetTabType.Payments:
-                {
-                    ctrlPaysInfo.Customer = _customer;
-                }
+                    {
+                        ctrlPaysInfo.Customer = _customer;
+                    }
                     break;
 
                 case CabinetTabType.Prepays:
-                {
+                    {
 
-                }
+                    }
                     break;
 
                 case CabinetTabType.Requests:
-                {
-                    _requestsLicenseView = GetRequestsView?.Invoke(custId);
-                    _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
-                    ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
-                }
+                    {
+                        _requestsLicenseView = GetRequestsView?.Invoke(custId);
+                        _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
+                        ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
+                    }
                     break;
 
                 case CabinetTabType.References:
-                {
-                    _referenceLicenseView = GetReferenceView?.Invoke(custId);
-                    _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
-                    ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
-                }
+                    {
+                        _referenceLicenseView = GetReferenceView?.Invoke(custId);
+                        _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
+                        ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
+                    }
                     break;
 
                 case CabinetTabType.Contacts:
-                {
-                    ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
-                }
+                    {
+                        ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
+                    }
                     break;
 
                 case CabinetTabType.Files:
-                {
-                    ctrlFiles.SetAndUpdateData(_customer, _gridMainView);
-                }
+                    {
+                        ctrlFiles.SetAndUpdateData(_customer, _gridMainView);
+                    }
                     break;
 
                 case CabinetTabType.Agent:
-                {
-                    ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
-                }
+                    {
+                        ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
+                    }
                     break;
+            }
+        }
+
+        /// <summary>
+        /// Вставка в періоди поточні розрахункові листи
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="custRl"></param>
+        private void setupRl(Customer customer, Customer custRl)
+        {
+            foreach( var lic in customer.Client.LicenseAgreement )
+            {
+                var sorsLic = custRl.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == lic.LicId);
+                if (sorsLic == null) continue;
+                foreach (var period in lic.PaidPeriod)
+                {
+                    var sorsPeriod = sorsLic.PaidPeriod.SingleOrDefault(rec => rec.PeriodId == period.PeriodId);
+                    if (sorsPeriod == null) continue;
+
+                    period.RegisterRatedList.Clear();
+                    foreach (var rm in sorsPeriod.RegisterRatedList)
+                        period.RegisterRatedList.Add(rm);
+
+                }
             }
         }
 
@@ -448,7 +474,7 @@ namespace IpsViewComponentLibrary
                 pageView.SelectedPage = _tab[value];
             }
         }
-        
+
         //оновлення даних на вкладкі при переході на іншу
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
