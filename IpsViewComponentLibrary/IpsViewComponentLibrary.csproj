@@ -286,6 +286,12 @@
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.Designer.cs">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgreementBigRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgreementBigRight.Designer.cs">
+      <DependentUpon>AgreementBigRight.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -770,10 +776,10 @@
     <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlAgreementBigRights.cs">
+    <Compile Include="_trash\MiddleControlAgreementBigRights.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlAgreementBigRights.Designer.cs">
+    <Compile Include="_trash\MiddleControlAgreementBigRights.Designer.cs">
       <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlAgreementProlType.cs">
@@ -1083,6 +1089,9 @@
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\AgreementBigRight.resx">
+      <DependentUpon>AgreementBigRight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.resx">
       <DependentUpon>GeneralAgrDetailInfoBr.cs</DependentUpon>
     </EmbeddedResource>
@@ -1309,7 +1318,7 @@
     <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlAgreementBigRights.resx">
+    <EmbeddedResource Include="_trash\MiddleControlAgreementBigRights.resx">
       <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlAgreementProlType.resx">
@@ -1572,8 +1581,6 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_trash\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -46,14 +46,6 @@ namespace IpsViewComponentLibrary
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
-        public object LicenseAgrParamDataSource
-        {
-            get => bsLicAgrParam.DataSource;
-            set => bsLicAgrParam.DataSource = value;
-        }
-
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
         public object AgreementAddBrDataSource
         {
             get => bsAgreementAddBr.DataSource;

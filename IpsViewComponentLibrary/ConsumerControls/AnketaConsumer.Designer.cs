@@ -246,9 +246,9 @@
             this.pvPrint.Controls.Add(this.radPdfViewerNavigator);
             this.pvPrint.Controls.Add(this.radPdfViewer);
             this.pvPrint.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvPrint.Location = new System.Drawing.Point(133, 10);
+            this.pvPrint.Location = new System.Drawing.Point(134, 5);
             this.pvPrint.Name = "pvPrint";
-            this.pvPrint.Size = new System.Drawing.Size(1005, 643);
+            this.pvPrint.Size = new System.Drawing.Size(1010, 654);
             this.pvPrint.Text = "Друк";
             // 
             // btnLoadPdf
@@ -268,7 +268,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(999, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1004, 0);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -296,7 +296,7 @@
             this.radPdfViewer.EnableThumbnails = false;
             this.radPdfViewer.Location = new System.Drawing.Point(3, 82);
             this.radPdfViewer.Name = "radPdfViewer";
-            this.radPdfViewer.Size = new System.Drawing.Size(999, 516);
+            this.radPdfViewer.Size = new System.Drawing.Size(1004, 527);
             this.radPdfViewer.TabIndex = 3;
             this.radPdfViewer.ThemeName = "Office2013Light";
             this.radPdfViewer.ThumbnailsScaleFactor = 0.15F;
