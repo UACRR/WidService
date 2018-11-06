@@ -586,5 +586,6 @@
     <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
     <Build Include="dbo\Views\vTSK_1_BRMoneyPrepay.sql" />
     <Build Include="dbo\Functions\ft_AccountName.sql" />
+    <Build Include="dbo\Views\vCustCmService.sql" />
   </ItemGroup>
 </Project>

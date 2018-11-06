@@ -66,43 +66,39 @@ where t1.accDebet like '21%' and accCredit like '30%'
    and t1.dateOper between @dateBegin and @dateEnd
  group by t1.custIdRh
 )
+, 
+--правообладатели и их комьюнити
+TabCommunity as
+(
+select t1.custId, max(t2.custId) as cmCustId 
+from TabTurn t1 
+left join Community t2 on t1.custid = t2.custId
+left join TermsOfService t3 on t1.custid = t3.custId 
+join @TabCrKind t10 on t10.codeI = t3.cRKindCode
+group by t1.custId
+union 
+select t9.custId, max(t9.cmCustId) as cmCustId
+from  TabTurn t1 
+join CustCmRight t9 on t9.custId = t1.custId  --and @dateBegin >= isnull(t9.dateBegin,'1900-01-01') and @dateEnd <= isnull(t9.dateEnd, '3000-01-01')
+group by t9.custId
+)
 insert into @RT 
 (custId, cntObj, cRName, interCode, registrDate, cmCustId, cmName, amount)
 select distinct t1.custId, 
 t2.cntObj, 
 t6.name as cRName, t7.interCode, t6.registrDate,
-isnull(t9.cmCustId, t12.custId), isnull(isnull(t10.name, t13.name ),'УААСП') as cmName, t1.amount
+t9.cmCustId, isnull(t10.name, 'УААСП') as cmName, t1.amount
  from  TabTurn t1 
  left join TabCntObj t2 on t1.custId = t2.custId 
  join vCustomer t6 on t6.custId = t1.custId
  join RightHolder t7 on t7.custId = t6.custId
- left join TermsOfService t8 on t8.custId = t7.custId 
- left join @TabCrKind t11 on t11.codeI = t8.CRKindCode 
- left join CustCmRight t9 on t9.custId = t8.custId and t9.cRKindCode = @cRightKind and @dateBegin >= isnull(t9.dateBegin,'1900-01-01') and @dateEnd <= isnull(t9.dateEnd, '3000-01-01')
- left join Community t12 on t12.custId = t7.custId 
+ left join TabCommunity t9 on t9.custId = t6.custId 
+ --left join @TabCrKind t11 on t11.codeI = t8.CRKindCode 
  left join vCustomer t10 on t10.custId = t9.cmCustId  
- left join vCustomer t13 on t13.custId = t12.custId
  where isnull(t9.cmCustId,0) = 
- (case  when isnull(@ourAuthor,0) = 0 Then isnull(isnull(t9.cmCustId,0),t12.custId) Else Case When isnull(@ourAuthor,0) = 1 Then 0 Else  isnull(t9.cmCustId, t12.custId) end end)
-
- update @RT set cmCustId = t2.custId, cmName = t3.name
-   from @RT t1 
-   join Community t2 on t1.custId = t2.custId
-   join vCustomer t3 on t2.custId = t3.custId
-
+ (case  when isnull(@ourAuthor,0) = 0 Then isnull(t9.cmCustId,0) Else Case When isnull(@ourAuthor,0) = 1 Then 0 Else isnull(t9.cmCustId,0) end end)
 
  RETURN
  END
 
---select  * from ft_Tsk_5_4_RatingRH (0, 0, 1, NULL, NULL)
-
-/*
-select t1.custIdRh as custid, t5.name, t4.objId,
-  t1.*
-from PayTurn t1 
-join account t2 on t2.accid = t1.accIdDebet  
-join account t3 on t3.accid = t1.accIdCredit  
-join ObjectRight t4 on t4.objId = t3.objId
-join vCustomer t5 on t1.custIdRh = t5.custId
-where t1.accDebet like '21%' and accCredit like '30%' 
-*/
+--select  * from ft_Tsk_5_4_RatingRH (0, 0, 0, NULL, NULL)
