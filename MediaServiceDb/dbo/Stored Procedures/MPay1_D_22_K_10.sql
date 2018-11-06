@@ -55,11 +55,16 @@ from Externalpay
 where 
 	status=1
 
-update #doc
+update #doc set 
+custID= null
+
+update #doc 
 set custID = t2.custid
-from #Doc t1, vCustomer t2
-where
-	t2.INNOKPO=t1.okpo
+from #Doc t1,  ExternalPay t3
+,BankAccount t2 
+where t2.mfo = cast( t3.mfoCorr as numeric )
+and t2.accountNumber = t3.accountCorr
+and t1.paidId =t3.paidId
 
 delete #doc
 where custid is null
