@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary
             {"pvContacts", CabinetTabType.Contacts}
         };
         private AnketaDictionaties _anketaDictionaties;
-        private CabinetTabType _currenCabinetTab = CabinetTabType.Anketa;
+        private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
         private readonly Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
         //дані
@@ -150,7 +150,7 @@ namespace IpsViewComponentLibrary
             ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
             // генеральна угода
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
-            ctrlGeneralAgreement.ProlongationSave += CtrlGeneralAgreement_ProlongationSave;
+            ctrlGeneralAgreement.GeneralAgreementSaveChanges += CtrlGeneralAgreementGeneralAgreementSaveChanges;
             // ліцензія
             ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
@@ -219,7 +219,7 @@ namespace IpsViewComponentLibrary
             return DeleteRegisterRatedList?.Invoke(custId, id) ?? false;
         }
 
-        private bool CtrlGeneralAgreement_ProlongationSave(int id, LicenseAgreement saveObj)
+        private bool CtrlGeneralAgreementGeneralAgreementSaveChanges(int id, LicenseAgreement saveObj)
         {
             return SaveAgreementAddBrChanges?.Invoke(id, saveObj) ?? false;
         }
@@ -465,22 +465,13 @@ namespace IpsViewComponentLibrary
             _anketaDictionaties = dictionaries;
         }
 
-        public CabinetTabType CurentTab
-        {
-            get => _currenCabinetTab;
-            set
-            {
-                _currenCabinetTab = value;
-                pageView.SelectedPage = _tab[value];
-            }
-        }
-
         //оновлення даних на вкладкі при переході на іншу
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
+            string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
+            _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
+
             // ** Disable update when tab change
-            //string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
-            //_currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
             //UpdateCurentTab(_currenCabinetTab);
         }
     }

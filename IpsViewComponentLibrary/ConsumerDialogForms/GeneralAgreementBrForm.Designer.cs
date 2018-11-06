@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
-    partial class AddGeneralAgreementBrForm
+    partial class GeneralAgreementBrForm
     {
         /// <summary>
         /// Required designer variable.
@@ -67,7 +67,7 @@
             this.ctrlAgreement.Size = new System.Drawing.Size(497, 172);
             this.ctrlAgreement.TabIndex = 3;
             // 
-            // AddGeneralAgreementBrForm
+            // GeneralAgreementBrForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -78,7 +78,7 @@
             this.Controls.Add(this.btnSave);
             this.MaximumSize = new System.Drawing.Size(528, 258);
             this.MinimumSize = new System.Drawing.Size(528, 258);
-            this.Name = "AddGeneralAgreementBrForm";
+            this.Name = "GeneralAgreementBrForm";
             // 
             // 
             // 

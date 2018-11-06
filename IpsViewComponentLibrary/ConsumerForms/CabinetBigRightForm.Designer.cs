@@ -39,7 +39,6 @@
             // cabinet
             // 
             this.cabinet.AutoScroll = true;
-            this.cabinet.CurentTab = IpsViewComponentLibrary.CabinetTabType.None;
             this.cabinet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cabinet.Location = new System.Drawing.Point(0, 0);
             this.cabinet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);

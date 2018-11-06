@@ -3,22 +3,26 @@ using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
-    public partial class AddGeneralAgreementBrForm : Telerik.WinControls.UI.RadForm
+    public partial class GeneralAgreementBrForm : Telerik.WinControls.UI.RadForm
     {
-        public AddGeneralAgreementBrForm()
-        {
-            InitializeComponent();
-        }
-
-        public AddGeneralAgreementBrForm(AnketaDictionaties dictionaties, LicenseAgreement agreement, AgreementAddBr agreementAddBr, AnketaCompany company)
+        public GeneralAgreementBrForm(AnketaDictionaties dictionaties, AgreementAddBr agreementAddBr, AnketaCompany company, string dialogFormText = null)
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
             ctrlAgreement.PaidPeriodDictionaryDataSource = dictionaties.period;// typeof(Period);
             ctrlAgreement.AgreementDataSource = agreementAddBr;
             ctrlAgreement.AnketaCompanyDataSource = company;
+
+            if (!string.IsNullOrEmpty(dialogFormText))
+                Text = dialogFormText;
+        }
+
+        public sealed override string Text
+        {
+            get => base.Text;
+            set => base.Text = value;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

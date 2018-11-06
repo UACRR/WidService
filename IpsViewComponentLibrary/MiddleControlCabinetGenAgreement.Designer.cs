@@ -37,7 +37,6 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvGenAgrLicences = new Telerik.WinControls.UI.RadGridView();
             this.ctrlGeneralAgrDetailInfoBr = new IpsViewComponentLibrary.ConsumerControls.BigRight.GeneralAgrDetailInfoBr();
@@ -81,14 +80,14 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn2.MinWidth = 0;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "CustName";
-            gridViewTextBoxColumn2.Width = 372;
+            gridViewTextBoxColumn2.Width = 385;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "AgrNumber";
             gridViewTextBoxColumn3.HeaderText = "№ ген. договору";
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "AgrNumber";
-            gridViewTextBoxColumn3.Width = 135;
+            gridViewTextBoxColumn3.Width = 140;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "DateBegin";
             gridViewTextBoxColumn4.FormatString = "{0:d}";
@@ -96,7 +95,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn4.MinWidth = 0;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "DateBegin";
-            gridViewTextBoxColumn4.Width = 90;
+            gridViewTextBoxColumn4.Width = 93;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "DateEnd";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
@@ -104,31 +103,22 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn5.MinWidth = 0;
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "DateEnd";
-            gridViewTextBoxColumn5.Width = 90;
+            gridViewTextBoxColumn5.Width = 93;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.FieldName = "StatusName";
             gridViewTextBoxColumn6.HeaderText = "Стан";
             gridViewTextBoxColumn6.MinWidth = 0;
             gridViewTextBoxColumn6.Name = "StatusName";
-            gridViewTextBoxColumn6.Width = 141;
-            gridViewCommandColumn1.FieldName = "editBtn";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewTextBoxColumn6.Width = 146;
+            gridViewCommandColumn1.FieldName = "printBtn";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
             gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
-            gridViewCommandColumn1.Name = "editBtn";
+            gridViewCommandColumn1.Name = "printBtn";
             gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "printBtn";
-            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn2.MaxWidth = 30;
-            gridViewCommandColumn2.MinWidth = 30;
-            gridViewCommandColumn2.Name = "printBtn";
-            gridViewCommandColumn2.Width = 30;
             this.gvGenAgrLicences.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -136,8 +126,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
-            gridViewCommandColumn1,
-            gridViewCommandColumn2});
+            gridViewCommandColumn1});
             this.gvGenAgrLicences.MasterTemplate.EnableCustomFiltering = true;
             this.gvGenAgrLicences.MasterTemplate.EnableFiltering = true;
             this.gvGenAgrLicences.MasterTemplate.EnableGrouping = false;
@@ -183,7 +172,7 @@ namespace IpsViewComponentLibrary
             // 
             this.btnChangeGenAgr.Name = "btnChangeGenAgr";
             this.btnChangeGenAgr.Text = "Змінити договір";
-            this.btnChangeGenAgr.Click += new System.EventHandler(this.btnChangeGenAgr_Click);
+            this.btnChangeGenAgr.Click += new System.EventHandler(this.btnEditGenAgr_Click);
             // 
             // ddBtnStatusChangeGenAgr
             // 
