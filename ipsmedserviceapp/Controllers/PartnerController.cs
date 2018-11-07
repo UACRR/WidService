@@ -426,6 +426,8 @@ join Partner t2 on t2.custId = t1.custId
 ")
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                .Include(item => item.Company).ThenInclude(rempl => rempl.RelEmployee).ThenInclude(eml => eml.Empl)
+                .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
                 .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
                 .Include(partcl => partcl.Partner.PartnerClient)
                 .Include(item => item.BankAccount)
@@ -441,15 +443,28 @@ join Partner t2 on t2.custId = t1.custId
             if (partnerId == null)
                 return Json(null);
 
-            var partner = await _dbContext.Customer.Where(rec => rec.CustId == partnerId.CustId)
-                .Include(item => item.AgreementMaster)
-                .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
-                .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
-                .Include(partcl => partcl.Partner.PartnerClient)
-                .SingleOrDefaultAsync();
+            var custType = _dbContext.Customer.SingleOrDefault(rec => rec.CustId == partnerId.CustId).CustType;
+            Customer partner = null;
 
-            // old call
-            //var anketaPerson = await _dbContext.AnketaPerson.SingleOrDefaultAsync(rec => rec.CustId == partnerId.CustId);
+            if(custType == 1)
+            {
+                partner = await _dbContext.Customer.Where(rec => rec.CustId == partnerId.CustId)
+                    .Include(item => item.AgreementMaster)
+                    .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
+                    .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
+                    .Include(partcl => partcl.Partner.PartnerClient)
+                    .SingleOrDefaultAsync();
+            }
+            else if (custType == 3)
+            {
+                partner = await _dbContext.Customer.Where(rec => rec.CustId == partnerId.CustId)
+                    .Include(item => item.AgreementMaster)
+                    .Include(item => item.Company).ThenInclude(ank => ank.AnketaCompany)
+                    .Include(item => item.Company).ThenInclude(rempl => rempl.RelEmployee).ThenInclude(empl => empl.Empl)
+                    .Include(item => item.Partner).ThenInclude(agrAdd => agrAdd.AgreementAddPartner)
+                    .Include(partcl => partcl.Partner.PartnerClient)
+                    .SingleOrDefaultAsync();
+            }
 
             return Json(partner);
         }

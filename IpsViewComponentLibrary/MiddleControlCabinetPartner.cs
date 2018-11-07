@@ -32,16 +32,36 @@ namespace IpsViewComponentLibrary
 
         public void SetPartnerData(Customer customer, int cientId)
         {
-            var item = customer?.Person?.AnketaPerson?.SingleOrDefault();
+            
             var agreement = customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
             _customer = customer;
             _cientId = cientId;
-            lblFullName.Text = item?.LastName + " " + item?.FirstName + " " + item?.SurName;
+
+            string name = string.Empty;
+            string phone = string.Empty;
+            string email = string.Empty;
+
+            if (_customer?.CustType == 1)
+            {
+                var person = _customer?.Person?.AnketaPerson?.SingleOrDefault();
+                name = person?.LastName + " " + person?.FirstName + " " + person?.SurName;
+                phone = person?.PhoneMobileMain;
+                email = person?.EMail;
+            }
+            else if (_customer?.CustType == 3)
+            {
+                var contactperson = _customer?.Company?.RelEmployee?.SingleOrDefault(rec => rec?.PositionCode == 3)?.Empl;
+                name = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.Name;
+                phone = contactperson?.PhoneNumber;
+                email = contactperson?.Email;
+            }
+
+            lblFullName.Text = name;
+            lblMobile.Text = phone;
+            lblEmail.Text = email;
             lblAgrDate.Text = agreement?.AgrDate?.ToString("d");
             lblAgrStatus.Text = IpsGlobal.AnketaDictionaties?.agreementStatus?.SingleOrDefault(r => r?.CodeI == agreement?.AgrStatus)?.Name;
             lblAgrNumber.Text = agreement?.AgrNumber;
-            lblMobile.Text = item?.PhoneMobileMain;
-            lblEmail.Text = item?.EMail;
         }
 
         //змінити представника
