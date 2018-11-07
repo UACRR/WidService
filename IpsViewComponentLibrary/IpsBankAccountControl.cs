@@ -24,53 +24,11 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return bsBankAccount.DataSource; }
+            get => bsBankAccount.DataSource;
             set
             {
                 if (bsBankAccount.DataSource != value)
                     bsBankAccount.DataSource = value;
-            }
-        }
-
-        #region Edit controls
-
-        public RadTextBox TxtMfo
-        {
-            get
-            {
-                return txtMfo;
-            }
-        }
-
-        public RadTextBox TxtMfoName
-        {
-            get
-            {
-                return txtMfoName;
-            }
-        }
-
-        public RadTextBox TxtMfoOkpo
-        {
-            get
-            {
-                return txtMfoOkpo;
-            }
-        }
-
-        public RadTextBox TxtTransitNumber
-        {
-            get
-            {
-                return txtTransitNumber;
-            }
-        }
-
-        public RadTextBox TxtAccountNumber
-        {
-            get
-            {
-                return txtAccountNumber;
             }
         }
 
@@ -89,18 +47,7 @@ namespace IpsViewComponentLibrary
             return isValid;
         }
 
-        #endregion
-
-        private void txtMfo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtMfoOkpo_KeyPress(object sender, KeyPressEventArgs e)
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             char ch = e.KeyChar;
             if (!char.IsDigit(ch) && ch != 8)
