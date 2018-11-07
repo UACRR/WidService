@@ -32,6 +32,7 @@ namespace IpsViewComponentLibrary
         {
             this.components = new System.ComponentModel.Container();
             this.txtNumberVat = new Telerik.WinControls.UI.RadTextBox();
+            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.txtRegisterNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtRegisterWho = new Telerik.WinControls.UI.RadTextBox();
             this.dtRegisterDate = new Telerik.WinControls.UI.RadDateTimePicker();
@@ -43,9 +44,9 @@ namespace IpsViewComponentLibrary
             this.lbledrpou = new Telerik.WinControls.UI.RadLabel();
             this.lblTypeTaxpayer = new Telerik.WinControls.UI.RadLabel();
             this.ddlTypeVat = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.bsDictTypeVat = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterWho)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtRegisterDate)).BeginInit();
@@ -57,7 +58,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lbledrpou)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypeTaxpayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeVat)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypeVat)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,6 +72,10 @@ namespace IpsViewComponentLibrary
             this.txtNumberVat.TabIndex = 5;
             this.txtNumberVat.ThemeName = "Office2013Light";
             this.txtNumberVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberVat_KeyPress);
+            // 
+            // bsAnketaCompany
+            // 
+            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // txtRegisterNumber
             // 
@@ -141,7 +145,7 @@ namespace IpsViewComponentLibrary
             this.lblIPN.Name = "lblIPN";
             this.lblIPN.Size = new System.Drawing.Size(128, 19);
             this.lblIPN.TabIndex = 5;
-            this.lblIPN.Text = "Індивід. подактов. №:";
+            this.lblIPN.Text = "Номер платника ПДВ";
             this.lblIPN.ThemeName = "Office2013Light";
             // 
             // lblSvidoctvo
@@ -193,10 +197,6 @@ namespace IpsViewComponentLibrary
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSize = true;
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlTypeVat.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.FitToAvailableSize;
             // 
-            // bsAnketaCompany
-            // 
-            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            // 
             // bsDictTypeVat
             // 
             this.bsDictTypeVat.DataSource = typeof(ipsFormsDesign.Model.TypeVat);
@@ -220,6 +220,7 @@ namespace IpsViewComponentLibrary
             this.Name = "IpsRegistrationsCompanyControl";
             this.Size = new System.Drawing.Size(654, 110);
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterWho)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtRegisterDate)).EndInit();
@@ -231,7 +232,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lbledrpou)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypeTaxpayer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeVat)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypeVat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
