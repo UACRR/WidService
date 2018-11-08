@@ -514,6 +514,20 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
             if (allowedStatuses.Contains(newStatus))
             {
                 customer.Status = newStatus;
+                if (newStatus == 2)
+                {
+                    var agreement = customer.AgreementMaster.FirstOrDefault();
+                    if (agreement != null)
+                    {
+                        agreement.AgrStatus = 2;
+
+                        var agrRh = agreement.AgreementAddRh.FirstOrDefault();
+                        if (agrRh != null)
+                        {
+                            agrRh.AgrStatus = 2;
+                        }
+                    }
+                }
                 await _dbContext.SaveChangesAsync();
             }
             else

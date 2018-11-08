@@ -108,7 +108,20 @@ namespace IpsViewComponentLibrary.RightholderControls
             _canClose = true;
 
             if (accept)
+            {
                 _customer.Status = 2; // Активний
+                var agreement = _customer.AgreementMaster.FirstOrDefault();
+                if (agreement != null)
+                {
+                    agreement.AgrStatus = 2;
+
+                    var agrRh = agreement.AgreementAddRh.FirstOrDefault();
+                    if (agrRh != null)
+                    {
+                        agrRh.AgrStatus = 2;
+                    }
+                }
+            }
 
             var result = _rightholderService.Save(_customer);
 
