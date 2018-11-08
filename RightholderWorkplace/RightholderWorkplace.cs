@@ -357,11 +357,6 @@ namespace RightholderWorkplace
             ctrlRightholdersObjectsForChange.SelectedRightholder = null;
         }
 
-        private void ctrlRightholdersObjectsForChange_EditObjectCommandExecuted(object sender, ObjectRightForRightholder selectedObject)
-        {
-            EditObjectRight(selectedObject);
-        }
-
         #endregion
     }
 }
