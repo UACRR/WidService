@@ -395,11 +395,8 @@ namespace IpsViewComponentLibrary
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!ValidateMinRewardAndTotalRate())
-            {
-                _dialogService.ShowError(this, "Не вірно введені дані. Запит не записаний.");
-                return;
-            }
+            if (_formMode == FormMode.ForSmallRightAdmin && !ValidateMinRewardAndTotalRate())
+                _dialogService.ShowMessage(this, "Мінімальна ставка винагороди повинна співпадати з сумою долей.");
 
             _deleteLicense = false;
             ParseAuthors();
