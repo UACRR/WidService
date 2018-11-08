@@ -1493,6 +1493,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjAct.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjectRight.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.PaidPeriod.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Partner.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.PerformType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />

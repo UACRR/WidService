@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvPartnerName = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartnerName = new IpsViewComponentLibrary.PartnerControls.PartnerNameControl();
@@ -51,6 +52,8 @@
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.checkPartnerInternal = new Telerik.WinControls.UI.RadCheckBox();
+            this.bsPartner = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
@@ -78,6 +81,8 @@
             this.radGroupBox3.SuspendLayout();
             this.pvBank.SuspendLayout();
             this.pvAgreement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkPartnerInternal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPartner)).BeginInit();
             this.pvTerms.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -135,7 +140,7 @@
             this.pvContact.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvContact.Location = new System.Drawing.Point(134, 5);
             this.pvContact.Name = "pvContact";
-            this.pvContact.Size = new System.Drawing.Size(861, 557);
+            this.pvContact.Size = new System.Drawing.Size(795, 546);
             this.pvContact.Text = "Контакти";
             // 
             // radSeparator2
@@ -144,7 +149,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator2.Location = new System.Drawing.Point(152, 8);
             this.radSeparator2.Name = "radSeparator2";
-            this.radSeparator2.Size = new System.Drawing.Size(702, 18);
+            this.radSeparator2.Size = new System.Drawing.Size(636, 18);
             this.radSeparator2.TabIndex = 57;
             this.radSeparator2.ThemeName = "Office2013Light";
             // 
@@ -154,7 +159,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator3.Location = new System.Drawing.Point(144, 190);
             this.radSeparator3.Name = "radSeparator3";
-            this.radSeparator3.Size = new System.Drawing.Size(710, 19);
+            this.radSeparator3.Size = new System.Drawing.Size(644, 19);
             this.radSeparator3.TabIndex = 59;
             this.radSeparator3.ThemeName = "Office2013Light";
             // 
@@ -164,7 +169,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(138, 86);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(716, 19);
+            this.radSeparator1.Size = new System.Drawing.Size(650, 19);
             this.radSeparator1.TabIndex = 58;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
@@ -372,7 +377,7 @@
             this.pvPasport.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPasport.Location = new System.Drawing.Point(134, 5);
             this.pvPasport.Name = "pvPasport";
-            this.pvPasport.Size = new System.Drawing.Size(861, 557);
+            this.pvPasport.Size = new System.Drawing.Size(795, 546);
             this.pvPasport.Text = "Паспортні дані";
             // 
             // radGroupBox3
@@ -402,7 +407,7 @@
             this.pvBank.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvBank.Location = new System.Drawing.Point(134, 5);
             this.pvBank.Name = "pvBank";
-            this.pvBank.Size = new System.Drawing.Size(861, 557);
+            this.pvBank.Size = new System.Drawing.Size(795, 546);
             this.pvBank.Text = "Банківські реквізити";
             // 
             // ctrlBankAccount
@@ -415,12 +420,27 @@
             // 
             // pvAgreement
             // 
+            this.pvAgreement.Controls.Add(this.checkPartnerInternal);
             this.pvAgreement.Controls.Add(this.ctrlAgreement);
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(134, 5);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(861, 557);
+            this.pvAgreement.Size = new System.Drawing.Size(795, 546);
             this.pvAgreement.Text = "Договір";
+            // 
+            // checkPartnerInternal
+            // 
+            this.checkPartnerInternal.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsPartner, "IsMy", true));
+            this.checkPartnerInternal.Location = new System.Drawing.Point(32, 152);
+            this.checkPartnerInternal.Name = "checkPartnerInternal";
+            this.checkPartnerInternal.Size = new System.Drawing.Size(233, 19);
+            this.checkPartnerInternal.TabIndex = 1;
+            this.checkPartnerInternal.Text = "Представник - співробітник компанії";
+            this.checkPartnerInternal.ThemeName = "Office2013Light";
+            // 
+            // bsPartner
+            // 
+            this.bsPartner.DataSource = typeof(ipsFormsDesign.Model.Partner);
             // 
             // ctrlAgreement
             // 
@@ -439,7 +459,7 @@
             this.pvTerms.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvTerms.Location = new System.Drawing.Point(134, 5);
             this.pvTerms.Name = "pvTerms";
-            this.pvTerms.Size = new System.Drawing.Size(861, 557);
+            this.pvTerms.Size = new System.Drawing.Size(795, 546);
             this.pvTerms.Text = "Умои представника";
             // 
             // ctrlConditions
@@ -492,6 +512,9 @@
             this.radGroupBox3.ResumeLayout(false);
             this.pvBank.ResumeLayout(false);
             this.pvAgreement.ResumeLayout(false);
+            this.pvAgreement.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkPartnerInternal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPartner)).EndInit();
             this.pvTerms.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -526,5 +549,7 @@
         private Telerik.WinControls.UI.RadPageViewPage pvTerms;
         private ConditionsControl ctrlConditions;
         private ConsumerControls.TabNavigationExpandedControl ctrlTabNavigationExpanded;
+        private Telerik.WinControls.UI.RadCheckBox checkPartnerInternal;
+        private System.Windows.Forms.BindingSource bsPartner;
     }
 }

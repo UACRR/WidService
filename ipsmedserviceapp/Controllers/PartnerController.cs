@@ -43,7 +43,10 @@ namespace ipsmedserviceapp.Controllers
                     AnkVersion = 1,
                     Status = 0,
                 };
-                partnerCustomer.Partner = new Partner();
+                partnerCustomer.Partner = new Partner
+                {
+                    IsMy = false,
+                };
 
                 // договір
                 var agreementMaster = new AgreementMaster {
@@ -212,6 +215,10 @@ namespace ipsmedserviceapp.Controllers
             if (source.BankAccount.Count > 0)
                 _dbContext.UpdateList(source.BankAccount, destination.BankAccount, rec => { }, (l, r) => l.BanAccId == r.BanAccId);
 
+            if(destination.Partner == null)
+                destination.Partner = new Partner();
+            destination.Partner.SetFields(source.Partner, new[] { "CustId" });
+
             // збереження договору
             var destAgrList = destination.AgreementMaster.ToList();
             var sorsAgrList = source.AgreementMaster.ToList();
@@ -246,7 +253,6 @@ namespace ipsmedserviceapp.Controllers
                     // оновлення AgreementAddPartner
                     _dbContext.AppendList(item.AgreementAddPartner, agreement.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
 
-                    destination.Partner = new Partner();
                     foreach (var addPartner in agreement.AgreementAddPartner)
                         destination.Partner.AgreementAddPartner.Add(addPartner);
 
@@ -353,7 +359,11 @@ namespace ipsmedserviceapp.Controllers
                     // оновлення AgreementAddPartner
                     _dbContext.AppendList(item.AgreementAddPartner, agreement.AgreementAddPartner, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
 
-                    destination.Partner = new Partner();
+                    destination.Partner = new Partner
+                    {
+                        IsMy = false
+                    };
+
                     foreach (var addPartner in agreement.AgreementAddPartner)
                         destination.Partner.AgreementAddPartner.Add(addPartner);
 

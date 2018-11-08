@@ -51,6 +51,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                     control = Architector.IncludeInstanceWhithReturn(pvAnketa, _jurControl);
                     ctrlPartnerClients.ClientName = _customer.Company.AnketaCompany.SingleOrDefault(); //найменування клієнта
                     Text = TitleJur;
+                    checkPartnerInternal.Visible = false;
                     break;
             }
             control.BeginBindings(_customer);
@@ -76,6 +77,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             // умови договору
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
+            bsPartner.DataSource = _customer?.Partner;
         }
 
         private void SubscribeEvents()

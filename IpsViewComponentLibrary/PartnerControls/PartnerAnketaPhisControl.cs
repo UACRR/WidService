@@ -74,6 +74,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             ctrlAgreement.AgreementDataSource = customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
             // умови договору
             ctrlConditions.AgreementAddPartnerDataSource = customer?.AgreementMaster?.SingleOrDefault()?.AgreementAddPartner?.SingleOrDefault();
+            bsPartner.DataSource = customer.Partner;
         }
 
         private void Save(object sender, bool e)

@@ -383,6 +383,7 @@ namespace ipsFormsDesign.Interfaces
         public string AgrNumber { get; set; }
         public string JaCity { get; set; }
         public string StatusName { get; set; }
+        public string IsMy { get; set; }
     }
 
     /// <summary>
