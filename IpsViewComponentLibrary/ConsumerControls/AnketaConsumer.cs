@@ -11,6 +11,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Dictionary;
+using IpsViewComponentLibrary.ConsumerControls.BigRight;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -39,6 +40,8 @@ namespace IpsViewComponentLibrary
         private MiddleControlAgreementAnketaType ctrlAgreementSmallRights;
         private MiddleControlAgreementBigRights ctrlAgreementBigRights;
 
+        private AgreementBigRight _ctrlAgreementBigRights;
+
         private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
 
         private ButtonType _btnType = ButtonType.None;
@@ -57,9 +60,6 @@ namespace IpsViewComponentLibrary
         }
 
         public Customer GetCustomer => _cust;
-
-        public delegate string GeneratePdfDoc(Customer customer, AnketaDictionaties dictionaties);
-        public event GeneratePdfDoc OnDocumentNeedGenerate;
 
         public delegate void ReturnSaveCustomer(Customer cust);
         public event ReturnSaveCustomer OnBtnSaveClick;
@@ -122,28 +122,28 @@ namespace IpsViewComponentLibrary
 
         }
 
-        //ініціалізація контрола договору за типом прав
+        //ініціалізація контролу договору за типом прав
         private void InitAgreementType(TypeRights rights)
         {
             switch (rights)
             {
                 case TypeRights.BigRights:
                 {
-                    //ініціалізація форми договору великих прав
-                    if(ctrlAgreementBigRights == null)
+                    if (_ctrlAgreementBigRights == null)
                     {
-                            ctrlAgreementBigRights = new MiddleControlAgreementBigRights
-                            {
-                                Location = _locationPoint,
-                                MaximumSize = new Size(900, 200),
-                                MinimumSize = new Size(500, 200),
-                                Name = "ctrlAgreementBigRights",
-                                Size = new Size(596, 200),
-                                TabIndex = 0
-                            };
-                            pvAgreement.Controls.Add(ctrlAgreementBigRights);
+                        // ініціалізація контролу великих прав 
+                        _ctrlAgreementBigRights = new AgreementBigRight
+                        {
+                            Location = _locationPoint,
+                            MaximumSize = new Size(900, 200),
+                            MinimumSize = new Size(500, 200),
+                            Name = "ctrlAgreementBigRights",
+                            Size = new Size(596, 200),
+                            TabIndex = 0
+                        };
+                        pvAgreement.Controls.Add(_ctrlAgreementBigRights);
                     }
-
+                    
                     if (_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicCode != null)
                     {
                         var item = _cust.Client.LicenseAgreement.LastOrDefault();
@@ -160,20 +160,17 @@ namespace IpsViewComponentLibrary
                         AnkVersion = _cust.AnkVersion,
                         AgrNumber = string.Empty,
                         });
-                    //_cust.Company.AnketaCompany.SingleOrDefault().Name = string.Empty;
-
-                    ctrlAgreementBigRights.DictionaryAgrLicTypeDataSource = _anketaDictionaries.agrLicenseType.Where(rec => rec.UsesKind == 1);// typeof(AgrLicenseType);
-                    ctrlAgreementBigRights.DictionaryPeriodPaymentDataSource = _anketaDictionaries.period;// typeof(Period);
-                    ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// typeof(AnketaCompany);
-                    ctrlAgreementBigRights.AgreementAddBrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr;
-                    ctrlAgreementBigRights.LicAgrDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault();// typeof(LicenseAgreementChange);
+                    // control bindings
+                    _ctrlAgreementBigRights.PaidPeriodDictionaryDataSource = _anketaDictionaries.period;// (Period)
+                    _ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// (AnketaCompany);
+                    _ctrlAgreementBigRights.AgreementDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr; //(AgreementAddBr)
 
                 }
                     break;
 
                 case TypeRights.SmallRights:
                 {
-                    //Ініціалізація форми договору малих прав
+                    // ініціалізація контролу малих прав
                     if(ctrlAgreementSmallRights == null)
                     {
                         ctrlAgreementSmallRights = new MiddleControlAgreementAnketaType
@@ -252,14 +249,10 @@ namespace IpsViewComponentLibrary
                         if(TypeRights == TypeRights.SmallRights)
                             isValid = ctrlAgreementSmallRights.Validator();
                         if (TypeRights == TypeRights.BigRights)
-                            isValid = ctrlAgreementBigRights.Validator();
+                            isValid = _ctrlAgreementBigRights.Validator();
                     }
                     break;
-                case 7: // - Друк (не потребує)
-                    {
-                        isValid = true;
-                    }
-                    break;
+                //case 7: - Друк (не потребує)
             }
 
             return isValid;
@@ -300,8 +293,8 @@ namespace IpsViewComponentLibrary
 
                         if(TypeRights == TypeRights.SmallRights)
                             ctrlAgreementSmallRights.SetDefaultListItem();
-                        if(TypeRights == TypeRights.BigRights)
-                            ctrlAgreementBigRights.SetBigRightsLicenseAgrType();
+                        if (TypeRights == TypeRights.BigRights) ;
+                        //ctrlAgreementBigRights.SetBigRightsLicenseAgrType();
                     }
                     break;
                 case 6:

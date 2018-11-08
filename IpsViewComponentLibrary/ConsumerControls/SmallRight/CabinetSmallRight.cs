@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -17,7 +18,7 @@ namespace IpsViewComponentLibrary
     public partial class CabinetSmallRight : UserControl
     {
         private Customer _customer;
-        private AnketaDictionaties _dictionaties;
+        private readonly AnketaDictionaties _dictionaties;
         
         public event SaveCustomerEventHandler SaveCustomer;
         public event UpdateCustomerDataEventHandler UpdateData;
@@ -29,6 +30,7 @@ namespace IpsViewComponentLibrary
         public event ChangePartnerEventHandler OnChangePartner;
         public event GetPartnerList OnGetPartnerListNeed;
 
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         /// <summary>
         /// Тип прав (великі або малі права)
@@ -52,10 +54,15 @@ namespace IpsViewComponentLibrary
             ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
             ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
             ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
-
             calculationCtrl.UpdateData += UpdateCustomer;
+
+            if (!IsDesignMode)
+            {
+                _dictionaties = IpsGlobal.AnketaDictionaties;
+            }
         }
 
+        // оновлдення даних
         private void UpdateCustomer()
         {
             UpdateData?.Invoke(_customer.CustId);
@@ -96,33 +103,6 @@ namespace IpsViewComponentLibrary
         // * * * * * * * * * * * * * * * * * * * * * * * * //
 
         #region * * * PUBLIC METHODS * * *
-
-        /// <summary>
-        /// Зміна активованості та очищення даних коли анкету не обрано
-        /// </summary>
-        /// <param name="anketaCount">Параметр наявності анкет</param>
-        public void SetStateWhenChangeAnketaCount(AnketaCount anketaCount)
-        {
-            switch (anketaCount)
-            {
-                case AnketaCount.Empty:
-                {
-                    ClearData();
-                    pvMain.Enabled = false;
-                    return;
-                }
-                case AnketaCount.NotEmpty:
-                {
-                    pvMain.Enabled = true;
-                    return;
-                }
-            }
-        }
-
-        public void SetDictionary(AnketaDictionaties dict)
-        {
-            _dictionaties = dict;
-        }
 
         /// <summary>
         /// Встановлення даних
@@ -333,7 +313,10 @@ namespace IpsViewComponentLibrary
             if (MessageBox.Show("Ліцензійний договір буде закритий та автоматично видалений. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 if (OnChangeLicenseStatus?.Invoke(license, license.LicVersion ?? default(int), 4, false) ?? false)
+                {
                     ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
+                    UpdateCustomer();
+                }
                 else
                     ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
             }
@@ -441,28 +424,26 @@ namespace IpsViewComponentLibrary
         {
             if (gvMoreLicenseAgr.CurrentRow.DataBoundItem is GridLicenseAgrView item)
             {
-                bool actResult = false;
+                bool result = false;
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
                 if(status == 2)
                 {
-                    actResult = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, status, true) ?? false;
-                    if (actResult)
-                        ExtensionUtils.ShowInfoMessage("Ліцензійний договір переведено в статус \"Активний\"!", "Успішно",
-                            MessageBoxIcon.Information);
+                    result = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, status, true) ?? false;
+                    if (result)
+                        ExtensionUtils.ShowInfoMessage("Ліцензійний договір переведено в статус \"Активний\"!", "Успішно", MessageBoxIcon.Information);
                     else
-                        ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензійного договору!", "Помилка",
-                            MessageBoxIcon.Error);
+                        ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензійного договору!", "Помилка", MessageBoxIcon.Error);
                 }
                 else if(status == 5)
                 {
-                    actResult = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, status, false) ?? false;
-                    if (actResult)
-                        ExtensionUtils.ShowInfoMessage("Ліцензійний договір переведено в статус \"Відхилений\"!", "Успішно",
-                            MessageBoxIcon.Exclamation);
+                    result = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, status, false) ?? false;
+                    if (result)
+                        ExtensionUtils.ShowInfoMessage("Ліцензійний договір переведено в статус \"Відхилений\"!", "Успішно", MessageBoxIcon.Exclamation);
                     else
-                        ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензійного договору!", "Помилка",
-                            MessageBoxIcon.Error);
+                        ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензійного договору!", "Помилка", MessageBoxIcon.Error);
                 }
+                if(result)
+                    UpdateCustomer();
             }
         }
 
@@ -494,7 +475,10 @@ namespace IpsViewComponentLibrary
             if (MessageBox.Show("Ліцензія буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
                 if (OnChangeLicenseStatus?.Invoke(license, curRow?.LicVersion ?? default(int), 4, false) ?? false)
+                {
                     ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
+                    UpdateCustomer();
+                }
                 else
                     ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
             }
@@ -551,30 +535,17 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        //Встановлення початкових вкладок
-        private void SetDefaultPages()
-        {
-            pvSecond.SelectedPage = pvSecond.DefaultPage;
-            pvMain.SelectedPage = pvMain.DefaultPage;
-        }
-        // Очищення даних 
-        private void ClearData()
-        {
-            SetDefaultPages();
-            ctrlPaysInfo1.Customer = null;
-            gvLicenseAgr.DataSource = new object();
-        }
-
         //збереження Customer
         private void OnSaveCommentNeed(object sender, EventArgs e)
         {
             var result = SaveCustomer?.Invoke(_customer) ?? false;
             if (result)
+            {
                 MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                UpdateCustomer();
+            }
             else
                 MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            //OnCustomerSave?.Invoke(_customer);
         }
 
         /// <summary>
@@ -652,6 +623,7 @@ namespace IpsViewComponentLibrary
             _inCurrentRowChanged = false;
         }
 
+        // грід не підтверджених договорів [кнопки]
         private void gvMoreLicenseAgr_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             switch (e.Column.FieldName)
@@ -669,6 +641,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        // друк грід ліцензій
         private void gvLicenseAgr_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             int licId = (e?.Row?.DataBoundItem as GridLicenseAgrView)?.LicId ?? 0;

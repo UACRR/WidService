@@ -162,11 +162,11 @@
     <Compile Include="AddFileDialogForm.Designer.cs">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddGeneralAgreementBrForm.cs">
+    <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddGeneralAgreementBrForm.Designer.cs">
-      <DependentUpon>AddGeneralAgreementBrForm.cs</DependentUpon>
+    <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.Designer.cs">
+      <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddPremisesForm.cs">
       <SubType>Form</SubType>
@@ -286,6 +286,12 @@
     <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.Designer.cs">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgreementBigRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgreementBigRight.Designer.cs">
+      <DependentUpon>AgreementBigRight.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -342,10 +348,10 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
-    <Compile Include="ConsumerDialogForms\ProlongationGeneralAgreement.cs">
+    <Compile Include="_trash\ProlongationGeneralAgreement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerDialogForms\ProlongationGeneralAgreement.Designer.cs">
+    <Compile Include="_trash\ProlongationGeneralAgreement.Designer.cs">
       <DependentUpon>ProlongationGeneralAgreement.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerDialogForms\SelectClient.cs">
@@ -770,10 +776,10 @@
     <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlAgreementBigRights.cs">
+    <Compile Include="_trash\MiddleControlAgreementBigRights.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlAgreementBigRights.Designer.cs">
+    <Compile Include="_trash\MiddleControlAgreementBigRights.Designer.cs">
       <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlAgreementProlType.cs">
@@ -1029,8 +1035,8 @@
     <EmbeddedResource Include="AddFileDialogForm.resx">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddGeneralAgreementBrForm.resx">
-      <DependentUpon>AddGeneralAgreementBrForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerDialogForms\GeneralAgreementBrForm.resx">
+      <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddPremisesForm.resx">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
@@ -1083,6 +1089,9 @@
     <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
       <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\AgreementBigRight.resx">
+      <DependentUpon>AgreementBigRight.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.resx">
       <DependentUpon>GeneralAgrDetailInfoBr.cs</DependentUpon>
     </EmbeddedResource>
@@ -1111,7 +1120,7 @@
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerDialogForms\ProlongationGeneralAgreement.resx">
+    <EmbeddedResource Include="_trash\ProlongationGeneralAgreement.resx">
       <DependentUpon>ProlongationGeneralAgreement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\SelectClient.resx">
@@ -1309,7 +1318,7 @@
     <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlAgreementBigRights.resx">
+    <EmbeddedResource Include="_trash\MiddleControlAgreementBigRights.resx">
       <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlAgreementProlType.resx">
@@ -1572,8 +1581,6 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_trash\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

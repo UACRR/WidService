@@ -35,7 +35,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
 
-            _cabinetSmallRightForm.OnGetCustomerNeed += GetAndReturnCustomer;
+            _cabinetSmallRightForm.Update += LoadCustomerCabinet;
             _cabinetSmallRightForm.cabinet.SaveCustomer += SaveCustomer;
             _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
             _cabinetSmallRightForm.cabinet.GetPartner += Cabinet_GetPartner;
@@ -125,12 +125,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
                     }
                 }
             }
-        }
-
-        //оновлення customer за вимогою контролів
-        private Customer GetAndReturnCustomer(int customerId)
-        {
-            return _service.GetData(customerId);
         }
 
         // Додавання нового споживача юридична особа (діалогова форма)

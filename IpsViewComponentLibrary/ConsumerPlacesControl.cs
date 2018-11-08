@@ -249,13 +249,13 @@ namespace ipsAnketaClient
             else
                 rLblName.ForeColor = Color.Black;
 
-            if (_existencePlaces == ExistencePlaces.SinglePlace && txtPlaceValue.Text == string.Empty)
-            {
-                valid = false;
-                lblLocation.ForeColor = Color.FromArgb(180, 255, 0, 2);
-            }
-            else
-                lblLocation.ForeColor = Color.Black;
+            //if (_existencePlaces == ExistencePlaces.SinglePlace && txtPlaceValue.Text == string.Empty)
+            //{
+            //    valid = false;
+            //    lblLocation.ForeColor = Color.FromArgb(180, 255, 0, 2);
+            //}
+            //else
+            //    lblLocation.ForeColor = Color.Black;
 
             if (!addressControl.ValidatorAddressCtrl())
                 valid = false;

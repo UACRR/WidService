@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
-    partial class AddGeneralAgreementBrForm
+    partial class GeneralAgreementBrForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,33 +29,17 @@
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlAgreement = new IpsViewComponentLibrary.MiddleControlAgreementBigRights();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.ctrlAgreement = new IpsViewComponentLibrary.ConsumerControls.BigRight.AgreementBigRight();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctrlAgreement
-            // 
-            this.ctrlAgreement.AgreementAddBrDataSource = typeof(ipsFormsDesign.Model.AgreementAddBr);
-            this.ctrlAgreement.AnketaCompanyDataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            this.ctrlAgreement.DictionaryAgrLicTypeDataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
-            this.ctrlAgreement.DictionaryPeriodPaymentDataSource = typeof(ipsFormsDesign.Model.Period);
-            this.ctrlAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlAgreement.LicAgrDataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
-            this.ctrlAgreement.LicenseAgrParamDataSource = null;
-            this.ctrlAgreement.Location = new System.Drawing.Point(0, 0);
-            this.ctrlAgreement.MaximumSize = new System.Drawing.Size(900, 168);
-            this.ctrlAgreement.MinimumSize = new System.Drawing.Size(500, 168);
-            this.ctrlAgreement.Name = "ctrlAgreement";
-            this.ctrlAgreement.Size = new System.Drawing.Size(567, 168);
-            this.ctrlAgreement.TabIndex = 0;
-            // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(12, 195);
+            this.btnSave.Location = new System.Drawing.Point(15, 195);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 24);
             this.btnSave.TabIndex = 1;
@@ -66,30 +50,40 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(445, 195);
+            this.btnCancel.Location = new System.Drawing.Point(394, 195);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             // 
-            // AddGeneralAgreementBrForm
+            // ctrlAgreement
+            // 
+            this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddBr);
+            this.ctrlAgreement.AnketaCompanyDataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
+            this.ctrlAgreement.Location = new System.Drawing.Point(12, 12);
+            this.ctrlAgreement.Name = "ctrlAgreement";
+            this.ctrlAgreement.PaidPeriodDictionaryDataSource = typeof(ipsFormsDesign.Model.Period);
+            this.ctrlAgreement.Size = new System.Drawing.Size(497, 172);
+            this.ctrlAgreement.TabIndex = 3;
+            // 
+            // GeneralAgreementBrForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(567, 227);
+            this.ClientSize = new System.Drawing.Size(520, 227);
+            this.Controls.Add(this.ctrlAgreement);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.ctrlAgreement);
-            this.MaximumSize = new System.Drawing.Size(575, 258);
-            this.MinimumSize = new System.Drawing.Size(575, 258);
-            this.Name = "AddGeneralAgreementBrForm";
+            this.MaximumSize = new System.Drawing.Size(528, 258);
+            this.MinimumSize = new System.Drawing.Size(528, 258);
+            this.Name = "GeneralAgreementBrForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.RootElement.MaxSize = new System.Drawing.Size(575, 258);
+            this.RootElement.MaxSize = new System.Drawing.Size(528, 258);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Редагування генерального договору";
             this.ThemeName = "Office2013Light";
@@ -103,8 +97,8 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private MiddleControlAgreementBigRights ctrlAgreement;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
+        private ConsumerControls.BigRight.AgreementBigRight ctrlAgreement;
     }
 }

@@ -169,8 +169,9 @@
             // ctrlAgreementMain
             // 
             this.ctrlAgreementMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.BigRights;
-            this.ctrlAgreementMain.DataSourceBr = this.bsAgreementAddBr;
+            this.ctrlAgreementMain.AgreementName = "";
             this.ctrlAgreementMain.DateEndNullDate = new System.DateTime(((long)(0)));
+            this.ctrlAgreementMain.DateEndNullText = "";
             this.ctrlAgreementMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
             this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 36);
             this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);

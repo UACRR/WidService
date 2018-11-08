@@ -18,6 +18,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private LicenseAgreement _licenseAgreement;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
+        // delete this
         public ProlongationGeneralAgreement(LicenseAgreement licenseAgreement, string clientName)
         {
             InitializeComponent();
@@ -28,6 +29,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             if (!IsDesignMode)
                 bsDictPaidPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
             BeginBindings();
+
         }
 
         private void BeginBindings()

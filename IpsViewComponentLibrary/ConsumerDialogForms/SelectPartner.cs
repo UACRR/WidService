@@ -33,11 +33,22 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             List<PartnerList> listTemp = new List<PartnerList>();
             foreach (var customer in _customers)
             {
-                var person = customer.Person?.AnketaPerson?.SingleOrDefault();
+                string name = string.Empty;
+                if (customer.CustType == 1)
+                {
+                    var partner = customer.Person?.AnketaPerson?.SingleOrDefault();
+                    name = partner?.LastName + " " + partner?.FirstName + " " + partner?.SurName;
+                }
+                else if (customer.CustType == 3)
+                {
+                    var company = customer.Company?.AnketaCompany?.SingleOrDefault();
+                    name = company?.Name;
+                }
+
                 listTemp.Add(new PartnerList
                 {
                     CustId = customer.CustId,
-                    PartnerName = person?.LastName + " " + person?.FirstName + " " + person?.SurName,
+                    PartnerName = name,
                 });
             }
             _partnerList = listTemp.OrderBy(rec => rec.PartnerName).ToList();
@@ -55,14 +66,25 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private void UpdateData(int? custId)
         {
             if(custId == null) return;
-
-            var person =  _customers.SingleOrDefault(rec => rec.CustId == custId)?.Person.AnketaPerson.SingleOrDefault();
+            var customer = _customers.SingleOrDefault(rec => rec.CustId == custId);
+            if (customer?.CustType == 1)
+            {
+                var person = customer?.Person.AnketaPerson.SingleOrDefault();
+                lblMobile.Text = person?.PhoneMobileMain;
+                lblEmail.Text = person?.EMail;
+            }
+            else if (customer?.CustType == 3)
+            {
+                var contactperson = customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3)?.Empl;
+                lblMobile.Text = contactperson?.PhoneNumber; //company?.PhoneMobileMain;
+                lblEmail.Text = contactperson?.Email; // person?.EMail;
+            }
+            
             var agreement = _customers.SingleOrDefault(rec => rec.CustId == custId)?.Partner?.AgreementAddPartner.SingleOrDefault();
             lblAgrDate.Text = agreement?.AgrDate?.ToString("d");
             lblAgrStatus.Text = IpsGlobal.AnketaDictionaties?.agreementStatus?.SingleOrDefault(r => r?.CodeI == agreement?.AgrStatus)?.Name;
             lblAgrNumber.Text = agreement?.AgrNumber;
-            lblMobile.Text = person?.PhoneMobileMain;
-            lblEmail.Text = person?.EMail;
+            
         }
 
         private void SelectPartner_Load(object sender, EventArgs e)

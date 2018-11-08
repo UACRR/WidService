@@ -15,17 +15,13 @@ namespace IpsViewComponentLibrary.ConsumerForms
     public partial class CabinetSmallRightForm : Telerik.WinControls.UI.RadForm
     {
         private Customer _customer;
-
-        public delegate Customer GetCustomerEventHandler(int custId);
-        public event GetCustomerEventHandler OnGetCustomerNeed;
-
+        public event UpdateCustomerDataEventHandler Update;
 
         public CabinetSmallRightForm()
         {
             InitializeComponent();
-            cabinet.SetDictionary(IpsGlobal.AnketaDictionaties);
             cabinet.Rights = TypeRights.SmallRights;
-            cabinet.UpdateData += Cabinet_OnUpdateCustomerNeed;
+            cabinet.UpdateData += UpdateData;
         }
 
         public void SetCustomer(Customer customer)
@@ -35,10 +31,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
         }
 
         //оновлення даних
-        private void Cabinet_OnUpdateCustomerNeed(int id)
+        private void UpdateData(int id)
         {
-            _customer = OnGetCustomerNeed?.Invoke(id);
-            cabinet.SetCustomerData(_customer);
+            Update?.Invoke(id);
         }
 
         private void CabinetSmallRightForm_FormClosing(object sender, FormClosingEventArgs e)
