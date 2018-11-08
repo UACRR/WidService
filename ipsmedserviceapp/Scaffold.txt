@@ -257,6 +257,7 @@
 "SpecType",
 "SpecTypeTr",
 "sysdiagrams",
+"sysVersion",
 "TableColumn",
 "TableColumnTech",
 "TableObject",

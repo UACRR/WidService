@@ -272,6 +272,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<SexTypeTr> SexTypeTr { get; set; }
         public virtual DbSet<SpecType> SpecType { get; set; }
         public virtual DbSet<SpecTypeTr> SpecTypeTr { get; set; }
+        public virtual DbSet<SysVersion> SysVersion { get; set; }
         public virtual DbSet<TableColumn> TableColumn { get; set; }
         public virtual DbSet<TableColumnTech> TableColumnTech { get; set; }
         public virtual DbSet<TableObject> TableObject { get; set; }
@@ -2821,9 +2822,8 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
-                    .IsRequired()
                     .HasColumnName("name")
-                    .HasMaxLength(64)
+                    .HasMaxLength(128)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.CodeINavigation)
@@ -3313,6 +3313,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("amount")
                     .HasColumnType("money");
 
+                entity.Property(e => e.CRightId).HasColumnName("cRightId");
+
                 entity.Property(e => e.CRkindCode).HasColumnName("cRKindCode");
 
                 entity.Property(e => e.CourtFee)
@@ -3343,6 +3345,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
+                entity.HasOne(d => d.CRight)
+                    .WithMany(p => p.Distribution)
+                    .HasForeignKey(d => d.CRightId)
+                    .HasConstraintName("FK_DISTRIBUT_REF_COPYRIGHT");
+
                 entity.HasOne(d => d.CRkindCodeNavigation)
                     .WithMany(p => p.Distribution)
                     .HasForeignKey(d => d.CRkindCode)
@@ -3352,7 +3359,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.Cust)
                     .WithMany(p => p.Distribution)
                     .HasForeignKey(d => d.CustId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_DISTRIBU_REFERENCE_CLIENT");
 
                 entity.HasOne(d => d.Partner)
@@ -3384,15 +3390,17 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<DistributionItem>(entity =>
             {
-                entity.HasKey(e => e.DistItemId);
+                entity.HasKey(e => new { e.DistItemId, e.DistId });
 
-                entity.Property(e => e.DistItemId).HasColumnName("distItemId");
+                entity.Property(e => e.DistItemId)
+                    .HasColumnName("distItemId")
+                    .ValueGeneratedOnAdd();
+
+                entity.Property(e => e.DistId).HasColumnName("distId");
 
                 entity.Property(e => e.Amount)
                     .HasColumnName("amount")
                     .HasColumnType("numeric(20, 2)");
-
-                entity.Property(e => e.DistId).HasColumnName("distId");
 
                 entity.Property(e => e.ObjId).HasColumnName("objId");
 
@@ -3571,6 +3579,11 @@ namespace ipsmedserviceapp.Model
                 entity.HasKey(e => e.Emplid);
 
                 entity.Property(e => e.Emplid).HasColumnName("emplid");
+
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -5815,6 +5828,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("custId")
                     .ValueGeneratedNever();
 
+                entity.Property(e => e.IsMy).HasColumnName("isMy");
+
                 entity.HasOne(d => d.Cust)
                     .WithOne(p => p.Partner)
                     .HasForeignKey<Partner>(d => d.CustId)
@@ -6567,7 +6582,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasOne(d => d.Rm)
                     .WithMany(p => p.Register)
                     .HasForeignKey(d => d.RmId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REG_REF_REGRATELIST");
 
                 entity.HasOne(d => d.User)
@@ -6617,6 +6631,10 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
+                entity.Property(e => e.DistId).HasColumnName("distId");
+
+                entity.Property(e => e.DistItemId).HasColumnName("distItemId");
+
                 entity.Property(e => e.ObjId).HasColumnName("objId");
 
                 entity.Property(e => e.PrepaySum)
@@ -6653,6 +6671,11 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.RegisterCount)
                     .HasForeignKey(d => d.CustId)
                     .HasConstraintName("FK_REGISTER_REFERENCE_RIGHTHOL");
+
+                entity.HasOne(d => d.DistI)
+                    .WithMany(p => p.RegisterCount)
+                    .HasForeignKey(d => new { d.DistItemId, d.DistId })
+                    .HasConstraintName("FK_REGISTER_REFERENCE_DISTRIBU");
 
                 entity.HasOne(d => d.RegI)
                     .WithMany(p => p.RegisterCount)
@@ -8419,6 +8442,30 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SPECTYPE_REFERENCE_SPECTYPE");
+            });
+
+            modelBuilder.Entity<SysVersion>(entity =>
+            {
+                entity.HasKey(e => e.VersId);
+
+                entity.ToTable("sysVersion");
+
+                entity.Property(e => e.VersId).HasColumnName("versId");
+
+                entity.Property(e => e.VersCode)
+                    .IsRequired()
+                    .HasColumnName("versCode")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.VersDate)
+                    .HasColumnName("versDate")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.VersName)
+                    .HasColumnName("versName")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TableColumn>(entity =>

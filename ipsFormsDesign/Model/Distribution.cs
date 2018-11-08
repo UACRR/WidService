@@ -24,8 +24,10 @@ namespace ipsFormsDesign.Model
         public bool? IsCourt { get; set; }
         public int? RegIdBr { get; set; }
         public int? DistType { get; set; }
-        public int CustId { get; set; }
+        public int? CustId { get; set; }
+        public int? CRightId { get; set; }
 
+        public CopyRight CRight { get; set; }
         public CopyrightKind CRkindCodeNavigation { get; set; }
         public Client Cust { get; set; }
         public Partner Partner { get; set; }

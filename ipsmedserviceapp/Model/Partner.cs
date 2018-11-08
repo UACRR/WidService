@@ -14,6 +14,7 @@ namespace ipsmedserviceapp.Model
         }
 
         public int CustId { get; set; }
+        public bool? IsMy { get; set; }
 
         public Customer Cust { get; set; }
         public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }

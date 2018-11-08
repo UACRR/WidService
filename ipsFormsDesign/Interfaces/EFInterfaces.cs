@@ -516,8 +516,7 @@ public interface IContinentTr
          string Name { get; set; }
 }
 public interface ICopyRight
-    {
-         int CRightId { get; set; }
+    {    int CRightId { get; set; }
          int CustId { get; set; }
          int? ObjId { get; set; }
          int? LBasis { get; set; }
@@ -736,11 +735,11 @@ public interface IDistribution
          bool? IsCourt { get; set; }
          int? RegIdBr { get; set; }
          int? DistType { get; set; }
-         int CustId { get; set; }
+         int? CustId { get; set; }
+         int? CRightId { get; set; }
 }
 public interface IDistributionItem
-    {
-         int DistId { get; set; }
+    {    int DistId { get; set; }
          int? RegId { get; set; }
          int? RegIitemId { get; set; }
          decimal? Amount { get; set; }
@@ -844,6 +843,7 @@ public interface IEmployee
          string LastName { get; set; }
          string PhoneNumber { get; set; }
          string Email { get; set; }
+         string Comment { get; set; }
 }
 public interface IEpisodeType
     {    int CodeI { get; set; }
@@ -1456,6 +1456,7 @@ public interface IParametersListBox
     }
 public interface IPartner
     {    int CustId { get; set; }
+         bool? IsMy { get; set; }
 }
 public interface IPartnerClient
     {
@@ -1634,7 +1635,7 @@ public interface IRegionTr
 }
 public interface IRegister
     {    int RegId { get; set; }
-         int RmId { get; set; }
+         int? RmId { get; set; }
          string Number { get; set; }
          int CountRows { get; set; }
          int CustId { get; set; }
@@ -1652,7 +1653,7 @@ public interface IRegister
          decimal? AuthAmount { get; set; }
          decimal? AuthRate { get; set; }
          decimal? PaidAmount { get; set; }
-         int LicId { get; set; }
+         int? LicId { get; set; }
          int? SchemaId { get; set; }
          int? AlgorithmId { get; set; }
 }
@@ -1679,6 +1680,8 @@ public interface IRegisterCount
          int? RegIdBr { get; set; }
          int? RegItemIdBr { get; set; }
          decimal? PrepaySum { get; set; }
+         int? DistItemId { get; set; }
+         int? DistId { get; set; }
 }
 public interface IRegisterExtra
     {
@@ -2110,6 +2113,13 @@ public interface ISpecTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface ISysVersion
+    {
+         int VersId { get; set; }
+         string VersCode { get; set; }
+         string VersName { get; set; }
+         DateTime? VersDate { get; set; }
+    }
 public interface ITableColumn
     {
          decimal Id { get; set; }

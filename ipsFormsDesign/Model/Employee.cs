@@ -19,6 +19,7 @@ namespace ipsFormsDesign.Model
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
+        public string Comment { get; set; }
 
         public Customer Cust { get; set; }
         public AspNetUsers User { get; set; }

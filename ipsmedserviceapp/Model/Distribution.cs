@@ -24,8 +24,11 @@ namespace ipsmedserviceapp.Model
         public bool? IsCourt { get; set; }
         public int? RegIdBr { get; set; }
         public int? DistType { get; set; }
-        public int CustId { get; set; }
+        public int? CustId { get; set; }
+        public int? CRightId { get; set; }
 
+        [JsonIgnore]
+        public CopyRight CRight { get; set; }
         [JsonIgnore]
         public CopyrightKind CRkindCodeNavigation { get; set; }
         [JsonIgnore]

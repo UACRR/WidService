@@ -71,6 +71,7 @@
     <item Name="CopyRight">
         <noignore>LicAuthorBr</noignore>
         <noignore>WorkRh</noignore>
+        <noignore>Obj</noignore>
     </item>
     <item Name="WorkRh"></item>
     <item Name="AgreementAddRh"></item>

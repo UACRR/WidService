@@ -5,6 +5,11 @@ namespace ipsmedserviceapp.Model
 {
     public partial class DistributionItem
     {
+        public DistributionItem()
+        {
+            RegisterCount = new HashSet<RegisterCount>();
+        }
+
         public int DistId { get; set; }
         public int? RegId { get; set; }
         public int? RegIitemId { get; set; }
@@ -17,5 +22,6 @@ namespace ipsmedserviceapp.Model
 
         public Distribution Dist { get; set; }
         public ObjectRight Obj { get; set; }
+        public ICollection<RegisterCount> RegisterCount { get; set; }
     }
 }

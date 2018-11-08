@@ -6,6 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class CopyRight : ICopyRight
     {
+        public CopyRight()
+        {
+            Distribution = new ObservableListSource<Distribution>();
+        }
+
         public int CRightId { get; set; }
         public int CustId { get; set; }
         public int? ObjId { get; set; }
@@ -30,6 +35,7 @@ namespace ipsFormsDesign.Model
         public CopyRtranslate CopyRtranslate { get; set; }
         public LicAuthorBr LicAuthorBr { get; set; }
         public WorkRh WorkRh { get; set; }
+        public ObservableListSource<Distribution> Distribution { get; set; }
     }
 }
 

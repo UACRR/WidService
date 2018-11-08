@@ -15,6 +15,7 @@ namespace ipsFormsDesign.Model
         }
 
         public int CustId { get; set; }
+        public bool? IsMy { get; set; }
 
         public Customer Cust { get; set; }
         public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }

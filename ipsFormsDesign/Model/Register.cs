@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Model
         }
 
         public int RegId { get; set; }
-        public int RmId { get; set; }
+        public int? RmId { get; set; }
         public string Number { get; set; }
         public int CountRows { get; set; }
         public int CustId { get; set; }
@@ -32,7 +32,7 @@ namespace ipsFormsDesign.Model
         public decimal? AuthAmount { get; set; }
         public decimal? AuthRate { get; set; }
         public decimal? PaidAmount { get; set; }
-        public int LicId { get; set; }
+        public int? LicId { get; set; }
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
 

@@ -6,6 +6,11 @@ namespace ipsFormsDesign.Model
 {
     public partial class DistributionItem : IDistributionItem
     {
+        public DistributionItem()
+        {
+            RegisterCount = new ObservableListSource<RegisterCount>();
+        }
+
         public int DistId { get; set; }
         public int? RegId { get; set; }
         public int? RegIitemId { get; set; }
@@ -18,6 +23,7 @@ namespace ipsFormsDesign.Model
 
         public Distribution Dist { get; set; }
         public ObjectRight Obj { get; set; }
+        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }
 }
 

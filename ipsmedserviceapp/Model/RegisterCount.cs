@@ -18,10 +18,13 @@ namespace ipsmedserviceapp.Model
         public int? RegIdBr { get; set; }
         public int? RegItemIdBr { get; set; }
         public decimal? PrepaySum { get; set; }
+        public int? DistItemId { get; set; }
+        public int? DistId { get; set; }
 
         public CopyrightKind CRkindCodeNavigation { get; set; }
         public Community CmCust { get; set; }
         public RightHolder Cust { get; set; }
+        public DistributionItem DistI { get; set; }
         public RegisterItem RegI { get; set; }
         public BrRegItem RegINavigation { get; set; }
     }

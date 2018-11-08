@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		sql\createBeginStruct.txt = sql\createBeginStruct.txt
 		sql\FormClassFromView.sql = sql\FormClassFromView.sql
 		sql\getTableNamesForEF.sql = sql\getTableNamesForEF.sql
+		Утіліти\JsonIgnore.xml = Утіліти\JsonIgnore.xml
 		publishModel.ps1 = publishModel.ps1
 		sql\Розподіл.sql = sql\Розподіл.sql
 	EndProjectSection
