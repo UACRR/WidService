@@ -39,18 +39,20 @@ namespace ipsmedserviceapp.Utilities
             if (!list.Any())
                 return;
 
+            var totalBaseAmount = list.Sum(x => amountBasePropertySelector(x));
+            if (!totalBaseAmount.HasValue || totalBaseAmount.Value == 0)
+                return;
+
             var memberSelectorExpression = targetPropertySelector.Body as MemberExpression;
             PropertyInfo propertyInfo;
             propertyInfo = memberSelectorExpression.Member as PropertyInfo;
 
-            var totalBaseAmount = list.Sum(x => amountBasePropertySelector(x));
             decimal totalDistrAmount = 0;
-
             foreach (var item in list)
             {
-                var baseAmount = amountBasePropertySelector(item);
+                var baseAmount = amountBasePropertySelector(item) ?? 0;
 
-                var distrAmount = Math.Round(Amount * baseAmount.Value / totalBaseAmount.Value, 2);
+                var distrAmount = Math.Round(Amount * baseAmount / totalBaseAmount.Value, 2);
 
                 totalDistrAmount += distrAmount;
 
