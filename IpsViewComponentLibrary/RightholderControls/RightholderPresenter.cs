@@ -199,6 +199,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        public void SetAgreementNumber()
+        {
+            if (string.IsNullOrEmpty(_agreementAddRh.AgrNumber))
+                _agreementAddRh.AgrNumber = _customer.RightHolder.InnerCode;
+        }
+
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)
         {
             var selectedRightholder = new RightholderMainView { CustId = _customer.CustId, Name = String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName) }; ;

@@ -15,5 +15,6 @@ namespace ipsFormsDesign.Interfaces
         void AddNewObject(int category);
         void AddExistingObject();
         void UploadFromExcel();
+        void SetAgreementNumber();
     }
 }
