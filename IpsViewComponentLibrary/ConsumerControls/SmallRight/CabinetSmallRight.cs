@@ -57,9 +57,7 @@ namespace IpsViewComponentLibrary
             calculationCtrl.UpdateData += UpdateCustomer;
 
             if (!IsDesignMode)
-            {
                 _dictionaties = IpsGlobal.AnketaDictionaties;
-            }
         }
 
         // оновлдення даних

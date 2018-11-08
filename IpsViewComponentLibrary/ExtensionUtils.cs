@@ -231,7 +231,7 @@ namespace IpsViewComponentLibrary
     /// <summary>
     /// Тип вимірювання майданчика
     /// </summary>
-    public enum MeasurementOfPremises
+    public enum MeasurementOfPlaces
     {
         /// <summary>
         /// Площа

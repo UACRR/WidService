@@ -7,27 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using ipsFormsDesign.Data;
 using IpsViewComponentLibrary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
+using IpsViewComponentLibrary.ConsumerControls.Places;
 
 namespace ipsAnketaClient
 {
     public partial class ConsumerPlacesControl : UserControl
     {
+        private SinglePlaceParameterControl _singlePlaceParameterControl;
+        private MultiplePlaceParameterControl _multiplePlaceParameterControl;
+
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+
         #region FIELDS
         private readonly Size _defaultValueSize = new Size(96,20);
         private TypeInstitution _typeInstitution = TypeInstitution.NonExistentInstitution;
         private ExistencePlaces _existencePlaces;
-        private MeasurementOfPremises _measurementOfPremises = MeasurementOfPremises.Area;
+        private MeasurementOfPlaces _measurementOfPlaces = MeasurementOfPlaces.Area;
         private ClnBusinessPlace _clnBusinessPlace;
         private Customer _data;
         private ObservableListSource<ClnPlaceHoll> _newPlace;
         private IpsPremisesTypeControl _premisesType;
         private TypePlace _typePlace;
-        private AnketaDictionaties _dic;
+        private AnketaDictionaties _dictionaties;
 
         #endregion
 
@@ -37,6 +43,23 @@ namespace ipsAnketaClient
         public ConsumerPlacesControl()
         {
             InitializeComponent();
+
+            if (!IsDesignMode)
+                _dictionaties = IpsGlobal.AnketaDictionaties;
+
+            // ініціалізація контрола з єдиним холом
+            _singlePlaceParameterControl = new SinglePlaceParameterControl
+            {
+                DictionaryRegion = _dictionaties.region,
+                DictionaryTypePlace = _dictionaties.typePlace,
+            };
+
+            // ініціалізація контрола з декількома холами
+            _multiplePlaceParameterControl = new MultiplePlaceParameterControl
+            {
+                DictionaryRegion = _dictionaties.region,
+                DictionaryTypePlace = _dictionaties.typePlace
+            };
         }
 
         #region ALL METHODS
@@ -48,23 +71,23 @@ namespace ipsAnketaClient
         /// <param name="data"></param>
         public void SetGridDataSource(object dataSource, AnketaDictionaties dic )
         {
-            _dic = dic;
+            _dictionaties = dic;
             if (dataSource!=null)
             {
-                rGridViewInstitution.DataSource = new List<ClnBusinessPlace>
+                gvPlaces.DataSource = new List<ClnBusinessPlace>
                 {
                     new ClnBusinessPlace()
                 };
-                rGridViewInstitution.DataSource = dataSource;
+                gvPlaces.DataSource = dataSource;
             }
             else
             {
-                rGridViewInstitution.DataSource = new List<ClnBusinessPlace>();
+                gvPlaces.DataSource = new List<ClnBusinessPlace>();
             }
 
-            rGridViewInstitution.Update();
-            rGridViewInstitution.MasterTemplate.Refresh();
-            rGridViewInstitution.Refresh();
+            gvPlaces.Update();
+            gvPlaces.MasterTemplate.Refresh();
+            gvPlaces.Refresh();
             SetMenuItems();
         }
 
@@ -73,13 +96,12 @@ namespace ipsAnketaClient
         /// </summary>
         private void SetMenuItems()
         {
-            rDropDownBtnAddInst.Items.Clear();
-            foreach (var typePlace in _dic.typePlace )
+            ddBtnAddPlace.Items.Clear();
+            foreach (var typePlace in _dictionaties.typePlace )
             {
-
-                RadMenuItem item = new RadMenuItem( typePlace.Name, typePlace );
+                var item = new RadMenuItem( typePlace.Name, typePlace );
                 item.Click += Item_Click;
-                rDropDownBtnAddInst.Items.Add(item);
+                ddBtnAddPlace.Items.Add(item);
             }
         }
 
@@ -94,10 +116,10 @@ namespace ipsAnketaClient
             if(!(objTag?.Tag is TypePlace typePlace)) return;
 
             //тип вимірювання майданчика
-            _measurementOfPremises = typePlace.ParamType == 1 ? MeasurementOfPremises.Area 
-                                   : typePlace.ParamType == 2 ? MeasurementOfPremises.Number
-                                   : typePlace.ParamType == 3 ? MeasurementOfPremises.Other
-                                   : MeasurementOfPremises.Empty;
+            _measurementOfPlaces = typePlace.ParamType == 1 ? MeasurementOfPlaces.Area 
+                                   : typePlace.ParamType == 2 ? MeasurementOfPlaces.Number
+                                   : typePlace.ParamType == 3 ? MeasurementOfPlaces.Other
+                                   : MeasurementOfPlaces.Empty;
 
             //багато чи один майданчик
             _existencePlaces = typePlace.IsHoll != null && (bool)typePlace.IsHoll ? ExistencePlaces.ManyPlaces : ExistencePlaces.SinglePlace;
@@ -111,9 +133,9 @@ namespace ipsAnketaClient
             _newPlace = new ObservableListSource<ClnPlaceHoll>();
             txtPlaceType.Text = typePlace.Name;
             rPanelAdd.Visible = true;
-            rDropDownBtnAddInst.Enabled = false;
-            rGridViewInstitution.Enabled = false;
-            rBtnEditInst.Enabled = false;
+            ddBtnAddPlace.Enabled = false;
+            gvPlaces.Enabled = false;
+            btnEdit.Enabled = false;
             //конструювання типу додавання приміщень: заклад з холами / заклад з single холом
             switch (_existencePlaces)
             {
@@ -121,11 +143,11 @@ namespace ipsAnketaClient
                 {
                     txtPlaceValue.Visible = true;
                     lblLocation.Visible = true;
-                    lblLocation.Text = _measurementOfPremises == MeasurementOfPremises.Area ? "Площа"
-                                     : _measurementOfPremises == MeasurementOfPremises.Number ? "Кількість місць"
-                                     : _measurementOfPremises == MeasurementOfPremises.Other ? "Інше"
+                    lblLocation.Text = _measurementOfPlaces == MeasurementOfPlaces.Area ? "Площа"
+                                     : _measurementOfPlaces == MeasurementOfPlaces.Number ? "Кількість місць"
+                                     : _measurementOfPlaces == MeasurementOfPlaces.Other ? "Інше"
                                      : string.Empty;
-                    if(_measurementOfPremises == MeasurementOfPremises.Other)
+                    if(_measurementOfPlaces == MeasurementOfPlaces.Other)
                         txtPlaceValue.Size = txtPlaceValue.MaximumSize;
                     rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
                     CreateNewPlace();
@@ -161,7 +183,7 @@ namespace ipsAnketaClient
             lblLocation.Visible = false;
             lblLocation.Text = string.Empty;
 
-            _premisesType = new IpsPremisesTypeControl(_measurementOfPremises);
+            _premisesType = new IpsPremisesTypeControl(_measurementOfPlaces);
             
             _premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
             _premisesType.Location = new Point(10, 155); 
@@ -203,7 +225,7 @@ namespace ipsAnketaClient
         private void SetDefaultState()
         {
             rPanelAdd.Visible = false;
-            rDropDownBtnAddInst.Enabled = true;
+            ddBtnAddPlace.Enabled = true;
             txtPlaceName.Clear();
             txtPlaceType.Clear();
             txtPlaceValue.Clear();
@@ -221,17 +243,17 @@ namespace ipsAnketaClient
             rLblName.ForeColor = Color.Black;
             lblLocation.ForeColor = Color.Black;
             addressControl.DefaultColorLabels();
-            rGridViewInstitution.Enabled = true;
-            rBtnEditInst.Enabled = true;
-            btnDeletePlace.Enabled = true;
+            gvPlaces.Enabled = true;
+            btnEdit.Enabled = true;
+            btnDelete.Enabled = true;
             _newPlace = new ObservableListSource<ClnPlaceHoll>();
 
             if(_data?.Client?.ClnBusinessPlace?.Count != 0)
-                SetGridDataSource(_data?.Client?.ClnBusinessPlace, _dic );
+                SetGridDataSource(_data?.Client?.ClnBusinessPlace, _dictionaties );
 
             txtPlaceValue.Size = _defaultValueSize;
             _typeInstitution = TypeInstitution.NonExistentInstitution;
-            _measurementOfPremises = MeasurementOfPremises.Area;
+            _measurementOfPlaces = MeasurementOfPlaces.Area;
         }
 
         /// <summary>
@@ -283,28 +305,28 @@ namespace ipsAnketaClient
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void rBtnEditInst_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
-            if(rGridViewInstitution.RowCount == 0)
+            if(gvPlaces.RowCount == 0)
                 return;
             _typeInstitution = TypeInstitution.ExistingInstitution;
 
-            if(rGridViewInstitution.CurrentRow.DataBoundItem is ClnBusinessPlace cln)
+            if(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace cln)
             {
                 if (cln.PlCodeNavigation.CodeI == 1 || cln.PlCodeNavigation.CodeI == 2)
                     _existencePlaces = ExistencePlaces.ManyPlaces;
                 else
                     _existencePlaces = ExistencePlaces.SinglePlace;
 
-                _measurementOfPremises = cln.PlCodeNavigation.ParamType == 1 ? MeasurementOfPremises.Area
-                                       : cln.PlCodeNavigation.ParamType == 2 ? MeasurementOfPremises.Number 
-                                       : cln.PlCodeNavigation.ParamType == 3 ? MeasurementOfPremises.Other
-                                       : MeasurementOfPremises.Empty;
+                _measurementOfPlaces = cln.PlCodeNavigation.ParamType == 1 ? MeasurementOfPlaces.Area
+                                       : cln.PlCodeNavigation.ParamType == 2 ? MeasurementOfPlaces.Number 
+                                       : cln.PlCodeNavigation.ParamType == 3 ? MeasurementOfPlaces.Other
+                                       : MeasurementOfPlaces.Empty;
             }
             
             ClnBusinessPlace localBusinessPlace = new ClnBusinessPlace();
 
-            switch (rGridViewInstitution.CurrentRow.DataBoundItem)
+            switch (gvPlaces.CurrentRow.DataBoundItem)
             {
                 case ClnBusinessPlace businessPlace when (businessPlace.PlCodeNavigation.CodeI == 1 || businessPlace.PlCodeNavigation.CodeI == 2):
                 {
@@ -317,23 +339,23 @@ namespace ipsAnketaClient
                 {
                     localBusinessPlace = businessPlace;
 
-                    switch (_measurementOfPremises)
+                    switch (_measurementOfPlaces)
                     {
-                        case MeasurementOfPremises.Area:
+                        case MeasurementOfPlaces.Area:
                         {
                             txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValuePlace;
                             lblLocation.Text = "Площа";
                         }
                             break;
 
-                        case MeasurementOfPremises.Number:
+                        case MeasurementOfPlaces.Number:
                         {
                             txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValuePlace;
                             lblLocation.Text = "Кількість місць";
                         }
                             break;
 
-                        case MeasurementOfPremises.Other:
+                        case MeasurementOfPlaces.Other:
                         {
                             txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValueAdd;
                             txtPlaceValue.Size = txtPlaceValue.MaximumSize;
@@ -352,10 +374,10 @@ namespace ipsAnketaClient
             addressControl.SetAddressForEditCustomer(localBusinessPlace);
 
             rPanelAdd.Visible = true;
-            rDropDownBtnAddInst.Enabled = false;
-            rGridViewInstitution.Enabled = false;
-            rBtnEditInst.Enabled = false;
-            btnDeletePlace.Enabled = false;
+            ddBtnAddPlace.Enabled = false;
+            gvPlaces.Enabled = false;
+            btnEdit.Enabled = false;
+            btnDelete.Enabled = false;
 
             OnEnabledChangeWhenEditOrAddPremises?.Invoke();
         }
@@ -386,7 +408,7 @@ namespace ipsAnketaClient
             }
             else if (_typeInstitution == TypeInstitution.ExistingInstitution) // існуючий заклад
             {
-                if (rGridViewInstitution.CurrentRow.DataBoundItem is ClnBusinessPlace item)
+                if (gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace item)
                 {
                     item.PlaceName = txtPlaceName.Text;
                     item.PlaceRegion = addressControl.RegionCode;
@@ -409,15 +431,15 @@ namespace ipsAnketaClient
                 var place = itemPlace.ClnPlaceHoll.SingleOrDefault();
                 if (place != null)
                 {
-                    switch (_measurementOfPremises)
+                    switch (_measurementOfPlaces)
                     {
-                        case MeasurementOfPremises.Area:
+                        case MeasurementOfPlaces.Area:
                             place.ValuePlace = txtPlaceValue.Text;
                             break;
-                        case MeasurementOfPremises.Number:
+                        case MeasurementOfPlaces.Number:
                             place.ValuePlace = txtPlaceValue.Text;
                             break;
-                        case MeasurementOfPremises.Other:
+                        case MeasurementOfPlaces.Other:
                             place.ValueAdd = txtPlaceValue.Text;
                             break;
                     }
@@ -433,12 +455,12 @@ namespace ipsAnketaClient
         /// <param name="e"></param>
         private void btnDeletePlace_Click(object sender, EventArgs e)
         {
-            if(rGridViewInstitution.Rows.Count == 0)
+            if(gvPlaces.Rows.Count == 0)
                 return;
             if (MessageBox.Show("Ви дійсно хочете видалити обраний заклад?", "Підтвердження",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             {
-                var deleteItem = rGridViewInstitution.CurrentRow.DataBoundItem as ClnBusinessPlace;
+                var deleteItem = gvPlaces.CurrentRow.DataBoundItem as ClnBusinessPlace;
                 _data.Client.ClnBusinessPlace.Remove(deleteItem);
             }
         }
@@ -453,6 +475,14 @@ namespace ipsAnketaClient
             SetDefaultState();
         }
 
-#endregion
+        #endregion
+
+        // при зміні рядка грід 
+        private void rGridViewInstitution_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            var visible = gvPlaces.RowCount != 0;
+            btnEdit.Enabled = visible;
+            btnDelete.Enabled = visible;
+        }
     }
 }

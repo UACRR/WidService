@@ -162,16 +162,34 @@
     <Compile Include="AddFileDialogForm.Designer.cs">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\Places\MultiplePlaceParameterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\MultiplePlaceParameterControl.Designer.cs">
+      <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\RadioTypePlaceParameterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\RadioTypePlaceParameterControl.Designer.cs">
+      <DependentUpon>RadioTypePlaceParameterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\SinglePlaceParameterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\SinglePlaceParameterControl.Designer.cs">
+      <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.Designer.cs">
       <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddPremisesForm.cs">
+    <Compile Include="ConsumerControls\Places\AddPremisesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddPremisesForm.Designer.cs">
+    <Compile Include="ConsumerControls\Places\AddPremisesForm.Designer.cs">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddressLetter.cs">
@@ -617,10 +635,10 @@
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.Designer.cs">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerPlacesControl.cs">
+    <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerPlacesControl.Designer.cs">
+    <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.Designer.cs">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerTitleControl.cs">
@@ -734,10 +752,10 @@
     <Compile Include="IpsAddressExpandedControl.Designer.cs">
       <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsPremisesTypeControl.cs">
+    <Compile Include="ConsumerControls\Places\IpsPremisesTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsPremisesTypeControl.Designer.cs">
+    <Compile Include="ConsumerControls\Places\IpsPremisesTypeControl.Designer.cs">
       <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsBankAccountControl.cs">
@@ -1035,10 +1053,16 @@
     <EmbeddedResource Include="AddFileDialogForm.resx">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\MultiplePlaceParameterControl.resx">
+      <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\SinglePlaceParameterControl.resx">
+      <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\GeneralAgreementBrForm.resx">
       <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddPremisesForm.resx">
+    <EmbeddedResource Include="ConsumerControls\Places\AddPremisesForm.resx">
       <DependentUpon>AddPremisesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddressLetter.resx">
@@ -1240,7 +1264,7 @@
     <EmbeddedResource Include="ConsumerControls\SmallRight\CalculationInfoControl.resx">
       <DependentUpon>CalculationInfoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerPlacesControl.resx">
+    <EmbeddedResource Include="ConsumerControls\Places\ConsumerPlacesControl.resx">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerTitleControl.resx">
@@ -1297,7 +1321,7 @@
     <EmbeddedResource Include="IpsAddressExpandedControl.resx">
       <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsPremisesTypeControl.resx">
+    <EmbeddedResource Include="ConsumerControls\Places\IpsPremisesTypeControl.resx">
       <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsBankAccountControl.resx">
@@ -1496,12 +1520,14 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Partner.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.PerformType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Region.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterCount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypeVat.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />

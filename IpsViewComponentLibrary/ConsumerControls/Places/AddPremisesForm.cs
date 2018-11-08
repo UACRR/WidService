@@ -18,7 +18,7 @@ namespace ipsAnketaClient
 
         private ClnPlaceHoll _clnPlaceHoll;
         private PremisesFormTypeInitialization _premisesFormTypeFromInitialization = PremisesFormTypeInitialization.CreateNew;
-        private MeasurementOfPremises _measurementPremises;
+        private MeasurementOfPlaces _measurementPlaces;
 
         public event EventHandler OnNeedUpdateDataGrid;
 
@@ -38,13 +38,13 @@ namespace ipsAnketaClient
         /// Конструктор для редагування або додавання приміщення закладу
         /// </summary>
         /// <param name="clnPlaceHoll">Дані майданчиків</param>
-        /// <param name="measurementPremises">Тип вимірювання майданчика</param>
+        /// <param name="measurementPlaces">Тип вимірювання майданчика</param>
         /// <param name="premisesFormTypeFrom">Тип ініціалізованої форми приміщення закладу</param>
-        public AddPremisesForm(ClnPlaceHoll clnPlaceHoll, MeasurementOfPremises measurementPremises, PremisesFormTypeInitialization premisesFormTypeFrom)
+        public AddPremisesForm(ClnPlaceHoll clnPlaceHoll, MeasurementOfPlaces measurementPlaces, PremisesFormTypeInitialization premisesFormTypeFrom)
         {
             InitializeComponent();
             _clnPlaceHoll = clnPlaceHoll;
-            _measurementPremises = measurementPremises;
+            _measurementPlaces = measurementPlaces;
             _premisesFormTypeFromInitialization = premisesFormTypeFrom;
             if (premisesFormTypeFrom == PremisesFormTypeInitialization.Edit)
             {
@@ -99,8 +99,8 @@ namespace ipsAnketaClient
         /// </summary>
         private void SetTypePremises()
         {
-            lblTitlePlace.Text = _measurementPremises == MeasurementOfPremises.Area ? "Площа"
-                : _measurementPremises == MeasurementOfPremises.Number ? "Кількість місць" : string.Empty;
+            lblTitlePlace.Text = _measurementPlaces == MeasurementOfPlaces.Area ? "Площа"
+                : _measurementPlaces == MeasurementOfPlaces.Number ? "Кількість місць" : string.Empty;
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace ipsAnketaClient
         private void SetEditData()
         {
             txtPlaceName.Text = _clnPlaceHoll.HollName;
-            txtPlaceValue.Text = _measurementPremises == MeasurementOfPremises.Other ? _clnPlaceHoll.ValueAdd : _clnPlaceHoll.ValuePlace;
+            txtPlaceValue.Text = _measurementPlaces == MeasurementOfPlaces.Other ? _clnPlaceHoll.ValueAdd : _clnPlaceHoll.ValuePlace;
         }
 
         /// <summary>
@@ -170,17 +170,17 @@ namespace ipsAnketaClient
         {
             _clnPlaceHoll.HollName = txtPlaceName.Text;
 
-            switch (_measurementPremises)
+            switch (_measurementPlaces)
             {
-                case MeasurementOfPremises.Other:
+                case MeasurementOfPlaces.Other:
                     _clnPlaceHoll.ValueAdd = txtPlaceValue.Text;
                     break;
 
-                case MeasurementOfPremises.Area:
+                case MeasurementOfPlaces.Area:
                     _clnPlaceHoll.ValuePlace = txtPlaceValue.Text;
                     break;
 
-                case MeasurementOfPremises.Number:
+                case MeasurementOfPlaces.Number:
                     _clnPlaceHoll.ValuePlace = txtPlaceValue.Text;
                     break;
             }
