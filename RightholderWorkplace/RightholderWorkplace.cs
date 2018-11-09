@@ -149,13 +149,21 @@ namespace RightholderWorkplace
 
         #region Change rightholders page
 
-        private BindingList<ObjectCopyright> _objectsCopyrightList = new BindingList<ObjectCopyright>();
+        private BindingList<ObjectRightForRightholder> _objects = new BindingList<ObjectRightForRightholder>();
+        private BindingList<ObjectCopyright> _copyrights = new BindingList<ObjectCopyright>();
 
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
-            objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
-            _objectsCopyrightList.Clear();
-            objectCopyrightBindingSource.DataSource = _objectsCopyrightList;
+            objectRightForChangeBindingSource.DataSource = _objects;
+            objectCopyrightBindingSource.DataSource = _copyrights;
+
+            _objects.Clear();
+            _copyrights.Clear();
+
+            foreach (var obj in ctrlRightholdersObjectsForChange.ObjectsRightsList)
+            {
+                _objects.Add(obj);
+            }
         }
 
         private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
@@ -200,7 +208,7 @@ namespace RightholderWorkplace
                 MessageBox.Show("Не можна додати правовласника, з якого передаються об'єкти, в якості правонаступника.");
                 return;
             }
-            if (_objectsCopyrightList.Any(oc => oc.CustId == addedRightholder.CustId))
+            if (_copyrights.Any(oc => oc.CustId == addedRightholder.CustId))
             {
                 MessageBox.Show("Вибраний правовласник вже є в списку правонаступників.");
                 return;
@@ -224,7 +232,7 @@ namespace RightholderWorkplace
                         Rate = 0,
                         Rightholder = addedRightholder,
                     };
-                    _objectsCopyrightList.Add(newObjectCopyright);
+                    _copyrights.Add(newObjectCopyright);
                 });
 
                 DistributePersent();
@@ -243,7 +251,7 @@ namespace RightholderWorkplace
 
                 var obj = row.DataBoundItem as ObjectRightForRightholder;
 
-                var copyrightList = _objectsCopyrightList.Where(cr => cr.ObjId == obj.ObjId);
+                var copyrightList = _copyrights.Where(cr => cr.ObjId == obj.ObjId);
                 var copyrightCount = copyrightList.Count();
                 double newRate = (obj.RateRh ?? 0) / copyrightCount;
                 double newRoundRate = Math.Round(newRate, 2);
@@ -284,7 +292,7 @@ namespace RightholderWorkplace
 
         private void btnSaveNewCopyrights_Click(object sender, EventArgs e)
         {
-            if (_objectsCopyrightList.Count == 0)
+            if (_copyrights.Count == 0)
             {
                 MessageBox.Show("Додайте нових правонаступників.");
                 return;
@@ -305,7 +313,7 @@ namespace RightholderWorkplace
 
 
             // new copyrighs
-            var groupedCopyright = _objectsCopyrightList
+            var groupedCopyright = _copyrights
                 .Where(oc => oc.Rate != 0)
                 .GroupBy(oc => oc.CustId);
 
@@ -349,7 +357,7 @@ namespace RightholderWorkplace
 
             MessageBox.Show("Зміна правовласників виконана успішно.");
 
-            ctrlRightholdersObjectsForChange.SelectedRightholder = _objectsCopyrightList.FirstOrDefault()?.Rightholder;
+            ctrlRightholdersObjectsForChange.SelectedRightholder = _copyrights.FirstOrDefault()?.Rightholder;
         }
 
         private void btnCancelNewCopyright_Click(object sender, EventArgs e)
