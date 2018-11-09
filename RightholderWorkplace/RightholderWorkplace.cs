@@ -5,6 +5,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using ipsFormsDesign.ViewModels.ObjectsRight;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.RightholderControls;
@@ -26,6 +27,7 @@ namespace RightholderWorkplace
     {
         RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
+        AmountDistributor _persentDistributor = new AmountDistributor();
 
         public RightholderWorkplace()
         {
@@ -75,11 +77,11 @@ namespace RightholderWorkplace
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
             // Change rightholders page init
-            GridViewRelation relation = new GridViewRelation(gvChangeCopyrights.MasterTemplate, gvChangeCopyrightsTemplate);
+            GridViewRelation relation = new GridViewRelation(gvObjectRightForTransfering.MasterTemplate, gvChangeCopyrightsTemplate);
             relation.RelationName = "RightholdersObjects";
             relation.ParentColumnNames.Add("ObjId");
             relation.ChildColumnNames.Add("ObjId");
-            gvChangeCopyrights.Relations.Add(relation);
+            gvObjectRightForTransfering.Relations.Add(relation);
 
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
             dtChangeCopyrightDateTill.Value = DateTime.Now;
@@ -149,13 +151,21 @@ namespace RightholderWorkplace
 
         #region Change rightholders page
 
-        private BindingList<ObjectCopyright> _objectsCopyrightList = new BindingList<ObjectCopyright>();
+        private BindingList<ObjectRightForTransfering> _objects = new BindingList<ObjectRightForTransfering>();
+        private BindingList<ObjectCopyright> _copyrights = new BindingList<ObjectCopyright>();
 
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
-            objectRightForChangeBindingSource.DataSource = ctrlRightholdersObjectsForChange.ObjectsRightsList;
-            _objectsCopyrightList.Clear();
-            objectCopyrightBindingSource.DataSource = _objectsCopyrightList;
+            bsObjectRightForTransfering.DataSource = _objects;
+            objectCopyrightBindingSource.DataSource = _copyrights;
+
+            _objects.Clear();
+            _copyrights.Clear();
+
+            foreach (var obj in ctrlRightholdersObjectsForChange.ObjectsRightsList)
+            {
+                _objects.Add((ObjectRightForTransfering)obj);
+            }
         }
 
         private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
@@ -200,22 +210,19 @@ namespace RightholderWorkplace
                 MessageBox.Show("Не можна додати правовласника, з якого передаються об'єкти, в якості правонаступника.");
                 return;
             }
-            if (_objectsCopyrightList.Any(oc => oc.CustId == addedRightholder.CustId))
+            if (_copyrights.Any(oc => oc.CustId == addedRightholder.CustId))
             {
                 MessageBox.Show("Вибраний правовласник вже є в списку правонаступників.");
                 return;
             }
 
-            var objectsRightsList = ctrlRightholdersObjectsForChange.ObjectsRightsList;
-
-            using (gvChangeCopyrights.DeferRefresh())
+            using (gvObjectRightForTransfering.DeferRefresh())
             {
-
-                objectsRightsList.ForEach(or =>
+                foreach (var obj in _objects)
                 {
                     var newObjectCopyright = new ObjectCopyright
                     {
-                        ObjId = or.ObjId,
+                        ObjId = obj.ObjId,
                         CustId = addedRightholder.CustId,
                         //RoleCode = or.RoleCode, ???
                         InnerCode = addedRightholder.InnerCode,
@@ -224,36 +231,22 @@ namespace RightholderWorkplace
                         Rate = 0,
                         Rightholder = addedRightholder,
                     };
-                    _objectsCopyrightList.Add(newObjectCopyright);
-                });
+                    _copyrights.Add(newObjectCopyright);
+                }
 
                 DistributePersent();
 
-                gvChangeCopyrights.MasterTemplate.ExpandAll();
+                gvObjectRightForTransfering.MasterTemplate.ExpandAll();
             }
         }
 
         private void DistributePersent()
         {
-            foreach (var row in gvChangeCopyrights.Rows)
+            foreach (var obj in _objects.Where(obj => !obj.ManualDistribution).ToList())
             {
-                // if manual distribution is set then continue
-                if (row.Cells["IsManualPersent"].Value != null && (bool)row.Cells["IsManualPersent"].Value)
-                    continue;
+                var copyrightList = _copyrights.Where(cr => cr.ObjId == obj.ObjId);
 
-                var obj = row.DataBoundItem as ObjectRightForRightholder;
-
-                var copyrightList = _objectsCopyrightList.Where(cr => cr.ObjId == obj.ObjId);
-                var copyrightCount = copyrightList.Count();
-                double newRate = (obj.RateRh ?? 0) / copyrightCount;
-                double newRoundRate = Math.Round(newRate, 2);
-                var delta = (newRate - newRoundRate) * copyrightCount;
-
-                foreach (var copyright in copyrightList)
-                {
-                    copyright.Rate = newRoundRate + delta;
-                    delta = 0.0;
-                }
+                _persentDistributor.DistributeByEqualAmount(copyrightList, obj.RateRh, cr => cr.Rate);
             }
         }
 
@@ -272,10 +265,10 @@ namespace RightholderWorkplace
         {
             if (e.Column.Name == "Rate")
             {
-                var parentRow = e.Row.Parent as GridViewHierarchyRowInfo;
+                var parentRow = (GridViewHierarchyRowInfo)e.Row.Parent;
+                var objForTransfering = (ObjectRightForTransfering)parentRow.DataBoundItem;
 
-                // if manual distribution is not set then cancel
-                if (parentRow.Cells["IsManualPersent"].Value == null || !(bool)parentRow.Cells["IsManualPersent"].Value)
+                if (!objForTransfering.ManualDistribution)
                 {
                     e.Cancel = true;
                 }
@@ -284,7 +277,7 @@ namespace RightholderWorkplace
 
         private void btnSaveNewCopyrights_Click(object sender, EventArgs e)
         {
-            if (_objectsCopyrightList.Count == 0)
+            if (_copyrights.Count == 0)
             {
                 MessageBox.Show("Додайте нових правонаступників.");
                 return;
@@ -305,7 +298,7 @@ namespace RightholderWorkplace
 
 
             // new copyrighs
-            var groupedCopyright = _objectsCopyrightList
+            var groupedCopyright = _copyrights
                 .Where(oc => oc.Rate != 0)
                 .GroupBy(oc => oc.CustId);
 
@@ -326,7 +319,7 @@ namespace RightholderWorkplace
                         ObjId = copyright.ObjId,
                         RoleCode = 8, // Правовласник
                         LBasis = 3,
-                        Rate = (decimal)copyright.Rate, // decimal or double?
+                        Rate = copyright.Rate,
                         BeginDate = dtChangeCopyrightDateFrom.Value,
                         EndDate = new DateTime(3000, 1, 1),
                         //ParentId = 
@@ -347,19 +340,20 @@ namespace RightholderWorkplace
 
             var result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
 
-            MessageBox.Show("Зміна правовласників виконана успішно.");
+            if (result)
+            {
+                MessageBox.Show("Передача об'єктів виконана успішно.");
 
-            ctrlRightholdersObjectsForChange.SelectedRightholder = _objectsCopyrightList.FirstOrDefault()?.Rightholder;
+                ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+            }
+            else
+                MessageBox.Show("Не вдалося виконати передачу об'єктів.");
         }
 
         private void btnCancelNewCopyright_Click(object sender, EventArgs e)
         {
             ctrlRightholdersObjectsForChange.SelectedRightholder = null;
-        }
-
-        private void ctrlRightholdersObjectsForChange_EditObjectCommandExecuted(object sender, ObjectRightForRightholder selectedObject)
-        {
-            EditObjectRight(selectedObject);
         }
 
         #endregion
