@@ -340,9 +340,15 @@ namespace RightholderWorkplace
 
             var result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
 
-            MessageBox.Show("Зміна правовласників виконана успішно.");
+            if (result)
+            {
+                MessageBox.Show("Передача об'єктів виконана успішно.");
 
-            ctrlRightholdersObjectsForChange.SelectedRightholder = _copyrights.FirstOrDefault()?.Rightholder;
+                ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
+                ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+            }
+            else
+                MessageBox.Show("Не вдалося виконати передачу об'єктів.");
         }
 
         private void btnCancelNewCopyright_Click(object sender, EventArgs e)
