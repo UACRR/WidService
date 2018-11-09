@@ -108,7 +108,20 @@ namespace IpsViewComponentLibrary.RightholderControls
             _canClose = true;
 
             if (accept)
+            {
                 _customer.Status = 2; // Активний
+                var agreement = _customer.AgreementMaster.FirstOrDefault();
+                if (agreement != null)
+                {
+                    agreement.AgrStatus = 2;
+
+                    var agrRh = agreement.AgreementAddRh.FirstOrDefault();
+                    if (agrRh != null)
+                    {
+                        agrRh.AgrStatus = 2;
+                    }
+                }
+            }
 
             var result = _rightholderService.Save(_customer);
 
@@ -184,6 +197,12 @@ namespace IpsViewComponentLibrary.RightholderControls
                 var _uploader = new ObjectRightLoaderFacade();
                 _uploader.UploadFromExcel(openDialog.FileName);
             }
+        }
+
+        public void SetAgreementNumber()
+        {
+            if (string.IsNullOrEmpty(_agreementAddRh.AgrNumber))
+                _agreementAddRh.AgrNumber = _customer.RightHolder.InnerCode;
         }
 
         private void SelectionView_ObjectSelected(object sender, ObjectRightMainView selectedObject)

@@ -25,7 +25,7 @@ namespace ipsFormsDesign.Dictionary
         public int CustId { get; set; }
         public string NameClient { get; set; }
         public string RoleName { get; set; }
-        public double? RateRh { get; set; }
+        public decimal? RateRh { get; set; }
     }
 
     public class ObjectRightNotAccepted

@@ -206,6 +206,12 @@ namespace IpsViewComponentLibrary.RightholderControls
                 else
                     createRightholderPassportPageView.SelectedPage = createRightholderForeignPassportPage;
             }
+
+            if (mainPageView.SelectedPage == agreementPage)
+            {
+                _presenter.SetAgreementNumber();
+                bsAgreementAddRh.ResetCurrentItem();
+            }
         }
 
         private void ddlTypeMethodGet_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
