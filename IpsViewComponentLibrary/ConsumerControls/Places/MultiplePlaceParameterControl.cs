@@ -69,6 +69,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         }
 
         public object BusinessPlaceDataSource { get; set; }
+
         public MeasurementOfPlaces PlaceType
         {
             get => _placesType;
