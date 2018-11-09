@@ -334,7 +334,7 @@ namespace RightholderWorkplace
                         ObjId = copyright.ObjId,
                         RoleCode = 8, // Правовласник
                         LBasis = 3,
-                        Rate = (decimal)copyright.Rate, // decimal or double?
+                        Rate = copyright.Rate,
                         BeginDate = dtChangeCopyrightDateFrom.Value,
                         EndDate = new DateTime(3000, 1, 1),
                         //ParentId = 
