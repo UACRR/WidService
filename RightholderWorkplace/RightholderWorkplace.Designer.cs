@@ -69,7 +69,7 @@
             this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
             this.btnCancelNewCopyright = new Telerik.WinControls.UI.RadButton();
-            this.dtChangeCopyrightDateTill = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtChangeCopyrightDateTill = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.lblChangeCopyrightDateTill = new Telerik.WinControls.UI.RadLabel();
             this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.RadioPanel();
             this.rdbDeath = new Telerik.WinControls.UI.RadRadioButton();
@@ -77,7 +77,7 @@
             this.rdbAlienation = new Telerik.WinControls.UI.RadRadioButton();
             this.btnSaveNewCopyrights = new Telerik.WinControls.UI.RadButton();
             this.btnAddNewRightholder = new Telerik.WinControls.UI.RadButton();
-            this.dtChangeCopyrightDateFrom = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtChangeCopyrightDateFrom = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.radLabel22 = new Telerik.WinControls.UI.RadLabel();
             this.gvObjectRightForTransfering = new Telerik.WinControls.UI.RadGridView();
             this.bsObjectRightForTransfering = new System.Windows.Forms.BindingSource(this.components);
@@ -506,7 +506,6 @@
             // 
             // rdbTransfer
             // 
-            this.rdbTransfer.Enabled = false;
             this.rdbTransfer.Location = new System.Drawing.Point(108, 3);
             this.rdbTransfer.Name = "rdbTransfer";
             this.rdbTransfer.Size = new System.Drawing.Size(79, 19);
@@ -1014,7 +1013,7 @@
         private Telerik.WinControls.UI.SplitPanel splitPanel6;
         private Telerik.WinControls.UI.RadGridView gvObjectRightForTransfering;
         private Telerik.WinControls.UI.RadLabel radLabel22;
-        private Telerik.WinControls.UI.RadDateTimePicker dtChangeCopyrightDateFrom;
+        private IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker dtChangeCopyrightDateFrom;
         private Telerik.WinControls.UI.RadButton btnAddNewRightholder;
         private Telerik.WinControls.UI.RadButton btnSaveNewCopyrights;
         private System.Windows.Forms.BindingSource objectCopyrightBindingSource;
@@ -1024,7 +1023,7 @@
         private Telerik.WinControls.UI.RadRadioButton rdbDeath;
         private Telerik.WinControls.UI.RadRadioButton rdbTransfer;
         private Telerik.WinControls.UI.RadRadioButton rdbAlienation;
-        private Telerik.WinControls.UI.RadDateTimePicker dtChangeCopyrightDateTill;
+        private IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker dtChangeCopyrightDateTill;
         private Telerik.WinControls.UI.RadLabel lblChangeCopyrightDateTill;
         private Telerik.WinControls.UI.RadContextMenu radContextMenu;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem1;
