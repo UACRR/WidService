@@ -8,7 +8,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
     public partial class PremisesControl : UserControl
     {
-        private MeasurementOfPlaces _measurementOfPlaces;
+        private const string FullCount = "К-сть місць";
+        private const string FullArea = "Площа";
+
+        private MeasurementOfPlaces _measurementOfPlaces = MeasurementOfPlaces.Empty;
         private ClnBusinessPlace _place;
         
         /// <summary>
@@ -17,17 +20,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         public PremisesControl()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// Конструктор з ініціалізацією типу майданчика
-        /// </summary>
-        /// <param name="measurementOfPlaces">Тип майданчика</param>
-        public PremisesControl(MeasurementOfPlaces measurementOfPlaces)
-        {
-            InitializeComponent();
-            _measurementOfPlaces = measurementOfPlaces;
-            SetGridColumnHeaderText(measurementOfPlaces);
         }
 
         /// <summary>
@@ -74,20 +66,24 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         }
 
         /// <summary>
-        /// Вибір режиму відображення (метраж / кількість місць) 
+        /// Тип приміщень (метраж / кількість місць) 
         /// </summary>
         /// <param name="measurement"></param>
-        private void SetGridColumnHeaderText(MeasurementOfPlaces measurement)
+        public MeasurementOfPlaces PlaceType
         {
-            switch (measurement)
+            get => _measurementOfPlaces;
+            set
             {
-                case MeasurementOfPlaces.Number:
-                    rGridViewPremises.Columns["ValuePlace"].HeaderText = "Кількість місць";
-                    break;
+                switch (value)
+                {
+                    case MeasurementOfPlaces.Number:
+                        rGridViewPremises.Columns["ValuePlace"].HeaderText = FullCount;
+                        break;
 
-                case MeasurementOfPlaces.Area:
-                    rGridViewPremises.Columns["ValuePlace"].HeaderText = "Площа";
-                    break;
+                    case MeasurementOfPlaces.Area:
+                        rGridViewPremises.Columns["ValuePlace"].HeaderText = FullArea;
+                        break;
+                }
             }
         }
 

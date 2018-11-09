@@ -275,7 +275,15 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Багато майданчиків
         /// </summary>
-        ManyPlaces
+        ManyPlaces,
+        /// <summary>
+        /// Радіо
+        /// </summary>
+        Radio,
+        /// <summary>
+        /// Empty
+        /// </summary>
+        None
     }
 
     /// <summary>

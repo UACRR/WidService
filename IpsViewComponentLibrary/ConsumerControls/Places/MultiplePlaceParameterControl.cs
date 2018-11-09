@@ -13,15 +13,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
     public partial class MultiplePlaceParameterControl : UserControl, IPlacesControl
     {
 
+        private MeasurementOfPlaces _placesType = MeasurementOfPlaces.Empty;
+
         public event EventHandler SaveChanges;
         public event EventHandler CancelChanges;
 
         public MultiplePlaceParameterControl()
         {
             InitializeComponent();
+            ButtonsVisible = false;
         }
-
-
 
         /// <summary>
         /// Словник регіонів
@@ -58,23 +59,35 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            if(Validator())
-                SaveChanges?.Invoke(sender, e);
+            CancelChanges?.Invoke(sender, e);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            CancelChanges?.Invoke(sender, e);
+            if (Validator())
+                SaveChanges?.Invoke(sender, e);
         }
 
-        public void BeginBindings()
+        public object BusinessPlaceDataSource { get; set; }
+        public MeasurementOfPlaces PlaceType
         {
-            throw new NotImplementedException();
+            get => _placesType;
+            set
+            {
+                _placesType = value;
+                ctrlPremises.PlaceType = value;
+            }
         }
 
-        public Size GetSize()
+        public bool ButtonsVisible
         {
-            return new Size(Size.Width, Size.Width + 5);
+            get => btnSave.Visible && btnCancel.Visible && separatorButtons.Visible;
+            set
+            {
+                btnSave.Visible = value;
+                btnCancel.Visible = value;
+                separatorButtons.Visible = value;
+            }
         }
     }
 }

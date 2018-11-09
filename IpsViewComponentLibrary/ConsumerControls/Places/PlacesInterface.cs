@@ -4,7 +4,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
     public interface IPlacesControl
     {
-        void BeginBindings();
-        Size GetSize();
+        object BusinessPlaceDataSource { get; set; }
+        MeasurementOfPlaces PlaceType { get; set; }
+        bool ButtonsVisible { get; set; }
     }
 }

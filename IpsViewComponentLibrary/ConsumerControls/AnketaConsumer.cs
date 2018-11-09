@@ -97,7 +97,7 @@ namespace IpsViewComponentLibrary
             ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
             ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
             ctrlManagers.SetDataSources(_cust, _anketaDictionaries);   // - - - - - - - -  Керівники
-            ctrlPlaces.SetData(_cust?.Client?.ClnBusinessPlace);  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+            ctrlPlaces.SetData(_cust);  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
             anketaCompanyBindingSource.DataSource = _cust?.Company?.AnketaCompany?.// - - - - - - - - - - - -
                 SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion); // - - - - - -  Майданчики (title)
             ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити

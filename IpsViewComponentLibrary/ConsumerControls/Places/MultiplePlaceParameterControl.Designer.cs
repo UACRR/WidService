@@ -43,10 +43,10 @@
             this.lblRegion = new Telerik.WinControls.UI.RadLabel();
             this.lblTown = new Telerik.WinControls.UI.RadLabel();
             this.txtTownName = new Telerik.WinControls.UI.RadTextBox();
-            this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
+            this.separatorButtons = new Telerik.WinControls.UI.RadSeparator();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.premisesControl1 = new IpsViewComponentLibrary.ConsumerControls.Places.PremisesControl();
+            this.ctrlPremises = new IpsViewComponentLibrary.ConsumerControls.Places.PremisesControl();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).BeginInit();
@@ -62,7 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTownName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorButtons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             this.SuspendLayout();
@@ -205,15 +205,15 @@
             this.txtTownName.TabIndex = 17;
             this.txtTownName.ThemeName = "Office2013Light";
             // 
-            // radSeparator2
+            // separatorButtons
             // 
-            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.separatorButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator2.Location = new System.Drawing.Point(3, 403);
-            this.radSeparator2.Name = "radSeparator2";
-            this.radSeparator2.Size = new System.Drawing.Size(654, 12);
-            this.radSeparator2.TabIndex = 28;
-            this.radSeparator2.ThemeName = "Office2013Light";
+            this.separatorButtons.Location = new System.Drawing.Point(3, 403);
+            this.separatorButtons.Name = "separatorButtons";
+            this.separatorButtons.Size = new System.Drawing.Size(654, 12);
+            this.separatorButtons.TabIndex = 28;
+            this.separatorButtons.ThemeName = "Office2013Light";
             // 
             // btnSave
             // 
@@ -237,22 +237,22 @@
             this.btnCancel.ThemeName = "Office2013Light";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // premisesControl1
+            // ctrlPremises
             // 
-            this.premisesControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ctrlPremises.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.premisesControl1.Location = new System.Drawing.Point(3, 137);
-            this.premisesControl1.MinimumSize = new System.Drawing.Size(450, 260);
-            this.premisesControl1.Name = "premisesControl1";
-            this.premisesControl1.Size = new System.Drawing.Size(654, 260);
-            this.premisesControl1.TabIndex = 29;
+            this.ctrlPremises.Location = new System.Drawing.Point(3, 137);
+            this.ctrlPremises.MinimumSize = new System.Drawing.Size(450, 260);
+            this.ctrlPremises.Name = "ctrlPremises";
+            this.ctrlPremises.Size = new System.Drawing.Size(654, 260);
+            this.ctrlPremises.TabIndex = 29;
             // 
             // MultiplePlaceParameterControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.premisesControl1);
-            this.Controls.Add(this.radSeparator2);
+            this.Controls.Add(this.ctrlPremises);
+            this.Controls.Add(this.separatorButtons);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.rLblTypeInst);
@@ -286,7 +286,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTownName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorButtons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             this.ResumeLayout(false);
@@ -310,9 +310,9 @@
         private Telerik.WinControls.UI.RadLabel lblRegion;
         private Telerik.WinControls.UI.RadLabel lblTown;
         private Telerik.WinControls.UI.RadTextBox txtTownName;
-        private Telerik.WinControls.UI.RadSeparator radSeparator2;
+        private Telerik.WinControls.UI.RadSeparator separatorButtons;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
-        private PremisesControl premisesControl1;
+        private PremisesControl ctrlPremises;
     }
 }

@@ -50,7 +50,7 @@
             this.bsDictTypePlace = new System.Windows.Forms.BindingSource(this.components);
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
+            this.separatorButtons = new Telerik.WinControls.UI.RadSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             this.radSeparator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rLblMainHeader)).BeginInit();
@@ -72,7 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorButtons)).BeginInit();
             this.SuspendLayout();
             // 
             // radSeparator1
@@ -238,9 +238,9 @@
             // titleParametr
             // 
             this.titleParametr.AutoSize = false;
-            this.titleParametr.Location = new System.Drawing.Point(49, 140);
+            this.titleParametr.Location = new System.Drawing.Point(15, 140);
             this.titleParametr.Name = "titleParametr";
-            this.titleParametr.Size = new System.Drawing.Size(60, 17);
+            this.titleParametr.Size = new System.Drawing.Size(94, 17);
             this.titleParametr.TabIndex = 17;
             this.titleParametr.Text = "parametr";
             this.titleParametr.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
@@ -272,21 +272,21 @@
             this.btnCancel.ThemeName = "Office2013Light";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // radSeparator2
+            // separatorButtons
             // 
-            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.separatorButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator2.Location = new System.Drawing.Point(3, 163);
-            this.radSeparator2.Name = "radSeparator2";
-            this.radSeparator2.Size = new System.Drawing.Size(654, 12);
-            this.radSeparator2.TabIndex = 20;
-            this.radSeparator2.ThemeName = "Office2013Light";
+            this.separatorButtons.Location = new System.Drawing.Point(3, 163);
+            this.separatorButtons.Name = "separatorButtons";
+            this.separatorButtons.Size = new System.Drawing.Size(654, 12);
+            this.separatorButtons.TabIndex = 20;
+            this.separatorButtons.ThemeName = "Office2013Light";
             // 
             // SinglePlaceParameterControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radSeparator2);
+            this.Controls.Add(this.separatorButtons);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.titleParametr);
@@ -328,7 +328,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separatorButtons)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,6 +357,6 @@
         private System.Windows.Forms.BindingSource bsDictTypePlace;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
-        private Telerik.WinControls.UI.RadSeparator radSeparator2;
+        private Telerik.WinControls.UI.RadSeparator separatorButtons;
     }
 }

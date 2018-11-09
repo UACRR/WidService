@@ -1,4 +1,4 @@
-﻿namespace ipsAnketaClient
+﻿namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
     partial class ConsumerPlacesControl
     {

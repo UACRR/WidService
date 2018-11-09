@@ -1,4 +1,7 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Windows.Forms;
+using IpsViewComponentLibrary.ConsumerControls.Places;
+
+namespace IpsViewComponentLibrary
 {
     partial class AnketaConsumer
     {
@@ -38,7 +41,7 @@
             this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlPlaces = new ipsAnketaClient.ConsumerPlacesControl();
+            this.ctrlPlaces = new ConsumerPlacesControl();
             this.ctrlPlacesTitle = new Telerik.WinControls.UI.RadLabel();
             this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
@@ -186,13 +189,10 @@
             // 
             // ctrlPlaces
             // 
-            this.ctrlPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlPlaces.Dock = DockStyle.Fill;
             this.ctrlPlaces.AutoSize = true;
             this.ctrlPlaces.Location = new System.Drawing.Point(4, 64);
-            this.ctrlPlaces.MinimumSize = new System.Drawing.Size(800, 512);
             this.ctrlPlaces.Name = "ctrlPlaces";
-            this.ctrlPlaces.Size = new System.Drawing.Size(1005, 512);
             this.ctrlPlaces.TabIndex = 11;
             // 
             // ctrlPlacesTitle
@@ -401,7 +401,7 @@
         private MiddleControlAddress ctrlAddress;
         private MiddleControlManagers ctrlManagers;
         private MiddleControlBankRequisites ctrlBankRequisites;
-        private ipsAnketaClient.ConsumerPlacesControl ctrlPlaces;
+        private ConsumerPlacesControl ctrlPlaces;
         private Telerik.WinControls.UI.RadButton btnLoadPdf;
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;

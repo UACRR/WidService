@@ -23,6 +23,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         public SinglePlaceParameterControl()
         {
             InitializeComponent();
+            ButtonsVisible = false;
         }
 
         /// <summary>
@@ -49,6 +50,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             }
         }
 
+        public bool ButtonsVisible
+        {
+            get => btnSave.Visible && btnCancel.Visible && separatorButtons.Visible;
+            set
+            {
+                btnSave.Visible = value;
+                btnCancel.Visible = value;
+                separatorButtons.Visible = value;
+            }
+        }
 
 
         /// <summary>
@@ -59,6 +70,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             get => bsClnBusinessPlace.DataSource;
             set
             {
+                if (value == null)
+                {
+                    bsClnBusinessPlace.DataSource = typeof(ClnBusinessPlace);
+                    return;
+                }
+
                 bsClnBusinessPlace.DataSource = value;
                 if ((value as ClnBusinessPlace)?.ClnPlaceHoll?.SingleOrDefault() is ClnPlaceHoll placeHoll)
                 {
@@ -111,16 +128,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         private void btnCancel_Click(object sender, EventArgs e)
         {
             CancelChanges?.Invoke(sender, e);
-        }
-
-        public void BeginBindings()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Size GetSize()
-        {
-            return new Size(Size.Width, Size.Width + 5);
         }
     }
 }
