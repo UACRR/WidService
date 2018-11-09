@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
-using ipsAnketaClient;
+using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
@@ -10,59 +11,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
     {
         private const string FullCount = "К-сть місць";
         private const string FullArea = "Площа";
-
+        private PremisesActionsForm _premisesActionsForm;
         private MeasurementOfPlaces _measurementOfPlaces = MeasurementOfPlaces.Empty;
-        private ClnBusinessPlace _place;
         
-        /// <summary>
-        /// Default constructor do not work
-        /// </summary>
         public PremisesControl()
         {
             InitializeComponent();
-        }
-
-        /// <summary>
-        /// ДІЇ КНОПКИ [ДОДАТИ ПРИМІЩЕННЯ]
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void rBtnAddPremises_Click(object sender, EventArgs e)
-        {
-            AddPremisesForm addPremisesFormForm = new AddPremisesForm(new ClnPlaceHoll(), _measurementOfPlaces, PremisesFormTypeInitialization.CreateNew);
-            addPremisesFormForm.StartPosition = FormStartPosition.CenterScreen;
-            addPremisesFormForm.OnNeedUpdateDataGrid += PremisesForm_OnNeedUpdateDataGrid;
-            addPremisesFormForm.OnSaveNewClnPlaceHoll += AddPremisesFormForm_OnSaveNewClnPlaceHoll;
-            addPremisesFormForm.ShowDialog();
-            addPremisesFormForm.OnSaveNewClnPlaceHoll -= AddPremisesFormForm_OnSaveNewClnPlaceHoll;
-            addPremisesFormForm.OnNeedUpdateDataGrid -= PremisesForm_OnNeedUpdateDataGrid;
-            GC.Collect();
-        }
-
-        //додавання нового приміщення
-        private void AddPremisesFormForm_OnSaveNewClnPlaceHoll(ClnPlaceHoll clnPlaceHoll)
-        {
-            if(_place == null)
-                _place = new ClnBusinessPlace();
-            if(_place.ClnPlaceHoll == null)
-                _place.ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>();
-
-            _place.ClnPlaceHoll.Add(clnPlaceHoll);
-        }
-
-        /// <summary>
-        /// Джерело даних для зал майданчиків
-        /// </summary>
-        /// <param name="sourceData"></param>
-        /// <param name="place">Заклади</param>
-        public void SetDataSource(ClnBusinessPlace place)
-        {
-            _place = place;
-
-            var placeList = place.ClnPlaceHoll.list;
-            
-            rGridViewPremises.DataSource = placeList;
-
         }
 
         /// <summary>
@@ -77,62 +31,92 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 switch (value)
                 {
                     case MeasurementOfPlaces.Number:
-                        rGridViewPremises.Columns["ValuePlace"].HeaderText = FullCount;
+                        gvPremises.Columns["ValuePlace"].HeaderText = FullCount;
                         break;
 
                     case MeasurementOfPlaces.Area:
-                        rGridViewPremises.Columns["ValuePlace"].HeaderText = FullArea;
+                        gvPremises.Columns["ValuePlace"].HeaderText = FullArea;
                         break;
                 }
             }
         }
 
-        /// <summary>
-        /// ДІЇ КНОПКИ [РЕДАГУВАТИ ПРИМІЩЕННЯ]
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void rBtnEditPremises_Click(object sender, EventArgs e)
+        public object PlaceHollDataSource
         {
-            if(rGridViewPremises.Rows.Count == 0) return;
+            get => bsClnPlaceHoll.DataSource;
+            set
+            {
+                if (value == null)
+                {
+                    bsClnPlaceHoll.DataSource = typeof(ClnPlaceHoll);
+                    return;
+                }
+                bsClnPlaceHoll.DataSource = value;
+            }
+        }
 
-            var editItem = rGridViewPremises.CurrentRow.DataBoundItem as ClnPlaceHoll;
-            AddPremisesForm editForm = new AddPremisesForm(editItem, _measurementOfPlaces, PremisesFormTypeInitialization.Edit);
-            editForm.StartPosition = FormStartPosition.CenterScreen;
-            editForm.OnNeedUpdateDataGrid += PremisesForm_OnNeedUpdateDataGrid;
-            editForm.ShowDialog();
-            editForm.OnNeedUpdateDataGrid -= PremisesForm_OnNeedUpdateDataGrid;
+        // додати приміщення
+        private void btnAddPremises_Click(object sender, EventArgs e)
+        {
+            var holl = new ClnPlaceHoll();
+            _premisesActionsForm = new PremisesActionsForm(holl, _measurementOfPlaces, PremisesFormTypeInitialization.CreateNew)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            if (_premisesActionsForm.ShowDialog() == DialogResult.OK)
+            {
+                (bsClnPlaceHoll.DataSource as ObservableListSource<ClnPlaceHoll>)?.Add(holl);
+            }
+
+            bsClnPlaceHoll.ResetBindings(true);
+            gvPremises.Refresh();
+
             GC.Collect();
         }
 
-        //оновлення даних на грід
-        private void PremisesForm_OnNeedUpdateDataGrid(object sender, EventArgs e)
+        // редагувати приміщення
+        private void btnEditPremises_Click(object sender, EventArgs e)
         {
-            RefreshGrid();
+            if(gvPremises.Rows.Count == 0) return;
+
+            var editItem = gvPremises.CurrentRow.DataBoundItem as ClnPlaceHoll;
+
+            var temp = new ClnPlaceHoll();
+            temp.SetFields(editItem);
+
+            _premisesActionsForm = new PremisesActionsForm(temp, _measurementOfPlaces, PremisesFormTypeInitialization.Edit)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+
+            if (_premisesActionsForm.ShowDialog() == DialogResult.OK)
+            {
+                editItem.SetFields(temp);
+            }
+
+            gvPremises.MasterTemplate.Refresh();
+            GC.Collect();
         }
 
-        /// <summary>
-        /// ДІЇ КНОПКИ [ВИДАЛЕННЯ ПРИМІЩЕННЯ]
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void radBtnDeletePremises_Click(object sender, EventArgs e)
+        // видалити приміщення
+        private void btnDeletePremises_Click(object sender, EventArgs e)
         {
-            if (rGridViewPremises.Rows.Count == 0) return;
+            if (gvPremises.Rows.Count == 0) return;
 
-            var deleteItem = rGridViewPremises.CurrentRow.DataBoundItem as ClnPlaceHoll;
-            var place = rGridViewPremises.DataSource as ObservableListSource<ClnPlaceHoll>;
-            place?.Remove(deleteItem);
+            var deleteItem = gvPremises.CurrentRow.DataBoundItem as ClnPlaceHoll;
+            (bsClnPlaceHoll.DataSource as ObservableListSource<ClnPlaceHoll>)?.Remove(deleteItem);
+            
+            bsClnPlaceHoll.ResetBindings(true);
+            gvPremises.Refresh();
         }
 
-        /// <summary>
-        /// Оновлення грід
-        /// </summary>
-        public void RefreshGrid()
+        private void gvPremises_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            rGridViewPremises.Update();
-            rGridViewPremises.MasterTemplate.Refresh();
-            rGridViewPremises.Refresh();
+            var visible = gvPremises.RowCount != 0;
+
+            btnEditPremises.Enabled = visible;
+            btnDeletePremises.Enabled = visible;
         }
     }
 }

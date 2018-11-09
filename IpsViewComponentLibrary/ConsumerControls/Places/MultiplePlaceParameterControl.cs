@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
@@ -68,7 +69,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 SaveChanges?.Invoke(sender, e);
         }
 
-        public object BusinessPlaceDataSource { get; set; }
+        public object BusinessPlaceDataSource
+        {
+            get => bsClnBusinessPlace.DataSource;
+            set
+            {
+                if (value == null)
+                {
+                    bsClnBusinessPlace.DataSource = typeof(ClnBusinessPlace);
+                    return;
+                }
+                bsClnBusinessPlace.DataSource = value;
+                ctrlPremises.PlaceHollDataSource = (value as ClnBusinessPlace)?.ClnPlaceHoll;
+                txtPlaceType.Text = (bsDictTypePlace.DataSource as List<TypePlace>)?.SingleOrDefault(rec => rec.CodeI == (value as ClnBusinessPlace)?.PlCode)?.Name;
+            }
+        }
 
         public MeasurementOfPlaces PlaceType
         {

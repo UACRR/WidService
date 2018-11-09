@@ -47,6 +47,7 @@
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.ctrlPremises = new IpsViewComponentLibrary.ConsumerControls.Places.PremisesControl();
+            this.bsClnBusinessPlace = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).BeginInit();
@@ -65,6 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.separatorButtons)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).BeginInit();
             this.SuspendLayout();
             // 
             // bsDictRegion
@@ -111,6 +113,7 @@
             this.txtPlaceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPlaceName.BackColor = System.Drawing.Color.White;
+            this.txtPlaceName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceName", true));
             this.txtPlaceName.Location = new System.Drawing.Point(115, 6);
             this.txtPlaceName.Name = "txtPlaceName";
             this.txtPlaceName.Size = new System.Drawing.Size(542, 21);
@@ -143,6 +146,7 @@
             // 
             this.txtStreet.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceAddress", true));
             this.txtStreet.Location = new System.Drawing.Point(115, 110);
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.NullText = " Назва вулиці / № будинку ";
@@ -152,6 +156,7 @@
             // 
             // ddlRegion
             // 
+            this.ddlRegion.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsClnBusinessPlace, "PlaceRegion", true));
             this.ddlRegion.DataSource = this.bsDictRegion;
             this.ddlRegion.DisplayMember = "Name";
             this.ddlRegion.DropDownMinSize = new System.Drawing.Size(0, 200);
@@ -199,6 +204,7 @@
             // 
             this.txtTownName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtTownName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceCity", true));
             this.txtTownName.Location = new System.Drawing.Point(394, 83);
             this.txtTownName.Name = "txtTownName";
             this.txtTownName.Size = new System.Drawing.Size(263, 21);
@@ -244,8 +250,13 @@
             this.ctrlPremises.Location = new System.Drawing.Point(3, 137);
             this.ctrlPremises.MinimumSize = new System.Drawing.Size(450, 260);
             this.ctrlPremises.Name = "ctrlPremises";
+            this.ctrlPremises.PlaceType = IpsViewComponentLibrary.MeasurementOfPlaces.Empty;
             this.ctrlPremises.Size = new System.Drawing.Size(654, 260);
             this.ctrlPremises.TabIndex = 29;
+            // 
+            // bsClnBusinessPlace
+            // 
+            this.bsClnBusinessPlace.DataSource = typeof(ipsFormsDesign.Model.ClnBusinessPlace);
             // 
             // MultiplePlaceParameterControl
             // 
@@ -289,6 +300,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.separatorButtons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,5 +326,6 @@
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private PremisesControl ctrlPremises;
+        private System.Windows.Forms.BindingSource bsClnBusinessPlace;
     }
 }

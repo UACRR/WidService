@@ -222,6 +222,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 var typePlace = _dictionaties.typePlace.SingleOrDefault(rec => rec.CodeI == place.PlCode);
                 SetupParameterPanel(typePlace);
                 _placesControl.BusinessPlaceDataSource = place;
+                _placesControl.ButtonsVisible = false;
             }
             else
             {

@@ -2,7 +2,7 @@
 using System.Drawing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using IpsViewComponentLibrary;
-using ipsAnketaClient;
+//using ipsAnketaClient;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using WebAPIConnector;

@@ -1,6 +1,8 @@
-﻿namespace ipsAnketaClient
+﻿using System.Windows.Forms;
+
+namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
-    partial class AddPremisesForm
+    partial class PremisesActionsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,43 +30,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rBtnAdd = new Telerik.WinControls.UI.RadButton();
-            this.rBtnCancel = new Telerik.WinControls.UI.RadButton();
+            this.components = new System.ComponentModel.Container();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.lblTypePremisses = new Telerik.WinControls.UI.RadLabel();
             this.lblTitlePlace = new Telerik.WinControls.UI.RadLabel();
             this.txtPlaceName = new Telerik.WinControls.UI.RadTextBox();
             this.txtPlaceValue = new Telerik.WinControls.UI.RadTextBox();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).BeginInit();
+            this.bsClnPlaceHoll = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypePremisses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitlePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // rBtnAdd
+            // btnSave
             // 
-            this.rBtnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnAdd.Location = new System.Drawing.Point(13, 64);
-            this.rBtnAdd.Name = "rBtnAdd";
-            this.rBtnAdd.Size = new System.Drawing.Size(143, 24);
-            this.rBtnAdd.TabIndex = 2;
-            this.rBtnAdd.Text = "Додати приміщення";
-            this.rBtnAdd.ThemeName = "Office2013Light";
-            this.rBtnAdd.Click += new System.EventHandler(this.rBtnAdd_Click);
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSave.Location = new System.Drawing.Point(13, 64);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(143, 24);
+            this.btnSave.TabIndex = 2;
+            this.btnSave.Text = "Додати приміщення";
+            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // rBtnCancel
+            // btnCancel
             // 
-            this.rBtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.rBtnCancel.Location = new System.Drawing.Point(384, 64);
-            this.rBtnCancel.Name = "rBtnCancel";
-            this.rBtnCancel.Size = new System.Drawing.Size(110, 24);
-            this.rBtnCancel.TabIndex = 3;
-            this.rBtnCancel.Text = "Скасувати";
-            this.rBtnCancel.ThemeName = "Office2013Light";
-            this.rBtnCancel.Click += new System.EventHandler(this.rBtnCancel_Click);
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(384, 64);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 24);
+            this.btnCancel.TabIndex = 3;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
             // 
             // lblTypePremisses
             // 
@@ -92,6 +97,7 @@
             // 
             this.txtPlaceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlaceName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnPlaceHoll, "HollName", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtPlaceName.Location = new System.Drawing.Point(120, 12);
             this.txtPlaceName.Name = "txtPlaceName";
             this.txtPlaceName.Size = new System.Drawing.Size(374, 21);
@@ -102,25 +108,31 @@
             // 
             this.txtPlaceValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPlaceValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnPlaceHoll, "ValuePlace", true, DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtPlaceValue.Location = new System.Drawing.Point(120, 36);
             this.txtPlaceValue.Name = "txtPlaceValue";
             this.txtPlaceValue.Size = new System.Drawing.Size(89, 21);
             this.txtPlaceValue.TabIndex = 1;
             this.txtPlaceValue.ThemeName = "Office2013Light";
             // 
-            // AddPremisesForm
+            // bsClnPlaceHoll
+            // 
+            this.bsClnPlaceHoll.DataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
+            // 
+            // PremisesActionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(506, 100);
             this.Controls.Add(this.txtPlaceValue);
             this.Controls.Add(this.txtPlaceName);
             this.Controls.Add(this.lblTitlePlace);
             this.Controls.Add(this.lblTypePremisses);
-            this.Controls.Add(this.rBtnCancel);
-            this.Controls.Add(this.rBtnAdd);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnSave);
             this.MaximumSize = new System.Drawing.Size(514, 132);
-            this.Name = "AddPremisesForm";
+            this.Name = "PremisesActionsForm";
             // 
             // 
             // 
@@ -128,12 +140,13 @@
             this.RootElement.MaxSize = new System.Drawing.Size(514, 132);
             this.Text = "Додати приміщення закладу";
             this.ThemeName = "Office2013Light";
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rBtnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypePremisses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitlePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -142,12 +155,13 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadButton rBtnAdd;
-        private Telerik.WinControls.UI.RadButton rBtnCancel;
+        private Telerik.WinControls.UI.RadButton btnSave;
+        private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadLabel lblTypePremisses;
         private Telerik.WinControls.UI.RadLabel lblTitlePlace;
         private Telerik.WinControls.UI.RadTextBox txtPlaceName;
         private Telerik.WinControls.UI.RadTextBox txtPlaceValue;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private System.Windows.Forms.BindingSource bsClnPlaceHoll;
     }
 }

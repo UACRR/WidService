@@ -187,11 +187,11 @@
     <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.Designer.cs">
       <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\Places\AddPremisesForm.cs">
+    <Compile Include="ConsumerControls\Places\PremisesActionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\Places\AddPremisesForm.Designer.cs">
-      <DependentUpon>AddPremisesForm.cs</DependentUpon>
+    <Compile Include="ConsumerControls\Places\PremisesActionsForm.Designer.cs">
+      <DependentUpon>PremisesActionsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddressLetter.cs">
       <SubType>UserControl</SubType>
@@ -1063,8 +1063,8 @@
     <EmbeddedResource Include="ConsumerDialogForms\GeneralAgreementBrForm.resx">
       <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\Places\AddPremisesForm.resx">
-      <DependentUpon>AddPremisesForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\Places\PremisesActionsForm.resx">
+      <DependentUpon>PremisesActionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>
