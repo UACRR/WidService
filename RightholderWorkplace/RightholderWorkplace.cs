@@ -5,6 +5,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using ipsFormsDesign.ViewModels.ObjectsRight;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.RightholderControls;
@@ -76,11 +77,11 @@ namespace RightholderWorkplace
         private void RightholderWorkplace_Load(object sender, EventArgs e)
         {
             // Change rightholders page init
-            GridViewRelation relation = new GridViewRelation(gvChangeCopyrights.MasterTemplate, gvChangeCopyrightsTemplate);
+            GridViewRelation relation = new GridViewRelation(gvObjectRightForTransfering.MasterTemplate, gvChangeCopyrightsTemplate);
             relation.RelationName = "RightholdersObjects";
             relation.ParentColumnNames.Add("ObjId");
             relation.ChildColumnNames.Add("ObjId");
-            gvChangeCopyrights.Relations.Add(relation);
+            gvObjectRightForTransfering.Relations.Add(relation);
 
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
             dtChangeCopyrightDateTill.Value = DateTime.Now;
@@ -150,12 +151,12 @@ namespace RightholderWorkplace
 
         #region Change rightholders page
 
-        private BindingList<ObjectRightForRightholder> _objects = new BindingList<ObjectRightForRightholder>();
+        private BindingList<ObjectRightForTransfering> _objects = new BindingList<ObjectRightForTransfering>();
         private BindingList<ObjectCopyright> _copyrights = new BindingList<ObjectCopyright>();
 
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
-            objectRightForChangeBindingSource.DataSource = _objects;
+            bsObjectRightForTransfering.DataSource = _objects;
             objectCopyrightBindingSource.DataSource = _copyrights;
 
             _objects.Clear();
@@ -163,7 +164,7 @@ namespace RightholderWorkplace
 
             foreach (var obj in ctrlRightholdersObjectsForChange.ObjectsRightsList)
             {
-                _objects.Add(obj);
+                _objects.Add((ObjectRightForTransfering)obj);
             }
         }
 
@@ -215,7 +216,7 @@ namespace RightholderWorkplace
                 return;
             }
 
-            using (gvChangeCopyrights.DeferRefresh())
+            using (gvObjectRightForTransfering.DeferRefresh())
             {
                 foreach (var obj in _objects)
                 {
@@ -235,14 +236,13 @@ namespace RightholderWorkplace
 
                 DistributePersent();
 
-                gvChangeCopyrights.MasterTemplate.ExpandAll();
+                gvObjectRightForTransfering.MasterTemplate.ExpandAll();
             }
         }
 
         private void DistributePersent()
         {
-            // TODO: exclude objects with manual distribution
-            foreach (var obj in _objects)
+            foreach (var obj in _objects.Where(obj => !obj.ManualDistribution).ToList())
             {
                 var copyrightList = _copyrights.Where(cr => cr.ObjId == obj.ObjId);
 
@@ -265,10 +265,10 @@ namespace RightholderWorkplace
         {
             if (e.Column.Name == "Rate")
             {
-                var parentRow = e.Row.Parent as GridViewHierarchyRowInfo;
+                var parentRow = (GridViewHierarchyRowInfo)e.Row.Parent;
+                var objForTransfering = (ObjectRightForTransfering)parentRow.DataBoundItem;
 
-                // if manual distribution is not set then cancel
-                if (parentRow.Cells["IsManualPersent"].Value == null || !(bool)parentRow.Cells["IsManualPersent"].Value)
+                if (!objForTransfering.ManualDistribution)
                 {
                     e.Cancel = true;
                 }
