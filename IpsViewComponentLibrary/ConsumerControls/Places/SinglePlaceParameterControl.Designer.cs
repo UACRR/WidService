@@ -32,41 +32,47 @@
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.rLblMainHeader = new Telerik.WinControls.UI.RadLabel();
             this.txtStreet = new Telerik.WinControls.UI.RadTextBox();
+            this.bsClnBusinessPlace = new System.Windows.Forms.BindingSource(this.components);
             this.ddlRegion = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsDictRegion = new System.Windows.Forms.BindingSource(this.components);
             this.lblStreet = new Telerik.WinControls.UI.RadLabel();
             this.lblRegion = new Telerik.WinControls.UI.RadLabel();
             this.lblTown = new Telerik.WinControls.UI.RadLabel();
             this.txtTownName = new Telerik.WinControls.UI.RadTextBox();
             this.txtPlaceValue = new Telerik.WinControls.UI.RadTextBox();
+            this.bsClnPlaceHoll = new System.Windows.Forms.BindingSource(this.components);
             this.rLblTypeInst = new Telerik.WinControls.UI.RadLabel();
             this.rLblName = new Telerik.WinControls.UI.RadLabel();
             this.txtPlaceType = new Telerik.WinControls.UI.RadTextBox();
             this.txtPlaceName = new Telerik.WinControls.UI.RadTextBox();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.titleParametr = new Telerik.WinControls.UI.RadLabel();
-            this.bsDictRegion = new System.Windows.Forms.BindingSource(this.components);
-            this.bsClnBusinessPlace = new System.Windows.Forms.BindingSource(this.components);
-            this.bsClnPlaceHoll = new System.Windows.Forms.BindingSource(this.components);
             this.bsDictTypePlace = new System.Windows.Forms.BindingSource(this.components);
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             this.radSeparator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rLblMainHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStreet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStreet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTownName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleParametr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypePlace)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
             this.SuspendLayout();
             // 
             // radSeparator1
@@ -76,7 +82,7 @@
             this.radSeparator1.Controls.Add(this.rLblMainHeader);
             this.radSeparator1.Location = new System.Drawing.Point(5, 58);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(614, 21);
+            this.radSeparator1.Size = new System.Drawing.Size(652, 21);
             this.radSeparator1.TabIndex = 3;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
@@ -99,9 +105,13 @@
             this.txtStreet.Location = new System.Drawing.Point(115, 110);
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.NullText = " Назва вулиці / № будинку ";
-            this.txtStreet.Size = new System.Drawing.Size(504, 21);
+            this.txtStreet.Size = new System.Drawing.Size(542, 21);
             this.txtStreet.TabIndex = 9;
             this.txtStreet.ThemeName = "Office2013Light";
+            // 
+            // bsClnBusinessPlace
+            // 
+            this.bsClnBusinessPlace.DataSource = typeof(ipsFormsDesign.Model.ClnBusinessPlace);
             // 
             // ddlRegion
             // 
@@ -117,6 +127,10 @@
             this.ddlRegion.TabIndex = 7;
             this.ddlRegion.ThemeName = "Office2013Light";
             this.ddlRegion.ValueMember = "CodeI";
+            // 
+            // bsDictRegion
+            // 
+            this.bsDictRegion.DataSource = typeof(ipsFormsDesign.Model.Region);
             // 
             // lblStreet
             // 
@@ -156,7 +170,7 @@
             this.txtTownName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceCity", true));
             this.txtTownName.Location = new System.Drawing.Point(394, 83);
             this.txtTownName.Name = "txtTownName";
-            this.txtTownName.Size = new System.Drawing.Size(225, 21);
+            this.txtTownName.Size = new System.Drawing.Size(263, 21);
             this.txtTownName.TabIndex = 6;
             this.txtTownName.ThemeName = "Office2013Light";
             // 
@@ -172,7 +186,11 @@
             this.txtPlaceValue.RootElement.MaxSize = new System.Drawing.Size(481, 20);
             this.txtPlaceValue.Size = new System.Drawing.Size(78, 20);
             this.txtPlaceValue.TabIndex = 15;
-            this.txtPlaceValue.ThemeName = "Office2007Silver";
+            this.txtPlaceValue.ThemeName = "Office2013Light";
+            // 
+            // bsClnPlaceHoll
+            // 
+            this.bsClnPlaceHoll.DataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
             // 
             // rLblTypeInst
             // 
@@ -213,14 +231,14 @@
             this.txtPlaceName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceName", true));
             this.txtPlaceName.Location = new System.Drawing.Point(115, 6);
             this.txtPlaceName.Name = "txtPlaceName";
-            this.txtPlaceName.Size = new System.Drawing.Size(504, 21);
+            this.txtPlaceName.Size = new System.Drawing.Size(542, 21);
             this.txtPlaceName.TabIndex = 12;
             this.txtPlaceName.ThemeName = "Office2013Light";
             // 
             // titleParametr
             // 
             this.titleParametr.AutoSize = false;
-            this.titleParametr.Location = new System.Drawing.Point(49, 139);
+            this.titleParametr.Location = new System.Drawing.Point(49, 140);
             this.titleParametr.Name = "titleParametr";
             this.titleParametr.Size = new System.Drawing.Size(60, 17);
             this.titleParametr.TabIndex = 17;
@@ -228,26 +246,49 @@
             this.titleParametr.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.titleParametr.ThemeName = "Office2013Light";
             // 
-            // bsDictRegion
-            // 
-            this.bsDictRegion.DataSource = typeof(ipsFormsDesign.Model.Region);
-            // 
-            // bsClnBusinessPlace
-            // 
-            this.bsClnBusinessPlace.DataSource = typeof(ipsFormsDesign.Model.ClnBusinessPlace);
-            // 
-            // bsClnPlaceHoll
-            // 
-            this.bsClnPlaceHoll.DataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
-            // 
             // bsDictTypePlace
             // 
             this.bsDictTypePlace.DataSource = typeof(ipsFormsDesign.Model.TypePlace);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSave.Location = new System.Drawing.Point(3, 180);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(110, 24);
+            this.btnSave.TabIndex = 18;
+            this.btnSave.Text = "Зберегти";
+            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(547, 180);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 24);
+            this.btnCancel.TabIndex = 19;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // radSeparator2
+            // 
+            this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator2.Location = new System.Drawing.Point(3, 163);
+            this.radSeparator2.Name = "radSeparator2";
+            this.radSeparator2.Size = new System.Drawing.Size(654, 12);
+            this.radSeparator2.TabIndex = 20;
+            this.radSeparator2.ThemeName = "Office2013Light";
             // 
             // SinglePlaceParameterControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radSeparator2);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.titleParametr);
             this.Controls.Add(this.txtPlaceValue);
             this.Controls.Add(this.rLblTypeInst);
@@ -261,28 +302,33 @@
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblTown);
             this.Controls.Add(this.txtTownName);
+            this.MaximumSize = new System.Drawing.Size(660, 207);
+            this.MinimumSize = new System.Drawing.Size(520, 207);
             this.Name = "SinglePlaceParameterControl";
-            this.Size = new System.Drawing.Size(622, 162);
+            this.Size = new System.Drawing.Size(660, 207);
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             this.radSeparator1.ResumeLayout(false);
             this.radSeparator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rLblMainHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtStreet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStreet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTownName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.titleParametr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypePlace)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,5 +355,8 @@
         private System.Windows.Forms.BindingSource bsClnBusinessPlace;
         private System.Windows.Forms.BindingSource bsClnPlaceHoll;
         private System.Windows.Forms.BindingSource bsDictTypePlace;
+        private Telerik.WinControls.UI.RadButton btnSave;
+        private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.UI.RadSeparator radSeparator2;
     }
 }

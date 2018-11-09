@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
-    partial class IpsPremisesTypeControl
+    partial class PremisesControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -83,11 +83,11 @@
             gridViewTextBoxColumn2.FieldName = "HollName";
             gridViewTextBoxColumn2.HeaderText = "Тип приміщення";
             gridViewTextBoxColumn2.Name = "HollName";
-            gridViewTextBoxColumn2.Width = 420;
+            gridViewTextBoxColumn2.Width = 425;
             gridViewTextBoxColumn3.FieldName = "ValuePlace";
             gridViewTextBoxColumn3.HeaderText = "Місць";
             gridViewTextBoxColumn3.Name = "ValuePlace";
-            gridViewTextBoxColumn3.Width = 84;
+            gridViewTextBoxColumn3.Width = 85;
             gridViewTextBoxColumn4.FieldName = "PlaceId";
             gridViewTextBoxColumn4.HeaderText = "PlaceId";
             gridViewTextBoxColumn4.IsVisible = false;
@@ -103,7 +103,7 @@
             this.rGridViewPremises.Name = "rGridViewPremises";
             this.rGridViewPremises.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.rGridViewPremises.ReadOnly = true;
-            this.rGridViewPremises.Size = new System.Drawing.Size(529, 192);
+            this.rGridViewPremises.Size = new System.Drawing.Size(535, 192);
             this.rGridViewPremises.TabIndex = 0;
             this.rGridViewPremises.ThemeName = "Office2013Light";
             // 
@@ -124,7 +124,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(179, 9);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(353, 20);
+            this.radSeparator1.Size = new System.Drawing.Size(359, 20);
             this.radSeparator1.TabIndex = 0;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
@@ -142,7 +142,7 @@
             // radBtnDeletePremises
             // 
             this.radBtnDeletePremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.radBtnDeletePremises.Location = new System.Drawing.Point(392, 233);
+            this.radBtnDeletePremises.Location = new System.Drawing.Point(398, 233);
             this.radBtnDeletePremises.Name = "radBtnDeletePremises";
             this.radBtnDeletePremises.Size = new System.Drawing.Size(140, 24);
             this.radBtnDeletePremises.TabIndex = 3;
@@ -150,7 +150,7 @@
             this.radBtnDeletePremises.ThemeName = "Office2013Light";
             this.radBtnDeletePremises.Click += new System.EventHandler(this.radBtnDeletePremises_Click);
             // 
-            // IpsPremisesTypeControl
+            // PremisesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -161,8 +161,8 @@
             this.Controls.Add(this.rGridViewPremises);
             this.Controls.Add(this.rLblPremises);
             this.MinimumSize = new System.Drawing.Size(450, 260);
-            this.Name = "IpsPremisesTypeControl";
-            this.Size = new System.Drawing.Size(535, 260);
+            this.Name = "PremisesControl";
+            this.Size = new System.Drawing.Size(541, 260);
             ((System.ComponentModel.ISupportInitialize)(this.rLblPremises)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewPremises.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rGridViewPremises)).EndInit();

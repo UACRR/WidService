@@ -11,11 +11,14 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
-    public partial class SinglePlaceParameterControl : UserControl
+    public partial class SinglePlaceParameterControl : UserControl, IPlacesControl
     {
         private const string FullCount = "К-сть місць";
         private const string FullArea = "Площа";
         private MeasurementOfPlaces _placesType = MeasurementOfPlaces.Empty;
+
+        public event EventHandler SaveChanges;
+        public event EventHandler CancelChanges;
 
         public SinglePlaceParameterControl()
         {
@@ -82,6 +85,42 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         {
             get => bsDictTypePlace.DataSource;
             set => bsDictTypePlace.DataSource = value;
+        }
+
+        private bool Validator()
+        {
+            bool isValid = true;
+
+            if (txtPlaceName.Text == string.Empty)
+            {
+                isValid = false;
+                rLblName.ForeColor = Color.FromArgb(180, 255, 0, 2);
+            }
+            else
+                rLblName.ForeColor = Color.Black;
+
+            return isValid;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (Validator())
+                SaveChanges?.Invoke(sender, e);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            CancelChanges?.Invoke(sender, e);
+        }
+
+        public void BeginBindings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Size GetSize()
+        {
+            return new Size(Size.Width, Size.Width + 5);
         }
     }
 }

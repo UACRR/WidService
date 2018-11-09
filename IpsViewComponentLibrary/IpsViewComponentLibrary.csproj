@@ -162,6 +162,7 @@
     <Compile Include="AddFileDialogForm.Designer.cs">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\Places\PlacesInterface.cs" />
     <Compile Include="ConsumerControls\Places\MultiplePlaceParameterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -752,11 +753,11 @@
     <Compile Include="IpsAddressExpandedControl.Designer.cs">
       <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\Places\IpsPremisesTypeControl.cs">
+    <Compile Include="ConsumerControls\Places\PremisesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\Places\IpsPremisesTypeControl.Designer.cs">
-      <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
+    <Compile Include="ConsumerControls\Places\PremisesControl.Designer.cs">
+      <DependentUpon>PremisesControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsBankAccountControl.cs">
       <SubType>UserControl</SubType>
@@ -1321,8 +1322,8 @@
     <EmbeddedResource Include="IpsAddressExpandedControl.resx">
       <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\Places\IpsPremisesTypeControl.resx">
-      <DependentUpon>IpsPremisesTypeControl.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\Places\PremisesControl.resx">
+      <DependentUpon>PremisesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsBankAccountControl.resx">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
@@ -1601,6 +1602,8 @@
     <None Include="Resources\angle-double-right-solid.ico" />
     <None Include="Resources\angle-left-solid.ico" />
     <None Include="Resources\angle-right-solid.ico" />
+    <None Include="Resources\angle-double-down-solid.ico" />
+    <None Include="Resources\angle-double-up-solid.ico" />
     <Content Include="Resources\link-solid.ico" />
     <Content Include="Resources\plus-square-solid.ico" />
     <None Include="Resources\print-solid.ico" />

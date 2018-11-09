@@ -13,6 +13,8 @@ using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.ConsumerControls.Places;
+using IpsViewComponentLibrary.Properties;
+using Telerik.WinControls;
 
 namespace ipsAnketaClient
 {
@@ -20,20 +22,20 @@ namespace ipsAnketaClient
     {
         private SinglePlaceParameterControl _singlePlaceParameterControl;
         private MultiplePlaceParameterControl _multiplePlaceParameterControl;
+        private ObservableListSource<ClnBusinessPlace> _clnBusinessPlaces;
+        private readonly AnketaDictionaties _dictionaties;
+        private IPlacesControl _placesControl;
 
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         #region FIELDS
-        private readonly Size _defaultValueSize = new Size(96,20);
         private TypeInstitution _typeInstitution = TypeInstitution.NonExistentInstitution;
         private ExistencePlaces _existencePlaces;
         private MeasurementOfPlaces _measurementOfPlaces = MeasurementOfPlaces.Area;
         private ClnBusinessPlace _clnBusinessPlace;
-        private Customer _data;
         private ObservableListSource<ClnPlaceHoll> _newPlace;
-        private IpsPremisesTypeControl _premisesType;
+        private PremisesControl _premises;
         private TypePlace _typePlace;
-        private AnketaDictionaties _dictionaties;
 
         #endregion
 
@@ -43,6 +45,9 @@ namespace ipsAnketaClient
         public ConsumerPlacesControl()
         {
             InitializeComponent();
+            panelHeader.PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
+            panelParameter.PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
+
 
             if (!IsDesignMode)
                 _dictionaties = IpsGlobal.AnketaDictionaties;
@@ -52,56 +57,55 @@ namespace ipsAnketaClient
             {
                 DictionaryRegion = _dictionaties.region,
                 DictionaryTypePlace = _dictionaties.typePlace,
+                Dock = DockStyle.Fill
             };
+            _singlePlaceParameterControl.SaveChanges += Save_Click;
+            _singlePlaceParameterControl.CancelChanges += Cancel_Click;
 
             // ініціалізація контрола з декількома холами
             _multiplePlaceParameterControl = new MultiplePlaceParameterControl
             {
                 DictionaryRegion = _dictionaties.region,
-                DictionaryTypePlace = _dictionaties.typePlace
+                DictionaryTypePlace = _dictionaties.typePlace,
+                Dock = DockStyle.Fill
             };
+            _multiplePlaceParameterControl.SaveChanges += Save_Click;
+            _multiplePlaceParameterControl.CancelChanges += Cancel_Click;
+
+            ddBtnAddPlace.Items.Clear();
+            foreach (var typePlace in _dictionaties.typePlace)
+            {
+                var item = new RadMenuItem(typePlace.Name, typePlace);
+                item.Click += Item_Click;
+                ddBtnAddPlace.Items.Add(item);
+            }
+            var fromFile = new RadMenuItem("Додати з файлу", null);
+            fromFile.Click += AddPlacesFromFile_Click; ;
+            ddBtnAddPlace.Items.Add(fromFile);
         }
+
+        
+
+        public bool IsEditMode { get; private set; } = false;
 
         #region ALL METHODS
         // * * * PUBLICS
 
         /// <summary>
-        /// Встановити джерело даних для Grid
+        /// Передати дані по майданчиках
         /// </summary>
         /// <param name="data"></param>
-        public void SetGridDataSource(object dataSource, AnketaDictionaties dic )
+        public void SetData(ObservableListSource<ClnBusinessPlace> clnBusinessPlaces)
         {
-            _dictionaties = dic;
-            if (dataSource!=null)
+            if (clnBusinessPlaces == null)
             {
-                gvPlaces.DataSource = new List<ClnBusinessPlace>
-                {
-                    new ClnBusinessPlace()
-                };
-                gvPlaces.DataSource = dataSource;
+                gvPlaces.DataSource = typeof(ObservableListSource<ClnBusinessPlace>);
+                _clnBusinessPlaces = null;
             }
             else
             {
-                gvPlaces.DataSource = new List<ClnBusinessPlace>();
-            }
-
-            gvPlaces.Update();
-            gvPlaces.MasterTemplate.Refresh();
-            gvPlaces.Refresh();
-            SetMenuItems();
-        }
-
-        /// <summary>
-        /// Встановити випадаючі кнопки
-        /// </summary>
-        private void SetMenuItems()
-        {
-            ddBtnAddPlace.Items.Clear();
-            foreach (var typePlace in _dictionaties.typePlace )
-            {
-                var item = new RadMenuItem( typePlace.Name, typePlace );
-                item.Click += Item_Click;
-                ddBtnAddPlace.Items.Add(item);
+                _clnBusinessPlaces = clnBusinessPlaces;
+                gvPlaces.DataSource = _clnBusinessPlaces;
             }
         }
 
@@ -116,23 +120,19 @@ namespace ipsAnketaClient
             if(!(objTag?.Tag is TypePlace typePlace)) return;
 
             //тип вимірювання майданчика
-            _measurementOfPlaces = typePlace.ParamType == 1 ? MeasurementOfPlaces.Area 
-                                   : typePlace.ParamType == 2 ? MeasurementOfPlaces.Number
-                                   : typePlace.ParamType == 3 ? MeasurementOfPlaces.Other
-                                   : MeasurementOfPlaces.Empty;
+            if (typePlace.ParamType != null)
+                _measurementOfPlaces = (MeasurementOfPlaces) typePlace.ParamType;
 
             //багато чи один майданчик
             _existencePlaces = typePlace.IsHoll != null && (bool)typePlace.IsHoll ? ExistencePlaces.ManyPlaces : ExistencePlaces.SinglePlace;
-            //if (typePlace.CodeI == 1 || typePlace.CodeI == 2)
-            //    _existencePlaces = ExistencePlaces.ManyPlaces;
-            //else
-            //    _existencePlaces = ExistencePlaces.SinglePlace;
 
             //ініціалізація об'єктів
             _typePlace = typePlace;
+
+
             _newPlace = new ObservableListSource<ClnPlaceHoll>();
-            txtPlaceType.Text = typePlace.Name;
-            rPanelAdd.Visible = true;
+            //txtPlaceType.Text = typePlace.Name;
+            //rPanelAdd.Visible = true;
             ddBtnAddPlace.Enabled = false;
             gvPlaces.Enabled = false;
             btnEdit.Enabled = false;
@@ -141,53 +141,48 @@ namespace ipsAnketaClient
             {
                 case ExistencePlaces.SinglePlace:
                 {
-                    txtPlaceValue.Visible = true;
-                    lblLocation.Visible = true;
-                    lblLocation.Text = _measurementOfPlaces == MeasurementOfPlaces.Area ? "Площа"
-                                     : _measurementOfPlaces == MeasurementOfPlaces.Number ? "Кількість місць"
-                                     : _measurementOfPlaces == MeasurementOfPlaces.Other ? "Інше"
-                                     : string.Empty;
-                    if(_measurementOfPlaces == MeasurementOfPlaces.Other)
-                        txtPlaceValue.Size = txtPlaceValue.MaximumSize;
-                    rPanelAdd.ClientSize = new Size(rPanelAdd.Width, 215);// без додаткового гріда
-                    CreateNewPlace();
+                    _placesControl = _singlePlaceParameterControl;
+                    if(panelParameter.Controls.Count != 0)
+                        panelParameter.Controls.Clear();
+                    //ResizePanel(_placesControl.GetSize());
+                    panelParameter.Controls.Add(_singlePlaceParameterControl);
                 }
                     break;
 
                 case ExistencePlaces.ManyPlaces:
                 {
-                    InitializePremiseslComponent();
+                    _placesControl = _multiplePlaceParameterControl;
+                    if (panelParameter.Controls.Count != 0)
+                        panelParameter.Controls.Clear();
+                    //ResizePanel(_placesControl.GetSize());
+                    panelParameter.Controls.Add(_multiplePlaceParameterControl);
                 }
                     break;
             }
         }
 
-        /// <summary>
-        /// Встановити дані для контрола
-        /// </summary>
-        /// <param name="Data"></param>
-        public void SetData(Customer Data)
-        {
-            if(Data != null)
-                _data = Data;
-        } 
-
         // * * * PRIVATES
+
+        private void ResizePanel(Size size)
+        {
+            var curentSize = panelParameter.Size;
+            panelParameter.Size = new Size(curentSize.Width, size.Height);
+        }
 
         /// <summary>
         /// Створення контрола з грідом та додаванням нового типу приміщення
         /// </summary>
         private void InitializePremiseslComponent()
         {
-            txtPlaceValue.Visible = false;
-            lblLocation.Visible = false;
-            lblLocation.Text = string.Empty;
+        //    txtPlaceValue.Visible = false;
+        //    lblLocation.Visible = false;
+        //    lblLocation.Text = string.Empty;
 
-            _premisesType = new IpsPremisesTypeControl(_measurementOfPlaces);
+            _premises = new PremisesControl(_measurementOfPlaces);
             
-            _premisesType.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
-            _premisesType.Location = new Point(10, 155); 
-            _premisesType.Width = addressControl.Width;
+            _premises.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top);
+            _premises.Location = new Point(10, 155); 
+            //_premises.Width = addressControl.Width;
 
             // додати новий заклад
             if (_typeInstitution == TypeInstitution.NonExistentInstitution)
@@ -195,11 +190,11 @@ namespace ipsAnketaClient
                 CreateNewPlace();
 
                 if(_clnBusinessPlace != null)
-                    _premisesType.SetDataSource(_clnBusinessPlace);
+                    _premises.SetDataSource(_clnBusinessPlace);
             }
 
-            rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height + 230);//   + 240
-            rPanelAdd.Controls.Add(_premisesType);
+            //rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height + 230);//   + 240
+            //rPanelAdd.Controls.Add(_premises);
         }
 
         /// <summary>
@@ -210,7 +205,7 @@ namespace ipsAnketaClient
             _clnBusinessPlace = new ClnBusinessPlace
             {
                 //PlaceId = 100, //id елемента, null?
-                CustId = _data.Client.CustId,
+                //CustId = _data.Client.CustId,
                 PlCode = _typePlace.CodeI, //код типу закладу,
                 PlaceCountry = "804",
                 FreeEntry = _typePlace.CodeI != 4, // безкоштовний/платний вхід
@@ -224,34 +219,34 @@ namespace ipsAnketaClient
         /// </summary>
         private void SetDefaultState()
         {
-            rPanelAdd.Visible = false;
+            //rPanelAdd.Visible = false;
             ddBtnAddPlace.Enabled = true;
-            txtPlaceName.Clear();
-            txtPlaceType.Clear();
-            txtPlaceValue.Clear();
-            addressControl.SetEmpty();
+            //txtPlaceName.Clear();
+            //txtPlaceType.Clear();
+            //txtPlaceValue.Clear();
+            //addressControl.SetEmpty();
 
-            if (_premisesType != null)
+            if (_premises != null)
             {
-                rPanelAdd.Controls.Remove(_premisesType);
-                rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height - 230);//   - 240
-                rPanelAdd.Refresh();
-                _premisesType.Dispose();
-                _premisesType = null;
+                //rPanelAdd.Controls.Remove(_premises);
+                //rPanelAdd.ClientSize = new Size(rPanelAdd.Width, rPanelAdd.Height - 230);//   - 240
+                //rPanelAdd.Refresh();
+                _premises.Dispose();
+                _premises = null;
                 GC.Collect();
             }
-            rLblName.ForeColor = Color.Black;
-            lblLocation.ForeColor = Color.Black;
-            addressControl.DefaultColorLabels();
+            //rLblName.ForeColor = Color.Black;
+            //lblLocation.ForeColor = Color.Black;
+            //addressControl.DefaultColorLabels();
             gvPlaces.Enabled = true;
             btnEdit.Enabled = true;
             btnDelete.Enabled = true;
             _newPlace = new ObservableListSource<ClnPlaceHoll>();
 
-            if(_data?.Client?.ClnBusinessPlace?.Count != 0)
-                SetGridDataSource(_data?.Client?.ClnBusinessPlace, _dictionaties );
+            //if(_data?.Client?.ClnBusinessPlace?.Count != 0)
+                //SetData(_data?.Client?.ClnBusinessPlace, _dictionaties );
 
-            txtPlaceValue.Size = _defaultValueSize;
+            //txtPlaceValue.Size = _defaultValueSize;
             _typeInstitution = TypeInstitution.NonExistentInstitution;
             _measurementOfPlaces = MeasurementOfPlaces.Area;
         }
@@ -263,13 +258,13 @@ namespace ipsAnketaClient
         private bool Validator()
         {
             bool valid = true;
-            if (txtPlaceName.Text == string.Empty)
-            {
-                valid = false;
-                rLblName.ForeColor = Color.FromArgb(180, 255, 0, 2);
-            }
-            else
-                rLblName.ForeColor = Color.Black;
+            //if (txtPlaceName.Text == string.Empty)
+            //{
+            //    valid = false;
+            //    rLblName.ForeColor = Color.FromArgb(180, 255, 0, 2);
+            //}
+            //else
+            //    rLblName.ForeColor = Color.Black;
 
             //if (_existencePlaces == ExistencePlaces.SinglePlace && txtPlaceValue.Text == string.Empty)
             //{
@@ -279,19 +274,19 @@ namespace ipsAnketaClient
             //else
             //    lblLocation.ForeColor = Color.Black;
 
-            if (!addressControl.ValidatorAddressCtrl())
-                valid = false;
+            //if (!addressControl.ValidatorAddressCtrl())
+            //    valid = false;
 
-            if (!valid)
-            {
-                MessageBox.Show("Деякі поля не можуть бути пустими!", "Заповніть всі поля!",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            //if (!valid)
+            //{
+            //    MessageBox.Show("Деякі поля не можуть бути пустими!", "Заповніть всі поля!",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return false;
+            //}
 
-            rLblName.ForeColor = Color.Black;
-            lblLocation.ForeColor = Color.Black;
-            addressControl.DefaultColorLabels();
+            //rLblName.ForeColor = Color.Black;
+            //lblLocation.ForeColor = Color.Black;
+            //addressControl.DefaultColorLabels();
             return true;
         }
 
@@ -309,6 +304,11 @@ namespace ipsAnketaClient
         {
             if(gvPlaces.RowCount == 0)
                 return;
+
+            IsEditMode = !IsEditMode;
+            ((RadButtonElement)btnEdit.GetChildAt(0)).Image = IsEditMode ? Resources.angle_double_up_solid : Resources.angle_double_down_solid;
+            
+
             _typeInstitution = TypeInstitution.ExistingInstitution;
 
             if(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace cln)
@@ -332,48 +332,48 @@ namespace ipsAnketaClient
                 {
                     localBusinessPlace = businessPlace;
                     InitializePremiseslComponent();
-                    _premisesType.SetDataSource(localBusinessPlace);
+                    _premises.SetDataSource(localBusinessPlace);
                 } break;
 
                 case ClnBusinessPlace businessPlace when (businessPlace.PlCodeNavigation.CodeI > 2):
                 {
                     localBusinessPlace = businessPlace;
 
-                    switch (_measurementOfPlaces)
-                    {
-                        case MeasurementOfPlaces.Area:
-                        {
-                            txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValuePlace;
-                            lblLocation.Text = "Площа";
-                        }
-                            break;
+                    //switch (_measurementOfPlaces)
+                    //{
+                    //    case MeasurementOfPlaces.Area:
+                    //    {
+                    //        txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValuePlace;
+                    //        lblLocation.Text = "Площа";
+                    //    }
+                    //        break;
 
-                        case MeasurementOfPlaces.Number:
-                        {
-                            txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValuePlace;
-                            lblLocation.Text = "Кількість місць";
-                        }
-                            break;
+                    //    case MeasurementOfPlaces.Number:
+                    //    {
+                    //        txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValuePlace;
+                    //        lblLocation.Text = "Кількість місць";
+                    //    }
+                    //        break;
 
-                        case MeasurementOfPlaces.Other:
-                        {
-                            txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValueAdd;
-                            txtPlaceValue.Size = txtPlaceValue.MaximumSize;
-                            lblLocation.Text = "Інше";
-                        }
-                            break;
-                    }
-                    txtPlaceValue.Visible = true;
-                    lblLocation.Visible = true;
+                    //    case MeasurementOfPlaces.Other:
+                    //    {
+                    //        txtPlaceValue.Text = businessPlace?.ClnPlaceHoll?.SingleOrDefault()?.ValueAdd;
+                    //        txtPlaceValue.Size = txtPlaceValue.MaximumSize;
+                    //        lblLocation.Text = "Інше";
+                    //    }
+                    //        break;
+                    //}
+                    //txtPlaceValue.Visible = true;
+                    //lblLocation.Visible = true;
                 } break;
             }
 
-            txtPlaceName.Text = localBusinessPlace.PlaceName;
-            txtPlaceType.Text = localBusinessPlace.PlCodeNavigation.Name;
+            //txtPlaceName.Text = localBusinessPlace.PlaceName;
+            //txtPlaceType.Text = localBusinessPlace.PlCodeNavigation.Name;
 
-            addressControl.SetAddressForEditCustomer(localBusinessPlace);
+            //addressControl.SetAddressForEditCustomer(localBusinessPlace);
 
-            rPanelAdd.Visible = true;
+            //rPanelAdd.Visible = true;
             ddBtnAddPlace.Enabled = false;
             gvPlaces.Enabled = false;
             btnEdit.Enabled = false;
@@ -389,7 +389,7 @@ namespace ipsAnketaClient
         /// <param name="e"></param>
         private void rBtnSave_Click(object sender, EventArgs e)
         {
-            addressControl.SetValues();
+            //addressControl.SetValues();
 
             if (!Validator())
                 return;
@@ -398,22 +398,22 @@ namespace ipsAnketaClient
             {
                 //додати створений заклад
 
-                _clnBusinessPlace.PlaceName = txtPlaceName.Text;
-                _clnBusinessPlace.PlaceRegion = addressControl.RegionCode;
-                _clnBusinessPlace.PlaceCity = addressControl.TownName;
-                _clnBusinessPlace.PlaceAddress = addressControl.StreetName;
+                //_clnBusinessPlace.PlaceName = txtPlaceName.Text;
+                //_clnBusinessPlace.PlaceRegion = addressControl.RegionCode;
+                //_clnBusinessPlace.PlaceCity = addressControl.TownName;
+                //_clnBusinessPlace.PlaceAddress = addressControl.StreetName;
                 TrySetSinglePlaceValues(_clnBusinessPlace);
 
-                _data.Client.ClnBusinessPlace.Add(_clnBusinessPlace);
+                //_data.Client.ClnBusinessPlace.Add(_clnBusinessPlace);
             }
             else if (_typeInstitution == TypeInstitution.ExistingInstitution) // існуючий заклад
             {
                 if (gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace item)
                 {
-                    item.PlaceName = txtPlaceName.Text;
-                    item.PlaceRegion = addressControl.RegionCode;
-                    item.PlaceCity = addressControl.TownName;
-                    item.PlaceAddress = addressControl.StreetName;
+                    //item.PlaceName = txtPlaceName.Text;
+                    //item.PlaceRegion = addressControl.RegionCode;
+                    //item.PlaceCity = addressControl.TownName;
+                    //item.PlaceAddress = addressControl.StreetName;
                     TrySetSinglePlaceValues(item);
                 }
             }
@@ -431,49 +431,55 @@ namespace ipsAnketaClient
                 var place = itemPlace.ClnPlaceHoll.SingleOrDefault();
                 if (place != null)
                 {
-                    switch (_measurementOfPlaces)
-                    {
-                        case MeasurementOfPlaces.Area:
-                            place.ValuePlace = txtPlaceValue.Text;
-                            break;
-                        case MeasurementOfPlaces.Number:
-                            place.ValuePlace = txtPlaceValue.Text;
-                            break;
-                        case MeasurementOfPlaces.Other:
-                            place.ValueAdd = txtPlaceValue.Text;
-                            break;
-                    }
-                    place.HollName = txtPlaceName.Text;
+                    //switch (_measurementOfPlaces)
+                    //{
+                    //    case MeasurementOfPlaces.Area:
+                    //        place.ValuePlace = txtPlaceValue.Text;
+                    //        break;
+                    //    case MeasurementOfPlaces.Number:
+                    //        place.ValuePlace = txtPlaceValue.Text;
+                    //        break;
+                    //    case MeasurementOfPlaces.Other:
+                    //        place.ValueAdd = txtPlaceValue.Text;
+                    //        break;
+                    //}
+                    //place.HollName = txtPlaceName.Text;
                 }
             }
         }
 
-        /// <summary>
-        /// ДІЇ КНОПКИ [ВИДАЛЕННЯ] обраного закладу
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
+        // [ВИДАЛЕННЯ] обраного закладу
         private void btnDeletePlace_Click(object sender, EventArgs e)
         {
             if(gvPlaces.Rows.Count == 0)
                 return;
-            if (MessageBox.Show("Ви дійсно хочете видалити обраний заклад?", "Підтвердження",
-                    MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            if (MessageBox.Show("Ви дійсно хочете видалити обраний заклад?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var deleteItem = gvPlaces.CurrentRow.DataBoundItem as ClnBusinessPlace;
-                _data.Client.ClnBusinessPlace.Remove(deleteItem);
+                _clnBusinessPlaces.Remove(deleteItem);
             }
         }
 
-        /// <summary>
-        /// ДІЇ КНОПКИ [СКАСУВАТИ]
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void rBtnCancel_Click(object sender, EventArgs e)
+        // ДІЇ КНОПКИ [ЗБЕРЕГТИ]
+        private void Save_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        // ДІЇ КНОПКИ [СКАСУВАТИ]
+        private void Cancel_Click(object sender, EventArgs e)
         {
             SetDefaultState();
         }
+
+        // додати майданчик з файлу
+        private void AddPlacesFromFile_Click(object sender, EventArgs e)
+        {
+            // TODO: реалізувати додавання майданчиків з файлу
+        }
+
+
 
         #endregion
 
@@ -483,6 +489,9 @@ namespace ipsAnketaClient
             var visible = gvPlaces.RowCount != 0;
             btnEdit.Enabled = visible;
             btnDelete.Enabled = visible;
+
+            if(IsEditMode)
+            { }
         }
     }
 }

@@ -63,6 +63,16 @@ namespace IpsViewComponentLibrary.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap angle_double_down_solid {
+            get {
+                object obj = ResourceManager.GetObject("angle-double-down-solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap angle_double_left_solid {
             get {
                 object obj = ResourceManager.GetObject("angle-double-left-solid", resourceCulture);
@@ -76,6 +86,16 @@ namespace IpsViewComponentLibrary.Properties {
         internal static System.Drawing.Bitmap angle_double_right_solid {
             get {
                 object obj = ResourceManager.GetObject("angle-double-right-solid", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap angle_double_up_solid {
+            get {
+                object obj = ResourceManager.GetObject("angle-double-up-solid", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

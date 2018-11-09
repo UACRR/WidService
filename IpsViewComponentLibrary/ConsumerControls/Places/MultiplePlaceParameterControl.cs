@@ -10,8 +10,12 @@ using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
-    public partial class MultiplePlaceParameterControl : UserControl
+    public partial class MultiplePlaceParameterControl : UserControl, IPlacesControl
     {
+
+        public event EventHandler SaveChanges;
+        public event EventHandler CancelChanges;
+
         public MultiplePlaceParameterControl()
         {
             InitializeComponent();
@@ -35,6 +39,42 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         {
             get => bsDictTypePlace.DataSource;
             set => bsDictTypePlace.DataSource = value;
+        }
+
+        private bool Validator()
+        {
+            bool isValid = true;
+
+            if (txtPlaceName.Text == string.Empty)
+            {
+                isValid = false;
+                rLblName.ForeColor = Color.FromArgb(180, 255, 0, 2);
+            }
+            else
+                rLblName.ForeColor = Color.Black;
+
+            return isValid;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            if(Validator())
+                SaveChanges?.Invoke(sender, e);
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            CancelChanges?.Invoke(sender, e);
+        }
+
+        public void BeginBindings()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Size GetSize()
+        {
+            return new Size(Size.Width, Size.Width + 5);
         }
     }
 }

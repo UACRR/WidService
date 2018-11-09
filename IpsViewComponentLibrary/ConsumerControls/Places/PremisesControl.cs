@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsAnketaClient;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
-    public partial class IpsPremisesTypeControl : UserControl
+    public partial class PremisesControl : UserControl
     {
         private MeasurementOfPlaces _measurementOfPlaces;
         private ClnBusinessPlace _place;
@@ -21,7 +14,7 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Default constructor do not work
         /// </summary>
-        public IpsPremisesTypeControl()
+        public PremisesControl()
         {
             InitializeComponent();
         }
@@ -30,7 +23,7 @@ namespace IpsViewComponentLibrary
         /// Конструктор з ініціалізацією типу майданчика
         /// </summary>
         /// <param name="measurementOfPlaces">Тип майданчика</param>
-        public IpsPremisesTypeControl(MeasurementOfPlaces measurementOfPlaces)
+        public PremisesControl(MeasurementOfPlaces measurementOfPlaces)
         {
             InitializeComponent();
             _measurementOfPlaces = measurementOfPlaces;

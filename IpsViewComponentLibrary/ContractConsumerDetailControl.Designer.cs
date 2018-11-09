@@ -44,6 +44,7 @@ namespace IpsViewComponentLibrary
             this.txtPercentAutoProl = new Telerik.WinControls.UI.RadTextBox();
             this.rddListPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
             this.rddListTypeAutoProl = new Telerik.WinControls.UI.RadDropDownList();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -55,6 +56,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -130,7 +132,7 @@ namespace IpsViewComponentLibrary
             // 
             this.txtPercentAutoProl.Location = new System.Drawing.Point(411, 52);
             this.txtPercentAutoProl.Name = "txtPercentAutoProl";
-            this.txtPercentAutoProl.Size = new System.Drawing.Size(59, 21);
+            this.txtPercentAutoProl.Size = new System.Drawing.Size(43, 21);
             this.txtPercentAutoProl.TabIndex = 4;
             this.txtPercentAutoProl.ThemeName = "Office2013Light";
             // 
@@ -157,10 +159,20 @@ namespace IpsViewComponentLibrary
             this.rddListTypeAutoProl.ThemeName = "Office2013Light";
             this.rddListTypeAutoProl.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.rddListTypeAutoProl_SelectedIndexChanged);
             // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(459, 52);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(17, 19);
+            this.radLabel5.TabIndex = 6;
+            this.radLabel5.Text = "%";
+            this.radLabel5.ThemeName = "Office2013Light";
+            // 
             // ContractConsumerDetailControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radLabel5);
             this.Controls.Add(this.rddListTypeAutoProl);
             this.Controls.Add(this.rddListPeriodPayment);
             this.Controls.Add(this.txtPercentAutoProl);
@@ -186,6 +198,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,5 +217,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadDropDownList rddListPeriodPayment;
         private Telerik.WinControls.UI.RadDropDownList rddListTypeAutoProl;
         private System.Windows.Forms.BindingSource bsCheckedProlongation;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
     }
 }
