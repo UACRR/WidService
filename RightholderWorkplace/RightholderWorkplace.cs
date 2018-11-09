@@ -26,6 +26,7 @@ namespace RightholderWorkplace
     {
         RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
+        AmountDistributor _persentDistributor = new AmountDistributor();
 
         public RightholderWorkplace()
         {
@@ -214,16 +215,13 @@ namespace RightholderWorkplace
                 return;
             }
 
-            var objectsRightsList = ctrlRightholdersObjectsForChange.ObjectsRightsList;
-
             using (gvChangeCopyrights.DeferRefresh())
             {
-
-                objectsRightsList.ForEach(or =>
+                foreach (var obj in _objects)
                 {
                     var newObjectCopyright = new ObjectCopyright
                     {
-                        ObjId = or.ObjId,
+                        ObjId = obj.ObjId,
                         CustId = addedRightholder.CustId,
                         //RoleCode = or.RoleCode, ???
                         InnerCode = addedRightholder.InnerCode,
@@ -233,7 +231,7 @@ namespace RightholderWorkplace
                         Rightholder = addedRightholder,
                     };
                     _copyrights.Add(newObjectCopyright);
-                });
+                }
 
                 DistributePersent();
 
@@ -243,25 +241,12 @@ namespace RightholderWorkplace
 
         private void DistributePersent()
         {
-            foreach (var row in gvChangeCopyrights.Rows)
+            // TODO: exclude objects with manual distribution
+            foreach (var obj in _objects)
             {
-                // if manual distribution is set then continue
-                if (row.Cells["IsManualPersent"].Value != null && (bool)row.Cells["IsManualPersent"].Value)
-                    continue;
-
-                var obj = row.DataBoundItem as ObjectRightForRightholder;
-
                 var copyrightList = _copyrights.Where(cr => cr.ObjId == obj.ObjId);
-                var copyrightCount = copyrightList.Count();
-                double newRate = (obj.RateRh ?? 0) / copyrightCount;
-                double newRoundRate = Math.Round(newRate, 2);
-                var delta = (newRate - newRoundRate) * copyrightCount;
 
-                foreach (var copyright in copyrightList)
-                {
-                    copyright.Rate = newRoundRate + delta;
-                    delta = 0.0;
-                }
+                _persentDistributor.DistributeByEqualAmount(copyrightList, obj.RateRh, cr => cr.Rate);
             }
         }
 
