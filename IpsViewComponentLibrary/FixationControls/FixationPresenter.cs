@@ -41,7 +41,6 @@ namespace IpsViewComponentLibrary.FixationControls
             _userService = new UserService();
             _percentDistributor = new AmountDistributor();
             _registerService = new RegisterService();
-            _percentDistributor.Amount = 100;
         }
 
         public void ShowNew()
@@ -320,7 +319,7 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             var list = _view.RegisterCountList.Where(rc => rc.RegId == regId && rc.RegIitemId == regItemId).ToList();
 
-            _percentDistributor.DistributeByEqualAmount(list, rc => rc.Rate);
+            _percentDistributor.DistributeByEqualAmount(list, 100, rc => rc.Rate);
         }
 
         private void RemoveRegisterCountForRegisterItem(RegisterItemViewModel registerItem)
