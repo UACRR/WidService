@@ -282,6 +282,12 @@ namespace RightholderWorkplace
                 return;
             }
 
+            if (dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
+            {
+                MessageBox.Show("Вкажіть дату по яку передаються права на обрані об'єкти.");
+                return;
+            }
+            return;
             var rightholders = new List<RightHolder>();
 
             // old rightholder
