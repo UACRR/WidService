@@ -8,7 +8,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Common.Editors
 {
-    class IpsDateTimePicker : RadDateTimePicker
+    public class IpsDateTimePicker : RadDateTimePicker
     {
         public override string ThemeClassName
         {

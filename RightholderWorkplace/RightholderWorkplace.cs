@@ -84,7 +84,6 @@ namespace RightholderWorkplace
             gvObjectRightForTransfering.Relations.Add(relation);
 
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
-            dtChangeCopyrightDateTill.Value = DateTime.Now;
 
             ctrlChangeRightholderOperation.SelectedValue = 3;
         }
