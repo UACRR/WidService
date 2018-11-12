@@ -20,11 +20,12 @@ namespace IpsViewComponentLibrary.RightholderControls
                 {
                     _rightholder = value;
                     UpdateView();
-                    OnRightholderChandged();
+                    OnRightholderChanged();
                 }
             }
         }
 
+        public event CancelEventHandler RightholderChanging;
         public event EventHandler<RightholderMainView> RightholderChanged;
         public event EventHandler<RightholderMainView> ShowAnketaCommandExecuted;
 
@@ -39,6 +40,13 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void ddlSelectedRightholder_PopupOpening(object sender, CancelEventArgs e)
         {
             e.Cancel = true;
+
+            var arg = new CancelEventArgs();
+
+            OnRightholderChanging(arg);
+
+            if (arg.Cancel)
+                return;
 
             using (var selectionView = new RightholderSelectionView())
             {
@@ -72,7 +80,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        protected void OnRightholderChandged()
+        protected void OnRightholderChanging(CancelEventArgs arg)
+        {
+            var handlers = RightholderChanging.GetInvocationList();
+
+            foreach (CancelEventHandler handler in handlers)
+            {
+                handler(this, arg);
+
+                if (arg.Cancel)
+                {
+                    return;
+                }
+            }
+        }
+
+        protected void OnRightholderChanged()
         {
             RightholderChanged?.Invoke(this, _rightholder);
         }

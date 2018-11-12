@@ -13,6 +13,7 @@ using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Drawing;
 using IpsViewComponentLibrary.ObjectRightControls;
+using System.ComponentModel;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -92,6 +93,11 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted;
         public event EventHandler<RightholderMainView> RightholderChanged;
+        public event CancelEventHandler RightholderChanging
+        {
+            add => ctrlRightholderSelector.RightholderChanging += value;
+            remove => ctrlRightholderSelector.RightholderChanging -= value;
+        }
         public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted;
         public event EventHandler MarkedObjectsRightsChanged;
 
