@@ -284,7 +284,16 @@ namespace RightholderWorkplace
             foreach (var obj in list)
             {
                 if (_objects.FirstOrDefault(o => o.ObjId == obj.ObjId) == null)
-                    _objects.Add((ObjectRightForTransfering)obj);
+                {
+                    var objForTransf = (ObjectRightForTransfering)obj;
+
+                    if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer)
+                    {
+                        objForTransf.ManualDistribution = true;
+                    }
+
+                    _objects.Add(objForTransf);
+                }
             }
         }
 
