@@ -430,8 +430,14 @@ namespace RightholderWorkplace
                 MessageBox.Show("Не вдалося виконати передачу об'єктів.");
         }
 
-        private void btnCancelNewCopyright_Click(object sender, EventArgs e)
+        private void btnClearNewCopyright_Click(object sender, EventArgs e)
         {
+            if (_objects.Count != 0)
+            {
+                if (RadMessageBox.Show(this, "Зміни для обраних об'єктів не буде збережено. Продовжити?", "Питання", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.No)
+                    return;
+            }
+
             ctrlRightholdersObjectsForChange.SelectedRightholder = null;
         }
 
