@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
+            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator5 = new Telerik.WinControls.UI.RadSeparator();
@@ -41,8 +42,9 @@
             this.ctrlHeadBoss = new IpsViewComponentLibrary.IpsBossNameContactsControl();
             this.ctrlBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
             this.ctrlContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
-            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).BeginInit();
@@ -66,7 +68,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtSurName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -78,6 +79,11 @@
             this.lblTitle.Size = new System.Drawing.Size(132, 22);
             this.lblTitle.TabIndex = 9;
             this.lblTitle.Text = "Назва «Клієнта»";
+            this.lblTitle.ThemeName = "Office2013Light";
+            // 
+            // anketaCompanyBindingSource
+            // 
+            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // txtOnBasicsIfHeadBoss
             // 
@@ -110,15 +116,17 @@
             this.radSeparator5.Name = "radSeparator5";
             this.radSeparator5.Size = new System.Drawing.Size(595, 21);
             this.radSeparator5.TabIndex = 12;
+            this.radSeparator5.ThemeName = "Office2013Light";
             // 
             // radLabel6
             // 
             this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radLabel6.Location = new System.Drawing.Point(4, 235);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(109, 21);
+            this.radLabel6.Size = new System.Drawing.Size(107, 21);
             this.radLabel6.TabIndex = 13;
             this.radLabel6.Text = "Контактна особа";
+            this.radLabel6.ThemeName = "Office2013Light";
             // 
             // radSeparator4
             // 
@@ -128,6 +136,7 @@
             this.radSeparator4.Name = "radSeparator4";
             this.radSeparator4.Size = new System.Drawing.Size(642, 21);
             this.radSeparator4.TabIndex = 14;
+            this.radSeparator4.ThemeName = "Office2013Light";
             // 
             // radLabel5
             // 
@@ -137,6 +146,7 @@
             this.radLabel5.Size = new System.Drawing.Size(66, 21);
             this.radLabel5.TabIndex = 15;
             this.radLabel5.Text = "Бухгалтер";
+            this.radLabel5.ThemeName = "Office2013Light";
             // 
             // radSeparator3
             // 
@@ -146,6 +156,7 @@
             this.radSeparator3.Name = "radSeparator3";
             this.radSeparator3.Size = new System.Drawing.Size(641, 21);
             this.radSeparator3.TabIndex = 16;
+            this.radSeparator3.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
@@ -155,6 +166,7 @@
             this.radLabel4.Size = new System.Drawing.Size(62, 21);
             this.radLabel4.TabIndex = 17;
             this.radLabel4.Text = "Керівник";
+            this.radLabel4.ThemeName = "Office2013Light";
             // 
             // ctrlHeadBoss
             // 
@@ -163,6 +175,7 @@
             this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlHeadBoss.Location = new System.Drawing.Point(55, 84);
             this.ctrlHeadBoss.Name = "ctrlHeadBoss";
+            this.ctrlHeadBoss.OutsidePhone = false;
             this.ctrlHeadBoss.Size = new System.Drawing.Size(693, 56);
             this.ctrlHeadBoss.TabIndex = 19;
             // 
@@ -235,7 +248,7 @@
             // 
             // 
             // 
-            this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
+            this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
             this.ctrlHeadBoss.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlHeadBoss.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlHeadBoss.TxtSurName.TabIndex = 2;
@@ -247,6 +260,7 @@
             this.ctrlBookkeeper.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlBookkeeper.Location = new System.Drawing.Point(55, 173);
             this.ctrlBookkeeper.Name = "ctrlBookkeeper";
+            this.ctrlBookkeeper.OutsidePhone = false;
             this.ctrlBookkeeper.Size = new System.Drawing.Size(693, 56);
             this.ctrlBookkeeper.TabIndex = 21;
             // 
@@ -319,7 +333,7 @@
             // 
             // 
             // 
-            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
+            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
             this.ctrlBookkeeper.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlBookkeeper.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlBookkeeper.TxtSurName.TabIndex = 2;
@@ -331,6 +345,7 @@
             this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlContactPerson.Location = new System.Drawing.Point(55, 262);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
+            this.ctrlContactPerson.OutsidePhone = false;
             this.ctrlContactPerson.Size = new System.Drawing.Size(693, 56);
             this.ctrlContactPerson.TabIndex = 22;
             // 
@@ -347,6 +362,7 @@
             this.ctrlContactPerson.TxtEmail.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtEmail.Size = new System.Drawing.Size(206, 20);
             this.ctrlContactPerson.TxtEmail.TabIndex = 4;
+            this.ctrlContactPerson.TxtEmail.ThemeName = "Office2013Light";
             // 
             // 
             // 
@@ -403,14 +419,10 @@
             // 
             // 
             // 
-            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 3, 206, 20);
+            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
             this.ctrlContactPerson.TxtSurName.RootElement.StretchVertically = true;
             this.ctrlContactPerson.TxtSurName.Size = new System.Drawing.Size(206, 20);
             this.ctrlContactPerson.TxtSurName.TabIndex = 2;
-            // 
-            // anketaCompanyBindingSource
-            // 
-            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // MiddleControlManagers
             // 
@@ -428,11 +440,12 @@
             this.Controls.Add(this.radSeparator3);
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.lblTitle);
-            this.MaximumSize = new System.Drawing.Size(1200, 343);
-            this.MinimumSize = new System.Drawing.Size(600, 343);
+            this.MaximumSize = new System.Drawing.Size(1200, 600);
+            this.MinimumSize = new System.Drawing.Size(600, 330);
             this.Name = "MiddleControlManagers";
-            this.Size = new System.Drawing.Size(751, 343);
+            this.Size = new System.Drawing.Size(751, 330);
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).EndInit();
@@ -456,7 +469,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtSurName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -477,5 +489,6 @@
         private IpsBossNameContactsControl ctrlBookkeeper;
         private IpsBossNameContactsControl ctrlContactPerson;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

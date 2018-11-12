@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using IpsViewComponentLibrary.ConsumerControls;
+
+namespace IpsViewComponentLibrary
 {
     partial class CabinetBigRight
     {
@@ -31,7 +33,7 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
+            this.ctrlAnketaConsumer = new AnketaConsumer();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();

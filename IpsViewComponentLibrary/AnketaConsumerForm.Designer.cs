@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using IpsViewComponentLibrary.ConsumerControls;
+
+namespace IpsViewComponentLibrary
 {
     partial class AnketaConsumerForm
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlConsumerAnketa = new IpsViewComponentLibrary.AnketaConsumer();
+            this.ctrlConsumerAnketa = new AnketaConsumer();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();

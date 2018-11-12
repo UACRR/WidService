@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using IpsViewComponentLibrary.ConsumerControls;
 
 namespace IpsViewComponentLibrary
 {
@@ -94,7 +95,7 @@ namespace IpsViewComponentLibrary
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAnketaConsumer = new IpsViewComponentLibrary.AnketaConsumer();
+            this.ctrlAnketaConsumer = new AnketaConsumer();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
             this.pvAgent.SuspendLayout();

@@ -36,42 +36,58 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         public ConsumerPlacesControl()
         {
             InitializeComponent();
+            if (!IsDesignMode)
+            {
+                _dictionaties = IpsGlobal.AnketaDictionaties;
+            }
+
             panelHeader.PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
             panelParameter.PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
-
-
-            if (!IsDesignMode)
-                _dictionaties = IpsGlobal.AnketaDictionaties;
 
             // ініціалізація контрола з єдиним холом
             _singlePlaceParameterControl = new SinglePlaceParameterControl
             {
-                DictionaryRegion = _dictionaties.region,
-                DictionaryTypePlace = _dictionaties.typePlace,
+                //DictionaryRegion = _dictionaties.region,
+                //DictionaryTypePlace = _dictionaties.typePlace,
                 Dock = DockStyle.Fill
             };
+            if(_dictionaties != null)
+            {
+                _singlePlaceParameterControl.DictionaryRegion = _dictionaties.region;
+                _singlePlaceParameterControl.DictionaryTypePlace = _dictionaties.typePlace;
+            }
             _singlePlaceParameterControl.SaveChanges += Save_Click;
             _singlePlaceParameterControl.CancelChanges += Cancel_Click;
 
             // ініціалізація контрола з декількома холами
             _multiplePlaceParameterControl = new MultiplePlaceParameterControl
             {
-                DictionaryRegion = _dictionaties.region,
-                DictionaryTypePlace = _dictionaties.typePlace,
+                //DictionaryRegion = _dictionaties.region,
+                //DictionaryTypePlace = _dictionaties.typePlace,
                 Dock = DockStyle.Fill
             };
+            if (_dictionaties != null)
+            {
+                _multiplePlaceParameterControl.DictionaryRegion = _dictionaties.region;
+                _multiplePlaceParameterControl.DictionaryTypePlace = _dictionaties.typePlace;
+            }
             _multiplePlaceParameterControl.SaveChanges += Save_Click;
             _multiplePlaceParameterControl.CancelChanges += Cancel_Click;
 
             _radioPlaceParameterControl = new RadioPlaceParameterControl
             {
-                DictionaryTypePlace = _dictionaties.typePlace,
+                //DictionaryTypePlace = _dictionaties.typePlace,
                 Dock = DockStyle.Fill
             };
+            if (_dictionaties != null)
+            {
+                _radioPlaceParameterControl.DictionaryTypePlace = _dictionaties.typePlace;
+            }
             _radioPlaceParameterControl.SaveChanges += Save_Click;
             _radioPlaceParameterControl.CancelChanges += Cancel_Click;
 
             ddBtnAddPlace.Items.Clear();
+            if(_dictionaties != null)
             foreach (var typePlace in _dictionaties.typePlace)
             {
                 var item = new RadMenuItem(typePlace.Name, typePlace);

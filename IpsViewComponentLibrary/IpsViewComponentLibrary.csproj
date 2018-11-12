@@ -162,6 +162,12 @@
     <Compile Include="AddFileDialogForm.Designer.cs">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ManagersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ManagersControl.Designer.cs">
+      <DependentUpon>ManagersControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\Places\PlacesInterface.cs" />
     <Compile Include="ConsumerControls\Places\MultiplePlaceParameterControl.cs">
       <SubType>UserControl</SubType>
@@ -180,6 +186,12 @@
     </Compile>
     <Compile Include="ConsumerControls\Places\SinglePlaceParameterControl.Designer.cs">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\ContactPersonActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\ContactPersonActionForm.Designer.cs">
+      <DependentUpon>ContactPersonActionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.cs">
       <SubType>Form</SubType>
@@ -1054,6 +1066,9 @@
     <EmbeddedResource Include="AddFileDialogForm.resx">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ManagersControl.resx">
+      <DependentUpon>ManagersControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\MultiplePlaceParameterControl.resx">
       <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1062,6 +1077,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\SinglePlaceParameterControl.resx">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\ContactPersonActionForm.resx">
+      <DependentUpon>ContactPersonActionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\GeneralAgreementBrForm.resx">
       <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
@@ -1390,6 +1408,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlManagers.resx">
       <DependentUpon>MiddleControlManagers.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\ObjectRightSrView.resx">
       <DependentUpon>ObjectRightSrView.cs</DependentUpon>
@@ -1529,6 +1548,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterCount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />

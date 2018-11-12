@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary.ConsumerControls.Places
+﻿namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
     public interface IPlacesControl
     {

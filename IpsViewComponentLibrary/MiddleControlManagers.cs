@@ -22,6 +22,8 @@ namespace IpsViewComponentLibrary
         public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
         {
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
+            anketaCompanyBindingSource.DataSource = anketa;
+
             RelEmployee relEmpl = cust?.Company?.RelEmployee?.FirstOrDefault(rec => rec.PositionCode == 1);
             if (relEmpl == null)
             {
@@ -52,7 +54,6 @@ namespace IpsViewComponentLibrary
             ctrlContactPerson.DataSource = relEmplContPers.Empl; // - - - Контакта особа
 
 
-            anketaCompanyBindingSource.DataSource = anketa;
         }
 
         public bool Validator()

@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using IpsViewComponentLibrary.ConsumerControls.Places;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls
 {
     partial class AnketaConsumer
     {
@@ -39,9 +39,9 @@ namespace IpsViewComponentLibrary
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
             this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
+            this.ctrlManagers = new IpsViewComponentLibrary.ConsumerControls.ManagersControl();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlPlaces = new ConsumerPlacesControl();
+            this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
             this.ctrlPlacesTitle = new Telerik.WinControls.UI.RadLabel();
             this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
@@ -170,10 +170,8 @@ namespace IpsViewComponentLibrary
             // ctrlManagers
             // 
             this.ctrlManagers.Location = new System.Drawing.Point(4, 35);
-            this.ctrlManagers.MaximumSize = new System.Drawing.Size(1200, 343);
-            this.ctrlManagers.MinimumSize = new System.Drawing.Size(600, 343);
             this.ctrlManagers.Name = "ctrlManagers";
-            this.ctrlManagers.Size = new System.Drawing.Size(952, 343);
+            this.ctrlManagers.Size = new System.Drawing.Size(750, 454);
             this.ctrlManagers.TabIndex = 0;
             // 
             // pvPlaces
@@ -189,10 +187,11 @@ namespace IpsViewComponentLibrary
             // 
             // ctrlPlaces
             // 
-            this.ctrlPlaces.Dock = DockStyle.Fill;
             this.ctrlPlaces.AutoSize = true;
-            this.ctrlPlaces.Location = new System.Drawing.Point(4, 64);
+            this.ctrlPlaces.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPlaces.Location = new System.Drawing.Point(0, 0);
             this.ctrlPlaces.Name = "ctrlPlaces";
+            this.ctrlPlaces.Size = new System.Drawing.Size(1010, 654);
             this.ctrlPlaces.TabIndex = 11;
             // 
             // ctrlPlacesTitle
@@ -399,7 +398,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadPdfViewer radPdfViewer;
         private MiddleControlClientName ctrlClientName;
         private MiddleControlAddress ctrlAddress;
-        private MiddleControlManagers ctrlManagers;
         private MiddleControlBankRequisites ctrlBankRequisites;
         private ConsumerPlacesControl ctrlPlaces;
         private Telerik.WinControls.UI.RadButton btnLoadPdf;
@@ -407,5 +405,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
+        private ManagersControl ctrlManagers;
     }
 }

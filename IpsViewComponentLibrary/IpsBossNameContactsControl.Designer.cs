@@ -83,7 +83,7 @@
             // 
             this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "PhoneNumber", true));
-            this.txtPhone.Location = new System.Drawing.Point(33, 34);
+            this.txtPhone.Location = new System.Drawing.Point(33, 35);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtPhone.MaxLength = 13;
             this.txtPhone.Name = "txtPhone";
@@ -138,7 +138,7 @@
             this.radLabel1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(24, 18);
+            this.radLabel1.Size = new System.Drawing.Size(28, 19);
             this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "ПІБ:";
             this.radLabel1.ThemeName = "Office2013Light";
@@ -146,7 +146,7 @@
             // radLabel2
             // 
             this.radLabel2.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.radLabel2.Location = new System.Drawing.Point(3, 33);
+            this.radLabel2.Location = new System.Drawing.Point(3, 34);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(31, 19);
             this.radLabel2.TabIndex = 3;
@@ -157,7 +157,7 @@
             // 
             this.radLabel3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.radLabel3.AutoSize = false;
-            this.radLabel3.Location = new System.Drawing.Point(283, 32);
+            this.radLabel3.Location = new System.Drawing.Point(283, 33);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(116, 22);
             this.radLabel3.TabIndex = 4;
@@ -168,7 +168,7 @@
             // 
             this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.employeeBindingSource, "Email", true));
-            this.txtEmail.Location = new System.Drawing.Point(425, 34);
+            this.txtEmail.Location = new System.Drawing.Point(425, 35);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.NullText = "#####@####.##";
