@@ -38,8 +38,7 @@ namespace IpsViewComponentLibrary
         private RadMenuItem _btnSaveAndAccept = null;
 
         private MiddleControlAgreementAnketaType ctrlAgreementSmallRights;
-        private MiddleControlAgreementBigRights ctrlAgreementBigRights;
-
+        
         private AgreementBigRight _ctrlAgreementBigRights;
 
         private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;

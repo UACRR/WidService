@@ -82,8 +82,10 @@
             // 
             this.gvPlaces.MasterTemplate.AllowAddNewRow = false;
             this.gvPlaces.MasterTemplate.AllowColumnReorder = false;
+            this.gvPlaces.MasterTemplate.AllowDeleteRow = false;
             this.gvPlaces.MasterTemplate.AllowDragToGroup = false;
             this.gvPlaces.MasterTemplate.AllowEditRow = false;
+            this.gvPlaces.MasterTemplate.AutoGenerateColumns = false;
             this.gvPlaces.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewDecimalColumn1.DataType = typeof(int);
             gridViewDecimalColumn1.FieldName = "PlaceId";

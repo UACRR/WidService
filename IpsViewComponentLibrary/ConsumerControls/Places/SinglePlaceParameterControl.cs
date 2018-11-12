@@ -26,9 +26,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             ButtonsVisible = false;
         }
 
-        /// <summary>
-        /// Тип приміщення
-        /// </summary>
         public MeasurementOfPlaces PlaceType
         {
             get => _placesType;
@@ -61,10 +58,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             }
         }
 
-
-        /// <summary>
-        /// Джерело даних майданчиків/приміщень
-        /// </summary>
         public object BusinessPlaceDataSource
         {
             get => bsClnBusinessPlace.DataSource;

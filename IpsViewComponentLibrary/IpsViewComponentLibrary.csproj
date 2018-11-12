@@ -169,11 +169,11 @@
     <Compile Include="ConsumerControls\Places\MultiplePlaceParameterControl.Designer.cs">
       <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\Places\RadioTypePlaceParameterControl.cs">
+    <Compile Include="ConsumerControls\Places\RadioPlaceParameterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\Places\RadioTypePlaceParameterControl.Designer.cs">
-      <DependentUpon>RadioTypePlaceParameterControl.cs</DependentUpon>
+    <Compile Include="ConsumerControls\Places\RadioPlaceParameterControl.Designer.cs">
+      <DependentUpon>RadioPlaceParameterControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\Places\SinglePlaceParameterControl.cs">
       <SubType>UserControl</SubType>
@@ -1056,6 +1056,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\MultiplePlaceParameterControl.resx">
       <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\RadioPlaceParameterControl.resx">
+      <DependentUpon>RadioPlaceParameterControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\SinglePlaceParameterControl.resx">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
