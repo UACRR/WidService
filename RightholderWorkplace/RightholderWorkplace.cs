@@ -6,6 +6,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.ObjectsRight;
+using ipsFormsDesign.ViewModels.Rightholders;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.RightholderControls;
@@ -85,7 +86,7 @@ namespace RightholderWorkplace
 
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
 
-            ctrlChangeRightholderOperation.SelectedValue = 3;
+            ctrlChangeRightholderOperation.SelectedValue = (int)LegalBasisType.Inheritance;
         }
 
         #region Objectrights page
@@ -169,11 +170,13 @@ namespace RightholderWorkplace
 
         private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
         {
-            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == 5;
-            var isDeath = ctrlChangeRightholderOperation.SelectedValue == 3;
+            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer;
+            var isInheritance = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance;
 
             lblChangeCopyrightDateTill.Visible = isTransfer;
             dtChangeCopyrightDateTill.Visible = isTransfer;
+
+            ctrlRightholdersObjectsForChange.AllowMarkingRows = isTransfer;
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
@@ -287,7 +290,7 @@ namespace RightholderWorkplace
                 MessageBox.Show("Вкажіть дату по яку передаються права на обрані об'єкти.");
                 return;
             }
-            return;
+
             var rightholders = new List<RightHolder>();
 
             // old rightholder
