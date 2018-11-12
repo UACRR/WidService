@@ -70,6 +70,17 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        private bool _allowMarkingRows = false;
+        public bool AllowMarkingRows
+        {
+            get { return _allowMarkingRows; }
+            set
+            {
+                _allowMarkingRows = value;
+                gvRightholdersObjectsRights.SetColumnVisibility("IsSelected", _allowMarkingRows);
+            }
+        }
+
         public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted;
         public event EventHandler<RightholderMainView> RightholderChanged;
         public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted;
@@ -83,6 +94,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
             ctrlRightholderSelector.Visible = false;
+            gvRightholdersObjectsRights.SetColumnVisibility("IsSelected", false);
         }
 
         public void UpdateList()
