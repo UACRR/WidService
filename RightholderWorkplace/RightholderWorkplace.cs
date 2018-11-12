@@ -86,7 +86,7 @@ namespace RightholderWorkplace
 
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
 
-            ctrlChangeRightholderOperation.SelectedValue = (int)LegalBasisType.Inheritance;
+            ctrlChangeRightholderOperation.SelectedValue = (int)LegalBasisType.Transfer;
         }
 
         #region Objectrights page
@@ -162,10 +162,15 @@ namespace RightholderWorkplace
             _objects.Clear();
             _copyrights.Clear();
 
-            foreach (var obj in ctrlRightholdersObjectsForChange.ObjectsRightsList)
+            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance)
             {
-                _objects.Add((ObjectRightForTransfering)obj);
+                MoveAllObjectsToTransfer();
             }
+        }
+
+        private void ctrlRightholdersObjectsForChange_MarkedObjectsRightsChanged(object sender, EventArgs e)
+        {
+            UpdateTransferButtonsEnabling();
         }
 
         private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
@@ -177,6 +182,8 @@ namespace RightholderWorkplace
             dtChangeCopyrightDateTill.Visible = isTransfer;
 
             ctrlRightholdersObjectsForChange.AllowMarkingRows = isTransfer;
+
+            UpdateTransferButtonsEnabling();
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
@@ -252,6 +259,33 @@ namespace RightholderWorkplace
             }
         }
 
+        private void UpdateTransferButtonsEnabling()
+        {
+            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer;
+
+            btnTransferAll.Enabled = isTransfer;
+            btnTransferSelected.Enabled = isTransfer && ctrlRightholdersObjectsForChange.MarkedObjectsRights.Count != 0;
+        }
+
+        private void MoveAllObjectsToTransfer()
+        {
+            MoveObjectsListToTransfer(ctrlRightholdersObjectsForChange.ObjectsRightsList);
+        }
+
+        private void MoveSelectedObjectsToTransfer()
+        {
+            MoveObjectsListToTransfer(ctrlRightholdersObjectsForChange.MarkedObjectsRights);
+        }
+
+        private void MoveObjectsListToTransfer(List<ObjectRightForRightholder> list)
+        {
+            foreach (var obj in list)
+            {
+                if (_objects.FirstOrDefault(o => o.ObjId == obj.ObjId) == null)
+                    _objects.Add((ObjectRightForTransfering)obj);
+            }
+        }
+
         private void gvChangeCopyrights_RowFormatting(object sender, RowFormattingEventArgs e)
         {
             if (e.RowElement.ViewTemplate.Parent == null)
@@ -275,6 +309,16 @@ namespace RightholderWorkplace
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void btnTransferAll_Click(object sender, EventArgs e)
+        {
+            MoveAllObjectsToTransfer();
+        }
+
+        private void btnTransferSelected_Click(object sender, EventArgs e)
+        {
+            MoveSelectedObjectsToTransfer();
         }
 
         private void btnSaveNewCopyrights_Click(object sender, EventArgs e)

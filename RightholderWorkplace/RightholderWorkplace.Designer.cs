@@ -66,6 +66,8 @@
             this.rightholdersChangePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
+            this.btnTransferSelected = new Telerik.WinControls.UI.RadButton();
+            this.btnTransferAll = new Telerik.WinControls.UI.RadButton();
             this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.RadioPanel();
             this.rdbDeath = new Telerik.WinControls.UI.RadRadioButton();
@@ -125,6 +127,8 @@
             this.radSplitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).BeginInit();
             this.splitPanel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferSelected)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferAll)).BeginInit();
             this.ctrlChangeRightholderOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbTransfer)).BeginInit();
@@ -395,6 +399,8 @@
             // 
             // splitPanel5
             // 
+            this.splitPanel5.Controls.Add(this.btnTransferSelected);
+            this.splitPanel5.Controls.Add(this.btnTransferAll);
             this.splitPanel5.Controls.Add(this.ctrlRightholdersObjectsForChange);
             this.splitPanel5.Controls.Add(this.ctrlChangeRightholderOperation);
             this.splitPanel5.Controls.Add(this.radLabel1);
@@ -404,13 +410,35 @@
             // 
             // 
             this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel5.Size = new System.Drawing.Size(1172, 215);
-            this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.1362098F);
-            this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -86);
+            this.splitPanel5.Size = new System.Drawing.Size(1172, 256);
+            this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.06683587F);
+            this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -45);
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
             this.splitPanel5.ThemeName = "Office2013Light";
+            // 
+            // btnTransferSelected
+            // 
+            this.btnTransferSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTransferSelected.Location = new System.Drawing.Point(184, 229);
+            this.btnTransferSelected.Name = "btnTransferSelected";
+            this.btnTransferSelected.Size = new System.Drawing.Size(175, 24);
+            this.btnTransferSelected.TabIndex = 76;
+            this.btnTransferSelected.Text = "Перенести обрані";
+            this.btnTransferSelected.ThemeName = "Office2013Light";
+            this.btnTransferSelected.Click += new System.EventHandler(this.btnTransferSelected_Click);
+            // 
+            // btnTransferAll
+            // 
+            this.btnTransferAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTransferAll.Location = new System.Drawing.Point(3, 229);
+            this.btnTransferAll.Name = "btnTransferAll";
+            this.btnTransferAll.Size = new System.Drawing.Size(175, 24);
+            this.btnTransferAll.TabIndex = 75;
+            this.btnTransferAll.Text = "Перенести всі";
+            this.btnTransferAll.ThemeName = "Office2013Light";
+            this.btnTransferAll.Click += new System.EventHandler(this.btnTransferAll_Click);
             // 
             // ctrlRightholdersObjectsForChange
             // 
@@ -423,9 +451,10 @@
             this.ctrlRightholdersObjectsForChange.SelectedObject = null;
             this.ctrlRightholdersObjectsForChange.SelectedRightholder = null;
             this.ctrlRightholdersObjectsForChange.ShowRightholderSelector = true;
-            this.ctrlRightholdersObjectsForChange.Size = new System.Drawing.Size(1166, 179);
+            this.ctrlRightholdersObjectsForChange.Size = new System.Drawing.Size(1166, 190);
             this.ctrlRightholdersObjectsForChange.TabIndex = 1;
             this.ctrlRightholdersObjectsForChange.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholdersObjectsForChange_RightholderChanged);
+            this.ctrlRightholdersObjectsForChange.MarkedObjectsRightsChanged += new System.EventHandler(this.ctrlRightholdersObjectsForChange_MarkedObjectsRightsChanged);
             // 
             // ctrlChangeRightholderOperation
             // 
@@ -490,15 +519,15 @@
             this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateFrom);
             this.splitPanel6.Controls.Add(this.radLabel22);
             this.splitPanel6.Controls.Add(this.gvObjectRightForTransfering);
-            this.splitPanel6.Location = new System.Drawing.Point(0, 220);
+            this.splitPanel6.Location = new System.Drawing.Point(0, 261);
             this.splitPanel6.Name = "splitPanel6";
             // 
             // 
             // 
             this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel6.Size = new System.Drawing.Size(1172, 376);
-            this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.1362098F);
-            this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 86);
+            this.splitPanel6.Size = new System.Drawing.Size(1172, 335);
+            this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.06683587F);
+            this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 45);
             this.splitPanel6.TabIndex = 1;
             this.splitPanel6.TabStop = false;
             this.splitPanel6.Text = "splitPanel6";
@@ -507,7 +536,7 @@
             // btnCancelNewCopyright
             // 
             this.btnCancelNewCopyright.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelNewCopyright.Location = new System.Drawing.Point(810, 349);
+            this.btnCancelNewCopyright.Location = new System.Drawing.Point(810, 308);
             this.btnCancelNewCopyright.Name = "btnCancelNewCopyright";
             this.btnCancelNewCopyright.Size = new System.Drawing.Size(175, 24);
             this.btnCancelNewCopyright.TabIndex = 74;
@@ -544,7 +573,7 @@
             // btnSaveNewCopyrights
             // 
             this.btnSaveNewCopyrights.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveNewCopyrights.Location = new System.Drawing.Point(991, 349);
+            this.btnSaveNewCopyrights.Location = new System.Drawing.Point(991, 308);
             this.btnSaveNewCopyrights.Name = "btnSaveNewCopyrights";
             this.btnSaveNewCopyrights.Size = new System.Drawing.Size(175, 24);
             this.btnSaveNewCopyrights.TabIndex = 73;
@@ -555,7 +584,7 @@
             // btnAddNewRightholder
             // 
             this.btnAddNewRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddNewRightholder.Location = new System.Drawing.Point(5, 349);
+            this.btnAddNewRightholder.Location = new System.Drawing.Point(5, 308);
             this.btnAddNewRightholder.Name = "btnAddNewRightholder";
             this.btnAddNewRightholder.Size = new System.Drawing.Size(175, 24);
             this.btnAddNewRightholder.TabIndex = 72;
@@ -656,7 +685,7 @@
             this.gvObjectRightForTransfering.Name = "gvObjectRightForTransfering";
             this.gvObjectRightForTransfering.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvObjectRightForTransfering.ShowGroupPanel = false;
-            this.gvObjectRightForTransfering.Size = new System.Drawing.Size(1161, 315);
+            this.gvObjectRightForTransfering.Size = new System.Drawing.Size(1161, 274);
             this.gvObjectRightForTransfering.TabIndex = 0;
             this.gvObjectRightForTransfering.ThemeName = "Office2013Light";
             this.gvObjectRightForTransfering.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvChangeCopyrights_RowFormatting);
@@ -959,6 +988,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).EndInit();
             this.splitPanel5.ResumeLayout(false);
             this.splitPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferSelected)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferAll)).EndInit();
             this.ctrlChangeRightholderOperation.ResumeLayout(false);
             this.ctrlChangeRightholderOperation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).EndInit();
@@ -1067,5 +1098,7 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private IpsViewComponentLibrary.FixationControls.FixationListControl fixationListControl1;
         private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadButton btnTransferSelected;
+        private Telerik.WinControls.UI.RadButton btnTransferAll;
     }
 }
