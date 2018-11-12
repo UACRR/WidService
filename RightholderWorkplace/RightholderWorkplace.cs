@@ -10,6 +10,7 @@ using ipsFormsDesign.ViewModels.Rightholders;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.RightholderControls;
+using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
@@ -83,6 +84,7 @@ namespace RightholderWorkplace
             relation.ParentColumnNames.Add("ObjId");
             relation.ChildColumnNames.Add("ObjId");
             gvObjectRightForTransfering.Relations.Add(relation);
+            gvObjectRightForTransfering.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
 
@@ -286,7 +288,20 @@ namespace RightholderWorkplace
             }
         }
 
-        private void gvChangeCopyrights_RowFormatting(object sender, RowFormattingEventArgs e)
+        private void gvObjectRightForTransfering_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column.Name == "DeleteColumn")
+            {
+                var obj = (ObjectRightForTransfering)e.Row.DataBoundItem;
+
+                var crToRemove = _copyrights.Where(cr => cr.ObjId == obj.ObjId).ToList();
+                crToRemove.ForEach(cr => _copyrights.Remove(cr));
+
+                _objects.Remove(obj);
+            }
+        }
+
+        private void gvObjectRightForTransfering_RowFormatting(object sender, RowFormattingEventArgs e)
         {
             if (e.RowElement.ViewTemplate.Parent == null)
             {
@@ -297,7 +312,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void gvChangeCopyrights_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        private void gvObjectRightForTransfering_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
             if (e.Column.Name == "Rate")
             {

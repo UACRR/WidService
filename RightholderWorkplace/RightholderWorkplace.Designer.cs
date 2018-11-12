@@ -34,6 +34,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
@@ -670,12 +671,19 @@
             gridViewCheckBoxColumn1.HeaderText = "Ручне редагування відстока";
             gridViewCheckBoxColumn1.MinWidth = 20;
             gridViewCheckBoxColumn1.Name = "ManualDistribution";
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::RightholderWorkplace.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "DeleteColumn";
+            gridViewCommandColumn1.Width = 30;
             this.gvObjectRightForTransfering.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn1,
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewDecimalColumn2,
-            gridViewCheckBoxColumn1});
+            gridViewCheckBoxColumn1,
+            gridViewCommandColumn1});
             this.gvObjectRightForTransfering.MasterTemplate.DataSource = this.bsObjectRightForTransfering;
             this.gvObjectRightForTransfering.MasterTemplate.EnableGrouping = false;
             this.gvObjectRightForTransfering.MasterTemplate.ShowRowHeaderColumn = false;
@@ -688,8 +696,9 @@
             this.gvObjectRightForTransfering.Size = new System.Drawing.Size(1161, 274);
             this.gvObjectRightForTransfering.TabIndex = 0;
             this.gvObjectRightForTransfering.ThemeName = "Office2013Light";
-            this.gvObjectRightForTransfering.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvChangeCopyrights_RowFormatting);
-            this.gvObjectRightForTransfering.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvChangeCopyrights_CellBeginEdit);
+            this.gvObjectRightForTransfering.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvObjectRightForTransfering_RowFormatting);
+            this.gvObjectRightForTransfering.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvObjectRightForTransfering_CellBeginEdit);
+            this.gvObjectRightForTransfering.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectRightForTransfering_CommandCellClick);
             // 
             // bsObjectRightForTransfering
             // 
