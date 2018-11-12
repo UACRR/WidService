@@ -60,12 +60,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             if (!((gvPartnerList?.CurrentRow?.DataBoundItem as PartnerList)?.CustId is int custId)) return;
 
             UpdateData(custId);
-            PartnerId = custId;
         }
 
         private void UpdateData(int? custId)
         {
             if(custId == null) return;
+
+            PartnerId = custId;
             var customer = _customers.SingleOrDefault(rec => rec.CustId == custId);
             if (customer?.CustType == 1)
             {

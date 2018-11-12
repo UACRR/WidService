@@ -35,7 +35,7 @@ namespace IpsViewComponentLibrary.Common
             _gvViewConsumers.MasterTemplate.Refresh();
         }
 
-        private void CustomFiltering(object sender, Telerik.WinControls.UI.GridViewCustomFilteringEventArgs e)
+        private void CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
         {
             //пустий фільтер - всі дані
             if (string.IsNullOrEmpty(txtSearch.Text))

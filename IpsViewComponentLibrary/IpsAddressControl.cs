@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
@@ -22,10 +23,7 @@ namespace IpsViewComponentLibrary
         string _cityDataMember;
         string _addressDataMember;
 
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public IpsAddressControl()
         {
@@ -38,6 +36,7 @@ namespace IpsViewComponentLibrary
                 ddlCountry.SetDataSource(IpsGlobal.AnketaDictionaties.country, "CountryCode", "CountryName");
                 ddlRegion.SetDataSource(IpsGlobal.AnketaDictionaties.region);
             }
+            
         }
 
         [Category("Data")]
@@ -187,7 +186,7 @@ namespace IpsViewComponentLibrary
                 ddlCountry.SelectedIndex = ddlCountry.Items.First.Index;
             }
             if (ddlRegion.Items.Count != 0)
-            {;
+            {
                 ddlRegion.SelectedIndex = ddlRegion.Items.Last.Index;
                 ddlRegion.SelectedIndex = ddlRegion.Items.First.Index;
             }
