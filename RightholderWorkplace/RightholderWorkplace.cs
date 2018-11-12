@@ -422,6 +422,9 @@ namespace RightholderWorkplace
 
                 ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
                 ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+
+                _copyrights.Clear();
+                _objects.Clear();
             }
             else
                 MessageBox.Show("Не вдалося виконати передачу об'єктів.");
