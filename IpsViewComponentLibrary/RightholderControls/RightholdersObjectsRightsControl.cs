@@ -163,6 +163,9 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void gvRightholdersObjectsRights_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
+            if (!_allowMarkingRows)
+                return;
+
             if (e.Column.Name == "IsSelected")
             {
                 if (e.Value != null && (bool)e.Value == true)
@@ -236,7 +239,10 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         protected void OnMarkedObjectsRightsChanged()
         {
-            MarkedObjectsRightsChanged.Invoke(this, EventArgs.Empty);
+            if (!_allowMarkingRows)
+                return;
+
+            MarkedObjectsRightsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion
