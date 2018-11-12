@@ -156,6 +156,15 @@ namespace RightholderWorkplace
         private BindingList<ObjectRightForTransfering> _objects = new BindingList<ObjectRightForTransfering>();
         private BindingList<ObjectCopyright> _copyrights = new BindingList<ObjectCopyright>();
 
+        private void ctrlRightholdersObjectsForChange_RightholderChanging(object sender, CancelEventArgs e)
+        {
+            if (!ConfirmClear())
+            { 
+                e.Cancel = true;
+                return;
+            }
+        }
+
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
             bsObjectRightForTransfering.DataSource = _objects;
@@ -432,13 +441,19 @@ namespace RightholderWorkplace
 
         private void btnClearNewCopyright_Click(object sender, EventArgs e)
         {
-            if (_objects.Count != 0)
-            {
-                if (RadMessageBox.Show(this, "Зміни для обраних об'єктів не буде збережено. Продовжити?", "Питання", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.No)
-                    return;
-            }
+            if (!ConfirmClear())
+                return;
 
             ctrlRightholdersObjectsForChange.SelectedRightholder = null;
+        }
+
+        private bool ConfirmClear()
+        {
+            if (_objects.Count != 0)
+                if (RadMessageBox.Show(this, "Зміни для обраних об'єктів не буде збережено. Продовжити?", "Питання", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.No)
+                    return false;
+
+            return true;
         }
 
         #endregion
