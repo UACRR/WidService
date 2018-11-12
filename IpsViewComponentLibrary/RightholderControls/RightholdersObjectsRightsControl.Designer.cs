@@ -67,6 +67,7 @@
             this.gvRightholdersObjectsRights.MasterTemplate.AllowAddNewRow = false;
             this.gvRightholdersObjectsRights.MasterTemplate.AutoGenerateColumns = false;
             this.gvRightholdersObjectsRights.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewCheckBoxColumn1.EnableHeaderCheckBox = true;
             gridViewCheckBoxColumn1.HeaderText = "";
             gridViewCheckBoxColumn1.MaxWidth = 30;
             gridViewCheckBoxColumn1.MinWidth = 30;
