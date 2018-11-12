@@ -80,13 +80,13 @@ namespace IpsViewComponentLibrary
             else
                 lbledrpou.ForeColor = Color.Black;
 
-            if (txtRegisterNumber.Text == string.Empty)
-            {
-                lblSvidoctvo.ForeColor = Color.FromArgb(180, 255, 0, 2);
-                isValid = false;
-            }
-            else
-                lblSvidoctvo.ForeColor = Color.Black;
+            //if (txtRegisterNumber.Text == string.Empty)
+            //{
+            //    lblSvidoctvo.ForeColor = Color.FromArgb(180, 255, 0, 2);
+            //    isValid = false;
+            //}
+            //else
+            //    lblSvidoctvo.ForeColor = Color.Black;
 
             //if (txtRegisterWho.Text == string.Empty)
             //{
