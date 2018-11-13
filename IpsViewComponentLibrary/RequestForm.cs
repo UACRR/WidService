@@ -199,6 +199,7 @@ namespace IpsViewComponentLibrary
                 ctrlMusicalDesignList.AllowUnlinkCommand = !ReadOnly;
                 ctrlMusicalDesignList.ShowObjectInfo = true;
                 ctrlMusicalDesignList.AllowShowObjectCommand = true;
+                ctrlMusicalDesignList.ShowFilters = true;
 
                 panelStatusees.Visible = !ReadOnly;
             }
@@ -213,6 +214,7 @@ namespace IpsViewComponentLibrary
                 ctrlMusicalDesignList.AllowShowObjectCommand = false;
                 ctrlMusicalDesignList.AllowUnlinkCommand = false;
                 ctrlMusicalDesignList.AllowCreateObjectCommand = false;
+                ctrlMusicalDesignList.ShowFilters = false;
 
                 panelStatusees.Visible = false;
             }
