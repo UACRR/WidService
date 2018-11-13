@@ -102,7 +102,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 _allowEditList = value;
 
-                btnAdd.Visible = _allowEditList;
+                panelCommand.Visible = _allowEditList;
                 gvRegisterItemList.SetColumnVisibility("DeleteColumn", _allowEditList);
                 gvRegisterItemList.SetColumnReadOnly("ItemName", !_allowEditList);
                 gvRegisterItemList.SetColumnReadOnly("Performer", !_allowEditList);
@@ -229,6 +229,29 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private bool _showTimeStartEnd;
+        public bool ShowTimeStartEnd
+        {
+            get => _showTimeStartEnd;
+            set
+            {
+                _showTimeStartEnd = value;
+                gvRegisterItemList.SetColumnVisibility("TimeStart", _showTimeStartEnd);
+                gvRegisterItemList.SetColumnVisibility("TimeEnd", _showTimeStartEnd);
+            }
+        }
+
+        private bool _showFilters = true;
+        public bool ShowFilters
+        {
+            get => _showFilters;
+            set
+            {
+                _showFilters = value;
+                panelFilters.Visible = _showFilters;
+            }
+        }
+
         public RegisterItemListMode Mode { get; set; } = RegisterItemListMode.Default;
 
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
@@ -260,6 +283,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
             (gvRegisterItemList.Templates[1].Columns["DeleteRhColumn"] as GridViewCommandColumn).ImageAlignment = ContentAlignment.MiddleCenter;
 
+            ShowTimeStartEnd = false;
             gvRegisterItemList.SetColumnTimeSpanEditor("TimeStart");
             gvRegisterItemList.SetColumnTimeSpanEditor("TimeEnd");
 
