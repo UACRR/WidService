@@ -80,6 +80,11 @@ namespace ipsFormsDesign.Services
             return _webApi.ApiAction<RightHolder>("rh/inheritance", rhId, inheritData);
         }
 
+        public bool Transfer(int rhId, List<RightHolder> inheritData)
+        {
+            return _webApi.ApiAction<RightHolder>("rh/transfer", rhId, inheritData);
+        }
+
         public IList<Authors> getAuthorsByFilter( string filterString )
         {
             var url = string.Concat("rh/filters/authors/", filterString);

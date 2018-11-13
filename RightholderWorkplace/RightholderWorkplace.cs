@@ -362,7 +362,8 @@ namespace RightholderWorkplace
                 return;
             }
 
-            if (dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
+            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer
+                && dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
             {
                 MessageBox.Show("Вкажіть дату по яку передаються права на обрані об'єкти.");
                 return;
@@ -406,7 +407,7 @@ namespace RightholderWorkplace
                         LBasis = 3,
                         Rate = copyright.Rate,
                         BeginDate = dtChangeCopyrightDateFrom.Value,
-                        EndDate = new DateTime(3000, 1, 1),
+                        EndDate = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer ? dtChangeCopyrightDateTill.Value : new DateTime(3000, 1, 1),
                         //ParentId = 
                         Obj = new ObjectRight(),
                     };
@@ -423,7 +424,17 @@ namespace RightholderWorkplace
                 rightholders.Add(newRightholder);
             }
 
-            var result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
+            var result = false;
+            switch (ctrlChangeRightholderOperation.SelectedValue)
+            {
+                case (int)LegalBasisType.Inheritance:
+                    result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
+                    break;
+
+                case (int)LegalBasisType.Transfer:
+                    result = _rightholderService.Transfer(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
+                    break;
+            }
 
             if (result)
             {
