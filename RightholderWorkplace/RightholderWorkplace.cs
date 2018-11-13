@@ -443,6 +443,8 @@ namespace RightholderWorkplace
                 ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
                 ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
 
+                dtChangeCopyrightDateTill.Value = dtChangeCopyrightDateTill.NullDate;
+
                 _copyrights.Clear();
                 _objects.Clear();
             }
@@ -456,6 +458,7 @@ namespace RightholderWorkplace
                 return;
 
             ctrlRightholdersObjectsForChange.SelectedRightholder = null;
+            dtChangeCopyrightDateTill.Value = dtChangeCopyrightDateTill.NullDate;
         }
 
         private bool ConfirmClear()
