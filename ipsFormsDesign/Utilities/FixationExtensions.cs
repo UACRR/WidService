@@ -82,7 +82,7 @@ namespace ipsFormsDesign.Utilities
                     break;
 
                 case FixationStageStatuses.RightholderIdentificationOnCorrection:
-                    availableStageStatuses.Add(FixationStageStatuses.NegotiationAfterFixationOnNegotioation);
+                    availableStageStatuses.Add(FixationStageStatuses.RightholderIdentificationOnIdentification);
                     break;
 
                 case FixationStageStatuses.NegotiationAfterFixationOnNegotioation:
