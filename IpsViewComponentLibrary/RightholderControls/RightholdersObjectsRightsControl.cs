@@ -13,6 +13,7 @@ using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.Utilities;
 using System.Drawing;
 using IpsViewComponentLibrary.ObjectRightControls;
+using System.ComponentModel;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -59,6 +60,15 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        private List<ObjectRightForRightholder> _markedObjects = new List<ObjectRightForRightholder>();
+        public List<ObjectRightForRightholder> MarkedObjectsRights
+        {
+            get
+            {
+                return _markedObjects;
+            }
+        }
+
         private bool _showRightholderSelector = true;
         public bool ShowRightholderSelector
         {
@@ -70,9 +80,26 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        private bool _allowMarkingRows = false;
+        public bool AllowMarkingRows
+        {
+            get { return _allowMarkingRows; }
+            set
+            {
+                _allowMarkingRows = value;
+                gvRightholdersObjectsRights.SetColumnVisibility("IsSelected", _allowMarkingRows);
+            }
+        }
+
         public event EventHandler<ObjectRightForRightholder> EditObjectCommandExecuted;
         public event EventHandler<RightholderMainView> RightholderChanged;
+        public event CancelEventHandler RightholderChanging
+        {
+            add => ctrlRightholderSelector.RightholderChanging += value;
+            remove => ctrlRightholderSelector.RightholderChanging -= value;
+        }
         public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted;
+        public event EventHandler MarkedObjectsRightsChanged;
 
         public RightholdersObjectsRightsControl()
         {
@@ -83,6 +110,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
 
             ctrlRightholderSelector.Visible = false;
+            gvRightholdersObjectsRights.SetColumnVisibility("IsSelected", false);
         }
 
         public void UpdateList()
@@ -133,6 +161,31 @@ namespace IpsViewComponentLibrary.RightholderControls
             Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
+        private void gvRightholdersObjectsRights_CellValueChanged(object sender, GridViewCellEventArgs e)
+        {
+            if (!_allowMarkingRows)
+                return;
+
+            if (e.Column.Name == "IsSelected")
+            {
+                if (e.Value != null && (bool)e.Value == true)
+                {
+                    _markedObjects.Add((ObjectRightForRightholder)e.Row.DataBoundItem);
+                }
+                else
+                {
+                    _markedObjects.Remove((ObjectRightForRightholder)e.Row.DataBoundItem);
+                }
+
+                OnMarkedObjectsRightsChanged();
+            }
+        }
+
+        private void gvRightholdersObjectsRights_ValueChanged(object sender, EventArgs e)
+        {
+            gvRightholdersObjectsRights.EndEdit();
+        }
+
         #endregion
 
         private void ctrlRightholderSelector_RightholderChanged(object sender, RightholderMainView selectedRightholder)
@@ -140,6 +193,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             UpdateList();
 
             OnRightholderChanged(selectedRightholder);
+
+            _markedObjects.Clear();
+            OnMarkedObjectsRightsChanged();
         }
 
         private void ctrlRightholderSelector_ShowAnketaCommandExecuted(object sender, RightholderMainView selectedRighthoder)
@@ -179,6 +235,14 @@ namespace IpsViewComponentLibrary.RightholderControls
         protected void OnShowAnketaCommandExetuted(RightholderMainView selectedRightholder)
         {
             ShowAnketaCommandExetuted?.Invoke(this, selectedRightholder);
+        }
+
+        protected void OnMarkedObjectsRightsChanged()
+        {
+            if (!_allowMarkingRows)
+                return;
+
+            MarkedObjectsRightsChanged?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion
