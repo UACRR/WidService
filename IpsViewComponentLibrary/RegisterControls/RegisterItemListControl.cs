@@ -229,6 +229,18 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        private bool _showTimeStartEnd;
+        public bool ShowTimeStartEnd
+        {
+            get => _showTimeStartEnd;
+            set
+            {
+                _showTimeStartEnd = value;
+                gvRegisterItemList.SetColumnVisibility("TimeStart", _showTimeStartEnd);
+                gvRegisterItemList.SetColumnVisibility("TimeEnd", _showTimeStartEnd);
+            }
+        }
+
         public RegisterItemListMode Mode { get; set; } = RegisterItemListMode.Default;
 
         public event EventHandler<RegisterItemViewModel> ShowObjectCommandExecuted;
@@ -260,6 +272,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
             (gvRegisterItemList.Templates[1].Columns["DeleteRhColumn"] as GridViewCommandColumn).ImageAlignment = ContentAlignment.MiddleCenter;
 
+            ShowTimeStartEnd = false;
             gvRegisterItemList.SetColumnTimeSpanEditor("TimeStart");
             gvRegisterItemList.SetColumnTimeSpanEditor("TimeEnd");
 
