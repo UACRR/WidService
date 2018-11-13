@@ -102,7 +102,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 _allowEditList = value;
 
-                btnAdd.Visible = _allowEditList;
+                panelCommand.Visible = _allowEditList;
                 gvRegisterItemList.SetColumnVisibility("DeleteColumn", _allowEditList);
                 gvRegisterItemList.SetColumnReadOnly("ItemName", !_allowEditList);
                 gvRegisterItemList.SetColumnReadOnly("Performer", !_allowEditList);
@@ -238,6 +238,17 @@ namespace IpsViewComponentLibrary.RegisterControls
                 _showTimeStartEnd = value;
                 gvRegisterItemList.SetColumnVisibility("TimeStart", _showTimeStartEnd);
                 gvRegisterItemList.SetColumnVisibility("TimeEnd", _showTimeStartEnd);
+            }
+        }
+
+        private bool _showFilters = true;
+        public bool ShowFilters
+        {
+            get => _showFilters;
+            set
+            {
+                _showFilters = value;
+                panelFilters.Visible = _showFilters;
             }
         }
 
