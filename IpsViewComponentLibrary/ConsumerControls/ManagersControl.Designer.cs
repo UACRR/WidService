@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls
+﻿using System.Drawing;
+
+namespace IpsViewComponentLibrary.ConsumerControls
 {
     partial class ManagersControl
     {
@@ -29,21 +31,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn4 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
             this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
@@ -60,11 +62,6 @@
             this.gvContactPersons = new Telerik.WinControls.UI.RadGridView();
             this.bsEmployee = new System.Windows.Forms.BindingSource(this.components);
             this.btnAddContact = new Telerik.WinControls.UI.RadButton();
-            this.txtContactPhone = new Telerik.WinControls.UI.RadTextBox();
-            this.bsSingleEmpl = new System.Windows.Forms.BindingSource(this.components);
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.txtContactEmail = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtEmail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtFirstName)).BeginInit();
@@ -89,11 +86,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvContactPersons.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddContact)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtContactPhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSingleEmpl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtContactEmail)).BeginInit();
             this.SuspendLayout();
             // 
             // bsAnketaCompany
@@ -102,19 +94,17 @@
             // 
             // ctrlBookkeeper
             // 
-            this.ctrlBookkeeper.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlBookkeeper.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlBookkeeper.Location = new System.Drawing.Point(54, 173);
             this.ctrlBookkeeper.Name = "ctrlBookkeeper";
             this.ctrlBookkeeper.OutsidePhone = false;
-            this.ctrlBookkeeper.Size = new System.Drawing.Size(693, 56);
+            this.ctrlBookkeeper.Size = new System.Drawing.Size(682, 56);
             this.ctrlBookkeeper.TabIndex = 32;
             // 
             // 
             // 
             this.ctrlBookkeeper.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtEmail.Location = new System.Drawing.Point(487, 35);
+            this.ctrlBookkeeper.TxtEmail.Location = new System.Drawing.Point(481, 35);
             this.ctrlBookkeeper.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlBookkeeper.TxtEmail.Name = "txtEmail";
             // 
@@ -122,13 +112,13 @@
             // 
             this.ctrlBookkeeper.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 36, 206, 20);
             this.ctrlBookkeeper.TxtEmail.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtEmail.Size = new System.Drawing.Size(206, 20);
+            this.ctrlBookkeeper.TxtEmail.Size = new System.Drawing.Size(201, 20);
             this.ctrlBookkeeper.TxtEmail.TabIndex = 4;
             // 
             // 
             // 
             this.ctrlBookkeeper.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtFirstName.Location = new System.Drawing.Point(260, 4);
+            this.ctrlBookkeeper.TxtFirstName.Location = new System.Drawing.Point(257, 4);
             this.ctrlBookkeeper.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlBookkeeper.TxtFirstName.Name = "txtFirstName";
             this.ctrlBookkeeper.TxtFirstName.NullText = "Ім\'я";
@@ -137,7 +127,7 @@
             // 
             this.ctrlBookkeeper.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(260, 4, 204, 20);
             this.ctrlBookkeeper.TxtFirstName.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtFirstName.Size = new System.Drawing.Size(204, 20);
+            this.ctrlBookkeeper.TxtFirstName.Size = new System.Drawing.Size(201, 20);
             this.ctrlBookkeeper.TxtFirstName.TabIndex = 1;
             // 
             // 
@@ -152,7 +142,7 @@
             // 
             this.ctrlBookkeeper.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 204, 20);
             this.ctrlBookkeeper.TxtLastName.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtLastName.Size = new System.Drawing.Size(204, 20);
+            this.ctrlBookkeeper.TxtLastName.Size = new System.Drawing.Size(201, 20);
             this.ctrlBookkeeper.TxtLastName.TabIndex = 0;
             // 
             // 
@@ -167,13 +157,13 @@
             // 
             this.ctrlBookkeeper.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 204, 20);
             this.ctrlBookkeeper.TxtPhone.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtPhone.Size = new System.Drawing.Size(204, 20);
+            this.ctrlBookkeeper.TxtPhone.Size = new System.Drawing.Size(201, 20);
             this.ctrlBookkeeper.TxtPhone.TabIndex = 3;
             // 
             // 
             // 
             this.ctrlBookkeeper.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtSurName.Location = new System.Drawing.Point(487, 4);
+            this.ctrlBookkeeper.TxtSurName.Location = new System.Drawing.Point(481, 4);
             this.ctrlBookkeeper.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlBookkeeper.TxtSurName.Name = "txtSurName";
             this.ctrlBookkeeper.TxtSurName.NullText = "По батькові";
@@ -182,38 +172,34 @@
             // 
             this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
             this.ctrlBookkeeper.TxtSurName.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtSurName.Size = new System.Drawing.Size(206, 20);
+            this.ctrlBookkeeper.TxtSurName.Size = new System.Drawing.Size(201, 20);
             this.ctrlBookkeeper.TxtSurName.TabIndex = 2;
             // 
             // txtOnBasicsIfHeadBoss
             // 
-            this.txtOnBasicsIfHeadBoss.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOnBasicsIfHeadBoss.AutoSize = false;
             this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(153, 58);
             this.txtOnBasicsIfHeadBoss.Multiline = true;
             this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
             this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР)";
-            this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(594, 20);
+            this.txtOnBasicsIfHeadBoss.Size = new System.Drawing.Size(583, 20);
             this.txtOnBasicsIfHeadBoss.TabIndex = 30;
             this.txtOnBasicsIfHeadBoss.ThemeName = "Office2013Light";
             // 
             // ctrlHeadBoss
             // 
-            this.ctrlHeadBoss.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlHeadBoss.Location = new System.Drawing.Point(54, 84);
             this.ctrlHeadBoss.Name = "ctrlHeadBoss";
             this.ctrlHeadBoss.OutsidePhone = false;
-            this.ctrlHeadBoss.Size = new System.Drawing.Size(693, 56);
+            this.ctrlHeadBoss.Size = new System.Drawing.Size(682, 56);
             this.ctrlHeadBoss.TabIndex = 31;
             // 
             // 
             // 
             this.ctrlHeadBoss.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlHeadBoss.TxtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlHeadBoss.TxtEmail.Location = new System.Drawing.Point(487, 35);
+            this.ctrlHeadBoss.TxtEmail.Location = new System.Drawing.Point(481, 35);
             this.ctrlHeadBoss.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtEmail.Name = "txtEmail";
             // 
@@ -221,14 +207,14 @@
             // 
             this.ctrlHeadBoss.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 36, 206, 20);
             this.ctrlHeadBoss.TxtEmail.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtEmail.Size = new System.Drawing.Size(206, 20);
+            this.ctrlHeadBoss.TxtEmail.Size = new System.Drawing.Size(201, 20);
             this.ctrlHeadBoss.TxtEmail.TabIndex = 4;
             // 
             // 
             // 
             this.ctrlHeadBoss.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlHeadBoss.TxtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlHeadBoss.TxtFirstName.Location = new System.Drawing.Point(260, 4);
+            this.ctrlHeadBoss.TxtFirstName.Location = new System.Drawing.Point(257, 4);
             this.ctrlHeadBoss.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtFirstName.Name = "txtFirstName";
             this.ctrlHeadBoss.TxtFirstName.NullText = "Ім\'я";
@@ -237,7 +223,7 @@
             // 
             this.ctrlHeadBoss.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(260, 4, 204, 20);
             this.ctrlHeadBoss.TxtFirstName.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtFirstName.Size = new System.Drawing.Size(204, 20);
+            this.ctrlHeadBoss.TxtFirstName.Size = new System.Drawing.Size(201, 20);
             this.ctrlHeadBoss.TxtFirstName.TabIndex = 1;
             // 
             // 
@@ -253,7 +239,7 @@
             // 
             this.ctrlHeadBoss.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 204, 20);
             this.ctrlHeadBoss.TxtLastName.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtLastName.Size = new System.Drawing.Size(204, 20);
+            this.ctrlHeadBoss.TxtLastName.Size = new System.Drawing.Size(201, 20);
             this.ctrlHeadBoss.TxtLastName.TabIndex = 0;
             // 
             // 
@@ -269,14 +255,14 @@
             // 
             this.ctrlHeadBoss.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 204, 20);
             this.ctrlHeadBoss.TxtPhone.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtPhone.Size = new System.Drawing.Size(204, 20);
+            this.ctrlHeadBoss.TxtPhone.Size = new System.Drawing.Size(201, 20);
             this.ctrlHeadBoss.TxtPhone.TabIndex = 3;
             // 
             // 
             // 
             this.ctrlHeadBoss.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlHeadBoss.TxtSurName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlHeadBoss.TxtSurName.Location = new System.Drawing.Point(487, 4);
+            this.ctrlHeadBoss.TxtSurName.Location = new System.Drawing.Point(481, 4);
             this.ctrlHeadBoss.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.ctrlHeadBoss.TxtSurName.Name = "txtSurName";
             this.ctrlHeadBoss.TxtSurName.NullText = "По батькові";
@@ -285,7 +271,7 @@
             // 
             this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(487, 4, 206, 20);
             this.ctrlHeadBoss.TxtSurName.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtSurName.Size = new System.Drawing.Size(206, 20);
+            this.ctrlHeadBoss.TxtSurName.Size = new System.Drawing.Size(201, 20);
             this.ctrlHeadBoss.TxtSurName.TabIndex = 2;
             // 
             // radLabel8
@@ -300,11 +286,9 @@
             // 
             // radSeparator5
             // 
-            this.radSeparator5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator5.Location = new System.Drawing.Point(116, 235);
             this.radSeparator5.Name = "radSeparator5";
-            this.radSeparator5.Size = new System.Drawing.Size(630, 21);
+            this.radSeparator5.Size = new System.Drawing.Size(619, 21);
             this.radSeparator5.TabIndex = 24;
             this.radSeparator5.ThemeName = "Office2013Light";
             // 
@@ -320,11 +304,9 @@
             // 
             // radSeparator4
             // 
-            this.radSeparator4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator4.Location = new System.Drawing.Point(75, 146);
             this.radSeparator4.Name = "radSeparator4";
-            this.radSeparator4.Size = new System.Drawing.Size(672, 21);
+            this.radSeparator4.Size = new System.Drawing.Size(661, 21);
             this.radSeparator4.TabIndex = 26;
             this.radSeparator4.ThemeName = "Office2013Light";
             // 
@@ -340,11 +322,9 @@
             // 
             // radSeparator3
             // 
-            this.radSeparator3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator3.Location = new System.Drawing.Point(75, 31);
             this.radSeparator3.Name = "radSeparator3";
-            this.radSeparator3.Size = new System.Drawing.Size(672, 21);
+            this.radSeparator3.Size = new System.Drawing.Size(661, 21);
             this.radSeparator3.TabIndex = 28;
             this.radSeparator3.ThemeName = "Office2013Light";
             // 
@@ -382,119 +362,120 @@
             this.gvContactPersons.MasterTemplate.AllowEditRow = false;
             this.gvContactPersons.MasterTemplate.AutoGenerateColumns = false;
             this.gvContactPersons.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn1.DataType = typeof(int);
-            gridViewDecimalColumn1.FieldName = "Emplid";
-            gridViewDecimalColumn1.HeaderText = "Emplid";
-            gridViewDecimalColumn1.IsAutoGenerated = true;
-            gridViewDecimalColumn1.IsVisible = false;
-            gridViewDecimalColumn1.Name = "Emplid";
-            gridViewDecimalColumn1.Width = 52;
-            gridViewDecimalColumn2.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn2.FieldName = "CustId";
-            gridViewDecimalColumn2.HeaderText = "CustId";
-            gridViewDecimalColumn2.IsAutoGenerated = true;
-            gridViewDecimalColumn2.IsVisible = false;
-            gridViewDecimalColumn2.Name = "CustId";
-            gridViewDecimalColumn2.Width = 57;
-            gridViewTextBoxColumn1.FieldName = "UserId";
-            gridViewTextBoxColumn1.HeaderText = "UserId";
-            gridViewTextBoxColumn1.IsAutoGenerated = true;
-            gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "UserId";
-            gridViewTextBoxColumn1.Width = 63;
-            gridViewTextBoxColumn2.FieldName = "LastName";
-            gridViewTextBoxColumn2.HeaderText = "Прізвище";
-            gridViewTextBoxColumn2.IsAutoGenerated = true;
-            gridViewTextBoxColumn2.Name = "LastName";
-            gridViewTextBoxColumn2.Width = 158;
-            gridViewTextBoxColumn3.FieldName = "FirstName";
-            gridViewTextBoxColumn3.HeaderText = "Ім\'я";
-            gridViewTextBoxColumn3.IsAutoGenerated = true;
-            gridViewTextBoxColumn3.Name = "FirstName";
-            gridViewTextBoxColumn3.Width = 98;
-            gridViewTextBoxColumn4.FieldName = "SurName";
-            gridViewTextBoxColumn4.HeaderText = "По батькові";
-            gridViewTextBoxColumn4.IsAutoGenerated = true;
-            gridViewTextBoxColumn4.Name = "SurName";
-            gridViewTextBoxColumn4.Width = 98;
-            gridViewTextBoxColumn5.FieldName = "PhoneNumber";
-            gridViewTextBoxColumn5.HeaderText = "Номер";
-            gridViewTextBoxColumn5.IsAutoGenerated = true;
-            gridViewTextBoxColumn5.IsVisible = false;
-            gridViewTextBoxColumn5.Name = "PhoneNumber";
-            gridViewTextBoxColumn5.Width = 120;
-            gridViewTextBoxColumn6.FieldName = "Email";
-            gridViewTextBoxColumn6.HeaderText = "Email";
-            gridViewTextBoxColumn6.IsAutoGenerated = true;
-            gridViewTextBoxColumn6.IsVisible = false;
-            gridViewTextBoxColumn6.Name = "Email";
-            gridViewTextBoxColumn6.Width = 144;
-            gridViewTextBoxColumn7.FieldName = "Comment";
-            gridViewTextBoxColumn7.HeaderText = "Примітка";
-            gridViewTextBoxColumn7.IsAutoGenerated = true;
-            gridViewTextBoxColumn7.Name = "Comment";
-            gridViewTextBoxColumn7.Width = 309;
-            gridViewTextBoxColumn8.DataType = typeof(ipsFormsDesign.Model.Customer);
-            gridViewTextBoxColumn8.FieldName = "Cust";
-            gridViewTextBoxColumn8.HeaderText = "Cust";
-            gridViewTextBoxColumn8.IsAutoGenerated = true;
-            gridViewTextBoxColumn8.IsVisible = false;
-            gridViewTextBoxColumn8.Name = "Cust";
-            gridViewTextBoxColumn8.Width = 70;
-            gridViewTextBoxColumn9.DataType = typeof(ipsFormsDesign.Model.AspNetUsers);
-            gridViewTextBoxColumn9.FieldName = "User";
-            gridViewTextBoxColumn9.HeaderText = "User";
-            gridViewTextBoxColumn9.IsAutoGenerated = true;
-            gridViewTextBoxColumn9.IsVisible = false;
-            gridViewTextBoxColumn9.Name = "User";
-            gridViewTextBoxColumn9.Width = 79;
-            gridViewTextBoxColumn10.DataType = typeof(ipsFormsDesign.Interfaces.ObservableListSource<ipsFormsDesign.Model.RelEmployee>);
-            gridViewTextBoxColumn10.FieldName = "RelEmployee";
-            gridViewTextBoxColumn10.HeaderText = "RelEmployee";
-            gridViewTextBoxColumn10.IsAutoGenerated = true;
-            gridViewTextBoxColumn10.IsVisible = false;
-            gridViewTextBoxColumn10.Name = "RelEmployee";
-            gridViewTextBoxColumn10.Width = 79;
-            gridViewCommandColumn1.FieldName = "editBtn";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn1.MaxWidth = 30;
-            gridViewCommandColumn1.MinWidth = 30;
-            gridViewCommandColumn1.Name = "editBtn";
-            gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "deleteBtn";
-            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
-            gridViewCommandColumn2.MaxWidth = 30;
-            gridViewCommandColumn2.MinWidth = 30;
-            gridViewCommandColumn2.Name = "deleteBtn";
-            gridViewCommandColumn2.Width = 30;
+            gridViewDecimalColumn3.DataType = typeof(int);
+            gridViewDecimalColumn3.FieldName = "Emplid";
+            gridViewDecimalColumn3.HeaderText = "Emplid";
+            gridViewDecimalColumn3.IsAutoGenerated = true;
+            gridViewDecimalColumn3.IsVisible = false;
+            gridViewDecimalColumn3.Name = "Emplid";
+            gridViewDecimalColumn3.Width = 52;
+            gridViewDecimalColumn4.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn4.FieldName = "CustId";
+            gridViewDecimalColumn4.HeaderText = "CustId";
+            gridViewDecimalColumn4.IsAutoGenerated = true;
+            gridViewDecimalColumn4.IsVisible = false;
+            gridViewDecimalColumn4.Name = "CustId";
+            gridViewDecimalColumn4.Width = 57;
+            gridViewTextBoxColumn11.FieldName = "UserId";
+            gridViewTextBoxColumn11.HeaderText = "UserId";
+            gridViewTextBoxColumn11.IsAutoGenerated = true;
+            gridViewTextBoxColumn11.IsVisible = false;
+            gridViewTextBoxColumn11.Name = "UserId";
+            gridViewTextBoxColumn11.Width = 63;
+            gridViewTextBoxColumn12.FieldName = "LastName";
+            gridViewTextBoxColumn12.HeaderText = "Прізвище";
+            gridViewTextBoxColumn12.IsAutoGenerated = true;
+            gridViewTextBoxColumn12.Name = "LastName";
+            gridViewTextBoxColumn12.Width = 135;
+            gridViewTextBoxColumn13.FieldName = "FirstName";
+            gridViewTextBoxColumn13.HeaderText = "Ім\'я";
+            gridViewTextBoxColumn13.IsAutoGenerated = true;
+            gridViewTextBoxColumn13.Name = "FirstName";
+            gridViewTextBoxColumn13.Width = 84;
+            gridViewTextBoxColumn14.FieldName = "SurName";
+            gridViewTextBoxColumn14.HeaderText = "По батькові";
+            gridViewTextBoxColumn14.IsAutoGenerated = true;
+            gridViewTextBoxColumn14.Name = "SurName";
+            gridViewTextBoxColumn14.Width = 84;
+            gridViewTextBoxColumn15.FieldName = "PhoneNumber";
+            gridViewTextBoxColumn15.HeaderText = "Номер";
+            gridViewTextBoxColumn15.IsAutoGenerated = true;
+            gridViewTextBoxColumn15.MaxWidth = 105;
+            gridViewTextBoxColumn15.MinWidth = 105;
+            gridViewTextBoxColumn15.Name = "PhoneNumber";
+            gridViewTextBoxColumn15.Width = 105;
+            gridViewTextBoxColumn16.FieldName = "Email";
+            gridViewTextBoxColumn16.HeaderText = "Email";
+            gridViewTextBoxColumn16.IsAutoGenerated = true;
+            gridViewTextBoxColumn16.Name = "Email";
+            gridViewTextBoxColumn16.Width = 125;
+            gridViewTextBoxColumn17.FieldName = "Comment";
+            gridViewTextBoxColumn17.HeaderText = "Примітка";
+            gridViewTextBoxColumn17.IsAutoGenerated = true;
+            gridViewTextBoxColumn17.Name = "Comment";
+            gridViewTextBoxColumn17.Width = 275;
+            gridViewTextBoxColumn18.DataType = typeof(ipsFormsDesign.Model.Customer);
+            gridViewTextBoxColumn18.FieldName = "Cust";
+            gridViewTextBoxColumn18.HeaderText = "Cust";
+            gridViewTextBoxColumn18.IsAutoGenerated = true;
+            gridViewTextBoxColumn18.IsVisible = false;
+            gridViewTextBoxColumn18.Name = "Cust";
+            gridViewTextBoxColumn18.Width = 70;
+            gridViewTextBoxColumn19.DataType = typeof(ipsFormsDesign.Model.AspNetUsers);
+            gridViewTextBoxColumn19.FieldName = "User";
+            gridViewTextBoxColumn19.HeaderText = "User";
+            gridViewTextBoxColumn19.IsAutoGenerated = true;
+            gridViewTextBoxColumn19.IsVisible = false;
+            gridViewTextBoxColumn19.Name = "User";
+            gridViewTextBoxColumn19.Width = 79;
+            gridViewTextBoxColumn20.DataType = typeof(ipsFormsDesign.Interfaces.ObservableListSource<ipsFormsDesign.Model.RelEmployee>);
+            gridViewTextBoxColumn20.FieldName = "RelEmployee";
+            gridViewTextBoxColumn20.HeaderText = "RelEmployee";
+            gridViewTextBoxColumn20.IsAutoGenerated = true;
+            gridViewTextBoxColumn20.IsVisible = false;
+            gridViewTextBoxColumn20.Name = "RelEmployee";
+            gridViewTextBoxColumn20.Width = 79;
+            gridViewCommandColumn3.FieldName = "editBtn";
+            gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn3.MaxWidth = 30;
+            gridViewCommandColumn3.MinWidth = 30;
+            gridViewCommandColumn3.Name = "editBtn";
+            gridViewCommandColumn3.Width = 30;
+            gridViewCommandColumn3.ImageAlignment = ContentAlignment.MiddleCenter;
+            gridViewCommandColumn4.FieldName = "deleteBtn";
+            gridViewCommandColumn4.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn4.HeaderText = "";
+            gridViewCommandColumn4.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn4.MaxWidth = 30;
+            gridViewCommandColumn4.MinWidth = 30;
+            gridViewCommandColumn4.Name = "deleteBtn";
+            gridViewCommandColumn4.Width = 30;
+            gridViewCommandColumn4.ImageAlignment = ContentAlignment.MiddleCenter;
             this.gvContactPersons.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn1,
-            gridViewDecimalColumn2,
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewCommandColumn1,
-            gridViewCommandColumn2});
+            gridViewDecimalColumn3,
+            gridViewDecimalColumn4,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18,
+            gridViewTextBoxColumn19,
+            gridViewTextBoxColumn20,
+            gridViewCommandColumn3,
+            gridViewCommandColumn4});
             this.gvContactPersons.MasterTemplate.DataSource = this.bsEmployee;
             this.gvContactPersons.MasterTemplate.EnableGrouping = false;
-            this.gvContactPersons.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvContactPersons.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvContactPersons.Name = "gvContactPersons";
             this.gvContactPersons.ReadOnly = true;
-            this.gvContactPersons.Size = new System.Drawing.Size(744, 132);
+            this.gvContactPersons.Size = new System.Drawing.Size(887, 165);
             this.gvContactPersons.TabIndex = 33;
             this.gvContactPersons.ThemeName = "Office2013Light";
-            this.gvContactPersons.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvContactPersons_CurrentRowChanged);
             this.gvContactPersons.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvContactPersons_CommandCellClick);
             // 
             // bsEmployee
@@ -511,54 +492,10 @@
             this.btnAddContact.ThemeName = "Office2013Light";
             this.btnAddContact.Click += new System.EventHandler(this.btnAddContact_Click);
             // 
-            // txtContactPhone
-            // 
-            this.txtContactPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSingleEmpl, "PhoneNumber", true));
-            this.txtContactPhone.Location = new System.Drawing.Point(91, 423);
-            this.txtContactPhone.Name = "txtContactPhone";
-            this.txtContactPhone.Size = new System.Drawing.Size(197, 21);
-            this.txtContactPhone.TabIndex = 35;
-            this.txtContactPhone.ThemeName = "Office2013Light";
-            // 
-            // bsSingleEmpl
-            // 
-            this.bsSingleEmpl.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(54, 424);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(31, 19);
-            this.radLabel1.TabIndex = 36;
-            this.radLabel1.Text = "Тел.:";
-            this.radLabel1.ThemeName = "Office2013Light";
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Location = new System.Drawing.Point(294, 424);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(114, 19);
-            this.radLabel2.TabIndex = 38;
-            this.radLabel2.Text = "Електронна пошта:";
-            this.radLabel2.ThemeName = "Office2013Light";
-            // 
-            // txtContactEmail
-            // 
-            this.txtContactEmail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSingleEmpl, "Email", true));
-            this.txtContactEmail.Location = new System.Drawing.Point(414, 423);
-            this.txtContactEmail.Name = "txtContactEmail";
-            this.txtContactEmail.Size = new System.Drawing.Size(204, 21);
-            this.txtContactEmail.TabIndex = 37;
-            this.txtContactEmail.ThemeName = "Office2013Light";
-            // 
             // ManagersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radLabel2);
-            this.Controls.Add(this.txtContactEmail);
-            this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.txtContactPhone);
             this.Controls.Add(this.btnAddContact);
             this.Controls.Add(this.gvContactPersons);
             this.Controls.Add(this.ctrlBookkeeper);
@@ -573,7 +510,7 @@
             this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.lblTitle);
             this.Name = "ManagersControl";
-            this.Size = new System.Drawing.Size(750, 454);
+            this.Size = new System.Drawing.Size(893, 454);
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtEmail)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtFirstName)).EndInit();
@@ -598,11 +535,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvContactPersons)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddContact)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtContactPhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSingleEmpl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtContactEmail)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -626,10 +558,5 @@
         private Telerik.WinControls.UI.RadGridView gvContactPersons;
         private System.Windows.Forms.BindingSource bsEmployee;
         private Telerik.WinControls.UI.RadButton btnAddContact;
-        private Telerik.WinControls.UI.RadTextBox txtContactPhone;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadTextBox txtContactEmail;
-        private System.Windows.Forms.BindingSource bsSingleEmpl;
     }
 }

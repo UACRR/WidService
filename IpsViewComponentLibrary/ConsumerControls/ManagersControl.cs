@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
@@ -15,9 +16,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class ManagersControl : UserControl
     {
-        private List<Employee> _sourceGridEmployees = new List<Employee>();
-        private List<RelEmployee> _relEmployees;
-        private int _custId;
+        private List<Employee> _sourceGridEmployees;
+        private ContactPersonActionForm _contactPersonForm;
+        private Customer _customer;
         public ManagersControl()
         {
             InitializeComponent();
@@ -25,7 +26,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public void SetDataSources(Customer cust)
         {
-            _custId = cust.CustId;
+            _customer = cust;
             AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
             bsAnketaCompany.DataSource = anketa;
 
@@ -39,7 +40,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             txtOnBasicsIfHeadBoss.DataBindings.Clear();
             txtOnBasicsIfHeadBoss.DataBindings.Add("Text", relEmpl, "RelDocument", true); // на основі чого діє
 
-
             ctrlHeadBoss.DataSource = relEmpl.Empl;             // - - -  Керівник
 
             var relEmplBuh = cust?.Company?.RelEmployee?.FirstOrDefault(rec => rec?.PositionCode == 2);
@@ -49,18 +49,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 cust?.Company?.RelEmployee?.Add(relEmplBuh);
             }
             ctrlBookkeeper.DataSource = relEmplBuh.Empl;         // - - - Бухгалтер
-
-            _relEmployees = cust?.Company?.RelEmployee?.Where(rec => rec.PositionCode >= 3).ToList();
-            SetGridDataSource();
-
-            // rdnt
-            //var relEmplContPers = cust?.Company?.RelEmployee?.FirstOrDefault(rec => rec?.PositionCode == 3);
-            //if (relEmplContPers == null)
-            //{
-            //    relEmplContPers = new RelEmployee { Empl = new Employee(), PositionCode = 3 };
-            //    cust?.Company?.RelEmployee?.Add(relEmplContPers);
-            //}
             
+            SetGridDataSource();
         }
 
         public bool Validator()
@@ -70,7 +60,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void SetGridDataSource()
         {
-            foreach (var relEmployee in _relEmployees)
+            var source = _customer.Company?.RelEmployee?.Where(rec => rec.PositionCode >= 3);
+            _sourceGridEmployees = new List<Employee>();
+            foreach (var relEmployee in source)
                 _sourceGridEmployees.Add(relEmployee.Empl);
 
             bsEmployee.DataSource = _sourceGridEmployees;
@@ -81,39 +73,56 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             var temp = new RelEmployee
             {
-                CustId = _custId,
-                Empl = new Employee {CustId = _custId,},
-                PositionCode = _relEmployees.Any(rec => rec.PositionCode == 3) ? 4 : 3
+                CustId = _customer.CustId,
+                Empl = new Employee {CustId = _customer.CustId,},
+                PositionCode = _customer.Company.RelEmployee.Any(rec => rec.PositionCode == 3) ? 4 : 3
             };
 
 
-            var contactPersonForm = new ContactPersonActionForm(temp, FLoadType.Create)
+            _contactPersonForm = new ContactPersonActionForm(temp, FLoadType.Create)
             {
                 StartPosition = FormStartPosition.CenterScreen
             };
 
-            if (contactPersonForm.ShowDialog() == DialogResult.OK)
-                _relEmployees.Add(temp);
-            
-            SetGridDataSource();
-        }
+            if (_contactPersonForm.ShowDialog() == DialogResult.OK)
+            {
+                _customer.Company?.RelEmployee.Add(temp);
+            }
 
-        private void gvContactPersons_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-            bsSingleEmpl.DataSource = e?.CurrentRow.DataBoundItem as Employee;
+            SetGridDataSource();
         }
 
         private void gvContactPersons_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
+            var item = _customer.Company?.RelEmployee.SingleOrDefault(rec => rec.Empl == e.Row.DataBoundItem as Employee);
+
             switch (e.Column.FieldName)
             {
                 case "deleteBtn":
                     if (MessageBox.Show("Видалити контакту особу?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                        ;
+                    {
+                        _customer.Company?.RelEmployee.Remove(item);
+                    }
                     break;
                 case "editBtn":
+                    var temp = new RelEmployee
+                    {
+                        Empl = new Employee()
+                    };
+                    temp.SetFields(item);
+                    temp.Empl.SetFields(item.Empl);
+                    _contactPersonForm = new ContactPersonActionForm(temp, FLoadType.Edit)
+                    {
+                        StartPosition = FormStartPosition.CenterScreen
+                    };
+                    if (_contactPersonForm.ShowDialog() == DialogResult.OK)
+                    {
+                        item.SetFields(temp);
+                        item.Empl.SetFields(temp.Empl);
+                    }
                     break;
             }
+            SetGridDataSource();
         }
     }
 }

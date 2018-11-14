@@ -374,8 +374,9 @@ namespace ipsmedserviceapp.Controllers
                 var sorsList = sorsCustomer.Company.AnketaCompany.ToList();
                 _dbContext.UpdateList(sorsList, destCustomer.Company.AnketaCompany, rec => { }, (sorsItem, destItem) => sorsItem.Version == destItem.Version);
 
+                // RelEmployee
+                // del
                 var relEmployeeList = sorsCustomer.Company.RelEmployee.Where(rec => !string.IsNullOrEmpty(rec.Empl?.LastName?.Trim())).ToList();
-
                 var listRel = destCustomer.Company.RelEmployee.Where(rec => !relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
                 listRel.ForEach(delitem =>
                 {
@@ -384,9 +385,7 @@ namespace ipsmedserviceapp.Controllers
                     destCustomer.Company.RelEmployee.Remove(delitem);
 
                 });
-
-
-
+                // upd
                 listRel = destCustomer.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
                 listRel.ForEach(updItem =>
                 {
@@ -395,9 +394,7 @@ namespace ipsmedserviceapp.Controllers
                     updItem.Empl.SetFields(sorsItem?.Empl);
                 });
 
-                //
-                // десь тут
-                //
+                // 
                 var relEmpl = sorsCustomer.Company.RelEmployee.Select(items => items.Empl).ToList();
                 listRel = destCustomer.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
 
@@ -407,9 +404,6 @@ namespace ipsmedserviceapp.Controllers
                     updEmpl.SetFields(sorsCustomer.Company.RelEmployee.SingleOrDefault(item => item.Emplid == updEmpl.Emplid && item.PositionCode == updEmpl.PositionCode));
                     updEmpl.Empl.SetFields(sourceItem);
                 });
-
-
-                var testOne = listRel;
 
                 listRel = relEmployeeList.Where(rec => !destCustomer.Company.RelEmployee.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
                 listRel.ForEach(addItem =>
@@ -422,9 +416,6 @@ namespace ipsmedserviceapp.Controllers
                     destCustomer.Employee.Add(addEmpl);
                     destCustomer.Company.RelEmployee.Add(addRelItem);
                 });
-
-                var testMany = listRel;
-
             }
             else
             {

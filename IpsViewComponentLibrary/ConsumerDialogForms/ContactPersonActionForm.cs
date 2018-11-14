@@ -14,6 +14,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     {
         private const string TitleCreate = "Додати контактну особу";
         private const string TitleEdit = "Редагування контактної особи";
+        private const string PerformentComment = "Виконавець";
+        private string _cacheComment;
 
         private readonly List<InternalPositionType> _positionTypes = new List<InternalPositionType>
         {
@@ -39,9 +41,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                     break;
                 case FLoadType.Edit:
                     Text = TitleEdit;
+                    if (relEmployee.PositionCode == 4)
+                        _cacheComment = relEmployee.Empl.Comment;
                     break;
             }
-
 
             ddlPosition.DataSource = _positionTypes;
             ddlPosition.ValueMember = "CodeI";
@@ -51,12 +54,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             bsEmpl.DataSource = relEmployee.Empl;
             ctrlContactPerson.DataSource = relEmployee.Empl;
 
-
             if (relEmployee.PositionCode == 4)
                 ddlPosition.Enabled = false;
 
             ddlPosition.SelectedValueChanged += ddlPosition_SelectedValueChanged;
-
         }
 
         public sealed override string Text
@@ -69,6 +70,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         {
             DialogResult = DialogResult.OK;
         }
+
         public class InternalPositionType
         {
             public int CodeI { get; set; }
@@ -80,13 +82,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // Виконавець
             if (ddlPosition.SelectedItem.DataBoundItem is InternalPositionType item && item.CodeI == 3)
             {
-                (bsEmpl.DataSource as Employee).Comment = "Виконавець";
+                (bsEmpl.DataSource as Employee).Comment = PerformentComment;
                 txtComment.Enabled = false;
             }
             else
             {
                 txtComment.Enabled = true;
-                (bsEmpl.DataSource as Employee).Comment = string.Empty;
+                (bsEmpl.DataSource as Employee).Comment = _cacheComment;
             }
 
             bsEmpl.ResetBindings(true);
