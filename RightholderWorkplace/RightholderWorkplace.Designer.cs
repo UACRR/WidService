@@ -34,6 +34,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
@@ -66,15 +67,18 @@
             this.rightholdersChangePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
+            this.btnTransferSelected = new Telerik.WinControls.UI.RadButton();
+            this.btnTransferAll = new Telerik.WinControls.UI.RadButton();
             this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
-            this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
-            this.btnCancelNewCopyright = new Telerik.WinControls.UI.RadButton();
-            this.dtChangeCopyrightDateTill = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
-            this.lblChangeCopyrightDateTill = new Telerik.WinControls.UI.RadLabel();
             this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.RadioPanel();
             this.rdbDeath = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbTransfer = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbAlienation = new Telerik.WinControls.UI.RadRadioButton();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
+            this.btnClearNewCopyright = new Telerik.WinControls.UI.RadButton();
+            this.dtChangeCopyrightDateTill = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
+            this.lblChangeCopyrightDateTill = new Telerik.WinControls.UI.RadLabel();
             this.btnSaveNewCopyrights = new Telerik.WinControls.UI.RadButton();
             this.btnAddNewRightholder = new Telerik.WinControls.UI.RadButton();
             this.dtChangeCopyrightDateFrom = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
@@ -124,15 +128,18 @@
             this.radSplitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).BeginInit();
             this.splitPanel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).BeginInit();
-            this.splitPanel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancelNewCopyright)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferSelected)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferAll)).BeginInit();
             this.ctrlChangeRightholderOperation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbTransfer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbAlienation)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).BeginInit();
+            this.splitPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearNewCopyright)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveNewCopyrights)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateFrom)).BeginInit();
@@ -393,101 +400,70 @@
             // 
             // splitPanel5
             // 
+            this.splitPanel5.Controls.Add(this.btnTransferSelected);
+            this.splitPanel5.Controls.Add(this.btnTransferAll);
             this.splitPanel5.Controls.Add(this.ctrlRightholdersObjectsForChange);
+            this.splitPanel5.Controls.Add(this.ctrlChangeRightholderOperation);
+            this.splitPanel5.Controls.Add(this.radLabel1);
             this.splitPanel5.Location = new System.Drawing.Point(0, 0);
             this.splitPanel5.Name = "splitPanel5";
             // 
             // 
             // 
             this.splitPanel5.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel5.Size = new System.Drawing.Size(1172, 151);
-            this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.2439222F);
-            this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -150);
+            this.splitPanel5.Size = new System.Drawing.Size(1172, 256);
+            this.splitPanel5.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.06683587F);
+            this.splitPanel5.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -45);
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
             this.splitPanel5.ThemeName = "Office2013Light";
             // 
+            // btnTransferSelected
+            // 
+            this.btnTransferSelected.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTransferSelected.Location = new System.Drawing.Point(184, 229);
+            this.btnTransferSelected.Name = "btnTransferSelected";
+            this.btnTransferSelected.Size = new System.Drawing.Size(175, 24);
+            this.btnTransferSelected.TabIndex = 76;
+            this.btnTransferSelected.Text = "Перенести обрані";
+            this.btnTransferSelected.ThemeName = "Office2013Light";
+            this.btnTransferSelected.Click += new System.EventHandler(this.btnTransferSelected_Click);
+            // 
+            // btnTransferAll
+            // 
+            this.btnTransferAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnTransferAll.Location = new System.Drawing.Point(3, 229);
+            this.btnTransferAll.Name = "btnTransferAll";
+            this.btnTransferAll.Size = new System.Drawing.Size(175, 24);
+            this.btnTransferAll.TabIndex = 75;
+            this.btnTransferAll.Text = "Перенести всі";
+            this.btnTransferAll.ThemeName = "Office2013Light";
+            this.btnTransferAll.Click += new System.EventHandler(this.btnTransferAll_Click);
+            // 
             // ctrlRightholdersObjectsForChange
             // 
+            this.ctrlRightholdersObjectsForChange.AllowMarkingRows = false;
             this.ctrlRightholdersObjectsForChange.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRightholdersObjectsForChange.Location = new System.Drawing.Point(3, 3);
+            this.ctrlRightholdersObjectsForChange.Location = new System.Drawing.Point(3, 33);
             this.ctrlRightholdersObjectsForChange.Name = "ctrlRightholdersObjectsForChange";
             this.ctrlRightholdersObjectsForChange.SelectedObject = null;
             this.ctrlRightholdersObjectsForChange.SelectedRightholder = null;
             this.ctrlRightholdersObjectsForChange.ShowRightholderSelector = true;
-            this.ctrlRightholdersObjectsForChange.Size = new System.Drawing.Size(1166, 145);
+            this.ctrlRightholdersObjectsForChange.Size = new System.Drawing.Size(1166, 190);
             this.ctrlRightholdersObjectsForChange.TabIndex = 1;
             this.ctrlRightholdersObjectsForChange.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholdersObjectsForChange_RightholderChanged);
-            // 
-            // splitPanel6
-            // 
-            this.splitPanel6.Controls.Add(this.btnCancelNewCopyright);
-            this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateTill);
-            this.splitPanel6.Controls.Add(this.lblChangeCopyrightDateTill);
-            this.splitPanel6.Controls.Add(this.ctrlChangeRightholderOperation);
-            this.splitPanel6.Controls.Add(this.btnSaveNewCopyrights);
-            this.splitPanel6.Controls.Add(this.btnAddNewRightholder);
-            this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateFrom);
-            this.splitPanel6.Controls.Add(this.radLabel22);
-            this.splitPanel6.Controls.Add(this.gvObjectRightForTransfering);
-            this.splitPanel6.Location = new System.Drawing.Point(0, 156);
-            this.splitPanel6.Name = "splitPanel6";
-            // 
-            // 
-            // 
-            this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel6.Size = new System.Drawing.Size(1172, 440);
-            this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.2439222F);
-            this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 150);
-            this.splitPanel6.TabIndex = 1;
-            this.splitPanel6.TabStop = false;
-            this.splitPanel6.Text = "splitPanel6";
-            this.splitPanel6.ThemeName = "Office2013Light";
-            // 
-            // btnCancelNewCopyright
-            // 
-            this.btnCancelNewCopyright.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelNewCopyright.Location = new System.Drawing.Point(810, 413);
-            this.btnCancelNewCopyright.Name = "btnCancelNewCopyright";
-            this.btnCancelNewCopyright.Size = new System.Drawing.Size(175, 24);
-            this.btnCancelNewCopyright.TabIndex = 74;
-            this.btnCancelNewCopyright.Text = "Скасувати";
-            this.btnCancelNewCopyright.ThemeName = "Office2013Light";
-            this.btnCancelNewCopyright.Click += new System.EventHandler(this.btnCancelNewCopyright_Click);
-            // 
-            // dtChangeCopyrightDateTill
-            // 
-            this.dtChangeCopyrightDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtChangeCopyrightDateTill.Location = new System.Drawing.Point(235, 34);
-            this.dtChangeCopyrightDateTill.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateTill.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateTill.Name = "dtChangeCopyrightDateTill";
-            this.dtChangeCopyrightDateTill.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateTill.NullText = "Оберіть дату";
-            this.dtChangeCopyrightDateTill.Size = new System.Drawing.Size(122, 21);
-            this.dtChangeCopyrightDateTill.TabIndex = 72;
-            this.dtChangeCopyrightDateTill.TabStop = false;
-            this.dtChangeCopyrightDateTill.ThemeName = "Office2013Light";
-            this.dtChangeCopyrightDateTill.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // lblChangeCopyrightDateTill
-            // 
-            this.lblChangeCopyrightDateTill.Location = new System.Drawing.Point(208, 34);
-            this.lblChangeCopyrightDateTill.Name = "lblChangeCopyrightDateTill";
-            this.lblChangeCopyrightDateTill.Size = new System.Drawing.Size(21, 19);
-            this.lblChangeCopyrightDateTill.TabIndex = 76;
-            this.lblChangeCopyrightDateTill.Text = "по";
-            this.lblChangeCopyrightDateTill.ThemeName = "Office2013Light";
+            this.ctrlRightholdersObjectsForChange.RightholderChanging += new System.ComponentModel.CancelEventHandler(this.ctrlRightholdersObjectsForChange_RightholderChanging);
+            this.ctrlRightholdersObjectsForChange.MarkedObjectsRightsChanged += new System.EventHandler(this.ctrlRightholdersObjectsForChange_MarkedObjectsRightsChanged);
             // 
             // ctrlChangeRightholderOperation
             // 
             this.ctrlChangeRightholderOperation.Controls.Add(this.rdbDeath);
             this.ctrlChangeRightholderOperation.Controls.Add(this.rdbTransfer);
             this.ctrlChangeRightholderOperation.Controls.Add(this.rdbAlienation);
-            this.ctrlChangeRightholderOperation.Location = new System.Drawing.Point(5, 4);
+            this.ctrlChangeRightholderOperation.Location = new System.Drawing.Point(98, 3);
             this.ctrlChangeRightholderOperation.Name = "ctrlChangeRightholderOperation";
             this.ctrlChangeRightholderOperation.SelectedValue = null;
             this.ctrlChangeRightholderOperation.Size = new System.Drawing.Size(272, 24);
@@ -525,10 +501,81 @@
             this.rdbAlienation.Text = "Відчудження";
             this.rdbAlienation.ThemeName = "Office2013Light";
             // 
+            // radLabel1
+            // 
+            this.radLabel1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radLabel1.Location = new System.Drawing.Point(7, 6);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(87, 19);
+            this.radLabel1.TabIndex = 17;
+            this.radLabel1.Text = "Вид передачі:";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
+            // splitPanel6
+            // 
+            this.splitPanel6.Controls.Add(this.btnClearNewCopyright);
+            this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateTill);
+            this.splitPanel6.Controls.Add(this.lblChangeCopyrightDateTill);
+            this.splitPanel6.Controls.Add(this.btnSaveNewCopyrights);
+            this.splitPanel6.Controls.Add(this.btnAddNewRightholder);
+            this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateFrom);
+            this.splitPanel6.Controls.Add(this.radLabel22);
+            this.splitPanel6.Controls.Add(this.gvObjectRightForTransfering);
+            this.splitPanel6.Location = new System.Drawing.Point(0, 261);
+            this.splitPanel6.Name = "splitPanel6";
+            // 
+            // 
+            // 
+            this.splitPanel6.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanel6.Size = new System.Drawing.Size(1172, 335);
+            this.splitPanel6.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.06683587F);
+            this.splitPanel6.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 45);
+            this.splitPanel6.TabIndex = 1;
+            this.splitPanel6.TabStop = false;
+            this.splitPanel6.Text = "splitPanel6";
+            this.splitPanel6.ThemeName = "Office2013Light";
+            // 
+            // btnClearNewCopyright
+            // 
+            this.btnClearNewCopyright.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearNewCopyright.Location = new System.Drawing.Point(810, 308);
+            this.btnClearNewCopyright.Name = "btnClearNewCopyright";
+            this.btnClearNewCopyright.Size = new System.Drawing.Size(175, 24);
+            this.btnClearNewCopyright.TabIndex = 74;
+            this.btnClearNewCopyright.Text = "Очистити";
+            this.btnClearNewCopyright.ThemeName = "Office2013Light";
+            this.btnClearNewCopyright.Click += new System.EventHandler(this.btnClearNewCopyright_Click);
+            // 
+            // dtChangeCopyrightDateTill
+            // 
+            this.dtChangeCopyrightDateTill.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtChangeCopyrightDateTill.Culture = new System.Globalization.CultureInfo("uk-UA");
+            this.dtChangeCopyrightDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtChangeCopyrightDateTill.Location = new System.Drawing.Point(235, 3);
+            this.dtChangeCopyrightDateTill.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.dtChangeCopyrightDateTill.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtChangeCopyrightDateTill.Name = "dtChangeCopyrightDateTill";
+            this.dtChangeCopyrightDateTill.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtChangeCopyrightDateTill.NullText = "Оберіть дату";
+            this.dtChangeCopyrightDateTill.Size = new System.Drawing.Size(122, 21);
+            this.dtChangeCopyrightDateTill.TabIndex = 72;
+            this.dtChangeCopyrightDateTill.TabStop = false;
+            this.dtChangeCopyrightDateTill.ThemeName = "Office2013Light";
+            this.dtChangeCopyrightDateTill.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // lblChangeCopyrightDateTill
+            // 
+            this.lblChangeCopyrightDateTill.Location = new System.Drawing.Point(208, 3);
+            this.lblChangeCopyrightDateTill.Name = "lblChangeCopyrightDateTill";
+            this.lblChangeCopyrightDateTill.Size = new System.Drawing.Size(21, 19);
+            this.lblChangeCopyrightDateTill.TabIndex = 76;
+            this.lblChangeCopyrightDateTill.Text = "по";
+            this.lblChangeCopyrightDateTill.ThemeName = "Office2013Light";
+            // 
             // btnSaveNewCopyrights
             // 
             this.btnSaveNewCopyrights.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveNewCopyrights.Location = new System.Drawing.Point(991, 413);
+            this.btnSaveNewCopyrights.Location = new System.Drawing.Point(991, 308);
             this.btnSaveNewCopyrights.Name = "btnSaveNewCopyrights";
             this.btnSaveNewCopyrights.Size = new System.Drawing.Size(175, 24);
             this.btnSaveNewCopyrights.TabIndex = 73;
@@ -539,7 +586,7 @@
             // btnAddNewRightholder
             // 
             this.btnAddNewRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddNewRightholder.Location = new System.Drawing.Point(5, 413);
+            this.btnAddNewRightholder.Location = new System.Drawing.Point(5, 308);
             this.btnAddNewRightholder.Name = "btnAddNewRightholder";
             this.btnAddNewRightholder.Size = new System.Drawing.Size(175, 24);
             this.btnAddNewRightholder.TabIndex = 72;
@@ -549,8 +596,10 @@
             // 
             // dtChangeCopyrightDateFrom
             // 
+            this.dtChangeCopyrightDateFrom.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtChangeCopyrightDateFrom.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtChangeCopyrightDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtChangeCopyrightDateFrom.Location = new System.Drawing.Point(80, 34);
+            this.dtChangeCopyrightDateFrom.Location = new System.Drawing.Point(80, 3);
             this.dtChangeCopyrightDateFrom.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.dtChangeCopyrightDateFrom.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtChangeCopyrightDateFrom.Name = "dtChangeCopyrightDateFrom";
@@ -564,7 +613,7 @@
             // 
             // radLabel22
             // 
-            this.radLabel22.Location = new System.Drawing.Point(3, 34);
+            this.radLabel22.Location = new System.Drawing.Point(3, 3);
             this.radLabel22.Name = "radLabel22";
             this.radLabel22.Size = new System.Drawing.Size(71, 19);
             this.radLabel22.TabIndex = 17;
@@ -581,7 +630,7 @@
             this.gvObjectRightForTransfering.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gvObjectRightForTransfering.ForeColor = System.Drawing.SystemColors.ControlText;
             this.gvObjectRightForTransfering.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.gvObjectRightForTransfering.Location = new System.Drawing.Point(5, 61);
+            this.gvObjectRightForTransfering.Location = new System.Drawing.Point(5, 28);
             // 
             // 
             // 
@@ -623,12 +672,19 @@
             gridViewCheckBoxColumn1.HeaderText = "Ручне редагування відстока";
             gridViewCheckBoxColumn1.MinWidth = 20;
             gridViewCheckBoxColumn1.Name = "ManualDistribution";
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::RightholderWorkplace.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "DeleteColumn";
+            gridViewCommandColumn1.Width = 30;
             this.gvObjectRightForTransfering.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewDecimalColumn1,
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewDecimalColumn2,
-            gridViewCheckBoxColumn1});
+            gridViewCheckBoxColumn1,
+            gridViewCommandColumn1});
             this.gvObjectRightForTransfering.MasterTemplate.DataSource = this.bsObjectRightForTransfering;
             this.gvObjectRightForTransfering.MasterTemplate.EnableGrouping = false;
             this.gvObjectRightForTransfering.MasterTemplate.ShowRowHeaderColumn = false;
@@ -638,11 +694,12 @@
             this.gvObjectRightForTransfering.Name = "gvObjectRightForTransfering";
             this.gvObjectRightForTransfering.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvObjectRightForTransfering.ShowGroupPanel = false;
-            this.gvObjectRightForTransfering.Size = new System.Drawing.Size(1161, 346);
+            this.gvObjectRightForTransfering.Size = new System.Drawing.Size(1161, 274);
             this.gvObjectRightForTransfering.TabIndex = 0;
             this.gvObjectRightForTransfering.ThemeName = "Office2013Light";
-            this.gvObjectRightForTransfering.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvChangeCopyrights_RowFormatting);
-            this.gvObjectRightForTransfering.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvChangeCopyrights_CellBeginEdit);
+            this.gvObjectRightForTransfering.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvObjectRightForTransfering_RowFormatting);
+            this.gvObjectRightForTransfering.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvObjectRightForTransfering_CellBeginEdit);
+            this.gvObjectRightForTransfering.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectRightForTransfering_CommandCellClick);
             // 
             // bsObjectRightForTransfering
             // 
@@ -940,17 +997,21 @@
             this.radSplitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel5)).EndInit();
             this.splitPanel5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).EndInit();
-            this.splitPanel6.ResumeLayout(false);
-            this.splitPanel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancelNewCopyright)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).EndInit();
+            this.splitPanel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferSelected)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnTransferAll)).EndInit();
             this.ctrlChangeRightholderOperation.ResumeLayout(false);
             this.ctrlChangeRightholderOperation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rdbDeath)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbTransfer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdbAlienation)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).EndInit();
+            this.splitPanel6.ResumeLayout(false);
+            this.splitPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnClearNewCopyright)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveNewCopyrights)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateFrom)).EndInit();
@@ -1032,7 +1093,7 @@
         private Telerik.WinControls.UI.RadMenuItem radMenuItem2;
         private Telerik.WinControls.UI.RadMenuButtonItem radMenuButtonItem2;
         private Telerik.WinControls.UI.RadMenuHeaderItem radMenuHeaderItem1;
-        private Telerik.WinControls.UI.RadButton btnCancelNewCopyright;
+        private Telerik.WinControls.UI.RadButton btnClearNewCopyright;
         private IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl ctrlObjectRightList;
         private Telerik.WinControls.UI.RadDropDownButton ddbAddObjectRight;
         private Telerik.WinControls.UI.RadMenuItem miAddMusicalComposition;
@@ -1046,5 +1107,8 @@
         private IpsViewComponentLibrary.LicenseAgreementListControl licenseAgreementListControl1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private IpsViewComponentLibrary.FixationControls.FixationListControl fixationListControl1;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadButton btnTransferSelected;
+        private Telerik.WinControls.UI.RadButton btnTransferAll;
     }
 }

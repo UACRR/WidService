@@ -6,9 +6,11 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.ObjectsRight;
+using ipsFormsDesign.ViewModels.Rightholders;
 using IpsViewComponentLibrary.AppController;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.RightholderControls;
+using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
 using System;
 using System.Collections.Generic;
@@ -82,10 +84,11 @@ namespace RightholderWorkplace
             relation.ParentColumnNames.Add("ObjId");
             relation.ChildColumnNames.Add("ObjId");
             gvObjectRightForTransfering.Relations.Add(relation);
+            gvObjectRightForTransfering.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
 
             dtChangeCopyrightDateFrom.Value = DateTime.Now;
 
-            ctrlChangeRightholderOperation.SelectedValue = 3;
+            ctrlChangeRightholderOperation.SelectedValue = (int)LegalBasisType.Transfer;
         }
 
         #region Objectrights page
@@ -153,6 +156,15 @@ namespace RightholderWorkplace
         private BindingList<ObjectRightForTransfering> _objects = new BindingList<ObjectRightForTransfering>();
         private BindingList<ObjectCopyright> _copyrights = new BindingList<ObjectCopyright>();
 
+        private void ctrlRightholdersObjectsForChange_RightholderChanging(object sender, CancelEventArgs e)
+        {
+            if (!ConfirmClear())
+            { 
+                e.Cancel = true;
+                return;
+            }
+        }
+
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
             bsObjectRightForTransfering.DataSource = _objects;
@@ -161,19 +173,28 @@ namespace RightholderWorkplace
             _objects.Clear();
             _copyrights.Clear();
 
-            foreach (var obj in ctrlRightholdersObjectsForChange.ObjectsRightsList)
+            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance)
             {
-                _objects.Add((ObjectRightForTransfering)obj);
+                MoveAllObjectsToTransfer();
             }
+        }
+
+        private void ctrlRightholdersObjectsForChange_MarkedObjectsRightsChanged(object sender, EventArgs e)
+        {
+            UpdateTransferButtonsEnabling();
         }
 
         private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
         {
-            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == 5;
-            var isDeath = ctrlChangeRightholderOperation.SelectedValue == 3;
+            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer;
+            var isInheritance = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance;
 
             lblChangeCopyrightDateTill.Visible = isTransfer;
             dtChangeCopyrightDateTill.Visible = isTransfer;
+
+            ctrlRightholdersObjectsForChange.AllowMarkingRows = isTransfer;
+
+            UpdateTransferButtonsEnabling();
         }
 
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
@@ -249,7 +270,56 @@ namespace RightholderWorkplace
             }
         }
 
-        private void gvChangeCopyrights_RowFormatting(object sender, RowFormattingEventArgs e)
+        private void UpdateTransferButtonsEnabling()
+        {
+            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer;
+
+            btnTransferAll.Enabled = isTransfer;
+            btnTransferSelected.Enabled = isTransfer && ctrlRightholdersObjectsForChange.MarkedObjectsRights.Count != 0;
+        }
+
+        private void MoveAllObjectsToTransfer()
+        {
+            MoveObjectsListToTransfer(ctrlRightholdersObjectsForChange.ObjectsRightsList);
+        }
+
+        private void MoveSelectedObjectsToTransfer()
+        {
+            MoveObjectsListToTransfer(ctrlRightholdersObjectsForChange.MarkedObjectsRights);
+        }
+
+        private void MoveObjectsListToTransfer(List<ObjectRightForRightholder> list)
+        {
+            foreach (var obj in list)
+            {
+                if (_objects.FirstOrDefault(o => o.ObjId == obj.ObjId) == null)
+                {
+                    var objForTransf = (ObjectRightForTransfering)obj;
+
+                    if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer)
+                    {
+                        objForTransf.ManualDistribution = true;
+                    }
+
+                    _objects.Add(objForTransf);
+                }
+            }
+        }
+
+        private void gvObjectRightForTransfering_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column.Name == "DeleteColumn")
+            {
+                var obj = (ObjectRightForTransfering)e.Row.DataBoundItem;
+
+                var crToRemove = _copyrights.Where(cr => cr.ObjId == obj.ObjId).ToList();
+                crToRemove.ForEach(cr => _copyrights.Remove(cr));
+
+                _objects.Remove(obj);
+            }
+        }
+
+        private void gvObjectRightForTransfering_RowFormatting(object sender, RowFormattingEventArgs e)
         {
             if (e.RowElement.ViewTemplate.Parent == null)
             {
@@ -260,7 +330,7 @@ namespace RightholderWorkplace
             }
         }
 
-        private void gvChangeCopyrights_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        private void gvObjectRightForTransfering_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
             if (e.Column.Name == "Rate")
             {
@@ -274,11 +344,28 @@ namespace RightholderWorkplace
             }
         }
 
+        private void btnTransferAll_Click(object sender, EventArgs e)
+        {
+            MoveAllObjectsToTransfer();
+        }
+
+        private void btnTransferSelected_Click(object sender, EventArgs e)
+        {
+            MoveSelectedObjectsToTransfer();
+        }
+
         private void btnSaveNewCopyrights_Click(object sender, EventArgs e)
         {
             if (_copyrights.Count == 0)
             {
                 MessageBox.Show("Додайте нових правонаступників.");
+                return;
+            }
+
+            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer
+                && dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
+            {
+                MessageBox.Show("Вкажіть дату по яку передаються права на обрані об'єкти.");
                 return;
             }
 
@@ -320,7 +407,7 @@ namespace RightholderWorkplace
                         LBasis = 3,
                         Rate = copyright.Rate,
                         BeginDate = dtChangeCopyrightDateFrom.Value,
-                        EndDate = new DateTime(3000, 1, 1),
+                        EndDate = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer ? dtChangeCopyrightDateTill.Value : new DateTime(3000, 1, 1),
                         //ParentId = 
                         Obj = new ObjectRight(),
                     };
@@ -337,7 +424,17 @@ namespace RightholderWorkplace
                 rightholders.Add(newRightholder);
             }
 
-            var result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
+            var result = false;
+            switch (ctrlChangeRightholderOperation.SelectedValue)
+            {
+                case (int)LegalBasisType.Inheritance:
+                    result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
+                    break;
+
+                case (int)LegalBasisType.Transfer:
+                    result = _rightholderService.Transfer(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
+                    break;
+            }
 
             if (result)
             {
@@ -345,14 +442,29 @@ namespace RightholderWorkplace
 
                 ApplicationController.Instance.EventAggregator.PublishEvent(new ObjectRightUpdatedEvent());
                 ApplicationController.Instance.EventAggregator.PublishEvent(new RightholderUpdatedEvent());
+
+                _copyrights.Clear();
+                _objects.Clear();
             }
             else
                 MessageBox.Show("Не вдалося виконати передачу об'єктів.");
         }
 
-        private void btnCancelNewCopyright_Click(object sender, EventArgs e)
+        private void btnClearNewCopyright_Click(object sender, EventArgs e)
         {
+            if (!ConfirmClear())
+                return;
+
             ctrlRightholdersObjectsForChange.SelectedRightholder = null;
+        }
+
+        private bool ConfirmClear()
+        {
+            if (_objects.Count != 0)
+                if (RadMessageBox.Show(this, "Зміни для обраних об'єктів не буде збережено. Продовжити?", "Питання", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.No)
+                    return false;
+
+            return true;
         }
 
         #endregion

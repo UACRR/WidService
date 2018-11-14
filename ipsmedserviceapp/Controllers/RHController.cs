@@ -541,37 +541,26 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
         #region inheritance
 
         /// <summary>
-        /// Внутрішній метод підготовки данних до зміни
+        /// Внутрішній метод передачі об'єктів з одного правовласника на інших
         /// </summary>
         /// <param name="rhId"></param>
         /// <param name="body"></param>
         /// <returns></returns>
-        private async Task<bool> internalRHInheritance(int rhId, List<RightHolder> body)
+        private async Task ProcessObjectTransfer(int rhId, List<RightHolder> body)
         {
             // Права Автора / Правовласника
-            DateTime checkDate = body.Where(rec => rec.CustId == rhId).SingleOrDefault()?.CopyRight.SingleOrDefault()?.EndDate ?? DateTime.Today;
+            DateTime endDate = body.Where(rec => rec.CustId == rhId).SingleOrDefault()?.CopyRight.SingleOrDefault()?.EndDate ?? DateTime.Today;
+            var checkDate = new DateTime(endDate.Year, endDate.Month, endDate.Day).AddDays(1);
             var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && item.EndDate >= checkDate)
-                                .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
                                 .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).ToListAsync();
 
-
-
             if (listCopyRight.Count == 0)
-                return false;
-
-            // Правовласник
-            var oldRightHolder = listCopyRight[0].Cust;
+                return;
 
             // Правовласник з інтерфейсу
             var oldBodyCust = body.Where(rec => rec.CustId == rhId).SingleOrDefault();
             if (oldBodyCust == null)
-                return false;
-
-            // Закриваємо Правовласника і його договір
-            oldRightHolder.Cust.Status = 9;
-
-            var agreement = _dbContext.AgreementAddRh.FirstOrDefault(a => a.CustId == oldRightHolder.CustId);
-            agreement.AgrStatus = 4;
+                return;
 
             // Об'єкти правовласника
             var objects = await _dbContext.ObjectRight.FromSql(@"
@@ -593,64 +582,70 @@ t2.custId = @custid
 ", new SqlParameter("@custid", rhId)).ToListAsync();
 
             //DateTime checkDate = oldBodyCust.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
-            DateTime beginDate = checkDate.AddDays(1);
+            DateTime beginDate = endDate.AddDays(1);
 
 
-            try
-            {
-                // Оброблюємо нових правовласників
-                body.Where(rec => rec.CustId != rhId).ToList()
-                    .ForEach(item =>
-                    {
+            // Оброблюємо нових правовласників
+            body.Where(rec => rec.CustId != rhId).ToList()
+                .ForEach(item =>
+                {
                     // Додаємо нові права
                     foreach (var cright in item.CopyRight)
-                        {
-                            CopyRight addItem = new CopyRight();
+                    {
+                        CopyRight addItem = new CopyRight();
                         // addItem.CRightId
                         addItem.SetFields(cright, new[] { "CRightId" });
-                            _dbContext.CopyRight.Add(addItem);
+                        _dbContext.CopyRight.Add(addItem);
 
-                            foreach (var author in cright.Obj.Authors)
-                            {
-                                if (authtors.Any(rec => rec.ObjId == author.ObjId && rec.CustId == author.CustId && rec.RoleCode == author.RoleCode))
-                                    continue;
+                        foreach (var author in cright.Obj.Authors)
+                        {
+                            if (authtors.Any(rec => rec.ObjId == author.ObjId && rec.CustId == author.CustId && rec.RoleCode == author.RoleCode))
+                                continue;
 
-                                Authors addAutor = new Authors();
-                                addAutor.SetFields(author, new[] { "AuthId" });
+                            Authors addAutor = new Authors();
+                            addAutor.SetFields(author, new[] { "AuthId" });
                             // addAutor.AuthId
                             _dbContext.Authors.Add(addAutor);
-                            }
                         }
+                    }
                     // Додаємо Авторів
                 });
 
-                // Очищаємо CustId
-                foreach (var item in authtors.Where(rec => rec.CustId == rhId).ToArray())
-                    item.CustId = null;
+            // Очищаємо CustId
+            foreach (var item in authtors.Where(rec => rec.CustId == rhId).ToArray())
+                item.CustId = null;
 
-                // Проставляємо кінцеву дату права
-                listCopyRight.ForEach(item =>
-                {
-                    //
-                    item.EndDate = checkDate;
-
-                    foreach (var author in item.Obj.Authors.Where(a => a.CustId == item.CustId))
-                    {
-                        author.CustId = null;
-                    }
-                });
-                return true;
-            }
-            catch (Exception)
+            // Проставляємо кінцеву дату права
+            listCopyRight.ForEach(item =>
             {
-                return false;
-            }
+                //
+                item.EndDate = endDate;
 
+                foreach (var author in item.Obj.Authors.Where(a => a.CustId == item.CustId))
+                {
+                    author.CustId = null;
+                }
+            });
         }
 
-        
+        private void SetCloseStatusForRightholderAndAgreement(int custId)
+        {
+            var customer = _dbContext.Customer.FirstOrDefault(c => c.CustId == custId);
+
+            // Закриваємо Правовласника і його договір
+            customer.Status = 9;
+
+            var agreement = _dbContext.AgreementAddRh
+                .Include(a => a.Agr)
+                .FirstOrDefault(a => a.CustId == custId);
+
+            agreement.AgrStatus = 4;
+            agreement.Agr.AgrStatus = 4;
+        }
+
+
         /// <summary>
-        /// Зміна правовласника по спадщині
+        /// Зміна правовласника - спадщина
         /// </summary>
         /// <param name="rhId">Ід старого правовласника</param>
         /// <param name="body">Список нових правовласників
@@ -658,105 +653,35 @@ t2.custId = @custid
         /// </param>
         /// <returns>Ok</returns>
         [HttpPost("inheritance/{rhId}")]
-        public async Task<IActionResult> SetRHInheritance(int rhId, [FromBody]List<RightHolder> body)
+        public async Task<IActionResult> Inheritance(int rhId, [FromBody]List<RightHolder> body)
         {
-            IDbContextTransaction tran = null;
-            try
-            {
-                if (await internalRHInheritance(rhId, body) == false)
-                    return Ok();
+            await ProcessObjectTransfer(rhId, body);
 
-                tran = await _dbContext.Database.BeginTransactionAsync();
-                await _dbContext.SaveChangesAsync();
-                tran.Commit();
-                tran = null;
+            SetCloseStatusForRightholderAndAgreement(body[0].CustId);
 
-                return Ok();
+            await _dbContext.SaveChangesAsync();
 
-            }
-            catch (Exception)
-            {
-
-                tran?.Rollback();
-                return BadRequest();
-            }
+            return Ok();
         }
-
-#if DEBUG
-        /// <summary>
-        /// Отримати результат після зміни процесу
-        /// </summary>
-        /// <param name="rhId"></param>
-        /// <param name="body"></param>
-        /// <returns></returns>
-        private async Task<IActionResult> getDebugInfoForSetRHInheritance(int rhId, [FromBody]List<RightHolder> body)
-        {
-            DateTime checkDate = body.Where(rec => rec.CustId == rhId).SingleOrDefault()?.CopyRight.FirstOrDefault()?.EndDate ?? DateTime.Today;
-
-            var listCopyRight = await _dbContext.CopyRight.Where(item => item.CustId == rhId && item.BeginDate <= checkDate && checkDate <= item.EndDate)
-                    .Include(rec => rec.Cust).ThenInclude(cr => cr.Cust)
-                    .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors).AsNoTracking().ToListAsync();
-
-            var authtors = await _dbContext.Authors.FromSql(@"
-select distinct t1.* 
-from Authors t1
-join CopyRight t2 on t2.objId = t1.objId and @checkDate between t2.beginDate and t2.endDate
-where
-t2.custId = @custid
-", new SqlParameter("@custid", rhId), new SqlParameter("@checkDate", checkDate)).AsNoTracking().ToListAsync();
-
-            var oldBodyCust = body.Where(rec => rec.CustId == rhId).SingleOrDefault();
-            DateTime endDate = checkDate.AddDays(-1);
-
-            var inheriers = await _dbContext.CopyRight.FromSql(@"
-select distinct t3.* 
-from ObjectRight t1
-join CopyRight t2 on t2.objId = t1.objId and @dateend between t2.beginDate and t2.endDate
-join CopyRight t3 on t3.objId = t1.objId and @dateend < t3.beginDate
-where
-t2.custId = @custid
-", new SqlParameter("@custid", rhId), new SqlParameter("@dateend", endDate)).AsNoTracking().ToListAsync();
-
-
-            return Json(new { listCopyRight, authtors, inheriers });
-
-        }
-
 
         /// <summary>
-        /// 
+        /// Зміна правовласника - передача
         /// </summary>
-        /// <param name="rhId"></param>
-        /// <param name="body"></param>
-        /// <returns></returns>
-        [HttpPost("inheritancedebug/{rhId}")]
-        public async Task<IActionResult> SetRHInheritanceDebug(int rhId, [FromBody]List<RightHolder> body)
+        /// <param name="rhId">Ід старого правовласника</param>
+        /// <param name="body">Список нових правовласників
+        ///                    та запис по старому правовласнику з датою завершення володінням правами 
+        /// </param>
+        /// <returns>Ok</returns>
+        [HttpPost("transfer/{rhId}")]
+        public async Task<IActionResult> Transfer(int rhId, [FromBody]List<RightHolder> body)
         {
-            IDbContextTransaction tran = null;
-            try
-            {
-                if (await internalRHInheritance(rhId, body) == false)
-                    return Ok();
+            await ProcessObjectTransfer(rhId, body);
 
-                tran = await _dbContext.Database.BeginTransactionAsync();
-                await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync();
 
-                var result = await getDebugInfoForSetRHInheritance(rhId, body);
-                tran.Rollback();
-                tran = null;
-
-                return result;
-
-            }
-            catch (Exception ex)
-            {
-
-                tran?.Rollback();
-                return BadRequest(ex.Message);
-            }
+            return Ok();
         }
 
-#endif
         #endregion
 
         #region Copyright requests
