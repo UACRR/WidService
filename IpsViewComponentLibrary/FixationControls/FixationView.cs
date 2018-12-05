@@ -280,24 +280,24 @@ namespace IpsViewComponentLibrary.FixationControls
 
         #region Print documents
 
-        private void btnOrderFixation_Click(object sender, EventArgs e)
+        private void miPrintNakaz_Click(object sender, EventArgs e)
         {
             _presenter.PrintFixationOrder();
         }
 
-        private void btnPrintFixationAct_Click(object sender, EventArgs e)
+        private void miPrintActFiksacii_Click(object sender, EventArgs e)
         {
             _presenter.PrintFixationAct();
         }
 
-        private void btnPrintSlugbova_Click(object sender, EventArgs e)
-        {
-            _presenter.PrintFixationSlugbova();
-        }
-
-        private void btnPrintIdentificationAct_Click(object sender, EventArgs e)
+        private void miPrintActIdentyfikacii_Click(object sender, EventArgs e)
         {
             _presenter.PrintFixationIdentificationAct();
+        }
+
+        private void miPrintSlugbova_Click(object sender, EventArgs e)
+        {
+            _presenter.PrintFixationSlugbova();
         }
 
         #endregion
