@@ -43,7 +43,7 @@ namespace ipsFormsDesign.Services
 
             var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_Акт фіксації_друк.docx");
 
-            await _wordEngine.ProcessFixationAct(template, fixation);
+            await _wordEngine.ProcessFixationAct(template);
 
             _previewView.LoadPdf(_wordEngine.Pdf);
             _previewView.StopWaiting();
