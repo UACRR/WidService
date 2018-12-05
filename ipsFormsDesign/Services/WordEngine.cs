@@ -998,6 +998,9 @@ namespace ipsFormsDesign.Services
                     case "fixDevice":
                         item.Range.Text = GetStringOfDeviceList(fixation.FixStorageDevice);
                         break;
+                    case "fixEmployee":
+                        item.Range.Text = responsible.FIO;
+                        break;
                 }
             }
 
