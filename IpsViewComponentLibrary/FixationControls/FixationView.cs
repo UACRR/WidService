@@ -651,7 +651,7 @@ namespace IpsViewComponentLibrary.FixationControls
 
         private void SetUpPrintButton()
         {
-            sbPrint.Visible = _fixation.StageStatus >= (int)FixationStageStatuses.FixationNotScheduled;
+            sbPrint.Visible = _fixation.StageStatus >= (int)FixationStageStatuses.FixationScheduled;
 
             var buttonVisibility =
                 _fixation.StageStatus >= (int)FixationStageStatuses.NegotiationAfterFixationRejected ? ElementVisibility.Visible : ElementVisibility.Collapsed;
