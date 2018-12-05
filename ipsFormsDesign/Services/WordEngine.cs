@@ -923,7 +923,7 @@ namespace ipsFormsDesign.Services
 
         #region Fixation Act
 
-        public async System.Threading.Tasks.Task ProcessFixationAct(string pathTemplate, Fixation fixation)
+        public async System.Threading.Tasks.Task ProcessFixationAct(string pathTemplate)
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -934,103 +934,19 @@ namespace ipsFormsDesign.Services
             File.Copy(pathTemplate, docFile);
 
             // відкрити шаблон
-            await System.Threading.Tasks.Task.Run(() => InnerProcessFixationAct(fixation));
+            await System.Threading.Tasks.Task.Run(() => InnerProcessFixationAct());
 
         }
 
-        private void InnerProcessFixationAct(Fixation fixation)
+        private void InnerProcessFixationAct()
         {
-            var userService = new UserService();
-            var responsible = userService.GetById(fixation.UserId);
-
-            var consumerService = new ConsumerService();
-            var consumer = consumerService.GetShortInfoById(fixation.ClientCustId.Value);
-
             app = StartWordApp();
             innerDoc = app.Documents.Open(Docx);
-
-            var list = innerDoc.ContentControls;
-
-            foreach (ContentControl item in list)
-            {
-                item.LockContentControl = false;
-                item.Temporary = true;
-                string title = item.Title.Trim();
-
-                switch (title)
-                {
-                    case "data":
-                        item.Range.Text = DateTime.Today.ToShortDateString() + " р.";
-                        break;
-                    case "fixEmployee":
-                        item.Range.Text = responsible.FIO;
-                        break;
-                    case "fixDate":
-                        item.Range.Text = fixation.FixationDtBegin.Value.ToShortDateString();
-                        break;
-                    case "fixTime":
-                        item.Range.Text = fixation.FixationDtBegin.Value.ToShortTimeString();
-                        break;
-                    case "fixPlacement":
-                        item.Range.Text = fixation.Placement;
-                        break;
-                    case "fixAddress":
-                        item.Range.Text = fixation.Address;
-                        break;
-                    case "fixClientName":
-                        item.Range.Text = consumer.Name;
-                        break;
-                    case "fixClientInnOkpo":
-                        item.Range.Text = consumer.Innokpo;
-                        break;
-                    case "fixEventName":
-                        item.Range.Text = fixation.EventName;
-                        break;
-                    case "fixDevice":
-                        item.Range.Text = GetStringOfDeviceList(fixation.FixStorageDevice);
-                        break;
-                    case "TableObjFix":
-                        PopulateTableObjectsFix(item.Range.Tables, fixation.GetRegister().RegisterItem);
-                        break;
-                }
-            }
-
             innerDoc.Save();
             innerDoc.SaveAs2(Pdf, WdSaveFormat.wdFormatPDF);
             innerDoc.Close();
             Marshal.ReleaseComObject(innerDoc);
             innerDoc = null;
-        }
-
-        private string GetStringOfDeviceList(IEnumerable<FixStorageDevice> fixStorageDevices)
-        {
-            var result = "";
-
-            foreach(var device in fixStorageDevices)
-            {
-                result += result == "" ? "" : "; ";
-                result += $"{device.Name}, {device.SerialNumber}, {device.Capacity} Gb";
-            }
-
-            return result;
-        }
-
-        private void PopulateTableObjectsFix(Tables tables, IEnumerable<RegisterItem> registerItemList)
-        {
-            if (tables.Count == 0)
-                return;
-
-            Table tableObjects = tables[1];
-
-            foreach (var item in registerItemList)
-            {
-                var newRow = tableObjects.Rows.Add();
-                newRow.Cells[1].Range.Text = (newRow.Index - 1).ToString();
-                newRow.Cells[2].Range.Text = item.ItemName;
-                newRow.Cells[3].Range.Text = item.Performer;
-
-                DisableBoldFont(newRow);
-            }
         }
 
         #endregion
@@ -1090,6 +1006,19 @@ namespace ipsFormsDesign.Services
             innerDoc.Close();
             Marshal.ReleaseComObject(innerDoc);
             innerDoc = null;
+        }
+
+        private string GetStringOfDeviceList(IEnumerable<FixStorageDevice> fixStorageDevices)
+        {
+            var result = "";
+
+            foreach(var device in fixStorageDevices)
+            {
+                result += result == "" ? "" : "; ";
+                result += $"{device.Name}, {device.SerialNumber}, {device.Capacity} Gb";
+            }
+
+            return result;
         }
 
         #endregion
