@@ -44,6 +44,7 @@ namespace IpsViewComponentLibrary.FixationControls
                 _fixation = value;
                 bsFixation.DataSource = _fixation;
                 ShowAllowedPages();
+                SetUpPrintButton();
             }
         }
 
@@ -160,6 +161,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _presenter.SetStatus((FixationStageStatuses)e.Value);
             bsFixation.ResetCurrentItem();
             ShowAllowedPages();
+            SetUpPrintButton();
         }
 
         private void btnAddStorage_Click(object sender, EventArgs e)
@@ -645,6 +647,17 @@ namespace IpsViewComponentLibrary.FixationControls
             pageIdentification.Item.Visibility = identificatioVisibility;
             pageJudicalWork.Item.Visibility = judicalVisibility;
             pageDistribution.Item.Visibility = distributionVisibility;
+        }
+
+        private void SetUpPrintButton()
+        {
+            sbPrint.Visible = _fixation.StageStatus >= (int)FixationStageStatuses.FixationNotScheduled;
+
+            var buttonVisibility =
+                _fixation.StageStatus >= (int)FixationStageStatuses.NegotiationAfterFixationRejected ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+
+            miPrintActIdentyfikacii.Visibility = buttonVisibility;
+            miPrintSlugbova.Visibility = buttonVisibility;
         }
 
         private static void CreateControls(Control control)
