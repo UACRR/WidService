@@ -16,13 +16,15 @@ namespace ipsmedserviceapp.Mappings
                 .ForMember(f => f.FixId, opt => opt.Ignore())
                 .AfterMap((source, dest) =>
                 {
-
-                    dest.Lic.CustId = dest.ClientCustId.Value;
-                    var paidPeriod = dest.Lic.PaidPeriod.First();
-                    paidPeriod.CustId = dest.ClientCustId.Value;
-                    var registerRatedList = paidPeriod.RegisterRatedList.First();
-                    var register = registerRatedList.Register.First();
-                    register.CustId = dest.ClientCustId.Value;
+                    if (source.StageStatus > 1)
+                    {
+                        dest.Lic.CustId = dest.ClientCustId.Value;
+                        var paidPeriod = dest.Lic.PaidPeriod.First();
+                        paidPeriod.CustId = dest.ClientCustId.Value;
+                        var registerRatedList = paidPeriod.RegisterRatedList.First();
+                        var register = registerRatedList.Register.First();
+                        register.CustId = dest.ClientCustId.Value;
+                    }
                 });
 
             CreateMap<FixFile, FixFile>()

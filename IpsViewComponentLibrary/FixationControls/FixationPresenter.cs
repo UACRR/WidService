@@ -78,29 +78,31 @@ namespace IpsViewComponentLibrary.FixationControls
             _fixation = fixationModel.Fixation;
             _view.Fixation = _fixation;
 
-            _view.RegisterItemList.Clear();
-            foreach (var rvm in _fixation.GetRegister().GetRegisterItemsList())
-            {
-                _view.RegisterItemList.Add(rvm);
-            }
-
-            _view.RegisterCountList.Clear();
-            foreach (var rcvm in fixationModel.RegisterCounts)
-            {
-                _view.RegisterCountList.Add(rcvm);
-            }
-
             if (_fixation.UserId != null)
             {
                 var responsible = _userService.GetById(_fixation.UserId);
                 _view.Responsible = responsible;
             }
+
             if (_fixation.ClientCustId != null)
             {
                 _view.Consumer = _consumerService.GetShortInfoById((int)_fixation.ClientCustId);
             }
 
-            var currentStage = _fixation.GetStage();
+            if (!fixationModel.Fixation.IsInNewState())
+            {
+                _view.RegisterItemList.Clear();
+                foreach (var rvm in _fixation.GetRegister().GetRegisterItemsList())
+                {
+                    _view.RegisterItemList.Add(rvm);
+                }
+
+                _view.RegisterCountList.Clear();
+                foreach (var rcvm in fixationModel.RegisterCounts)
+                {
+                    _view.RegisterCountList.Add(rcvm);
+                }
+            }
 
             _view.SetAvailableStageStatuses(_fixation.GetAvailableStageStatuses());
             _view.ShowStatusesGroupBox = true;
@@ -114,50 +116,53 @@ namespace IpsViewComponentLibrary.FixationControls
                 return;
             }
 
-            var register = _fixation.GetRegister();
-            var registerCountList = _view.RegisterCountList.ToList();
+            if (!_fixation.IsInNewState())
+            { 
+                var register = _fixation.GetRegister();
+                var registerCountList = _view.RegisterCountList.ToList();
 
-            register.RegisterItem.Clear();
+                register.RegisterItem.Clear();
 
-            foreach (var rvm in _view.RegisterItemList)
-            {
-                var foundedRegisterItem = register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
-
-                if (foundedRegisterItem == null)
+                foreach (var rvm in _view.RegisterItemList)
                 {
-                    foundedRegisterItem = new RegisterItem();
-                    register.RegisterItem.Add(foundedRegisterItem);
-                }
+                    var foundedRegisterItem = register.RegisterItem.FirstOrDefault(r => r.RegId == rvm.RegId && r.RegIitemId == rvm.RegIitemId);
 
-                foundedRegisterItem.RegIitemId = rvm.RegIitemId;
-                foundedRegisterItem.ItemName = rvm.ItemName;
-                foundedRegisterItem.AuthorMusic = rvm.AuthorMusic;
-                foundedRegisterItem.AuthorText = rvm.AuthorText;
-                foundedRegisterItem.CategoryCode = rvm.CategoryCode;
-                foundedRegisterItem.CountUse = rvm.CountUse;
-                foundedRegisterItem.DurationItem = rvm.DurationItem;
-                foundedRegisterItem.DurationUse = rvm.DurationUse;
-                foundedRegisterItem.Performer = rvm.Performer;
-                foundedRegisterItem.RegId = rvm.RegId;
-                foundedRegisterItem.ObjId = rvm.ObjId;
-                foundedRegisterItem.IsAuto = rvm.IsAuto;
-                foundedRegisterItem.RegisterItemFix = rvm.RegisterItemFix;
-                foundedRegisterItem.CodeItem = 1;
-
-                var registerCountForItem = _view.RegisterCountList.Where(rc => rc.RegId == rvm.RegId && rc.RegIitemId == rvm.RegIitemId);
-                foreach (var rcvm in registerCountForItem)
-                {
-                    foundedRegisterItem.RegisterCount.Add(new RegisterCount
+                    if (foundedRegisterItem == null)
                     {
-                        RegCntId = rcvm.RegCntId,
-                        RegId = rcvm.RegId,
-                        RegIitemId = rcvm.RegIitemId,
-                        CustId = rcvm.CustId,
-                        ObjId = rcvm.ObjId,
-                        Rate = rcvm.Rate,
-                        CRtype = 1,
-                        CRkindCode = 1,
-                    });
+                        foundedRegisterItem = new RegisterItem();
+                        register.RegisterItem.Add(foundedRegisterItem);
+                    }
+
+                    foundedRegisterItem.RegIitemId = rvm.RegIitemId;
+                    foundedRegisterItem.ItemName = rvm.ItemName;
+                    foundedRegisterItem.AuthorMusic = rvm.AuthorMusic;
+                    foundedRegisterItem.AuthorText = rvm.AuthorText;
+                    foundedRegisterItem.CategoryCode = rvm.CategoryCode;
+                    foundedRegisterItem.CountUse = rvm.CountUse;
+                    foundedRegisterItem.DurationItem = rvm.DurationItem;
+                    foundedRegisterItem.DurationUse = rvm.DurationUse;
+                    foundedRegisterItem.Performer = rvm.Performer;
+                    foundedRegisterItem.RegId = rvm.RegId;
+                    foundedRegisterItem.ObjId = rvm.ObjId;
+                    foundedRegisterItem.IsAuto = rvm.IsAuto;
+                    foundedRegisterItem.RegisterItemFix = rvm.RegisterItemFix;
+                    foundedRegisterItem.CodeItem = 1;
+
+                    var registerCountForItem = _view.RegisterCountList.Where(rc => rc.RegId == rvm.RegId && rc.RegIitemId == rvm.RegIitemId);
+                    foreach (var rcvm in registerCountForItem)
+                    {
+                        foundedRegisterItem.RegisterCount.Add(new RegisterCount
+                        {
+                            RegCntId = rcvm.RegCntId,
+                            RegId = rcvm.RegId,
+                            RegIitemId = rcvm.RegIitemId,
+                            CustId = rcvm.CustId,
+                            ObjId = rcvm.ObjId,
+                            Rate = rcvm.Rate,
+                            CRtype = 1,
+                            CRkindCode = 1,
+                        });
+                    }
                 }
             }
 
@@ -250,6 +255,9 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public bool ValidateConsumer()
         {
+            if (_fixation.StageStatus == (int)FixationStageStatuses.New)
+                return true;
+
             return _fixation.ClientCustId.HasValue;
         }
 

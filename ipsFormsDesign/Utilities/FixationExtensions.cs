@@ -9,6 +9,11 @@ namespace ipsFormsDesign.Utilities
 {
     public static class FixationExtensions
     {
+        public static bool IsInNewState(this Fixation fixation)
+        {
+            return fixation.StageStatus == (int)FixationStageStatuses.New;
+        }
+
         public static FixationStages GetStage(this Fixation fixation)
         {
             return (FixationStages)IpsGlobal.AnketaDictionaties.fixStageStatus.First(ss => ss.CodeI == fixation.StageStatus).StageCode;

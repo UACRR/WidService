@@ -45,13 +45,17 @@ namespace ipsmedserviceapp.Controllers
             if (fixation == null)
                 NotFound();
 
-            var regId = fixation.Lic.PaidPeriod.First().RegisterRatedList.First().Register.First().RegId;
-
             var response = new FixationResponseResource();
             response.Fixation = fixation;
-            response.RegisterCounts = await _dbContext.getViewData($"select * from ft_Tsk_7_RegisterRegisterCounts(@regId)", new[] {
-                new SqlParameter("regId", regId),
-            });
+
+            if (fixation.StageStatus > 1)
+            {
+                var regId = fixation.Lic.PaidPeriod.First().RegisterRatedList.First().Register.First().RegId;
+
+                response.RegisterCounts = await _dbContext.getViewData($"select * from ft_Tsk_7_RegisterRegisterCounts(@regId)", new[] {
+                    new SqlParameter("regId", regId),
+                });
+            }
 
             return Ok(response);
         }
@@ -63,8 +67,12 @@ namespace ipsmedserviceapp.Controllers
                 BadRequest();
 
             var fixation = _mapper.Map<Fixation, Fixation>(newFixation);
-            fixation.Lic.Agr = newFixation.Lic.Agr;
-            fixation.Lic.Agr.CustId = newFixation.ClientCustId.Value;
+
+            if (fixation.StageStatus > 1)
+            {
+                fixation.Lic.Agr = newFixation.Lic.Agr;
+                fixation.Lic.Agr.CustId = newFixation.ClientCustId.Value;
+            }
 
             _dbContext.Fixation.Add(fixation);
             await _dbContext.SaveChangesAsync();
@@ -85,8 +93,11 @@ namespace ipsmedserviceapp.Controllers
 
             _mapper.Map(updFixation, fixation);
 
-            var agr = _dbContext.AgreementMaster.Find(updFixation.Lic.AgrId);
-            agr.CustId = updFixation.ClientCustId.Value;
+            if (updFixation.StageStatus > 1)
+            {
+                var agr = _dbContext.AgreementMaster.Find(updFixation.Lic.AgrId);
+                agr.CustId = updFixation.ClientCustId.Value;
+            }
 
             await _dbContext.SaveChangesAsync();
 

@@ -30,20 +30,20 @@ namespace ipsFormsDesign.Services
 
         public Fixation New()
         {
-            var now = DateTime.Now;
-            var beginMonth = new DateTime(now.Year, now.Month, 1);
-            var endMonth = new DateTime(now.Year, now.Month, beginMonth.AddMonths(1).AddDays(-1).Day);
+            //var now = DateTime.Now;
+            //var beginMonth = new DateTime(now.Year, now.Month, 1);
+            //var endMonth = new DateTime(now.Year, now.Month, beginMonth.AddMonths(1).AddDays(-1).Day);
 
             var fixation = new Fixation { StageStatus = 1, UsesType = 1 };
 
-            fixation.Lic = new LicenseAgreement { LicType = 4, LicStatus = 2, LicVersion = 1, LicCode = 29 };
-            fixation.Lic.Agr = new AgreementMaster { AgrStatus = 2, AgrType = 2 };
-            var paidPeriod = new PaidPeriod { BeginDate = beginMonth, EndDate = endMonth, Status = 4, PeriodType = 1, PeriodName = $"{beginMonth.ToShortDateString()} - {endMonth.ToShortDateString()}" };
-            fixation.Lic.PaidPeriod.Add(paidPeriod);
-            var registerRatedList = new RegisterRatedList { Status = 1 };
-            paidPeriod.RegisterRatedList.Add(registerRatedList);
-            var register = new Register { SchemaId = 1, AlgorithmId = 2 };
-            registerRatedList.Register.Add(register);
+            //fixation.Lic = new LicenseAgreement { LicType = 4, LicStatus = 2, LicVersion = 1, LicCode = 29 };
+            //fixation.Lic.Agr = new AgreementMaster { AgrStatus = 2, AgrType = 2 };
+            //var paidPeriod = new PaidPeriod { BeginDate = beginMonth, EndDate = endMonth, Status = 4, PeriodType = 1, PeriodName = $"{beginMonth.ToShortDateString()} - {endMonth.ToShortDateString()}" };
+            //fixation.Lic.PaidPeriod.Add(paidPeriod);
+            //var registerRatedList = new RegisterRatedList { Status = 1 };
+            //paidPeriod.RegisterRatedList.Add(registerRatedList);
+            //var register = new Register { SchemaId = 1, AlgorithmId = 2 };
+            //registerRatedList.Register.Add(register);
 
             return fixation;
         }
