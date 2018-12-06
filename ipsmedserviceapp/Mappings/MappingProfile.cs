@@ -16,7 +16,7 @@ namespace ipsmedserviceapp.Mappings
                 .ForMember(f => f.FixId, opt => opt.Ignore())
                 .AfterMap((source, dest) =>
                 {
-                    if (source.StageStatus > 1)
+                    if (source.StageStatus >= 8)
                     {
                         dest.Lic.CustId = dest.ClientCustId.Value;
                         var paidPeriod = dest.Lic.PaidPeriod.First();

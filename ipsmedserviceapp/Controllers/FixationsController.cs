@@ -48,7 +48,7 @@ namespace ipsmedserviceapp.Controllers
             var response = new FixationResponseResource();
             response.Fixation = fixation;
 
-            if (fixation.StageStatus > 1)
+            if (IsAddStructNeeded(fixation))
             {
                 var regId = fixation.Lic.PaidPeriod.First().RegisterRatedList.First().Register.First().RegId;
 
@@ -67,12 +67,6 @@ namespace ipsmedserviceapp.Controllers
                 BadRequest();
 
             var fixation = _mapper.Map<Fixation, Fixation>(newFixation);
-
-            if (fixation.StageStatus > 1)
-            {
-                fixation.Lic.Agr = newFixation.Lic.Agr;
-                fixation.Lic.Agr.CustId = newFixation.ClientCustId.Value;
-            }
 
             _dbContext.Fixation.Add(fixation);
             await _dbContext.SaveChangesAsync();
@@ -93,10 +87,12 @@ namespace ipsmedserviceapp.Controllers
 
             _mapper.Map(updFixation, fixation);
 
-            if (updFixation.StageStatus > 1)
+            if (IsAddStructNeeded(updFixation))
             {
-                var agr = _dbContext.AgreementMaster.Find(updFixation.Lic.AgrId);
-                agr.CustId = updFixation.ClientCustId.Value;
+                if (fixation.Lic.Agr == null)
+                    fixation.Lic.Agr = updFixation.Lic.Agr;
+
+                fixation.Lic.Agr.CustId = updFixation.ClientCustId.Value;
             }
 
             await _dbContext.SaveChangesAsync();
@@ -174,21 +170,12 @@ namespace ipsmedserviceapp.Controllers
                                     .ThenInclude(ri => ri.RegisterItemFix)
                 .FirstOrDefaultAsync(f => f.FixId == fixId);
 
-            //await _dbContext.Entry(fixation.Lic).Collection(lic => lic.PaidPeriod).Query()
-            //        .Include(pp => pp.RegisterRatedList).ThenInclude(rr => rr.Register).LoadAsync();
-
-            //foreach (var period in fixation.Lic.PaidPeriod)
-            //    foreach (var ratedList in period.RegisterRatedList)
-            //        foreach (var reg in ratedList.Register)
-            //        {
-            //            await _dbContext.Entry(reg).Collection(rec => rec.RegisterItem).Query()
-            //                .Include(rec => rec.RegisterCount)
-            //                .Include(rec => rec.Obj)
-            //                .Include(rec => rec.RegisterItemFix)
-            //                .LoadAsync();
-            //        }
-
             return fixation;
+        }
+
+        private bool IsAddStructNeeded(Fixation fixation)
+        {
+            return fixation.StageStatus >= 8;
         }
     }
 }

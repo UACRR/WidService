@@ -89,8 +89,10 @@ namespace IpsViewComponentLibrary.FixationControls
                 _view.Consumer = _consumerService.GetShortInfoById((int)_fixation.ClientCustId);
             }
 
-            if (!fixationModel.Fixation.IsInNewState())
+            if (fixationModel.Fixation.IsAddStructNeeded())
             {
+                _fixationService.CreateAdditionalStructure(fixationModel.Fixation);
+
                 _view.RegisterItemList.Clear();
                 foreach (var rvm in _fixation.GetRegister().GetRegisterItemsList())
                 {
@@ -116,8 +118,10 @@ namespace IpsViewComponentLibrary.FixationControls
                 return;
             }
 
-            if (!_fixation.IsInNewState())
-            { 
+            if (_fixation.IsAddStructNeeded())
+            {
+                _fixationService.CreateAdditionalStructure(_fixation);
+
                 var register = _fixation.GetRegister();
                 var registerCountList = _view.RegisterCountList.ToList();
 
@@ -185,6 +189,8 @@ namespace IpsViewComponentLibrary.FixationControls
             // TODO: check for correct status
 
             _fixation.StageStatus = (int)newStatus;
+
+            _fixationService.CreateAdditionalStructure(_fixation);
         }
 
         public void SelectResponsible()

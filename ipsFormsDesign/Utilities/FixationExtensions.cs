@@ -9,9 +9,9 @@ namespace ipsFormsDesign.Utilities
 {
     public static class FixationExtensions
     {
-        public static bool IsInNewState(this Fixation fixation)
+        public static bool IsAddStructNeeded(this Fixation fixation)
         {
-            return fixation.StageStatus == (int)FixationStageStatuses.New;
+            return fixation.StageStatus >= (int)FixationStageStatuses.FixationFixationCompleted;
         }
 
         public static FixationStages GetStage(this Fixation fixation)
