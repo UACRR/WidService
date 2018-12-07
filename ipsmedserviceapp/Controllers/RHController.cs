@@ -672,14 +672,152 @@ t2.custId = @custid
         ///                    та запис по старому правовласнику з датою завершення володінням правами 
         /// </param>
         /// <returns>Ok</returns>
-        [HttpPost("transfer/{rhId}")]
-        public async Task<IActionResult> Transfer(int rhId, [FromBody]List<RightHolder> body)
+        [HttpPut("objects/transfer")]
+        public async Task<IActionResult> Transfer([FromBody] TransferParametersResource transferParams)
         {
-            await ProcessObjectTransfer(rhId, body);
+            if (transferParams == null)
+                return BadRequest("Некорректі параметри передачі.");
+
+            // TODO: extract ValidateTransferParams() method, use ModelState.AddModelError()
+            // Dates, LegalBasis, NewRightholderList is not empty for each object,
+            // new total Rate in NewRightholderList is less or equal to 100 persent, etc.
+
+            var oldRightholder = await _dbContext.RightHolder // TODO: extract method
+                .Include(r => r.CopyRight)
+                .FirstOrDefaultAsync(r => r.CustId == transferParams.OldRightholderId);
+
+            if (oldRightholder == null)
+                return BadRequest($"Правовласник з ідентифікатором '{transferParams.OldRightholderId}' не знайдений.");
+
+            DateTime dateFrom = transferParams.DateFrom;
+            var checkDate = new DateTime(dateFrom.Year, dateFrom.Month, dateFrom.Day);
+
+            var allCopyrights = await _dbContext.CopyRight
+                .Where(item => item.CustId == transferParams.OldRightholderId && item.BeginDate <= checkDate && item.EndDate >= checkDate)
+                .ToListAsync();
+
+            foreach (var transferedObject in transferParams.ObjectsRightList)
+            {
+                var oldCopyrights = allCopyrights.Where(c => c.ObjId == transferedObject.ObjId);
+
+                var rateTotal = oldCopyrights.Sum(c => c.Rate ?? 0);
+
+                //if (rateTotal == 0.0)
+                //    AddError()
+
+                var rateTransfer = transferedObject.NewRightholderList.Sum(r => r.Rate);
+
+                //if (rateTransfer > rateTotal)
+                //    AddError()
+
+                var KDecrTotal = rateTransfer / rateTotal;
+
+                CloseExistingCopyrightsForOldRightholder(oldCopyrights, transferParams.DateFrom.AddDays(-1));
+
+                CreateNewCopyrights(transferParams, transferedObject, oldCopyrights, KDecrTotal, oldRightholder, rateTotal);
+            }
+
+            //var tran = _dbContext.Database.BeginTransaction();
 
             await _dbContext.SaveChangesAsync();
 
+            //tran.Rollback();
+
             return Ok();
+        }
+
+        private void CreateNewCopyrights(TransferParametersResource transferParams, TransferedObjectResource transferedObject,
+            IEnumerable<CopyRight> oldCopyrights, decimal kDecrTotal, RightHolder oldRightholder, decimal rateTotal)
+        {
+            var maxDate = new DateTime(3000, 1, 1);
+
+            // for each old copyright:
+            foreach (var oldCopyright in oldCopyrights)
+            {
+                var totalTransferedRate = 0m;
+
+                //if (newRightholder == null)
+                //    AddError()
+
+                // create new copyrights for new rightholder
+                foreach (var newRh in transferedObject.NewRightholderList)
+                {
+                    var newRightholder = _dbContext.RightHolder // TODO: extract method
+                        .Include(r => r.CopyRight)
+                        .FirstOrDefault(r => r.CustId == newRh.CustId);
+
+                    //var oldRate = oldCopyright.Rate;
+
+                    //var kDecrForCopyright = newRh.Rate / oldRate;
+
+                    //var newRate = oldCopyright.Rate * kDecrForCopyright;
+
+                    //var newRate = oldCopyright.Rate * kDecrTotal * newRh.Rate / 100;
+
+                    //var newRate = oldCopyright.Rate.Value * newRh.Rate / 100;
+
+                    // var kDecr = newRh.Rate / rateTransfer;
+
+                    // var newRate = oldCopyright.Rate.Value * kDecr * kDecrTotal;
+
+                    var newRate = oldCopyright.Rate.Value * newRh.Rate / rateTotal;
+
+                    totalTransferedRate += newRate;
+
+                    // 1. create new copyright for new rightholder
+                    newRightholder.CopyRight.Add(new CopyRight
+                    {
+                        ParentId = oldCopyright.CRightId,
+                        ObjId = transferedObject.ObjId,
+                        RoleCode = 8, // Правовласник
+                        LBasis = transferParams.LegalBasis,
+                        BeginDate = transferParams.DateFrom,
+                        EndDate = transferParams.DateTill,
+                        Rate = newRate,
+                        // to think: I can get all params from old copyright to create a new copyright, except KDecr and custId for new rightholder
+                    });
+                }
+
+                if (kDecrTotal < 1)
+                {
+                    // 2. create copyrights for old rightholder if rate isn't transfered completely
+                    oldRightholder.CopyRight.Add(new CopyRight
+                    {
+                        ParentId = oldCopyright.CRightId,
+                        ObjId = transferedObject.ObjId,
+                        RoleCode = oldCopyright.RoleCode,
+                        LBasis = oldCopyright.LBasis,
+                        BeginDate = transferParams.DateFrom,
+                        EndDate = transferParams.DateTill,
+                        Rate = oldCopyright.Rate - totalTransferedRate,
+                    });
+                }
+
+                if (transferParams.DateTill < maxDate)
+                {
+                    // 3. create new copyrights for old rightholder if object is transfered for a certain time
+                    oldRightholder.CopyRight.Add(new CopyRight
+                    {
+                        ParentId = oldCopyright.CRightId,
+                        ObjId = transferedObject.ObjId,
+                        RoleCode = oldCopyright.RoleCode,
+                        LBasis = oldCopyright.LBasis,
+                        BeginDate = transferParams.DateTill.AddDays(1),
+                        EndDate = maxDate,
+                        Rate = oldCopyright.Rate,
+                    });
+                }
+
+                _dbContext.SaveChanges();
+            }
+        }
+
+        private void CloseExistingCopyrightsForOldRightholder(IEnumerable<CopyRight> objCopyrights, DateTime endDate)
+        {
+            foreach (var copyright in objCopyrights)
+            {
+                copyright.EndDate = endDate;
+            }
         }
 
         #endregion
