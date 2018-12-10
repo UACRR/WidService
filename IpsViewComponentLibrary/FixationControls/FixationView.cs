@@ -44,6 +44,7 @@ namespace IpsViewComponentLibrary.FixationControls
                 _fixation = value;
                 bsFixation.DataSource = _fixation;
                 ShowAllowedPages();
+                SetUpPrintButton();
             }
         }
 
@@ -160,6 +161,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _presenter.SetStatus((FixationStageStatuses)e.Value);
             bsFixation.ResetCurrentItem();
             ShowAllowedPages();
+            SetUpPrintButton();
         }
 
         private void btnAddStorage_Click(object sender, EventArgs e)
@@ -280,24 +282,24 @@ namespace IpsViewComponentLibrary.FixationControls
 
         #region Print documents
 
-        private void btnOrderFixation_Click(object sender, EventArgs e)
+        private void miPrintNakaz_Click(object sender, EventArgs e)
         {
             _presenter.PrintFixationOrder();
         }
 
-        private void btnPrintFixationAct_Click(object sender, EventArgs e)
+        private void miPrintActFiksacii_Click(object sender, EventArgs e)
         {
             _presenter.PrintFixationAct();
         }
 
-        private void btnPrintSlugbova_Click(object sender, EventArgs e)
-        {
-            _presenter.PrintFixationSlugbova();
-        }
-
-        private void btnPrintIdentificationAct_Click(object sender, EventArgs e)
+        private void miPrintActIdentyfikacii_Click(object sender, EventArgs e)
         {
             _presenter.PrintFixationIdentificationAct();
+        }
+
+        private void miPrintSlugbova_Click(object sender, EventArgs e)
+        {
+            _presenter.PrintFixationSlugbova();
         }
 
         #endregion
@@ -645,6 +647,17 @@ namespace IpsViewComponentLibrary.FixationControls
             pageIdentification.Item.Visibility = identificatioVisibility;
             pageJudicalWork.Item.Visibility = judicalVisibility;
             pageDistribution.Item.Visibility = distributionVisibility;
+        }
+
+        private void SetUpPrintButton()
+        {
+            sbPrint.Visible = _fixation.StageStatus >= (int)FixationStageStatuses.FixationScheduled;
+
+            var buttonVisibility =
+                _fixation.StageStatus >= (int)FixationStageStatuses.NegotiationAfterFixationRejected ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+
+            miPrintActIdentyfikacii.Visibility = buttonVisibility;
+            miPrintSlugbova.Visibility = buttonVisibility;
         }
 
         private static void CreateControls(Control control)
