@@ -26,6 +26,7 @@ namespace ipsFormsDesign.Model
         public decimal? SNcCur { get; set; }
         public int? Status { get; set; }
         public DateTime? DateOper { get; set; }
+        public int? InputFileId { get; set; }
     }
 }
 

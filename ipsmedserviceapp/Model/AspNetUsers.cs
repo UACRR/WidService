@@ -14,6 +14,7 @@ namespace ipsmedserviceapp.Model
             BrRegister = new HashSet<BrRegister>();
             Employee = new HashSet<Employee>();
             Fixation = new HashSet<Fixation>();
+            InputFile = new HashSet<InputFile>();
             Register = new HashSet<Register>();
             Request = new HashSet<Request>();
             UserRole = new HashSet<UserRole>();
@@ -45,6 +46,7 @@ namespace ipsmedserviceapp.Model
         public ICollection<BrRegister> BrRegister { get; set; }
         public ICollection<Employee> Employee { get; set; }
         public ICollection<Fixation> Fixation { get; set; }
+        public ICollection<InputFile> InputFile { get; set; }
         public ICollection<Register> Register { get; set; }
         public ICollection<Request> Request { get; set; }
         public ICollection<UserRole> UserRole { get; set; }

@@ -57,6 +57,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<CategoryStatusType> CategoryStatusType { get; set; }
         public virtual DbSet<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
         public virtual DbSet<CategoryTr> CategoryTr { get; set; }
+        public virtual DbSet<CheckParamPays> CheckParamPays { get; set; }
         public virtual DbSet<Client> Client { get; set; }
         public virtual DbSet<ClientBrand> ClientBrand { get; set; }
         public virtual DbSet<ClientBrandTr> ClientBrandTr { get; set; }
@@ -70,6 +71,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<Continent> Continent { get; set; }
         public virtual DbSet<ContinentTr> ContinentTr { get; set; }
         public virtual DbSet<CopyRight> CopyRight { get; set; }
+        public virtual DbSet<CopyRightHistory> CopyRightHistory { get; set; }
         public virtual DbSet<CopyrightKind> CopyrightKind { get; set; }
         public virtual DbSet<CopyrightKindTr> CopyrightKindTr { get; set; }
         public virtual DbSet<CopyrightType> CopyrightType { get; set; }
@@ -125,6 +127,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<FolkTypeTr> FolkTypeTr { get; set; }
         public virtual DbSet<GenreType> GenreType { get; set; }
         public virtual DbSet<GenreTypeTr> GenreTypeTr { get; set; }
+        public virtual DbSet<InputFile> InputFile { get; set; }
         public virtual DbSet<Invoice> Invoice { get; set; }
         public virtual DbSet<ItemStatus> ItemStatus { get; set; }
         public virtual DbSet<ItemStatusTr> ItemStatusTr { get; set; }
@@ -312,8 +315,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -2198,6 +2201,55 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_CATEGORY_REF_CATEGORYTR");
             });
 
+            modelBuilder.Entity<CheckParamPays>(entity =>
+            {
+                entity.HasKey(e => new { e.InputFileId, e.CheckId });
+
+                entity.Property(e => e.InputFileId).HasColumnName("inputFileId");
+
+                entity.Property(e => e.CheckId).HasColumnName("checkId");
+
+                entity.Property(e => e.AccountCorr)
+                    .IsRequired()
+                    .HasColumnName("accountCorr")
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DocDate)
+                    .HasColumnName("docDate")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DocNum)
+                    .IsRequired()
+                    .HasColumnName("docNum")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.InputStatus).HasColumnName("inputStatus");
+
+                entity.Property(e => e.Nplat)
+                    .IsRequired()
+                    .HasColumnName("nplat")
+                    .HasMaxLength(512)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.OkpoCorr)
+                    .IsRequired()
+                    .HasColumnName("okpoCorr")
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.SCredit)
+                    .HasColumnName("sCredit")
+                    .HasColumnType("numeric(20, 2)");
+
+                entity.HasOne(d => d.InputFile)
+                    .WithMany(p => p.CheckParamPays)
+                    .HasForeignKey(d => d.InputFileId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_CHECKPAR_REFERENCE_INPUTFIL");
+            });
+
             modelBuilder.Entity<Client>(entity =>
             {
                 entity.HasKey(e => e.CustId);
@@ -2555,6 +2607,31 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.CopyRight)
                     .HasForeignKey(d => d.Status)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_CRIGHTST");
+            });
+
+            modelBuilder.Entity<CopyRightHistory>(entity =>
+            {
+                entity.HasKey(e => new { e.ParentId, e.ChildId });
+
+                entity.Property(e => e.ParentId).HasColumnName("parentId");
+
+                entity.Property(e => e.ChildId).HasColumnName("childId");
+
+                entity.Property(e => e.Rate)
+                    .HasColumnName("rate")
+                    .HasColumnType("decimal(5, 2)");
+
+                entity.HasOne(d => d.Child)
+                    .WithMany(p => p.CopyRightHistoryChild)
+                    .HasForeignKey(d => d.ChildId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COPYRIGH_REF_COPYRIGHC");
+
+                entity.HasOne(d => d.Parent)
+                    .WithMany(p => p.CopyRightHistoryParent)
+                    .HasForeignKey(d => d.ParentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_COPYRIGH_REF_COPYRIGHP");
             });
 
             modelBuilder.Entity<CopyrightKind>(entity =>
@@ -3802,6 +3879,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("inputDate")
                     .HasColumnType("datetime");
 
+                entity.Property(e => e.InputFileId).HasColumnName("inputFileId");
+
                 entity.Property(e => e.Mfo)
                     .HasColumnName("mfo")
                     .HasMaxLength(10)
@@ -4170,6 +4249,40 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_GENRETYP_REFERENCE_GENRETYP");
+            });
+
+            modelBuilder.Entity<InputFile>(entity =>
+            {
+                entity.HasKey(e => e.UserId);
+
+                entity.ToTable("inputFile");
+
+                entity.Property(e => e.UserId).HasColumnName("userId");
+
+                entity.Property(e => e.AspId)
+                    .HasColumnName("Asp_id")
+                    .HasMaxLength(48);
+
+                entity.Property(e => e.CountAutoLink).HasColumnName("countAutoLink");
+
+                entity.Property(e => e.CountInput).HasColumnName("countInput");
+
+                entity.Property(e => e.CountRows).HasColumnName("countRows");
+
+                entity.Property(e => e.FileName)
+                    .IsRequired()
+                    .HasColumnName("fileName")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.InputTime)
+                    .HasColumnName("inputTime")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.Asp)
+                    .WithMany(p => p.InputFile)
+                    .HasForeignKey(d => d.AspId)
+                    .HasConstraintName("FK_INPUTFIL_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<Invoice>(entity =>

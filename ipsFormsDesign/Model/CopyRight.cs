@@ -8,6 +8,8 @@ namespace ipsFormsDesign.Model
     {
         public CopyRight()
         {
+            CopyRightHistoryChild = new ObservableListSource<CopyRightHistory>();
+            CopyRightHistoryParent = new ObservableListSource<CopyRightHistory>();
             Distribution = new ObservableListSource<Distribution>();
         }
 
@@ -35,6 +37,8 @@ namespace ipsFormsDesign.Model
         public CopyRtranslate CopyRtranslate { get; set; }
         public LicAuthorBr LicAuthorBr { get; set; }
         public WorkRh WorkRh { get; set; }
+        public ObservableListSource<CopyRightHistory> CopyRightHistoryChild { get; set; }
+        public ObservableListSource<CopyRightHistory> CopyRightHistoryParent { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
     }
 }

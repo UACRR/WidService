@@ -8,6 +8,8 @@ namespace ipsmedserviceapp.Model
     {
         public CopyRight()
         {
+            CopyRightHistoryChild = new HashSet<CopyRightHistory>();
+            CopyRightHistoryParent = new HashSet<CopyRightHistory>();
             Distribution = new HashSet<Distribution>();
         }
 
@@ -39,6 +41,10 @@ namespace ipsmedserviceapp.Model
         public CopyRtranslate CopyRtranslate { get; set; }
         public LicAuthorBr LicAuthorBr { get; set; }
         public WorkRh WorkRh { get; set; }
+        [JsonIgnore]
+        public ICollection<CopyRightHistory> CopyRightHistoryChild { get; set; }
+        [JsonIgnore]
+        public ICollection<CopyRightHistory> CopyRightHistoryParent { get; set; }
         [JsonIgnore]
         public ICollection<Distribution> Distribution { get; set; }
     }
