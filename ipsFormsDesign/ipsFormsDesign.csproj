@@ -158,6 +158,7 @@
     <Compile Include="Model\CategoryStatusType.cs" />
     <Compile Include="Model\CategoryStatusTypeTr.cs" />
     <Compile Include="Model\CategoryTr.cs" />
+    <Compile Include="Model\CheckParamPays.cs" />
     <Compile Include="Model\Client.cs" />
     <Compile Include="Model\ClientBrand.cs" />
     <Compile Include="Model\ClientBrandTr.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="Model\Continent.cs" />
     <Compile Include="Model\ContinentTr.cs" />
     <Compile Include="Model\CopyRight.cs" />
+    <Compile Include="Model\CopyRightHistory.cs" />
     <Compile Include="Model\CopyrightKind.cs" />
     <Compile Include="Model\CopyrightKindTr.cs" />
     <Compile Include="Model\CopyrightType.cs" />
@@ -234,6 +236,7 @@
     <Compile Include="Model\GenreTr.cs" />
     <Compile Include="Model\GenreType.cs" />
     <Compile Include="Model\GenreTypeTr.cs" />
+    <Compile Include="Model\InputFile.cs" />
     <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\ItemStatus.cs" />
     <Compile Include="Model\ItemStatusTr.cs" />
