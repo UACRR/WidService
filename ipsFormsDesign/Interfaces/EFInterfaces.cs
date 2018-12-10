@@ -990,17 +990,6 @@ public interface IFolkTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
-public interface IGenre
-    {    int CategoryCode { get; set; }
-         string Name { get; set; }
-         int Id { get; set; }
-}
-public interface IGenreTr
-    {
-         int Id { get; set; }
-         string Lang { get; set; }
-         string Name { get; set; }
-}
 public interface IGenreType
     {    int CodeI { get; set; }
          int CategoryCode { get; set; }
@@ -1853,11 +1842,6 @@ public interface IRelMovieEpisode
          int EpisodeTypeCode { get; set; }
          int ReqId { get; set; }
          double? EpDuration { get; set; }
-}
-public interface IRelObjGenre
-    {
-         int GenreId { get; set; }
-         int ObjId { get; set; }
 }
 public interface IRelObjPerformer
     {

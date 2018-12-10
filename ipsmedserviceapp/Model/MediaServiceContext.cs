@@ -34,6 +34,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<AgrLicenseType> AgrLicenseType { get; set; }
         public virtual DbSet<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
         public virtual DbSet<AlgorithmType> AlgorithmType { get; set; }
+        public virtual DbSet<AlgorithmTypeTr> AlgorithmTypeTr { get; set; }
         public virtual DbSet<AnketaAddName> AnketaAddName { get; set; }
         public virtual DbSet<AnketaAddNick> AnketaAddNick { get; set; }
         public virtual DbSet<AnketaAddParam> AnketaAddParam { get; set; }
@@ -275,7 +276,6 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<SexTypeTr> SexTypeTr { get; set; }
         public virtual DbSet<SpecType> SpecType { get; set; }
         public virtual DbSet<SpecTypeTr> SpecTypeTr { get; set; }
-        public virtual DbSet<SysVersion> SysVersion { get; set; }
         public virtual DbSet<TableColumn> TableColumn { get; set; }
         public virtual DbSet<TableColumnTech> TableColumnTech { get; set; }
         public virtual DbSet<TableObject> TableObject { get; set; }
@@ -1034,6 +1034,29 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<AlgorithmTypeTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.AlgorithmTypeTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_ALGORITH_REFERENCE_ALGORITH");
             });
 
             modelBuilder.Entity<AnketaAddName>(entity =>
@@ -8555,30 +8578,6 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_SPECTYPE_REFERENCE_SPECTYPE");
-            });
-
-            modelBuilder.Entity<SysVersion>(entity =>
-            {
-                entity.HasKey(e => e.VersId);
-
-                entity.ToTable("sysVersion");
-
-                entity.Property(e => e.VersId).HasColumnName("versId");
-
-                entity.Property(e => e.VersCode)
-                    .IsRequired()
-                    .HasColumnName("versCode")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.VersDate)
-                    .HasColumnName("versDate")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.VersName)
-                    .HasColumnName("versName")
-                    .HasMaxLength(200)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<TableColumn>(entity =>

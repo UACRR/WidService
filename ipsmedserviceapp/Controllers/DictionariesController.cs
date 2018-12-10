@@ -28,7 +28,7 @@ namespace ipsmedserviceapp.Controllers
         public Func<T, TBase> ConvertToBase;
         public Func<TBase, T> ConvertFromBase;
         public Func<T, IList<TTr>> GetTr;
-        public Func<object, object, bool> CompareTr;
+        public Func<TTr, TTr, bool> CompareTr;
 
 
         public BaseDictionaryEng(
@@ -37,7 +37,7 @@ namespace ipsmedserviceapp.Controllers
             Func<T, TBase> convertToBase,
             Func<TBase, T> convertFromBase,
             Func<T, IList<TTr>> getTr,
-            Func<object, object, bool> compareTr,
+            Func<TTr, TTr, bool> compareTr,
             params Expression<Func<T, object>>[] includes
             )
         {
@@ -89,7 +89,7 @@ namespace ipsmedserviceapp.Controllers
 
             IQueryable<T> set = _dbContext.Set<T>().Where(r => _compareId(r, id));
             set = addInclude(set);
-            var item = await set.SingleOrDefaultAsync();
+            var item = await set.FirstOrDefaultAsync();
             return item;
         }
 
@@ -250,13 +250,13 @@ namespace ipsmedserviceapp.Controllers
                             (sors, dest) => ((DocumentKindTr)sors).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)sors).Lang == ((DocumentKindTr)dest).Lang,
                             rec => rec.DocumentKindTr)
                         );
-            baseEng.Add("genre".ToLower(),
-                            new BaseDictionaryEng<Genre, GenreTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.Id == int.Parse(id),
-                            sors => (DictBaseTypeI)sors,
-                            sors => (Genre)sors,
-                            sors => sors.GenreTr.ToList(),
-                            (sors, dest) => ((GenreTr)sors).Id == ((GenreTr)dest).Id && ((GenreTr)sors).Lang == ((GenreTr)dest).Lang,
-                            rec => rec.GenreTr)
+            baseEng.Add("popgenre".ToLower(),
+                            new BaseDictionaryEng<PopGenre, PopGenreTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.Id == int.Parse(id),
+                            sors => sors,
+                            sors => sors,
+                            sors => sors.PopGenreTr.ToList(),
+                            (sors, dest) => sors.Id == dest.Id && sors.Lang == dest.Lang,
+                            rec => rec.PopGenreTr)
                         );
             baseEng.Add("legalbasis".ToLower(),
                             new BaseDictionaryEng<LegalBasis, LegalBasisTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
@@ -282,14 +282,14 @@ namespace ipsmedserviceapp.Controllers
                             (sors, dest) => ((ObjectStatusTr)sors).CodeI == ((ObjectStatusTr)dest).CodeI && ((ObjectStatusTr)sors).Lang == ((ObjectStatusTr)dest).Lang,
                             rec => rec.ObjectStatusTr)
                         );
-            baseEng.Add("objecttype".ToLower(),
-                            new BaseDictionaryEng<ObjectType, ObjectTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
-                            sors => (DictBaseTypeI)sors,
-                            sors => (ObjectType)sors,
-                            sors => sors.ObjectTypeTr.ToList(),
-                            (sors, dest) => ((ObjectTypeTr)sors).CodeI == ((ObjectTypeTr)dest).CodeI && ((ObjectTypeTr)sors).Lang == ((ObjectTypeTr)dest).Lang,
-                            rec => rec.ObjectTypeTr)
-                        );
+            //baseEng.Add("objecttype".ToLower(),
+            //                new BaseDictionaryEng<ObjectType, ObjectTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+            //                sors => (DictBaseTypeI)sors,
+            //                sors => (ObjectType)sors,
+            //                sors => sors.ObjectTypeTr.ToList(),
+            //                (sors, dest) => ((ObjectTypeTr)sors).CodeI == ((ObjectTypeTr)dest).CodeI && ((ObjectTypeTr)sors).Lang == ((ObjectTypeTr)dest).Lang,
+            //                rec => rec.ObjectTypeTr)
+            //            );
             baseEng.Add("paymentkind".ToLower(),
                             new BaseDictionaryEng<PaymentKind, PaymentKindTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
                             sors => (DictBaseTypeI)sors,
@@ -378,6 +378,96 @@ namespace ipsmedserviceapp.Controllers
                             (sors, dest) => ((TypeVattr)sors).CodeI == ((TypeVattr)dest).CodeI && ((TypeVattr)sors).Lang == ((TypeVattr)dest).Lang,
                             rec => rec.TypeVattr)
                         );
+            baseEng.Add("AlgorithmType".ToLower(),
+                            new BaseDictionaryEng<AlgorithmType, AlgorithmTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (AlgorithmType)sors,
+                            sors => sors.AlgorithmTypeTr.ToList(),
+                            (sors, dest) => ((AlgorithmTypeTr)sors).CodeI == ((AlgorithmTypeTr)dest).CodeI && ((AlgorithmTypeTr)sors).Lang == ((AlgorithmTypeTr)dest).Lang,
+                            rec => rec.AlgorithmTypeTr)
+                        );
+            baseEng.Add("SeekType".ToLower(),
+                            new BaseDictionaryEng<SeekType, SeekTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (SeekType)sors,
+                            sors => sors.SeekTypeTr.ToList(),
+                            (sors, dest) => ((SeekTypeTr)sors).CodeI == ((SeekTypeTr)dest).CodeI && ((SeekTypeTr)sors).Lang == ((SeekTypeTr)dest).Lang,
+                            rec => rec.SeekTypeTr)
+                        );
+            baseEng.Add("ObjAct".ToLower(),
+                            new BaseDictionaryEng<ObjAct, ObjActTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => sors,
+                            sors => sors,
+                            sors => sors.ObjActTr.ToList(),
+                            (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                            rec => rec.ObjActTr)
+                        );
+            baseEng.Add("Category".ToLower(),
+                            new BaseDictionaryEng<Category, CategoryTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => sors,
+                            sors => sors,
+                            sors => sors.CategoryTr.ToList(),
+                            (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                            rec => rec.CategoryTr)
+                        );
+            baseEng.Add("CRightStatus".ToLower(),
+                            new BaseDictionaryEng<CrightStatus, CrightStatusTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => sors,
+                            sors => sors,
+                            sors => sors.CrightStatusTr.ToList(),
+                            (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                            rec => rec.CrightStatusTr)
+                        );
+            baseEng.Add("RholderType".ToLower(),
+                            new BaseDictionaryEng<RholderType, RholderTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => sors,
+                            sors => sors,
+                            sors => sors.RholderTypeTr.ToList(),
+                            (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                            rec => rec.RholderTypeTr)
+                        );
+            baseEng.Add("TypeMethodGet".ToLower(),
+                new BaseDictionaryEng<TypeMethodGet, TypeMethodGetTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                sors => sors,
+                sors => sors,
+                sors => sors.TypeMethodGetTr.ToList(),
+                (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                rec => rec.TypeMethodGetTr)
+            );
+            baseEng.Add("GenreType".ToLower(),
+                new BaseDictionaryEng<GenreType, GenreTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                sors => sors,
+                sors => sors,
+                sors => sors.GenreTypeTr.ToList(),
+                (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                rec => rec.GenreTypeTr)
+            );
+            baseEng.Add("WorkType".ToLower(),
+                new BaseDictionaryEng<WorkType, WorkTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                sors => sors,
+                sors => sors,
+                sors => sors.WorkTypeTr.ToList(),
+                (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                rec => rec.WorkTypeTr)
+            );
+            baseEng.Add("AgreementType".ToLower(),
+                new BaseDictionaryEng<AgreementType, AgreementTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                sors => sors,
+                sors => sors,
+                sors => sors.AgreementTypeTr.ToList(),
+                (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                rec => rec.AgreementTypeTr)
+            );
+            baseEng.Add("DocumentType".ToLower(),
+                new BaseDictionaryEng<DocumentType, DocumentTypeTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                sors => sors,
+                sors => sors,
+                sors => sors.DocumentTypeTr.ToList(),
+                (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                rec => rec.DocumentTypeTr)
+            );
+
+
 
             #endregion
         }
@@ -385,7 +475,13 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("list")]
         public async Task<IActionResult> GetDictrionaryList()
         {
-            var list = await _dbContext.DictCategory.Include(rec => rec.DicCategoryItems).AsNoTracking().ToListAsync();
+            var list = await _dbContext.DictCategory.ToListAsync();
+            // Отбираем только стандартные словари с целым ключем
+
+            foreach (var item in list)
+                await _dbContext.Entry(item).Collection(rec => rec.DicCategoryItems).Query()
+                        .Where(rec => rec.DicType == "i").LoadAsync();
+
             var listOut = list.Where(rec => rec.DicCategoryItems.Count > 0).ToList();
             return Json(listOut);
         }
@@ -397,7 +493,7 @@ namespace ipsmedserviceapp.Controllers
             string normalizeName = dictionay.ToLower();
 
             if (!baseEng.Keys.Contains(normalizeName))
-                return BadRequest();
+                return NotFound();
 
             dynamic eng = baseEng[dictionay.ToLower()];
             var list = await eng.GetList();

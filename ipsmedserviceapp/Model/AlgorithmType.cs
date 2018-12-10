@@ -8,6 +8,7 @@ namespace ipsmedserviceapp.Model
         public AlgorithmType()
         {
             AgrLicenseType = new HashSet<AgrLicenseType>();
+            AlgorithmTypeTr = new HashSet<AlgorithmTypeTr>();
             Register = new HashSet<Register>();
         }
 
@@ -15,6 +16,7 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
 
         public ICollection<AgrLicenseType> AgrLicenseType { get; set; }
+        public ICollection<AlgorithmTypeTr> AlgorithmTypeTr { get; set; }
         public ICollection<Register> Register { get; set; }
     }
 }
