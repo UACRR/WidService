@@ -717,11 +717,7 @@ t2.custId = @custid
                 CreateNewCopyrights(transferParams, transferedObject, oldCopyrights, KDecrTotal, oldRightholder, rateTotal);
             }
 
-            //var tran = _dbContext.Database.BeginTransaction();
-
             await _dbContext.SaveChangesAsync();
-
-            //tran.Rollback();
 
             return Ok();
         }
@@ -745,20 +741,6 @@ t2.custId = @custid
                     var newRightholder = _dbContext.RightHolder // TODO: extract method
                         .Include(r => r.CopyRight)
                         .FirstOrDefault(r => r.CustId == newRh.CustId);
-
-                    //var oldRate = oldCopyright.Rate;
-
-                    //var kDecrForCopyright = newRh.Rate / oldRate;
-
-                    //var newRate = oldCopyright.Rate * kDecrForCopyright;
-
-                    //var newRate = oldCopyright.Rate * kDecrTotal * newRh.Rate / 100;
-
-                    //var newRate = oldCopyright.Rate.Value * newRh.Rate / 100;
-
-                    // var kDecr = newRh.Rate / rateTransfer;
-
-                    // var newRate = oldCopyright.Rate.Value * kDecr * kDecrTotal;
 
                     var newRate = oldCopyright.Rate.Value * newRh.Rate / rateTotal;
 
@@ -808,7 +790,7 @@ t2.custId = @custid
                     });
                 }
 
-                _dbContext.SaveChanges();
+                _dbContext.SaveChanges(); // TODO: fix it (beacouse of we dont know new copyrights ids to link them as parent/child ids)
             }
         }
 
