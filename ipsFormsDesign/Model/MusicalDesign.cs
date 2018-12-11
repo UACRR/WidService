@@ -1,4 +1,5 @@
 using ipsFormsDesign.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -17,8 +18,10 @@ namespace ipsFormsDesign.Model
         public TimeSpan? Duration { get; set; }
         public int? NumbPerfom { get; set; }
 
+        [JsonIgnore]
         public LicenseBigR Lic { get; set; }
         public ObjectRight Obj { get; set; }
     }
 }
+
 

@@ -232,8 +232,6 @@
     <Compile Include="Model\FixStorageDevice.cs" />
     <Compile Include="Model\FolkType.cs" />
     <Compile Include="Model\FolkTypeTr.cs" />
-    <Compile Include="Model\Genre.cs" />
-    <Compile Include="Model\GenreTr.cs" />
     <Compile Include="Model\GenreType.cs" />
     <Compile Include="Model\GenreTypeTr.cs" />
     <Compile Include="Model\InputFile.cs" />
@@ -353,7 +351,6 @@
     <Compile Include="Model\RelGenreSerial.cs" />
     <Compile Include="Model\RelLicCopyR.cs" />
     <Compile Include="Model\RelMovieEpisode.cs" />
-    <Compile Include="Model\RelObjGenre.cs" />
     <Compile Include="Model\RelObjPerformer.cs" />
     <Compile Include="Model\RelPopGenre.cs" />
     <Compile Include="Model\RelReqMedia.cs" />

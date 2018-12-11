@@ -1,4 +1,5 @@
 using ipsFormsDesign.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -23,14 +24,20 @@ namespace ipsFormsDesign.Model
         public int? AgrType { get; set; }
         public int? Version { get; set; }
 
+        [JsonIgnore]
         public AgreementStatus AgrStatusNavigation { get; set; }
+        [JsonIgnore]
         public AgreementType AgrTypeNavigation { get; set; }
+        [JsonIgnore]
         public Customer Cust { get; set; }
         public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
+        [JsonIgnore]
         public ObservableListSource<AgreementAddCommunity> AgreementAddCommunity { get; set; }
         public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
         public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        [JsonIgnore]
         public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
+
 

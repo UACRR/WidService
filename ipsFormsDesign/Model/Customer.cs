@@ -1,4 +1,5 @@
 using ipsFormsDesign.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -31,29 +32,42 @@ namespace ipsFormsDesign.Model
         public byte? AnkPublish { get; set; }
         public byte? AnkTech { get; set; }
 
+        [JsonIgnore]
         public CustomerType CustTypeNavigation { get; set; }
+        [JsonIgnore]
         public CustomerStatus StatusNavigation { get; set; }
         public AnketaExternal AnketaExternal { get; set; }
         public Client Client { get; set; }
         public Community Community { get; set; }
         public Company Company { get; set; }
+        [JsonIgnore]
         public MyAnketa MyAnketa { get; set; }
         public Partner Partner { get; set; }
         public Person Person { get; set; }
         public RightHolder RightHolder { get; set; }
+        [JsonIgnore]
         public ObservableListSource<Account> Account { get; set; }
         public ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
         public ObservableListSource<AnketaAddName> AnketaAddName { get; set; }
+        [JsonIgnore]
         public ObservableListSource<AnketaAddParam> AnketaAddParam { get; set; }
+        [JsonIgnore]
         public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        [JsonIgnore]
         public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
         public ObservableListSource<BankAccount> BankAccount { get; set; }
+        [JsonIgnore]
         public ObservableListSource<Employee> Employee { get; set; }
         public ObservableListSource<FileCustomer> FileCustomer { get; set; }
+        [JsonIgnore]
         public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        [JsonIgnore]
         public ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
+        [JsonIgnore]
         public ObservableListSource<Request> Request { get; set; }
+        [JsonIgnore]
         public ObservableListSource<UserRole> UserRole { get; set; }
     }
 }
+
 

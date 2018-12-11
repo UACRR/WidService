@@ -1,4 +1,5 @@
 using ipsFormsDesign.Interfaces;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -11,9 +12,12 @@ namespace ipsFormsDesign.Model
         public int PositionCode { get; set; }
         public string RelDocument { get; set; }
 
+        [JsonIgnore]
         public Company Cust { get; set; }
         public Employee Empl { get; set; }
+        [JsonIgnore]
         public PositionType PositionCodeNavigation { get; set; }
     }
 }
+
 
