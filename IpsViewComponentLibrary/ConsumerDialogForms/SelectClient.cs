@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
@@ -14,10 +15,17 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     {
         public delegate bool SetClientId(int clientId);
         public event SetClientId OnAddSelectedClient;
-
-        public SelectClient(List<PartnerAllFreeClientsView> clientsList)
+        /// <summary>
+        /// Для настройки виводу діалогу у разних випадках
+        /// </summary>
+        private SuccessErrorMsg _msg = new SuccessErrorMsg("Нового клієнта додано!", "Неможливо додати клієнта!");
+        public SelectClient(List<PartnerAllFreeClientsView> clientsList, SuccessErrorMsg msg = null )
         {
             InitializeComponent();
+
+            if (msg != null)
+                _msg = msg;
+
             DialogResult = DialogResult.None;
             gvViewFreeClientList.DataSource = clientsList;
             ctrlSearch.SetUsageGrid(gvViewFreeClientList);
@@ -30,11 +38,11 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                 var result = OnAddSelectedClient?.Invoke(item.ClCustId);
                 if (result ?? false)
                 {
-                    ExtensionUtils.ShowInfoMessage("Нового клієнта додано!", "Успішно", MessageBoxIcon.Information);
+                    ExtensionUtils.ShowInfoMessage(_msg.Success, "Успішно", MessageBoxIcon.Information);
                     DialogResult = DialogResult.OK;
                 }
                 else
-                    ExtensionUtils.ShowInfoMessage("Неможливо додати клієнта!", "Помилка", MessageBoxIcon.Error);
+                    ExtensionUtils.ShowInfoMessage(_msg.Error, "Помилка", MessageBoxIcon.Error);
             }
         }
     }

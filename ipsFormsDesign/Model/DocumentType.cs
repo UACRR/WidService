@@ -8,6 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public DocumentType()
         {
+            DocumentTypeTr = new ObservableListSource<DocumentTypeTr>();
             RelCounterDoc = new ObservableListSource<RelCounterDoc>();
             RelDocAgrType = new ObservableListSource<RelDocAgrType>();
         }
@@ -15,6 +16,7 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        public ObservableListSource<DocumentTypeTr> DocumentTypeTr { get; set; }
         public ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
         public ObservableListSource<RelDocAgrType> RelDocAgrType { get; set; }
     }
