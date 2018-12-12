@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -28,15 +27,11 @@ namespace ipsFormsDesign.Model
         public short? LicTerm { get; set; }
         public decimal? RateMusic { get; set; }
 
-        [JsonIgnore]
         public Language LangCodeNavigation { get; set; }
-        [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
         public ObjectRight Obj { get; set; }
-        [JsonIgnore]
         public PerformType PerformTypeNavigation { get; set; }
         public ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
     }
 }
-
 

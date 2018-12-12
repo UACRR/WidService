@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -28,18 +27,13 @@ namespace ipsFormsDesign.Model
         public bool? FagFirst { get; set; }
         public DateTime? DateActPrint { get; set; }
 
-        [JsonIgnore]
         public Client Cust { get; set; }
-        [JsonIgnore]
         public LicenseAgreement Lic { get; set; }
-        [JsonIgnore]
         public Period PeriodTypeNavigation { get; set; }
-        [JsonIgnore]
         public PeriodStatus StatusNavigation { get; set; }
         public ObservableListSource<BrRegister> BrRegister { get; set; }
         public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         public ObservableListSource<RegisterRatedList> RegisterRatedList { get; set; }
     }
 }
-
 

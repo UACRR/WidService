@@ -280,6 +280,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<TableColumnTech> TableColumnTech { get; set; }
         public virtual DbSet<TableObject> TableObject { get; set; }
         public virtual DbSet<TableType> TableType { get; set; }
+        public virtual DbSet<TaxRate> TaxRate { get; set; }
         public virtual DbSet<TermsOfService> TermsOfService { get; set; }
         public virtual DbSet<TermUse> TermUse { get; set; }
         public virtual DbSet<TermUseTr> TermUseTr { get; set; }
@@ -315,8 +316,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -8715,6 +8716,30 @@ namespace ipsmedserviceapp.Model
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.TType).HasColumnName("tType");
+            });
+
+            modelBuilder.Entity<TaxRate>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.DateBegin });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.DateBegin)
+                    .HasColumnName("dateBegin")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.DateEnd)
+                    .HasColumnName("dateEnd")
+                    .HasColumnType("date");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rate)
+                    .HasColumnName("rate")
+                    .HasColumnType("decimal(5, 2)");
             });
 
             modelBuilder.Entity<TermsOfService>(entity =>

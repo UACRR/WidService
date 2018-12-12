@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -15,11 +14,8 @@ namespace ipsFormsDesign.Model
         public DateTime? LDate { get; set; }
         public int? Status { get; set; }
 
-        [JsonIgnore]
         public LicenseAgrParam Lic { get; set; }
-        [JsonIgnore]
         public ClnBusinessPlace Place { get; set; }
     }
 }
-
 

@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -21,15 +20,10 @@ namespace ipsFormsDesign.Model
         public string ModifyLogin { get; set; }
         public int? CustId { get; set; }
 
-        [JsonIgnore]
         public AgreementMaster Agr { get; set; }
-        [JsonIgnore]
         public AgreementStatus AgrStatusNavigation { get; set; }
-        [JsonIgnore]
         public Client Cust { get; set; }
-        [JsonIgnore]
         public Period PeriodCodeNavigation { get; set; }
     }
 }
-
 

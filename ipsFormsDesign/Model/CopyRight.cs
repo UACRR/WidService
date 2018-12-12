@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -31,24 +30,16 @@ namespace ipsFormsDesign.Model
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
 
-        [JsonIgnore]
         public RightHolder Cust { get; set; }
         public ObjectRight Obj { get; set; }
-        [JsonIgnore]
         public CreativeRoleType RoleCodeNavigation { get; set; }
-        [JsonIgnore]
         public CrightStatus StatusNavigation { get; set; }
-        [JsonIgnore]
         public CopyRtranslate CopyRtranslate { get; set; }
         public LicAuthorBr LicAuthorBr { get; set; }
         public WorkRh WorkRh { get; set; }
-        [JsonIgnore]
         public ObservableListSource<CopyRightHistory> CopyRightHistoryChild { get; set; }
-        [JsonIgnore]
         public ObservableListSource<CopyRightHistory> CopyRightHistoryParent { get; set; }
-        [JsonIgnore]
         public ObservableListSource<Distribution> Distribution { get; set; }
     }
 }
-
 

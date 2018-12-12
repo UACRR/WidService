@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -37,21 +36,14 @@ namespace ipsFormsDesign.Model
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
 
-        [JsonIgnore]
         public AlgorithmType Algorithm { get; set; }
-        [JsonIgnore]
         public Client Cust { get; set; }
-        [JsonIgnore]
         public RegisterStatus RgStatusNavigation { get; set; }
-        [JsonIgnore]
         public RegisterRatedList Rm { get; set; }
-        [JsonIgnore]
         public AspNetUsers User { get; set; }
-        [JsonIgnore]
         public ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public ObservableListSource<Distribution> Distribution { get; set; }
         public ObservableListSource<RegisterItem> RegisterItem { get; set; }
     }
 }
-
 

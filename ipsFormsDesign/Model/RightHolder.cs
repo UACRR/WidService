@@ -1,5 +1,4 @@
 using ipsFormsDesign.Interfaces;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -28,20 +27,15 @@ namespace ipsFormsDesign.Model
         public int? RHolderType { get; set; }
 
         public Customer Cust { get; set; }
-        [JsonIgnore]
         public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
         public ObservableListSource<AnketaAddNick> AnketaAddNick { get; set; }
-        [JsonIgnore]
         public ObservableListSource<Authors> Authors { get; set; }
         public ObservableListSource<CopyRight> CopyRight { get; set; }
-        [JsonIgnore]
         public ObservableListSource<RegisterCount> RegisterCount { get; set; }
-        [JsonIgnore]
         public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
         public ObservableListSource<TermsOfService> TermsOfService { get; set; }
         public ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
         public ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
-
 
