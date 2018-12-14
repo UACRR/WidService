@@ -5,7 +5,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Controllers.Resources;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
+using ipsmedserviceapp.Repositories;
+using ipsmedserviceapp.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +20,13 @@ namespace ipsmedserviceapp.Controllers
     [Route("api/RH")]
     public class RHController : Controller
     {
-        private MediaServiceContext _dbContext;
-        public RHController(MediaServiceContext dbContext)
+        private readonly MediaServiceContext _dbContext;
+        private readonly RightholderRepository _rightholderRepository;
+
+        public RHController(MediaServiceContext dbContext, RightholderRepository rightholderRepository)
         {
             _dbContext = dbContext;
+            _rightholderRepository = rightholderRepository;
         }
 
         /// <summary>
@@ -672,12 +678,21 @@ t2.custId = @custid
         ///                    та запис по старому правовласнику з датою завершення володінням правами 
         /// </param>
         /// <returns>Ok</returns>
-        [HttpPost("transfer/{rhId}")]
-        public async Task<IActionResult> Transfer(int rhId, [FromBody]List<RightHolder> body)
+        [HttpPut("objects/transfer")]
+        public async Task<IActionResult> ObjectTransfer([FromBody] TransferParametersResource transferParams)
         {
-            await ProcessObjectTransfer(rhId, body);
+            if (transferParams == null)
+                return BadRequest("Некоректні параметри передачі.");
 
-            await _dbContext.SaveChangesAsync();
+            var transferProcessor = new ObjectTransferProcessor(_dbContext, _rightholderRepository, transferParams);
+            transferProcessor.Process();
+
+            if (transferProcessor.Result.AreErrorsExist)
+            {
+                ModelState.AddValidationErrors(transferProcessor.Result);
+
+                return BadRequest(ModelState);
+            }
 
             return Ok();
         }

@@ -25,6 +25,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using AutoMapper.EquivalencyExpression;
 using ipsmedserviceapp.DATA;
+using ipsmedserviceapp.Repositories;
 
 namespace ipsmedserviceapp
 {
@@ -97,6 +98,8 @@ namespace ipsmedserviceapp
                 cfg.AddCollectionMappers();
                 cfg.CreateMissingTypeMaps = false;
             });
+
+            services.AddTransient<RightholderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
