@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.ViewModels.Rightholders;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPIConnector;
@@ -80,9 +81,9 @@ namespace ipsFormsDesign.Services
             return _webApi.ApiAction<RightHolder>("rh/inheritance", rhId, inheritData);
         }
 
-        public bool Transfer(int rhId, List<RightHolder> inheritData)
+        public bool Transfer(TransferParameters transferParameters)
         {
-            return _webApi.ApiAction<RightHolder>("rh/transfer", rhId, inheritData);
+            return _webApi.UpdateItem("rh/objects/transfer", null, transferParameters);
         }
 
         public IList<Authors> getAuthorsByFilter( string filterString )
