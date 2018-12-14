@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Controllers;
+using ipsmedserviceapp.Model.SQLViewsData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -15,6 +16,9 @@ namespace ipsmedserviceapp.Model
         //public MediaServiceContext(DbContextOptions<MediaServiceContext> options) : base(options)
         //{
         //}
+
+        // mapped to vTsk_1_ListRightHolder01
+        public DbQuery<RightholderMainView> RightholderMainView { get; set; }
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {

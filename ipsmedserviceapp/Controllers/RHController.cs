@@ -6,6 +6,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
+using ipsmedserviceapp.Repositories;
+using ipsmedserviceapp.Utilities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +19,13 @@ namespace ipsmedserviceapp.Controllers
     [Route("api/RH")]
     public class RHController : Controller
     {
-        private MediaServiceContext _dbContext;
-        public RHController(MediaServiceContext dbContext)
+        private readonly MediaServiceContext _dbContext;
+        private readonly RightholderRepository _rightholderRepository;
+
+        public RHController(MediaServiceContext dbContext, RightholderRepository rightholderRepository)
         {
             _dbContext = dbContext;
+            _rightholderRepository = rightholderRepository;
         }
 
         /// <summary>
@@ -673,186 +678,18 @@ t2.custId = @custid
         /// </param>
         /// <returns>Ok</returns>
         [HttpPut("objects/transfer")]
-        public async Task<IActionResult> Transfer([FromBody] TransferParametersResource transferParams)
+        public async Task<IActionResult> ObjectTransfer([FromBody] TransferParametersResource transferParams)
         {
             if (transferParams == null)
                 return BadRequest("Некорректі параметри передачі.");
 
-            // TODO: extract ValidateTransferParams() method, use ModelState.AddModelError()
-            // Dates, LegalBasis, NewRightholderList is not empty for each object,
-            // new total Rate in NewRightholderList is less or equal to 100 persent, etc.
+            var transferProcessor = new ObjectTransferProcessor(_dbContext, _rightholderRepository, transferParams);
+            var result = transferProcessor.Process();
 
-            var oldRightholder = await _dbContext.RightHolder // TODO: extract method
-                .Include(r => r.CopyRight)
-                .FirstOrDefaultAsync(r => r.CustId == transferParams.OldRightholderId);
-
-            if (oldRightholder == null)
-                return BadRequest($"Правовласник з ідентифікатором '{transferParams.OldRightholderId}' не знайдений.");
-
-            DateTime dateFrom = transferParams.DateFrom;
-            var checkDate = new DateTime(dateFrom.Year, dateFrom.Month, dateFrom.Day);
-
-            var allCopyrights = await _dbContext.CopyRight
-                .Where(item => item.CustId == transferParams.OldRightholderId && item.BeginDate <= checkDate && item.EndDate >= checkDate)
-                .ToListAsync();
-
-            foreach (var transferedObject in transferParams.ObjectsRightList)
-            {
-                var oldCopyrights = allCopyrights.Where(c => c.ObjId == transferedObject.ObjId);
-
-                var rateTotal = oldCopyrights.Sum(c => c.Rate ?? 0);
-
-                //if (rateTotal == 0.0)
-                //    AddError()
-
-                var rateTransfer = transferedObject.NewRightholderList.Sum(r => r.Rate);
-
-                //if (rateTransfer > rateTotal)
-                //    AddError()
-
-                var KDecrTotal = rateTransfer / rateTotal;
-
-                CloseExistingCopyrightsForOldRightholder(oldCopyrights, transferParams.DateFrom.AddDays(-1));
-
-                CreateNewCopyrights(transferParams, transferedObject, oldCopyrights, KDecrTotal, rateTotal);
-            }
-
-            await _dbContext.SaveChangesAsync();
+            if (!result)
+                return BadRequest(); // TODO: return errors
 
             return Ok();
-        }
-
-        private void CreateNewCopyrights(TransferParametersResource transferParams, TransferedObjectResource transferedObject,
-            IEnumerable<CopyRight> oldCopyrights, decimal kDecrTotal, decimal rateTotal)
-        {
-            var maxDate = new DateTime(3000, 1, 1);
-
-            var intermidiateCopyrightList = new List<CopyRight>();
-
-            // for each old copyright:
-            foreach (var oldCopyright in oldCopyrights)
-            {
-                var totalTransferedRate = 0m;
-
-
-                // 1. create new copyrights for each of new rightholders
-                foreach (var newRightholderParams in transferedObject.NewRightholderList)
-                {
-                    var newRate = Math.Round(oldCopyright.Rate.Value * newRightholderParams.Rate / rateTotal, 2);
-
-                    totalTransferedRate += newRate;
-
-                    intermidiateCopyrightList.Add(new CopyRight
-                    {
-                        ParentId = oldCopyright.CRightId,
-                        CustId = newRightholderParams.CustId, // TODO: check for rightholder existing
-                        ObjId = oldCopyright.ObjId,
-                        RoleCode = 8, // Правовласник
-                        LBasis = transferParams.LegalBasis,
-                        BeginDate = transferParams.DateFrom,
-                        EndDate = transferParams.DateTill,
-                        Rate = newRate,
-                        // to think: I can get all params from old copyright to create a new copyright, except KDecr and custId for new rightholder
-                    });
-                }
-
-                // 2. create copyrights for old rightholder if rate isn't transfered completely
-                if (kDecrTotal < 1)
-                {
-                    intermidiateCopyrightList.Add(new CopyRight
-                    {
-                        ParentId = oldCopyright.CRightId,
-                        ObjId = oldCopyright.ObjId,
-                        CustId = oldCopyright.CustId,
-                        RoleCode = oldCopyright.RoleCode,
-                        LBasis = oldCopyright.LBasis,
-                        BeginDate = transferParams.DateFrom,
-                        EndDate = transferParams.DateTill,
-                        Rate = oldCopyright.Rate - totalTransferedRate,
-                    });
-                }
-
-                // // 3. create new copyrights for old rightholder if object is transfered for a certain time
-            }
-
-            // group identical copyrights
-            var groupedCopyrightList = intermidiateCopyrightList.GroupBy(c => new { c.CustId, c.ObjId, c.LBasis, c.BeginDate, c.EndDate, c.RoleCode });
-
-            // final copyright's list
-            var copyrightList = new List<CopyRight>();
-            var copyrightHistoryList = new List<CopyRightHistory>();
-
-            foreach (var group in groupedCopyrightList)
-            {
-                var newCopyright = new CopyRight
-                {
-                    ParentId = 101, // TODO: only for debug
-                    CustId = group.Key.CustId,
-                    ObjId = group.Key.ObjId,
-                    RoleCode = group.Key.RoleCode,
-                    LBasis = group.Key.LBasis,
-                    BeginDate = group.Key.BeginDate,
-                    EndDate = group.Key.EndDate,
-                    Rate = group.Sum(c => c.Rate ?? 0),
-                };
-
-                copyrightList.Add(newCopyright);
-
-                // graph of copyright's hierarchy
-                foreach (var copyright in group)
-                {
-                    copyrightHistoryList.Add(new CopyRightHistory
-                    {
-                        Child = newCopyright,
-                        ParentId = copyright.ParentId.Value,
-                        Rate = copyright.Rate,
-                    });
-                }
-            }
-
-            _dbContext.CopyRight.AddRange(copyrightList); // TODO: switch to async method
-            _dbContext.CopyRightHistory.AddRange(copyrightHistoryList);
-
-            // 3. create new copyrights for old rightholder if object is transfered for a certain time
-            if (transferParams.DateTill < maxDate)
-            {
-                foreach (var oldCopyright in oldCopyrights)
-                {
-                    var restoredCopyright = new CopyRight
-                    {
-                        ParentId = 202, // TODO: only for debug
-                        CustId = oldCopyright.CustId,
-                        ObjId = oldCopyright.ObjId,
-                        RoleCode = oldCopyright.RoleCode,
-                        LBasis = oldCopyright.LBasis,
-                        BeginDate = transferParams.DateTill.AddDays(1),
-                        EndDate = maxDate,
-                        Rate = oldCopyright.Rate,
-                    };
-
-                    _dbContext.CopyRight.Add(restoredCopyright);
-
-                    var copyrightHistories = copyrightHistoryList.Where(c => c.ParentId == oldCopyright.CRightId);
-
-                    foreach (var copyrightHistory in copyrightHistories)
-                    {
-                        _dbContext.CopyRightHistory.Add(new CopyRightHistory
-                        {
-                            Child = restoredCopyright,
-                            Parent = copyrightHistory.Child,
-                            Rate = copyrightHistory.Rate,
-                        });
-                    }
-                }
-            }
-        }
-
-        private void CloseExistingCopyrightsForOldRightholder(IEnumerable<CopyRight> objCopyrights, DateTime endDate)
-        {
-            foreach (var copyright in objCopyrights)
-            {
-                copyright.EndDate = endDate;
-            }
         }
 
         #endregion
