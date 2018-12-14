@@ -29,10 +29,13 @@ namespace ipsmedserviceapp.Repositories
                     includeCopyrightsOnDate.Value.Month,
                     includeCopyrightsOnDate.Value.Day);
 
-                var copyrights = _dbContext.Entry(rightholder).Collection(r => r.CopyRight)
-                    .Query()
-                    .Where(cr => cr.BeginDate <= includeCopyrightsOnDate.Value && cr.EndDate >= includeCopyrightsOnDate.Value)
-                    .ToList();
+                if (rightholder != null)
+                {
+                    var copyrights = _dbContext.Entry(rightholder).Collection(r => r.CopyRight)
+                        .Query()
+                        .Where(cr => cr.BeginDate <= includeCopyrightsOnDate.Value && cr.EndDate >= includeCopyrightsOnDate.Value)
+                        .ToList();
+                }
             }
 
             return rightholder;

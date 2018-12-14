@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Controllers.Resources;
+using ipsmedserviceapp.Extensions;
 using ipsmedserviceapp.Model;
 using ipsmedserviceapp.Repositories;
 using ipsmedserviceapp.Utilities;
@@ -681,13 +682,17 @@ t2.custId = @custid
         public async Task<IActionResult> ObjectTransfer([FromBody] TransferParametersResource transferParams)
         {
             if (transferParams == null)
-                return BadRequest("Некорректі параметри передачі.");
+                return BadRequest("Некоректні параметри передачі.");
 
             var transferProcessor = new ObjectTransferProcessor(_dbContext, _rightholderRepository, transferParams);
-            var result = transferProcessor.Process();
+            transferProcessor.Process();
 
-            if (!result)
-                return BadRequest(); // TODO: return errors
+            if (transferProcessor.Result.AreErrorsExist)
+            {
+                ModelState.AddValidationErrors(transferProcessor.Result);
+
+                return BadRequest(ModelState);
+            }
 
             return Ok();
         }

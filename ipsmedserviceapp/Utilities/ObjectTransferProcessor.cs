@@ -1,5 +1,6 @@
 ﻿using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
+using ipsmedserviceapp.Model.AppModels;
 using ipsmedserviceapp.Model.SQLViewsData;
 using ipsmedserviceapp.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +13,6 @@ namespace ipsmedserviceapp.Utilities
 {
     public class ObjectTransferProcessor
     {
-        private class TransferData
-        {
-            public List<RightHolder> NewRightholderList { get; set; } = new List<RightHolder>();
-        }
-
         private class CopyrightData
         {
             public CopyRight Copyright { get; set; }
@@ -31,23 +27,16 @@ namespace ipsmedserviceapp.Utilities
         private readonly RightholderRepository _rightholderRepository;
         private readonly TransferParametersResource _transferParams;
         private RightHolder _oldRightholder;
-
         private List<RightholderMainView> _newRightholders;
 
-        // TODO: maybe TransferedObjectData
-        // public
         private List<CopyRight> _oldCopyrights;
         private decimal _rateTotal;
         private decimal _rateTransfer;
         private decimal _kDecrTotal;
-        // private
         private DateTime _maxDate = new DateTime(3000, 1, 1);
         private List<CopyrightData> _intermidiateCopyrightData = new List<CopyrightData>();
-        // TODO: maybe TransferedObjectData
 
-        //public List<CopyRight> ResultCopyrightList { get; } = new List<CopyRight>();
-        //public List<CopyRightHistory> ResultCopyrightHistoryList { get; } = new List<CopyRightHistory>();
-        //public List<Authors> ResultAuthorList { get; } = new List<Authors>();
+        public ValidationResult Result { get; } = new ValidationResult();
 
         public ObjectTransferProcessor(MediaServiceContext dbContext, RightholderRepository rightholderRepository, TransferParametersResource transferParams)
         {
@@ -56,19 +45,15 @@ namespace ipsmedserviceapp.Utilities
             _transferParams = transferParams;
         }
 
-        public bool Process()
+        public void Process()
         {
-            PrepareDataForTransfering();
-            
-            // TODO: extract ValidateTransferParams() method, use ModelState.AddModelError()
-            // Dates, LegalBasis, NewRightholderList is not empty for each object,
-            // new total Rate in NewRightholderList is less or equal to 100 persent, etc.
-            // ValidateTransferedParams();
+            if (!ValidateTransferedParams())
+                return;
 
-            // TODO: return error
-            if (_oldRightholder == null)
-                // return BadRequest($"Правовласник з ідентифікатором '{_transferParams.OldRightholderId}' не знайдений.");
-                return false;
+            PrepareDataForTransfering();
+
+            if (!ValidateDataForTransfering())
+                return;
 
             foreach (var transferedObject in _transferParams.ObjectsRightList)
             {
@@ -76,13 +61,19 @@ namespace ipsmedserviceapp.Utilities
 
                 _rateTotal = _oldCopyrights.Sum(c => c.Rate ?? 0);
 
-                //if (rateTotal == 0.0)
-                //    AddError()
+                if (_rateTotal == 0m)
+                {
+                    Result.AddError($"Для об'єкта з ідентифікатором {transferedObject.ObjId} загальний відсоток володіння дорівнює нулю. Передача не виконана.");
+                    continue;
+                }
 
                 _rateTransfer = transferedObject.NewRightholderList.Sum(r => r.Rate);
 
-                //if (rateTransfer > rateTotal)
-                //    AddError()
+                if (_rateTransfer > _rateTotal)
+                {
+                    Result.AddError($"Для об'єкта з ідентифікатором {transferedObject.ObjId} загальний відсоток до передачі {_rateTransfer} перевищує загальний відсоток володіння {_rateTotal}. Передача не виконана.");
+                    continue;
+                }
 
                 _kDecrTotal = _rateTransfer / _rateTotal;
 
@@ -92,8 +83,26 @@ namespace ipsmedserviceapp.Utilities
             }
 
             _dbContext.SaveChanges();
+        }
 
-            return true; // TODO: return errors
+        private bool ValidateTransferedParams()
+        {
+            if (_transferParams.DateFrom == DateTime.MinValue)
+                Result.AddError(nameof(_transferParams.DateFrom), "Не вказана дата з якої передаються об'єкти.");
+
+            if (_transferParams.LegalBasis == 5 && _transferParams.DateTill == DateTime.MinValue)
+                Result.AddError(nameof(_transferParams.DateTill), "Для типу передачі 'Передача прав' обов'язково вказується дата по яку передаються об'єкти.");
+
+            if (!new[] { 3, 5 }.Contains(_transferParams.LegalBasis))
+                Result.AddError(nameof(_transferParams.LegalBasis), "Не вірний тип передачі.");
+
+            if (_transferParams.OldRightholderId == 0)
+                Result.AddError(nameof(_transferParams.OldRightholderId), "Не вказаний ідентифікатор правовласника з якого передаються об'єкти.");
+
+            if (!_transferParams.ObjectsRightList.Any())
+                Result.AddError(nameof(_transferParams.ObjectsRightList), "Список об'єктів до передачі не може бути пустий.");
+
+            return !Result.AreErrorsExist;
         }
 
         private void PrepareDataForTransfering()
@@ -108,10 +117,37 @@ namespace ipsmedserviceapp.Utilities
             _newRightholders = _rightholderRepository.GetRightholders(newRightholderIds);
         }
 
+        private bool ValidateDataForTransfering()
+        {
+            if (_oldRightholder == null)
+                Result.AddError(nameof(_transferParams.OldRightholderId), $"Правовласник з ідентифікатором {_transferParams.OldRightholderId} не знайдений.");
+
+            var newRightholderIds = _transferParams.ObjectsRightList
+                .SelectMany(o => o.NewRightholderList)
+                .Select(r => r.CustId);
+
+            foreach (var id in newRightholderIds)
+            {
+                if (!_newRightholders.Any())
+                    Result.AddError("custId", $"Правовласник з ідентифікатором {id} не знайдений.");
+            }
+
+            return !Result.AreErrorsExist;
+        }
+
         private void CreateNewCopyrights(TransferedObjectResource transferedObject)
         {
             _intermidiateCopyrightData.Clear();
 
+            PrepareNewIntermidiateCopyrights(transferedObject);
+
+            CreateFinalNewCopyright();
+
+            CreateNewCopyrightsForOldrightholder();
+        }
+
+        private void PrepareNewIntermidiateCopyrights(TransferedObjectResource transferedObject)
+        {
             // for each old copyright:
             foreach (var oldCopyright in _oldCopyrights)
             {
@@ -126,17 +162,16 @@ namespace ipsmedserviceapp.Utilities
 
                     var newCopyright = new CopyRight
                     {
-                        CustId = newRightholderParams.CustId, // TODO: check for rightholder existing
+                        CustId = newRightholderParams.CustId,
                         ObjId = oldCopyright.ObjId,
                         RoleCode = 8, // Правовласник
                         LBasis = _transferParams.LegalBasis,
                         BeginDate = _transferParams.DateFrom,
                         EndDate = _transferParams.DateTill,
                         Rate = newRate,
-                        // to think: I can get all params from old copyright to create a new copyright, except KDecr and custId for new rightholder
                     };
 
-                    _intermidiateCopyrightData.Add(new CopyrightData // TODO: extract to method
+                    _intermidiateCopyrightData.Add(new CopyrightData
                     {
                         Copyright = newCopyright,
                         IsNewRightholder = true,
@@ -166,7 +201,10 @@ namespace ipsmedserviceapp.Utilities
                     });
                 }
             }
+        }
 
+        private void CreateFinalNewCopyright()
+        {
             // final copyright's list
             var groupedCopyrightData = _intermidiateCopyrightData
                 .GroupBy(cd => new { cd.Copyright.CustId, cd.Copyright.ObjId, cd.Copyright.LBasis, cd.Copyright.BeginDate, cd.Copyright.EndDate, cd.Copyright.RoleCode });
@@ -208,11 +246,11 @@ namespace ipsmedserviceapp.Utilities
             }
 
             // add new rightholders to authors table
-            groupedCopyrightData = _intermidiateCopyrightData
+            var groupedCopyrightData1 = _intermidiateCopyrightData
                 .Where(cd => cd.IsNewRightholder)
                 .GroupBy(cd => new { cd.Copyright.CustId, cd.Copyright.ObjId, cd.Copyright.LBasis, cd.Copyright.BeginDate, cd.Copyright.EndDate, cd.Copyright.RoleCode });
 
-            foreach (var group in groupedCopyrightData)
+            foreach (var group in groupedCopyrightData1)
             {
                 _dbContext.Authors.Add(new Authors
                 {
@@ -225,10 +263,13 @@ namespace ipsmedserviceapp.Utilities
                 });
             }
 
-            _dbContext.CopyRight.AddRange(copyrightList); // TODO: switch to async method
+            _dbContext.CopyRight.AddRange(copyrightList);
             _dbContext.CopyRightHistory.AddRange(copyrightHistoryList);
+        }
 
-            // 3. create new copyrights for old rightholder if object is transfered for a certain time
+        private void CreateNewCopyrightsForOldrightholder()
+        {
+            // create new copyrights for old rightholder if object is transfered for a certain time
             if (_transferParams.DateTill < _maxDate)
             {
                 foreach (var oldCopyright in _oldCopyrights)
