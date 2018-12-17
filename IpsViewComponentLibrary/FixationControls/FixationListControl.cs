@@ -32,7 +32,10 @@ namespace IpsViewComponentLibrary.FixationControls
             set
             {
                 if (bsFixationListViewModel.DataSource != value)
+                {
                     bsFixationListViewModel.DataSource = value;
+                    UpdateTotalCount();
+                }
             }
         }
 
@@ -229,6 +232,11 @@ namespace IpsViewComponentLibrary.FixationControls
 
                 _presenter.SetStatus(newStatus);
             }
+        }
+
+        private void UpdateTotalCount()
+        {
+            txtTotalCount.Text = bsFixationListViewModel.Count == 0 ? "" : bsFixationListViewModel.Count.ToString();
         }
 
         public void HandleEvent(FixationUpdatedEvent e)
