@@ -392,7 +392,16 @@ and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
                                                                 , rec => { }, (l, r) => l.Version == r.Version);
             }
 
-
+            // add or clear community depends on rightholder type
+            if (sorsCust.RightHolder.RHolderType == 2) // community
+            {
+                if (destCustomer.Community == null)
+                    destCustomer.Community = new Community();
+            }
+            else
+            {
+                destCustomer.Community = null;
+            }
         }
 
         /// <summary>
