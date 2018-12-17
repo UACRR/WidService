@@ -41,7 +41,6 @@ namespace ConsumerWorkplace_v_1._0
             this.pageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
             this.mainGridSmallRight = new IpsViewComponentLibrary.GlobalControlConsumerMainGrid();
             this.treeViewSR = new Telerik.WinControls.UI.RadTreeView();
-            this.radPageViewPage7 = new Telerik.WinControls.UI.RadPageViewPage();
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pageViewOwner = new Telerik.WinControls.UI.RadPageView();
             this.pvConsumers = new Telerik.WinControls.UI.RadPageViewPage();
@@ -109,13 +108,12 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.pageParentConsumers.Controls.Add(this.pageBigRights);
             this.pageParentConsumers.Controls.Add(this.pageSmallRights);
-            this.pageParentConsumers.Controls.Add(this.radPageViewPage7);
             this.pageParentConsumers.DefaultPage = this.pageSmallRights;
             this.pageParentConsumers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageParentConsumers.Location = new System.Drawing.Point(0, 0);
             this.pageParentConsumers.Margin = new System.Windows.Forms.Padding(0);
             this.pageParentConsumers.Name = "pageParentConsumers";
-            this.pageParentConsumers.SelectedPage = this.pageSmallRights;
+            this.pageParentConsumers.SelectedPage = this.pageBigRights;
             this.pageParentConsumers.Size = new System.Drawing.Size(1266, 601);
             this.pageParentConsumers.TabIndex = 0;
             this.pageParentConsumers.ThemeName = "Office2013Light";
@@ -188,15 +186,6 @@ namespace ConsumerWorkplace_v_1._0
             this.treeViewSR.Size = new System.Drawing.Size(199, 563);
             this.treeViewSR.SpacingBetweenNodes = -1;
             this.treeViewSR.TabIndex = 0;
-            // 
-            // radPageViewPage7
-            // 
-            this.radPageViewPage7.Enabled = false;
-            this.radPageViewPage7.ItemSize = new System.Drawing.SizeF(156F, 27F);
-            this.radPageViewPage7.Location = new System.Drawing.Point(10, 32);
-            this.radPageViewPage7.Name = "radPageViewPage7";
-            this.radPageViewPage7.Size = new System.Drawing.Size(1250, 563);
-            this.radPageViewPage7.Text = "Фіксація правопорушень";
             // 
             // pageViewOwner
             // 
@@ -421,7 +410,6 @@ namespace ConsumerWorkplace_v_1._0
         private System.Windows.Forms.BindingSource iBankAccountBindingSource;
         private System.Windows.Forms.ImageList imageList;
         private Telerik.WinControls.UI.RadTreeView treeViewSR;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage7;
         private Telerik.WinControls.UI.RadPageView pageViewOwner;
         private Telerik.WinControls.UI.RadPageViewPage pvConsumers;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;

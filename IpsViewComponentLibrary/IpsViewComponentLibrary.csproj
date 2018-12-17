@@ -187,6 +187,12 @@
     <Compile Include="ConsumerControls\Places\SinglePlaceParameterControl.Designer.cs">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\SmallRight\AgreementPhis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\AgreementPhis.Designer.cs">
+      <DependentUpon>AgreementPhis.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerDialogForms\ContactPersonActionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -379,6 +385,12 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ConsumerForms\AnketaConsumerPhisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\AnketaConsumerPhisForm.Designer.cs">
+      <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="_trash\ProlongationGeneralAgreement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1078,6 +1090,9 @@
     <EmbeddedResource Include="ConsumerControls\Places\SinglePlaceParameterControl.resx">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\AgreementPhis.resx">
+      <DependentUpon>AgreementPhis.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ContactPersonActionForm.resx">
       <DependentUpon>ContactPersonActionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1165,6 +1180,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
       <DependentUpon>ProlongationBigRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\AnketaConsumerPhisForm.resx">
+      <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\ProlongationGeneralAgreement.resx">
       <DependentUpon>ProlongationGeneralAgreement.cs</DependentUpon>
@@ -1534,6 +1552,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseBigR.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyPeriodLink.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.MusicalDesign.datasource" />
