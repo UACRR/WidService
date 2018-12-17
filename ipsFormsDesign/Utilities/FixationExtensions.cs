@@ -63,6 +63,7 @@ namespace ipsFormsDesign.Utilities
 
                 case FixationStageStatuses.NegotiationBeforeFixationRejected:
                     availableStageStatuses.Add(FixationStageStatuses.FixationNotScheduled);
+                    availableStageStatuses.Add(FixationStageStatuses.ClosedWithoutViolation);
                     break;
 
                 case FixationStageStatuses.FixationNotScheduled:
