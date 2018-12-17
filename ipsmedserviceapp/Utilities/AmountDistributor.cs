@@ -67,5 +67,50 @@ namespace ipsmedserviceapp.Utilities
                 propertyInfo.SetValue(maxItem, valueWithDelta);
             }
         }
+
+        public void DistributeByPropertyAndTotalBaseAmount<TSource>(IEnumerable<TSource> list, decimal? totalBaseAmount, Func<TSource, decimal?> amountBasePropertySelector, Expression<Func<TSource, decimal?>> targetPropertySelector)
+        {
+            if (!list.Any() || totalBaseAmount == 0)
+                return;
+
+            if (!totalBaseAmount.HasValue || totalBaseAmount.Value == 0)
+                return;
+
+            var changedItemList = new List<TSource>();
+
+            var memberSelectorExpression = targetPropertySelector.Body as MemberExpression;
+            PropertyInfo propertyInfo;
+            propertyInfo = memberSelectorExpression.Member as PropertyInfo;
+
+            decimal totalDistrAmount = 0;
+            foreach (var item in list)
+            {
+                var baseAmount = amountBasePropertySelector(item) ?? 0;
+
+                var distrAmount = Math.Round(Amount * baseAmount / totalBaseAmount.Value, 2);
+
+                totalDistrAmount += distrAmount;
+
+                var oldValue = (decimal?)propertyInfo.GetValue(item);
+                if (oldValue != distrAmount)
+                {
+                    propertyInfo.SetValue(item, distrAmount);
+                    changedItemList.Add(item);
+                }
+            }
+
+            var checkSumTotalBaseAmount = list.Sum(x => amountBasePropertySelector(x));
+
+            if (totalBaseAmount == checkSumTotalBaseAmount)
+            {
+                var delta = Math.Round(Amount - totalDistrAmount, 2);
+                if (delta != 0)
+                {
+                    var maxItem = changedItemList.OrderByDescending(x => amountBasePropertySelector(x)).First();
+                    var valueWithDelta = (decimal?)propertyInfo.GetValue(maxItem) + delta;
+                    propertyInfo.SetValue(maxItem, valueWithDelta);
+                }
+            }
+        }
     }
 }
