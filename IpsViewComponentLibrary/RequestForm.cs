@@ -398,7 +398,18 @@ namespace IpsViewComponentLibrary
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (_formMode == FormMode.ForSmallRightAdmin && !ValidateMinRewardAndTotalRate())
-                _dialogService.ShowMessage(this, "Мінімальна ставка винагороди повинна співпадати з сумою долей.");
+            {
+                var error = errorProvider.GetError(txtVinagoroda);
+                if (error == "Сума долей не може перевищувати мінімальну ставку винагороди.")
+                {
+                    _dialogService.ShowError(this, error);
+                    return;
+                }
+                else
+                {
+                    _dialogService.ShowMessage(this, error);
+                }
+            }
 
             _deleteLicense = false;
             ParseAuthors();
@@ -495,13 +506,15 @@ namespace IpsViewComponentLibrary
         {
             var errorText = "";
 
-            if (Int32.TryParse(txtVinagoroda.Text, out int minReward))
+            if (int.TryParse(txtVinagoroda.Text, out int minReward))
             {
                 var tolalRate = _objectRight.CopyRight.GetTotalRoleRate();
 
 
-                if (minReward != tolalRate)
-                    errorText = "Мінімальна ставка винагороди повинна співпадати з сумою долей.";
+                if (tolalRate > minReward)
+                    errorText = "Сума долей не може перевищувати мінімальну ставку винагороди.";
+                else if (tolalRate < minReward)
+                    errorText = "Сума долей повинна співпадати з мінімальною ставкою винагороди.";
                 else
                     errorText = "";
 
