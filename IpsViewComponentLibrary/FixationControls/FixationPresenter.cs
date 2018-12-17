@@ -194,6 +194,8 @@ namespace IpsViewComponentLibrary.FixationControls
             {
                 _fixationService.CreateAdditionalStructure(_fixation);
             }
+
+            _view.SetAvailableStageStatuses(_fixation.GetAvailableStageStatuses());
         }
 
         public void SelectResponsible()
