@@ -1195,6 +1195,18 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// <param name="dest"></param>
         private void modifyRatedList(RegisterRatedList sors, RegisterRatedList dest)
         {
+
+            if (dest.Status == 0 && sors.Status == 1 && dest.Period.Status == 1) // MED-197 Період переходить в стан "Прийом коштів"
+            {
+                dest.Period.Status = 2;
+
+                if( dest.Period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType == 1 )  // Великі права
+                {
+                    foreach (var item in dest.Register)
+                        item.RgStatus = 3;
+                }
+            }
+
             dest.SetFields(sors);
             var dicDest = dest.Register.ToDictionary(rec => rec.RegId);
 
@@ -1892,6 +1904,11 @@ and isnull(licType,1) between 1 and 3
                 RegisterRatedList dest = null;
                 dest = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
                     .Include(rec => rec.Register)
+                    .Include( rec => rec.Period) // MED-197
+                            .ThenInclude( p => p.Lic )
+                                .ThenInclude( lic => lic.LicCodeNavigation )
+                                    .ThenInclude ( code => code.UsesKindNavigation )
+                            
                     .Single();
 
                 foreach (var item in dest.Register)

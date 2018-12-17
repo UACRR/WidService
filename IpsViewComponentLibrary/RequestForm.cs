@@ -458,6 +458,7 @@ namespace IpsViewComponentLibrary
             _licenseAgreement.LicStatus = 2;
             _licenseAgreement.LicenseAgrParam.First().LicStatus = 2;
             bsLicAgrParam.ResetCurrentItem();
+            panelStatusees.Enabled = false;
         }
 
         private void btnSetCanceledStatus_Click(object sender, EventArgs e)
@@ -465,6 +466,7 @@ namespace IpsViewComponentLibrary
             _licenseAgreement.LicStatus = 5;
             _licenseAgreement.LicenseAgrParam.First().LicStatus = 5;
             bsLicAgrParam.ResetCurrentItem();
+            panelStatusees.Enabled = false;
         }
 
         private void ddlPerformType_Leave(object sender, EventArgs e)

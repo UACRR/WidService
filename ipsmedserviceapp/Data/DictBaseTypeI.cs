@@ -119,13 +119,13 @@ namespace ipsFormsDesign.Dictionary
         {
             return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.DocumentKindTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
         }
-        public static implicit operator Genre(DictBaseTypeI test)
+        public static implicit operator PopGenre(DictBaseTypeI test)
         {
-            return new Genre { Id = test.CodeI, Name = test.Name, GenreTr = test.DictTrI.Select(rec => new GenreTr { Id = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new PopGenre { Id = test.CodeI, Name = test.Name, PopGenreTr = test.DictTrI.Select(rec => new PopGenreTr { Id = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
         }
-        public static implicit operator DictBaseTypeI(Genre test)
+        public static implicit operator DictBaseTypeI(PopGenre test)
         {
-            return new DictBaseTypeI { CodeI = test.Id, Name = test.Name, DictTrI = test.GenreTr.Select(rec => new DictTrI { CodeI = rec.Id, Name = rec.Name, Lang = rec.Lang }).ToList() };
+            return new DictBaseTypeI { CodeI = test.Id, Name = test.Name, DictTrI = test.PopGenreTr.Select(rec => new DictTrI { CodeI = rec.Id, Name = rec.Name, Lang = rec.Lang }).ToList() };
         }
         public static implicit operator LegalBasis(DictBaseTypeI test)
         {
@@ -247,10 +247,107 @@ namespace ipsFormsDesign.Dictionary
         {
             return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.TypeVattr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
         }
+        // AlgorithmType
+        public static implicit operator AlgorithmType(DictBaseTypeI test)
+        {
+            return new AlgorithmType { CodeI = test.CodeI, Name = test.Name, AlgorithmTypeTr = test.DictTrI.Select(rec => new AlgorithmTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(AlgorithmType test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.AlgorithmTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // SeekType
+        public static implicit operator SeekType(DictBaseTypeI test)
+        {
+            return new SeekType { CodeI = test.CodeI, Name = test.Name, SeekTypeTr = test.DictTrI.Select(rec => new SeekTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(SeekType test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.SeekTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // SeekType
+        public static implicit operator ObjAct(DictBaseTypeI test)
+        {
+            return new ObjAct { CodeI = test.CodeI, Name = test.Name, ObjActTr = test.DictTrI.Select(rec => new ObjActTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(ObjAct test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.ObjActTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // Category
+        public static implicit operator Category(DictBaseTypeI test)
+        {
+            return new Category { CodeI = test.CodeI, Name = test.Name, CategoryTr = test.DictTrI.Select(rec => new CategoryTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(Category test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.CategoryTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // CrightStatus
+        public static implicit operator CrightStatus(DictBaseTypeI test)
+        {
+            return new CrightStatus { CodeI = test.CodeI, Name = test.Name, CrightStatusTr = test.DictTrI.Select(rec => new CrightStatusTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(CrightStatus test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.CrightStatusTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // RholderType
+        public static implicit operator RholderType(DictBaseTypeI test)
+        {
+            return new RholderType { CodeI = test.CodeI, Name = test.Name, RholderTypeTr = test.DictTrI.Select(rec => new RholderTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(RholderType test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.RholderTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // TypeMethodGet
+        public static implicit operator TypeMethodGet(DictBaseTypeI test)
+        {
+            return new TypeMethodGet { CodeI = test.CodeI, Name = test.Name, TypeMethodGetTr = test.DictTrI.Select(rec => new TypeMethodGetTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(TypeMethodGet test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.TypeMethodGetTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // GenreType
+        public static implicit operator GenreType(DictBaseTypeI test)
+        {
+            return new GenreType { CodeI = test.CodeI, Name = test.Name, GenreTypeTr = test.DictTrI.Select(rec => new GenreTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(GenreType test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.GenreTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // WorkType
+        public static implicit operator WorkType(DictBaseTypeI test)
+        {
+            return new WorkType { CodeI = test.CodeI, Name = test.Name, WorkTypeTr = test.DictTrI.Select(rec => new WorkTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(WorkType test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.WorkTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // AgreementType
+        public static implicit operator AgreementType(DictBaseTypeI test)
+        {
+            return new AgreementType { CodeI = test.CodeI, Name = test.Name, AgreementTypeTr = test.DictTrI.Select(rec => new AgreementTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(AgreementType test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.AgreementTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        // DocumentType
+        public static implicit operator DocumentType(DictBaseTypeI test)
+        {
+            return new DocumentType { CodeI = test.CodeI, Name = test.Name, DocumentTypeTr = test.DictTrI.Select(rec => new DocumentTypeTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(DocumentType test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.DocumentTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
 
-
-
-        #endregion 
+        #endregion
 
     }
 
@@ -264,15 +361,16 @@ namespace ipsFormsDesign.Dictionary
 
         // Lang
         #region 
-        //public static implicit operator Lang(DictBaseTypeI test)
-        //{
-        //    return new Lang { CodeS = test.CodeS, Name = test.Name, Langtr = test.DictTrI.Select(rec => new Langtr { CodeS = rec.CodeS, Name = rec.Name, Lang = rec.Lang }).ToList() };
-        //}
-        //public static implicit operator DictBaseTypeI(Lang test)
-        //{
-        //    return new DictBaseTypeI { CodeS = test.CodeS, Name = test.Name, DictTrI = test.Langtr.Select(rec => new DictTrI { CodeI = rec.CodeS, Name = rec.Name, Lang = rec.Lang }).ToList() };
-        //}
-#endregion
+        // Country
+        public static implicit operator Country(DictBaseTypeS test)
+        {
+            return new Country { CountryCode = test.CodeS, CountryName = test.Name, CountryTr = test.RegionTr.Select(rec => new CountryTr { CountryCode = rec.CodeS, CountryName = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeS(Country test)
+        {
+            return new DictBaseTypeS { CodeS = test.CountryCode, Name = test.CountryName, RegionTr = test.CountryTr.Select(rec => new DictTrS { CodeS = rec.CountryCode, Name = rec.CountryName, Lang = rec.Lang }).ToList() };
+        }
+        #endregion
     }
 
 }

@@ -227,10 +227,18 @@
     <None Include="Templates\F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Templates\F_АКТ Ідентифікація.docx" />
-    <None Include="Templates\F_Акт фіксації_друк.docx" />
-    <None Include="Templates\F_Наказ на фіксацію.docx" />
-    <None Include="Templates\F_Службова до юридичного деп.docx" />
+    <None Include="Templates\F_АКТ Ідентифікація.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Акт фіксації_друк.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Наказ на фіксацію.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Templates\F_Службова до юридичного деп.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

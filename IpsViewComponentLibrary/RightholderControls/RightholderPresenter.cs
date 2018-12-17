@@ -20,6 +20,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private readonly ObjectRightService _objectRightService;
         private readonly DialogService _dialogService;
         private Customer _customer;
+        private AgreementMaster _agreementMaster;
         private AgreementAddRh _agreementAddRh;
         private AnketaPerson _anketaPerson;
         private AnketaCompany _anketaCompany;
@@ -60,7 +61,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void SetViewData()
         {
             _view.CustomerDataSource = _customer;
-            _agreementAddRh = _customer.AgreementMaster.FirstOrDefault()?.AgreementAddRh?.FirstOrDefault();
+            _agreementMaster = _customer.AgreementMaster.FirstOrDefault();
+            _agreementAddRh = _agreementMaster?.AgreementAddRh?.FirstOrDefault();
             _view.AgreementAddRhDataSource = _agreementAddRh;
             _view.RightholderDataSource = _customer.RightHolder;
             _view.BankAccountDataSource = _customer.BankAccount;
@@ -82,6 +84,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void SetAgreementRightholderStatus(AgreementStatuses newStatus)
         {
+            _agreementMaster.AgrStatus = (int)newStatus;
             _agreementAddRh.AgrStatus = (int)newStatus;
 
             if (newStatus == AgreementStatuses.Closed)
@@ -109,18 +112,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (accept)
             {
-                _customer.Status = 2; // Активний
-                var agreement = _customer.AgreementMaster.FirstOrDefault();
-                if (agreement != null)
-                {
-                    agreement.AgrStatus = 2;
-
-                    var agrRh = agreement.AgreementAddRh.FirstOrDefault();
-                    if (agrRh != null)
-                    {
-                        agrRh.AgrStatus = 2;
-                    }
-                }
+                SetAgreementRightholderStatus(AgreementStatuses.Active);
             }
 
             var result = _rightholderService.Save(_customer);

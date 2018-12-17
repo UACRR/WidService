@@ -369,72 +369,32 @@ namespace RightholderWorkplace
                 return;
             }
 
-            var rightholders = new List<RightHolder>();
+            var transferParams = new TransferParameters();
+            transferParams.DateFrom = dtChangeCopyrightDateFrom.Value;
+            transferParams.DateTill = dtChangeCopyrightDateTill.Value;
+            transferParams.OldRightholderId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId;
+            transferParams.LegalBasis = ctrlChangeRightholderOperation.SelectedValue.Value;
 
-            // old rightholder
-            var oldRightholder = new RightHolder
-            {
-                CustId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId,
-                CopyRight = new ObservableListSource<CopyRight>(),
-            };
-
-            oldRightholder.CopyRight.Add(new CopyRight { EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1) });
-            
-            rightholders.Add(oldRightholder);
-
-
-            // new copyrighs
             var groupedCopyright = _copyrights
                 .Where(oc => oc.Rate != 0)
-                .GroupBy(oc => oc.CustId);
+                .GroupBy(oc => oc.ObjId);
 
-            foreach (var rightholderGroup in groupedCopyright)
+            foreach (var objectGroup in groupedCopyright)
             {
-                var newRightholder = new RightHolder
-                {
-                    CustId = rightholderGroup.Key,
-                    Cust = new Customer { Status = 9 },
-                    CopyRight = new ObservableListSource<CopyRight>(),
-                };
+                var transferedObject = new TransferedObject { ObjId = objectGroup.Key };
+                transferParams.ObjectsRightList.Add(transferedObject);
 
-                foreach (var copyright in rightholderGroup)
+                foreach (var copyright in objectGroup)
                 {
-                    var newCprt = new CopyRight
+                    transferedObject.NewRightholderList.Add(new NewRightholder
                     {
-                        CustId = newRightholder.CustId,
-                        ObjId = copyright.ObjId,
-                        RoleCode = 8, // Правовласник
-                        LBasis = 3,
+                        CustId = copyright.CustId,
                         Rate = copyright.Rate,
-                        BeginDate = dtChangeCopyrightDateFrom.Value,
-                        EndDate = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer ? dtChangeCopyrightDateTill.Value : new DateTime(3000, 1, 1),
-                        //ParentId = 
-                        Obj = new ObjectRight(),
-                    };
-                    newCprt.Obj.Authors.Add(new Authors
-                    {
-                        CustId = newRightholder.CustId,
-                        ObjId = copyright.ObjId,
-                        FolkType = 1,
-                        RoleCode = 8, // Правовласник
-                        AuthorName = copyright.Name,
                     });
-                    newRightholder.CopyRight.Add(newCprt);
                 }
-                rightholders.Add(newRightholder);
             }
 
-            var result = false;
-            switch (ctrlChangeRightholderOperation.SelectedValue)
-            {
-                case (int)LegalBasisType.Inheritance:
-                    result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
-                    break;
-
-                case (int)LegalBasisType.Transfer:
-                    result = _rightholderService.Transfer(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
-                    break;
-            }
+            var result = _rightholderService.Transfer(transferParams);
 
             if (result)
             {

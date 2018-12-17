@@ -8,14 +8,12 @@ namespace ipsFormsDesign.Model
     {
         public FileType()
         {
-            DocumentTypeTr = new ObservableListSource<DocumentTypeTr>();
             FileCustomer = new ObservableListSource<FileCustomer>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<DocumentTypeTr> DocumentTypeTr { get; set; }
         public ObservableListSource<FileCustomer> FileCustomer { get; set; }
     }
 }

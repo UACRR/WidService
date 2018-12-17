@@ -32,7 +32,10 @@ namespace IpsViewComponentLibrary.FixationControls
             set
             {
                 if (bsFixationListViewModel.DataSource != value)
+                {
                     bsFixationListViewModel.DataSource = value;
+                    UpdateTotalCount();
+                }
             }
         }
 
@@ -188,9 +191,9 @@ namespace IpsViewComponentLibrary.FixationControls
                 new SideMenuItem { Text = "Моніторинг надходження", Value = new FixationQuery { Stage = FixationStages.IncomeMonitoring }},
                 new SideMenuItem { Text = "Закрите", Value = new FixationQuery { Stage = FixationStages.Closed }, Items = {
                     new SideMenuItem { Text = "Порушення відсутнє", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedWithoutViolation } },
-                    new SideMenuItem { Text = "Погоджене до фіксації", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedAgreedBeforeFixation } },
-                    new SideMenuItem { Text = "Погоджене після фіксації", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedAgreedAfterFixation } },
-                    new SideMenuItem { Text = "По суду", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedByCourt } },
+                    new SideMenuItem { Text = "Підписано договір до фіксації", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedAgreedBeforeFixation } },
+                    new SideMenuItem { Text = "Підписано договір після фіксації", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedAgreedAfterFixation } },
+                    new SideMenuItem { Text = "Підписано договір досудова робота", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedByCourt } },
                     new SideMenuItem { Text = "Кошти надійшли", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedIncomeRecieved } },
                 }},
             }};
@@ -229,6 +232,11 @@ namespace IpsViewComponentLibrary.FixationControls
 
                 _presenter.SetStatus(newStatus);
             }
+        }
+
+        private void UpdateTotalCount()
+        {
+            txtTotalCount.Text = bsFixationListViewModel.Count == 0 ? "" : bsFixationListViewModel.Count.ToString();
         }
 
         public void HandleEvent(FixationUpdatedEvent e)

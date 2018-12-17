@@ -86,7 +86,6 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.pageFixation = new Telerik.WinControls.UI.RadPageViewPage();
             this.dtFixationDtEnd = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
-            this.btnOrderFixation = new Telerik.WinControls.UI.RadButton();
             this.radLabel17 = new Telerik.WinControls.UI.RadLabel();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
@@ -110,9 +109,6 @@
             this.btnSearchAuto = new Telerik.WinControls.UI.RadButton();
             this.ctrlRegisterItemList = new IpsViewComponentLibrary.RegisterControls.RegisterItemListControl();
             this.pageJudicalWork = new Telerik.WinControls.UI.RadPageViewPage();
-            this.btnPrintFixationAct = new Telerik.WinControls.UI.RadButton();
-            this.btnPrintIdentificationAct = new Telerik.WinControls.UI.RadButton();
-            this.btnPrintSlugbova = new Telerik.WinControls.UI.RadButton();
             this.radLabel21 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel20 = new Telerik.WinControls.UI.RadLabel();
             this.mebCourtFeeAmount = new IpsViewComponentLibrary.Common.Editors.IpsMaskedEditBox();
@@ -126,6 +122,11 @@
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.sbPrint = new Telerik.WinControls.UI.RadSplitButton();
+            this.miPrintNakaz = new Telerik.WinControls.UI.RadMenuItem();
+            this.miPrintActFiksacii = new Telerik.WinControls.UI.RadMenuItem();
+            this.miPrintActIdentyfikacii = new Telerik.WinControls.UI.RadMenuItem();
+            this.miPrintSlugbova = new Telerik.WinControls.UI.RadMenuItem();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
@@ -166,7 +167,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.pageFixation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtEnd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOrderFixation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
@@ -195,9 +195,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchNotLinked)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchAuto)).BeginInit();
             this.pageJudicalWork.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintFixationAct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintIdentificationAct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintSlugbova)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebCourtFeeAmount)).BeginInit();
@@ -213,6 +210,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sbPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
@@ -236,7 +234,7 @@
             this.mainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPageView.Location = new System.Drawing.Point(0, 0);
             this.mainPageView.Name = "mainPageView";
-            this.mainPageView.SelectedPage = this.pageIdentification;
+            this.mainPageView.SelectedPage = this.pageJudicalWork;
             this.mainPageView.Size = new System.Drawing.Size(828, 397);
             this.mainPageView.TabIndex = 0;
             this.mainPageView.ThemeName = "Office2013Light";
@@ -524,7 +522,6 @@
             // pageFixation
             // 
             this.pageFixation.Controls.Add(this.dtFixationDtEnd);
-            this.pageFixation.Controls.Add(this.btnOrderFixation);
             this.pageFixation.Controls.Add(this.radLabel17);
             this.pageFixation.Controls.Add(this.radSplitContainer1);
             this.pageFixation.Controls.Add(this.radLabel16);
@@ -558,17 +555,6 @@
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.dtFixationDtEnd.GetChildAt(0))).CalendarSize = new System.Drawing.Size(220, 180);
             ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.dtFixationDtEnd.GetChildAt(0))).Text = "";
             ((Telerik.WinControls.UI.RadMaskedEditBoxElement)(this.dtFixationDtEnd.GetChildAt(0).GetChildAt(2).GetChildAt(1))).Text = "";
-            // 
-            // btnOrderFixation
-            // 
-            this.btnOrderFixation.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            this.btnOrderFixation.Location = new System.Drawing.Point(539, 39);
-            this.btnOrderFixation.Name = "btnOrderFixation";
-            this.btnOrderFixation.Size = new System.Drawing.Size(152, 24);
-            this.btnOrderFixation.TabIndex = 30;
-            this.btnOrderFixation.Text = "Наказ на фіксацію";
-            this.btnOrderFixation.ThemeName = "Office2013Light";
-            this.btnOrderFixation.Click += new System.EventHandler(this.btnOrderFixation_Click);
             // 
             // radLabel17
             // 
@@ -613,6 +599,7 @@
             this.splitPanel1.TabIndex = 0;
             this.splitPanel1.TabStop = false;
             this.splitPanel1.Text = "splitPanel1";
+            this.splitPanel1.ThemeName = "Office2013Light";
             // 
             // lblStorages
             // 
@@ -725,6 +712,7 @@
             this.splitPanel2.TabIndex = 1;
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
+            this.splitPanel2.ThemeName = "Office2013Light";
             // 
             // lblFiles
             // 
@@ -951,6 +939,7 @@
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
             this.ctrlRegisterItemList.ShowAuthors = true;
             this.ctrlRegisterItemList.ShowDurationUse = false;
+            this.ctrlRegisterItemList.ShowFilters = true;
             this.ctrlRegisterItemList.ShowLinked = true;
             this.ctrlRegisterItemList.ShowObjectInfo = true;
             this.ctrlRegisterItemList.ShowTimeStartEnd = true;
@@ -965,9 +954,6 @@
             // 
             // pageJudicalWork
             // 
-            this.pageJudicalWork.Controls.Add(this.btnPrintFixationAct);
-            this.pageJudicalWork.Controls.Add(this.btnPrintIdentificationAct);
-            this.pageJudicalWork.Controls.Add(this.btnPrintSlugbova);
             this.pageJudicalWork.Controls.Add(this.radLabel21);
             this.pageJudicalWork.Controls.Add(this.radLabel20);
             this.pageJudicalWork.Controls.Add(this.mebCourtFeeAmount);
@@ -977,39 +963,6 @@
             this.pageJudicalWork.Name = "pageJudicalWork";
             this.pageJudicalWork.Size = new System.Drawing.Size(818, 361);
             this.pageJudicalWork.Text = "Судова робота";
-            // 
-            // btnPrintFixationAct
-            // 
-            this.btnPrintFixationAct.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            this.btnPrintFixationAct.Location = new System.Drawing.Point(326, 10);
-            this.btnPrintFixationAct.Name = "btnPrintFixationAct";
-            this.btnPrintFixationAct.Size = new System.Drawing.Size(152, 24);
-            this.btnPrintFixationAct.TabIndex = 12;
-            this.btnPrintFixationAct.Text = "Акт фіксації";
-            this.btnPrintFixationAct.ThemeName = "Office2013Light";
-            this.btnPrintFixationAct.Click += new System.EventHandler(this.btnPrintFixationAct_Click);
-            // 
-            // btnPrintIdentificationAct
-            // 
-            this.btnPrintIdentificationAct.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            this.btnPrintIdentificationAct.Location = new System.Drawing.Point(326, 70);
-            this.btnPrintIdentificationAct.Name = "btnPrintIdentificationAct";
-            this.btnPrintIdentificationAct.Size = new System.Drawing.Size(152, 24);
-            this.btnPrintIdentificationAct.TabIndex = 12;
-            this.btnPrintIdentificationAct.Text = "Акт ідентифікації";
-            this.btnPrintIdentificationAct.ThemeName = "Office2013Light";
-            this.btnPrintIdentificationAct.Click += new System.EventHandler(this.btnPrintIdentificationAct_Click);
-            // 
-            // btnPrintSlugbova
-            // 
-            this.btnPrintSlugbova.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
-            this.btnPrintSlugbova.Location = new System.Drawing.Point(326, 40);
-            this.btnPrintSlugbova.Name = "btnPrintSlugbova";
-            this.btnPrintSlugbova.Size = new System.Drawing.Size(152, 24);
-            this.btnPrintSlugbova.TabIndex = 11;
-            this.btnPrintSlugbova.Text = "Службова";
-            this.btnPrintSlugbova.ThemeName = "Office2013Light";
-            this.btnPrintSlugbova.Click += new System.EventHandler(this.btnPrintSlugbova_Click);
             // 
             // radLabel21
             // 
@@ -1230,6 +1183,7 @@
             // radPanel1
             // 
             this.radPanel1.BackColor = System.Drawing.Color.Silver;
+            this.radPanel1.Controls.Add(this.sbPrint);
             this.radPanel1.Controls.Add(this.btnCancel);
             this.radPanel1.Controls.Add(this.btnSave);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -1240,6 +1194,46 @@
             this.radPanel1.Size = new System.Drawing.Size(828, 31);
             this.radPanel1.TabIndex = 19;
             this.radPanel1.ThemeName = "Office2013Light";
+            // 
+            // sbPrint
+            // 
+            this.sbPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.sbPrint.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            this.sbPrint.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.miPrintNakaz,
+            this.miPrintActFiksacii,
+            this.miPrintActIdentyfikacii,
+            this.miPrintSlugbova});
+            this.sbPrint.Location = new System.Drawing.Point(3, 4);
+            this.sbPrint.Name = "sbPrint";
+            this.sbPrint.Size = new System.Drawing.Size(169, 24);
+            this.sbPrint.TabIndex = 18;
+            this.sbPrint.Text = "Друк";
+            this.sbPrint.ThemeName = "Office2013Light";
+            // 
+            // miPrintNakaz
+            // 
+            this.miPrintNakaz.Name = "miPrintNakaz";
+            this.miPrintNakaz.Text = "Наказ на фіксацію";
+            this.miPrintNakaz.Click += new System.EventHandler(this.miPrintNakaz_Click);
+            // 
+            // miPrintActFiksacii
+            // 
+            this.miPrintActFiksacii.Name = "miPrintActFiksacii";
+            this.miPrintActFiksacii.Text = "Акт фіксації";
+            this.miPrintActFiksacii.Click += new System.EventHandler(this.miPrintActFiksacii_Click);
+            // 
+            // miPrintActIdentyfikacii
+            // 
+            this.miPrintActIdentyfikacii.Name = "miPrintActIdentyfikacii";
+            this.miPrintActIdentyfikacii.Text = "Акт ідентифікації";
+            this.miPrintActIdentyfikacii.Click += new System.EventHandler(this.miPrintActIdentyfikacii_Click);
+            // 
+            // miPrintSlugbova
+            // 
+            this.miPrintSlugbova.Name = "miPrintSlugbova";
+            this.miPrintSlugbova.Text = "Службова";
+            this.miPrintSlugbova.Click += new System.EventHandler(this.miPrintSlugbova_Click);
             // 
             // btnCancel
             // 
@@ -1377,7 +1371,6 @@
             this.pageFixation.ResumeLayout(false);
             this.pageFixation.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtFixationDtEnd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnOrderFixation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
@@ -1409,9 +1402,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSearchAuto)).EndInit();
             this.pageJudicalWork.ResumeLayout(false);
             this.pageJudicalWork.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintFixationAct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintIdentificationAct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrintSlugbova)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel20)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mebCourtFeeAmount)).EndInit();
@@ -1427,6 +1417,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sbPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
@@ -1506,15 +1497,11 @@
         private Telerik.WinControls.UI.RadLabel radLabel20;
         private Common.Editors.IpsMaskedEditBox mebCourtFeeAmount;
         private Common.Editors.IpsMaskedEditBox mebRewardAmount;
-        private Telerik.WinControls.UI.RadButton btnPrintIdentificationAct;
-        private Telerik.WinControls.UI.RadButton btnPrintSlugbova;
         private Telerik.WinControls.UI.RadPageViewPage pageDistribution;
         private Telerik.WinControls.UI.RadDropDownList ddlConsumer;
         private System.Windows.Forms.ErrorProvider errorProvider;
         private Telerik.WinControls.UI.RadLabel radLabel17;
         private Common.Editors.IpsDateTimePicker dtFixationDtEnd;
-        private Telerik.WinControls.UI.RadButton btnOrderFixation;
-        private Telerik.WinControls.UI.RadButton btnPrintFixationAct;
         private Telerik.WinControls.UI.RadButton btnRefresh;
         private System.Windows.Forms.BindingSource bsAmountDistributionViewModel;
         private Telerik.WinControls.UI.RadGridView gvDistribution;
@@ -1522,5 +1509,10 @@
         private Telerik.WinControls.UI.RadButton btnSearchAll;
         private Telerik.WinControls.UI.RadButton btnSearchNotLinked;
         private Telerik.WinControls.UI.RadButton btnSearchAuto;
+        private Telerik.WinControls.UI.RadSplitButton sbPrint;
+        private Telerik.WinControls.UI.RadMenuItem miPrintNakaz;
+        private Telerik.WinControls.UI.RadMenuItem miPrintActFiksacii;
+        private Telerik.WinControls.UI.RadMenuItem miPrintActIdentyfikacii;
+        private Telerik.WinControls.UI.RadMenuItem miPrintSlugbova;
     }
 }

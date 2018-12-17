@@ -447,6 +447,19 @@ public interface ICategoryTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface ICheckParamPays
+    {
+         int InputFileId { get; set; }
+         int CheckId { get; set; }
+         string AccountCorr { get; set; }
+         string OkpoCorr { get; set; }
+         string DocNum { get; set; }
+         DateTime DocDate { get; set; }
+         decimal SCredit { get; set; }
+         string Nplat { get; set; }
+         int? InputStatus { get; set; }
+         int? LinkStatus { get; set; }
+}
 public interface IClient
     {    int CustId { get; set; }
          string ClientBrand { get; set; }
@@ -532,6 +545,12 @@ public interface ICopyRight
          int? ParentId { get; set; }
          int? RoleCode { get; set; }
          int? Status { get; set; }
+}
+public interface ICopyRightHistory
+    {
+         int ParentId { get; set; }
+         int ChildId { get; set; }
+         decimal? Rate { get; set; }
 }
 public interface ICopyrightKind
     {    int CodeI { get; set; }
@@ -900,6 +919,7 @@ public interface IExternalPay
          decimal? SNcCur { get; set; }
          int? Status { get; set; }
          DateTime? DateOper { get; set; }
+         int? InputFileId { get; set; }
     }
 public interface IFileCustomer
     {
@@ -970,17 +990,6 @@ public interface IFolkTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
-public interface IGenre
-    {    int CategoryCode { get; set; }
-         string Name { get; set; }
-         int Id { get; set; }
-}
-public interface IGenreTr
-    {
-         int Id { get; set; }
-         string Lang { get; set; }
-         string Name { get; set; }
-}
 public interface IGenreType
     {    int CodeI { get; set; }
          int CategoryCode { get; set; }
@@ -991,6 +1000,15 @@ public interface IGenreTypeTr
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
+}
+public interface IInputFile
+    {    int UserId { get; set; }
+         string AspId { get; set; }
+         string FileName { get; set; }
+         DateTime InputTime { get; set; }
+         int CountRows { get; set; }
+         int CountInput { get; set; }
+         int CountAutoLink { get; set; }
 }
 public interface IInvoice
     {
@@ -1825,11 +1843,6 @@ public interface IRelMovieEpisode
          int ReqId { get; set; }
          double? EpDuration { get; set; }
 }
-public interface IRelObjGenre
-    {
-         int GenreId { get; set; }
-         int ObjId { get; set; }
-}
 public interface IRelObjPerformer
     {
          int ObjId { get; set; }
@@ -2151,6 +2164,14 @@ public interface ITableType
     {
          string TName { get; set; }
          short? TType { get; set; }
+    }
+public interface ITaxRate
+    {
+         int CodeI { get; set; }
+         DateTime DateBegin { get; set; }
+         DateTime? DateEnd { get; set; }
+         string Name { get; set; }
+         decimal? Rate { get; set; }
     }
 public interface ITermsOfService
     {    int CustId { get; set; }

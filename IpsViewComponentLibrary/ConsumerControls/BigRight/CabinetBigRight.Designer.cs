@@ -33,7 +33,7 @@ namespace IpsViewComponentLibrary
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAnketaConsumer = new AnketaConsumer();
+            this.ctrlAnketaConsumer = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
@@ -91,7 +91,7 @@ namespace IpsViewComponentLibrary
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvGeneralAgreement;
+            this.pageView.SelectedPage = this.pvPayslips;
             this.pageView.Size = new System.Drawing.Size(1146, 620);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
