@@ -15,5 +15,6 @@ namespace ipsFormsDesign.Dictionary
         public string Name { get; set; }
         public decimal Rate { get; set; }
         public RightholderMainView Rightholder { get; set; }
+        public string Error { get; set; }
     }
 }

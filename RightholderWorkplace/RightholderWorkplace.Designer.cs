@@ -698,6 +698,7 @@
             this.gvObjectRightForTransfering.TabIndex = 0;
             this.gvObjectRightForTransfering.ThemeName = "Office2013Light";
             this.gvObjectRightForTransfering.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvObjectRightForTransfering_RowFormatting);
+            this.gvObjectRightForTransfering.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvObjectRightForTransfering_CellFormatting);
             this.gvObjectRightForTransfering.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvObjectRightForTransfering_CellBeginEdit);
             this.gvObjectRightForTransfering.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectRightForTransfering_CommandCellClick);
             // 

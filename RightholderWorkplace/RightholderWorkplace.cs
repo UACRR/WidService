@@ -344,6 +344,16 @@ namespace RightholderWorkplace
             }
         }
 
+        private void gvObjectRightForTransfering_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            if (e.Row.DataBoundItem is ObjectCopyright copyright)
+            {
+                e.Row.Cells["Rate"].ErrorText = copyright.Error;
+            }
+
+            IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
+        }
+
         private void btnTransferAll_Click(object sender, EventArgs e)
         {
             MoveAllObjectsToTransfer();
@@ -366,6 +376,13 @@ namespace RightholderWorkplace
                 && dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
             {
                 MessageBox.Show("Вкажіть дату по яку передаються права на обрані об'єкти.");
+                return;
+            }
+
+            if (!ValidateTransferedParams())
+            {
+                gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
+                MessageBox.Show("Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
                 return;
             }
 
@@ -428,6 +445,29 @@ namespace RightholderWorkplace
                     return false;
 
             return true;
+        }
+
+        private bool ValidateTransferedParams()
+        {
+            var result = true;
+
+            foreach (var obj in _objects)
+            {
+                var copyrights = _copyrights.Where(c => c.ObjId == obj.ObjId).ToList();
+
+                if (copyrights.Any())
+                {
+                    var totalRate = copyrights.Sum(c => c.Rate);
+
+                    if (totalRate > obj.RateRh)
+                    {
+                        result = false;
+                        copyrights.ForEach(c => c.Error = "Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
+                    }
+                }
+            }
+
+            return result;
         }
 
         #endregion
