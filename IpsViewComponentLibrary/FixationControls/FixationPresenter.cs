@@ -190,7 +190,10 @@ namespace IpsViewComponentLibrary.FixationControls
 
             _fixation.StageStatus = (int)newStatus;
 
-            _fixationService.CreateAdditionalStructure(_fixation);
+            if (_fixation.IsAddStructNeeded())
+            {
+                _fixationService.CreateAdditionalStructure(_fixation);
+            }
         }
 
         public void SelectResponsible()
