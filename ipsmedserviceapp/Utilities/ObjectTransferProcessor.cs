@@ -28,6 +28,7 @@ namespace ipsmedserviceapp.Utilities
         private readonly TransferParametersResource _transferParams;
         private RightHolder _oldRightholder;
         private List<RightholderMainView> _newRightholders;
+        private List<Authors> _allAuthors;
 
         private List<CopyRight> _oldCopyrights;
         private decimal _rateTotal;
@@ -113,8 +114,12 @@ namespace ipsmedserviceapp.Utilities
 
             var newRightholderIds = _transferParams.ObjectsRightList
                 .SelectMany(o => o.NewRightholderList)
-                .Select(r => r.CustId);
+                .Select(r => r.CustId)
+                .ToList();
+
             _newRightholders = _rightholderRepository.GetRightholders(newRightholderIds);
+
+            _allAuthors = _dbContext.Authors.Where(a => newRightholderIds.Contains((int)a.CustId)).ToList();
         }
 
         private bool ValidateDataForTransfering()
@@ -252,15 +257,20 @@ namespace ipsmedserviceapp.Utilities
 
             foreach (var group in groupedCopyrightData1)
             {
-                _dbContext.Authors.Add(new Authors
+                var authorExists = _allAuthors.Any(a => a.CustId == group.Key.CustId && a.ObjId == group.Key.ObjId.Value);
+
+                if (!authorExists)
                 {
-                    IsFolkOrUnknown = 1, // TODO: only for debug
-                    ObjId = group.Key.ObjId.Value,
-                    RoleCode = group.Key.RoleCode.Value,
-                    CustId = group.Key.CustId,
-                    AuthorName = _newRightholders.FirstOrDefault(r => r.CustId == group.Key.CustId).Name,
-                    FolkType = 1,
-                });
+                    _dbContext.Authors.Add(new Authors
+                    {
+                        IsFolkOrUnknown = 1, // TODO: only for debug
+                        ObjId = group.Key.ObjId.Value,
+                        RoleCode = group.Key.RoleCode.Value,
+                        CustId = group.Key.CustId,
+                        AuthorName = _newRightholders.FirstOrDefault(r => r.CustId == group.Key.CustId).Name,
+                        FolkType = 1,
+                    });
+                }
             }
 
             _dbContext.CopyRight.AddRange(copyrightList);
