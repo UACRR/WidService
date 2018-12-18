@@ -30,66 +30,45 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlConsumerAnketa = new AnketaConsumer();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            this.ctrlConsumerAnketa = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlConsumerAnketa
             // 
             this.ctrlConsumerAnketa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlConsumerAnketa.IsContainPlaces = false;
             this.ctrlConsumerAnketa.Location = new System.Drawing.Point(0, 0);
             this.ctrlConsumerAnketa.Name = "ctrlConsumerAnketa";
-            this.ctrlConsumerAnketa.Size = new System.Drawing.Size(1267, 702);
+            this.ctrlConsumerAnketa.Size = new System.Drawing.Size(1267, 671);
             this.ctrlConsumerAnketa.TabIndex = 0;
+            this.ctrlConsumerAnketa.TypeRights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             // 
-            // btnSave
+            // ctrlTabNavigation
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(17, 641);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(101, 41);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "Зберегти внесені зміни";
-            this.btnSave.TextWrap = true;
-            this.btnSave.ThemeName = "Office2007Silver";
-            this.btnSave.Visible = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(17, 593);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(101, 41);
-            this.btnCancel.TabIndex = 2;
-            this.btnCancel.Text = "Скасувати зміни та вийти";
-            this.btnCancel.TextWrap = true;
-            this.btnCancel.ThemeName = "Office2007Silver";
-            this.btnCancel.Visible = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 671);
+            this.ctrlTabNavigation.MaximumSize = new System.Drawing.Size(2000, 31);
+            this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlTabNavigation.Name = "ctrlTabNavigation";
+            this.ctrlTabNavigation.Size = new System.Drawing.Size(1267, 31);
+            this.ctrlTabNavigation.TabIndex = 1;
             // 
             // AnketaConsumerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1267, 702);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.ctrlConsumerAnketa);
+            this.Controls.Add(this.ctrlTabNavigation);
             this.Name = "AnketaConsumerForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "Анкета нового споживача";
-            this.ThemeName = "Office2007Silver";
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -98,7 +77,7 @@ namespace IpsViewComponentLibrary
         #endregion
 
         private AnketaConsumer ctrlConsumerAnketa;
-        private Telerik.WinControls.UI.RadButton btnSave;
-        private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private TabNavigationControl ctrlTabNavigation;
     }
 }

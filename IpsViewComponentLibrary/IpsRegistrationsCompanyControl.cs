@@ -15,27 +15,18 @@ namespace IpsViewComponentLibrary
 {
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsRegistrationsCompanyControl : UserControl
-    {        
+    {
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+
         public IpsRegistrationsCompanyControl()
         {
             InitializeComponent();
             dtRegisterDate.SetUserCalendarSettingsm();
 
             if (!IsDesignMode)
-            {
-                SetDictionaries();
-            }
+                ddlTypeVat.SetDataSource(IpsGlobal.AnketaDictionaties.typeVat);
         }
 
-        private void SetDictionaries()
-        {
-            ddlTypeVat.SetDataSource(IpsGlobal.AnketaDictionaties.typeVat);
-        }
-
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]

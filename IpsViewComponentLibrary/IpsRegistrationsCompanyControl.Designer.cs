@@ -45,6 +45,7 @@ namespace IpsViewComponentLibrary
             this.lblTypeTaxpayer = new Telerik.WinControls.UI.RadLabel();
             this.ddlTypeVat = new Telerik.WinControls.UI.RadDropDownList();
             this.bsDictTypeVat = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).BeginInit();
@@ -254,5 +255,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadDropDownList ddlTypeVat;
         private System.Windows.Forms.BindingSource bsAnketaCompany;
         private System.Windows.Forms.BindingSource bsDictTypeVat;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

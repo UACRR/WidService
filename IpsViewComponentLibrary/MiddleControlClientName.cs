@@ -40,8 +40,6 @@ namespace IpsViewComponentLibrary
             ctrlAnketaCompany.DataSource = anketa;
 
             ctrlRegistrationsCompany.DataSource = anketa;
-
-            checkClientName.Checked = _cust != null && _cust.Client?.ClnBusinessPlace?.Count != 0;
         }
 
         public bool Validator()
@@ -55,27 +53,6 @@ namespace IpsViewComponentLibrary
 
             return isvalid;
 
-        }
-
-        public bool CheckPlace
-        {
-            get => checkClientName.Checked;
-            set
-            {
-                checkClientName.Checked = value;
-                checkClientName.Enabled = !value;
-            }
-        }
-
-        public bool IsPlaceIn
-        {
-            get => checkClientName.Checked;
-            set => checkClientName.Checked = value;
-        }
-
-        private void checkClientName_CheckStateChanged(object sender, EventArgs e)
-        {
-            OnContainPlacesChanged?.Invoke(this, e);
         }
 
         internal void SetAutoComplete(Func<string, IList<AutoCompleteData>> _getAutoCompList, Func<int, Customer> _getCustomerAnketa)

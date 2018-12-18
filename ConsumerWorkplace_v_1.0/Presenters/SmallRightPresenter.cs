@@ -154,7 +154,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
                     }
                     break;
                 case 3: // Юридична особа
-                    var form = new AnketaConsumerForm(cust, dict, _service.GetAutoCompleteList, _service.GetData) { StartPosition = FormStartPosition.CenterParent };
+                    var form = new AnketaConsumerForm(cust, _service.GetAutoCompleteList, _service.GetData) { StartPosition = FormStartPosition.CenterParent };
                     form.OnSaveCustomerNeed += SaveCustomer;
                     form.ShowDialog();
                     if (!form.Disposing)

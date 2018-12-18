@@ -49,7 +49,6 @@ namespace IpsViewComponentLibrary
             _anketaConsumerJur = new AnketaConsumer
             {
                 Dock = DockStyle.Fill,
-                IsContainPlaces = false,
                 TypeRights = TypeRights.SmallRights
             };
             _anketaConsumerPhis = new AnketaConsumerPhis
@@ -127,7 +126,7 @@ namespace IpsViewComponentLibrary
             if (_customer.CustType == 3)
             {
                 anketaPanel.Controls.Add(_anketaConsumerJur);
-                _anketaConsumerJur.SetDataAndDictionaries(_customer, _dictionaties);
+                _anketaConsumerJur.SetDataAndDictionaries(_customer);
                 _anketaConsumerJur.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
             }
             else if (_customer.CustType == 1 || _customer.CustType == 2 )

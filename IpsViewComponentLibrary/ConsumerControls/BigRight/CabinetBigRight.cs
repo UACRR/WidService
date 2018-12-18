@@ -187,7 +187,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private void CancelChange()
         {
             _customer = GetCustomer?.Invoke(_customer.CustId);
-            ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _anketaDictionaties);
+            ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
             ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
         }
 
@@ -245,7 +245,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
             _referenceLicenseView = GetReferenceView?.Invoke(custId);
 
-            ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _anketaDictionaties);
+            ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
             ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
             ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
             ctrlLicense.SetDataSources(_gridMainView);
@@ -279,7 +279,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 case CabinetTabType.None: break;
 
                 case CabinetTabType.Anketa:
-                    ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _anketaDictionaties);
+                    ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
                     ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
 
                     break;

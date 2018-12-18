@@ -186,18 +186,28 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private void CreateNewCustomer(object sender, EventArgs e)
         {
             int custType = 3; // Юридична особа
-            var _cust = _service.NewCustomer(custType);
-            var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData, true, TypeRights.BigRights) { StartPosition = FormStartPosition.CenterParent };
-            form.OnSaveCustomerNeed += SaveCustomer;
-            form.ShowDialog();
+            var customer = _service.NewCustomer(custType);
+
+            var form = new AnketaConsumerForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                var relust = _service.Save(customer);
+                if(relust)
+                    MessageBox.Show("Нового споживача додано!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Не вдалося додати нового споживача!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
             if (!form.Disposing)
             {
                 form.Dispose();
                 form = null;
                 GC.Collect();
             }
-            UpdateData(_cust.CustId);
+            UpdateData(customer.CustId);
         }
 
         //відкрити кабінет

@@ -112,7 +112,6 @@
             // ctrlAnketaConsumer
             // 
             this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlAnketaConsumer.IsContainPlaces = false;
             this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
             this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
             this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1136, 553);
