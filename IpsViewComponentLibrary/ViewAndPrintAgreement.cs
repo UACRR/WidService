@@ -27,7 +27,7 @@ namespace IpsViewComponentLibrary
             SetupCustomSaveAsButton();
         }
 
-        public ViewAndPrintAgreement(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement) : base()
+        public ViewAndPrintAgreement(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement) : this()
         {
             LoadDocument(dictionaties, customer, licenseAgreement);
         }
