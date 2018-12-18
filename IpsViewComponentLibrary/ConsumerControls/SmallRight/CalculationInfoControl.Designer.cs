@@ -351,7 +351,7 @@
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(325, 21);
             this.radLabel2.TabIndex = 11;
-            this.radLabel2.Text = "Активні договора";
+            this.radLabel2.Text = "Активні договори";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel3
