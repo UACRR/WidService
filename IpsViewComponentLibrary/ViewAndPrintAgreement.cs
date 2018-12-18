@@ -27,6 +27,11 @@ namespace IpsViewComponentLibrary
             SetupCustomSaveAsButton();
         }
 
+        public ViewAndPrintAgreement(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement) : base()
+        {
+            LoadDocument(dictionaties, customer, licenseAgreement);
+        }
+
         private void SetupCustomSaveAsButton()
         {
             // replace standart Save As button to custom
@@ -73,12 +78,6 @@ namespace IpsViewComponentLibrary
 
             SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             radWaitingBar1.StopWaiting();
-        }
-
-        public ViewAndPrintAgreement(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)
-        {
-            InitializeComponent();
-            LoadDocument(dictionaties, customer, licenseAgreement);
         }
 
         public async void ShowCopyrightRequest(RightolderWithNotAcceptedCopyrightViewModel rightholder, IEnumerable<ObjectRightNotAccepted> objectRightList)
