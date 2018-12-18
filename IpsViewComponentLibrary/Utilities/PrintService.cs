@@ -1,28 +1,25 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using ipsFormsDesign.ViewModels.Fixations;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ipsFormsDesign.Services
+namespace IpsViewComponentLibrary.Utilities
 {
     public class PrintService
     {
         private readonly WordEngine _wordEngine;
-        private readonly IPreviewView _previewView;
 
-        public PrintService(IPreviewView previewView)
+        public PrintService()
         {
-            _previewView = previewView;
             _wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
         }
 
         public async void PrintFixationOrder(Fixation fixation)
         {
+            var _previewView = new ViewAndPrintAgreement();
             _previewView.SetHeader("Наказ на фіксацію - " + fixation.EventName);
             _previewView.Show();
             _previewView.StartWaiting();
@@ -31,12 +28,13 @@ namespace ipsFormsDesign.Services
 
             await _wordEngine.ProcessFixationOrder(template, fixation);
 
-            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             _previewView.StopWaiting();
         }
 
         public async void PrintFixationAct(Fixation fixation)
         {
+            var _previewView = new ViewAndPrintAgreement();
             _previewView.SetHeader("Акт фіксації - " + fixation.EventName);
             _previewView.Show();
             _previewView.StartWaiting();
@@ -45,12 +43,13 @@ namespace ipsFormsDesign.Services
 
             await _wordEngine.ProcessFixationAct(template);
 
-            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             _previewView.StopWaiting();
         }
 
         public async void PrintFixationSlugbova(Fixation fixation)
         {
+            var _previewView = new ViewAndPrintAgreement();
             _previewView.SetHeader("Службова - " + fixation.EventName);
             _previewView.Show();
             _previewView.StartWaiting();
@@ -59,12 +58,13 @@ namespace ipsFormsDesign.Services
 
             await _wordEngine.ProcessFixationSlugbova(template, fixation);
 
-            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             _previewView.StopWaiting();
         }
 
         public async void PrintFixationIdentificationAct(Fixation fixation, IEnumerable<RegisterCountViewModel> registerCountList)
         {
+            var _previewView = new ViewAndPrintAgreement();
             _previewView.SetHeader("Акт ідентифікації - " + fixation.EventName);
             _previewView.Show();
             _previewView.StartWaiting();
@@ -73,17 +73,8 @@ namespace ipsFormsDesign.Services
 
             await _wordEngine.ProcessFixationIdentificationAct(template, fixation, registerCountList);
 
-            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             _previewView.StopWaiting();
         }
-    }
-
-    public interface IPreviewView
-    {
-        void Show();
-        void StartWaiting();
-        void StopWaiting();
-        void LoadPdf(string path);
-        void SetHeader(string header);
     }
 }

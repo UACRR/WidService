@@ -437,7 +437,6 @@
     <Compile Include="Services\ObjectUploading\ObjectRightDataParser.cs" />
     <Compile Include="Services\ObjectRightService.cs" />
     <Compile Include="Services\PartnerService.cs" />
-    <Compile Include="Services\PrintService.cs" />
     <Compile Include="Services\RegisterService.cs" />
     <Compile Include="Services\ObjectUploading\RightholderData.cs" />
     <Compile Include="Services\RightHolderService.cs" />
