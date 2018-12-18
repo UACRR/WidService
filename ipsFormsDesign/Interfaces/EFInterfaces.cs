@@ -920,7 +920,8 @@ public interface IExternalPay
          int? Status { get; set; }
          DateTime? DateOper { get; set; }
          int? InputFileId { get; set; }
-    }
+         int? CustId { get; set; }
+}
 public interface IFileCustomer
     {
          int DocId { get; set; }
@@ -1002,7 +1003,7 @@ public interface IGenreTypeTr
          string Name { get; set; }
 }
 public interface IInputFile
-    {    int UserId { get; set; }
+    {    int FileId { get; set; }
          string AspId { get; set; }
          string FileName { get; set; }
          DateTime InputTime { get; set; }
