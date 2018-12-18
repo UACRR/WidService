@@ -653,11 +653,11 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             sbPrint.Visible = _fixation.StageStatus >= (int)FixationStageStatuses.FixationScheduled;
 
-            var buttonVisibility =
+            miPrintSlugbova.Visibility = 
                 _fixation.StageStatus >= (int)FixationStageStatuses.NegotiationAfterFixationRejected ? ElementVisibility.Visible : ElementVisibility.Collapsed;
 
-            miPrintActIdentyfikacii.Visibility = buttonVisibility;
-            miPrintSlugbova.Visibility = buttonVisibility;
+            miPrintActIdentyfikacii.Visibility =
+                _fixation.StageStatus >= (int)FixationStageStatuses.NegotiationAfterFixationOnNegotioation ? ElementVisibility.Visible : ElementVisibility.Collapsed;
         }
 
         private static void CreateControls(Control control)
