@@ -45,7 +45,36 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     btnSave.Click += BtnSave_Click;
                     break;
             }
+        }
 
+        // TODO: доробити метод
+        /// <summary>
+        /// Set color page view tabs
+        /// </summary>
+        /// <param name="isNew">If new item set 'true' - set gray color, else 'false' - set default color</param>
+        private void SetColorTabs(ConsumerAnketeType anketeType)
+        {
+            switch (anketeType)
+            {
+                case ConsumerAnketeType.CreateNewAnketa:
+                {
+                    foreach (var page in _pageView.Pages)
+                    {
+                        page.Item.ForeColor = Color.DarkGray;
+                    }
+                    _pageView.Pages[0].Item.ForeColor = DefaultForeColor;
+                }
+                    break;
+
+                case ConsumerAnketeType.EditAnketa:
+                {
+                    foreach (var page in _pageView.Pages)
+                    {
+                        page.Item.ForeColor = DefaultForeColor;
+                    }
+                }
+                    break;
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

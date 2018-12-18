@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary
 
 
         private ButtonFunctionType _functionType;
-        private Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
+        private readonly Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
             {ButtonFunctionType.Accept, "Акцептувати"},
             {ButtonFunctionType.Agree, "На погодження"},
             {ButtonFunctionType.None, string.Empty}
@@ -182,6 +182,12 @@ namespace IpsViewComponentLibrary
                     print.ShowDialog();
                     break;
             }
+        }
+
+        // кнопка оновлення даних
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateData?.Invoke();
         }
     }
 }

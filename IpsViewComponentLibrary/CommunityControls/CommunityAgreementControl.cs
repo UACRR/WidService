@@ -18,7 +18,6 @@ namespace IpsViewComponentLibrary.CommunityControls
         {
             InitializeComponent();
             txtDayForPay.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
-
         }
 
         public object AgreementDataSource

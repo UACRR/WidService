@@ -168,7 +168,7 @@ namespace RightholderWorkplace
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
             bsObjectRightForTransfering.DataSource = _objects;
-            objectCopyrightBindingSource.DataSource = _copyrights;
+            bsObjectCopyright.DataSource = _copyrights;
 
             _objects.Clear();
             _copyrights.Clear();
@@ -254,20 +254,25 @@ namespace RightholderWorkplace
                     _copyrights.Add(newObjectCopyright);
                 }
 
-                DistributePersent();
+                DistributeAllPersents();
 
                 gvObjectRightForTransfering.MasterTemplate.ExpandAll();
             }
         }
 
-        private void DistributePersent()
+        private void DistributeAllPersents()
         {
             foreach (var obj in _objects.Where(obj => !obj.ManualDistribution).ToList())
             {
-                var copyrightList = _copyrights.Where(cr => cr.ObjId == obj.ObjId);
-
-                _persentDistributor.DistributeByEqualAmount(copyrightList, obj.RateRh, cr => cr.Rate);
+                DistributePersentForObject(obj);
             }
+        }
+
+        private void DistributePersentForObject(ObjectRightForTransfering obj)
+        {
+            var copyrightList = _copyrights.Where(cr => cr.ObjId == obj.ObjId);
+
+            _persentDistributor.DistributeByEqualAmount(copyrightList, obj.RateRh, cr => cr.Rate);
         }
 
         private void UpdateTransferButtonsEnabling()
@@ -344,6 +349,24 @@ namespace RightholderWorkplace
             }
         }
 
+        private void gvObjectRightForTransfering_CellFormatting(object sender, CellFormattingEventArgs e)
+        {
+            if (e.Row.DataBoundItem is ObjectCopyright copyright)
+            {
+                e.Row.Cells["Rate"].ErrorText = copyright.Error;
+            }
+
+            IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
+        }
+
+        private void gvObjectRightForTransfering_CellValueChanged(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column.Name == "ManualDistribution")
+                if (e.Row.DataBoundItem is ObjectRightForTransfering obj)
+                    if (!obj.ManualDistribution)
+                        DistributePersentForObject(obj);
+        }
+
         private void btnTransferAll_Click(object sender, EventArgs e)
         {
             MoveAllObjectsToTransfer();
@@ -369,72 +392,39 @@ namespace RightholderWorkplace
                 return;
             }
 
-            var rightholders = new List<RightHolder>();
-
-            // old rightholder
-            var oldRightholder = new RightHolder
+            if (!ValidateTransferedParams())
             {
-                CustId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId,
-                CopyRight = new ObservableListSource<CopyRight>(),
-            };
+                gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
+                MessageBox.Show("Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
+                return;
+            }
 
-            oldRightholder.CopyRight.Add(new CopyRight { EndDate = dtChangeCopyrightDateFrom.Value.AddDays(-1) });
-            
-            rightholders.Add(oldRightholder);
+            var transferParams = new TransferParameters();
+            transferParams.DateFrom = dtChangeCopyrightDateFrom.Value;
+            transferParams.DateTill = dtChangeCopyrightDateTill.Value;
+            transferParams.OldRightholderId = ctrlRightholdersObjectsForChange.SelectedRightholder.CustId;
+            transferParams.LegalBasis = ctrlChangeRightholderOperation.SelectedValue.Value;
 
-
-            // new copyrighs
             var groupedCopyright = _copyrights
                 .Where(oc => oc.Rate != 0)
-                .GroupBy(oc => oc.CustId);
+                .GroupBy(oc => oc.ObjId);
 
-            foreach (var rightholderGroup in groupedCopyright)
+            foreach (var objectGroup in groupedCopyright)
             {
-                var newRightholder = new RightHolder
-                {
-                    CustId = rightholderGroup.Key,
-                    Cust = new Customer { Status = 9 },
-                    CopyRight = new ObservableListSource<CopyRight>(),
-                };
+                var transferedObject = new TransferedObject { ObjId = objectGroup.Key };
+                transferParams.ObjectsRightList.Add(transferedObject);
 
-                foreach (var copyright in rightholderGroup)
+                foreach (var copyright in objectGroup)
                 {
-                    var newCprt = new CopyRight
+                    transferedObject.NewRightholderList.Add(new NewRightholder
                     {
-                        CustId = newRightholder.CustId,
-                        ObjId = copyright.ObjId,
-                        RoleCode = 8, // Правовласник
-                        LBasis = 3,
+                        CustId = copyright.CustId,
                         Rate = copyright.Rate,
-                        BeginDate = dtChangeCopyrightDateFrom.Value,
-                        EndDate = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer ? dtChangeCopyrightDateTill.Value : new DateTime(3000, 1, 1),
-                        //ParentId = 
-                        Obj = new ObjectRight(),
-                    };
-                    newCprt.Obj.Authors.Add(new Authors
-                    {
-                        CustId = newRightholder.CustId,
-                        ObjId = copyright.ObjId,
-                        FolkType = 1,
-                        RoleCode = 8, // Правовласник
-                        AuthorName = copyright.Name,
                     });
-                    newRightholder.CopyRight.Add(newCprt);
                 }
-                rightholders.Add(newRightholder);
             }
 
-            var result = false;
-            switch (ctrlChangeRightholderOperation.SelectedValue)
-            {
-                case (int)LegalBasisType.Inheritance:
-                    result = _rightholderService.Inherit(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
-                    break;
-
-                case (int)LegalBasisType.Transfer:
-                    result = _rightholderService.Transfer(ctrlRightholdersObjectsForChange.SelectedRightholder.CustId, rightholders);
-                    break;
-            }
+            var result = _rightholderService.Transfer(transferParams);
 
             if (result)
             {
@@ -468,6 +458,29 @@ namespace RightholderWorkplace
                     return false;
 
             return true;
+        }
+
+        private bool ValidateTransferedParams()
+        {
+            var result = true;
+
+            foreach (var obj in _objects)
+            {
+                var copyrights = _copyrights.Where(c => c.ObjId == obj.ObjId).ToList();
+
+                if (copyrights.Any())
+                {
+                    var totalRate = copyrights.Sum(c => c.Rate);
+
+                    if (totalRate > obj.RateRh)
+                    {
+                        result = false;
+                        copyrights.ForEach(c => c.Error = "Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
+                    }
+                }
+            }
+
+            return result;
         }
 
         #endregion

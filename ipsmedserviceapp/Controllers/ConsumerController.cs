@@ -120,14 +120,14 @@ namespace ipsmedserviceapp.Controllers
             {
                 await _dbContext.Entry(place).Collection(item => item.ClnPlaceHoll).LoadAsync();
                 await _dbContext.Entry(place).Reference(item => item.PlCodeNavigation).LoadAsync();
-
             }
 
-            // Отримати співробітників
-            foreach (var relEmp in cust.Company.RelEmployee)
-            {
-                await _dbContext.Entry(relEmp).Reference(item => item.Empl).LoadAsync();
-            }
+            // Отримати співробітників (юридична осба)
+            if (cust.CustType == 3)
+                foreach (var relEmp in cust.Company.RelEmployee)
+                {
+                    await _dbContext.Entry(relEmp).Reference(item => item.Empl).LoadAsync();
+                }
 
             return cust;
 
@@ -486,7 +486,7 @@ namespace ipsmedserviceapp.Controllers
                     }, (l, r) => l.CRightId == r.CRightId);
 
                 // calculate Rate by RoleRate
-                _rateDistributor.DistributeByProperty(license.LicenseBigR.Obj.CopyRight, cr => cr.RoleRate, cr => cr.Rate);
+                _rateDistributor.DistributeByPropertyAndTotalBaseAmount(license.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Rate, cr => cr.RoleRate, cr => cr.Rate);
 
                 _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
 
@@ -552,13 +552,14 @@ namespace ipsmedserviceapp.Controllers
             {
                 item.Agr.AgrStatus = 0;
                 var param = item.LicenseAgrParam.Where(rec => rec.LicVersion == item.LicVersion).Single();
-                /// ***** Потрібно змінити після підключення кабінету
+                // ***** Потрібно змінити після підключення кабінету
                 item.LicStatus = 0;
                 param.LicStatus = 0;
 
 
             }
         }
+
         /// <summary>
         /// Збереження нового Споживача
         /// </summary>
@@ -920,6 +921,7 @@ namespace ipsmedserviceapp.Controllers
 
 
         #region Action FOR LICENSEAGREEMENT ******************************************************
+
         [HttpPut("license/type/{licId}/{typeId}")]
         public async Task<IActionResult> SetLicenseAgreementType(int licId, int typeId)
         {
@@ -933,6 +935,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(lic);
         }
+
         /// <summary>
         /// Зміна статусу 
         /// </summary>
@@ -1061,6 +1064,30 @@ namespace ipsmedserviceapp.Controllers
                 return BadRequest(ex.InnerException.Message);
             }
         }
+
+        /// <summary>
+        /// Закриті ліцензії (status 4)
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("license/closed/{custId}")]
+        public async Task<IActionResult> GetClosedLicenseAgreements(int custId)
+        {
+            try
+            {
+                var licIds = await _dbContext.LicenseAgreement.Where(rec => rec.CustId == custId).Select(rec => rec.LicId).ToListAsync();
+                var license = await _dbContext.LicenseAgrParam
+                    .Where(rec => rec.LicStatus == 4 && licIds.Contains(rec.LicId))
+                    .ToListAsync();
+
+                return Ok(license);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         #endregion
 
         #region period POST PUT DELETE ******************************************************
@@ -1442,6 +1469,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         }
 
         #endregion
+
         #region PaydPariod Services******************************************************
         /// <summary>
         /// Отримати Нерозподілені Платежі Споживача

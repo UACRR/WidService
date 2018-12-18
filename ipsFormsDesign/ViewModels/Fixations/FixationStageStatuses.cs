@@ -60,13 +60,13 @@ namespace ipsFormsDesign.ViewModels.Fixations
         [Description("На моніторинг")]
         IncomeMonitoring = 17,
 
-        [Description("Закрити (до фіксації)")]
+        [Description("Закрити (підписано договір до фіксації)")]
         ClosedAgreedBeforeFixation = 18,
 
-        [Description("Закрити (після фіксації)")]
+        [Description("Закрити (підписано договір після фіксації)")]
         ClosedAgreedAfterFixation = 19,
 
-        [Description("Закрити (по суду)")]
+        [Description("Закрити (підписано договір досудова робота)")]
         ClosedByCourt = 20,
 
         [Description("Закрити (кошти надійшли)")]

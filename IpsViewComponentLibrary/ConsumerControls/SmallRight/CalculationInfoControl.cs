@@ -451,7 +451,7 @@ namespace IpsViewComponentLibrary
                     if (payCustomer != null)
                         payCustomer.DestribAmount = item.Paid.DestribAmount;
                 }
-                //SetupAllBinding();
+                SetupAllBinding();
                 RefreshData();
             }
         }

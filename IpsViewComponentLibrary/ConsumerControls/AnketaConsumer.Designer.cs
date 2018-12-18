@@ -53,8 +53,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.btnNext = new Telerik.WinControls.UI.RadButton();
-            this.btnBack = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
@@ -71,8 +69,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).BeginInit();
             this.radPdfViewer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
             this.SuspendLayout();
             // 
             // pageAnketaConsumer
@@ -99,8 +95,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pageAnketaConsumer.Size = new System.Drawing.Size(1149, 664);
             this.pageAnketaConsumer.TabIndex = 1;
             this.pageAnketaConsumer.ThemeName = "Office2013Light";
-            this.pageAnketaConsumer.SelectedPageChanging += new System.EventHandler<Telerik.WinControls.UI.RadPageViewCancelEventArgs>(this.pageAnketaConsumer_SelectedPageChanging);
-            this.pageAnketaConsumer.SelectedPageChanged += new System.EventHandler(this.pageAnketaConsumer_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAnketaConsumer.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAnketaConsumer.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAnketaConsumer.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
@@ -129,8 +123,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // ctrlClientName
             // 
-            this.ctrlClientName.CheckPlace = false;
-            this.ctrlClientName.IsPlaceIn = false;
             this.ctrlClientName.Location = new System.Drawing.Point(4, 35);
             this.ctrlClientName.MaximumSize = new System.Drawing.Size(800, 194);
             this.ctrlClientName.MinimumSize = new System.Drawing.Size(607, 194);
@@ -267,7 +259,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1004, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1004, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -327,34 +319,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             // 
-            // btnNext
-            // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.Location = new System.Drawing.Point(960, 627);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(175, 24);
-            this.btnNext.TabIndex = 4;
-            this.btnNext.Text = "вперед";
-            this.btnNext.ThemeName = "Office2013Light";
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // btnBack
-            // 
-            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBack.Location = new System.Drawing.Point(779, 627);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(175, 24);
-            this.btnBack.TabIndex = 5;
-            this.btnBack.Text = "назад";
-            this.btnBack.ThemeName = "Office2013Light";
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // AnketaConsumer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.btnNext);
             this.Controls.Add(this.pageAnketaConsumer);
             this.Name = "AnketaConsumer";
             this.Size = new System.Drawing.Size(1149, 664);
@@ -375,8 +343,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).EndInit();
             this.radPdfViewer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -391,8 +357,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.RadPageViewPage pvBankRequisites;
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
         private Telerik.WinControls.UI.RadPageViewPage pvPrint;
-        private Telerik.WinControls.UI.RadButton btnNext;
-        private Telerik.WinControls.UI.RadButton btnBack;
         private Telerik.WinControls.UI.RadLabel ctrlPlacesTitle;
         private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator;
         private Telerik.WinControls.UI.RadPdfViewer radPdfViewer;

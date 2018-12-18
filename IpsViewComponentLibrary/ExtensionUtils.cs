@@ -401,7 +401,7 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Платежі
         /// </summary>
-        Payments,
+        PaysInfo,
         /// <summary>
         /// Аванси
         /// </summary>

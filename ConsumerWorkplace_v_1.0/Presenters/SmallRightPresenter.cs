@@ -23,7 +23,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         };
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private readonly ConsumerService _service;
-        private PartnerService _partnerService;
+        private readonly PartnerService _partnerService;
         private readonly GlobalControlConsumerMainGrid _mainGrid;
 
         public SmallRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, GlobalControlConsumerMainGrid mainGrid)
@@ -130,20 +130,46 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         // Додавання нового споживача юридична особа (діалогова форма)
         private void CreateNewCustomerAnketa(object sender, EventArgs e)
         {
-            int custType = 3; // Юридична особа
-            var _cust = _service.NewCustomer(custType);
-            var _dict = _service.GetDictionary();
-            AnketaConsumerForm form = new AnketaConsumerForm(_cust, _dict, _service.GetAutoCompleteList, _service.GetData) { StartPosition = FormStartPosition.CenterParent };
-
-            form.OnSaveCustomerNeed += SaveCustomer;
-            form.ShowDialog();
-            if (!form.Disposing)
+            int custType = (int)sender;
+            var cust = _service.NewCustomer(custType);
+            switch (custType)
             {
-                form.Dispose();
-                form = null;
-                GC.Collect();
+                case 1:
+                    var formPhis = new AnketaConsumerPhisForm(cust)
+                    {
+                        StartPosition = FormStartPosition.CenterParent
+                    };
+                    if (formPhis.ShowDialog() == DialogResult.OK)
+                    {
+                        // save
+                        var relust = _service.Save(cust);
+                        MessageBox.Show(relust ? "Успішно!" : "Не вдалося зберегти!");
+                    }
+                    if (!formPhis.Disposing)
+                    {
+                        formPhis.Dispose();
+                        formPhis = null;
+                    }
+                    break;
+                case 3: // Юридична особа
+                    var form = new AnketaConsumerForm(cust, _service.GetAutoCompleteList, _service.GetData)
+                    {
+                        StartPosition = FormStartPosition.CenterParent
+                    };
+                    if (form.ShowDialog() == DialogResult.OK)
+                    {
+                        // save
+                        var relust = _service.Save(cust);
+                        MessageBox.Show(relust ? "Успішно!" : "Не вдалося зберегти!");
+                    }
+                    if (!form.Disposing)
+                    {
+                        form.Dispose();
+                        form = null;
+                    }
+                    break;
             }
-
+            GC.Collect();
             //оновлення даних
             _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
         }

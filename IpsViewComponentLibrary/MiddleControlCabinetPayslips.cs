@@ -62,6 +62,7 @@ namespace IpsViewComponentLibrary
             _payslipsSpectacleViews = payslipsSpectacleViews;
             ctrlHeaderInfo.DataSource = _bigRightView;
             gvViewRl.DataSource = registers;
+            btnAcceptSpectacles.Enabled = registers.Any();
         }
 
         //додавання нового р/р
@@ -199,14 +200,14 @@ namespace IpsViewComponentLibrary
             {
                 gvViewSpectacles.DataSource = new List<ParentTemplate>();
                 bsChildTemplate.DataSource = new List<ChildTemplate>();
-                btnToAccept.Enabled = false;
+                btnAcceptSpectacles.Enabled = false;
                 return;
             }
 
             if ((e?.CurrentRow?.DataBoundItem as RatedListMainBigRightView)?.RmId != null)
             {
                 SetSpectacleViewGridDataSource(((RatedListMainBigRightView) e.CurrentRow.DataBoundItem).RmId);
-                btnToAccept.Enabled = ((RatedListMainBigRightView) e.CurrentRow.DataBoundItem).Status == 0;
+                btnAcceptSpectacles.Enabled = ((RatedListMainBigRightView) e.CurrentRow.DataBoundItem).Status == 0;
             }
         }
 
@@ -311,6 +312,12 @@ namespace IpsViewComponentLibrary
                 else
                     ExtensionUtils.ShowInfoMessage("Неможливо погодити перелік вистав!", "Помилка", MessageBoxIcon.Error);
             }
+        }
+
+        //кнопка оновлення даних
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateData?.Invoke();
         }
     }
 }

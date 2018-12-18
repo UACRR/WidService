@@ -95,9 +95,9 @@ namespace IpsViewComponentLibrary
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAnketaConsumer = new AnketaConsumer();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
+            this.anketaPanel = new Telerik.WinControls.UI.RadPanel();
             this.pvAgent.SuspendLayout();
             this.pvContacts.SuspendLayout();
             this.pvPayments.SuspendLayout();
@@ -123,6 +123,7 @@ namespace IpsViewComponentLibrary
             this.pvAnketa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // currentAgreementController1
@@ -706,23 +707,13 @@ namespace IpsViewComponentLibrary
             // 
             // pvAnketa
             // 
-            this.pvAnketa.Controls.Add(this.ctrlAnketaConsumer);
+            this.pvAnketa.Controls.Add(this.anketaPanel);
             this.pvAnketa.Controls.Add(this.ctrlTabNavigation);
             this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvAnketa.Location = new System.Drawing.Point(5, 41);
             this.pvAnketa.Name = "pvAnketa";
             this.pvAnketa.Size = new System.Drawing.Size(1072, 679);
             this.pvAnketa.Text = "Анкета";
-            // 
-            // ctrlAnketaConsumer
-            // 
-            this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlAnketaConsumer.IsContainPlaces = false;
-            this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
-            this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
-            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1072, 648);
-            this.ctrlAnketaConsumer.TabIndex = 0;
-            this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             // 
             // ctrlTabNavigation
             // 
@@ -779,6 +770,17 @@ namespace IpsViewComponentLibrary
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.Auto;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
             // 
+            // anketaPanel
+            // 
+            this.anketaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.anketaPanel.Location = new System.Drawing.Point(0, 0);
+            this.anketaPanel.Name = "anketaPanel";
+            this.anketaPanel.Size = new System.Drawing.Size(1072, 648);
+            this.anketaPanel.TabIndex = 17;
+            this.anketaPanel.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.anketaPanel.GetChildAt(0))).BorderHighlightThickness = 1;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.anketaPanel.GetChildAt(0).GetChildAt(1))).Width = 0F;
+            // 
             // CabinetSmallRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -812,6 +814,7 @@ namespace IpsViewComponentLibrary
             this.pvAnketa.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).EndInit();
             this.pvMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -851,8 +854,8 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadDropDownButton btnActionOfAgr;
         private Telerik.WinControls.UI.RadMenuItem btnProlongation;
         private Telerik.WinControls.UI.RadMenuItem btnAddAgrNewVersion;
-        private AnketaConsumer ctrlAnketaConsumer;
         private MiddleControlCabinetPartner ctrlPartner;
         private ConsumerControls.TabNavigationControl ctrlTabNavigation;
+        private Telerik.WinControls.UI.RadPanel anketaPanel;
     }
 }

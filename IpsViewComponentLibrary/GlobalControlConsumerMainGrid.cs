@@ -49,9 +49,17 @@ namespace IpsViewComponentLibrary
                 gvViewConsumers.CurrentRow = gvViewConsumers.Rows.SingleOrDefault(rec => (int)rec.Cells["CustId"].Value == custId);
         }
 
-        private void btnNewConsumer_Click(object sender, EventArgs e)
+        // створити споживача юридичної особи
+        private void btnAddJurConsumer_Click(object sender, EventArgs e)
         {
-            OnAddNewCustomer?.Invoke(this,EventArgs.Empty);
+            OnAddNewCustomer?.Invoke(3, EventArgs.Empty);
+        }
+
+        // створити споживача фізичної особи
+        private void btnAddPhisConsumer_Click(object sender, EventArgs e)
+        {
+            OnAddNewCustomer?.Invoke(1, EventArgs.Empty);
+
         }
     }
 }

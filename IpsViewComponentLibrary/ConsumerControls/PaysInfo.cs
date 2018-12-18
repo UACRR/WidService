@@ -14,6 +14,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class PaysInfo : UserControl
     {
+        private Customer _customer;
+        public event EmptyEventHandler UpdateData;
+
         public PaysInfo()
         {
             InitializeComponent();
@@ -33,7 +36,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             bindingPeriod.DataSource = list;
         }
 
-        private Customer _customer;
         public Customer Customer
         {
             get => _customer;
@@ -75,6 +77,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
                         }
                     }
             }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateData?.Invoke();
         }
     }
 

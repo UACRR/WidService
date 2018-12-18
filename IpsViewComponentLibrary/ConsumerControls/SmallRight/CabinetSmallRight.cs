@@ -12,6 +12,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerControls;
 
 namespace IpsViewComponentLibrary
 {
@@ -19,7 +20,9 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private readonly AnketaDictionaties _dictionaties;
-        
+        private readonly AnketaConsumer _anketaConsumerJur;
+        private readonly AnketaConsumerPhis _anketaConsumerPhis;
+
         public event SaveCustomerEventHandler SaveCustomer;
         public event UpdateCustomerDataEventHandler UpdateData;
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
@@ -43,6 +46,16 @@ namespace IpsViewComponentLibrary
         public CabinetSmallRight()
         {
             InitializeComponent();
+            _anketaConsumerJur = new AnketaConsumer
+            {
+                Dock = DockStyle.Fill,
+                TypeRights = TypeRights.SmallRights
+            };
+            _anketaConsumerPhis = new AnketaConsumerPhis
+            {
+                Dock = DockStyle.Fill,
+            };
+
             pvMain.SelectedPage = pvAnketa;
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += OnSaveCommentNeed;
@@ -109,8 +122,19 @@ namespace IpsViewComponentLibrary
         public void SetCustomerData(Customer customer)
         {
             _customer = customer;
-            ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _dictionaties);
-            ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
+            anketaPanel.Controls.Clear();
+            if (_customer.CustType == 3)
+            {
+                anketaPanel.Controls.Add(_anketaConsumerJur);
+                _anketaConsumerJur.SetDataAndDictionaries(_customer);
+                _anketaConsumerJur.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
+            }
+            else if (_customer.CustType == 1 || _customer.CustType == 2 )
+            {
+                anketaPanel.Controls.Add(_anketaConsumerPhis);
+                _anketaConsumerPhis.SetData(_customer, ConsumerAnketeType.EditAnketa);
+            }
+
             ctrlHeaderInfo.SetControlTextInfoSmallRight(_customer);
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();
@@ -158,7 +182,7 @@ namespace IpsViewComponentLibrary
                 foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass == 0))
                 {
                     //якщо з малими правами, пропустити
-                    if (Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
+                    if (Rights == TypeRights.BigRights && _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item.LicCode)?.UsesKind != 1) continue;
 
                     var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
 
@@ -173,8 +197,8 @@ namespace IpsViewComponentLibrary
                         DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
                         MinAmount = licenseParam?.MinAmount ?? default(decimal),
                         MinRate = licenseParam?.RateAmount ?? default(decimal),
-                        State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
-                        PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
+                        State = _dictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
+                        PeriodPayment = _dictionaties.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
                         DateLastPayment = "",
                         LicenseAgreement = item,
                         IsAutoprolog = licenseParam?.IsAutoprolog ?? false,

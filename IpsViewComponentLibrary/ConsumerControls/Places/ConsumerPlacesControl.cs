@@ -47,8 +47,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             // ініціалізація контрола з єдиним холом
             _singlePlaceParameterControl = new SinglePlaceParameterControl
             {
-                //DictionaryRegion = _dictionaties.region,
-                //DictionaryTypePlace = _dictionaties.typePlace,
                 Dock = DockStyle.Fill
             };
             if(_dictionaties != null)
@@ -62,8 +60,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             // ініціалізація контрола з декількома холами
             _multiplePlaceParameterControl = new MultiplePlaceParameterControl
             {
-                //DictionaryRegion = _dictionaties.region,
-                //DictionaryTypePlace = _dictionaties.typePlace,
                 Dock = DockStyle.Fill
             };
             if (_dictionaties != null)
@@ -76,7 +72,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
 
             _radioPlaceParameterControl = new RadioPlaceParameterControl
             {
-                //DictionaryTypePlace = _dictionaties.typePlace,
                 Dock = DockStyle.Fill
             };
             if (_dictionaties != null)
@@ -104,6 +99,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         /// Встановлення даних
         /// </summary>
         /// <param name="data"></param>
+        /// <param name="customer"></param>
         public void SetData(Customer customer)
         {
             _clnBusinessPlaces = customer.Client.ClnBusinessPlace;

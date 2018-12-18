@@ -45,7 +45,8 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void SetStatus(FixationStageStatuses newStatus)
         {
-            if (newStatus == FixationStageStatuses.FixationNotScheduled
+            if (newStatus == FixationStageStatuses.NegotiationBeforeFixationOnNegotioation
+                || newStatus == FixationStageStatuses.FixationNotScheduled
                 || newStatus == FixationStageStatuses.FixationScheduled
                 || newStatus == FixationStageStatuses.FixationFixationCompleted
                 || newStatus == FixationStageStatuses.RightholderIdentificationOnIdentification

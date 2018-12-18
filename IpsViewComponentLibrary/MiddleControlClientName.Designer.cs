@@ -28,10 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.checkClientName = new Telerik.WinControls.UI.RadCheckBox();
             this.ctrlRegistrationsCompany = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
             this.ctrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
-            ((System.ComponentModel.ISupportInitialize)(this.checkClientName)).BeginInit();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.DtRegisterDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtNumberVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtOkpo)).BeginInit();
@@ -39,19 +38,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterWho)).BeginInit();
             this.SuspendLayout();
             // 
-            // checkClientName
-            // 
-            this.checkClientName.Location = new System.Drawing.Point(105, 57);
-            this.checkClientName.Name = "checkClientName";
-            this.checkClientName.Size = new System.Drawing.Size(86, 18);
-            this.checkClientName.TabIndex = 2;
-            this.checkClientName.Text = "Майданчики";
-            this.checkClientName.CheckStateChanged += new System.EventHandler(this.checkClientName_CheckStateChanged);
-            // 
             // ctrlRegistrationsCompany
             // 
             this.ctrlRegistrationsCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlRegistrationsCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // 
             // 
@@ -68,7 +59,7 @@
             this.ctrlRegistrationsCompany.DtRegisterDate.TabIndex = 2;
             this.ctrlRegistrationsCompany.DtRegisterDate.TabStop = false;
             this.ctrlRegistrationsCompany.DtRegisterDate.Value = new System.DateTime(((long)(0)));
-            this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(4, 82);
+            this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(4, 57);
             this.ctrlRegistrationsCompany.Name = "ctrlRegistrationsCompany";
             this.ctrlRegistrationsCompany.Size = new System.Drawing.Size(704, 109);
             this.ctrlRegistrationsCompany.TabIndex = 3;
@@ -142,27 +133,24 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ctrlRegistrationsCompany);
-            this.Controls.Add(this.checkClientName);
             this.Controls.Add(this.ctrlAnketaCompany);
-            this.MaximumSize = new System.Drawing.Size(800, 194);
-            this.MinimumSize = new System.Drawing.Size(607, 194);
+            this.MaximumSize = new System.Drawing.Size(800, 172);
+            this.MinimumSize = new System.Drawing.Size(607, 172);
             this.Name = "MiddleControlClientName";
-            this.Size = new System.Drawing.Size(711, 194);
-            ((System.ComponentModel.ISupportInitialize)(this.checkClientName)).EndInit();
+            this.Size = new System.Drawing.Size(711, 172);
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.DtRegisterDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtNumberVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtRegisterWho)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private IpsAnketaCompanyControl ctrlAnketaCompany;
-        private Telerik.WinControls.UI.RadCheckBox checkClientName;
         private IpsRegistrationsCompanyControl ctrlRegistrationsCompany;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
