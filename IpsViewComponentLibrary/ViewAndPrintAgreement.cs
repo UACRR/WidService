@@ -13,7 +13,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class ViewAndPrintAgreement : Telerik.WinControls.UI.RadForm, IPreviewView
+    public partial class ViewAndPrintAgreement : Telerik.WinControls.UI.RadForm
     {
         private WordEngine _wordEngine;
 
@@ -54,9 +54,9 @@ namespace IpsViewComponentLibrary
             string fileName = saveFileDialog.FileName;
 
             if (saveFileDialog.FilterIndex == 1) // docx
-                File.Copy(_docx, fileName);
+                File.Copy(_docx, fileName, true);
             else if (saveFileDialog.FilterIndex == 2) // pdf
-                File.Copy(_pdf, fileName);
+                File.Copy(_pdf, fileName, true);
         }
 
         private void LoadDocument(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)

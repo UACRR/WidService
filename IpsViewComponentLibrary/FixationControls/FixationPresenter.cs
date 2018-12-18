@@ -42,7 +42,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _userService = new UserService();
             _percentDistributor = new AmountDistributor();
             _registerService = new RegisterService();
-            _printService = new PrintService(new ViewAndPrintAgreement());
+            _printService = new PrintService();
         }
 
         public void ShowNew()
@@ -299,6 +299,12 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void PrintFixationOrder()
         {
+            if (!_view.IsValid())
+            {
+                _dialogService.ShowError(_view, "Не вірно введені дані. Друк не можливий.");
+                return;
+            }
+
             _printService.PrintFixationOrder(_fixation);
         }
 
@@ -309,11 +315,23 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void PrintFixationSlugbova()
         {
+            if (!_view.IsValid())
+            {
+                _dialogService.ShowError(_view, "Не вірно введені дані. Друк не можливий.");
+                return;
+            }
+
             _printService.PrintFixationSlugbova(_fixation);
         }
 
         public void PrintFixationIdentificationAct()
         {
+            if (!_view.IsValid())
+            {
+                _dialogService.ShowError(_view, "Не вірно введені дані. Друк не можливий.");
+                return;
+            }
+
             _printService.PrintFixationIdentificationAct(_fixation, _view.RegisterCountList);
         }
 

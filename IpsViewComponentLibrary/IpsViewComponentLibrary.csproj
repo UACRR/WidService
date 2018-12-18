@@ -398,6 +398,7 @@
     <Compile Include="ConsumerForms\AnketaConsumerPhisForm.Designer.cs">
       <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\PrintService.cs" />
     <Compile Include="_trash\ProlongationGeneralAgreement.cs">
       <SubType>Form</SubType>
     </Compile>
