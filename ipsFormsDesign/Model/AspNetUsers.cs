@@ -15,7 +15,6 @@ namespace ipsFormsDesign.Model
             BrRegister = new ObservableListSource<BrRegister>();
             Employee = new ObservableListSource<Employee>();
             Fixation = new ObservableListSource<Fixation>();
-            InputFile = new ObservableListSource<InputFile>();
             Register = new ObservableListSource<Register>();
             Request = new ObservableListSource<Request>();
             UserRole = new ObservableListSource<UserRole>();
@@ -47,7 +46,6 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<BrRegister> BrRegister { get; set; }
         public ObservableListSource<Employee> Employee { get; set; }
         public ObservableListSource<Fixation> Fixation { get; set; }
-        public ObservableListSource<InputFile> InputFile { get; set; }
         public ObservableListSource<Register> Register { get; set; }
         public ObservableListSource<Request> Request { get; set; }
         public ObservableListSource<UserRole> UserRole { get; set; }

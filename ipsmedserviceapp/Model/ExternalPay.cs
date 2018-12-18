@@ -29,5 +29,6 @@ namespace ipsmedserviceapp.Model
         public int? CustId { get; set; }
 
         public Client Cust { get; set; }
+        public InputFile InputFile { get; set; }
     }
 }
