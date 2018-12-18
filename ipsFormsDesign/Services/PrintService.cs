@@ -4,9 +4,6 @@ using ipsFormsDesign.ViewModels.Fixations;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Services
 {
@@ -31,7 +28,7 @@ namespace ipsFormsDesign.Services
 
             await _wordEngine.ProcessFixationOrder(template, fixation);
 
-            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             _previewView.StopWaiting();
         }
 
@@ -45,7 +42,7 @@ namespace ipsFormsDesign.Services
 
             await _wordEngine.ProcessFixationAct(template);
 
-            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             _previewView.StopWaiting();
         }
 
@@ -59,7 +56,7 @@ namespace ipsFormsDesign.Services
 
             await _wordEngine.ProcessFixationSlugbova(template, fixation);
 
-            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             _previewView.StopWaiting();
         }
 
@@ -73,7 +70,7 @@ namespace ipsFormsDesign.Services
 
             await _wordEngine.ProcessFixationIdentificationAct(template, fixation, registerCountList);
 
-            _previewView.LoadPdf(_wordEngine.Pdf);
+            _previewView.SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             _previewView.StopWaiting();
         }
     }
@@ -83,7 +80,7 @@ namespace ipsFormsDesign.Services
         void Show();
         void StartWaiting();
         void StopWaiting();
-        void LoadPdf(string path);
+        void SetResult(string pathPdf, string pathDocx);
         void SetHeader(string header);
     }
 }

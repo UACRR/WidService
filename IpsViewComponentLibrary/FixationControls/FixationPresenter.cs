@@ -25,6 +25,7 @@ namespace IpsViewComponentLibrary.FixationControls
         private readonly UserService _userService;
         private readonly AmountDistributor _percentDistributor;
         private readonly RegisterService _registerService;
+        private readonly PrintService _printService;
         private Fixation _fixation;
         private bool _canClose;
         private int _lastId = 0;
@@ -41,6 +42,7 @@ namespace IpsViewComponentLibrary.FixationControls
             _userService = new UserService();
             _percentDistributor = new AmountDistributor();
             _registerService = new RegisterService();
+            _printService = new PrintService(new ViewAndPrintAgreement());
         }
 
         public void ShowNew()
@@ -297,26 +299,22 @@ namespace IpsViewComponentLibrary.FixationControls
 
         public void PrintFixationOrder()
         {
-            var printService = new PrintService(new ViewAndPrintAgreement());
-            printService.PrintFixationOrder(_fixation);
+            _printService.PrintFixationOrder(_fixation);
         }
 
         public void PrintFixationAct()
         {
-            var printService = new PrintService(new ViewAndPrintAgreement());
-            printService.PrintFixationAct(_fixation);
+            _printService.PrintFixationAct(_fixation);
         }
 
         public void PrintFixationSlugbova()
         {
-            var printService = new PrintService(new ViewAndPrintAgreement());
-            printService.PrintFixationSlugbova(_fixation);
+            _printService.PrintFixationSlugbova(_fixation);
         }
 
         public void PrintFixationIdentificationAct()
         {
-            var printService = new PrintService(new ViewAndPrintAgreement());
-            printService.PrintFixationIdentificationAct(_fixation, _view.RegisterCountList);
+            _printService.PrintFixationIdentificationAct(_fixation, _view.RegisterCountList);
         }
 
         private int GetNextRegisterItemId()
