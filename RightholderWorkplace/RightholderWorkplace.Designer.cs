@@ -35,6 +35,7 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RightholderWorkplace));
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn3 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn4 = new Telerik.WinControls.UI.GridViewDecimalColumn();
@@ -86,7 +87,7 @@
             this.gvObjectRightForTransfering = new Telerik.WinControls.UI.RadGridView();
             this.bsObjectRightForTransfering = new System.Windows.Forms.BindingSource(this.components);
             this.gvChangeCopyrightsTemplate = new Telerik.WinControls.UI.GridViewTemplate();
-            this.objectCopyrightBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsObjectCopyright = new System.Windows.Forms.BindingSource(this.components);
             this.copyrightRequestsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCopyrightRequests = new IpsViewComponentLibrary.ObjectRightControls.CopyrightRequestControl();
             this.rightHolderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -148,7 +149,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightForTransfering.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectCopyrightBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).BeginInit();
             this.copyrightRequestsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementAddRhBindingSource)).BeginInit();
@@ -667,13 +668,14 @@
             gridViewDecimalColumn2.Name = "RateRh";
             gridViewDecimalColumn2.ReadOnly = true;
             gridViewDecimalColumn2.Width = 100;
+            gridViewCheckBoxColumn1.EditMode = Telerik.WinControls.UI.EditMode.OnValueChange;
             gridViewCheckBoxColumn1.EnableExpressionEditor = false;
             gridViewCheckBoxColumn1.FieldName = "ManualDistribution";
             gridViewCheckBoxColumn1.HeaderText = "Ручне редагування відстока";
             gridViewCheckBoxColumn1.MinWidth = 20;
             gridViewCheckBoxColumn1.Name = "ManualDistribution";
-            gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::RightholderWorkplace.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.EnableExpressionEditor = false;
+            gridViewCommandColumn1.Image = ((System.Drawing.Image)(resources.GetObject("gridViewCommandColumn1.Image")));
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "DeleteColumn";
@@ -698,7 +700,9 @@
             this.gvObjectRightForTransfering.TabIndex = 0;
             this.gvObjectRightForTransfering.ThemeName = "Office2013Light";
             this.gvObjectRightForTransfering.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvObjectRightForTransfering_RowFormatting);
+            this.gvObjectRightForTransfering.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvObjectRightForTransfering_CellFormatting);
             this.gvObjectRightForTransfering.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvObjectRightForTransfering_CellBeginEdit);
+            this.gvObjectRightForTransfering.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvObjectRightForTransfering_CellValueChanged);
             this.gvObjectRightForTransfering.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectRightForTransfering_CommandCellClick);
             // 
             // bsObjectRightForTransfering
@@ -770,13 +774,13 @@
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
             gridViewDecimalColumn6});
-            this.gvChangeCopyrightsTemplate.DataSource = this.objectCopyrightBindingSource;
+            this.gvChangeCopyrightsTemplate.DataSource = this.bsObjectCopyright;
             this.gvChangeCopyrightsTemplate.ShowTotals = true;
             this.gvChangeCopyrightsTemplate.ViewDefinition = tableViewDefinition1;
             // 
             // objectCopyrightBindingSource
             // 
-            this.objectCopyrightBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectCopyright);
+            this.bsObjectCopyright.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectCopyright);
             // 
             // copyrightRequestsPage
             // 
@@ -1020,7 +1024,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightForTransfering)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectCopyrightBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).EndInit();
             this.copyrightRequestsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementAddRhBindingSource)).EndInit();
@@ -1077,7 +1081,7 @@
         private IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker dtChangeCopyrightDateFrom;
         private Telerik.WinControls.UI.RadButton btnAddNewRightholder;
         private Telerik.WinControls.UI.RadButton btnSaveNewCopyrights;
-        private System.Windows.Forms.BindingSource objectCopyrightBindingSource;
+        private System.Windows.Forms.BindingSource bsObjectCopyright;
         private System.Windows.Forms.BindingSource bsObjectRightForTransfering;
         private Telerik.WinControls.UI.GridViewTemplate gvChangeCopyrightsTemplate;
         private IpsViewComponentLibrary.RadioPanel ctrlChangeRightholderOperation;

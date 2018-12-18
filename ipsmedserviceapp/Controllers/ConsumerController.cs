@@ -486,7 +486,7 @@ namespace ipsmedserviceapp.Controllers
                     }, (l, r) => l.CRightId == r.CRightId);
 
                 // calculate Rate by RoleRate
-                _rateDistributor.DistributeByProperty(license.LicenseBigR.Obj.CopyRight, cr => cr.RoleRate, cr => cr.Rate);
+                _rateDistributor.DistributeByPropertyAndTotalBaseAmount(license.LicenseBigR.Obj.CopyRight, license.LicenseBigR.Rate, cr => cr.RoleRate, cr => cr.Rate);
 
                 _dbContext.UpdateList(item.LicenseBigR.Obj.Authors, license.LicenseBigR.Obj.Authors, i => { }, (l, r) => l.AuthId == r.AuthId);
 
