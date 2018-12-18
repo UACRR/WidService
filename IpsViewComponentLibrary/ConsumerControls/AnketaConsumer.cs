@@ -54,9 +54,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
         }
 
         /// <summary>
-        /// Ініціалізація даних для контрола (DATABINDING)
+        /// Ініціалізація параметрів контрола
         /// </summary>
-        /// <param name="isNew">Тип: true для нового користувача, false для редагуавння існуючого</param>
+        /// <param name="getAutoCompList"></param>
+        /// <param name="getCustomerAnketa"></param>
+        /// <param name="anketeType"></param>
         public void InitializeControl(Func<string, IList<AutoCompleteData>> getAutoCompList, Func<int, Customer> getCustomerAnketa, ConsumerAnketeType anketeType)
         {
             _anketeType = anketeType;
@@ -67,7 +69,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ReInitControl();
         }
 
-
+        /// <summary>
+        /// Переініціалізація за потребою (містить databinding)
+        /// </summary>
         public void ReInitControl()
         {
             ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
@@ -80,14 +84,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
             if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
                 InitAgreementType(TypeRights);
-
-            //ctrlClientName.SetDefaultState();
-            if (_anketeType == ConsumerAnketeType.EditAnketa)
+            else if (_anketeType == ConsumerAnketeType.EditAnketa)
             {
                 pageAnketaConsumer.Pages["pvPrint"].Item.Visibility = ElementVisibility.Collapsed;
                 pageAnketaConsumer.Pages["pvAgreement"].Item.Visibility = ElementVisibility.Collapsed;
             }
-
         }
 
         //ініціалізація контролу договору за типом прав
@@ -161,28 +162,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
 
         /// <summary>
-        /// Обов'язковий метод 
+        /// Встановлення даних
         /// </summary>
-        /// <param name="cust"></param>
-        /// <param name="dict"></param>
-        public void SetDataAndDictionaries(Customer cust)
+        /// <param name="customer">об'єкт споживач</param>
+        public void SetDataAndDictionaries(Customer customer)
         {
-            _cust = cust;
+            _cust = customer;
             if(IpsGlobal.AnketaDictionaties != null)
                 _anketaDictionaries = IpsGlobal.AnketaDictionaties;
         }
 
-
         /// <summary>
-        /// Перевірка на валідність даних
+        /// Перевірка валідності даних
         /// </summary>
-        /// <returns></returns>
-        private bool Validator(byte type)
+        /// <param name="tabNumber">номер вкладки</param>
+        /// <returns>true: дані валідні, false: помилка валідеості</returns>
+        private bool Validator(byte tabNumber)
         {
-
             bool isValid = true;
 
-            switch (type)
+            switch (tabNumber)
             {
                 case 1: // - Назва клієнта
                     {
@@ -201,11 +200,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     }
                     break;
 
-                case 4: //- Майданчики
-                    {
-                        isValid = true;
-                    }
-                    break;
+              //case 4: //- Майданчики
 
                 case 5: // - Банківські реквізити
                     {

@@ -24,7 +24,6 @@ namespace IpsViewComponentLibrary
 
         //private readonly Func<string, IList<AutoCompleteData>> _getAutoCompList;
 
-
         /// <summary>
         /// Main constructor
         /// </summary>
@@ -46,6 +45,7 @@ namespace IpsViewComponentLibrary
             _customer = customer;
 
             ctrlTabNavigation.SetDefaultState(ctrlConsumerAnketa.GetPageView, FLoadType.Create);
+            ctrlTabNavigation.SaveClick += Save;
 
             ctrlConsumerAnketa.TypeRights = typeRights;
             ctrlConsumerAnketa.SetDataAndDictionaries(_customer);
@@ -71,6 +71,11 @@ namespace IpsViewComponentLibrary
             ctrlConsumerAnketa.ReInitControl();
 
             return retCustomer;
+        }
+
+        private void Save(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
         }
     }
 }

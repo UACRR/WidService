@@ -182,7 +182,7 @@ namespace IpsViewComponentLibrary
                 foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass == 0))
                 {
                     //якщо з малими правами, пропустити
-                    if (Rights == TypeRights.BigRights && _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.UsesKind != 1) continue;
+                    if (Rights == TypeRights.BigRights && _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item.LicCode)?.UsesKind != 1) continue;
 
                     var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
 
@@ -197,8 +197,8 @@ namespace IpsViewComponentLibrary
                         DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
                         MinAmount = licenseParam?.MinAmount ?? default(decimal),
                         MinRate = licenseParam?.RateAmount ?? default(decimal),
-                        State = _dictionaties?.agreementStatus?.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
-                        PeriodPayment = _dictionaties?.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
+                        State = _dictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == licenseParam?.LicStatus)?.Name ?? string.Empty,
+                        PeriodPayment = _dictionaties.period?.SingleOrDefault(p => p.CodeI == licenseParam?.PeriodCode)?.Name ?? string.Empty,
                         DateLastPayment = "",
                         LicenseAgreement = item,
                         IsAutoprolog = licenseParam?.IsAutoprolog ?? false,
