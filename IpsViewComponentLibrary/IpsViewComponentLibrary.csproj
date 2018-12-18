@@ -391,6 +391,12 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ImportDBF\ImportDBFControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ImportDBF\ImportDBFControl.Designer.cs">
+      <DependentUpon>ImportDBFControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\MessageSuccessError.cs" />
     <Compile Include="ConsumerForms\AnketaConsumerPhisForm.cs">
       <SubType>Form</SubType>
@@ -1664,8 +1670,6 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ImportDBF\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
