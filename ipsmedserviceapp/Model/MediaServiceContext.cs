@@ -3886,6 +3886,8 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(10)
                     .IsUnicode(false);
 
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
                 entity.Property(e => e.DateOper)
                     .HasColumnName("dateOper")
                     .HasColumnType("date");
@@ -3958,6 +3960,11 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("numeric(20, 2)");
 
                 entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.ExternalPay)
+                    .HasForeignKey(d => d.CustId)
+                    .HasConstraintName("FK_EXTERNAL_REFERENCE_CLIENT");
             });
 
             modelBuilder.Entity<FileCustomer>(entity =>
@@ -4277,11 +4284,11 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<InputFile>(entity =>
             {
-                entity.HasKey(e => e.UserId);
+                entity.HasKey(e => e.FileId);
 
                 entity.ToTable("inputFile");
 
-                entity.Property(e => e.UserId).HasColumnName("userId");
+                entity.Property(e => e.FileId).HasColumnName("fileId");
 
                 entity.Property(e => e.AspId)
                     .HasColumnName("Asp_id")

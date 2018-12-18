@@ -93,6 +93,23 @@ namespace ipsmedserviceapp.Controllers
                     fixation.Lic.Agr = updFixation.Lic.Agr;
 
                 fixation.Lic.Agr.CustId = updFixation.ClientCustId.Value;
+
+                if (fixation.StageStatus == 16 || fixation.StageStatus == 17 || fixation.StageStatus == 21)
+                {
+                    var licAgrAddParam = fixation.Lic.LicenseAgrParam.FirstOrDefault(p => p.LicId == fixation.Lic.LicId && p.LicVersion == fixation.Lic.LicVersion);
+
+                    if (licAgrAddParam == null)
+                    {
+                        licAgrAddParam = new LicenseAgrParam();
+                        fixation.Lic.LicenseAgrParam.Add(licAgrAddParam);
+                    }
+
+                    licAgrAddParam.LicVersion = (int)fixation.Lic.LicVersion;
+                    licAgrAddParam.DateBegin = fixation.FixationDtBegin;
+                    licAgrAddParam.DateEnd = fixation.FixationDtEnd;
+                    licAgrAddParam.MinAmount = fixation.RewardAmount;
+                    licAgrAddParam.LicStatus = 2;
+                }
             }
 
             await _dbContext.SaveChangesAsync();
@@ -168,6 +185,8 @@ namespace ipsmedserviceapp.Controllers
                             .ThenInclude(rr => rr.Register)
                                 .ThenInclude(r => r.RegisterItem)
                                     .ThenInclude(ri => ri.RegisterItemFix)
+                .Include(f => f.Lic)
+                    .ThenInclude(l => l.LicenseAgrParam)
                 .FirstOrDefaultAsync(f => f.FixId == fixId);
 
             return fixation;

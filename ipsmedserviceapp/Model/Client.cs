@@ -12,6 +12,7 @@ namespace ipsmedserviceapp.Model
             BrRegister = new HashSet<BrRegister>();
             ClnBusinessPlace = new HashSet<ClnBusinessPlace>();
             Distribution = new HashSet<Distribution>();
+            ExternalPay = new HashSet<ExternalPay>();
             Fixation = new HashSet<Fixation>();
             LicenseAgreement = new HashSet<LicenseAgreement>();
             MoneyReceived = new HashSet<MoneyReceived>();
@@ -33,6 +34,8 @@ namespace ipsmedserviceapp.Model
         public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         [JsonIgnore]
         public ICollection<Distribution> Distribution { get; set; }
+        [JsonIgnore]
+        public ICollection<ExternalPay> ExternalPay { get; set; }
         [JsonIgnore]
         public ICollection<Fixation> Fixation { get; set; }
         public ICollection<LicenseAgreement> LicenseAgreement { get; set; }

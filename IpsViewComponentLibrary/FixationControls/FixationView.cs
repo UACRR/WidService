@@ -45,6 +45,7 @@ namespace IpsViewComponentLibrary.FixationControls
                 bsFixation.DataSource = _fixation;
                 ShowAllowedPages();
                 SetUpPrintButton();
+                SetUpIdentificationPage();
             }
         }
 
@@ -162,6 +163,7 @@ namespace IpsViewComponentLibrary.FixationControls
             bsFixation.ResetCurrentItem();
             ShowAllowedPages();
             SetUpPrintButton();
+            SetUpIdentificationPage();
         }
 
         private void btnAddStorage_Click(object sender, EventArgs e)
@@ -658,6 +660,44 @@ namespace IpsViewComponentLibrary.FixationControls
 
             miPrintActIdentyfikacii.Visibility =
                 _fixation.StageStatus >= (int)FixationStageStatuses.NegotiationAfterFixationOnNegotioation ? ElementVisibility.Visible : ElementVisibility.Collapsed;
+        }
+
+        private void SetUpIdentificationPage()
+        {
+            if (_fixation.StageStatus == (int)FixationStageStatuses.FixationFixationCompleted ||
+                _fixation.StageStatus == (int)FixationStageStatuses.RightholderIdentificationOnCorrection)
+            {
+                ctrlRegisterItemList.ShowFilters = false;
+                ctrlRegisterItemList.ShowObjectInfo = false;
+                ctrlRegisterItemList.AllowEditList = true;
+                ctrlRegisterItemList.AllowShowObjectCommand = false;
+                ctrlRegisterItemList.AllowLinkCommand = false;
+                ctrlRegisterItemList.AllowUnlinkCommand = false;
+                ctrlRegisterItemList.AllowFindCommand = false;
+                gboxSearch.Visible = false;
+            }
+            else if (_fixation.StageStatus == (int)FixationStageStatuses.RightholderIdentificationOnIdentification)
+            {
+                ctrlRegisterItemList.ShowFilters = true;
+                ctrlRegisterItemList.ShowObjectInfo = true;
+                ctrlRegisterItemList.AllowEditList = true;
+                ctrlRegisterItemList.AllowShowObjectCommand = true;
+                ctrlRegisterItemList.AllowLinkCommand = true;
+                ctrlRegisterItemList.AllowUnlinkCommand = true;
+                ctrlRegisterItemList.AllowFindCommand = true;
+                gboxSearch.Visible = true;
+            }
+            else
+            {
+                ctrlRegisterItemList.ShowFilters = false;
+                ctrlRegisterItemList.ShowObjectInfo = true;
+                ctrlRegisterItemList.AllowEditList = false;
+                ctrlRegisterItemList.AllowShowObjectCommand = true;
+                ctrlRegisterItemList.AllowLinkCommand = false;
+                ctrlRegisterItemList.AllowUnlinkCommand = false;
+                ctrlRegisterItemList.AllowFindCommand = false;
+                gboxSearch.Visible = false;
+            }
         }
 
         private static void CreateControls(Control control)

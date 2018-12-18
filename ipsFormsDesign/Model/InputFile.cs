@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Model
             CheckParamPays = new ObservableListSource<CheckParamPays>();
         }
 
-        public int UserId { get; set; }
+        public int FileId { get; set; }
         public string AspId { get; set; }
         public string FileName { get; set; }
         public DateTime InputTime { get; set; }

@@ -27,6 +27,9 @@ namespace ipsFormsDesign.Model
         public int? Status { get; set; }
         public DateTime? DateOper { get; set; }
         public int? InputFileId { get; set; }
+        public int? CustId { get; set; }
+
+        public Client Cust { get; set; }
     }
 }
 
