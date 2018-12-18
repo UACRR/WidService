@@ -120,14 +120,14 @@ namespace ipsmedserviceapp.Controllers
             {
                 await _dbContext.Entry(place).Collection(item => item.ClnPlaceHoll).LoadAsync();
                 await _dbContext.Entry(place).Reference(item => item.PlCodeNavigation).LoadAsync();
-
             }
 
-            // Отримати співробітників
-            foreach (var relEmp in cust.Company.RelEmployee)
-            {
-                await _dbContext.Entry(relEmp).Reference(item => item.Empl).LoadAsync();
-            }
+            // Отримати співробітників (юридична осба)
+            if (cust.CustType == 3)
+                foreach (var relEmp in cust.Company.RelEmployee)
+                {
+                    await _dbContext.Entry(relEmp).Reference(item => item.Empl).LoadAsync();
+                }
 
             return cust;
 

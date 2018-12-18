@@ -48,6 +48,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private AnketaDictionaties _anketaDictionaries;
 
         public TypeRights TypeRights { get; set; } = TypeRights.SmallRights;
+
+        // TODO: видалити цю ознаку (в базі відсутній запис, лишня)
         //властивість наявності майданчиків
         public bool IsContainPlaces
         {

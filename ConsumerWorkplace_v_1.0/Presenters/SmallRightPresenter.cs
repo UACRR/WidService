@@ -144,8 +144,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
                     {
                         // save
                         var relust = _service.Save(cust);
-                        if (relust)
-                            MessageBox.Show("Успішно");
+                        MessageBox.Show(relust ? "Успішно!" : "Не вдалося зберегти!");
                     }
                     if (!formPhis.Disposing)
                     {

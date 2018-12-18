@@ -12,6 +12,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerControls;
 
 namespace IpsViewComponentLibrary
 {
@@ -19,7 +20,9 @@ namespace IpsViewComponentLibrary
     {
         private Customer _customer;
         private readonly AnketaDictionaties _dictionaties;
-        
+        private readonly AnketaConsumer _anketaConsumerJur;
+        private readonly AnketaConsumerPhis _anketaConsumerPhis;
+
         public event SaveCustomerEventHandler SaveCustomer;
         public event UpdateCustomerDataEventHandler UpdateData;
         public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
@@ -43,6 +46,17 @@ namespace IpsViewComponentLibrary
         public CabinetSmallRight()
         {
             InitializeComponent();
+            _anketaConsumerJur = new AnketaConsumer
+            {
+                Dock = DockStyle.Fill,
+                IsContainPlaces = false,
+                TypeRights = TypeRights.SmallRights
+            };
+            _anketaConsumerPhis = new AnketaConsumerPhis
+            {
+                Dock = DockStyle.Fill,
+            };
+
             pvMain.SelectedPage = pvAnketa;
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += OnSaveCommentNeed;
@@ -109,8 +123,19 @@ namespace IpsViewComponentLibrary
         public void SetCustomerData(Customer customer)
         {
             _customer = customer;
-            ctrlAnketaConsumer.SetDataAndDictionaries(_customer, _dictionaties);
-            ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
+            anketaPanel.Controls.Clear();
+            if (_customer.CustType == 3)
+            {
+                anketaPanel.Controls.Add(_anketaConsumerJur);
+                _anketaConsumerJur.SetDataAndDictionaries(_customer, _dictionaties);
+                _anketaConsumerJur.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
+            }
+            else if (_customer.CustType == 1 || _customer.CustType == 2 )
+            {
+                anketaPanel.Controls.Add(_anketaConsumerPhis);
+                _anketaConsumerPhis.SetData(_customer, ConsumerAnketeType.EditAnketa);
+            }
+
             ctrlHeaderInfo.SetControlTextInfoSmallRight(_customer);
             SetLicenseAgrGridDataSource();
             SetLicenseAgrMoreGridDataSource();

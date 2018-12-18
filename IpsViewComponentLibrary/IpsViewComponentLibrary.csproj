@@ -162,6 +162,12 @@
     <Compile Include="AddFileDialogForm.Designer.cs">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\AnketaConsumerPhis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\AnketaConsumerPhis.Designer.cs">
+      <DependentUpon>AnketaConsumerPhis.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\ManagersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1078,6 +1084,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AddFileDialogForm.resx">
       <DependentUpon>AddFileDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\AnketaConsumerPhis.resx">
+      <DependentUpon>AnketaConsumerPhis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ManagersControl.resx">
       <DependentUpon>ManagersControl.cs</DependentUpon>

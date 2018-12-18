@@ -55,6 +55,7 @@
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.SmallRight.AgreementPhis();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
@@ -62,7 +63,6 @@
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ConsumerControls.TabNavigationExpandedControl();
-            this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.SmallRight.AgreementPhis();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
             this.pvClientName.SuspendLayout();
@@ -115,7 +115,7 @@
             // 
             // 
             this.pageAnketaConsumer.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pageAnketaConsumer.SelectedPage = this.pvAgreement;
+            this.pageAnketaConsumer.SelectedPage = this.pvClientName;
             this.pageAnketaConsumer.SelectionWrap = false;
             this.pageAnketaConsumer.Size = new System.Drawing.Size(1102, 546);
             this.pageAnketaConsumer.TabIndex = 2;
@@ -479,6 +479,14 @@
             this.pvAgreement.Size = new System.Drawing.Size(963, 536);
             this.pvAgreement.Text = "Договір";
             // 
+            // ctrlAgreementPhis
+            // 
+            this.ctrlAgreementPhis.LicenseAgreementDataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            this.ctrlAgreementPhis.Location = new System.Drawing.Point(30, 4);
+            this.ctrlAgreementPhis.Name = "ctrlAgreementPhis";
+            this.ctrlAgreementPhis.Size = new System.Drawing.Size(514, 220);
+            this.ctrlAgreementPhis.TabIndex = 0;
+            // 
             // pvPrint
             // 
             this.pvPrint.Controls.Add(this.btnLoadPdf);
@@ -506,7 +514,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(957, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(957, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -576,14 +584,6 @@
             this.ctrlTabNavigationExpanded.Name = "ctrlTabNavigationExpanded";
             this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(1102, 31);
             this.ctrlTabNavigationExpanded.TabIndex = 14;
-            // 
-            // ctrlAgreementPhis
-            // 
-            this.ctrlAgreementPhis.LicenseAgreementDataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
-            this.ctrlAgreementPhis.Location = new System.Drawing.Point(30, 4);
-            this.ctrlAgreementPhis.Name = "ctrlAgreementPhis";
-            this.ctrlAgreementPhis.Size = new System.Drawing.Size(514, 220);
-            this.ctrlAgreementPhis.TabIndex = 0;
             // 
             // AnketaConsumerPhisForm
             // 

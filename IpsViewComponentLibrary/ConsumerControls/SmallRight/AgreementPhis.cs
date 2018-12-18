@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
@@ -29,10 +30,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             get => bsLicenseAgreement.DataSource;
             set
             {
-                bsDictLicenseType.DataSource = IpsGlobal.AnketaDictionaties.licenseType;
-                bsDictPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
+                if (IpsGlobal.AnketaDictionaties != null)
+                {
+                    bsDictLicenseType.DataSource = IpsGlobal.AnketaDictionaties.agrLicenseType.Where(rec => rec.UsesKind != 1);
+                    bsDictPeriod.DataSource = IpsGlobal.AnketaDictionaties.period;
+                }
                 bsLicenseAgreement.DataSource = value;
-                bsLicenseAgrParam.DataSource = (value as LicenseAgreement)?.LicenseAgrParam;
+                if((value as LicenseAgreement)?.LicenseAgrParam is ObservableListSource<LicenseAgrParam> licenseAgrParam)
+                    bsLicenseAgrParam.DataSource = licenseAgrParam;
             }
         }
 

@@ -17,8 +17,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class AnketaConsumerPhisForm : RadForm
     {
-        public event EventHandler<bool> SaveClick;
-
+        private readonly LicenseAgreement _license;
         public AnketaConsumerPhisForm(Customer customer)
         {
             InitializeComponent();
@@ -72,14 +71,24 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 customer.BankAccount.Add(new BankAccount());
             }
             ctrlBankAccount.DataSource = customer.BankAccount.FirstOrDefault();
+            
+            // майданчики
+            ctrlPlaces.SetData(customer);
 
+            _license = customer.Client.LicenseAgreement.SingleOrDefault();
             // agreement
-            ctrlAgreementPhis.LicenseAgreementDataSource = customer.Client.LicenseAgreement;
+            ctrlAgreementPhis.LicenseAgreementDataSource = _license;
         }
 
         private void Save(object sender, bool e)
         {
-            SaveClick?.Invoke(sender, e);
+            // відразу підтверджений договір?
+            var status = e ? 2 : 0;
+            _license.LicStatus = status;
+            // ReSharper disable once PossibleNullReferenceException - is not null
+            _license.LicenseAgrParam.SingleOrDefault().LicStatus = status;
+            
+            DialogResult = DialogResult.OK;
         }
 
         private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)
