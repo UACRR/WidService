@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerForms
+﻿using IpsViewComponentLibrary.ConsumerControls.BigRight;
+
+namespace IpsViewComponentLibrary.ConsumerForms
 {
     partial class CabinetBigRightForm
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.cabinet = new IpsViewComponentLibrary.CabinetBigRight();
+            this.cabinet = new CabinetBigRight();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();

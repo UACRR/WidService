@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
-using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.RightholderControls.Anketa;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
     public partial class CabinetBigRight : UserControl
     {
@@ -32,7 +24,7 @@ namespace IpsViewComponentLibrary
             {"pvCalculation" , CabinetTabType.Calculations},
             {"pvFiles" , CabinetTabType.Files},
             {"pvAgent", CabinetTabType.Agent},
-            {"pvPays", CabinetTabType.Payments},
+            {"pvPays", CabinetTabType.PaysInfo},
             {"pvAvances", CabinetTabType.Prepays},
             {"pvContacts", CabinetTabType.Contacts}
         };
@@ -130,7 +122,7 @@ namespace IpsViewComponentLibrary
                 {CabinetTabType.Payslips, pvPayslips},
                 {CabinetTabType.Files, pvFiles},
                 {CabinetTabType.Agent, pvAgent},
-                {CabinetTabType.Payments, pvPays},
+                {CabinetTabType.PaysInfo, pvPays},
                 {CabinetTabType.Prepays, pvAvances},
                 {CabinetTabType.Contacts, pvContacts}
             };
@@ -189,6 +181,7 @@ namespace IpsViewComponentLibrary
             ctrlPayslips.UpdateData += UpdateData;
             ctrlPartner.UpdateData += UpdateData;
             ctrlCalculation.UpdateData += UpdateData;
+            ctrlPaysInfo.UpdateData += UpdateData;
         }
 
         private void CancelChange()
@@ -322,7 +315,7 @@ namespace IpsViewComponentLibrary
                     }
                     break;
 
-                case CabinetTabType.Payments:
+                case CabinetTabType.PaysInfo:
                     {
                         ctrlPaysInfo.Customer = _customer;
                     }

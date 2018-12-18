@@ -1,6 +1,4 @@
-﻿using IpsViewComponentLibrary.ConsumerControls;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
     partial class CabinetBigRight
     {
@@ -91,7 +89,7 @@ namespace IpsViewComponentLibrary
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvPays;
+            this.pageView.SelectedPage = this.pvGeneralAgreement;
             this.pageView.Size = new System.Drawing.Size(1146, 620);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";

@@ -337,6 +337,12 @@ namespace IpsViewComponentLibrary
                     ExtensionUtils.ShowInfoMessage("Не можливо створити ліцензію з довідки", "Помилка", MessageBoxIcon.Error);
             }
         }
+
+        // оновлення даних
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            UpdateData?.Invoke();
+        }
     }
 
     public enum SaveNeedStatus

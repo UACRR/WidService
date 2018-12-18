@@ -591,10 +591,10 @@
     <Compile Include="MiddleControlCabinetAvances.Designer.cs">
       <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetPayments.cs">
+    <Compile Include="_trash\MiddleControlCabinetPayments.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinetPayments.Designer.cs">
+    <Compile Include="_trash\MiddleControlCabinetPayments.Designer.cs">
       <DependentUpon>MiddleControlCabinetPayments.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectRightControls\AuthorRightholderBrListControl.cs">
@@ -1248,7 +1248,7 @@
     <EmbeddedResource Include="MiddleControlCabinetAvances.resx">
       <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetPayments.resx">
+    <EmbeddedResource Include="_trash\MiddleControlCabinetPayments.resx">
       <DependentUpon>MiddleControlCabinetPayments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderBrListControl.resx">

@@ -35,90 +35,12 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.agentEmail = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.agentPhone = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.agentPib = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.gvListFiles = new Telerik.WinControls.UI.RadGridView();
             this.btnAddFile = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-            this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvListFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvListFiles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddFile)).BeginInit();
             this.SuspendLayout();
-            // 
-            // agentEmail
-            // 
-            this.agentEmail.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agentEmail.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agentEmail.Location = new System.Drawing.Point(161, 39);
-            this.agentEmail.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.agentEmail.MinimumSize = new System.Drawing.Size(150, 25);
-            this.agentEmail.Name = "agentEmail";
-            this.agentEmail.Size = new System.Drawing.Size(264, 28);
-            this.agentEmail.SplitterRatio = 41;
-            this.agentEmail.StringFormat = "";
-            this.agentEmail.TabIndex = 3;
-            this.agentEmail.TextTitle = "Email";
-            this.agentEmail.TextValue = "";
-            this.agentEmail.ValueDataMemger = "";
-            this.agentEmail.ValueDataSource = null;
-            // 
-            // agentPhone
-            // 
-            this.agentPhone.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agentPhone.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agentPhone.Location = new System.Drawing.Point(3, 39);
-            this.agentPhone.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.agentPhone.MinimumSize = new System.Drawing.Size(150, 25);
-            this.agentPhone.Name = "agentPhone";
-            this.agentPhone.Size = new System.Drawing.Size(152, 28);
-            this.agentPhone.SplitterRatio = 35;
-            this.agentPhone.StringFormat = "";
-            this.agentPhone.TabIndex = 2;
-            this.agentPhone.TextTitle = "Тел.";
-            this.agentPhone.TextValue = "";
-            this.agentPhone.ValueDataMemger = "";
-            this.agentPhone.ValueDataSource = null;
-            // 
-            // agentPib
-            // 
-            this.agentPib.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agentPib.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.agentPib.Location = new System.Drawing.Point(3, 10);
-            this.agentPib.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.agentPib.MinimumSize = new System.Drawing.Size(150, 25);
-            this.agentPib.Name = "agentPib";
-            this.agentPib.Size = new System.Drawing.Size(422, 28);
-            this.agentPib.SplitterRatio = 35;
-            this.agentPib.StringFormat = "";
-            this.agentPib.TabIndex = 1;
-            this.agentPib.TextTitle = "ПІБ";
-            this.agentPib.TextValue = "";
-            this.agentPib.ValueDataMemger = "";
-            this.agentPib.ValueDataSource = null;
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(16, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(73, 18);
-            this.radLabel1.TabIndex = 2;
-            this.radLabel1.Text = "Представник";
-            // 
-            // radPanel1
-            // 
-            this.radPanel1.Controls.Add(this.agentEmail);
-            this.radPanel1.Controls.Add(this.agentPhone);
-            this.radPanel1.Controls.Add(this.agentPib);
-            this.radPanel1.Location = new System.Drawing.Point(3, 12);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(428, 74);
-            this.radPanel1.TabIndex = 3;
-            this.radPanel1.ThemeName = "Office2013Light";
             // 
             // gvListFiles
             // 
@@ -128,7 +50,7 @@
             this.gvListFiles.AutoScroll = true;
             this.gvListFiles.AutoSizeRows = true;
             this.gvListFiles.EnableCustomFiltering = true;
-            this.gvListFiles.Location = new System.Drawing.Point(3, 92);
+            this.gvListFiles.Location = new System.Drawing.Point(3, 3);
             // 
             // 
             // 
@@ -196,7 +118,7 @@
             this.gvListFiles.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvListFiles.Name = "gvListFiles";
             this.gvListFiles.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvListFiles.Size = new System.Drawing.Size(907, 311);
+            this.gvListFiles.Size = new System.Drawing.Size(907, 400);
             this.gvListFiles.TabIndex = 7;
             this.gvListFiles.ThemeName = "Office2013Light";
             this.gvListFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvListFiles_CommandCellClick);
@@ -218,28 +140,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnAddFile);
             this.Controls.Add(this.gvListFiles);
-            this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.radPanel1);
             this.MinimumSize = new System.Drawing.Size(913, 436);
             this.Name = "MiddleControlCabinetFiles";
             this.Size = new System.Drawing.Size(913, 436);
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-            this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvListFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvListFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddFile)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private SingleShowInformationControl agentEmail;
-        private SingleShowInformationControl agentPhone;
-        private SingleShowInformationControl agentPib;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadGridView gvListFiles;
         private Telerik.WinControls.UI.RadButton btnAddFile;
     }
