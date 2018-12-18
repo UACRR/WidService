@@ -1201,6 +1201,9 @@
     <EmbeddedResource Include="ConsumerForms\AnketaConsumerPhisForm.resx">
       <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImportDBF\ImportDBFControl.resx">
+      <DependentUpon>ImportDBFControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="_trash\ProlongationGeneralAgreement.resx">
       <DependentUpon>ProlongationGeneralAgreement.cs</DependentUpon>
     </EmbeddedResource>

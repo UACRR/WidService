@@ -48,10 +48,12 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvPartners = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartner = new IpsViewComponentLibrary.PartnerControls.PartnerControl();
-            this.radPageViewPage5 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvCommunity = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCommunity = new IpsViewComponentLibrary.CommunityControls.CommunityControl();
-            this.radPageViewPage6 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvPaymentProcessing = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvSystem = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iLicenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgrLicenseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -67,7 +69,7 @@ namespace ConsumerWorkplace_v_1._0
             this.iActivityTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgreementMasterBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iTypeVatBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.importDBFControl1 = new IpsViewComponentLibrary.ImportDBF.ImportDBFControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pageBigRights.SuspendLayout();
@@ -79,7 +81,8 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.SuspendLayout();
             this.pvConsumers.SuspendLayout();
             this.pvPartners.SuspendLayout();
-            this.radPageViewPage5.SuspendLayout();
+            this.pvCommunity.SuspendLayout();
+            this.pvPaymentProcessing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).BeginInit();
@@ -113,7 +116,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageParentConsumers.Location = new System.Drawing.Point(0, 0);
             this.pageParentConsumers.Margin = new System.Windows.Forms.Padding(0);
             this.pageParentConsumers.Name = "pageParentConsumers";
-            this.pageParentConsumers.SelectedPage = this.pageBigRights;
+            this.pageParentConsumers.SelectedPage = this.pageSmallRights;
             this.pageParentConsumers.Size = new System.Drawing.Size(1266, 601);
             this.pageParentConsumers.TabIndex = 0;
             this.pageParentConsumers.ThemeName = "Office2013Light";
@@ -193,8 +196,9 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.Controls.Add(this.radPageViewPage2);
             this.pageViewOwner.Controls.Add(this.radPageViewPage3);
             this.pageViewOwner.Controls.Add(this.pvPartners);
-            this.pageViewOwner.Controls.Add(this.radPageViewPage5);
-            this.pageViewOwner.Controls.Add(this.radPageViewPage6);
+            this.pageViewOwner.Controls.Add(this.pvCommunity);
+            this.pageViewOwner.Controls.Add(this.pvPaymentProcessing);
+            this.pageViewOwner.Controls.Add(this.pvSystem);
             this.pageViewOwner.DefaultPage = this.pvConsumers;
             this.pageViewOwner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewOwner.Location = new System.Drawing.Point(0, 0);
@@ -253,14 +257,14 @@ namespace ConsumerWorkplace_v_1._0
             this.ctrlPartner.Size = new System.Drawing.Size(1266, 601);
             this.ctrlPartner.TabIndex = 0;
             // 
-            // radPageViewPage5
+            // pvCommunity
             // 
-            this.radPageViewPage5.Controls.Add(this.ctrlCommunity);
-            this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(72F, 27F);
-            this.radPageViewPage5.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage5.Name = "radPageViewPage5";
-            this.radPageViewPage5.Size = new System.Drawing.Size(1266, 601);
-            this.radPageViewPage5.Text = "Спільноти";
+            this.pvCommunity.Controls.Add(this.ctrlCommunity);
+            this.pvCommunity.ItemSize = new System.Drawing.SizeF(72F, 27F);
+            this.pvCommunity.Location = new System.Drawing.Point(5, 31);
+            this.pvCommunity.Name = "pvCommunity";
+            this.pvCommunity.Size = new System.Drawing.Size(1266, 601);
+            this.pvCommunity.Text = "Спільноти";
             // 
             // ctrlCommunity
             // 
@@ -271,14 +275,23 @@ namespace ConsumerWorkplace_v_1._0
             this.ctrlCommunity.Size = new System.Drawing.Size(1266, 601);
             this.ctrlCommunity.TabIndex = 0;
             // 
-            // radPageViewPage6
+            // pvPaymentProcessing
             // 
-            this.radPageViewPage6.Enabled = false;
-            this.radPageViewPage6.ItemSize = new System.Drawing.SizeF(62F, 27F);
-            this.radPageViewPage6.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage6.Name = "radPageViewPage6";
-            this.radPageViewPage6.Size = new System.Drawing.Size(1266, 601);
-            this.radPageViewPage6.Text = "Система";
+            this.pvPaymentProcessing.Controls.Add(this.importDBFControl1);
+            this.pvPaymentProcessing.ItemSize = new System.Drawing.SizeF(105F, 27F);
+            this.pvPaymentProcessing.Location = new System.Drawing.Point(5, 31);
+            this.pvPaymentProcessing.Name = "pvPaymentProcessing";
+            this.pvPaymentProcessing.Size = new System.Drawing.Size(1266, 601);
+            this.pvPaymentProcessing.Text = "Розбір платежів";
+            // 
+            // pvSystem
+            // 
+            this.pvSystem.Enabled = false;
+            this.pvSystem.ItemSize = new System.Drawing.SizeF(62F, 27F);
+            this.pvSystem.Location = new System.Drawing.Point(5, 31);
+            this.pvSystem.Name = "pvSystem";
+            this.pvSystem.Size = new System.Drawing.Size(1266, 601);
+            this.pvSystem.Text = "Система";
             // 
             // iAnketaCompanyBindingSource
             // 
@@ -340,6 +353,14 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.iTypeVatBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ITypeVat);
             // 
+            // importDBFControl1
+            // 
+            this.importDBFControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.importDBFControl1.Location = new System.Drawing.Point(0, 0);
+            this.importDBFControl1.Name = "importDBFControl1";
+            this.importDBFControl1.Size = new System.Drawing.Size(1266, 601);
+            this.importDBFControl1.TabIndex = 0;
+            // 
             // ConsumerWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -367,7 +388,8 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
             this.pvPartners.ResumeLayout(false);
-            this.radPageViewPage5.ResumeLayout(false);
+            this.pvCommunity.ResumeLayout(false);
+            this.pvPaymentProcessing.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).EndInit();
@@ -415,8 +437,8 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage3;
         private Telerik.WinControls.UI.RadPageViewPage pvPartners;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage5;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage6;
+        private Telerik.WinControls.UI.RadPageViewPage pvCommunity;
+        private Telerik.WinControls.UI.RadPageViewPage pvSystem;
         private System.Windows.Forms.BindingSource licenseAgrParamBindingSource;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadTreeView treeViewBR;
@@ -425,5 +447,7 @@ namespace ConsumerWorkplace_v_1._0
         private IpsViewComponentLibrary.PartnerControls.PartnerControl ctrlPartner;
         private IpsViewComponentLibrary.CommunityControls.CommunityControl ctrlCommunity;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private Telerik.WinControls.UI.RadPageViewPage pvPaymentProcessing;
+        private IpsViewComponentLibrary.ImportDBF.ImportDBFControl importDBFControl1;
     }
 }
