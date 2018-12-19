@@ -8,6 +8,7 @@ namespace ipsmedserviceapp.Model
         public InputFile()
         {
             CheckParamPays = new HashSet<CheckParamPays>();
+            ExternalPay = new HashSet<ExternalPay>();
         }
 
         public int FileId { get; set; }
@@ -18,7 +19,7 @@ namespace ipsmedserviceapp.Model
         public int CountInput { get; set; }
         public int CountAutoLink { get; set; }
 
-        public AspNetUsers Asp { get; set; }
         public ICollection<CheckParamPays> CheckParamPays { get; set; }
+        public ICollection<ExternalPay> ExternalPay { get; set; }
     }
 }

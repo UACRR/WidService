@@ -9,6 +9,7 @@ namespace ipsFormsDesign.Model
         public InputFile()
         {
             CheckParamPays = new ObservableListSource<CheckParamPays>();
+            ExternalPay = new ObservableListSource<ExternalPay>();
         }
 
         public int FileId { get; set; }
@@ -19,8 +20,8 @@ namespace ipsFormsDesign.Model
         public int CountInput { get; set; }
         public int CountAutoLink { get; set; }
 
-        public AspNetUsers Asp { get; set; }
         public ObservableListSource<CheckParamPays> CheckParamPays { get; set; }
+        public ObservableListSource<ExternalPay> ExternalPay { get; set; }
     }
 }
 

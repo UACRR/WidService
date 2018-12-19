@@ -2251,6 +2251,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.InputStatus).HasColumnName("inputStatus");
 
+                entity.Property(e => e.MfoCorr)
+                    .HasColumnName("mfoCorr")
+                    .HasMaxLength(256)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Nplat)
                     .IsRequired()
                     .HasColumnName("nplat")
@@ -3965,6 +3970,11 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.ExternalPay)
                     .HasForeignKey(d => d.CustId)
                     .HasConstraintName("FK_EXTERNAL_REFERENCE_CLIENT");
+
+                entity.HasOne(d => d.InputFile)
+                    .WithMany(p => p.ExternalPay)
+                    .HasForeignKey(d => d.InputFileId)
+                    .HasConstraintName("FK_EXTERNAL_REFERENCE_INPUTFIL");
             });
 
             modelBuilder.Entity<FileCustomer>(entity =>
@@ -4309,11 +4319,6 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.InputTime)
                     .HasColumnName("inputTime")
                     .HasColumnType("datetime");
-
-                entity.HasOne(d => d.Asp)
-                    .WithMany(p => p.InputFile)
-                    .HasForeignKey(d => d.AspId)
-                    .HasConstraintName("FK_INPUTFIL_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<Invoice>(entity =>
