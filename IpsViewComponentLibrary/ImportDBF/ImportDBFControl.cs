@@ -74,6 +74,7 @@ namespace IpsViewComponentLibrary.ImportDBF
                 StartPosition = FormStartPosition.CenterScreen,
                 WindowState = FormWindowState.Maximized
             };
+
             // заглушка
             var list = new List<object>
             {
