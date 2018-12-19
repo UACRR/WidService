@@ -272,6 +272,7 @@
             this.gvUndistribPays.Size = new System.Drawing.Size(888, 377);
             this.gvUndistribPays.TabIndex = 7;
             this.gvUndistribPays.ThemeName = "Office2013Light";
+            this.gvUndistribPays.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvUndistribPays_CellDoubleClick);
             this.gvUndistribPays.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvUndistribPays_CommandCellClick);
             // 
             // ImportDBFControl

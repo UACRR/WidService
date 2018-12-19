@@ -19,18 +19,27 @@ namespace IpsViewComponentLibrary.ImportDBF
             InitializeComponent();
             Leave += Control_Leave;
             lblFileName.Text = DefaultFileName;
+            gvUndistribPays.DataSource = new List<object>
+            {
+                new
+                {
+                    AgrNumber = "FF9890890890"
+                },
+                new
+                {
+                    AgrNumber = "95858-569845"
+                },
+                new
+                {
+                    AgrNumber = "584/54-5454/RTE5"
+                },
+            };
         }
 
         private void Control_Leave(object sender, EventArgs e)
         {
             lblFileName.Text = DefaultFileName;
             // clear stream or selected file
-        }
-
-        // прив'язати платіж до клієнта
-        private void gvUndistribPays_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            // some code
         }
 
         // обрати файл
@@ -116,6 +125,29 @@ namespace IpsViewComponentLibrary.ImportDBF
             {
                 // збереження таблиці в базі
             }
+        }
+
+        private void gvUndistribPays_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if(e.Column.FieldName == "btnAttach")
+                return;
+            PaymentsAttach();
+        }
+
+        // прив'язати платіж до клієнта
+        private void gvUndistribPays_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            // some code
+            PaymentsAttach();
+        }
+
+        private void PaymentsAttach()
+        {
+            var paymentsAttach = new PaymentsAttachForm(new[] { "5256365", "Ресторанний комплекс на Дніпрі", "оплата за рік на рахунок №9919450654456" })
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            paymentsAttach.ShowDialog();
         }
     }
 }
