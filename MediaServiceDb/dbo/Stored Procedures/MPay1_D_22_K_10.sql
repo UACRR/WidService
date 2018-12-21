@@ -55,8 +55,15 @@ from Externalpay
 where 
 	status=1
 
+  	if @@error	<> 0
+		goto __retErr
+
+
 update #doc set 
 custID= null
+
+  	if @@error	<> 0
+		goto __retErr
 
 update #doc 
 set custID = t2.custid
@@ -66,8 +73,23 @@ where t2.mfo = cast( t3.mfoCorr as numeric )
 and t2.accountNumber = t3.accountCorr
 and t1.paidId =t3.paidId
 
+  	if @@error	<> 0
+		goto __retErr
+
 delete #doc
 where custid is null
+
+goto   __forward
+
+__retErr:
+
+return 1
+
+__forward:
+
+
+
+
 
 if (select count(*) from #doc)<>0
 --обработка согласованных заявок
@@ -169,6 +191,11 @@ BEGIN
 	AccCredit='100001'	and
 	AccDebet like '22%'	and
 	dateOper=@DateOper
+
+  	if @@error	<> 0
+		goto __retErr
+
+
 begin Transaction 
 BEGIN TRY
 	exec Pay_Pay_SaldoDay

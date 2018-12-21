@@ -78,7 +78,7 @@ insert #doc1
 		amountMy,	amountBalans,	amountPay,cRType,distType, custIdRh
 		)
 select   
-		t3.regIItemId,  t1.distId,t1.regId,--t1.periodId,
+		isnull(t3.regIItemId,0),  t1.distId,t1.regId,--t1.periodId,
 		t1.distribDate,t3.amount,t1.CrKindCode,
 		t4.objid,null ItemName,null categoryCode ,null  AccIdDebet,null AccIdCredit ,
 		'21000'+convert(varchar(10),isnull(t4.cmCustId,t4.custId)) AccDebet,
@@ -93,16 +93,25 @@ where
 		t3.distItemId=t4.distItemId and
 		t3.distId=t1.distid and
 		t1.status=2		and
-		t1.distType=2
+		t1.distType=2	
+  	if @@error	<> 0
+		goto __retErr
+
 
 update #doc1
 set 
 amountMy=round(amount* isnull(rate,0)/100.,2)
 
+  	if @@error	<> 0
+		goto __retErr
+/*
 insert #balance(id,distid,regIItemId,amountBals)
-select max(id) id,distid,regIItemId,(sum(amountMy) - max(amount)) amountBals
+select max(id) id,distid,isnull(regIItemId,0),(sum(amountMy) - max(amount)) amountBals
 from #doc1
 group by distId,regIItemId
+
+  	if @@error	<> 0
+		goto __retErr
 
 update t2
 set 
@@ -112,17 +121,32 @@ where
  t1.distid=t2.distid 	and
  t1.regIItemId=t2.regIItemId
 
+   	if @@error	<> 0
+		goto __retErr
+
 
 update #doc1
 set amountPay=amountMy-amountBalans
 
+  	if @@error	<> 0
+		goto __retErr
+*/
 update t1
 set paynote=ltrim(rtrim(t4.Name))+'  '+ltrim(rtrim(t4.Author))
 from #doc1 t1,ObjectRight t4
 where
 t1.ObjId=t4.ObjId
 
-if  @@ROWCOUNT<>0
+ 	if @@error	<> 0
+		goto __retErr
+goto   __forward
+
+__retErr:
+
+return 1
+
+__forward:
+
 
 BEGIN
 	begin Transaction 
@@ -160,6 +184,7 @@ BEGIN CATCH
 END CATCH
 END
 
+	
 declare @DateOper date
 declare curso  cursor for   select    distinct dateOper from 
 DocPreparePay
@@ -187,11 +212,16 @@ PayStatus=1
 and isnull(flCourt,0)=0
 and dateOper=@DateOper
 
+ 	if @@error	<> 0
+		goto __retErr
+
+
+
 begin Transaction 
 BEGIN TRY
-
-
 exec Pay_Pay_SaldoDay
+	
+
 
 insert PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
 						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid
@@ -212,9 +242,9 @@ t2.DocPayId=t1.TurnId
 update t2
 set 
 t2.status=3
-from Distribution  t2
+from Distribution  t2,#PayTurn t1
 where
-t2.regId in (select distinct regId from #PayTurn)
+t2.distId=t1.distId
 
 IF @@TRANCOUNT > 0 commit tran
 END TRY

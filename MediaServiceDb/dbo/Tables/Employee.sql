@@ -1,16 +1,19 @@
 ﻿CREATE TABLE [dbo].[Employee] (
-    [emplid]      INT           IDENTITY (1, 1) NOT NULL,
-    [custId]      INT           NULL,
-    [userId]      NVARCHAR (48) NULL,
-    [firstName]   VARCHAR (254) NULL,
-    [surName]     VARCHAR (254) NULL,
-    [lastName]    VARCHAR (254) NULL,
-    [phoneNumber] VARCHAR (254) NULL,
-    [email]       VARCHAR (254) NULL,
+    [emplid]      INT            IDENTITY (1, 1) NOT NULL,
+    [custId]      INT            NULL,
+    [userId]      NVARCHAR (48)  NULL,
+    [firstName]   VARCHAR (254)  NULL,
+    [surName]     VARCHAR (254)  NULL,
+    [lastName]    VARCHAR (254)  NULL,
+    [phoneNumber] VARCHAR (254)  NULL,
+    [email]       VARCHAR (254)  NULL,
+    [comment]     VARCHAR (1024) NULL,
     CONSTRAINT [PK_EMPLOYEE] PRIMARY KEY CLUSTERED ([emplid] ASC),
     CONSTRAINT [FK_EMPLOYEE_REFERENCE_ASPNETUS] FOREIGN KEY ([userId]) REFERENCES [dbo].[AspNetUsers] ([id]),
     CONSTRAINT [FK_EMPLOYEE_REFERENCE_CUSTOMER] FOREIGN KEY ([custId]) REFERENCES [dbo].[Customer] ([custId])
 );
+
+
 
 
 GO

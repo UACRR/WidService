@@ -78,6 +78,17 @@ from
 			 and t7.dateEnd='30000101'
 			 and t7.rest<>0
 
+ 	if @@error	<> 0
+		goto __retErr
+goto   __forward
+
+__retErr:
+
+return 1
+
+__forward:
+
+
 if  @@ROWCOUNT=0
 return 0
 
@@ -249,6 +260,12 @@ where
 PayStatus=1			
 --and isnull(flCourt,0)=0
 and dateOper=@DateOper
+
+ 	if @@error	<> 0
+		goto __retErr
+goto   __forward
+
+
 
 begin Transaction 
 BEGIN TRY

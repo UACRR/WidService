@@ -1,8 +1,11 @@
 ﻿CREATE TABLE [dbo].[Partner] (
     [custId] INT NOT NULL,
+    [isMy]   BIT NULL,
     CONSTRAINT [PK_PARTNER] PRIMARY KEY CLUSTERED ([custId] ASC),
     CONSTRAINT [FK_PARTNER_REFERENCE_CUSTOMER] FOREIGN KEY ([custId]) REFERENCES [dbo].[Customer] ([custId])
 );
+
+
 
 
 GO

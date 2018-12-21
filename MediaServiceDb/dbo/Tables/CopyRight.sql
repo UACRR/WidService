@@ -23,15 +23,19 @@
 );
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [Association10_FK]
     ON [dbo].[CopyRight]([custId] ASC);
 
 
 GO
-CREATE trigger dbo.CopyRightUpdate on dbo.CopyRight for update as
+--drop trigger CopyRightUpdate
+
+CREATE trigger [dbo].[CopyRightUpdate] on [dbo].[CopyRight] for update as
 begin
-SET NOCOUNT ON;
+-- SET NOCOUNT ON;
    declare
 	  @copyRt   CopyRightParam,
       @numrows  int,
@@ -42,7 +46,7 @@ SET NOCOUNT ON;
       select  @numrows = @@rowcount
       if @numrows = 0
          return
-
+     
 	  if( UPDATE( status ) )
 	  begin
 	  -- Перевірка правильності зміни статусу 
@@ -59,7 +63,7 @@ SET NOCOUNT ON;
 	  end
 
 	  insert into @copyRt(cRightId, objid )
-	  select cRightId, objid from inserted where status = 1
+	  select cRightId, objid from inserted where status = 1 and getdate() between beginDate and endDate
 
 	  if (select count(*) from @copyRt ) = 0
 		return;

@@ -1,4 +1,6 @@
-﻿CREATE view [dbo].[vCustomer] as 
+﻿
+
+CREATE view [dbo].[vCustomer] as 
  with Cust as 
 ( select t1.custId, custType, status, ankVersion, ankPublish, ankTech, 
   (Case When t2.custid is NUll Then 0 else 1 end) as isRHolder,
@@ -16,7 +18,8 @@
 select
    t1.custId,
    t1.custType,
-   t3.name,
+   isnull(t3.shortName, t3.name) as name,
+   t3.name as fullName,
    t1.isRHolder,
    t1.isClient,
    t1.isPartner,
@@ -43,7 +46,9 @@ union
 select
    t1.custId,
    t1.custType,
-   isnull(t3.LastName,'')+' '+isnull(t3.FirstName,'') + ' ' + isnull(t3.SurName,''),
+   isnull(t3.LastName,'')+' '+isnull(t3.FirstName,'') + ' ' + isnull(t3.SurName,'') as fullName ,
+   --isnull(t3.LastName,'')+' '+isnull((substring(t3.FirstName,1,1)+'.'),'') + ' ' + isnull((substring(t3.SurName,1,1)+'.'),'') as name,
+   isnull(t3.LastName,'')+' '+isnull(t3.FirstName,'') + ' ' + isnull(t3.SurName,'') as fullName ,
    t1.isRHolder,
    t1.isClient,
    t1.isPartner,
@@ -72,6 +77,7 @@ select
    t1.custId,
    t1.custType as custType,
    name,
+   name as fullName,
    t1.isRHolder,
    t1.isClient,
    t1.isPartner,

@@ -62,6 +62,18 @@ where
 		and t7.rest>0
 		and  t8.accNls='100001'
 
+ 	if @@error	<> 0
+		goto __retErr
+goto   __forward
+
+__retErr:
+
+return 1
+
+__forward:
+
+
+
 if  @@ROWCOUNT=0
 return 0
 
@@ -123,6 +135,9 @@ PayStatus=1
 and accDebet like '10%'
 and accCredit like'20%'
 and dateOper=@DateOper
+
+ 	if @@error	<> 0
+		goto __retErr
 
 
 begin Transaction 

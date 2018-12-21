@@ -36,11 +36,11 @@ tinyint, @d1 tinyint
          when 8 then ' вісімдесят' 
          when 9 then ' дев''яносто' else '' end
         +case @d1
-         when 1 then (case when @th=2 or (@th=1 and @IsMaleGender=0) then ' один' else ' одна' end)
-         when 2 then (case when @th=2 or (@th=1 and @IsMaleGender=0) then ' два' else ' дві' end)
+         when 1 then (case when @th=2 or (@th=1 and @IsMaleGender=0) then ' одна' else ' один' end)
+         when 2 then (case when @th=2 or (@th=1 and @IsMaleGender=0) then ' дві' else ' два' end)
          when 3 then ' три' 
          when 4 then ' чотири' 
-         when 5 then ' п''ять'
+         when 5 then 'п''ять'
          when 6 then ' шість' 
          when 7 then ' сім' 
          when 8 then ' вісім'
@@ -56,7 +56,7 @@ tinyint, @d1 tinyint
          when 18 then ' вісімнадцять' 
          when 19 then ' дев''ятнадцять' else '' end
         +case @th
-         when 2 then ' тысяч'   +(case when @d1=1 then 'а' when @d1 in (2,3,4) then 'і' else ''  end)
+         when 2 then ' тисяч'   +(case when @d1=1 then 'а' when @d1 in (2,3,4) then 'і' else ''  end)
          when 3 then ' мільон' 
          when 4 then ' мільярд' 
          when 5 then ' триліон' 

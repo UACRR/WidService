@@ -19,8 +19,14 @@
     [sNcCur]      NUMERIC (20, 2) NULL,
     [status]      INT             NULL,
     [dateOper]    DATE            NULL,
-    CONSTRAINT [PK_EXTERNALPAY] PRIMARY KEY CLUSTERED ([paidId] ASC)
+    [inputFileId] INT             NULL,
+    [custId]      INT             NULL,
+    CONSTRAINT [PK_EXTERNALPAY] PRIMARY KEY CLUSTERED ([paidId] ASC),
+    CONSTRAINT [FK_EXTERNAL_REFERENCE_CLIENT] FOREIGN KEY ([custId]) REFERENCES [dbo].[Client] ([custId]),
+    CONSTRAINT [FK_EXTERNAL_REFERENCE_INPUTFIL] FOREIGN KEY ([inputFileId]) REFERENCES [dbo].[inputFile] ([fileId])
 );
+
+
 
 
 GO

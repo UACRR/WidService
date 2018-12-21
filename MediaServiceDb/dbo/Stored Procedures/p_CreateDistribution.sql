@@ -83,7 +83,7 @@ BEGIN TRY
 	-- t2.rmId = 125 and  -- отладка 125 РЛ
 	pp.status between 2 and 7 and 
 	pp.status != 4 and -- всі окрім судової роботи
-	pp.undistribamount <> 0
+	pp.undistribamount > 0
     group by pp.periodId
     having count(*) = sum( case when t2.rgStatus >= 3 then 1 else 0 end ) -- Статус  
 			and sum( case when t3.objId is null then 1 else 0 end ) = 0 -- всі об'єкти прив'язані
@@ -131,6 +131,9 @@ BEGIN TRY
 	from regSum t1
 	join rmSum t2 on t2.rmId = t1.rmId;
 
+	--print '@regTicks'
+	--select * from @regTicks
+	
 	-- Видалити звіти суми яких поза нерозподіленого залишку періоду
 	delete @regTicks 
 	from @regTicks t1
@@ -139,7 +142,8 @@ BEGIN TRY
 	where
 	t1.runRegSum > t3.periodAmount;  
 
-
+	--print '@regTicks'
+	--select * from @regTicks
 -- Суми по розрахунковому листу з проставленими сумами
 -- Враховувати, що сума періоду може бути меньшою за суму звіту
     insert into @workedRmid(periodid,rmid,ticks, regAmount)
@@ -152,7 +156,8 @@ BEGIN TRY
 		   group by ti.rmId
 		   ) t3  on t3.rmId = t2.rmId 
 	where
-	t1.withSum = 1;
+	t1.withSum = 1
+	and t2.royalty > isnull(t2.paidAmount,0);
 
 -- Суми по розрахунковому листу з непроставленими сумами для алгоритму 1(по тривалості звучанню)
     
@@ -199,6 +204,11 @@ BEGIN TRY
 	and ti.algorithmId = 2
 	group by t2.rmId;
 
+	--print '@workedRmid 1';
+	--select * from @workedRmid;
+
+	delete @workedRmid where regAmount <= 0;
+
 -- Якщо немає РЛ для оплати -- Вихід
     if( (select count(*) from @workedRmid ) = 0 )
     begin
@@ -221,7 +231,7 @@ BEGIN TRY
 	join deltaSum t3 on t3.periodid = t1.periodid;
 
 
-	--print '@workedRmid';
+	--print '@workedRmid 2';
 	--select * from @workedRmid;
 
 	
@@ -255,20 +265,21 @@ BEGIN TRY
 		join Register t1 on t1.rmid = t0.rmid
 		join RegisterItem t2 on t2.regid = t1.regId 
 	)
-	,role_right as -- for roleRate 
-	(
-		select t1.objid, sum(t1.roleRate) as sumRoleRate from 
-		workedObjid t0
-		join Copyright t1 on t1.objId = t0.objid and t1.status = 1
-		where t1.roleRate is not null
-		group by t1.objid
-	)
+	--,role_right as -- for roleRate 
+	--(
+	--	select t1.objid, sum(t1.roleRate) as sumRoleRate from 
+	--	workedObjid t0
+	--	join Copyright t1 on t1.objId = t0.objid and getdate() between t1.beginDate and t1.endDate
+	--	where t1.roleRate is not null
+	--	group by t1.objid
+	--)
 	insert into @updateRate
     select t1.regId, t1.regIItemId, t1.objId, t2.custId, isnull(t2.cRType,1) as cRType, t6.kindCode
-								, case when t2.roleRate is null and t2.rate is not null then t2.rate
-									   when t2.roleRate is null and t2.rate is null then 100 
-									   when t2.roleRate is not null and t3.sumRoleRate is not null then t2.roleRate / t3.sumRoleRate * 100
-									   else 100 end 
+								--, case when t2.roleRate is null and t2.rate is not null then t2.rate
+								--	   when t2.roleRate is null and t2.rate is null then 100 
+								--	   when t2.roleRate is not null and t3.sumRoleRate is not null then t2.roleRate / t3.sumRoleRate * 100
+								--	   else 100 end 
+								, t2.rate
 								, isnull(t2.rateCommiss,20) as rateCommiss
 								, t2.cmCustId
 
@@ -276,7 +287,7 @@ BEGIN TRY
     join lic t5 on t5.regId = t1.regId 
 	join AgrLicenseType t6 on t6.codeI = t5.licCode 
     left outer join vCopyright t2 on t2.objId = t1.objId and t2.status = 1 and t6.kindCode = t2.CRKindCode
-	left outer join role_right t3 on t3.objId = t1.objid
+	--left outer join role_right t3 on t3.objId = t1.objid
 	-- поновлюємо таблицю розподілу по новим правовласникам
 	
 	--print '@updateRate';
@@ -353,9 +364,11 @@ BEGIN TRY
     from @workedPeriod t1
     join @workedRmid treg on treg.periodid = t1.periodid
     join Register t2 on t2.rmId = treg.rmid
+    join @regTicks ti on ti.regid = t2.regId
     left outer join vPartner t4 on t4.clCustId = t2.custId
    where 
    isnull(t2.authAmount,0) + isnull(t2.musicAmount,0) > 0
+   and isnull(t2.authAmount,0) + isnull(t2.musicAmount,0) < t2.paidAmount -- неоплачені
    and treg.ticks > 0;
 
    --print '@distrib';
@@ -483,8 +496,8 @@ BEGIN TRY
 	join itemRow t3 on t3.distId = t1.distId and t3.distItemId = t1.distItemId and t3.rowid = 1;
 
 	--print '@distrib';
-	--select t3.* from 		@balansRmid t2
-	--	 join DistributionItem t3 on t3.regId = t2.parentId and t3.regIItemId = t2.id
+	--select t2.*, t3.* from 		@distrib t2
+	--	 join DistributionItem t3 on t3.distId = t2.distid 
 
     -- скидаємо суму для розподілу
 

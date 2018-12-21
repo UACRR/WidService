@@ -129,20 +129,37 @@ where
 		t1.distType=3
 --and t1.distId=19
 
+
+
+  	if @@error	<> 0
+		goto __retErr
+
 update #doc1
 set 
 amountMy=round(amount* isnull(rate,0)/100.,2)
 
+  	if @@error	<> 0
+		goto __retErr
+
 insert #balance(id,distid,regIItemId,amountBals)
-select max(id) id,distid,regIItemId,(sum(amountMy) - max(amount)) amountBals
+select max(id) id,distid,isnull(regIItemId,0),(sum(amountMy) - max(amount)) amountBals
 from #doc1
 group by distId,regIItemId
+
+  	if @@error	<> 0
+		goto __retErr
+
+
 update t2
 set 
 amountBalans=t1.amountBals
 from #balance t1,#doc1 t2
 where 
 t2.id=t1.id
+
+  	if @@error	<> 0
+		goto __retErr
+
 /*t1.distid=t2.distId
 and t1.regIItemId=t2.regIItemId
 */
@@ -156,18 +173,28 @@ and t1.cRType=t2.cRType
 and t1.CrKindCode=t2.CRKindCode
 and t1.objid=t2.objId
 
+  	if @@error	<> 0
+		goto __retErr
 
 update #doc1
 set amountMy=amountMy-amountBalans
+
+  	if @@error	<> 0
+		goto __retErr
 
 update #doc1
 set 
 amountComm=round(amountMy* isnull(rateCommiss,0)/100.,2)
 
+  	if @@error	<> 0
+		goto __retErr
 
 update #doc1
 set 
 amountPay=amountMy-amountComm
+
+  	if @@error	<> 0
+		goto __retErr
 
 update #doc1
 set 
@@ -176,6 +203,8 @@ from  #doc1 t1,Account t2
 where
 t2.accNls=t1.AccCredit
 
+  	if @@error	<> 0
+		goto __retErr
 
 insert #Doc (
 	regIItemId,
@@ -202,6 +231,9 @@ from #doc1 t1,RegisterItem t4
 where
 t4.regIItemId=t1.regIItemId
 and t1.regid=t4.regid
+
+  	if @@error	<> 0
+		goto __retErr
 
 insert #Doc (
 	regIItemId,
@@ -238,6 +270,9 @@ and t1.regid=t4.regid
 and t3.ankMy=1
 and isnull(t1.countFee,0)<>0
 group by t1.regId,t1.distId
+
+  	if @@error	<> 0
+		goto __retErr
 
 insert #Doc (
 	regIItemId,
@@ -279,6 +314,9 @@ and t3.ankMy=1
 and isnull(t1.partnerCommiss,0)<>0
 group by t1.regIItemId,t1.regId,t1.distId
 
+  	if @@error	<> 0
+		goto __retErr
+
 
 insert #Doc (
 	regIItemId,
@@ -312,6 +350,10 @@ and t1.regid=t4.regid
 and t3.ankMy=1
 and t1.amountComm<>0
 
+  	if @@error	<> 0
+		goto __retErr
+
+
 update t1
 set paynote=ltrim(rtrim(t4.Name))+'  '+ltrim(rtrim(t4.Author))
 from #doc t1,ObjectRight t4
@@ -319,6 +361,17 @@ where
 t1.ObjId=t4.ObjId
 and paynote is null
 
+  	if @@error	<> 0
+		goto __retErr
+
+goto   __forward
+
+__retErr:
+
+return 1
+
+
+__forward:
 
 BEGIN
 	begin Transaction 
@@ -466,6 +519,9 @@ where
 	PayStatus=1	
 	and isnull(flCourt,0)=0	and
 	dateOper=@DateOper	
+
+  	if @@error	<> 0
+		goto __retErr
 
 
 begin Transaction 

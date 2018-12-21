@@ -112,6 +112,8 @@ t6.objId=t4.objid
 and t1.status=2
 and t1.distType=4
 
+ 	if @@error	<> 0
+		goto __retErr
 
 
 update #doc1
@@ -121,6 +123,8 @@ from  #doc1 t1,Account t2
 where
 t2.accNls=t1.AccCredit
 
+ 	if @@error	<> 0
+		goto __retErr
 
 insert #Doc (	regIItemId,	distId,	regId	,--	periodId,	
 distribDate,	amount,	kindcode,	custId,	objid,	ItemName,	categoryCode,
@@ -135,6 +139,9 @@ where
 			t4.regIItemId=t1.regIItemId
 			and t1.regid=t4.regid
 
+ 	if @@error	<> 0
+		goto __retErr
+
 insert #Doc (	regIItemId,	distId,	regId	,	--periodId,
 	distribDate,	amount,	kindcode,	custId,	objid,
 						ItemName,	categoryCode,	AccIdDebet,	AccIdCredit,	AccDebet	,	AccCredit	,	paynote
@@ -144,6 +151,9 @@ select
 						t1.distribDate,t1.countFee,t1.CrKindCode,t1.custsource ,t1.objid,
 						ItemName,t1.categoryCode ,AccIdDebet,  AccIdCredit,	'110003',	AccCredit	,'Судові витрати'
 from #doc1 t1
+
+ 	if @@error	<> 0
+		goto __retErr
 
 insert #Doc (	regIItemId,	distId,	regId	,--	periodId,
 	distribDate,	amount,	kindcode,	custId,	objid,
@@ -155,6 +165,17 @@ select
 						t1.distribDate,t1.partnerCommiss,t1.CrKindCode,t1.custsource ,t1.objid,
 						ItemName,t1.categoryCode ,AccIdDebet,  AccIdCredit,	AccPartner,	AccCredit	,'Комісія за суд'
 from #doc1 t1
+
+ 	if @@error	<> 0
+		goto __retErr
+goto   __forward
+
+__retErr:
+
+return 1
+
+__forward:
+
 
 BEGIN
 	begin Transaction 
@@ -276,6 +297,8 @@ where
 	dateOper=@DateOper
 --and isnull(flCourt,0)=0		
 
+ 	if @@error	<> 0
+		goto __retErr
 
 begin Transaction 
 BEGIN TRY

@@ -129,12 +129,18 @@ where
 	d1.status=2	and
 		d1.distType=1
 
+  	if @@error	<> 0
+		goto __retErr
 
 --определение суммы каждого правообладателя 
 update #doc1
 set 
 	amountMy=round(amount* isnull(rate,0)/100.,2)
 --балансировка
+
+  	if @@error	<> 0
+		goto __retErr
+
 insert #balance
 			(id,distid,objid,regIItemId,amountBals)
 select 
@@ -142,6 +148,9 @@ select
 from #doc1
 group by distId,objid,regIItemId
 
+  	if @@error	<> 0
+		goto __retErr
+/*
 update t2
 	set 
 		amountBalans=t1.amountBals
@@ -149,18 +158,30 @@ update t2
 	where 
 		t2.id=t1.id
 
+  	if @@error	<> 0
+		goto __retErr
+
 update #doc1
 set amountMy=amountMy-amountBalans
 
+  	if @@error	<> 0
+		goto __retErr
+*/
 update #doc1
 set 
 		amountPay=amountMy
+
+  	if @@error	<> 0
+		goto __retErr
 
 --технические счета при отсутсвии правообладателей
 update #doc1
 set AccDebet=rtrim(STUFF('31100',6-len(convert (varchar(2),CrKindCode)),len(convert (varchar(2),CrKindCode)),convert (varchar(2),CrKindCode))
 		+convert(varchar(10),ObjId))		
 where custId is  null
+
+  	if @@error	<> 0
+		goto __retErr
 
 update #doc1
 	set 
@@ -169,6 +190,9 @@ update #doc1
 	where
 		t2.accNls=t1.AccCredit
 --открытие отсутствующих счетов
+
+  	if @@error	<> 0
+		goto __retErr
 
 if not exists(select 1 from Account where accNls='110001')
 	begin
@@ -191,12 +215,24 @@ select
 from 
 		#doc1 t1
 
+  	if @@error	<> 0
+		goto __retErr
 
 update t1
 		set paynote=ltrim(rtrim(t4.Name))+'  '+ltrim(rtrim(t4.Author))
 		from #doc t1,ObjectRight t4
 		where
 				t1.ObjId=t4.ObjId
+
+ 	if @@error	<> 0
+		goto __retErr
+goto   __forward
+
+__retErr:
+
+return 1
+
+__forward:
 
 BEGIN
 	begin Transaction 
@@ -335,6 +371,11 @@ insert #PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCr
 	(AccDebet like '31%' or AccDebet like '21%')	and
 	AccCredit like '30%'
 			and dateOper=@DateOper
+
+  	if @@error	<> 0
+		goto __retErr
+
+
 begin Transaction 
 BEGIN TRY
 		exec Pay_Pay_SaldoDay
@@ -357,8 +398,7 @@ update t2
 			t2.status=3
 				from Distribution  t2
 					where
-						t2.regId in (select distinct regId from #PayTurn)
-						or t2.distId in (select distinct distId from #PayTurn)
+						t2.distId in (select distinct distId from #PayTurn)
 
 IF @@TRANCOUNT > 0 commit tran
 END TRY

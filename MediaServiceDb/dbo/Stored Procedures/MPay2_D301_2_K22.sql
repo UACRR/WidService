@@ -94,6 +94,9 @@ t1.distribDate ,t3.rAmount,t1.cRKindCode,t2.custId,t3.objId,t3.ItemName ,
 		t3.regId=t2.regId		and
 		t1.status=1
 
+  	if @@error	<> 0
+		goto __retErr
+
 
 insert #partner(		distid,regId,custid	,distribDate,	partnerId	,partnerComiss,	AccIdDebet,	AccIdCredit,	AccDebet, AccCredit
 						)
@@ -106,6 +109,8 @@ where
 		(t2.custId is not null and isnull(t1.partnerId,0)<>0 and isnull (t1.partnerCommiss,0)<>0)	
 		and t3.distid=t1.distid
 
+  	if @@error	<> 0
+		goto __retErr
 
 
 --select * from #doc
@@ -117,13 +122,25 @@ update t1
 	where
 			t1.ObjId=t4.ObjId
 
+
+ 	if @@error	<> 0
+		goto __retErr
+goto   __forward
+
+__retErr:
+
+return 1
+
+__forward:
+
+
 if  (select count(*) from #Doc)<>0
 BEGIN
 	begin Transaction 
 	BEGIN TRY
 --проверка/открытие 301/302 счетов 
 
-    declare cur cursor for   select   regIItemId,KindCode,ObjId,AccCredit,ItemName,custId from #Doc                                    
+    declare cur cursor for   select  distinct  distid,regIItemId,KindCode,ObjId,AccCredit,ItemName,custId from #Doc                                    
     declare     @regIItemId		integer
 	declare		@KindCode		int                                            
     declare     @ObjId         integer
@@ -135,8 +152,9 @@ BEGIN
 	declare		@ItemName		varchar(100)
 	declare		@custid		int
 	declare @custname varchar(100)
+	declare		 @distid int
     open cur                                                   
-    fetch cur into  @regIItemId,@KindCode,@ObjId,@AccCredit,@ItemName,@custid
+    fetch cur into  @distid,@regIItemId,@KindCode,@ObjId,@AccCredit,@ItemName,@custid
                                                    
     while @@fetch_status =0                                                   
 	    BEGIN 
@@ -160,7 +178,9 @@ BEGIN
 				 where
 				 @regIItemId	=regIItemId	and
 				 @ObjId  =objid						and
-				 @KindCode =kindCode
+				 @KindCode =kindCode		and
+				 @ItemName=ItemName		and
+				 @distid = distId
             if not exists  (select  1 from Account 
                                         where BalsCode=22
                                                    and CustID=@CustID
@@ -174,7 +194,7 @@ BEGIN
                          Exec  dbo.OpenAccNLS  @CustID, Null,  '980', @Account,@custname
                  end
  
-        fetch cur into  @regIItemId,@KindCode,@ObjId,@AccCredit,@ItemName ,@custid                                                  
+        fetch cur into  @distid,@regIItemId,@KindCode,@ObjId,@AccCredit,@ItemName ,@custid                                                  
     	END                                                                                                    
 close cur   
 deallocate cur 
@@ -182,7 +202,7 @@ deallocate cur
 --проверка "наличия" счетов партнеров
 if (select count(*) from #partner)<>0
 	begin
-			declare c cursor for   select   AccDebet,partnerId  from #partner
+			declare c cursor for   select  distinct AccDebet,partnerId  from #partner
 			open c 
 			fetch c into  @Account,@custid
 			 while @@fetch_status =0                                                   
@@ -289,6 +309,9 @@ and isnull(flCourt,0)=0			and
 (AccDebet like '3%' or AccDebet like '4%')	and
 AccCredit like '22%'
 
+  	if @@error	<> 0
+		goto __retErr
+
 
 begin Transaction 
 BEGIN TRY
@@ -307,7 +330,7 @@ BEGIN TRY
 		set		t2.status=2
 		from Distribution  t2
 		where
-			t2.regId in (select distinct regId from #PayTurn)
+			t2.distid in (select distinct distid from #PayTurn)
 IF @@TRANCOUNT > 0 commit tran
 END TRY
 BEGIN CATCH
