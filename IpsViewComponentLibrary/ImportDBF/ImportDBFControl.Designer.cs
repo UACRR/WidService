@@ -42,22 +42,22 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
+            this.lblFileName = new Telerik.WinControls.UI.RadLabel();
+            this.btnChooseFile = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.btnChooseFile = new Telerik.WinControls.UI.RadButton();
-            this.lblFileName = new Telerik.WinControls.UI.RadLabel();
-            this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
             this.gvUndistribPays = new Telerik.WinControls.UI.RadGridView();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnChooseFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnChooseFile)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUndistribPays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUndistribPays.MasterTemplate)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +74,44 @@
             this.radPanel1.Size = new System.Drawing.Size(894, 50);
             this.radPanel1.TabIndex = 0;
             this.radPanel1.ThemeName = "Office2013Light";
+            // 
+            // btnLoadFile
+            // 
+            this.btnLoadFile.Enabled = false;
+            this.btnLoadFile.Location = new System.Drawing.Point(302, 16);
+            this.btnLoadFile.Name = "btnLoadFile";
+            this.btnLoadFile.Size = new System.Drawing.Size(168, 24);
+            this.btnLoadFile.TabIndex = 3;
+            this.btnLoadFile.Text = "Завантажити та обробити";
+            this.btnLoadFile.ThemeName = "Office2013Light";
+            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.AutoSize = false;
+            this.lblFileName.Location = new System.Drawing.Point(136, 18);
+            this.lblFileName.MaximumSize = new System.Drawing.Size(160, 19);
+            this.lblFileName.MinimumSize = new System.Drawing.Size(160, 19);
+            this.lblFileName.Name = "lblFileName";
+            // 
+            // 
+            // 
+            this.lblFileName.RootElement.MaxSize = new System.Drawing.Size(160, 19);
+            this.lblFileName.RootElement.MinSize = new System.Drawing.Size(160, 19);
+            this.lblFileName.Size = new System.Drawing.Size(160, 19);
+            this.lblFileName.TabIndex = 2;
+            this.lblFileName.Text = "Файл не вибраний";
+            this.lblFileName.ThemeName = "Office2013Light";
+            // 
+            // btnChooseFile
+            // 
+            this.btnChooseFile.Location = new System.Drawing.Point(20, 16);
+            this.btnChooseFile.Name = "btnChooseFile";
+            this.btnChooseFile.Size = new System.Drawing.Size(110, 24);
+            this.btnChooseFile.TabIndex = 0;
+            this.btnChooseFile.Text = "Виберіть файл";
+            this.btnChooseFile.ThemeName = "Office2013Light";
+            this.btnChooseFile.Click += new System.EventHandler(this.btnChooseFile_Click);
             // 
             // radLabel1
             // 
@@ -104,44 +142,6 @@
             this.radPanel2.Size = new System.Drawing.Size(894, 396);
             this.radPanel2.TabIndex = 2;
             this.radPanel2.ThemeName = "Office2013Light";
-            // 
-            // btnChooseFile
-            // 
-            this.btnChooseFile.Location = new System.Drawing.Point(20, 16);
-            this.btnChooseFile.Name = "btnChooseFile";
-            this.btnChooseFile.Size = new System.Drawing.Size(110, 24);
-            this.btnChooseFile.TabIndex = 0;
-            this.btnChooseFile.Text = "Виберіть файл";
-            this.btnChooseFile.ThemeName = "Office2013Light";
-            this.btnChooseFile.Click += new System.EventHandler(this.btnChooseFile_Click);
-            // 
-            // lblFileName
-            // 
-            this.lblFileName.AutoSize = false;
-            this.lblFileName.Location = new System.Drawing.Point(136, 18);
-            this.lblFileName.MaximumSize = new System.Drawing.Size(160, 19);
-            this.lblFileName.MinimumSize = new System.Drawing.Size(160, 19);
-            this.lblFileName.Name = "lblFileName";
-            // 
-            // 
-            // 
-            this.lblFileName.RootElement.MaxSize = new System.Drawing.Size(160, 19);
-            this.lblFileName.RootElement.MinSize = new System.Drawing.Size(160, 19);
-            this.lblFileName.Size = new System.Drawing.Size(160, 19);
-            this.lblFileName.TabIndex = 2;
-            this.lblFileName.Text = "Файл не вибраний";
-            this.lblFileName.ThemeName = "Office2013Light";
-            // 
-            // btnLoadFile
-            // 
-            this.btnLoadFile.Enabled = false;
-            this.btnLoadFile.Location = new System.Drawing.Point(302, 16);
-            this.btnLoadFile.Name = "btnLoadFile";
-            this.btnLoadFile.Size = new System.Drawing.Size(168, 24);
-            this.btnLoadFile.TabIndex = 3;
-            this.btnLoadFile.Text = "Завантажити та обробити";
-            this.btnLoadFile.ThemeName = "Office2013Light";
-            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
             // gvUndistribPays
             // 
@@ -263,13 +263,16 @@
             this.gvUndistribPays.MasterTemplate.EnableCustomFiltering = true;
             this.gvUndistribPays.MasterTemplate.EnableFiltering = true;
             this.gvUndistribPays.MasterTemplate.EnableGrouping = false;
+            this.gvUndistribPays.MasterTemplate.SelectionMode = Telerik.WinControls.UI.GridViewSelectionMode.CellSelect;
             this.gvUndistribPays.MasterTemplate.ShowFilteringRow = false;
             this.gvUndistribPays.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvUndistribPays.Name = "gvUndistribPays";
             this.gvUndistribPays.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvUndistribPays.ReadOnly = true;
             this.gvUndistribPays.Size = new System.Drawing.Size(888, 377);
             this.gvUndistribPays.TabIndex = 7;
             this.gvUndistribPays.ThemeName = "Office2013Light";
+            this.gvUndistribPays.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvUndistribPays_CellDoubleClick);
             this.gvUndistribPays.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvUndistribPays_CommandCellClick);
             // 
             // ImportDBFControl
@@ -284,13 +287,13 @@
             this.Size = new System.Drawing.Size(900, 476);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnChooseFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnChooseFile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUndistribPays.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUndistribPays)).EndInit();
             this.ResumeLayout(false);

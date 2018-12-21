@@ -397,6 +397,18 @@
     <Compile Include="ImportDBF\ImportDBFControl.Designer.cs">
       <DependentUpon>ImportDBFControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImportDBF\ImportParseResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportDBF\ImportParseResultForm.Designer.cs">
+      <DependentUpon>ImportParseResultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDBF\PaymentsAttachForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportDBF\PaymentsAttachForm.Designer.cs">
+      <DependentUpon>PaymentsAttachForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\MessageSuccessError.cs" />
     <Compile Include="ConsumerForms\AnketaConsumerPhisForm.cs">
       <SubType>Form</SubType>
@@ -1203,6 +1215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImportDBF\ImportDBFControl.resx">
       <DependentUpon>ImportDBFControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportDBF\ImportParseResultForm.resx">
+      <DependentUpon>ImportParseResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportDBF\PaymentsAttachForm.resx">
+      <DependentUpon>PaymentsAttachForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\ProlongationGeneralAgreement.resx">
       <DependentUpon>ProlongationGeneralAgreement.cs</DependentUpon>
