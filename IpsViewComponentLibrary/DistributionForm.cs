@@ -25,6 +25,19 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Отримати максимальну суму для періоду 
+        /// </summary>
+        /// <param name="period"></param>
+        /// <returns></returns>
+        private decimal? getMaxSumForPeriod( PaidPeriod period )
+        {
+            // сума Р/Л не проставлена
+            if (period.RegisterRatedList.Any(item => item.Royalty == null))
+                return null;
+
+            return period.RegisterRatedList.Sum(rec => rec.Royalty - (rec.PaidAmount ?? 0));
+        }
 
         public DistributionForm(MoneyReceived undistrinbMoney, IAgreementData licenseAgr, PaidPeriod period)
         {
@@ -35,9 +48,9 @@ namespace IpsViewComponentLibrary
 
             bindingSource.DataSource = undistrinbMoney;
             bindingSourceAgreement.DataSource = licenseAgr;
-            
-            _source = licenseAgr.Lic.PaidPeriod.Where(rec => 
-                        (rec.Status >= 2 && rec.Status < 7) 
+
+            _source = licenseAgr.Lic.PaidPeriod.Where(rec =>
+                        (rec.Status >= 2 && rec.Status < 7)
                         // &&( rec.) // l
                         && (period == null || period.PeriodId == rec.PeriodId)
                         ).OrderBy(rec => rec.BeginDate)
@@ -50,7 +63,8 @@ namespace IpsViewComponentLibrary
                     Arrears = Math.Max(0, rec.Amount - (rec.Undistribamount + rec.Distribamount)),
                     DistAmount = 0,
                     Status = rec.Status,
-                    AutoSet = period != null && period.PeriodId == rec.PeriodId ? true : false
+                    AutoSet = period != null && period.PeriodId == rec.PeriodId ? true : false,
+                    MaxSum = getMaxSumForPeriod(rec)
                 }).ToList(); //periodsList as List<GridPeriods>;
             gvDistributionPayment.DataSource = _source;
             _calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
@@ -111,6 +125,12 @@ namespace IpsViewComponentLibrary
 
             var period = e.Row.DataBoundItem as GridPeriods;
 
+            if( period.MaxSum != null && period.MaxSum < period.DistAmount )
+            {
+                MessageBox.Show($"Сума періоду повина бути не більша за {period.MaxSum}", "ПОМИЛКА ВИЗНАЧЕННЯ СУМИ ПЕРІОДУ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                period.DistAmount = period.MaxSum ?? 0;
+            }
+
             period.AutoSet = false;
             _calculator.Calculate();
 
@@ -144,7 +164,7 @@ namespace IpsViewComponentLibrary
 
             foreach (var item in List.Where(rec => rec.AutoSet == true))
             {
-                decimal curRest = Math.Min(freeRest, item.Arrears);
+                decimal curRest = Math.Min( Math.Min(freeRest, item.Arrears), item.MaxSum ?? 0 );
                 item.DistAmount = curRest;
                 freeRest -= curRest;
 

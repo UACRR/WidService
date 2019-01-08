@@ -555,6 +555,7 @@ namespace IpsViewComponentLibrary
         public decimal DistAmount { get; set; }
         public decimal Arrears { get; set; }
         public bool AutoSet { get; set; }
+        public decimal? MaxSum { get; set; }
     }
 
     public class GridPayments
