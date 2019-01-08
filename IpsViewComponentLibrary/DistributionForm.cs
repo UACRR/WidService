@@ -35,8 +35,8 @@ namespace IpsViewComponentLibrary
             // сума Р/Л не проставлена
             if (period.RegisterRatedList.Any(item => item.Royalty == null))
                 return null;
-
-            return period.RegisterRatedList.Sum(rec => rec.Royalty - (rec.PaidAmount ?? 0));
+            // 0 якщо сума від'ємна
+            return Math.Max( decimal.Zero ,  period.RegisterRatedList.Sum(rec => (rec.Royalty ?? 0 ) - (rec.PaidAmount ?? 0)) );
         }
 
         public DistributionForm(MoneyReceived undistrinbMoney, IAgreementData licenseAgr, PaidPeriod period)
@@ -125,6 +125,7 @@ namespace IpsViewComponentLibrary
 
             var period = e.Row.DataBoundItem as GridPeriods;
 
+            // Якщо встановлено Royalty та введено суму більшу за максимально допустиму для Р/Л
             if( period.MaxSum != null && period.MaxSum < period.DistAmount )
             {
                 MessageBox.Show($"Сума періоду повина бути не більша за {period.MaxSum}", "ПОМИЛКА ВИЗНАЧЕННЯ СУМИ ПЕРІОДУ", MessageBoxButtons.OK, MessageBoxIcon.Error);
