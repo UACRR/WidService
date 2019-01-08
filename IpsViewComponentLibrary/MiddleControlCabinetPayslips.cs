@@ -264,7 +264,7 @@ namespace IpsViewComponentLibrary
             if (gvViewSpectacles.Rows.Count == 0) return;
 
             if(!(gvViewSpectacles.CurrentRow.DataBoundItem is ParentTemplate rec))
-                rec = ((Telerik.WinControls.UI.GridViewRowInfo)((Telerik.WinControls.UI.GridViewHierarchyRowInfo)gvViewSpectacles.CurrentRow).Parent).DataBoundItem as ParentTemplate;
+                rec = ((GridViewRowInfo)((GridViewHierarchyRowInfo)gvViewSpectacles.CurrentRow).Parent).DataBoundItem as ParentTemplate;
             
             cName.TextValue = rec?.ItemName;
             cActCode.TextValue = rec?.ActCode.ToString();//_spectacleViews.SingleOrDefault(item => item.ObjId == rec?.ObjId)?.ActCode.ToString();

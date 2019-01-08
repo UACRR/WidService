@@ -455,11 +455,11 @@ namespace ipsFormsDesign.Services
 
             PaidPeriod paidPeriod = licAgr?.PaidPeriod.FirstOrDefault();
 
-            AnketaPerson anketaPerson = cust.Person?.AnketaPerson.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
-            AnketaCompany anketaCompany = cust.Company?.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
+            AnketaPerson anketaPerson = cust.Person?.AnketaPerson?.SingleOrDefault(rec => rec.Version == cust.AnkVersion);
+            AnketaCompany anketaCompany = cust.Company?.AnketaCompany.SingleOrDefault(rec => rec.Version == cust.AnkVersion);
             BankAccount bankacc = cust.BankAccount.FirstOrDefault();
-            Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
-            Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
+            Employee Employee = cust.Company?.RelEmployee?.SingleOrDefault(rec => rec.PositionCode == 1)?.Empl;
+            Employee EmployeeCont = cust.Company?.RelEmployee?.SingleOrDefault(rec => rec.PositionCode == 3)?.Empl;
 
 
             var clnBusinessPlaceHotel = cust.Client.ClnBusinessPlace.Where(rec => (rec.PlCode == 1) || (rec.PlCode == 2)).ToList();
