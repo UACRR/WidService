@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary
     public delegate bool SetPartnerEventHandler(int clientId, int partnerId);
     public delegate bool ChangePartnerEventHandler(int clientId, int partnerId, int oldPartnerId);
 
-    public delegate void LoadCustomerCabinetBrEventHandler(int id);
+    public delegate void LoadCustomerCabinetEventHandler(int id);
     public delegate void UpdateCustomerDataEventHandler(int id);
 
     public delegate List<CustCmRight> GetCommunityRightList(int custId);

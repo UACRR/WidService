@@ -468,7 +468,6 @@
             this.gvPeriodReports.TabIndex = 0;
             this.gvPeriodReports.ThemeName = "Office2013Light";
             this.gvPeriodReports.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvPeriodReports_CellFormatting);
-            this.gvPeriodReports.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodReports_CurrentRowChanged);
             this.gvPeriodReports.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvPeriodReports_CommandCellClick);
             // 
             // bindingReports

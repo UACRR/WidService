@@ -14,23 +14,13 @@ namespace IpsViewComponentLibrary
 {
     public partial class GlobalControlConsumerMainGrid : UserControl
     {
-        private int _rowId;
-
-        public delegate void LoadCustomerByIdEventHandler(int id);
-        public event LoadCustomerByIdEventHandler OnLoadCustomerCabinetNeed;
+        public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
 
         public GlobalControlConsumerMainGrid()
         {
             InitializeComponent();
-            gvViewConsumers.CurrentRowChanged += GvViewConsumers_CurrentRowChanged;
             ctrlSearch.SetUsageGrid(gvViewConsumers);
-        }
-
-        private void GvViewConsumers_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-            var id = (int?) e?.CurrentRow?.Cells["CustId"]?.Value ?? -1;
-            _rowId = id;
         }
 
         public void SetGridDataSource(IList<ConsumerMainView> source)
@@ -40,7 +30,7 @@ namespace IpsViewComponentLibrary
 
         private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            OnLoadCustomerCabinetNeed?.Invoke(_rowId);
+            OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as ConsumerMainView).CustId);
         }
 
         public void SetSelectCustomer(int custId)
@@ -59,7 +49,6 @@ namespace IpsViewComponentLibrary
         private void btnAddPhisConsumer_Click(object sender, EventArgs e)
         {
             OnAddNewCustomer?.Invoke(1, EventArgs.Empty);
-
         }
     }
 }
