@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Telerik.WinControls;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 
 namespace TestControls
 {

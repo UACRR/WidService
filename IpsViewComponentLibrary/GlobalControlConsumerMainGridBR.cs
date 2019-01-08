@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary
     public partial class GlobalControlConsumerMainGridBR : UserControl
     {
         public MainGridConsumerBigRightView ViewRow => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
-        public event LoadCustomerCabinetBrEventHandler OnLoadCustomerCabinetNeed;
+        public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
 
         public GlobalControlConsumerMainGridBR()

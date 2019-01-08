@@ -312,6 +312,7 @@ namespace ipsFormsDesign.Interfaces
         public decimal? Rate { get; set; }
         public decimal? RateMusic { get; set; }
         public string Name { get; set; }
+        public int LicType { get; set; }
     }
 
     public class RatedListMainBigRightView

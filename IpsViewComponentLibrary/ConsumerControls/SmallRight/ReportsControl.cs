@@ -240,7 +240,7 @@ namespace IpsViewComponentLibrary
             }
 
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
-            /// Цирк,Філармонія,Концертна діяльність
+            // Цирк,Філармонія,Концертна діяльність
             bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
             btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
@@ -258,26 +258,26 @@ namespace IpsViewComponentLibrary
         // * * * [Періоди платежів]
         private void gvPeriods_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (gvPeriods.CurrentRow == null || !(gvPeriods.CurrentRow.DataBoundItem is PaidPeriod))
+            if (!(gvPeriods.CurrentRow?.DataBoundItem is PaidPeriod))
             {
                 bindingRatedList.DataSource = typeof(RegisterRatedList);
                 bindingReports.DataSource = typeof(Register);
                 return;
             }
 
-            var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
+            var period = (PaidPeriod) gvPeriods.CurrentRow.DataBoundItem;
             var reports = new List<Register>();
             int maxRgStatus = -1;
-            if (period?.RegisterRatedList.Count() > 0)
+            if (period.RegisterRatedList.Any())
             {
                 foreach (var item in period.RegisterRatedList.OrderBy(rec => rec.RmId))
                 {
-                    if (item.Register.Count() > 0)
+                    if (item.Register.Any())
                         maxRgStatus = Math.Max(maxRgStatus, item.Register.Max(rec => rec.RgStatus ?? 0));
                     reports.AddRange(item.Register);
                 }
                 btnAddRatedList.Enabled = false;
-                bindingRatedList.DataSource = period?.RegisterRatedList.First();
+                bindingRatedList.DataSource = period.RegisterRatedList.First();
             }
             else
             {
@@ -286,13 +286,9 @@ namespace IpsViewComponentLibrary
             }
 
             bindingReports.DataSource = reports;
-            buttonController.SetPeriodState(period?.Status, reports);
+            buttonController.SetPeriodState(period.Status, reports);
         }
 
-        // * * * [Звіти періода]
-        private void gvPeriodReports_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-        }
 
         // * * *  * * *  КНОПКИ:
         // * * * НА ГРІД [Періоди платежів]
@@ -320,10 +316,7 @@ namespace IpsViewComponentLibrary
         // * * * [Додати звіт]
         private void btnAddReport_Click(object sender, EventArgs e)
         {
-            if (gvPeriods.CurrentRow == null)
-                return;
-            var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
-            if (period == null)
+            if (!(gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period))
                 return;
 
             OpenFileDialog dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
@@ -449,8 +442,7 @@ namespace IpsViewComponentLibrary
             if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
 
-            var register = gvPeriodReports.CurrentRow.DataBoundItem as Register;
-            if (register == null)
+            if (!(gvPeriodReports.CurrentRow.DataBoundItem is Register register))
                 return;
 
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
@@ -464,7 +456,7 @@ namespace IpsViewComponentLibrary
 
             if (reg != null && (licKind == 2 || licKind == 3)) // рапортичка
             {
-                CreateProgReportBigRight progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
+                var progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
                     StartPosition = FormStartPosition.CenterParent,
                     HeaderInfoCustomerName = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.ShortName,
@@ -480,8 +472,11 @@ namespace IpsViewComponentLibrary
                 return;
             }
 
-            ReportExcelViewForm viewForm = new ReportExcelViewForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
-            viewForm.ShowDialog();
+            var viewForm = new ReportExcelViewForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
+            if (viewForm.ShowDialog() == DialogResult.OK)
+            {
+                SaveRegisterExecuted?.Invoke(this, register);
+            }
         }
 
         #endregion

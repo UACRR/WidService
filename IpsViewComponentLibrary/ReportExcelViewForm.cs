@@ -96,6 +96,7 @@ namespace IpsViewComponentLibrary
                 
             });
             gvReportContentView.DataSource = bindingRegItems.DataSource;
+            gvReportContentView.CurrentRow = gvReportContentView.Rows.LastOrDefault();
         }
 
         private void gvReportContentView_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

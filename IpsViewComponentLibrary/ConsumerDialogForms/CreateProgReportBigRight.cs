@@ -83,15 +83,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         #endregion
 
         /// <summary>
-        /// Default NOT usable constructor
-        /// </summary>
-        public CreateProgReportBigRight()
-        {
-            InitializeComponent();
-            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
-        }
-
-        /// <summary>
         /// Конструктор для створення рапортички
         /// </summary>
         /// <param name="register"></param>

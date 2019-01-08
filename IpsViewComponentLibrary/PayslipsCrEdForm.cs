@@ -19,20 +19,12 @@ namespace IpsViewComponentLibrary
     public partial class PayslipsCrEdForm : Telerik.WinControls.UI.RadForm
     {
         private int _tempRegId = 0;
-        private IList<BigRightSpectacleView> _spectacleViews;
+        private readonly IList<BigRightSpectacleView> _spectacleViews;
         private Customer _customer;
         private RegisterRatedList _registerRatedList;
         private ObservableListSource<PayslipsGridDataSource> _source = null;
         private FormType _type;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
-
-        /// <summary>
-        /// Default NOT usage constructor
-        /// </summary>
-        public PayslipsCrEdForm()
-        {
-            InitializeComponent();
-        }
 
         public PayslipsCrEdForm(FormType formType, Customer customer, IList<BigRightSpectacleView> spectacleViews, RegisterRatedList registerRatedList)
         {
@@ -43,7 +35,7 @@ namespace IpsViewComponentLibrary
             DialogResult = DialogResult.None;
             //передача ссилок
             _customer = customer;
-            _spectacleViews = spectacleViews;
+            _spectacleViews = spectacleViews.Where(rec => rec.LicType == 1).ToList();
             _registerRatedList = registerRatedList;
             //список періодів
             var licAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2);

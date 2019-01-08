@@ -1,18 +1,16 @@
-﻿using ipsFormsDesign;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ipsFormsDesign;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public class ReportsControlPresenter
     {
         private readonly ReportsControl _control;
         private readonly ConsumerService _service;
+
         public ReportsControlPresenter(ReportsControl control, ConsumerService service )
         {
             _control = control;
@@ -31,8 +29,37 @@ namespace IpsViewComponentLibrary
 
         private void UpdateData(int custId)
         {
-            var data = _service.GetData(custId);
-            _control.Customer = data;
+            var mainCust = _service.GetData(custId);
+            var regCust = _service.GetRatedListForCust(custId);
+
+            CloneRegisterRL(mainCust, regCust);
+
+            _control.Customer = regCust;
+        }
+
+        private void CloneRegisterRL(Customer mainCust, Customer regCust)
+        {
+            if (mainCust == null || regCust == null)
+                return;
+            // Прив'язати розрахункові листи до договорів
+            foreach (var mainLic in mainCust.Client.LicenseAgreement)
+            {
+                var destLic = regCust.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == mainLic.LicId);
+                if (destLic == null) continue;
+
+                foreach (var mainPeriod in mainLic.PaidPeriod)
+                {
+                    var destPeriod = destLic.PaidPeriod.SingleOrDefault(rec => rec.PeriodId == mainPeriod.PeriodId);
+                    if (destPeriod == null) continue;
+
+                    foreach (var destRl in destPeriod.RegisterRatedList)
+                    {
+                        var mainRl = mainPeriod.RegisterRatedList.SingleOrDefault(rec => rec.RmId == destRl.RmId);
+                        if (mainRl == null)
+                            mainPeriod.RegisterRatedList.Add(destRl);
+                    }
+                }
+            }
         }
 
         private void SaveRegisterExecuted(object sender, Register e)
