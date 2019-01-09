@@ -56,6 +56,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C08CD8F1-BC04-4EB9-99D1-BE924649F23A}.Debug HttpSys|Any CPU.ActiveCfg = Debug HttpSys|x86
+		{C08CD8F1-BC04-4EB9-99D1-BE924649F23A}.Debug HttpSys|Any CPU.Build.0 = Debug HttpSys|x86
 		{C08CD8F1-BC04-4EB9-99D1-BE924649F23A}.Debug HttpSys|x64.ActiveCfg = Debug HttpSys|x86
 		{C08CD8F1-BC04-4EB9-99D1-BE924649F23A}.Debug HttpSys|x86.ActiveCfg = Debug HttpSys|x86
 		{C08CD8F1-BC04-4EB9-99D1-BE924649F23A}.Debug HttpSys|x86.Build.0 = Debug HttpSys|x86
