@@ -61,6 +61,7 @@ namespace IpsViewComponentLibrary
 
             ctrlProlongation.InitializeObjects(places, lic, bindAgr, caType);
             ctrlProlongation.LicenseEnabled = goal == DialogGoal.forNew;
+            //ctrlProlongation.ClientName = _cust.Company.AnketaCompany.SingleOrDefault()?.ShortName;
         }
 
         private void CtrlProlongation_OnSaveChangesClick()
