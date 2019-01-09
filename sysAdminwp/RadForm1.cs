@@ -19,12 +19,14 @@ using ipsFormsDesign.Model;
 
 namespace sysAdminwp
 {
-    public partial class RadForm1 : Telerik.WinControls.UI.RadForm
+    public partial class RadForm1 : RadForm
     {
         private readonly ApiConnector _connector = new ApiConnector();
         private List<DictBaseTypeI> _list;
         private List<DictCategory> _dictionaryCategories = null;
         public string Url { get; set; }
+        //index row
+        private int _indexRow;
 
         public RadForm1()
         {
@@ -36,16 +38,18 @@ namespace sysAdminwp
             radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
             radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
+            
 
             radPanelChange.Enabled = false;
             radTxtBoxSearchData.Enabled = false;
             radBtnAdd.Enabled = false;
             radBtnRemove.Enabled = false;
             _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");
+            
         }
 
         #region Методи
-        
+
         //метод встановлення джерела даних для дерева
         private void SetDataSource()
         {
@@ -166,6 +170,8 @@ namespace sysAdminwp
             radTBNameUa.TextChanging += TextBox_TextChanging;
             radTBNameRu.TextChanging += TextBox_TextChanging;
             radTBNameEn.TextChanging += TextBox_TextChanging;
+            // hide default string
+            radGridView1.TableElement.Text = "";
         }
 
         /// <summary>
@@ -245,10 +251,25 @@ namespace sysAdminwp
         {
             UpdateEditPanel();
         }
+        //method for save last position cursor
+        private void GetLstCurs()
+        {
+            //save position
+            _indexRow = radGridView1.CurrentRow.Index;
+        }
+
+        //method for set saved position cursor
+        private void SetLstCurs()
+        {
+            //set position
+            radGridView1.CurrentRow = radGridView1.Rows[_indexRow];
+        }
 
         //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
+            //use last selected row
+            GetLstCurs();
             radBtnSave.Text = "Додати";
             ChangeEnableElementsWhenAdd(false);
             radTBCode.Clear();
@@ -256,9 +277,8 @@ namespace sysAdminwp
             radTBNameRu.Clear();
             radTBNameUa.Clear();
             radPanelChange.Enabled = true;
-
         }
-
+        
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
@@ -275,13 +295,14 @@ namespace sysAdminwp
             if (radBtnSave.Text == "Додати")
             {
                 SaveAddNewRow();
-                
             }
             else
             {
                 SaveUpdate();
                 ChangeEnableElementsWhenEdit(true);
             }
+            //set last row focus
+            SetLstCurs();
         }
 
         //кнопка відміни внесених змін
@@ -342,6 +363,8 @@ namespace sysAdminwp
         //подія при редагуванні даних в текстбоксах
         private void TextBox_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
+            //save last position
+            GetLstCurs();
             ChangeEnableElementsWhenEdit(false);
         }
 
