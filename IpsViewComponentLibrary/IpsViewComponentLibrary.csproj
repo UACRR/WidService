@@ -978,10 +978,10 @@
     <Compile Include="ProlongationWithPlaces.Designer.cs">
       <DependentUpon>ProlongationWithPlaces.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProlongationWithoutPlaces.cs">
+    <Compile Include="_trash\ProlongationWithoutPlaces.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProlongationWithoutPlaces.Designer.cs">
+    <Compile Include="_trash\ProlongationWithoutPlaces.Designer.cs">
       <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1487,7 +1487,7 @@
     <EmbeddedResource Include="ProlongationWithPlaces.resx">
       <DependentUpon>ProlongationWithPlaces.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProlongationWithoutPlaces.resx">
+    <EmbeddedResource Include="_trash\ProlongationWithoutPlaces.resx">
       <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\ServiceComissionControl.resx">

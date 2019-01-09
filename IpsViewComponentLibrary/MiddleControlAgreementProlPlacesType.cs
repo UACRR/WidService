@@ -23,10 +23,7 @@ namespace IpsViewComponentLibrary
         public event Print OnPrintClick;
 
         decimal _minAmount = default(decimal);
-        private Customer _customer;
-        private LicenseAgreement _license;
         private LicenseAgrParam _licenseAgr;
-        private ObservableListSource<ClnBusinessPlace> _places = new ObservableListSource<ClnBusinessPlace>();
         private ObservableListSource<ClnBusinessPlace> _tempPlaces;
         private ConsumerAgreementInitType _agreementInitType = ConsumerAgreementInitType.None;
 
@@ -38,16 +35,33 @@ namespace IpsViewComponentLibrary
         public TypeRights Rights { get; set; }
         public AnketaDictionaties Dictionaties { get; set; }
 
-        public void InitializeObjects(Customer cust, ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
+        public void InitializeObjects(ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
         {
             _agreementInitType = agreementInitType;
-            _customer = cust;
             _tempPlaces = places;
-            _license = license;
             _licenseAgr = licenseAgr;
 
             licenseAgreementBindingSource.DataSource = license;
+            bindingSourceAgr.DataSource = _licenseAgr;
+            
+            ctrlAgrSecond.DataSourceBinding = _licenseAgr;
+            ctrlAgrSecond.AutoprolongationDataSource = _licenseAgr;
+            ctrlAgrSecond.MinPayment = "MinAmount";
+            ctrlAgrSecond.PercentPayment = "RateAmount";
 
+            ctrlAgrSecond.PeriodPaymentDataSource = Dictionaties?.period;
+            ctrlAgrSecond.PeriodPaymentValueMember = "codeI";
+            ctrlAgrSecond.PeriodPaymentDisplayMember = "name";
+            ctrlAgrSecond.PeriodPaymentDataMember = "PeriodCode";
+            ctrlAgrSecond.PeriodPaymentSelectedValue = _licenseAgr?.PeriodCode;
+
+            if (_licenseAgr?.AddRate == null && _licenseAgr?.IndxInfl != null)
+                ctrlAgrSecond.SelectedItem = 1;
+            else if (_licenseAgr?.AddRate != null && _licenseAgr.IndxInfl == null)
+                ctrlAgrSecond.SelectedItem = 0;
+            else
+                ctrlAgrSecond.AutoprolongationPercent = null;
+            
 
             //TODO: джерело даних з розрахованою сумою
             if (places != null && places.Any())
@@ -79,61 +93,20 @@ namespace IpsViewComponentLibrary
             set => checkAttach.Checked = value;
         }
 
-        public bool CanChangeLicense
-        {
-            get => ddlLicType.ReadOnly;
-            set => ddlLicType.ReadOnly = !value;
-        }
-
         public bool LicenseEnabled
         {
             get => ddlLicType.Enabled;
             set => ddlLicType.Enabled = value;
         }
 
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
-        public object DataSourceAgreement
+        /// <summary>
+        /// Найменування customer
+        /// </summary>
+        public string ClientName
         {
-            get => bindingSourceAgr.DataSource;
-            set => bindingSourceAgr.DataSource = value;
+            get => lblTitleClientName.Text;
+            set => lblTitleClientName.Text = value;
         }
-
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
-        public object DataSourceAnketaCompany
-        {
-            get => bindingSourceAnketaCompany.DataSource;
-            set => bindingSourceAnketaCompany.DataSource = value;
-        }
-
-        public LicenseAgrParam LicenseAgrParam
-        {
-            get => null;
-            set
-            {
-                var licenseParam = value;
-                ctrlAgrSecond.DataSourceBinding = licenseParam;
-                ctrlAgrSecond.AutoprolongationDataSource = licenseParam;
-                ctrlAgrSecond.MinPayment = "MinAmount";
-                ctrlAgrSecond.PercentPayment = "RateAmount";
-
-                ctrlAgrSecond.PeriodPaymentDataSource = Dictionaties?.period;
-                ctrlAgrSecond.PeriodPaymentValueMember = "codeI";
-                ctrlAgrSecond.PeriodPaymentDisplayMember = "name";
-                ctrlAgrSecond.PeriodPaymentDataMember = "PeriodCode";
-                ctrlAgrSecond.PeriodPaymentSelectedValue = licenseParam?.PeriodCode;
-
-                if (licenseParam?.AddRate == null && licenseParam?.IndxInfl != null)
-                    ctrlAgrSecond.SelectedItem = 1;
-                else if (licenseParam?.AddRate != null && licenseParam.IndxInfl == null)
-                    ctrlAgrSecond.SelectedItem = 0;
-                else
-                    ctrlAgrSecond.AutoprolongationPercent = null;
-            }
-
-        }
-
 
         private void btnPrint_Click(object sender, EventArgs e)
         {

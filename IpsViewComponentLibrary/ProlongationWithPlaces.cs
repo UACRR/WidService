@@ -10,25 +10,20 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class ProlongationWithPlaces : Telerik.WinControls.UI.RadForm
+    public partial class ProlongationWithPlaces : RadForm
     {
         private bool _changesSaved = false;
         private LicenseAgreement _lic;
         private LicenseAgrParam _licAgr;
         private AnketaDictionaties _dict;
         private Customer _cust;
-        private DialogGoal _goal;
-        public event EventHandler OnSaveProlongation;
+        private readonly DialogGoal _goal;
 
-
-        public ProlongationWithPlaces()
-        {
-            InitializeComponent();
-        }
         
         public ProlongationWithPlaces(LicenseAgrParam bindAgr, 
                                       AnketaCompany bindAnketaCompany, 
@@ -64,26 +59,20 @@ namespace IpsViewComponentLibrary
             else if (goal == DialogGoal.forChange || goal == DialogGoal.forExistChange)
                 caType = ConsumerAgreementInitType.ChangeAgreement;
 
-            ctrlProlongation.InitializeObjects(cust, places, lic, bindAgr, caType);
-
-            ctrlProlongation.DataSourceAgreement = bindAgr;
-            ctrlProlongation.DataSourceAnketaCompany = bindAnketaCompany;
-
-            ctrlProlongation.LicenseAgrParam = bindAgr;
-
+            ctrlProlongation.InitializeObjects(places, lic, bindAgr, caType);
             ctrlProlongation.LicenseEnabled = goal == DialogGoal.forNew;
         }
 
         private void CtrlProlongation_OnSaveChangesClick()
         {
             _changesSaved = true;
-            OnSaveProlongation?.Invoke(this, EventArgs.Empty);
+            DialogResult = DialogResult.OK;
             Close();
         }
 
         private void CtrlProlongation_OnPrintClick()
         {
-            ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dict, customer: _cust, licenseAgreement: _lic)
+            var print = new ViewAndPrintAgreement(dictionaties: _dict, customer: _cust, licenseAgreement: _lic)
             {
                 WindowState = FormWindowState.Maximized,
                 StartPosition = FormStartPosition.CenterScreen

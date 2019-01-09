@@ -578,9 +578,8 @@ namespace IpsViewComponentLibrary
         private void RunDialogForLicenseAgrParam(LicenseAgreement license, LicenseAgrParam licenseParam, DialogGoal goal)
         {
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
-            var licenseName = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name;
 
-            ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license,
+            var prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license,
                 _customer?.Client?.ClnBusinessPlace, _customer, goal, Rights)
             {
                 Text = goal == DialogGoal.forEdit ? "Редагування договору"
@@ -591,8 +590,18 @@ namespace IpsViewComponentLibrary
                     : string.Empty,
                 StartPosition = FormStartPosition.CenterParent
             };
-            prolongation.OnSaveProlongation += OnSaveCommentNeed;
-            prolongation.ShowDialog();
+
+            if (prolongation.ShowDialog() == DialogResult.OK)
+            {
+                var result = SaveCustomer?.Invoke(_customer) ?? false;
+                if (result)
+                {
+                    MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateCustomer();
+                }
+                else
+                    MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
