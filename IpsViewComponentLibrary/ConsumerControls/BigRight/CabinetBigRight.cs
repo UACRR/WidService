@@ -260,7 +260,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
         }
 
-        //оновлення даних обаної вкладки
+        //оновлення даних обраної вкладки
         public void UpdateCurentTab(CabinetTabType tab)
         {
             if (_customer == null) return;
@@ -291,24 +291,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                     }
                     break;
 
-                case CabinetTabType.Licenses:
-                    {
-                        _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
-                        ctrlLicense.SetDataSources(_gridMainView);
-                        ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
-                    }
-                    break;
 
                 case CabinetTabType.Payslips:
+                case CabinetTabType.Calculations:
                     {
                         _registerRatedListView = GetRatedListMainView?.Invoke(custId);
                         _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
                         ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
-                    }
-                    break;
-
-                case CabinetTabType.Calculations:
-                    {
                         var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
                         setupRl(_customer, custRl);
                         ctrlCalculation.Customer = _customer;
@@ -327,18 +316,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                     }
                     break;
 
+                case CabinetTabType.Licenses:
                 case CabinetTabType.Requests:
+                case CabinetTabType.References:
                     {
+                        _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
+                        ctrlLicense.SetDataSources(_gridMainView);
+                        ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
                         _requestsLicenseView = GetRequestsView?.Invoke(custId);
                         _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
                         ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
-                    }
-                    break;
-
-                case CabinetTabType.References:
-                    {
                         _referenceLicenseView = GetReferenceView?.Invoke(custId);
-                        _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
+                        //_authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
                         ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
                     }
                     break;
