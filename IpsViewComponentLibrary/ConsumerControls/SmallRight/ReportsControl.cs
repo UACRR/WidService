@@ -330,7 +330,7 @@ namespace IpsViewComponentLibrary
                     var list = _excel.GetReportItems(dialog.FileName);
                     if (!period.RegisterRatedList.Any())
                     {
-                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
+                        period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 1 });
                     }
 
                     var RatedList = period.RegisterRatedList.First();
@@ -378,7 +378,7 @@ namespace IpsViewComponentLibrary
             {
                 if (!period.RegisterRatedList.Any())
                 {
-                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 0 });
+                    period.RegisterRatedList.Add(new RegisterRatedList { PeriodId = period.PeriodId, Period = period, Status = 1 });
                 }
 
                 //об'єкт звіт
