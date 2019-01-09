@@ -237,7 +237,7 @@ namespace IpsViewComponentLibrary
                 var periodlist = SavePariodCommandExecuted?.Invoke(_customer.CustId, paidPeriodList)?.Where(lId => lId.LicId == license?.LicId).ToList();
                 if (periodlist != null)
                 {
-                    foreach (var period in paidPeriodList?.Where(rec=>rec.LicId == 0)?.ToList())
+                    foreach (var period in paidPeriodList?.Where(rec=>rec.PeriodId == 0)?.ToList())
                     {
                         period.SetFields(periodlist.SingleOrDefault(rec=>rec.PeriodName == period.PeriodName));
                     }
