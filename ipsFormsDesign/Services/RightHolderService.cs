@@ -2,6 +2,7 @@
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.ViewModels.Rightholders;
+using ipsmedserviceapp.Model.SQLViewsData;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPIConnector;
@@ -91,6 +92,17 @@ namespace ipsFormsDesign.Services
             var url = string.Concat("rh/filters/authors/", filterString);
             var listOfAuthors = _webApi.GetList<Authors>(url);
             return listOfAuthors;
+        }
+
+        public bool CheckOkpoExists(string okpo)
+        {
+            var result = _webApi.GetItemById<vCustomer>("rh/checkexists/okpo", okpo);
+            return result != null;
+        }
+        public bool CheckIpiExists(string ipi)
+        {
+            var result = _webApi.GetItemById<vCustomer>("rh/checkexists/ipi", ipi);
+            return result != null;
         }
 
         #region Copyright requests

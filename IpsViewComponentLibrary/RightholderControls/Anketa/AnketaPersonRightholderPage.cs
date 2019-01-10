@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
@@ -44,6 +46,13 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
         public bool Validator()
         {
             return ctrlAnketaPerson.Validator() & ctrlRegistrationsPerson.Validator();
+        }
+
+        private void txtInterCode_Leave(object sender, EventArgs e)
+        {
+            IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
+            if (checker != null)
+                lblIPIExists.Visible = !checker.CheckIPIIsUnique(txtInterCode.Text);
         }
     }
 }

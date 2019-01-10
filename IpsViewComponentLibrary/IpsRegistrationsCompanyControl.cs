@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary
 {
@@ -125,6 +126,13 @@ namespace IpsViewComponentLibrary
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtOkpo_Leave(object sender, EventArgs e)
+        {
+            IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
+            if (checker != null)
+                lblOKPOExists.Visible = !checker.CheckOKPOIsUnique(txtOkpo.Text);
         }
     }
 }

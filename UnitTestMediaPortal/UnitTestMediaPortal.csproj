@@ -114,95 +114,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormBinding1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormBinding1.Designer.cs">
-      <DependentUpon>FormBinding1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormIBindingList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormIBindingList.Designer.cs">
-      <DependentUpon>FormIBindingList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="RadTestExpandoObject.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RadTestExpandoObject.Designer.cs">
-      <DependentUpon>RadTestExpandoObject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RadTextBoxAuto.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Report1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Report1.Designer.cs">
-      <DependentUpon>Report1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Report2.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Report2.Designer.cs">
-      <DependentUpon>Report2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ReportForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ReportForm.Designer.cs">
-      <DependentUpon>ReportForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestCalculation.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestCalculation.Designer.cs">
-      <DependentUpon>TestCalculation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestGlobalcs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestGlobalcs.Designer.cs">
-      <DependentUpon>TestGlobalcs.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestGlobalDic.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TestGlobalDic.Designer.cs">
-      <DependentUpon>TestGlobalDic.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestLayout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestLayout.Designer.cs">
-      <DependentUpon>TestLayout.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestNesttedList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestNesttedList.Designer.cs">
-      <DependentUpon>TestNesttedList.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestTextBoxAuto.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestTextBoxAuto.Designer.cs">
-      <DependentUpon>TestTextBoxAuto.cs</DependentUpon>
     </Compile>
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Documents\F_6_МТЦ.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="packages.config" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
@@ -212,9 +133,6 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Report\report1.trdp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -235,43 +153,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="FormBinding1.resx">
-      <DependentUpon>FormBinding1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormIBindingList.resx">
-      <DependentUpon>FormIBindingList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="RadTestExpandoObject.resx">
-      <DependentUpon>RadTestExpandoObject.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report1.resx">
-      <DependentUpon>Report1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Report2.resx">
-      <DependentUpon>Report2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportForm.resx">
-      <DependentUpon>ReportForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestCalculation.resx">
-      <DependentUpon>TestCalculation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestGlobalcs.resx">
-      <DependentUpon>TestGlobalcs.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestGlobalDic.resx">
-      <DependentUpon>TestGlobalDic.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestLayout.resx">
-      <DependentUpon>TestLayout.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestNesttedList.resx">
-      <DependentUpon>TestNesttedList.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TestTextBoxAuto.resx">
-      <DependentUpon>TestTextBoxAuto.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
