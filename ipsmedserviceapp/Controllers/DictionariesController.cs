@@ -502,7 +502,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         [HttpGet("base/{dictionary}/{id}")]
-        public async Task<ActionResult> GetBaseDictionaryById(string dictionary, string id)
+        public async Task<IActionResult> GetBaseDictionaryById(string dictionary, string id)
         {
 
             string normalizeName = dictionary.ToLower();
