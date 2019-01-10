@@ -16,11 +16,7 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlAgreementProlPlacesType : UserControl
     {
-        public delegate void SaveChange();
-        public event SaveChange OnSaveChangesClick;
-
-        public delegate void Print();
-        public event Print OnPrintClick;
+        public event EventHandler OnSaveChangesClick;
 
         decimal _minAmount = default(decimal);
         private LicenseAgrParam _licenseAgr;
@@ -108,14 +104,9 @@ namespace IpsViewComponentLibrary
             set => lblTitleClientName.Text = value;
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            OnPrintClick?.Invoke();
-        }
-
         private void btnSave_Click(object sender, EventArgs e)
         {
-            OnSaveChangesClick?.Invoke();
+            OnSaveChangesClick?.Invoke(sender, e);
         }
 
         //при зміні чекбокс

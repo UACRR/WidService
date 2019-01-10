@@ -13,6 +13,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerForms;
 
 namespace IpsViewComponentLibrary
 {
@@ -577,10 +578,7 @@ namespace IpsViewComponentLibrary
         /// <param name="licenseParam"></param>
         private void RunDialogForLicenseAgrParam(LicenseAgreement license, LicenseAgrParam licenseParam, DialogGoal goal)
         {
-            var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
-
-            var prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license,
-                _customer?.Client?.ClnBusinessPlace, _customer, goal, Rights)
+            var prolongation = new ProlongationAgreementForm(licenseParam, _dictionaties, license, _customer, goal, Rights)
             {
                 Text = goal == DialogGoal.forEdit ? "Редагування договору"
                     : goal == DialogGoal.forProlongation ? "Пролонгація договору"

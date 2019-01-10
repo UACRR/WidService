@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn2 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.lblTitleClientName = new Telerik.WinControls.UI.RadLabel();
             this.ctrlAgrMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
@@ -42,7 +42,6 @@
             this.ctrlAgrSecond = new IpsViewComponentLibrary.ContractConsumerDetailControl();
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
-            this.btnPrint = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
@@ -57,7 +56,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
@@ -140,7 +138,6 @@
             this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.Controls.Add(this.checkAttach);
-            this.panel.Controls.Add(this.btnPrint);
             this.panel.Controls.Add(this.ctrlAgrSecond);
             this.panel.Location = new System.Drawing.Point(4, 275);
             this.panel.Name = "panel";
@@ -157,18 +154,6 @@
             this.checkAttach.TabIndex = 22;
             this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
             this.checkAttach.ThemeName = "Office2013Light";
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(613, 3);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(67, 43);
-            this.btnPrint.TabIndex = 21;
-            this.btnPrint.Text = "Друкувати договір";
-            this.btnPrint.TextWrap = true;
-            this.btnPrint.ThemeName = "Office2013Light";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnSave
             // 
@@ -205,44 +190,44 @@
             this.gvPlaces.MasterTemplate.AllowDragToGroup = false;
             this.gvPlaces.MasterTemplate.AutoGenerateColumns = false;
             this.gvPlaces.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn5.FieldName = "PlaceId";
-            gridViewTextBoxColumn5.HeaderText = "n/n";
-            gridViewTextBoxColumn5.MaxWidth = 70;
-            gridViewTextBoxColumn5.MinWidth = 70;
-            gridViewTextBoxColumn5.Name = "PlaceId";
-            gridViewTextBoxColumn5.ReadOnly = true;
-            gridViewTextBoxColumn5.Width = 70;
-            gridViewTextBoxColumn6.FieldName = "PlaceAddress";
-            gridViewTextBoxColumn6.HeaderText = "Фактична адреса закладу";
-            gridViewTextBoxColumn6.Name = "PlaceAddress";
-            gridViewTextBoxColumn6.ReadOnly = true;
-            gridViewTextBoxColumn6.Width = 294;
-            gridViewTextBoxColumn7.FieldName = "PlaceName";
-            gridViewTextBoxColumn7.HeaderText = "Назва Закладу";
-            gridViewTextBoxColumn7.Name = "PlaceName";
-            gridViewTextBoxColumn7.ReadOnly = true;
-            gridViewTextBoxColumn7.Width = 146;
-            gridViewTextBoxColumn8.FieldName = "Amount";
-            gridViewTextBoxColumn8.HeaderText = "Сума";
-            gridViewTextBoxColumn8.MaxWidth = 135;
-            gridViewTextBoxColumn8.MinWidth = 120;
-            gridViewTextBoxColumn8.Name = "Amount";
-            gridViewTextBoxColumn8.ReadOnly = true;
-            gridViewTextBoxColumn8.Width = 120;
-            gridViewCheckBoxColumn2.Checked = Telerik.WinControls.Enumerations.ToggleState.On;
-            gridViewCheckBoxColumn2.EnableHeaderCheckBox = true;
-            gridViewCheckBoxColumn2.FieldName = "CheckIn";
-            gridViewCheckBoxColumn2.HeaderText = "";
-            gridViewCheckBoxColumn2.Name = "CheckIn";
-            gridViewCheckBoxColumn2.Width = 32;
+            gridViewTextBoxColumn1.FieldName = "PlaceId";
+            gridViewTextBoxColumn1.HeaderText = "n/n";
+            gridViewTextBoxColumn1.MaxWidth = 70;
+            gridViewTextBoxColumn1.MinWidth = 70;
+            gridViewTextBoxColumn1.Name = "PlaceId";
+            gridViewTextBoxColumn1.ReadOnly = true;
+            gridViewTextBoxColumn1.Width = 70;
+            gridViewTextBoxColumn2.FieldName = "PlaceAddress";
+            gridViewTextBoxColumn2.HeaderText = "Фактична адреса закладу";
+            gridViewTextBoxColumn2.Name = "PlaceAddress";
+            gridViewTextBoxColumn2.ReadOnly = true;
+            gridViewTextBoxColumn2.Width = 294;
+            gridViewTextBoxColumn3.FieldName = "PlaceName";
+            gridViewTextBoxColumn3.HeaderText = "Назва Закладу";
+            gridViewTextBoxColumn3.Name = "PlaceName";
+            gridViewTextBoxColumn3.ReadOnly = true;
+            gridViewTextBoxColumn3.Width = 146;
+            gridViewTextBoxColumn4.FieldName = "Amount";
+            gridViewTextBoxColumn4.HeaderText = "Сума";
+            gridViewTextBoxColumn4.MaxWidth = 135;
+            gridViewTextBoxColumn4.MinWidth = 120;
+            gridViewTextBoxColumn4.Name = "Amount";
+            gridViewTextBoxColumn4.ReadOnly = true;
+            gridViewTextBoxColumn4.Width = 120;
+            gridViewCheckBoxColumn1.Checked = Telerik.WinControls.Enumerations.ToggleState.On;
+            gridViewCheckBoxColumn1.EnableHeaderCheckBox = true;
+            gridViewCheckBoxColumn1.FieldName = "CheckIn";
+            gridViewCheckBoxColumn1.HeaderText = "";
+            gridViewCheckBoxColumn1.Name = "CheckIn";
+            gridViewCheckBoxColumn1.Width = 32;
             this.gvPlaces.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewCheckBoxColumn2});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewCheckBoxColumn1});
             this.gvPlaces.MasterTemplate.EnableGrouping = false;
-            this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvPlaces.Name = "gvPlaces";
             this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPlaces.Size = new System.Drawing.Size(684, 145);
@@ -306,7 +291,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
@@ -330,7 +314,6 @@
         private System.Windows.Forms.BindingSource bindingSourceAgr;
         private ContractConsumerDetailControl ctrlAgrSecond;
         private Telerik.WinControls.UI.RadPanel panel;
-        private Telerik.WinControls.UI.RadButton btnPrint;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadGridView gvPlaces;
