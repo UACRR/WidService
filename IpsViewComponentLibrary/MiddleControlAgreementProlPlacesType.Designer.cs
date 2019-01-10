@@ -37,12 +37,11 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.lblTitleClientName = new Telerik.WinControls.UI.RadLabel();
-            this.bindingSourceAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgrMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.bindingSourceAgr = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgrSecond = new IpsViewComponentLibrary.ContractConsumerDetailControl();
             this.panel = new Telerik.WinControls.UI.RadPanel();
-            this.btnPrint = new Telerik.WinControls.UI.RadButton();
+            this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
@@ -51,14 +50,12 @@
             this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
@@ -67,7 +64,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -86,7 +82,6 @@
             this.lblTitleClientName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTitleClientName.AutoSize = false;
-            this.lblTitleClientName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceAnketaCompany, "Name", true));
             this.lblTitleClientName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblTitleClientName.Location = new System.Drawing.Point(86, 3);
             this.lblTitleClientName.Name = "lblTitleClientName";
@@ -96,15 +91,12 @@
             this.lblTitleClientName.Text = "Назва «Клієнта»";
             this.lblTitleClientName.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // bindingSourceAnketaCompany
-            // 
-            this.bindingSourceAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            // 
             // ctrlAgrMain
             // 
             this.ctrlAgrMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
-            this.ctrlAgrMain.DataSource = this.bindingSourceAgr;
+            this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
+            this.ctrlAgrMain.DateEndNullText = "";
             this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
             this.ctrlAgrMain.Location = new System.Drawing.Point(14, 31);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
@@ -146,24 +138,22 @@
             this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.Controls.Add(this.checkAttach);
-            this.panel.Controls.Add(this.btnPrint);
             this.panel.Controls.Add(this.ctrlAgrSecond);
             this.panel.Location = new System.Drawing.Point(4, 275);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(683, 150);
             this.panel.TabIndex = 26;
+            this.panel.ThemeName = "Office2013Light";
             // 
-            // btnPrint
+            // checkAttach
             // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.Location = new System.Drawing.Point(613, 3);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(67, 43);
-            this.btnPrint.TabIndex = 21;
-            this.btnPrint.Text = "Друкувати договір";
-            this.btnPrint.TextWrap = true;
-            this.btnPrint.ThemeName = "Office2013Light";
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.checkAttach.AutoSize = false;
+            this.checkAttach.Location = new System.Drawing.Point(6, 125);
+            this.checkAttach.Name = "checkAttach";
+            this.checkAttach.Size = new System.Drawing.Size(308, 19);
+            this.checkAttach.TabIndex = 22;
+            this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
+            this.checkAttach.ThemeName = "Office2013Light";
             // 
             // btnSave
             // 
@@ -211,12 +201,12 @@
             gridViewTextBoxColumn2.HeaderText = "Фактична адреса закладу";
             gridViewTextBoxColumn2.Name = "PlaceAddress";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 296;
+            gridViewTextBoxColumn2.Width = 294;
             gridViewTextBoxColumn3.FieldName = "PlaceName";
             gridViewTextBoxColumn3.HeaderText = "Назва Закладу";
             gridViewTextBoxColumn3.Name = "PlaceName";
             gridViewTextBoxColumn3.ReadOnly = true;
-            gridViewTextBoxColumn3.Width = 147;
+            gridViewTextBoxColumn3.Width = 146;
             gridViewTextBoxColumn4.FieldName = "Amount";
             gridViewTextBoxColumn4.HeaderText = "Сума";
             gridViewTextBoxColumn4.MaxWidth = 135;
@@ -229,7 +219,7 @@
             gridViewCheckBoxColumn1.FieldName = "CheckIn";
             gridViewCheckBoxColumn1.HeaderText = "";
             gridViewCheckBoxColumn1.Name = "CheckIn";
-            gridViewCheckBoxColumn1.Width = 34;
+            gridViewCheckBoxColumn1.Width = 32;
             this.gvPlaces.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -242,7 +232,7 @@
             this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPlaces.Size = new System.Drawing.Size(684, 145);
             this.gvPlaces.TabIndex = 28;
-            this.gvPlaces.ThemeName = "Office2007Silver";
+            this.gvPlaces.ThemeName = "Office2013Light";
             this.gvPlaces.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPlaces_CellValueChanged);
             // 
             // ddlLicType
@@ -255,8 +245,9 @@
             this.ddlLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlLicType.Location = new System.Drawing.Point(96, 88);
             this.ddlLicType.Name = "ddlLicType";
-            this.ddlLicType.Size = new System.Drawing.Size(588, 20);
+            this.ddlLicType.Size = new System.Drawing.Size(588, 21);
             this.ddlLicType.TabIndex = 30;
+            this.ddlLicType.ThemeName = "Office2013Light";
             this.ddlLicType.ValueMember = "CodeI";
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.StackLayoutElement)(this.ddlLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
@@ -278,16 +269,6 @@
             this.radLabel2.TabIndex = 31;
             this.radLabel2.Text = "Тип ліцензії";
             // 
-            // checkAttach
-            // 
-            this.checkAttach.AutoSize = false;
-            this.checkAttach.Location = new System.Drawing.Point(6, 125);
-            this.checkAttach.Name = "checkAttach";
-            this.checkAttach.Size = new System.Drawing.Size(308, 19);
-            this.checkAttach.TabIndex = 22;
-            this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
-            this.checkAttach.ThemeName = "Office2013Light";
-            // 
             // MiddleControlAgreementProlPlacesType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -306,11 +287,10 @@
             this.Size = new System.Drawing.Size(690, 461);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnPrint)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
@@ -319,7 +299,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,12 +310,10 @@
 
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel lblTitleClientName;
-        private System.Windows.Forms.BindingSource bindingSourceAnketaCompany;
         private ContractConsumerMainControl ctrlAgrMain;
         private System.Windows.Forms.BindingSource bindingSourceAgr;
         private ContractConsumerDetailControl ctrlAgrSecond;
         private Telerik.WinControls.UI.RadPanel panel;
-        private Telerik.WinControls.UI.RadButton btnPrint;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadGridView gvPlaces;

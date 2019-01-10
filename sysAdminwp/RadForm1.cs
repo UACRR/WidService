@@ -54,6 +54,15 @@ namespace sysAdminwp
         private void SetDataSource()
         {
             var dictCategory = _connector.GetList<DictCategory>("dictionary/list");//дерево
+            List<DicCategoryItems> categoryItems = new List<DicCategoryItems>();
+            foreach (var category in dictCategory)
+            {
+                categoryItems.AddRange(category.DicCategoryItems.OrderBy(i => i.Name).ToList());
+                category.DicCategoryItems.Clear();
+                foreach (var i in categoryItems)
+                    category.DicCategoryItems.Add(i);
+                categoryItems.Clear();
+            }
             radTreeViewList.DataSource = dictCategory;
             radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             radTreeViewList.DisplayMember = "Name\\Name";
