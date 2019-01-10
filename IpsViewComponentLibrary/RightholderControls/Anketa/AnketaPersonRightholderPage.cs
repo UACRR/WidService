@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
@@ -50,6 +51,11 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
         private void txtInterCode_Leave(object sender, EventArgs e)
         {
+            // Тільки нові правовласники
+            Customer cust = bsCustomer.DataSource as Customer;
+            if (cust == null || cust.CustId != 0)
+                return;
+
             IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
             if (checker != null)
                 lblIPIExists.Visible = !checker.CheckIPIIsUnique(txtInterCode.Text);
