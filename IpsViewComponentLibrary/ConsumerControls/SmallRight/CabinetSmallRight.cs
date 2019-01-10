@@ -13,6 +13,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerForms;
 
 namespace IpsViewComponentLibrary
 {
@@ -577,11 +578,7 @@ namespace IpsViewComponentLibrary
         /// <param name="licenseParam"></param>
         private void RunDialogForLicenseAgrParam(LicenseAgreement license, LicenseAgrParam licenseParam, DialogGoal goal)
         {
-            var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
-            var licenseName = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name;
-
-            ProlongationWithPlaces prolongation = new ProlongationWithPlaces(licenseParam, anketaCompany, _dictionaties, license,
-                _customer?.Client?.ClnBusinessPlace, _customer, goal, Rights)
+            var prolongation = new ProlongationAgreementForm(licenseParam, _dictionaties, license, _customer, goal, Rights)
             {
                 Text = goal == DialogGoal.forEdit ? "Редагування договору"
                     : goal == DialogGoal.forProlongation ? "Пролонгація договору"
@@ -591,8 +588,18 @@ namespace IpsViewComponentLibrary
                     : string.Empty,
                 StartPosition = FormStartPosition.CenterParent
             };
-            prolongation.OnSaveProlongation += OnSaveCommentNeed;
-            prolongation.ShowDialog();
+
+            if (prolongation.ShowDialog() == DialogResult.OK)
+            {
+                var result = SaveCustomer?.Invoke(_customer) ?? false;
+                if (result)
+                {
+                    MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    UpdateCustomer();
+                }
+                else
+                    MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion

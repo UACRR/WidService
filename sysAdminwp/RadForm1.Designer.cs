@@ -122,7 +122,6 @@ namespace sysAdminwp
             this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.EnableCustomFiltering = true;
             this.radGridView1.Location = new System.Drawing.Point(243, 64);
             this.radGridView1.Margin = new System.Windows.Forms.Padding(1);
             // 
@@ -132,11 +131,11 @@ namespace sysAdminwp
             this.radGridView1.MasterTemplate.AllowDeleteRow = false;
             this.radGridView1.MasterTemplate.AllowEditRow = false;
             this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridView1.MasterTemplate.EnableCustomFiltering = true;
             this.radGridView1.MasterTemplate.EnableFiltering = true;
-            this.radGridView1.MasterTemplate.ShowFilteringRow = false;
+            this.radGridView1.MasterTemplate.ShowHeaderCellButtons = true;
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
+            this.radGridView1.ShowHeaderCellButtons = true;
             this.radGridView1.Size = new System.Drawing.Size(907, 340);
             this.radGridView1.TabIndex = 0;
             // 
@@ -215,7 +214,7 @@ namespace sysAdminwp
             // 
             this.radLabelNameEn.AutoSize = false;
             this.radLabelNameEn.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelNameEn.Location = new System.Drawing.Point(55, 82);
+            this.radLabelNameEn.Location = new System.Drawing.Point(55, 109);
             this.radLabelNameEn.Name = "radLabelNameEn";
             this.radLabelNameEn.Size = new System.Drawing.Size(90, 18);
             this.radLabelNameEn.TabIndex = 4;
@@ -226,7 +225,7 @@ namespace sysAdminwp
             // 
             this.radLabelNameRu.AutoSize = false;
             this.radLabelNameRu.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelNameRu.Location = new System.Drawing.Point(55, 109);
+            this.radLabelNameRu.Location = new System.Drawing.Point(55, 82);
             this.radLabelNameRu.Name = "radLabelNameRu";
             this.radLabelNameRu.Size = new System.Drawing.Size(90, 18);
             this.radLabelNameRu.TabIndex = 5;
@@ -257,7 +256,7 @@ namespace sysAdminwp
             // 
             this.radTBNameEn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radTBNameEn.Location = new System.Drawing.Point(162, 82);
+            this.radTBNameEn.Location = new System.Drawing.Point(162, 108);
             this.radTBNameEn.Name = "radTBNameEn";
             this.radTBNameEn.Size = new System.Drawing.Size(727, 20);
             this.radTBNameEn.TabIndex = 8;
@@ -267,7 +266,7 @@ namespace sysAdminwp
             // 
             this.radTBNameRu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radTBNameRu.Location = new System.Drawing.Point(162, 109);
+            this.radTBNameRu.Location = new System.Drawing.Point(162, 81);
             this.radTBNameRu.Name = "radTBNameRu";
             this.radTBNameRu.Size = new System.Drawing.Size(727, 20);
             this.radTBNameRu.TabIndex = 9;
@@ -291,7 +290,6 @@ namespace sysAdminwp
             this.radPanelChange.Name = "radPanelChange";
             this.radPanelChange.Size = new System.Drawing.Size(907, 178);
             this.radPanelChange.TabIndex = 4;
-            this.radPanelChange.Text = "Дані довідника";
             this.radPanelChange.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             ((Telerik.WinControls.UI.RadPanelElement)(this.radPanelChange.GetChildAt(0))).Text = "Дані довідника";
             ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;

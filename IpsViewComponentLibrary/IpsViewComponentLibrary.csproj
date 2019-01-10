@@ -106,7 +106,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.Reporting, Version=12.1.18.620, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2018.3.1016.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
@@ -148,6 +147,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="Telerik.Reporting, Version=12.2.18.912, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddCompositionForm.cs">
@@ -851,10 +853,10 @@
     <Compile Include="_trash\MiddleControlAgreementBigRights.Designer.cs">
       <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlAgreementProlType.cs">
+    <Compile Include="_trash\MiddleControlAgreementProlType.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlAgreementProlType.Designer.cs">
+    <Compile Include="_trash\MiddleControlAgreementProlType.Designer.cs">
       <DependentUpon>MiddleControlAgreementProlType.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlAgreementProlPlacesType.cs">
@@ -972,16 +974,16 @@
     <Compile Include="PassportInternationalControl.Designer.cs">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProlongationWithPlaces.cs">
+    <Compile Include="ConsumerForms\ProlongationAgreementForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProlongationWithPlaces.Designer.cs">
-      <DependentUpon>ProlongationWithPlaces.cs</DependentUpon>
+    <Compile Include="ConsumerForms\ProlongationAgreementForm.Designer.cs">
+      <DependentUpon>ProlongationAgreementForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ProlongationWithoutPlaces.cs">
+    <Compile Include="_trash\ProlongationWithoutPlaces.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProlongationWithoutPlaces.Designer.cs">
+    <Compile Include="_trash\ProlongationWithoutPlaces.Designer.cs">
       <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1423,7 +1425,7 @@
     <EmbeddedResource Include="_trash\MiddleControlAgreementBigRights.resx">
       <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlAgreementProlType.resx">
+    <EmbeddedResource Include="_trash\MiddleControlAgreementProlType.resx">
       <DependentUpon>MiddleControlAgreementProlType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlAgreementProlPlacesType.resx">
@@ -1484,10 +1486,10 @@
     <EmbeddedResource Include="PassportInternationalControl.resx">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProlongationWithPlaces.resx">
-      <DependentUpon>ProlongationWithPlaces.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerForms\ProlongationAgreementForm.resx">
+      <DependentUpon>ProlongationAgreementForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProlongationWithoutPlaces.resx">
+    <EmbeddedResource Include="_trash\ProlongationWithoutPlaces.resx">
       <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\ServiceComissionControl.resx">

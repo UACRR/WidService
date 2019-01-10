@@ -19,12 +19,14 @@ using ipsFormsDesign.Model;
 
 namespace sysAdminwp
 {
-    public partial class RadForm1 : Telerik.WinControls.UI.RadForm
+    public partial class RadForm1 : RadForm
     {
         private readonly ApiConnector _connector = new ApiConnector();
         private List<DictBaseTypeI> _list;
         private List<DictCategory> _dictionaryCategories = null;
         public string Url { get; set; }
+        //index row
+        private int _indexRow;
 
         public RadForm1()
         {
@@ -36,20 +38,31 @@ namespace sysAdminwp
             radTxtBoxSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
             radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
+            
 
             radPanelChange.Enabled = false;
             radTxtBoxSearchData.Enabled = false;
             radBtnAdd.Enabled = false;
             radBtnRemove.Enabled = false;
             _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");
+            
         }
 
         #region Методи
-        
+
         //метод встановлення джерела даних для дерева
         private void SetDataSource()
         {
             var dictCategory = _connector.GetList<DictCategory>("dictionary/list");//дерево
+            List<DicCategoryItems> categoryItems = new List<DicCategoryItems>();
+            foreach (var category in dictCategory)
+            {
+                categoryItems.AddRange(category.DicCategoryItems.OrderBy(i => i.Name).ToList());
+                category.DicCategoryItems.Clear();
+                foreach (var i in categoryItems)
+                    category.DicCategoryItems.Add(i);
+                categoryItems.Clear();
+            }
             radTreeViewList.DataSource = dictCategory;
             radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             radTreeViewList.DisplayMember = "Name\\Name";
@@ -166,6 +179,8 @@ namespace sysAdminwp
             radTBNameUa.TextChanging += TextBox_TextChanging;
             radTBNameRu.TextChanging += TextBox_TextChanging;
             radTBNameEn.TextChanging += TextBox_TextChanging;
+            // hide default string
+            radGridView1.TableElement.Text = "";
         }
 
         /// <summary>
@@ -245,10 +260,38 @@ namespace sysAdminwp
         {
             UpdateEditPanel();
         }
+        //method for save last position cursor
+        private void GetLstCurs()
+        {
+            //save position
+            _indexRow = radGridView1.CurrentRow.Index;
+        }
+
+        //method for set saved position cursor
+        private void SetLstCurs()
+        {
+            //set position
+            radGridView1.CurrentRow = radGridView1.Rows[_indexRow];
+        }
+
+        //method for set last position row
+        private void SetLastPositionForDeleteRow()
+        {
+            //set position
+            radGridView1.CurrentRow = radGridView1.Rows[_indexRow - 1];
+        }
+        //method for set focus after add new row
+        private void SetLastPositionForAddedRow()
+        {
+            //set last position for focus
+            radGridView1.CurrentRow = radGridView1.Rows[radGridView1.RowCount - 1];
+        }
 
         //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
+            //use last selected row
+            GetLstCurs();
             radBtnSave.Text = "Додати";
             ChangeEnableElementsWhenAdd(false);
             radTBCode.Clear();
@@ -256,17 +299,19 @@ namespace sysAdminwp
             radTBNameRu.Clear();
             radTBNameUa.Clear();
             radPanelChange.Enabled = true;
-
         }
-
+        
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
+            GetLstCurs();
             var result = _connector.DeleteItem(Url, radGridView1.CurrentRow.Cells["Code"].Value.ToString());
             
             _list = _connector.GetList<DictBaseTypeI>(Url);
             radGridView1.DataSource = GetData(_list);
             UpdateEditPanel();
+            //set position after delete row
+            SetLastPositionForDeleteRow();
         }
 
         //кнопка збереження
@@ -275,13 +320,14 @@ namespace sysAdminwp
             if (radBtnSave.Text == "Додати")
             {
                 SaveAddNewRow();
-                
             }
             else
             {
                 SaveUpdate();
                 ChangeEnableElementsWhenEdit(true);
             }
+            //set last row focus
+            SetLastPositionForAddedRow();
         }
 
         //кнопка відміни внесених змін
@@ -342,6 +388,8 @@ namespace sysAdminwp
         //подія при редагуванні даних в текстбоксах
         private void TextBox_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
+            //save last position
+            GetLstCurs();
             ChangeEnableElementsWhenEdit(false);
         }
 
@@ -386,6 +434,42 @@ namespace sysAdminwp
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             }
+        }
+        //methods for get complexive dictionaries
+        //method for get 'select * from Category'
+        private void GetCategory()
+        {
+
+        }
+        //method for get 'select * from CopyrightKind'
+        private void GetCopyrightKind()
+        {
+
+        }
+        //method for get 'select * from Country'
+        private void GetCountry()
+        {
+
+        }
+        //method for get 'select * from CreativeRoleType'
+        private void GetCreativeRoleType()
+        {
+
+        }
+        //method for get 'select * from GenreType'
+        private void GetGenreType()
+        {
+
+        }
+        //method for get 'select * from KL_R030'
+        private void GetKL_R030()
+        {
+
+        }
+        //method for get 'select * from RelGenrePercent'
+        private void GetRelGenrePercent()
+        {
+
         }
     }
 
