@@ -122,7 +122,6 @@ namespace sysAdminwp
             this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.EnableCustomFiltering = true;
             this.radGridView1.Location = new System.Drawing.Point(243, 64);
             this.radGridView1.Margin = new System.Windows.Forms.Padding(1);
             // 
@@ -132,11 +131,11 @@ namespace sysAdminwp
             this.radGridView1.MasterTemplate.AllowDeleteRow = false;
             this.radGridView1.MasterTemplate.AllowEditRow = false;
             this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridView1.MasterTemplate.EnableCustomFiltering = true;
             this.radGridView1.MasterTemplate.EnableFiltering = true;
-            this.radGridView1.MasterTemplate.ShowFilteringRow = false;
+            this.radGridView1.MasterTemplate.ShowHeaderCellButtons = true;
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
+            this.radGridView1.ShowHeaderCellButtons = true;
             this.radGridView1.Size = new System.Drawing.Size(907, 340);
             this.radGridView1.TabIndex = 0;
             // 
