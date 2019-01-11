@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary
 {
@@ -125,6 +127,19 @@ namespace IpsViewComponentLibrary
             {
                 e.Handled = true;
             }
+        }
+
+        private void txtOkpo_Leave(object sender, EventArgs e)
+        {
+            // Тільки нові правовласники
+            AnketaCompany cust = bsAnketaCompany.DataSource as AnketaCompany;
+            if (cust == null || (cust.CustId != 0 && cust.Okpo.Trim() == txtOkpo.Text.Trim() ) )
+                return;
+
+
+            IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
+            if (checker != null)
+                lblOKPOExists.Visible = !checker.CheckOKPOIsUnique(txtOkpo.Text);
         }
     }
 }

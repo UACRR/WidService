@@ -21,6 +21,29 @@ namespace ipsFormsDesign.Data
         private static Dictionary<Type, BindingField[]> AnketaDictionatiesField = new Dictionary<Type, BindingField[]>();
         public static AnketaDictionaties AnketaDictionaties { get; private set; }
         public static ObjectRightDictionaries ObjectRightDictionaries { get; private set; }
+        public static Dictionary<Type, object> Instances { get; private set; } = new Dictionary<Type, object>();
+
+        // Додати екземпляр до довідника типів
+        public static void addInstance( Type id, object instance )
+        {
+            if(Instances.Keys.Contains( id ))
+            {
+                Instances[id] = instance;
+            }
+            else
+            {
+                Instances.Add(id, instance);
+            }
+        }
+
+        //  екземпляр до довідника типів
+        public static void removeInstance( Type id )
+        {
+            if( Instances.Keys.Contains( id ))
+            {
+                Instances.Remove(id);
+            }
+        }
 
 
         static IpsGlobal()
