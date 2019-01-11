@@ -116,12 +116,6 @@
     <Compile Include="DictionaryForm.Designer.cs">
       <DependentUpon>DictionaryForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataEditControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DataEditControl.Designer.cs">
-      <DependentUpon>DataEditControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="ViewTable.cs" />
     <EmbeddedResource Include="ComplexDictionaryControls\CountryDictionaryControl.resx">
       <DependentUpon>CountryDictionaryControl.cs</DependentUpon>
@@ -145,9 +139,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="DataEditControl.resx">
-      <DependentUpon>DataEditControl.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
