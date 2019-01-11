@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Telerik.WinControls.UI;
 using System.IO;
+using System.Reflection;
 using ipsFormsDesign.Dictionary;
 using sysAdminwp.Properties;
 using WebAPIConnector;
@@ -22,16 +24,59 @@ namespace sysAdminwp
     public partial class RadForm1 : RadForm
     {
         private readonly ApiConnector _connector = new ApiConnector();
+        private readonly List<string> _complexDictionaryList = new List<string>
+        {
+            "copyrightkind",
+            "country",
+            "creativeroletype",
+            "genretype",
+            "klr030"
+        };
         private List<DictBaseTypeI> _list;
+        private List<CopyrightKind> _copyrightKindList;
+        private List<Country> _countryList;
+        private List<CreativeRoleType> _creativeRoleTypeList;
+        private List<GenreType> _genreTypeList;
+        private List<KlR030> _klR030List;
         private List<DictCategory> _dictionaryCategories = null;
-        public string Url { get; set; }
-        //index row
+
+        /// <summary>
+        /// URL словника
+        /// </summary>
+        public string Url
+        {
+            get
+            {
+                var node = treeViewList.SelectedNode;
+                if (node?.Parent == null) return string.Empty;
+                var categoryItem = _dictionaryCategories[node.Parent.Index].DicCategoryItems[node.Index];
+                if (categoryItem == null) return string.Empty;
+                return categoryItem.Url;
+            }
+        }
+
+        /// <summary>
+        /// Найменування довідника
+        /// </summary>
+        public string DictionaryName
+        {
+            get
+            {
+                var node = treeViewList.SelectedNode;
+                if (node?.Parent == null) return string.Empty;
+                var categoryItem = _dictionaryCategories[node.Parent.Index].DicCategoryItems[node.Index];
+                if (categoryItem == null) return string.Empty;
+                return categoryItem.DicName;
+            }
+        }
+
+        // index selected row
         private int _indexRow;
 
         public RadForm1()
         {
             InitializeComponent();
-            SetDataSource();
+            SetTreeViewDataSource();
             
             UpdateEditPanel();
 
@@ -39,56 +84,133 @@ namespace sysAdminwp
             radGridView1.CustomFiltering += RadGridView1_CustomFiltering;
             radGridView1.CurrentRowChanged += RadGridView1_CurrentRowChanged;
             
-
             radPanelChange.Enabled = false;
             radTxtBoxSearchData.Enabled = false;
             radBtnAdd.Enabled = false;
             radBtnRemove.Enabled = false;
-            _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");
-            
         }
 
-        #region Методи
+        #region * * * Методи * * *
 
-        //метод встановлення джерела даних для дерева
-        private void SetDataSource()
+        /// <summary>
+        /// Встановлення джерела даних для Tree View
+        /// </summary>
+        private void SetTreeViewDataSource()
         {
-            var dictCategory = _connector.GetList<DictCategory>("dictionary/list");//дерево
-            List<DicCategoryItems> categoryItems = new List<DicCategoryItems>();
-            foreach (var category in dictCategory)
+            _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");//дерево
+            foreach (var category in _dictionaryCategories)
             {
+                var categoryItems = new List<DicCategoryItems>();
                 categoryItems.AddRange(category.DicCategoryItems.OrderBy(i => i.Name).ToList());
                 category.DicCategoryItems.Clear();
                 foreach (var i in categoryItems)
                     category.DicCategoryItems.Add(i);
-                categoryItems.Clear();
             }
-            radTreeViewList.DataSource = dictCategory;
-            radTreeViewList.ChildMember = "DictCategory\\DicCategoryItems";
-            radTreeViewList.DisplayMember = "Name\\Name";
+            treeViewList.DataSource = _dictionaryCategories;
+            treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
+            treeViewList.DisplayMember = "Name\\Name";
         }
 
         /// <summary>
-        /// Отримати дані у вигляді виведення на grid
+        /// Конвертація даних для відображення на грід
         /// </summary>
-        /// <param name="l"></param>
         /// <returns></returns>
-        private List<ViewTable> GetData(List<DictBaseTypeI> l)
+        private List<ViewTable> GetData()
         {
             var view = new List<ViewTable>();
-            foreach (var items in l)
+
+            // складні словники
+            if (_complexDictionaryList.Contains(DictionaryName.ToLower()))
             {
-                view.Add(new ViewTable
+                switch (DictionaryName.ToLower())
                 {
-                    Code = items.CodeI,
-                    NameUk = items.DictTrI?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? items.Name,
-                    NameRu = items.DictTrI?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = items.DictTrI?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                });
+                    case "copyrightkind":
+                        _copyrightKindList = _connector.GetList<CopyrightKind>(Url);
+                        foreach (var item in _copyrightKindList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            });
+                        }
+                        break;
+                    case "country":
+                        _countryList = _connector.GetList<Country>(Url);
+                        foreach (var item in _countryList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CountryCode,
+                                NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName?? item.CountryName,
+                                NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
+                                NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
+                            });
+                        }
+                        break;
+                    case "creativeroletype":
+                        _creativeRoleTypeList = _connector.GetList<CreativeRoleType>(Url);
+                        foreach (var item in _creativeRoleTypeList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            });
+                        }
+                        break;
+                    case "genretype":
+                        _genreTypeList = _connector.GetList<GenreType>(Url);
+                        foreach (var item in _genreTypeList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            });
+                        }
+                        break;
+                    case "klr030":
+                        _klR030List = _connector.GetList<KlR030>(Url);
+                        foreach (var item in _klR030List)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.R030,
+                                NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name?? item.R030Name,
+                                NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
+                                NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                            });
+                        }
+                        break;
+                }
             }
+            // прості словники
+            else
+            {
+                var baseDicts = _connector.GetList<DictBaseTypeI>(Url);
+                _list = baseDicts;
+
+                foreach (var item in baseDicts)
+                {
+                    view.Add(new ViewTable
+                    {
+                        Code = item.CodeI.ToString(),
+                        NameUk = item.DictTrI?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                        NameRu = item.DictTrI?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                        NameEn = item.DictTrI?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    });
+                }
+            }
+            
             return view;
         }
-
 
         private DictBaseTypeI PackDataI()
         {
@@ -114,9 +236,10 @@ namespace sysAdminwp
                 radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
 
             DictBaseTypeI dataI = PackDataI();
-            bool retCode = _connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
-            _list = _connector.GetList<DictBaseTypeI>(Url);
-            radGridView1.DataSource = GetData(_list);
+            // TODO: use result
+            bool result = _connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
+
+            radGridView1.DataSource = GetData();
             UpdateEditPanel();
         }
 
@@ -126,13 +249,14 @@ namespace sysAdminwp
             {
                 if ((Convert.ToInt32(radTBCode.Text)).GetType() != typeof(int))
                     radTBCode.Text = radGridView1.CurrentRow.Cells["Code"].Value.ToString();
+
                 radBtnSave.Text = "Зберегти";
                 try
                 {
                     DictBaseTypeI dataI = PackDataI();
-                    bool retCode = _connector.NewItem(Url, dataI);
-                    _list = _connector.GetList<DictBaseTypeI>(Url);
-                    radGridView1.DataSource = GetData(_list);
+                    bool result = _connector.NewItem(Url, dataI);
+
+                    radGridView1.DataSource = GetData();
                     UpdateEditPanel();
                     ChangeEnableElementsWhenAdd(true);
                 }
@@ -159,13 +283,59 @@ namespace sysAdminwp
             radTBNameRu.TextChanging -= TextBox_TextChanging;
             radTBNameEn.TextChanging -= TextBox_TextChanging;
 
-            if (radGridView1?.CurrentRow?.DataBoundItem is ViewTable items)
+            if (radGridView1.CurrentRow?.DataBoundItem is ViewTable items)
             {
-                var item = _list.SingleOrDefault(rec => rec.CodeI == items.Code);
-                radTBCode.Text = item?.CodeI.ToString();
-                radTBNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                radTBNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                radTBNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                if (_complexDictionaryList.Contains(DictionaryName.ToLower()))
+                {
+                    // TODO: для складних довідників підтягнути додаткові потрібні словники, сформувати інтерфейс
+                    // біндінг даних
+                    switch (DictionaryName.ToLower())
+                    {
+                        case "copyrightkind":
+                            var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                            radTBCode.Text = copyrightKind?.CodeI.ToString();
+                            radTBNameUa.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                            radTBNameRu.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                            radTBNameEn.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                            break;
+                        case "country":
+                            var country = _countryList?.SingleOrDefault(rec => rec.CountryCode == items.Code);
+                            radTBCode.Text = country?.CountryCode;
+                            radTBNameUa.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Uk")?.CountryName;
+                            radTBNameRu.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Ru")?.CountryName;
+                            radTBNameEn.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "En")?.CountryName;
+                            break;
+                        case "creativeroletype":
+                            var creativeRoleType = _creativeRoleTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                            radTBCode.Text = creativeRoleType?.CodeI.ToString();
+                            radTBNameUa.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                            radTBNameRu.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                            radTBNameEn.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                            break;
+                        case "genretype":
+                            var genreType = _genreTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                            radTBCode.Text = genreType?.CodeI.ToString();
+                            radTBNameUa.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                            radTBNameRu.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                            radTBNameEn.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                            break;
+                        case "klr030":
+                            var klR030 = _klR030List?.SingleOrDefault(rec => rec.R030 == items.Code);
+                            radTBCode.Text = klR030?.R030;
+                            radTBNameUa.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Uk")?.R030Name;
+                            radTBNameRu.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Ru")?.R030Name;
+                            radTBNameEn.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "En")?.R030Name;
+                            break;
+                    }
+                }
+                else
+                {
+                    var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                    radTBCode.Text = item?.CodeI.ToString();
+                    radTBNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                    radTBNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                    radTBNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                }
             }
             else
             {
@@ -190,7 +360,7 @@ namespace sysAdminwp
         private void ChangeEnableElementsWhenEdit(bool isEnable)
         {
             radGridView1.Enabled = isEnable;
-            radTreeViewList.Enabled = isEnable;
+            treeViewList.Enabled = isEnable;
             radBtnAdd.Enabled = isEnable;
             radBtnRemove.Enabled = isEnable;
             radTxtBoxSearchData.Enabled = isEnable;
@@ -201,7 +371,7 @@ namespace sysAdminwp
         {
             radBtnAdd.Enabled = isEnable;
             radTxtBoxSearchData.Enabled = isEnable;
-            radTreeViewList.Enabled = isEnable;
+            treeViewList.Enabled = isEnable;
             radTxtBoxFilter.Enabled = isEnable;
             radGridView1.Enabled = isEnable;
             radBtnRemove.Enabled = isEnable;
@@ -291,10 +461,10 @@ namespace sysAdminwp
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
-            var result = _connector.DeleteItem(Url, radGridView1.CurrentRow.Cells["Code"].Value.ToString());
-            
-            _list = _connector.GetList<DictBaseTypeI>(Url);
-            radGridView1.DataSource = GetData(_list);
+            var row = radGridView1.CurrentRow.DataBoundItem as ViewTable;
+            var result = _connector.DeleteItem(Url, row.Code);
+
+            radGridView1.DataSource = GetData();
             UpdateEditPanel();
         }
 
@@ -324,49 +494,53 @@ namespace sysAdminwp
         //фільтр елементів дерева
         private void radTxtBoxFilter_TextChanged(object sender, EventArgs e)
         {
-            radTreeViewList.Filter = radTxtBoxFilter.Text;
+            treeViewList.Filter = radTxtBoxFilter.Text;
         }
         
         //зміни при виборі елементу з дерева
         private void radTreeViewList_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
-            foreach (var item in _dictionaryCategories)
+            if (e.Node?.Parent?.Index == null)
             {
-                foreach (var catItem in item.DicCategoryItems)
-                {
-                    if (catItem.Name == e.Node.Name)
-                    {
-                        Url = catItem.Url;
-                        var returnedList = _connector.GetList<DictBaseTypeI>(catItem.Url);
-                        bool isNotNull = returnedList != null;
-                        radPanelChange.Enabled = isNotNull;
-                        radTxtBoxSearchData.Enabled = isNotNull;
-                        radBtnRemove.Enabled = isNotNull;
-
-                        if (isNotNull)
-                        {
-                            _list = returnedList;
-                            radGridView1.DataSource = GetData(_list);
-                            LoadOverviewCfg();
-                        }
-                        else
-                        {
-                            radGridView1.DataSource = default(DataGrid);
-                            UpdateEditPanel();
-                        }
-                        
-                        radBtnAdd.Enabled = true;
-                        return;
-                    }
-                }
-
-                radGridView1.DataSource = null;
-                UpdateEditPanel();
-                radPanelChange.Enabled = false;
-                radTxtBoxSearchData.Enabled = false;
-                radBtnAdd.Enabled = false;
-                radBtnRemove.Enabled = false;
+                DefaultPanel();
+                return;
             }
+            var categoryItem = _dictionaryCategories[e.Node.Parent.Index]?.DicCategoryItems[e.Node.Index];
+            if(categoryItem == null)
+            {
+                DefaultPanel();
+                return;
+            }
+
+            var returnedList = GetData();
+            radGridView1.DataSource = returnedList;
+            
+
+            radPanelChange.Enabled = returnedList != null;
+            radTxtBoxSearchData.Enabled = returnedList != null;
+            radBtnRemove.Enabled = returnedList != null;
+            
+            if (returnedList != null)
+            {
+                LoadOverviewCfg();
+            }
+            else
+            {
+                radGridView1.DataSource = default(DataGrid);
+                UpdateEditPanel();
+            }
+            
+            radBtnAdd.Enabled = true;
+        }
+
+        private void DefaultPanel()
+        {
+            radGridView1.DataSource = null;
+            UpdateEditPanel();
+            radPanelChange.Enabled = false;
+            radTxtBoxSearchData.Enabled = false;
+            radBtnAdd.Enabled = false;
+            radBtnRemove.Enabled = false;
         }
 
         //подія при редагуванні даних в текстбоксах

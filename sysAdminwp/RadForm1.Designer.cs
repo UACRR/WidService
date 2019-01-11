@@ -35,6 +35,10 @@ namespace sysAdminwp
         /// </summary>
         private void InitializeComponent()
         {
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.radMenu1 = new Telerik.WinControls.UI.RadMenu();
             this.radMenuItem1 = new Telerik.WinControls.UI.RadMenuItem();
@@ -44,7 +48,7 @@ namespace sysAdminwp
             this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
             this.radBtnAdd = new Telerik.WinControls.UI.RadButton();
             this.radBtnRemove = new Telerik.WinControls.UI.RadButton();
-            this.radTreeViewList = new Telerik.WinControls.UI.RadTreeView();
+            this.treeViewList = new Telerik.WinControls.UI.RadTreeView();
             this.radBtnSave = new Telerik.WinControls.UI.RadButton();
             this.radBtnCancel = new Telerik.WinControls.UI.RadButton();
             this.radLabelCode = new Telerik.WinControls.UI.RadLabel();
@@ -64,7 +68,7 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnRemove)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeViewList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeViewList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelCode)).BeginInit();
@@ -129,14 +133,40 @@ namespace sysAdminwp
             // 
             // 
             this.radGridView1.MasterTemplate.AllowAddNewRow = false;
+            this.radGridView1.MasterTemplate.AllowColumnReorder = false;
             this.radGridView1.MasterTemplate.AllowDeleteRow = false;
+            this.radGridView1.MasterTemplate.AllowDragToGroup = false;
             this.radGridView1.MasterTemplate.AllowEditRow = false;
+            this.radGridView1.MasterTemplate.AutoGenerateColumns = false;
             this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 84;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 251;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 251;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 303;
+            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.radGridView1.MasterTemplate.EnableCustomFiltering = true;
             this.radGridView1.MasterTemplate.EnableFiltering = true;
             this.radGridView1.MasterTemplate.ShowFilteringRow = false;
             this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridView1.Name = "radGridView1";
+            this.radGridView1.ReadOnly = true;
+            this.radGridView1.ShowGroupPanel = false;
             this.radGridView1.Size = new System.Drawing.Size(907, 340);
             this.radGridView1.TabIndex = 0;
             // 
@@ -160,16 +190,16 @@ namespace sysAdminwp
             this.radBtnRemove.Text = "Видалити";
             this.radBtnRemove.Click += new System.EventHandler(this.radBtnRemove_Click);
             // 
-            // radTreeViewList
+            // treeViewList
             // 
-            this.radTreeViewList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.treeViewList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.radTreeViewList.Location = new System.Drawing.Point(8, 64);
-            this.radTreeViewList.Name = "radTreeViewList";
-            this.radTreeViewList.Size = new System.Drawing.Size(229, 559);
-            this.radTreeViewList.SpacingBetweenNodes = -1;
-            this.radTreeViewList.TabIndex = 3;
-            this.radTreeViewList.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.radTreeViewList_SelectedNodeChanged);
+            this.treeViewList.Location = new System.Drawing.Point(8, 64);
+            this.treeViewList.Name = "treeViewList";
+            this.treeViewList.Size = new System.Drawing.Size(229, 559);
+            this.treeViewList.SpacingBetweenNodes = -1;
+            this.treeViewList.TabIndex = 3;
+            this.treeViewList.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.radTreeViewList_SelectedNodeChanged);
             // 
             // radBtnSave
             // 
@@ -336,7 +366,7 @@ namespace sysAdminwp
             this.Controls.Add(this.radTxtBoxSearchData);
             this.Controls.Add(this.radTxtBoxFilter);
             this.Controls.Add(this.radPanelChange);
-            this.Controls.Add(this.radTreeViewList);
+            this.Controls.Add(this.treeViewList);
             this.Controls.Add(this.radBtnRemove);
             this.Controls.Add(this.radBtnAdd);
             this.Controls.Add(this.radGridView1);
@@ -352,7 +382,7 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnRemove)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeViewList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.treeViewList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radBtnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabelCode)).EndInit();
@@ -383,7 +413,7 @@ namespace sysAdminwp
         private RadGridView radGridView1;
         private RadButton radBtnAdd;
         private RadButton radBtnRemove;
-        private RadTreeView radTreeViewList;
+        private RadTreeView treeViewList;
         private RadButton radBtnSave;
         private RadButton radBtnCancel;
         private RadLabel radLabelCode;

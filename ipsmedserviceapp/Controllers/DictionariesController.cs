@@ -131,6 +131,15 @@ namespace ipsmedserviceapp.Controllers
 
         private MediaServiceContext _dbContext;
         private Dictionary<string, object> baseEng;
+        private readonly List<string> _complexDictionaryList = new List<string>
+        {
+            "copyrightkind",
+            "country",
+            "creativeroletype",
+            "genretype",
+            "klr030"
+        };
+
         public DictionariesController(MediaServiceContext context)
         {
             _dbContext = context;
@@ -485,28 +494,81 @@ namespace ipsmedserviceapp.Controllers
             var listOut = list.Where(rec => rec.DicCategoryItems.Count > 0).ToList();
             return Json(listOut);
         }
-        
 
+        /// <summary>
+        /// Отримати словник за його назвою
+        /// </summary>
+        /// <param name="dictionay">Найменування словника</param>
+        /// <returns></returns>
         [HttpGet("base/{dictionay}")]
-        public async Task<ActionResult> GetBaseDictionaryList(string dictionay)
+        public async Task<IActionResult> GetBaseDictionaryList(string dictionay)
         {
             string normalizeName = dictionay.ToLower();
-
             if (!baseEng.Keys.Contains(normalizeName))
                 return NotFound();
+            
 
-            dynamic eng = baseEng[dictionay.ToLower()];
+            // складний довіденик
+            if (_complexDictionaryList.Contains(normalizeName))
+                return await GetComplexDictionary(normalizeName);
+
+            return await GetBaseDictionary(normalizeName);
+        }
+
+        /// <summary>
+        /// Внустрішній метод отримання простого словника
+        /// </summary>
+        /// <param name="dictionaryName">Назва словника</param>
+        /// <returns></returns>
+        private async Task<IActionResult> GetBaseDictionary(string dictionaryName)
+        {
+            dynamic eng = baseEng[dictionaryName];
             var list = await eng.GetList();
-
             return Json(list);
+        }
+
+        /// <summary>
+        /// Внустрішній метод отримання складного словника
+        /// </summary>
+        /// <returns></returns>
+        private async Task<IActionResult> GetComplexDictionary(string dictionaryName)
+        {
+            switch (dictionaryName)
+            {
+                case "copyrightkind":
+                    var copyrightkind = await _dbContext.CopyrightKind
+                        .Include(item => item.CopyrightKindTr)
+                        .ToListAsync();
+                    return Json(copyrightkind);
+                case "country":
+                    var country = await _dbContext.Country
+                        .Include(item => item.CountryTr)
+                        .ToListAsync();
+                    return Json(country);
+                case "creativeroletype":
+                    var creativeroletype = await _dbContext.CreativeRoleType
+                        .Include(item => item.CreativeRoleTypeTr)
+                        .ToListAsync();
+                    return Json(creativeroletype);
+                case "genretype":
+                    var genretype = await _dbContext.GenreType
+                        .Include(item => item.GenreTypeTr)
+                        .ToListAsync();
+                    return Json(genretype);
+                case "klr030":
+                    var klr030 = await _dbContext.KlR030
+                        .Include(item => item.KlR030tr)
+                        .ToListAsync();
+                    return Json(klr030);
+                default:
+                    return NotFound();
+            }
         }
 
         [HttpGet("base/{dictionary}/{id}")]
         public async Task<IActionResult> GetBaseDictionaryById(string dictionary, string id)
         {
-
             string normalizeName = dictionary.ToLower();
-
             if (!baseEng.Keys.Contains(normalizeName))
                 return BadRequest();
 
@@ -515,7 +577,6 @@ namespace ipsmedserviceapp.Controllers
 
             return Json(eng.ConvertToBase(obj));
         }
-
 
         [HttpDelete("base/{dictionary}/{id}")]
         public async Task<ActionResult> DeleteBaseDictionaryById(string dictionary, string id)
@@ -633,6 +694,7 @@ namespace ipsmedserviceapp.Controllers
             return crkindgroup;
 
         }
+        
         /// <summary>
         /// 
         /// </summary>
