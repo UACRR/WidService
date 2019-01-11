@@ -189,17 +189,32 @@ namespace WebAPIConnector
         {
             string idUrl = !string.IsNullOrEmpty(id) ? $"{url}/{id}" : $"{url}";
 
-            string retApiString = client.GetStringAsync(idUrl).GetAwaiter().GetResult();
-            if (retApiString == "null")
-                retApiString = string.Empty;
+            try
+            {
+                HttpResponseMessage response = client.GetAsync(idUrl).GetAwaiter().GetResult(); ;
+                if (response.IsSuccessStatusCode)
+                {
+                    string retApiString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                    if (retApiString == "null")
+                        retApiString = string.Empty;
 
 
-            if (string.IsNullOrEmpty(retApiString))
-                return default(T);
+                    if (string.IsNullOrEmpty(retApiString))
+                        return default(T);
 
-            JObject retObj = JObject.Parse(retApiString);
+                    JObject retObj = JObject.Parse(retApiString);
 
-            return retObj.ToObject<T>();
+                    return retObj.ToObject<T>();
+                }
+                else if (response.StatusCode == HttpStatusCode.NotFound)
+                    return default(T);
+                else 
+                    return default(T);
+            }
+            catch ( HttpRequestException ex )
+            {
+                throw ex;
+            }
         }
 
 

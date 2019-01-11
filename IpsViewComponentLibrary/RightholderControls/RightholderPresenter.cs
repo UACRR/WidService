@@ -13,7 +13,7 @@ using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public class RightholderPresenter : IRightholderPresenter
+    public class RightholderPresenter : IRightholderPresenter, IUniqueChecker
     {
         private readonly IRightholderView _view;
         private readonly RightholderService _rightholderService;
@@ -26,6 +26,16 @@ namespace IpsViewComponentLibrary.RightholderControls
         private AnketaCompany _anketaCompany;
         private bool _isCompany;
         private bool _canClose;
+
+        public bool CheckOKPOIsUnique( string okpo )
+        {
+            return _rightholderService.CheckOkpoExists(okpo) == false;
+        }
+
+        public bool CheckIPIIsUnique(string ipi )
+        {
+            return _rightholderService.CheckIpiExists(ipi) == false; ;
+        }
 
         public RightholderPresenter(IRightholderView view)
         {

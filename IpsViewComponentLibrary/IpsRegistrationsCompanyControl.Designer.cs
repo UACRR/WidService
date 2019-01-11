@@ -46,6 +46,8 @@ namespace IpsViewComponentLibrary
             this.ddlTypeVat = new Telerik.WinControls.UI.RadDropDownList();
             this.bsDictTypeVat = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.lblOKPOExists = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.txtNumberVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRegisterNumber)).BeginInit();
@@ -60,6 +62,8 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblTypeTaxpayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypeVat)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblOKPOExists)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNumberVat
@@ -121,6 +125,7 @@ namespace IpsViewComponentLibrary
             this.txtOkpo.TabIndex = 0;
             this.txtOkpo.ThemeName = "Office2013Light";
             this.txtOkpo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOkpo_KeyPress);
+            this.txtOkpo.Leave += new System.EventHandler(this.txtOkpo_Leave);
             // 
             // lblIssuedBy
             // 
@@ -202,10 +207,30 @@ namespace IpsViewComponentLibrary
             // 
             this.bsDictTypeVat.DataSource = typeof(ipsFormsDesign.Model.TypeVat);
             // 
+            // lblOKPOExists
+            // 
+            this.lblOKPOExists.ForeColor = System.Drawing.Color.Red;
+            this.lblOKPOExists.Location = new System.Drawing.Point(247, 4);
+            this.lblOKPOExists.Name = "lblOKPOExists";
+            this.lblOKPOExists.Size = new System.Drawing.Size(102, 18);
+            this.lblOKPOExists.TabIndex = 6;
+            this.lblOKPOExists.Text = "ЄДРПОУ вже існує";
+            this.lblOKPOExists.Visible = false;
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(485, 20);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(55, 18);
+            this.radLabel2.TabIndex = 7;
+            this.radLabel2.Text = "radLabel2";
+            // 
             // IpsRegistrationsCompanyControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radLabel2);
+            this.Controls.Add(this.lblOKPOExists);
             this.Controls.Add(this.ddlTypeVat);
             this.Controls.Add(this.lblTypeTaxpayer);
             this.Controls.Add(this.txtNumberVat);
@@ -234,6 +259,8 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.lblTypeTaxpayer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypeVat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypeVat)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblOKPOExists)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,5 +283,7 @@ namespace IpsViewComponentLibrary
         private System.Windows.Forms.BindingSource bsAnketaCompany;
         private System.Windows.Forms.BindingSource bsDictTypeVat;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadLabel lblOKPOExists;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
     }
 }

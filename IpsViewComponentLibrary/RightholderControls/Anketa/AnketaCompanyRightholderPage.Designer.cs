@@ -39,6 +39,7 @@
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtInnerCode = new Telerik.WinControls.UI.RadTextBox();
             this.txtInterCode = new Telerik.WinControls.UI.RadTextBox();
+            this.lblIPIExists = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRightholderType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -52,6 +53,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInnerCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInterCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblIPIExists)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlRightholderType
@@ -210,11 +212,23 @@
             this.txtInterCode.Size = new System.Drawing.Size(283, 21);
             this.txtInterCode.TabIndex = 33;
             this.txtInterCode.ThemeName = "Office2013Light";
+            this.txtInterCode.Leave += new System.EventHandler(this.txtInterCode_Leave);
+            // 
+            // lblIPIExists
+            // 
+            this.lblIPIExists.ForeColor = System.Drawing.Color.Red;
+            this.lblIPIExists.Location = new System.Drawing.Point(412, 120);
+            this.lblIPIExists.Name = "lblIPIExists";
+            this.lblIPIExists.Size = new System.Drawing.Size(70, 18);
+            this.lblIPIExists.TabIndex = 34;
+            this.lblIPIExists.Text = "IPI вже існує";
+            this.lblIPIExists.Visible = false;
             // 
             // AnketaCompanyRightholderPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblIPIExists);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radLabel12);
             this.Controls.Add(this.txtInnerCode);
@@ -238,6 +252,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInnerCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtInterCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblIPIExists)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -255,5 +270,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel12;
         private Telerik.WinControls.UI.RadTextBox txtInnerCode;
         private Telerik.WinControls.UI.RadTextBox txtInterCode;
+        private Telerik.WinControls.UI.RadLabel lblIPIExists;
     }
 }

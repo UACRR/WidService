@@ -390,6 +390,7 @@
     <Compile Include="Model\SexTypeTr.cs" />
     <Compile Include="Model\SpecType.cs" />
     <Compile Include="Model\SpecTypeTr.cs" />
+    <Compile Include="Model\SqlViewData\vCustomer.cs" />
     <Compile Include="Model\TableColumn.cs" />
     <Compile Include="Model\TableColumnTech.cs" />
     <Compile Include="Model\TableObject.cs" />
