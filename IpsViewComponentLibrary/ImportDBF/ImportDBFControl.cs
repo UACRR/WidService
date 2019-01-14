@@ -8,6 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.ImportDBF
 {
@@ -15,26 +19,19 @@ namespace IpsViewComponentLibrary.ImportDBF
     public partial class ImportDBFControl : UserControl
     {
         private const string DefaultFileName = "Файл не вибраний";
+        private InputFile inputFile = null;
+        private DbfEngine dbfEngine = new DbfEngine();
+        private List<ExternalPay> listPay;
+        private IDBFPresenter _presenter;
         public ImportDBFControl()
         {
             InitializeComponent();
             Leave += Control_Leave;
             lblFileName.Text = DefaultFileName;
-            gvUndistribPays.DataSource = new List<object>
-            {
-                new
-                {
-                    AgrNumber = "FF9890890890"
-                },
-                new
-                {
-                    AgrNumber = "95858-569845"
-                },
-                new
-                {
-                    AgrNumber = "584/54-5454/RTE5"
-                },
-            };
+            _presenter = IpsGlobal.Instances[typeof(IDBFPresenter)] as IDBFPresenter;
+
+            if (_presenter != null)
+                bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
         }
 
         private void Control_Leave(object sender, EventArgs e)
@@ -55,14 +52,11 @@ namespace IpsViewComponentLibrary.ImportDBF
                 fileDialog.RestoreDirectory = true;
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    fileName = fileDialog.FileName;
                     lblFileName.Text = fileDialog.SafeFileName;
-                    var fileStream = fileDialog.OpenFile();
-                    using (var streamReader = new StreamReader(fileStream))
-                    {
-                        // some code
-                    }
-                    btnLoadFile.Enabled = true;
+                    fileName = fileDialog.FileName;
+                    inputFile = dbfEngine.ReadDbfFile(fileDialog.FileName);
+                    btnLoadFile.Enabled = true && _presenter != null;
+                    MessageBox.Show($"Файл {fileName} завантажено", "Завантаження", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -70,13 +64,8 @@ namespace IpsViewComponentLibrary.ImportDBF
         // завантажити файл
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            // some code
-            
-            // генерація структури-таблиці
-            // ---
-
-            // HTTP запит на виявлення дублів
-            // ---
+            if (inputFile.FileId == 0)
+                _presenter.CheckInputFile(inputFile);
 
             // виведення результату
             var importParseResult = new ImportParseResultForm(lblFileName.Text)
@@ -85,43 +74,7 @@ namespace IpsViewComponentLibrary.ImportDBF
                 WindowState = FormWindowState.Maximized
             };
 
-            // заглушка
-            var list = new List<object>
-            {
-                new
-                {
-                    custId = 0,
-                    mfo = "050640"
-                },
-                new
-                {
-                    custId = 1,
-                    mfo = "969200"
-                },
-                new
-                {
-                    custId = 2,
-                    mfo = "252100"
-                },
-                new
-                {
-                    custId = 3,
-                    mfo = "955636"
-                },
-                new
-                {
-                    custId = 4,
-                    mfo = "050640"
-                },
-                new
-                {
-                    custId = 5,
-                    mfo = "695564"
-                },
-
-            };
-
-            importParseResult.SetParsedList(list);
+            importParseResult.SetParsedList(inputFile.CheckParamPays.ToList());
             if (importParseResult.ShowDialog() == DialogResult.OK)
             {
                 // збереження таблиці в базі
@@ -130,7 +83,7 @@ namespace IpsViewComponentLibrary.ImportDBF
 
         private void gvUndistribPays_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            if(e.Column.FieldName == "btnAttach")
+            if (e.Column.FieldName == "btnAttach")
                 return;
             PaymentsAttach();
         }

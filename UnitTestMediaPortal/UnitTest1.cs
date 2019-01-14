@@ -45,6 +45,12 @@ namespace UnitTestMediaPortal
             Assert.AreEqual(IpsGlobal.Instances[typeof(Interface01)], "interface01");
 
         }
+        [TestMethod]
+        public void CheckDbfLoad()
+        {
+            DbfEngine eng = new DbfEngine();
+            var items = eng.ReadDbfFile(@"G:\MediaService\Import\DBF\181023e.DBF");
+        }
 
 
     }

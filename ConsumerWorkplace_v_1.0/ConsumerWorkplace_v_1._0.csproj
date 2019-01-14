@@ -30,7 +30,7 @@
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -189,6 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presenters\CommunityPresenter.cs" />
+    <Compile Include="Presenters\DBFPresenter.cs" />
     <Compile Include="Presenters\PartnerPresenter.cs" />
     <Compile Include="ConsumerList.cs">
       <SubType>UserControl</SubType>

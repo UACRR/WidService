@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -38,8 +39,6 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.fileNameTitle = new Telerik.WinControls.UI.RadLabel();
@@ -49,6 +48,7 @@
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.footerPanel = new Telerik.WinControls.UI.RadPanel();
             this.headerPanel = new Telerik.WinControls.UI.RadPanel();
+            this.bindingCheckPay = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fileNameTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile)).BeginInit();
@@ -59,6 +59,7 @@
             this.footerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.headerPanel)).BeginInit();
             this.headerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingCheckPay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,88 +107,81 @@
             this.gvPaysFromFile.MasterTemplate.AutoGenerateColumns = false;
             this.gvPaysFromFile.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
-            gridViewTextBoxColumn1.FieldName = "CustId";
+            gridViewTextBoxColumn1.FieldName = "CheckId";
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "CustId";
-            gridViewTextBoxColumn2.FieldName = "AgrNumber";
+            gridViewTextBoxColumn1.Name = "CheckId";
+            gridViewTextBoxColumn2.FieldName = "AccountCorr";
             gridViewTextBoxColumn2.HeaderText = "Номер рахунку";
             gridViewTextBoxColumn2.MaxWidth = 100;
             gridViewTextBoxColumn2.MinWidth = 80;
             gridViewTextBoxColumn2.Multiline = true;
-            gridViewTextBoxColumn2.Name = "AgrNumber";
-            gridViewTextBoxColumn2.Width = 80;
+            gridViewTextBoxColumn2.Name = "AccountCorr";
+            gridViewTextBoxColumn2.Width = 99;
             gridViewTextBoxColumn2.WrapText = true;
-            gridViewTextBoxColumn3.FieldName = "mfo";
+            gridViewTextBoxColumn3.FieldName = "MfoCorr";
             gridViewTextBoxColumn3.HeaderText = "МФО";
             gridViewTextBoxColumn3.MaxWidth = 70;
             gridViewTextBoxColumn3.MinWidth = 70;
             gridViewTextBoxColumn3.Multiline = true;
-            gridViewTextBoxColumn3.Name = "mfo";
+            gridViewTextBoxColumn3.Name = "MfoCorr";
             gridViewTextBoxColumn3.Width = 70;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(int);
-            gridViewTextBoxColumn4.FieldName = "Innokpo";
+            gridViewTextBoxColumn4.FieldName = "OkpoCorr";
             gridViewTextBoxColumn4.HeaderText = "ЄДРПОУ";
             gridViewTextBoxColumn4.MaxWidth = 85;
             gridViewTextBoxColumn4.MinWidth = 85;
-            gridViewTextBoxColumn4.Name = "Innokpo";
+            gridViewTextBoxColumn4.Name = "OkpoCorr";
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn4.Width = 85;
-            gridViewTextBoxColumn5.FieldName = "JaCity";
-            gridViewTextBoxColumn5.HeaderText = "Назва Споживача";
-            gridViewTextBoxColumn5.MinWidth = 110;
-            gridViewTextBoxColumn5.Name = "JaCity";
-            gridViewTextBoxColumn5.Width = 115;
+            gridViewTextBoxColumn5.FieldName = "DocNum";
+            gridViewTextBoxColumn5.HeaderText = "Номер платежу";
+            gridViewTextBoxColumn5.MinWidth = 70;
+            gridViewTextBoxColumn5.Multiline = true;
+            gridViewTextBoxColumn5.Name = "DocNum";
+            gridViewTextBoxColumn5.Width = 92;
             gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.FieldName = "StatusName";
-            gridViewTextBoxColumn6.HeaderText = "Банк";
-            gridViewTextBoxColumn6.MinWidth = 80;
+            gridViewTextBoxColumn6.DataType = typeof(decimal);
+            gridViewTextBoxColumn6.FieldName = "SCredit";
+            gridViewTextBoxColumn6.HeaderText = "Сума";
+            gridViewTextBoxColumn6.MinWidth = 70;
             gridViewTextBoxColumn6.Multiline = true;
-            gridViewTextBoxColumn6.Name = "StatusName";
-            gridViewTextBoxColumn6.Width = 85;
+            gridViewTextBoxColumn6.Name = "SCredit";
+            gridViewTextBoxColumn6.Width = 87;
             gridViewTextBoxColumn6.WrapText = true;
-            gridViewTextBoxColumn7.FieldName = "CountLic1Active";
-            gridViewTextBoxColumn7.HeaderText = "Номер платежу";
-            gridViewTextBoxColumn7.MinWidth = 70;
+            gridViewTextBoxColumn7.FieldName = "Nplat";
+            gridViewTextBoxColumn7.HeaderText = "Призначення платежу";
+            gridViewTextBoxColumn7.MinWidth = 180;
             gridViewTextBoxColumn7.Multiline = true;
-            gridViewTextBoxColumn7.Name = "CountLic1Active";
-            gridViewTextBoxColumn7.Width = 74;
+            gridViewTextBoxColumn7.Name = "Nplat";
+            gridViewTextBoxColumn7.Width = 223;
             gridViewTextBoxColumn7.WrapText = true;
-            gridViewTextBoxColumn8.FieldName = "CountLic2Active";
-            gridViewTextBoxColumn8.HeaderText = "Сума";
-            gridViewTextBoxColumn8.MinWidth = 70;
+            gridViewTextBoxColumn8.DataType = typeof(System.DateTime);
+            gridViewTextBoxColumn8.FieldName = "DocDate";
+            gridViewTextBoxColumn8.FormatString = "{0:dd.MM.yyyy}";
+            gridViewTextBoxColumn8.HeaderText = "Дата платежу";
+            gridViewTextBoxColumn8.MaxWidth = 75;
+            gridViewTextBoxColumn8.MinWidth = 75;
             gridViewTextBoxColumn8.Multiline = true;
-            gridViewTextBoxColumn8.Name = "CountLic2Active";
-            gridViewTextBoxColumn8.Width = 70;
+            gridViewTextBoxColumn8.Name = "DocDate";
+            gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn8.Width = 75;
             gridViewTextBoxColumn8.WrapText = true;
-            gridViewTextBoxColumn9.FieldName = "CountLic3Active";
-            gridViewTextBoxColumn9.HeaderText = "Призначення платежу";
-            gridViewTextBoxColumn9.MinWidth = 180;
-            gridViewTextBoxColumn9.Multiline = true;
-            gridViewTextBoxColumn9.Name = "CountLic3Active";
-            gridViewTextBoxColumn9.Width = 180;
+            gridViewTextBoxColumn9.DataType = typeof(int);
+            gridViewTextBoxColumn9.FieldName = "InputStatus";
+            gridViewTextBoxColumn9.HeaderText = "Статус обробки";
+            gridViewTextBoxColumn9.MinWidth = 80;
+            gridViewTextBoxColumn9.Name = "InputStatus";
+            gridViewTextBoxColumn9.Width = 99;
             gridViewTextBoxColumn9.WrapText = true;
-            gridViewTextBoxColumn10.DataType = typeof(double);
-            gridViewTextBoxColumn10.FieldName = "UndistribAmount";
-            gridViewTextBoxColumn10.HeaderText = "Дата платежу";
-            gridViewTextBoxColumn10.MaxWidth = 75;
-            gridViewTextBoxColumn10.MinWidth = 75;
-            gridViewTextBoxColumn10.Multiline = true;
-            gridViewTextBoxColumn10.Name = "UndistribAmount";
-            gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn10.Width = 75;
+            gridViewTextBoxColumn10.DataType = typeof(int);
+            gridViewTextBoxColumn10.FieldName = "LinkStatus";
+            gridViewTextBoxColumn10.HeaderText = "Статус прив\'язки";
+            gridViewTextBoxColumn10.MinWidth = 120;
+            gridViewTextBoxColumn10.Name = "LinkStatus";
+            gridViewTextBoxColumn10.Width = 202;
             gridViewTextBoxColumn10.WrapText = true;
-            gridViewTextBoxColumn11.HeaderText = "Статус обробки";
-            gridViewTextBoxColumn11.MinWidth = 80;
-            gridViewTextBoxColumn11.Name = "column1";
-            gridViewTextBoxColumn11.Width = 80;
-            gridViewTextBoxColumn11.WrapText = true;
-            gridViewTextBoxColumn12.HeaderText = "Статус прив\'язки";
-            gridViewTextBoxColumn12.MinWidth = 120;
-            gridViewTextBoxColumn12.Name = "column2";
-            gridViewTextBoxColumn12.Width = 120;
-            gridViewTextBoxColumn12.WrapText = true;
             this.gvPaysFromFile.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -198,9 +192,8 @@
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn10});
+            this.gvPaysFromFile.MasterTemplate.DataSource = this.bindingCheckPay;
             this.gvPaysFromFile.MasterTemplate.EnableCustomFiltering = true;
             this.gvPaysFromFile.MasterTemplate.EnableFiltering = true;
             this.gvPaysFromFile.MasterTemplate.EnableGrouping = false;
@@ -260,6 +253,10 @@
             this.headerPanel.ThemeName = "Office2013Light";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.headerPanel.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
+            // bindingCheckPay
+            // 
+            this.bindingCheckPay.DataSource = typeof(ipsFormsDesign.Model.CheckParamPays);
+            // 
             // ImportParseResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,6 +284,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.headerPanel)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingCheckPay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -302,5 +300,6 @@
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadPanel footerPanel;
         private Telerik.WinControls.UI.RadPanel headerPanel;
+        private System.Windows.Forms.BindingSource bindingCheckPay;
     }
 }

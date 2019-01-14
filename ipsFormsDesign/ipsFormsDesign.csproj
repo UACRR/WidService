@@ -105,6 +105,7 @@
     <Compile Include="Interfaces\IAnketaDictionaties.cs" />
     <Compile Include="Interfaces\IConsumer.cs" />
     <Compile Include="Interfaces\IConsumerService.cs" />
+    <Compile Include="Interfaces\IDBFPresenter.cs" />
     <Compile Include="Interfaces\IFilteredControl.cs" />
     <Compile Include="Interfaces\IModel.cs" />
     <Compile Include="Interfaces\IObjectRightItemPresenter.cs" />
@@ -430,7 +431,9 @@
     <Compile Include="Services\CommunityService.cs" />
     <Compile Include="Services\ConsumerService.cs" />
     <Compile Include="Data\Global.cs" />
-    <Compile Include="Services\ExcelEngine.cs" />
+    <Compile Include="Engines\DbfEngine.cs" />
+    <Compile Include="Engines\ExcelEngine.cs" />
+    <Compile Include="Services\DbfService.cs" />
     <Compile Include="Services\FixationService.cs" />
     <Compile Include="Services\LicenseDataService.cs" />
     <Compile Include="Services\ObjectUploading\ObjectRightData.cs" />
@@ -443,7 +446,7 @@
     <Compile Include="Services\RightHolderService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Utils.cs" />
-    <Compile Include="Services\WordEngine.cs" />
+    <Compile Include="Engines\WordEngine.cs" />
     <Compile Include="Interfaces\ActiveAgreementData.cs" />
     <Compile Include="Utilities\AmountDistributor.cs" />
     <Compile Include="Utilities\EnumUtility.cs" />

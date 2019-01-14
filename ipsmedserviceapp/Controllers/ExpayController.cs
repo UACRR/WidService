@@ -45,9 +45,12 @@ namespace ipsmedserviceapp.Controllers
 
             await _dbContext.SaveChangesAsync();
             _dbContext.Database.ExecuteSqlCommand("exec p_Tsk_1_CheckInputFile @fileId", new SqlParameter("@fileId", dest.FileId));
-            dest.CheckParamPays = await _dbContext.CheckParamPays.Where(rec => rec.InputFileId == dest.FileId).ToListAsync();
+            var retDest = await _dbContext.InputFile.Where(rec => rec.FileId == dest.FileId)
+                .Include(rec => rec.CheckParamPays)
+                .AsNoTracking()
+                .FirstOrDefaultAsync();
 
-            return Ok(dest);
+            return Ok(retDest);
         }
         /// <summary>
         /// Зберігти файл проводок
@@ -124,7 +127,7 @@ namespace ipsmedserviceapp.Controllers
             dest.SetFields(exPay);
             await _dbContext.SaveChangesAsync();
 
-            return Ok();
+            return Ok(exPay);
         }
 
 
