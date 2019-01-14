@@ -6,6 +6,7 @@ using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -204,16 +205,24 @@ namespace IpsViewComponentLibrary.RegisterControls
             _presenter.CreateObjectsForSelected();
         }
 
+        private void disableButtons()
+        {
+            btnSetStatus.Enabled = false;
+            btnSetCanceledStatus.Enabled = false;
+            ddlStatus.ForeColor = Color.DarkGreen;
+        }
         private void btnSetStatus_Click(object sender, EventArgs e)
         {
             _presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag);
             bsRegister.ResetCurrentItem();
+            disableButtons();
         }
 
         private void btnSetCanceledStatus_Click(object sender, EventArgs e)
         {
             _presenter.SetStatus(RegisterStatusType.Canceled);
             bsRegister.ResetCurrentItem();
+            disableButtons();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
