@@ -11,6 +11,7 @@ using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.ImportDBF
 {
+    // ReSharper disable once InconsistentNaming
     public partial class ImportDBFControl : UserControl
     {
         private const string DefaultFileName = "Файл не вибраний";
