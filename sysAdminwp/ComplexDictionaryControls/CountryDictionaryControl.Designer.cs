@@ -30,14 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             this.ddlContinent = new Telerik.WinControls.UI.RadDropDownList();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
             this.bsContinent = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ddlContinent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsContinent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,14 +54,6 @@
             this.ddlContinent.ThemeName = "Office2013Light";
             this.ddlContinent.ValueMember = "CodeI";
             // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(3, 3);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(61, 18);
-            this.radLabel1.TabIndex = 1;
-            this.radLabel1.Text = "Континент";
-            // 
             // bsCountry
             // 
             this.bsCountry.DataSource = typeof(ipsFormsDesign.Model.Country);
@@ -69,6 +61,14 @@
             // bsContinent
             // 
             this.bsContinent.DataSource = typeof(ipsFormsDesign.Model.Continent);
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(3, 3);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(61, 18);
+            this.radLabel1.TabIndex = 1;
+            this.radLabel1.Text = "Континент";
             // 
             // radTextBox1
             // 
@@ -89,9 +89,9 @@
             this.Name = "CountryDictionaryControl";
             this.Size = new System.Drawing.Size(490, 266);
             ((System.ComponentModel.ISupportInitialize)(this.ddlContinent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsContinent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
