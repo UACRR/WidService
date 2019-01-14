@@ -33,6 +33,7 @@
             this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCrkindGroup = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCrkindGroup)).BeginInit();
@@ -66,14 +67,23 @@
             this.radLabel1.TabIndex = 3;
             this.radLabel1.Text = "Спосіб використання";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(221, 108);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 4;
+            // 
             // CopyRightKindDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.radDropDownList1);
             this.Name = "CopyRightKindDictionaryControl";
             this.Size = new System.Drawing.Size(585, 273);
+            this.Click += new System.EventHandler(this.CopyRightKindDictionaryControl_Click);
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCrkindGroup)).EndInit();
@@ -89,5 +99,6 @@
         private Telerik.WinControls.UI.RadDropDownList radDropDownList1;
         private System.Windows.Forms.BindingSource bsCrkindGroup;
         private Telerik.WinControls.UI.RadLabel radLabel1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

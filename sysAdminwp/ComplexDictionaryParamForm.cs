@@ -15,6 +15,12 @@ namespace sysAdminwp
     public partial class ComplexDictionaryParamForm : Telerik.WinControls.UI.RadForm
     {
         CountryDictionaryControl countryDictionaryControl;
+
+
+        public ComplexDictionaryParamForm()
+        {
+
+        }
         /// <summary>
         /// initialize for CopyrightKind
         /// </summary>
@@ -75,7 +81,11 @@ namespace sysAdminwp
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.OK;
+            CopyRightKindDictionaryControl checkObj = new CopyRightKindDictionaryControl();
+            // check if all fields is not empty then
+            //if(checkObj.radDropDownList1)
+                // send OK
+                DialogResult = DialogResult.OK;
         }
     }
 }
