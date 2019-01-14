@@ -25,7 +25,7 @@ using Telerik.WinControls.UI.Localization;
 
 namespace RightholderWorkplace
 {
-    public partial class RightholderWorkplace : Telerik.WinControls.UI.RadForm
+    public partial class RightholderWorkplace : RadForm
     {
         RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
