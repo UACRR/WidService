@@ -52,6 +52,14 @@ namespace UnitTestMediaPortal
             var items = eng.ReadDbfFile(@"G:\MediaService\Import\DBF\181023e.DBF");
         }
 
+        [TestMethod]
+        public void TestDbfPresenter()
+        {
+            DbfService _service = new DbfService();
+            var list = _service.getListOfConsumers();
+            Assert.IsNotNull(list);
+            Console.WriteLine($"Count of Consumers is {list.Count}");
+        }
 
     }
 }
