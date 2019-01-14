@@ -56,7 +56,7 @@ namespace UnitTestMediaPortal
         public void TestDbfPresenter()
         {
             DbfService _service = new DbfService();
-            var list = _service.getListOfConsumers();
+            var list = _service.GetListOfConsumers();
             Assert.IsNotNull(list);
             Console.WriteLine($"Count of Consumers is {list.Count}");
         }

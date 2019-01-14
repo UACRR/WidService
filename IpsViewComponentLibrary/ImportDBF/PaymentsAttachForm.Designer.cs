@@ -31,24 +31,21 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.footerPanel = new Telerik.WinControls.UI.RadPanel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnAttach = new Telerik.WinControls.UI.RadButton();
             this.headerPanel = new Telerik.WinControls.UI.RadPanel();
+            this.txtDestinationPay = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.txtName = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
+            this.txtIpnokpo = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.fileNameTitle = new Telerik.WinControls.UI.RadLabel();
             this.gvCustomers = new Telerik.WinControls.UI.RadGridView();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.txtIpnokpo = new Telerik.WinControls.UI.RadTextBoxControl();
-            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
-            this.txtName = new Telerik.WinControls.UI.RadTextBoxControl();
-            this.txtDestinationPay = new Telerik.WinControls.UI.RadTextBoxControl();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.footerPanel)).BeginInit();
             this.footerPanel.SuspendLayout();
@@ -56,16 +53,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAttach)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.headerPanel)).BeginInit();
             this.headerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDestinationPay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIpnokpo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileNameTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomers.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIpnokpo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDestinationPay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,6 +119,127 @@
             this.headerPanel.ThemeName = "Office2013Light";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.headerPanel.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
+            // txtDestinationPay
+            // 
+            this.txtDestinationPay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDestinationPay.IsReadOnly = true;
+            this.txtDestinationPay.IsReadOnlyCaretVisible = true;
+            this.txtDestinationPay.Location = new System.Drawing.Point(162, 81);
+            this.txtDestinationPay.MinimumSize = new System.Drawing.Size(120, 19);
+            this.txtDestinationPay.Name = "txtDestinationPay";
+            // 
+            // 
+            // 
+            this.txtDestinationPay.RootElement.MinSize = new System.Drawing.Size(120, 19);
+            this.txtDestinationPay.Size = new System.Drawing.Size(502, 19);
+            this.txtDestinationPay.TabIndex = 11;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderWidth = 1F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderLeftWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderTopWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderRightWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderColor = System.Drawing.Color.Black;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderColor2 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderColor3 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderColor4 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderTopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderTopShadowColor = System.Drawing.Color.Transparent;
+            // 
+            // txtName
+            // 
+            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.IsReadOnly = true;
+            this.txtName.IsReadOnlyCaretVisible = true;
+            this.txtName.Location = new System.Drawing.Point(137, 56);
+            this.txtName.MinimumSize = new System.Drawing.Size(120, 19);
+            this.txtName.Name = "txtName";
+            // 
+            // 
+            // 
+            this.txtName.RootElement.MinSize = new System.Drawing.Size(120, 19);
+            this.txtName.Size = new System.Drawing.Size(527, 19);
+            this.txtName.TabIndex = 10;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderWidth = 1F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderLeftWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderTopWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderRightWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderColor = System.Drawing.Color.Black;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderColor2 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderColor3 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderColor4 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderTopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderTopShadowColor = System.Drawing.Color.Transparent;
+            // 
+            // radSeparator1
+            // 
+            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radSeparator1.Location = new System.Drawing.Point(12, 107);
+            this.radSeparator1.Name = "radSeparator1";
+            this.radSeparator1.Size = new System.Drawing.Size(646, 10);
+            this.radSeparator1.TabIndex = 8;
+            this.radSeparator1.ThemeName = "Office2013Light";
+            // 
+            // txtIpnokpo
+            // 
+            this.txtIpnokpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtIpnokpo.IsReadOnly = true;
+            this.txtIpnokpo.IsReadOnlyCaretVisible = true;
+            this.txtIpnokpo.Location = new System.Drawing.Point(86, 31);
+            this.txtIpnokpo.MinimumSize = new System.Drawing.Size(120, 19);
+            this.txtIpnokpo.Name = "txtIpnokpo";
+            // 
+            // 
+            // 
+            this.txtIpnokpo.RootElement.MinSize = new System.Drawing.Size(120, 19);
+            this.txtIpnokpo.Size = new System.Drawing.Size(223, 19);
+            this.txtIpnokpo.TabIndex = 5;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderWidth = 1F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderLeftWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderTopWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderRightWidth = 0F;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderColor = System.Drawing.Color.Black;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderColor2 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderColor3 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderColor4 = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderTopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderTopShadowColor = System.Drawing.Color.Transparent;
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(13, 81);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(143, 19);
+            this.radLabel3.TabIndex = 4;
+            this.radLabel3.Text = "– призначення платежу:";
+            this.radLabel3.ThemeName = "Office2013Light";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(13, 56);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(118, 19);
+            this.radLabel2.TabIndex = 3;
+            this.radLabel2.Text = "– назва Споживача:";
+            this.radLabel2.ThemeName = "Office2013Light";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(13, 31);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(67, 19);
+            this.radLabel1.TabIndex = 2;
+            this.radLabel1.Text = "– ЄДРПОУ:";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
             // fileNameTitle
             // 
             this.fileNameTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -158,46 +276,21 @@
             gridViewTextBoxColumn2.DataType = typeof(int);
             gridViewTextBoxColumn2.FieldName = "Innokpo";
             gridViewTextBoxColumn2.HeaderText = "ЄДРПОУ";
-            gridViewTextBoxColumn2.MaxWidth = 95;
-            gridViewTextBoxColumn2.MinWidth = 95;
+            gridViewTextBoxColumn2.MaxWidth = 120;
+            gridViewTextBoxColumn2.MinWidth = 120;
             gridViewTextBoxColumn2.Name = "Innokpo";
             gridViewTextBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn2.Width = 95;
-            gridViewTextBoxColumn3.FieldName = "JaCity";
+            gridViewTextBoxColumn2.Width = 120;
+            gridViewTextBoxColumn3.FieldName = "name";
             gridViewTextBoxColumn3.HeaderText = "Назва Споживача";
             gridViewTextBoxColumn3.MinWidth = 110;
-            gridViewTextBoxColumn3.Name = "JaCity";
-            gridViewTextBoxColumn3.Width = 207;
+            gridViewTextBoxColumn3.Name = "name";
+            gridViewTextBoxColumn3.Width = 528;
             gridViewTextBoxColumn3.WrapText = true;
-            gridViewTextBoxColumn4.FieldName = "StatusName";
-            gridViewTextBoxColumn4.HeaderText = "Банк";
-            gridViewTextBoxColumn4.MinWidth = 80;
-            gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "StatusName";
-            gridViewTextBoxColumn4.Width = 125;
-            gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.FieldName = "AgrNumber";
-            gridViewTextBoxColumn5.HeaderText = "Номер рахунку";
-            gridViewTextBoxColumn5.MinWidth = 120;
-            gridViewTextBoxColumn5.Multiline = true;
-            gridViewTextBoxColumn5.Name = "AgrNumber";
-            gridViewTextBoxColumn5.Width = 137;
-            gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.FieldName = "mfo";
-            gridViewTextBoxColumn6.HeaderText = "МФО";
-            gridViewTextBoxColumn6.MaxWidth = 120;
-            gridViewTextBoxColumn6.MinWidth = 70;
-            gridViewTextBoxColumn6.Multiline = true;
-            gridViewTextBoxColumn6.Name = "mfo";
-            gridViewTextBoxColumn6.Width = 84;
-            gridViewTextBoxColumn6.WrapText = true;
             this.gvCustomers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6});
+            gridViewTextBoxColumn3});
             this.gvCustomers.MasterTemplate.EnableCustomFiltering = true;
             this.gvCustomers.MasterTemplate.EnableFiltering = true;
             this.gvCustomers.MasterTemplate.EnableGrouping = false;
@@ -211,127 +304,7 @@
             this.gvCustomers.Size = new System.Drawing.Size(670, 233);
             this.gvCustomers.TabIndex = 4;
             this.gvCustomers.ThemeName = "Office2013Light";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(13, 31);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(67, 19);
-            this.radLabel1.TabIndex = 2;
-            this.radLabel1.Text = "– ЄДРПОУ:";
-            this.radLabel1.ThemeName = "Office2013Light";
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Location = new System.Drawing.Point(13, 56);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(118, 19);
-            this.radLabel2.TabIndex = 3;
-            this.radLabel2.Text = "– назва Споживача:";
-            this.radLabel2.ThemeName = "Office2013Light";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(13, 81);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(143, 19);
-            this.radLabel3.TabIndex = 4;
-            this.radLabel3.Text = "– призначення платежу:";
-            this.radLabel3.ThemeName = "Office2013Light";
-            // 
-            // txtIpnokpo
-            // 
-            this.txtIpnokpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtIpnokpo.IsReadOnly = true;
-            this.txtIpnokpo.IsReadOnlyCaretVisible = true;
-            this.txtIpnokpo.Location = new System.Drawing.Point(86, 31);
-            this.txtIpnokpo.MinimumSize = new System.Drawing.Size(120, 19);
-            this.txtIpnokpo.Name = "txtIpnokpo";
-            // 
-            // 
-            // 
-            this.txtIpnokpo.RootElement.MinSize = new System.Drawing.Size(120, 19);
-            this.txtIpnokpo.Size = new System.Drawing.Size(223, 19);
-            this.txtIpnokpo.TabIndex = 5;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderWidth = 1F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderLeftWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderTopWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderRightWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderColor = System.Drawing.Color.Black;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderColor2 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderColor3 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderColor4 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderTopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderTopShadowColor = System.Drawing.Color.Transparent;
-            // 
-            // radSeparator1
-            // 
-            this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator1.Location = new System.Drawing.Point(12, 107);
-            this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(646, 10);
-            this.radSeparator1.TabIndex = 8;
-            this.radSeparator1.ThemeName = "Office2013Light";
-            // 
-            // txtName
-            // 
-            this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtName.IsReadOnly = true;
-            this.txtName.IsReadOnlyCaretVisible = true;
-            this.txtName.Location = new System.Drawing.Point(137, 56);
-            this.txtName.MinimumSize = new System.Drawing.Size(120, 19);
-            this.txtName.Name = "txtName";
-            // 
-            // 
-            // 
-            this.txtName.RootElement.MinSize = new System.Drawing.Size(120, 19);
-            this.txtName.Size = new System.Drawing.Size(527, 19);
-            this.txtName.TabIndex = 10;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderWidth = 1F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderLeftWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderTopWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderRightWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderColor = System.Drawing.Color.Black;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderColor2 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderColor3 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderColor4 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderTopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderTopShadowColor = System.Drawing.Color.Transparent;
-            // 
-            // txtDestinationPay
-            // 
-            this.txtDestinationPay.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDestinationPay.IsReadOnly = true;
-            this.txtDestinationPay.IsReadOnlyCaretVisible = true;
-            this.txtDestinationPay.Location = new System.Drawing.Point(162, 81);
-            this.txtDestinationPay.MinimumSize = new System.Drawing.Size(120, 19);
-            this.txtDestinationPay.Name = "txtDestinationPay";
-            // 
-            // 
-            // 
-            this.txtDestinationPay.RootElement.MinSize = new System.Drawing.Size(120, 19);
-            this.txtDestinationPay.Size = new System.Drawing.Size(502, 19);
-            this.txtDestinationPay.TabIndex = 11;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderWidth = 1F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderLeftWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderTopWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderRightWidth = 0F;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderColor = System.Drawing.Color.Black;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderColor2 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderColor3 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderColor4 = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderTopColor = System.Drawing.Color.Transparent;
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
-            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderTopShadowColor = System.Drawing.Color.Transparent;
+            this.gvCustomers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCustomers_CellDoubleClick);
             // 
             // ctrlSearch
             // 
@@ -366,16 +339,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.headerPanel)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDestinationPay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIpnokpo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fileNameTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIpnokpo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDestinationPay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

@@ -86,9 +86,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         /// Отримати список Споживачів у яких є договори
         /// </summary>
         /// <returns></returns>
-        public List<vCustomer> getConsumers()
+        public List<vCustomer> GetConsumers()
         {
-            return _service.getListOfConsumers();
+            return _service.GetListOfConsumers();
         }
     }
 }

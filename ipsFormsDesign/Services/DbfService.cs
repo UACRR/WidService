@@ -65,7 +65,7 @@ namespace ipsFormsDesign.Services
 
         }
 
-        public List<vCustomer> getListOfConsumers()
+        public List<vCustomer> GetListOfConsumers()
         {
             string url = string.Concat(_prefix, "vCustomers");
             return _webApi.GetList<vCustomer>(url);

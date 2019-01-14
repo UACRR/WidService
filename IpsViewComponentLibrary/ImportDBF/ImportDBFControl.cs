@@ -13,6 +13,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Data;
+using ipsmedserviceapp.Model.SQLViewsData;
 
 namespace IpsViewComponentLibrary.ImportDBF
 {
@@ -20,10 +21,11 @@ namespace IpsViewComponentLibrary.ImportDBF
     public partial class ImportDBFControl : UserControl
     {
         private const string DefaultFileName = "Файл не вибраний";
-        private InputFile inputFile = null;
-        private DbfEngine dbfEngine = new DbfEngine();
-        private List<ExternalPay> listPay;
+        private InputFile _inputFile;
+        private List<vCustomer> _clientsList;
+        private readonly DbfEngine _dbfEngine = new DbfEngine();
         private readonly IDBFPresenter _presenter;
+
         public ImportDBFControl()
         {
             InitializeComponent();
@@ -31,14 +33,63 @@ namespace IpsViewComponentLibrary.ImportDBF
             lblFileName.Text = DefaultFileName;
             _presenter = IpsGlobal.Instances[typeof(IDBFPresenter)] as IDBFPresenter;
 
-            if (_presenter != null)
-                bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
         }
 
-        private void Control_Leave(object sender, EventArgs e)
+        // оновити дані
+        private void Control_Paint(object sender, PaintEventArgs e)
         {
-            lblFileName.Text = DefaultFileName;
-            // clear stream or selected file
+            if (_presenter == null) return;
+
+            bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
+            if (_clientsList == null)
+                _clientsList = _presenter.GetConsumers();
+        }
+
+        /// <summary>
+        /// Gоказати результат після завантаження та перевірки файлу
+        /// </summary>
+        private void ShowFileResult()
+        {
+            if (_inputFile.FileId == 0)
+                _presenter.CheckInputFile(_inputFile);
+
+            // форма результату для підтвердження або сказування збереження даних
+            var importParseResult = new ImportParseResultForm(lblFileName.Text)
+            {
+                StartPosition = FormStartPosition.CenterScreen,
+                WindowState = FormWindowState.Maximized
+            };
+            importParseResult.SetParsedList(_inputFile.CheckParamPays.ToList());
+
+            if (importParseResult.ShowDialog() == DialogResult.OK)
+            {
+                // збереження таблиці в базі
+                _presenter.SaveInputFile(_inputFile);
+                bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
+            }
+            else
+            {
+                // видалення непотрібних даних
+                var result = _presenter.DeleteInputFile(_inputFile);
+            }
+        }
+
+        /// <summary>
+        /// Прив'язка платежу до клієнта
+        /// </summary>
+        /// <param name="gridViewCell"></param>
+        private void PaymentsAttach(GridViewCellEventArgs gridViewCell)
+        {
+            var row = gridViewCell.Row.DataBoundItem as ExternalPay;
+            var paymentsAttach = new PaymentsAttachForm(_clientsList, row)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            if (paymentsAttach.ShowDialog() == DialogResult.OK)
+            {
+                var result = _presenter.SaveLinkedPay(row);
+                bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
+            }
         }
 
         // обрати файл
@@ -52,39 +103,14 @@ namespace IpsViewComponentLibrary.ImportDBF
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     lblFileName.Text = fileDialog.SafeFileName;
-                    inputFile = dbfEngine.ReadDbfFile(fileDialog.FileName);
+                    _inputFile = _dbfEngine.ReadDbfFile(fileDialog.FileName);
                     ShowFileResult();
                     //MessageBox.Show($"Файл {fileName} завантажено", "Завантаження", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
 
-        // показати результат завантаження
-        private void ShowFileResult()
-        {
-            if (inputFile.FileId == 0)
-                _presenter.CheckInputFile(inputFile);
-
-            // форма результату
-            var importParseResult = new ImportParseResultForm(lblFileName.Text)
-            {
-                StartPosition = FormStartPosition.CenterScreen,
-                WindowState = FormWindowState.Maximized
-            };
-            importParseResult.SetParsedList(inputFile.CheckParamPays.ToList());
-
-            if (importParseResult.ShowDialog() == DialogResult.OK)
-            {
-                // збереження таблиці в базі
-                _presenter.SaveInputFile(inputFile);
-                bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
-            }
-            else
-            {
-                // видалення непотрібних даних
-            }
-        }
-
+        // прив'язати платіж до клієнта (double click)
         private void gvUndistribPays_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if (e.Column.FieldName == "btnAttach")
@@ -92,21 +118,16 @@ namespace IpsViewComponentLibrary.ImportDBF
             PaymentsAttach(e);
         }
 
-        // прив'язати платіж до клієнта
+        // прив'язати платіж до клієнта (cell click)
         private void gvUndistribPays_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            // some code
             PaymentsAttach(e);
         }
 
-        private void PaymentsAttach(GridViewCellEventArgs gridViewCell)
+        private void Control_Leave(object sender, EventArgs e)
         {
-            var row = gridViewCell.Row.DataBoundItem as ExternalPay;
-            var paymentsAttach = new PaymentsAttachForm(new[] { "5256365", "Ресторанний комплекс на Дніпрі", "оплата за рік на рахунок №9919450654456" })
-            {
-                StartPosition = FormStartPosition.CenterScreen
-            };
-            paymentsAttach.ShowDialog();
+            lblFileName.Text = DefaultFileName;
+            // clear stream or selected file
         }
     }
 }
