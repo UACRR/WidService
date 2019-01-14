@@ -385,12 +385,16 @@ namespace RightholderWorkplace
                 return;
             }
 
+
+
             if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer
                 && dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
             {
                 MessageBox.Show("Вкажіть дату по яку передаються права на обрані об'єкти.");
                 return;
             }
+            if (dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
+                dtChangeCopyrightDateTill.Value = new DateTime(3000, 1, 1);
 
             if (!ValidateTransferedParams())
             {

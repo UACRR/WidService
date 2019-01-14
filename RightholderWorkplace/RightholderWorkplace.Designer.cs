@@ -478,7 +478,7 @@
             this.rdbDeath.Size = new System.Drawing.Size(65, 19);
             this.rdbDeath.TabIndex = 1;
             this.rdbDeath.Tag = "3";
-            this.rdbDeath.Text = "Смерть";
+            this.rdbDeath.Text = "Спадщина";
             this.rdbDeath.ThemeName = "Office2013Light";
             // 
             // rdbTransfer
@@ -553,7 +553,7 @@
             this.dtChangeCopyrightDateTill.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtChangeCopyrightDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateTill.Location = new System.Drawing.Point(235, 3);
-            this.dtChangeCopyrightDateTill.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.dtChangeCopyrightDateTill.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.dtChangeCopyrightDateTill.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtChangeCopyrightDateTill.Name = "dtChangeCopyrightDateTill";
             this.dtChangeCopyrightDateTill.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
@@ -601,7 +601,7 @@
             this.dtChangeCopyrightDateFrom.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtChangeCopyrightDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateFrom.Location = new System.Drawing.Point(80, 3);
-            this.dtChangeCopyrightDateFrom.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.dtChangeCopyrightDateFrom.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.dtChangeCopyrightDateFrom.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtChangeCopyrightDateFrom.Name = "dtChangeCopyrightDateFrom";
             this.dtChangeCopyrightDateFrom.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
