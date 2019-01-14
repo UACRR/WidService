@@ -18,8 +18,6 @@ namespace sysAdminwp.ComplexDictionaryControls
             InitializeComponent();
             bsCopyrightKind.DataSource = copyR;
             bsCrkindGroup.DataSource = list;
-            radDropDownList2.DataSource = bsCrkindGroup;
-            radDropDownList2.DisplayMember = "Name";
 
         }
     }

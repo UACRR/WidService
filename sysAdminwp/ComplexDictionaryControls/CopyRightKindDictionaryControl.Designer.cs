@@ -32,14 +32,10 @@
             this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCrkindGroup = new System.Windows.Forms.BindingSource(this.components);
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.radDropDownList2 = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCrkindGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,9 +48,9 @@
             this.radDropDownList1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "0"));
             this.radDropDownList1.DataSource = this.bsCrkindGroup;
             this.radDropDownList1.DisplayMember = "Name";
-            this.radDropDownList1.Location = new System.Drawing.Point(80, 21);
+            this.radDropDownList1.Location = new System.Drawing.Point(172, 23);
             this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(125, 20);
+            this.radDropDownList1.Size = new System.Drawing.Size(266, 20);
             this.radDropDownList1.TabIndex = 0;
             this.radDropDownList1.ValueMember = "CodeI";
             // 
@@ -62,45 +58,25 @@
             // 
             this.bsCrkindGroup.DataSource = typeof(ipsFormsDesign.Model.CrkindGroup);
             // 
-            // radTextBox1
-            // 
-            this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCrkindGroup, "Name", true));
-            this.radTextBox1.Location = new System.Drawing.Point(80, 59);
-            this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(125, 20);
-            this.radTextBox1.TabIndex = 1;
-            // 
-            // radDropDownList2
-            // 
-            this.radDropDownList2.Location = new System.Drawing.Point(344, 21);
-            this.radDropDownList2.Name = "radDropDownList2";
-            this.radDropDownList2.Size = new System.Drawing.Size(125, 20);
-            this.radDropDownList2.TabIndex = 2;
-            this.radDropDownList2.Text = "radDropDownList2";
-            // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(19, 21);
+            this.radLabel1.Location = new System.Drawing.Point(27, 23);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(36, 18);
+            this.radLabel1.Size = new System.Drawing.Size(117, 18);
             this.radLabel1.TabIndex = 3;
-            this.radLabel1.Text = "Name";
+            this.radLabel1.Text = "Спосіб використання";
             // 
             // CopyRightKindDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.radDropDownList2);
-            this.Controls.Add(this.radTextBox1);
             this.Controls.Add(this.radDropDownList1);
             this.Name = "CopyRightKindDictionaryControl";
             this.Size = new System.Drawing.Size(585, 273);
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCrkindGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -112,8 +88,6 @@
         private System.Windows.Forms.BindingSource bsCopyrightKind;
         private Telerik.WinControls.UI.RadDropDownList radDropDownList1;
         private System.Windows.Forms.BindingSource bsCrkindGroup;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList2;
         private Telerik.WinControls.UI.RadLabel radLabel1;
     }
 }
