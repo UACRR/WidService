@@ -42,7 +42,6 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
             this.lblFileName = new Telerik.WinControls.UI.RadLabel();
             this.btnChooseFile = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -52,7 +51,6 @@
             this.bindingExtrnPay = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnChooseFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -68,7 +66,6 @@
             // 
             this.radPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radPanel1.Controls.Add(this.btnLoadFile);
             this.radPanel1.Controls.Add(this.lblFileName);
             this.radPanel1.Controls.Add(this.btnChooseFile);
             this.radPanel1.Location = new System.Drawing.Point(3, 12);
@@ -76,17 +73,6 @@
             this.radPanel1.Size = new System.Drawing.Size(894, 50);
             this.radPanel1.TabIndex = 0;
             this.radPanel1.ThemeName = "Office2013Light";
-            // 
-            // btnLoadFile
-            // 
-            this.btnLoadFile.Enabled = false;
-            this.btnLoadFile.Location = new System.Drawing.Point(302, 16);
-            this.btnLoadFile.Name = "btnLoadFile";
-            this.btnLoadFile.Size = new System.Drawing.Size(168, 24);
-            this.btnLoadFile.TabIndex = 3;
-            this.btnLoadFile.Text = "Завантажити та обробити";
-            this.btnLoadFile.ThemeName = "Office2013Light";
-            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
             // lblFileName
             // 
@@ -216,7 +202,6 @@
             gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             gridViewTextBoxColumn7.Width = 77;
             gridViewTextBoxColumn7.WrapText = true;
-
             gridViewTextBoxColumn8.FieldName = "Nplat";
             gridViewTextBoxColumn8.HeaderText = "Призначення платежу";
             gridViewTextBoxColumn8.MinWidth = 180;
@@ -292,7 +277,6 @@
             this.Size = new System.Drawing.Size(900, 476);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnChooseFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -311,7 +295,6 @@
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadButton btnLoadFile;
         private Telerik.WinControls.UI.RadLabel lblFileName;
         private Telerik.WinControls.UI.RadButton btnChooseFile;
         private Telerik.WinControls.UI.RadLabel radLabel1;

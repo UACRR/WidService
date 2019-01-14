@@ -44,22 +44,22 @@
             this.fileNameTitle = new Telerik.WinControls.UI.RadLabel();
             this.lblFileName = new Telerik.WinControls.UI.RadLabel();
             this.gvPaysFromFile = new Telerik.WinControls.UI.RadGridView();
+            this.bindingCheckPay = new System.Windows.Forms.BindingSource(this.components);
             this.btnAcceptData = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.footerPanel = new Telerik.WinControls.UI.RadPanel();
             this.headerPanel = new Telerik.WinControls.UI.RadPanel();
-            this.bindingCheckPay = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.fileNameTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingCheckPay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAcceptData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerPanel)).BeginInit();
             this.footerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.headerPanel)).BeginInit();
             this.headerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingCheckPay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -205,10 +205,13 @@
             this.gvPaysFromFile.TabIndex = 2;
             this.gvPaysFromFile.ThemeName = "Office2013Light";
             // 
+            // bindingCheckPay
+            // 
+            this.bindingCheckPay.DataSource = typeof(ipsFormsDesign.Model.CheckParamPays);
+            // 
             // btnAcceptData
             // 
             this.btnAcceptData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAcceptData.Enabled = false;
             this.btnAcceptData.Location = new System.Drawing.Point(789, 3);
             this.btnAcceptData.Name = "btnAcceptData";
             this.btnAcceptData.Size = new System.Drawing.Size(120, 24);
@@ -221,7 +224,6 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Enabled = false;
             this.btnCancel.Location = new System.Drawing.Point(927, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(120, 24);
@@ -253,10 +255,6 @@
             this.headerPanel.ThemeName = "Office2013Light";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.headerPanel.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            // bindingCheckPay
-            // 
-            this.bindingCheckPay.DataSource = typeof(ipsFormsDesign.Model.CheckParamPays);
-            // 
             // ImportParseResultForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,6 +275,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPaysFromFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingCheckPay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAcceptData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.footerPanel)).EndInit();
@@ -284,7 +283,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.headerPanel)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingCheckPay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
