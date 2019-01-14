@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerForms;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public partial class CabinetSmallRight : UserControl
     {
@@ -33,6 +28,10 @@ namespace IpsViewComponentLibrary
         public event SetPartnerEventHandler OnRemovePartner;
         public event ChangePartnerEventHandler OnChangePartner;
         public event GetPartnerList OnGetPartnerListNeed;
+
+        public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewFile;
+        public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewCurrentFile;
+        public event ActionByIdDelegate OnDeleteCurrentFile;
 
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
@@ -69,9 +68,28 @@ namespace IpsViewComponentLibrary
             ctrlPartner.OnChangePartner += CtrlPartner_OnChangePartner;
             ctrlPartner.OnRemovePartner += CtrlPartner_OnRemovePartner;
             calculationCtrl.UpdateData += UpdateCustomer;
+            ctrlFiles.UpdateData += UpdateCustomer;
+            ctrlFiles.AddNewFile += AddNewFile;
+            ctrlFiles.ViewCurrentFile += ViewCurrentFile;
+            ctrlFiles.DeleteCurrentFile += DeleteCurrentFile;
 
             if (!IsDesignMode)
                 _dictionaties = IpsGlobal.AnketaDictionaties;
+        }
+
+        private bool DeleteCurrentFile(int id)
+        {
+            return OnDeleteCurrentFile?.Invoke(id) ?? false;
+        }
+
+        private void ViewCurrentFile(int custId, int typeDocument, string fileName)
+        {
+            OnViewCurrentFile?.Invoke(custId, typeDocument, fileName);
+        }
+
+        private void AddNewFile(int custId, int typeDocument, string fileName, string comment)
+        {
+            OnAddNewFile?.Invoke(custId, typeDocument, fileName, comment);
         }
 
         // оновлдення даних
@@ -143,6 +161,7 @@ namespace IpsViewComponentLibrary
             calculationCtrl.Customer = _customer;
             ctrlPaysInfo1.Customer = _customer;
             ctrlPartner.SetPartnerData(GetPartner?.Invoke(_customer.CustId), _customer.CustId);
+            ctrlFiles.SetAndUpdateData(_customer);
         }
 
         #endregion

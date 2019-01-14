@@ -310,7 +310,7 @@
             this.rightholdersPageView.ItemSizeMode = ((Telerik.WinControls.UI.PageViewItemSizeMode)((Telerik.WinControls.UI.PageViewItemSizeMode.EqualWidth | Telerik.WinControls.UI.PageViewItemSizeMode.EqualHeight)));
             this.rightholdersPageView.Location = new System.Drawing.Point(0, 0);
             this.rightholdersPageView.Name = "rightholdersPageView";
-            this.rightholdersPageView.SelectedPage = this.rightholdersChangePage;
+            this.rightholdersPageView.SelectedPage = this.rightholdersPage;
             this.rightholdersPageView.Size = new System.Drawing.Size(1182, 632);
             this.rightholdersPageView.TabIndex = 0;
             this.rightholdersPageView.ThemeName = "Office2013Light";
@@ -550,7 +550,6 @@
             // dtChangeCopyrightDateTill
             // 
             this.dtChangeCopyrightDateTill.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtChangeCopyrightDateTill.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtChangeCopyrightDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateTill.Location = new System.Drawing.Point(235, 3);
             this.dtChangeCopyrightDateTill.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -598,7 +597,6 @@
             // dtChangeCopyrightDateFrom
             // 
             this.dtChangeCopyrightDateFrom.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtChangeCopyrightDateFrom.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtChangeCopyrightDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateFrom.Location = new System.Drawing.Point(80, 3);
             this.dtChangeCopyrightDateFrom.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -778,7 +776,7 @@
             this.gvChangeCopyrightsTemplate.ShowTotals = true;
             this.gvChangeCopyrightsTemplate.ViewDefinition = tableViewDefinition1;
             // 
-            // objectCopyrightBindingSource
+            // bsObjectCopyright
             // 
             this.bsObjectCopyright.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectCopyright);
             // 

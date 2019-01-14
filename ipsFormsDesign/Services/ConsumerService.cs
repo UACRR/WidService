@@ -326,6 +326,8 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem<LicenseAgreement>("consumer/genagrprol", agrId.ToString(), agreement);
         }
 
+        #region * * * FILES * * * 
+
         /// <summary>
         /// Запис файла на сервер
         /// </summary>
@@ -340,18 +342,33 @@ namespace ipsFormsDesign.Services
             FileStream document = new FileStream(Document, FileMode.Open);
             Task.Run(() => _webApi.uploadFile(url, fileName, comment, document)).GetAwaiter().GetResult();
         }
+
         /// <summary>
-        /// 
+        /// Завантажити файл (документ) з сервера
         /// </summary>
-        /// <param name="custId"></param>
-        /// <param name="typeDocument"></param>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
+        /// <param name="custId">ID користувача</param>
+        /// <param name="typeDocument">Тип файлу</param>
+        /// <param name="fileName">Найменування файлу</param>
+        /// <returns>File-stream</returns>
         public Stream downloadDocument(int custId, int typeDocument, string fileName)
         {
             string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";
             return Task.Run(() => _webApi.downloadFile(url)).GetAwaiter().GetResult();
         }
+
+        /// <summary>
+        /// Видалити файл з сервера по ID 
+        /// </summary>
+        /// <param name="fileId">ID файла</param>
+        /// <returns></returns>
+        public bool DeleteFileById(int fileId)
+        {
+            string url = "consumer/document/delete";
+            return _webApi.DeleteItem(url, fileId.ToString());
+        }
+
+        #endregion
+
 
         #region Payments
 #if DEBUG

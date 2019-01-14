@@ -17,39 +17,28 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetFiles : UserControl
     {
         private Customer _customer;
-        private MainGridConsumerBigRightView _bigRightView;
+        private const string TitleMsg = "Підтвердження";
+        private const string TextMsg = "Видалити обраний файл?";
 
         public delegate void AddNewDocumentHandler(int custId, int typeDocument, string fileName, string comment);
-        public event AddNewDocumentHandler OnAddNewDocument;
+        public event AddNewDocumentHandler AddNewFile;
 
         public delegate void ViewDocumentHandler(int custId, int typeDocument, string fileName);
-        public event ViewDocumentHandler OnViewDocButtonClick;
+        public event ViewDocumentHandler ViewCurrentFile;
+
+        public event ActionByIdDelegate DeleteCurrentFile;
+        public event EmptyEventHandler UpdateData;
 
         public MiddleControlCabinetFiles()
         {
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView)
+        public void SetAndUpdateData(Customer customer)
         {
             _customer = customer;
-            _bigRightView = bigRightView;
-            SetGridDataSource(_customer?.FileCustomer ?? new ObservableListSource<FileCustomer>());
-        }
-
-        private void SetGridDataSource(ObservableListSource<FileCustomer> fileCust)
-        {
-            ObservableListSource<FilesDataSource> source = new ObservableListSource<FilesDataSource>();
-            foreach (var fileCustomer in fileCust)
-                source.Add(new FilesDataSource
-                {
-                    DocId = fileCustomer?.DocId ?? default(int),
-                    DocTypeInt = fileCustomer?.DocType ?? default(int),
-                    DocType = IpsGlobal.AnketaDictionaties?.fileType?.SingleOrDefault(rec => rec.CodeI == fileCustomer?.DocType)?.Name,
-                    DocComment = fileCustomer?.DocComment,
-                    DocFile = fileCustomer?.DocFile
-                });
-            gvListFiles.DataSource = source;
+            gvListFiles.DataSource = _customer?.FileCustomer;
+            //SetGridDataSource(_customer?.FileCustomer ?? new ObservableListSource<FileCustomer>());
         }
 
         private void btnAddFile_Click(object sender, EventArgs e)
@@ -57,24 +46,29 @@ namespace IpsViewComponentLibrary
             AddFileDialogForm fileAdd = new AddFileDialogForm();
             if (fileAdd.ShowDialog() == DialogResult.OK)
             {
-                OnAddNewDocument?.Invoke(_customer.CustId, fileAdd.DocumentType, fileAdd.FileName, fileAdd.Comment);
+                AddNewFile?.Invoke(_customer.CustId, fileAdd.DocumentType, fileAdd.FileName, fileAdd.Comment);
+                UpdateData?.Invoke();
             }
         }
 
         private void gvListFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            if(e.Row.DataBoundItem is FilesDataSource rec)
-                OnViewDocButtonClick?.Invoke(_customer.CustId, rec.DocTypeInt, rec.DocFile);
+            if (e.Row.DataBoundItem is FileCustomer rec)
+                switch (e.Column.FieldName)
+                {
+                    case "viewBtn":
+                        ViewCurrentFile?.Invoke(_customer.CustId, rec.DocType, rec.DocFile);
+                        break;
+                    case "deleteBtn":
+                        if (MessageBox.Show(TextMsg, TitleMsg, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            var result = DeleteCurrentFile?.Invoke(rec.DocId);
+                            if (result ?? false)
+                                UpdateData?.Invoke();
+                        }
+                        break;
+                }
         }
-    }
-
-    internal class FilesDataSource
-    {
-        public int DocId { get; set; }
-        public int DocTypeInt { get; set; }
-        public string DocType { get; set; }
-        public string DocFile { get; set; }
-        public string DocComment { get; set; }
     }
 }
 

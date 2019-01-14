@@ -84,6 +84,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnSaveCustomerNeed += SaveCustomer;
             _cabinetBigRightForm.cabinet.OnAddNewDocument += AddNewDocument;
             _cabinetBigRightForm.cabinet.OnViewDocumentNeed += ViewExistDocument;
+            _cabinetBigRightForm.cabinet.OnFileDelete += FileDelete;
             _cabinetBigRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
             _cabinetBigRightForm.cabinet.OnChangeLicenseType += ChangeLicenseType;
             _cabinetBigRightForm.cabinet.OnGetRegisterRatedList += GetRegisterRatedList;
@@ -101,6 +102,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.SaveAgreementAddBrChanges += SaveAgreementAddBrChanges;
             new CalculationInfoControlPresenter(_cabinetBigRightForm.cabinet.ctrlCalculation, _service);
             _cabinetBigRightForm.IsInit = true;
+        }
+
+        private bool FileDelete(int id)
+        {
+            return _service.DeleteFileById(id);
         }
 
         public CabinetBigRightForm Cabinet => _cabinetBigRightForm;
@@ -256,7 +262,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private void AddNewDocument(int custId, int typeDocument, string fileName, string comment)
         {
             _service.uploadDocument(custId, typeDocument, comment, fileName);
-            UpdateData(custId);
         }
 
         //переглянути існуючий документ

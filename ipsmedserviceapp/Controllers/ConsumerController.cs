@@ -72,7 +72,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.Person)
                         .Include(item => item.AnketaPerson)
                         .Include(item => item.BankAccount)
-                        .Include(item => item.FileCustomer)
+                        .Include(item => item.FileCustomer).ThenInclude(file => file.DocTypeNavigation)
                         .Include(item => item.Client).ThenInclude(cln => cln.ClnBusinessPlace)
                         .Include(item => item.Client).ThenInclude(cln => cln.MoneyReceived)
                         .SingleOrDefaultAsync();
@@ -1646,7 +1646,8 @@ and t3.licStatus between 0 and 3
 
         #endregion
 
-        #region Download Upload file ******************************************************
+        #region * * * Download/Upload files * * *
+
         /// <summary>
         /// Завантаження файлу(ів) на сервер
         /// </summary>
@@ -1728,8 +1729,9 @@ and t3.licStatus between 0 and 3
 
             return Ok();
         }
+
         /// <summary>
-        /// Завантаження файлу(ів) на сервер
+        /// Завантаження файлу(ів) з сервера
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="typeDocument"></param>
@@ -1737,7 +1739,6 @@ and t3.licStatus between 0 and 3
         [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
         public IActionResult DownloadDocument(int custId, int typeDocument, string fileName, CancellationToken token)
         {
-
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
             string consumerPath = Path.Combine(documentsFolder, custId.ToString());
             if (!Directory.Exists(consumerPath))
@@ -1756,25 +1757,48 @@ and t3.licStatus between 0 and 3
             var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
 
             return retStream;
-
-            //try
-            //{
-            //    //var memoryStream = new MemoryStream();
-            //    using (var stream = new FileStream(consumerPath, FileMode.Open))
-            //    //var stream = new FileStream(consumerPath, FileMode.Open);
-            //    {
-            //        await stream.CopyToAsync(memoryStream);
-
-            //        memoryStream.Position = 0;
-            //        var retStream = File(memoryStream, "application/vnd.ms-word", Path.GetFileName(consumerPath));
-            //        return retStream;
-            //    }
-            //}
-            //catch(Exception ex)
-            //{
-            //    return BadRequest(ex.InnerException.Message);
-            //}
         }
+
+        /// <summary>
+        /// Видалення файлу з сервера по ID
+        /// </summary>
+        /// <param name="fileId">ID файла</param>
+        /// <returns>Результат запиту</returns>
+        [HttpDelete("document/delete/{fileId}")]
+        public async Task<IActionResult> DeleteFile(int fileId)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var file = await _dbContext.FileCustomer.SingleOrDefaultAsync(rec => rec.DocId == fileId);
+                if (file == null) return NotFound("Файлу з таким ID не існує!");
+
+                // перевірка каталогів та наявності файлу
+                string documentsFolder = _config.GetValue<string>("DocumentsFolder");
+                string consumerPath = Path.Combine(documentsFolder, file.CustId.ToString());
+                if (Directory.Exists(consumerPath))
+                    consumerPath = Path.Combine(consumerPath, "Consumer", file.DocType.ToString());
+                if (Directory.Exists(consumerPath))
+                    consumerPath = Path.Combine(consumerPath, file.DocFile);
+                // видалення за наявності
+                if (System.IO.File.Exists(consumerPath))
+                    System.IO.File.Delete(consumerPath);
+
+                _dbContext.FileCustomer.Remove(file);
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+                transaction = null;
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.Message);
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Отримати розрахункові листи для споживача
@@ -1785,7 +1809,7 @@ and t3.licStatus between 0 and 3
         public async Task<IActionResult> GetRegisterInfoForCustomer([FromQuery] int custId)
         {
             var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
-select t1.* 
+select t" + @"1.* 
 from LicenseAgreement t1 
 where t1.custId = @custId
 and isnull(licType,1) between 1 and 3
@@ -1935,6 +1959,11 @@ and isnull(licType,1) between 1 and 3
 
         } // PostRegisterDetail
 
+        /// <summary>
+        /// Видалення розрахункового листа
+        /// </summary>
+        /// <param name="RmId"></param>
+        /// <returns></returns>
         [HttpDelete("period/register/RatedList/{RmId}")]
         public async Task<IActionResult> DeleteRatedList(int RmId)
         {
@@ -1970,9 +1999,8 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
 
             return Ok();
         }
-        #endregion
 
-    } // public class ConsumerController : Controller
+    }
 
     public class CloseAgreementWithActiveLicense : Exception
     {

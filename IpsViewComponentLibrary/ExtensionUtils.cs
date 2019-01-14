@@ -33,6 +33,7 @@ namespace IpsViewComponentLibrary
     public delegate void EmptyEventHandler();
 
     public delegate bool ActionWithTwoId(int custId, int id);
+    public delegate bool ActionByIdDelegate(int id);
     public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate bool SaveObjectListEventHandler<T>(int cmCustId, List<T> listObj);
     public delegate bool SaveObjectByIdEventHandler<T>(int id, T saveObj);
