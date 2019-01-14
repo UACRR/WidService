@@ -481,9 +481,9 @@ namespace sysAdminwp
                     case "copyrightkind":
                         var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(row.Code));
                         // CrkindGroup
-                        var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.copyrightKind;
+                        var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.crkindGroup;
                         //initialize object form with parameters
-                        ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyright: copyrightKind, listCopyRight: customDict);
+                        ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyrightKind, listCopyRight: customDict);
                         //open form with current data complexive dictionaries
                         if(formComplex.ShowDialog() == DialogResult.OK)
                         {

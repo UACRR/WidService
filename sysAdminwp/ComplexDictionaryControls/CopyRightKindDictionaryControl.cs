@@ -16,6 +16,11 @@ namespace sysAdminwp.ComplexDictionaryControls
         public CopyRightKindDictionaryControl(CopyrightKind copyR, List<CrkindGroup> list)
         {
             InitializeComponent();
+            bsCopyrightKind.DataSource = copyR;
+            bsCrkindGroup.DataSource = list;
+            radDropDownList2.DataSource = bsCrkindGroup;
+            radDropDownList2.DisplayMember = "Name";
+
         }
     }
 }
