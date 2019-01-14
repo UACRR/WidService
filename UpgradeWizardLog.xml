@@ -1,440 +1,402 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="_UpgradeWizard_Files\UpgradeWizardLog.xslt"?>
 <log>
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\sysAdminwp\sysAdminwp.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\sysAdminwp\App.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\sysAdminwp\App.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\sysAdminwp\App.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\sysAdminwp\App.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\sysAdminwp\App.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\sysAdminwp\App.config" />
-  <event action="Analyze" type="Success" name="App.config" path="D:\works\mediS\sysAdminwp\App.config" />
-  <event action="Analyze" type="Success" name="DataEditControl.resx" path="D:\works\mediS\sysAdminwp\DataEditControl.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\sysAdminwp\packages.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\sysAdminwp\packages.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\sysAdminwp\packages.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\sysAdminwp\packages.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\sysAdminwp\packages.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\sysAdminwp\packages.config" />
-  <event action="Analyze" type="Success" name="packages.config" path="D:\works\mediS\sysAdminwp\packages.config" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\sysAdminwp\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="RadForm1.resx" path="D:\works\mediS\sysAdminwp\RadForm1.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\sysAdminwp\workplace.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\sysAdminwp\workplace.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\sysAdminwp\workplace.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\sysAdminwp\workplace.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\sysAdminwp\workplace.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\sysAdminwp\workplace.config" />
-  <event action="Analyze" type="Success" name="workplace.config" path="D:\works\mediS\sysAdminwp\workplace.config" />
-  <event action="Analyze" type="Success" name="sysAdminwp" path="D:\works\mediS\sysAdminwp\sysAdminwp.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\WebAPIConnector\WebAPIConnector.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\WebAPIConnector\packages.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\WebAPIConnector\packages.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\WebAPIConnector\packages.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\WebAPIConnector\packages.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\WebAPIConnector\packages.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\WebAPIConnector\packages.config" />
-  <event action="Analyze" type="Success" name="packages.config" path="D:\works\mediS\WebAPIConnector\packages.config" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\WebAPIConnector\workplace.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\WebAPIConnector\workplace.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\WebAPIConnector\workplace.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\WebAPIConnector\workplace.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\WebAPIConnector\workplace.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\WebAPIConnector\workplace.config" />
-  <event action="Analyze" type="Success" name="workplace.config" path="D:\works\mediS\WebAPIConnector\workplace.config" />
-  <event action="Analyze" type="Success" name="WebAPIConnector" path="D:\works\mediS\WebAPIConnector\WebAPIConnector.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ipsmedserviceapp\ipsmedserviceapp.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ipsmedserviceapp\web.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\ipsmedserviceapp\web.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\ipsmedserviceapp\web.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\ipsmedserviceapp\web.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\ipsmedserviceapp\web.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\ipsmedserviceapp\web.config" />
-  <event action="Analyze" type="Success" name="web.config" path="D:\works\mediS\ipsmedserviceapp\web.config" />
-  <event action="Analyze" type="Success" name="ipsmedserviceapp" path="D:\works\mediS\ipsmedserviceapp\ipsmedserviceapp.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
-  <event action="Analyze" type="Success" name="InformationFooterGenAgrBigRight.resx" path="D:\works\mediS\IpsViewComponentLibrary\_trash\InformationFooterGenAgrBigRight.resx" />
-  <event action="Analyze" type="Success" name="IpsAddressExpandedControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\_trash\IpsAddressExpandedControl.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlAgreementBigRights.resx" path="D:\works\mediS\IpsViewComponentLibrary\_trash\MiddleControlAgreementBigRights.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetPayments.resx" path="D:\works\mediS\IpsViewComponentLibrary\_trash\MiddleControlCabinetPayments.resx" />
-  <event action="Analyze" type="Success" name="ProlongationGeneralAgreement.resx" path="D:\works\mediS\IpsViewComponentLibrary\_trash\ProlongationGeneralAgreement.resx" />
-  <event action="Analyze" type="Success" name="AddCompositionForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\AddCompositionForm.resx" />
-  <event action="Analyze" type="Success" name="AddFileDialogForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\AddFileDialogForm.resx" />
-  <event action="Analyze" type="Success" name="AddressLetter.resx" path="D:\works\mediS\IpsViewComponentLibrary\AddressLetter.resx" />
-  <event action="Analyze" type="Success" name="AnketaConsumerForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\AnketaConsumerForm.resx" />
-  <event action="Analyze" type="Success" name="AnketaPersonControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\AnketaPersonControl.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\IpsViewComponentLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\IpsViewComponentLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\IpsViewComponentLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\IpsViewComponentLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\IpsViewComponentLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\IpsViewComponentLibrary\app.config" />
-  <event action="Analyze" type="Success" name="app.config" path="D:\works\mediS\IpsViewComponentLibrary\app.config" />
-  <event action="Analyze" type="Success" name="ButtonGroupBoxControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\Common\ButtonGroupBoxControl.resx" />
-  <event action="Analyze" type="Success" name="ConfirmationView.resx" path="D:\works\mediS\IpsViewComponentLibrary\Common\ConfirmationView.resx" />
-  <event action="Analyze" type="Success" name="NavigatorPanelControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\Common\NavigatorPanelControl.resx" />
-  <event action="Analyze" type="Success" name="PageSelectorControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\Common\PageSelectorControl.resx" />
-  <event action="Analyze" type="Success" name="SearchTextBoxControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\Common\SearchTextBoxControl.resx" />
-  <event action="Analyze" type="Success" name="SideMenuControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\Common\SideMenuControl.resx" />
-  <event action="Analyze" type="Success" name="UserSelectionView.resx" path="D:\works\mediS\IpsViewComponentLibrary\Common\UserSelectionView.resx" />
-  <event action="Analyze" type="Success" name="CommunityAddAutorForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\CommunityControls\CommunityAddAutorForm.resx" />
-  <event action="Analyze" type="Success" name="CommunityAddressControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\CommunityControls\CommunityAddressControl.resx" />
-  <event action="Analyze" type="Success" name="CommunityAddressLetterControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\CommunityControls\CommunityAddressLetterControl.resx" />
-  <event action="Analyze" type="Success" name="CommunityAgreementControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\CommunityControls\CommunityAgreementControl.resx" />
-  <event action="Analyze" type="Success" name="CommunityCabinetForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\CommunityControls\CommunityCabinetForm.resx" />
-  <event action="Analyze" type="Success" name="CommunityControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\CommunityControls\CommunityControl.resx" />
-  <event action="Analyze" type="Success" name="CommunityForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\CommunityControls\CommunityForm.resx" />
-  <event action="Analyze" type="Success" name="AnketaConsumer.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\AnketaConsumer.resx" />
-  <event action="Analyze" type="Success" name="AnketaConsumerPhis.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\AnketaConsumerPhis.resx" />
-  <event action="Analyze" type="Success" name="AgrDetailInfoBr.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\BigRight\AgrDetailInfoBr.resx" />
-  <event action="Analyze" type="Success" name="AgreementBigRight.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\BigRight\AgreementBigRight.resx" />
-  <event action="Analyze" type="Success" name="CabinetBigRight.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\BigRight\CabinetBigRight.resx" />
-  <event action="Analyze" type="Success" name="GeneralAgrDetailInfoBr.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\BigRight\GeneralAgrDetailInfoBr.resx" />
-  <event action="Analyze" type="Success" name="ConsumerAgrDetailInfo.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\ConsumerAgrDetailInfo.resx" />
-  <event action="Analyze" type="Success" name="ConsumerHeaderInfo.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\ConsumerHeaderInfo.resx" />
-  <event action="Analyze" type="Success" name="ConsumerListControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\ConsumerListControl.resx" />
-  <event action="Analyze" type="Success" name="ConsumerSelectionView.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\ConsumerSelectionView.resx" />
-  <event action="Analyze" type="Success" name="CreatePeriod.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\CreatePeriod.resx" />
-  <event action="Analyze" type="Success" name="CreateRatedList.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\CreateRatedList.resx" />
-  <event action="Analyze" type="Success" name="ManagersControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\ManagersControl.resx" />
-  <event action="Analyze" type="Success" name="PaysInfo.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\PaysInfo.resx" />
-  <event action="Analyze" type="Success" name="ConsumerPlacesControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\Places\ConsumerPlacesControl.resx" />
-  <event action="Analyze" type="Success" name="MultiplePlaceParameterControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\Places\MultiplePlaceParameterControl.resx" />
-  <event action="Analyze" type="Success" name="PremisesActionsForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\Places\PremisesActionsForm.resx" />
-  <event action="Analyze" type="Success" name="PremisesControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\Places\PremisesControl.resx" />
-  <event action="Analyze" type="Success" name="RadioPlaceParameterControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\Places\RadioPlaceParameterControl.resx" />
-  <event action="Analyze" type="Success" name="SinglePlaceParameterControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\Places\SinglePlaceParameterControl.resx" />
-  <event action="Analyze" type="Success" name="AgreementPhis.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\SmallRight\AgreementPhis.resx" />
-  <event action="Analyze" type="Success" name="CabinetSmallRight.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\SmallRight\CabinetSmallRight.resx" />
-  <event action="Analyze" type="Success" name="CalculationInfoControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\SmallRight\CalculationInfoControl.resx" />
-  <event action="Analyze" type="Success" name="ReportsControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\SmallRight\ReportsControl.resx" />
-  <event action="Analyze" type="Success" name="TabNavigationControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerControls\TabNavigationControl.resx" />
-  <event action="Analyze" type="Success" name="AddAuthRoleForMusDesingBr.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx" />
-  <event action="Analyze" type="Success" name="ContactPersonActionForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerDialogForms\ContactPersonActionForm.resx" />
-  <event action="Analyze" type="Success" name="CreateProgReportBigRight.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerDialogForms\CreateProgReportBigRight.resx" />
-  <event action="Analyze" type="Success" name="GeneralAgreementBrForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerDialogForms\GeneralAgreementBrForm.resx" />
-  <event action="Analyze" type="Success" name="ProlongationBigRight.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerDialogForms\ProlongationBigRight.resx" />
-  <event action="Analyze" type="Success" name="SelectClient.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerDialogForms\SelectClient.resx" />
-  <event action="Analyze" type="Success" name="SelectPartner.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerDialogForms\SelectPartner.resx" />
-  <event action="Analyze" type="Success" name="AnketaConsumerPhisForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerForms\AnketaConsumerPhisForm.resx" />
-  <event action="Analyze" type="Success" name="CabinetBigRightForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerForms\CabinetBigRightForm.resx" />
-  <event action="Analyze" type="Success" name="CabinetSmallRightForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerForms\CabinetSmallRightForm.resx" />
-  <event action="Analyze" type="Success" name="ConsumerExternalView.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerForms\ConsumerExternalView.resx" />
-  <event action="Analyze" type="Success" name="ConsumerTitleControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ConsumerTitleControl.resx" />
-  <event action="Analyze" type="Success" name="ContactsPersonControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ContactsPersonControl.resx" />
-  <event action="Analyze" type="Success" name="ContractConsumerDetailControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ContractConsumerDetailControl.resx" />
-  <event action="Analyze" type="Success" name="ContractConsumerMainControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ContractConsumerMainControl.resx" />
-  <event action="Analyze" type="Success" name="ContractControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ContractControl.resx" />
-  <event action="Analyze" type="Success" name="DistributionForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\DistributionForm.resx" />
-  <event action="Analyze" type="Success" name="FixationListControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\FixationControls\FixationListControl.resx" />
-  <event action="Analyze" type="Success" name="FixationView.resx" path="D:\works\mediS\IpsViewComponentLibrary\FixationControls\FixationView.resx" />
-  <event action="Analyze" type="Success" name="GeneralAgreementInfo.resx" path="D:\works\mediS\IpsViewComponentLibrary\GeneralAgreementInfo.resx" />
-  <event action="Analyze" type="Success" name="GlobalControlConsumerMainGrid.resx" path="D:\works\mediS\IpsViewComponentLibrary\GlobalControlConsumerMainGrid.resx" />
-  <event action="Analyze" type="Success" name="GlobalControlConsumerMainGridBR.resx" path="D:\works\mediS\IpsViewComponentLibrary\GlobalControlConsumerMainGridBR.resx" />
-  <event action="Analyze" type="Success" name="ImportDBFControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ImportDBF\ImportDBFControl.resx" />
-  <event action="Analyze" type="Success" name="ImportParseResultForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ImportDBF\ImportParseResultForm.resx" />
-  <event action="Analyze" type="Success" name="PaymentsAttachForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ImportDBF\PaymentsAttachForm.resx" />
-  <event action="Analyze" type="Success" name="InformationAboutTheContractTitleControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\InformationAboutTheContractTitleControl.resx" />
-  <event action="Analyze" type="Success" name="InformationAgrBR.resx" path="D:\works\mediS\IpsViewComponentLibrary\InformationAgrBR.resx" />
-  <event action="Analyze" type="Success" name="IpsAddressControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\IpsAddressControl.resx" />
-  <event action="Analyze" type="Success" name="IpsAnketaCompanyControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\IpsAnketaCompanyControl.resx" />
-  <event action="Analyze" type="Success" name="IpsBankAccountControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\IpsBankAccountControl.resx" />
-  <event action="Analyze" type="Success" name="IpsBossNameContactsControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\IpsBossNameContactsControl.resx" />
-  <event action="Analyze" type="Success" name="IpsRegistrationsCompanyControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\IpsRegistrationsCompanyControl.resx" />
-  <event action="Analyze" type="Success" name="LicenseAgreementListControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\LicenseAgreementListControl.resx" />
-  <event action="Analyze" type="Success" name="MainViewSwitcher.resx" path="D:\works\mediS\IpsViewComponentLibrary\MainViewSwitcher.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlAddress.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlAddress.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlAgreementAnketaType.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlAgreementAnketaType.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlAgreementProlPlacesType.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlAgreementProlPlacesType.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlAgreementProlType.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlAgreementProlType.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlBankRequisites.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlBankRequisites.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetAvances.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlCabinetAvances.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetCalculation.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlCabinetCalculation.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetFiles.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlCabinetFiles.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetGenAgreement.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlCabinetGenAgreement.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetLicenses.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlCabinetLicenses.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetPartner.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlCabinetPartner.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetPayslips.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlCabinetPayslips.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlCabinetReqRef.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlCabinetReqRef.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlClientName.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlClientName.resx" />
-  <event action="Analyze" type="Success" name="MiddleControlManagers.resx" path="D:\works\mediS\IpsViewComponentLibrary\MiddleControlManagers.resx" />
-  <event action="Analyze" type="Success" name="AuthorRightholderBrListControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ObjectRightControls\AuthorRightholderBrListControl.resx" />
-  <event action="Analyze" type="Success" name="AuthorRightholderItemView.resx" path="D:\works\mediS\IpsViewComponentLibrary\ObjectRightControls\AuthorRightholderItemView.resx" />
-  <event action="Analyze" type="Success" name="CopyrightRequestControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ObjectRightControls\CopyrightRequestControl.resx" />
-  <event action="Analyze" type="Success" name="ObjectRightBrInfoControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ObjectRightControls\ObjectRightBrInfoControl.resx" />
-  <event action="Analyze" type="Success" name="ObjectRightBrView.resx" path="D:\works\mediS\IpsViewComponentLibrary\ObjectRightControls\ObjectRightBrView.resx" />
-  <event action="Analyze" type="Success" name="ObjectRightListControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\ObjectRightControls\ObjectRightListControl.resx" />
-  <event action="Analyze" type="Success" name="ObjectRightSelectionView.resx" path="D:\works\mediS\IpsViewComponentLibrary\ObjectRightControls\ObjectRightSelectionView.resx" />
-  <event action="Analyze" type="Success" name="ObjectRightSrView.resx" path="D:\works\mediS\IpsViewComponentLibrary\ObjectRightControls\ObjectRightSrView.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\IpsViewComponentLibrary\packages.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\IpsViewComponentLibrary\packages.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\IpsViewComponentLibrary\packages.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\IpsViewComponentLibrary\packages.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\IpsViewComponentLibrary\packages.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\IpsViewComponentLibrary\packages.config" />
-  <event action="Analyze" type="Success" name="packages.config" path="D:\works\mediS\IpsViewComponentLibrary\packages.config" />
-  <event action="Analyze" type="Success" name="AgreementPartnerControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\AgreementPartnerControl.resx" />
-  <event action="Analyze" type="Success" name="CabinetPartnerForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\CabinetPartnerForm.resx" />
-  <event action="Analyze" type="Success" name="ConditionsControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\ConditionsControl.resx" />
-  <event action="Analyze" type="Success" name="CreatePartnerForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\CreatePartnerForm.resx" />
-  <event action="Analyze" type="Success" name="JurPersonName.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\JurPersonName.resx" />
-  <event action="Analyze" type="Success" name="PartnerAnketaJurControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\PartnerAnketaJurControl.resx" />
-  <event action="Analyze" type="Success" name="PartnerAnketaPhisControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\PartnerAnketaPhisControl.resx" />
-  <event action="Analyze" type="Success" name="PartnerCabinetAnketaJurControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\PartnerCabinetAnketaJurControl.resx" />
-  <event action="Analyze" type="Success" name="PartnerCabinetAnketaPhisControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\PartnerCabinetAnketaPhisControl.resx" />
-  <event action="Analyze" type="Success" name="PartnerClientsControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\PartnerClientsControl.resx" />
-  <event action="Analyze" type="Success" name="PartnerControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\PartnerControl.resx" />
-  <event action="Analyze" type="Success" name="PartnerNameControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\PartnerNameControl.resx" />
-  <event action="Analyze" type="Success" name="TabNavigationExpandedControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PartnerControls\TabNavigationExpandedControl.resx" />
-  <event action="Analyze" type="Success" name="PassportControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PassportControl.resx" />
-  <event action="Analyze" type="Success" name="PassportInternationalControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\PassportInternationalControl.resx" />
-  <event action="Analyze" type="Success" name="PayslipsCrEdForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\PayslipsCrEdForm.resx" />
-  <event action="Analyze" type="Success" name="ProlongationWithoutPlaces.resx" path="D:\works\mediS\IpsViewComponentLibrary\ProlongationWithoutPlaces.resx" />
-  <event action="Analyze" type="Success" name="ProlongationWithPlaces.resx" path="D:\works\mediS\IpsViewComponentLibrary\ProlongationWithPlaces.resx" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\IpsViewComponentLibrary\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="RegisterItemListControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RegisterControls\RegisterItemListControl.resx" />
-  <event action="Analyze" type="Success" name="RegisterListControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RegisterControls\RegisterListControl.resx" />
-  <event action="Analyze" type="Success" name="RegisterView.resx" path="D:\works\mediS\IpsViewComponentLibrary\RegisterControls\RegisterView.resx" />
-  <event action="Analyze" type="Success" name="SearchObjectView.resx" path="D:\works\mediS\IpsViewComponentLibrary\RegisterControls\SearchObjectView.resx" />
-  <event action="Analyze" type="Success" name="RegistrationPersonsControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RegistrationPersonsControl.resx" />
-  <event action="Analyze" type="Success" name="ReportExcelViewForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\ReportExcelViewForm.resx" />
-  <event action="Analyze" type="Success" name="RequestForm.resx" path="D:\works\mediS\IpsViewComponentLibrary\RequestForm.resx" />
-  <event action="Analyze" type="Success" name="AnketaCompanyRightholderPage.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\Anketa\AnketaCompanyRightholderPage.resx" />
-  <event action="Analyze" type="Success" name="AnketaPersonRightHolderControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\Anketa\AnketaPersonRightHolderControl.resx" />
-  <event action="Analyze" type="Success" name="AnketaPersonRightholderPage.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\Anketa\AnketaPersonRightholderPage.resx" />
-  <event action="Analyze" type="Success" name="RightLimitationsControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\Anketa\RightLimitationsControl.resx" />
-  <event action="Analyze" type="Success" name="ServiceComissionControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\Anketa\ServiceComissionControl.resx" />
-  <event action="Analyze" type="Success" name="TerritoryIncludeExcludeControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\Anketa\TerritoryIncludeExcludeControl.resx" />
-  <event action="Analyze" type="Success" name="AnketaAddNamesView.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\AnketaAddNamesView.resx" />
-  <event action="Analyze" type="Success" name="AnketaAddNickView.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\AnketaAddNickView.resx" />
-  <event action="Analyze" type="Success" name="NewRightholderView.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\NewRightholderView.resx" />
-  <event action="Analyze" type="Success" name="RightholderListControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\RightholderListControl.resx" />
-  <event action="Analyze" type="Success" name="RightholderSelectionView.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\RightholderSelectionView.resx" />
-  <event action="Analyze" type="Success" name="RightholderSelectorControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\RightholderSelectorControl.resx" />
-  <event action="Analyze" type="Success" name="RightholdersObjectsRightsControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\RightholdersObjectsRightsControl.resx" />
-  <event action="Analyze" type="Success" name="RightholderView.resx" path="D:\works\mediS\IpsViewComponentLibrary\RightholderControls\RightholderView.resx" />
-  <event action="Analyze" type="Success" name="SingleShowInformationControl.resx" path="D:\works\mediS\IpsViewComponentLibrary\SingleShowInformationControl.resx" />
-  <event action="Analyze" type="Success" name="ViewAndPrintAgreement.resx" path="D:\works\mediS\IpsViewComponentLibrary\ViewAndPrintAgreement.resx" />
-  <event action="Analyze" type="Success" name="IpsViewComponentLibrary" path="D:\works\mediS\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ConsumerWorkplace_v_1.0\App.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\ConsumerWorkplace_v_1.0\App.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\ConsumerWorkplace_v_1.0\App.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\ConsumerWorkplace_v_1.0\App.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\ConsumerWorkplace_v_1.0\App.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\ConsumerWorkplace_v_1.0\App.config" />
-  <event action="Analyze" type="Success" name="App.config" path="D:\works\mediS\ConsumerWorkplace_v_1.0\App.config" />
-  <event action="Analyze" type="Success" name="ConsumerList.resx" path="D:\works\mediS\ConsumerWorkplace_v_1.0\ConsumerList.resx" />
-  <event action="Analyze" type="Success" name="ConsumerWorkplace.resx" path="D:\works\mediS\ConsumerWorkplace_v_1.0\ConsumerWorkplace.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ConsumerWorkplace_v_1.0\packages.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\ConsumerWorkplace_v_1.0\packages.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\ConsumerWorkplace_v_1.0\packages.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\ConsumerWorkplace_v_1.0\packages.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\ConsumerWorkplace_v_1.0\packages.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\ConsumerWorkplace_v_1.0\packages.config" />
-  <event action="Analyze" type="Success" name="packages.config" path="D:\works\mediS\ConsumerWorkplace_v_1.0\packages.config" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\ConsumerWorkplace_v_1.0\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ConsumerWorkplace_v_1.0\workplace.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\ConsumerWorkplace_v_1.0\workplace.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\ConsumerWorkplace_v_1.0\workplace.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\ConsumerWorkplace_v_1.0\workplace.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\ConsumerWorkplace_v_1.0\workplace.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\ConsumerWorkplace_v_1.0\workplace.config" />
-  <event action="Analyze" type="Success" name="workplace.config" path="D:\works\mediS\ConsumerWorkplace_v_1.0\workplace.config" />
-  <event action="Analyze" type="Success" name="ConsumerWorkplace_v_1._0" path="D:\works\mediS\ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\RightholderWorkplace\RightholderWorkplace.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\RightholderWorkplace\App.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\RightholderWorkplace\App.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\RightholderWorkplace\App.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\RightholderWorkplace\App.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\RightholderWorkplace\App.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\RightholderWorkplace\App.config" />
-  <event action="Analyze" type="Success" name="App.config" path="D:\works\mediS\RightholderWorkplace\App.config" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\RightholderWorkplace\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="RightholderWorkplace.resx" path="D:\works\mediS\RightholderWorkplace\RightholderWorkplace.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\RightholderWorkplace\workplace.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\RightholderWorkplace\workplace.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\RightholderWorkplace\workplace.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\RightholderWorkplace\workplace.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\RightholderWorkplace\workplace.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\RightholderWorkplace\workplace.config" />
-  <event action="Analyze" type="Success" name="workplace.config" path="D:\works\mediS\RightholderWorkplace\workplace.config" />
-  <event action="Analyze" type="Success" name="RightholderWorkplace" path="D:\works\mediS\RightholderWorkplace\RightholderWorkplace.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestWord\TestWord.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestWord\App.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\TestWord\App.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\TestWord\App.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\TestWord\App.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\TestWord\App.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\TestWord\App.config" />
-  <event action="Analyze" type="Success" name="App.config" path="D:\works\mediS\TestWord\App.config" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\TestWord\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="RadForm1.resx" path="D:\works\mediS\TestWord\RadForm1.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestWord\workplace.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\TestWord\workplace.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\TestWord\workplace.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\TestWord\workplace.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\TestWord\workplace.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\TestWord\workplace.config" />
-  <event action="Analyze" type="Success" name="workplace.config" path="D:\works\mediS\TestWord\workplace.config" />
-  <event action="Analyze" type="Success" name="TestWord" path="D:\works\mediS\TestWord\TestWord.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestWord_1\TestWord_1.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestWord_1\App.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\TestWord_1\App.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\TestWord_1\App.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\TestWord_1\App.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\TestWord_1\App.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\TestWord_1\App.config" />
-  <event action="Analyze" type="Success" name="App.config" path="D:\works\mediS\TestWord_1\App.config" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\TestWord_1\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="RadForm1.resx" path="D:\works\mediS\TestWord_1\RadForm1.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestWord_1\workplace.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\TestWord_1\workplace.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\TestWord_1\workplace.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\TestWord_1\workplace.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\TestWord_1\workplace.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\TestWord_1\workplace.config" />
-  <event action="Analyze" type="Success" name="workplace.config" path="D:\works\mediS\TestWord_1\workplace.config" />
-  <event action="Analyze" type="Success" name="TestWord_1" path="D:\works\mediS\TestWord_1\TestWord_1.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\UnitTestMediaPortal\UnitTestMediaPortal.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\UnitTestMediaPortal\app.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\UnitTestMediaPortal\app.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\UnitTestMediaPortal\app.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\UnitTestMediaPortal\app.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\UnitTestMediaPortal\app.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\UnitTestMediaPortal\app.config" />
-  <event action="Analyze" type="Success" name="app.config" path="D:\works\mediS\UnitTestMediaPortal\app.config" />
-  <event action="Analyze" type="Success" name="FormBinding1.resx" path="D:\works\mediS\UnitTestMediaPortal\FormBinding1.resx" />
-  <event action="Analyze" type="Success" name="FormIBindingList.resx" path="D:\works\mediS\UnitTestMediaPortal\FormIBindingList.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\UnitTestMediaPortal\packages.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\UnitTestMediaPortal\packages.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\UnitTestMediaPortal\packages.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\UnitTestMediaPortal\packages.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\UnitTestMediaPortal\packages.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\UnitTestMediaPortal\packages.config" />
-  <event action="Analyze" type="Success" name="packages.config" path="D:\works\mediS\UnitTestMediaPortal\packages.config" />
-  <event action="Analyze" type="Success" name="RadTestExpandoObject.resx" path="D:\works\mediS\UnitTestMediaPortal\RadTestExpandoObject.resx" />
-  <event action="Analyze" type="Success" name="Report1.resx" path="D:\works\mediS\UnitTestMediaPortal\Report1.resx" />
-  <event action="Analyze" type="Success" name="Report2.resx" path="D:\works\mediS\UnitTestMediaPortal\Report2.resx" />
-  <event action="Analyze" type="Success" name="ReportForm.resx" path="D:\works\mediS\UnitTestMediaPortal\ReportForm.resx" />
-  <event action="Analyze" type="Success" name="TestCalculation.resx" path="D:\works\mediS\UnitTestMediaPortal\TestCalculation.resx" />
-  <event action="Analyze" type="Success" name="TestGlobalcs.resx" path="D:\works\mediS\UnitTestMediaPortal\TestGlobalcs.resx" />
-  <event action="Analyze" type="Success" name="TestGlobalDic.resx" path="D:\works\mediS\UnitTestMediaPortal\TestGlobalDic.resx" />
-  <event action="Analyze" type="Success" name="TestLayout.resx" path="D:\works\mediS\UnitTestMediaPortal\TestLayout.resx" />
-  <event action="Analyze" type="Success" name="TestNesttedList.resx" path="D:\works\mediS\UnitTestMediaPortal\TestNesttedList.resx" />
-  <event action="Analyze" type="Success" name="TestTextBoxAuto.resx" path="D:\works\mediS\UnitTestMediaPortal\TestTextBoxAuto.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\UnitTestMediaPortal\workplace.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\UnitTestMediaPortal\workplace.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\UnitTestMediaPortal\workplace.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\UnitTestMediaPortal\workplace.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\UnitTestMediaPortal\workplace.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\UnitTestMediaPortal\workplace.config" />
-  <event action="Analyze" type="Success" name="workplace.config" path="D:\works\mediS\UnitTestMediaPortal\workplace.config" />
-  <event action="Analyze" type="Success" name="UnitTestMediaPortal" path="D:\works\mediS\UnitTestMediaPortal\UnitTestMediaPortal.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ipsFormsDesign\ipsFormsDesign.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ipsFormsDesign\packages.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\ipsFormsDesign\packages.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\ipsFormsDesign\packages.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\ipsFormsDesign\packages.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\ipsFormsDesign\packages.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\ipsFormsDesign\packages.config" />
-  <event action="Analyze" type="Success" name="packages.config" path="D:\works\mediS\ipsFormsDesign\packages.config" />
-  <event action="Analyze" type="Success" name="ipsFormsDesign" path="D:\works\mediS\ipsFormsDesign\ipsFormsDesign.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestControls\TestControls.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestControls\App.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\TestControls\App.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\TestControls\App.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\TestControls\App.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\TestControls\App.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\TestControls\App.config" />
-  <event action="Analyze" type="Success" name="App.config" path="D:\works\mediS\TestControls\App.config" />
-  <event action="Analyze" type="Success" name="EditPay.resx" path="D:\works\mediS\TestControls\EditPay.resx" />
-  <event action="Analyze" type="Success" name="GridTestForm.resx" path="D:\works\mediS\TestControls\GridTestForm.resx" />
-  <event action="Analyze" type="Success" name="MainForm.resx" path="D:\works\mediS\TestControls\MainForm.resx" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\TestControls\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\TestControls\workplace.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\TestControls\workplace.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\TestControls\workplace.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\TestControls\workplace.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\TestControls\workplace.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\TestControls\workplace.config" />
-  <event action="Analyze" type="Success" name="workplace.config" path="D:\works\mediS\TestControls\workplace.config" />
-  <event action="Analyze" type="Success" name="TestControls" path="D:\works\mediS\TestControls\TestControls.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ReportsLibrary\ReportsLibrary.csproj" />
-  <event action="Analyze" type="Success" name="accmove.resx" path="D:\works\mediS\ReportsLibrary\accmove.resx" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\ReportsLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\ReportsLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\ReportsLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\ReportsLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\ReportsLibrary\app.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\ReportsLibrary\app.config" />
-  <event action="Analyze" type="Success" name="app.config" path="D:\works\mediS\ReportsLibrary\app.config" />
-  <event action="Analyze" type="Success" name="LIcAgr.resx" path="D:\works\mediS\ReportsLibrary\LIcAgr.resx" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\ReportsLibrary\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="R_5_1_main.resx" path="D:\works\mediS\ReportsLibrary\R_5_1_main.resx" />
-  <event action="Analyze" type="Success" name="R_5_14_RegisterSR.resx" path="D:\works\mediS\ReportsLibrary\R_5_14_RegisterSR.resx" />
-  <event action="Analyze" type="Success" name="R_5_15_RegisterBRSum.resx" path="D:\works\mediS\ReportsLibrary\R_5_15_RegisterBRSum.resx" />
-  <event action="Analyze" type="Success" name="R_5_15_RegisterSR.resx" path="D:\works\mediS\ReportsLibrary\R_5_15_RegisterSR.resx" />
-  <event action="Analyze" type="Success" name="R_5_17_Balance.resx" path="D:\works\mediS\ReportsLibrary\R_5_17_Balance.resx" />
-  <event action="Analyze" type="Success" name="R_5_17_BalanceAccount.resx" path="D:\works\mediS\ReportsLibrary\R_5_17_BalanceAccount.resx" />
-  <event action="Analyze" type="Success" name="R_5_18_TurnAccounN.resx" path="D:\works\mediS\ReportsLibrary\R_5_18_TurnAccounN.resx" />
-  <event action="Analyze" type="Success" name="R_5_2_CrKind.resx" path="D:\works\mediS\ReportsLibrary\R_5_2_CrKind.resx" />
-  <event action="Analyze" type="Success" name="R_5_3_Community.resx" path="D:\works\mediS\ReportsLibrary\R_5_3_Community.resx" />
-  <event action="Analyze" type="Success" name="R_5_4_RatingRh.resx" path="D:\works\mediS\ReportsLibrary\R_5_4_RatingRh.resx" />
-  <event action="Analyze" type="Success" name="R_5_5_RatingObj.resx" path="D:\works\mediS\ReportsLibrary\R_5_5_RatingObj.resx" />
-  <event action="Analyze" type="Success" name="R_5_6_Customers.resx" path="D:\works\mediS\ReportsLibrary\R_5_6_Customers.resx" />
-  <event action="Analyze" type="Success" name="R_5_8_Consolidated.resx" path="D:\works\mediS\ReportsLibrary\R_5_8_Consolidated.resx" />
-  <event action="Analyze" type="Success" name="R_5_8_DistribMain.resx" path="D:\works\mediS\ReportsLibrary\R_5_8_DistribMain.resx" />
-  <event action="Analyze" type="Success" name="Report1.resx" path="D:\works\mediS\ReportsLibrary\Report1.resx" />
-  <event action="Analyze" type="Success" name="Report2.resx" path="D:\works\mediS\ReportsLibrary\Report2.resx" />
-  <event action="Analyze" type="Success" name="Report3.resx" path="D:\works\mediS\ReportsLibrary\Report3.resx" />
-  <event action="Analyze" type="Success" name="ReportS.resx" path="D:\works\mediS\ReportsLibrary\ReportS.resx" />
-  <event action="Analyze" type="Success" name="ReportsLibrary" path="D:\works\mediS\ReportsLibrary\ReportsLibrary.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\RepNew\RepNew.csproj" />
-  <event action="Analyze" type="Success" name="Assembly References" path="D:\works\mediS\RepNew\App.config" />
-  <event action="Analyze" type="Success" name="Http Handlers" path="D:\works\mediS\RepNew\App.config" />
-  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\works\mediS\RepNew\App.config" />
-  <event action="Analyze" type="Success" name="Config Sections" path="D:\works\mediS\RepNew\App.config" />
-  <event action="Analyze" type="Success" name="Render Extensions" path="D:\works\mediS\RepNew\App.config" />
-  <event action="Analyze" type="Success" name="Session State Providers" path="D:\works\mediS\RepNew\App.config" />
-  <event action="Analyze" type="Success" name="App.config" path="D:\works\mediS\RepNew\App.config" />
-  <event action="Analyze" type="Success" name="Form1.resx" path="D:\works\mediS\RepNew\Form1.resx" />
-  <event action="Analyze" type="Success" name="Resources.resx" path="D:\works\mediS\RepNew\Properties\Resources.resx" />
-  <event action="Analyze" type="Success" name="RepNew" path="D:\works\mediS\RepNew\RepNew.csproj" />
-  <event action="Analyze" type="Success" name="ipsSysAdmin" path="D:\works\mediS\ipsSysAdmin.sln" />
-  <event action="Upgrade" type="Success" name="Assembly References" path="D:\works\mediS\WebAPIConnector\WebAPIConnector.csproj" />
-  <event action="Upgrade" type="Success" name="WebAPIConnector" path="D:\works\mediS\WebAPIConnector\WebAPIConnector.csproj" />
-  <event action="Upgrade" type="Success" name="Assembly References" path="D:\works\mediS\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
-  <event action="Upgrade" type="Success" name="IpsViewComponentLibrary" path="D:\works\mediS\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
-  <event action="Upgrade" type="Success" name="Assembly References" path="D:\works\mediS\TestWord_1\TestWord_1.csproj" />
-  <event action="Upgrade" type="Success" name="TestWord_1" path="D:\works\mediS\TestWord_1\TestWord_1.csproj" />
-  <event action="Upgrade" type="Success" name="Assembly References" path="D:\works\mediS\UnitTestMediaPortal\UnitTestMediaPortal.csproj" />
-  <event action="Upgrade" type="Success" name="Report1.resx" path="D:\works\mediS\UnitTestMediaPortal\Report1.resx" />
-  <event action="Upgrade" type="Success" name="Report2.resx" path="D:\works\mediS\UnitTestMediaPortal\Report2.resx" />
-  <event action="Upgrade" type="Success" name="UnitTestMediaPortal" path="D:\works\mediS\UnitTestMediaPortal\UnitTestMediaPortal.csproj" />
-  <event action="Upgrade" type="Success" name="Assembly References" path="D:\works\mediS\ReportsLibrary\ReportsLibrary.csproj" />
-  <event action="Upgrade" type="Success" name="accmove.resx" path="D:\works\mediS\ReportsLibrary\accmove.resx" />
-  <event action="Upgrade" type="Success" name="LIcAgr.resx" path="D:\works\mediS\ReportsLibrary\LIcAgr.resx" />
-  <event action="Upgrade" type="Success" name="R_5_1_main.resx" path="D:\works\mediS\ReportsLibrary\R_5_1_main.resx" />
-  <event action="Upgrade" type="Success" name="R_5_14_RegisterSR.resx" path="D:\works\mediS\ReportsLibrary\R_5_14_RegisterSR.resx" />
-  <event action="Upgrade" type="Success" name="R_5_15_RegisterBRSum.resx" path="D:\works\mediS\ReportsLibrary\R_5_15_RegisterBRSum.resx" />
-  <event action="Upgrade" type="Success" name="R_5_15_RegisterSR.resx" path="D:\works\mediS\ReportsLibrary\R_5_15_RegisterSR.resx" />
-  <event action="Upgrade" type="Success" name="R_5_17_Balance.resx" path="D:\works\mediS\ReportsLibrary\R_5_17_Balance.resx" />
-  <event action="Upgrade" type="Success" name="R_5_17_BalanceAccount.resx" path="D:\works\mediS\ReportsLibrary\R_5_17_BalanceAccount.resx" />
-  <event action="Upgrade" type="Success" name="R_5_18_TurnAccounN.resx" path="D:\works\mediS\ReportsLibrary\R_5_18_TurnAccounN.resx" />
-  <event action="Upgrade" type="Success" name="R_5_2_CrKind.resx" path="D:\works\mediS\ReportsLibrary\R_5_2_CrKind.resx" />
-  <event action="Upgrade" type="Success" name="R_5_3_Community.resx" path="D:\works\mediS\ReportsLibrary\R_5_3_Community.resx" />
-  <event action="Upgrade" type="Success" name="R_5_4_RatingRh.resx" path="D:\works\mediS\ReportsLibrary\R_5_4_RatingRh.resx" />
-  <event action="Upgrade" type="Success" name="R_5_5_RatingObj.resx" path="D:\works\mediS\ReportsLibrary\R_5_5_RatingObj.resx" />
-  <event action="Upgrade" type="Success" name="R_5_6_Customers.resx" path="D:\works\mediS\ReportsLibrary\R_5_6_Customers.resx" />
-  <event action="Upgrade" type="Success" name="R_5_8_Consolidated.resx" path="D:\works\mediS\ReportsLibrary\R_5_8_Consolidated.resx" />
-  <event action="Upgrade" type="Success" name="R_5_8_DistribMain.resx" path="D:\works\mediS\ReportsLibrary\R_5_8_DistribMain.resx" />
-  <event action="Upgrade" type="Success" name="Report1.resx" path="D:\works\mediS\ReportsLibrary\Report1.resx" />
-  <event action="Upgrade" type="Success" name="Report2.resx" path="D:\works\mediS\ReportsLibrary\Report2.resx" />
-  <event action="Upgrade" type="Success" name="Report3.resx" path="D:\works\mediS\ReportsLibrary\Report3.resx" />
-  <event action="Upgrade" type="Success" name="ReportS.resx" path="D:\works\mediS\ReportsLibrary\ReportS.resx" />
-  <event action="Upgrade" type="Success" name="ReportsLibrary" path="D:\works\mediS\ReportsLibrary\ReportsLibrary.csproj" />
-  <event action="Upgrade" type="Success" name="Assembly References" path="D:\works\mediS\RepNew\RepNew.csproj" />
-  <event action="Upgrade" type="Success" name="RepNew" path="D:\works\mediS\RepNew\RepNew.csproj" />
-  <event action="Upgrade" type="Success" name="ipsSysAdmin" path="D:\works\mediS\ipsSysAdmin.sln" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\sysAdminwp.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\App.config" />
+  <event action="Analyze" type="Success" name="CountryDictionaryControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\ComplexDictionaryControls\CountryDictionaryControl.resx" />
+  <event action="Analyze" type="Success" name="ComplexDictionaryParamForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\ComplexDictionaryParamForm.resx" />
+  <event action="Analyze" type="Success" name="DictionaryForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\DictionaryForm.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\workplace.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\workplace.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\workplace.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\workplace.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\workplace.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\workplace.config" />
+  <event action="Analyze" type="Success" name="workplace.config" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\workplace.config" />
+  <event action="Analyze" type="Success" name="sysAdminwp" path="D:\work\MediaSercice\ipsSysAdmin\sysAdminwp\sysAdminwp.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\WebAPIConnector.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\packages.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\workplace.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\workplace.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\workplace.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\workplace.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\workplace.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\workplace.config" />
+  <event action="Analyze" type="Success" name="workplace.config" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\workplace.config" />
+  <event action="Analyze" type="Success" name="WebAPIConnector" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\WebAPIConnector.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\ipsmedserviceapp.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\web.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\web.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\web.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\web.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\web.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\web.config" />
+  <event action="Analyze" type="Success" name="web.config" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\web.config" />
+  <event action="Analyze" type="Success" name="ipsmedserviceapp" path="D:\work\MediaSercice\ipsSysAdmin\ipsmedserviceapp\ipsmedserviceapp.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
+  <event action="Analyze" type="Success" name="InformationFooterGenAgrBigRight.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\_trash\InformationFooterGenAgrBigRight.resx" />
+  <event action="Analyze" type="Success" name="IpsAddressExpandedControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\_trash\IpsAddressExpandedControl.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlAgreementBigRights.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\_trash\MiddleControlAgreementBigRights.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlAgreementProlType.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\_trash\MiddleControlAgreementProlType.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetPayments.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\_trash\MiddleControlCabinetPayments.resx" />
+  <event action="Analyze" type="Success" name="ProlongationGeneralAgreement.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\_trash\ProlongationGeneralAgreement.resx" />
+  <event action="Analyze" type="Success" name="ProlongationWithoutPlaces.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\_trash\ProlongationWithoutPlaces.resx" />
+  <event action="Analyze" type="Success" name="AddCompositionForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\AddCompositionForm.resx" />
+  <event action="Analyze" type="Success" name="AddFileDialogForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\AddFileDialogForm.resx" />
+  <event action="Analyze" type="Success" name="AddressLetter.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\AddressLetter.resx" />
+  <event action="Analyze" type="Success" name="AnketaConsumerForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\AnketaConsumerForm.resx" />
+  <event action="Analyze" type="Success" name="AnketaPersonControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\AnketaPersonControl.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\app.config" />
+  <event action="Analyze" type="Success" name="ButtonGroupBoxControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\Common\ButtonGroupBoxControl.resx" />
+  <event action="Analyze" type="Success" name="ConfirmationView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\Common\ConfirmationView.resx" />
+  <event action="Analyze" type="Success" name="NavigatorPanelControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\Common\NavigatorPanelControl.resx" />
+  <event action="Analyze" type="Success" name="PageSelectorControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\Common\PageSelectorControl.resx" />
+  <event action="Analyze" type="Success" name="SearchTextBoxControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\Common\SearchTextBoxControl.resx" />
+  <event action="Analyze" type="Success" name="SideMenuControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\Common\SideMenuControl.resx" />
+  <event action="Analyze" type="Success" name="UserSelectionView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\Common\UserSelectionView.resx" />
+  <event action="Analyze" type="Success" name="CommunityAddAutorForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\CommunityControls\CommunityAddAutorForm.resx" />
+  <event action="Analyze" type="Success" name="CommunityAddressControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\CommunityControls\CommunityAddressControl.resx" />
+  <event action="Analyze" type="Success" name="CommunityAddressLetterControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\CommunityControls\CommunityAddressLetterControl.resx" />
+  <event action="Analyze" type="Success" name="CommunityAgreementControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\CommunityControls\CommunityAgreementControl.resx" />
+  <event action="Analyze" type="Success" name="CommunityCabinetForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\CommunityControls\CommunityCabinetForm.resx" />
+  <event action="Analyze" type="Success" name="CommunityControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\CommunityControls\CommunityControl.resx" />
+  <event action="Analyze" type="Success" name="CommunityForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\CommunityControls\CommunityForm.resx" />
+  <event action="Analyze" type="Success" name="AnketaConsumer.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\AnketaConsumer.resx" />
+  <event action="Analyze" type="Success" name="AnketaConsumerPhis.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\AnketaConsumerPhis.resx" />
+  <event action="Analyze" type="Success" name="AgrDetailInfoBr.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\BigRight\AgrDetailInfoBr.resx" />
+  <event action="Analyze" type="Success" name="AgreementBigRight.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\BigRight\AgreementBigRight.resx" />
+  <event action="Analyze" type="Success" name="CabinetBigRight.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\BigRight\CabinetBigRight.resx" />
+  <event action="Analyze" type="Success" name="GeneralAgrDetailInfoBr.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\BigRight\GeneralAgrDetailInfoBr.resx" />
+  <event action="Analyze" type="Success" name="ConsumerAgrDetailInfo.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\ConsumerAgrDetailInfo.resx" />
+  <event action="Analyze" type="Success" name="ConsumerHeaderInfo.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\ConsumerHeaderInfo.resx" />
+  <event action="Analyze" type="Success" name="ConsumerListControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\ConsumerListControl.resx" />
+  <event action="Analyze" type="Success" name="ConsumerSelectionView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\ConsumerSelectionView.resx" />
+  <event action="Analyze" type="Success" name="CreatePeriod.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\CreatePeriod.resx" />
+  <event action="Analyze" type="Success" name="CreateRatedList.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\CreateRatedList.resx" />
+  <event action="Analyze" type="Success" name="ManagersControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\ManagersControl.resx" />
+  <event action="Analyze" type="Success" name="PaysInfo.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\PaysInfo.resx" />
+  <event action="Analyze" type="Success" name="ConsumerPlacesControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\Places\ConsumerPlacesControl.resx" />
+  <event action="Analyze" type="Success" name="MultiplePlaceParameterControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\Places\MultiplePlaceParameterControl.resx" />
+  <event action="Analyze" type="Success" name="PremisesActionsForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\Places\PremisesActionsForm.resx" />
+  <event action="Analyze" type="Success" name="PremisesControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\Places\PremisesControl.resx" />
+  <event action="Analyze" type="Success" name="RadioPlaceParameterControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\Places\RadioPlaceParameterControl.resx" />
+  <event action="Analyze" type="Success" name="SinglePlaceParameterControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\Places\SinglePlaceParameterControl.resx" />
+  <event action="Analyze" type="Success" name="AgreementPhis.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\SmallRight\AgreementPhis.resx" />
+  <event action="Analyze" type="Success" name="CabinetSmallRight.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\SmallRight\CabinetSmallRight.resx" />
+  <event action="Analyze" type="Success" name="CalculationInfoControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\SmallRight\CalculationInfoControl.resx" />
+  <event action="Analyze" type="Success" name="ReportsControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\SmallRight\ReportsControl.resx" />
+  <event action="Analyze" type="Success" name="TabNavigationControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerControls\TabNavigationControl.resx" />
+  <event action="Analyze" type="Success" name="AddAuthRoleForMusDesingBr.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx" />
+  <event action="Analyze" type="Success" name="ContactPersonActionForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerDialogForms\ContactPersonActionForm.resx" />
+  <event action="Analyze" type="Success" name="CreateProgReportBigRight.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerDialogForms\CreateProgReportBigRight.resx" />
+  <event action="Analyze" type="Success" name="GeneralAgreementBrForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerDialogForms\GeneralAgreementBrForm.resx" />
+  <event action="Analyze" type="Success" name="ProlongationBigRight.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerDialogForms\ProlongationBigRight.resx" />
+  <event action="Analyze" type="Success" name="SelectClient.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerDialogForms\SelectClient.resx" />
+  <event action="Analyze" type="Success" name="SelectPartner.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerDialogForms\SelectPartner.resx" />
+  <event action="Analyze" type="Success" name="AnketaConsumerPhisForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerForms\AnketaConsumerPhisForm.resx" />
+  <event action="Analyze" type="Success" name="CabinetBigRightForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerForms\CabinetBigRightForm.resx" />
+  <event action="Analyze" type="Success" name="CabinetSmallRightForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerForms\CabinetSmallRightForm.resx" />
+  <event action="Analyze" type="Success" name="ConsumerExternalView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerForms\ConsumerExternalView.resx" />
+  <event action="Analyze" type="Success" name="ProlongationAgreementForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerForms\ProlongationAgreementForm.resx" />
+  <event action="Analyze" type="Success" name="ConsumerTitleControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ConsumerTitleControl.resx" />
+  <event action="Analyze" type="Success" name="ContactsPersonControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ContactsPersonControl.resx" />
+  <event action="Analyze" type="Success" name="ContractConsumerDetailControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ContractConsumerDetailControl.resx" />
+  <event action="Analyze" type="Success" name="ContractConsumerMainControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ContractConsumerMainControl.resx" />
+  <event action="Analyze" type="Success" name="ContractControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ContractControl.resx" />
+  <event action="Analyze" type="Success" name="DistributionForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\DistributionForm.resx" />
+  <event action="Analyze" type="Success" name="FixationListControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\FixationControls\FixationListControl.resx" />
+  <event action="Analyze" type="Success" name="FixationView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\FixationControls\FixationView.resx" />
+  <event action="Analyze" type="Success" name="GeneralAgreementInfo.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\GeneralAgreementInfo.resx" />
+  <event action="Analyze" type="Success" name="GlobalControlConsumerMainGrid.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\GlobalControlConsumerMainGrid.resx" />
+  <event action="Analyze" type="Success" name="GlobalControlConsumerMainGridBR.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\GlobalControlConsumerMainGridBR.resx" />
+  <event action="Analyze" type="Success" name="ImportDBFControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ImportDBF\ImportDBFControl.resx" />
+  <event action="Analyze" type="Success" name="ImportParseResultForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ImportDBF\ImportParseResultForm.resx" />
+  <event action="Analyze" type="Success" name="PaymentsAttachForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ImportDBF\PaymentsAttachForm.resx" />
+  <event action="Analyze" type="Success" name="InformationAboutTheContractTitleControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\InformationAboutTheContractTitleControl.resx" />
+  <event action="Analyze" type="Success" name="InformationAgrBR.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\InformationAgrBR.resx" />
+  <event action="Analyze" type="Success" name="IpsAddressControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsAddressControl.resx" />
+  <event action="Analyze" type="Success" name="IpsAnketaCompanyControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsAnketaCompanyControl.resx" />
+  <event action="Analyze" type="Success" name="IpsBankAccountControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsBankAccountControl.resx" />
+  <event action="Analyze" type="Success" name="IpsBossNameContactsControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsBossNameContactsControl.resx" />
+  <event action="Analyze" type="Success" name="IpsRegistrationsCompanyControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsRegistrationsCompanyControl.resx" />
+  <event action="Analyze" type="Success" name="LicenseAgreementListControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\LicenseAgreementListControl.resx" />
+  <event action="Analyze" type="Success" name="MainViewSwitcher.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MainViewSwitcher.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlAddress.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlAddress.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlAgreementAnketaType.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlAgreementAnketaType.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlAgreementProlPlacesType.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlAgreementProlPlacesType.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlBankRequisites.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlBankRequisites.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetAvances.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlCabinetAvances.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetCalculation.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlCabinetCalculation.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetFiles.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlCabinetFiles.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetGenAgreement.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlCabinetGenAgreement.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetLicenses.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlCabinetLicenses.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetPartner.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlCabinetPartner.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetPayslips.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlCabinetPayslips.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlCabinetReqRef.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlCabinetReqRef.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlClientName.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlClientName.resx" />
+  <event action="Analyze" type="Success" name="MiddleControlManagers.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\MiddleControlManagers.resx" />
+  <event action="Analyze" type="Success" name="AuthorRightholderBrListControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ObjectRightControls\AuthorRightholderBrListControl.resx" />
+  <event action="Analyze" type="Success" name="AuthorRightholderItemView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ObjectRightControls\AuthorRightholderItemView.resx" />
+  <event action="Analyze" type="Success" name="CopyrightRequestControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ObjectRightControls\CopyrightRequestControl.resx" />
+  <event action="Analyze" type="Success" name="ObjectRightBrInfoControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ObjectRightControls\ObjectRightBrInfoControl.resx" />
+  <event action="Analyze" type="Success" name="ObjectRightBrView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ObjectRightControls\ObjectRightBrView.resx" />
+  <event action="Analyze" type="Success" name="ObjectRightListControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ObjectRightControls\ObjectRightListControl.resx" />
+  <event action="Analyze" type="Success" name="ObjectRightSelectionView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ObjectRightControls\ObjectRightSelectionView.resx" />
+  <event action="Analyze" type="Success" name="ObjectRightSrView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ObjectRightControls\ObjectRightSrView.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\packages.config" />
+  <event action="Analyze" type="Success" name="AgreementPartnerControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\AgreementPartnerControl.resx" />
+  <event action="Analyze" type="Success" name="CabinetPartnerForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\CabinetPartnerForm.resx" />
+  <event action="Analyze" type="Success" name="ConditionsControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\ConditionsControl.resx" />
+  <event action="Analyze" type="Success" name="CreatePartnerForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\CreatePartnerForm.resx" />
+  <event action="Analyze" type="Success" name="JurPersonName.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\JurPersonName.resx" />
+  <event action="Analyze" type="Success" name="PartnerAnketaJurControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\PartnerAnketaJurControl.resx" />
+  <event action="Analyze" type="Success" name="PartnerAnketaPhisControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\PartnerAnketaPhisControl.resx" />
+  <event action="Analyze" type="Success" name="PartnerCabinetAnketaJurControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\PartnerCabinetAnketaJurControl.resx" />
+  <event action="Analyze" type="Success" name="PartnerCabinetAnketaPhisControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\PartnerCabinetAnketaPhisControl.resx" />
+  <event action="Analyze" type="Success" name="PartnerClientsControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\PartnerClientsControl.resx" />
+  <event action="Analyze" type="Success" name="PartnerControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\PartnerControl.resx" />
+  <event action="Analyze" type="Success" name="PartnerNameControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\PartnerNameControl.resx" />
+  <event action="Analyze" type="Success" name="TabNavigationExpandedControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PartnerControls\TabNavigationExpandedControl.resx" />
+  <event action="Analyze" type="Success" name="PassportControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PassportControl.resx" />
+  <event action="Analyze" type="Success" name="PassportInternationalControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PassportInternationalControl.resx" />
+  <event action="Analyze" type="Success" name="PayslipsCrEdForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\PayslipsCrEdForm.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="RegisterItemListControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RegisterControls\RegisterItemListControl.resx" />
+  <event action="Analyze" type="Success" name="RegisterListControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RegisterControls\RegisterListControl.resx" />
+  <event action="Analyze" type="Success" name="RegisterView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RegisterControls\RegisterView.resx" />
+  <event action="Analyze" type="Success" name="SearchObjectView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RegisterControls\SearchObjectView.resx" />
+  <event action="Analyze" type="Success" name="RegistrationPersonsControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RegistrationPersonsControl.resx" />
+  <event action="Analyze" type="Success" name="ReportExcelViewForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ReportExcelViewForm.resx" />
+  <event action="Analyze" type="Success" name="RequestForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RequestForm.resx" />
+  <event action="Analyze" type="Success" name="AnketaCompanyRightholderPage.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\Anketa\AnketaCompanyRightholderPage.resx" />
+  <event action="Analyze" type="Success" name="AnketaPersonRightHolderControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\Anketa\AnketaPersonRightHolderControl.resx" />
+  <event action="Analyze" type="Success" name="AnketaPersonRightholderPage.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\Anketa\AnketaPersonRightholderPage.resx" />
+  <event action="Analyze" type="Success" name="RightLimitationsControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\Anketa\RightLimitationsControl.resx" />
+  <event action="Analyze" type="Success" name="ServiceComissionControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\Anketa\ServiceComissionControl.resx" />
+  <event action="Analyze" type="Success" name="TerritoryIncludeExcludeControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\Anketa\TerritoryIncludeExcludeControl.resx" />
+  <event action="Analyze" type="Success" name="AnketaAddNamesView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\AnketaAddNamesView.resx" />
+  <event action="Analyze" type="Success" name="AnketaAddNickView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\AnketaAddNickView.resx" />
+  <event action="Analyze" type="Success" name="NewRightholderView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\NewRightholderView.resx" />
+  <event action="Analyze" type="Success" name="RightholderListControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\RightholderListControl.resx" />
+  <event action="Analyze" type="Success" name="RightholderSelectionView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\RightholderSelectionView.resx" />
+  <event action="Analyze" type="Success" name="RightholderSelectorControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\RightholderSelectorControl.resx" />
+  <event action="Analyze" type="Success" name="RightholdersObjectsRightsControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\RightholdersObjectsRightsControl.resx" />
+  <event action="Analyze" type="Success" name="RightholderView.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\RightholderControls\RightholderView.resx" />
+  <event action="Analyze" type="Success" name="SingleShowInformationControl.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\SingleShowInformationControl.resx" />
+  <event action="Analyze" type="Success" name="ViewAndPrintAgreement.resx" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\ViewAndPrintAgreement.resx" />
+  <event action="Analyze" type="Success" name="IpsViewComponentLibrary" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\App.config" />
+  <event action="Analyze" type="Success" name="ConsumerList.resx" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\ConsumerList.resx" />
+  <event action="Analyze" type="Success" name="ConsumerWorkplace.resx" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\ConsumerWorkplace.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\packages.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\workplace.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\workplace.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\workplace.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\workplace.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\workplace.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\workplace.config" />
+  <event action="Analyze" type="Success" name="workplace.config" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\workplace.config" />
+  <event action="Analyze" type="Success" name="ConsumerWorkplace_v_1._0" path="D:\work\MediaSercice\ipsSysAdmin\ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\RightholderWorkplace.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\App.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="RightholderWorkplace.resx" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\RightholderWorkplace.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\workplace.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\workplace.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\workplace.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\workplace.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\workplace.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\workplace.config" />
+  <event action="Analyze" type="Success" name="workplace.config" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\workplace.config" />
+  <event action="Analyze" type="Success" name="RightholderWorkplace" path="D:\work\MediaSercice\ipsSysAdmin\RightholderWorkplace\RightholderWorkplace.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\TestWord_1.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\App.config" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="RadForm1.resx" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\RadForm1.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\workplace.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\workplace.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\workplace.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\workplace.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\workplace.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\workplace.config" />
+  <event action="Analyze" type="Success" name="workplace.config" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\workplace.config" />
+  <event action="Analyze" type="Success" name="TestWord_1" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\TestWord_1.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\UnitTestMediaPortal.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\app.config" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\workplace.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\workplace.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\workplace.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\workplace.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\workplace.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\workplace.config" />
+  <event action="Analyze" type="Success" name="workplace.config" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\workplace.config" />
+  <event action="Analyze" type="Success" name="UnitTestMediaPortal" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\UnitTestMediaPortal.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\ipsFormsDesign.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\packages.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\packages.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\packages.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\packages.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\packages.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\packages.config" />
+  <event action="Analyze" type="Success" name="packages.config" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\packages.config" />
+  <event action="Analyze" type="Success" name="ipsFormsDesign" path="D:\work\MediaSercice\ipsSysAdmin\ipsFormsDesign\ipsFormsDesign.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\TestControls.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\App.config" />
+  <event action="Analyze" type="Success" name="EditPay.resx" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\EditPay.resx" />
+  <event action="Analyze" type="Success" name="GridTestForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\GridTestForm.resx" />
+  <event action="Analyze" type="Success" name="MainForm.resx" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\MainForm.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\workplace.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\workplace.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\workplace.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\workplace.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\workplace.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\workplace.config" />
+  <event action="Analyze" type="Success" name="workplace.config" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\workplace.config" />
+  <event action="Analyze" type="Success" name="TestControls" path="D:\work\MediaSercice\ipsSysAdmin\TestControls\TestControls.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\ReportsLibrary.csproj" />
+  <event action="Analyze" type="Success" name="accmove.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\accmove.resx" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\app.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\app.config" />
+  <event action="Analyze" type="Success" name="app.config" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\app.config" />
+  <event action="Analyze" type="Success" name="LIcAgr.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\LIcAgr.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="R_5_1_main.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_1_main.resx" />
+  <event action="Analyze" type="Success" name="R_5_14_RegisterSR.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_14_RegisterSR.resx" />
+  <event action="Analyze" type="Success" name="R_5_15_RegisterBRSum.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_15_RegisterBRSum.resx" />
+  <event action="Analyze" type="Success" name="R_5_15_RegisterSR.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_15_RegisterSR.resx" />
+  <event action="Analyze" type="Success" name="R_5_17_Balance.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_17_Balance.resx" />
+  <event action="Analyze" type="Success" name="R_5_17_BalanceAccount.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_17_BalanceAccount.resx" />
+  <event action="Analyze" type="Success" name="R_5_18_TurnAccounN.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_18_TurnAccounN.resx" />
+  <event action="Analyze" type="Success" name="R_5_2_CrKind.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_2_CrKind.resx" />
+  <event action="Analyze" type="Success" name="R_5_3_Community.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_3_Community.resx" />
+  <event action="Analyze" type="Success" name="R_5_4_RatingRh.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_4_RatingRh.resx" />
+  <event action="Analyze" type="Success" name="R_5_5_RatingObj.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_5_RatingObj.resx" />
+  <event action="Analyze" type="Success" name="R_5_6_Customers.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_6_Customers.resx" />
+  <event action="Analyze" type="Success" name="R_5_8_Consolidated.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_8_Consolidated.resx" />
+  <event action="Analyze" type="Success" name="R_5_8_DistribMain.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_8_DistribMain.resx" />
+  <event action="Analyze" type="Success" name="Report1.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\Report1.resx" />
+  <event action="Analyze" type="Success" name="Report2.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\Report2.resx" />
+  <event action="Analyze" type="Success" name="Report3.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\Report3.resx" />
+  <event action="Analyze" type="Success" name="ReportS.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\ReportS.resx" />
+  <event action="Analyze" type="Success" name="ReportsLibrary" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\ReportsLibrary.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\RepNew.csproj" />
+  <event action="Analyze" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\App.config" />
+  <event action="Analyze" type="Success" name="Http Handlers" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\App.config" />
+  <event action="Analyze" type="Success" name="Handlers (IIS7+)" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\App.config" />
+  <event action="Analyze" type="Success" name="Config Sections" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\App.config" />
+  <event action="Analyze" type="Success" name="Render Extensions" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\App.config" />
+  <event action="Analyze" type="Success" name="Session State Providers" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\App.config" />
+  <event action="Analyze" type="Success" name="App.config" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\App.config" />
+  <event action="Analyze" type="Success" name="Form1.resx" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\Form1.resx" />
+  <event action="Analyze" type="Success" name="Resources.resx" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\Properties\Resources.resx" />
+  <event action="Analyze" type="Success" name="RepNew" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\RepNew.csproj" />
+  <event action="Analyze" type="Success" name="ipsSysAdmin" path="D:\work\MediaSercice\ipsSysAdmin\ipsSysAdmin.sln" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\WebAPIConnector.csproj" />
+  <event action="Upgrade" type="Success" name="WebAPIConnector" path="D:\work\MediaSercice\ipsSysAdmin\WebAPIConnector\WebAPIConnector.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="IpsViewComponentLibrary" path="D:\work\MediaSercice\ipsSysAdmin\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\TestWord_1.csproj" />
+  <event action="Upgrade" type="Success" name="TestWord_1" path="D:\work\MediaSercice\ipsSysAdmin\TestWord_1\TestWord_1.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\UnitTestMediaPortal.csproj" />
+  <event action="Upgrade" type="Success" name="UnitTestMediaPortal" path="D:\work\MediaSercice\ipsSysAdmin\UnitTestMediaPortal\UnitTestMediaPortal.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\ReportsLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="accmove.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\accmove.resx" />
+  <event action="Upgrade" type="Success" name="LIcAgr.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\LIcAgr.resx" />
+  <event action="Upgrade" type="Success" name="R_5_1_main.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_1_main.resx" />
+  <event action="Upgrade" type="Success" name="R_5_14_RegisterSR.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_14_RegisterSR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_15_RegisterBRSum.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_15_RegisterBRSum.resx" />
+  <event action="Upgrade" type="Success" name="R_5_15_RegisterSR.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_15_RegisterSR.resx" />
+  <event action="Upgrade" type="Success" name="R_5_17_Balance.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_17_Balance.resx" />
+  <event action="Upgrade" type="Success" name="R_5_17_BalanceAccount.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_17_BalanceAccount.resx" />
+  <event action="Upgrade" type="Success" name="R_5_18_TurnAccounN.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_18_TurnAccounN.resx" />
+  <event action="Upgrade" type="Success" name="R_5_2_CrKind.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_2_CrKind.resx" />
+  <event action="Upgrade" type="Success" name="R_5_3_Community.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_3_Community.resx" />
+  <event action="Upgrade" type="Success" name="R_5_4_RatingRh.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_4_RatingRh.resx" />
+  <event action="Upgrade" type="Success" name="R_5_5_RatingObj.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_5_RatingObj.resx" />
+  <event action="Upgrade" type="Success" name="R_5_6_Customers.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_6_Customers.resx" />
+  <event action="Upgrade" type="Success" name="R_5_8_Consolidated.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_8_Consolidated.resx" />
+  <event action="Upgrade" type="Success" name="R_5_8_DistribMain.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\R_5_8_DistribMain.resx" />
+  <event action="Upgrade" type="Success" name="Report1.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\Report1.resx" />
+  <event action="Upgrade" type="Success" name="Report2.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\Report2.resx" />
+  <event action="Upgrade" type="Success" name="Report3.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\Report3.resx" />
+  <event action="Upgrade" type="Success" name="ReportS.resx" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\ReportS.resx" />
+  <event action="Upgrade" type="Success" name="ReportsLibrary" path="D:\work\MediaSercice\ipsSysAdmin\ReportsLibrary\ReportsLibrary.csproj" />
+  <event action="Upgrade" type="Success" name="Assembly References" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\RepNew.csproj" />
+  <event action="Upgrade" type="Success" name="RepNew" path="D:\work\MediaSercice\ipsSysAdmin\RepNew\RepNew.csproj" />
+  <event action="Upgrade" type="Success" name="ipsSysAdmin" path="D:\work\MediaSercice\ipsSysAdmin\ipsSysAdmin.sln" />
 </log>

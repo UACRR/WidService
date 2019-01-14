@@ -1,4 +1,5 @@
 ﻿using ipsFormsDesign.Model;
+using ipsmedserviceapp.Model.SQLViewsData;
 using System.Collections.Generic;
 using WebAPIConnector;
 
@@ -55,6 +56,20 @@ namespace ipsFormsDesign.Services
             var result = _webApi.UpdateItemWithResult(url, file.FileId.ToString(), file);
 
             return result;
+        }
+
+        public bool DeleteInputFile( InputFile file )
+        {
+            string url = string.Concat(_prefix, "file");
+            return _webApi.DeleteItem(url, file.FileId.ToString());
+
+        }
+
+        public List<vCustomer> getListOfConsumers()
+        {
+            string url = string.Concat(_prefix, "vCustomers");
+            return _webApi.GetList<vCustomer>(url);
+
         }
     }
 }

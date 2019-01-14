@@ -7,6 +7,7 @@ using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -29,11 +30,11 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="inputFile"></param>
         /// <returns></returns>
         [HttpPost("file")]
-        public async Task<IActionResult> CreateInputFile( [FromBody] InputFile inputFile )
+        public async Task<IActionResult> CreateInputFile([FromBody] InputFile inputFile)
         {
             var dest = new InputFile();
             dest.SetFields(inputFile);
-            foreach( var item in inputFile.CheckParamPays )
+            foreach (var item in inputFile.CheckParamPays)
             {
                 var newRec = new CheckParamPays();
                 newRec.SetFields(item);
@@ -82,6 +83,30 @@ namespace ipsmedserviceapp.Controllers
             return Ok(dest);
 
         }
+
+        [HttpDelete("file/{fileId}")]
+        public async Task<IActionResult> DeleteInputFile( int fileId )
+        {
+            IDbContextTransaction tran = null;
+            try
+            {
+                tran = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.Database.ExecuteSqlCommandAsync("delete CheckParamPays where inputFileId = @fileId", new SqlParameter("@fileId", fileId ));
+                await _dbContext.Database.ExecuteSqlCommandAsync("delete InputFile where fileId = @fileId", new SqlParameter("@fileId", fileId ));
+
+                tran.Commit();
+
+                return Ok();
+            }
+            catch( Exception ex)
+            {
+                if (tran != null)
+                    tran.Rollback();
+
+                throw ex;
+
+            }
+        }
         // get unlink list Отримати список непривязаних проводок
         [HttpGet("unlink")]
         public async Task<IActionResult> GetUnlink()
@@ -129,7 +154,20 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(exPay);
         }
+        /// <summary>
+        /// Отримати список діючих Споживачів
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("vCustomers")]
+        public async Task<IActionResult> GetVCastomers()
+        {
+            // Отримати список Споживачів у яких є договір
+            var list = await _dbContext.vCustomer.FromSql(
+@"select custId, name, INNOKPO, IPI from vCustomer where isClient = 1
+and custid in (select custid from LicenseAgreement where status between 1 and 3 )").AsNoTracking().ToListAsync();
 
+            return Ok(list);
+        }
 
 
     }

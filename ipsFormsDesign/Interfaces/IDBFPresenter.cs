@@ -1,37 +1,55 @@
 ﻿using ipsFormsDesign.Model;
+using ipsmedserviceapp.Model.SQLViewsData;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Interfaces
 {
     public interface IDBFPresenter
     {
         /// <summary>
-        /// Отримати список неприв'язаних платежів з серверу
+        /// Отримати список неприв'язаних платежів
         /// </summary>
-        /// <returns>Список неприв'язаних пплатежів</returns>
+        /// <returns></returns>
         List<ExternalPay> GetListUnlinkPays();
 
         /// <summary>
-        /// Завантаження файлу на сервер, перевірка на дублі та повернення результату
+        /// Перевірити InputFile на дублі та на автоматичну прив'язку платежів до користувачів
         /// </summary>
-        /// <param name="newFile">Файл для завантаження</param>
-        /// <returns>Завантажений файл</returns>
+        /// <param name="newFile"></param>
+        /// <returns></returns>
         InputFile CheckInputFile(InputFile newFile);
-
         /// <summary>
-        /// Збереження перевіреного файлу (підтвердження перевірки)
+        /// Збереження InputFile в БД
         /// </summary>
-        /// <param name="file">Файл для збереження</param>
-        /// <returns>Збережений файл</returns>
+        /// <param name="file"></param>
+        /// <returns></returns>
         InputFile SaveInputFile(InputFile file);
-
         /// <summary>
-        /// Зберегти прив'язку платежа до клієнта
+        /// Збереження одного привязаного до Споживача платежа
         /// </summary>
-        /// <param name="pay">Платіж для прив'язки до клієнта</param>
-        /// <returns>Прив'язаний платіж до клієнта</returns>
+        /// <param name="pay"></param>
+        /// <returns></returns>
         ExternalPay SaveLinkedPay(ExternalPay pay);
-
+        /// <summary>
+        /// Збереження списка прив'язаних до Споживачів платежів
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         List<ExternalPay> SaveListPays(List<ExternalPay> list);
+        /// <summary>
+        /// Видалення непідтвердженого файлу
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        bool DeleteInputFile(InputFile file);
+        /// <summary>
+        /// Отримати список Споживачів, які можна прив'язати до платежа
+        /// </summary>
+        /// <returns></returns>
+        List<vCustomer> getConsumers();
     }
 }
