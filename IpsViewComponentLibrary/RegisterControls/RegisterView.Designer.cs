@@ -168,7 +168,7 @@
             this.btnSetCanceledStatus.Name = "btnSetCanceledStatus";
             this.btnSetCanceledStatus.Size = new System.Drawing.Size(110, 24);
             this.btnSetCanceledStatus.TabIndex = 1;
-            this.btnSetCanceledStatus.Text = "Скасувати";
+            this.btnSetCanceledStatus.Text = "Відхилити";
             this.btnSetCanceledStatus.ThemeName = "Office2013Light";
             this.btnSetCanceledStatus.Click += new System.EventHandler(this.btnSetCanceledStatus_Click);
             // 
@@ -348,16 +348,20 @@
             this.ctrlRegisterItemListStage.AllowShowObjectCommand = true;
             this.ctrlRegisterItemListStage.AllowUnlinkCommand = true;
             this.ctrlRegisterItemListStage.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemListStage.DataSourceRegisterCount = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
             this.ctrlRegisterItemListStage.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlRegisterItemListStage.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRegisterItemListStage.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemListStage.Mode = IpsViewComponentLibrary.RegisterControls.RegisterItemListMode.Default;
             this.ctrlRegisterItemListStage.MultiSelect = false;
             this.ctrlRegisterItemListStage.Name = "ctrlRegisterItemListStage";
             this.ctrlRegisterItemListStage.SelectedRegisterItem = null;
             this.ctrlRegisterItemListStage.ShowAuthors = true;
             this.ctrlRegisterItemListStage.ShowDurationUse = true;
+            this.ctrlRegisterItemListStage.ShowFilters = true;
             this.ctrlRegisterItemListStage.ShowLinked = true;
             this.ctrlRegisterItemListStage.ShowObjectInfo = true;
+            this.ctrlRegisterItemListStage.ShowTimeStartEnd = false;
             this.ctrlRegisterItemListStage.Size = new System.Drawing.Size(1292, 163);
             this.ctrlRegisterItemListStage.TabIndex = 0;
             // 
@@ -422,16 +426,20 @@
             this.ctrlRegisterItemList.AllowShowObjectCommand = true;
             this.ctrlRegisterItemList.AllowUnlinkCommand = true;
             this.ctrlRegisterItemList.DataSource = typeof(ipsFormsDesign.Dictionary.RegisterItemViewModel);
+            this.ctrlRegisterItemList.DataSourceRegisterCount = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
             this.ctrlRegisterItemList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlRegisterItemList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRegisterItemList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlRegisterItemList.Mode = IpsViewComponentLibrary.RegisterControls.RegisterItemListMode.Default;
             this.ctrlRegisterItemList.MultiSelect = true;
             this.ctrlRegisterItemList.Name = "ctrlRegisterItemList";
             this.ctrlRegisterItemList.SelectedRegisterItem = null;
             this.ctrlRegisterItemList.ShowAuthors = true;
             this.ctrlRegisterItemList.ShowDurationUse = true;
+            this.ctrlRegisterItemList.ShowFilters = true;
             this.ctrlRegisterItemList.ShowLinked = true;
             this.ctrlRegisterItemList.ShowObjectInfo = true;
+            this.ctrlRegisterItemList.ShowTimeStartEnd = false;
             this.ctrlRegisterItemList.Size = new System.Drawing.Size(1292, 265);
             this.ctrlRegisterItemList.TabIndex = 1;
             // 
@@ -503,7 +511,7 @@
             // 
             // dtCreateDate
             // 
-            this.dtCreateDate.Culture = new System.Globalization.CultureInfo("uk-UA");
+            this.dtCreateDate.CalendarSize = new System.Drawing.Size(220, 180);
             this.dtCreateDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsRegister, "CreateDate", true));
             this.dtCreateDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtCreateDate.Location = new System.Drawing.Point(195, 22);

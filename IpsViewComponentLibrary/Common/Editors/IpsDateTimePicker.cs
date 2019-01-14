@@ -41,6 +41,7 @@ namespace IpsViewComponentLibrary.Common.Editors
             DateTimePickerElement.Calendar.MaximumSize = new Size(220, 180);
             DateTimePickerElement.Calendar.MinimumSize = new Size(220, 180);
             DateTimePickerElement.CalendarSize = new Size(220, 180);
+            DateTimePickerElement.MaxDate = new DateTime(3000, 1, 1);
         }
 
         protected void SetupReadOnlyAppearance()
