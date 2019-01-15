@@ -193,7 +193,7 @@ namespace IpsViewComponentLibrary.FixationControls
                     new SideMenuItem { Text = "Порушення відсутнє", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedWithoutViolation } },
                     new SideMenuItem { Text = "Підписано договір до фіксації", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedAgreedBeforeFixation } },
                     new SideMenuItem { Text = "Підписано договір після фіксації", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedAgreedAfterFixation } },
-                    new SideMenuItem { Text = "Підписано договір досудова робота", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedByCourt } },
+                    new SideMenuItem { Text = "Закрите по досудовій роботі", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedByCourt } },
                     new SideMenuItem { Text = "Кошти надійшли", Value = new FixationQuery { StageStatus = FixationStageStatuses.ClosedIncomeRecieved } },
                 }},
             }};
