@@ -165,7 +165,7 @@ namespace IpsViewComponentLibrary
 
             foreach (var item in List.Where(rec => rec.AutoSet == true))
             {
-                decimal curRest = Math.Min( Math.Min(freeRest, item.Arrears), item.MaxSum ?? 0 );
+                decimal curRest = Math.Min( Math.Min(freeRest, item.Arrears), item.MaxSum ?? freeRest);
                 item.DistAmount = curRest;
                 freeRest -= curRest;
 
