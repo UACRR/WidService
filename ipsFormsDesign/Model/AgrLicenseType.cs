@@ -22,6 +22,7 @@ namespace ipsFormsDesign.Model
         public bool? NeedPlace { get; set; }
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
+        public string Series { get; set; }
 
         public AlgorithmType Algorithm { get; set; }
         public CopyrightKind KindCodeNavigation { get; set; }
