@@ -66,7 +66,8 @@ namespace ipsFormsDesign.ViewModels.Fixations
         [Description("Закрити (підписано договір після фіксації)")]
         ClosedAgreedAfterFixation = 19,
 
-        [Description("Закрити (підписано договір досудова робота)")]
+        //[Description("Закрити (підписано договір досудова робота)")]        
+        [Description("Закрити (по досудовій роботі)")]
         ClosedByCourt = 20,
 
         [Description("Закрити (кошти надійшли)")]
