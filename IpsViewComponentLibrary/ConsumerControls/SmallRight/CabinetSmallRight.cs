@@ -162,6 +162,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             ctrlPaysInfo1.Customer = _customer;
             ctrlPartner.SetPartnerData(GetPartner?.Invoke(_customer.CustId), _customer.CustId);
             ctrlFiles.SetAndUpdateData(_customer);
+            ctrlClosedAgreements.SetClosedLicenses(_customer);
         }
 
         #endregion
@@ -197,7 +198,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // конструктор даних для грід
         private void SetLicenseAgrGridDataSource()
         {
-            List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
+            List<GridLicenseAgreementView> source = new List<GridLicenseAgreementView>();
             if (_customer?.Client.LicenseAgreement != null)
                 foreach (var item in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass == 0))
                 {
@@ -206,7 +207,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
                     var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
 
-                    source.Add(new GridLicenseAgrView
+                    source.Add(new GridLicenseAgreementView
                     {
                         Id = item.AgrId,
                         LicId = item.LicId,
@@ -235,7 +236,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
             if (_inCurrentRowChanged) return;
-            if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow))
+            if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgreementView curRow))
             {
                 ctrlAgrDetailInfo.ClearData();
                 return;
@@ -251,7 +252,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void btnProlongation_Click(object sender, EventArgs e)
         {
             LicenseAgrParam prolongLicense = null;
-            var licId = (gvLicenseAgr?.CurrentRow?.DataBoundItem as GridLicenseAgrView)?.LicId;
+            var licId = (gvLicenseAgr?.CurrentRow?.DataBoundItem as GridLicenseAgreementView)?.LicId;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == licId).SingleOrDefault();
             if (license == null)
                 return;
@@ -299,7 +300,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void btnChangeAgreement_Click(object sender, EventArgs e)
         {
             LicenseAgrParam parametr;
-            var licId = (gvLicenseAgr.CurrentRow.DataBoundItem as GridLicenseAgrView)?.LicId;
+            var licId = (gvLicenseAgr.CurrentRow.DataBoundItem as GridLicenseAgreementView)?.LicId;
             var license = _customer?.Client?.LicenseAgreement?.Where(rec => rec.LicId == licId).SingleOrDefault();
             if (license == null)
                 return;
@@ -348,7 +349,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // кнопка [Закрити договір]
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {
-            if (!(gvLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            if (!(gvLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgreementView curRow)) return;
             var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
             if (license == null) return;
 
@@ -368,7 +369,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void PrintAgreement(int licId)
         {
             var lic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
-            ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dictionaties, customer: _customer, licenseAgreement: lic)
+            ViewAndPrintAgreement print = new ViewAndPrintAgreement(_customer,lic)
             {
                 WindowState = FormWindowState.Maximized,
                 StartPosition = FormStartPosition.CenterScreen
@@ -385,10 +386,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // конструктор даних для грід
         private void SetLicenseAgrMoreGridDataSource()
         {
-            List<GridLicenseAgrView> source = new List<GridLicenseAgrView>();
+            List<GridLicenseAgreementView> source = new List<GridLicenseAgreementView>();
             if (_customer?.Client.LicenseAgreement != null)
             {
-                foreach (var license in _customer.Client.LicenseAgreement.Where(rec => rec.LicClass == 0).ToList())
+                foreach (var license in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus != 4 && rec.LicClass == 0).ToList())
                 {
                     if (license.LicenseAgrParam.Count == 1 && license.LicStatus == 2)
                         continue;
@@ -396,7 +397,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     if (license.LicenseAgrParam.Count == 1 && license.LicStatus != 2)
                     {
                         var agrParam = license.LicenseAgrParam?.SingleOrDefault();
-                        source.Add(new GridLicenseAgrView
+                        source.Add(new GridLicenseAgreementView
                         {
                             Id = license.AgrId,
                             LicVersion = agrParam?.LicVersion,
@@ -421,7 +422,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     foreach (var agrParam in license.LicenseAgrParam)
                     {
                         if (agrParam.LicVersion > license.LicVersion)
-                            source.Add(new GridLicenseAgrView
+                            source.Add(new GridLicenseAgreementView
                             {
                                 Id = license.AgrId,
                                 LicId = license.LicId,
@@ -450,7 +451,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // при зміні рядка грід
         private void gvMoreLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow))
+            if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgreementView curRow))
             {
                 ctrlAgrDetailInfoMore.ClearData();
                 return;
@@ -464,7 +465,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         //зміна статусу договору
         private void ChangeStatusAgreement(int status)
         {
-            if (gvMoreLicenseAgr.CurrentRow.DataBoundItem is GridLicenseAgrView item)
+            if (gvMoreLicenseAgr.CurrentRow.DataBoundItem is GridLicenseAgreementView item)
             {
                 bool result = false;
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
@@ -510,7 +511,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // кнопка на гріду [Видалити договір]
         private void ColumnDeleteClick()
         {
-            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgreementView curRow)) return;
             var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
             if (license == null) return;
 
@@ -529,7 +530,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // кнопка [Редагувати договір]
         private void ColumnEditClick()
         {
-            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgrView curRow)) return;
+            if (!(gvMoreLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgreementView curRow)) return;
 
             //поточна ліцензія
             var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
@@ -664,7 +665,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             if (_inCurrentRowChanged) return;
             _inCurrentRowChanged = true;
 
-            var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as GridLicenseAgrView)?.LicId == e.LicId);
+            var row = gvLicenseAgr.Rows.FirstOrDefault(rec => (rec.DataBoundItem as GridLicenseAgreementView)?.LicId == e.LicId);
             if (row != null && row.IsCurrent != true)
                 row.IsCurrent = true;
 
@@ -677,7 +678,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             switch (e.Column.FieldName)
             {
                 case "printBtn":
-                    int licId = (e?.Row?.DataBoundItem as GridLicenseAgrView)?.LicId ?? 0;
+                    int licId = (e?.Row?.DataBoundItem as GridLicenseAgreementView)?.LicId ?? 0;
                     PrintAgreement(licId);
                     break;
                 case "editBtn":
@@ -692,32 +693,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // друк грід ліцензій
         private void gvLicenseAgr_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            int licId = (e?.Row?.DataBoundItem as GridLicenseAgrView)?.LicId ?? 0;
+            int licId = (e?.Row?.DataBoundItem as GridLicenseAgreementView)?.LicId ?? 0;
             PrintAgreement(licId);
         }
-    }
-
-    /// <summary>
-    /// Intermediate class for grid DataSource
-    /// </summary>
-    public class GridLicenseAgrView
-    {
-        public int Id { get; set; }
-        public int? LicVersion { get; set; }
-        public string License { get; set; }
-        public string Series { get; set; }
-        public string AgrNumber { get; set; }
-        public string AgrMasterNumber { get; set; }
-        public string DateBegin { get; set; }
-        public string DateEnd { get; set; }
-        public decimal MinAmount { get; set; }
-        public decimal MinRate { get; set; }
-        public string State { get; set; }
-        public int? Status { get; set; }
-        public string PeriodPayment { get; set; }
-        public string DateLastPayment { get; set; }
-        public int LicId { get; set;  }
-        public bool IsAutoprolog { get; set; }
-        public LicenseAgreement LicenseAgreement;
     }
 }

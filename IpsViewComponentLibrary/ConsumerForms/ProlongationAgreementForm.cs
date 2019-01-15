@@ -64,7 +64,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         private void CtrlProlongation_OnPrintClick()
         {
-            var print = new ViewAndPrintAgreement(dictionaties: _dictionaties, customer: _customer, licenseAgreement: _license)
+            var print = new ViewAndPrintAgreement(customer: _customer, licenseAgreement: _license)
             {
                 WindowState = FormWindowState.Maximized,
                 StartPosition = FormStartPosition.CenterScreen

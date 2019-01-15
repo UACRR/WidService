@@ -170,6 +170,12 @@
     <Compile Include="ConsumerControls\AnketaConsumerPhis.Designer.cs">
       <DependentUpon>AnketaConsumerPhis.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\ClosedAgreementsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ClosedAgreementsControl.Designer.cs">
+      <DependentUpon>ClosedAgreementsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ConsumerControls\ManagersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,6 +207,7 @@
     <Compile Include="ConsumerControls\SmallRight\AgreementPhis.Designer.cs">
       <DependentUpon>AgreementPhis.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\SmallRight\GridLicenseAgreementView.cs" />
     <Compile Include="ConsumerDialogForms\ContactPersonActionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1108,6 +1115,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\AnketaConsumerPhis.resx">
       <DependentUpon>AnketaConsumerPhis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ClosedAgreementsControl.resx">
+      <DependentUpon>ClosedAgreementsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ManagersControl.resx">
       <DependentUpon>ManagersControl.cs</DependentUpon>

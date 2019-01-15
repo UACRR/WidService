@@ -52,7 +52,7 @@ namespace IpsViewComponentLibrary
 
         private void CtrlProlongation_OnPrintClick()
         {
-            ViewAndPrintAgreement print = new ViewAndPrintAgreement(dictionaties: _dict, customer: _cust, licenseAgreement: _lic)
+            ViewAndPrintAgreement print = new ViewAndPrintAgreement(_cust, _lic)
             {
                 WindowState = FormWindowState.Maximized,
                 StartPosition = FormStartPosition.CenterScreen
