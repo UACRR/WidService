@@ -96,6 +96,8 @@
             this.anketaPanel = new Telerik.WinControls.UI.RadPanel();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
+            this.pvClosedAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlClosedAgreements = new IpsViewComponentLibrary.ConsumerControls.ClosedAgreementsControl();
             this.pvAgent.SuspendLayout();
             this.pvFiles.SuspendLayout();
             this.pvContacts.SuspendLayout();
@@ -123,6 +125,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
+            this.pvClosedAgreement.SuspendLayout();
             this.SuspendLayout();
             // 
             // currentAgreementController1
@@ -753,6 +756,7 @@
             this.pvMain.Controls.Add(this.pvAnketa);
             this.pvMain.Controls.Add(this.pvActiveAgr);
             this.pvMain.Controls.Add(this.pvMoreAgreements);
+            this.pvMain.Controls.Add(this.pvClosedAgreement);
             this.pvMain.Controls.Add(this.pvReports);
             this.pvMain.Controls.Add(this.pvCalculation);
             this.pvMain.Controls.Add(this.pvPayments);
@@ -792,6 +796,23 @@
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.Auto;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
             // 
+            // pvClosedAgreement
+            // 
+            this.pvClosedAgreement.Controls.Add(this.ctrlClosedAgreements);
+            this.pvClosedAgreement.ItemSize = new System.Drawing.SizeF(114F, 27F);
+            this.pvClosedAgreement.Location = new System.Drawing.Point(5, 41);
+            this.pvClosedAgreement.Name = "pvClosedAgreement";
+            this.pvClosedAgreement.Size = new System.Drawing.Size(1072, 679);
+            this.pvClosedAgreement.Text = "Закриті договори";
+            // 
+            // ctrlClosedAgreements
+            // 
+            this.ctrlClosedAgreements.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlClosedAgreements.Location = new System.Drawing.Point(0, 0);
+            this.ctrlClosedAgreements.Name = "ctrlClosedAgreements";
+            this.ctrlClosedAgreements.Size = new System.Drawing.Size(1072, 679);
+            this.ctrlClosedAgreements.TabIndex = 0;
+            // 
             // CabinetSmallRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -827,6 +848,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).EndInit();
             this.pvMain.ResumeLayout(false);
+            this.pvClosedAgreement.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -870,5 +892,7 @@
         private ConsumerControls.TabNavigationControl ctrlTabNavigation;
         private Telerik.WinControls.UI.RadPanel anketaPanel;
         private MiddleControlCabinetFiles ctrlFiles;
+        private Telerik.WinControls.UI.RadPageViewPage pvClosedAgreement;
+        private ClosedAgreementsControl ctrlClosedAgreements;
     }
 }

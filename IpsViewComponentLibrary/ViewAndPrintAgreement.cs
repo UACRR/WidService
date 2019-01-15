@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,20 +17,28 @@ namespace IpsViewComponentLibrary
     public partial class ViewAndPrintAgreement : Telerik.WinControls.UI.RadForm
     {
         private WordEngine _wordEngine;
-
+        private readonly AnketaDictionaties _dictionaties;
         private string _pdf;
         private string _docx;
+
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public ViewAndPrintAgreement()
         {
             InitializeComponent();
-
+            if (!IsDesignMode)
+                _dictionaties = IpsGlobal.AnketaDictionaties;
             SetupCustomSaveAsButton();
         }
 
-        public ViewAndPrintAgreement(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement) : this()
+        public ViewAndPrintAgreement(Customer customer, LicenseAgreement licenseAgreement) : this()
         {
-            LoadDocument(dictionaties, customer, licenseAgreement);
+            LoadDocument(customer, licenseAgreement);
+        }
+
+        public ViewAndPrintAgreement(Customer customer, LicenseAgreement licenseAgreement, int version) : this()
+        {
+            LoadDocument(customer, licenseAgreement, version);
         }
 
         private void SetupCustomSaveAsButton()
@@ -59,12 +68,12 @@ namespace IpsViewComponentLibrary
                 File.Copy(_pdf, fileName, true);
         }
 
-        private void LoadDocument(AnketaDictionaties dictionaties, Customer customer, LicenseAgreement licenseAgreement)
+        private void LoadDocument(Customer customer, LicenseAgreement licenseAgreement)
         {
             radWaitingBar1.StartWaiting();
-            _wordEngine = new WordEngine(dictionaties);
+            _wordEngine = new WordEngine(_dictionaties);
             int version = licenseAgreement?.LicVersion ?? default(int);
-            string templateName = dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            string templateName = _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
             templateName = string.Concat(@"Templates\", templateName);
             // Ліцензія не належить великим правам
             if (!(licenseAgreement.Agr != null && licenseAgreement.Agr.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Count() > 0))
@@ -72,8 +81,25 @@ namespace IpsViewComponentLibrary
             else // Належить великим правам
             {
                 _wordEngine.processConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
+            }
 
+            SetResult(_wordEngine.Pdf, _wordEngine.Docx);
+            radWaitingBar1.StopWaiting();
+        }
 
+        // друк договору з вибором версії
+        private void LoadDocument(Customer customer, LicenseAgreement licenseAgreement, int version)
+        {
+            radWaitingBar1.StartWaiting();
+            _wordEngine = new WordEngine(_dictionaties);
+            string templateName = _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            templateName = string.Concat(@"Templates\", templateName);
+            // Ліцензія не належить великим правам
+            if (!(licenseAgreement.Agr != null && licenseAgreement.Agr.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Count() > 0))
+                _wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
+            else // Належить великим правам
+            {
+                _wordEngine.processConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
             }
 
             SetResult(_wordEngine.Pdf, _wordEngine.Docx);

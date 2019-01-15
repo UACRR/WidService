@@ -81,7 +81,7 @@ namespace ipsmedserviceapp.Controllers
             // Отримати дані по Контрактах
             await _dbContext.Entry(cust.Client).Collection(rec => rec.LicenseAgreement)
                 .Query()
-                .Where(agree => agree.LicStatus != 4 && (agree.LicType ?? 1) <= 3) // не закриті не технічні Ліцензійні договора
+                .Where(agree => (agree.LicType ?? 1) <= 3) // не закриті не технічні Ліцензійні договора
                 .Include(item => item.Agr)
                 .Include(item => item.LicCodeNavigation)
                 .Include(item => item.LicenseBigR).ThenInclude(br => br.MusicalDesign).ThenInclude(md => md.Obj).ThenInclude(obj => obj.MediaTrack)
