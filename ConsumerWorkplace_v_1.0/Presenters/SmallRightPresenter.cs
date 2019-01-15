@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
+using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace ConsumerWorkplace_v_1._0.Presenters
@@ -44,8 +46,72 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetSmallRightForm.cabinet.OnChangePartner += Cabinet_OnChangePartner;
             _cabinetSmallRightForm.cabinet.OnRemovePartner += Cabinet_OnRemovePartner;
             _cabinetSmallRightForm.cabinet.OnGetPartnerListNeed += Cabinet_OnGetPartnerListNeed;
+            _cabinetSmallRightForm.cabinet.OnAddNewFile += Cabinet_OnAddNewFile;
+            _cabinetSmallRightForm.cabinet.OnViewCurrentFile += Cabinet_OnViewCurrentFile;
+            _cabinetSmallRightForm.cabinet.OnDeleteCurrentFile += Cabinet_OnDeleteCurrentFile;
             new CalculationInfoControlPresenter(_cabinetSmallRightForm.cabinet.calculationCtrl, _service);
             new ReportsControlPresenter(_cabinetSmallRightForm.cabinet.reportsControl, _service);
+        }
+
+        private bool Cabinet_OnDeleteCurrentFile(int id)
+        {
+            return _service.DeleteFileById(id);
+        }
+
+        private void Cabinet_OnViewCurrentFile(int custId, int typeDocument, string fileName)
+        {
+            // TODO: змінити підхід
+            try
+            {
+                string fullpath = @"DocumentFiles\" + fileName;
+                if (!Directory.Exists("DocumentFiles"))
+                    Directory.CreateDirectory("DocumentFiles");
+                using (var fileStream = File.Create(fullpath))
+                {
+                    _service.downloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
+                }
+
+                string extn = Path.GetExtension(fullpath);
+                if (File.Exists(fullpath))
+                {
+                    if (extn == ".doc" || extn == ".docx")
+                    {
+                        Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+                        Microsoft.Office.Interop.Word.Document doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
+                        app.Visible = true;
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
+                    }
+                    else if (extn == ".xls" || extn == ".xlsx")
+                    {
+                        Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+                        var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows);
+                        app.Visible = true;
+                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
+                    }
+                }
+            }
+            catch (FileNotFoundException flnfexcpt)
+            {
+                RadMessageBox.ThemeName = "Office2013Light";
+                RadMessageBox.Show("Файл не знайдено: " + flnfexcpt.FileName + "\nПовідомлення: " + flnfexcpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+            catch (FileLoadException flexcpt)
+            {
+                RadMessageBox.ThemeName = "Office2013Light";
+                RadMessageBox.Show("Не можливо відкрити файл: " + flexcpt.FileName + "\nПовідомлення: " + flexcpt.Message, "Помилка відкривання файла", MessageBoxButtons.OK, RadMessageIcon.Error);
+            }
+            catch (Exception excpt)
+            {
+                RadMessageBox.ThemeName = "Office2013Light";
+                RadMessageBox.Show("Повідомлення: " + excpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error,
+                    MessageBoxDefaultButton.Button1,
+                    " Data: " + excpt.Data + Environment.NewLine + " StackTrace: " + excpt.StackTrace);
+            }
+        }
+
+        private void Cabinet_OnAddNewFile(int custId, int typeDocument, string fileName, string comment)
+        {
+            _service.uploadDocument(custId, typeDocument, comment, fileName);
         }
 
         public CabinetSmallRightForm Cabinet => _cabinetSmallRightForm;

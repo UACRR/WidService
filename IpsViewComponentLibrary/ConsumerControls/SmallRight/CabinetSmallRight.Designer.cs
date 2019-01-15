@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using IpsViewComponentLibrary.ConsumerControls;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     partial class CabinetSmallRight
     {
@@ -65,6 +62,7 @@ namespace IpsViewComponentLibrary
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPartner = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
             this.pvPayments = new Telerik.WinControls.UI.RadPageViewPage();
@@ -95,10 +93,11 @@ namespace IpsViewComponentLibrary
             this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
+            this.anketaPanel = new Telerik.WinControls.UI.RadPanel();
             this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
-            this.anketaPanel = new Telerik.WinControls.UI.RadPanel();
             this.pvAgent.SuspendLayout();
+            this.pvFiles.SuspendLayout();
             this.pvContacts.SuspendLayout();
             this.pvPayments.SuspendLayout();
             this.pvCalculation.SuspendLayout();
@@ -121,9 +120,9 @@ namespace IpsViewComponentLibrary
             this.pvAgreement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).BeginInit();
             this.pvAnketa.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).BeginInit();
             this.pvMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).BeginInit();
             this.SuspendLayout();
             // 
             // currentAgreementController1
@@ -148,11 +147,21 @@ namespace IpsViewComponentLibrary
             // 
             // pvFiles
             // 
+            this.pvFiles.Controls.Add(this.ctrlFiles);
             this.pvFiles.ItemSize = new System.Drawing.SizeF(51F, 27F);
             this.pvFiles.Location = new System.Drawing.Point(5, 41);
             this.pvFiles.Name = "pvFiles";
             this.pvFiles.Size = new System.Drawing.Size(1072, 679);
             this.pvFiles.Text = "Файли";
+            // 
+            // ctrlFiles
+            // 
+            this.ctrlFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlFiles.Location = new System.Drawing.Point(0, 0);
+            this.ctrlFiles.MinimumSize = new System.Drawing.Size(913, 436);
+            this.ctrlFiles.Name = "ctrlFiles";
+            this.ctrlFiles.Size = new System.Drawing.Size(1072, 679);
+            this.ctrlFiles.TabIndex = 0;
             // 
             // pvContacts
             // 
@@ -455,6 +464,7 @@ namespace IpsViewComponentLibrary
             // 
             this.radPageViewPage1.AutoScroll = true;
             this.radPageViewPage1.Controls.Add(this.ctrlAgrDetailInfoMore);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(63, 15);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(1004, 247);
@@ -472,6 +482,7 @@ namespace IpsViewComponentLibrary
             // 
             // radPageViewPage2
             // 
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(63, 15);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(914, 282);
@@ -715,6 +726,17 @@ namespace IpsViewComponentLibrary
             this.pvAnketa.Size = new System.Drawing.Size(1072, 679);
             this.pvAnketa.Text = "Анкета";
             // 
+            // anketaPanel
+            // 
+            this.anketaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.anketaPanel.Location = new System.Drawing.Point(0, 0);
+            this.anketaPanel.Name = "anketaPanel";
+            this.anketaPanel.Size = new System.Drawing.Size(1072, 648);
+            this.anketaPanel.TabIndex = 17;
+            this.anketaPanel.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.anketaPanel.GetChildAt(0))).BorderHighlightThickness = 1;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.anketaPanel.GetChildAt(0).GetChildAt(1))).Width = 0F;
+            // 
             // ctrlTabNavigation
             // 
             this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -770,17 +792,6 @@ namespace IpsViewComponentLibrary
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).AutoSizeMode = Telerik.WinControls.RadAutoSizeMode.Auto;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).PositionOffset = new System.Drawing.SizeF(0F, 0F);
             // 
-            // anketaPanel
-            // 
-            this.anketaPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.anketaPanel.Location = new System.Drawing.Point(0, 0);
-            this.anketaPanel.Name = "anketaPanel";
-            this.anketaPanel.Size = new System.Drawing.Size(1072, 648);
-            this.anketaPanel.TabIndex = 17;
-            this.anketaPanel.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.anketaPanel.GetChildAt(0))).BorderHighlightThickness = 1;
-            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.anketaPanel.GetChildAt(0).GetChildAt(1))).Width = 0F;
-            // 
             // CabinetSmallRight
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -790,6 +801,7 @@ namespace IpsViewComponentLibrary
             this.Name = "CabinetSmallRight";
             this.Size = new System.Drawing.Size(1082, 725);
             this.pvAgent.ResumeLayout(false);
+            this.pvFiles.ResumeLayout(false);
             this.pvContacts.ResumeLayout(false);
             this.pvPayments.ResumeLayout(false);
             this.pvCalculation.ResumeLayout(false);
@@ -812,9 +824,9 @@ namespace IpsViewComponentLibrary
             this.pvAgreement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).EndInit();
             this.pvAnketa.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pvMain)).EndInit();
             this.pvMain.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -857,5 +869,6 @@ namespace IpsViewComponentLibrary
         private MiddleControlCabinetPartner ctrlPartner;
         private ConsumerControls.TabNavigationControl ctrlTabNavigation;
         private Telerik.WinControls.UI.RadPanel anketaPanel;
+        private MiddleControlCabinetFiles ctrlFiles;
     }
 }

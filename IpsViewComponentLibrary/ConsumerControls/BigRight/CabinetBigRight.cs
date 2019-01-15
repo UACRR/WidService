@@ -79,6 +79,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
+        public event ActionByIdDelegate OnFileDelete;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
         public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
@@ -138,8 +139,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private void SubscribeEvents()
         {
             // файли
-            ctrlFiles.OnAddNewDocument += CtrlFiles_OnAddNewDocument;
-            ctrlFiles.OnViewDocButtonClick += CtrlFiles_OnViewDocButtonClick;
+            ctrlFiles.AddNewFile += CtrlFilesAddNewFile;
+            ctrlFiles.ViewCurrentFile += CtrlFilesViewCurrentFile;
+            ctrlFiles.DeleteCurrentFile += CtrlFiles_DeleteCurrentFile;
             // генеральна угода
             ctrlGeneralAgreement.OnLicStatusChange += Ctrls_OnLicStatusChange;
             ctrlGeneralAgreement.GeneralAgreementSaveChanges += CtrlGeneralAgreementGeneralAgreementSaveChanges;
@@ -182,6 +184,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlPartner.UpdateData += UpdateData;
             ctrlCalculation.UpdateData += UpdateData;
             ctrlPaysInfo.UpdateData += UpdateData;
+            ctrlFiles.UpdateData += UpdateData;
         }
 
         private void CancelChange()
@@ -256,7 +259,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
             ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
             ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
-            ctrlFiles.SetAndUpdateData(_customer, _gridMainView);
+            ctrlFiles.SetAndUpdateData(_customer);
             ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
         }
 
@@ -340,7 +343,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
                 case CabinetTabType.Files:
                     {
-                        ctrlFiles.SetAndUpdateData(_customer, _gridMainView);
+                        ctrlFiles.SetAndUpdateData(_customer);
                     }
                     break;
 
@@ -432,14 +435,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             return OnGetSpectacleNeed?.Invoke(custId);
         }
 
-        private void CtrlFiles_OnViewDocButtonClick(int custId, int typeDocument, string fileName)
+        private void CtrlFilesViewCurrentFile(int custId, int typeDocument, string fileName)
         {
             OnViewDocumentNeed?.Invoke(custId, typeDocument, fileName);
         }
 
-        private void CtrlFiles_OnAddNewDocument(int custId, int typeDocument, string fileName, string comment)
+        private void CtrlFilesAddNewFile(int custId, int typeDocument, string fileName, string comment)
         {
             OnAddNewDocument?.Invoke(custId, typeDocument, fileName, comment);
+        }
+        private bool CtrlFiles_DeleteCurrentFile(int e)
+        {
+            return OnFileDelete?.Invoke(e) ?? false;
         }
 
         public void SetDictionaries(AnketaDictionaties dictionaries)

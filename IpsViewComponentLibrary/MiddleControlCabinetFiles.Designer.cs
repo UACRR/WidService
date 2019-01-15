@@ -33,10 +33,13 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvListFiles = new Telerik.WinControls.UI.RadGridView();
             this.btnAddFile = new Telerik.WinControls.UI.RadButton();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.gvListFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvListFiles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddFile)).BeginInit();
@@ -60,40 +63,42 @@
             this.gvListFiles.MasterTemplate.AllowEditRow = false;
             this.gvListFiles.MasterTemplate.AutoGenerateColumns = false;
             this.gvListFiles.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.DataType = typeof(int);
-            gridViewTextBoxColumn1.FieldName = "DocId";
-            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.FieldName = "CustId";
+            gridViewTextBoxColumn1.HeaderText = "CustId";
             gridViewTextBoxColumn1.IsVisible = false;
-            gridViewTextBoxColumn1.Name = "DocId";
-            gridViewTextBoxColumn2.FieldName = "DocTypeInt";
-            gridViewTextBoxColumn2.HeaderText = "IdDocType";
+            gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn1.Width = 47;
+            gridViewTextBoxColumn2.DataType = typeof(int);
+            gridViewTextBoxColumn2.FieldName = "DocId";
+            gridViewTextBoxColumn2.HeaderText = "ID";
             gridViewTextBoxColumn2.IsVisible = false;
-            gridViewTextBoxColumn2.Name = "DocTypeInt";
-            gridViewTextBoxColumn2.Width = 48;
-            gridViewTextBoxColumn3.DataType = typeof(int);
+            gridViewTextBoxColumn2.Name = "DocId";
             gridViewTextBoxColumn3.FieldName = "DocType";
-            gridViewTextBoxColumn3.HeaderText = "Тип документу";
-            gridViewTextBoxColumn3.MinWidth = 0;
+            gridViewTextBoxColumn3.HeaderText = "DocType";
+            gridViewTextBoxColumn3.IsVisible = false;
             gridViewTextBoxColumn3.Name = "DocType";
-            gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn3.Width = 254;
-            gridViewTextBoxColumn4.FieldName = "DocComment";
-            gridViewTextBoxColumn4.HeaderText = "Коментар";
-            gridViewTextBoxColumn4.MinWidth = 0;
-            gridViewTextBoxColumn4.Multiline = true;
-            gridViewTextBoxColumn4.Name = "DocComment";
-            gridViewTextBoxColumn4.Width = 309;
-            gridViewTextBoxColumn4.WrapText = true;
-            gridViewTextBoxColumn5.FieldName = "DocFile";
-            gridViewTextBoxColumn5.HeaderText = "Файл";
+            gridViewTextBoxColumn3.Width = 48;
+            gridViewTextBoxColumn4.FieldName = "DocTypeNavigation.Name";
+            gridViewTextBoxColumn4.HeaderText = "Тип документу";
+            gridViewTextBoxColumn4.Name = "DocTypeNavigation.Name";
+            gridViewTextBoxColumn4.Width = 204;
+            gridViewTextBoxColumn5.FieldName = "DocComment";
+            gridViewTextBoxColumn5.HeaderText = "Коментар";
+            gridViewTextBoxColumn5.MinWidth = 0;
             gridViewTextBoxColumn5.Multiline = true;
-            gridViewTextBoxColumn5.Name = "DocFile";
-            gridViewTextBoxColumn5.Width = 286;
+            gridViewTextBoxColumn5.Name = "DocComment";
+            gridViewTextBoxColumn5.Width = 379;
             gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.FieldName = "DocFile";
+            gridViewTextBoxColumn6.HeaderText = "Файл";
+            gridViewTextBoxColumn6.Multiline = true;
+            gridViewTextBoxColumn6.Name = "DocFile";
+            gridViewTextBoxColumn6.Width = 232;
+            gridViewTextBoxColumn6.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";
-            gridViewCommandColumn1.FieldName = "btnsView";
+            gridViewCommandColumn1.FieldName = "viewBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
@@ -101,16 +106,32 @@
             gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewCommandColumn1.MaxWidth = 35;
             gridViewCommandColumn1.MinWidth = 35;
-            gridViewCommandColumn1.Name = "btnsView";
+            gridViewCommandColumn1.Name = "viewBtn";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 35;
+            gridViewCommandColumn2.AllowResize = false;
+            gridViewCommandColumn2.AllowSort = false;
+            gridViewCommandColumn2.DefaultText = "Видалити";
+            gridViewCommandColumn2.FieldName = "deleteBtn";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.ImageLayout = System.Windows.Forms.ImageLayout.Center;
+            gridViewCommandColumn2.MaxWidth = 35;
+            gridViewCommandColumn2.MinWidth = 35;
+            gridViewCommandColumn2.Name = "deleteBtn";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.Width = 35;
             this.gvListFiles.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
-            gridViewCommandColumn1});
+            gridViewTextBoxColumn6,
+            gridViewCommandColumn1,
+            gridViewCommandColumn2});
             this.gvListFiles.MasterTemplate.EnableCustomFiltering = true;
             this.gvListFiles.MasterTemplate.EnableFiltering = true;
             this.gvListFiles.MasterTemplate.EnableGrouping = false;
@@ -118,6 +139,7 @@
             this.gvListFiles.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvListFiles.Name = "gvListFiles";
             this.gvListFiles.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvListFiles.ReadOnly = true;
             this.gvListFiles.Size = new System.Drawing.Size(907, 400);
             this.gvListFiles.TabIndex = 7;
             this.gvListFiles.ThemeName = "Office2013Light";
@@ -153,5 +175,6 @@
         #endregion
         private Telerik.WinControls.UI.RadGridView gvListFiles;
         private Telerik.WinControls.UI.RadButton btnAddFile;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

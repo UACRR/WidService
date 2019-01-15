@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerForms
+﻿using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+
+namespace IpsViewComponentLibrary.ConsumerForms
 {
     partial class CabinetSmallRightForm
     {
@@ -29,7 +31,7 @@
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.cabinet = new IpsViewComponentLibrary.CabinetSmallRight();
+            this.cabinet = new CabinetSmallRight();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 

@@ -12,15 +12,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 {
     public partial class CopyrightRequestControl : UserControl
     {
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         private CopyrightRequestPresenter _presenter;
         public CopyrightRequestPresenter Presenter
         {
-            get { return _presenter; }
+            get => _presenter;
             set
             {
                 if (_presenter == null)
