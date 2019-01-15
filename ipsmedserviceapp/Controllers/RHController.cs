@@ -110,7 +110,7 @@ left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.co
             await _dbContext.AgreementMaster.FromSql(
                 @"select * from AgreementMaster t1
 where agrId in ( select distinct agrid from AgreementAddRH where custId = @custid )
-and agrStatus between  0 and 4", new SqlParameter("@custId", cust.CustId))
+and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 .LoadAsync();
 
             return cust;
