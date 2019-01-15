@@ -483,11 +483,12 @@ namespace sysAdminwp
                         // CrkindGroup
                         var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.crkindGroup;
                         //initialize object form with parameters
-                        ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyrightKind, listCopyRight: customDict);
+                        ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyrightKind, customDict);
+                        MessageBox.Show($"Before: {copyrightKind.CrGroupCode}");
                         //open form with current data complexive dictionaries
                         if(formComplex.ShowDialog() == DialogResult.OK)
                         {
-                            MessageBox.Show("copyrightKind");
+                            MessageBox.Show($"After: {copyrightKind.CrGroupCode}");
                         }
                         break;
                     case "country":

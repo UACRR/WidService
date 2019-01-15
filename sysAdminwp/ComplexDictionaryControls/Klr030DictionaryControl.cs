@@ -16,6 +16,8 @@ namespace sysAdminwp.ComplexDictionaryControls
         public Klr030DictionaryControl(KlR030 klr, List<Country> listKlR030)
         {
             InitializeComponent();
+            bsKlr.DataSource = klr;
+            bsCountry.DataSource = listKlR030;
         }
     }
 }

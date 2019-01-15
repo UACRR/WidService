@@ -11,25 +11,21 @@ using ipsFormsDesign.Model;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
-    public partial class CopyRightKindDictionaryControl : UserControl
+    public partial class CopyRightKindDictionaryControl : UserControl, IComplexDictionary
     {
-        public delegate void delCheckValidData(TextBox text);
-        public CopyRightKindDictionaryControl()
-        {
-
-        }
         public CopyRightKindDictionaryControl(CopyrightKind copyR, List<CrkindGroup> list)
         {
             InitializeComponent();
             bsCopyrightKind.DataSource = copyR;
             bsCrkindGroup.DataSource = list;
-
         }
 
-        private void CopyRightKindDictionaryControl_Click(object sender, EventArgs e)
+        public bool Validation()
         {
-            ComplexDictionaryParamForm complexDictionary = new ComplexDictionaryParamForm();
-            delCheckValidData del = new delCheckValidData();
+            bool isvalid = true;
+            isvalid = ddlKindShototam.SelectedValue != null;
+
+            return isvalid;
         }
     }
 }

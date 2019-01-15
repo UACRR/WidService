@@ -14,13 +14,8 @@ namespace sysAdminwp
 {
     public partial class ComplexDictionaryParamForm : Telerik.WinControls.UI.RadForm
     {
-        CountryDictionaryControl countryDictionaryControl;
+        private IComplexDictionary _complexDictionary;
 
-
-        public ComplexDictionaryParamForm()
-        {
-
-        }
         /// <summary>
         /// initialize for CopyrightKind
         /// </summary>
@@ -29,9 +24,10 @@ namespace sysAdminwp
         public ComplexDictionaryParamForm(CopyrightKind copyright, List<CrkindGroup> listCopyRight)
         {
             InitializeComponent();
-            CopyRightKindDictionaryControl countryDictionaryControl = new CopyRightKindDictionaryControl(copyR: copyright, list: listCopyRight)
+            var countryDictionaryControl = new CopyRightKindDictionaryControl(copyright, listCopyRight)
             { Dock = DockStyle.Fill };
             mainPanel.Controls.Add(countryDictionaryControl);
+            _complexDictionary = countryDictionaryControl;
         }
         /// <summary>
         /// Country
@@ -41,7 +37,7 @@ namespace sysAdminwp
         public ComplexDictionaryParamForm(Country country, List<Continent> continent)
         {
             InitializeComponent();
-            countryDictionaryControl = new CountryDictionaryControl(country, continent)
+            var countryDictionaryControl = new CountryDictionaryControl(country, continent)
             { Dock = DockStyle.Fill };
             mainPanel.Controls.Add(countryDictionaryControl);
         }
@@ -53,9 +49,9 @@ namespace sysAdminwp
         public ComplexDictionaryParamForm(CreativeRoleType roleType, List<Category> listRoleType)
         {
             InitializeComponent();
-            CreativeRoleTypeDictionaryControl creativeRolTyp = new CreativeRoleTypeDictionaryControl(creativeRole: roleType, listCreativeRole: listRoleType)
+            CreativeRoleTypeDictionaryControl creativeRolTyp = new CreativeRoleTypeDictionaryControl(roleType, listRoleType, new List<CopyrightType>())
             { Dock = DockStyle.Fill };
-            mainPanel.Controls.Add(countryDictionaryControl);
+            mainPanel.Controls.Add(creativeRolTyp);
         }
         /// <summary>
         /// initialize Genretype
@@ -68,6 +64,7 @@ namespace sysAdminwp
             GenreTypeDictionaryControl countryDictionaryControl = new GenreTypeDictionaryControl(genreType: genreType, listGenreType: listGenreType)
             { Dock = DockStyle.Fill, };
         }
+
         /// <summary>
         /// initialize klr030
         /// </summary>
@@ -79,13 +76,13 @@ namespace sysAdminwp
             Klr030DictionaryControl countryDictionaryControl = new Klr030DictionaryControl(klr: klr030, listKlR030 :klr030List)
             { Dock = DockStyle.Fill };
         }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
-            CopyRightKindDictionaryControl checkObj = new CopyRightKindDictionaryControl();
-            // check if all fields is not empty then
-            //if(checkObj.radDropDownList1)
-                // send OK
+            if(_complexDictionary?.Validation() ?? true)
                 DialogResult = DialogResult.OK;
+            else
+                MessageBox.Show("Не всі поля заповнені", "Повіжомлення", MessageBoxButtons.OK, MessageBoxIcon.Hand);
         }
     }
 }

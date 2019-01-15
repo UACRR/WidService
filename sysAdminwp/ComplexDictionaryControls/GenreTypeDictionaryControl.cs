@@ -16,6 +16,8 @@ namespace sysAdminwp.ComplexDictionaryControls
         public GenreTypeDictionaryControl(GenreType genreType, List<Category> listGenreType)
         {
             InitializeComponent();
+            bsGenreType.DataSource = genreType;
+            bsCategory.DataSource = listGenreType;
         }
     }
 }

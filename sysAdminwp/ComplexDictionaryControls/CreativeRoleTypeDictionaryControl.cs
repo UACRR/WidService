@@ -13,9 +13,12 @@ namespace sysAdminwp.ComplexDictionaryControls
 {
     public partial class CreativeRoleTypeDictionaryControl : UserControl
     {
-        public CreativeRoleTypeDictionaryControl(CreativeRoleType creativeRole, List<Category> listCreativeRole)
+        public CreativeRoleTypeDictionaryControl(CreativeRoleType creativeRole, List<Category> listCreativeRole, List<CopyrightType> copyrightTypes)
         {
             InitializeComponent();
+            bsCreativeRoleType.DataSource = creativeRole;
+            bsCategory.DataSource = listCreativeRole;
+            bsCopyrightType.DataSource = copyrightTypes;
         }
     }
 }

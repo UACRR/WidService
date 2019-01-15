@@ -28,37 +28,68 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.radDropDownList1 = new Telerik.WinControls.UI.RadDropDownList();
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
+            this.components = new System.ComponentModel.Container();
+            this.ddlCategory = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlCopyright = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsCreativeRoleType = new System.Windows.Forms.BindingSource(this.components);
+            this.bsCategory = new System.Windows.Forms.BindingSource(this.components);
+            this.bsCopyrightType = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCopyright)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRoleType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCategory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightType)).BeginInit();
             this.SuspendLayout();
             // 
-            // radDropDownList1
+            // ddlCategory
             // 
-            this.radDropDownList1.Location = new System.Drawing.Point(91, 36);
-            this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(190, 20);
-            this.radDropDownList1.TabIndex = 0;
-            this.radDropDownList1.Text = "radDropDownList1";
+            this.ddlCategory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "CategoryCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ddlCategory.DataSource = this.bsCategory;
+            this.ddlCategory.DisplayMember = "Name";
+            this.ddlCategory.Location = new System.Drawing.Point(165, 47);
+            this.ddlCategory.Name = "ddlCategory";
+            this.ddlCategory.Size = new System.Drawing.Size(190, 21);
+            this.ddlCategory.TabIndex = 0;
+            this.ddlCategory.ThemeName = "Office2013Light";
+            this.ddlCategory.ValueMember = "CodeI";
             // 
-            // radTextBox1
+            // ddlCopyright
             // 
-            this.radTextBox1.Location = new System.Drawing.Point(91, 117);
-            this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(264, 20);
-            this.radTextBox1.TabIndex = 1;
+            this.ddlCopyright.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "Crtype", true));
+            this.ddlCopyright.DataSource = this.bsCopyrightType;
+            this.ddlCopyright.DisplayMember = "Name";
+            this.ddlCopyright.Location = new System.Drawing.Point(165, 73);
+            this.ddlCopyright.Name = "ddlCopyright";
+            this.ddlCopyright.Size = new System.Drawing.Size(190, 21);
+            this.ddlCopyright.TabIndex = 2;
+            this.ddlCopyright.ThemeName = "Office2013Light";
+            this.ddlCopyright.ValueMember = "CodeI";
+            // 
+            // bsCreativeRoleType
+            // 
+            this.bsCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
+            // 
+            // bsCategory
+            // 
+            this.bsCategory.DataSource = typeof(ipsFormsDesign.Model.Category);
+            // 
+            // bsCopyrightType
+            // 
+            this.bsCopyrightType.DataSource = typeof(ipsFormsDesign.Model.CopyrightType);
             // 
             // CreativeRoleTypeDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radTextBox1);
-            this.Controls.Add(this.radDropDownList1);
+            this.Controls.Add(this.ddlCopyright);
+            this.Controls.Add(this.ddlCategory);
             this.Name = "CreativeRoleTypeDictionaryControl";
             this.Size = new System.Drawing.Size(551, 264);
-            ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCopyright)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRoleType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCategory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightType)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -66,7 +97,10 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadDropDownList radDropDownList1;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
+        private Telerik.WinControls.UI.RadDropDownList ddlCategory;
+        private Telerik.WinControls.UI.RadDropDownList ddlCopyright;
+        private System.Windows.Forms.BindingSource bsCreativeRoleType;
+        private System.Windows.Forms.BindingSource bsCategory;
+        private System.Windows.Forms.BindingSource bsCopyrightType;
     }
 }
