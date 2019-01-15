@@ -33,9 +33,12 @@ namespace IpsViewComponentLibrary
 
         public ViewAndPrintAgreement(Customer customer, LicenseAgreement licenseAgreement) : this()
         {
-            if (!IsDesignMode)
-                _dictionaties = IpsGlobal.AnketaDictionaties;
             LoadDocument(customer, licenseAgreement);
+        }
+
+        public ViewAndPrintAgreement(Customer customer, LicenseAgreement licenseAgreement, int version) : this()
+        {
+            LoadDocument(customer, licenseAgreement, version);
         }
 
         private void SetupCustomSaveAsButton()
@@ -70,6 +73,25 @@ namespace IpsViewComponentLibrary
             radWaitingBar1.StartWaiting();
             _wordEngine = new WordEngine(_dictionaties);
             int version = licenseAgreement?.LicVersion ?? default(int);
+            string templateName = _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            templateName = string.Concat(@"Templates\", templateName);
+            // Ліцензія не належить великим правам
+            if (!(licenseAgreement.Agr != null && licenseAgreement.Agr.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Count() > 0))
+                _wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
+            else // Належить великим правам
+            {
+                _wordEngine.processConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
+            }
+
+            SetResult(_wordEngine.Pdf, _wordEngine.Docx);
+            radWaitingBar1.StopWaiting();
+        }
+
+        // друк договору з вибором версії
+        private void LoadDocument(Customer customer, LicenseAgreement licenseAgreement, int version)
+        {
+            radWaitingBar1.StartWaiting();
+            _wordEngine = new WordEngine(_dictionaties);
             string templateName = _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
             templateName = string.Concat(@"Templates\", templateName);
             // Ліцензія не належить великим правам

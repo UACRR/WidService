@@ -72,15 +72,14 @@ namespace IpsViewComponentLibrary.ConsumerControls
         // перегляд договору
         private void gvClosedLicenses_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            // TODO: генерація договору по закритій ліцензії
-            //var row = e.Row.DataBoundItem as GridLicenseAgreementView;
-            //var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == row.LicId);
-            //var print = new ViewAndPrintAgreement(_customer, license)
-            //{
-            //    WindowState = FormWindowState.Maximized,
-            //    StartPosition = FormStartPosition.CenterScreen
-            //};
-            //print.ShowDialog();
+            var row = e.Row.DataBoundItem as GridLicenseAgreementView;
+            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == row.LicId);
+            var print = new ViewAndPrintAgreement(_customer, license, (int)row.LicVersion)
+            {
+                WindowState = FormWindowState.Maximized,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            print.ShowDialog();
         }
     }
 }
