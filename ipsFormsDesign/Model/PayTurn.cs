@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Model
         public decimal? AmountCur { get; set; }
         public string PayNote { get; set; }
         public string R030 { get; set; }
-        public DateTime DateOper { get; set; }
+        public DateTime? DateOper { get; set; }
         public int? PayStatus { get; set; }
         public int? RegId { get; set; }
         public int? DistId { get; set; }

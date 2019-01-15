@@ -35,7 +35,7 @@ namespace IpsViewComponentLibrary
             DialogResult = DialogResult.None;
             //передача ссилок
             _customer = customer;
-            _spectacleViews = spectacleViews.Where(rec => rec.LicType == 1).ToList();
+            _spectacleViews = spectacleViews.Where(rec => rec.LicType == 1 ).ToList();
             _registerRatedList = registerRatedList;
             //список періодів
             var licAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2);

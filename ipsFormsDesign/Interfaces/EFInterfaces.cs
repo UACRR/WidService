@@ -162,6 +162,7 @@ public interface IAgrLicenseType
          bool? NeedPlace { get; set; }
          int? SchemaId { get; set; }
          int? AlgorithmId { get; set; }
+         string Series { get; set; }
 }
 public interface IAgrLicenseTypeTr
     {
@@ -1540,7 +1541,7 @@ public interface IPayTurn
          decimal? AmountCur { get; set; }
          string PayNote { get; set; }
          string R030 { get; set; }
-         DateTime DateOper { get; set; }
+         DateTime? DateOper { get; set; }
          int? PayStatus { get; set; }
          int? RegId { get; set; }
          int? DistId { get; set; }

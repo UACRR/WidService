@@ -205,14 +205,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     //якщо з малими правами, пропустити
                     if (Rights == TypeRights.BigRights && _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item.LicCode)?.UsesKind != 1) continue;
 
-                    var licenseParam = item?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
+                    var licenseParam = item.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == item.LicVersion);
 
                     source.Add(new GridLicenseAgreementView
                     {
                         Id = item.AgrId,
                         LicId = item.LicId,
-                        License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item?.LicCode)?.Name,
-                        Series = string.Empty,
+                        License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item.LicCode)?.Name,
+                        Series = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == item.LicCode)?.Series,
                         AgrNumber = licenseParam?.LicNum ?? string.Empty,
                         DateBegin = licenseParam?.DateBegin?.ToShortDateString() ?? string.Empty,
                         DateEnd = licenseParam?.DateEnd?.ToShortDateString() ?? string.Empty,
@@ -402,8 +402,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                             Id = license.AgrId,
                             LicVersion = agrParam?.LicVersion,
                             LicId = license.LicId,
-                            License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
-                            Series = string.Empty,
+                            License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode)?.Name,
+                            Series = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode)?.Series,
                             MinAmount = agrParam?.MinAmount ?? default(decimal),
                             MinRate = agrParam?.RateAmount ?? default(decimal),
                             AgrNumber = agrParam?.LicNum ?? string.Empty,

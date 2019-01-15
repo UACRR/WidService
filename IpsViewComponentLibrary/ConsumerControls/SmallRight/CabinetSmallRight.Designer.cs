@@ -72,25 +72,19 @@
             this.pvReports = new Telerik.WinControls.UI.RadPageViewPage();
             this.reportsControl = new IpsViewComponentLibrary.ReportsControl();
             this.pvMoreAgreements = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlAgrDetailInfoMore = new IpsViewComponentLibrary.ConsumerControls.ConsumerAgrDetailInfo();
             this.ddBtnChangeStatusMore = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnAccept = new Telerik.WinControls.UI.RadMenuItem();
             this.btnDenied = new Telerik.WinControls.UI.RadMenuItem();
             this.gvMoreLicenseAgr = new Telerik.WinControls.UI.RadGridView();
             this.btnAddNewAgrMore = new Telerik.WinControls.UI.RadButton();
-            this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
-            this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgrDetailInfoMore = new IpsViewComponentLibrary.ConsumerControls.ConsumerAgrDetailInfo();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvActiveAgr = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlAgrDetailInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerAgrDetailInfo();
             this.btnActionOfAgr = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnProlongation = new Telerik.WinControls.UI.RadMenuItem();
             this.btnAddAgrNewVersion = new Telerik.WinControls.UI.RadMenuItem();
             this.btnCloseAgr = new Telerik.WinControls.UI.RadButton();
             this.gvLicenseAgr = new Telerik.WinControls.UI.RadGridView();
-            this.pvSecond = new Telerik.WinControls.UI.RadPageView();
-            this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgrDetailInfo = new IpsViewComponentLibrary.ConsumerControls.ConsumerAgrDetailInfo();
-            this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.anketaPanel = new Telerik.WinControls.UI.RadPanel();
@@ -109,17 +103,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewAgrMore)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
-            this.radPageView1.SuspendLayout();
-            this.radPageViewPage1.SuspendLayout();
             this.pvActiveAgr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnActionOfAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pvSecond)).BeginInit();
-            this.pvSecond.SuspendLayout();
-            this.pvAgreement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).BeginInit();
             this.pvAnketa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).BeginInit();
@@ -250,15 +238,24 @@
             // 
             // pvMoreAgreements
             // 
+            this.pvMoreAgreements.Controls.Add(this.ctrlAgrDetailInfoMore);
             this.pvMoreAgreements.Controls.Add(this.ddBtnChangeStatusMore);
             this.pvMoreAgreements.Controls.Add(this.gvMoreLicenseAgr);
             this.pvMoreAgreements.Controls.Add(this.btnAddNewAgrMore);
-            this.pvMoreAgreements.Controls.Add(this.radPageView1);
             this.pvMoreAgreements.ItemSize = new System.Drawing.SizeF(166F, 27F);
             this.pvMoreAgreements.Location = new System.Drawing.Point(5, 41);
             this.pvMoreAgreements.Name = "pvMoreAgreements";
-            this.pvMoreAgreements.Size = new System.Drawing.Size(1072, 679);
+            this.pvMoreAgreements.Size = new System.Drawing.Size(952, 619);
             this.pvMoreAgreements.Text = "Не підтверджені договори";
+            // 
+            // ctrlAgrDetailInfoMore
+            // 
+            this.ctrlAgrDetailInfoMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ctrlAgrDetailInfoMore.Location = new System.Drawing.Point(0, 317);
+            this.ctrlAgrDetailInfoMore.MinimumSize = new System.Drawing.Size(785, 220);
+            this.ctrlAgrDetailInfoMore.Name = "ctrlAgrDetailInfoMore";
+            this.ctrlAgrDetailInfoMore.Size = new System.Drawing.Size(785, 299);
+            this.ctrlAgrDetailInfoMore.TabIndex = 18;
             // 
             // ddBtnChangeStatusMore
             // 
@@ -266,7 +263,7 @@
             this.ddBtnChangeStatusMore.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnAccept,
             this.btnDenied});
-            this.ddBtnChangeStatusMore.Location = new System.Drawing.Point(929, 383);
+            this.ddBtnChangeStatusMore.Location = new System.Drawing.Point(809, 287);
             this.ddBtnChangeStatusMore.Name = "ddBtnChangeStatusMore";
             this.ddBtnChangeStatusMore.Size = new System.Drawing.Size(140, 24);
             this.ddBtnChangeStatusMore.TabIndex = 18;
@@ -304,12 +301,12 @@
             gridViewTextBoxColumn1.FieldName = "License";
             gridViewTextBoxColumn1.HeaderText = "Ліцензія";
             gridViewTextBoxColumn1.Name = "License";
-            gridViewTextBoxColumn1.Width = 187;
+            gridViewTextBoxColumn1.Width = 166;
             gridViewTextBoxColumn1.WrapText = true;
             gridViewTextBoxColumn2.FieldName = "Series";
             gridViewTextBoxColumn2.HeaderText = "Серія";
             gridViewTextBoxColumn2.Name = "Series";
-            gridViewTextBoxColumn2.Width = 53;
+            gridViewTextBoxColumn2.Width = 47;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "AgrMasterNumber";
             gridViewTextBoxColumn3.HeaderText = "Номер майстер договору";
@@ -350,17 +347,18 @@
             gridViewTextBoxColumn8.MaxWidth = 100;
             gridViewTextBoxColumn8.Name = "MinAmount";
             gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn8.Width = 80;
+            gridViewTextBoxColumn8.Width = 71;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "PeriodPayment";
             gridViewTextBoxColumn9.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn9.Name = "PeriodPayment";
-            gridViewTextBoxColumn9.Width = 119;
+            gridViewTextBoxColumn9.Width = 70;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.FieldName = "State";
             gridViewTextBoxColumn10.HeaderText = "Статус";
+            gridViewTextBoxColumn10.MinWidth = 45;
             gridViewTextBoxColumn10.Name = "State";
-            gridViewTextBoxColumn10.Width = 80;
+            gridViewTextBoxColumn10.Width = 45;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.FieldName = "Id";
             gridViewTextBoxColumn11.HeaderText = "Id";
@@ -427,7 +425,7 @@
             // 
             this.gvMoreLicenseAgr.RootElement.MinSize = new System.Drawing.Size(300, 100);
             this.gvMoreLicenseAgr.ShowGroupPanel = false;
-            this.gvMoreLicenseAgr.Size = new System.Drawing.Size(1072, 377);
+            this.gvMoreLicenseAgr.Size = new System.Drawing.Size(952, 281);
             this.gvMoreLicenseAgr.TabIndex = 12;
             this.gvMoreLicenseAgr.ThemeName = "Office2013Light";
             this.gvMoreLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvMoreLicenseAgr_CurrentRowChanged);
@@ -436,7 +434,7 @@
             // btnAddNewAgrMore
             // 
             this.btnAddNewAgrMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddNewAgrMore.Location = new System.Drawing.Point(3, 383);
+            this.btnAddNewAgrMore.Location = new System.Drawing.Point(3, 287);
             this.btnAddNewAgrMore.Name = "btnAddNewAgrMore";
             this.btnAddNewAgrMore.Size = new System.Drawing.Size(140, 24);
             this.btnAddNewAgrMore.TabIndex = 16;
@@ -445,64 +443,27 @@
             this.btnAddNewAgrMore.ThemeName = "Office2013Light";
             this.btnAddNewAgrMore.Click += new System.EventHandler(this.btnAddAgreement_Click);
             // 
-            // radPageView1
-            // 
-            this.radPageView1.Controls.Add(this.radPageViewPage1);
-            this.radPageView1.Controls.Add(this.radPageViewPage2);
-            this.radPageView1.DefaultPage = this.radPageViewPage1;
-            this.radPageView1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPageView1.Location = new System.Drawing.Point(0, 412);
-            this.radPageView1.Name = "radPageView1";
-            this.radPageView1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.radPageView1.SelectedPage = this.radPageViewPage1;
-            this.radPageView1.Size = new System.Drawing.Size(1072, 267);
-            this.radPageView1.TabIndex = 17;
-            this.radPageView1.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            // 
-            // radPageViewPage1
-            // 
-            this.radPageViewPage1.AutoScroll = true;
-            this.radPageViewPage1.Controls.Add(this.ctrlAgrDetailInfoMore);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(59F, 27F);
-            this.radPageViewPage1.Location = new System.Drawing.Point(63, 15);
-            this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1004, 247);
-            this.radPageViewPage1.Text = "Договір";
-            // 
-            // ctrlAgrDetailInfoMore
-            // 
-            this.ctrlAgrDetailInfoMore.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.ctrlAgrDetailInfoMore.Location = new System.Drawing.Point(3, 3);
-            this.ctrlAgrDetailInfoMore.MinimumSize = new System.Drawing.Size(785, 220);
-            this.ctrlAgrDetailInfoMore.Name = "ctrlAgrDetailInfoMore";
-            this.ctrlAgrDetailInfoMore.Size = new System.Drawing.Size(785, 241);
-            this.ctrlAgrDetailInfoMore.TabIndex = 18;
-            // 
-            // radPageViewPage2
-            // 
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(59F, 27F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(63, 15);
-            this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(914, 282);
-            this.radPageViewPage2.Text = "Історія";
-            // 
             // pvActiveAgr
             // 
+            this.pvActiveAgr.Controls.Add(this.ctrlAgrDetailInfo);
             this.pvActiveAgr.Controls.Add(this.btnActionOfAgr);
             this.pvActiveAgr.Controls.Add(this.btnCloseAgr);
             this.pvActiveAgr.Controls.Add(this.gvLicenseAgr);
-            this.pvActiveAgr.Controls.Add(this.pvSecond);
             this.pvActiveAgr.Controls.Add(this.btnAddAgreement);
             this.pvActiveAgr.ItemSize = new System.Drawing.SizeF(115F, 27F);
             this.pvActiveAgr.Location = new System.Drawing.Point(5, 41);
             this.pvActiveAgr.Name = "pvActiveAgr";
-            this.pvActiveAgr.Size = new System.Drawing.Size(1072, 679);
+            this.pvActiveAgr.Size = new System.Drawing.Size(952, 619);
             this.pvActiveAgr.Text = "Активні договори";
+            // 
+            // ctrlAgrDetailInfo
+            // 
+            this.ctrlAgrDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ctrlAgrDetailInfo.Location = new System.Drawing.Point(0, 317);
+            this.ctrlAgrDetailInfo.MinimumSize = new System.Drawing.Size(785, 220);
+            this.ctrlAgrDetailInfo.Name = "ctrlAgrDetailInfo";
+            this.ctrlAgrDetailInfo.Size = new System.Drawing.Size(785, 299);
+            this.ctrlAgrDetailInfo.TabIndex = 17;
             // 
             // btnActionOfAgr
             // 
@@ -510,7 +471,7 @@
             this.btnActionOfAgr.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnProlongation,
             this.btnAddAgrNewVersion});
-            this.btnActionOfAgr.Location = new System.Drawing.Point(927, 347);
+            this.btnActionOfAgr.Location = new System.Drawing.Point(807, 287);
             this.btnActionOfAgr.Name = "btnActionOfAgr";
             this.btnActionOfAgr.Size = new System.Drawing.Size(140, 24);
             this.btnActionOfAgr.TabIndex = 13;
@@ -532,7 +493,7 @@
             // btnCloseAgr
             // 
             this.btnCloseAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseAgr.Location = new System.Drawing.Point(781, 347);
+            this.btnCloseAgr.Location = new System.Drawing.Point(661, 287);
             this.btnCloseAgr.Name = "btnCloseAgr";
             this.btnCloseAgr.Size = new System.Drawing.Size(140, 24);
             this.btnCloseAgr.TabIndex = 16;
@@ -560,15 +521,15 @@
             gridViewTextBoxColumn12.FieldName = "License";
             gridViewTextBoxColumn12.HeaderText = "Ліцензія";
             gridViewTextBoxColumn12.Name = "License";
-            gridViewTextBoxColumn12.Width = 168;
+            gridViewTextBoxColumn12.Width = 149;
             gridViewTextBoxColumn13.FieldName = "Series";
             gridViewTextBoxColumn13.HeaderText = "Серія";
             gridViewTextBoxColumn13.Name = "Series";
-            gridViewTextBoxColumn13.Width = 47;
+            gridViewTextBoxColumn13.Width = 42;
             gridViewTextBoxColumn14.FieldName = "AgrNumber";
             gridViewTextBoxColumn14.HeaderText = "Номер договору";
             gridViewTextBoxColumn14.Name = "AgrNumber";
-            gridViewTextBoxColumn14.Width = 116;
+            gridViewTextBoxColumn14.Width = 103;
             gridViewTextBoxColumn15.FieldName = "DateBegin";
             gridViewTextBoxColumn15.HeaderText = "Дата початку";
             gridViewTextBoxColumn15.MaxWidth = 80;
@@ -587,22 +548,22 @@
             gridViewTextBoxColumn17.HeaderText = "Умова %";
             gridViewTextBoxColumn17.Name = "MinRate";
             gridViewTextBoxColumn17.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn17.Width = 65;
+            gridViewTextBoxColumn17.Width = 58;
             gridViewTextBoxColumn17.WrapText = true;
             gridViewDecimalColumn1.FieldName = "MinAmount";
             gridViewDecimalColumn1.HeaderText = "Умова мін. сума";
             gridViewDecimalColumn1.Name = "MinAmount";
             gridViewDecimalColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewDecimalColumn1.Width = 83;
+            gridViewDecimalColumn1.Width = 74;
             gridViewDecimalColumn1.WrapText = true;
             gridViewTextBoxColumn18.FieldName = "State";
             gridViewTextBoxColumn18.HeaderText = "Статус";
             gridViewTextBoxColumn18.Name = "State";
-            gridViewTextBoxColumn18.Width = 83;
+            gridViewTextBoxColumn18.Width = 74;
             gridViewTextBoxColumn19.FieldName = "PeriodPayment";
             gridViewTextBoxColumn19.HeaderText = "Періодичність оплати";
             gridViewTextBoxColumn19.Name = "PeriodPayment";
-            gridViewTextBoxColumn19.Width = 185;
+            gridViewTextBoxColumn19.Width = 127;
             gridViewTextBoxColumn19.WrapText = true;
             gridViewTextBoxColumn20.FieldName = "DateLastPayment";
             gridViewTextBoxColumn20.HeaderText = "Дата останньої оплати";
@@ -655,62 +616,16 @@
             // 
             this.gvLicenseAgr.RootElement.MinSize = new System.Drawing.Size(300, 100);
             this.gvLicenseAgr.ShowGroupPanel = false;
-            this.gvLicenseAgr.Size = new System.Drawing.Size(1072, 341);
+            this.gvLicenseAgr.Size = new System.Drawing.Size(952, 281);
             this.gvLicenseAgr.TabIndex = 11;
             this.gvLicenseAgr.ThemeName = "Office2013Light";
             this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
             this.gvLicenseAgr.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvLicenseAgr_CommandCellClick);
             // 
-            // pvSecond
-            // 
-            this.pvSecond.Controls.Add(this.pvAgreement);
-            this.pvSecond.Controls.Add(this.pvHistory);
-            this.pvSecond.DefaultPage = this.pvAgreement;
-            this.pvSecond.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pvSecond.Location = new System.Drawing.Point(0, 377);
-            this.pvSecond.Name = "pvSecond";
-            this.pvSecond.Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            this.pvSecond.SelectedPage = this.pvAgreement;
-            this.pvSecond.Size = new System.Drawing.Size(1072, 302);
-            this.pvSecond.TabIndex = 2;
-            this.pvSecond.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvSecond.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvSecond.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvSecond.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvSecond.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(0, 10, 0, 0);
-            // 
-            // pvAgreement
-            // 
-            this.pvAgreement.AutoScroll = true;
-            this.pvAgreement.Controls.Add(this.ctrlAgrDetailInfo);
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(59F, 27F);
-            this.pvAgreement.Location = new System.Drawing.Point(63, 15);
-            this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(1004, 282);
-            this.pvAgreement.Text = "Договір";
-            // 
-            // ctrlAgrDetailInfo
-            // 
-            this.ctrlAgrDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.ctrlAgrDetailInfo.Location = new System.Drawing.Point(3, 3);
-            this.ctrlAgrDetailInfo.MinimumSize = new System.Drawing.Size(785, 220);
-            this.ctrlAgrDetailInfo.Name = "ctrlAgrDetailInfo";
-            this.ctrlAgrDetailInfo.Size = new System.Drawing.Size(785, 276);
-            this.ctrlAgrDetailInfo.TabIndex = 17;
-            // 
-            // pvHistory
-            // 
-            this.pvHistory.ItemSize = new System.Drawing.SizeF(59F, 27F);
-            this.pvHistory.Location = new System.Drawing.Point(63, 15);
-            this.pvHistory.Name = "pvHistory";
-            this.pvHistory.Size = new System.Drawing.Size(914, 282);
-            this.pvHistory.Text = "Історія";
-            // 
             // btnAddAgreement
             // 
             this.btnAddAgreement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddAgreement.Location = new System.Drawing.Point(3, 347);
+            this.btnAddAgreement.Location = new System.Drawing.Point(3, 287);
             this.btnAddAgreement.Name = "btnAddAgreement";
             this.btnAddAgreement.Size = new System.Drawing.Size(140, 24);
             this.btnAddAgreement.TabIndex = 4;
@@ -775,7 +690,7 @@
             // 
             this.pvMain.RootElement.MinSize = new System.Drawing.Size(962, 456);
             this.pvMain.SelectedPage = this.pvActiveAgr;
-            this.pvMain.Size = new System.Drawing.Size(1082, 725);
+            this.pvMain.Size = new System.Drawing.Size(962, 665);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pvMain.GetChildAt(0))).StripScrollingAnimation = Telerik.WinControls.RadEasingType.Linear;
@@ -820,7 +735,7 @@
             this.Controls.Add(this.pvMain);
             this.MinimumSize = new System.Drawing.Size(962, 665);
             this.Name = "CabinetSmallRight";
-            this.Size = new System.Drawing.Size(1082, 725);
+            this.Size = new System.Drawing.Size(962, 665);
             this.pvAgent.ResumeLayout(false);
             this.pvFiles.ResumeLayout(false);
             this.pvContacts.ResumeLayout(false);
@@ -832,17 +747,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMoreLicenseAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewAgrMore)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
-            this.radPageView1.ResumeLayout(false);
-            this.radPageViewPage1.ResumeLayout(false);
             this.pvActiveAgr.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnActionOfAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLicenseAgr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pvSecond)).EndInit();
-            this.pvSecond.ResumeLayout(false);
-            this.pvAgreement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnAddAgreement)).EndInit();
             this.pvAnketa.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.anketaPanel)).EndInit();
@@ -867,18 +776,12 @@
         private Telerik.WinControls.UI.RadPageViewPage pvMoreAgreements;
         private Telerik.WinControls.UI.RadGridView gvMoreLicenseAgr;
         private Telerik.WinControls.UI.RadButton btnAddNewAgrMore;
-        private Telerik.WinControls.UI.RadPageView radPageView1;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private ConsumerControls.ConsumerAgrDetailInfo ctrlAgrDetailInfoMore;
-        private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
         private Telerik.WinControls.UI.RadPageViewPage pvActiveAgr;
         private Telerik.WinControls.UI.RadGridView gvLicenseAgr;
-        private Telerik.WinControls.UI.RadPageView pvSecond;
-        private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
         private ConsumerControls.ConsumerAgrDetailInfo ctrlAgrDetailInfo;
         private Telerik.WinControls.UI.RadButton btnCloseAgr;
         private Telerik.WinControls.UI.RadButton btnAddAgreement;
-        private Telerik.WinControls.UI.RadPageViewPage pvHistory;
         private Telerik.WinControls.UI.RadPageViewPage pvAnketa;
         private Telerik.WinControls.UI.RadPageView pvMain;
         private ConsumerControls.ConsumerHeaderInfo ctrlHeaderInfo;
