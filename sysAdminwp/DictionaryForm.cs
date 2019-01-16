@@ -444,6 +444,18 @@ namespace sysAdminwp
             //set position
             gvDictionariesList.CurrentRow = gvDictionariesList.Rows[_indexRow];
         }
+        //method for set position after delete
+        private void SetPositionAfterDelete()
+        {
+            //set last position
+            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
+        }
+        //method for set position after added
+        private void SetPositionAfterAdded()
+        {
+            //set last position
+            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
+        }
 
         //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
@@ -467,6 +479,8 @@ namespace sysAdminwp
 
             gvDictionariesList.DataSource = GetData();
             UpdateEditPanel();
+            //set last position for cursor
+            SetPositionAfterDelete();
         }
 
         //кнопка збереження
@@ -539,7 +553,7 @@ namespace sysAdminwp
             }
 
             //set last row focus
-            SetLstCurs();
+            SetPositionAfterAdded();
         }
 
         //кнопка відміни внесених змін
