@@ -30,7 +30,7 @@ namespace ipsFormsDesign.Services
 
         public Fixation New()
         {
-            return new Fixation { StageStatus = 1, UsesType = 1 };
+            return new Fixation { StageStatus = 1, UsesType = 2 };
         }
 
         public void CreateAdditionalStructure(Fixation fixation)

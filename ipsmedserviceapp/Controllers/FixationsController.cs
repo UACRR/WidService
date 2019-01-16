@@ -48,7 +48,7 @@ namespace ipsmedserviceapp.Controllers
             var response = new FixationResponseResource();
             response.Fixation = fixation;
 
-            if (IsAddStructNeeded(fixation))
+            if (IsAddStructNeeded(fixation) && fixation.Lic != null )
             {
                 var regId = fixation.Lic.PaidPeriod.First().RegisterRatedList.First().Register.First().RegId;
 

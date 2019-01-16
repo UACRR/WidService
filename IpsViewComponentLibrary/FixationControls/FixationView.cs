@@ -576,6 +576,8 @@ namespace IpsViewComponentLibrary.FixationControls
         {
             if (_fixation.StageStatus < (int)FixationStageStatuses.JudicalWorkWinned)
                 return;
+            if (_fixation.StageStatus >= (int)FixationStageStatuses.ClosedAgreedBeforeFixation)
+                return;
 
             if (string.IsNullOrEmpty(mebRewardAmount.Text))
             {
@@ -589,6 +591,9 @@ namespace IpsViewComponentLibrary.FixationControls
         private void mebCourtFeeAmount_Validating(object sender, CancelEventArgs e)
         {
             if (_fixation.StageStatus < (int)FixationStageStatuses.JudicalWorkWinned)
+                return;
+
+            if (_fixation.StageStatus >= (int)FixationStageStatuses.ClosedAgreedBeforeFixation)
                 return;
 
             if (string.IsNullOrEmpty(mebCourtFeeAmount.Text))
@@ -698,6 +703,11 @@ namespace IpsViewComponentLibrary.FixationControls
                 ctrlRegisterItemList.AllowFindCommand = false;
                 gboxSearch.Visible = false;
             }
+
+            // Для закритого статусу прячемо кнопку "Delete"
+            if (_fixation.StageStatus >= (int)FixationStageStatuses.ClosedAgreedBeforeFixation)
+                ctrlRegisterItemList.AllowShowDeleteCommand = false;
+
         }
 
         private static void CreateControls(Control control)

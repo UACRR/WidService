@@ -124,6 +124,23 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
+        // Видимість командної кнопки "Видалити"
+        private bool _allowShowDeleteCommand = true;
+        public bool AllowShowDeleteCommand
+        {
+            get { return _allowShowDeleteCommand; }
+            set
+            {
+                _allowShowDeleteCommand = value;
+                gvRegisterItemList.SetColumnVisibility("DeleteColumn", _allowShowDeleteCommand);
+                var registerCount = gvRegisterItemList.Templates[1];
+                if( !registerCount.Columns.Contains("DeleteRhColumn") )
+                    return;
+                registerCount.Columns["DeleteRhColumn"].IsVisible = _allowShowDeleteCommand;
+            }
+        }
+
+
         private bool _allowShowObjectCommand = true;
         public bool AllowShowObjectCommand
         {
