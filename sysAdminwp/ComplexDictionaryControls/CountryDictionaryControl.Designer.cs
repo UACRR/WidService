@@ -49,9 +49,8 @@
             this.ddlContinent.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlContinent.Location = new System.Drawing.Point(70, 3);
             this.ddlContinent.Name = "ddlContinent";
-            this.ddlContinent.Size = new System.Drawing.Size(125, 21);
+            this.ddlContinent.Size = new System.Drawing.Size(125, 20);
             this.ddlContinent.TabIndex = 0;
-            this.ddlContinent.ThemeName = "Office2013Light";
             this.ddlContinent.ValueMember = "CodeI";
             // 
             // bsCountry
@@ -75,7 +74,7 @@
             this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "CountryName", true));
             this.radTextBox1.Location = new System.Drawing.Point(4, 30);
             this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(191, 21);
+            this.radTextBox1.Size = new System.Drawing.Size(191, 20);
             this.radTextBox1.TabIndex = 2;
             this.radTextBox1.ThemeName = "Office2013Light";
             // 

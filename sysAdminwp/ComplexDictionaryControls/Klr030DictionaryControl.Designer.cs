@@ -49,11 +49,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(88, 57);
+            this.label1.Location = new System.Drawing.Point(89, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "CountryList";
             // 
             // radDropDownList1
             // 
@@ -62,7 +62,7 @@
             this.radDropDownList1.DisplayMember = "CountryName";
             this.radDropDownList1.Location = new System.Drawing.Point(165, 57);
             this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(285, 21);
+            this.radDropDownList1.Size = new System.Drawing.Size(285, 20);
             this.radDropDownList1.TabIndex = 1;
             this.radDropDownList1.ThemeName = "Office2013Light";
             this.radDropDownList1.ValueMember = "CountryCode";
