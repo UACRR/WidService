@@ -104,6 +104,31 @@
     <Compile Include="ComplexDictionaryControls\CountryDictionaryControl.Designer.cs">
       <DependentUpon>CountryDictionaryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.Designer.cs">
+      <DependentUpon>CopyRightKindDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.Designer.cs">
+      <DependentUpon>CreativeRoleTypeDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\GenreTypeDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\GenreTypeDictionaryControl.Designer.cs">
+      <DependentUpon>GenreTypeDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\IComplexDictionary.cs" />
+    <Compile Include="ComplexDictionaryControls\Klr030DictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\Klr030DictionaryControl.Designer.cs">
+      <DependentUpon>Klr030DictionaryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComplexDictionaryParamForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,8 +142,20 @@
       <DependentUpon>DictionaryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewTable.cs" />
+    <EmbeddedResource Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.resx">
+      <DependentUpon>CopyRightKindDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComplexDictionaryControls\CountryDictionaryControl.resx">
       <DependentUpon>CountryDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.resx">
+      <DependentUpon>CreativeRoleTypeDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\GenreTypeDictionaryControl.resx">
+      <DependentUpon>GenreTypeDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\Klr030DictionaryControl.resx">
+      <DependentUpon>Klr030DictionaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComplexDictionaryParamForm.resx">
       <DependentUpon>ComplexDictionaryParamForm.cs</DependentUpon>
@@ -142,8 +179,15 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Category.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Continent.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKind.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Country.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CrkindGroup.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
