@@ -571,6 +571,12 @@ namespace IpsViewComponentLibrary.RegisterControls
             if (!_allowCreateObjectCommand)
                 return;
 
+            if(selectedRegisterItem.ObjId != null )
+            {
+                MessageBox.Show("Неможливо створити об'єкт який прив'язано", "Створення об'єкта", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             CreateObjectCommandExecuted?.Invoke(this, selectedRegisterItem);
 
             var service = new ipsFormsDesign.Services.ObjectRightService(); // TODO: move to presenter or application controller
