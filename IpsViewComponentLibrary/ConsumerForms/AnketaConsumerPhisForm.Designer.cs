@@ -506,6 +506,7 @@
             this.btnLoadPdf.TabIndex = 4;
             this.btnLoadPdf.Text = "Завантажити PDF договору";
             this.btnLoadPdf.ThemeName = "Office2013Light";
+            this.btnLoadPdf.Click += new System.EventHandler(this.btnLoadPdf_Click);
             // 
             // radPdfViewerNavigator
             // 

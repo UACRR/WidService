@@ -369,7 +369,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void PrintAgreement(int licId)
         {
             var lic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
-            ViewAndPrintAgreement print = new ViewAndPrintAgreement(_customer,lic)
+            var print = new ViewAndPrintAgreement(_customer,lic)
             {
                 WindowState = FormWindowState.Maximized,
                 StartPosition = FormStartPosition.CenterScreen
