@@ -18,6 +18,7 @@ using ipsFormsDesign.Dictionary;
 using sysAdminwp.Properties;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Data;
 
 namespace sysAdminwp
 {
@@ -443,6 +444,18 @@ namespace sysAdminwp
             //set position
             gvDictionariesList.CurrentRow = gvDictionariesList.Rows[_indexRow];
         }
+        //method for set position after delete
+        private void SetPositionAfterDelete()
+        {
+            //set last position
+            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
+        }
+        //method for set position after added
+        private void SetPositionAfterAdded()
+        {
+            //set last position
+            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
+        }
 
         //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
@@ -466,22 +479,81 @@ namespace sysAdminwp
 
             gvDictionariesList.DataSource = GetData();
             UpdateEditPanel();
+            //set last position for cursor
+            SetPositionAfterDelete();
         }
 
         //кнопка збереження
         private void radBtnSave_Click(object sender, EventArgs e)
         {
-            if (btnSave.Text == "Додати")
+            if (_complexDictionaryList.Contains(DictionaryName.ToLower()))
             {
-                SaveAddNewRow();
+                var row = gvDictionariesList.CurrentRow.DataBoundItem as ViewTable;
+
+                switch (DictionaryName.ToLower())
+                {
+                    case "copyrightkind":
+                        var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(row.Code));
+                        // CrkindGroup
+                        var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.crkindGroup;
+                        //initialize object form with parameters
+                        ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyrightKind, customDict);
+                        MessageBox.Show($"Before: {copyrightKind.CrGroupCode}");
+                        //open form with current data complexive dictionaries
+                        if(formComplex.ShowDialog() == DialogResult.OK)
+                        {
+                            MessageBox.Show($"After: {copyrightKind.CrGroupCode}");
+                        }
+                        break;
+                    case "country":
+                        var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(row.Code));
+                        var customDictCountry = (List<Continent>)IpsGlobal.AnketaDictionaties.country;
+                        //initialize object form with parameters
+                        ComplexDictionaryParamForm formComParam = new ComplexDictionaryParamForm(country: country, continent: customDictCountry);
+                        //open form with current data complexive dictionaries
+
+                        break;
+                    case "creativeroletype":
+                        var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(row.Code));
+                        var customDictCreateRoleType = (List<Category>)IpsGlobal.AnketaDictionaties.creativeRoleType;
+                        //initialize object form with parameters
+                        ComplexDictionaryParamForm formCoPar = new ComplexDictionaryParamForm(roleType: creativeroletype, listRoleType: customDictCreateRoleType);
+                        //open from with current data complexive dictionaries
+
+                        break;
+                    case "genretype":
+                        var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(row.Code));
+                        var customDictGenreType = (List<Category>)IpsGlobal.AnketaDictionaties.genreType;
+                        //initialize object form with parameters
+                        ComplexDictionaryParamForm formCP = new ComplexDictionaryParamForm(genreType: genretype, listGenreType: customDictGenreType);
+                        //open from with current data complexive dictionaries
+
+                        break;
+                    case "klr030":
+                        var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(row.Code));
+                        var customDictKlr030 = (List<Country>)IpsGlobal.AnketaDictionaties.klR030;
+                        //initialize object form with parameters
+                        ComplexDictionaryParamForm formCoParam = new ComplexDictionaryParamForm(klr030: klr030, klr030List: customDictKlr030);
+                        //open form with current data complexive dictionaries
+
+                        break;
+                }
             }
             else
             {
-                SaveUpdate();
-                ChangeEnableElementsWhenEdit(true);
+                if (btnSave.Text == "Додати")
+                {
+                    SaveAddNewRow();
+                }
+                else
+                {
+                    SaveUpdate();
+                    ChangeEnableElementsWhenEdit(true);
+                }
             }
+
             //set last row focus
-            SetLstCurs();
+            SetPositionAfterAdded();
         }
 
         //кнопка відміни внесених змін
