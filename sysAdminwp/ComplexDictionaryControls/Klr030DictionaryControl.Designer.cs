@@ -64,7 +64,6 @@
             this.radDropDownList1.Name = "radDropDownList1";
             this.radDropDownList1.Size = new System.Drawing.Size(285, 20);
             this.radDropDownList1.TabIndex = 1;
-            this.radDropDownList1.ThemeName = "Office2013Light";
             this.radDropDownList1.ValueMember = "CountryCode";
             // 
             // Klr030DictionaryControl
