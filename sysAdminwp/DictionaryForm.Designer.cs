@@ -63,6 +63,10 @@ namespace sysAdminwp
             this.txtTreeFilter = new Telerik.WinControls.UI.RadTextBox();
             this.txtSearchData = new Telerik.WinControls.UI.RadTextBox();
             this.radLblSearch = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList.MasterTemplate)).BeginInit();
@@ -83,6 +87,10 @@ namespace sysAdminwp
             this.radPanelChange.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,9 +202,9 @@ namespace sysAdminwp
             // 
             this.treeViewList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeViewList.Location = new System.Drawing.Point(8, 64);
+            this.treeViewList.Location = new System.Drawing.Point(0, 0);
             this.treeViewList.Name = "treeViewList";
-            this.treeViewList.Size = new System.Drawing.Size(229, 559);
+            this.treeViewList.Size = new System.Drawing.Size(229, 638);
             this.treeViewList.SpacingBetweenNodes = -1;
             this.treeViewList.TabIndex = 3;
             this.treeViewList.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.radTreeViewList_SelectedNodeChanged);
@@ -357,17 +365,57 @@ namespace sysAdminwp
             this.radLblSearch.TabIndex = 7;
             this.radLblSearch.Text = "Search:";
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(8, 64);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(231, 528);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.treeViewList);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(223, 502);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Прості права";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.radTreeView1);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(223, 502);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Складні права";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // radTreeView1
+            // 
+            this.radTreeView1.Location = new System.Drawing.Point(0, 0);
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.Size = new System.Drawing.Size(224, 504);
+            this.radTreeView1.SpacingBetweenNodes = -1;
+            this.radTreeView1.TabIndex = 0;
+            // 
             // DictionaryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 635);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.radMenu1);
             this.Controls.Add(this.radLblSearch);
             this.Controls.Add(this.txtSearchData);
             this.Controls.Add(this.txtTreeFilter);
             this.Controls.Add(this.radPanelChange);
-            this.Controls.Add(this.treeViewList);
             this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.gvDictionariesList);
@@ -399,6 +447,10 @@ namespace sysAdminwp
             this.radPanelChange.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -429,5 +481,9 @@ namespace sysAdminwp
         private RadTextBox txtTreeFilter;
         private RadTextBox txtSearchData;
         private Label radLblSearch;
+        private TabControl tabControl1;
+        private TabPage tabPage1;
+        private TabPage tabPage2;
+        private RadTreeView radTreeView1;
     }
 }
