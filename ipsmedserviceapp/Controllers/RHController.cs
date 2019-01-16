@@ -711,7 +711,7 @@ t2.custId = @custid
         /// </param>
         /// <returns>Ok</returns>
         [HttpPut("objects/transfer")]
-        public async Task<IActionResult> ObjectTransfer([FromBody] TransferParametersResource transferParams)
+        public IActionResult ObjectTransfer([FromBody] TransferParametersResource transferParams)
         {
             if (transferParams == null)
                 return BadRequest("Некоректні параметри передачі.");

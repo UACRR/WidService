@@ -115,8 +115,8 @@ namespace ipsFormsDesign.Services
                     DocNum = item["NDOC"].ToString(),
                     DocDate = item.Field<DateTime>("DT"),
                     SDebet = 0,
-                    SCredit = Convert.ToDecimal( item["SUMMA"] ),
-                    SNcCur = Convert.ToDecimal(item["SUMMA"]),
+                    SCredit = Convert.ToDecimal( item["SUMMA"] ) / 100,
+                    SNcCur = Convert.ToDecimal(item["SUMMA"]) / 100,
                     Nplat = item.Field<string>("NAZN"),
                     Status = 1
                 });

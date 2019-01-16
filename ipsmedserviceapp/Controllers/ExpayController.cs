@@ -114,17 +114,40 @@ namespace ipsmedserviceapp.Controllers
             var list = await _dbContext.ExternalPay.Where(rec => rec.CustId == null ).ToListAsync();
             return Ok(list);
         }
+
+        private void insertNewMoneyResived( ExternalPay exPay )
+        {
+            _dbContext.MoneyReceived.Add(
+                    new MoneyReceived
+                    {
+                        PaidId = exPay.PaidId,
+                        MoneyType = 1,
+                        DateInvoice = (DateTime)exPay.DocDate,
+                        NumberInvoice = exPay.DocNum,
+                        GoalInvoice = exPay.Nplat,
+                        Amount = (decimal)exPay.SCredit,
+                        DestribAmount = 0,
+                        DestribPrepay = 0,
+                        CustId = (int)exPay.CustId
+                    });
+
+        }
         // put unlink list Зберігти дані по списку непривязаних проводок
         [HttpPut("unlink")]
         public async Task<IActionResult> SaveUnlinkList([FromBody] List<ExternalPay> pays)
         {
             var ids = pays.Select(rec => rec.PaidId);
             var dest = await _dbContext.ExternalPay.Where(rec => ids.Contains(rec.PaidId)).ToListAsync();
+            var moneyRecived = await _dbContext.MoneyReceived.Where(rec => ids.Contains(rec.PaidId)).ToListAsync();
 
             if (dest.Count() == 0)
                 return NotFound();
 
             _dbContext.UpdateList(pays, dest, i => { }, (l, r) => l.PaidId == r.PaidId);
+            dest.Where(rec => rec.CustId != null && !moneyRecived.Any(pay => pay.PaidId == rec.PaidId)).ToList()
+                .ForEach(exPay => {
+                    insertNewMoneyResived(exPay);
+                });
 
             await _dbContext.SaveChangesAsync();
 
@@ -145,11 +168,19 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("unlink/{payId}")]
         public async Task<IActionResult> SaveUnlinkPay( int payId, [FromBody] ExternalPay exPay )
         {
-            var dest = await _dbContext.ExternalPay.SingleOrDefaultAsync(rec => rec.PaidId == payId);
+            var dest = await _dbContext.ExternalPay
+                .SingleOrDefaultAsync(rec => rec.PaidId == payId);
             if (dest == null)
                 return NotFound();
+            var moneyRecived = await _dbContext.MoneyReceived.FirstOrDefaultAsync(rec => rec.PaidId == exPay.PaidId);
+
+            if( dest.CustId == null && exPay.CustId != null && moneyRecived == null )
+            {
+                insertNewMoneyResived(exPay);
+            }
 
             dest.SetFields(exPay);
+
             await _dbContext.SaveChangesAsync();
 
             return Ok(exPay);
@@ -159,7 +190,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("vCustomers")]
-        public async Task<IActionResult> GetVCastomers()
+        public async Task<IActionResult> GetVCustomers()
         {
             // Отримати список Споживачів у яких є договір
             var list = await _dbContext.vCustomer.FromSql(
