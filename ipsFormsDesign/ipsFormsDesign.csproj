@@ -114,6 +114,7 @@
     <Compile Include="Interfaces\IRightholderPresenter.cs" />
     <Compile Include="Interfaces\IRightHolderService.cs" />
     <Compile Include="Interfaces\IRightholderView.cs" />
+    <Compile Include="Interfaces\IUpdateProvider.cs" />
     <Compile Include="Interfaces\ObservableListSource.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\AccountBals.cs" />

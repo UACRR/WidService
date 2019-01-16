@@ -18,6 +18,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
     public partial class AnketaConsumerPhisForm : RadForm
     {
         private readonly LicenseAgreement _license;
+        private readonly Customer _customer;
         public AnketaConsumerPhisForm(Customer customer)
         {
             InitializeComponent();
@@ -78,6 +79,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _license = customer.Client.LicenseAgreement.SingleOrDefault();
             // agreement
             ctrlAgreementPhis.LicenseAgreementDataSource = _license;
+
+            _customer = customer;
         }
 
         private void Save(object sender, bool e)
@@ -121,6 +124,16 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlAddressLetter.TxtAddress.Select();
             ctrlAddressLetter.TxtAddress.Text = ctrlAddressRegister.TxtAddress.Text;
             ctrlAddressLetter.TxtPostIndex.Select();
+        }
+
+        private void btnLoadPdf_Click(object sender, EventArgs e)
+        {
+            var printForm = new ViewAndPrintAgreement(_customer, _license)
+            {
+                WindowState = FormWindowState.Maximized,
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            printForm.ShowDialog();
         }
     }
 }

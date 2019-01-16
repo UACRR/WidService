@@ -1292,8 +1292,8 @@ namespace ipsFormsDesign.Services
             GdocNumber = agreementAddBr?.AgrNumber?.ToString() ?? agr.AgrNumber?.ToString();
 
             registerDate = $"{anketaCompany?.RegistrDate:dd.MM.yyyy}";
-            registerNumber = anketaCompany?.RegistrNumber?.ToString();
-            numberVAT = anketaCompany?.NumberVat.ToString();
+            registerNumber = anketaCompany?.RegistrNumber;
+            numberVAT = anketaCompany?.NumberVat;
             typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
 
             LicenseBigR licenseBigR = licA?.LicenseBigR;

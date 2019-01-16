@@ -26,28 +26,19 @@ namespace ConsumerWorkplace_v_1._0
         private SmallRightPresenter _smallRightPresenter;// main presenter for small right
         private BigRightPresenter _bigRightPresenter;    // main presenter for big right
         private PartnerPresenter _partnerPresenter;      // main presenter for partner
-        private CommunityPresenter _communityPresenter;  // main presenter for communyti
+        private CommunityPresenter _communityPresenter;  // main presenter for community
+        private DBFPresenter _dbfPresenter;              // main presenter for importDBF
         private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
         private readonly CommunityService _communityService = new CommunityService();
         private readonly PartnerService _partnerService = new PartnerService();
 
         public event Func<bool> Save;
-        
-        public ConsumerWorkplace()
-        {
-            IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
-            DBFPresenter _dbfPresenter = new DBFPresenter();
-            IpsGlobal.addInstance(typeof(IDBFPresenter), _dbfPresenter);
-
-            InitializeComponent();
-        }
 
         public ConsumerWorkplace(TypeRights rights)
         {
             IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
-            DBFPresenter _dbfPresenter = new DBFPresenter();
+            _dbfPresenter = new DBFPresenter();
             IpsGlobal.addInstance(typeof(IDBFPresenter), _dbfPresenter);
-
             InitializeComponent();
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
 
@@ -118,11 +109,12 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewBR.Nodes.Add(item);
                     
                     _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight, this );
-                    // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
+                    IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
+                        // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
-                        
-                    // * * * END CASE
-                }
+
+                        // * * * END CASE
+                    }
                     break;
 
                 case TypeRights.SmallRights:
@@ -143,8 +135,9 @@ namespace ConsumerWorkplace_v_1._0
 
                     _consumerMainService = new ConsumerService();
                     _smallRightPresenter = new SmallRightPresenter(_consumerMainService, _partnerService, treeViewSR, mainGridSmallRight);
-                    
-                    treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
+                    IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
+
+                        treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
                     // * * * * END CASE
                 }
@@ -166,6 +159,7 @@ namespace ConsumerWorkplace_v_1._0
                     }
 
                     _smallRightPresenter = new SmallRightPresenter(_consumerMainService, _partnerService, treeViewSR, mainGridSmallRight);
+                    IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
 
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
@@ -231,6 +225,8 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewBR.Nodes.Add(item);
                     
                     _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight, this );
+                    IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
+
                     treeViewBR.SelectedNode = treeViewBR.Nodes[0];
 
                     }

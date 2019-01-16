@@ -369,7 +369,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void PrintAgreement(int licId)
         {
             var lic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
-            ViewAndPrintAgreement print = new ViewAndPrintAgreement(_customer,lic)
+            var print = new ViewAndPrintAgreement(_customer,lic)
             {
                 WindowState = FormWindowState.Maximized,
                 StartPosition = FormStartPosition.CenterScreen
@@ -427,8 +427,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                                 Id = license.AgrId,
                                 LicId = license.LicId,
                                 LicVersion = agrParam.LicVersion,
-                                License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license?.LicCode)?.Name,
-                                Series = string.Empty,
+                                License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode)?.Name,
+                                Series = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode)?.Series,
                                 MinAmount = agrParam.MinAmount ?? default(decimal),
                                 MinRate = agrParam.RateAmount ?? default(decimal),
                                 AgrNumber = agrParam.LicNum ?? string.Empty,
