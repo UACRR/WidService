@@ -58,6 +58,24 @@ namespace sysAdminwp
             }
         }
 
+        //define Url value for radTreeView1
+        public string UrlForComplexDictionaries
+        {
+            get
+            {
+                //select current position into radTreeView1
+                var nodeComplexDictionary = radTreeView1.SelectedNode;
+                //if position is null, then return empty string
+                if (nodeComplexDictionary == null) return string.Empty;
+                //get data for current selected object
+                var currentDataComplexDictionary = _complexDictionary[nodeComplexDictionary.Index];
+                //if data isn't exist, then return empty string
+                if (currentDataComplexDictionary == null) return string.Empty;
+                //return Url for current object
+                return currentDataComplexDictionary.Url;
+            }
+        }
+
         /// <summary>
         /// Найменування довідника
         /// </summary>
@@ -70,6 +88,22 @@ namespace sysAdminwp
                 var categoryItem = _dictionaryCategories[node.Parent.Index].DicCategoryItems[node.Index];
                 if (categoryItem == null) return string.Empty;
                 return categoryItem.DicName;
+            }
+        }
+        //get current name for complex dictionary
+        public string ComplexDictionaryName
+        {
+            get
+            {
+                //current select position into radTreeView1
+                var node = radTreeView1.SelectedNode;
+                //if current select is null, then return Empty string
+                if (node == null) return string.Empty;
+                //get data about current select position
+                var currentDataDictionary = _complexDictionary[node.Index];
+                //if not have data, then return empty string
+                if (currentDataDictionary == null) return string.Empty;
+                return currentDataDictionary.DicName;
             }
         }
 
@@ -227,6 +261,85 @@ namespace sysAdminwp
                 }
             }
             
+            return view;
+        }
+        // defined method for get complex dictionary data
+        private List<ViewTable> GetComplexDictionariesData()
+        {
+            var view = new List<ViewTable>();
+
+            // complex dictionaries
+            if (_complexDictionaryList.Contains(ComplexDictionaryName.ToLower()))
+            {
+                switch (ComplexDictionaryName.ToLower())
+                {
+                    case "copyrightkind":
+                        _copyrightKindList = _connector.GetList<CopyrightKind>(UrlForComplexDictionaries);
+                        foreach (var item in _copyrightKindList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            });
+                        }
+                        break;
+                    case "country":
+                        _countryList = _connector.GetList<Country>(UrlForComplexDictionaries);
+                        foreach (var item in _countryList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CountryCode,
+                                NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
+                                NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
+                                NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
+                            });
+                        }
+                        break;
+                    case "creativeroletype":
+                        _creativeRoleTypeList = _connector.GetList<CreativeRoleType>(UrlForComplexDictionaries);
+                        foreach (var item in _creativeRoleTypeList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            });
+                        }
+                        break;
+                    case "genretype":
+                        _genreTypeList = _connector.GetList<GenreType>(UrlForComplexDictionaries);
+                        foreach (var item in _genreTypeList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            });
+                        }
+                        break;
+                    case "klr030":
+                        _klR030List = _connector.GetList<KlR030>(UrlForComplexDictionaries);
+                        foreach (var item in _klR030List)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.R030,
+                                NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
+                                NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
+                                NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                            });
+                        }
+                        break;
+                }
+            }
             return view;
         }
 
@@ -621,6 +734,41 @@ namespace sysAdminwp
             
             btnAdd.Enabled = true;
         }
+        //changes when select complex dictionary
+        private void changesWhenSelectComplexDictionary(object sender, RadTreeViewEventArgs e)
+        {
+            if (e.Node?.Index == null)
+            {
+                DefaultPanel();
+                return;
+            }
+            var categoryItem = _complexDictionary[e.Node.Index];
+            if (categoryItem == null)
+            {
+                DefaultPanel();
+                return;
+            }
+            //load data to the grid about current complex dictionaries
+            var returnedList = GetComplexDictionariesData();
+            gvDictionariesList.DataSource = returnedList;
+
+
+            radPanelChange.Enabled = returnedList != null;
+            txtSearchData.Enabled = returnedList != null;
+            btnRemove.Enabled = returnedList != null;
+
+            if (returnedList != null)
+            {
+                LoadOverviewCfg();
+            }
+            else
+            {
+                gvDictionariesList.DataSource = default(DataGrid);
+                UpdateEditPanel();
+            }
+
+            btnAdd.Enabled = true;
+        }
 
         private void DefaultPanel()
         {
@@ -682,22 +830,10 @@ namespace sysAdminwp
                                 MessageBoxIcon.Information);
             }
         }
-        //create method for select several complex rights
-        private List<DictCategory> SelectOnlyComplexDictionariesForTabControl(List<DictCategory> allDictionaries)
+
+        private void radBtnSave_Click(object sender, MouseEventArgs e)
         {
-            //create list for complex rights
-            var listForComplexDictionaries = new List<DictCategory>();
-            //one argument list
-            //if not undefined
-            if (allDictionaries != null)
-            {
-                listForComplexDictionaries = allDictionaries.Where(
-                item => item.Name == "copyrightkind" ||
-                item.Name == "country" ||
-                item.Name == "creativeroletype" ||
-                item.Name == "klr030").ToList();
-            }
-            return listForComplexDictionaries;
+
         }
     }
 

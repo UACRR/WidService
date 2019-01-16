@@ -9,7 +9,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
-
+using IpsViewComponentLibrary.Extensions;
 namespace sysAdminwp
 {
     public partial class ComplexDictionaryParamForm : Telerik.WinControls.UI.RadForm
