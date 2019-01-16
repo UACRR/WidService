@@ -47,7 +47,7 @@
             // 
             this.ddlCategory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "CategoryCode", true));
             this.ddlCategory.DataSource = this.bsCategory;
-            this.ddlCategory.Location = new System.Drawing.Point(165, 47);
+            this.ddlCategory.Location = new System.Drawing.Point(165, 4);
             this.ddlCategory.Name = "ddlCategory";
             this.ddlCategory.Size = new System.Drawing.Size(190, 20);
             this.ddlCategory.TabIndex = 0;
@@ -65,7 +65,7 @@
             this.ddlCopyright.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "Crtype", true));
             this.ddlCopyright.DataSource = this.bsCopyrightType;
             this.ddlCopyright.DisplayMember = "Name";
-            this.ddlCopyright.Location = new System.Drawing.Point(165, 73);
+            this.ddlCopyright.Location = new System.Drawing.Point(165, 30);
             this.ddlCopyright.Name = "ddlCopyright";
             this.ddlCopyright.Size = new System.Drawing.Size(190, 20);
             this.ddlCopyright.TabIndex = 2;
@@ -78,7 +78,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(94, 48);
+            this.label1.Location = new System.Drawing.Point(94, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 3;
@@ -87,7 +87,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(72, 74);
+            this.label2.Location = new System.Drawing.Point(72, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 13);
             this.label2.TabIndex = 4;
@@ -102,7 +102,7 @@
             this.Controls.Add(this.ddlCopyright);
             this.Controls.Add(this.ddlCategory);
             this.Name = "CreativeRoleTypeDictionaryControl";
-            this.Size = new System.Drawing.Size(551, 264);
+            this.Size = new System.Drawing.Size(551, 52);
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRoleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCategory)).EndInit();

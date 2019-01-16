@@ -10,6 +10,8 @@ using System.Text;
 using System.Windows.Forms;
 using Telerik.WinControls;
 using IpsViewComponentLibrary.Extensions;
+using ipsFormsDesign.Dictionary;
+
 namespace sysAdminwp
 {
     public partial class ComplexDictionaryParamForm : Telerik.WinControls.UI.RadForm
@@ -21,7 +23,7 @@ namespace sysAdminwp
         /// </summary>
         /// <param name="copyright"></param>
         /// <param name="listCopyRight"></param>
-        public ComplexDictionaryParamForm(CopyrightKind copyright, List<CrkindGroup> listCopyRight)
+        public ComplexDictionaryParamForm(CopyrightKind copyright, List<DictBaseTypeI> listCopyRight)
         {
             InitializeComponent();
             var countryDictionaryControl = new CopyRightKindDictionaryControl(copyright, listCopyRight)
@@ -34,7 +36,7 @@ namespace sysAdminwp
         /// </summary>
         /// <param name="country"></param>
         /// <param name="continent"></param>
-        public ComplexDictionaryParamForm(Country country, List<Continent> continent)
+        public ComplexDictionaryParamForm(Country country, List<DictBaseTypeI> continent)
         {
             InitializeComponent();
             var countryDictionaryControl = new CountryDictionaryControl(country, continent)
@@ -46,7 +48,7 @@ namespace sysAdminwp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public ComplexDictionaryParamForm(CreativeRoleType roleType, List<Category> listRoleType)
+        public ComplexDictionaryParamForm(CreativeRoleType roleType, List<DictBaseTypeI> listRoleType)
         {
             InitializeComponent();
             CreativeRoleTypeDictionaryControl creativeRolTyp = new CreativeRoleTypeDictionaryControl(roleType, listRoleType, new List<CopyrightType>())
@@ -58,7 +60,7 @@ namespace sysAdminwp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public ComplexDictionaryParamForm(GenreType genreType, List<Category> listGenreType)
+        public ComplexDictionaryParamForm(GenreType genreType, List<DictBaseTypeI> listGenreType)
         {
             InitializeComponent();
             GenreTypeDictionaryControl countryDictionaryControl = new GenreTypeDictionaryControl(genreType: genreType, listGenreType: listGenreType)

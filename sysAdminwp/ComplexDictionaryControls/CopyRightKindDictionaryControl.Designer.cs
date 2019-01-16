@@ -53,7 +53,7 @@
             this.ddlKindShototam.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlKindShototam.Location = new System.Drawing.Point(126, 3);
             this.ddlKindShototam.Name = "ddlKindShototam";
-            this.ddlKindShototam.Size = new System.Drawing.Size(273, 20);
+            this.ddlKindShototam.Size = new System.Drawing.Size(273, 21);
             this.ddlKindShototam.TabIndex = 0;
             this.ddlKindShototam.ThemeName = "Office2013Light";
             this.ddlKindShototam.ValueMember = "CodeI";
@@ -77,7 +77,7 @@
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.ddlKindShototam);
             this.Name = "CopyRightKindDictionaryControl";
-            this.Size = new System.Drawing.Size(402, 146);
+            this.Size = new System.Drawing.Size(402, 35);
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlKindShototam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCrkindGroup)).EndInit();

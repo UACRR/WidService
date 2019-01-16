@@ -43,6 +43,7 @@ namespace sysAdminwp
         private List<KlR030> _klR030List;
         private List<DictCategory> _dictionaryCategories;
         private List<DicCategoryItems> _complexDictionary;
+        private static string StringTypeForInitializeControl = null;
 
         /// <summary>
         /// URL словника
@@ -121,7 +122,10 @@ namespace sysAdminwp
             txtSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             gvDictionariesList.CustomFiltering += RadGridView1_CustomFiltering;
             gvDictionariesList.CurrentRowChanged += RadGridView1_CurrentRowChanged;
-            
+
+            txtSearchComplex.SetUsageGrid(gvComplexDictionariesList);
+
+
             radPanelChange.Enabled = false;
             txtSearchData.Enabled = false;
             btnAdd.Enabled = false;
@@ -212,6 +216,7 @@ namespace sysAdminwp
                                 NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                             });
                         }
+                    StringTypeForInitializeControl = "copyrightkind";
                         break;
                     case "country":
                         _countryList = _connector.GetList<Country>(UrlForComplexDictionaries);
@@ -225,6 +230,7 @@ namespace sysAdminwp
                                 NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
                             });
                         }
+                        StringTypeForInitializeControl = "country";
                         break;
                     case "creativeroletype":
                         _creativeRoleTypeList = _connector.GetList<CreativeRoleType>(UrlForComplexDictionaries);
@@ -238,6 +244,7 @@ namespace sysAdminwp
                                 NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                             });
                         }
+                    StringTypeForInitializeControl = "creativeroletype";
                         break;
                     case "genretype":
                         _genreTypeList = _connector.GetList<GenreType>(UrlForComplexDictionaries);
@@ -251,6 +258,7 @@ namespace sysAdminwp
                                 NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                             });
                         }
+                    StringTypeForInitializeControl = "genretype";
                         break;
                     case "klr030":
                         _klR030List = _connector.GetList<KlR030>(UrlForComplexDictionaries);
@@ -264,6 +272,7 @@ namespace sysAdminwp
                                 NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
                             });
                         }
+                    StringTypeForInitializeControl = "klr030";
                         break;
                 }
             return view;
@@ -630,7 +639,7 @@ namespace sysAdminwp
                     case "copyrightkind":
                         var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(row.Code));
                         // CrkindGroup
-                        var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.crkindGroup;
+                        var customDict = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.crkindGroup;
                         //initialize object form with parameters
                         ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyrightKind, customDict);
                         MessageBox.Show($"Before: {copyrightKind.CrGroupCode}");
@@ -642,7 +651,7 @@ namespace sysAdminwp
                         break;
                     case "country":
                         var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(row.Code));
-                        var customDictCountry = (List<Continent>)IpsGlobal.AnketaDictionaties.country;
+                        var customDictCountry = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.country;
                         //initialize object form with parameters
                         ComplexDictionaryParamForm formComParam = new ComplexDictionaryParamForm(country: country, continent: customDictCountry);
                         //open form with current data complexive dictionaries
@@ -650,7 +659,8 @@ namespace sysAdminwp
                         break;
                     case "creativeroletype":
                         var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(row.Code));
-                        var customDictCreateRoleType = (List<Category>)IpsGlobal.AnketaDictionaties.creativeRoleType;
+                        var customDictCreateRoleType = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.creativeRoleType;
+
                         //initialize object form with parameters
                         ComplexDictionaryParamForm formCoPar = new ComplexDictionaryParamForm(roleType: creativeroletype, listRoleType: customDictCreateRoleType);
                         //open from with current data complexive dictionaries
@@ -658,7 +668,7 @@ namespace sysAdminwp
                         break;
                     case "genretype":
                         var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(row.Code));
-                        var customDictGenreType = (List<Category>)IpsGlobal.AnketaDictionaties.genreType;
+                        var customDictGenreType = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.genreType;
                         //initialize object form with parameters
                         ComplexDictionaryParamForm formCP = new ComplexDictionaryParamForm(genreType: genretype, listGenreType: customDictGenreType);
                         //open from with current data complexive dictionaries
@@ -772,8 +782,8 @@ namespace sysAdminwp
             }
             else
             {
-                gvDictionariesList.DataSource = default(DataGrid);
-                UpdateEditPanel();
+                gvComplexDictionariesList.DataSource = default(DataGrid);
+                UpdateComplexDictionariesEditPanel();
             }
 
             btnAdd.Enabled = true;
@@ -965,6 +975,83 @@ namespace sysAdminwp
         private void gvComplexDictionariesList_SelectionChanged(object sender, EventArgs e)
         {
             UpdateComplexDictionariesEditPanel();
+            
+                var row = gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
+            switch (StringTypeForInitializeControl)
+            {
+                case "copyrightkind":
+                    //get data for copyRightKind object
+                    var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(row.Code));
+                    //get data list CrkindGroup
+                    //var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.crkindGroup;
+                    var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+
+                    //initialize control CopyRightKindDictionaryControl
+                    CopyRightKindDictionaryControl copyRightKindControl = new CopyRightKindDictionaryControl(copyrightKind, baseDictsCopyRight)
+                    { Dock = DockStyle.Fill };
+                    radPanel1.Controls.Clear();
+                    radPanel1.Controls.Add(copyRightKindControl);
+                    break;
+                case "country":
+                    //get data for country object
+                    var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(row.Code));
+                    //get data list Continent
+                    var baseDictsCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
+                    //initialize control CountryDictionaryControl
+                    CountryDictionaryControl countryDictionaryControl = new CountryDictionaryControl(country, baseDictsCountry)
+                    { Dock = DockStyle.Fill };
+                    radPanel1.Controls.Clear();
+                    radPanel1.Controls.Add(countryDictionaryControl);
+                    break;
+                case "creativeroletype":
+                    //get data for creativeRoleType object
+                    var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(row.Code));
+                    //get data list Category
+                    //var customDictCreateRoleType = (List<Category>)IpsGlobal.AnketaDictionaties.creativeRoleType;
+                    var baseDicts = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+                    //initialize control CreativeRoleTypeDictionary
+                    CreativeRoleTypeDictionaryControl creativeRoleDictionaryControl = new CreativeRoleTypeDictionaryControl(creativeroletype, baseDicts, new List<CopyrightType>())
+                    { Dock = DockStyle.Fill };
+                    radPanel1.Controls.Clear();
+                    radPanel1.Controls.Add(creativeRoleDictionaryControl);
+                    break;
+                case "genretype":
+                    //get data for GenreType object
+                    var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(row.Code));
+                    //var customcateg = _connector.GetList<Category>("dictionary/base/Category");
+                    var baseDictsType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+
+
+                    //get data list Category
+                    //var customDictGenreType = (List<Category>)IpsGlobal.AnketaDictionaties.;
+                    //initalize control GenreTypeDictionaryControl
+                    GenreTypeDictionaryControl genreTypeDictionaryControl = new GenreTypeDictionaryControl(genretype, baseDictsType)
+                    { Dock = DockStyle.Fill };
+                    radPanel1.Controls.Clear();
+                    radPanel1.Controls.Add(genreTypeDictionaryControl);
+                    break;
+                case "klr030":
+                    //get data for KlR030 object
+                    var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(row.Code));
+                    //get data list 
+                    var customDictKlr030 = (List<Country>)IpsGlobal.AnketaDictionaties.klR030;
+                    //initialize contorl Klr030DictionaryControl
+                    Klr030DictionaryControl klrDictionaryControl = new Klr030DictionaryControl(klr030, customDictKlr030)
+                    { Dock = DockStyle.Fill };
+                    radPanel1.Controls.Clear();
+                    radPanel1.Controls.Add(klrDictionaryControl);
+                    break;
+            }
+                        
+                   
+                        
+                    
+                        
+                    
+                        
+                    
+                        
+            
         }
     }
 

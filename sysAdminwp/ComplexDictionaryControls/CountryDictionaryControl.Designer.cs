@@ -74,7 +74,7 @@
             this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "CountryName", true));
             this.radTextBox1.Location = new System.Drawing.Point(4, 30);
             this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(191, 20);
+            this.radTextBox1.Size = new System.Drawing.Size(191, 21);
             this.radTextBox1.TabIndex = 2;
             this.radTextBox1.ThemeName = "Office2013Light";
             // 
@@ -86,7 +86,7 @@
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.ddlContinent);
             this.Name = "CountryDictionaryControl";
-            this.Size = new System.Drawing.Size(490, 266);
+            this.Size = new System.Drawing.Size(490, 64);
             ((System.ComponentModel.ISupportInitialize)(this.ddlContinent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsContinent)).EndInit();

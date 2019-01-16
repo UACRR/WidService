@@ -73,7 +73,7 @@ namespace sysAdminwp
             this.radLblSearch = new System.Windows.Forms.Label();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
-            this.searchTextBoxControl1 = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
@@ -257,7 +257,7 @@ namespace sysAdminwp
             this.radPageViewPage2.Controls.Add(this.radPanel2);
             this.radPageViewPage2.Controls.Add(this.radPanel1);
             this.radPageViewPage2.Controls.Add(this.gvComplexDictionariesList);
-            this.radPageViewPage2.Controls.Add(this.searchTextBoxControl1);
+            this.radPageViewPage2.Controls.Add(this.txtSearchComplex);
             this.radPageViewPage2.Controls.Add(this.radTreeView1);
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(119F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
@@ -467,14 +467,14 @@ namespace sysAdminwp
             this.radTreeView1.ThemeName = "Office2013Light";
             this.radTreeView1.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.changesWhenSelectComplexDictionary);
             // 
-            // searchTextBoxControl1
+            // txtSearchComplex
             // 
-            this.searchTextBoxControl1.Location = new System.Drawing.Point(238, 3);
-            this.searchTextBoxControl1.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.searchTextBoxControl1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.searchTextBoxControl1.Name = "searchTextBoxControl1";
-            this.searchTextBoxControl1.Size = new System.Drawing.Size(548, 20);
-            this.searchTextBoxControl1.TabIndex = 9;
+            this.txtSearchComplex.Location = new System.Drawing.Point(238, 3);
+            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
+            this.txtSearchComplex.Name = "txtSearchComplex";
+            this.txtSearchComplex.Size = new System.Drawing.Size(548, 20);
+            this.txtSearchComplex.TabIndex = 9;
             // 
             // gvComplexDictionariesList
             // 
@@ -779,7 +779,7 @@ namespace sysAdminwp
         private RadTreeView radTreeView1;
         private RadPanel radPanel1;
         private RadGridView gvComplexDictionariesList;
-        private IpsViewComponentLibrary.Common.SearchTextBoxControl searchTextBoxControl1;
+        private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchComplex;
         private RadPanel radPanel2;
         private RadTextBox radTextBox1;
         private RadTextBox radTextBox2;
