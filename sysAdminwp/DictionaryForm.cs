@@ -43,6 +43,7 @@ namespace sysAdminwp
         private List<KlR030> _klR030List;
         private List<DictCategory> _dictionaryCategories;
         private List<DicCategoryItems> _complexDictionary;
+        //variable for detect started complex dictionary controls for next set clear
         private static string StringTypeForInitializeControl = null;
 
         /// <summary>
@@ -59,7 +60,20 @@ namespace sysAdminwp
                 return categoryItem.Url;
             }
         }
-
+        /// <summary>
+        /// Найменування довідника
+        /// </summary>
+        public string DictionaryName
+        {
+            get
+            {
+                var node = treeViewList.SelectedNode;
+                if (node?.Parent == null) return string.Empty;
+                var categoryItem = _dictionaryCategories[node.Parent.Index].DicCategoryItems[node.Index];
+                if (categoryItem == null) return string.Empty;
+                return categoryItem.DicName;
+            }
+        }
         //define Url value for radTreeView1
         public string UrlForComplexDictionaries
         {
@@ -75,21 +89,6 @@ namespace sysAdminwp
                 if (currentDataComplexDictionary == null) return string.Empty;
                 //return Url for current object
                 return currentDataComplexDictionary.Url;
-            }
-        }
-
-        /// <summary>
-        /// Найменування довідника
-        /// </summary>
-        public string DictionaryName
-        {
-            get
-            {
-                var node = treeViewList.SelectedNode;
-                if (node?.Parent == null) return string.Empty;
-                var categoryItem = _dictionaryCategories[node.Parent.Index].DicCategoryItems[node.Index];
-                if (categoryItem == null) return string.Empty;
-                return categoryItem.DicName;
             }
         }
         //get current name for complex dictionary
