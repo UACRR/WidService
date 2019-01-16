@@ -55,7 +55,7 @@ namespace ipsFormsDesign.Interfaces
 
         public decimal Arrears { get => _arrears; }
         public string LicenseName { get => _licType.Name; }
-        public string Series { get => string.Empty; }
+        public string Series { get => _licType.Series; }
         public LicenseAgreement Lic { get => _license; }
     }
     internal class AgrementDataSR : baseAgreement, IAgreementData

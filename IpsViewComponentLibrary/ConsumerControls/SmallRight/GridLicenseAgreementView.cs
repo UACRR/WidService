@@ -8,6 +8,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
     public class GridLicenseAgreementView
     {
         public int Id { get; set; }
+        public string LicenseCode { get; set; }
         public int? LicVersion { get; set; }
         public string License { get; set; }
         public string Series { get; set; }

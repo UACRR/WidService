@@ -50,6 +50,8 @@
             this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.txtSeries = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).BeginInit();
@@ -64,6 +66,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeries)).BeginInit();
             this.SuspendLayout();
             // 
             // radLabel1
@@ -245,7 +249,7 @@
             this.ddlLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlLicType.Location = new System.Drawing.Point(96, 88);
             this.ddlLicType.Name = "ddlLicType";
-            this.ddlLicType.Size = new System.Drawing.Size(588, 21);
+            this.ddlLicType.Size = new System.Drawing.Size(468, 21);
             this.ddlLicType.TabIndex = 30;
             this.ddlLicType.ThemeName = "Office2013Light";
             this.ddlLicType.ValueMember = "CodeI";
@@ -269,10 +273,33 @@
             this.radLabel2.TabIndex = 31;
             this.radLabel2.Text = "Тип ліцензії";
             // 
+            // radLabel4
+            // 
+            this.radLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel4.AutoSize = false;
+            this.radLabel4.Location = new System.Drawing.Point(570, 90);
+            this.radLabel4.Name = "radLabel4";
+            this.radLabel4.Size = new System.Drawing.Size(37, 18);
+            this.radLabel4.TabIndex = 32;
+            this.radLabel4.Text = "Серія";
+            // 
+            // txtSeries
+            // 
+            this.txtSeries.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSeries.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceDictionary, "Series", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtSeries.Location = new System.Drawing.Point(614, 88);
+            this.txtSeries.Name = "txtSeries";
+            this.txtSeries.ReadOnly = true;
+            this.txtSeries.Size = new System.Drawing.Size(73, 21);
+            this.txtSeries.TabIndex = 33;
+            this.txtSeries.ThemeName = "Office2013Light";
+            // 
             // MiddleControlAgreementProlPlacesType
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txtSeries);
+            this.Controls.Add(this.radLabel4);
             this.Controls.Add(this.ddlLicType);
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.gvPlaces);
@@ -299,6 +326,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSeries)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -323,5 +352,7 @@
         private System.Windows.Forms.BindingSource bindingSourceDictionary;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadCheckBox checkAttach;
+        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadTextBox txtSeries;
     }
 }

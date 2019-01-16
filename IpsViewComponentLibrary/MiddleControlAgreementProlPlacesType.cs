@@ -92,7 +92,11 @@ namespace IpsViewComponentLibrary
         public bool LicenseEnabled
         {
             get => ddlLicType.Enabled;
-            set => ddlLicType.Enabled = value;
+            set
+            {
+                ddlLicType.Enabled = value;
+                txtSeries.Enabled = value;
+            }
         }
 
         /// <summary>

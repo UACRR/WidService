@@ -46,6 +46,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                         {
                             Id = license.AgrId,
                             LicId = license.LicId,
+                            LicenseCode = string.Concat(licenseAgrParam.LicId, "/", licenseAgrParam.LicVersion),
                             LicVersion = licenseAgrParam.LicVersion,
                             License = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode)?.Name,
                             Series = _dictionaties.agrLicenseType.SingleOrDefault(rec => rec?.CodeI == license.LicCode)?.Series,
