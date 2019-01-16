@@ -19,6 +19,7 @@ using sysAdminwp.Properties;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 
 namespace sysAdminwp
 {
@@ -39,7 +40,8 @@ namespace sysAdminwp
         private List<CreativeRoleType> _creativeRoleTypeList;
         private List<GenreType> _genreTypeList;
         private List<KlR030> _klR030List;
-        private List<DictCategory> _dictionaryCategories = null;
+        private List<DictCategory> _dictionaryCategories;
+        private List<DicCategoryItems> _complexDictionary;
 
         /// <summary>
         /// URL словника
@@ -99,17 +101,32 @@ namespace sysAdminwp
         private void SetTreeViewDataSource()
         {
             _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");//дерево
+            _complexDictionary = new List<DicCategoryItems>();
             foreach (var category in _dictionaryCategories)
             {
+                var items = category.DicCategoryItems.Where(rec => rec.DicLevel == 2).ToList();
+                if(items.Any())
+                {
+                    _complexDictionary.AddRange(items);
+                    foreach (var item in items)
+                        category.DicCategoryItems.Remove(item);
+                }
+
                 var categoryItems = new List<DicCategoryItems>();
                 categoryItems.AddRange(category.DicCategoryItems.OrderBy(i => i.Name).ToList());
                 category.DicCategoryItems.Clear();
                 foreach (var i in categoryItems)
                     category.DicCategoryItems.Add(i);
             }
+
+            _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
             treeViewList.DataSource = _dictionaryCategories;
             treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             treeViewList.DisplayMember = "Name\\Name";
+
+            radTreeView1.DataSource = _complexDictionary;
+            radTreeView1.DisplayMember = "Name";
+            
         }
 
         /// <summary>
@@ -664,6 +681,23 @@ namespace sysAdminwp
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             }
+        }
+        //create method for select several complex rights
+        private List<DictCategory> SelectOnlyComplexDictionariesForTabControl(List<DictCategory> allDictionaries)
+        {
+            //create list for complex rights
+            var listForComplexDictionaries = new List<DictCategory>();
+            //one argument list
+            //if not undefined
+            if (allDictionaries != null)
+            {
+                listForComplexDictionaries = allDictionaries.Where(
+                item => item.Name == "copyrightkind" ||
+                item.Name == "country" ||
+                item.Name == "creativeroletype" ||
+                item.Name == "klr030").ToList();
+            }
+            return listForComplexDictionaries;
         }
     }
 
