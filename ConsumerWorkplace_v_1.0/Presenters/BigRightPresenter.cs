@@ -17,7 +17,7 @@ using Telerik.WinControls.UI;
 
 namespace ConsumerWorkplace_v_1._0.Presenters
 {
-    class BigRightPresenter
+    class BigRightPresenter: IUpdateProviderBigRight
     {
         //кабінет великих прав
 
@@ -418,5 +418,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
         }
 
+        public void UpdateDataGrid()
+        {
+            _mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
+        }
     }
 }

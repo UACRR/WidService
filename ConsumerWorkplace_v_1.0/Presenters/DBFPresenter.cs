@@ -7,12 +7,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IpsViewComponentLibrary;
+using Telerik.WinControls.UI;
 
 namespace ConsumerWorkplace_v_1._0.Presenters
 {
     public class DBFPresenter : IDBFPresenter
     {
-        private DbfService _service;
+        private readonly DbfService _service;
 
         public DBFPresenter()
         {

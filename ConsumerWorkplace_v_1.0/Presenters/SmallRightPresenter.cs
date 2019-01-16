@@ -17,7 +17,7 @@ using Telerik.WinControls.UI;
 
 namespace ConsumerWorkplace_v_1._0.Presenters
 {
-    class SmallRightPresenter
+    class SmallRightPresenter: IUpdateProviderSmallRight
     {
         private readonly CabinetSmallRightForm _cabinetSmallRightForm = new CabinetSmallRightForm
         {
@@ -253,6 +253,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         {
             var relust = _service.SetLicAgreementStatus(agr, version, status, changeVer);
             return relust;
+        }
+
+        public void UpdateDataGrid()
+        {
+            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
         }
     }
 }

@@ -24,22 +24,22 @@ namespace IpsViewComponentLibrary.ImportDBF
         private InputFile _inputFile;
         private List<vCustomer> _clientsList;
         private readonly DbfEngine _dbfEngine = new DbfEngine();
-        private readonly IDBFPresenter _presenter;
+        private IDBFPresenter _presenter;
+        private IUpdateProviderSmallRight _updateProviderSmallRight;
+        private IUpdateProviderBigRight _updateProviderBigRight;
+
 
         public ImportDBFControl()
         {
             InitializeComponent();
             Leave += Control_Leave;
             lblFileName.Text = DefaultFileName;
-            _presenter = IpsGlobal.Instances[typeof(IDBFPresenter)] as IDBFPresenter;
-
         }
 
         // оновити дані
         private void Control_Paint(object sender, PaintEventArgs e)
         {
             if (_presenter == null) return;
-
             bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
             if (_clientsList == null)
                 _clientsList = _presenter.GetConsumers();
@@ -89,6 +89,8 @@ namespace IpsViewComponentLibrary.ImportDBF
             {
                 var result = _presenter.SaveLinkedPay(row);
                 bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
+                _updateProviderSmallRight?.UpdateDataGrid();
+                _updateProviderBigRight?.UpdateDataGrid();
             }
         }
 
@@ -128,6 +130,13 @@ namespace IpsViewComponentLibrary.ImportDBF
         {
             lblFileName.Text = DefaultFileName;
             // clear stream or selected file
+        }
+
+        private void ImportDBFControl_Load(object sender, EventArgs e)
+        {
+            _presenter = IpsGlobal.Instances[typeof(IDBFPresenter)] as IDBFPresenter;
+            _updateProviderSmallRight = IpsGlobal.Instances[typeof(IUpdateProviderSmallRight)] as IUpdateProviderSmallRight;
+            _updateProviderBigRight = IpsGlobal.Instances[typeof(IUpdateProviderBigRight)] as IUpdateProviderBigRight;
         }
     }
 }
