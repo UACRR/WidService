@@ -74,7 +74,7 @@ namespace sysAdminwp
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
             this.searchTextBoxControl1 = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
@@ -114,8 +114,8 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
@@ -256,7 +256,7 @@ namespace sysAdminwp
             this.radPageViewPage2.Controls.Add(this.radButton4);
             this.radPageViewPage2.Controls.Add(this.radPanel2);
             this.radPageViewPage2.Controls.Add(this.radPanel1);
-            this.radPageViewPage2.Controls.Add(this.radGridView1);
+            this.radPageViewPage2.Controls.Add(this.gvComplexDictionariesList);
             this.radPageViewPage2.Controls.Add(this.searchTextBoxControl1);
             this.radPageViewPage2.Controls.Add(this.radTreeView1);
             this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(119F, 27F);
@@ -465,6 +465,7 @@ namespace sysAdminwp
             this.radTreeView1.SpacingBetweenNodes = -1;
             this.radTreeView1.TabIndex = 4;
             this.radTreeView1.ThemeName = "Office2013Light";
+            this.radTreeView1.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.changesWhenSelectComplexDictionary);
             // 
             // searchTextBoxControl1
             // 
@@ -475,24 +476,24 @@ namespace sysAdminwp
             this.searchTextBoxControl1.Size = new System.Drawing.Size(548, 20);
             this.searchTextBoxControl1.TabIndex = 9;
             // 
-            // radGridView1
+            // gvComplexDictionariesList
             // 
-            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gvComplexDictionariesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.EnableCustomFiltering = true;
-            this.radGridView1.Location = new System.Drawing.Point(238, 27);
-            this.radGridView1.Margin = new System.Windows.Forms.Padding(1);
+            this.gvComplexDictionariesList.EnableCustomFiltering = true;
+            this.gvComplexDictionariesList.Location = new System.Drawing.Point(238, 27);
+            this.gvComplexDictionariesList.Margin = new System.Windows.Forms.Padding(1);
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.AllowAddNewRow = false;
-            this.radGridView1.MasterTemplate.AllowColumnReorder = false;
-            this.radGridView1.MasterTemplate.AllowDeleteRow = false;
-            this.radGridView1.MasterTemplate.AllowDragToGroup = false;
-            this.radGridView1.MasterTemplate.AllowEditRow = false;
-            this.radGridView1.MasterTemplate.AutoGenerateColumns = false;
-            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gvComplexDictionariesList.MasterTemplate.AllowAddNewRow = false;
+            this.gvComplexDictionariesList.MasterTemplate.AllowColumnReorder = false;
+            this.gvComplexDictionariesList.MasterTemplate.AllowDeleteRow = false;
+            this.gvComplexDictionariesList.MasterTemplate.AllowDragToGroup = false;
+            this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
+            this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
+            this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn5.FieldName = "Code";
             gridViewTextBoxColumn5.HeaderText = "Код";
             gridViewTextBoxColumn5.Name = "Code";
@@ -509,21 +510,22 @@ namespace sysAdminwp
             gridViewTextBoxColumn8.HeaderText = "Name";
             gridViewTextBoxColumn8.Name = "NameEn";
             gridViewTextBoxColumn8.Width = 240;
-            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8});
-            this.radGridView1.MasterTemplate.EnableCustomFiltering = true;
-            this.radGridView1.MasterTemplate.EnableFiltering = true;
-            this.radGridView1.MasterTemplate.ShowFilteringRow = false;
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.ReadOnly = true;
-            this.radGridView1.ShowGroupPanel = false;
-            this.radGridView1.Size = new System.Drawing.Size(730, 191);
-            this.radGridView1.TabIndex = 10;
-            this.radGridView1.ThemeName = "Office2013Light";
+            this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
+            this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
+            this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
+            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
+            this.gvComplexDictionariesList.ReadOnly = true;
+            this.gvComplexDictionariesList.ShowGroupPanel = false;
+            this.gvComplexDictionariesList.Size = new System.Drawing.Size(730, 191);
+            this.gvComplexDictionariesList.TabIndex = 10;
+            this.gvComplexDictionariesList.ThemeName = "Office2013Light";
+            this.gvComplexDictionariesList.SelectionChanged += new System.EventHandler(this.gvComplexDictionariesList_SelectionChanged);
             // 
             // radPanel1
             // 
@@ -722,8 +724,8 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
@@ -776,7 +778,7 @@ namespace sysAdminwp
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private RadTreeView radTreeView1;
         private RadPanel radPanel1;
-        private RadGridView radGridView1;
+        private RadGridView gvComplexDictionariesList;
         private IpsViewComponentLibrary.Common.SearchTextBoxControl searchTextBoxControl1;
         private RadPanel radPanel2;
         private RadTextBox radTextBox1;
