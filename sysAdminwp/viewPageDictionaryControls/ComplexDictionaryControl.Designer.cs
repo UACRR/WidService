@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn45 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn46 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn47 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn48 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition12 = new Telerik.WinControls.UI.TableViewDefinition();
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.controlsParamPanel = new Telerik.WinControls.UI.RadPanel();
             this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
@@ -89,7 +89,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.controlsParamPanel.Location = new System.Drawing.Point(253, 259);
             this.controlsParamPanel.Name = "controlsParamPanel";
-            this.controlsParamPanel.Size = new System.Drawing.Size(1176, 110);
+            this.controlsParamPanel.Size = new System.Drawing.Size(1176, 70);
             this.controlsParamPanel.TabIndex = 17;
             // 
             // txtSearchComplex
@@ -98,7 +98,7 @@
             this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
             this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
             this.txtSearchComplex.Name = "txtSearchComplex";
-            this.txtSearchComplex.Size = new System.Drawing.Size(1129, 20);
+            this.txtSearchComplex.Size = new System.Drawing.Size(580, 20);
             this.txtSearchComplex.TabIndex = 10;
             // 
             // gvComplexDictionariesList
@@ -119,31 +119,31 @@
             this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn21.FieldName = "Code";
-            gridViewTextBoxColumn21.HeaderText = "Код";
-            gridViewTextBoxColumn21.Name = "Code";
-            gridViewTextBoxColumn21.Width = 109;
-            gridViewTextBoxColumn22.FieldName = "NameUk";
-            gridViewTextBoxColumn22.HeaderText = "Назва";
-            gridViewTextBoxColumn22.Name = "NameUk";
-            gridViewTextBoxColumn22.Width = 325;
-            gridViewTextBoxColumn23.FieldName = "NameRu";
-            gridViewTextBoxColumn23.HeaderText = "Название";
-            gridViewTextBoxColumn23.Name = "NameRu";
-            gridViewTextBoxColumn23.Width = 325;
-            gridViewTextBoxColumn24.FieldName = "NameEn";
-            gridViewTextBoxColumn24.HeaderText = "Name";
-            gridViewTextBoxColumn24.Name = "NameEn";
-            gridViewTextBoxColumn24.Width = 394;
+            gridViewTextBoxColumn45.FieldName = "Code";
+            gridViewTextBoxColumn45.HeaderText = "Код";
+            gridViewTextBoxColumn45.Name = "Code";
+            gridViewTextBoxColumn45.Width = 109;
+            gridViewTextBoxColumn46.FieldName = "NameUk";
+            gridViewTextBoxColumn46.HeaderText = "Назва";
+            gridViewTextBoxColumn46.Name = "NameUk";
+            gridViewTextBoxColumn46.Width = 325;
+            gridViewTextBoxColumn47.FieldName = "NameRu";
+            gridViewTextBoxColumn47.HeaderText = "Название";
+            gridViewTextBoxColumn47.Name = "NameRu";
+            gridViewTextBoxColumn47.Width = 325;
+            gridViewTextBoxColumn48.FieldName = "NameEn";
+            gridViewTextBoxColumn48.HeaderText = "Name";
+            gridViewTextBoxColumn48.Name = "NameEn";
+            gridViewTextBoxColumn48.Width = 394;
             this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn21,
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewTextBoxColumn24});
+            gridViewTextBoxColumn45,
+            gridViewTextBoxColumn46,
+            gridViewTextBoxColumn47,
+            gridViewTextBoxColumn48});
             this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition12;
             this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
             this.gvComplexDictionariesList.ReadOnly = true;
             this.gvComplexDictionariesList.ShowGroupPanel = false;
@@ -189,9 +189,9 @@
             this.editPanel.Controls.Add(this.radLabel4);
             this.editPanel.Controls.Add(this.btnCancel);
             this.editPanel.Controls.Add(this.btnSave);
-            this.editPanel.Location = new System.Drawing.Point(253, 375);
+            this.editPanel.Location = new System.Drawing.Point(253, 335);
             this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(1176, 188);
+            this.editPanel.Size = new System.Drawing.Size(1176, 228);
             this.editPanel.TabIndex = 18;
             this.editPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.editPanel.ThemeName = "Office2013Light";

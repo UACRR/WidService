@@ -49,7 +49,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 6);
+            this.label1.Location = new System.Drawing.Point(3, 5);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 0;
@@ -62,9 +62,9 @@
             this.ddlCategory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsGenreType, "CategoryCode", true));
             this.ddlCategory.DataSource = this.bsCategory;
             this.ddlCategory.DisplayMember = "Name";
-            this.ddlCategory.Location = new System.Drawing.Point(144, 5);
+            this.ddlCategory.Location = new System.Drawing.Point(75, 5);
             this.ddlCategory.Name = "ddlCategory";
-            this.ddlCategory.Size = new System.Drawing.Size(1205, 21);
+            this.ddlCategory.Size = new System.Drawing.Size(1274, 21);
             this.ddlCategory.TabIndex = 1;
             this.ddlCategory.ThemeName = "Office2013Light";
             this.ddlCategory.ValueMember = "CodeI";

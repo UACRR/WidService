@@ -50,9 +50,9 @@
             this.ddlCategory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "CategoryCode", true));
             this.ddlCategory.DataSource = this.bsCategory;
             this.ddlCategory.DisplayMember = "Name";
-            this.ddlCategory.Location = new System.Drawing.Point(165, 4);
+            this.ddlCategory.Location = new System.Drawing.Point(75, 4);
             this.ddlCategory.Name = "ddlCategory";
-            this.ddlCategory.Size = new System.Drawing.Size(1248, 21);
+            this.ddlCategory.Size = new System.Drawing.Size(1338, 21);
             this.ddlCategory.TabIndex = 0;
             this.ddlCategory.ThemeName = "Office2013Light";
             this.ddlCategory.ValueMember = "CodeI";
@@ -72,9 +72,9 @@
             this.ddlCopyright.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "Crtype", true));
             this.ddlCopyright.DataSource = this.bsCopyrightType;
             this.ddlCopyright.DisplayMember = "Name";
-            this.ddlCopyright.Location = new System.Drawing.Point(165, 30);
+            this.ddlCopyright.Location = new System.Drawing.Point(75, 30);
             this.ddlCopyright.Name = "ddlCopyright";
-            this.ddlCopyright.Size = new System.Drawing.Size(1248, 21);
+            this.ddlCopyright.Size = new System.Drawing.Size(1338, 21);
             this.ddlCopyright.TabIndex = 2;
             this.ddlCopyright.ThemeName = "Office2013Light";
             this.ddlCopyright.ValueMember = "CodeI";
@@ -86,7 +86,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(94, 5);
+            this.label1.Location = new System.Drawing.Point(3, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 3;
