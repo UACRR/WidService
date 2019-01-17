@@ -1,0 +1,283 @@
+//new styles
+*
+  box-sizing: border-box
+
+  &::before,
+  &::after
+    box-sizing: border-box
+
+body
+  font-family: 'Roboto', sans-serif
+  color: #000000
+
+a
+  background-color: transparent
+  text-decoration: none
+
+  //&:focus,
+  //&:active,
+  //&:hover
+  //  color:
+
+img
+  max-width: 100%
+  height: auto
+  vertical-align: middle
+
+b
+  font-weight: bold
+
+em
+  font-style: italic
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  text-transform: uppercase
+  font:
+    family: 'Montserrat', sans-serif
+    weight: 700
+
+h1
+  font-size: 24px
+  color: #342c66
+
+
+
+h3
+  font-size: 14px
+
+h4
+  font-size: 12px
+
+h5
+  font-size: 10px
+  color: #362c66
+
+h6
+  font-size: 9px
+
+
+p
+  font-size: 16px
+  font-weight: 400
+
+  &.smaller-text
+    font-size: 10px
+
+.navigation-text
+  font-family: 'Montserrat', sans-serif
+  color:  #a0a0a0
+  font-size: 12px
+  font-weight: 700
+  text-transform: uppercase
+
+.container-main
+  // max-width: 1280px
+  width: 100%
+  padding-left: 70px
+  padding-right: 70px
+  margin-left: auto
+  margin-right: auto
+
+.content-wrap
+  min-height: calc(100vh - 102px)
+  position: relative
+
+  &:before
+    content: ''
+    display: block
+    background:
+      repeat: no-repeat
+      size: cover
+    width: 181px
+    height: 185px
+    position: absolute
+    bottom: 0
+    left: 0
+
+  &:after
+    content: ''
+    display: block
+    background:
+      repeat: no-repeat
+      size: cover
+    width: 292px
+    height: 222px
+    position: absolute
+    bottom: 0
+    right: 0
+
+.btn
+  position: relative
+  display: inline-block
+  height: 40px
+  min-width: 175px
+  margin: 0
+  padding-top: 15px
+  border-radius: 5px
+  outline: none 0
+  background-color:  #ff444d
+  color: #ffffff
+  font-family: 'Montserrat', sans-serif
+  font-size: 9px
+  font-weight: 700
+  text-transform: uppercase
+  line-height: 1
+  text-align: center
+  text-decoration: none
+  white-space: nowrap
+  cursor: pointer
+  vertical-align: middle
+  transition: all 350ms ease-in-out 0s
+  user-select: none
+
+  &-modal
+    height: 30px
+    padding-top: 10px
+
+  &-blue
+    background-color: #362c66
+
+
+//inputs !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+input[type="password"],
+input[type="text"],
+input[type="phone"],
+input[type="email"]
+  border: none
+  border-bottom: 1px solid #000000
+  color: #000000
+  font-size: 16px
+  font-weight: 400
+  text-align: left
+  width: 100%
+  padding-top: 10px
+  padding-bottom: 10px
+
+  &:placeholder
+    color: #a0a0a0
+
+  &::-webkit-input-placeholder
+    color: #a0a0a0
+
+  &::-moz-placeholder
+    color: #a0a0a0
+
+  &:-ms-input-placeholder
+    color: #a0a0a0
+
+  &:-moz-placeholder
+    color: #a0a0a0
+
+
+
+input[type="password"],
+input[type="email"]
+  // padding-top: 10px
+  // padding-bottom: 10px
+  // text-align: center
+
+  // &:placeholder
+  //   text-align: center
+
+//inputs !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// .modal-bg
+//   position: fixed
+//   top: 0
+//   left: 0
+//   right: 0
+//   bottom: 0
+//   background-color: #ffffff
+//   opacity: 0.8
+//   z-index: 1000
+//   display: none
+
+//   &.active
+//     display: block
+
+.modal-wrap
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 1001
+  background-color: rgba(255, 255, 255, 0.8)
+  display: none
+  justify-content: center
+  align-items: center
+
+  &.active
+    display: flex
+
+  // &:before
+  //   content: ''
+  //   position: fixed
+  //   top: 0
+  //   left: 0
+  //   right: 0
+  //   bottom: 0
+  //   background-color: #ffffff
+  //   opacity: 0.8
+  //   z-index: -1
+  //   cursor: pointer
+
+  .modal
+    background-color:  #ffffff
+    box-shadow: 0px 20px 50px 0px rgba(0, 0, 0, 0.1)
+    padding: 60px
+    border-radius: 10px
+    text-align: center
+    position: relative
+
+  .close-btn
+    position: absolute
+    top: 30px
+    right: 30px
+    width: 15px
+    height: 15px
+    cursor: pointer
+
+    &:before,
+    &:after
+      content: ''
+      position: absolute
+      height: 1px
+      width: 100%
+      top: 50%
+      left: 0
+      margin-top: -1px
+      background: #000
+
+    &:before
+      transform: rotate(45deg)
+
+    &:after
+      transform: rotate(-45deg)
+
+
+.header-line-wrap
+    display: flex
+    align-items: center
+
+    h3
+      color: #352c66
+
+    .header-line
+      margin-left: 10px
+      height: 5px
+      background-color: #ff444d
+      width: 100%
+      border-radius: 5px
+
+
+.row-flex
+  display: flex
+  justify-content: space-between
+  align-items: center
