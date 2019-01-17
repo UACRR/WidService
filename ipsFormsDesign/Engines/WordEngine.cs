@@ -223,7 +223,7 @@ namespace ipsFormsDesign.Services
 
             string prcntARltJ = string.Empty;
             string prcntARltJText = string.Empty;
-            decimal RateCourt = Convert.ToDecimal($"{agrRh.RateCourt:0}");
+            decimal RateCourt = agrRh.RateCourt != null ? Convert.ToDecimal($"{agrRh.RateCourt:0}") : 0;
             prcntARltJ = RateCourt.ToString("F");
             prcntARltJText = Utils.PrcnPhrase(RateCourt);
 
@@ -322,10 +322,10 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = Okpo;
                         break;
                     case "СstPasport":
-                        item.Range.Text = $"{anketaPerson.PUseries} {anketaPerson.PUnumber}";
+                            item.Range.Text = $"{anketaPerson.PUseries} {anketaPerson.PUnumber}";
                         break;
                     case "СstPasportIssued":
-                        item.Range.Text = $"{anketaPerson.PUissuedWho} {anketaPerson.PUissuedWhen:dd.MM.yyyy}";
+                            item.Range.Text = $"{anketaPerson.PUissuedWho} {anketaPerson.PUissuedWhen:dd.MM.yyyy}";
                         break;
                     case "СstBankName":
                         item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";

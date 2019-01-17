@@ -396,6 +396,13 @@ namespace RightholderWorkplace
             if (dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
                 dtChangeCopyrightDateTill.Value = new DateTime(3000, 1, 1);
 
+            if(ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance && !ValidateTransferedParamsForInheritance())
+            {
+                gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
+                MessageBox.Show("Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
+                return;
+            }
+
             if (!ValidateTransferedParams())
             {
                 gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
@@ -487,6 +494,28 @@ namespace RightholderWorkplace
             return result;
         }
 
+        private bool ValidateTransferedParamsForInheritance()
+        {
+            var result = true;
+
+            foreach (var obj in _objects)
+            {
+                var copyrights = _copyrights.Where(c => c.ObjId == obj.ObjId).ToList();
+
+                if (copyrights.Any())
+                {
+                    var totalRate = copyrights.Sum(c => c.Rate);
+
+                    if (totalRate != obj.RateRh)
+                    {
+                        result = false;
+                        copyrights.ForEach(c => c.Error = "Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
+                    }
+                }
+            }
+
+            return result;
+        }
         #endregion
     }
 }
