@@ -35,6 +35,15 @@ namespace sysAdminwp.viewPageDictionaryControls
         private List<KlR030> _klR030List;
         //variable for detect started complex dictionary controls for next set clear
         private static string StartingTypeForInitializeControl = null;
+        private readonly List<string> _complexDictionaryList = new List<string>
+        {
+            "copyrightkind",
+            "country",
+            "creativeroletype",
+            "genretype",
+            "klr030"
+        };
+
         //define Url value for complexTreeView
         public string UrlForComplexDictionaries
         {
@@ -74,6 +83,14 @@ namespace sysAdminwp.viewPageDictionaryControls
             InitializeComponent();
             //fill treeView
             SetTreeViewComplexDictionaryDataSource();
+
+            //setup search action into grid for element
+            txtSearchComplex.SetUsageGrid(gvComplexDictionariesList);
+
+            //set current enabled states for elements
+            elementsEnabledStatesControler();
+            //hide buttons save/cancel into edit panel
+            changeEnabledStateButtonsEditPanels(false);
         }
 
         //method for get data about complex dictionaries
@@ -217,7 +234,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         private void gvComplexDictionariesList_SelectionChanged(object sender, EventArgs e)
         {
             //method for update Edit panel
-
+            UpdateEditPanelComplex();
             //get data about current selected row
             var row = gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
             //conditions for choosing control
@@ -308,8 +325,229 @@ namespace sysAdminwp.viewPageDictionaryControls
             //load data to the grid about current complex dictionaries
             //initialize variable with result data for grid
             var returnedList = GetComplexDictionariesData();
-            gvComplexDictionariesList.DataSource = returnedList;
             //bind data for grid
+            gvComplexDictionariesList.DataSource = returnedList;
+        }
+        //method control enable state next elements - 
+        //editPanel, txtsearchComplex, btnAddComplex, btnDeleteComplex
+        private void elementsEnabledStatesControler()
+        {
+            //initialize current grid state for next reaction elements states
+            bool stateEnabled = gvComplexDictionariesList.RowCount != 0;
+            //search text element
+            txtSearchComplex.Enabled = stateEnabled;
+            //button for add new object
+            btnAddComplex.Enabled = stateEnabled;
+            //button for delete object
+            btnDeleteComplex.Enabled = stateEnabled;
+            //panel for parameters complex dictionaries
+            controlsParamPanel.Enabled = stateEnabled;
+            //edit Panel
+            editPanel.Enabled = stateEnabled;
+
+        }
+        //event for control current enabled states for elements
+        private void gvComplexDictionariesList_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
+        {
+            //check current state data into grid
+            elementsEnabledStatesControler();
+        }
+        //event for add new row
+        private void btnAddComplex_Click(object sender, EventArgs e)
+        {
+            //set new Text for save button
+            btnSave.Text = "Додати";
+            //clear editPanel
+            ChangeEnableElementsWhenAdd(false);
+            txtCodeComplex.Clear();
+            txtNameUaComplex.Clear();
+            txtNameRuComplex.Clear();
+            txtNameEnComplex.Clear();
+            editPanel.Enabled = true;
+            //enable save/cancel buttons into edit panel
+            changeEnabledStateButtonsEditPanels(true);
+        }
+
+        //method for change current enabled state for next elements
+        private void ChangeEnableElementsWhenAdd(bool isEnable)
+        {
+            complexTreeView.Enabled = isEnable;
+            txtSearchComplex.Enabled = isEnable;
+            gvComplexDictionariesList.Enabled = isEnable;
+            btnAddComplex.Enabled = isEnable;
+            btnDeleteComplex.Enabled = isEnable;
+            controlsParamPanel.Enabled = isEnable;
+        }
+
+        //event for detect changes into textboxes
+        private void txtCodeComplex_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
+        {
+            //hide other elements
+            ChangeEnableElementsWhenAdd(false);
+            //show editPanel
+            editPanel.Enabled = true;
+            //enabled save/cancel buttons into editPanel
+            changeEnabledStateButtonsEditPanels(true);
+        }
+        //method for enabled state buttons save and cancel into edit panel
+        private void changeEnabledStateButtonsEditPanels(bool isEnable)
+        {
+            //button save
+            btnSave.Enabled = isEnable;
+            //button cancel
+            btnCancel.Enabled = isEnable;
+        }
+        //event for save data into edit panel
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //hide buttons save/cancel into edit panel
+            changeEnabledStateButtonsEditPanels(false);
+            //show other elements
+            ChangeEnableElementsWhenAdd(true);
+
+            if (btnSave.Text == "Додати")
+            {
+                //save new row
+            }
+            else
+            {
+                //save changes row
+
+            }
+        }
+        //event for cancel all changes into textboxes edit panel
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            //hide buttons save/cancel into edit panel
+            changeEnabledStateButtonsEditPanels(false);
+            //show other elements
+            ChangeEnableElementsWhenAdd(true);
+        }
+
+        //method for save new row
+        public void SaveAddNewRow()
+        {
+            if (txtCodeComplex.Text != string.Empty)
+            {
+                if ((Convert.ToInt32(txtCodeComplex.Text)).GetType() != typeof(int))
+                    txtCodeComplex.Text = gvComplexDictionariesList.CurrentRow.Cells["Code"].Value.ToString();
+
+                btnSave.Text = "Зберегти";
+                try
+                {
+                    DictBaseTypeI dataI = PackDataI();
+                    bool result = _connector.NewItem(UrlForComplexDictionaries, dataI);
+
+                    gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
+                    UpdateEditPanelComplex();
+                    ChangeEnableElementsWhenAdd(true);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                }
+            }
+            else
+            {//radLabelCode.Text
+                MessageBox.Show("Поле '" + "" + "' не повинно бути пустим!",
+                    "Заповніть поле!",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
+        }
+        //метод оновлення для панелі редагування
+        private void UpdateEditPanelComplex()
+        {
+            //відписуємось від події - обрали інший рядок, зміни не внесено
+            txtCodeComplex.TextChanging -= txtCodeComplex_TextChanging;
+            txtNameUaComplex.TextChanging -= txtCodeComplex_TextChanging;
+            txtNameRuComplex.TextChanging -= txtCodeComplex_TextChanging;
+            txtNameEnComplex.TextChanging -= txtCodeComplex_TextChanging;
+
+            if (gvComplexDictionariesList.CurrentRow?.DataBoundItem is ViewTable items)
+            {
+                if (_complexDictionaryList.Contains(ComplexDictionaryName.ToLower()))
+                {
+                    // TODO: для складних довідників підтягнути додаткові потрібні словники, сформувати інтерфейс
+                    // біндінг даних
+                    switch (ComplexDictionaryName.ToLower())
+                    {
+                        case "copyrightkind":
+                            var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                            txtCodeComplex.Text = copyrightKind?.CodeI.ToString();
+                            txtNameUaComplex.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                            txtNameRuComplex.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                            txtNameEnComplex.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                            break;
+                        case "country":
+                            var country = _countryList?.SingleOrDefault(rec => rec.CountryCode == items.Code);
+                            txtCodeComplex.Text = country?.CountryCode;
+                            txtNameUaComplex.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Uk")?.CountryName;
+                            txtNameRuComplex.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Ru")?.CountryName;
+                            txtNameEnComplex.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "En")?.CountryName;
+                            break;
+                        case "creativeroletype":
+                            var creativeRoleType = _creativeRoleTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                            txtCodeComplex.Text = creativeRoleType?.CodeI.ToString();
+                            txtNameUaComplex.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                            txtNameRuComplex.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                            txtNameEnComplex.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                            break;
+                        case "genretype":
+                            var genreType = _genreTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                            txtCodeComplex.Text = genreType?.CodeI.ToString();
+                            txtNameUaComplex.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                            txtNameRuComplex.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                            txtNameEnComplex.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                            break;
+                        case "klr030":
+                            var klR030 = _klR030List?.SingleOrDefault(rec => rec.R030 == items.Code);
+                            txtCodeComplex.Text = klR030?.R030;
+                            txtNameUaComplex.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Uk")?.R030Name;
+                            txtNameRuComplex.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Ru")?.R030Name;
+                            txtNameEnComplex.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "En")?.R030Name;
+                            break;
+                    }
+                }
+                //else
+                //{
+                //    var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                //    txtCodeComplex.Text = item?.CodeI.ToString();
+                //    txtNameUaComplex.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                //    txtNameRuComplex.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                //    txtNameEnComplex.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                //}
+            }
+            else
+            {
+                txtCodeComplex.Text = default(string);
+                txtNameUaComplex.Text = default(string);
+                txtNameRuComplex.Text = default(string);
+                txtNameEnComplex.Text = default(string);
+            }
+
+            txtCodeComplex.TextChanging += txtCodeComplex_TextChanging;
+            txtNameUaComplex.TextChanging += txtCodeComplex_TextChanging;
+            txtNameRuComplex.TextChanging += txtCodeComplex_TextChanging;
+            txtNameEnComplex.TextChanging += txtCodeComplex_TextChanging;
+            // hide default string
+            gvComplexDictionariesList.TableElement.Text = "";
+        }
+        private DictBaseTypeI PackDataI()
+        {
+            DictBaseTypeI dataI = new DictBaseTypeI();
+            var dataTrI = new DictTrI[3];
+            dataTrI[0] = new DictTrI() { CodeI = Convert.ToInt32(txtCodeComplex.Text), Lang = "En", Name = txtNameEnComplex.Text };
+            dataTrI[1] = new DictTrI() { CodeI = Convert.ToInt32(txtCodeComplex.Text), Lang = "Ru", Name = txtNameRuComplex.Text };
+            dataTrI[2] = new DictTrI() { CodeI = Convert.ToInt32(txtCodeComplex.Text), Lang = "Uk", Name = txtNameUaComplex.Text };
+
+            dataI.CodeI = dataTrI[0].CodeI;
+            dataI.Name = txtNameUaComplex.Text;
+            dataI.DictTrI = new List<DictTrI>
+            {
+                dataTrI[0],dataTrI[1],dataTrI[2]
+            };
+            return dataI;
         }
     }
 }

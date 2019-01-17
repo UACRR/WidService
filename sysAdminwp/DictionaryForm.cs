@@ -134,9 +134,12 @@ namespace sysAdminwp
             btnRemove.Enabled = false;
 
             //initialize object for complex dictionaries
-            ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl();
+            ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl()
+            { Dock = DockStyle.Fill };
             //add new control for complex dictionaries
             radPageViewPage2.Controls.Add(complexDictionaryControl);
+
+
         }
 
         #region * * * Методи * * *

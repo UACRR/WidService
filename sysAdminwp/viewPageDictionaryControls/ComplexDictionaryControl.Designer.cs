@@ -28,46 +28,46 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
-            this.radButton3 = new Telerik.WinControls.UI.RadButton();
-            this.radButton4 = new Telerik.WinControls.UI.RadButton();
+            this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
+            this.btnAddComplex = new Telerik.WinControls.UI.RadButton();
             this.controlsParamPanel = new Telerik.WinControls.UI.RadPanel();
-            this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
-            this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
-            this.radTextBox3 = new Telerik.WinControls.UI.RadTextBox();
-            this.radTextBox4 = new Telerik.WinControls.UI.RadTextBox();
+            this.editPanel = new Telerik.WinControls.UI.RadPanel();
+            this.txtNameRuComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtNameEnComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtNameUaComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtCodeComplex = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
-            this.radButton2 = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controlsParamPanel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
-            this.radPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editPanel)).BeginInit();
+            this.editPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             this.SuspendLayout();
             // 
             // complexTreeView
@@ -76,7 +76,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.complexTreeView.Location = new System.Drawing.Point(3, 3);
             this.complexTreeView.Name = "complexTreeView";
-            this.complexTreeView.Size = new System.Drawing.Size(133, 481);
+            this.complexTreeView.Size = new System.Drawing.Size(133, 744);
             this.complexTreeView.SpacingBetweenNodes = -1;
             this.complexTreeView.TabIndex = 5;
             this.complexTreeView.ThemeName = "Office2013Light";
@@ -109,131 +109,137 @@
             this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn5.FieldName = "Code";
-            gridViewTextBoxColumn5.HeaderText = "Код";
-            gridViewTextBoxColumn5.Name = "Code";
-            gridViewTextBoxColumn5.Width = 81;
-            gridViewTextBoxColumn6.FieldName = "NameUk";
-            gridViewTextBoxColumn6.HeaderText = "Назва";
-            gridViewTextBoxColumn6.Name = "NameUk";
-            gridViewTextBoxColumn6.Width = 242;
-            gridViewTextBoxColumn7.FieldName = "NameRu";
-            gridViewTextBoxColumn7.HeaderText = "Название";
-            gridViewTextBoxColumn7.Name = "NameRu";
-            gridViewTextBoxColumn7.Width = 242;
-            gridViewTextBoxColumn8.FieldName = "NameEn";
-            gridViewTextBoxColumn8.HeaderText = "Name";
-            gridViewTextBoxColumn8.Name = "NameEn";
-            gridViewTextBoxColumn8.Width = 292;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 119;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 357;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 357;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 431;
             this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
             this.gvComplexDictionariesList.ReadOnly = true;
             this.gvComplexDictionariesList.ShowGroupPanel = false;
-            this.gvComplexDictionariesList.Size = new System.Drawing.Size(880, 110);
+            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1287, 373);
             this.gvComplexDictionariesList.TabIndex = 11;
             this.gvComplexDictionariesList.ThemeName = "Office2013Light";
             this.gvComplexDictionariesList.SelectionChanged += new System.EventHandler(this.gvComplexDictionariesList_SelectionChanged);
+            this.gvComplexDictionariesList.DataBindingComplete += new Telerik.WinControls.UI.GridViewBindingCompleteEventHandler(this.gvComplexDictionariesList_DataBindingComplete);
             // 
-            // radButton3
+            // btnDeleteComplex
             // 
-            this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton3.Location = new System.Drawing.Point(272, 141);
-            this.radButton3.Name = "radButton3";
-            this.radButton3.Size = new System.Drawing.Size(110, 24);
-            this.radButton3.TabIndex = 16;
-            this.radButton3.Text = "Видалити";
-            this.radButton3.ThemeName = "Office2013Light";
+            this.btnDeleteComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteComplex.Location = new System.Drawing.Point(272, 404);
+            this.btnDeleteComplex.Name = "btnDeleteComplex";
+            this.btnDeleteComplex.Size = new System.Drawing.Size(110, 24);
+            this.btnDeleteComplex.TabIndex = 16;
+            this.btnDeleteComplex.Text = "Видалити";
+            this.btnDeleteComplex.ThemeName = "Office2013Light";
             // 
-            // radButton4
+            // btnAddComplex
             // 
-            this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton4.Location = new System.Drawing.Point(142, 141);
-            this.radButton4.Name = "radButton4";
-            this.radButton4.Size = new System.Drawing.Size(110, 24);
-            this.radButton4.TabIndex = 15;
-            this.radButton4.Text = "Додати";
-            this.radButton4.ThemeName = "Office2013Light";
+            this.btnAddComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddComplex.Location = new System.Drawing.Point(142, 404);
+            this.btnAddComplex.Name = "btnAddComplex";
+            this.btnAddComplex.Size = new System.Drawing.Size(110, 24);
+            this.btnAddComplex.TabIndex = 15;
+            this.btnAddComplex.Text = "Додати";
+            this.btnAddComplex.ThemeName = "Office2013Light";
+            this.btnAddComplex.Click += new System.EventHandler(this.btnAddComplex_Click);
             // 
             // controlsParamPanel
             // 
             this.controlsParamPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.controlsParamPanel.Location = new System.Drawing.Point(142, 171);
+            this.controlsParamPanel.Location = new System.Drawing.Point(142, 434);
             this.controlsParamPanel.Name = "controlsParamPanel";
-            this.controlsParamPanel.Size = new System.Drawing.Size(880, 70);
+            this.controlsParamPanel.Size = new System.Drawing.Size(1287, 70);
             this.controlsParamPanel.TabIndex = 17;
             // 
-            // radPanel2
+            // editPanel
             // 
-            this.radPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.editPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radPanel2.Controls.Add(this.radTextBox1);
-            this.radPanel2.Controls.Add(this.radTextBox2);
-            this.radPanel2.Controls.Add(this.radTextBox3);
-            this.radPanel2.Controls.Add(this.radTextBox4);
-            this.radPanel2.Controls.Add(this.radLabel1);
-            this.radPanel2.Controls.Add(this.radLabel2);
-            this.radPanel2.Controls.Add(this.radLabel3);
-            this.radPanel2.Controls.Add(this.radLabel4);
-            this.radPanel2.Controls.Add(this.radButton1);
-            this.radPanel2.Controls.Add(this.radButton2);
-            this.radPanel2.Location = new System.Drawing.Point(142, 247);
-            this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(880, 237);
-            this.radPanel2.TabIndex = 18;
-            this.radPanel2.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.radPanel2.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.radPanel2.GetChildAt(0))).Text = "Дані довідника";
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.Azure;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(2))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(2))).LineLimit = false;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.radPanel2.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.editPanel.Controls.Add(this.txtNameRuComplex);
+            this.editPanel.Controls.Add(this.txtNameEnComplex);
+            this.editPanel.Controls.Add(this.txtNameUaComplex);
+            this.editPanel.Controls.Add(this.txtCodeComplex);
+            this.editPanel.Controls.Add(this.radLabel1);
+            this.editPanel.Controls.Add(this.radLabel2);
+            this.editPanel.Controls.Add(this.radLabel3);
+            this.editPanel.Controls.Add(this.radLabel4);
+            this.editPanel.Controls.Add(this.btnCancel);
+            this.editPanel.Controls.Add(this.btnSave);
+            this.editPanel.Location = new System.Drawing.Point(142, 510);
+            this.editPanel.Name = "editPanel";
+            this.editPanel.Size = new System.Drawing.Size(1287, 237);
+            this.editPanel.TabIndex = 18;
+            this.editPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.editPanel.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.editPanel.GetChildAt(0))).Text = "Дані довідника";
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.Azure;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).LineLimit = false;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // radTextBox1
+            // txtNameRuComplex
             // 
-            this.radTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNameRuComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radTextBox1.Location = new System.Drawing.Point(162, 81);
-            this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(700, 20);
-            this.radTextBox1.TabIndex = 9;
+            this.txtNameRuComplex.Location = new System.Drawing.Point(162, 81);
+            this.txtNameRuComplex.Name = "txtNameRuComplex";
+            this.txtNameRuComplex.Size = new System.Drawing.Size(1107, 20);
+            this.txtNameRuComplex.TabIndex = 9;
+            this.txtNameRuComplex.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txtCodeComplex_TextChanging);
             // 
-            // radTextBox2
+            // txtNameEnComplex
             // 
-            this.radTextBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNameEnComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radTextBox2.Location = new System.Drawing.Point(162, 108);
-            this.radTextBox2.Name = "radTextBox2";
-            this.radTextBox2.Size = new System.Drawing.Size(700, 20);
-            this.radTextBox2.TabIndex = 8;
+            this.txtNameEnComplex.Location = new System.Drawing.Point(162, 108);
+            this.txtNameEnComplex.Name = "txtNameEnComplex";
+            this.txtNameEnComplex.Size = new System.Drawing.Size(1107, 20);
+            this.txtNameEnComplex.TabIndex = 8;
+            this.txtNameEnComplex.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txtCodeComplex_TextChanging);
             // 
-            // radTextBox3
+            // txtNameUaComplex
             // 
-            this.radTextBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtNameUaComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radTextBox3.Location = new System.Drawing.Point(162, 55);
-            this.radTextBox3.Name = "radTextBox3";
-            this.radTextBox3.Size = new System.Drawing.Size(700, 20);
-            this.radTextBox3.TabIndex = 7;
+            this.txtNameUaComplex.Location = new System.Drawing.Point(162, 55);
+            this.txtNameUaComplex.Name = "txtNameUaComplex";
+            this.txtNameUaComplex.Size = new System.Drawing.Size(1107, 20);
+            this.txtNameUaComplex.TabIndex = 7;
+            this.txtNameUaComplex.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txtCodeComplex_TextChanging);
             // 
-            // radTextBox4
+            // txtCodeComplex
             // 
-            this.radTextBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtCodeComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radTextBox4.Location = new System.Drawing.Point(162, 28);
-            this.radTextBox4.Name = "radTextBox4";
-            this.radTextBox4.Size = new System.Drawing.Size(700, 20);
-            this.radTextBox4.TabIndex = 6;
+            this.txtCodeComplex.Location = new System.Drawing.Point(162, 28);
+            this.txtCodeComplex.Name = "txtCodeComplex";
+            this.txtCodeComplex.Size = new System.Drawing.Size(1107, 20);
+            this.txtCodeComplex.TabIndex = 6;
+            this.txtCodeComplex.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txtCodeComplex_TextChanging);
             // 
             // radLabel1
             // 
@@ -279,56 +285,58 @@
             this.radLabel4.Text = "Код:";
             this.radLabel4.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // radButton1
+            // btnCancel
             // 
-            this.radButton1.Location = new System.Drawing.Point(278, 135);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 24);
-            this.radButton1.TabIndex = 1;
-            this.radButton1.Text = "Відміна";
-            this.radButton1.ThemeName = "Office2013Light";
+            this.btnCancel.Location = new System.Drawing.Point(278, 135);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 24);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Відміна";
+            this.btnCancel.ThemeName = "Office2013Light";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // radButton2
+            // btnSave
             // 
-            this.radButton2.Location = new System.Drawing.Point(162, 135);
-            this.radButton2.Name = "radButton2";
-            this.radButton2.Size = new System.Drawing.Size(110, 24);
-            this.radButton2.TabIndex = 0;
-            this.radButton2.Text = "Зберегти";
-            this.radButton2.ThemeName = "Office2013Light";
+            this.btnSave.Location = new System.Drawing.Point(162, 135);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(110, 24);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Зберегти";
+            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // ComplexDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radPanel2);
+            this.Controls.Add(this.editPanel);
             this.Controls.Add(this.controlsParamPanel);
-            this.Controls.Add(this.radButton3);
-            this.Controls.Add(this.radButton4);
+            this.Controls.Add(this.btnDeleteComplex);
+            this.Controls.Add(this.btnAddComplex);
             this.Controls.Add(this.gvComplexDictionariesList);
             this.Controls.Add(this.txtSearchComplex);
             this.Controls.Add(this.complexTreeView);
             this.Name = "ComplexDictionaryControl";
-            this.Size = new System.Drawing.Size(1025, 487);
+            this.Size = new System.Drawing.Size(1432, 750);
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.controlsParamPanel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
-            this.radPanel2.ResumeLayout(false);
-            this.radPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editPanel)).EndInit();
+            this.editPanel.ResumeLayout(false);
+            this.editPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -338,19 +346,19 @@
         private Telerik.WinControls.UI.RadTreeView complexTreeView;
         private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchComplex;
         private Telerik.WinControls.UI.RadGridView gvComplexDictionariesList;
-        private Telerik.WinControls.UI.RadButton radButton3;
-        private Telerik.WinControls.UI.RadButton radButton4;
+        private Telerik.WinControls.UI.RadButton btnDeleteComplex;
+        private Telerik.WinControls.UI.RadButton btnAddComplex;
         private Telerik.WinControls.UI.RadPanel controlsParamPanel;
-        private Telerik.WinControls.UI.RadPanel radPanel2;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
-        private Telerik.WinControls.UI.RadTextBox radTextBox2;
-        private Telerik.WinControls.UI.RadTextBox radTextBox3;
-        private Telerik.WinControls.UI.RadTextBox radTextBox4;
+        private Telerik.WinControls.UI.RadPanel editPanel;
+        private Telerik.WinControls.UI.RadTextBox txtNameRuComplex;
+        private Telerik.WinControls.UI.RadTextBox txtNameEnComplex;
+        private Telerik.WinControls.UI.RadTextBox txtNameUaComplex;
+        private Telerik.WinControls.UI.RadTextBox txtCodeComplex;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadButton radButton1;
-        private Telerik.WinControls.UI.RadButton radButton2;
+        private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.UI.RadButton btnSave;
     }
 }
