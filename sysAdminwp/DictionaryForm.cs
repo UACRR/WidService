@@ -74,6 +74,7 @@ namespace sysAdminwp
                 return categoryItem.DicName;
             }
         }
+        //for complex dictionary
         //define Url value for radTreeView1
         public string UrlForComplexDictionaries
         {
@@ -91,6 +92,7 @@ namespace sysAdminwp
                 return currentDataComplexDictionary.Url;
             }
         }
+        //for complex dictionary
         //get current name for complex dictionary
         public string ComplexDictionaryName
         {
@@ -195,6 +197,7 @@ namespace sysAdminwp
             
             return view;
         }
+        //for complex dictionary
         // defined method for get complex dictionary data
         private List<ViewTable> GetComplexDictionariesData()
         {
@@ -418,7 +421,8 @@ namespace sysAdminwp
             gvDictionariesList.TableElement.Text = "";
         }
 
-        //метод оновлення для панелі редагування
+        //for complex dictionary
+        //method for refresh for edit panel
         private void UpdateComplexDictionariesEditPanel()
         {
             //відписуємось від події - обрали інший рядок, зміни не внесено
@@ -971,6 +975,7 @@ namespace sysAdminwp
             //}
         }
 
+        //for complex dictionary
         private void gvComplexDictionariesList_SelectionChanged(object sender, EventArgs e)
         {
             UpdateComplexDictionariesEditPanel();
@@ -1041,18 +1046,6 @@ namespace sysAdminwp
                     radPanel1.Controls.Add(klrDictionaryControl);
                     break;
             }
-                        
-                   
-                        
-                    
-                        
-                    
-                        
-                    
-                        
-            
         }
     }
-
 }
-

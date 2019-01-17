@@ -53,29 +53,26 @@ namespace sysAdminwp
             this.gvDictionariesList = new Telerik.WinControls.UI.RadGridView();
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.btnAdd = new Telerik.WinControls.UI.RadButton();
-            this.btnRemove = new Telerik.WinControls.UI.RadButton();
             this.treeViewList = new Telerik.WinControls.UI.RadTreeView();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.radLabelCode = new Telerik.WinControls.UI.RadLabel();
-            this.radLabelNameUa = new Telerik.WinControls.UI.RadLabel();
-            this.radLabelNameEn = new Telerik.WinControls.UI.RadLabel();
-            this.radLabelNameRu = new Telerik.WinControls.UI.RadLabel();
-            this.txtCode = new Telerik.WinControls.UI.RadTextBox();
-            this.txtNameUa = new Telerik.WinControls.UI.RadTextBox();
-            this.txtNameEn = new Telerik.WinControls.UI.RadTextBox();
-            this.txtNameRu = new Telerik.WinControls.UI.RadTextBox();
-            this.radPanelChange = new Telerik.WinControls.UI.RadPanel();
             this.txtTreeFilter = new Telerik.WinControls.UI.RadTextBox();
+            this.radPanelChange = new Telerik.WinControls.UI.RadPanel();
+            this.txtNameRu = new Telerik.WinControls.UI.RadTextBox();
+            this.txtNameEn = new Telerik.WinControls.UI.RadTextBox();
+            this.txtNameUa = new Telerik.WinControls.UI.RadTextBox();
+            this.txtCode = new Telerik.WinControls.UI.RadTextBox();
+            this.radLabelNameRu = new Telerik.WinControls.UI.RadLabel();
+            this.radLabelNameEn = new Telerik.WinControls.UI.RadLabel();
+            this.radLabelNameUa = new Telerik.WinControls.UI.RadLabel();
+            this.radLabelCode = new Telerik.WinControls.UI.RadLabel();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.txtSearchData = new Telerik.WinControls.UI.RadTextBox();
+            this.btnRemove = new Telerik.WinControls.UI.RadButton();
             this.radLblSearch = new System.Windows.Forms.Label();
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
-            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.btnAdd = new Telerik.WinControls.UI.RadButton();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radButton3 = new Telerik.WinControls.UI.RadButton();
+            this.radButton4 = new Telerik.WinControls.UI.RadButton();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
             this.radTextBox2 = new Telerik.WinControls.UI.RadTextBox();
@@ -87,36 +84,37 @@ namespace sysAdminwp
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.radButton2 = new Telerik.WinControls.UI.RadButton();
-            this.radButton3 = new Telerik.WinControls.UI.RadButton();
-            this.radButton4 = new Telerik.WinControls.UI.RadButton();
+            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
+            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.radTreeView1 = new Telerik.WinControls.UI.RadTreeView();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDictionariesList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
-            this.radPageViewPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameUa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameEn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameRu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameUa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameEn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameRu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelChange)).BeginInit();
             this.radPanelChange.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameRu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameEn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameUa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameRu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameEn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameUa)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelCode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
+            this.radPageViewPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).BeginInit();
             this.radPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
@@ -129,8 +127,10 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -250,41 +250,6 @@ namespace sysAdminwp
             this.radPageViewPage1.Size = new System.Drawing.Size(975, 507);
             this.radPageViewPage1.Text = "prosti";
             // 
-            // radPageViewPage2
-            // 
-            this.radPageViewPage2.Controls.Add(this.radButton3);
-            this.radPageViewPage2.Controls.Add(this.radButton4);
-            this.radPageViewPage2.Controls.Add(this.radPanel2);
-            this.radPageViewPage2.Controls.Add(this.radPanel1);
-            this.radPageViewPage2.Controls.Add(this.gvComplexDictionariesList);
-            this.radPageViewPage2.Controls.Add(this.txtSearchComplex);
-            this.radPageViewPage2.Controls.Add(this.radTreeView1);
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(119F, 27F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(975, 507);
-            this.radPageViewPage2.Text = "radPageViewPage2";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.Location = new System.Drawing.Point(253, 268);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(110, 24);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "Додати";
-            this.btnAdd.Click += new System.EventHandler(this.radBtnAdd_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnRemove.Location = new System.Drawing.Point(383, 268);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(110, 24);
-            this.btnRemove.TabIndex = 2;
-            this.btnRemove.Text = "Видалити";
-            this.btnRemove.Click += new System.EventHandler(this.radBtnRemove_Click);
-            // 
             // treeViewList
             // 
             this.treeViewList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -297,107 +262,15 @@ namespace sysAdminwp
             this.treeViewList.ThemeName = "Office2013Light";
             this.treeViewList.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.radTreeViewList_SelectedNodeChanged);
             // 
-            // btnSave
+            // txtTreeFilter
             // 
-            this.btnSave.Location = new System.Drawing.Point(162, 135);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 24);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Зберегти";
-            this.btnSave.Click += new System.EventHandler(this.radBtnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(278, 135);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Відміна";
-            this.btnCancel.Click += new System.EventHandler(this.radBtnCancel_Click);
-            // 
-            // radLabelCode
-            // 
-            this.radLabelCode.AutoSize = false;
-            this.radLabelCode.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelCode.Location = new System.Drawing.Point(55, 28);
-            this.radLabelCode.Name = "radLabelCode";
-            this.radLabelCode.Size = new System.Drawing.Size(90, 18);
-            this.radLabelCode.TabIndex = 2;
-            this.radLabelCode.Text = "Код:";
-            this.radLabelCode.TextAlignment = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // radLabelNameUa
-            // 
-            this.radLabelNameUa.AutoSize = false;
-            this.radLabelNameUa.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelNameUa.Location = new System.Drawing.Point(55, 55);
-            this.radLabelNameUa.Name = "radLabelNameUa";
-            this.radLabelNameUa.Size = new System.Drawing.Size(90, 18);
-            this.radLabelNameUa.TabIndex = 3;
-            this.radLabelNameUa.Text = "Назва (UA):";
-            this.radLabelNameUa.TextAlignment = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // radLabelNameEn
-            // 
-            this.radLabelNameEn.AutoSize = false;
-            this.radLabelNameEn.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelNameEn.Location = new System.Drawing.Point(55, 109);
-            this.radLabelNameEn.Name = "radLabelNameEn";
-            this.radLabelNameEn.Size = new System.Drawing.Size(90, 18);
-            this.radLabelNameEn.TabIndex = 4;
-            this.radLabelNameEn.Text = "Name (EN):";
-            this.radLabelNameEn.TextAlignment = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // radLabelNameRu
-            // 
-            this.radLabelNameRu.AutoSize = false;
-            this.radLabelNameRu.BackColor = System.Drawing.Color.Transparent;
-            this.radLabelNameRu.Location = new System.Drawing.Point(55, 82);
-            this.radLabelNameRu.Name = "radLabelNameRu";
-            this.radLabelNameRu.Size = new System.Drawing.Size(90, 18);
-            this.radLabelNameRu.TabIndex = 5;
-            this.radLabelNameRu.Text = "Название (RU):";
-            this.radLabelNameRu.TextAlignment = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // txtCode
-            // 
-            this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCode.Location = new System.Drawing.Point(162, 28);
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(532, 20);
-            this.txtCode.TabIndex = 6;
-            this.txtCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
-            // 
-            // txtNameUa
-            // 
-            this.txtNameUa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNameUa.Location = new System.Drawing.Point(162, 55);
-            this.txtNameUa.Name = "txtNameUa";
-            this.txtNameUa.Size = new System.Drawing.Size(532, 20);
-            this.txtNameUa.TabIndex = 7;
-            this.txtNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
-            // 
-            // txtNameEn
-            // 
-            this.txtNameEn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNameEn.Location = new System.Drawing.Point(162, 108);
-            this.txtNameEn.Name = "txtNameEn";
-            this.txtNameEn.Size = new System.Drawing.Size(532, 20);
-            this.txtNameEn.TabIndex = 8;
-            this.txtNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
-            // 
-            // txtNameRu
-            // 
-            this.txtNameRu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNameRu.Location = new System.Drawing.Point(162, 81);
-            this.txtNameRu.Name = "txtNameRu";
-            this.txtNameRu.Size = new System.Drawing.Size(532, 20);
-            this.txtNameRu.TabIndex = 9;
-            this.txtNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
+            this.txtTreeFilter.Location = new System.Drawing.Point(3, 3);
+            this.txtTreeFilter.Name = "txtTreeFilter";
+            this.txtTreeFilter.NullText = "Фільтр";
+            this.txtTreeFilter.Size = new System.Drawing.Size(229, 21);
+            this.txtTreeFilter.TabIndex = 5;
+            this.txtTreeFilter.ThemeName = "Office2013Light";
+            this.txtTreeFilter.TextChanged += new System.EventHandler(this.radTxtBoxFilter_TextChanged);
             // 
             // radPanelChange
             // 
@@ -427,15 +300,107 @@ namespace sysAdminwp
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(2))).LineLimit = false;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.radPanelChange.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtTreeFilter
+            // txtNameRu
             // 
-            this.txtTreeFilter.Location = new System.Drawing.Point(3, 3);
-            this.txtTreeFilter.Name = "txtTreeFilter";
-            this.txtTreeFilter.NullText = "Фільтр";
-            this.txtTreeFilter.Size = new System.Drawing.Size(229, 21);
-            this.txtTreeFilter.TabIndex = 5;
-            this.txtTreeFilter.ThemeName = "Office2013Light";
-            this.txtTreeFilter.TextChanged += new System.EventHandler(this.radTxtBoxFilter_TextChanged);
+            this.txtNameRu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNameRu.Location = new System.Drawing.Point(162, 81);
+            this.txtNameRu.Name = "txtNameRu";
+            this.txtNameRu.Size = new System.Drawing.Size(532, 20);
+            this.txtNameRu.TabIndex = 9;
+            this.txtNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
+            // 
+            // txtNameEn
+            // 
+            this.txtNameEn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNameEn.Location = new System.Drawing.Point(162, 108);
+            this.txtNameEn.Name = "txtNameEn";
+            this.txtNameEn.Size = new System.Drawing.Size(532, 20);
+            this.txtNameEn.TabIndex = 8;
+            this.txtNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
+            // 
+            // txtNameUa
+            // 
+            this.txtNameUa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNameUa.Location = new System.Drawing.Point(162, 55);
+            this.txtNameUa.Name = "txtNameUa";
+            this.txtNameUa.Size = new System.Drawing.Size(532, 20);
+            this.txtNameUa.TabIndex = 7;
+            this.txtNameUa.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
+            // 
+            // txtCode
+            // 
+            this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCode.Location = new System.Drawing.Point(162, 28);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(532, 20);
+            this.txtCode.TabIndex = 6;
+            this.txtCode.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
+            // 
+            // radLabelNameRu
+            // 
+            this.radLabelNameRu.AutoSize = false;
+            this.radLabelNameRu.BackColor = System.Drawing.Color.Transparent;
+            this.radLabelNameRu.Location = new System.Drawing.Point(55, 82);
+            this.radLabelNameRu.Name = "radLabelNameRu";
+            this.radLabelNameRu.Size = new System.Drawing.Size(90, 18);
+            this.radLabelNameRu.TabIndex = 5;
+            this.radLabelNameRu.Text = "Название (RU):";
+            this.radLabelNameRu.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // radLabelNameEn
+            // 
+            this.radLabelNameEn.AutoSize = false;
+            this.radLabelNameEn.BackColor = System.Drawing.Color.Transparent;
+            this.radLabelNameEn.Location = new System.Drawing.Point(55, 109);
+            this.radLabelNameEn.Name = "radLabelNameEn";
+            this.radLabelNameEn.Size = new System.Drawing.Size(90, 18);
+            this.radLabelNameEn.TabIndex = 4;
+            this.radLabelNameEn.Text = "Name (EN):";
+            this.radLabelNameEn.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // radLabelNameUa
+            // 
+            this.radLabelNameUa.AutoSize = false;
+            this.radLabelNameUa.BackColor = System.Drawing.Color.Transparent;
+            this.radLabelNameUa.Location = new System.Drawing.Point(55, 55);
+            this.radLabelNameUa.Name = "radLabelNameUa";
+            this.radLabelNameUa.Size = new System.Drawing.Size(90, 18);
+            this.radLabelNameUa.TabIndex = 3;
+            this.radLabelNameUa.Text = "Назва (UA):";
+            this.radLabelNameUa.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // radLabelCode
+            // 
+            this.radLabelCode.AutoSize = false;
+            this.radLabelCode.BackColor = System.Drawing.Color.Transparent;
+            this.radLabelCode.Location = new System.Drawing.Point(55, 28);
+            this.radLabelCode.Name = "radLabelCode";
+            this.radLabelCode.Size = new System.Drawing.Size(90, 18);
+            this.radLabelCode.TabIndex = 2;
+            this.radLabelCode.Text = "Код:";
+            this.radLabelCode.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Location = new System.Drawing.Point(278, 135);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 24);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Відміна";
+            this.btnCancel.Click += new System.EventHandler(this.radBtnCancel_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(162, 135);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(110, 24);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Зберегти";
+            this.btnSave.Click += new System.EventHandler(this.radBtnSave_Click);
             // 
             // txtSearchData
             // 
@@ -446,6 +411,16 @@ namespace sysAdminwp
             this.txtSearchData.TabStop = false;
             this.txtSearchData.ThemeName = "Office2013Light";
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemove.Location = new System.Drawing.Point(383, 268);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(110, 24);
+            this.btnRemove.TabIndex = 2;
+            this.btnRemove.Text = "Видалити";
+            this.btnRemove.Click += new System.EventHandler(this.radBtnRemove_Click);
+            // 
             // radLblSearch
             // 
             this.radLblSearch.AutoSize = true;
@@ -455,86 +430,50 @@ namespace sysAdminwp
             this.radLblSearch.TabIndex = 7;
             this.radLblSearch.Text = "Search:";
             // 
-            // radTreeView1
+            // btnAdd
             // 
-            this.radTreeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.radTreeView1.Location = new System.Drawing.Point(3, 3);
-            this.radTreeView1.Name = "radTreeView1";
-            this.radTreeView1.Size = new System.Drawing.Size(229, 497);
-            this.radTreeView1.SpacingBetweenNodes = -1;
-            this.radTreeView1.TabIndex = 4;
-            this.radTreeView1.ThemeName = "Office2013Light";
-            this.radTreeView1.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.changesWhenSelectComplexDictionary);
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAdd.Location = new System.Drawing.Point(253, 268);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(110, 24);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Додати";
+            this.btnAdd.Click += new System.EventHandler(this.radBtnAdd_Click);
             // 
-            // txtSearchComplex
+            // radPageViewPage2
             // 
-            this.txtSearchComplex.Location = new System.Drawing.Point(238, 3);
-            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
-            this.txtSearchComplex.Name = "txtSearchComplex";
-            this.txtSearchComplex.Size = new System.Drawing.Size(548, 20);
-            this.txtSearchComplex.TabIndex = 9;
+            this.radPageViewPage2.Controls.Add(this.radButton3);
+            this.radPageViewPage2.Controls.Add(this.radButton4);
+            this.radPageViewPage2.Controls.Add(this.radPanel2);
+            this.radPageViewPage2.Controls.Add(this.radPanel1);
+            this.radPageViewPage2.Controls.Add(this.gvComplexDictionariesList);
+            this.radPageViewPage2.Controls.Add(this.txtSearchComplex);
+            this.radPageViewPage2.Controls.Add(this.radTreeView1);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(119F, 27F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(975, 507);
+            this.radPageViewPage2.Text = "radPageViewPage2";
             // 
-            // gvComplexDictionariesList
+            // radButton3
             // 
-            this.gvComplexDictionariesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvComplexDictionariesList.EnableCustomFiltering = true;
-            this.gvComplexDictionariesList.Location = new System.Drawing.Point(238, 27);
-            this.gvComplexDictionariesList.Margin = new System.Windows.Forms.Padding(1);
+            this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radButton3.Location = new System.Drawing.Point(368, 222);
+            this.radButton3.Name = "radButton3";
+            this.radButton3.Size = new System.Drawing.Size(110, 24);
+            this.radButton3.TabIndex = 14;
+            this.radButton3.Text = "Видалити";
+            this.radButton3.ThemeName = "Office2013Light";
             // 
+            // radButton4
             // 
-            // 
-            this.gvComplexDictionariesList.MasterTemplate.AllowAddNewRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.AllowColumnReorder = false;
-            this.gvComplexDictionariesList.MasterTemplate.AllowDeleteRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.AllowDragToGroup = false;
-            this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
-            this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn5.FieldName = "Code";
-            gridViewTextBoxColumn5.HeaderText = "Код";
-            gridViewTextBoxColumn5.Name = "Code";
-            gridViewTextBoxColumn5.Width = 67;
-            gridViewTextBoxColumn6.FieldName = "NameUk";
-            gridViewTextBoxColumn6.HeaderText = "Назва";
-            gridViewTextBoxColumn6.Name = "NameUk";
-            gridViewTextBoxColumn6.Width = 200;
-            gridViewTextBoxColumn7.FieldName = "NameRu";
-            gridViewTextBoxColumn7.HeaderText = "Название";
-            gridViewTextBoxColumn7.Name = "NameRu";
-            gridViewTextBoxColumn7.Width = 200;
-            gridViewTextBoxColumn8.FieldName = "NameEn";
-            gridViewTextBoxColumn8.HeaderText = "Name";
-            gridViewTextBoxColumn8.Name = "NameEn";
-            gridViewTextBoxColumn8.Width = 240;
-            this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8});
-            this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
-            this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
-            this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
-            this.gvComplexDictionariesList.ReadOnly = true;
-            this.gvComplexDictionariesList.ShowGroupPanel = false;
-            this.gvComplexDictionariesList.Size = new System.Drawing.Size(730, 191);
-            this.gvComplexDictionariesList.TabIndex = 10;
-            this.gvComplexDictionariesList.ThemeName = "Office2013Light";
-            this.gvComplexDictionariesList.SelectionChanged += new System.EventHandler(this.gvComplexDictionariesList_SelectionChanged);
-            // 
-            // radPanel1
-            // 
-            this.radPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radPanel1.Location = new System.Drawing.Point(238, 252);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(730, 70);
-            this.radPanel1.TabIndex = 11;
+            this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.radButton4.Location = new System.Drawing.Point(238, 222);
+            this.radButton4.Name = "radButton4";
+            this.radButton4.Size = new System.Drawing.Size(110, 24);
+            this.radButton4.TabIndex = 13;
+            this.radButton4.Text = "Додати";
+            this.radButton4.ThemeName = "Office2013Light";
             // 
             // radPanel2
             // 
@@ -662,25 +601,86 @@ namespace sysAdminwp
             this.radButton2.Text = "Зберегти";
             this.radButton2.ThemeName = "Office2013Light";
             // 
-            // radButton3
+            // radPanel1
             // 
-            this.radButton3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton3.Location = new System.Drawing.Point(368, 222);
-            this.radButton3.Name = "radButton3";
-            this.radButton3.Size = new System.Drawing.Size(110, 24);
-            this.radButton3.TabIndex = 14;
-            this.radButton3.Text = "Видалити";
-            this.radButton3.ThemeName = "Office2013Light";
+            this.radPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPanel1.Location = new System.Drawing.Point(238, 252);
+            this.radPanel1.Name = "radPanel1";
+            this.radPanel1.Size = new System.Drawing.Size(730, 70);
+            this.radPanel1.TabIndex = 11;
             // 
-            // radButton4
+            // gvComplexDictionariesList
             // 
-            this.radButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radButton4.Location = new System.Drawing.Point(238, 222);
-            this.radButton4.Name = "radButton4";
-            this.radButton4.Size = new System.Drawing.Size(110, 24);
-            this.radButton4.TabIndex = 13;
-            this.radButton4.Text = "Додати";
-            this.radButton4.ThemeName = "Office2013Light";
+            this.gvComplexDictionariesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvComplexDictionariesList.EnableCustomFiltering = true;
+            this.gvComplexDictionariesList.Location = new System.Drawing.Point(238, 27);
+            this.gvComplexDictionariesList.Margin = new System.Windows.Forms.Padding(1);
+            // 
+            // 
+            // 
+            this.gvComplexDictionariesList.MasterTemplate.AllowAddNewRow = false;
+            this.gvComplexDictionariesList.MasterTemplate.AllowColumnReorder = false;
+            this.gvComplexDictionariesList.MasterTemplate.AllowDeleteRow = false;
+            this.gvComplexDictionariesList.MasterTemplate.AllowDragToGroup = false;
+            this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
+            this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
+            this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn5.FieldName = "Code";
+            gridViewTextBoxColumn5.HeaderText = "Код";
+            gridViewTextBoxColumn5.Name = "Code";
+            gridViewTextBoxColumn5.Width = 67;
+            gridViewTextBoxColumn6.FieldName = "NameUk";
+            gridViewTextBoxColumn6.HeaderText = "Назва";
+            gridViewTextBoxColumn6.Name = "NameUk";
+            gridViewTextBoxColumn6.Width = 200;
+            gridViewTextBoxColumn7.FieldName = "NameRu";
+            gridViewTextBoxColumn7.HeaderText = "Название";
+            gridViewTextBoxColumn7.Name = "NameRu";
+            gridViewTextBoxColumn7.Width = 200;
+            gridViewTextBoxColumn8.FieldName = "NameEn";
+            gridViewTextBoxColumn8.HeaderText = "Name";
+            gridViewTextBoxColumn8.Name = "NameEn";
+            gridViewTextBoxColumn8.Width = 240;
+            this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8});
+            this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
+            this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
+            this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
+            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
+            this.gvComplexDictionariesList.ReadOnly = true;
+            this.gvComplexDictionariesList.ShowGroupPanel = false;
+            this.gvComplexDictionariesList.Size = new System.Drawing.Size(730, 191);
+            this.gvComplexDictionariesList.TabIndex = 10;
+            this.gvComplexDictionariesList.ThemeName = "Office2013Light";
+            this.gvComplexDictionariesList.SelectionChanged += new System.EventHandler(this.gvComplexDictionariesList_SelectionChanged);
+            // 
+            // txtSearchComplex
+            // 
+            this.txtSearchComplex.Location = new System.Drawing.Point(238, 3);
+            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
+            this.txtSearchComplex.Name = "txtSearchComplex";
+            this.txtSearchComplex.Size = new System.Drawing.Size(548, 20);
+            this.txtSearchComplex.TabIndex = 9;
+            // 
+            // radTreeView1
+            // 
+            this.radTreeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.radTreeView1.Location = new System.Drawing.Point(3, 3);
+            this.radTreeView1.Name = "radTreeView1";
+            this.radTreeView1.Size = new System.Drawing.Size(229, 497);
+            this.radTreeView1.SpacingBetweenNodes = -1;
+            this.radTreeView1.TabIndex = 4;
+            this.radTreeView1.ThemeName = "Office2013Light";
+            this.radTreeView1.SelectedNodeChanged += new Telerik.WinControls.UI.RadTreeView.RadTreeViewEventHandler(this.changesWhenSelectComplexDictionary);
             // 
             // DictionaryForm
             // 
@@ -704,29 +704,27 @@ namespace sysAdminwp
             this.radPageView1.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
             this.radPageViewPage1.PerformLayout();
-            this.radPageViewPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameUa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameEn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameRu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameUa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameEn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameRu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanelChange)).EndInit();
             this.radPanelChange.ResumeLayout(false);
             this.radPanelChange.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTreeFilter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameRu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameEn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNameUa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameRu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameEn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelNameUa)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabelCode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearchData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnRemove)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
+            this.radPageViewPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel2)).EndInit();
             this.radPanel2.ResumeLayout(false);
             this.radPanel2.PerformLayout();
@@ -740,8 +738,10 @@ namespace sysAdminwp
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTreeView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
