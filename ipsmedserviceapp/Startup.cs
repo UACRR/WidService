@@ -93,6 +93,13 @@ namespace ipsmedserviceapp
 #endif
             services.AddSingleton<IConfiguration>(Configuration);
 
+            // In production, the Angular files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
+
+
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddCollectionMappers();
@@ -100,6 +107,7 @@ namespace ipsmedserviceapp
             });
 
             services.AddTransient<RightholderRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -109,21 +117,48 @@ namespace ipsmedserviceapp
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                app.UseHsts();
+            }
 
+
+
+            // loggerFactory.AddConsole();
+            app.UseAuthentication();
+            loggerFactory.AddConsole();
+            
+
+            app.UseRequestLocalization(BuildLocalizationOptions());
+            app.UseStaticFiles();
+            app.UseSpaStaticFiles();
+
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller}/{action=Index}/{id?}");
+            });
+
+            app.UseSpa(spa =>
+            {
+                // To learn more about options for serving an Angular SPA from ASP.NET Core,
+                // see https://go.microsoft.com/fwlink/?linkid=864501
+
+                spa.Options.SourcePath = "ClientApp";
+
+                if (env.IsDevelopment())
+                {
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                }
+            });
+            //
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
-
-            // loggerFactory.AddConsole();
-            app.UseAuthentication();
-            //loggerFactory.AddDebug();
-            loggerFactory.AddConsole();
-            
-
-            app.UseRequestLocalization(BuildLocalizationOptions());
-            app.UseMvc();
         }
 
         // Culture
