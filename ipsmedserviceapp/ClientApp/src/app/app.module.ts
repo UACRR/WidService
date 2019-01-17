@@ -20,7 +20,7 @@ import { ProfileComponent } from './main-app/profile/profile.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
-      { path: 'register', component: LoginRegisterComponent},
+
     ]),
   ],
   providers: [],
