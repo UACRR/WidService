@@ -35,6 +35,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         private List<KlR030> _klR030List;
         //variable for detect started complex dictionary controls for next set clear
         private static string StartingTypeForInitializeControl = null;
+        //strings for complex dictionaries
         private readonly List<string> _complexDictionaryList = new List<string>
         {
             "copyrightkind",
@@ -43,6 +44,8 @@ namespace sysAdminwp.viewPageDictionaryControls
             "genretype",
             "klr030"
         };
+        //variable for position focus select into grid
+        private static int indexValueGrid = 0;
 
         //define Url value for complexTreeView
         public string UrlForComplexDictionaries
@@ -355,6 +358,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         //event for add new row
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
+            
             //set new Text for save button
             btnSave.Text = "Додати";
             //clear editPanel
@@ -416,6 +420,8 @@ namespace sysAdminwp.viewPageDictionaryControls
                 //save changes row
 
             }
+            //set last position into grid
+            gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[gvComplexDictionariesList.RowCount--];
         }
         //event for cancel all changes into textboxes edit panel
         private void btnCancel_Click(object sender, EventArgs e)
@@ -435,6 +441,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     txtCodeComplex.Text = gvComplexDictionariesList.CurrentRow.Cells["Code"].Value.ToString();
 
                 btnSave.Text = "Зберегти";
+                
                 try
                 {
                     DictBaseTypeI dataI = PackDataI();
@@ -567,11 +574,15 @@ namespace sysAdminwp.viewPageDictionaryControls
 
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
+            //save index
+            indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
             var row = gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
             var result = _connector.DeleteItem(UrlForComplexDictionaries, row.Code);
 
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
             UpdateEditPanelComplex();
+            //set focus
+            gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid - 1];
         }
     }
 }
