@@ -1,5 +1,4 @@
 import { Injectable, Injector } from '@angular/core';
-import { ShopingCartService } from '../services/shoping-cart.service';
 import { Headers, Response, RequestOptions } from '@angular/http';
 import {
   HttpClient,
@@ -11,13 +10,14 @@ import {
 } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+
 import 'rxjs/add/observable/throw';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { LoginModalFormComponent } from '../login-modal-form/login-modal-form.component';
 
 
-import { GetBearerToken, GetLanguage, const_id_token } from './serviceUtils';
+
+import { GetBearerToken, GetLanguage, const_id_token } from '../../shared';
+import { Observable } from 'rxjs';
 
 
 export interface IRegisterData {
@@ -34,7 +34,6 @@ export class AuthService {
   public token: string;
   private tokenBody: any = null;
   public redirectUrl = '';
-  private loginFormComponent: LoginModalFormComponent;
   public isAdminRequest = false;
   public UniqueName: string;
 
@@ -51,8 +50,7 @@ export class AuthService {
     private _http: HttpClient,
     private _router: Router,
     private _location: Location,
-    private jwt: JwtHelperService,
-    private shopService: ShopingCartService
+    private jwt: JwtHelperService
   ) {
     if (this.isLoggedIn()) {
       const token = sessionStorage.getItem('id_token');
@@ -128,7 +126,7 @@ export class AuthService {
   private clearSessionData() {
     sessionStorage.removeItem(const_id_token);
     this.isAdminRequest = false;
-    this.shopService.clearItems();
+
 
   }
   logout() {
@@ -160,18 +158,6 @@ export class AuthService {
   }
 
   // ініціалізація зміної форми підключення ( визивається з нав бару )
-  setLoginModalForm( form: LoginModalFormComponent ) {
-    this.loginFormComponent = form;
-  }
-
-  getLoginFormCloseEvent() {
-    return this.loginFormComponent.formClosed$;
-  }
-  openLoginForm() {
-
-    if ( this.loginFormComponent === undefined ) { return; }
-    return this.loginFormComponent.open();
-  }
 
 
 }
