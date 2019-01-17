@@ -141,6 +141,12 @@
     <Compile Include="DictionaryForm.Designer.cs">
       <DependentUpon>DictionaryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.Designer.cs">
+      <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewTable.cs" />
     <EmbeddedResource Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.resx">
       <DependentUpon>CopyRightKindDictionaryControl.cs</DependentUpon>
@@ -176,6 +182,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="viewPageDictionaryControls\ComplexDictionaryControl.resx">
+      <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -224,9 +233,7 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ControlsForDictionaryForm\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

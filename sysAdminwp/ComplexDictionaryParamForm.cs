@@ -75,8 +75,8 @@ namespace sysAdminwp
         public ComplexDictionaryParamForm(KlR030 klr030, List<Country> klr030List)
         {
             InitializeComponent();
-            Klr030DictionaryControl countryDictionaryControl = new Klr030DictionaryControl(klr: klr030, listKlR030 :klr030List)
-            { Dock = DockStyle.Fill };
+            //Klr030DictionaryControl countryDictionaryControl = new Klr030DictionaryControl(klr: klr030, listKlR030 :klr030List)
+            //{ Dock = DockStyle.Fill };
         }
 
         private void btnSave_Click(object sender, EventArgs e)

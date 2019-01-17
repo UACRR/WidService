@@ -21,6 +21,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using sysAdminwp.ComplexDictionaryControls;
+using sysAdminwp.viewPageDictionaryControls;
 
 namespace sysAdminwp
 {
@@ -131,6 +132,11 @@ namespace sysAdminwp
             txtSearchData.Enabled = false;
             btnAdd.Enabled = false;
             btnRemove.Enabled = false;
+
+            //initialize object for complex dictionaries
+            ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl();
+            //add new control for complex dictionaries
+            radPageViewPage2.Controls.Add(complexDictionaryControl);
         }
 
         #region * * * Методи * * *
@@ -138,6 +144,7 @@ namespace sysAdminwp
         /// <summary>
         /// Встановлення джерела даних для Tree View
         /// </summary>
+        /// get method for complex dictionary
         private void SetTreeViewDataSource()
         {
             _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");//дерево
@@ -1039,11 +1046,11 @@ namespace sysAdminwp
                     var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(row.Code));
                     //get data list 
                     var customDictKlr030 = (List<Country>)IpsGlobal.AnketaDictionaties.klR030;
-                    //initialize contorl Klr030DictionaryControl
-                    Klr030DictionaryControl klrDictionaryControl = new Klr030DictionaryControl(klr030, customDictKlr030)
-                    { Dock = DockStyle.Fill };
-                    radPanel1.Controls.Clear();
-                    radPanel1.Controls.Add(klrDictionaryControl);
+                    //initialize control Klr030DictionaryControl
+                    //Klr030DictionaryControl klrDictionaryControl = new Klr030DictionaryControl(klr030, customDictKlr030)
+                    //{ Dock = DockStyle.Fill };
+                    //radPanel1.Controls.Clear();
+                    //radPanel1.Controls.Add(klrDictionaryControl);
                     break;
             }
         }
