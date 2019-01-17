@@ -358,7 +358,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         //event for add new row
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
-            
+            indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
             //set new Text for save button
             btnSave.Text = "Додати";
             //clear editPanel
@@ -421,7 +421,7 @@ namespace sysAdminwp.viewPageDictionaryControls
 
             }
             //set last position into grid
-            gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[gvComplexDictionariesList.RowCount--];
+            gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid];
         }
         //event for cancel all changes into textboxes edit panel
         private void btnCancel_Click(object sender, EventArgs e)
