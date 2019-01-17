@@ -64,9 +64,10 @@
             this.gvClosedLicenses.MasterTemplate.AllowEditRow = false;
             this.gvClosedLicenses.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.FieldName = "LicenseCode";
-            gridViewTextBoxColumn1.HeaderText = "Шифр";
+            gridViewTextBoxColumn1.HeaderText = "Шифр / версія";
             gridViewTextBoxColumn1.MinWidth = 50;
             gridViewTextBoxColumn1.Name = "LicenseCode";
+            gridViewTextBoxColumn1.WrapText = true;
             gridViewTextBoxColumn2.FieldName = "License";
             gridViewTextBoxColumn2.HeaderText = "Ліцензія";
             gridViewTextBoxColumn2.Name = "License";
