@@ -75,41 +75,41 @@ namespace sysAdminwp
                 return categoryItem.DicName;
             }
         }
-        //for complex dictionary
-        //define Url value for radTreeView1
-        public string UrlForComplexDictionaries
-        {
-            get
-            {
-                //select current position into radTreeView1
-                var nodeComplexDictionary = radTreeView1.SelectedNode;
-                //if position is null, then return empty string
-                if (nodeComplexDictionary == null) return string.Empty;
-                //get data for current selected object
-                var currentDataComplexDictionary = _complexDictionary[nodeComplexDictionary.Index];
-                //if data isn't exist, then return empty string
-                if (currentDataComplexDictionary == null) return string.Empty;
-                //return Url for current object
-                return currentDataComplexDictionary.Url;
-            }
-        }
+        ////for complex dictionary
+        ////define Url value for radTreeView1
+        //public string UrlForComplexDictionaries
+        //{
+        //    get
+        //    {
+        //        //select current position into radTreeView1
+        //        var nodeComplexDictionary = radTreeView1.SelectedNode;
+        //        //if position is null, then return empty string
+        //        if (nodeComplexDictionary == null) return string.Empty;
+        //        //get data for current selected object
+        //        var currentDataComplexDictionary = _complexDictionary[nodeComplexDictionary.Index];
+        //        //if data isn't exist, then return empty string
+        //        if (currentDataComplexDictionary == null) return string.Empty;
+        //        //return Url for current object
+        //        return currentDataComplexDictionary.Url;
+        //    }
+        //}
         //for complex dictionary
         //get current name for complex dictionary
-        public string ComplexDictionaryName
-        {
-            get
-            {
-                //current select position into radTreeView1
-                var node = radTreeView1.SelectedNode;
-                //if current select is null, then return Empty string
-                if (node == null) return string.Empty;
-                //get data about current select position
-                var currentDataDictionary = _complexDictionary[node.Index];
-                //if not have data, then return empty string
-                if (currentDataDictionary == null) return string.Empty;
-                return currentDataDictionary.DicName;
-            }
-        }
+        //public string ComplexDictionaryName
+        //{
+        //    get
+        //    {
+        //        //current select position into radTreeView1
+        //        var node = radTreeView1.SelectedNode;
+        //        //if current select is null, then return Empty string
+        //        if (node == null) return string.Empty;
+        //        //get data about current select position
+        //        var currentDataDictionary = _complexDictionary[node.Index];
+        //        //if not have data, then return empty string
+        //        if (currentDataDictionary == null) return string.Empty;
+        //        return currentDataDictionary.DicName;
+        //    }
+        //}
 
         // index selected row
         private int _indexRow;
@@ -125,7 +125,7 @@ namespace sysAdminwp
             gvDictionariesList.CustomFiltering += RadGridView1_CustomFiltering;
             gvDictionariesList.CurrentRowChanged += RadGridView1_CurrentRowChanged;
 
-            txtSearchComplex.SetUsageGrid(gvComplexDictionariesList);
+            //txtSearchData.SetUsageGrid(gvDictionariesList);
 
 
             radPanelChange.Enabled = false;
@@ -174,8 +174,8 @@ namespace sysAdminwp
             treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             treeViewList.DisplayMember = "Name\\Name";
 
-            radTreeView1.DataSource = _complexDictionary;
-            radTreeView1.DisplayMember = "Name";
+            //radTreeView1.DataSource = _complexDictionary;
+            //radTreeView1.DisplayMember = "Name";
             
         }
 
@@ -207,88 +207,88 @@ namespace sysAdminwp
             
             return view;
         }
-        //for complex dictionary
-        // defined method for get complex dictionary data
-        private List<ViewTable> GetComplexDictionariesData()
-        {
-            var view = new List<ViewTable>();
+        ////for complex dictionary
+        //// defined method for get complex dictionary data
+        //private List<ViewTable> GetComplexDictionariesData()
+        //{
+        //    var view = new List<ViewTable>();
 
-            // складні словники
-                switch (ComplexDictionaryName.ToLower())
-                {
-                    case "copyrightkind":
-                        _copyrightKindList = _connector.GetList<CopyrightKind>(UrlForComplexDictionaries);
-                        foreach (var item in _copyrightKindList)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.CodeI.ToString(),
-                                NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                                NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                                NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                            });
-                        }
-                    StringTypeForInitializeControl = "copyrightkind";
-                        break;
-                    case "country":
-                        _countryList = _connector.GetList<Country>(UrlForComplexDictionaries);
-                        foreach (var item in _countryList)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.CountryCode,
-                                NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
-                                NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
-                                NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
-                            });
-                        }
-                        StringTypeForInitializeControl = "country";
-                        break;
-                    case "creativeroletype":
-                        _creativeRoleTypeList = _connector.GetList<CreativeRoleType>(UrlForComplexDictionaries);
-                        foreach (var item in _creativeRoleTypeList)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.CodeI.ToString(),
-                                NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                                NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                                NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                            });
-                        }
-                    StringTypeForInitializeControl = "creativeroletype";
-                        break;
-                    case "genretype":
-                        _genreTypeList = _connector.GetList<GenreType>(UrlForComplexDictionaries);
-                        foreach (var item in _genreTypeList)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.CodeI.ToString(),
-                                NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                                NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                                NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                            });
-                        }
-                    StringTypeForInitializeControl = "genretype";
-                        break;
-                    case "klr030":
-                        _klR030List = _connector.GetList<KlR030>(UrlForComplexDictionaries);
-                        foreach (var item in _klR030List)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.R030,
-                                NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
-                                NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
-                                NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
-                            });
-                        }
-                    StringTypeForInitializeControl = "klr030";
-                        break;
-                }
-            return view;
-        }
+        //    // складні словники
+        //        switch (ComplexDictionaryName.ToLower())
+        //        {
+        //            case "copyrightkind":
+        //                _copyrightKindList = _connector.GetList<CopyrightKind>(UrlForComplexDictionaries);
+        //                foreach (var item in _copyrightKindList)
+        //                {
+        //                    view.Add(new ViewTable
+        //                    {
+        //                        Code = item.CodeI.ToString(),
+        //                        NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+        //                        NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+        //                        NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+        //                    });
+        //                }
+        //            StringTypeForInitializeControl = "copyrightkind";
+        //                break;
+        //            case "country":
+        //                _countryList = _connector.GetList<Country>(UrlForComplexDictionaries);
+        //                foreach (var item in _countryList)
+        //                {
+        //                    view.Add(new ViewTable
+        //                    {
+        //                        Code = item.CountryCode,
+        //                        NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
+        //                        NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
+        //                        NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
+        //                    });
+        //                }
+        //                StringTypeForInitializeControl = "country";
+        //                break;
+        //            case "creativeroletype":
+        //                _creativeRoleTypeList = _connector.GetList<CreativeRoleType>(UrlForComplexDictionaries);
+        //                foreach (var item in _creativeRoleTypeList)
+        //                {
+        //                    view.Add(new ViewTable
+        //                    {
+        //                        Code = item.CodeI.ToString(),
+        //                        NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+        //                        NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+        //                        NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+        //                    });
+        //                }
+        //            StringTypeForInitializeControl = "creativeroletype";
+        //                break;
+        //            case "genretype":
+        //                _genreTypeList = _connector.GetList<GenreType>(UrlForComplexDictionaries);
+        //                foreach (var item in _genreTypeList)
+        //                {
+        //                    view.Add(new ViewTable
+        //                    {
+        //                        Code = item.CodeI.ToString(),
+        //                        NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+        //                        NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+        //                        NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+        //                    });
+        //                }
+        //            StringTypeForInitializeControl = "genretype";
+        //                break;
+        //            case "klr030":
+        //                _klR030List = _connector.GetList<KlR030>(UrlForComplexDictionaries);
+        //                foreach (var item in _klR030List)
+        //                {
+        //                    view.Add(new ViewTable
+        //                    {
+        //                        Code = item.R030,
+        //                        NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
+        //                        NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
+        //                        NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+        //                    });
+        //                }
+        //            StringTypeForInitializeControl = "klr030";
+        //                break;
+        //        }
+        //    return view;
+        //}
 
         private DictBaseTypeI PackDataI()
         {
@@ -431,85 +431,85 @@ namespace sysAdminwp
             gvDictionariesList.TableElement.Text = "";
         }
 
-        //for complex dictionary
-        //method for refresh for edit panel
-        private void UpdateComplexDictionariesEditPanel()
-        {
-            //відписуємось від події - обрали інший рядок, зміни не внесено
-            radTextBox4.TextChanging -= TextBox_TextChanging;
-            radTextBox3.TextChanging -= TextBox_TextChanging;
-            radTextBox1.TextChanging -= TextBox_TextChanging;
-            radTextBox2.TextChanging -= TextBox_TextChanging;
+        ////for complex dictionary
+        ////method for refresh for edit panel
+        //private void UpdateComplexDictionariesEditPanel()
+        //{
+        //    //відписуємось від події - обрали інший рядок, зміни не внесено
+        //    radTextBox4.TextChanging -= TextBox_TextChanging;
+        //    radTextBox3.TextChanging -= TextBox_TextChanging;
+        //    radTextBox1.TextChanging -= TextBox_TextChanging;
+        //    radTextBox2.TextChanging -= TextBox_TextChanging;
 
-            if (gvComplexDictionariesList.CurrentRow?.DataBoundItem is ViewTable items)
-            {
-                if (_complexDictionaryList.Contains(DictionaryName.ToLower()))
-                {
-                    // TODO: для складних довідників підтягнути додаткові потрібні словники, сформувати інтерфейс
-                    // біндінг даних
-                    switch (DictionaryName.ToLower())
-                    {
-                        case "copyrightkind":
-                            var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                            radTextBox4.Text = copyrightKind?.CodeI.ToString();
-                            radTextBox3.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                            radTextBox1.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                            radTextBox2.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
-                            break;
-                        case "country":
-                            var country = _countryList?.SingleOrDefault(rec => rec.CountryCode == items.Code);
-                            radTextBox4.Text = country?.CountryCode;
-                            radTextBox3.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Uk")?.CountryName;
-                            radTextBox1.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Ru")?.CountryName;
-                            radTextBox2.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "En")?.CountryName;
-                            break;
-                        case "creativeroletype":
-                            var creativeRoleType = _creativeRoleTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                            radTextBox4.Text = creativeRoleType?.CodeI.ToString();
-                            radTextBox3.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                            radTextBox1.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                            radTextBox2.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
-                            break;
-                        case "genretype":
-                            var genreType = _genreTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                            radTextBox4.Text = genreType?.CodeI.ToString();
-                            radTextBox3.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                            radTextBox1.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                            radTextBox2.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
-                            break;
-                        case "klr030":
-                            var klR030 = _klR030List?.SingleOrDefault(rec => rec.R030 == items.Code);
-                            radTextBox4.Text = klR030?.R030;
-                            radTextBox3.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Uk")?.R030Name;
-                            radTextBox1.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Ru")?.R030Name;
-                            radTextBox2.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "En")?.R030Name;
-                            break;
-                    }
-                }
-                else
-                {
-                    var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                    radTextBox4.Text = item?.CodeI.ToString();
-                    radTextBox3.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                    radTextBox1.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                    radTextBox2.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
-                }
-            }
-            else
-            {
-                radTextBox4.Text = default(string);
-                radTextBox3.Text = default(string);
-                radTextBox1.Text = default(string);
-                radTextBox2.Text = default(string);
-            }
+        //    if (gvComplexDictionariesList.CurrentRow?.DataBoundItem is ViewTable items)
+        //    {
+        //        if (_complexDictionaryList.Contains(DictionaryName.ToLower()))
+        //        {
+        //            // TODO: для складних довідників підтягнути додаткові потрібні словники, сформувати інтерфейс
+        //            // біндінг даних
+        //            switch (DictionaryName.ToLower())
+        //            {
+        //                case "copyrightkind":
+        //                    var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+        //                    radTextBox4.Text = copyrightKind?.CodeI.ToString();
+        //                    radTextBox3.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+        //                    radTextBox1.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+        //                    radTextBox2.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+        //                    break;
+        //                case "country":
+        //                    var country = _countryList?.SingleOrDefault(rec => rec.CountryCode == items.Code);
+        //                    radTextBox4.Text = country?.CountryCode;
+        //                    radTextBox3.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Uk")?.CountryName;
+        //                    radTextBox1.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Ru")?.CountryName;
+        //                    radTextBox2.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "En")?.CountryName;
+        //                    break;
+        //                case "creativeroletype":
+        //                    var creativeRoleType = _creativeRoleTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+        //                    radTextBox4.Text = creativeRoleType?.CodeI.ToString();
+        //                    radTextBox3.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+        //                    radTextBox1.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+        //                    radTextBox2.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+        //                    break;
+        //                case "genretype":
+        //                    var genreType = _genreTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+        //                    radTextBox4.Text = genreType?.CodeI.ToString();
+        //                    radTextBox3.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+        //                    radTextBox1.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+        //                    radTextBox2.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
+        //                    break;
+        //                case "klr030":
+        //                    var klR030 = _klR030List?.SingleOrDefault(rec => rec.R030 == items.Code);
+        //                    radTextBox4.Text = klR030?.R030;
+        //                    radTextBox3.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Uk")?.R030Name;
+        //                    radTextBox1.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Ru")?.R030Name;
+        //                    radTextBox2.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "En")?.R030Name;
+        //                    break;
+        //            }
+        //        }
+        //        else
+        //        {
+        //            var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+        //            radTextBox4.Text = item?.CodeI.ToString();
+        //            radTextBox3.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+        //            radTextBox1.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+        //            radTextBox2.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        radTextBox4.Text = default(string);
+        //        radTextBox3.Text = default(string);
+        //        radTextBox1.Text = default(string);
+        //        radTextBox2.Text = default(string);
+        //    }
 
-            radTextBox4.TextChanging += TextBox_TextChanging;
-            radTextBox3.TextChanging += TextBox_TextChanging;
-            radTextBox1.TextChanging += TextBox_TextChanging;
-            radTextBox2.TextChanging += TextBox_TextChanging;
-            // hide default string
-            gvComplexDictionariesList.TableElement.Text = "";
-        }
+        //    radTextBox4.TextChanging += TextBox_TextChanging;
+        //    radTextBox3.TextChanging += TextBox_TextChanging;
+        //    radTextBox1.TextChanging += TextBox_TextChanging;
+        //    radTextBox2.TextChanging += TextBox_TextChanging;
+        //    // hide default string
+        //    gvComplexDictionariesList.TableElement.Text = "";
+        //}
 
         /// <summary>
         /// Метод зміни стану увімкненості компонентів
@@ -762,45 +762,45 @@ namespace sysAdminwp
             
             btnAdd.Enabled = true;
         }
-        //changes when select complex dictionary
-        private void changesWhenSelectComplexDictionary(object sender, RadTreeViewEventArgs e)
-        {
-            if (e.Node?.Index == null)
-            {
-                DefaultPanel();
-                return;
-            }
-            var categoryItem = _complexDictionary[e.Node.Index];
-            if (categoryItem == null)
-            {
-                DefaultPanel();
-                return;
-            }
-            //load data to the grid about current complex dictionaries
+        ////changes when select complex dictionary
+        //private void changesWhenSelectComplexDictionary(object sender, RadTreeViewEventArgs e)
+        //{
+        //    if (e.Node?.Index == null)
+        //    {
+        //        DefaultPanel();
+        //        return;
+        //    }
+        //    var categoryItem = _complexDictionary[e.Node.Index];
+        //    if (categoryItem == null)
+        //    {
+        //        DefaultPanel();
+        //        return;
+        //    }
+        //    //load data to the grid about current complex dictionaries
 
-            var returnedList = GetComplexDictionariesData();
-            gvComplexDictionariesList.DataSource = returnedList;
+        //    var returnedList = GetComplexDictionariesData();
+        //    gvComplexDictionariesList.DataSource = returnedList;
 
-            //var returnedList = GetComplexDictionariesData();
-            //gvComplexDictionariesList.DataSource = returnedList;
+        //    //var returnedList = GetComplexDictionariesData();
+        //    //gvComplexDictionariesList.DataSource = returnedList;
 
 
-            radPanelChange.Enabled = returnedList != null;
-            txtSearchData.Enabled = returnedList != null;
-            btnRemove.Enabled = returnedList != null;
+        //    radPanelChange.Enabled = returnedList != null;
+        //    txtSearchData.Enabled = returnedList != null;
+        //    btnRemove.Enabled = returnedList != null;
 
-            if (returnedList != null)
-            {
-                LoadOverviewCfg();
-            }
-            else
-            {
-                gvComplexDictionariesList.DataSource = default(DataGrid);
-                UpdateComplexDictionariesEditPanel();
-            }
+        //    if (returnedList != null)
+        //    {
+        //        LoadOverviewCfg();
+        //    }
+        //    else
+        //    {
+        //        gvComplexDictionariesList.DataSource = default(DataGrid);
+        //        UpdateComplexDictionariesEditPanel();
+        //    }
 
-            btnAdd.Enabled = true;
-        }
+        //    btnAdd.Enabled = true;
+        //}
 
         private void DefaultPanel()
         {
@@ -985,77 +985,77 @@ namespace sysAdminwp
             //}
         }
 
-        //for complex dictionary
-        private void gvComplexDictionariesList_SelectionChanged(object sender, EventArgs e)
-        {
-            UpdateComplexDictionariesEditPanel();
+        ////for complex dictionary
+        //private void gvComplexDictionariesList_SelectionChanged(object sender, EventArgs e)
+        //{
+        //    UpdateComplexDictionariesEditPanel();
             
-                var row = gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
-            switch (StringTypeForInitializeControl)
-            {
-                case "copyrightkind":
-                    //get data for copyRightKind object
-                    var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(row.Code));
-                    //get data list CrkindGroup
-                    //var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.crkindGroup;
-                    var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+        //        var row = gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
+        //    switch (StringTypeForInitializeControl)
+        //    {
+        //        case "copyrightkind":
+        //            //get data for copyRightKind object
+        //            var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(row.Code));
+        //            //get data list CrkindGroup
+        //            //var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.crkindGroup;
+        //            var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
 
-                    //initialize control CopyRightKindDictionaryControl
-                    CopyRightKindDictionaryControl copyRightKindControl = new CopyRightKindDictionaryControl(copyrightKind, baseDictsCopyRight)
-                    { Dock = DockStyle.Fill };
-                    radPanel1.Controls.Clear();
-                    radPanel1.Controls.Add(copyRightKindControl);
-                    break;
-                case "country":
-                    //get data for country object
-                    var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(row.Code));
-                    //get data list Continent
-                    var baseDictsCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
-                    //initialize control CountryDictionaryControl
-                    CountryDictionaryControl countryDictionaryControl = new CountryDictionaryControl(country, baseDictsCountry)
-                    { Dock = DockStyle.Fill };
-                    radPanel1.Controls.Clear();
-                    radPanel1.Controls.Add(countryDictionaryControl);
-                    break;
-                case "creativeroletype":
-                    //get data for creativeRoleType object
-                    var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(row.Code));
-                    //get data list Category
-                    //var customDictCreateRoleType = (List<Category>)IpsGlobal.AnketaDictionaties.creativeRoleType;
-                    var baseDicts = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
-                    //initialize control CreativeRoleTypeDictionary
-                    CreativeRoleTypeDictionaryControl creativeRoleDictionaryControl = new CreativeRoleTypeDictionaryControl(creativeroletype, baseDicts, new List<CopyrightType>())
-                    { Dock = DockStyle.Fill };
-                    radPanel1.Controls.Clear();
-                    radPanel1.Controls.Add(creativeRoleDictionaryControl);
-                    break;
-                case "genretype":
-                    //get data for GenreType object
-                    var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(row.Code));
-                    //var customcateg = _connector.GetList<Category>("dictionary/base/Category");
-                    var baseDictsType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+        //            //initialize control CopyRightKindDictionaryControl
+        //            CopyRightKindDictionaryControl copyRightKindControl = new CopyRightKindDictionaryControl(copyrightKind, baseDictsCopyRight)
+        //            { Dock = DockStyle.Fill };
+        //            radPanel1.Controls.Clear();
+        //            radPanel1.Controls.Add(copyRightKindControl);
+        //            break;
+        //        case "country":
+        //            //get data for country object
+        //            var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(row.Code));
+        //            //get data list Continent
+        //            var baseDictsCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
+        //            //initialize control CountryDictionaryControl
+        //            CountryDictionaryControl countryDictionaryControl = new CountryDictionaryControl(country, baseDictsCountry)
+        //            { Dock = DockStyle.Fill };
+        //            radPanel1.Controls.Clear();
+        //            radPanel1.Controls.Add(countryDictionaryControl);
+        //            break;
+        //        case "creativeroletype":
+        //            //get data for creativeRoleType object
+        //            var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(row.Code));
+        //            //get data list Category
+        //            //var customDictCreateRoleType = (List<Category>)IpsGlobal.AnketaDictionaties.creativeRoleType;
+        //            var baseDicts = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+        //            //initialize control CreativeRoleTypeDictionary
+        //            CreativeRoleTypeDictionaryControl creativeRoleDictionaryControl = new CreativeRoleTypeDictionaryControl(creativeroletype, baseDicts, new List<CopyrightType>())
+        //            { Dock = DockStyle.Fill };
+        //            radPanel1.Controls.Clear();
+        //            radPanel1.Controls.Add(creativeRoleDictionaryControl);
+        //            break;
+        //        case "genretype":
+        //            //get data for GenreType object
+        //            var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(row.Code));
+        //            //var customcateg = _connector.GetList<Category>("dictionary/base/Category");
+        //            var baseDictsType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
 
 
-                    //get data list Category
-                    //var customDictGenreType = (List<Category>)IpsGlobal.AnketaDictionaties.;
-                    //initalize control GenreTypeDictionaryControl
-                    GenreTypeDictionaryControl genreTypeDictionaryControl = new GenreTypeDictionaryControl(genretype, baseDictsType)
-                    { Dock = DockStyle.Fill };
-                    radPanel1.Controls.Clear();
-                    radPanel1.Controls.Add(genreTypeDictionaryControl);
-                    break;
-                case "klr030":
-                    //get data for KlR030 object
-                    var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(row.Code));
-                    //get data list 
-                    var customDictKlr030 = (List<Country>)IpsGlobal.AnketaDictionaties.klR030;
-                    //initialize control Klr030DictionaryControl
-                    //Klr030DictionaryControl klrDictionaryControl = new Klr030DictionaryControl(klr030, customDictKlr030)
-                    //{ Dock = DockStyle.Fill };
-                    //radPanel1.Controls.Clear();
-                    //radPanel1.Controls.Add(klrDictionaryControl);
-                    break;
-            }
-        }
+        //            //get data list Category
+        //            //var customDictGenreType = (List<Category>)IpsGlobal.AnketaDictionaties.;
+        //            //initalize control GenreTypeDictionaryControl
+        //            GenreTypeDictionaryControl genreTypeDictionaryControl = new GenreTypeDictionaryControl(genretype, baseDictsType)
+        //            { Dock = DockStyle.Fill };
+        //            radPanel1.Controls.Clear();
+        //            radPanel1.Controls.Add(genreTypeDictionaryControl);
+        //            break;
+        //        case "klr030":
+        //            //get data for KlR030 object
+        //            var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(row.Code));
+        //            //get data list 
+        //            var customDictKlr030 = (List<Country>)IpsGlobal.AnketaDictionaties.klR030;
+        //            //initialize control Klr030DictionaryControl
+        //            //Klr030DictionaryControl klrDictionaryControl = new Klr030DictionaryControl(klr030, customDictKlr030)
+        //            //{ Dock = DockStyle.Fill };
+        //            //radPanel1.Controls.Clear();
+        //            //radPanel1.Controls.Add(klrDictionaryControl);
+        //            break;
+        //    }
+        //}
     }
 }

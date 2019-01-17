@@ -33,24 +33,25 @@
             this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
             this.bsContinent = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ddlContinent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsContinent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlContinent
             // 
+            this.ddlContinent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlContinent.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "ContinentCode", true));
             this.ddlContinent.DataSource = this.bsContinent;
             this.ddlContinent.DisplayMember = "Name";
             this.ddlContinent.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlContinent.Location = new System.Drawing.Point(70, 3);
             this.ddlContinent.Name = "ddlContinent";
-            this.ddlContinent.Size = new System.Drawing.Size(125, 20);
+            this.ddlContinent.Size = new System.Drawing.Size(1261, 21);
             this.ddlContinent.TabIndex = 0;
+            this.ddlContinent.ThemeName = "Office2013Light";
             this.ddlContinent.ValueMember = "CodeI";
             // 
             // bsCountry
@@ -59,7 +60,7 @@
             // 
             // bsContinent
             // 
-            this.bsContinent.DataSource = typeof(ipsFormsDesign.Model.Continent);
+            this.bsContinent.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // radLabel1
             // 
@@ -69,29 +70,18 @@
             this.radLabel1.TabIndex = 1;
             this.radLabel1.Text = "Континент";
             // 
-            // radTextBox1
-            // 
-            this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "CountryName", true));
-            this.radTextBox1.Location = new System.Drawing.Point(4, 30);
-            this.radTextBox1.Name = "radTextBox1";
-            this.radTextBox1.Size = new System.Drawing.Size(191, 21);
-            this.radTextBox1.TabIndex = 2;
-            this.radTextBox1.ThemeName = "Office2013Light";
-            // 
             // CountryDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radTextBox1);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.ddlContinent);
             this.Name = "CountryDictionaryControl";
-            this.Size = new System.Drawing.Size(490, 64);
+            this.Size = new System.Drawing.Size(1334, 28);
             ((System.ComponentModel.ISupportInitialize)(this.ddlContinent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsContinent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,6 +93,5 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private System.Windows.Forms.BindingSource bsCountry;
         private System.Windows.Forms.BindingSource bsContinent;
-        private Telerik.WinControls.UI.RadTextBox radTextBox1;
     }
 }
