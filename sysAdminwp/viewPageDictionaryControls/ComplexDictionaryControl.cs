@@ -376,7 +376,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             gvComplexDictionariesList.Enabled = isEnable;
             btnAddComplex.Enabled = isEnable;
             btnDeleteComplex.Enabled = isEnable;
-            controlsParamPanel.Enabled = isEnable;
         }
 
         //event for detect changes into textboxes
@@ -384,6 +383,8 @@ namespace sysAdminwp.viewPageDictionaryControls
         {
             //hide other elements
             ChangeEnableElementsWhenAdd(false);
+            //show parameters
+            controlsParamPanel.Enabled = true;
             //show editPanel
             editPanel.Enabled = true;
             //enabled save/cancel buttons into editPanel
@@ -408,6 +409,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             if (btnSave.Text == "Додати")
             {
                 //save new row
+                SaveAddNewRow();
             }
             else
             {
@@ -548,6 +550,28 @@ namespace sysAdminwp.viewPageDictionaryControls
                 dataTrI[0],dataTrI[1],dataTrI[2]
             };
             return dataI;
+        }
+        //метод збереження змін !! null code
+        public void SaveUpdate()
+        {
+            if ((txtCodeComplex.TextLength == 0) && (Convert.ToInt32(txtCodeComplex.Text)).GetType() != typeof(int))
+                txtCodeComplex.Text = gvComplexDictionariesList.CurrentRow.Cells["Code"].Value.ToString();
+
+            DictBaseTypeI dataI = PackDataI();
+            // TODO: use result
+            bool result = _connector.UpdateItem<DictBaseTypeI>(UrlForComplexDictionaries, dataI.CodeI.ToString(), (DictBaseTypeI)dataI);
+
+            gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
+            UpdateEditPanelComplex();
+        }
+
+        private void btnDeleteComplex_Click(object sender, EventArgs e)
+        {
+            var row = gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
+            var result = _connector.DeleteItem(UrlForComplexDictionaries, row.Code);
+
+            gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
+            UpdateEditPanelComplex();
         }
     }
 }
