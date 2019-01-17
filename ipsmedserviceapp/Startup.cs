@@ -56,6 +56,15 @@ namespace ipsmedserviceapp
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddAuthorization(auth =>
+            {
+                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                    .RequireAuthenticatedUser().Build());
+
+                auth.DefaultPolicy = new AuthorizationPolicyBuilder("Identity.Application").RequireAuthenticatedUser().Build();
+            });
+
 
             services.AddAuthentication(options =>
             {
