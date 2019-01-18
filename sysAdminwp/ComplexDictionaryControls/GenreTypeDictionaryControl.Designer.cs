@@ -44,25 +44,29 @@
             // 
             // bsCategory
             // 
-            this.bsCategory.DataSource = typeof(ipsFormsDesign.Model.Category);
+            this.bsCategory.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(73, 65);
+            this.label1.Location = new System.Drawing.Point(3, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.Size = new System.Drawing.Size(66, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "CategoryList";
+            this.label1.Text = "Вид об\'єкта";
             // 
             // ddlCategory
             // 
+            this.ddlCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlCategory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsGenreType, "CategoryCode", true));
             this.ddlCategory.DataSource = this.bsCategory;
             this.ddlCategory.DisplayMember = "Name";
-            this.ddlCategory.Location = new System.Drawing.Point(144, 64);
+            this.ddlCategory.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCategory.FormattingEnabled = false;
+            this.ddlCategory.Location = new System.Drawing.Point(75, 5);
             this.ddlCategory.Name = "ddlCategory";
-            this.ddlCategory.Size = new System.Drawing.Size(244, 20);
+            this.ddlCategory.Size = new System.Drawing.Size(1274, 21);
             this.ddlCategory.TabIndex = 1;
             this.ddlCategory.ThemeName = "Office2013Light";
             this.ddlCategory.ValueMember = "CodeI";
@@ -74,7 +78,7 @@
             this.Controls.Add(this.ddlCategory);
             this.Controls.Add(this.label1);
             this.Name = "GenreTypeDictionaryControl";
-            this.Size = new System.Drawing.Size(567, 280);
+            this.Size = new System.Drawing.Size(1352, 29);
             ((System.ComponentModel.ISupportInitialize)(this.bsGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).EndInit();

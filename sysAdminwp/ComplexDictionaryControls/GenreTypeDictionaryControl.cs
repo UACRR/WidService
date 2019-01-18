@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
     public partial class GenreTypeDictionaryControl : UserControl
     {
-        public GenreTypeDictionaryControl(GenreType genreType, List<Category> listGenreType)
+        public GenreTypeDictionaryControl(GenreType genreType, List<DictBaseTypeI> listGenreType)
         {
             InitializeComponent();
             bsGenreType.DataSource = genreType;

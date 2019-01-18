@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
     public partial class Klr030DictionaryControl : UserControl
     {
-        public Klr030DictionaryControl(KlR030 klr, List<Country> listKlR030)
+        public Klr030DictionaryControl(KlR030 klr, List<DictBaseTypeI> listKlR030)
         {
             InitializeComponent();
             bsKlr.DataSource = klr;

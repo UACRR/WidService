@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.Extensions
 {
-    class Architector
+    public class Architector
     {
         /// <summary>
         /// Створює UserControl та додає в необхідний контрол
