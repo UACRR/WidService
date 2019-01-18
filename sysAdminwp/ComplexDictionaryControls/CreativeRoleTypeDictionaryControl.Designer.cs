@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexDictionaryControls
 {
-    partial class CreativeRoleTypeDictionaryControl
+    sealed partial class CreativeRoleTypeDictionaryControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

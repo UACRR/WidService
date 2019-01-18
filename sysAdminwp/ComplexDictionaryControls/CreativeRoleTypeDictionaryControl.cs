@@ -12,7 +12,7 @@ using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
-    public partial class CreativeRoleTypeDictionaryControl : UserControl
+    public sealed partial class CreativeRoleTypeDictionaryControl : UserControl
     {
         public CreativeRoleTypeDictionaryControl(CreativeRoleType creativeRole, List<DictBaseTypeI> listCreativeRole, List<DictBaseTypeI> copyrightTypes)
         {
@@ -20,6 +20,20 @@ namespace sysAdminwp.ComplexDictionaryControls
             bsCreativeRoleType.DataSource = creativeRole;
             bsCategory.DataSource = listCreativeRole;
             bsCopyrightType.DataSource = copyrightTypes;
+        }
+
+        public CreativeRoleTypeDictionaryControl(List<DictBaseTypeI> listCreativeRole, List<DictBaseTypeI> copyrightTypes)
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+            bsCategory.DataSource = listCreativeRole;
+            bsCopyrightType.DataSource = copyrightTypes;
+        }
+
+        public object CreativeRoleTypeDataSource
+        {
+            get => bsCreativeRoleType.DataSource;
+            set => bsCreativeRoleType.DataSource = value;
         }
     }
 }

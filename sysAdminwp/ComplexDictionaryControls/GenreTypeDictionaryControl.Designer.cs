@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexDictionaryControls
 {
-    partial class GenreTypeDictionaryControl
+    sealed partial class GenreTypeDictionaryControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
