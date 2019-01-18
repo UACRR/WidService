@@ -86,11 +86,13 @@
           <span class="navigation-text">Аналітика</span>
         </label>
       </div>
-      <div class="spog-nav-wrap" (click)="signInClick()">
-        Реєстрація
+      <div class="spog-nav-wrap">
+        <button (click)="signInClick()">Реєстрація</button>
       </div>
     </div>
     <div class="main-content-wrap">
       <app-profile></app-profile>
     </div>
   </div>
+  <app-login-register *ngIf="singInDialogVisible" (OnCloseDialogClick)="closeSignInForm()"></app-login-register>
+
