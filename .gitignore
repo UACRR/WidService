@@ -61,3 +61,4 @@ Thumbs.db
 *.dbmdl
 MediaServiceDb/MediaServiceDb.jfm
 MediaServiceDb/MediaServiceDb.dbmdl
+/ipsmedserviceapp/ClientApp/node_modules
