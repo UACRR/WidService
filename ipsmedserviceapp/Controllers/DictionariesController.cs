@@ -573,27 +573,32 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="dataJObject"></param>
         /// <returns></returns>
         [HttpPut("complex/update/{dictionaryName}/{id}")]
-        public async Task<IActionResult> SaveComplexDictionary(string dictionaryName, int id, [FromBody]JObject dataJObject)
+        public async Task<IActionResult> SaveComplexDictionary(string dictionaryName, string id, [FromBody]JObject dataJObject)
         {
             IDbContextTransaction transaction = null;
             try
             {
-                if(_complexDictionaryList.Contains(dictionaryName))
-                switch (dictionaryName)
+                if(_complexDictionaryList.Contains(dictionaryName.ToLower()))
+                switch (dictionaryName.ToLower())
                 {
                     case "copyrightkind":
+                        // convert copyrughtkind from JSON
                         var copyrightKind = dataJObject.ToObject<CopyrightKind>();
                         if (copyrightKind == null)
                             return NotFound("CopyrightKind not found!");
+                        //get copyrughtkind from DB by id
                         var destination = await _dbContext.CopyrightKind
                             .Include(item => item.CopyrightKindTr)
-                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
-                        destination.SetFields(copyrightKind, new []{ "CodeI" });
-
+                            .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
+                        //update copyrightKind data 
+                        destination.SetFields(copyrightKind);
+                        // update CopyrightKindTr list
                         foreach (var kindTr in copyrightKind.CopyrightKindTr)
                         {
+                            //get dictionary tr with current lang
                             var kind = destination.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == kindTr.Lang);
-                            if(kind == null)
+                            //if not exist 
+                            if (kind == null)    
                                 destination.CopyrightKindTr.Add(new CopyrightKindTr
                                 {
                                     CodeI = kindTr.CodeI,
@@ -601,79 +606,145 @@ namespace ipsmedserviceapp.Controllers
                                     Name = kindTr.Name,
                                 });
                             else
-                                kind.SetFields(kindTr,new []{"CodeI", "Lang"});
+                                kind.SetFields(kindTr,new []{"Lang"});
                         }
-                        break;
-                    case "country":
-                        var country = dataJObject.ToObject<Country>();
-                        if (country == null)
-                            return NotFound("Country not found!");
-                        var destinationCountry = await _dbContext.Country
-                            .Include(item => item.CountryTr)
-                            .SingleOrDefaultAsync(rec => Convert.ToInt32(rec.CountryCode) == id);
-                        destinationCountry.SetFields(country, new[] { "CodeI" });
-
-                        foreach (var countryTr in country.CountryTr)
-                        {
-                            var count = destinationCountry.CountryTr.SingleOrDefault(rec => rec.Lang == countryTr.Lang);
-                            if (count == null)
-                                destinationCountry.CountryTr.Add(new CountryTr
-                                {
-                                    CountryCode = countryTr.CountryCode,
-                                    Lang = countryTr.Lang,
-                                    CountryName = countryTr.CountryName,
-                                });
-                            else
-                                count.SetFields(countryTr, new[] { "CodeI", "Lang" });
-                        }
-                        break;
-                        case "creativeroletype":
-                            var creative = dataJObject.ToObject<CreativeRoleType>();
-                            if (creative == null)
-                                return NotFound("Creative not found!");
-                            var destinationCreative = await _dbContext.CreativeRoleType
-                                .Include(item => item.CreativeRoleTypeTr)
-                                .SingleOrDefaultAsync(rec => rec.CodeI == id);
-                            destinationCreative.SetFields(creative, new[] { "CodeI" });
-
-                            foreach (var creativeTr in creative.CreativeRoleTypeTr)
+                            break;
+                        case "country":
+                            // convert country object from json
+                            var objCountryForNewData = dataJObject.ToObject<Country>();
+                            //check on valid state
+                            if (objCountryForNewData == null)
+                                return NotFound("Country not found!");
+                            //get country from DB by id
+                            var getCountryDictionaryFromDB = await _dbContext.Country
+                                .Include(item => item.CountryTr)
+                                .SingleOrDefaultAsync(findById => findById.CountryCode == id);
+                            //update country data
+                            getCountryDictionaryFromDB.SetFields(objCountryForNewData);
+                            //update country list
+                            foreach(var dict in objCountryForNewData.CountryTr)
                             {
-                                var creat = destinationCreative.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == creativeTr.Lang);
-                                if (creat == null)
-                                    destinationCreative.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                                //get dictionary tr with current lang
+                                var newLangValue = getCountryDictionaryFromDB.CountryTr.SingleOrDefault(find => find.Lang == dict.Lang);
+                                //if not exist
+                                if (newLangValue == null)
+                                {
+                                    //if not exist
+                                    getCountryDictionaryFromDB.CountryTr.Add(new CountryTr
                                     {
-                                        CodeI = creativeTr.CodeI,
-                                        Lang = creativeTr.Lang,
-                                        Name = creativeTr.Name,
+                                        CountryCode = dict.CountryCode,
+                                        Lang = dict.Lang,
+                                        CountryName = dict.CountryName,
                                     });
+                                }
                                 else
-                                    creat.SetFields(creativeTr, new[] { "CodeI", "Lang" });
+                                {
+                                    
+                                    getCountryDictionaryFromDB.SetFields(dict, new[] { "Lang" });
+                                }
+                            }
+                            break;
+                        case "creativeroletype":
+                            //convert creativeroletype object from json
+                            var objCreativeForNewData = dataJObject.ToObject<CreativeRoleType>();
+                            //check on valid state
+                            if (objCreativeForNewData == null)
+                                return NotFound("Country not found!");
+                            //get creartiveroletype from DB by id
+                            var getCreativeDictionaryFromDB = await _dbContext.CreativeRoleType
+                                .Include(item => item.CreativeRoleTypeTr)
+                                .SingleOrDefaultAsync(item => int.TryParse(item.CodeI == id);
+                            //update creativeRoleType data
+                            getCreativeDictionaryFromDB.SetFields(objCreativeForNewData);
+                            //update creativeroletype list
+                            foreach(var dict in objCreativeForNewData.CreativeRoleTypeTr)
+                            {
+                                //get dictionary tr with current lang
+                                var newLangCreative = getCreativeDictionaryFromDB.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang = dict.Lang);
+                                //if not exist
+                                if (newLangCreative == null)
+                                {
+                                    //if not exist
+                                    getCreativeDictionaryFromDB.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                                    {
+                                        CodeI = newLangCreative.CodeI,
+                                        Lang = newLangCreative.Lang,
+                                        Name = newLangCreative.Name,
+                                    });
+                                }
+                                else
+                                {
+                                    getCreativeDictionaryFromDB.SetFields(dict, new[] { "Lang" });
+                                }
                             }
                             break;
                         case "genretype":
-                            var genre = dataJObject.ToObject<GenreType>();
-                            if (genre == null)
-                                return NotFound("Creative not found!");
-                            var destinationGenre = await _dbContext.GenreType
+                            //convert genretype object from json
+                            var objGenreForNewData = dataJObject.ToObject<GenreType>();
+                            //check on valid state
+                            if (objGenreForNewData == null)
+                                return NotFound("Genre not found!");
+                            //get genre from DB by id
+                            var getGenreDictionaryFromDB = await _dbContext.GenreType
                                 .Include(item => item.GenreTypeTr)
-                                .SingleOrDefaultAsync(rec => rec.CodeI == id);
-                            destinationGenre.SetFields(genre, new[] { "CodeI" });
-
-                            foreach (var genreTr in genre.GenreTypeTr)
+                                .SingleOrDefault(item => item.CodeI == id);
+                            //update genretype data
+                            getGenreDictionaryFromDB.SetFields(objGenreForNewData);
+                            //update genretype list
+                            foreach(var dict in objGenreForNewData.GenreTypeTr)
                             {
-                                var gen = destinationGenre.GenreTypeTr.SingleOrDefault(rec => rec.Lang == genreTr.Lang);
-                                if (creat == null)
-                                    destinationCreative.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                                //get dictionary tr with current lang
+                                var newLangGenre = getGenreDictionaryFromDB.GenreTypeTr.SingleOrDefault(item => item.Lang == dict.Lang);
+                                //if not exist
+                                if (newLangGenre == null)
+                                {
+                                    //if not exist
+                                    getGenreDictionaryFromDB.GenreTypeTr.Add(new GenreType
                                     {
-                                        CodeI = creativeTr.CodeI,
-                                        Lang = creativeTr.Lang,
-                                        Name = creativeTr.Name,
+                                        CodeI = newLangGenre.CodeI,
+                                        Lang = newLangGenre.Lang,
+                                        Name = newLangGenre.Name,
                                     });
+                                }
                                 else
-                                    creat.SetFields(creativeTr, new[] { "CodeI", "Lang" });
+                                {
+                                    getGenreDictionaryFromDB.SetFields(dict, new[] { "Lang" });
+                                }
                             }
                             break;
                         case "klr030":
+                            //convert klr030 object from json
+                            var objKLRForNewData = dataJObject.ToObject<KlR030>();
+                            //check on valud state
+                            if (objKLRForNewData == null)
+                                return NotFound("KLR030 not found!");
+                            //get KLR030 from DB by id
+                            var getKLRDictionaryFromDB = await _dbContext.KlR030
+                                .Include(item => item.KlR030tr)
+                                .SingleOrDefault(item => item.CodeI == id);
+                            //update KLR030 data
+                            getKLRDictionaryFromDB.SetFields(objKLRForNewData);
+                            //update KLR030 list
+                            foreach(var dict in objKLRForNewData.KlR030tr)
+                            {
+                                //get dictionary tr with current lang
+                                var newLangKLR = getKLRDictionaryFromDB.KlR030tr.SingleOrDefault(item => item.Lang == dict.Lang);
+                                //if not exist
+                                if (newLangKLR == null)
+                                {
+                                    //if not exist
+                                    getKLRDictionaryFromDB.KlR030tr.Add(new KlR030
+                                    {
+                                        CodeI = newLangKLR.CodeI,
+                                        Lang = newLangKLR.Lang,
+                                        R030Name = newLangKLR.R030Name,
+                                    });
+                                }
+                                else
+                                {
+                                    getKLRDictionaryFromDB.SetFields(dict, new[] { "Lang" });
+                                }
+                            }
                             break;
                             /*
                     "country"
@@ -779,12 +850,104 @@ namespace ipsmedserviceapp.Controllers
 
                         break;
                     case "country":
+                        //initialize object Country for add new data
+                        var countryNewData = new Country();
+                        //convert to Country input data
+                        var inputCountryData = dataJObject.ToObject<Country>();
+                        //check valid state
+                        if (inputCountryData == null)
+                            return NotFound("Data object not found!");
+                        //save new object Country
+                        countryNewData.SetFields(inputCountryData);
+                        //save every dictionary
+                        foreach(var dict in inputCountryData.CountryTr)
+                        {
+                            //initialize obj for next add
+                            var country = new CountryTr();
+                            //add field data
+                            country.SetFields(dict);
+                            //add new country object
+                            countryNewData.CountryTr.Add(country);
+                        }
+                        //add new object to DB
+                        await _dbContext.Country.AddAsync(countryNewData);
+                        //add new dictionaries
+                        await _dbContext.CountryTr.AddRangeAsync(countryNewData.CountryTr);
                         break;
                     case "creativeroletype":
+                        //initialize object CreativeRoleType for add new data
+                        var creativeNewData = new CreativeRoleType();
+                        //convert to CreativeRoleType input data
+                        var inputCreativeData = dataJObject.ToObject<CreativeRoleType>();
+                        //check valid state
+                        if (inputCreativeData == null)
+                            return NotFound("Data object not found!");
+                        //save new object CreativeRoleType
+                        creativeNewData.SetFields(inputCreativeData);
+                        //save every dictionary
+                        foreach(var dict in inputCreativeData.CreativeRoleTypeTr)
+                        {
+                            //initialize obj for next add
+                            var creative = new CreativeRoleTypeTr();
+                            //add field data
+                            creative.SetFields(dict);
+                            //add new CreativeRoleType object
+                            creativeNewData.CreativeRoleTypeTr.Add(creative);
+                        }
+                        //add new object to DB
+                        await _dbContext.CreativeRoleType.AddAsync(creativeNewData);
+                        //add new dictionaries
+                        await _dbContext.CreativeRoleTypeTr.AddRangeAsync(creativeNewData.CreativeRoleTypeTr);
                         break;
                     case "genretype":
+                        //initialize object GenreType for add new data
+                        var genreNewData = new GenreType();
+                        //convert to GenreType input data
+                        var inputGenreData = dataJObject.ToObject<GenreType>();
+                        //check valid state
+                        if (inputGenreData == null)
+                            return NotFound("Data object not found!");
+                        //save new object GenreType
+                        genreNewData.SetFields(inputGenreData);
+                        //save every dictionary
+                        foreach(var dict in inputGenreData.GenreTypeTr)
+                        {
+                            //initialize obj for next add
+                            var genre = new GenreTypeTr();
+                            //add field data
+                            genre.SetFields(dict);
+                            //add new genretyoe object
+                            genreNewData.GenreTypeTr.Add(genre);
+                        }
+                        //add new object to DB
+                        await _dbContext.GenreType.AddAsync(genreNewData);
+                        //add new dictionaries
+                        await _dbContext.GenreTypeTr.AddRangeAsync(genreNewData.GenreTypeTr);
                         break;
                     case "klr030":
+                        //initialize object KlR030 for add new data
+                        var klrNewData = new KlR030();
+                        //convert to KlR030 input data
+                        var inputKLRNewData = dataJObject.ToObject<KlR030>();
+                        //check valid state
+                        if (inputKLRNewData == null)
+                            return NotFound("Data object not found!");
+                        //save new object KlR030
+                        klrNewData.SetFields(inputKLRNewData);
+                        //save every dictionary
+                        foreach(var dict in inputKLRNewData.KlR030tr)
+                        {
+                            //initialize obj for next add
+                            var klr = new KlR030tr();
+                            //add field data
+                            klr.SetFields(klr);
+                            //add new KlR030 object
+                            klrNewData.KlR030tr.Add(klr);
+                        }
+                        //add new object to DB
+                        await _dbContext.KlR030.AddAsync(klrNewData);
+                        //add new dictionaries
+                        await _dbContext.KlR030tr.AddRangeAsync(klrNewData.KlR030tr);
                         break;
                 }
 

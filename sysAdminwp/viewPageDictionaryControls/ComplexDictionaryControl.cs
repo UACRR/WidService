@@ -376,7 +376,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
-                    _copyrightKind = new CopyrightKind();
+                    _copyrightKind = new CopyrightKind() {CrGroupCode = 1, };
                     _copyRightKindControl.CopyrightKindDataSource = _copyrightKind;
                     break;
                 case "country":
@@ -478,7 +478,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     case "copyrightkind":
                         if (!int.TryParse(txtCodeComplex.Text, out int code))
                         {
-                            MessageBox.Show($"Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             return false;
                         }
                         _copyrightKind.Name = txtNameUaComplex.Text;
@@ -610,6 +610,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 case "copyrightkind":
                     var copyrightKind = _copyrightKindList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    copyrightKind.CodeI = Convert.ToInt32(txtCodeComplex.Text);
                     copyrightKind.Name = txtNameUaComplex.Text;
                     var uk = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "Uk");
                     if (uk == null)
@@ -620,7 +621,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Uk",
                         });
                     else
+                    {
                         uk.Name = txtNameUaComplex.Text;
+                        uk.CodeI = copyrightKind.CodeI;
+                    }
 
                     var ru = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "Ru");
                     if (ru == null)
@@ -631,7 +635,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Ru",
                         });
                     else
+                    {
                         ru.Name = txtNameRuComplex.Text;
+                        ru.CodeI = copyrightKind.CodeI;
+                    }
 
                     var en = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "En");
                     if (en == null)
@@ -642,7 +649,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                         });
                     else
+                    {
                         en.Name = txtNameEnComplex.Text;
+                        en.CodeI = copyrightKind.CodeI;
+                    }
 
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), copyrightKind.CodeI.ToString(), copyrightKind);
                     break;
@@ -804,8 +814,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
             UpdateEditPanelComplex();
         }
-        //method for change value fields
-        //---//--
 
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
