@@ -20,7 +20,10 @@ namespace sysAdminwp.viewPageDictionaryControls
         //initialize connector
         private readonly ApiConnector _connector;
 
-        private const string Prefix = "dictionary/complex/update/";
+        private const string PrefixUpdate = "dictionary/complex/update/";
+        private const string PrefixCreate = "dictionary/complex/addnew/";
+        private const string PrefixDelete = "dictionary/complex/delete/";
+
         //variable for all dictionaries
         private List<DictCategory> _dictionaryCategories;
         //variable only for complex dictionaries
@@ -468,7 +471,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             }
             try
             {
-                var prefix = "dictionary/complex/addnew/";
                 // запакувать
                 switch (ComplexDictionaryName.ToLower())
                 {
@@ -499,19 +501,19 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
-                        _connector.NewItem(string.Concat(prefix, ComplexDictionaryName.ToLower()), _copyrightKind);
+                        _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _copyrightKind);
                         break;
                     case "country":
-                        _connector.NewItem(string.Concat(prefix, ComplexDictionaryName.ToLower()), _country);
+                        _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _country);
                         break;
                     case "creativeroletype":
-                        _connector.NewItem(string.Concat(prefix, ComplexDictionaryName.ToLower()), _creativeRoleType);
+                        _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _creativeRoleType);
                         break;
                     case "genretype":
-                        _connector.NewItem(string.Concat(prefix, ComplexDictionaryName.ToLower()), _genreType);
+                        _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _genreType);
                         break;
                     case "klr030":
-                        _connector.NewItem(string.Concat(prefix, ComplexDictionaryName.ToLower()), _klR030);
+                        _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _klR030);
                         break;
                 }
                 //bool result = _connector.NewItem(UrlForComplexDictionaries, new object());
@@ -541,7 +543,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 if (_complexDictionaryList.Contains(ComplexDictionaryName.ToLower()))
                 {
-                    // TODO: для складних довідників підтягнути додаткові потрібні словники, сформувати інтерфейс
                     // біндінг даних
                     switch (ComplexDictionaryName.ToLower())
                     {
@@ -582,14 +583,6 @@ namespace sysAdminwp.viewPageDictionaryControls
                             break;
                     }
                 }
-                //else
-                //{
-                //    var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                //    txtCodeComplex.Text = item?.CodeI.ToString();
-                //    txtNameUaComplex.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                //    txtNameRuComplex.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                //    txtNameEnComplex.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
-                //}
             }
             else
             {
@@ -610,7 +603,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         //метод збереження змін !! null code
         public void SaveUpdate()
         {
-            if ((txtCodeComplex.TextLength == 0) && (Convert.ToInt32(txtCodeComplex.Text)).GetType() != typeof(int))
+            if (txtCodeComplex.TextLength == 0 && Convert.ToInt32(txtCodeComplex.Text).GetType() != typeof(int))
                 txtCodeComplex.Text = gvComplexDictionariesList.CurrentRow.Cells["Code"].Value.ToString();
 
             switch (ComplexDictionaryName.ToLower())
@@ -651,7 +644,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     else
                         en.Name = txtNameEnComplex.Text;
 
-                    _connector.UpdateItem(string.Concat(Prefix, ComplexDictionaryName.ToLower()), copyrightKind.CodeI.ToString(), copyrightKind);
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), copyrightKind.CodeI.ToString(), copyrightKind);
                     break;
                 case "country":
                     var country = _countryList.SingleOrDefault(rec => Convert.ToInt32(rec.CountryCode) == Convert.ToInt32(CurrentGridRow.Code));
@@ -689,7 +682,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     else
                         enCountry.CountryName = txtNameEnComplex.Text;
 
-                    _connector.UpdateItem(string.Concat(Prefix, ComplexDictionaryName.ToLower()), country.CountryCode.ToString(), country);
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), country.CountryCode.ToString(), country);
                     break;
                 case "creativeroletype":
                     var creativeRoleType = _creativeRoleTypeList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
@@ -727,7 +720,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     else
                         enCreative.Name = txtNameEnComplex.Text;
 
-                    _connector.UpdateItem(string.Concat(Prefix, ComplexDictionaryName.ToLower()), creativeRoleType.CodeI.ToString(), creativeRoleType);
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), creativeRoleType.CodeI.ToString(), creativeRoleType);
                     break;
                 case "genretype":
                     var genre = _genreTypeList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
@@ -765,7 +758,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     else
                         enGenre.Name = txtNameEnComplex.Text;
 
-                    _connector.UpdateItem(string.Concat(Prefix, ComplexDictionaryName.ToLower()), genre.CodeI.ToString(), genre);
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), genre.CodeI.ToString(), genre);
                     break;
                 case "klr030":
                     var klr = _klR030List.SingleOrDefault(rec => Convert.ToInt32(rec.CountryCode) == Convert.ToInt32(CurrentGridRow.Code));
@@ -803,7 +796,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     else
                         enKlr.R030Name = txtNameEnComplex.Text;
 
-                    _connector.UpdateItem(string.Concat(Prefix, ComplexDictionaryName.ToLower()), klr.R030.ToString(), klr);
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), klr.R030.ToString(), klr);
                     MessageBox.Show("klr030");
                     break;
             }
@@ -818,7 +811,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         {
             //save index
             indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
-            var result = _connector.DeleteItem(UrlForComplexDictionaries, CurrentGridRow.Code);
+            var result = _connector.DeleteItem(string.Concat(PrefixDelete, ComplexDictionaryName.ToLower()), CurrentGridRow.Code);
 
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
             UpdateEditPanelComplex();
