@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexDictionaryControls
 {
-    partial class CountryDictionaryControl
+    sealed partial class CountryDictionaryControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

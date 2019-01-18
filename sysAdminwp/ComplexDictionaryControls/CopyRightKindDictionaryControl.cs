@@ -12,13 +12,26 @@ using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
-    public partial class CopyRightKindDictionaryControl : UserControl, IComplexDictionary
+    public sealed partial class CopyRightKindDictionaryControl : UserControl, IComplexDictionary
     {
         public CopyRightKindDictionaryControl(CopyrightKind copyR, List<DictBaseTypeI> list)
         {
             InitializeComponent();
             bsCopyrightKind.DataSource = copyR;
             bsCrkindGroup.DataSource = list;
+        }
+
+        public CopyRightKindDictionaryControl(List<DictBaseTypeI> list)
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+            bsCrkindGroup.DataSource = list;
+        }
+
+        public object CopyrightKindDataSource
+        {
+            get => bsCopyrightKind.DataSource;
+            set => bsCopyrightKind.DataSource = value;
         }
 
         public bool Validation()

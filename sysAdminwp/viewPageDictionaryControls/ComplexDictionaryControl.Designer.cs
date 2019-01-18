@@ -47,7 +47,7 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.lblCode = new Telerik.WinControls.UI.RadLabel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLblSearch = new System.Windows.Forms.Label();
@@ -66,7 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             this.SuspendLayout();
@@ -186,7 +186,7 @@
             this.editPanel.Controls.Add(this.radLabel1);
             this.editPanel.Controls.Add(this.radLabel2);
             this.editPanel.Controls.Add(this.radLabel3);
-            this.editPanel.Controls.Add(this.radLabel4);
+            this.editPanel.Controls.Add(this.lblCode);
             this.editPanel.Controls.Add(this.btnCancel);
             this.editPanel.Controls.Add(this.btnSave);
             this.editPanel.Location = new System.Drawing.Point(253, 356);
@@ -276,16 +276,16 @@
             this.radLabel3.Text = "Назва (UA):";
             this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // radLabel4
+            // lblCode
             // 
-            this.radLabel4.AutoSize = false;
-            this.radLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel4.Location = new System.Drawing.Point(55, 28);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(90, 18);
-            this.radLabel4.TabIndex = 2;
-            this.radLabel4.Text = "Код:";
-            this.radLabel4.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblCode.AutoSize = false;
+            this.lblCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblCode.Location = new System.Drawing.Point(55, 28);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(90, 18);
+            this.lblCode.TabIndex = 2;
+            this.lblCode.Text = "Код:";
+            this.lblCode.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnCancel
             // 
@@ -346,7 +346,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             this.ResumeLayout(false);
@@ -370,7 +370,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel lblCode;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadButton btnSave;
         private System.Windows.Forms.Label radLblSearch;

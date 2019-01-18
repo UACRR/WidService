@@ -629,6 +629,110 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Видалити запис з довідника по ID
+        /// </summary>
+        /// <param name="dictionaryName"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("complex/delete/{dictionaryName}/{id}")]
+        public async Task<IActionResult> DeleteComplexDictionary(string dictionaryName, int id)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                if (!_complexDictionaryList.Contains(dictionaryName.ToLower()))
+                    return NotFound("Complex dictionary not found!");
+                switch (dictionaryName.ToLower())
+                {
+                    case "copyrightkind":
+                        var copyrightKind = await _dbContext.CopyrightKind
+                            .Include(item => item.CopyrightKindTr)
+                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                        _dbContext.CopyrightKindTr.RemoveRange(copyrightKind.CopyrightKindTr);
+                        _dbContext.CopyrightKind.Remove(copyrightKind);
+                        break;
+                    case "country":
+                        break;
+                    case "creativeroletype":
+                        break;
+                    case "genretype":
+                        break;
+                    case "klr030":
+                        break;
+                }
+
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+                transaction = null;
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Додати запис в довідник
+        /// </summary>
+        /// <param name="dictionaryName"></param>
+        /// <param name="dataJObject"></param>
+        /// <returns></returns>
+        [HttpPost("complex/addnew/{dictionaryName}")]
+        public async Task<IActionResult> AddComplexDictionary(string dictionaryName, [FromBody] JObject dataJObject)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                if (!_complexDictionaryList.Contains(dictionaryName.ToLower()))
+                    return NotFound("Complex dictionary not found!");
+                switch (dictionaryName.ToLower())
+                {
+                    case "copyrightkind":
+                        var destinationCopyrightKind = new CopyrightKind();
+                        var copyrightKind = dataJObject.ToObject<CopyrightKind>();
+                        if (copyrightKind == null)
+                            return NotFound("Data object not found!");
+
+                        destinationCopyrightKind.SetFields(copyrightKind);
+                        foreach (var kindTr in copyrightKind.CopyrightKindTr)
+                        {
+                            var kind = new CopyrightKindTr();
+                            kind.SetFields(kindTr);
+                            destinationCopyrightKind.CopyrightKindTr.Add(kind);
+                        }
+
+                        await _dbContext.CopyrightKind.AddAsync(destinationCopyrightKind);
+                        await _dbContext.CopyrightKindTr.AddRangeAsync(destinationCopyrightKind.CopyrightKindTr);
+
+                        break;
+                    case "country":
+                        break;
+                    case "creativeroletype":
+                        break;
+                    case "genretype":
+                        break;
+                    case "klr030":
+                        break;
+                }
+
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+                transaction = null;
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpGet("base/{dictionary}/{id}")]
         public async Task<IActionResult> GetBaseDictionaryById(string dictionary, string id)
         {

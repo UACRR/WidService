@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexDictionaryControls
 {
-    partial class CopyRightKindDictionaryControl
+    sealed partial class CopyRightKindDictionaryControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

@@ -12,13 +12,26 @@ using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
-    public partial class GenreTypeDictionaryControl : UserControl
+    public sealed partial class GenreTypeDictionaryControl : UserControl
     {
         public GenreTypeDictionaryControl(GenreType genreType, List<DictBaseTypeI> listGenreType)
         {
             InitializeComponent();
             bsGenreType.DataSource = genreType;
             bsCategory.DataSource = listGenreType;
+        }
+
+        public GenreTypeDictionaryControl(List<DictBaseTypeI> listGenreType)
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+            bsCategory.DataSource = listGenreType;
+        }
+
+        public object GenreTypeDataSource
+        {
+            get => bsGenreType.DataSource;
+            set => bsGenreType.DataSource = value;
         }
     }
 }
