@@ -565,6 +565,51 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPut("complex/{dictionaryName}/{id}")]
+        public async Task<IActionResult> SaveComplexDictionary(string dictionaryName, int id, [FromBody]JObject dataJObject)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                if(_complexDictionaryList.Contains(dictionaryName))
+                switch (dictionaryName)
+                {
+                    case "copyrightkind":
+                        var copyrightKind = dataJObject.ToObject<CopyrightKind>();
+                        if (copyrightKind == null)
+                            return NotFound("CopyrightKind not found!");
+                        var destination = await _dbContext.CopyrightKind.SingleOrDefaultAsync(rec => rec.CodeI == id);
+                        destination.SetFields(copyrightKind, new []{ "CodeI" });
+                        foreach (var kindTr in copyrightKind.CopyrightKindTr)
+                        {
+                            var kind = destination.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == kindTr.Lang);
+                            if(kind == null)
+                                destination.CopyrightKindTr.Add(new CopyrightKindTr
+                                {
+                                    CodeI = kindTr.CodeI,
+                                    Lang = kindTr.Lang,
+                                    Name = kindTr.Name,
+                                });
+                            else
+                                kind.SetFields(kindTr,new []{"CodeI", "Lang"});
+                        }
+                        break;
+                }
+
+                transaction = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+                transaction = null;
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpGet("base/{dictionary}/{id}")]
         public async Task<IActionResult> GetBaseDictionaryById(string dictionary, string id)
         {
@@ -695,11 +740,7 @@ namespace ipsmedserviceapp.Controllers
 
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
+
         [HttpGet("extra/crkindgroup/{id}")]
         public async Task<ActionResult> GetCrkindgroupById(int id)
         {
