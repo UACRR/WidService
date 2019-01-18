@@ -60,6 +60,9 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             if (cust == null || cust.CustId != 0)
                 return;
 
+            if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))
+                return;
+
             IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
             if (checker != null)
                 lblIPIExists.Visible = !checker.CheckIPIIsUnique( txtInterCode.Text );

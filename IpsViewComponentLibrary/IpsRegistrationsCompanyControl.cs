@@ -136,6 +136,8 @@ namespace IpsViewComponentLibrary
             if (cust == null || (cust.CustId != 0 && cust.Okpo.Trim() == txtOkpo.Text.Trim() ) )
                 return;
 
+            if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))
+                return; 
 
             IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
             if (checker != null)
