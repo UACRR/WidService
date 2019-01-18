@@ -604,8 +604,77 @@ namespace ipsmedserviceapp.Controllers
                                 kind.SetFields(kindTr,new []{"CodeI", "Lang"});
                         }
                         break;
-                    case "":
+                    case "country":
+                        var country = dataJObject.ToObject<Country>();
+                        if (country == null)
+                            return NotFound("Country not found!");
+                        var destinationCountry = await _dbContext.Country
+                            .Include(item => item.CountryTr)
+                            .SingleOrDefaultAsync(rec => Convert.ToInt32(rec.CountryCode) == id);
+                        destinationCountry.SetFields(country, new[] { "CodeI" });
+
+                        foreach (var countryTr in country.CountryTr)
+                        {
+                            var count = destinationCountry.CountryTr.SingleOrDefault(rec => rec.Lang == countryTr.Lang);
+                            if (count == null)
+                                destinationCountry.CountryTr.Add(new CountryTr
+                                {
+                                    CountryCode = countryTr.CountryCode,
+                                    Lang = countryTr.Lang,
+                                    CountryName = countryTr.CountryName,
+                                });
+                            else
+                                count.SetFields(countryTr, new[] { "CodeI", "Lang" });
+                        }
                         break;
+                        case "creativeroletype":
+                            var creative = dataJObject.ToObject<CreativeRoleType>();
+                            if (creative == null)
+                                return NotFound("Creative not found!");
+                            var destinationCreative = await _dbContext.CreativeRoleType
+                                .Include(item => item.CreativeRoleTypeTr)
+                                .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                            destinationCreative.SetFields(creative, new[] { "CodeI" });
+
+                            foreach (var creativeTr in creative.CreativeRoleTypeTr)
+                            {
+                                var creat = destinationCreative.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == creativeTr.Lang);
+                                if (creat == null)
+                                    destinationCreative.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                                    {
+                                        CodeI = creativeTr.CodeI,
+                                        Lang = creativeTr.Lang,
+                                        Name = creativeTr.Name,
+                                    });
+                                else
+                                    creat.SetFields(creativeTr, new[] { "CodeI", "Lang" });
+                            }
+                            break;
+                        case "genretype":
+                            var genre = dataJObject.ToObject<GenreType>();
+                            if (genre == null)
+                                return NotFound("Creative not found!");
+                            var destinationGenre = await _dbContext.GenreType
+                                .Include(item => item.GenreTypeTr)
+                                .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                            destinationGenre.SetFields(genre, new[] { "CodeI" });
+
+                            foreach (var genreTr in genre.GenreTypeTr)
+                            {
+                                var gen = destinationGenre.GenreTypeTr.SingleOrDefault(rec => rec.Lang == genreTr.Lang);
+                                if (creat == null)
+                                    destinationCreative.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                                    {
+                                        CodeI = creativeTr.CodeI,
+                                        Lang = creativeTr.Lang,
+                                        Name = creativeTr.Name,
+                                    });
+                                else
+                                    creat.SetFields(creativeTr, new[] { "CodeI", "Lang" });
+                            }
+                            break;
+                        case "klr030":
+                            break;
                             /*
                     "country"
                     "creativeroletype"
