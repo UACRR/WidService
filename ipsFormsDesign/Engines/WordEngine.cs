@@ -131,6 +131,7 @@ namespace ipsFormsDesign.Services
             BankAccount bankacc = cust.BankAccount.FirstOrDefault();
             //   AnketaCompany anketaComp = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
             RightHolder rightHolder = cust.RightHolder;
+            bool isCompany = false;
 
             string customerName = string.Empty;
             string leAddress = string.Empty;
@@ -182,6 +183,7 @@ namespace ipsFormsDesign.Services
             }   
             else // юр. особа
             {
+                isCompany = true;
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
                     $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
@@ -322,10 +324,10 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = Okpo;
                         break;
                     case "СstPasport":
-                            item.Range.Text = $"{anketaPerson.PUseries} {anketaPerson.PUnumber}";
+                            item.Range.Text = $"{anketaPerson?.PUseries} {anketaPerson?.PUnumber}";
                         break;
                     case "СstPasportIssued":
-                            item.Range.Text = $"{anketaPerson.PUissuedWho} {anketaPerson.PUissuedWhen:dd.MM.yyyy}";
+                            item.Range.Text = $"{anketaPerson?.PUissuedWho} {anketaPerson?.PUissuedWhen:dd.MM.yyyy}";
                         break;
                     case "СstBankName":
                         item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
