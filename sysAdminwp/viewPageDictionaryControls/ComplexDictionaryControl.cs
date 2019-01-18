@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Model;
 using WebAPIConnector;
 using ipsFormsDesign.Dictionary;
@@ -17,8 +18,9 @@ namespace sysAdminwp.viewPageDictionaryControls
     public partial class ComplexDictionaryControl : UserControl
     {
         //initialize connector
-        private readonly ApiConnector _connector = new ApiConnector();
+        private readonly ApiConnector _connector;
 
+        private const string Prefix = "dictionary/complex/update/";
         //variable for all dictionaries
         private List<DictCategory> _dictionaryCategories;
         //variable only for complex dictionaries
@@ -81,9 +83,13 @@ namespace sysAdminwp.viewPageDictionaryControls
                 return currentDataDictionary.DicName;
             }
         }
-        public ComplexDictionaryControl()
+
+        public ViewTable CurrentGridRow => gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
+
+        public ComplexDictionaryControl(ApiConnector connector)
         {
             InitializeComponent();
+            _connector = connector;
             //fill treeView
             SetTreeViewComplexDictionaryDataSource();
 
@@ -91,9 +97,9 @@ namespace sysAdminwp.viewPageDictionaryControls
             txtSearchComplex.SetUsageGrid(gvComplexDictionariesList);
 
             //set current enabled states for elements
-            elementsEnabledStatesControler();
+            ElementsEnabledStatesControler();
             //hide buttons save/cancel into edit panel
-            changeEnabledStateButtonsEditPanels(false);
+            ChangeEnabledStateButtonsEditPanels(false);
         }
 
         //method for get data about complex dictionaries
@@ -144,7 +150,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                         {
                             Code = item.CodeI.ToString(),
                             NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                            NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "RU")?.Name,
+                            NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                         });
                     }
@@ -335,7 +341,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         }
         //method control enable state next elements - 
         //editPanel, txtsearchComplex, btnAddComplex, btnDeleteComplex
-        private void elementsEnabledStatesControler()
+        private void ElementsEnabledStatesControler()
         {
             //initialize current grid state for next reaction elements states
             bool stateEnabled = gvComplexDictionariesList.RowCount != 0;
@@ -355,7 +361,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         private void gvComplexDictionariesList_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
         {
             //check current state data into grid
-            elementsEnabledStatesControler();
+            ElementsEnabledStatesControler();
         }
         //event for add new row
         private void btnAddComplex_Click(object sender, EventArgs e)
@@ -371,7 +377,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             txtNameEnComplex.Clear();
             editPanel.Enabled = true;
             //enable save/cancel buttons into edit panel
-            changeEnabledStateButtonsEditPanels(true);
+            ChangeEnabledStateButtonsEditPanels(true);
         }
 
         //method for change current enabled state for next elements
@@ -394,10 +400,10 @@ namespace sysAdminwp.viewPageDictionaryControls
             //show editPanel
             editPanel.Enabled = true;
             //enabled save/cancel buttons into editPanel
-            changeEnabledStateButtonsEditPanels(true);
+            ChangeEnabledStateButtonsEditPanels(true);
         }
         //method for enabled state buttons save and cancel into edit panel
-        private void changeEnabledStateButtonsEditPanels(bool isEnable)
+        private void ChangeEnabledStateButtonsEditPanels(bool isEnable)
         {
             //button save
             btnSave.Enabled = isEnable;
@@ -408,7 +414,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         private void btnSave_Click(object sender, EventArgs e)
         {
             //hide buttons save/cancel into edit panel
-            changeEnabledStateButtonsEditPanels(false);
+            ChangeEnabledStateButtonsEditPanels(false);
             //show other elements
             ChangeEnableElementsWhenAdd(true);
 
@@ -420,7 +426,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             else
             {
                 //save changes row
-
+                SaveUpdate();
             }
             //set last position into grid
             gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid];
@@ -429,7 +435,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         private void btnCancel_Click(object sender, EventArgs e)
         {
             //hide buttons save/cancel into edit panel
-            changeEnabledStateButtonsEditPanels(false);
+            ChangeEnabledStateButtonsEditPanels(false);
             //show other elements
             ChangeEnableElementsWhenAdd(true);
         }
@@ -446,8 +452,8 @@ namespace sysAdminwp.viewPageDictionaryControls
                 
                 try
                 {
-                    DictBaseTypeI dataI = PackDataI();
-                    bool result = _connector.NewItem(UrlForComplexDictionaries, dataI);
+                    // запакувать
+                    bool result = _connector.NewItem(UrlForComplexDictionaries, new object());
 
                     gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
                     UpdateEditPanelComplex();
@@ -466,6 +472,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     MessageBoxIcon.Information);
             }
         }
+
         //метод оновлення для панелі редагування
         private void UpdateEditPanelComplex()
         {
@@ -544,32 +551,63 @@ namespace sysAdminwp.viewPageDictionaryControls
             // hide default string
             gvComplexDictionariesList.TableElement.Text = "";
         }
-        private DictBaseTypeI PackDataI()
-        {
-            DictBaseTypeI dataI = new DictBaseTypeI();
-            var dataTrI = new DictTrI[3];
-            dataTrI[0] = new DictTrI() { CodeI = Convert.ToInt32(txtCodeComplex.Text), Lang = "En", Name = txtNameEnComplex.Text };
-            dataTrI[1] = new DictTrI() { CodeI = Convert.ToInt32(txtCodeComplex.Text), Lang = "Ru", Name = txtNameRuComplex.Text };
-            dataTrI[2] = new DictTrI() { CodeI = Convert.ToInt32(txtCodeComplex.Text), Lang = "Uk", Name = txtNameUaComplex.Text };
 
-            dataI.CodeI = dataTrI[0].CodeI;
-            dataI.Name = txtNameUaComplex.Text;
-            dataI.DictTrI = new List<DictTrI>
-            {
-                dataTrI[0],dataTrI[1],dataTrI[2]
-            };
-            return dataI;
-        }
         //метод збереження змін !! null code
         public void SaveUpdate()
         {
             if ((txtCodeComplex.TextLength == 0) && (Convert.ToInt32(txtCodeComplex.Text)).GetType() != typeof(int))
                 txtCodeComplex.Text = gvComplexDictionariesList.CurrentRow.Cells["Code"].Value.ToString();
 
-            DictBaseTypeI dataI = PackDataI();
-            // TODO: use result
-            bool result = _connector.UpdateItem<DictBaseTypeI>(UrlForComplexDictionaries, dataI.CodeI.ToString(), (DictBaseTypeI)dataI);
+            switch (ComplexDictionaryName.ToLower())
+            {
+                case "copyrightkind":
+                    var copyrightKind = _copyrightKindList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    copyrightKind.Name = txtNameUaComplex.Text;
+                    var uk = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "Uk");
+                    if (uk == null)
+                        copyrightKind.CopyrightKindTr.Add(new CopyrightKindTr
+                        {
+                            CodeI = copyrightKind.CodeI,
+                            Name = txtNameUaComplex.Text,
+                            Lang = "Uk",
+                        });
+                    else
+                        uk.Name = txtNameUaComplex.Text;
 
+                    var ru = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "Ru");
+                    if (ru == null)
+                        copyrightKind.CopyrightKindTr.Add(new CopyrightKindTr
+                        {
+                            CodeI = copyrightKind.CodeI,
+                            Name = txtNameRuComplex.Text,
+                            Lang = "Ru",
+                        });
+                    else
+                        ru.Name = txtNameRuComplex.Text;
+
+                    var en = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "En");
+                    if (en == null)
+                        copyrightKind.CopyrightKindTr.Add(new CopyrightKindTr
+                        {
+                            CodeI = copyrightKind.CodeI,
+                            Name = txtNameEnComplex.Text,
+                            Lang = "En",
+                        });
+                    else
+                        en.Name = txtNameEnComplex.Text;
+
+                    _connector.UpdateItem(string.Concat(Prefix, ComplexDictionaryName.ToLower()), copyrightKind.CodeI.ToString(), copyrightKind);
+                    break;
+                case "country":
+                    break;
+                case "creativeroletype":
+                    break;
+                case "genretype":
+                    break;
+                case "klr030":
+                    break;
+            }
+            
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
             UpdateEditPanelComplex();
         }
@@ -578,8 +616,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         {
             //save index
             indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
-            var row = gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
-            var result = _connector.DeleteItem(UrlForComplexDictionaries, row.Code);
+            var result = _connector.DeleteItem(UrlForComplexDictionaries, CurrentGridRow.Code);
 
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
             UpdateEditPanelComplex();

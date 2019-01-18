@@ -187,7 +187,7 @@ namespace sysAdminwp
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(0, 39);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage2;
+            this.radPageView1.SelectedPage = this.radPageViewPage1;
             this.radPageView1.Size = new System.Drawing.Size(985, 543);
             this.radPageView1.TabIndex = 1;
             this.radPageView1.ThemeName = "Office2013Light";
@@ -203,7 +203,7 @@ namespace sysAdminwp
             this.radPageViewPage1.Controls.Add(this.radLblSearch);
             this.radPageViewPage1.Controls.Add(this.btnAdd);
             this.radPageViewPage1.Controls.Add(this.gvDictionariesList);
-            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(46F, 27F);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(975, 507);

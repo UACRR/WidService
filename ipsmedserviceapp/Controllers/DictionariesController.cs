@@ -565,7 +565,14 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        [HttpPut("complex/{dictionaryName}/{id}")]
+        /// <summary>
+        /// Оновити дані складного довідника
+        /// </summary>
+        /// <param name="dictionaryName"></param>
+        /// <param name="id"></param>
+        /// <param name="dataJObject"></param>
+        /// <returns></returns>
+        [HttpPut("complex/update/{dictionaryName}/{id}")]
         public async Task<IActionResult> SaveComplexDictionary(string dictionaryName, int id, [FromBody]JObject dataJObject)
         {
             IDbContextTransaction transaction = null;
@@ -578,8 +585,11 @@ namespace ipsmedserviceapp.Controllers
                         var copyrightKind = dataJObject.ToObject<CopyrightKind>();
                         if (copyrightKind == null)
                             return NotFound("CopyrightKind not found!");
-                        var destination = await _dbContext.CopyrightKind.SingleOrDefaultAsync(rec => rec.CodeI == id);
+                        var destination = await _dbContext.CopyrightKind
+                            .Include(item => item.CopyrightKindTr)
+                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
                         destination.SetFields(copyrightKind, new []{ "CodeI" });
+
                         foreach (var kindTr in copyrightKind.CopyrightKindTr)
                         {
                             var kind = destination.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == kindTr.Lang);
@@ -594,7 +604,16 @@ namespace ipsmedserviceapp.Controllers
                                 kind.SetFields(kindTr,new []{"CodeI", "Lang"});
                         }
                         break;
-                }
+                    case "":
+                        break;
+                            /*
+                    "country"
+                    "creativeroletype"
+                    "genretype"
+                    "klr030"
+                             */
+                    }
+                return Ok();
 
                 transaction = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
