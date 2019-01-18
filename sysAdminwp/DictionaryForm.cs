@@ -19,6 +19,9 @@ using sysAdminwp.Properties;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
+using sysAdminwp.ComplexDictionaryControls;
+using sysAdminwp.viewPageDictionaryControls;
 
 namespace sysAdminwp
 {
@@ -39,7 +42,10 @@ namespace sysAdminwp
         private List<CreativeRoleType> _creativeRoleTypeList;
         private List<GenreType> _genreTypeList;
         private List<KlR030> _klR030List;
-        private List<DictCategory> _dictionaryCategories = null;
+        private List<DictCategory> _dictionaryCategories;
+        private List<DicCategoryItems> _complexDictionary;
+        //variable for detect started complex dictionary controls for next set clear
+        private static string StringTypeForInitializeControl = null;
 
         /// <summary>
         /// URL словника
@@ -55,7 +61,6 @@ namespace sysAdminwp
                 return categoryItem.Url;
             }
         }
-
         /// <summary>
         /// Найменування довідника
         /// </summary>
@@ -84,11 +89,22 @@ namespace sysAdminwp
             txtSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
             gvDictionariesList.CustomFiltering += RadGridView1_CustomFiltering;
             gvDictionariesList.CurrentRowChanged += RadGridView1_CurrentRowChanged;
-            
+
+            //txtSearchData.SetUsageGrid(gvDictionariesList);
+
+
             radPanelChange.Enabled = false;
             txtSearchData.Enabled = false;
             btnAdd.Enabled = false;
             btnRemove.Enabled = false;
+
+            //initialize object for complex dictionaries
+            ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl()
+            { Dock = DockStyle.Fill };
+            //add new control for complex dictionaries
+            radPageViewPage2.Controls.Add(complexDictionaryControl);
+
+
         }
 
         #region * * * Методи * * *
@@ -96,17 +112,29 @@ namespace sysAdminwp
         /// <summary>
         /// Встановлення джерела даних для Tree View
         /// </summary>
+        /// get method for complex dictionary
         private void SetTreeViewDataSource()
         {
             _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");//дерево
+            _complexDictionary = new List<DicCategoryItems>();
             foreach (var category in _dictionaryCategories)
             {
+                var items = category.DicCategoryItems.Where(rec => rec.DicLevel == 2).ToList();
+                if(items.Any())
+                {
+                    _complexDictionary.AddRange(items);
+                    foreach (var item in items)
+                        category.DicCategoryItems.Remove(item);
+                }
+
                 var categoryItems = new List<DicCategoryItems>();
                 categoryItems.AddRange(category.DicCategoryItems.OrderBy(i => i.Name).ToList());
                 category.DicCategoryItems.Clear();
                 foreach (var i in categoryItems)
                     category.DicCategoryItems.Add(i);
             }
+
+            _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
             treeViewList.DataSource = _dictionaryCategories;
             treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             treeViewList.DisplayMember = "Name\\Name";
@@ -119,81 +147,8 @@ namespace sysAdminwp
         private List<ViewTable> GetData()
         {
             var view = new List<ViewTable>();
-
-            // складні словники
-            if (_complexDictionaryList.Contains(DictionaryName.ToLower()))
-            {
-                switch (DictionaryName.ToLower())
-                {
-                    case "copyrightkind":
-                        _copyrightKindList = _connector.GetList<CopyrightKind>(Url);
-                        foreach (var item in _copyrightKindList)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.CodeI.ToString(),
-                                NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                                NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                                NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                            });
-                        }
-                        break;
-                    case "country":
-                        _countryList = _connector.GetList<Country>(Url);
-                        foreach (var item in _countryList)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.CountryCode,
-                                NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName?? item.CountryName,
-                                NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
-                                NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
-                            });
-                        }
-                        break;
-                    case "creativeroletype":
-                        _creativeRoleTypeList = _connector.GetList<CreativeRoleType>(Url);
-                        foreach (var item in _creativeRoleTypeList)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.CodeI.ToString(),
-                                NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                                NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                                NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                            });
-                        }
-                        break;
-                    case "genretype":
-                        _genreTypeList = _connector.GetList<GenreType>(Url);
-                        foreach (var item in _genreTypeList)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.CodeI.ToString(),
-                                NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                                NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                                NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                            });
-                        }
-                        break;
-                    case "klr030":
-                        _klR030List = _connector.GetList<KlR030>(Url);
-                        foreach (var item in _klR030List)
-                        {
-                            view.Add(new ViewTable
-                            {
-                                Code = item.R030,
-                                NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name?? item.R030Name,
-                                NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
-                                NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
-                            });
-                        }
-                        break;
-                }
-            }
+            
             // прості словники
-            else
             {
                 var baseDicts = _connector.GetList<DictBaseTypeI>(Url);
                 _list = baseDicts;
@@ -209,7 +164,6 @@ namespace sysAdminwp
                     });
                 }
             }
-            
             return view;
         }
 
@@ -495,37 +449,38 @@ namespace sysAdminwp
                     case "copyrightkind":
                         var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(row.Code));
                         // CrkindGroup
-                        var customDict = (List<CrkindGroup>)IpsGlobal.AnketaDictionaties.crkindGroup;
+                        var customDict = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.crkindGroup;
                         //initialize object form with parameters
-                        ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyrightKind, customDict);
+                        //ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyrightKind, customDict);
                         MessageBox.Show($"Before: {copyrightKind.CrGroupCode}");
                         //open form with current data complexive dictionaries
-                        if(formComplex.ShowDialog() == DialogResult.OK)
-                        {
-                            MessageBox.Show($"After: {copyrightKind.CrGroupCode}");
-                        }
+                        //if(formComplex.ShowDialog() == DialogResult.OK)
+                        //{
+                        //    MessageBox.Show($"After: {copyrightKind.CrGroupCode}");
+                        //}
                         break;
                     case "country":
                         var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(row.Code));
-                        var customDictCountry = (List<Continent>)IpsGlobal.AnketaDictionaties.country;
+                        var customDictCountry = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.country;
                         //initialize object form with parameters
-                        ComplexDictionaryParamForm formComParam = new ComplexDictionaryParamForm(country: country, continent: customDictCountry);
+                        //ComplexDictionaryParamForm formComParam = new ComplexDictionaryParamForm(country: country, continent: customDictCountry);
                         //open form with current data complexive dictionaries
 
                         break;
                     case "creativeroletype":
                         var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(row.Code));
-                        var customDictCreateRoleType = (List<Category>)IpsGlobal.AnketaDictionaties.creativeRoleType;
+                        var customDictCreateRoleType = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.creativeRoleType;
+
                         //initialize object form with parameters
-                        ComplexDictionaryParamForm formCoPar = new ComplexDictionaryParamForm(roleType: creativeroletype, listRoleType: customDictCreateRoleType);
+                        //ComplexDictionaryParamForm formCoPar = new ComplexDictionaryParamForm(roleType: creativeroletype, listRoleType: customDictCreateRoleType);
                         //open from with current data complexive dictionaries
 
                         break;
                     case "genretype":
                         var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(row.Code));
-                        var customDictGenreType = (List<Category>)IpsGlobal.AnketaDictionaties.genreType;
+                        var customDictGenreType = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.genreType;
                         //initialize object form with parameters
-                        ComplexDictionaryParamForm formCP = new ComplexDictionaryParamForm(genreType: genretype, listGenreType: customDictGenreType);
+                        //ComplexDictionaryParamForm formCP = new ComplexDictionaryParamForm(genreType: genretype, listGenreType: customDictGenreType);
                         //open from with current data complexive dictionaries
 
                         break;
@@ -533,7 +488,7 @@ namespace sysAdminwp
                         var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(row.Code));
                         var customDictKlr030 = (List<Country>)IpsGlobal.AnketaDictionaties.klR030;
                         //initialize object form with parameters
-                        ComplexDictionaryParamForm formCoParam = new ComplexDictionaryParamForm(klr030: klr030, klr030List: customDictKlr030);
+                        //ComplexDictionaryParamForm formCoParam = new ComplexDictionaryParamForm(klr030: klr030, klr030List: customDictKlr030);
                         //open form with current data complexive dictionaries
 
                         break;
@@ -604,6 +559,7 @@ namespace sysAdminwp
             
             btnAdd.Enabled = true;
         }
+        
 
         private void DefaultPanel()
         {
@@ -666,6 +622,4 @@ namespace sysAdminwp
             }
         }
     }
-
 }
-

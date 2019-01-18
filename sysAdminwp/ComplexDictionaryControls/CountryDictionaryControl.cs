@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
     public partial class CountryDictionaryControl : UserControl
     {
-        public CountryDictionaryControl(Country country, List<Continent> continent)
+        public CountryDictionaryControl(Country country, List<DictBaseTypeI> continent)
         {
             InitializeComponent();
             bsContinent.DataSource = continent;

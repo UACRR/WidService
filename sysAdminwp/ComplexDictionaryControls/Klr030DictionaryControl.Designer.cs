@@ -44,12 +44,12 @@
             // 
             // bsCountry
             // 
-            this.bsCountry.DataSource = typeof(ipsFormsDesign.Model.Country);
+            this.bsCountry.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(89, 58);
+            this.label1.Location = new System.Drawing.Point(3, 6);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 0;
@@ -60,10 +60,13 @@
             this.radDropDownList1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsKlr, "CountryCode", true));
             this.radDropDownList1.DataSource = this.bsCountry;
             this.radDropDownList1.DisplayMember = "CountryName";
-            this.radDropDownList1.Location = new System.Drawing.Point(165, 57);
+            this.radDropDownList1.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.radDropDownList1.FormattingEnabled = false;
+            this.radDropDownList1.Location = new System.Drawing.Point(68, 4);
             this.radDropDownList1.Name = "radDropDownList1";
-            this.radDropDownList1.Size = new System.Drawing.Size(285, 20);
+            this.radDropDownList1.Size = new System.Drawing.Size(1279, 21);
             this.radDropDownList1.TabIndex = 1;
+            this.radDropDownList1.ThemeName = "Office2013Light";
             this.radDropDownList1.ValueMember = "CountryCode";
             // 
             // Klr030DictionaryControl
@@ -73,7 +76,7 @@
             this.Controls.Add(this.radDropDownList1);
             this.Controls.Add(this.label1);
             this.Name = "Klr030DictionaryControl";
-            this.Size = new System.Drawing.Size(566, 250);
+            this.Size = new System.Drawing.Size(1350, 28);
             ((System.ComponentModel.ISupportInitialize)(this.bsKlr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radDropDownList1)).EndInit();
