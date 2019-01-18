@@ -56,15 +56,6 @@ namespace ipsmedserviceapp
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                     .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAuthorization(auth =>
-            {
-                auth.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
-                    .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
-                    .RequireAuthenticatedUser().Build());
-
-                auth.DefaultPolicy = new AuthorizationPolicyBuilder("Identity.Application").RequireAuthenticatedUser().Build();
-            });
-
 
             services.AddAuthentication(options =>
             {
@@ -102,13 +93,6 @@ namespace ipsmedserviceapp
 #endif
             services.AddSingleton<IConfiguration>(Configuration);
 
-            // In production, the Angular files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/dist";
-            });
-
-
             services.AddAutoMapper(cfg =>
             {
                 cfg.AddCollectionMappers();
@@ -116,58 +100,30 @@ namespace ipsmedserviceapp
             });
 
             services.AddTransient<RightholderRepository>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory )
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                app.UseHsts();
-            }
 
-
-
-            // loggerFactory.AddConsole();
-            app.UseAuthentication();
-            loggerFactory.AddConsole();
-            
-
-            app.UseRequestLocalization(BuildLocalizationOptions());
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action=Index}/{id?}");
-            });
-            //
-            app.UseSpa(spa =>
-            {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                }
-            });
-            //
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
+
+            // loggerFactory.AddConsole();
+            app.UseAuthentication();
+            //loggerFactory.AddDebug();
+            loggerFactory.AddConsole();
+
+
+            app.UseRequestLocalization(BuildLocalizationOptions());
+            app.UseMvc();
         }
 
         // Culture
