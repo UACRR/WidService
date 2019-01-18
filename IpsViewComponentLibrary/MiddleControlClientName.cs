@@ -15,14 +15,8 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlClientName : UserControl, IMiddleCtrlAnketaConsumer
     {
-
-
         private Customer _cust;
         private AnketaDictionaties _dictionaties;
-        private Func<string, List<AutoCompleteData>> getAutoCompList;
-        private Func<int, Customer> getCustomerAnketa;
-
-        public event EventHandler OnContainPlacesChanged;
 
         public MiddleControlClientName()
         {

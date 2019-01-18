@@ -79,7 +79,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.GetRatedListSpectacleView += DataNeed_GetRatedListSpectacleView;
             _cabinetBigRightForm.cabinet.GetReferenceView += DataNeed_GetReferenceView;
             _cabinetBigRightForm.cabinet.GetRequestsView += DataNeed_GetRequestsView;
-            _cabinetBigRightForm.cabinet.GetUnattachedMoneyView += DataNeed_GetUnattachedMoneyView;
             _cabinetBigRightForm.cabinet.GetMusicDesignView += DataNeed_GetMusicDesignView;
             _cabinetBigRightForm.cabinet.OnSaveCustomerNeed += SaveCustomer;
             _cabinetBigRightForm.cabinet.OnAddNewDocument += AddNewDocument;
@@ -90,7 +89,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.OnGetRegisterRatedList += GetRegisterRatedList;
             _cabinetBigRightForm.cabinet.OnRegisterItemListNeed += GetRegisterItems;
             _cabinetBigRightForm.cabinet.OnSaveRegisterRatedList += SaveRegisterRatedLists;
-            _cabinetBigRightForm.cabinet.OnRequestWorkRhSaveNeed += SaveWorkRh;
             _cabinetBigRightForm.cabinet.SavePariodCommandExecuted += SavePariodCommandExecuted;
             _cabinetBigRightForm.cabinet.OnGetSpectacleNeed += GetSpectacle;
             _cabinetBigRightForm.cabinet.DeleteRegisterRatedList += DeleteRegisterRatedLists;
@@ -156,11 +154,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private List<AuthorsForLicenseBigRightView> DataNeed_GetAuthorsForLicenseView(int custId)
         {
             return _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", custId).ToListOfType<AuthorsForLicenseBigRightView>();
-        }
-
-        private List<UnattachedMoneyView> DataNeed_GetUnattachedMoneyView(int custId)
-        {
-            return _service.getBRView(typeof(UnattachedMoneyView), "vTsk_1_MoneyUndescrib", custId).ToListOfType<UnattachedMoneyView>();
         }
 
         private List<RatedListMusicDesignBigRightView> DataNeed_GetMusicDesignView(int custId)
@@ -363,13 +356,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var result = _service.DeleteRatedList(rmId);
             UpdateData(custId);
             return result;
-        }
-
-        private bool SaveWorkRh(int licId, List<WorkRh> workRhList)
-        {
-            if (workRhList == null)
-                return false;
-            return _service.SaveBRWorkRH(licId, workRhList);
         }
 
         //зберегти періоди

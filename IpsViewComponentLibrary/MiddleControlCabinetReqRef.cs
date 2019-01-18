@@ -1,17 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Binary;
 using ipsFormsDesign;
 using ipsFormsDesign.Services;
 using Microsoft.Office.Interop.Excel;
@@ -22,7 +16,6 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlCabinetReqRef : UserControl
     {
-        public event WorkRhSaveEventHandler OnWorkRhSave;
         public event ChangeLicenseTypeEventHandler OnLicenseTypeChange;
         public event SaveCustomerEventHandler OnLicenseSaveNeed;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;

@@ -22,7 +22,6 @@ namespace IpsViewComponentLibrary
         public event EmptyEventHandler UpdateData;
 
         public event GetPartnerList OnGetPartnerListNeed;
-        private List<AnketaPerson> _anketaPersons;
         private Customer _customer;
         private int _cientId;
         public MiddleControlCabinetPartner()
