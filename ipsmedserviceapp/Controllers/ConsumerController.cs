@@ -104,7 +104,7 @@ namespace ipsmedserviceapp.Controllers
                 // Лцензії для майданчиків
                 await _dbContext.Entry(licAgreement).Collection(rec => rec.LicenseAgrParam)
                     .Query()
-                    .Where(rec => rec.LicVersion >= licAgreement.LicVersion || rec.LicVersion == licAgreement.ProlongVersion)
+                    //.Where(rec => rec.LicVersion >= licAgreement.LicVersion || rec.LicVersion == licAgreement.ProlongVersion)
                     .Include(rec => rec.License)
                     .LoadAsync();
 
@@ -513,7 +513,7 @@ namespace ipsmedserviceapp.Controllers
                 // Договор з Споживачем
                 var addAgr = new AgreementMaster { AgrStatus = 0, AgrType = 2, Version = 1 };
                 var license = new LicenseAgreement { LicStatus = 0, Agr = addAgr, LicVersion = 1 };
-                license.LicenseAgrParam.Add(new LicenseAgrParam { LicVersion = 1 });
+                license.LicenseAgrParam.Add(new LicenseAgrParam { LicVersion = 1, LicStatus = 0 });
                 addAgr.LicenseAgreement.Add(license);
                 // addAgr.LicenseAgreement.Add(new LicenseAgreement { LicStatus = 0 });
                 newCust.Client.LicenseAgreement.Add(license);
@@ -980,8 +980,13 @@ namespace ipsmedserviceapp.Controllers
             {
                 if (licAgreement.LicClass != 1) // Малі права та ліцензійні договора Великих прав
                 {
-                    if (licParam != null)
-                        licParam.LicStatus = 4; // Close
+                    // попередня ліцензія що повинна закритись
+                    var closeAgr = await _dbContext.LicenseAgrParam
+                        .SingleOrDefaultAsync(rec => rec.LicId == licAgreement.LicId && 
+                                                     rec.LicVersion == licAgreement.LicVersion);
+                    if (closeAgr != null)
+                        closeAgr.LicStatus = 4; // Close
+
                     if (licAgreement.LicCodeNavigation.UsesKindNavigation.UsesType == 2) // малі права
                         licAgreement.Agr.Version = version;
                     // Видаляємо ліцензії закритої версії
