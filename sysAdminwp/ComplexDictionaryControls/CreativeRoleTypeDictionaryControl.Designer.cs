@@ -36,6 +36,7 @@
             this.bsCopyrightType = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRoleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCategory)).BeginInit();
@@ -50,6 +51,8 @@
             this.ddlCategory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "CategoryCode", true));
             this.ddlCategory.DataSource = this.bsCategory;
             this.ddlCategory.DisplayMember = "Name";
+            this.ddlCategory.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCategory.FormattingEnabled = false;
             this.ddlCategory.Location = new System.Drawing.Point(75, 4);
             this.ddlCategory.Name = "ddlCategory";
             this.ddlCategory.Size = new System.Drawing.Size(1338, 21);
@@ -72,6 +75,8 @@
             this.ddlCopyright.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "Crtype", true));
             this.ddlCopyright.DataSource = this.bsCopyrightType;
             this.ddlCopyright.DisplayMember = "Name";
+            this.ddlCopyright.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCopyright.FormattingEnabled = false;
             this.ddlCopyright.Location = new System.Drawing.Point(75, 30);
             this.ddlCopyright.Name = "ddlCopyright";
             this.ddlCopyright.Size = new System.Drawing.Size(1338, 21);
@@ -81,7 +86,7 @@
             // 
             // bsCopyrightType
             // 
-            this.bsCopyrightType.DataSource = typeof(ipsFormsDesign.Model.CopyrightType);
+            this.bsCopyrightType.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // label1
             // 
@@ -100,10 +105,20 @@
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 4;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Вид права";
+            // 
             // CreativeRoleTypeDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ddlCopyright);
@@ -129,5 +144,6 @@
         private System.Windows.Forms.BindingSource bsCopyrightType;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

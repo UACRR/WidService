@@ -62,6 +62,8 @@
             this.ddlCategory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsGenreType, "CategoryCode", true));
             this.ddlCategory.DataSource = this.bsCategory;
             this.ddlCategory.DisplayMember = "Name";
+            this.ddlCategory.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCategory.FormattingEnabled = false;
             this.ddlCategory.Location = new System.Drawing.Point(75, 5);
             this.ddlCategory.Name = "ddlCategory";
             this.ddlCategory.Size = new System.Drawing.Size(1274, 21);

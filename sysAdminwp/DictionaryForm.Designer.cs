@@ -187,7 +187,7 @@ namespace sysAdminwp
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(0, 39);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage1;
+            this.radPageView1.SelectedPage = this.radPageViewPage2;
             this.radPageView1.Size = new System.Drawing.Size(985, 543);
             this.radPageView1.TabIndex = 1;
             this.radPageView1.ThemeName = "Office2013Light";
@@ -207,7 +207,7 @@ namespace sysAdminwp
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(975, 507);
-            this.radPageViewPage1.Text = "prosti";
+            this.radPageViewPage1.Text = "Прості довідники";
             // 
             // treeViewList
             // 
@@ -410,7 +410,7 @@ namespace sysAdminwp
             this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(975, 507);
-            this.radPageViewPage2.Text = "radPageViewPage2";
+            this.radPageViewPage2.Text = "Складні довідники";
             // 
             // DictionaryForm
             // 

@@ -60,6 +60,8 @@
             this.radDropDownList1.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsKlr, "CountryCode", true));
             this.radDropDownList1.DataSource = this.bsCountry;
             this.radDropDownList1.DisplayMember = "CountryName";
+            this.radDropDownList1.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.radDropDownList1.FormattingEnabled = false;
             this.radDropDownList1.Location = new System.Drawing.Point(68, 4);
             this.radDropDownList1.Name = "radDropDownList1";
             this.radDropDownList1.Size = new System.Drawing.Size(1279, 21);

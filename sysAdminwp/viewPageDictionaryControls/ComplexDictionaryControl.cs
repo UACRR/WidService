@@ -273,8 +273,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                     var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(row.Code));
                     //get data list Category - changed to DictBaseTypeI
                     var baseDictsCreative = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+                    //get data list CopyrightType - changed to DictBaseTypeI
+                    var baseDictsCopyRightType = _connector.GetList<DictBaseTypeI>("dictionary/base/CopyrightType");
                     //Initialize control CreativeRoleTypeDictionary
-                    CreativeRoleTypeDictionaryControl creativeRoleDictionaryControl = new CreativeRoleTypeDictionaryControl(creativeroletype, baseDictsCreative, new List<CopyrightType>())
+                    CreativeRoleTypeDictionaryControl creativeRoleDictionaryControl = new CreativeRoleTypeDictionaryControl(creativeroletype, baseDictsCreative, baseDictsCopyRightType)
                     { Dock = DockStyle.Fill };
                     controlsParamPanel.Controls.Clear();
                     controlsParamPanel.Controls.Add(creativeRoleDictionaryControl);

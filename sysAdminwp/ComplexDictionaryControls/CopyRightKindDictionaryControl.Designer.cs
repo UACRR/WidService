@@ -51,6 +51,7 @@
             this.ddlKindShototam.DataSource = this.bsCrkindGroup;
             this.ddlKindShototam.DisplayMember = "Name";
             this.ddlKindShototam.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlKindShototam.FormattingEnabled = false;
             this.ddlKindShototam.Location = new System.Drawing.Point(126, 3);
             this.ddlKindShototam.Name = "ddlKindShototam";
             this.ddlKindShototam.Size = new System.Drawing.Size(1086, 21);

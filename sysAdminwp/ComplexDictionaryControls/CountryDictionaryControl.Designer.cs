@@ -47,6 +47,7 @@
             this.ddlContinent.DataSource = this.bsContinent;
             this.ddlContinent.DisplayMember = "Name";
             this.ddlContinent.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlContinent.FormattingEnabled = false;
             this.ddlContinent.Location = new System.Drawing.Point(70, 3);
             this.ddlContinent.Name = "ddlContinent";
             this.ddlContinent.Size = new System.Drawing.Size(1261, 21);
