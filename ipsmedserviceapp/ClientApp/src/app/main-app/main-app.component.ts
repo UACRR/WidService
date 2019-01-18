@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainAppComponent implements OnInit {
 
+  singInDialogVisible = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  signInClick() {
+    this.singInDialogVisible = true;
+  }
+
+  closeSignInForm() {
+    this.singInDialogVisible = false;
   }
 
 }
