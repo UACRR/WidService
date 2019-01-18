@@ -793,8 +793,23 @@ namespace ipsmedserviceapp.Controllers
                         _dbContext.CopyrightKind.Remove(copyrightKind);
                         break;
                     case "country":
+                        //filter only country and find by id
+                        var countryFindedIntoDB = await _dbContext.Country
+                            .Include(item => item.CountryTr)
+                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                        //remove finded dictionaries
+                        _dbContext.CountryTr.RemoveRange(countryFindedIntoDB.CountryTr);
+                        //remove finded dictionary
+                        _dbContext.Country.Remove(countryFindedIntoDB);
                         break;
                     case "creativeroletype":
+                        //filter only craetiveroletype and find by id
+                        var creativeFindedIntoDB = await _dbContext.CreativeRoleType
+                            .Include(item => item.CreativeRoleTypeTr)
+                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                        //remove finded dictionaries
+                        _dbContext.CreativeRoleTypeTr.remo
+                        //remove finded dictionary
                         break;
                     case "genretype":
                         break;
