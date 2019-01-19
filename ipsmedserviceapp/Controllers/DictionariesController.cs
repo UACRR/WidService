@@ -660,7 +660,7 @@ namespace ipsmedserviceapp.Controllers
                             foreach(var dict in objCreativeForNewData.CreativeRoleTypeTr)
                             {
                                 //get dictionary tr with current lang
-                                var newLangCreative = getCreativeDictionaryFromDB.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang = dict.Lang);
+                                var newLangCreative = getCreativeDictionaryFromDB.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == dict.Lang);
                                 //if not exist
                                 if (newLangCreative == null)
                                 {
@@ -789,12 +789,7 @@ namespace ipsmedserviceapp.Controllers
                         //filter only country and find by id
                         var countryFindedIntoDB = await _dbContext.Country
                             .Include(item => item.CountryTr)
-                            .SingleOrDefaultAsync(rec => {
-                                if (int.TryParse(rec.CountryCode, out id))
-                                {
-                                    rec.CountryCode == id;
-                                }
-                            });
+                            .SingleOrDefaultAsync(rec => rec.CountryCode == id );
                         //remove finded dictionaries
                         _dbContext.CountryTr.RemoveRange(countryFindedIntoDB.CountryTr);
                         //remove finded dictionary
@@ -824,10 +819,7 @@ namespace ipsmedserviceapp.Controllers
                         //filter only KlR030 and find by id
                         var klrFindedIntoDB = await _dbContext.KlR030
                             .Include(item => item.KlR030tr)
-                            .SingleOrDefaultAsync(rec => {
-                                if (int.TryParse(rec.R030, out id))
-                                    rec.R030 == id;
-                                });
+                            .SingleOrDefaultAsync(rec => rec.R030 == id );
                         //remove finded dictionaries
                         _dbContext.KlR030tr.RemoveRange(klrFindedIntoDB.KlR030tr);
                         //remove finded dictionary
