@@ -653,7 +653,7 @@ namespace ipsmedserviceapp.Controllers
                             //get creartiveroletype from DB by id
                             var getCreativeDictionaryFromDB = await _dbContext.CreativeRoleType
                                 .Include(item => item.CreativeRoleTypeTr)
-                                .SingleOrDefaultAsync(item => int.TryParse(item.CodeI == id);
+                                .SingleOrDefaultAsync(item => item.CodeI == Convert.ToInt32(id));
                             //update creativeRoleType data
                             getCreativeDictionaryFromDB.SetFields(objCreativeForNewData);
                             //update creativeroletype list
@@ -667,9 +667,9 @@ namespace ipsmedserviceapp.Controllers
                                     //if not exist
                                     getCreativeDictionaryFromDB.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                                     {
-                                        CodeI = newLangCreative.CodeI,
-                                        Lang = newLangCreative.Lang,
-                                        Name = newLangCreative.Name,
+                                        CodeI = dict.CodeI,
+                                        Lang = dict.Lang,
+                                        Name = dict.Name,
                                     });
                                 }
                                 else
@@ -687,7 +687,7 @@ namespace ipsmedserviceapp.Controllers
                             //get genre from DB by id
                             var getGenreDictionaryFromDB = await _dbContext.GenreType
                                 .Include(item => item.GenreTypeTr)
-                                .SingleOrDefault(item => item.CodeI == id);
+                                .SingleOrDefaultAsync(item => item.CodeI == Convert.ToInt32(id));
                             //update genretype data
                             getGenreDictionaryFromDB.SetFields(objGenreForNewData);
                             //update genretype list
@@ -698,12 +698,11 @@ namespace ipsmedserviceapp.Controllers
                                 //if not exist
                                 if (newLangGenre == null)
                                 {
-                                    //if not exist
-                                    getGenreDictionaryFromDB.GenreTypeTr.Add(new GenreType
+                                    getGenreDictionaryFromDB.GenreTypeTr.Add(new GenreTypeTr
                                     {
-                                        CodeI = newLangGenre.CodeI,
-                                        Lang = newLangGenre.Lang,
-                                        Name = newLangGenre.Name,
+                                        CodeI = dict.CodeI,
+                                        Lang = dict.Lang,
+                                        Name = dict.Name,
                                     });
                                 }
                                 else
@@ -721,7 +720,7 @@ namespace ipsmedserviceapp.Controllers
                             //get KLR030 from DB by id
                             var getKLRDictionaryFromDB = await _dbContext.KlR030
                                 .Include(item => item.KlR030tr)
-                                .SingleOrDefault(item => item.CodeI == id);
+                                .SingleOrDefaultAsync(item => item.CountryCode == id);
                             //update KLR030 data
                             getKLRDictionaryFromDB.SetFields(objKLRForNewData);
                             //update KLR030 list
@@ -733,11 +732,11 @@ namespace ipsmedserviceapp.Controllers
                                 if (newLangKLR == null)
                                 {
                                     //if not exist
-                                    getKLRDictionaryFromDB.KlR030tr.Add(new KlR030
+                                    getKLRDictionaryFromDB.KlR030tr.Add(new KlR030tr
                                     {
-                                        CodeI = newLangKLR.CodeI,
-                                        Lang = newLangKLR.Lang,
-                                        R030Name = newLangKLR.R030Name,
+                                        R030 = dict.R030,
+                                        Lang = dict.Lang,
+                                        R030Name = dict.R030Name,
                                     });
                                 }
                                 else
@@ -746,12 +745,6 @@ namespace ipsmedserviceapp.Controllers
                                 }
                             }
                             break;
-                            /*
-                    "country"
-                    "creativeroletype"
-                    "genretype"
-                    "klr030"
-                             */
                     }
                 return Ok();
 
@@ -796,7 +789,12 @@ namespace ipsmedserviceapp.Controllers
                         //filter only country and find by id
                         var countryFindedIntoDB = await _dbContext.Country
                             .Include(item => item.CountryTr)
-                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                            .SingleOrDefaultAsync(rec => {
+                                if (int.TryParse(rec.CountryCode, out id))
+                                {
+                                    rec.CountryCode == id;
+                                }
+                            });
                         //remove finded dictionaries
                         _dbContext.CountryTr.RemoveRange(countryFindedIntoDB.CountryTr);
                         //remove finded dictionary
@@ -808,12 +806,32 @@ namespace ipsmedserviceapp.Controllers
                             .Include(item => item.CreativeRoleTypeTr)
                             .SingleOrDefaultAsync(rec => rec.CodeI == id);
                         //remove finded dictionaries
-                        _dbContext.CreativeRoleTypeTr.remo
+                        _dbContext.CreativeRoleTypeTr.RemoveRange(creativeFindedIntoDB.CreativeRoleTypeTr);
                         //remove finded dictionary
+                        _dbContext.CreativeRoleType.Remove(creativeFindedIntoDB);
                         break;
                     case "genretype":
+                        //filter only genretype and find by id
+                        var genreFindedIntoDB = await _dbContext.GenreType
+                            .Include(item => item.GenreTypeTr)
+                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                        //remove finded dictionaries
+                        _dbContext.GenreTypeTr.RemoveRange(genreFindedIntoDB.GenreTypeTr);
+                        //remove finded dictionary
+                        _dbContext.GenreType.Remove(genreFindedIntoDB);
                         break;
                     case "klr030":
+                        //filter only KlR030 and find by id
+                        var klrFindedIntoDB = await _dbContext.KlR030
+                            .Include(item => item.KlR030tr)
+                            .SingleOrDefaultAsync(rec => {
+                                if (int.TryParse(rec.R030, out id))
+                                    rec.R030 == id;
+                                });
+                        //remove finded dictionaries
+                        _dbContext.KlR030tr.RemoveRange(klrFindedIntoDB.KlR030tr);
+                        //remove finded dictionary
+                        _dbContext.KlR030.Remove(klrFindedIntoDB);
                         break;
                 }
 

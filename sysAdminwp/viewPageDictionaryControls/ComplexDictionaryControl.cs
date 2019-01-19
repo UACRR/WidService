@@ -504,15 +504,143 @@ namespace sysAdminwp.viewPageDictionaryControls
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _copyrightKind);
                         break;
                     case "country":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int countryCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'CountryName' from textbox
+                        _country.CountryName = txtNameUaComplex.Text;
+                        //save data for 'CodeI' from converted variable
+                        _country.CountryCode = txtCodeComplex.Text;
+                        //add data for 'Uk'
+                        _country.CountryTr.Add(new CountryTr
+                        {
+                            CountryCode = _country.CountryCode,
+                            CountryName = txtNameUaComplex.Text,
+                            Lang = "Uk"
+                        });
+                        //add data for 'Ru'
+                        _country.CountryTr.Add(new CountryTr
+                        {
+                            CountryCode = _country.CountryCode,
+                            CountryName = txtNameRuComplex.Text,
+                            Lang = "Ru"
+                        });
+                        //add data for 'En'
+                        _country.CountryTr.Add(new CountryTr
+                        {
+                            CountryCode = _country.CountryCode,
+                            CountryName = txtNameEnComplex.Text,
+                            Lang = "En"
+                        });
+                        //send new country to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _country);
                         break;
                     case "creativeroletype":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int creativeCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'Name' from textbox
+                        _creativeRoleType.Name = txtNameUaComplex.Text;
+                        //save data for 'CodeI' from convert variable
+                        _creativeRoleType.CodeI = creativeCode;
+                        //add data for 'Uk'
+                        _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                        {
+                            CodeI = _creativeRoleType.CodeI,
+                            Name = txtNameUaComplex.Text,
+                            Lang = "Uk"
+                        });
+                        //add data for 'Ru'
+                        _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                        {
+                            CodeI = _creativeRoleType.CodeI,
+                            Name = txtNameRuComplex.Text,
+                            Lang = "Ru"
+                        });
+                        //add data for 'En'
+                        _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                        {
+                            CodeI = _creativeRoleType.CodeI,
+                            Name = txtNameEnComplex.Text,
+                            Lang = "En"
+                        });
+                        //send new creativeroletype to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _creativeRoleType);
                         break;
                     case "genretype":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int genreCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'Name' from textbox
+                        _genreType.Name = txtNameUaComplex.Text;
+                        //save data for 'CodeI' from convert variable
+                        _genreType.CodeI = genreCode;
+                        //add data for 'Uk'
+                        _genreType.GenreTypeTr.Add(new GenreTypeTr
+                        {
+                            CodeI = _genreType.CodeI,
+                            Name = txtNameUaComplex.Text,
+                            Lang = "Uk"
+                        });
+                        //add data for 'Ru'
+                        _genreType.GenreTypeTr.Add(new GenreTypeTr
+                        {
+                            CodeI = _genreType.CodeI,
+                            Name = txtNameRuComplex.Text,
+                            Lang = "Ru"
+                        });
+                        //add data for 'En'
+                        _genreType.GenreTypeTr.Add(new GenreTypeTr
+                        {
+                            CodeI = _genreType.CodeI,
+                            Name = txtNameEnComplex.Text,
+                            Lang = "En"
+                        });
+                        //send new genretype to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _genreType);
                         break;
                     case "klr030":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int klrCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'R030Name' from textbox
+                        _klR030.R030Name = txtNameUaComplex.Text;
+                        //save data for 'R030' from convert variable
+                        _klR030.R030 = txtCodeComplex.Text;
+                        //add data for 'Uk'
+                        _klR030.KlR030tr.Add(new KlR030tr
+                        {
+                            R030 = _klR030.R030,
+                            Lang = "Uk",
+                            R030Name = txtNameUaComplex.Text
+                        });
+                        //add data for 'Ru'
+                        _klR030.KlR030tr.Add(new KlR030tr
+                        {
+                            R030 = _klR030.R030,
+                            Lang = "Ru",
+                            R030Name = txtNameRuComplex.Text
+                        });
+                        //add data for 'En'
+                        _klR030.KlR030tr.Add(new KlR030tr
+                        {
+                            R030 = _klR030.R030,
+                            Lang = "En",
+                            R030Name = txtNameEnComplex.Text
+                        });
+                        //send new klt030 to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _klR030);
                         break;
                 }
