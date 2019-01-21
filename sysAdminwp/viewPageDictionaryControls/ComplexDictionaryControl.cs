@@ -44,6 +44,8 @@ namespace sysAdminwp.viewPageDictionaryControls
         private CreativeRoleTypeDictionaryControl _creativeRoleDictionaryControl;
         private GenreTypeDictionaryControl _genreTypeDictionaryControl;
         private Klr030DictionaryControl _klrDictionaryControl;
+        private TaxRateDictionaryControl _taxRateDictionaryControl;
+        private TypePlaceDictionaryControl _typePlaceDictionaryControl;
 
         // objects for new items
         private CopyrightKind _copyrightKind;
@@ -240,6 +242,38 @@ namespace sysAdminwp.viewPageDictionaryControls
                         });
                     }
                     break;
+                case "taxrate":
+                    //initialize variable with all complex dictionaries type - KLR030
+                    _taxRate = _connector.GetList<TaxRate>(UrlForComplexDictionaries);
+                    //read every dictionary
+                    foreach (var item in _taxRate)
+                    {
+                        //initialize object with data for every column
+                        view.Add(new ViewTable
+                        {
+                            Code = item.R030,
+                            NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
+                            NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
+                            NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                        });
+                    }
+                    break;
+                case "typeplace":
+                    //initialize variable with all complex dictionaries type - KLR030
+                    _klR030List = _connector.GetList<KlR030>(UrlForComplexDictionaries);
+                    //read every dictionary
+                    foreach (var item in _klR030List)
+                    {
+                        //initialize object with data for every column
+                        view.Add(new ViewTable
+                        {
+                            Code = item.R030,
+                            NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
+                            NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
+                            NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                        });
+                    }
+                    break;
             }
             //return all data for fill grid
             return view;
@@ -299,7 +333,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     controlsParamPanel.Controls.Add(_copyRightKindControl);
                     break;
                 case "country":
-                    var baseDictsContinent = _connector.GetList<Country>("dictionary/base/Continent");
+                    var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
                     //var baseDictsCountryCode = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryCode");
                     //var baseDictsCountryName = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryName");
                     //var baseDictsKodLit = _connector.GetList<DictBaseTypeI>("dictionary/base/Kod_lit");
@@ -331,6 +365,37 @@ namespace sysAdminwp.viewPageDictionaryControls
                         _klrDictionaryControl = new Klr030DictionaryControl(customDictKlr030);
                     controlsParamPanel.Controls.Clear();
                     controlsParamPanel.Controls.Add(_klrDictionaryControl);
+                    break;
+                case "taxrate":
+                    //get dictionary taxrate for control
+                    var baseDictsTaxRate = _connector.GetList<DictBaseTypeI>("dictionary/base/taxRate");
+                    //check control on empty state
+                    //if empty then
+                    if (_taxRateDictionaryControl == null)
+                    {
+                        //initialize all parameters for dictionary taxrate
+                        _taxRateDictionaryControl = new TaxRateDictionaryControl(baseDictsTaxRate);
+                    }
+                    //clear all created elements before
+                    controlsParamPanel.Controls.Clear();
+                    //add new initialized elements for current dictionary
+                    controlsParamPanel.Controls.Add(_taxRateDictionaryControl);
+
+                    break;
+                case "typeplace":
+                    //get dictionary taxrate for control
+                    var baseDictsTypePlace = _connector.GetList<DictBaseTypeI>("dictionary/base/TypePlace");
+                    //check control on empty state
+                    //if empty then
+                    if (_typePlaceDictionaryControl == null)
+                    {
+                        //initialize all parameters for dictionary taxrate
+                        _typePlaceDictionaryControl = new TypePlaceDictionaryControl(baseDictsTypePlace);
+                    }
+                    //clear all created elements before
+                    controlsParamPanel.Controls.Clear();
+                    //add new initialized elements for current dictionary
+                    controlsParamPanel.Controls.Add(_typePlaceDictionaryControl);
                     break;
             }
             //load data to the grid about current complex dictionaries

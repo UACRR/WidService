@@ -21,7 +21,7 @@ namespace sysAdminwp.ComplexDictionaryControls
             bsCountry.DataSource = country;
         }
 
-        public CountryDictionaryControl(List<Country> continent)
+        public CountryDictionaryControl(List<DictBaseTypeI> continent)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
