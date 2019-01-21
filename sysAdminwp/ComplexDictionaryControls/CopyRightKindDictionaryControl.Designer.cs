@@ -83,14 +83,16 @@
             // 
             // ddlNameDescript
             // 
+            this.ddlNameDescript.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlNameDescript.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
             this.ddlNameDescript.DataSource = this.bsNameDescript;
             this.ddlNameDescript.DisplayMember = "Name";
             this.ddlNameDescript.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlNameDescript.FormattingEnabled = false;
-            this.ddlNameDescript.Location = new System.Drawing.Point(126, 31);
+            this.ddlNameDescript.Location = new System.Drawing.Point(46, 31);
             this.ddlNameDescript.Name = "ddlNameDescript";
-            this.ddlNameDescript.Size = new System.Drawing.Size(1086, 21);
+            this.ddlNameDescript.Size = new System.Drawing.Size(1166, 21);
             this.ddlNameDescript.TabIndex = 4;
             this.ddlNameDescript.ThemeName = "Office2013Light";
             this.ddlNameDescript.ValueMember = "CodeI";
@@ -99,9 +101,9 @@
             // 
             this.lbNameDescript.Location = new System.Drawing.Point(3, 32);
             this.lbNameDescript.Name = "lbNameDescript";
-            this.lbNameDescript.Size = new System.Drawing.Size(117, 18);
+            this.lbNameDescript.Size = new System.Drawing.Size(37, 18);
             this.lbNameDescript.TabIndex = 4;
-            this.lbNameDescript.Text = "Спосіб використання";
+            this.lbNameDescript.Text = "Назва";
             // 
             // CopyRightKindDictionaryControl
             // 
