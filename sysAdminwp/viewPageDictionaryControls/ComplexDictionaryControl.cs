@@ -292,21 +292,21 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 case "copyrightkind":
                     var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
-                    var baseDictsNameDescript = _connector.GetList<DictBaseTypeI>("dictionary/base/NameDescript");
+                    //var baseDictsNameDescript = _connector.GetList<DictBaseTypeI>("dictionary/base/NameDescript");
                     if (_copyRightKindControl == null)
-                        _copyRightKindControl = new CopyRightKindDictionaryControl(baseDictsCopyRight, baseDictsNameDescript);
+                        _copyRightKindControl = new CopyRightKindDictionaryControl(baseDictsCopyRight);
                     controlsParamPanel.Controls.Clear();
                     controlsParamPanel.Controls.Add(_copyRightKindControl);
                     break;
                 case "country":
                     var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
-                    var baseDictsCountryCode = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryCode");
-                    var baseDictsCountryName = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryName");
-                    var baseDictsKodLit = _connector.GetList<DictBaseTypeI>("dictionary/base/Kod_lit");
-                    var baseDictsShortChoice = _connector.GetList<DictBaseTypeI>("dictionary/base/ShortChoice");
-                    var baseDictsOrderBy = _connector.GetList<DictBaseTypeI>("dictionary/base/OrderBy");
+                    //var baseDictsCountryCode = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryCode");
+                    //var baseDictsCountryName = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryName");
+                    //var baseDictsKodLit = _connector.GetList<DictBaseTypeI>("dictionary/base/Kod_lit");
+                    //var baseDictsShortChoice = _connector.GetList<DictBaseTypeI>("dictionary/base/ShortChoice");
+                    //var baseDictsOrderBy = _connector.GetList<DictBaseTypeI>("dictionary/base/OrderBy");
                     if (_countryDictionaryControl == null)
-                        _countryDictionaryControl = new CountryDictionaryControl(baseDictsContinent, baseDictsCountryCode, baseDictsCountryName, baseDictsKodLit, baseDictsShortChoice, baseDictsOrderBy);
+                        _countryDictionaryControl = new CountryDictionaryControl(baseDictsContinent);
                     controlsParamPanel.Controls.Clear();
                     controlsParamPanel.Controls.Add(_countryDictionaryControl);
                     break;

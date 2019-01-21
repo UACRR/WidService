@@ -21,12 +21,12 @@ namespace sysAdminwp.ComplexDictionaryControls
             bsCrkindGroup.DataSource = list;
         }
 
-        public CopyRightKindDictionaryControl(List<DictBaseTypeI> list, List<DictBaseTypeI> nameDescript)
+        public CopyRightKindDictionaryControl(List<DictBaseTypeI> list)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             bsCrkindGroup.DataSource = list;
-            bsNameDescript.DataSource = nameDescript;
+            //bsNameDescript.DataSource = nameDescript;
         }
 
         public object CopyrightKindDataSource

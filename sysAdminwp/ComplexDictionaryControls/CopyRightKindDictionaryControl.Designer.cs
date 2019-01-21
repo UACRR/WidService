@@ -33,16 +33,14 @@
             this.ddlCrkindGroup = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCrkindGroup = new System.Windows.Forms.BindingSource(this.components);
             this.lbCrkindGroup = new Telerik.WinControls.UI.RadLabel();
-            this.bsNameDescript = new System.Windows.Forms.BindingSource(this.components);
-            this.ddlNameDescript = new Telerik.WinControls.UI.RadDropDownList();
             this.lbNameDescript = new Telerik.WinControls.UI.RadLabel();
+            this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCrkindGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCrkindGroup)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbCrkindGroup)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsNameDescript)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlNameDescript)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbNameDescript)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // bsCopyrightKind
@@ -60,7 +58,7 @@
             this.ddlCrkindGroup.FormattingEnabled = false;
             this.ddlCrkindGroup.Location = new System.Drawing.Point(126, 3);
             this.ddlCrkindGroup.Name = "ddlCrkindGroup";
-            this.ddlCrkindGroup.Size = new System.Drawing.Size(1086, 21);
+            this.ddlCrkindGroup.Size = new System.Drawing.Size(409, 21);
             this.ddlCrkindGroup.TabIndex = 0;
             this.ddlCrkindGroup.ThemeName = "Office2013Light";
             this.ddlCrkindGroup.ValueMember = "CodeI";
@@ -77,26 +75,6 @@
             this.lbCrkindGroup.TabIndex = 3;
             this.lbCrkindGroup.Text = "Спосіб використання";
             // 
-            // bsNameDescript
-            // 
-            this.bsNameDescript.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
-            // 
-            // ddlNameDescript
-            // 
-            this.ddlNameDescript.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlNameDescript.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
-            this.ddlNameDescript.DataSource = this.bsNameDescript;
-            this.ddlNameDescript.DisplayMember = "Name";
-            this.ddlNameDescript.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlNameDescript.FormattingEnabled = false;
-            this.ddlNameDescript.Location = new System.Drawing.Point(46, 31);
-            this.ddlNameDescript.Name = "ddlNameDescript";
-            this.ddlNameDescript.Size = new System.Drawing.Size(1166, 21);
-            this.ddlNameDescript.TabIndex = 4;
-            this.ddlNameDescript.ThemeName = "Office2013Light";
-            this.ddlNameDescript.ValueMember = "CodeI";
-            // 
             // lbNameDescript
             // 
             this.lbNameDescript.Location = new System.Drawing.Point(3, 32);
@@ -105,23 +83,30 @@
             this.lbNameDescript.TabIndex = 4;
             this.lbNameDescript.Text = "Назва";
             // 
+            // radTextBox1
+            // 
+            this.radTextBox1.Location = new System.Drawing.Point(46, 31);
+            this.radTextBox1.Name = "radTextBox1";
+            this.radTextBox1.Size = new System.Drawing.Size(489, 21);
+            this.radTextBox1.TabIndex = 5;
+            this.radTextBox1.ThemeName = "Office2013Light";
+            // 
             // CopyRightKindDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.radTextBox1);
             this.Controls.Add(this.lbNameDescript);
-            this.Controls.Add(this.ddlNameDescript);
             this.Controls.Add(this.lbCrkindGroup);
             this.Controls.Add(this.ddlCrkindGroup);
             this.Name = "CopyRightKindDictionaryControl";
-            this.Size = new System.Drawing.Size(1215, 64);
+            this.Size = new System.Drawing.Size(538, 64);
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCrkindGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCrkindGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbCrkindGroup)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsNameDescript)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlNameDescript)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbNameDescript)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,8 +118,7 @@
         private Telerik.WinControls.UI.RadDropDownList ddlCrkindGroup;
         private System.Windows.Forms.BindingSource bsCrkindGroup;
         private Telerik.WinControls.UI.RadLabel lbCrkindGroup;
-        private System.Windows.Forms.BindingSource bsNameDescript;
-        private Telerik.WinControls.UI.RadDropDownList ddlNameDescript;
         private Telerik.WinControls.UI.RadLabel lbNameDescript;
+        private Telerik.WinControls.UI.RadTextBox radTextBox1;
     }
 }
