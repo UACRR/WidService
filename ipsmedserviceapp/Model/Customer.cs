@@ -30,11 +30,14 @@ namespace ipsmedserviceapp.Model
         public byte? AnkMy { get; set; }
         public byte? AnkPublish { get; set; }
         public byte? AnkTech { get; set; }
+        public string UserId { get; set; }
 
         [JsonIgnore]
         public CustomerType CustTypeNavigation { get; set; }
         [JsonIgnore]
         public CustomerStatus StatusNavigation { get; set; }
+        [JsonIgnore]
+        public AspNetUsers User { get; set; }
         public AnketaExternal AnketaExternal { get; set; }
         public Client Client { get; set; }
         public Community Community { get; set; }

@@ -280,7 +280,6 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<TableColumnTech> TableColumnTech { get; set; }
         public virtual DbSet<TableObject> TableObject { get; set; }
         public virtual DbSet<TableType> TableType { get; set; }
-        public virtual DbSet<TaxRate> TaxRate { get; set; }
         public virtual DbSet<TermsOfService> TermsOfService { get; set; }
         public virtual DbSet<TermUse> TermUse { get; set; }
         public virtual DbSet<TermUseTr> TermUseTr { get; set; }
@@ -2797,9 +2796,15 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(600)
                     .IsUnicode(false);
 
+                entity.Property(e => e.NameDescript)
+                    .HasColumnName("nameDescript")
+                    .HasMaxLength(700)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.CrGroupCodeNavigation)
                     .WithMany(p => p.CopyrightKind)
                     .HasForeignKey(d => d.CrGroupCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_CRKINDGR");
             });
 
@@ -2819,6 +2824,11 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
                     .HasMaxLength(600)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NameDescript)
+                    .HasColumnName("nameDescript")
+                    .HasMaxLength(700)
                     .IsUnicode(false);
 
                 entity.HasOne(d => d.CodeINavigation)
@@ -3309,6 +3319,10 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
+                entity.Property(e => e.UserId)
+                    .HasColumnName("userId")
+                    .HasMaxLength(48);
+
                 entity.HasOne(d => d.CustTypeNavigation)
                     .WithMany(p => p.Customer)
                     .HasForeignKey(d => d.CustType)
@@ -3319,6 +3333,11 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.Status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CUSTOMER_REFERENCE_Status");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Customer)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_CUSTOMER_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<CustomerStatus>(entity =>
@@ -9214,32 +9233,6 @@ namespace ipsmedserviceapp.Model
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.TType).HasColumnName("tType");
-            });
-
-            modelBuilder.Entity<TaxRate>(entity =>
-            {
-                entity.HasKey(e => new { e.CodeI, e.DateBegin });
-
-                entity.ToTable("TaxRate", "dbo");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.DateBegin)
-                    .HasColumnName("dateBegin")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DateEnd)
-                    .HasColumnName("dateEnd")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("decimal(5, 2)");
             });
 
             modelBuilder.Entity<TermsOfService>(entity =>

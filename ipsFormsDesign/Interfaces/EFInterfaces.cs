@@ -557,13 +557,15 @@ public interface ICopyRightHistory
 public interface ICopyrightKind
     {    int CodeI { get; set; }
          string Name { get; set; }
-         int? CrGroupCode { get; set; }
+         int CrGroupCode { get; set; }
+         string NameDescript { get; set; }
 }
 public interface ICopyrightKindTr
     {
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
+         string NameDescript { get; set; }
 }
 public interface ICopyrightType
     {    int CodeI { get; set; }
@@ -679,6 +681,7 @@ public interface ICustomer
          byte? AnkMy { get; set; }
          byte? AnkPublish { get; set; }
          byte? AnkTech { get; set; }
+         string UserId { get; set; }
 }
 public interface ICustomerStatus
     {    int CodeI { get; set; }
@@ -1728,7 +1731,7 @@ public interface IRegisterItem
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
          int? Durationticks { get; set; }
-         int? Ticks { get; set; }
+         int Ticks { get; set; }
          bool IsAuto { get; set; }
 }
 public interface IRegisterItemFix

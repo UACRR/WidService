@@ -17,7 +17,8 @@ namespace ipsmedserviceapp.Model
 
         public int CodeI { get; set; }
         public string Name { get; set; }
-        public int? CrGroupCode { get; set; }
+        public int CrGroupCode { get; set; }
+        public string NameDescript { get; set; }
 
         public CrkindGroup CrGroupCodeNavigation { get; set; }
         public PortalSupportRights PortalSupportRights { get; set; }

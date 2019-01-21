@@ -27,7 +27,7 @@ namespace ipsmedserviceapp.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
         public int? Durationticks { get; set; }
-        public int? Ticks { get; set; }
+        public int Ticks { get; set; }
         public bool IsAuto { get; set; }
 
         [JsonIgnore]

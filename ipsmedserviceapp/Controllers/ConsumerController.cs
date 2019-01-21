@@ -1268,7 +1268,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 destItem.CountRows = destItem.RegisterItem.Count();
                 if (destItem.AlgorithmId == 1)
                 {
-                    var sumTicks = destItem.RegisterItem.Sum(rec => (long)(rec.Ticks ?? 1));
+                    var sumTicks = destItem.RegisterItem.Sum(rec => (long)(rec.Ticks));
                     destItem.Durationticks = (int)sumTicks;
                 }
                 else

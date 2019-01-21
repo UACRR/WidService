@@ -476,8 +476,6 @@ namespace ipsmedserviceapp.Controllers
                 rec => rec.DocumentTypeTr)
             );
 
-
-
             #endregion
         }
 
