@@ -292,8 +292,9 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 case "copyrightkind":
                     var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+                    var baseDictsNameDescript = _connector.GetList<DictBaseTypeI>("dictionary/base/NameDescript");
                     if (_copyRightKindControl == null)
-                        _copyRightKindControl = new CopyRightKindDictionaryControl(baseDictsCopyRight);
+                        _copyRightKindControl = new CopyRightKindDictionaryControl(baseDictsCopyRight, baseDictsNameDescript);
                     controlsParamPanel.Controls.Clear();
                     controlsParamPanel.Controls.Add(_copyRightKindControl);
                     break;

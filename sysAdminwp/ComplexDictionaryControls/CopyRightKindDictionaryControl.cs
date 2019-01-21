@@ -21,7 +21,7 @@ namespace sysAdminwp.ComplexDictionaryControls
             bsCrkindGroup.DataSource = list;
         }
 
-        public CopyRightKindDictionaryControl(List<DictBaseTypeI> list)
+        public CopyRightKindDictionaryControl(List<DictBaseTypeI> list, List<DictBaseTypeI> list)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
