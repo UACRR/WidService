@@ -13,7 +13,6 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data.SqlClient;
 using System.Collections;
-
 namespace ipsmedserviceapp.Controllers
 {
     public interface ITypedDict
@@ -746,7 +745,6 @@ namespace ipsmedserviceapp.Controllers
                             }
                             break;
                     }
-                return Ok();
 
                 transaction = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
@@ -769,7 +767,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpDelete("complex/delete/{dictionaryName}/{id}")]
-        public async Task<IActionResult> DeleteComplexDictionary(string dictionaryName, int id)
+        public async Task<IActionResult> DeleteComplexDictionary(string dictionaryName, string id)
         {
             IDbContextTransaction transaction = null;
             try
@@ -781,15 +779,16 @@ namespace ipsmedserviceapp.Controllers
                     case "copyrightkind":
                         var copyrightKind = await _dbContext.CopyrightKind
                             .Include(item => item.CopyrightKindTr)
-                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                            .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
                         _dbContext.CopyrightKindTr.RemoveRange(copyrightKind.CopyrightKindTr);
                         _dbContext.CopyrightKind.Remove(copyrightKind);
                         break;
                     case "country":
                         //filter only country and find by id
                         var countryFindedIntoDB = await _dbContext.Country
-                            .Include(item => item.CountryTr)
-                            .SingleOrDefaultAsync(rec => rec.CountryCode == id );
+                         .Include(item => item.CountryTr)
+                         .SingleOrDefaultAsync(rec => rec.CountryCode == id);
+                        
                         //remove finded dictionaries
                         _dbContext.CountryTr.RemoveRange(countryFindedIntoDB.CountryTr);
                         //remove finded dictionary
@@ -799,7 +798,7 @@ namespace ipsmedserviceapp.Controllers
                         //filter only craetiveroletype and find by id
                         var creativeFindedIntoDB = await _dbContext.CreativeRoleType
                             .Include(item => item.CreativeRoleTypeTr)
-                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                            .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
                         //remove finded dictionaries
                         _dbContext.CreativeRoleTypeTr.RemoveRange(creativeFindedIntoDB.CreativeRoleTypeTr);
                         //remove finded dictionary
@@ -809,7 +808,7 @@ namespace ipsmedserviceapp.Controllers
                         //filter only genretype and find by id
                         var genreFindedIntoDB = await _dbContext.GenreType
                             .Include(item => item.GenreTypeTr)
-                            .SingleOrDefaultAsync(rec => rec.CodeI == id);
+                            .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
                         //remove finded dictionaries
                         _dbContext.GenreTypeTr.RemoveRange(genreFindedIntoDB.GenreTypeTr);
                         //remove finded dictionary

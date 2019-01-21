@@ -123,4 +123,19 @@
   <metadata name="bsContinent.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>124, 17</value>
   </metadata>
+  <metadata name="bsCountryCode.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>242, 17</value>
+  </metadata>
+  <metadata name="bsCountryName.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>378, 17</value>
+  </metadata>
+  <metadata name="bsKodLit.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>518, 17</value>
+  </metadata>
+  <metadata name="bsShortChoice.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>617, 17</value>
+  </metadata>
+  <metadata name="bsOrderBy.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>747, 17</value>
+  </metadata>
 </root>

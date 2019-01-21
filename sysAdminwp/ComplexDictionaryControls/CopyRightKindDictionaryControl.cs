@@ -37,7 +37,7 @@ namespace sysAdminwp.ComplexDictionaryControls
         public bool Validation()
         {
             bool isvalid = true;
-            isvalid = ddlKindShototam.SelectedValue != null;
+            isvalid = ddlCrkindGroup.SelectedValue != null;
 
             return isvalid;
         }
