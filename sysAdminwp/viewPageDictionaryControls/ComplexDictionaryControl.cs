@@ -292,15 +292,21 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 case "copyrightkind":
                     var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+                    //var baseDictsNameDescript = _connector.GetList<DictBaseTypeI>("dictionary/base/NameDescript");
                     if (_copyRightKindControl == null)
                         _copyRightKindControl = new CopyRightKindDictionaryControl(baseDictsCopyRight);
                     controlsParamPanel.Controls.Clear();
                     controlsParamPanel.Controls.Add(_copyRightKindControl);
                     break;
                 case "country":
-                    var baseDictsCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
+                    var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
+                    //var baseDictsCountryCode = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryCode");
+                    //var baseDictsCountryName = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryName");
+                    //var baseDictsKodLit = _connector.GetList<DictBaseTypeI>("dictionary/base/Kod_lit");
+                    //var baseDictsShortChoice = _connector.GetList<DictBaseTypeI>("dictionary/base/ShortChoice");
+                    //var baseDictsOrderBy = _connector.GetList<DictBaseTypeI>("dictionary/base/OrderBy");
                     if (_countryDictionaryControl == null)
-                        _countryDictionaryControl = new CountryDictionaryControl(baseDictsCountry);
+                        _countryDictionaryControl = new CountryDictionaryControl(baseDictsContinent);
                     controlsParamPanel.Controls.Clear();
                     controlsParamPanel.Controls.Add(_countryDictionaryControl);
                     break;
@@ -376,7 +382,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
-                    _copyrightKind = new CopyrightKind();
+                    _copyrightKind = new CopyrightKind() {CrGroupCode = 1, };
                     _copyRightKindControl.CopyrightKindDataSource = _copyrightKind;
                     break;
                 case "country":
@@ -478,7 +484,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     case "copyrightkind":
                         if (!int.TryParse(txtCodeComplex.Text, out int code))
                         {
-                            MessageBox.Show($"Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             return false;
                         }
                         _copyrightKind.Name = txtNameUaComplex.Text;
@@ -504,15 +510,143 @@ namespace sysAdminwp.viewPageDictionaryControls
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _copyrightKind);
                         break;
                     case "country":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int countryCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'CountryName' from textbox
+                        _country.CountryName = txtNameUaComplex.Text;
+                        //save data for 'CodeI' from converted variable
+                        _country.CountryCode = txtCodeComplex.Text;
+                        //add data for 'Uk'
+                        _country.CountryTr.Add(new CountryTr
+                        {
+                            CountryCode = _country.CountryCode,
+                            CountryName = txtNameUaComplex.Text,
+                            Lang = "Uk"
+                        });
+                        //add data for 'Ru'
+                        _country.CountryTr.Add(new CountryTr
+                        {
+                            CountryCode = _country.CountryCode,
+                            CountryName = txtNameRuComplex.Text,
+                            Lang = "Ru"
+                        });
+                        //add data for 'En'
+                        _country.CountryTr.Add(new CountryTr
+                        {
+                            CountryCode = _country.CountryCode,
+                            CountryName = txtNameEnComplex.Text,
+                            Lang = "En"
+                        });
+                        //send new country to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _country);
                         break;
                     case "creativeroletype":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int creativeCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'Name' from textbox
+                        _creativeRoleType.Name = txtNameUaComplex.Text;
+                        //save data for 'CodeI' from convert variable
+                        _creativeRoleType.CodeI = creativeCode;
+                        //add data for 'Uk'
+                        _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                        {
+                            CodeI = _creativeRoleType.CodeI,
+                            Name = txtNameUaComplex.Text,
+                            Lang = "Uk"
+                        });
+                        //add data for 'Ru'
+                        _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                        {
+                            CodeI = _creativeRoleType.CodeI,
+                            Name = txtNameRuComplex.Text,
+                            Lang = "Ru"
+                        });
+                        //add data for 'En'
+                        _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
+                        {
+                            CodeI = _creativeRoleType.CodeI,
+                            Name = txtNameEnComplex.Text,
+                            Lang = "En"
+                        });
+                        //send new creativeroletype to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _creativeRoleType);
                         break;
                     case "genretype":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int genreCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'Name' from textbox
+                        _genreType.Name = txtNameUaComplex.Text;
+                        //save data for 'CodeI' from convert variable
+                        _genreType.CodeI = genreCode;
+                        //add data for 'Uk'
+                        _genreType.GenreTypeTr.Add(new GenreTypeTr
+                        {
+                            CodeI = _genreType.CodeI,
+                            Name = txtNameUaComplex.Text,
+                            Lang = "Uk"
+                        });
+                        //add data for 'Ru'
+                        _genreType.GenreTypeTr.Add(new GenreTypeTr
+                        {
+                            CodeI = _genreType.CodeI,
+                            Name = txtNameRuComplex.Text,
+                            Lang = "Ru"
+                        });
+                        //add data for 'En'
+                        _genreType.GenreTypeTr.Add(new GenreTypeTr
+                        {
+                            CodeI = _genreType.CodeI,
+                            Name = txtNameEnComplex.Text,
+                            Lang = "En"
+                        });
+                        //send new genretype to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _genreType);
                         break;
                     case "klr030":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int klrCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'R030Name' from textbox
+                        _klR030.R030Name = txtNameUaComplex.Text;
+                        //save data for 'R030' from convert variable
+                        _klR030.R030 = txtCodeComplex.Text;
+                        //add data for 'Uk'
+                        _klR030.KlR030tr.Add(new KlR030tr
+                        {
+                            R030 = _klR030.R030,
+                            Lang = "Uk",
+                            R030Name = txtNameUaComplex.Text
+                        });
+                        //add data for 'Ru'
+                        _klR030.KlR030tr.Add(new KlR030tr
+                        {
+                            R030 = _klR030.R030,
+                            Lang = "Ru",
+                            R030Name = txtNameRuComplex.Text
+                        });
+                        //add data for 'En'
+                        _klR030.KlR030tr.Add(new KlR030tr
+                        {
+                            R030 = _klR030.R030,
+                            Lang = "En",
+                            R030Name = txtNameEnComplex.Text
+                        });
+                        //send new klt030 to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _klR030);
                         break;
                 }
@@ -610,6 +744,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 case "copyrightkind":
                     var copyrightKind = _copyrightKindList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    copyrightKind.CodeI = Convert.ToInt32(txtCodeComplex.Text);
                     copyrightKind.Name = txtNameUaComplex.Text;
                     var uk = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "Uk");
                     if (uk == null)
@@ -620,7 +755,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Uk",
                         });
                     else
+                    {
                         uk.Name = txtNameUaComplex.Text;
+                        uk.CodeI = copyrightKind.CodeI;
+                    }
 
                     var ru = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "Ru");
                     if (ru == null)
@@ -631,7 +769,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Ru",
                         });
                     else
+                    {
                         ru.Name = txtNameRuComplex.Text;
+                        ru.CodeI = copyrightKind.CodeI;
+                    }
 
                     var en = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "En");
                     if (en == null)
@@ -642,170 +783,286 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                         });
                     else
+                    {
                         en.Name = txtNameEnComplex.Text;
+                        en.CodeI = copyrightKind.CodeI;
+                    }
 
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), copyrightKind.CodeI.ToString(), copyrightKind);
                     break;
                 case "country":
-                    var country = _countryList.SingleOrDefault(rec => Convert.ToInt32(rec.CountryCode) == Convert.ToInt32(CurrentGridRow.Code));
+                    //find dictionary by current row grid
+                    var country = _countryList.SingleOrDefault(rec => rec.CountryCode == CurrentGridRow.Code);
+                    //save new data code from textbox
+                    country.CountryCode = txtCodeComplex.Text;
+                    //save new name from textbox
                     country.CountryName = txtNameUaComplex.Text;
+                    //find 'Uk' value
                     var ukCountry = country.CountryTr.SingleOrDefault(rec => rec.Lang == "Uk");
+                    //if not finded
                     if (ukCountry == null)
+                    {
+                        //add new data
                         country.CountryTr.Add(new CountryTr
                         {
                             CountryCode = country.CountryCode,
                             CountryName = txtNameUaComplex.Text,
                             Lang = "Uk",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         ukCountry.CountryName = txtNameUaComplex.Text;
-
+                        ukCountry.CountryCode = country.CountryCode;
+                    }
+                    //find 'Ru' value
                     var ruCountry = country.CountryTr.SingleOrDefault(rec => rec.Lang == "Ru");
+                    //if not finded
                     if (ruCountry == null)
+                    {
+                        //add new data
                         country.CountryTr.Add(new CountryTr
                         {
                             CountryCode = country.CountryCode,
                             CountryName = txtNameRuComplex.Text,
                             Lang = "Ru",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         ruCountry.CountryName = txtNameRuComplex.Text;
-
+                        ruCountry.CountryCode = country.CountryCode;
+                    }
+                    //find 'En' value
                     var enCountry = country.CountryTr.SingleOrDefault(rec => rec.Lang == "En");
+                    //if not finded
                     if (enCountry == null)
+                    {
+                        //add new data
                         country.CountryTr.Add(new CountryTr
                         {
-                            CountryCode = country.CountryName,
+                            CountryCode = country.CountryCode,
                             CountryName = txtNameEnComplex.Text,
                             Lang = "En",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         enCountry.CountryName = txtNameEnComplex.Text;
-
-                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), country.CountryCode.ToString(), country);
+                        enCountry.CountryCode = country.CountryCode;
+                    }
+                    //send new country to controller
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), country.CountryCode, country);
                     break;
                 case "creativeroletype":
+                    //find dictionary by current row grid
                     var creativeRoleType = _creativeRoleTypeList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    //save new data 'code' from textbox
+                    creativeRoleType.CodeI = Convert.ToInt32(txtCodeComplex.Text);
+                    //save new 'name' from textbox
                     creativeRoleType.Name = txtNameUaComplex.Text;
-                    var ukCreative = creativeRoleType.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    if (ukCreative == null)
+                    //find 'Uk' value
+                    var uaCreative = creativeRoleType.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == "Uk");
+                    //if not finded
+                    if (uaCreative == null)
+                    {
+                        //add new data
                         creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = creativeRoleType.CodeI,
                             Name = txtNameUaComplex.Text,
                             Lang = "Uk",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
-                        ukCreative.Name = txtNameUaComplex.Text;
-
+                    {
+                        uaCreative.Name = txtNameUaComplex.Text;
+                        uaCreative.CodeI = creativeRoleType.CodeI;
+                    }
+                    //find 'Ru' value
                     var ruCreative = creativeRoleType.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == "Ru");
+                    //if not finded
                     if (ruCreative == null)
+                    {
+                        //add new data
                         creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = creativeRoleType.CodeI,
                             Name = txtNameRuComplex.Text,
                             Lang = "Ru",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         ruCreative.Name = txtNameRuComplex.Text;
-
+                        ruCreative.CodeI = creativeRoleType.CodeI;
+                    }
+                    //find 'En' value
                     var enCreative = creativeRoleType.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == "En");
+                    //if not finded
                     if (enCreative == null)
+                    {
+                        //add new data
                         creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = creativeRoleType.CodeI,
                             Name = txtNameEnComplex.Text,
                             Lang = "En",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         enCreative.Name = txtNameEnComplex.Text;
-
+                        enCreative.CodeI = creativeRoleType.CodeI;
+                    }
+                    //send new creativeroletype to controller
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), creativeRoleType.CodeI.ToString(), creativeRoleType);
                     break;
                 case "genretype":
-                    var genre = _genreTypeList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    genre.Name = txtNameUaComplex.Text;
-                    var ukGenre = genre.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    if (ukGenre== null)
-                        genre.GenreTypeTr.Add(new GenreTypeTr
+                    //find dictionary by current row grid
+                    var genreType = _genreTypeList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    //save new data 'code' from textbox
+                    genreType.CodeI = Convert.ToInt32(txtCodeComplex.Text);
+                    //save new 'name' from textbox
+                    genreType.Name = txtNameUaComplex.Text;
+                    //find 'Uk' value
+                    var uaGenre = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "Uk");
+                    //if not finded
+                    if (uaGenre == null)
+                    {
+                        //add new data
+                        genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
-                            CodeI = genre.CodeI,
+                            CodeI = genreType.CodeI,
                             Name = txtNameUaComplex.Text,
                             Lang = "Uk",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
-                        ukGenre.Name = txtNameUaComplex.Text;
-
-                    var ruGenre = genre.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "Ru");
+                    {
+                        uaGenre.Name = txtNameUaComplex.Text;
+                        uaGenre.CodeI = genreType.CodeI;
+                    }
+                    //find 'Ru' value
+                    var ruGenre = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "Uk");
+                    //if not finded
                     if (ruGenre == null)
-                        genre.GenreTypeTr.Add(new GenreTypeTr
+                    {
+                        //add new data
+                        genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
-                            CodeI = genre.CodeI,
+                            CodeI = genreType.CodeI,
                             Name = txtNameRuComplex.Text,
                             Lang = "Ru",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         ruGenre.Name = txtNameRuComplex.Text;
-
-                    var enGenre = genre.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "En");
+                        ruGenre.CodeI = genreType.CodeI;
+                    }
+                    //find 'En' value
+                    var enGenre = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "En");
+                    //if not finded
                     if (enGenre == null)
-                        genre.GenreTypeTr.Add(new GenreTypeTr
+                    {
+                        //add new data
+                        genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
-                            CodeI = genre.CodeI,
+                            CodeI = genreType.CodeI,
                             Name = txtNameEnComplex.Text,
                             Lang = "En",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         enGenre.Name = txtNameEnComplex.Text;
-
-                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), genre.CodeI.ToString(), genre);
+                        enGenre.CodeI = genreType.CodeI;
+                    }
+                    //send new genretype to controller
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), genreType.CodeI.ToString(), genreType);
                     break;
                 case "klr030":
-                    var klr = _klR030List.SingleOrDefault(rec => Convert.ToInt32(rec.CountryCode) == Convert.ToInt32(CurrentGridRow.Code));
+                    //find dictionary by current row grid
+                    var klr = _klR030List.SingleOrDefault(rec => rec.R030 == CurrentGridRow.Code);
+                    //save new data 'code' from textbox
+                    klr.R030 = txtCodeComplex.Text;
+                    //save new 'name' from textbox
                     klr.R030Name = txtNameUaComplex.Text;
-                    var ukKlr = klr.KlR030tr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    if (ukKlr == null)
+                    //find 'Uk' value
+                    var uaKlr = klr.KlR030tr.SingleOrDefault(rec => rec.Lang == "Uk");
+                    //if not finded
+                    if (uaKlr == null)
+                    {
+                        //add new data
                         klr.KlR030tr.Add(new KlR030tr
                         {
                             R030 = klr.R030,
                             R030Name = txtNameUaComplex.Text,
                             Lang = "Uk",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
-                        ukKlr.R030Name = txtNameUaComplex.Text;
-
+                    {
+                        uaKlr.R030Name = txtNameUaComplex.Text;
+                        uaKlr.R030 = klr.R030;
+                    }
+                    //find 'Ru' value
                     var ruKlr = klr.KlR030tr.SingleOrDefault(rec => rec.Lang == "Ru");
+                    //if not finded
                     if (ruKlr == null)
+                    {
+                        //add new data
                         klr.KlR030tr.Add(new KlR030tr
                         {
                             R030 = klr.R030,
                             R030Name = txtNameRuComplex.Text,
                             Lang = "Ru",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         ruKlr.R030Name = txtNameRuComplex.Text;
-
+                        ruKlr.R030 = klr.R030;
+                    }
+                    //find 'En' value
                     var enKlr = klr.KlR030tr.SingleOrDefault(rec => rec.Lang == "En");
+                    //if not finded
                     if (enKlr == null)
-                        klr.KlR030tr.Add(new KlR030tr 
+                    {
+                        //add new data
+                        klr.KlR030tr.Add(new KlR030tr
                         {
                             R030 = klr.R030,
-                            R030Name= txtNameEnComplex.Text,
+                            R030Name = txtNameEnComplex.Text,
                             Lang = "En",
                         });
+                    }
+                    //else set new 'name' and 'codeI'
                     else
+                    {
                         enKlr.R030Name = txtNameEnComplex.Text;
-
-                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), klr.R030.ToString(), klr);
-                    MessageBox.Show("klr030");
+                        enKlr.R030 = klr.R030;
+                    }
+                    //send new klr030 to controller
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), klr.R030, klr);
                     break;
             }
             
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
             UpdateEditPanelComplex();
         }
-        //method for change value fields
-        //---//--
 
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {

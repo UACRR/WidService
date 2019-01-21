@@ -26,6 +26,7 @@ namespace sysAdminwp.ComplexDictionaryControls
             InitializeComponent();
             Dock = DockStyle.Fill;
             bsCrkindGroup.DataSource = list;
+            //bsNameDescript.DataSource = nameDescript;
         }
 
         public object CopyrightKindDataSource
@@ -37,7 +38,7 @@ namespace sysAdminwp.ComplexDictionaryControls
         public bool Validation()
         {
             bool isvalid = true;
-            isvalid = ddlKindShototam.SelectedValue != null;
+            isvalid = ddlCrkindGroup.SelectedValue != null;
 
             return isvalid;
         }

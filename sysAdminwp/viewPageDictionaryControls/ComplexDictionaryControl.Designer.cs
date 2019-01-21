@@ -35,7 +35,6 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.controlsParamPanel = new Telerik.WinControls.UI.RadPanel();
-            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
             this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
             this.btnAddComplex = new Telerik.WinControls.UI.RadButton();
@@ -51,6 +50,7 @@
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLblSearch = new System.Windows.Forms.Label();
+            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controlsParamPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
@@ -87,19 +87,10 @@
             // 
             this.controlsParamPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.controlsParamPanel.Location = new System.Drawing.Point(253, 293);
+            this.controlsParamPanel.Location = new System.Drawing.Point(253, 255);
             this.controlsParamPanel.Name = "controlsParamPanel";
-            this.controlsParamPanel.Size = new System.Drawing.Size(1176, 57);
+            this.controlsParamPanel.Size = new System.Drawing.Size(1176, 121);
             this.controlsParamPanel.TabIndex = 17;
-            // 
-            // txtSearchComplex
-            // 
-            this.txtSearchComplex.Location = new System.Drawing.Point(300, 2);
-            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
-            this.txtSearchComplex.Name = "txtSearchComplex";
-            this.txtSearchComplex.Size = new System.Drawing.Size(580, 20);
-            this.txtSearchComplex.TabIndex = 10;
             // 
             // gvComplexDictionariesList
             // 
@@ -134,7 +125,7 @@
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 394;
+            gridViewTextBoxColumn4.Width = 395;
             this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -147,7 +138,7 @@
             this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
             this.gvComplexDictionariesList.ReadOnly = true;
             this.gvComplexDictionariesList.ShowGroupPanel = false;
-            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1176, 227);
+            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1176, 189);
             this.gvComplexDictionariesList.TabIndex = 11;
             this.gvComplexDictionariesList.ThemeName = "Office2013Light";
             this.gvComplexDictionariesList.SelectionChanged += new System.EventHandler(this.gvComplexDictionariesList_SelectionChanged);
@@ -156,7 +147,7 @@
             // btnDeleteComplex
             // 
             this.btnDeleteComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteComplex.Location = new System.Drawing.Point(392, 263);
+            this.btnDeleteComplex.Location = new System.Drawing.Point(392, 225);
             this.btnDeleteComplex.Name = "btnDeleteComplex";
             this.btnDeleteComplex.Size = new System.Drawing.Size(110, 24);
             this.btnDeleteComplex.TabIndex = 16;
@@ -167,7 +158,7 @@
             // btnAddComplex
             // 
             this.btnAddComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddComplex.Location = new System.Drawing.Point(253, 263);
+            this.btnAddComplex.Location = new System.Drawing.Point(253, 225);
             this.btnAddComplex.Name = "btnAddComplex";
             this.btnAddComplex.Size = new System.Drawing.Size(110, 24);
             this.btnAddComplex.TabIndex = 15;
@@ -189,9 +180,9 @@
             this.editPanel.Controls.Add(this.lblCode);
             this.editPanel.Controls.Add(this.btnCancel);
             this.editPanel.Controls.Add(this.btnSave);
-            this.editPanel.Location = new System.Drawing.Point(253, 356);
+            this.editPanel.Location = new System.Drawing.Point(253, 382);
             this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(1176, 207);
+            this.editPanel.Size = new System.Drawing.Size(1176, 181);
             this.editPanel.TabIndex = 18;
             this.editPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.editPanel.ThemeName = "Office2013Light";
@@ -315,6 +306,15 @@
             this.radLblSearch.Size = new System.Drawing.Size(44, 13);
             this.radLblSearch.TabIndex = 7;
             this.radLblSearch.Text = "Search:";
+            // 
+            // txtSearchComplex
+            // 
+            this.txtSearchComplex.Location = new System.Drawing.Point(300, 2);
+            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
+            this.txtSearchComplex.Name = "txtSearchComplex";
+            this.txtSearchComplex.Size = new System.Drawing.Size(580, 20);
+            this.txtSearchComplex.TabIndex = 10;
             // 
             // ComplexDictionaryControl
             // 

@@ -22,14 +22,14 @@ namespace ipsmedserviceapp.Model
             TerritoryInclude = new HashSet<TerritoryInclude>();
         }
 
-        public int? ContinentCode { get; set; }
-        public string CountryCode { get; set; }
-        public string CountryName { get; set; }
-        public string A2 { get; set; }
-        public string KOdLit { get; set; }
-        public string CountryNameShort { get; set; }
-        public short? ShortChoise { get; set; }
-        public int? OrderBy { get; set; }
+        public int? ContinentCode { get; set; }//+
+        public string CountryCode { get; set; }//+
+        public string CountryName { get; set; }//+
+        public string A2 { get; set; }//-
+        public string KOdLit { get; set; }//+
+        public string CountryNameShort { get; set; }//
+        public short? ShortChoise { get; set; } //
+        public int? OrderBy { get; set; } // 
 
         public Continent ContinentCodeNavigation { get; set; }
         public ICollection<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
