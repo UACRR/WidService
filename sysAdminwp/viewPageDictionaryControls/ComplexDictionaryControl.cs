@@ -299,7 +299,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     controlsParamPanel.Controls.Add(_copyRightKindControl);
                     break;
                 case "country":
-                    var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
+                    var baseDictsContinent = _connector.GetList<Country>("dictionary/base/Continent");
                     //var baseDictsCountryCode = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryCode");
                     //var baseDictsCountryName = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryName");
                     //var baseDictsKodLit = _connector.GetList<DictBaseTypeI>("dictionary/base/Kod_lit");
