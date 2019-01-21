@@ -46,8 +46,8 @@
             this.lbKodLit = new Telerik.WinControls.UI.RadLabel();
             this.lbShortChoice = new Telerik.WinControls.UI.RadLabel();
             this.ddlOrderBy = new Telerik.WinControls.UI.RadDropDownList();
-            this.lbOrderBy = new Telerik.WinControls.UI.RadLabel();
             this.bsOrderBy = new System.Windows.Forms.BindingSource(this.components);
+            this.lbOrderBy = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ddlContinent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsContinent)).BeginInit();
@@ -65,8 +65,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbKodLit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbShortChoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlOrderBy)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbOrderBy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOrderBy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbOrderBy)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlContinent
@@ -106,6 +106,8 @@
             this.ddlCountryCode.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "CountryCode", true));
             this.ddlCountryCode.DataSource = this.bsCountryCode;
             this.ddlCountryCode.DisplayMember = "Name";
+            this.ddlCountryCode.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCountryCode.FormattingEnabled = false;
             this.ddlCountryCode.Location = new System.Drawing.Point(70, 31);
             this.ddlCountryCode.Name = "ddlCountryCode";
             this.ddlCountryCode.Size = new System.Drawing.Size(1261, 21);
@@ -122,6 +124,8 @@
             this.ddlCountryName.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "CountryName", true));
             this.ddlCountryName.DataSource = this.bsCountryName;
             this.ddlCountryName.DisplayMember = "Name";
+            this.ddlCountryName.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCountryName.FormattingEnabled = false;
             this.ddlCountryName.Location = new System.Drawing.Point(70, 57);
             this.ddlCountryName.Name = "ddlCountryName";
             this.ddlCountryName.Size = new System.Drawing.Size(1261, 21);
@@ -142,6 +146,8 @@
             this.ddlKodLit.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "KOdLit", true));
             this.ddlKodLit.DataSource = this.bsKodLit;
             this.ddlKodLit.DisplayMember = "Name";
+            this.ddlKodLit.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlKodLit.FormattingEnabled = false;
             this.ddlKodLit.Location = new System.Drawing.Point(70, 84);
             this.ddlKodLit.Name = "ddlKodLit";
             this.ddlKodLit.Size = new System.Drawing.Size(1261, 21);
@@ -158,6 +164,8 @@
             this.ddlShortChoice.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "ShortChoise", true));
             this.ddlShortChoice.DataSource = this.bsShortChoice;
             this.ddlShortChoice.DisplayMember = "Name";
+            this.ddlShortChoice.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlShortChoice.FormattingEnabled = false;
             this.ddlShortChoice.Location = new System.Drawing.Point(70, 111);
             this.ddlShortChoice.Name = "ddlShortChoice";
             this.ddlShortChoice.Size = new System.Drawing.Size(1261, 21);
@@ -202,12 +210,18 @@
             this.ddlOrderBy.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "OrderBy", true));
             this.ddlOrderBy.DataSource = this.bsOrderBy;
             this.ddlOrderBy.DisplayMember = "Name";
+            this.ddlOrderBy.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlOrderBy.FormattingEnabled = false;
             this.ddlOrderBy.Location = new System.Drawing.Point(70, 139);
             this.ddlOrderBy.Name = "ddlOrderBy";
             this.ddlOrderBy.Size = new System.Drawing.Size(1261, 21);
             this.ddlOrderBy.TabIndex = 7;
             this.ddlOrderBy.ThemeName = "Office2013Light";
             this.ddlOrderBy.ValueMember = "CodeI";
+            // 
+            // bsOrderBy
+            // 
+            this.bsOrderBy.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // lbOrderBy
             // 
@@ -216,10 +230,6 @@
             this.lbOrderBy.Size = new System.Drawing.Size(61, 18);
             this.lbOrderBy.TabIndex = 8;
             this.lbOrderBy.Text = "Континент";
-            // 
-            // bsOrderBy
-            // 
-            this.bsOrderBy.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // CountryDictionaryControl
             // 
@@ -256,8 +266,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbKodLit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbShortChoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlOrderBy)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbOrderBy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsOrderBy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbOrderBy)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

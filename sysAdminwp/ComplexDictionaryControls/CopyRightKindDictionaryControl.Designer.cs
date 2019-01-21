@@ -86,6 +86,8 @@
             this.ddlNameDescript.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
             this.ddlNameDescript.DataSource = this.bsNameDescript;
             this.ddlNameDescript.DisplayMember = "Name";
+            this.ddlNameDescript.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlNameDescript.FormattingEnabled = false;
             this.ddlNameDescript.Location = new System.Drawing.Point(126, 31);
             this.ddlNameDescript.Name = "ddlNameDescript";
             this.ddlNameDescript.Size = new System.Drawing.Size(1086, 21);
