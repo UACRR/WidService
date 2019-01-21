@@ -1375,6 +1375,16 @@ public interface IMoneyTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IMonthName
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IMonthNameTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
 public interface IMusicalDesign
     {
          int MdId { get; set; }
@@ -2132,6 +2142,28 @@ public interface ISpecTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface ISystemConstant
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+         decimal? Rate { get; set; }
+}
+public interface ISystemConstantTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
+public interface ISystemMessage
+    {
+         int Id { get; set; }
+         DateTime? Modifydate { get; set; }
+         string NameMain { get; set; }
+         string Name { get; set; }
+         int? KeyObj { get; set; }
+         string Text { get; set; }
+         string Sysname { get; set; }
+         int? CustId { get; set; }
+    }
 public interface ISysVersion
     {
          int VersId { get; set; }
