@@ -129,6 +129,18 @@
     <Compile Include="ComplexDictionaryControls\Klr030DictionaryControl.Designer.cs">
       <DependentUpon>Klr030DictionaryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComplexDictionaryControls\TaxRateDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\TaxRateDictionaryControl.Designer.cs">
+      <DependentUpon>TaxRateDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\TypePlaceDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\TypePlaceDictionaryControl.Designer.cs">
+      <DependentUpon>TypePlaceDictionaryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DictionaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +168,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComplexDictionaryControls\Klr030DictionaryControl.resx">
       <DependentUpon>Klr030DictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\TaxRateDictionaryControl.resx">
+      <DependentUpon>TaxRateDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\TypePlaceDictionaryControl.resx">
+      <DependentUpon>TypePlaceDictionaryControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="DictionaryForm.resx">

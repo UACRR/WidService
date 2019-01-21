@@ -136,7 +136,9 @@ namespace ipsmedserviceapp.Controllers
             "country",
             "creativeroletype",
             "genretype",
-            "klr030"
+            "klr030",
+            "systemconstant",
+            "typeplace"
         };
 
         public DictionariesController(MediaServiceContext context)
@@ -557,6 +559,18 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.KlR030tr)
                         .ToListAsync();
                     return Json(klr030);
+                case "systemconstant":
+                    //get data only systemconstant
+                    //var systemConstant = await _dbContext.SystemConstant
+                    //    .Include(item => item.SystemConstantTr)
+                    //    .ToListAsync();
+                    //return Json(systemConstant);
+                case "typeplace":
+                    //get data only typeplace
+                    var typePlace = await _dbContext.TypePlace
+                        .Include(item => item.TypePlaceTr)
+                        .ToListAsync();
+                    return Json(typePlace);
                 default:
                     return NotFound();
             }
@@ -742,6 +756,74 @@ namespace ipsmedserviceapp.Controllers
                                 }
                             }
                             break;
+                        case "systemconstant":
+                            //convert systemconstant object from json
+                            var objSystemConstantForNewData = dataJObject.ToObject<SystemConstant>();
+                            //check on valid state
+                            if (objSystemConstantForNewData == null)
+                                return NotFound("Country not found!");
+                            //get systemconstant from DB by id
+                            var getSystemConstantDictionaryFromDB = await _dbContext.SystemConstant
+                                .Include(item => item.SystemConstantTr)
+                                .SingleOrDefaultAsync(item => item.CodeI == Convert.ToInt32(id));
+                            //update systemconstant data
+                            getSystemConstantDictionaryFromDB.SetFields(objSystemConstantForNewData);
+                            //update systemconstant list
+                            foreach (var dict in objSystemConstantForNewData.SystemConstantTr)
+                            {
+                                //get dictionary tr with current lang
+                                var newLangSystemConstant = getSystemConstantDictionaryFromDB.SystemConstantTr.SingleOrDefault(rec => rec.Lang == dict.Lang);
+                                //if not exist
+                                if (newLangSystemConstant == null)
+                                {
+                                    //if not exist
+                                    getSystemConstantDictionaryFromDB.SystemConstantTr.Add(new SystemConstantTr
+                                    {
+                                        CodeI = dict.CodeI,
+                                        Lang = dict.Lang,
+                                        Name = dict.Name,
+                                    });
+                                }
+                                else
+                                {
+                                    getSystemConstantDictionaryFromDB.SetFields(dict, new[] { "Lang" });
+                                }
+                            }
+                            break;
+                        case "typeplace":
+                            //convert typeplace object from json
+                            var objTypePlaceForNewData = dataJObject.ToObject<TypePlace>();
+                            //check on valid state
+                            if (objTypePlaceForNewData == null)
+                                return NotFound("Country not found!");
+                            //get typeplace from DB by id
+                            var getTypePlaceDictionaryFromDB = await _dbContext.TypePlace
+                                .Include(item => item.TypePlaceTr)
+                                .SingleOrDefaultAsync(item => item.CodeI == Convert.ToInt32(id));
+                            //update creativeRoleType data
+                            getTypePlaceDictionaryFromDB.SetFields(objTypePlaceForNewData);
+                            //update typeplace list
+                            foreach (var dict in objTypePlaceForNewData.TypePlaceTr)
+                            {
+                                //get dictionary tr with current lang
+                                var newLangTypePlace = getTypePlaceDictionaryFromDB.TypePlaceTr.SingleOrDefault(rec => rec.Lang == dict.Lang);
+                                //if not exist
+                                if (newLangTypePlace == null)
+                                {
+                                    //if not exist
+                                    getTypePlaceDictionaryFromDB.TypePlaceTr.Add(new TypePlaceTr
+                                    {
+                                        CodeI = dict.CodeI,
+                                        Lang = dict.Lang,
+                                        Name = dict.Name,
+                                    });
+                                }
+                                else
+                                {
+                                    getTypePlaceDictionaryFromDB.SetFields(dict, new[] { "Lang" });
+                                }
+                            }
+                            break;
                     }
 
                 transaction = _dbContext.Database.BeginTransaction();
@@ -821,6 +903,28 @@ namespace ipsmedserviceapp.Controllers
                         _dbContext.KlR030tr.RemoveRange(klrFindedIntoDB.KlR030tr);
                         //remove finded dictionary
                         _dbContext.KlR030.Remove(klrFindedIntoDB);
+                        break;
+                    case "systemconstant":
+                        //filter only systemconstant and find by id
+                        var systemConstantFindedIntoDB = await _dbContext.SystemConstant
+                         .Include(item => item.SystemConstantTr)
+                         .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
+
+                        //remove finded dictionaries
+                        _dbContext.SystemConstantTr.RemoveRange(systemConstantFindedIntoDB.SystemConstantTr);
+                        //remove finded dictionary
+                        _dbContext.SystemConstant.Remove(systemConstantFindedIntoDB);
+                        break;
+                    case "typeplace":
+                        //filter only typeplace and find by id
+                        var typePlaceFindedIntoDB = await _dbContext.TypePlace
+                         .Include(item => item.TypePlaceTr)
+                         .SingleOrDefaultAsync(rec => rec.CodeI == Convert.ToInt32(id));
+
+                        //remove finded dictionaries
+                        _dbContext.TypePlaceTr.RemoveRange(typePlaceFindedIntoDB.TypePlaceTr);
+                        //remove finded dictionary
+                        _dbContext.TypePlace.Remove(typePlaceFindedIntoDB);
                         break;
                 }
 
@@ -946,30 +1050,55 @@ namespace ipsmedserviceapp.Controllers
                         //add new dictionaries
                         await _dbContext.GenreTypeTr.AddRangeAsync(genreNewData.GenreTypeTr);
                         break;
-                    case "klr030":
-                        //initialize object KlR030 for add new data
-                        var klrNewData = new KlR030();
-                        //convert to KlR030 input data
-                        var inputKLRNewData = dataJObject.ToObject<KlR030>();
+                    case "systemconstant":
+                        //initialize object systemConstant for add new data
+                        var systemConstantNewData = new SystemConstant();
+                        //convert to SystemConstant input data
+                        var inputSystemConstantNewData = dataJObject.ToObject<SystemConstant>();
                         //check valid state
-                        if (inputKLRNewData == null)
+                        if (inputSystemConstantNewData == null)
                             return NotFound("Data object not found!");
-                        //save new object KlR030
-                        klrNewData.SetFields(inputKLRNewData);
+                        //save new object SystemConstant
+                        systemConstantNewData.SetFields(inputSystemConstantNewData);
                         //save every dictionary
-                        foreach(var dict in inputKLRNewData.KlR030tr)
+                        foreach(var dict in inputSystemConstantNewData.SystemConstantTr)
                         {
                             //initialize obj for next add
-                            var klr = new KlR030tr();
+                            var systemConstant = new SystemConstantTr();
                             //add field data
-                            klr.SetFields(klr);
+                            systemConstant.SetFields(dict);
                             //add new KlR030 object
-                            klrNewData.KlR030tr.Add(klr);
+                            systemConstantNewData.SystemConstantTr.Add(systemConstant);
                         }
                         //add new object to DB
-                        await _dbContext.KlR030.AddAsync(klrNewData);
+                        await _dbContext.SystemConstant.AddAsync(systemConstantNewData);
                         //add new dictionaries
-                        await _dbContext.KlR030tr.AddRangeAsync(klrNewData.KlR030tr);
+                        await _dbContext.SystemConstantTr.AddRangeAsync(systemConstantNewData.SystemConstantTr);
+                        break;
+                    case "typeplace":
+                        //initialize object typeplace for add new data
+                        var typePlaceNewData = new TypePlace();
+                        //convert to TypePlace input data
+                        var inputTypePlaceData = dataJObject.ToObject<TypePlace>();
+                        //check valid state
+                        if (inputTypePlaceData == null)
+                            return NotFound("Data object not found!");
+                        //save new object Country
+                        typePlaceNewData.SetFields(inputTypePlaceData);
+                        //save every dictionary
+                        foreach (var dict in inputTypePlaceData.TypePlaceTr)
+                        {
+                            //initialize obj for next add
+                            var typePlace = new TypePlaceTr();
+                            //add field data
+                            typePlace.SetFields(dict);
+                            //add new country object
+                            typePlaceNewData.TypePlaceTr.Add(typePlace);
+                        }
+                        //add new object to DB
+                        await _dbContext.TypePlace.AddAsync(typePlaceNewData);
+                        //add new dictionaries
+                        await _dbContext.TypePlaceTr.AddRangeAsync(typePlaceNewData.TypePlaceTr);
                         break;
                 }
 
