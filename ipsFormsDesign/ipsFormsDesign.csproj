@@ -284,6 +284,8 @@
     <Compile Include="Model\MoneyReceived.cs" />
     <Compile Include="Model\MoneyType.cs" />
     <Compile Include="Model\MoneyTypeTr.cs" />
+    <Compile Include="Model\MonthName.cs" />
+    <Compile Include="Model\MonthNameTr.cs" />
     <Compile Include="Model\MusicalDesign.cs" />
     <Compile Include="Model\MyAnketa.cs" />
     <Compile Include="Model\MyCategory.cs" />
@@ -393,6 +395,10 @@
     <Compile Include="Model\SpecType.cs" />
     <Compile Include="Model\SpecTypeTr.cs" />
     <Compile Include="Model\SqlViewData\vCustomer.cs" />
+    <Compile Include="Model\SystemConstant.cs" />
+    <Compile Include="Model\SystemConstantTr.cs" />
+    <Compile Include="Model\SystemMessage.cs" />
+    <Compile Include="Model\SysVersion.cs" />
     <Compile Include="Model\TableColumn.cs" />
     <Compile Include="Model\TableColumnTech.cs" />
     <Compile Include="Model\TableObject.cs" />
