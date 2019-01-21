@@ -12,7 +12,7 @@ using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
-    public partial class CopyRightKindDictionaryControl : UserControl, IComplexDictionary
+    public sealed partial class CopyRightKindDictionaryControl : UserControl, IComplexDictionary
     {
         public CopyRightKindDictionaryControl(CopyrightKind copyR, List<DictBaseTypeI> list)
         {
@@ -21,10 +21,24 @@ namespace sysAdminwp.ComplexDictionaryControls
             bsCrkindGroup.DataSource = list;
         }
 
+        public CopyRightKindDictionaryControl(List<DictBaseTypeI> list)
+        {
+            InitializeComponent();
+            Dock = DockStyle.Fill;
+            bsCrkindGroup.DataSource = list;
+            //bsNameDescript.DataSource = nameDescript;
+        }
+
+        public object CopyrightKindDataSource
+        {
+            get => bsCopyrightKind.DataSource;
+            set => bsCopyrightKind.DataSource = value;
+        }
+
         public bool Validation()
         {
             bool isvalid = true;
-            isvalid = ddlKindShototam.SelectedValue != null;
+            isvalid = ddlCrkindGroup.SelectedValue != null;
 
             return isvalid;
         }

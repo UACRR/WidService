@@ -16,11 +16,10 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
-    public partial class CommunityAddAutorForm : Telerik.WinControls.UI.RadForm
+    public partial class CommunityAddAutorForm : RadForm
     {
-        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-        private readonly List<CopyrightKind> _copyrightKinds = null;
-        private List<RightLimitationsView> _rightLimitationsViews = null;
+        private readonly List<CopyrightKind> _copyrightKinds;
+        private List<RightLimitationsView> _rightLimitationsViews;
         private readonly List<CommunityInfo> _communities;
         private readonly List<CommunityAutorsListView> _autorList;
         private readonly int _communityCustId;
@@ -32,7 +31,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         public CommunityAddAutorForm(List<CommunityAutorsListView> autorList, int communityCustId)
         {
             InitializeComponent();
-            if (!IsDesignMode)
+            if (IpsGlobal.AnketaDictionaties != null)
             {
                 _copyrightKinds = IpsGlobal.AnketaDictionaties.copyrightKind.ToList();
                 _communities = IpsGlobal.AnketaDictionaties.communities.ToList();

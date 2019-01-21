@@ -426,12 +426,6 @@
       <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\PrintService.cs" />
-    <Compile Include="_trash\ProlongationGeneralAgreement.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="_trash\ProlongationGeneralAgreement.Designer.cs">
-      <DependentUpon>ProlongationGeneralAgreement.cs</DependentUpon>
-    </Compile>
     <Compile Include="ConsumerDialogForms\SelectClient.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -619,12 +613,6 @@
     <Compile Include="MiddleControlCabinetAvances.Designer.cs">
       <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
     </Compile>
-    <Compile Include="_trash\MiddleControlCabinetPayments.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\MiddleControlCabinetPayments.Designer.cs">
-      <DependentUpon>MiddleControlCabinetPayments.cs</DependentUpon>
-    </Compile>
     <Compile Include="ObjectRightControls\AuthorRightholderBrListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -764,12 +752,6 @@
     <Compile Include="InformationAboutTheContractTitleControl.Designer.cs">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="_trash\InformationFooterGenAgrBigRight.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\InformationFooterGenAgrBigRight.Designer.cs">
-      <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
-    </Compile>
     <Compile Include="IpsAnketaCompanyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -805,12 +787,6 @@
     </Compile>
     <Compile Include="IpsAddressControl.Designer.cs">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\IpsAddressExpandedControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\IpsAddressExpandedControl.Designer.cs">
-      <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\Places\PremisesControl.cs">
       <SubType>UserControl</SubType>
@@ -853,18 +829,6 @@
     </Compile>
     <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\MiddleControlAgreementBigRights.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\MiddleControlAgreementBigRights.Designer.cs">
-      <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\MiddleControlAgreementProlType.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\MiddleControlAgreementProlType.Designer.cs">
-      <DependentUpon>MiddleControlAgreementProlType.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlAgreementProlPlacesType.cs">
       <SubType>UserControl</SubType>
@@ -986,12 +950,6 @@
     </Compile>
     <Compile Include="ConsumerForms\ProlongationAgreementForm.Designer.cs">
       <DependentUpon>ProlongationAgreementForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\ProlongationWithoutPlaces.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="_trash\ProlongationWithoutPlaces.Designer.cs">
-      <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RightholderControls\Anketa\ServiceComissionControl.cs">
@@ -1234,9 +1192,6 @@
     <EmbeddedResource Include="ImportDBF\PaymentsAttachForm.resx">
       <DependentUpon>PaymentsAttachForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\ProlongationGeneralAgreement.resx">
-      <DependentUpon>ProlongationGeneralAgreement.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\SelectClient.resx">
       <DependentUpon>SelectClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -1287,9 +1242,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetAvances.resx">
       <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\MiddleControlCabinetPayments.resx">
-      <DependentUpon>MiddleControlCabinetPayments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ObjectRightControls\AuthorRightholderBrListControl.resx">
       <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
@@ -1399,17 +1351,11 @@
     <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\InformationFooterGenAgrBigRight.resx">
-      <DependentUpon>InformationFooterGenAgrBigRight.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="IpsAnketaCompanyControl.resx">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\IpsAddressExpandedControl.resx">
-      <DependentUpon>IpsAddressExpandedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\PremisesControl.resx">
       <DependentUpon>PremisesControl.cs</DependentUpon>
@@ -1431,12 +1377,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\MiddleControlAgreementBigRights.resx">
-      <DependentUpon>MiddleControlAgreementBigRights.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\MiddleControlAgreementProlType.resx">
-      <DependentUpon>MiddleControlAgreementProlType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlAgreementProlPlacesType.resx">
       <DependentUpon>MiddleControlAgreementProlPlacesType.cs</DependentUpon>
@@ -1498,9 +1438,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\ProlongationAgreementForm.resx">
       <DependentUpon>ProlongationAgreementForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\ProlongationWithoutPlaces.resx">
-      <DependentUpon>ProlongationWithoutPlaces.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\ServiceComissionControl.resx">
       <DependentUpon>ServiceComissionControl.cs</DependentUpon>
@@ -1705,6 +1642,8 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="_trash\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

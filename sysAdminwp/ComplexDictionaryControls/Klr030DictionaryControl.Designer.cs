@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexDictionaryControls
 {
-    partial class Klr030DictionaryControl
+    sealed partial class Klr030DictionaryControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

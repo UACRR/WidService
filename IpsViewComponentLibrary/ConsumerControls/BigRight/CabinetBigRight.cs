@@ -40,10 +40,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private IList<RequestsOrReferenceBigRightView> _requestsLicenseView;
         private IList<RequestsOrReferenceBigRightView> _referenceLicenseView;
         private IList<AuthorsForLicenseBigRightView> _authorsForLicenseView;
-        private IList<UnattachedMoneyView> _unattachedMoneyView;
         private IList<RatedListMainBigRightView> _registerRatedListView;
         private IList<RatedListSpectacleBigRightView> _rlSpectacleView;
-        private IList<RatedListMusicDesignBigRightView> _rlMusicDesignView;
 
         #region events точечного отримання даних
 
@@ -55,7 +53,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public event ReturnViewEventHandler<RequestsOrReferenceBigRightView> GetRequestsView;
         public event ReturnViewEventHandler<RequestsOrReferenceBigRightView> GetReferenceView;
         public event ReturnViewEventHandler<AuthorsForLicenseBigRightView> GetAuthorsForLicenseView;
-        public event ReturnViewEventHandler<UnattachedMoneyView> GetUnattachedMoneyView;
         public event ReturnViewEventHandler<RatedListMainBigRightView> GetRatedListMainView;
         public event ReturnViewEventHandler<RatedListSpectacleBigRightView> GetRatedListSpectacleView;
         public event ReturnViewEventHandler<RatedListMusicDesignBigRightView> GetMusicDesignView;
@@ -81,7 +78,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
         public event ActionByIdDelegate OnFileDelete;
         public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
-        public event WorkRhSaveEventHandler OnRequestWorkRhSaveNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
         public event SaveRegisterRatedListEventHandler OnSaveRegisterRatedList;
         public event GetRegisterRatedList OnGetRegisterRatedList;
@@ -149,12 +145,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlLicense.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlLicense.OnSaveCustomer += Ctrls_OnSaveCustomer;
             // заявка
-            ctrlRequest.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
             ctrlRequest.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
             ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
             ctrlRequest.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             // довідка
-            ctrlReference.OnWorkRhSave += CtrlRequest_OnWorkRhSave;
             ctrlReference.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
             ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
             ctrlReference.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
@@ -418,11 +412,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private bool CtrlRequest_OnLicenseTypeChange(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
         {
             return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
-        }
-
-        private bool CtrlRequest_OnWorkRhSave(int licenseId, List<WorkRh> workRhList)
-        {
-            return OnRequestWorkRhSaveNeed?.Invoke(licenseId, workRhList) ?? false;
         }
 
         private bool Ctrls_OnLicStatusChange(LicenseAgreement agr, int version, int status, bool changeVer)

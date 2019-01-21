@@ -35,7 +35,6 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.controlsParamPanel = new Telerik.WinControls.UI.RadPanel();
-            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
             this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
             this.btnAddComplex = new Telerik.WinControls.UI.RadButton();
@@ -47,10 +46,11 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
+            this.lblCode = new Telerik.WinControls.UI.RadLabel();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.radLblSearch = new System.Windows.Forms.Label();
+            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.controlsParamPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
@@ -66,7 +66,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             this.SuspendLayout();
@@ -87,19 +87,10 @@
             // 
             this.controlsParamPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.controlsParamPanel.Location = new System.Drawing.Point(253, 293);
+            this.controlsParamPanel.Location = new System.Drawing.Point(253, 255);
             this.controlsParamPanel.Name = "controlsParamPanel";
-            this.controlsParamPanel.Size = new System.Drawing.Size(1176, 57);
+            this.controlsParamPanel.Size = new System.Drawing.Size(1176, 121);
             this.controlsParamPanel.TabIndex = 17;
-            // 
-            // txtSearchComplex
-            // 
-            this.txtSearchComplex.Location = new System.Drawing.Point(300, 2);
-            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
-            this.txtSearchComplex.Name = "txtSearchComplex";
-            this.txtSearchComplex.Size = new System.Drawing.Size(580, 20);
-            this.txtSearchComplex.TabIndex = 10;
             // 
             // gvComplexDictionariesList
             // 
@@ -134,7 +125,7 @@
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 394;
+            gridViewTextBoxColumn4.Width = 395;
             this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -147,7 +138,7 @@
             this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
             this.gvComplexDictionariesList.ReadOnly = true;
             this.gvComplexDictionariesList.ShowGroupPanel = false;
-            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1176, 227);
+            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1176, 189);
             this.gvComplexDictionariesList.TabIndex = 11;
             this.gvComplexDictionariesList.ThemeName = "Office2013Light";
             this.gvComplexDictionariesList.SelectionChanged += new System.EventHandler(this.gvComplexDictionariesList_SelectionChanged);
@@ -156,7 +147,7 @@
             // btnDeleteComplex
             // 
             this.btnDeleteComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteComplex.Location = new System.Drawing.Point(392, 263);
+            this.btnDeleteComplex.Location = new System.Drawing.Point(392, 225);
             this.btnDeleteComplex.Name = "btnDeleteComplex";
             this.btnDeleteComplex.Size = new System.Drawing.Size(110, 24);
             this.btnDeleteComplex.TabIndex = 16;
@@ -167,7 +158,7 @@
             // btnAddComplex
             // 
             this.btnAddComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddComplex.Location = new System.Drawing.Point(253, 263);
+            this.btnAddComplex.Location = new System.Drawing.Point(253, 225);
             this.btnAddComplex.Name = "btnAddComplex";
             this.btnAddComplex.Size = new System.Drawing.Size(110, 24);
             this.btnAddComplex.TabIndex = 15;
@@ -186,12 +177,12 @@
             this.editPanel.Controls.Add(this.radLabel1);
             this.editPanel.Controls.Add(this.radLabel2);
             this.editPanel.Controls.Add(this.radLabel3);
-            this.editPanel.Controls.Add(this.radLabel4);
+            this.editPanel.Controls.Add(this.lblCode);
             this.editPanel.Controls.Add(this.btnCancel);
             this.editPanel.Controls.Add(this.btnSave);
-            this.editPanel.Location = new System.Drawing.Point(253, 356);
+            this.editPanel.Location = new System.Drawing.Point(253, 382);
             this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(1176, 207);
+            this.editPanel.Size = new System.Drawing.Size(1176, 181);
             this.editPanel.TabIndex = 18;
             this.editPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.editPanel.ThemeName = "Office2013Light";
@@ -276,16 +267,16 @@
             this.radLabel3.Text = "Назва (UA):";
             this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // radLabel4
+            // lblCode
             // 
-            this.radLabel4.AutoSize = false;
-            this.radLabel4.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel4.Location = new System.Drawing.Point(55, 28);
-            this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(90, 18);
-            this.radLabel4.TabIndex = 2;
-            this.radLabel4.Text = "Код:";
-            this.radLabel4.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblCode.AutoSize = false;
+            this.lblCode.BackColor = System.Drawing.Color.Transparent;
+            this.lblCode.Location = new System.Drawing.Point(55, 28);
+            this.lblCode.Name = "lblCode";
+            this.lblCode.Size = new System.Drawing.Size(90, 18);
+            this.lblCode.TabIndex = 2;
+            this.lblCode.Text = "Код:";
+            this.lblCode.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
             // btnCancel
             // 
@@ -315,6 +306,15 @@
             this.radLblSearch.Size = new System.Drawing.Size(44, 13);
             this.radLblSearch.TabIndex = 7;
             this.radLblSearch.Text = "Search:";
+            // 
+            // txtSearchComplex
+            // 
+            this.txtSearchComplex.Location = new System.Drawing.Point(300, 2);
+            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
+            this.txtSearchComplex.Name = "txtSearchComplex";
+            this.txtSearchComplex.Size = new System.Drawing.Size(580, 20);
+            this.txtSearchComplex.TabIndex = 10;
             // 
             // ComplexDictionaryControl
             // 
@@ -346,7 +346,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             this.ResumeLayout(false);
@@ -370,7 +370,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadLabel radLabel4;
+        private Telerik.WinControls.UI.RadLabel lblCode;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadButton btnSave;
         private System.Windows.Forms.Label radLblSearch;
