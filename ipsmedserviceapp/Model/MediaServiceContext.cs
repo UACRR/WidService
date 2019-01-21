@@ -171,6 +171,8 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<MoneyReceived> MoneyReceived { get; set; }
         public virtual DbSet<MoneyType> MoneyType { get; set; }
         public virtual DbSet<MoneyTypeTr> MoneyTypeTr { get; set; }
+        public virtual DbSet<MonthName> MonthName { get; set; }
+        public virtual DbSet<MonthNameTr> MonthNameTr { get; set; }
         public virtual DbSet<MusicalDesign> MusicalDesign { get; set; }
         public virtual DbSet<MyAnketa> MyAnketa { get; set; }
         public virtual DbSet<MyCategory> MyCategory { get; set; }
@@ -276,11 +278,13 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<SexTypeTr> SexTypeTr { get; set; }
         public virtual DbSet<SpecType> SpecType { get; set; }
         public virtual DbSet<SpecTypeTr> SpecTypeTr { get; set; }
+        public virtual DbSet<SystemConstant> SystemConstant { get; set; }
+        public virtual DbSet<SystemConstantTr> SystemConstantTr { get; set; }
+        public virtual DbSet<SystemMessage> SystemMessage { get; set; }
         public virtual DbSet<TableColumn> TableColumn { get; set; }
         public virtual DbSet<TableColumnTech> TableColumnTech { get; set; }
         public virtual DbSet<TableObject> TableObject { get; set; }
         public virtual DbSet<TableType> TableType { get; set; }
-        public virtual DbSet<TaxRate> TaxRate { get; set; }
         public virtual DbSet<TermsOfService> TermsOfService { get; set; }
         public virtual DbSet<TermUse> TermUse { get; set; }
         public virtual DbSet<TermUseTr> TermUseTr { get; set; }
@@ -326,8 +330,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Account>(entity =>
             {
                 entity.HasKey(e => e.AccId);
-
-                entity.ToTable("Account", "dbo");
 
                 entity.HasIndex(e => new { e.R030, e.AccNls, e.AccStatus })
                     .HasName("AccountUI")
@@ -403,8 +405,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("AccountBals", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -420,8 +420,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AccountBalsTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("AccountBalsTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -446,8 +444,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("AccountStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -461,8 +457,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AccountStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("AccountStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -487,8 +481,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("ActivityType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -502,8 +494,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ActivityTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("ActivityTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -527,7 +517,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.AgrId, e.Version });
 
-                entity.ToTable("AgreementAddBR", "dbo");
+                entity.ToTable("AgreementAddBR");
 
                 entity.Property(e => e.AgrId).HasColumnName("agrId");
 
@@ -594,8 +584,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AgreementAddCommunity>(entity =>
             {
                 entity.HasKey(e => new { e.AgrId, e.Version });
-
-                entity.ToTable("AgreementAddCommunity", "dbo");
 
                 entity.Property(e => e.AgrId).HasColumnName("agrId");
 
@@ -670,8 +658,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AgreementAddPartner>(entity =>
             {
                 entity.HasKey(e => new { e.AgrId, e.Version });
-
-                entity.ToTable("AgreementAddPartner", "dbo");
 
                 entity.Property(e => e.AgrId).HasColumnName("agrId");
 
@@ -767,7 +753,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.AgrId, e.Version });
 
-                entity.ToTable("AgreementAddRH", "dbo");
+                entity.ToTable("AgreementAddRH");
 
                 entity.Property(e => e.AgrId).HasColumnName("agrId");
 
@@ -859,8 +845,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.AgrId);
 
-                entity.ToTable("AgreementMaster", "dbo");
-
                 entity.Property(e => e.AgrId).HasColumnName("agrId");
 
                 entity.Property(e => e.AgrStatus).HasColumnName("agrStatus");
@@ -901,8 +885,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("AgreementStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -916,8 +898,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AgreementStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("AgreementStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -942,8 +922,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("AgreementType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -962,8 +940,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AgreementTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("AgreementTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -987,8 +963,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AgrLicenseType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("AgrLicenseType", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -1039,8 +1013,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("AgrLicenseTypeTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -1063,8 +1035,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("AlgorithmType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -1079,8 +1049,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AlgorithmTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("AlgorithmTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -1104,8 +1072,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AnketaAddName>(entity =>
             {
                 entity.HasKey(e => new { e.CustId, e.Lang });
-
-                entity.ToTable("AnketaAddName", "dbo");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -1155,8 +1121,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.AddId);
 
-                entity.ToTable("AnketaAddNick", "dbo");
-
                 entity.Property(e => e.AddId).HasColumnName("addId");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
@@ -1176,8 +1140,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AnketaAddParam>(entity =>
             {
                 entity.HasKey(e => new { e.ParamCode, e.LangCode });
-
-                entity.ToTable("AnketaAddParam", "dbo");
 
                 entity.Property(e => e.ParamCode).HasColumnName("paramCode");
 
@@ -1208,8 +1170,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AnketaCompany>(entity =>
             {
                 entity.HasKey(e => new { e.CustId, e.Version });
-
-                entity.ToTable("AnketaCompany", "dbo");
 
                 entity.HasIndex(e => e.CustId)
                     .HasName("Association26_FK");
@@ -1393,8 +1353,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CustId);
 
-                entity.ToTable("AnketaExternal", "dbo");
-
                 entity.Property(e => e.CustId)
                     .HasColumnName("custId")
                     .ValueGeneratedNever();
@@ -1435,8 +1393,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AnketaPerson>(entity =>
             {
                 entity.HasKey(e => new { e.CustId, e.Version });
-
-                entity.ToTable("AnketaPerson", "dbo");
 
                 entity.HasIndex(e => e.CustId)
                     .HasName("Association26_FK");
@@ -1713,8 +1669,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("AnketaStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -1728,8 +1682,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AnketaStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("AnketaStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -1751,8 +1703,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<AspNetRoleClaims>(entity =>
             {
-                entity.ToTable("AspNetRoleClaims", "dbo");
-
                 entity.HasIndex(e => e.RoleId)
                     .HasName("IX_AspNetRoleClaims_RoleId");
 
@@ -1774,8 +1724,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<AspNetRoles>(entity =>
             {
-                entity.ToTable("AspNetRoles", "dbo");
-
                 entity.HasIndex(e => e.NormalizedName)
                     .HasName("RoleNameIndex");
 
@@ -1800,8 +1748,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<AspNetUserClaims>(entity =>
             {
-                entity.ToTable("AspNetUserClaims", "dbo");
-
                 entity.HasIndex(e => e.UserId)
                     .HasName("IX_AspNetUserClaims_UserId");
 
@@ -1826,8 +1772,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.LoginProvider, e.ProviderKey });
 
-                entity.ToTable("AspNetUserLogins", "dbo");
-
                 entity.HasIndex(e => e.UserId)
                     .HasName("IX_AspNetUserLogins_UserId");
 
@@ -1851,8 +1795,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<AspNetUserRoles>(entity =>
             {
                 entity.HasKey(e => new { e.UserId, e.RoleId });
-
-                entity.ToTable("AspNetUserRoles", "dbo");
 
                 entity.HasIndex(e => e.RoleId)
                     .HasName("IX_AspNetUserRoles_RoleId");
@@ -1879,8 +1821,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<AspNetUsers>(entity =>
             {
-                entity.ToTable("AspNetUsers", "dbo");
-
                 entity.HasIndex(e => e.NormalizedEmail)
                     .HasName("EmailIndex");
 
@@ -1942,8 +1882,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.UserId, e.LoginProvider, e.Name });
 
-                entity.ToTable("AspNetUserTokens", "dbo");
-
                 entity.Property(e => e.UserId).HasColumnName("userId");
 
                 entity.Property(e => e.LoginProvider).HasColumnName("loginProvider");
@@ -1956,8 +1894,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Authors>(entity =>
             {
                 entity.HasKey(e => e.AuthId);
-
-                entity.ToTable("Authors", "dbo");
 
                 entity.HasIndex(e => new { e.AuthorName, e.CustId })
                     .HasName("IdxNames");
@@ -2006,8 +1942,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<BankAccount>(entity =>
             {
                 entity.HasKey(e => e.BanAccId);
-
-                entity.ToTable("BankAccount", "dbo");
 
                 entity.Property(e => e.BanAccId).HasColumnName("banAccID");
 
@@ -2077,8 +2011,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.RegId);
 
-                entity.ToTable("BrRegister", "dbo");
-
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
                 entity.Property(e => e.CreateDate)
@@ -2132,8 +2064,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<BrRegItem>(entity =>
             {
                 entity.HasKey(e => new { e.RegItemId, e.RegId });
-
-                entity.ToTable("BrRegItem", "dbo");
 
                 entity.Property(e => e.RegItemId).HasColumnName("regItemId");
 
@@ -2217,8 +2147,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("Category", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -2251,8 +2179,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("CategoryStatusType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -2266,8 +2192,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<CategoryStatusTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("CategoryStatusTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -2291,8 +2215,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("CategoryTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -2315,8 +2237,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<CheckParamPays>(entity =>
             {
                 entity.HasKey(e => new { e.InputFileId, e.CheckId });
-
-                entity.ToTable("CheckParamPays", "dbo");
 
                 entity.Property(e => e.InputFileId).HasColumnName("inputFileId");
 
@@ -2372,8 +2292,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CustId);
 
-                entity.ToTable("Client", "dbo");
-
                 entity.Property(e => e.CustId)
                     .HasColumnName("custId")
                     .ValueGeneratedNever();
@@ -2399,8 +2317,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("ClientBrand", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -2414,8 +2330,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ClientBrandTr>(entity =>
             {
                 entity.HasKey(e => new { e.Lang, e.CodeI });
-
-                entity.ToTable("ClientBrandTr", "dbo");
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
@@ -2441,8 +2355,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("ClientGroup", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -2456,8 +2368,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ClientGroupTr>(entity =>
             {
                 entity.HasKey(e => new { e.Lang, e.CodeI });
-
-                entity.ToTable("ClientGroupTr", "dbo");
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
@@ -2482,8 +2392,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ClnBusinessPlace>(entity =>
             {
                 entity.HasKey(e => e.PlaceId);
-
-                entity.ToTable("ClnBusinessPlace", "dbo");
 
                 entity.Property(e => e.PlaceId).HasColumnName("placeId");
 
@@ -2535,8 +2443,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.HollId);
 
-                entity.ToTable("ClnPlaceHoll", "dbo");
-
                 entity.Property(e => e.HollId).HasColumnName("hollId");
 
                 entity.Property(e => e.HollName)
@@ -2566,8 +2472,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CauseCode);
 
-                entity.ToTable("CommentCause", "dbo");
-
                 entity.Property(e => e.CauseCode)
                     .HasColumnName("causeCode")
                     .ValueGeneratedNever();
@@ -2592,8 +2496,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CustId);
 
-                entity.ToTable("Community", "dbo");
-
                 entity.Property(e => e.CustId)
                     .HasColumnName("custId")
                     .ValueGeneratedNever();
@@ -2608,8 +2510,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Company>(entity =>
             {
                 entity.HasKey(e => e.CustId);
-
-                entity.ToTable("Company", "dbo");
 
                 entity.HasIndex(e => e.CustId)
                     .HasName("Association20_FK");
@@ -2634,8 +2534,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("Continent", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -2649,8 +2547,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ContinentTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("ContinentTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -2675,8 +2571,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<CopyRight>(entity =>
             {
                 entity.HasKey(e => e.CRightId);
-
-                entity.ToTable("CopyRight", "dbo");
 
                 entity.HasIndex(e => e.CustId)
                     .HasName("Association10_FK");
@@ -2757,8 +2651,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.ParentId, e.ChildId });
 
-                entity.ToTable("CopyRightHistory", "dbo");
-
                 entity.Property(e => e.ParentId).HasColumnName("parentId");
 
                 entity.Property(e => e.ChildId).HasColumnName("childId");
@@ -2784,8 +2676,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("CopyrightKind", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -2797,17 +2687,21 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(600)
                     .IsUnicode(false);
 
+                entity.Property(e => e.NameDescript)
+                    .HasColumnName("nameDescript")
+                    .HasMaxLength(700)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.CrGroupCodeNavigation)
                     .WithMany(p => p.CopyrightKind)
                     .HasForeignKey(d => d.CrGroupCode)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_COPYRIGH_REFERENCE_CRKINDGR");
             });
 
             modelBuilder.Entity<CopyrightKindTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("CopyrightKindTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -2821,6 +2715,11 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(600)
                     .IsUnicode(false);
 
+                entity.Property(e => e.NameDescript)
+                    .HasColumnName("nameDescript")
+                    .HasMaxLength(700)
+                    .IsUnicode(false);
+
                 entity.HasOne(d => d.CodeINavigation)
                     .WithMany(p => p.CopyrightKindTr)
                     .HasForeignKey(d => d.CodeI)
@@ -2831,8 +2730,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<CopyrightType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("CopyrightType", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -2847,8 +2744,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<CopyrightTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("CopyrightTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -2873,7 +2768,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CRightId);
 
-                entity.ToTable("CopyRTranslate", "dbo");
+                entity.ToTable("CopyRTranslate");
 
                 entity.Property(e => e.CRightId)
                     .HasColumnName("cRightId")
@@ -2917,8 +2812,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CounterId);
 
-                entity.ToTable("CounterNumber", "dbo");
-
                 entity.Property(e => e.CounterId).HasColumnName("counterId");
 
                 entity.Property(e => e.CNum).HasColumnName("cNum");
@@ -2944,8 +2837,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Country>(entity =>
             {
                 entity.HasKey(e => e.CountryCode);
-
-                entity.ToTable("Country", "dbo");
 
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
@@ -2990,8 +2881,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasKey(e => new { e.CountryCode, e.Lang })
                     .ForSqlServerIsClustered(false);
 
-                entity.ToTable("CountryTr", "dbo");
-
                 entity.Property(e => e.CountryCode)
                     .HasColumnName("countryCode")
                     .HasMaxLength(3)
@@ -3023,8 +2912,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("CreativeRoleType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -3053,8 +2940,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("CreativeRoleTypeTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -3078,8 +2963,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("CreativeTranslate", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -3095,7 +2978,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("CRightStatus", "dbo");
+                entity.ToTable("CRightStatus");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -3111,7 +2994,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("CRightStatusTr", "dbo");
+                entity.ToTable("CRightStatusTr");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -3136,7 +3019,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("CRKindGroup", "dbo");
+                entity.ToTable("CRKindGroup");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -3152,7 +3035,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("CRKindGroupTr", "dbo");
+                entity.ToTable("CRKindGroupTr");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -3176,8 +3059,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Currency>(entity =>
             {
                 entity.HasKey(e => e.R030);
-
-                entity.ToTable("Currency", "dbo");
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
@@ -3228,8 +3109,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.R030, e.CDate });
 
-                entity.ToTable("CurrencyCourse", "dbo");
-
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
                     .HasMaxLength(3)
@@ -3259,8 +3138,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<CustCmRight>(entity =>
             {
                 entity.HasKey(e => new { e.CustId, e.CRkindCode, e.DateBegin, e.CmCustId });
-
-                entity.ToTable("CustCmRight", "dbo");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -3293,8 +3170,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CustId);
 
-                entity.ToTable("Customer", "dbo");
-
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
                 entity.Property(e => e.AnkMy).HasColumnName("ankMy");
@@ -3309,6 +3184,10 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
+                entity.Property(e => e.UserId)
+                    .HasColumnName("userId")
+                    .HasMaxLength(48);
+
                 entity.HasOne(d => d.CustTypeNavigation)
                     .WithMany(p => p.Customer)
                     .HasForeignKey(d => d.CustType)
@@ -3319,13 +3198,16 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.Status)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_CUSTOMER_REFERENCE_Status");
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Customer)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK_CUSTOMER_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<CustomerStatus>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("CustomerStatus", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -3340,8 +3222,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<CustomerStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("CustomerStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -3366,8 +3246,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("CustomerType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -3381,8 +3259,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<CustomerTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("CustomerTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -3406,8 +3282,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<DicCategoryItems>(entity =>
             {
                 entity.HasKey(e => e.DicName);
-
-                entity.ToTable("DicCategoryItems", "dbo");
 
                 entity.Property(e => e.DicName)
                     .HasColumnName("dicName")
@@ -3447,8 +3321,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.DicId);
 
-                entity.ToTable("DicList", "dbo");
-
                 entity.Property(e => e.DicId).HasColumnName("dicId");
 
                 entity.Property(e => e.DCode).HasColumnName("dCode");
@@ -3479,8 +3351,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.Code);
 
-                entity.ToTable("DictCategory", "dbo");
-
                 entity.Property(e => e.Code)
                     .HasColumnName("code")
                     .ValueGeneratedNever();
@@ -3496,8 +3366,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("DistribStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -3512,8 +3380,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<DistribStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("DistribStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -3538,8 +3404,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("DistribType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -3553,8 +3417,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<DistribTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("DistribTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -3579,8 +3441,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Distribution>(entity =>
             {
                 entity.HasKey(e => e.DistId);
-
-                entity.ToTable("Distribution", "dbo");
 
                 entity.Property(e => e.DistId).HasColumnName("distId");
 
@@ -3667,8 +3527,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.DistItemId, e.DistId });
 
-                entity.ToTable("DistributionItem", "dbo");
-
                 entity.Property(e => e.DistItemId)
                     .HasColumnName("distItemId")
                     .ValueGeneratedOnAdd();
@@ -3705,8 +3563,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<DocPreparePay>(entity =>
             {
                 entity.HasKey(e => new { e.DocPayId, e.DateWork });
-
-                entity.ToTable("DocPreparePay", "dbo");
 
                 entity.Property(e => e.DocPayId)
                     .HasColumnName("docPayId")
@@ -3783,8 +3639,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.DocId, e.ReqId });
 
-                entity.ToTable("DocReq", "dbo");
-
                 entity.Property(e => e.DocId).HasColumnName("docId");
 
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
@@ -3798,8 +3652,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<DocText>(entity =>
             {
-                entity.ToTable("DocText", "dbo");
-
                 entity.Property(e => e.Code)
                     .HasMaxLength(10)
                     .IsUnicode(false);
@@ -3824,8 +3676,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("DocumentType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -3839,8 +3689,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<DocumentTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("DocumentTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -3864,8 +3712,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => e.Emplid);
-
-                entity.ToTable("Employee", "dbo");
 
                 entity.Property(e => e.Emplid).HasColumnName("emplid");
 
@@ -3920,8 +3766,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("EpisodeType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -3935,8 +3779,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<EpisodeTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("EpisodeTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -3961,8 +3803,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("EtGenre", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -3983,8 +3823,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<EtGenreRate>(entity =>
             {
                 entity.HasKey(e => new { e.ActCode, e.GenreCode });
-
-                entity.ToTable("EtGenreRate", "dbo");
 
                 entity.Property(e => e.ActCode).HasColumnName("actCode");
 
@@ -4010,8 +3848,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<EtGenreRole>(entity =>
             {
                 entity.HasKey(e => new { e.GenreCode, e.RoleCode, e.ActCode });
-
-                entity.ToTable("EtGenreRole", "dbo");
 
                 entity.Property(e => e.GenreCode).HasColumnName("genreCode");
 
@@ -4046,8 +3882,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("EtRole", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4068,8 +3902,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ExternalPay>(entity =>
             {
                 entity.HasKey(e => e.PaidId);
-
-                entity.ToTable("ExternalPay", "dbo");
 
                 entity.Property(e => e.PaidId).HasColumnName("paidId");
 
@@ -4178,8 +4010,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.DocId);
 
-                entity.ToTable("FileCustomer", "dbo");
-
                 entity.Property(e => e.DocId).HasColumnName("docId");
 
                 entity.Property(e => e.CreateDate)
@@ -4231,8 +4061,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("FileType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4246,8 +4074,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Fixation>(entity =>
             {
                 entity.HasKey(e => e.FixId);
-
-                entity.ToTable("Fixation", "dbo");
 
                 entity.Property(e => e.FixId).HasColumnName("fixId");
 
@@ -4347,8 +4173,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.FileId, e.FixId });
 
-                entity.ToTable("FixFile", "dbo");
-
                 entity.Property(e => e.FileId)
                     .HasColumnName("fileId")
                     .ValueGeneratedOnAdd();
@@ -4375,8 +4199,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("FixStageStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4389,8 +4211,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<FixStorageDevice>(entity =>
             {
                 entity.HasKey(e => new { e.StorageId, e.FixId });
-
-                entity.ToTable("FixStorageDevice", "dbo");
 
                 entity.Property(e => e.StorageId)
                     .HasColumnName("storageId")
@@ -4423,8 +4243,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("FolkType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4438,8 +4256,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<FolkTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("FolkTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -4464,8 +4280,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("GenreType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4487,8 +4301,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<GenreTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("GenreTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -4513,7 +4325,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.FileId);
 
-                entity.ToTable("inputFile", "dbo");
+                entity.ToTable("inputFile");
 
                 entity.Property(e => e.FileId).HasColumnName("fileId");
 
@@ -4541,8 +4353,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Invoice>(entity =>
             {
                 entity.HasKey(e => e.DocId);
-
-                entity.ToTable("Invoice", "dbo");
 
                 entity.Property(e => e.DocId)
                     .HasColumnName("docId")
@@ -4585,8 +4395,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("ItemStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4600,8 +4408,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ItemStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("ItemStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -4626,8 +4432,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("KindComposition", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4649,8 +4453,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<KindCompositionTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("KindCompositionTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -4675,8 +4477,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("KindFilm", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4690,8 +4490,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<KindFilmTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("KindFilmTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -4716,8 +4514,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("KindSerial", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4731,8 +4527,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<KindSerialTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("KindSerialTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -4757,7 +4551,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.R030);
 
-                entity.ToTable("KL_R030", "dbo");
+                entity.ToTable("KL_R030");
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
@@ -4806,7 +4600,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.R030, e.Lang });
 
-                entity.ToTable("KL_R030Tr", "dbo");
+                entity.ToTable("KL_R030Tr");
 
                 entity.Property(e => e.R030)
                     .HasColumnName("r030")
@@ -4834,7 +4628,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.R031);
 
-                entity.ToTable("KL_R031", "dbo");
+                entity.ToTable("KL_R031");
 
                 entity.Property(e => e.R031)
                     .HasColumnName("r031")
@@ -4860,8 +4654,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeS);
 
-                entity.ToTable("Lang", "dbo");
-
                 entity.Property(e => e.CodeS)
                     .HasColumnName("codeS")
                     .HasMaxLength(2)
@@ -4877,8 +4669,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<LangTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeS, e.Lang });
-
-                entity.ToTable("LangTr", "dbo");
 
                 entity.Property(e => e.CodeS)
                     .HasColumnName("codeS")
@@ -4906,8 +4696,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeS);
 
-                entity.ToTable("Language", "dbo");
-
                 entity.Property(e => e.CodeS)
                     .HasColumnName("codeS")
                     .HasMaxLength(2)
@@ -4933,8 +4721,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("LegalBasis", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -4948,8 +4734,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<LegalBasisTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("LegalBasisTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -4974,7 +4758,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CRightId);
 
-                entity.ToTable("LicAuthorBR", "dbo");
+                entity.ToTable("LicAuthorBR");
 
                 entity.Property(e => e.CRightId)
                     .HasColumnName("cRightId")
@@ -5042,8 +4826,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.LId);
 
-                entity.ToTable("License", "dbo");
-
                 entity.Property(e => e.LId).HasColumnName("lId");
 
                 entity.Property(e => e.LDate)
@@ -5077,8 +4859,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<LicenseAgreement>(entity =>
             {
                 entity.HasKey(e => e.LicId);
-
-                entity.ToTable("LicenseAgreement", "dbo");
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
@@ -5131,8 +4911,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<LicenseAgrParam>(entity =>
             {
                 entity.HasKey(e => new { e.LicId, e.LicVersion });
-
-                entity.ToTable("LicenseAgrParam", "dbo");
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
@@ -5216,8 +4994,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.LicId);
 
-                entity.ToTable("LicenseBigR", "dbo");
-
                 entity.Property(e => e.LicId)
                     .HasColumnName("licId")
                     .ValueGeneratedNever();
@@ -5296,8 +5072,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("LicenseClass", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -5312,8 +5086,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("LicenseType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -5327,8 +5099,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<LicenseTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("LicenseTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -5353,7 +5123,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.LicId, e.PlaceId });
 
-                entity.ToTable("licPlace", "dbo");
+                entity.ToTable("licPlace");
 
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
@@ -5374,8 +5144,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<MediaFile>(entity =>
             {
-                entity.ToTable("MediaFile", "dbo");
-
                 entity.Property(e => e.MediaFileId).HasColumnName("mediaFileId");
 
                 entity.Property(e => e.Compress).HasColumnName("compress");
@@ -5402,8 +5170,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<MediaSearchData>(entity =>
             {
-                entity.ToTable("MediaSearchData", "dbo");
-
                 entity.HasIndex(e => new { e.TypeData, e.AlterNameNormalize, e.ObjId })
                     .HasName("search_idx");
 
@@ -5429,8 +5195,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<MediaTrack>(entity =>
             {
                 entity.HasKey(e => e.ObjId);
-
-                entity.ToTable("MediaTrack", "dbo");
 
                 entity.Property(e => e.ObjId)
                     .HasColumnName("objId")
@@ -5501,8 +5265,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("ModifyMusicType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -5532,8 +5294,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("ModifyMusicTypeTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -5556,8 +5316,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ModifyTextType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("ModifyTextType", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -5588,8 +5346,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("ModifyTextTypeTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -5612,8 +5368,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ModifyType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("ModifyType", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -5644,8 +5398,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("ModifyTypeTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -5669,8 +5421,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("MoneyLinkStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -5684,8 +5434,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<MoneyLinkStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("MoneyLinkStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -5709,8 +5457,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<MoneyPeriodLink>(entity =>
             {
                 entity.HasKey(e => new { e.PaidId, e.PeriodId, e.LicId });
-
-                entity.ToTable("MoneyPeriodLink", "dbo");
 
                 entity.Property(e => e.PaidId).HasColumnName("paidId");
 
@@ -5756,8 +5502,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.PaidId, e.CRightId });
 
-                entity.ToTable("MoneyPrepayLink", "dbo");
-
                 entity.Property(e => e.PaidId).HasColumnName("paidId");
 
                 entity.Property(e => e.CRightId).HasColumnName("cRightId");
@@ -5776,8 +5520,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<MoneyReceived>(entity =>
             {
                 entity.HasKey(e => e.PaidId);
-
-                entity.ToTable("MoneyReceived", "dbo");
 
                 entity.Property(e => e.PaidId)
                     .HasColumnName("paidId")
@@ -5832,8 +5574,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("MoneyType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -5848,8 +5588,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<MoneyTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("MoneyTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -5871,11 +5609,46 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_MONEYTYP_REFERENCE_MONEYTYP");
             });
 
+            modelBuilder.Entity<MonthName>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<MonthNameTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.MonthNameTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_MONTHNAM_REFERENCE_MONTHNAM");
+            });
+
             modelBuilder.Entity<MusicalDesign>(entity =>
             {
                 entity.HasKey(e => e.MdId);
-
-                entity.ToTable("MusicalDesign", "dbo");
 
                 entity.Property(e => e.MdId).HasColumnName("mdId");
 
@@ -5925,8 +5698,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CustId);
 
-                entity.ToTable("MyAnketa", "dbo");
-
                 entity.Property(e => e.CustId)
                     .HasColumnName("custId")
                     .ValueGeneratedNever();
@@ -5962,8 +5733,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CustId, e.CodeI });
 
-                entity.ToTable("MyCategory", "dbo");
-
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
@@ -5985,7 +5754,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CustId, e.CRtype });
 
-                entity.ToTable("myCopyRightType", "dbo");
+                entity.ToTable("myCopyRightType");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -6008,8 +5777,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("ObjAct", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6023,8 +5790,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ObjActTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("ObjActTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -6048,8 +5813,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ObjectRight>(entity =>
             {
                 entity.HasKey(e => e.ObjId);
-
-                entity.ToTable("ObjectRight", "dbo");
 
                 entity.HasIndex(e => e.ReqId)
                     .HasName("Relationship_13_FK");
@@ -6136,8 +5899,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("ObjectStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6151,8 +5912,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ObjectStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("ObjectStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -6176,8 +5935,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PaidPeriod>(entity =>
             {
                 entity.HasKey(e => e.PeriodId);
-
-                entity.ToTable("PaidPeriod", "dbo");
 
                 entity.HasIndex(e => new { e.PeriodId, e.PeriodName })
                     .HasName("idx_paidPeriod01")
@@ -6258,8 +6015,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.RepId, e.PId });
 
-                entity.ToTable("ParametersListBox", "dbo");
-
                 entity.Property(e => e.RepId).HasColumnName("repId");
 
                 entity.Property(e => e.PId).HasColumnName("pId");
@@ -6284,8 +6039,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CustId);
 
-                entity.ToTable("Partner", "dbo");
-
                 entity.Property(e => e.CustId)
                     .HasColumnName("custId")
                     .ValueGeneratedNever();
@@ -6302,8 +6055,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PartnerClient>(entity =>
             {
                 entity.HasKey(e => new { e.CustId, e.ClCustId });
-
-                entity.ToTable("PartnerClient", "dbo");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -6325,8 +6076,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PaymentCase>(entity =>
             {
                 entity.HasKey(e => e.ReqId);
-
-                entity.ToTable("PaymentCase", "dbo");
 
                 entity.Property(e => e.ReqId)
                     .HasColumnName("reqId")
@@ -6382,8 +6131,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("PaymentKind", "dbo");
-
                 entity.HasIndex(e => e.CodeI)
                     .HasName("AK_KEY_1_PAYMENTK")
                     .IsUnique();
@@ -6401,8 +6148,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PaymentKindTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("PaymentKindTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -6427,8 +6172,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("PaymentStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6442,8 +6185,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PaymentStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("PaymentStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -6468,8 +6209,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("PayMethodType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6483,8 +6222,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PayMethodTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("PayMethodTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -6508,8 +6245,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PayTurn>(entity =>
             {
                 entity.HasKey(e => new { e.TurnId, e.DateWork });
-
-                entity.ToTable("PayTurn", "dbo");
 
                 entity.Property(e => e.TurnId).HasColumnName("turnId");
 
@@ -6587,8 +6322,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.PerId);
 
-                entity.ToTable("Performer", "dbo");
-
                 entity.Property(e => e.PerId).HasColumnName("perId");
 
                 entity.Property(e => e.PerName)
@@ -6600,8 +6333,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PerformType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("PerformType", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -6616,8 +6347,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PerformTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("PerformTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -6642,8 +6371,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("Period", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6663,8 +6390,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("PeriodStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6678,8 +6403,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PeriodStatusTr>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("PeriodStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -6708,8 +6431,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("PeriodTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -6737,8 +6458,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeB);
 
-                entity.ToTable("PermitType", "dbo");
-
                 entity.Property(e => e.CodeB).HasColumnName("codeB");
 
                 entity.Property(e => e.Name)
@@ -6750,8 +6469,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PermitTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeB, e.Lang });
-
-                entity.ToTable("PermitTypeTr", "dbo");
 
                 entity.Property(e => e.CodeB).HasColumnName("codeB");
 
@@ -6777,8 +6494,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CustId);
 
-                entity.ToTable("Person", "dbo");
-
                 entity.HasIndex(e => e.CustId)
                     .HasName("Association21_FK");
 
@@ -6800,8 +6515,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<PopGenre>(entity =>
             {
-                entity.ToTable("PopGenre", "dbo");
-
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
@@ -6821,8 +6534,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PopGenreTr>(entity =>
             {
                 entity.HasKey(e => new { e.Id, e.Lang });
-
-                entity.ToTable("PopGenreTr", "dbo");
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
@@ -6844,8 +6555,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PortalObjectRights>(entity =>
             {
                 entity.HasKey(e => new { e.ObjId, e.CRkindCode });
-
-                entity.ToTable("PortalObjectRights", "dbo");
 
                 entity.Property(e => e.ObjId).HasColumnName("objId");
 
@@ -6870,8 +6579,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CRkindCode);
 
-                entity.ToTable("PortalSupportRights", "dbo");
-
                 entity.Property(e => e.CRkindCode)
                     .HasColumnName("cRKindCode")
                     .ValueGeneratedNever();
@@ -6887,8 +6594,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("PositionType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6902,8 +6607,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PositionTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("PositionTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -6928,8 +6631,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("PrePayType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6943,8 +6644,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PrePayTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("PrePayTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -6969,8 +6668,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("Region", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -6984,8 +6681,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RegionTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("RegionTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -7009,8 +6704,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Register>(entity =>
             {
                 entity.HasKey(e => e.RegId);
-
-                entity.ToTable("Register", "dbo");
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
@@ -7113,8 +6806,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.RegId, e.RegIitemId, e.AuthId });
 
-                entity.ToTable("RegisterAuthors", "dbo");
-
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
                 entity.Property(e => e.RegIitemId).HasColumnName("regIItemId");
@@ -7138,8 +6829,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RegisterCount>(entity =>
             {
                 entity.HasKey(e => e.RegCntId);
-
-                entity.ToTable("RegisterCount", "dbo");
 
                 entity.Property(e => e.RegCntId)
                     .HasColumnName("regCntId")
@@ -7216,8 +6905,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.RegExtraId);
 
-                entity.ToTable("RegisterExtra", "dbo");
-
                 entity.Property(e => e.RegExtraId).HasColumnName("regExtraId");
 
                 entity.Property(e => e.Name)
@@ -7247,8 +6934,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RegisterItem>(entity =>
             {
                 entity.HasKey(e => new { e.RegId, e.RegIitemId });
-
-                entity.ToTable("RegisterItem", "dbo");
 
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
@@ -7322,8 +7007,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.RegId, e.RegItemId });
 
-                entity.ToTable("RegisterItemFix", "dbo");
-
                 entity.Property(e => e.RegId).HasColumnName("regId");
 
                 entity.Property(e => e.RegItemId).HasColumnName("regItemId");
@@ -7342,8 +7025,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("RegisterItemType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -7359,8 +7040,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("RegisterListStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -7374,8 +7053,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RegisterListStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("RegisterListStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -7399,8 +7076,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RegisterRatedList>(entity =>
             {
                 entity.HasKey(e => e.RmId);
-
-                entity.ToTable("RegisterRatedList", "dbo");
 
                 entity.Property(e => e.RmId).HasColumnName("rmId");
 
@@ -7446,8 +7121,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("RegisterStatus", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -7461,8 +7134,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RegisterStatusTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("RegisterStatusTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -7487,8 +7158,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.ReqId, e.UseAreaTypeCode });
 
-                entity.ToTable("RelAdaptUseArea", "dbo");
-
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
                 entity.Property(e => e.UseAreaTypeCode).HasColumnName("useAreaTypeCode");
@@ -7510,7 +7179,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CDocId);
 
-                entity.ToTable("relCounterDoc", "dbo");
+                entity.ToTable("relCounterDoc");
 
                 entity.Property(e => e.CDocId).HasColumnName("cDocId");
 
@@ -7542,8 +7211,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.AgrType, e.DocType });
 
-                entity.ToTable("RelDocAgrType", "dbo");
-
                 entity.Property(e => e.AgrType).HasColumnName("agrType");
 
                 entity.Property(e => e.DocType).HasColumnName("docType");
@@ -7564,8 +7231,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RelEmployee>(entity =>
             {
                 entity.HasKey(e => new { e.CustId, e.Emplid, e.PositionCode });
-
-                entity.ToTable("RelEmployee", "dbo");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -7601,7 +7266,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.GenreCode, e.EtGenreCode });
 
-                entity.ToTable("relEtGenre", "dbo");
+                entity.ToTable("relEtGenre");
 
                 entity.Property(e => e.GenreCode).HasColumnName("genreCode");
 
@@ -7624,7 +7289,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.RoleCode, e.EtRoleCode });
 
-                entity.ToTable("relEtRole", "dbo");
+                entity.ToTable("relEtRole");
 
                 entity.Property(e => e.RoleCode).HasColumnName("roleCode");
 
@@ -7647,8 +7312,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.ReqId, e.GenreId });
 
-                entity.ToTable("RelGenreAdapt", "dbo");
-
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
                 entity.Property(e => e.GenreId).HasColumnName("genreId");
@@ -7670,8 +7333,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.ReqId, e.GenreId });
 
-                entity.ToTable("RelGenreMovie", "dbo");
-
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
                 entity.Property(e => e.GenreId).HasColumnName("genreId");
@@ -7692,8 +7353,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RelGenrePercent>(entity =>
             {
                 entity.HasKey(e => new { e.ActCode, e.GenreType });
-
-                entity.ToTable("RelGenrePercent", "dbo");
 
                 entity.Property(e => e.ActCode).HasColumnName("actCode");
 
@@ -7720,7 +7379,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.RoleCode, e.GenreType, e.ActCode });
 
-                entity.ToTable("relGenreRole", "dbo");
+                entity.ToTable("relGenreRole");
 
                 entity.Property(e => e.RoleCode).HasColumnName("roleCode");
 
@@ -7749,8 +7408,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.ReqId, e.GenreId });
 
-                entity.ToTable("RelGenreSerial", "dbo");
-
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
                 entity.Property(e => e.GenreId).HasColumnName("genreId");
@@ -7772,7 +7429,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.AgrLlicCode, e.CRkindCode });
 
-                entity.ToTable("relLicCopyR", "dbo");
+                entity.ToTable("relLicCopyR");
 
                 entity.Property(e => e.AgrLlicCode).HasColumnName("agrLlicCode");
 
@@ -7794,8 +7451,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RelMovieEpisode>(entity =>
             {
                 entity.HasKey(e => new { e.EpisodeTypeCode, e.ReqId });
-
-                entity.ToTable("RelMovieEpisode", "dbo");
 
                 entity.Property(e => e.EpisodeTypeCode).HasColumnName("episodeTypeCode");
 
@@ -7820,8 +7475,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.ObjId, e.PerId });
 
-                entity.ToTable("RelObjPerformer", "dbo");
-
                 entity.Property(e => e.ObjId).HasColumnName("objId");
 
                 entity.Property(e => e.PerId).HasColumnName("perId");
@@ -7842,8 +7495,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RelPopGenre>(entity =>
             {
                 entity.HasKey(e => new { e.ObjId, e.GenreId });
-
-                entity.ToTable("RelPopGenre", "dbo");
 
                 entity.Property(e => e.ObjId).HasColumnName("objId");
 
@@ -7866,8 +7517,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.UseMediaTypeCode, e.ReqId });
 
-                entity.ToTable("RelReqMedia", "dbo");
-
                 entity.Property(e => e.UseMediaTypeCode).HasColumnName("useMediaTypeCode");
 
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
@@ -7889,8 +7538,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CategoryCode, e.ReqType, e.KindGroupId });
 
-                entity.ToTable("RelReqObj", "dbo");
-
                 entity.Property(e => e.CategoryCode).HasColumnName("categoryCode");
 
                 entity.Property(e => e.ReqType).HasColumnName("reqType");
@@ -7909,8 +7556,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RelSerialEpisode>(entity =>
             {
                 entity.HasKey(e => new { e.ReqId, e.EpisodeTypeCode });
-
-                entity.ToTable("RelSerialEpisode", "dbo");
 
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
@@ -7935,7 +7580,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.ReqId, e.EpisodeTypeCode });
 
-                entity.ToTable("RelTVEpisode", "dbo");
+                entity.ToTable("RelTVEpisode");
 
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
@@ -7958,8 +7603,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<Reports>(entity =>
             {
-                entity.ToTable("Reports", "dbo");
-
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Repname)
@@ -7971,8 +7614,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ReqAgreement>(entity =>
             {
                 entity.HasKey(e => e.RAgrId);
-
-                entity.ToTable("ReqAgreement", "dbo");
 
                 entity.HasIndex(e => e.CustId)
                     .HasName("Association16_FK");
@@ -8059,8 +7700,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.StatusCode);
 
-                entity.ToTable("ReqAgreementStatus", "dbo");
-
                 entity.Property(e => e.StatusCode)
                     .HasColumnName("statusCode")
                     .ValueGeneratedNever();
@@ -8084,8 +7723,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ReqCustomer>(entity =>
             {
                 entity.HasKey(e => e.ReqCustId);
-
-                entity.ToTable("ReqCustomer", "dbo");
 
                 entity.Property(e => e.ReqCustId).HasColumnName("reqCustId");
 
@@ -8138,8 +7775,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.LocUsId);
 
-                entity.ToTable("ReqLocationUse", "dbo");
-
                 entity.Property(e => e.LocUsId).HasColumnName("locUsId");
 
                 entity.Property(e => e.ContinentCode).HasColumnName("continentCode");
@@ -8170,8 +7805,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ReqTrade>(entity =>
             {
                 entity.HasKey(e => e.TradeId);
-
-                entity.ToTable("ReqTrade", "dbo");
 
                 entity.Property(e => e.TradeId).HasColumnName("tradeId");
 
@@ -8241,8 +7874,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<Request>(entity =>
             {
                 entity.HasKey(e => e.ReqId);
-
-                entity.ToTable("Request", "dbo");
 
                 entity.Property(e => e.ReqId).HasColumnName("reqId");
 
@@ -8381,8 +8012,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.ReqId);
 
-                entity.ToTable("RequestAdapt", "dbo");
-
                 entity.Property(e => e.ReqId)
                     .HasColumnName("reqId")
                     .ValueGeneratedNever();
@@ -8439,8 +8068,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.ReqId);
 
-                entity.ToTable("RequestAdvertising", "dbo");
-
                 entity.Property(e => e.ReqId)
                     .HasColumnName("reqId")
                     .ValueGeneratedNever();
@@ -8464,8 +8091,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RequestAim>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("RequestAim", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -8491,8 +8116,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("RequestAimTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -8515,8 +8138,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RequestInternet>(entity =>
             {
                 entity.HasKey(e => e.ReqId);
-
-                entity.ToTable("RequestInternet", "dbo");
 
                 entity.Property(e => e.ReqId)
                     .HasColumnName("reqId")
@@ -8550,8 +8171,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.ReqId);
 
-                entity.ToTable("RequestMovie", "dbo");
-
                 entity.Property(e => e.ReqId)
                     .HasColumnName("reqId")
                     .ValueGeneratedNever();
@@ -8579,8 +8198,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.ReqId);
 
-                entity.ToTable("RequestOther", "dbo");
-
                 entity.Property(e => e.ReqId)
                     .HasColumnName("reqId")
                     .ValueGeneratedNever();
@@ -8601,8 +8218,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RequestSerial>(entity =>
             {
                 entity.HasKey(e => e.ReqId);
-
-                entity.ToTable("RequestSerial", "dbo");
 
                 entity.Property(e => e.ReqId)
                     .HasColumnName("reqId")
@@ -8633,8 +8248,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("RequestStatusType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -8648,8 +8261,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RequestStatusTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("RequestStatusTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -8674,7 +8285,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.ReqId);
 
-                entity.ToTable("RequestTVRadio", "dbo");
+                entity.ToTable("RequestTVRadio");
 
                 entity.Property(e => e.ReqId)
                     .HasColumnName("reqId")
@@ -8706,8 +8317,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("RequestType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -8729,8 +8338,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RequestTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("RequestTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -8755,8 +8362,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("ResidentType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -8770,8 +8375,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<ResidentTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("ResidentTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -8796,7 +8399,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("RHolderType", "dbo");
+                entity.ToTable("RHolderType");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -8812,7 +8415,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("RHolderTypeTr", "dbo");
+                entity.ToTable("RHolderTypeTr");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -8836,8 +8439,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<RightHolder>(entity =>
             {
                 entity.HasKey(e => e.CustId);
-
-                entity.ToTable("RightHolder", "dbo");
 
                 entity.Property(e => e.CustId)
                     .HasColumnName("custId")
@@ -8871,8 +8472,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<SaldoDay>(entity =>
             {
                 entity.HasKey(e => new { e.AccId, e.DateBegin, e.DateEnd });
-
-                entity.ToTable("SaldoDay", "dbo");
 
                 entity.Property(e => e.AccId).HasColumnName("accId");
 
@@ -8924,8 +8523,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<SeekObject>(entity =>
             {
-                entity.ToTable("SeekObject", "dbo");
-
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
@@ -8952,8 +8549,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("SeekType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -8967,8 +8562,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<SeekTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("SeekTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -8993,8 +8586,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("SexType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9008,8 +8599,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<SexTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("SexTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -9034,8 +8623,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("SpecType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9049,8 +8636,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<SpecTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("SpecTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -9071,12 +8656,84 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_SPECTYPE_REFERENCE_SPECTYPE");
             });
 
+            modelBuilder.Entity<SystemConstant>(entity =>
+            {
+                entity.HasKey(e => e.CodeI);
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rate)
+                    .HasColumnName("rate")
+                    .HasColumnType("decimal(5, 2)");
+            });
+
+            modelBuilder.Entity<SystemConstantTr>(entity =>
+            {
+                entity.HasKey(e => new { e.CodeI, e.Lang });
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Lang)
+                    .HasColumnName("lang")
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.SystemConstantTr)
+                    .HasForeignKey(d => d.CodeI)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SYSTEMCO_REFERENCE_SYSTEMCO");
+            });
+
+            modelBuilder.Entity<SystemMessage>(entity =>
+            {
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.KeyObj).HasColumnName("keyObj");
+
+                entity.Property(e => e.Modifydate)
+                    .HasColumnName("modifydate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.NameMain)
+                    .HasColumnName("nameMain")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Sysname)
+                    .HasColumnName("sysname")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Text)
+                    .HasColumnName("text")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+            });
+
             modelBuilder.Entity<TableColumn>(entity =>
             {
                 entity.HasKey(e => e.Id)
                     .ForSqlServerIsClustered(false);
-
-                entity.ToTable("TableColumn", "dbo");
 
                 entity.HasIndex(e => new { e.Lang, e.TName, e.CName })
                     .HasName("Index_Unique")
@@ -9119,8 +8776,6 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<TableColumnTech>(entity =>
             {
-                entity.ToTable("TableColumnTech", "dbo");
-
                 entity.HasIndex(e => new { e.Tname, e.Cname })
                     .HasName("ITableColumn")
                     .IsUnique();
@@ -9163,8 +8818,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasKey(e => e.Id)
                     .ForSqlServerIsClustered(false);
 
-                entity.ToTable("TableObject", "dbo");
-
                 entity.HasIndex(e => new { e.Lang, e.CName })
                     .HasName("uni_01")
                     .IsUnique();
@@ -9201,8 +8854,6 @@ namespace ipsmedserviceapp.Model
                 entity.HasKey(e => e.TName)
                     .ForSqlServerIsClustered(false);
 
-                entity.ToTable("TableType", "dbo");
-
                 entity.HasIndex(e => e.TName)
                     .HasName("Index_Unique")
                     .ForSqlServerIsClustered();
@@ -9216,37 +8867,9 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.TType).HasColumnName("tType");
             });
 
-            modelBuilder.Entity<TaxRate>(entity =>
-            {
-                entity.HasKey(e => new { e.CodeI, e.DateBegin });
-
-                entity.ToTable("TaxRate", "dbo");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.DateBegin)
-                    .HasColumnName("dateBegin")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.DateEnd)
-                    .HasColumnName("dateEnd")
-                    .HasColumnType("date");
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Rate)
-                    .HasColumnName("rate")
-                    .HasColumnType("decimal(5, 2)");
-            });
-
             modelBuilder.Entity<TermsOfService>(entity =>
             {
                 entity.HasKey(e => new { e.CustId, e.CrkindCode });
-
-                entity.ToTable("TermsOfService", "dbo");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -9271,8 +8894,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("TermUse", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9286,8 +8907,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<TermUseTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("TermUseTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -9311,8 +8930,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<TerritoryExclude>(entity =>
             {
                 entity.HasKey(e => new { e.CustId, e.CountryCode });
-
-                entity.ToTable("TerritoryExclude", "dbo");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -9338,8 +8955,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CustId, e.CountryCode });
 
-                entity.ToTable("TerritoryInclude", "dbo");
-
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
                 entity.Property(e => e.CountryCode)
@@ -9363,8 +8978,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<TradeStatus>(entity =>
             {
                 entity.HasKey(e => e.StatusCode);
-
-                entity.ToTable("TradeStatus", "dbo");
 
                 entity.Property(e => e.StatusCode)
                     .HasColumnName("statusCode")
@@ -9390,8 +9003,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("TypeInternetObject", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9416,8 +9027,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("TypeInternetObjectTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -9441,8 +9050,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("TypeMethodGet", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9456,8 +9063,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<TypeMethodGetTr>(entity =>
             {
                 entity.HasKey(e => new { e.Lang, e.CodeI });
-
-                entity.ToTable("TypeMethodGetTr", "dbo");
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
@@ -9482,8 +9087,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("TypePlace", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9507,8 +9110,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("TypePlaceParam", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9522,8 +9123,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<TypePlaceParamTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("TypePlaceParamTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -9549,8 +9148,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("TypePlaceTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -9574,7 +9171,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("TypeVAT", "dbo");
+                entity.ToTable("TypeVAT");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -9590,7 +9187,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("TypeVATTr", "dbo");
+                entity.ToTable("TypeVATTr");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -9614,8 +9211,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<UseAreaType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("UseAreaType", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -9647,8 +9242,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("UseAreaTypeTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -9671,8 +9264,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<UseMediaType>(entity =>
             {
                 entity.HasKey(e => e.CodeI);
-
-                entity.ToTable("UseMediaType", "dbo");
 
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
@@ -9704,8 +9295,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("UseMediaTypeTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -9729,7 +9318,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CustId, e.RoleType, e.UserId });
 
-                entity.ToTable("userRole", "dbo");
+                entity.ToTable("userRole");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -9764,8 +9353,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("UserRoleType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9792,8 +9379,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
 
-                entity.ToTable("UserRoleTypeTr", "dbo");
-
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Lang)
@@ -9818,8 +9403,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("UsesKind", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9841,8 +9424,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<UsesKindTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("UsesKindTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -9867,8 +9448,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("UsesType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9883,8 +9462,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<UsesTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("UsesTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 
@@ -9909,7 +9486,7 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CRightId);
 
-                entity.ToTable("WorkRH", "dbo");
+                entity.ToTable("WorkRH");
 
                 entity.Property(e => e.CRightId)
                     .HasColumnName("cRightId")
@@ -9966,8 +9543,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CodeI);
 
-                entity.ToTable("WorkType", "dbo");
-
                 entity.Property(e => e.CodeI)
                     .HasColumnName("codeI")
                     .ValueGeneratedNever();
@@ -9981,8 +9556,6 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<WorkTypeTr>(entity =>
             {
                 entity.HasKey(e => new { e.CodeI, e.Lang });
-
-                entity.ToTable("WorkTypeTr", "dbo");
 
                 entity.Property(e => e.CodeI).HasColumnName("codeI");
 

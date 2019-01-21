@@ -13,6 +13,7 @@ namespace ipsFormsDesign.Model
             AspNetUserLogins = new ObservableListSource<AspNetUserLogins>();
             AspNetUserRoles = new ObservableListSource<AspNetUserRoles>();
             BrRegister = new ObservableListSource<BrRegister>();
+            Customer = new ObservableListSource<Customer>();
             Employee = new ObservableListSource<Employee>();
             Fixation = new ObservableListSource<Fixation>();
             Register = new ObservableListSource<Register>();
@@ -44,6 +45,7 @@ namespace ipsFormsDesign.Model
         public ObservableListSource<AspNetUserLogins> AspNetUserLogins { get; set; }
         public ObservableListSource<AspNetUserRoles> AspNetUserRoles { get; set; }
         public ObservableListSource<BrRegister> BrRegister { get; set; }
+        public ObservableListSource<Customer> Customer { get; set; }
         public ObservableListSource<Employee> Employee { get; set; }
         public ObservableListSource<Fixation> Fixation { get; set; }
         public ObservableListSource<Register> Register { get; set; }

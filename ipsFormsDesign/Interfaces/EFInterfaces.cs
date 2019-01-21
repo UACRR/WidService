@@ -557,13 +557,15 @@ public interface ICopyRightHistory
 public interface ICopyrightKind
     {    int CodeI { get; set; }
          string Name { get; set; }
-         int? CrGroupCode { get; set; }
+         int CrGroupCode { get; set; }
+         string NameDescript { get; set; }
 }
 public interface ICopyrightKindTr
     {
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
+         string NameDescript { get; set; }
 }
 public interface ICopyrightType
     {    int CodeI { get; set; }
@@ -679,6 +681,7 @@ public interface ICustomer
          byte? AnkMy { get; set; }
          byte? AnkPublish { get; set; }
          byte? AnkTech { get; set; }
+         string UserId { get; set; }
 }
 public interface ICustomerStatus
     {    int CodeI { get; set; }
@@ -1372,6 +1375,16 @@ public interface IMoneyTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IMonthName
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+}
+public interface IMonthNameTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
 public interface IMusicalDesign
     {
          int MdId { get; set; }
@@ -1728,7 +1741,7 @@ public interface IRegisterItem
          DateTime? ModifyDate { get; set; }
          string ModifyLogin { get; set; }
          int? Durationticks { get; set; }
-         int? Ticks { get; set; }
+         int Ticks { get; set; }
          bool IsAuto { get; set; }
 }
 public interface IRegisterItemFix
@@ -2129,6 +2142,28 @@ public interface ISpecTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface ISystemConstant
+    {    int CodeI { get; set; }
+         string Name { get; set; }
+         decimal? Rate { get; set; }
+}
+public interface ISystemConstantTr
+    {
+         int CodeI { get; set; }
+         string Lang { get; set; }
+         string Name { get; set; }
+}
+public interface ISystemMessage
+    {
+         int Id { get; set; }
+         DateTime? Modifydate { get; set; }
+         string NameMain { get; set; }
+         string Name { get; set; }
+         int? KeyObj { get; set; }
+         string Text { get; set; }
+         string Sysname { get; set; }
+         int? CustId { get; set; }
+    }
 public interface ISysVersion
     {
          int VersId { get; set; }
