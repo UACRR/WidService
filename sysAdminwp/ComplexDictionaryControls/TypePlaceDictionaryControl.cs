@@ -19,5 +19,10 @@ namespace sysAdminwp.ComplexDictionaryControls
             Dock = DockStyle.Fill;
             bsTypePlace.DataSource = typePlace;
         }
+        public object TypePlaceSource
+        {
+            get => bsTypePlace.DataSource;
+            set => bsTypePlace.DataSource = value;
+        }
     }
 }

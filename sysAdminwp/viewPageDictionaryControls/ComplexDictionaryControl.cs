@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Model;
+using ipsmedserviceapp.Model;
 using WebAPIConnector;
 using ipsFormsDesign.Dictionary;
 using sysAdminwp.ComplexDictionaryControls;
@@ -38,6 +39,11 @@ namespace sysAdminwp.viewPageDictionaryControls
         private List<GenreType> _genreTypeList;
         //variable for - klr030
         private List<KlR030> _klR030List;
+        //variable for - systemConstant
+        //need continue
+        //private List<SystemConstant> _systemConstantList;
+        //variable for - typeplace
+        private List<TypePlace> _typePlaceList;
 
         private CopyRightKindDictionaryControl _copyRightKindControl;
         private CountryDictionaryControl _countryDictionaryControl;
@@ -53,6 +59,9 @@ namespace sysAdminwp.viewPageDictionaryControls
         private CreativeRoleType _creativeRoleType;
         private GenreType _genreType;
         private KlR030 _klR030;
+        //need continue
+        //private SystemConstant _systemConstant;
+        private TypePlace _typePlace;
 
         //strings for complex dictionaries
         private readonly List<string> _complexDictionaryList = new List<string>
@@ -61,7 +70,8 @@ namespace sysAdminwp.viewPageDictionaryControls
             "country",
             "creativeroletype",
             "genretype",
-            "klr030"
+            "klr030",
+            "typeplace"
         };
         //variable for position focus select into grid
         private static int indexValueGrid = 0;
@@ -242,35 +252,36 @@ namespace sysAdminwp.viewPageDictionaryControls
                         });
                     }
                     break;
-                case "taxrate":
+                case "systemconstant":
+                    //need continue
                     //initialize variable with all complex dictionaries type - KLR030
-                    _taxRate = _connector.GetList<TaxRate>(UrlForComplexDictionaries);
+                    //_systemConstant = _connector.GetList<SystemConstant>(UrlForComplexDictionaries);
                     //read every dictionary
-                    foreach (var item in _taxRate)
-                    {
+                    //foreach (var item in _systemConstant)
+                    //{
                         //initialize object with data for every column
-                        view.Add(new ViewTable
-                        {
-                            Code = item.R030,
-                            NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
-                            NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
-                            NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
-                        });
-                    }
+                    //    view.Add(new ViewTable
+                    //    {
+                    //        Code = item.R030,
+                    //        NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
+                    //        NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
+                    //        NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                    //    });
+                    //}
                     break;
                 case "typeplace":
                     //initialize variable with all complex dictionaries type - KLR030
-                    _klR030List = _connector.GetList<KlR030>(UrlForComplexDictionaries);
+                    _typePlaceList = _connector.GetList<TypePlace>(UrlForComplexDictionaries);
                     //read every dictionary
-                    foreach (var item in _klR030List)
+                    foreach (var item in _typePlaceList)
                     {
                         //initialize object with data for every column
                         view.Add(new ViewTable
                         {
-                            Code = item.R030,
-                            NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
-                            NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
-                            NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                            Code = item.CodeI.ToString(),
+                            NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                            NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                            NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                         });
                     }
                     break;
@@ -315,6 +326,17 @@ namespace sysAdminwp.viewPageDictionaryControls
                     //get data for KlR030 object
                     var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(CurrentGridRow.Code));
                     _klrDictionaryControl.KlR030DataSource = klr030;
+                    break;
+                //if current - systemconstant
+                case "systemconstant":
+                    //get data for systemconstant object
+                    //need continue
+                    //var systemConstant = _systemtConstantList?.SingleOrDefault(getObj => getObj.)
+                    break;
+                case "typeplace":
+                    //get data for typeplace object
+                    var typePlace = _typePlaceList?.SingleOrDefault(getObj => getObj.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    _typePlaceDictionaryControl.TypePlaceSource = typePlace;
                     break;
             }
         }
@@ -366,20 +388,21 @@ namespace sysAdminwp.viewPageDictionaryControls
                     controlsParamPanel.Controls.Clear();
                     controlsParamPanel.Controls.Add(_klrDictionaryControl);
                     break;
-                case "taxrate":
+                case "systemconstant":
+                    //need continue
                     //get dictionary taxrate for control
-                    var baseDictsTaxRate = _connector.GetList<DictBaseTypeI>("dictionary/base/taxRate");
+                    //var baseDictsSystemConstant = _connector.GetList<DictBaseTypeI>("dictionary/base/SystemConstant");
                     //check control on empty state
                     //if empty then
-                    if (_taxRateDictionaryControl == null)
-                    {
+                    //if (_systemConstantDictionaryControl == null)
+                    //{
                         //initialize all parameters for dictionary taxrate
-                        _taxRateDictionaryControl = new TaxRateDictionaryControl(baseDictsTaxRate);
-                    }
+                        //_systemConstantDictionaryControl = new SystemConstantDictionaryControl(baseDictsSystemConstant);
+                    //}
                     //clear all created elements before
                     controlsParamPanel.Controls.Clear();
                     //add new initialized elements for current dictionary
-                    controlsParamPanel.Controls.Add(_taxRateDictionaryControl);
+                    //controlsParamPanel.Controls.Add(_systemConstantDictionaryControl);
 
                     break;
                 case "typeplace":
@@ -465,6 +488,15 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "klr030":
                     _klR030 = new KlR030();
                     _klrDictionaryControl.KlR030DataSource = _klR030;
+                    break;
+                case "systemconstant":
+                    //need continue
+                    //_systemConstant = new SystemConstant();
+                    //_systemConstantDictionaryControl.SystemConstantSource = _systemConstant;
+                    break;
+                case "typeplace":
+                    _typePlace = new TypePlace();
+                    _typePlaceDictionaryControl.TypePlaceSource = _typePlace;
                     break;
             }
         }
@@ -714,9 +746,51 @@ namespace sysAdminwp.viewPageDictionaryControls
                         //send new klt030 to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _klR030);
                         break;
+                    case "systemconstant":
+                        //check posibility convert to int
+                        //save data for 'Name' from textbox
+                        //save data for 'CodeI' from convert variable
+                        //add data for 'Uk'
+                        //add data for 'Ru'
+                        //add data for 'En'
+                        //send new systemConstant to controller
+                        break;
+                    case "typeplace":
+                        //check posibility convert to int
+                        if (!int.TryParse(txtCodeComplex.Text, out int typePlaceCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                            return false;
+                        }
+                        //save data for 'Name' from  textbox
+                        _typePlace.Name = txtNameUaComplex.Text;
+                        //save data for 'CodeI' from  convert variable
+                        _typePlace.CodeI = Convert.ToInt32(txtCodeComplex.Text);
+                        //add data for 'Uk'
+                        _typePlace.TypePlaceTr.Add(new TypePlaceTr
+                        {
+                            CodeI = _typePlace.CodeI,
+                            Lang = "Uk",
+                            Name = txtNameUaComplex.Text
+                        });
+                        //add data for 'Ru'
+                        _typePlace.TypePlaceTr.Add(new TypePlaceTr
+                        {
+                            CodeI = _typePlace.CodeI,
+                            Lang = "Ru",
+                            Name = txtNameRuComplex.Text
+                        });
+                        //add data for 'En'
+                        _typePlace.TypePlaceTr.Add(new TypePlaceTr
+                        {
+                            CodeI = _typePlace.CodeI,
+                            Lang = "En",
+                            Name = txtNameEnComplex.Text
+                        });
+                        //send new typeplace to controller
+                        _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _typePlace);
+                        break;
                 }
-                //bool result = _connector.NewItem(UrlForComplexDictionaries, new object());
-
                 gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
                 UpdateEditPanelComplex();
                 ChangeEnableElementsWhenAdd(true);
@@ -779,6 +853,22 @@ namespace sysAdminwp.viewPageDictionaryControls
                             txtNameUaComplex.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Uk")?.R030Name;
                             txtNameRuComplex.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Ru")?.R030Name;
                             txtNameEnComplex.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "En")?.R030Name;
+                            break;
+                        case "systemconstant":
+                            //need continue
+                            //var systemConstant = _systemConstantList?.SingleOrDefault(rec => rec.)
+                            break;
+                        case "typeplace":
+                            //filter complex dictionaries by 'CodeI'
+                            var typePlace = _typePlaceList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                            //show current value 'CodeI'
+                            txtCodeComplex.Text = typePlace?.CodeI.ToString();
+                            //show current value 'Uk'
+                            txtNameUaComplex.Text = typePlace?.TypePlaceTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                            //show current value 'Ru'
+                            txtNameRuComplex.Text = typePlace?.TypePlaceTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                            //show current value 'En'
+                            txtNameEnComplex.Text = typePlace?.TypePlaceTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
                             break;
                     }
                 }
@@ -1122,6 +1212,75 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     //send new klr030 to controller
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), klr.R030, klr);
+                    break;
+                case "systemconstant":
+                    break;
+                case "typeplace":
+                    //find dictionary by current row grid
+                    var typePlace = _typePlaceList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    //save new data 'code' from textbox
+                    typePlace.CodeI = Convert.ToInt32(txtCodeComplex.Text);
+                    //save new 'name' from textbox
+                    typePlace.Name = txtNameUaComplex.Text;
+                    //find 'Uk' value
+                    var uaType = typePlace.TypePlaceTr.SingleOrDefault(rec => rec.Lang == "Uk");
+                    //if not finded
+                    if (uaType == null)
+                    {
+                        //add new data
+                        typePlace.TypePlaceTr.Add(new TypePlaceTr
+                        {
+                            CodeI = typePlace.CodeI,
+                            Name = typePlace.Name,
+                            Lang = "Uk",
+                        });
+                    }
+                    //else set new 'name' and 'codeI'
+                    else
+                    {
+                        uaType.Name = txtNameUaComplex.Text;
+                        uaType.CodeI = typePlace.CodeI;
+                    }
+                    var ruType = typePlace.TypePlaceTr.SingleOrDefault(rec => rec.Lang == "Ru");
+                    //if not finded
+                    if (ruType == null)
+                    {
+                        //add new data
+                        typePlace.TypePlaceTr.Add(new TypePlaceTr
+                        {
+                            CodeI = typePlace.CodeI,
+                            Name = txtNameRuComplex.Text,
+                            Lang = "Ru",
+                        });
+                    }
+                    //else set new 'name' and 'codeI'
+                    else
+                    {
+                        ruType.Name = txtNameRuComplex.Text;
+                        ruType.CodeI = typePlace.CodeI;
+                    }
+                    //find 'En' value
+                    var enType = typePlace.TypePlaceTr.SingleOrDefault(rec => rec.Lang == "En");
+                    //if not finded
+                    if (enType == null)
+                    {
+                        //add new data
+                        typePlace.TypePlaceTr.Add(new TypePlaceTr
+                        {
+                            CodeI = typePlace.CodeI,
+                            Name = txtNameEnComplex.Text,
+                            Lang = "En",
+                        });
+                    }
+                    //else set new 'name' and 'codeI'
+                    else
+                    {
+                        enType.Name = txtNameEnComplex.Text;
+                        enType.CodeI = typePlace.CodeI;
+                    }
+                    //send new klr030 to controller
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), typePlace.CodeI.ToString(), typePlace);
+
                     break;
             }
             
