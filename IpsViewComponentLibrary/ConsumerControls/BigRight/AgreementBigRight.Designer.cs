@@ -30,15 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblTitle = new Telerik.WinControls.UI.RadLabel();
+            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.ddlPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsAgreementAddBr = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtDayForPay = new Telerik.WinControls.UI.RadTextBox();
             this.lblParam = new Telerik.WinControls.UI.RadLabel();
             this.panel = new Telerik.WinControls.UI.RadPanel();
-            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
-            this.bsAgreementAddBr = new System.Windows.Forms.BindingSource(this.components);
-            this.bsDictPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
             this.lblContrDo = new Telerik.WinControls.UI.RadLabel();
             this.rdtPickerDateEnd = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
@@ -49,16 +49,16 @@
             this.rtxtBoxContrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).BeginInit();
@@ -81,6 +81,10 @@
             this.lblTitle.Text = "Назва Клієнта";
             this.lblTitle.ThemeName = "Office2013Light";
             // 
+            // bsAnketaCompany
+            // 
+            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
+            // 
             // ddlPeriodPayment
             // 
             this.ddlPeriodPayment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -94,6 +98,14 @@
             this.ddlPeriodPayment.TabIndex = 38;
             this.ddlPeriodPayment.ThemeName = "Office2013Light";
             this.ddlPeriodPayment.ValueMember = "CodeI";
+            // 
+            // bsAgreementAddBr
+            // 
+            this.bsAgreementAddBr.DataSource = typeof(ipsFormsDesign.Model.AgreementAddBr);
+            // 
+            // bsDictPaidPeriod
+            // 
+            this.bsDictPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.Period);
             // 
             // radLabel2
             // 
@@ -145,25 +157,13 @@
             this.panel.TabIndex = 49;
             this.panel.ThemeName = "Office2013Light";
             // 
-            // bsAnketaCompany
-            // 
-            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            // 
-            // bsAgreementAddBr
-            // 
-            this.bsAgreementAddBr.DataSource = typeof(ipsFormsDesign.Model.AgreementAddBr);
-            // 
-            // bsDictPaidPeriod
-            // 
-            this.bsDictPaidPeriod.DataSource = typeof(ipsFormsDesign.Model.Period);
-            // 
             // lblContrDo
             // 
             this.lblContrDo.Location = new System.Drawing.Point(6, 57);
             this.lblContrDo.Name = "lblContrDo";
-            this.lblContrDo.Size = new System.Drawing.Size(92, 19);
+            this.lblContrDo.Size = new System.Drawing.Size(81, 19);
             this.lblContrDo.TabIndex = 54;
-            this.lblContrDo.Text = "ДІЯ ДОГОВОРУ";
+            this.lblContrDo.Text = "Дія договору";
             this.lblContrDo.ThemeName = "Office2013Light";
             // 
             // rdtPickerDateEnd
@@ -194,12 +194,12 @@
             // 
             this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddBr, "DateBegin", true));
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerDateBegin.Location = new System.Drawing.Point(172, 55);
+            this.rdtPickerDateBegin.Location = new System.Drawing.Point(167, 55);
             this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.Name = "rdtPickerDateBegin";
             this.rdtPickerDateBegin.NullText = "Оберіть дату";
-            this.rdtPickerDateBegin.Size = new System.Drawing.Size(107, 21);
+            this.rdtPickerDateBegin.Size = new System.Drawing.Size(112, 21);
             this.rdtPickerDateBegin.TabIndex = 55;
             this.rdtPickerDateBegin.TabStop = false;
             this.rdtPickerDateBegin.ThemeName = "Office2013Light";
@@ -208,7 +208,7 @@
             // 
             // lblContrDoFrom
             // 
-            this.lblContrDoFrom.Location = new System.Drawing.Point(143, 57);
+            this.lblContrDoFrom.Location = new System.Drawing.Point(136, 57);
             this.lblContrDoFrom.Name = "lblContrDoFrom";
             this.lblContrDoFrom.Size = new System.Drawing.Size(23, 19);
             this.lblContrDoFrom.TabIndex = 56;
@@ -242,10 +242,10 @@
             // rtxtBoxContrNumber
             // 
             this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBr, "AgrNumber", true));
-            this.rtxtBoxContrNumber.Location = new System.Drawing.Point(172, 31);
+            this.rtxtBoxContrNumber.Location = new System.Drawing.Point(167, 31);
             this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
             this.rtxtBoxContrNumber.NullText = "Номер договору";
-            this.rtxtBoxContrNumber.Size = new System.Drawing.Size(152, 21);
+            this.rtxtBoxContrNumber.Size = new System.Drawing.Size(157, 21);
             this.rtxtBoxContrNumber.TabIndex = 50;
             this.rtxtBoxContrNumber.ThemeName = "Office2013Light";
             // 
@@ -253,9 +253,9 @@
             // 
             this.lblContrNumb.Location = new System.Drawing.Point(6, 32);
             this.lblContrNumb.Name = "lblContrNumb";
-            this.lblContrNumb.Size = new System.Drawing.Size(162, 19);
+            this.lblContrNumb.Size = new System.Drawing.Size(157, 19);
             this.lblContrNumb.TabIndex = 51;
-            this.lblContrNumb.Text = "ГЕНЕРАЛЬНИЙ ДОГОВІР №";
+            this.lblContrNumb.Text = "Договір про співпрацю №";
             this.lblContrNumb.ThemeName = "Office2013Light";
             // 
             // AgreementBigRight
@@ -277,7 +277,10 @@
             this.Name = "AgreementBigRight";
             this.Size = new System.Drawing.Size(499, 172);
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDayForPay)).EndInit();
@@ -285,9 +288,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).EndInit();

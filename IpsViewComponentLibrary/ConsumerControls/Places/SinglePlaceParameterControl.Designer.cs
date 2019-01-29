@@ -91,9 +91,9 @@
             this.rLblMainHeader.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.rLblMainHeader.Location = new System.Drawing.Point(10, 0);
             this.rLblMainHeader.Name = "rLblMainHeader";
-            this.rLblMainHeader.Size = new System.Drawing.Size(104, 21);
+            this.rLblMainHeader.Size = new System.Drawing.Size(136, 21);
             this.rLblMainHeader.TabIndex = 5;
-            this.rLblMainHeader.Text = "Адреса закладу";
+            this.rLblMainHeader.Text = "Адреса бізнес-точки";
             this.rLblMainHeader.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblMainHeader.ThemeName = "Office2013Light";
             // 
@@ -197,9 +197,9 @@
             this.rLblTypeInst.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rLblTypeInst.Location = new System.Drawing.Point(29, 32);
             this.rLblTypeInst.Name = "rLblTypeInst";
-            this.rLblTypeInst.Size = new System.Drawing.Size(80, 21);
+            this.rLblTypeInst.Size = new System.Drawing.Size(112, 21);
             this.rLblTypeInst.TabIndex = 13;
-            this.rLblTypeInst.Text = "Тип закладу";
+            this.rLblTypeInst.Text = "Тип бізнес-точки";
             this.rLblTypeInst.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblTypeInst.ThemeName = "Office2013Light";
             // 
@@ -208,18 +208,18 @@
             this.rLblName.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.rLblName.Location = new System.Drawing.Point(3, 3);
             this.rLblName.Name = "rLblName";
-            this.rLblName.Size = new System.Drawing.Size(106, 23);
+            this.rLblName.Size = new System.Drawing.Size(141, 23);
             this.rLblName.TabIndex = 11;
-            this.rLblName.Text = "Назва закладу";
+            this.rLblName.Text = "Назва бізнес-точки";
             this.rLblName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblName.ThemeName = "Office2013Light";
             // 
             // txtPlaceType
             // 
-            this.txtPlaceType.Location = new System.Drawing.Point(115, 33);
+            this.txtPlaceType.Location = new System.Drawing.Point(150, 33);
             this.txtPlaceType.Name = "txtPlaceType";
             this.txtPlaceType.ReadOnly = true;
-            this.txtPlaceType.Size = new System.Drawing.Size(283, 21);
+            this.txtPlaceType.Size = new System.Drawing.Size(248, 21);
             this.txtPlaceType.TabIndex = 14;
             this.txtPlaceType.ThemeName = "Office2013Light";
             // 
@@ -229,9 +229,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtPlaceName.BackColor = System.Drawing.Color.White;
             this.txtPlaceName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceName", true));
-            this.txtPlaceName.Location = new System.Drawing.Point(115, 6);
+            this.txtPlaceName.Location = new System.Drawing.Point(150, 6);
             this.txtPlaceName.Name = "txtPlaceName";
-            this.txtPlaceName.Size = new System.Drawing.Size(542, 21);
+            this.txtPlaceName.Size = new System.Drawing.Size(507, 21);
             this.txtPlaceName.TabIndex = 12;
             this.txtPlaceName.ThemeName = "Office2013Light";
             // 

@@ -95,13 +95,13 @@
             gridViewTextBoxColumn6.Width = 80;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "MinRate";
-            gridViewTextBoxColumn7.HeaderText = "Умова %";
+            gridViewTextBoxColumn7.HeaderText = "Тариф";
             gridViewTextBoxColumn7.Name = "MinRate";
             gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn7.Width = 57;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewDecimalColumn1.FieldName = "MinAmount";
-            gridViewDecimalColumn1.HeaderText = "Умова мін. сума";
+            gridViewDecimalColumn1.HeaderText = "Гарантійний платіж";
             gridViewDecimalColumn1.Name = "MinAmount";
             gridViewDecimalColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewDecimalColumn1.Width = 73;

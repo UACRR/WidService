@@ -36,16 +36,16 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pageAnketaConsumer = new Telerik.WinControls.UI.RadPageView();
             this.pvClientName = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClientName = new IpsViewComponentLibrary.MiddleControlClientName();
-            this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
-            this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlManagers = new IpsViewComponentLibrary.ConsumerControls.ManagersControl();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
             this.ctrlPlacesTitle = new Telerik.WinControls.UI.RadLabel();
             this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankRequisites = new IpsViewComponentLibrary.MiddleControlBankRequisites();
+            this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlManagers = new IpsViewComponentLibrary.ConsumerControls.ManagersControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
@@ -57,12 +57,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
             this.pvClientName.SuspendLayout();
-            this.pvAddress.SuspendLayout();
-            this.pvManagers.SuspendLayout();
             this.pvPlaces.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlPlacesTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
+            this.pvAddress.SuspendLayout();
             this.pvBankRequisites.SuspendLayout();
+            this.pvManagers.SuspendLayout();
             this.pvPrint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator)).BeginInit();
@@ -75,10 +75,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.pageAnketaConsumer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pageAnketaConsumer.Controls.Add(this.pvClientName);
-            this.pageAnketaConsumer.Controls.Add(this.pvAddress);
-            this.pageAnketaConsumer.Controls.Add(this.pvManagers);
             this.pageAnketaConsumer.Controls.Add(this.pvPlaces);
+            this.pageAnketaConsumer.Controls.Add(this.pvAddress);
             this.pageAnketaConsumer.Controls.Add(this.pvBankRequisites);
+            this.pageAnketaConsumer.Controls.Add(this.pvManagers);
             this.pageAnketaConsumer.Controls.Add(this.pvAgreement);
             this.pageAnketaConsumer.Controls.Add(this.pvPrint);
             this.pageAnketaConsumer.DefaultPage = this.pvClientName;
@@ -119,7 +119,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvClientName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.pvClientName.Size = new System.Drawing.Size(1010, 654);
             this.pvClientName.TabStop = true;
-            this.pvClientName.Text = "Споживач";
+            this.pvClientName.Text = "Користувач";
             // 
             // ctrlClientName
             // 
@@ -130,42 +130,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlClientName.Size = new System.Drawing.Size(666, 194);
             this.ctrlClientName.TabIndex = 0;
             // 
-            // pvAddress
-            // 
-            this.pvAddress.Controls.Add(this.ctrlAddress);
-            this.pvAddress.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvAddress.Location = new System.Drawing.Point(134, 5);
-            this.pvAddress.Name = "pvAddress";
-            this.pvAddress.Size = new System.Drawing.Size(1010, 654);
-            this.pvAddress.Text = "Адреса";
-            // 
-            // ctrlAddress
-            // 
-            this.ctrlAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAddress.Location = new System.Drawing.Point(4, 35);
-            this.ctrlAddress.MaximumSize = new System.Drawing.Size(1000, 313);
-            this.ctrlAddress.MinimumSize = new System.Drawing.Size(727, 313);
-            this.ctrlAddress.Name = "ctrlAddress";
-            this.ctrlAddress.Size = new System.Drawing.Size(1000, 313);
-            this.ctrlAddress.TabIndex = 0;
-            // 
-            // pvManagers
-            // 
-            this.pvManagers.Controls.Add(this.ctrlManagers);
-            this.pvManagers.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvManagers.Location = new System.Drawing.Point(134, 5);
-            this.pvManagers.Name = "pvManagers";
-            this.pvManagers.Size = new System.Drawing.Size(1010, 654);
-            this.pvManagers.Text = "Керівники";
-            // 
-            // ctrlManagers
-            // 
-            this.ctrlManagers.Location = new System.Drawing.Point(4, 35);
-            this.ctrlManagers.Name = "ctrlManagers";
-            this.ctrlManagers.Size = new System.Drawing.Size(750, 454);
-            this.ctrlManagers.TabIndex = 0;
-            // 
             // pvPlaces
             // 
             this.pvPlaces.AutoScroll = true;
@@ -175,7 +139,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvPlaces.Location = new System.Drawing.Point(134, 5);
             this.pvPlaces.Name = "pvPlaces";
             this.pvPlaces.Size = new System.Drawing.Size(1010, 654);
-            this.pvPlaces.Text = "Майданчики";
+            this.pvPlaces.Text = "Бізнес-точки";
             // 
             // ctrlPlaces
             // 
@@ -204,6 +168,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
+            // pvAddress
+            // 
+            this.pvAddress.Controls.Add(this.ctrlAddress);
+            this.pvAddress.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvAddress.Location = new System.Drawing.Point(134, 5);
+            this.pvAddress.Name = "pvAddress";
+            this.pvAddress.Size = new System.Drawing.Size(1010, 654);
+            this.pvAddress.Text = "Адреса";
+            // 
+            // ctrlAddress
+            // 
+            this.ctrlAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlAddress.Location = new System.Drawing.Point(4, 35);
+            this.ctrlAddress.MaximumSize = new System.Drawing.Size(1000, 313);
+            this.ctrlAddress.MinimumSize = new System.Drawing.Size(727, 313);
+            this.ctrlAddress.Name = "ctrlAddress";
+            this.ctrlAddress.Size = new System.Drawing.Size(1000, 313);
+            this.ctrlAddress.TabIndex = 0;
+            // 
             // pvBankRequisites
             // 
             this.pvBankRequisites.AutoScroll = true;
@@ -222,6 +206,22 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlBankRequisites.Name = "ctrlBankRequisites";
             this.ctrlBankRequisites.Size = new System.Drawing.Size(522, 160);
             this.ctrlBankRequisites.TabIndex = 0;
+            // 
+            // pvManagers
+            // 
+            this.pvManagers.Controls.Add(this.ctrlManagers);
+            this.pvManagers.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvManagers.Location = new System.Drawing.Point(134, 5);
+            this.pvManagers.Name = "pvManagers";
+            this.pvManagers.Size = new System.Drawing.Size(1010, 654);
+            this.pvManagers.Text = "Контакти";
+            // 
+            // ctrlManagers
+            // 
+            this.ctrlManagers.Location = new System.Drawing.Point(4, 35);
+            this.ctrlManagers.Name = "ctrlManagers";
+            this.ctrlManagers.Size = new System.Drawing.Size(750, 454);
+            this.ctrlManagers.TabIndex = 0;
             // 
             // pvAgreement
             // 
@@ -259,7 +259,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1004, 39);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1004, 0);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -329,13 +329,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).EndInit();
             this.pageAnketaConsumer.ResumeLayout(false);
             this.pvClientName.ResumeLayout(false);
-            this.pvAddress.ResumeLayout(false);
-            this.pvManagers.ResumeLayout(false);
             this.pvPlaces.ResumeLayout(false);
             this.pvPlaces.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlPlacesTitle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
+            this.pvAddress.ResumeLayout(false);
             this.pvBankRequisites.ResumeLayout(false);
+            this.pvManagers.ResumeLayout(false);
             this.pvPrint.ResumeLayout(false);
             this.pvPrint.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).EndInit();
