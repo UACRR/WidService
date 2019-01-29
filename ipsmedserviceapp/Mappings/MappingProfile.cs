@@ -77,20 +77,8 @@ namespace ipsmedserviceapp.Mappings
                 .ForMember(rf => rf.RegId, opt => opt.Ignore())
                 .ForMember(rf => rf.RegItemId, opt => opt.Ignore())
                 .ForMember(rf => rf.RegI, opt => opt.Ignore())
-                .ForMember(rf => rf.TimeStart, opt => opt.ResolveUsing((source) =>
-                {
-                    if (source.TimeStart == TimeSpan.Zero)
-                        return null;
-
-                    return source.TimeStart;
-                }))
-                .ForMember(rf => rf.TimeEnd, opt => opt.ResolveUsing((source) =>
-                {
-                    if (source.TimeEnd == TimeSpan.Zero)
-                        return null;
-
-                    return source.TimeEnd;
-                }))
+                .ForMember(rf => rf.TimeStart, opt => opt.MapFrom((source) => source.TimeStart == TimeSpan.Zero ? null : source.TimeStart ))
+                .ForMember(rf => rf.TimeEnd, opt => opt.MapFrom((source) => source.TimeEnd == TimeSpan.Zero ? null : source.TimeEnd ))
                 .EqualityComparison((from, to) => from.RegId == to.RegId && from.RegItemId == to.RegItemId)
                 .AfterMap((source, dest) =>
                 {

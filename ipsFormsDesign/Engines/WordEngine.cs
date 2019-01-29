@@ -284,7 +284,8 @@ namespace ipsFormsDesign.Services
                     case "TableTrrUse":
                         if (rightHolder.AroundWord == true)
                         {
-                            item.Range.Tables[1].Cell( 1,1).Range.Text = "Всіх країн світу" ;
+                            var row = item.Range.Tables[1].Rows.Add();
+                            row.Cells[1].Range.Text = "Всіх країн світу";
                             //item.Range.Text = "Всіх країн світу";
                         }
                         else
@@ -292,7 +293,9 @@ namespace ipsFormsDesign.Services
                         break;
                     case "TableTrrNotUs":
                         if (rightHolder.AroundWord == false)
+                        {
                             item.Range.Tables[1].Cell(1, 1).Range.Text = "";
+                        }
                         //item.Range.Text = "";
                         else
                             formTableExclude(item.Range.Tables, cust.RightHolder);
@@ -547,6 +550,7 @@ namespace ipsFormsDesign.Services
 
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
                 phoneWork = bossEmployee?.Empl.PhoneNumber ?? string.Empty;
+                phone = phoneWork;
                 eMail = bossEmployee?.Empl.Email ?? string.Empty;
                 createDate = anketaCompany.RegistrDate;
                 Okpo = anketaCompany.Okpo;
@@ -563,7 +567,7 @@ namespace ipsFormsDesign.Services
             DocDate = $"{licenseAgrParam?.LicDate:dd.MM.yyyy}";
             LicNum = licenseAgrParam?.LicNum ?? licAgr?.Agr?.AgreementAddBr.SingleOrDefault()?.AgrNumber;//TODO номер генерального договору 
             prcntInc = $"{licenseAgrParam?.RateAmount:F}";
-            minRltGrn = $"{licenseAgrParam?.MinAmount:F}";
+            minRltGrn = $"{Math.Floor( licenseAgrParam?.MinAmount ?? 0 ):### ### ##0}";
             int minRltKopInt = default(int);
             if (licenseAgrParam?.MinAmount != null) //TODO генеральний договір не містить такого поля
                 minRltKopInt = ((int)((licenseAgrParam?.MinAmount - (int)(licenseAgrParam?.MinAmount)) * 100));
@@ -2111,19 +2115,6 @@ namespace ipsFormsDesign.Services
         {
             if (tables.Count == 0) return;
             Table table = tables[1];
-            //if (table.Rows.Count > 0)
-            //    table.Rows.Delete();
-
-            /*
-            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-            Row curRow = null;
-            foreach (var item in rightHolder.TerritoryExclude)
-            {
-                curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
-                curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
-            }
-            */
-
 
             var list = rightHolder.TerritoryExclude;
 
@@ -2139,22 +2130,12 @@ namespace ipsFormsDesign.Services
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
 
             Row curRow = null;
-
             WdRowAlignment aa;
 
-            /*          if (rightHolder.AroundWord == true)
-                      {
-                          curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
-                          curRow.Cells[1].Range.Text = "Всіх країн світу";
-                      }
-                      else
-            */
             foreach (var item in rightHolder.TerritoryExclude)
             {
-
-                curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                curRow = table.Rows.Add();
                 curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
-
             }
 
 
@@ -2215,21 +2196,30 @@ namespace ipsFormsDesign.Services
                 body[groupId].Add(item);
             }
 
+            float? fntSize = null;
+
             foreach (var groupId in group.Keys)
             {
                 var groupName = group[groupId];
                 var curRow = table.Rows.Add();
                 Range cellRng = curRow.Cells[1].Range;
 
+                if (fntSize == null)
+                    fntSize = cellRng.Font.Size;
+
                 cellRng.Text = groupName;
-                //cellRng.Bold = 1;
-                //cellRng.Font.Size = cellRng.Font.Size + 1;
+                cellRng.Bold = 1;
+                cellRng.Font.Size = (float)fntSize + 3;
                 //cellRng.
                 var listTerm = body[groupId];
                 foreach (var item in listTerm)
                 {
                     curRow = table.Rows.Add();
-                    curRow.Cells[1].Range.Text = item.CrkindCodeNavigation.Name;
+                    var curRowRange = curRow.Cells[1].Range;
+                    curRowRange.Font.Size = (float)fntSize;
+                    curRowRange.Font.Bold = 0;
+
+                    curRow.Cells[1].Range.Text = item.CrkindCodeNavigation.NameDescript;
                     curRow.Cells[2].Range.Text = item.OurService == true ? "Tak" : "Ні";
                 }
             }
