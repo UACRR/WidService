@@ -242,7 +242,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         private void updateRihtholder(Customer sorsCust, Customer destCustomer)
         {
 
-            var excludeFields = new string[] { "CustId" };
+            var excludeFields = new string[] { "CustId", "UserId" };
             if (sorsCust == null)
                 throw new Exception("new rightholder is empty");
             if (!(sorsCust.CustType > 0 && sorsCust.CustType < 4))
