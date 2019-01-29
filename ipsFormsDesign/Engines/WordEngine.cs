@@ -294,7 +294,7 @@ namespace ipsFormsDesign.Services
                     case "TableTrrNotUs":
                         if (rightHolder.AroundWord == false)
                         {
-                            item.Range.Tables[1].Cell(1, 1).Range.Text = "";
+                            item.Delete();
                         }
                         //item.Range.Text = "";
                         else
