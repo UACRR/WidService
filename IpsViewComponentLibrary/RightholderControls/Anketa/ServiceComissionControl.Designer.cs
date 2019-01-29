@@ -53,9 +53,10 @@
             this.radLabel1.AutoSize = false;
             this.radLabel1.Location = new System.Drawing.Point(4, 4);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(307, 34);
+            this.radLabel1.Size = new System.Drawing.Size(319, 34);
             this.radLabel1.TabIndex = 2;
-            this.radLabel1.Text = "відрахування, пов\'язані зі збором, розподілом та виплатою винагороди у розмірі";
+            this.radLabel1.Text = "збір за управління, необхідний для покриття витрат на забезпечення діяльності ГО " +
+    "УААСП";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel2
@@ -63,15 +64,16 @@
             this.radLabel2.AutoSize = false;
             this.radLabel2.Location = new System.Drawing.Point(4, 47);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(307, 34);
+            this.radLabel2.Size = new System.Drawing.Size(319, 34);
             this.radLabel2.TabIndex = 3;
-            this.radLabel2.Text = "використання творів у порядку судового провадження становить";
+            this.radLabel2.Text = "у випадку стягнення у порядку судового провадження за бездоговірне (позаліцензійн" +
+    "е) використання";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
             // mtxtRateCommission
             // 
             this.mtxtRateCommission.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.agreementAddRhBindingSource, "RateCommiss", true));
-            this.mtxtRateCommission.Location = new System.Drawing.Point(316, 11);
+            this.mtxtRateCommission.Location = new System.Drawing.Point(329, 11);
             this.mtxtRateCommission.Mask = "N0";
             this.mtxtRateCommission.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRateCommission.Name = "mtxtRateCommission";
@@ -90,7 +92,7 @@
             // mtxtRateCourt
             // 
             this.mtxtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.agreementAddRhBindingSource, "RateCourt", true));
-            this.mtxtRateCourt.Location = new System.Drawing.Point(316, 53);
+            this.mtxtRateCourt.Location = new System.Drawing.Point(329, 53);
             this.mtxtRateCourt.Mask = "N0";
             this.mtxtRateCourt.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRateCourt.Name = "mtxtRateCourt";
@@ -105,11 +107,11 @@
             // radLabel3
             // 
             this.radLabel3.AutoSize = false;
-            this.radLabel3.Location = new System.Drawing.Point(402, 4);
+            this.radLabel3.Location = new System.Drawing.Point(404, 4);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(289, 34);
+            this.radLabel3.Size = new System.Drawing.Size(287, 34);
             this.radLabel3.TabIndex = 3;
-            this.radLabel3.Text = "від сум, отриманих ДО УААСП для Автора";
+            this.radLabel3.Text = "від сум, зібраних ГО УААСП для Правовласника";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
             // radLabel4
@@ -119,7 +121,7 @@
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(285, 34);
             this.radLabel4.TabIndex = 4;
-            this.radLabel4.Text = "від суми авторської винагороди, зібраної за таке використання";
+            this.radLabel4.Text = "від суми, зібраної (стягнутої)  авторської винагороди (компенсації)";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
             // errorProvider

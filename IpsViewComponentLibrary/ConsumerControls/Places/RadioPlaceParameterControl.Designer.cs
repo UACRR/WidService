@@ -127,11 +127,11 @@
             // rLblTypeInst
             // 
             this.rLblTypeInst.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.rLblTypeInst.Location = new System.Drawing.Point(29, 32);
+            this.rLblTypeInst.Location = new System.Drawing.Point(3, 32);
             this.rLblTypeInst.Name = "rLblTypeInst";
-            this.rLblTypeInst.Size = new System.Drawing.Size(80, 21);
+            this.rLblTypeInst.Size = new System.Drawing.Size(112, 21);
             this.rLblTypeInst.TabIndex = 23;
-            this.rLblTypeInst.Text = "Тип закладу";
+            this.rLblTypeInst.Text = "Тип бізнес-точки";
             this.rLblTypeInst.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblTypeInst.ThemeName = "Office2013Light";
             // 
@@ -140,9 +140,9 @@
             this.rLblName.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.rLblName.Location = new System.Drawing.Point(3, 3);
             this.rLblName.Name = "rLblName";
-            this.rLblName.Size = new System.Drawing.Size(106, 23);
+            this.rLblName.Size = new System.Drawing.Size(77, 23);
             this.rLblName.TabIndex = 21;
-            this.rLblName.Text = "Назва закладу";
+            this.rLblName.Text = "Позивний";
             this.rLblName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblName.ThemeName = "Office2013Light";
             // 

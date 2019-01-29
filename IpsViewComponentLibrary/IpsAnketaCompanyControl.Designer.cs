@@ -74,9 +74,9 @@
             // 
             this.lblFullName.Location = new System.Drawing.Point(2, 3);
             this.lblFullName.Name = "lblFullName";
-            this.lblFullName.Size = new System.Drawing.Size(86, 19);
+            this.lblFullName.Size = new System.Drawing.Size(106, 19);
             this.lblFullName.TabIndex = 0;
-            this.lblFullName.Text = "Назва клієнта:";
+            this.lblFullName.Text = "Юридична назва:";
             this.lblFullName.ThemeName = "Office2013Light";
             // 
             // txtName

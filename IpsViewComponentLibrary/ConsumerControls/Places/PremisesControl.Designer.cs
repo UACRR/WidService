@@ -58,9 +58,9 @@
             this.rLblPremises.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.rLblPremises.Location = new System.Drawing.Point(3, 3);
             this.rLblPremises.Name = "rLblPremises";
-            this.rLblPremises.Size = new System.Drawing.Size(170, 26);
+            this.rLblPremises.Size = new System.Drawing.Size(205, 26);
             this.rLblPremises.TabIndex = 0;
-            this.rLblPremises.Text = "Приміщення закладу";
+            this.rLblPremises.Text = "Приміщення бізнес-точки";
             this.rLblPremises.TextAlignment = System.Drawing.ContentAlignment.BottomLeft;
             this.rLblPremises.ThemeName = "Office2013Light";
             // 
@@ -140,9 +140,9 @@
             // 
             this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator1.Location = new System.Drawing.Point(179, 9);
+            this.radSeparator1.Location = new System.Drawing.Point(214, 9);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(359, 20);
+            this.radSeparator1.Size = new System.Drawing.Size(324, 20);
             this.radSeparator1.TabIndex = 0;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 

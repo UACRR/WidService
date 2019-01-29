@@ -30,6 +30,7 @@
         {
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvPartnerName = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlClientName = new IpsViewComponentLibrary.JurPersonName();
             this.pvContact = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
             this.pvManager = new Telerik.WinControls.UI.RadPageViewPage();
@@ -41,7 +42,6 @@
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
             this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ConsumerControls.TabNavigationExpandedControl();
-            this.ctrlClientName = new IpsViewComponentLibrary.JurPersonName();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
@@ -74,20 +74,29 @@
             // pvPartnerName
             // 
             this.pvPartnerName.Controls.Add(this.ctrlClientName);
-            this.pvPartnerName.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvPartnerName.Location = new System.Drawing.Point(134, 5);
+            this.pvPartnerName.ItemSize = new System.Drawing.SizeF(133F, 27F);
+            this.pvPartnerName.Location = new System.Drawing.Point(137, 5);
             this.pvPartnerName.Name = "pvPartnerName";
-            this.pvPartnerName.Size = new System.Drawing.Size(840, 554);
+            this.pvPartnerName.Size = new System.Drawing.Size(837, 554);
             this.pvPartnerName.Text = "Представник";
+            // 
+            // ctrlClientName
+            // 
+            this.ctrlClientName.Location = new System.Drawing.Point(3, 26);
+            this.ctrlClientName.MaximumSize = new System.Drawing.Size(711, 172);
+            this.ctrlClientName.MinimumSize = new System.Drawing.Size(711, 172);
+            this.ctrlClientName.Name = "ctrlClientName";
+            this.ctrlClientName.Size = new System.Drawing.Size(711, 172);
+            this.ctrlClientName.TabIndex = 0;
             // 
             // pvContact
             // 
             this.pvContact.Controls.Add(this.ctrlAddress);
-            this.pvContact.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvContact.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvContact.Location = new System.Drawing.Point(134, 5);
             this.pvContact.Name = "pvContact";
             this.pvContact.Size = new System.Drawing.Size(840, 554);
-            this.pvContact.Text = "Контакти";
+            this.pvContact.Text = "Адреса";
             // 
             // ctrlAddress
             // 
@@ -103,11 +112,11 @@
             // pvManager
             // 
             this.pvManager.Controls.Add(this.ctrlManagers);
-            this.pvManager.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvManager.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvManager.Location = new System.Drawing.Point(134, 5);
             this.pvManager.Name = "pvManager";
             this.pvManager.Size = new System.Drawing.Size(840, 554);
-            this.pvManager.Text = "Керівники";
+            this.pvManager.Text = "Контакти";
             // 
             // ctrlManagers
             // 
@@ -121,7 +130,7 @@
             // pvBank
             // 
             this.pvBank.Controls.Add(this.ctrlBankAccount);
-            this.pvBank.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvBank.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvBank.Location = new System.Drawing.Point(134, 5);
             this.pvBank.Name = "pvBank";
             this.pvBank.Size = new System.Drawing.Size(840, 554);
@@ -138,7 +147,7 @@
             // pvAgreement
             // 
             this.pvAgreement.Controls.Add(this.ctrlAgreement);
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvAgreement.ItemSize = new System.Drawing.SizeF(133F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(134, 5);
             this.pvAgreement.Name = "pvAgreement";
             this.pvAgreement.Size = new System.Drawing.Size(840, 554);
@@ -158,11 +167,11 @@
             // pvTerms
             // 
             this.pvTerms.Controls.Add(this.ctrlConditions);
-            this.pvTerms.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvTerms.Location = new System.Drawing.Point(134, 5);
+            this.pvTerms.ItemSize = new System.Drawing.SizeF(133F, 27F);
+            this.pvTerms.Location = new System.Drawing.Point(137, 5);
             this.pvTerms.Name = "pvTerms";
-            this.pvTerms.Size = new System.Drawing.Size(840, 554);
-            this.pvTerms.Text = "Умои представника";
+            this.pvTerms.Size = new System.Drawing.Size(837, 554);
+            this.pvTerms.Text = "Умови представника";
             // 
             // ctrlConditions
             // 
@@ -181,15 +190,6 @@
             this.ctrlTabNavigationExpanded.Name = "ctrlTabNavigationExpanded";
             this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(979, 31);
             this.ctrlTabNavigationExpanded.TabIndex = 15;
-            // 
-            // ctrlClientName
-            // 
-            this.ctrlClientName.Location = new System.Drawing.Point(3, 26);
-            this.ctrlClientName.MaximumSize = new System.Drawing.Size(711, 172);
-            this.ctrlClientName.MinimumSize = new System.Drawing.Size(711, 172);
-            this.ctrlClientName.Name = "ctrlClientName";
-            this.ctrlClientName.Size = new System.Drawing.Size(711, 172);
-            this.ctrlClientName.TabIndex = 0;
             // 
             // PartnerAnketaJurControl
             // 

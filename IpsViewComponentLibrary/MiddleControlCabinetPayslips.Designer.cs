@@ -326,7 +326,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn7.Width = 101;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "RAmount";
-            gridViewTextBoxColumn8.HeaderText = "Сума авторського гонорару";
+            gridViewTextBoxColumn8.HeaderText = "Всього сума авторської винагороди";
             gridViewTextBoxColumn8.MinWidth = 100;
             gridViewTextBoxColumn8.Name = "RAmount";
             gridViewTextBoxColumn8.Width = 101;
@@ -598,11 +598,11 @@ namespace IpsViewComponentLibrary
             this.pvMusicalDesign.Controls.Add(this.cCountUse);
             this.pvMusicalDesign.Controls.Add(this.cActCode);
             this.pvMusicalDesign.Controls.Add(this.cName);
-            this.pvMusicalDesign.ItemSize = new System.Drawing.SizeF(141F, 27F);
+            this.pvMusicalDesign.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvMusicalDesign.Location = new System.Drawing.Point(5, 31);
             this.pvMusicalDesign.Name = "pvMusicalDesign";
             this.pvMusicalDesign.Size = new System.Drawing.Size(1031, 182);
-            this.pvMusicalDesign.Text = "Музичне оформлення";
+            this.pvMusicalDesign.Text = "Збірна музика";
             // 
             // gvMusicDesignView
             // 

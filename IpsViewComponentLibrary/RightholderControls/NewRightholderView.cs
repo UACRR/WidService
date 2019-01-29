@@ -239,7 +239,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (customer == null)
                 return;
 
-            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx");
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_ГО УААСП Автор.docx");
 
             btnGenerateRightholderAgreement.Enabled = false;
             waitbarAgreement.StartWaiting();

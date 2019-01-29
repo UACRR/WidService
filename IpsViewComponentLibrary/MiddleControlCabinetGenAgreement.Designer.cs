@@ -76,14 +76,14 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.Name = "CustId";
             gridViewTextBoxColumn2.FieldName = "CustName";
-            gridViewTextBoxColumn2.HeaderText = "Назва клієнта";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.MinWidth = 0;
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "CustName";
             gridViewTextBoxColumn2.Width = 385;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "AgrNumber";
-            gridViewTextBoxColumn3.HeaderText = "№ ген. договору";
+            gridViewTextBoxColumn3.HeaderText = "№ Договору";
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "AgrNumber";
