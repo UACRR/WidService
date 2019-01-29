@@ -14,17 +14,13 @@ namespace sysAdminwp.ComplexDictionaryControls
 {
     public sealed partial class CountryDictionaryControl : UserControl
     {
-        public CountryDictionaryControl(Country country, List<Country> continent, List<DictBaseTypeI> countryCode, List<DictBaseTypeI> countryName, List<DictBaseTypeI> kod_lit, List<DictBaseTypeI> shortChoice, List<DictBaseTypeI> orderBy)
-        {
-            InitializeComponent();
-            bsContinent.DataSource = continent;
-            bsCountry.DataSource = country;
-        }
+        public event EventHandler HideElem;
 
         public CountryDictionaryControl(List<DictBaseTypeI> continent)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
+            //data source for Continent
             bsContinent.DataSource = continent;
         }
 
@@ -34,34 +30,34 @@ namespace sysAdminwp.ComplexDictionaryControls
             set => bsCountry.DataSource = value;
         }
 
-        private void CountryDictionaryControl_Load(object sender, EventArgs e)
+        private void ddlContinent_Click(object sender, EventArgs e)
         {
-
+            HideElem?.Invoke(sender, e);
         }
 
-        private void radTextBox2_TextChanged(object sender, EventArgs e)
+        private void tbCountryCode_Click(object sender, EventArgs e)
         {
-
+            HideElem?.Invoke(sender, e);
         }
 
-        private void radTextBox1_TextChanged(object sender, EventArgs e)
+        private void tbCountryName_Click(object sender, EventArgs e)
         {
-
+            HideElem?.Invoke(sender, e);
         }
 
-        private void radTextBox3_TextChanged(object sender, EventArgs e)
+        private void tbKod_lit_Click(object sender, EventArgs e)
         {
-
+            HideElem?.Invoke(sender, e);
         }
 
-        private void radTextBox4_TextChanged(object sender, EventArgs e)
+        private void tbShortChoice_Click(object sender, EventArgs e)
         {
-
+            HideElem?.Invoke(sender, e);
         }
 
-        private void radTextBox5_TextChanged(object sender, EventArgs e)
+        private void tbOrderBy_Click(object sender, EventArgs e)
         {
-
+            HideElem?.Invoke(sender, e);
         }
     }
 }

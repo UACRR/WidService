@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.bsGenreType = new System.Windows.Forms.BindingSource(this.components);
             this.bsCategory = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbCategory = new System.Windows.Forms.Label();
             this.ddlCategory = new Telerik.WinControls.UI.RadDropDownList();
             ((System.ComponentModel.ISupportInitialize)(this.bsGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCategory)).BeginInit();
@@ -46,14 +46,14 @@
             // 
             this.bsCategory.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
-            // label1
+            // lbCategory
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 5);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Вид об\'єкта";
+            this.lbCategory.AutoSize = true;
+            this.lbCategory.Location = new System.Drawing.Point(3, 5);
+            this.lbCategory.Name = "lbCategory";
+            this.lbCategory.Size = new System.Drawing.Size(66, 13);
+            this.lbCategory.TabIndex = 0;
+            this.lbCategory.Text = "Вид об\'єкта";
             // 
             // ddlCategory
             // 
@@ -70,13 +70,14 @@
             this.ddlCategory.TabIndex = 1;
             this.ddlCategory.ThemeName = "Office2013Light";
             this.ddlCategory.ValueMember = "CodeI";
+            this.ddlCategory.Click += new System.EventHandler(this.ddlCategory_Click);
             // 
             // GenreTypeDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ddlCategory);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lbCategory);
             this.Name = "GenreTypeDictionaryControl";
             this.Size = new System.Drawing.Size(1352, 29);
             ((System.ComponentModel.ISupportInitialize)(this.bsGenreType)).EndInit();
@@ -91,7 +92,7 @@
 
         private System.Windows.Forms.BindingSource bsGenreType;
         private System.Windows.Forms.BindingSource bsCategory;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbCategory;
         private Telerik.WinControls.UI.RadDropDownList ddlCategory;
     }
 }

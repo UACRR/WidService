@@ -476,6 +476,13 @@ namespace ipsmedserviceapp.Controllers
                 (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
                 rec => rec.DocumentTypeTr)
             );
+            baseEng.Add("systemconstant",
+                new BaseDictionaryEng<SystemConstant, SystemConstantTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                sors => sors,
+                sors => sors,
+                sors => sors.SystemConstantTr.ToList(),
+                (sors, dest) => sors.CodeI == dest.CodeI && sors.Lang == dest.Lang,
+                rec => rec.SystemConstantTr));
 
             #endregion
         }
@@ -531,7 +538,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <returns></returns>
         private async Task<IActionResult> GetComplexDictionary(string dictionaryName)
-        {
+        {   
             switch (dictionaryName)
             {
                 case "copyrightkind":
@@ -561,10 +568,10 @@ namespace ipsmedserviceapp.Controllers
                     return Json(klr030);
                 case "systemconstant":
                     //get data only systemconstant
-                    //var systemConstant = await _dbContext.SystemConstant
-                    //    .Include(item => item.SystemConstantTr)
-                    //    .ToListAsync();
-                    //return Json(systemConstant);
+                    var systemConstant = await _dbContext.SystemConstant
+                        .Include(item => item.SystemConstantTr)
+                        .ToListAsync();
+                    return Json(systemConstant);
                 case "typeplace":
                     //get data only typeplace
                     var typePlace = await _dbContext.TypePlace
@@ -1484,6 +1491,8 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("performType", await _dbContext.PerformType.AsNoTracking().ToListAsync());
             retDictionary.Add("genreType", await _dbContext.GenreType.AsNoTracking().ToListAsync());
             retDictionary.Add("language", await _dbContext.Language.Where(l => l.ShortChoise == 1).AsNoTracking().ToListAsync());
+
+            retDictionary.Add("systemconstant", await _dbContext.SystemConstant.AsNoTracking().ToListAsync());
 
             retDictionary.Add("Communities",
                 await _dbContext.getViewData("select t2.name, t2.custId from community t1 join vCustomer t2 on t2.custId = t1.custId", new SqlParameter[0]));
