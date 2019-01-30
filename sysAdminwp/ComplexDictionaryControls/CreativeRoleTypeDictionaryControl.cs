@@ -14,26 +14,30 @@ namespace sysAdminwp.ComplexDictionaryControls
 {
     public sealed partial class CreativeRoleTypeDictionaryControl : UserControl
     {
-        public CreativeRoleTypeDictionaryControl(CreativeRoleType creativeRole, List<DictBaseTypeI> listCreativeRole, List<DictBaseTypeI> copyrightTypes)
-        {
-            InitializeComponent();
-            bsCreativeRoleType.DataSource = creativeRole;
-            bsCategory.DataSource = listCreativeRole;
-            bsCopyrightType.DataSource = copyrightTypes;
-        }
+        public event EventHandler HideElem;
 
-        public CreativeRoleTypeDictionaryControl(List<DictBaseTypeI> listCreativeRole, List<DictBaseTypeI> copyrightTypes)
+        public CreativeRoleTypeDictionaryControl(List<DictBaseTypeI> listCategory, List<DictBaseTypeI> listCopyrightType)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-            bsCategory.DataSource = listCreativeRole;
-            bsCopyrightType.DataSource = copyrightTypes;
+            bsCategory.DataSource = listCategory;
+            bsCopyrightType.DataSource = listCopyrightType;
         }
 
         public object CreativeRoleTypeDataSource
         {
             get => bsCreativeRoleType.DataSource;
             set => bsCreativeRoleType.DataSource = value;
+        }
+
+        private void ddlCategory_Click(object sender, EventArgs e)
+        {
+            HideElem?.Invoke(sender, e);
+        }
+
+        private void ddlCopyright_Click(object sender, EventArgs e)
+        {
+            HideElem?.Invoke(sender, e);
         }
     }
 }

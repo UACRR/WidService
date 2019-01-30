@@ -1,48 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign;
 using ipsFormsDesign.Model;
-using ipsmedserviceapp.Model;
 using WebAPIConnector;
 using ipsFormsDesign.Dictionary;
 using sysAdminwp.ComplexDictionaryControls;
+using System.Drawing;
+using Telerik.WinControls.Primitives;
+using Telerik.WinControls.UI;
 
 namespace sysAdminwp.viewPageDictionaryControls
 {
     public partial class ComplexDictionaryControl : UserControl
     {
-        //initialize connector
         private readonly ApiConnector _connector;
 
         private const string PrefixUpdate = "dictionary/complex/update/";
         private const string PrefixCreate = "dictionary/complex/addnew/";
         private const string PrefixDelete = "dictionary/complex/delete/";
 
-        //variable for all dictionaries
         private List<DictCategory> _dictionaryCategories;
-        //variable only for complex dictionaries
         private List<DicCategoryItems> _complexDictionary;
-        //variable for - copyrightkind dictionary
         private List<CopyrightKind> _copyrightKindList;
-        //variable for - country
         private List<Country> _countryList;
-        //variable for - creativeroletypelist
         private List<CreativeRoleType> _creativeRoleTypeList;
-        //variable for - genretype
         private List<GenreType> _genreTypeList;
-        //variable for - klr030
         private List<KlR030> _klR030List;
-        //variable for - systemConstant
-        //need continue
-        //private List<SystemConstant> _systemConstantList;
-        //variable for - typeplace
+        private List<SystemConstant> _systemConstantList;
         private List<TypePlace> _typePlaceList;
 
         private CopyRightKindDictionaryControl _copyRightKindControl;
@@ -50,20 +36,18 @@ namespace sysAdminwp.viewPageDictionaryControls
         private CreativeRoleTypeDictionaryControl _creativeRoleDictionaryControl;
         private GenreTypeDictionaryControl _genreTypeDictionaryControl;
         private Klr030DictionaryControl _klrDictionaryControl;
-        private TaxRateDictionaryControl _taxRateDictionaryControl;
+        private SystemConstantDictionaryControl _systemConstantDictionaryControl;
         private TypePlaceDictionaryControl _typePlaceDictionaryControl;
 
-        // objects for new items
         private CopyrightKind _copyrightKind;
         private Country _country;
         private CreativeRoleType _creativeRoleType;
         private GenreType _genreType;
         private KlR030 _klR030;
-        //need continue
-        //private SystemConstant _systemConstant;
+        private SystemConstant _systemConstant;
         private TypePlace _typePlace;
-
-        //strings for complex dictionaries
+        private int SaveNode;
+        private byte[] borderDefault = new byte[4];
         private readonly List<string> _complexDictionaryList = new List<string>
         {
             "copyrightkind",
@@ -71,108 +55,76 @@ namespace sysAdminwp.viewPageDictionaryControls
             "creativeroletype",
             "genretype",
             "klr030",
+            "systemconstant",
             "typeplace"
         };
-        //variable for position focus select into grid
         private static int indexValueGrid = 0;
 
-        //define Url value for complexTreeView
         public string UrlForComplexDictionaries
         {
             get
             {
-                //select current position into complexTreeView
                 var nodeComplexDictionary = complexTreeView.SelectedNode;
-                //if position is null, then return empty string
                 if (nodeComplexDictionary == null) return string.Empty;
-                //get data for current selected object
                 var currentDataComplexdictionary = _complexDictionary[nodeComplexDictionary.Index];
-                //if data isn't exist, then rturn empty string
                 if (currentDataComplexdictionary == null) return string.Empty;
-                //return Url for current object
                 return currentDataComplexdictionary.Url;
             }
         }
 
-        //get current selected complex dictionary
         public string ComplexDictionaryName
         {
             get
             {
-                //current select position into complexTreeView
                 var node = complexTreeView.SelectedNode;
-                //if current select is null, then return Empty string
                 if (node == null) return string.Empty;
-                //get data about current select position
                 var currentDataDictionary = _complexDictionary[node.Index];
-                //if not have data, then return Empty string
                 if (currentDataDictionary == null) return string.Empty;
                 return currentDataDictionary.DicName;
             }
         }
-
+        
         public ViewTable CurrentGridRow => gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
-
+        public ComplexDictionaryControl() { }
         public ComplexDictionaryControl(ApiConnector connector)
         {
             InitializeComponent();
             _connector = connector;
-            //fill treeView
             SetTreeViewComplexDictionaryDataSource();
 
-            //setup search action into grid for element
             txtSearchComplex.SetUsageGrid(gvComplexDictionariesList);
 
-            //set current enabled states for elements
             ElementsEnabledStatesControler();
-            //hide buttons save/cancel into edit panel
             ChangeEnabledStateButtonsEditPanels(false);
+            
         }
 
-        //method for get data about complex dictionaries
         private void SetTreeViewComplexDictionaryDataSource()
         {
-            //initialize variable with new dictionaries
             _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");//дерево
-            //initialize empty variable for next save complex dictionaries
             _complexDictionary = new List<DicCategoryItems>();
-            //read every dictionaries
             foreach (var category in _dictionaryCategories)
             {
-                //select only complex dictionaries
                 var items = category.DicCategoryItems.Where(rec => rec.DicLevel == 2).ToList();
-                //if new items is not empty then
                 if (items.Any())
                 {
-                    //add sorted complex dictionaries into variable for complex dictionaries
                     _complexDictionary.AddRange(items);
                 }
             }
-            //sort by name all complex dicitonaries
             _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
-            //set complex dictionaries as like source for treeViewList
             complexTreeView.DataSource = _complexDictionary;
-            //show only data field 'Name'
             complexTreeView.DisplayMember = "Name";
         }
 
-        //method for get complex dicitonary data return List<ViewTable> for grid
         private List<ViewTable> GetComplexDictionariesData()
         {
-            //initialize empty variable for return all complex dictionaries
             var view = new List<ViewTable>();
-            //conditions for current complex dictionary
             switch (ComplexDictionaryName.ToLower())
             {
-                //if current - copyrightkind
                 case "copyrightkind":
-                    //initialize variable with all complex dictionaries type - CopyRightKind
                     _copyrightKindList = _connector.GetList<CopyrightKind>(UrlForComplexDictionaries);
-                    //set data for grid
-                    //read every dictionary
                     foreach (var item in _copyrightKindList)
                     {
-                        //initialize object with data for every column
                         view.Add(new ViewTable
                         {
                             Code = item.CodeI.ToString(),
@@ -182,15 +134,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                         });
                     }
                     break;
-                //if current - country
                 case "country":
-                    //initialize variable with all complex dictionaries type - Country
                     _countryList = _connector.GetList<Country>(UrlForComplexDictionaries);
-                    //set data for grid
-                    //read every dictionary
                     foreach (var item in _countryList)
                     {
-                        //initialize object with data for every column
                         view.Add(new ViewTable
                         {
                             Code = item.CountryCode,
@@ -201,14 +148,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                         
                     }
                     break;
-                //if current - creativeroletype
                 case "creativeroletype":
-                    //initialize variable with all complex dictionaries type - CreativeRoleType
                     _creativeRoleTypeList = _connector.GetList<CreativeRoleType>(UrlForComplexDictionaries);
-                    //read every dictionary
                     foreach (var item in _creativeRoleTypeList)
                     {
-                        //initialize object with data for every column
                         view.Add(new ViewTable
                         {
                             Code = item.CodeI.ToString(),
@@ -218,14 +161,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                         });
                     }
                     break;
-                //if current - genretype
                 case "genretype":
-                    //initialize variable with all complex dictionaries type - GenreType
                     _genreTypeList = _connector.GetList<GenreType>(UrlForComplexDictionaries);
-                    //read every dictionary
                     foreach (var item in _genreTypeList)
                     {
-                        //initialize object with data for every column
                         view.Add(new ViewTable
                         {
                             Code = item.CodeI.ToString(),
@@ -235,14 +174,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                         });
                     }
                     break;
-                //if current - klr030
                 case "klr030":
-                    //initialize variable with all complex dictionaries type - KLR030
                     _klR030List = _connector.GetList<KlR030>(UrlForComplexDictionaries);
-                    //read every dictionary
                     foreach (var item in _klR030List)
                     {
-                        //initialize object with data for every column
                         view.Add(new ViewTable
                         {
                             Code = item.R030,
@@ -253,29 +188,22 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     break;
                 case "systemconstant":
-                    //need continue
-                    //initialize variable with all complex dictionaries type - KLR030
-                    //_systemConstant = _connector.GetList<SystemConstant>(UrlForComplexDictionaries);
-                    //read every dictionary
-                    //foreach (var item in _systemConstant)
-                    //{
-                        //initialize object with data for every column
-                    //    view.Add(new ViewTable
-                    //    {
-                    //        Code = item.R030,
-                    //        NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
-                    //        NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
-                    //        NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
-                    //    });
-                    //}
+                    _systemConstantList = _connector.GetList<SystemConstant>(UrlForComplexDictionaries);
+                    foreach (var item in _systemConstantList)
+                    {
+                        view.Add(new ViewTable
+                        {
+                            Code = item.CodeI.ToString(),
+                            NameUk = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                            NameRu = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                            NameEn = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                        });
+                    }
                     break;
                 case "typeplace":
-                    //initialize variable with all complex dictionaries type - KLR030
                     _typePlaceList = _connector.GetList<TypePlace>(UrlForComplexDictionaries);
-                    //read every dictionary
                     foreach (var item in _typePlaceList)
                     {
-                        //initialize object with data for every column
                         view.Add(new ViewTable
                         {
                             Code = item.CodeI.ToString(),
@@ -286,185 +214,157 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     break;
             }
-            //return all data for fill grid
             return view;
         }
 
         private void gvComplexDictionariesList_SelectionChanged(object sender, EventArgs e)
         {
-            //method for update Edit panel
             UpdateEditPanelComplex();
-            //conditions for choosing control
             switch (ComplexDictionaryName.ToLower())
             {
-                //if current - copyrightkind
                 case "copyrightkind":
-                    //get data for copyRightKind object
                     var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
                     _copyRightKindControl.CopyrightKindDataSource = copyrightKind;
                     break;
-                //if current - country
                 case "country":
-                    // get data for country object
                     var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(CurrentGridRow.Code));
                     _countryDictionaryControl.CountryDataSource = country;
                     break;
-                //if current - creativeroletype
                 case "creativeroletype":
-                    //get data for creativeRoleType object
                     var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(CurrentGridRow.Code));
                     _creativeRoleDictionaryControl.CreativeRoleTypeDataSource = creativeroletype;
                     break;
-                //if current - genretype
                 case "genretype":
-                    //get data for GenreType object
                     var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(CurrentGridRow.Code));
                     _genreTypeDictionaryControl.GenreTypeDataSource = genretype;
                     break;
-                //if current - klr030
                 case "klr030":
-                    //get data for KlR030 object
                     var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(CurrentGridRow.Code));
                     _klrDictionaryControl.KlR030DataSource = klr030;
                     break;
-                //if current - systemconstant
                 case "systemconstant":
-                    //get data for systemconstant object
-                    //need continue
-                    //var systemConstant = _systemtConstantList?.SingleOrDefault(getObj => getObj.)
+                    var systemConstant = _systemConstantList?.SingleOrDefault(getObj => getObj.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    _systemConstantDictionaryControl.SystemConstantSource = systemConstant;
                     break;
                 case "typeplace":
-                    //get data for typeplace object
                     var typePlace = _typePlaceList?.SingleOrDefault(getObj => getObj.CodeI == Convert.ToInt32(CurrentGridRow.Code));
                     _typePlaceDictionaryControl.TypePlaceSource = typePlace;
                     break;
             }
         }
 
-        //changes when select complex dictionary into complexTreeView
         private void complexTreeView_SelectedNodeChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
         {
+            var obj = SaveNode;
+            try
+            {
+                SaveNode = complexTreeView.SelectedNode.Index;
+            } catch (NullReferenceException) {
+                SaveNode = obj;
+            }
+            controlsParamPanel.Controls.Clear();
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
                     var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
-                    //var baseDictsNameDescript = _connector.GetList<DictBaseTypeI>("dictionary/base/NameDescript");
+                    var baseDictsPortalSupportRights = _connector.GetList<DictBaseTypeI>("dictionary/base/PortalSupportRights");
                     if (_copyRightKindControl == null)
-                        _copyRightKindControl = new CopyRightKindDictionaryControl(baseDictsCopyRight);
-                    controlsParamPanel.Controls.Clear();
+                    {
+                        _copyRightKindControl = new CopyRightKindDictionaryControl(baseDictsCopyRight, baseDictsPortalSupportRights);
+                        _copyRightKindControl.HideElements += OnHideElements;
+
+                    }
                     controlsParamPanel.Controls.Add(_copyRightKindControl);
                     break;
                 case "country":
                     var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
-                    //var baseDictsCountryCode = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryCode");
-                    //var baseDictsCountryName = _connector.GetList<DictBaseTypeI>("dictionary/base/CountryName");
-                    //var baseDictsKodLit = _connector.GetList<DictBaseTypeI>("dictionary/base/Kod_lit");
-                    //var baseDictsShortChoice = _connector.GetList<DictBaseTypeI>("dictionary/base/ShortChoice");
-                    //var baseDictsOrderBy = _connector.GetList<DictBaseTypeI>("dictionary/base/OrderBy");
                     if (_countryDictionaryControl == null)
+                    {
                         _countryDictionaryControl = new CountryDictionaryControl(baseDictsContinent);
-                    controlsParamPanel.Controls.Clear();
+                        _countryDictionaryControl.HideElem += OnHideElements;
+                    }
                     controlsParamPanel.Controls.Add(_countryDictionaryControl);
                     break;
                 case "creativeroletype":
-                    var baseDictsCreative = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+                    var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
                     var baseDictsCopyRightType = _connector.GetList<DictBaseTypeI>("dictionary/base/CopyrightType");
                     if (_creativeRoleDictionaryControl == null)
-                        _creativeRoleDictionaryControl = new CreativeRoleTypeDictionaryControl(baseDictsCreative, baseDictsCopyRightType);
-                    controlsParamPanel.Controls.Clear();
+                    {
+                        _creativeRoleDictionaryControl = new CreativeRoleTypeDictionaryControl(baseDictsCategory, baseDictsCopyRightType);
+                        _creativeRoleDictionaryControl.HideElem += OnHideElements;
+                    }
                     controlsParamPanel.Controls.Add(_creativeRoleDictionaryControl);
                     break;
                 case "genretype":
                     var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
                     if (_genreTypeDictionaryControl == null)
+                    {
                         _genreTypeDictionaryControl = new GenreTypeDictionaryControl(baseDictsGenreType);
-                    controlsParamPanel.Controls.Clear();
+                        _genreTypeDictionaryControl.HideElem += OnHideElements;
+                    }
                     controlsParamPanel.Controls.Add(_genreTypeDictionaryControl);
                     break;
                 case "klr030":
-                    var customDictKlr030 = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
+                    var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
+                    var customDictKlR031 = _connector.GetList<DictBaseTypeI>("dictionary/base/KlR031");
                     if (_klrDictionaryControl == null)
-                        _klrDictionaryControl = new Klr030DictionaryControl(customDictKlr030);
-                    controlsParamPanel.Controls.Clear();
+                    {
+                        _klrDictionaryControl = new Klr030DictionaryControl(customDictCountry, customDictKlR031);
+                        _klrDictionaryControl.HideElem += OnHideElements;
+                    }
                     controlsParamPanel.Controls.Add(_klrDictionaryControl);
                     break;
                 case "systemconstant":
-                    //need continue
-                    //get dictionary taxrate for control
-                    //var baseDictsSystemConstant = _connector.GetList<DictBaseTypeI>("dictionary/base/SystemConstant");
-                    //check control on empty state
-                    //if empty then
-                    //if (_systemConstantDictionaryControl == null)
-                    //{
-                        //initialize all parameters for dictionary taxrate
-                        //_systemConstantDictionaryControl = new SystemConstantDictionaryControl(baseDictsSystemConstant);
-                    //}
-                    //clear all created elements before
-                    controlsParamPanel.Controls.Clear();
-                    //add new initialized elements for current dictionary
-                    //controlsParamPanel.Controls.Add(_systemConstantDictionaryControl);
-
+                    var baseDictsSystemConstant = _connector.GetList<DictBaseTypeI>("dictionary/base/SystemConstant");
+                    if (_systemConstantDictionaryControl == null)
+                        _systemConstantDictionaryControl = new SystemConstantDictionaryControl(baseDictsSystemConstant);
+                    controlsParamPanel.Controls.Add(_systemConstantDictionaryControl);
                     break;
                 case "typeplace":
-                    //get dictionary taxrate for control
                     var baseDictsTypePlace = _connector.GetList<DictBaseTypeI>("dictionary/base/TypePlace");
-                    //check control on empty state
-                    //if empty then
+                    var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/TypePlaceParam");
                     if (_typePlaceDictionaryControl == null)
                     {
-                        //initialize all parameters for dictionary taxrate
-                        _typePlaceDictionaryControl = new TypePlaceDictionaryControl(baseDictsTypePlace);
+                        _typePlaceDictionaryControl = new TypePlaceDictionaryControl(baseDictsTypePlace, baseDictsTypePlaceParam);
+                        _typePlaceDictionaryControl.HideElem += OnHideElements;
                     }
-                    //clear all created elements before
-                    controlsParamPanel.Controls.Clear();
-                    //add new initialized elements for current dictionary
                     controlsParamPanel.Controls.Add(_typePlaceDictionaryControl);
                     break;
             }
-            //load data to the grid about current complex dictionaries
-            //initialize variable with result data for grid
             var returnedList = GetComplexDictionariesData();
-            //bind data for grid
             gvComplexDictionariesList.DataSource = returnedList;
+            
         }
-        //method control enable state next elements - 
-        //editPanel, txtsearchComplex, btnAddComplex, btnDeleteComplex
+
+        private void OnHideElements(object sender, EventArgs e)
+        {
+            ChangeEnableElementsWhenAdd(false);
+            ChangeEnabledStateButtonsEditPanels(true);
+        }
+
         private void ElementsEnabledStatesControler()
         {
-            //initialize current grid state for next reaction elements states
             bool stateEnabled = gvComplexDictionariesList.RowCount != 0;
-            //search text element
             txtSearchComplex.Enabled = stateEnabled;
-            //button for add new object
             btnAddComplex.Enabled = stateEnabled;
-            //button for delete object
             btnDeleteComplex.Enabled = stateEnabled;
-            //panel for parameters complex dictionaries
             controlsParamPanel.Enabled = stateEnabled;
-            //edit Panel
             editPanel.Enabled = stateEnabled;
-
         }
-        //event for control current enabled states for elements
         private void gvComplexDictionariesList_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
         {
-            //check current state data into grid
             ElementsEnabledStatesControler();
         }
-        //event for add new row
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
             indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
-            //set new Text for save button
             btnSave.Text = "Додати";
-            //clear editPanel
             ChangeEnableElementsWhenAdd(false);
             txtCodeComplex.Clear();
             txtNameUaComplex.Clear();
             txtNameRuComplex.Clear();
             txtNameEnComplex.Clear();
             editPanel.Enabled = true;
-            //enable save/cancel buttons into edit panel
             ChangeEnabledStateButtonsEditPanels(true);
 
             switch (ComplexDictionaryName.ToLower())
@@ -490,9 +390,8 @@ namespace sysAdminwp.viewPageDictionaryControls
                     _klrDictionaryControl.KlR030DataSource = _klR030;
                     break;
                 case "systemconstant":
-                    //need continue
-                    //_systemConstant = new SystemConstant();
-                    //_systemConstantDictionaryControl.SystemConstantSource = _systemConstant;
+                    _systemConstant = new SystemConstant();
+                    _systemConstantDictionaryControl.SystemConstantSource = _systemConstant;
                     break;
                 case "typeplace":
                     _typePlace = new TypePlace();
@@ -501,7 +400,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             }
         }
 
-        //method for change current enabled state for next elements
         private void ChangeEnableElementsWhenAdd(bool isEnable)
         {
             complexTreeView.Enabled = isEnable;
@@ -511,60 +409,70 @@ namespace sysAdminwp.viewPageDictionaryControls
             btnDeleteComplex.Enabled = isEnable;
         }
 
-        //event for detect changes into textboxes
         private void txtCodeComplex_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
-            //hide other elements
+            indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
+            if (borderDefault[0] == 0 &&
+                borderDefault[1] == 0 && 
+                borderDefault[2] == 0 &&
+                borderDefault[3] == 0)
+            {
+                borderDefault[0] = txtCodeComplex.TextBoxElement.Border.ForeColor.A;
+                borderDefault[1] = txtCodeComplex.TextBoxElement.Border.ForeColor.R;
+                borderDefault[2] = txtCodeComplex.TextBoxElement.Border.ForeColor.G;
+                borderDefault[3] = txtCodeComplex.TextBoxElement.Border.ForeColor.B;
+            }
+            if (!int.TryParse(txtCodeComplex.Text, out int codeCheck)) {
+                txtCodeComplex.TextBoxElement.Border.ForeColor = Color.Red;
+            } else
+            {
+                txtCodeComplex.TextBoxElement.Border.ForeColor = Color.FromArgb(borderDefault[0], borderDefault[1], borderDefault[2], borderDefault[3]);
+            }
             ChangeEnableElementsWhenAdd(false);
-            //show parameters
             controlsParamPanel.Enabled = true;
-            //show editPanel
             editPanel.Enabled = true;
-            //enabled save/cancel buttons into editPanel
             ChangeEnabledStateButtonsEditPanels(true);
         }
-        //method for enabled state buttons save and cancel into edit panel
         private void ChangeEnabledStateButtonsEditPanels(bool isEnable)
         {
-            //button save
             btnSave.Enabled = isEnable;
-            //button cancel
             btnCancel.Enabled = isEnable;
         }
-        //event for save data into edit panel
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (btnSave.Text == "Додати")
             {
-                //save new row
                 if(!SaveAddNewRow())
                     return;
                 btnSave.Text = "Зберегти";
+                ChangeEnabledStateButtonsEditPanels(false);
+                gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[gvComplexDictionariesList.RowCount - 1];
             }
             else
             {
-                //save changes row
-                SaveUpdate();
+                if (SaveUpdate())
+                {
+                    ChangeEnabledStateButtonsEditPanels(false);
+                    ChangeEnableElementsWhenAdd(true);
+                    gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid];
+                }
             }
-
-            //hide buttons save/cancel into edit panel
-            ChangeEnabledStateButtonsEditPanels(false);
-            //show other elements
-            ChangeEnableElementsWhenAdd(true);
-
-            //set last position into grid
-            gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid];
         }
-        //event for cancel all changes into textboxes edit panel
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            //hide buttons save/cancel into edit panel
+            var node = SaveNode;
+            SetTreeViewComplexDictionaryDataSource();
+            
+            GetComplexDictionariesData();
+            UpdateEditPanelComplex();
+            complexTreeView.SelectedNode = complexTreeView.Nodes[node];
+
+            txtCodeComplex.TextBoxElement.Border.ForeColor = Color.FromArgb(borderDefault[0], borderDefault[1], borderDefault[2], borderDefault[3]);
             ChangeEnabledStateButtonsEditPanels(false);
-            //show other elements
             ChangeEnableElementsWhenAdd(true);
+            //complexTreeView.SelectedNode = saveNode;
         }
 
-        //method for save new row
         public bool SaveAddNewRow()
         {
             if (string.IsNullOrEmpty(txtCodeComplex.Text))
@@ -574,10 +482,8 @@ namespace sysAdminwp.viewPageDictionaryControls
             }
             try
             {
-                // запакувать
                 switch (ComplexDictionaryName.ToLower())
                 {
-                    // with codeI
                     case "copyrightkind":
                         if (!int.TryParse(txtCodeComplex.Text, out int code))
                         {
@@ -586,6 +492,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                         }
                         _copyrightKind.Name = txtNameUaComplex.Text;
                         _copyrightKind.CodeI = code;
+                        
                         _copyrightKind.CopyrightKindTr.Add(new CopyrightKindTr
                         {
                             CodeI = _copyrightKind.CodeI,
@@ -607,187 +514,160 @@ namespace sysAdminwp.viewPageDictionaryControls
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _copyrightKind);
                         break;
                     case "country":
-                        //check posibility convert to int
-                        if (!int.TryParse(txtCodeComplex.Text, out int countryCode))
-                        {
-                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                            return false;
-                        }
-                        //save data for 'CountryName' from textbox
                         _country.CountryName = txtNameUaComplex.Text;
-                        //save data for 'CodeI' from converted variable
                         _country.CountryCode = txtCodeComplex.Text;
-                        //add data for 'Uk'
                         _country.CountryTr.Add(new CountryTr
                         {
                             CountryCode = _country.CountryCode,
                             CountryName = txtNameUaComplex.Text,
                             Lang = "Uk"
                         });
-                        //add data for 'Ru'
                         _country.CountryTr.Add(new CountryTr
                         {
                             CountryCode = _country.CountryCode,
                             CountryName = txtNameRuComplex.Text,
                             Lang = "Ru"
                         });
-                        //add data for 'En'
                         _country.CountryTr.Add(new CountryTr
                         {
                             CountryCode = _country.CountryCode,
                             CountryName = txtNameEnComplex.Text,
                             Lang = "En"
                         });
-                        //send new country to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _country);
                         break;
                     case "creativeroletype":
-                        //check posibility convert to int
                         if (!int.TryParse(txtCodeComplex.Text, out int creativeCode))
                         {
                             MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             return false;
                         }
-                        //save data for 'Name' from textbox
                         _creativeRoleType.Name = txtNameUaComplex.Text;
-                        //save data for 'CodeI' from convert variable
                         _creativeRoleType.CodeI = creativeCode;
-                        //add data for 'Uk'
                         _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = _creativeRoleType.CodeI,
                             Name = txtNameUaComplex.Text,
                             Lang = "Uk"
                         });
-                        //add data for 'Ru'
                         _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = _creativeRoleType.CodeI,
                             Name = txtNameRuComplex.Text,
                             Lang = "Ru"
                         });
-                        //add data for 'En'
                         _creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = _creativeRoleType.CodeI,
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
-                        //send new creativeroletype to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _creativeRoleType);
                         break;
                     case "genretype":
-                        //check posibility convert to int
                         if (!int.TryParse(txtCodeComplex.Text, out int genreCode))
                         {
                             MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             return false;
                         }
-                        //save data for 'Name' from textbox
                         _genreType.Name = txtNameUaComplex.Text;
-                        //save data for 'CodeI' from convert variable
                         _genreType.CodeI = genreCode;
-                        //add data for 'Uk'
                         _genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
                             CodeI = _genreType.CodeI,
                             Name = txtNameUaComplex.Text,
                             Lang = "Uk"
                         });
-                        //add data for 'Ru'
                         _genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
                             CodeI = _genreType.CodeI,
                             Name = txtNameRuComplex.Text,
                             Lang = "Ru"
                         });
-                        //add data for 'En'
                         _genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
                             CodeI = _genreType.CodeI,
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
-                        //send new genretype to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _genreType);
                         break;
                     case "klr030":
-                        //check posibility convert to int
-                        if (!int.TryParse(txtCodeComplex.Text, out int klrCode))
-                        {
-                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-                            return false;
-                        }
-                        //save data for 'R030Name' from textbox
                         _klR030.R030Name = txtNameUaComplex.Text;
-                        //save data for 'R030' from convert variable
                         _klR030.R030 = txtCodeComplex.Text;
-                        //add data for 'Uk'
                         _klR030.KlR030tr.Add(new KlR030tr
                         {
                             R030 = _klR030.R030,
                             Lang = "Uk",
                             R030Name = txtNameUaComplex.Text
                         });
-                        //add data for 'Ru'
                         _klR030.KlR030tr.Add(new KlR030tr
                         {
                             R030 = _klR030.R030,
                             Lang = "Ru",
                             R030Name = txtNameRuComplex.Text
                         });
-                        //add data for 'En'
                         _klR030.KlR030tr.Add(new KlR030tr
                         {
                             R030 = _klR030.R030,
                             Lang = "En",
                             R030Name = txtNameEnComplex.Text
                         });
-                        //send new klt030 to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _klR030);
                         break;
                     case "systemconstant":
-                        //check posibility convert to int
-                        //save data for 'Name' from textbox
-                        //save data for 'CodeI' from convert variable
-                        //add data for 'Uk'
-                        //add data for 'Ru'
-                        //add data for 'En'
-                        //send new systemConstant to controller
+                        if (!int.TryParse(txtCodeComplex.Text, out int systemConstantCode))
+                        {
+                            MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        }
+                        _systemConstant.Name = txtNameUaComplex.Text;
+                        _systemConstant.CodeI = systemConstantCode;
+                        _systemConstant.SystemConstantTr.Add(new SystemConstantTr
+                        {
+                            CodeI = _systemConstant.CodeI,
+                            Lang = "Uk",
+                            Name = txtNameUaComplex.Text
+                        });
+                        _systemConstant.SystemConstantTr.Add(new SystemConstantTr
+                        {
+                            CodeI = _systemConstant.CodeI,
+                            Lang = "Ru",
+                            Name = txtNameRuComplex.Text
+                        });
+                        _systemConstant.SystemConstantTr.Add(new SystemConstantTr
+                        {
+                            CodeI = _systemConstant.CodeI,
+                            Lang = "En",
+                            Name = txtNameEnComplex.Text
+                        });
+                        _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _systemConstant);
                         break;
                     case "typeplace":
-                        //check posibility convert to int
                         if (!int.TryParse(txtCodeComplex.Text, out int typePlaceCode))
                         {
                             MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
                             return false;
                         }
-                        //save data for 'Name' from  textbox
                         _typePlace.Name = txtNameUaComplex.Text;
-                        //save data for 'CodeI' from  convert variable
-                        _typePlace.CodeI = Convert.ToInt32(txtCodeComplex.Text);
-                        //add data for 'Uk'
+                        _typePlace.CodeI = typePlaceCode;
                         _typePlace.TypePlaceTr.Add(new TypePlaceTr
                         {
                             CodeI = _typePlace.CodeI,
                             Lang = "Uk",
                             Name = txtNameUaComplex.Text
                         });
-                        //add data for 'Ru'
                         _typePlace.TypePlaceTr.Add(new TypePlaceTr
                         {
                             CodeI = _typePlace.CodeI,
                             Lang = "Ru",
                             Name = txtNameRuComplex.Text
                         });
-                        //add data for 'En'
                         _typePlace.TypePlaceTr.Add(new TypePlaceTr
                         {
                             CodeI = _typePlace.CodeI,
                             Lang = "En",
                             Name = txtNameEnComplex.Text
                         });
-                        //send new typeplace to controller
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _typePlace);
                         break;
                 }
@@ -855,19 +735,17 @@ namespace sysAdminwp.viewPageDictionaryControls
                             txtNameEnComplex.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "En")?.R030Name;
                             break;
                         case "systemconstant":
-                            //need continue
-                            //var systemConstant = _systemConstantList?.SingleOrDefault(rec => rec.)
+                            var systemConstant = _systemConstantList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                            txtCodeComplex.Text = systemConstant?.CodeI.ToString();
+                            txtNameUaComplex.Text = systemConstant?.SystemConstantTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
+                            txtNameRuComplex.Text = systemConstant?.SystemConstantTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
+                            txtNameEnComplex.Text = systemConstant?.SystemConstantTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
                             break;
                         case "typeplace":
-                            //filter complex dictionaries by 'CodeI'
                             var typePlace = _typePlaceList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                            //show current value 'CodeI'
                             txtCodeComplex.Text = typePlace?.CodeI.ToString();
-                            //show current value 'Uk'
                             txtNameUaComplex.Text = typePlace?.TypePlaceTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                            //show current value 'Ru'
                             txtNameRuComplex.Text = typePlace?.TypePlaceTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                            //show current value 'En'
                             txtNameEnComplex.Text = typePlace?.TypePlaceTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
                             break;
                     }
@@ -885,21 +763,24 @@ namespace sysAdminwp.viewPageDictionaryControls
             txtNameUaComplex.TextChanging += txtCodeComplex_TextChanging;
             txtNameRuComplex.TextChanging += txtCodeComplex_TextChanging;
             txtNameEnComplex.TextChanging += txtCodeComplex_TextChanging;
-            // hide default string
             gvComplexDictionariesList.TableElement.Text = "";
         }
 
         //метод збереження змін !! null code
-        public void SaveUpdate()
+        public bool SaveUpdate()
         {
             if (txtCodeComplex.TextLength == 0 && Convert.ToInt32(txtCodeComplex.Text).GetType() != typeof(int))
                 txtCodeComplex.Text = gvComplexDictionariesList.CurrentRow.Cells["Code"].Value.ToString();
-
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
+                    if (!int.TryParse(txtCodeComplex.Text, out int codeKind))
+                    {
+                        MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return false;
+                    }
                     var copyrightKind = _copyrightKindList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    copyrightKind.CodeI = Convert.ToInt32(txtCodeComplex.Text);
+                    copyrightKind.CodeI = codeKind;
                     copyrightKind.Name = txtNameUaComplex.Text;
                     var uk = copyrightKind.CopyrightKindTr.SingleOrDefault(rec => rec.Lang == "Uk");
                     if (uk == null)
@@ -946,18 +827,17 @@ namespace sysAdminwp.viewPageDictionaryControls
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), copyrightKind.CodeI.ToString(), copyrightKind);
                     break;
                 case "country":
-                    //find dictionary by current row grid
+                    if (!int.TryParse(txtCodeComplex.Text, out int codeCountry))
+                    {
+                        MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return false;
+                    }
                     var country = _countryList.SingleOrDefault(rec => rec.CountryCode == CurrentGridRow.Code);
-                    //save new data code from textbox
-                    country.CountryCode = txtCodeComplex.Text;
-                    //save new name from textbox
+                    country.CountryCode = codeCountry.ToString();
                     country.CountryName = txtNameUaComplex.Text;
-                    //find 'Uk' value
                     var ukCountry = country.CountryTr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    //if not finded
                     if (ukCountry == null)
                     {
-                        //add new data
                         country.CountryTr.Add(new CountryTr
                         {
                             CountryCode = country.CountryCode,
@@ -965,18 +845,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Uk",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         ukCountry.CountryName = txtNameUaComplex.Text;
                         ukCountry.CountryCode = country.CountryCode;
                     }
-                    //find 'Ru' value
                     var ruCountry = country.CountryTr.SingleOrDefault(rec => rec.Lang == "Ru");
-                    //if not finded
                     if (ruCountry == null)
                     {
-                        //add new data
                         country.CountryTr.Add(new CountryTr
                         {
                             CountryCode = country.CountryCode,
@@ -984,18 +860,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Ru",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         ruCountry.CountryName = txtNameRuComplex.Text;
                         ruCountry.CountryCode = country.CountryCode;
                     }
-                    //find 'En' value
                     var enCountry = country.CountryTr.SingleOrDefault(rec => rec.Lang == "En");
-                    //if not finded
                     if (enCountry == null)
                     {
-                        //add new data
                         country.CountryTr.Add(new CountryTr
                         {
                             CountryCode = country.CountryCode,
@@ -1003,28 +875,25 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         enCountry.CountryName = txtNameEnComplex.Text;
                         enCountry.CountryCode = country.CountryCode;
                     }
-                    //send new country to controller
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), country.CountryCode, country);
                     break;
                 case "creativeroletype":
-                    //find dictionary by current row grid
+                    if (!int.TryParse(txtCodeComplex.Text, out int codeCreative))
+                    {
+                        MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return false;
+                    }
                     var creativeRoleType = _creativeRoleTypeList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    //save new data 'code' from textbox
-                    creativeRoleType.CodeI = Convert.ToInt32(txtCodeComplex.Text);
-                    //save new 'name' from textbox
+                    creativeRoleType.CodeI = codeCreative;
                     creativeRoleType.Name = txtNameUaComplex.Text;
-                    //find 'Uk' value
                     var uaCreative = creativeRoleType.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    //if not finded
                     if (uaCreative == null)
                     {
-                        //add new data
                         creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = creativeRoleType.CodeI,
@@ -1032,18 +901,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Uk",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         uaCreative.Name = txtNameUaComplex.Text;
                         uaCreative.CodeI = creativeRoleType.CodeI;
                     }
-                    //find 'Ru' value
                     var ruCreative = creativeRoleType.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == "Ru");
-                    //if not finded
                     if (ruCreative == null)
                     {
-                        //add new data
                         creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = creativeRoleType.CodeI,
@@ -1051,18 +916,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Ru",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         ruCreative.Name = txtNameRuComplex.Text;
                         ruCreative.CodeI = creativeRoleType.CodeI;
                     }
-                    //find 'En' value
                     var enCreative = creativeRoleType.CreativeRoleTypeTr.SingleOrDefault(rec => rec.Lang == "En");
-                    //if not finded
                     if (enCreative == null)
                     {
-                        //add new data
                         creativeRoleType.CreativeRoleTypeTr.Add(new CreativeRoleTypeTr
                         {
                             CodeI = creativeRoleType.CodeI,
@@ -1070,28 +931,25 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         enCreative.Name = txtNameEnComplex.Text;
                         enCreative.CodeI = creativeRoleType.CodeI;
                     }
-                    //send new creativeroletype to controller
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), creativeRoleType.CodeI.ToString(), creativeRoleType);
                     break;
                 case "genretype":
-                    //find dictionary by current row grid
+                    if (!int.TryParse(txtCodeComplex.Text, out int codeGenre))
+                    {
+                        MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return false;
+                    }
                     var genreType = _genreTypeList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    //save new data 'code' from textbox
-                    genreType.CodeI = Convert.ToInt32(txtCodeComplex.Text);
-                    //save new 'name' from textbox
+                    genreType.CodeI = codeGenre;
                     genreType.Name = txtNameUaComplex.Text;
-                    //find 'Uk' value
                     var uaGenre = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    //if not finded
                     if (uaGenre == null)
                     {
-                        //add new data
                         genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
                             CodeI = genreType.CodeI,
@@ -1099,18 +957,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Uk",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         uaGenre.Name = txtNameUaComplex.Text;
                         uaGenre.CodeI = genreType.CodeI;
                     }
-                    //find 'Ru' value
                     var ruGenre = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    //if not finded
                     if (ruGenre == null)
                     {
-                        //add new data
                         genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
                             CodeI = genreType.CodeI,
@@ -1118,18 +972,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Ru",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         ruGenre.Name = txtNameRuComplex.Text;
                         ruGenre.CodeI = genreType.CodeI;
                     }
-                    //find 'En' value
                     var enGenre = genreType.GenreTypeTr.SingleOrDefault(rec => rec.Lang == "En");
-                    //if not finded
                     if (enGenre == null)
                     {
-                        //add new data
                         genreType.GenreTypeTr.Add(new GenreTypeTr
                         {
                             CodeI = genreType.CodeI,
@@ -1137,28 +987,25 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         enGenre.Name = txtNameEnComplex.Text;
                         enGenre.CodeI = genreType.CodeI;
                     }
-                    //send new genretype to controller
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), genreType.CodeI.ToString(), genreType);
                     break;
                 case "klr030":
-                    //find dictionary by current row grid
+                    if (!int.TryParse(txtCodeComplex.Text, out int codeKLR))
+                    {
+                        MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return false;
+                    }
                     var klr = _klR030List.SingleOrDefault(rec => rec.R030 == CurrentGridRow.Code);
-                    //save new data 'code' from textbox
-                    klr.R030 = txtCodeComplex.Text;
-                    //save new 'name' from textbox
+                    klr.R030 = codeKLR.ToString();
                     klr.R030Name = txtNameUaComplex.Text;
-                    //find 'Uk' value
                     var uaKlr = klr.KlR030tr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    //if not finded
                     if (uaKlr == null)
                     {
-                        //add new data
                         klr.KlR030tr.Add(new KlR030tr
                         {
                             R030 = klr.R030,
@@ -1166,18 +1013,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Uk",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         uaKlr.R030Name = txtNameUaComplex.Text;
                         uaKlr.R030 = klr.R030;
                     }
-                    //find 'Ru' value
                     var ruKlr = klr.KlR030tr.SingleOrDefault(rec => rec.Lang == "Ru");
-                    //if not finded
                     if (ruKlr == null)
                     {
-                        //add new data
                         klr.KlR030tr.Add(new KlR030tr
                         {
                             R030 = klr.R030,
@@ -1185,18 +1028,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Ru",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         ruKlr.R030Name = txtNameRuComplex.Text;
                         ruKlr.R030 = klr.R030;
                     }
-                    //find 'En' value
                     var enKlr = klr.KlR030tr.SingleOrDefault(rec => rec.Lang == "En");
-                    //if not finded
                     if (enKlr == null)
                     {
-                        //add new data
                         klr.KlR030tr.Add(new KlR030tr
                         {
                             R030 = klr.R030,
@@ -1204,30 +1043,81 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         enKlr.R030Name = txtNameEnComplex.Text;
                         enKlr.R030 = klr.R030;
                     }
-                    //send new klr030 to controller
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), klr.R030, klr);
                     break;
                 case "systemconstant":
+                    if (!int.TryParse(txtCodeComplex.Text, out int code))
+                    {
+                        MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return false;
+                    }
+                    var systemConstant = _systemConstantList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
+                    systemConstant.CodeI = code;
+                    systemConstant.Name = txtNameUaComplex.Text;
+                    var uaSystemConstant = systemConstant.SystemConstantTr.SingleOrDefault(rec => rec.Lang == "Uk");
+                    if (uaSystemConstant == null)
+                    {
+                        systemConstant.SystemConstantTr.Add(new SystemConstantTr
+                        {
+                            CodeI = systemConstant.CodeI,
+                            Name = systemConstant.Name,
+                            Lang = "Uk"
+                        });
+                    }
+                    else
+                    {
+                        uaSystemConstant.Name = txtNameUaComplex.Text;
+                        uaSystemConstant.CodeI = systemConstant.CodeI;
+                    }
+                    var ruSystemConstant = systemConstant.SystemConstantTr.SingleOrDefault(rec => rec.Lang == "Ru");
+                    if (ruSystemConstant == null)
+                    {
+                        systemConstant.SystemConstantTr.Add(new SystemConstantTr
+                        {
+                            CodeI = systemConstant.CodeI,
+                            Name = systemConstant.Name,
+                            Lang = "Ru"
+                        });
+                    }
+                    else
+                    {
+                        ruSystemConstant.Name = txtNameUaComplex.Text;
+                        ruSystemConstant.CodeI = systemConstant.CodeI;
+                    }
+                    var enSystemConstant = systemConstant.SystemConstantTr.SingleOrDefault(rec => rec.Lang == "En");
+                    if (enSystemConstant == null)
+                    {
+                        systemConstant.SystemConstantTr.Add(new SystemConstantTr
+                        {
+                            CodeI = systemConstant.CodeI,
+                            Name = systemConstant.Name,
+                            Lang = "En"
+                        });
+                    }
+                    else
+                    {
+                        enSystemConstant.Name = txtNameUaComplex.Text;
+                        enSystemConstant.CodeI = systemConstant.CodeI;
+                    }
+                    _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), systemConstant.CodeI.ToString(), systemConstant);
                     break;
                 case "typeplace":
-                    //find dictionary by current row grid
+                    if (!int.TryParse(txtCodeComplex.Text, out int codeType))
+                    {
+                        MessageBox.Show("Поле \"Код\" повинно бути цілим числом!", "Помилка формату!", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+                        return false;
+                    }
                     var typePlace = _typePlaceList.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    //save new data 'code' from textbox
-                    typePlace.CodeI = Convert.ToInt32(txtCodeComplex.Text);
-                    //save new 'name' from textbox
+                    typePlace.CodeI = codeType;
                     typePlace.Name = txtNameUaComplex.Text;
-                    //find 'Uk' value
                     var uaType = typePlace.TypePlaceTr.SingleOrDefault(rec => rec.Lang == "Uk");
-                    //if not finded
                     if (uaType == null)
                     {
-                        //add new data
                         typePlace.TypePlaceTr.Add(new TypePlaceTr
                         {
                             CodeI = typePlace.CodeI,
@@ -1235,17 +1125,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Uk",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         uaType.Name = txtNameUaComplex.Text;
                         uaType.CodeI = typePlace.CodeI;
                     }
                     var ruType = typePlace.TypePlaceTr.SingleOrDefault(rec => rec.Lang == "Ru");
-                    //if not finded
                     if (ruType == null)
                     {
-                        //add new data
                         typePlace.TypePlaceTr.Add(new TypePlaceTr
                         {
                             CodeI = typePlace.CodeI,
@@ -1253,18 +1140,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "Ru",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         ruType.Name = txtNameRuComplex.Text;
                         ruType.CodeI = typePlace.CodeI;
                     }
-                    //find 'En' value
                     var enType = typePlace.TypePlaceTr.SingleOrDefault(rec => rec.Lang == "En");
-                    //if not finded
                     if (enType == null)
                     {
-                        //add new data
                         typePlace.TypePlaceTr.Add(new TypePlaceTr
                         {
                             CodeI = typePlace.CodeI,
@@ -1272,31 +1155,27 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                         });
                     }
-                    //else set new 'name' and 'codeI'
                     else
                     {
                         enType.Name = txtNameEnComplex.Text;
                         enType.CodeI = typePlace.CodeI;
                     }
-                    //send new klr030 to controller
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), typePlace.CodeI.ToString(), typePlace);
 
                     break;
             }
-            
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
             UpdateEditPanelComplex();
+            return true;
         }
 
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            //save index
             indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
             var result = _connector.DeleteItem(string.Concat(PrefixDelete, ComplexDictionaryName.ToLower()), CurrentGridRow.Code);
 
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
             UpdateEditPanelComplex();
-            //set focus
             gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid - 1];
         }
     }

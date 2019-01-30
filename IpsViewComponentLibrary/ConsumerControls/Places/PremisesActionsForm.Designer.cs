@@ -36,16 +36,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.lblTypePremisses = new Telerik.WinControls.UI.RadLabel();
             this.lblTitlePlace = new Telerik.WinControls.UI.RadLabel();
             this.txtPlaceName = new Telerik.WinControls.UI.RadTextBox();
+            this.bsClnPlaceHoll = new System.Windows.Forms.BindingSource(this.components);
             this.txtPlaceValue = new Telerik.WinControls.UI.RadTextBox();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.bsClnPlaceHoll = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypePremisses)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitlePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,27 +97,27 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             // 
             this.txtPlaceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPlaceName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnPlaceHoll, "HollName", true, DataSourceUpdateMode.OnPropertyChanged));
+            this.txtPlaceName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnPlaceHoll, "HollName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtPlaceName.Location = new System.Drawing.Point(120, 12);
             this.txtPlaceName.Name = "txtPlaceName";
             this.txtPlaceName.Size = new System.Drawing.Size(374, 21);
             this.txtPlaceName.TabIndex = 0;
             this.txtPlaceName.ThemeName = "Office2013Light";
             // 
+            // bsClnPlaceHoll
+            // 
+            this.bsClnPlaceHoll.DataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
+            // 
             // txtPlaceValue
             // 
             this.txtPlaceValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPlaceValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnPlaceHoll, "ValuePlace", true, DataSourceUpdateMode.OnPropertyChanged, 0));
+            this.txtPlaceValue.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnPlaceHoll, "ValuePlace", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, 0));
             this.txtPlaceValue.Location = new System.Drawing.Point(120, 36);
             this.txtPlaceValue.Name = "txtPlaceValue";
             this.txtPlaceValue.Size = new System.Drawing.Size(89, 21);
             this.txtPlaceValue.TabIndex = 1;
             this.txtPlaceValue.ThemeName = "Office2013Light";
-            // 
-            // bsClnPlaceHoll
-            // 
-            this.bsClnPlaceHoll.DataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
             // 
             // PremisesActionsForm
             // 
@@ -138,15 +138,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.RootElement.MaxSize = new System.Drawing.Size(514, 132);
-            this.Text = "Додати приміщення закладу";
+            this.Text = "Додати приміщення бізнес-точки";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTypePremisses)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitlePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPlaceName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsClnPlaceHoll)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlaceValue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

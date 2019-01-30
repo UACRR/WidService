@@ -250,6 +250,7 @@ namespace IpsViewComponentLibrary
             this.ctrlAuthorRightholderList.ListMode = IpsViewComponentLibrary.ObjectRightControls.AuthorRightholderBrListMode.Full;
             this.ctrlAuthorRightholderList.Location = new System.Drawing.Point(0, 12);
             this.ctrlAuthorRightholderList.Name = "ctrlAuthorRightholderList";
+            this.ctrlAuthorRightholderList.RoleRateErrorText = "";
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
             this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1069, 363);
             this.ctrlAuthorRightholderList.TabIndex = 2;
@@ -485,11 +486,11 @@ namespace IpsViewComponentLibrary
             this.pvMusicalArrangement.Controls.Add(this.label13);
             this.pvMusicalArrangement.Controls.Add(this.txtMusicRate);
             this.pvMusicalArrangement.Controls.Add(this.ctrlMusicalDesignList);
-            this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(141F, 27F);
+            this.pvMusicalArrangement.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvMusicalArrangement.Location = new System.Drawing.Point(5, 31);
             this.pvMusicalArrangement.Name = "pvMusicalArrangement";
             this.pvMusicalArrangement.Size = new System.Drawing.Size(1067, 378);
-            this.pvMusicalArrangement.Text = "Музичне оформлення";
+            this.pvMusicalArrangement.Text = "Збірна музика";
             // 
             // radSeparator1
             // 
@@ -508,9 +509,9 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.label13.RootElement.ControlBounds = new System.Drawing.Rectangle(12, 5, 100, 18);
-            this.label13.Size = new System.Drawing.Size(279, 19);
+            this.label13.Size = new System.Drawing.Size(234, 19);
             this.label13.TabIndex = 31;
-            this.label13.Text = "Ставка винагороди (%) за музичне оформлення";
+            this.label13.Text = "Ставка винагороди (%) за збірну музику";
             this.label13.ThemeName = "Office2013Light";
             // 
             // txtMusicRate
@@ -530,6 +531,7 @@ namespace IpsViewComponentLibrary
             this.ctrlMusicalDesignList.AllowEditList = true;
             this.ctrlMusicalDesignList.AllowFindCommand = true;
             this.ctrlMusicalDesignList.AllowLinkCommand = true;
+            this.ctrlMusicalDesignList.AllowShowDeleteCommand = true;
             this.ctrlMusicalDesignList.AllowShowObjectCommand = true;
             this.ctrlMusicalDesignList.AllowUnlinkCommand = true;
             this.ctrlMusicalDesignList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -539,13 +541,16 @@ namespace IpsViewComponentLibrary
             this.ctrlMusicalDesignList.DataSourceRegisterCount = typeof(ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel);
             this.ctrlMusicalDesignList.DataSourceRegisterExtra = typeof(ipsFormsDesign.Model.RegisterExtra);
             this.ctrlMusicalDesignList.Location = new System.Drawing.Point(0, 46);
+            this.ctrlMusicalDesignList.Mode = IpsViewComponentLibrary.RegisterControls.RegisterItemListMode.Default;
             this.ctrlMusicalDesignList.MultiSelect = false;
             this.ctrlMusicalDesignList.Name = "ctrlMusicalDesignList";
             this.ctrlMusicalDesignList.SelectedRegisterItem = null;
             this.ctrlMusicalDesignList.ShowAuthors = true;
             this.ctrlMusicalDesignList.ShowDurationUse = true;
+            this.ctrlMusicalDesignList.ShowFilters = true;
             this.ctrlMusicalDesignList.ShowLinked = true;
             this.ctrlMusicalDesignList.ShowObjectInfo = true;
+            this.ctrlMusicalDesignList.ShowTimeStartEnd = false;
             this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1067, 298);
             this.ctrlMusicalDesignList.TabIndex = 30;
             // 
@@ -593,6 +598,7 @@ namespace IpsViewComponentLibrary
             // 
             // dtDate
             // 
+            this.dtDate.CalendarSize = new System.Drawing.Size(220, 180);
             this.dtDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicAgrParam, "LicDate", true));
             this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDate.Location = new System.Drawing.Point(359, 10);
@@ -959,6 +965,7 @@ namespace IpsViewComponentLibrary
             // 
             // dtPremiereDate
             // 
+            this.dtPremiereDate.CalendarSize = new System.Drawing.Size(220, 180);
             this.dtPremiereDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicenseBigR, "DatePremiere", true));
             this.dtPremiereDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtPremiereDate.Location = new System.Drawing.Point(114, 42);

@@ -94,7 +94,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn3.Width = 82;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "Name";
-            gridViewTextBoxColumn4.HeaderText = "Назва клієнта";
+            gridViewTextBoxColumn4.HeaderText = "Назва";
             gridViewTextBoxColumn4.MinWidth = 150;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "Name";
@@ -210,7 +210,7 @@ namespace IpsViewComponentLibrary
             this.btnNewConsumer.Name = "btnNewConsumer";
             this.btnNewConsumer.Size = new System.Drawing.Size(137, 20);
             this.btnNewConsumer.TabIndex = 10;
-            this.btnNewConsumer.Text = "Новий споживач";
+            this.btnNewConsumer.Text = "Новий користувач";
             this.btnNewConsumer.ThemeName = "Office2013Light";
             this.btnNewConsumer.Click += new System.EventHandler(this.btnNewConsumer_Click);
             // 

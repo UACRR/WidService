@@ -34,14 +34,16 @@
             this.bsCategory = new System.Windows.Forms.BindingSource(this.components);
             this.ddlCopyright = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCopyrightType = new System.Windows.Forms.BindingSource(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRoleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCopyright)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlCategory
@@ -55,10 +57,11 @@
             this.ddlCategory.FormattingEnabled = false;
             this.ddlCategory.Location = new System.Drawing.Point(75, 4);
             this.ddlCategory.Name = "ddlCategory";
-            this.ddlCategory.Size = new System.Drawing.Size(1338, 21);
+            this.ddlCategory.Size = new System.Drawing.Size(464, 21);
             this.ddlCategory.TabIndex = 0;
             this.ddlCategory.ThemeName = "Office2013Light";
             this.ddlCategory.ValueMember = "CodeI";
+            this.ddlCategory.Click += new System.EventHandler(this.ddlCategory_Click);
             // 
             // bsCreativeRoleType
             // 
@@ -79,23 +82,15 @@
             this.ddlCopyright.FormattingEnabled = false;
             this.ddlCopyright.Location = new System.Drawing.Point(75, 30);
             this.ddlCopyright.Name = "ddlCopyright";
-            this.ddlCopyright.Size = new System.Drawing.Size(1338, 21);
+            this.ddlCopyright.Size = new System.Drawing.Size(464, 21);
             this.ddlCopyright.TabIndex = 2;
             this.ddlCopyright.ThemeName = "Office2013Light";
             this.ddlCopyright.ValueMember = "CodeI";
+            this.ddlCopyright.Click += new System.EventHandler(this.ddlCopyright_Click);
             // 
             // bsCopyrightType
             // 
             this.bsCopyrightType.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 4);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Вид об\'єкта";
             // 
             // label2
             // 
@@ -105,31 +100,42 @@
             this.label2.Size = new System.Drawing.Size(0, 13);
             this.label2.TabIndex = 4;
             // 
-            // label3
+            // radLabel1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 31);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Вид права";
+            this.radLabel1.Location = new System.Drawing.Point(3, 4);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(60, 19);
+            this.radLabel1.TabIndex = 8;
+            this.radLabel1.Text = "Категорія";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(3, 30);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(64, 19);
+            this.radLabel2.TabIndex = 9;
+            this.radLabel2.Text = "Вид права";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // CreativeRoleTypeDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.radLabel2);
+            this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.ddlCopyright);
             this.Controls.Add(this.ddlCategory);
             this.Name = "CreativeRoleTypeDictionaryControl";
-            this.Size = new System.Drawing.Size(1416, 52);
+            this.Size = new System.Drawing.Size(542, 56);
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRoleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCopyright)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,9 +147,9 @@
         private Telerik.WinControls.UI.RadDropDownList ddlCopyright;
         private System.Windows.Forms.BindingSource bsCreativeRoleType;
         private System.Windows.Forms.BindingSource bsCategory;
-        private System.Windows.Forms.BindingSource bsCopyrightType;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource bsCopyrightType;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private Telerik.WinControls.UI.RadLabel radLabel2;
     }
 }

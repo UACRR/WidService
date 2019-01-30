@@ -73,19 +73,19 @@
             // 
             this.radLabel1.Location = new System.Drawing.Point(4, 4);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(41, 19);
+            this.radLabel1.Size = new System.Drawing.Size(72, 19);
             this.radLabel1.TabIndex = 0;
-            this.radLabel1.Text = "Клієнт";
+            this.radLabel1.Text = "Користувач";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // txtClient
             // 
             this.txtClient.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "Name", true));
             this.txtClient.Enabled = false;
-            this.txtClient.Location = new System.Drawing.Point(48, 3);
+            this.txtClient.Location = new System.Drawing.Point(82, 3);
             this.txtClient.Name = "txtClient";
             this.txtClient.ReadOnly = true;
-            this.txtClient.Size = new System.Drawing.Size(424, 21);
+            this.txtClient.Size = new System.Drawing.Size(390, 21);
             this.txtClient.TabIndex = 1;
             this.txtClient.ThemeName = "Office2013Light";
             // 
@@ -97,10 +97,10 @@
             // 
             this.txtAgrNumberBr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "AgrNumber", true));
             this.txtAgrNumberBr.Enabled = false;
-            this.txtAgrNumberBr.Location = new System.Drawing.Point(578, 3);
+            this.txtAgrNumberBr.Location = new System.Drawing.Point(563, 3);
             this.txtAgrNumberBr.Name = "txtAgrNumberBr";
             this.txtAgrNumberBr.ReadOnly = true;
-            this.txtAgrNumberBr.Size = new System.Drawing.Size(124, 21);
+            this.txtAgrNumberBr.Size = new System.Drawing.Size(139, 21);
             this.txtAgrNumberBr.TabIndex = 3;
             this.txtAgrNumberBr.ThemeName = "Office2013Light";
             // 
@@ -108,9 +108,9 @@
             // 
             this.radLabel2.Location = new System.Drawing.Point(478, 4);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(102, 19);
+            this.radLabel2.Size = new System.Drawing.Size(79, 19);
             this.radLabel2.TabIndex = 2;
-            this.radLabel2.Text = "№ Ген. договору";
+            this.radLabel2.Text = "№ Договору";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
             // txtDateBegin

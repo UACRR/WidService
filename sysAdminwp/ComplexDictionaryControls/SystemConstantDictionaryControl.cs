@@ -11,13 +11,18 @@ using ipsFormsDesign.Dictionary;
 
 namespace sysAdminwp.ComplexDictionaryControls
 {
-    public partial class TaxRateDictionaryControl : UserControl
+    public partial class SystemConstantDictionaryControl : UserControl
     {
-        public TaxRateDictionaryControl(List<DictBaseTypeI> taxRate)
+        public SystemConstantDictionaryControl(List<DictBaseTypeI> systemConstant)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-            bsTaxRate.DataSource = taxRate;
+            bsSystemConstant.DataSource = systemConstant;
+        }
+        public object SystemConstantSource
+        {
+            get => bsSystemConstant.DataSource;
+            set => bsSystemConstant.DataSource = value;
         }
     }
 }

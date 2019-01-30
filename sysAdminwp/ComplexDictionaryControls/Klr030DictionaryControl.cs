@@ -14,24 +14,40 @@ namespace sysAdminwp.ComplexDictionaryControls
 {
     public sealed partial class Klr030DictionaryControl : UserControl
     {
-        public Klr030DictionaryControl(KlR030 klr, List<DictBaseTypeI> listKlR030)
-        {
-            InitializeComponent();
-            bsKlr.DataSource = klr;
-            bsCountry.DataSource = listKlR030;
-        }
+        public event EventHandler HideElem;
 
-        public Klr030DictionaryControl(List<DictBaseTypeI> countryList)
+        public Klr030DictionaryControl(List<DictBaseTypeI> countryList, List<DictBaseTypeI> klr031List)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             bsCountry.DataSource = countryList;
+            bsKlr031.DataSource = klr031List;
+        }
+        public object KlR030CountryDataSource
+        {
+            get => bsCountry.DataSource;
+            set => bsCountry.DataSource = value;
         }
 
+        public object KlR031DataSource
+        {
+            get => bsKlr031.DataSource;
+            set => bsKlr031.DataSource = value;
+        }
         public object KlR030DataSource
         {
             get => bsKlr.DataSource;
             set => bsKlr.DataSource = value;
+        }
+
+        private void ddlCountry_Click(object sender, EventArgs e)
+        {
+            HideElem?.Invoke(sender, e);
+        }
+
+        private void ddlKlr031_Click(object sender, EventArgs e)
+        {
+            HideElem?.Invoke(sender, e);
         }
     }
 }

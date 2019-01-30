@@ -14,12 +14,7 @@ namespace sysAdminwp.ComplexDictionaryControls
 {
     public sealed partial class GenreTypeDictionaryControl : UserControl
     {
-        public GenreTypeDictionaryControl(GenreType genreType, List<DictBaseTypeI> listGenreType)
-        {
-            InitializeComponent();
-            bsGenreType.DataSource = genreType;
-            bsCategory.DataSource = listGenreType;
-        }
+        public event EventHandler HideElem;
 
         public GenreTypeDictionaryControl(List<DictBaseTypeI> listGenreType)
         {
@@ -32,6 +27,11 @@ namespace sysAdminwp.ComplexDictionaryControls
         {
             get => bsGenreType.DataSource;
             set => bsGenreType.DataSource = value;
+        }
+
+        private void ddlCategory_Click(object sender, EventArgs e)
+        {
+            HideElem?.Invoke(sender, e);
         }
     }
 }

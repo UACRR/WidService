@@ -346,6 +346,15 @@ namespace ipsFormsDesign.Dictionary
         {
             return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.DocumentTypeTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
         }
+        // SystemConstant
+        public static implicit operator SystemConstant(DictBaseTypeI test)
+        {
+            return new SystemConstant { CodeI = test.CodeI, Name = test.Name, SystemConstantTr = test.DictTrI.Select(rec => new SystemConstantTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(SystemConstant test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.SystemConstantTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
 
         #endregion
 

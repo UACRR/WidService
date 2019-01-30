@@ -178,11 +178,11 @@
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(558, 31);
+            this.radLabel3.Location = new System.Drawing.Point(494, 30);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(146, 19);
+            this.radLabel3.Size = new System.Drawing.Size(210, 19);
             this.radLabel3.TabIndex = 7;
-            this.radLabel3.Text = "Всього сума винагороди";
+            this.radLabel3.Text = "Всього сума авторської винагороди";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
             // radLabel2
@@ -362,7 +362,7 @@
             gridViewTextBoxColumn6.Expression = "Amount/100*AuthRate";
             gridViewTextBoxColumn6.FieldName = "AuthAmount";
             gridViewTextBoxColumn6.FormatString = "{0:#,###0.00 грн}";
-            gridViewTextBoxColumn6.HeaderText = "Сума авторського гонорару";
+            gridViewTextBoxColumn6.HeaderText = "Сума авторської винагороди";
             gridViewTextBoxColumn6.MinWidth = 110;
             gridViewTextBoxColumn6.Name = "AuthAmount";
             gridViewTextBoxColumn6.ReadOnly = true;
@@ -370,7 +370,7 @@
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "MusicRate";
             gridViewTextBoxColumn7.FormatString = "{0:0.00 \'%\'}";
-            gridViewTextBoxColumn7.HeaderText = "У т.ч. % муз. супроводу";
+            gridViewTextBoxColumn7.HeaderText = "У т.ч. % збірна музика";
             gridViewTextBoxColumn7.MaxWidth = 80;
             gridViewTextBoxColumn7.MinWidth = 80;
             gridViewTextBoxColumn7.Multiline = true;
@@ -383,7 +383,7 @@
             gridViewTextBoxColumn8.Expression = "Amount/100*MusicRate";
             gridViewTextBoxColumn8.FieldName = "MusicAmount";
             gridViewTextBoxColumn8.FormatString = "{0:#,###0.00 грн}";
-            gridViewTextBoxColumn8.HeaderText = "Сума за муз. супровід";
+            gridViewTextBoxColumn8.HeaderText = "Сума за збірну музику";
             gridViewTextBoxColumn8.MinWidth = 100;
             gridViewTextBoxColumn8.Multiline = true;
             gridViewTextBoxColumn8.Name = "MusicAmount";
@@ -445,11 +445,11 @@
             this.pvMusicDesign.Controls.Add(this.radSeparator1);
             this.pvMusicDesign.Controls.Add(this.gvMusicDesignView);
             this.pvMusicDesign.Controls.Add(this.cName);
-            this.pvMusicDesign.ItemSize = new System.Drawing.SizeF(126F, 27F);
+            this.pvMusicDesign.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvMusicDesign.Location = new System.Drawing.Point(5, 31);
             this.pvMusicDesign.Name = "pvMusicDesign";
             this.pvMusicDesign.Size = new System.Drawing.Size(996, 358);
-            this.pvMusicDesign.Text = "Музичний супровід";
+            this.pvMusicDesign.Text = "Збірна музика";
             // 
             // cMusRate
             // 
