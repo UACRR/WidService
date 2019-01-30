@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using ipsFormsDesign.Data;
+using AutoMapper;
 //using Autofac;
 
 namespace UnitTestMediaPortal
@@ -59,6 +60,52 @@ namespace UnitTestMediaPortal
             var list = _service.GetListOfConsumers();
             Assert.IsNotNull(list);
             Console.WriteLine($"Count of Consumers is {list.Count}");
+        }
+
+        class ClsOne
+        {
+            public int id { get; set; }
+            public string Name { get; set; }
+            public ClsTwo item { get; set; }
+        }
+
+        class ClsTwo
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
+        class clsDTO
+        {
+            public int Id { get; set; }
+            public string ClsOneName { get; set; }
+            public string ClsTwoName { get; set; }
+        }
+        [TestMethod]
+        public void TestAutoMap()
+        {
+            Mapper.Initialize( cfg => {
+                cfg.CreateMap<ClsOne, clsDTO>()
+                .ForMember( d => d.Id, opt => opt.MapFrom( src => src.id ))
+                .ForMember(d => d.ClsOneName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(d => d.ClsTwoName, opt => opt.MapFrom(src => src.item.Name))
+                .ReverseMap()
+                .ForPath( d => d.item.Id, opt => opt.MapFrom( src => src.Id ))
+                ;
+            });
+            ClsOne one = new ClsOne { id = 1, Name = "One",
+                item = new ClsTwo { Id = 1, Name = "Two"}
+            };
+
+            var result = Mapper.Map<ClsOne, clsDTO>(one);
+            Assert.AreEqual(result.ClsOneName, one.Name);
+
+            result.Id = 2;
+            Mapper.Map(result, one);
+
+            Assert.AreEqual(one.id, 2);
+            Assert.AreEqual(one.id, one.item.Id);
+            Assert.AreEqual(result.ClsTwoName, one.item.Name);
         }
 
     }
