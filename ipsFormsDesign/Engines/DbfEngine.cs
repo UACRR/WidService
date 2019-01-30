@@ -109,6 +109,7 @@ namespace ipsFormsDesign.Services
                     R030 = "980",
                     CodeOper = "1",
                     MfoCorr = item["MFOCOR"].ToString(),
+                    NameMfoCorr = item["BANKCOR"].ToString(),
                     AccountCorr = item["ACCCOR"].ToString(),
                     OkpoCorr = item["OKPOCOR"].ToString(),
                     NameCorr = item["NAMECOR"].ToString(),

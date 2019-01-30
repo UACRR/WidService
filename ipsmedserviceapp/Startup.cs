@@ -100,6 +100,7 @@ namespace ipsmedserviceapp
             });
 
             services.AddTransient<RightholderRepository>();
+            services.AddLogging(builder => builder.AddConsole());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -119,7 +120,7 @@ namespace ipsmedserviceapp
             // loggerFactory.AddConsole();
             app.UseAuthentication();
             //loggerFactory.AddDebug();
-            loggerFactory.AddConsole();
+            //loggerFactory.AddConsole();
 
 
             app.UseRequestLocalization(BuildLocalizationOptions());
