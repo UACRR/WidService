@@ -165,7 +165,7 @@ namespace IpsViewComponentLibrary
             {
                 case "viewBtn":
                     var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
-                    RequestForm viewLicenseForm = new RequestForm(_customer, _gridMainView, IpsGlobal.AnketaDictionaties, FormType.View, licId)
+                    var viewLicenseForm = new RequestForm(_customer, _gridMainView, IpsGlobal.AnketaDictionaties, FormType.View, licId)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
