@@ -64,12 +64,18 @@ namespace IpsViewComponentLibrary
             if(gvViewLicences.Rows.Count == 0 || e.CurrentRow?.DataBoundItem == null)
             {
                 ctrlAgrDetailInfo.ClearData();
-                pageView.Enabled = false;
+                ctrlAgrDetailInfo.Enabled = false;
+                btnToProlongation.Enabled = false;
+                btnCloseAgr.Enabled = false;
                 return;
             }
 
-            if (pageView.Enabled == false)
-                pageView.Enabled = true;
+            if (ctrlAgrDetailInfo.Enabled == false)
+            {
+                ctrlAgrDetailInfo.Enabled = true;
+                btnToProlongation.Enabled = true;
+                btnCloseAgr.Enabled = true;
+            }
 
             var lic = e.CurrentRow.DataBoundItem as LicenseAgreementBigRightView;
 
