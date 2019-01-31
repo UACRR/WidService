@@ -301,6 +301,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 ctrlRightholdersObjectsRight.SelectedRightholder = new RightholderMainView { CustId = ((RightHolder)bsRightHolder.Current).CustId };
             }
+
         }
 
         private void miAddMusicalCompositionForRightholder_Click(object sender, EventArgs e)
@@ -323,6 +324,23 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void btnUploadFromExcel_Click(object sender, EventArgs e)
         {
             _presenter.UploadFromExcel();
+        }
+
+        private void anketaPageView_SelectedPageChanged(object sender, EventArgs e)
+        {
+            // Патлякевич
+            // Виправлення MED-404
+            if (anketaPageView.SelectedPage == passportPage)
+            {
+                var anketa = bsAnketaPerson.Current as AnketaPerson;
+                if (anketa != null)
+                {
+                    if (anketa.Citizenship == "804")
+                        passportPageView.SelectedPage = createRightholderInternalPasportPage;
+                    else
+                        passportPageView.SelectedPage = createRightholderForeignPassportPage;
+                }
+            }
         }
     }
 }
