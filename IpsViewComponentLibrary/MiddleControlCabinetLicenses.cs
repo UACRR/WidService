@@ -16,7 +16,6 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlCabinetLicenses : UserControl
     {
-
         private Customer _customer;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
         public event SaveCustomerEventHandler OnSaveCustomer;
@@ -62,7 +61,7 @@ namespace IpsViewComponentLibrary
 
         private void gvViewLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
-            if(gvViewLicences.Rows.Count == 0 || e?.CurrentRow?.DataBoundItem == null)
+            if(gvViewLicences.Rows.Count == 0 || e.CurrentRow?.DataBoundItem == null)
             {
                 ctrlAgrDetailInfo.ClearData();
                 pageView.Enabled = false;
@@ -72,14 +71,19 @@ namespace IpsViewComponentLibrary
             if (pageView.Enabled == false)
                 pageView.Enabled = true;
 
-            btnToProlongation.Enabled = (e.CurrentRow?.DataBoundItem as LicenseAgreementBigRightView)?.LicStatus == 2;
+            var lic = e.CurrentRow.DataBoundItem as LicenseAgreementBigRightView;
 
-            var agrStatus = (e.CurrentRow?.DataBoundItem as LicenseAgreementBigRightView)?.LicStatus ?? -1;
-            btnToAccept.Enabled = (agrStatus == 0 || agrStatus == 1);
-            SetBtnFunc(agrStatus == 0 ? ButtonFunctionType.Agree : agrStatus == 1 ? ButtonFunctionType.Accept : ButtonFunctionType.None);
+            btnToProlongation.Enabled = lic?.LicStatus == 2;
+            btnCloseAgr.Enabled = lic?.LicStatus != 4;
+            btnToAccept.Enabled = (lic?.LicStatus == 0 || lic?.LicStatus == 1);
+
+            SetBtnFunc(lic?.LicStatus == 0 ? ButtonFunctionType.Agree : lic?.LicStatus == 1 ? ButtonFunctionType.Accept : ButtonFunctionType.None);
+
             //оновлення інфи
-            if (!(e?.CurrentRow?.DataBoundItem is LicenseAgreementBigRightView lic)) return;
-            var licAgrParam = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == lic.LicId)?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == lic.LicVersion);
+            var licAgrParam = _customer.Client.LicenseAgreement
+                .SingleOrDefault(rec => rec.LicId == lic?.LicId)?
+                .LicenseAgrParam
+                .SingleOrDefault(rec => rec.LicVersion == lic?.LicVersion);
             if(licAgrParam == null) return;
             ctrlAgrDetailInfo.SetDataInfo(licAgrParam, lic);
         }
@@ -88,7 +92,7 @@ namespace IpsViewComponentLibrary
         {
             _functionType = type;
             if(type != ButtonFunctionType.None)
-            btnToAccept.Text = _btnDictionary[type];
+                btnToAccept.Text = _btnDictionary[type];
         }
 
         private void btnCloseAgr_Click(object sender, EventArgs e)
