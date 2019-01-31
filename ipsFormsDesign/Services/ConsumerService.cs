@@ -8,6 +8,7 @@ using WebAPIConnector;
 using System.IO;
 using System.Dynamic;
 using System.Threading.Tasks;
+using ipsmedserviceapp.Model.SQLViewsData;
 // ReSharper disable All
 
 namespace ipsFormsDesign.Services
@@ -16,6 +17,18 @@ namespace ipsFormsDesign.Services
     {
         private ApiConnector _webApi = new ApiConnector();
         private readonly string _prefix = "consumer/";
+
+        public bool CheckOkpoExists(string okpo)
+        {
+            var result = _webApi.GetItemById<vCustomer>("rh/checkexists/okpo", okpo);
+            return result != null;
+        }
+        public bool CheckIpiExists(string ipi)
+        {
+            var result = _webApi.GetItemById<vCustomer>("rh/checkexists/ipi", ipi);
+            return result != null;
+        }
+
         public Customer GetData(int custId)
         {
             var consumer = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString());

@@ -13,6 +13,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Presenters;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using Telerik.WinControls;
@@ -38,6 +39,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
             _dbfPresenter = new DBFPresenter();
+            IpsGlobal.addInstance(typeof(IUniqueChecker), new UniqueCheckerPresenter());
             IpsGlobal.addInstance(typeof(IDBFPresenter), _dbfPresenter);
             InitializeComponent();
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";

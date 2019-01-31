@@ -23,7 +23,6 @@ namespace IpsViewComponentLibrary.RightholderControls
                 if (_presenter == null)
                 {
                     _presenter = value;
-                    IpsGlobal.addInstance(typeof(IUniqueChecker), value);
                 }
             }
         }

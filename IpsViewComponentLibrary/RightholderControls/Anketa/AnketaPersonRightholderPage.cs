@@ -52,8 +52,10 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
         private void txtInterCode_Leave(object sender, EventArgs e)
         {
             // Тільки нові правовласники
-            Customer cust = bsCustomer.DataSource as Customer;
-            if (cust == null || cust.CustId != 0)
+            AnketaPerson anketa = bsAnketaPerson.DataSource is AnketaPerson @customer ? @customer :
+                            bsAnketaPerson.DataSource is BindingSource @source ? @source.Current as AnketaPerson : null;
+
+            if (anketa == null || (anketa.CustId != 0 &&  anketa.Inn == txtInterCode.Text))
                 return;
 
             if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))

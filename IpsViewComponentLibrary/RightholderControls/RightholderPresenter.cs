@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Presenters;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.AppController;
@@ -13,7 +15,7 @@ using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public class RightholderPresenter : IRightholderPresenter, IUniqueChecker
+    public class RightholderPresenter : IRightholderPresenter
     {
         private readonly IRightholderView _view;
         private readonly RightholderService _rightholderService;
@@ -26,16 +28,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         private AnketaCompany _anketaCompany;
         private bool _isCompany;
         private bool _canClose;
+        public IUniqueChecker UniquChecker { get; private set; }
 
-        public bool CheckOKPOIsUnique( string okpo )
-        {
-            return _rightholderService.CheckOkpoExists(okpo) == false;
-        }
-
-        public bool CheckIPIIsUnique(string ipi )
-        {
-            return _rightholderService.CheckIpiExists(ipi) == false; ;
-        }
 
         public RightholderPresenter(IRightholderView view)
         {
@@ -45,6 +39,18 @@ namespace IpsViewComponentLibrary.RightholderControls
             _rightholderService = new RightholderService();
             _objectRightService = new ObjectRightService();
             _dialogService = new DialogService();
+
+            if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))
+            {
+                UniquChecker = new UniqueCheckerPresenter(_rightholderService);
+                IpsGlobal.addInstance(typeof(IUniqueChecker), UniquChecker);
+            }
+        }
+
+        ~RightholderPresenter()
+        {
+            if (UniquChecker != null)
+                IpsGlobal.removeInstance(typeof(IUniqueChecker));
         }
 
         public void ShowNew(int customerType)
@@ -140,7 +146,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             if (!_canClose)
                 _canClose = _dialogService.ClosingIsConfirmed((IWin32Window)_view);
-            
+
             if (_canClose)
                 _view.Hide();
         }

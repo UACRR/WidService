@@ -64,9 +64,9 @@ namespace UnitTestMediaPortal
 
         class ClsOne
         {
-            public int id { get; set; }
+            public int Id { get; set; }
             public string Name { get; set; }
-            public ClsTwo item { get; set; }
+            public ClsTwo Item { get; set; }
         }
 
         class ClsTwo
@@ -86,15 +86,15 @@ namespace UnitTestMediaPortal
         {
             Mapper.Initialize( cfg => {
                 cfg.CreateMap<ClsOne, clsDTO>()
-                .ForMember( d => d.Id, opt => opt.MapFrom( src => src.id ))
+                .ForMember( d => d.Id, opt => opt.MapFrom( src => src.Id ))
                 .ForMember(d => d.ClsOneName, opt => opt.MapFrom(src => src.Name))
-                .ForMember(d => d.ClsTwoName, opt => opt.MapFrom(src => src.item.Name))
+                .ForMember(d => d.ClsTwoName, opt => opt.MapFrom(src => src.Item.Name))
                 .ReverseMap()
-                .ForPath( d => d.item.Id, opt => opt.MapFrom( src => src.Id ))
+                .ForPath( d => d.Item.Id, opt => opt.MapFrom( src => src.Id ))
                 ;
             });
-            ClsOne one = new ClsOne { id = 1, Name = "One",
-                item = new ClsTwo { Id = 1, Name = "Two"}
+            ClsOne one = new ClsOne { Id = 1, Name = "One",
+                Item = new ClsTwo { Id = 1, Name = "Two"}
             };
 
             var result = Mapper.Map<ClsOne, clsDTO>(one);
@@ -103,9 +103,9 @@ namespace UnitTestMediaPortal
             result.Id = 2;
             Mapper.Map(result, one);
 
-            Assert.AreEqual(one.id, 2);
-            Assert.AreEqual(one.id, one.item.Id);
-            Assert.AreEqual(result.ClsTwoName, one.item.Name);
+            Assert.AreEqual(one.Id, 2);
+            Assert.AreEqual(one.Id, one.Item.Id);
+            Assert.AreEqual(result.ClsTwoName, one.Item.Name);
         }
 
     }

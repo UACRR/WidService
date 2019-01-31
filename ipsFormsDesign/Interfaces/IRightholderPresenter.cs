@@ -6,12 +6,8 @@ namespace ipsFormsDesign.Interfaces
     /// <summary>
     /// Методи перевірки ОКПО та ІРІ на унікальність
     /// </summary>
-    public interface IUniqueChecker
-    {
-        bool CheckOKPOIsUnique(string okpo);
-        bool CheckIPIIsUnique(string okpo);
-    }
-    public interface IRightholderPresenter: IUniqueChecker
+
+    public interface IRightholderPresenter
     {
         void Show(int custId);
         void ShowNew(int customerType);
@@ -25,5 +21,6 @@ namespace ipsFormsDesign.Interfaces
         void AddExistingObject();
         void UploadFromExcel();
         void SetAgreementNumber();
+        IUniqueChecker UniquChecker { get; }
     }
 }

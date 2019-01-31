@@ -132,8 +132,10 @@ namespace IpsViewComponentLibrary
         private void txtOkpo_Leave(object sender, EventArgs e)
         {
             // Тільки нові правовласники
-            AnketaCompany cust = bsAnketaCompany.DataSource as AnketaCompany;
-            if (cust == null || (cust.CustId != 0 && cust.Okpo.Trim() == txtOkpo.Text.Trim() ) )
+            AnketaCompany cust = bsAnketaCompany.DataSource is AnketaCompany ? 
+                            bsAnketaCompany.DataSource as AnketaCompany :
+                            (bsAnketaCompany.DataSource as BindingSource)?.Current as AnketaCompany;
+            if (cust != null && (cust.CustId != 0 && cust.Okpo.Trim() == txtOkpo.Text.Trim() ) )
                 return;
 
             if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))
