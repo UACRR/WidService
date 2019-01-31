@@ -12,7 +12,6 @@ using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsBankAccountControl : UserControl
     {
         public IpsBankAccountControl()
@@ -20,16 +19,10 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
             get => bsBankAccount.DataSource;
-            set
-            {
-                if (bsBankAccount.DataSource != value)
-                    bsBankAccount.DataSource = value;
-            }
+            set => bsBankAccount.DataSource = value;
         }
 
         public bool Validator()

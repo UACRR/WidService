@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblTitle = new Telerik.WinControls.UI.RadLabel();
-            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.ddlPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
             this.bsAgreementAddBr = new System.Windows.Forms.BindingSource(this.components);
             this.bsDictPaidPeriod = new System.Windows.Forms.BindingSource(this.components);
@@ -48,8 +46,6 @@
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxContrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).BeginInit();
@@ -69,21 +65,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaCompany, "Name", true));
-            this.lblTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTitle.Location = new System.Drawing.Point(35, 4);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(116, 22);
-            this.lblTitle.TabIndex = 44;
-            this.lblTitle.Text = "Назва Клієнта";
-            this.lblTitle.ThemeName = "Office2013Light";
-            // 
-            // bsAnketaCompany
-            // 
-            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // ddlPeriodPayment
             // 
@@ -139,7 +120,7 @@
             // 
             // lblParam
             // 
-            this.lblParam.Location = new System.Drawing.Point(13, 87);
+            this.lblParam.Location = new System.Drawing.Point(13, 60);
             this.lblParam.Name = "lblParam";
             this.lblParam.Size = new System.Drawing.Size(116, 18);
             this.lblParam.TabIndex = 48;
@@ -151,7 +132,7 @@
             this.panel.Controls.Add(this.radLabel4);
             this.panel.Controls.Add(this.txtDayForPay);
             this.panel.Controls.Add(this.ddlPeriodPayment);
-            this.panel.Location = new System.Drawing.Point(3, 97);
+            this.panel.Location = new System.Drawing.Point(3, 70);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(489, 69);
             this.panel.TabIndex = 49;
@@ -159,7 +140,7 @@
             // 
             // lblContrDo
             // 
-            this.lblContrDo.Location = new System.Drawing.Point(6, 57);
+            this.lblContrDo.Location = new System.Drawing.Point(6, 30);
             this.lblContrDo.Name = "lblContrDo";
             this.lblContrDo.Size = new System.Drawing.Size(81, 19);
             this.lblContrDo.TabIndex = 54;
@@ -170,7 +151,7 @@
             // 
             this.rdtPickerDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddBr, "DateEnd", true));
             this.rdtPickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerDateEnd.Location = new System.Drawing.Point(359, 54);
+            this.rdtPickerDateEnd.Location = new System.Drawing.Point(359, 27);
             this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateEnd.Name = "rdtPickerDateEnd";
@@ -183,7 +164,7 @@
             // 
             // lblContrDoTo
             // 
-            this.lblContrDoTo.Location = new System.Drawing.Point(332, 56);
+            this.lblContrDoTo.Location = new System.Drawing.Point(332, 29);
             this.lblContrDoTo.Name = "lblContrDoTo";
             this.lblContrDoTo.Size = new System.Drawing.Size(21, 19);
             this.lblContrDoTo.TabIndex = 58;
@@ -194,7 +175,7 @@
             // 
             this.rdtPickerDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddBr, "DateBegin", true));
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerDateBegin.Location = new System.Drawing.Point(167, 55);
+            this.rdtPickerDateBegin.Location = new System.Drawing.Point(167, 28);
             this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerDateBegin.Name = "rdtPickerDateBegin";
@@ -208,7 +189,7 @@
             // 
             // lblContrDoFrom
             // 
-            this.lblContrDoFrom.Location = new System.Drawing.Point(136, 57);
+            this.lblContrDoFrom.Location = new System.Drawing.Point(136, 30);
             this.lblContrDoFrom.Name = "lblContrDoFrom";
             this.lblContrDoFrom.Size = new System.Drawing.Size(23, 19);
             this.lblContrDoFrom.TabIndex = 56;
@@ -219,7 +200,7 @@
             // 
             this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddBr, "AgrDate", true));
             this.rdtPickerAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerAgrDate.Location = new System.Drawing.Point(359, 30);
+            this.rdtPickerAgrDate.Location = new System.Drawing.Point(359, 3);
             this.rdtPickerAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.rdtPickerAgrDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.rdtPickerAgrDate.Name = "rdtPickerAgrDate";
@@ -232,7 +213,7 @@
             // 
             // lblContrFrom
             // 
-            this.lblContrFrom.Location = new System.Drawing.Point(330, 32);
+            this.lblContrFrom.Location = new System.Drawing.Point(330, 5);
             this.lblContrFrom.Name = "lblContrFrom";
             this.lblContrFrom.Size = new System.Drawing.Size(23, 19);
             this.lblContrFrom.TabIndex = 53;
@@ -242,7 +223,7 @@
             // rtxtBoxContrNumber
             // 
             this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBr, "AgrNumber", true));
-            this.rtxtBoxContrNumber.Location = new System.Drawing.Point(167, 31);
+            this.rtxtBoxContrNumber.Location = new System.Drawing.Point(167, 4);
             this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
             this.rtxtBoxContrNumber.NullText = "Номер договору";
             this.rtxtBoxContrNumber.Size = new System.Drawing.Size(157, 21);
@@ -251,7 +232,7 @@
             // 
             // lblContrNumb
             // 
-            this.lblContrNumb.Location = new System.Drawing.Point(6, 32);
+            this.lblContrNumb.Location = new System.Drawing.Point(6, 5);
             this.lblContrNumb.Name = "lblContrNumb";
             this.lblContrNumb.Size = new System.Drawing.Size(157, 19);
             this.lblContrNumb.TabIndex = 51;
@@ -271,13 +252,10 @@
             this.Controls.Add(this.lblContrFrom);
             this.Controls.Add(this.rtxtBoxContrNumber);
             this.Controls.Add(this.lblContrNumb);
-            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblParam);
             this.Controls.Add(this.panel);
             this.Name = "AgreementBigRight";
-            this.Size = new System.Drawing.Size(499, 172);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
+            this.Size = new System.Drawing.Size(499, 145);
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictPaidPeriod)).EndInit();
@@ -303,9 +281,6 @@
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadLabel lblTitle;
-        private System.Windows.Forms.BindingSource bsAnketaCompany;
         private Telerik.WinControls.UI.RadDropDownList ddlPeriodPayment;
         private System.Windows.Forms.BindingSource bsAgreementAddBr;
         private System.Windows.Forms.BindingSource bsDictPaidPeriod;

@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using System.Windows.Forms;
+
+namespace IpsViewComponentLibrary
 {
     partial class IpsBankAccountControl
     {
@@ -102,7 +104,7 @@
             // txtAccountNumber
             // 
             this.txtAccountNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "AccountNumber", true));
+            this.txtAccountNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "AccountNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtAccountNumber.Location = new System.Drawing.Point(168, 103);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(261, 21);
@@ -116,7 +118,7 @@
             // txtTransitNumber
             // 
             this.txtTransitNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTransitNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "TransitNumber", true));
+            this.txtTransitNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "TransitNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtTransitNumber.Location = new System.Drawing.Point(168, 78);
             this.txtTransitNumber.Name = "txtTransitNumber";
             this.txtTransitNumber.Size = new System.Drawing.Size(261, 21);
@@ -126,7 +128,7 @@
             // txtMfoOkpo
             // 
             this.txtMfoOkpo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMfoOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "MfoOkpo", true));
+            this.txtMfoOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "MfoOkpo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtMfoOkpo.Location = new System.Drawing.Point(168, 53);
             this.txtMfoOkpo.MaxLength = 10;
             this.txtMfoOkpo.Name = "txtMfoOkpo";
@@ -138,7 +140,7 @@
             // txtMfo
             // 
             this.txtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "Mfo", true));
+            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "Mfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, default(int)));
             this.txtMfo.Location = new System.Drawing.Point(168, 28);
             this.txtMfo.MaxLength = 6;
             this.txtMfo.Name = "txtMfo";
@@ -150,7 +152,7 @@
             // txtMfoName
             // 
             this.txtMfoName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMfoName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "MfoName", true));
+            this.txtMfoName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "MfoName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtMfoName.Location = new System.Drawing.Point(168, 3);
             this.txtMfoName.Name = "txtMfoName";
             this.txtMfoName.Size = new System.Drawing.Size(261, 21);

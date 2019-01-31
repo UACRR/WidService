@@ -13,26 +13,27 @@ using ipsFormsDesign.Dictionary;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class MiddleControlClientName : UserControl, IMiddleCtrlAnketaConsumer
+    public partial class MiddleControlClientName : UserControl
     {
-        private Customer _cust;
-        private AnketaDictionaties _dictionaties;
+        public event EventHandler<string> TextNameChanged;
 
         public MiddleControlClientName()
         {
             InitializeComponent();
+            ctrlAnketaCompany.TextNameChanged += CtrlAnketaCompany_TextNameChanged;
             ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
         }
 
-        private AnketaCompany anketa;
-        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties )
+        private void CtrlAnketaCompany_TextNameChanged(object sender, string e)
         {
-            _cust = cust;
-            _dictionaties = dictionaties;
-            anketa = _cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == _cust.AnkVersion);
+            TextNameChanged?.Invoke(sender, e);
+        }
+
+        public void SetDataSources(Customer customer)
+        {
+            var anketa = customer?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == customer.AnkVersion);
             
             ctrlAnketaCompany.DataSource = anketa;
-
             ctrlRegistrationsCompany.DataSource = anketa;
         }
 
@@ -46,7 +47,6 @@ namespace IpsViewComponentLibrary
                 isvalid = false;
 
             return isvalid;
-
         }
 
         internal void SetAutoComplete(Func<string, IList<AutoCompleteData>> _getAutoCompList, Func<int, Customer> _getCustomerAnketa)

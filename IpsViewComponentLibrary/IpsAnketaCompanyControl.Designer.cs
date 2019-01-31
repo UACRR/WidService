@@ -34,6 +34,7 @@
             this.lblShortName = new Telerik.WinControls.UI.RadLabel();
             this.lblFullName = new Telerik.WinControls.UI.RadLabel();
             this.txtName = new IpsViewComponentLibrary.RadTextBoxAuto();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.txtShortName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblShortName)).BeginInit();
@@ -89,6 +90,7 @@
             this.txtName.Size = new System.Drawing.Size(333, 21);
             this.txtName.TabIndex = 0;
             this.txtName.ThemeName = "Office2013Light";
+            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
             // 
             // IpsAnketaCompanyControl
             // 
@@ -118,5 +120,6 @@
         private Telerik.WinControls.UI.RadLabel lblShortName;
         private Telerik.WinControls.UI.RadLabel lblFullName;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

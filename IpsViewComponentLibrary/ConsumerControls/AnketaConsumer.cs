@@ -37,9 +37,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
         
-        private readonly Point _locationAgreement = new Point(4, 35);
+        private readonly Point _locationAgreement = new Point(19, 5);
 
-        private Customer _cust;
+        private Customer _customer;
         private AnketaDictionaties _anketaDictionaries;
 
         public TypeRights TypeRights { get; set; } = TypeRights.SmallRights;
@@ -74,13 +74,15 @@ namespace IpsViewComponentLibrary.ConsumerControls
         /// </summary>
         public void ReInitControl()
         {
-            ctrlClientName.SetDataSources(_cust, _anketaDictionaries); // - - - - - - - -  Назва клієнта
-            ctrlAddress.SetDataSources(_cust, _anketaDictionaries);    // - - - - - - - -  Адреса
-            ctrlManagers.SetDataSources(_cust); // - - - - - - - - - - - - - - Керівники
-            ctrlPlaces.SetData(_cust);  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-            anketaCompanyBindingSource.DataSource = _cust?.Company?.AnketaCompany?.// - - - - - - - - - - - -
-                SingleOrDefault(rec => rec?.Version == _cust?.AnkVersion); // - - - - - -  Майданчики (title)
-            ctrlBankRequisites.SetDataSources(_cust, _anketaDictionaries); // - - - - - -  Банківські реквізити
+            ctrlClientName.SetDataSources(_customer); // - - - - - - - -  Назва клієнта
+            ctrlManagers.SetDataSources(_customer); // - - - - - - - - - - - - - - Керівники
+            ctrlAddress.SetDataSources(_customer, _anketaDictionaries);    // - - - - - - - -  Адреса
+            ctrlPlaces.SetData(_customer);  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+            anketaCompanyBindingSource.DataSource = _customer.Company?.AnketaCompany?.// - - - - - - - - - - - -
+                SingleOrDefault(rec => rec?.Version == _customer.AnkVersion); // - - - - - -  Майданчики (title)
+            if (!_customer.BankAccount.Any())
+                _customer.BankAccount.Add(new BankAccount { CustId = _customer.CustId });
+            ctrlBankRequisites.DataSource = _customer.BankAccount; // - - - - - -  Банківські реквізити
 
             if(_anketeType == ConsumerAnketeType.CreateNewAnketa)
                 InitAgreementType(TypeRights);
@@ -113,26 +115,25 @@ namespace IpsViewComponentLibrary.ConsumerControls
                         pvAgreement.Controls.Add(_ctrlAgreementBigRights);
                     }
                     
-                    if (_cust?.Client?.LicenseAgreement?.LastOrDefault()?.LicCode != null)
+                    if (_customer.Client?.LicenseAgreement?.LastOrDefault()?.LicCode != null)
                     {
-                        var item = _cust.Client.LicenseAgreement.LastOrDefault();
+                        var item = _customer.Client.LicenseAgreement.LastOrDefault();
                         item.LicCode = 28;
                         item.LicClass = 1;
                         item.LicType = 1;
                         item.LicVersion = 1;
                     }
 
-                    if(!isEdit && _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr.Count == 0)
-                        _cust.Client.LicenseAgreement.LastOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr {
+                    if(!isEdit && _customer.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr.Count == 0)
+                        _customer.Client.LicenseAgreement.LastOrDefault()?.Agr?.AgreementAddBr.Add(new AgreementAddBr {
                         Version = 1,
                         AgrStatus = 0,
-                        AnkVersion = _cust.AnkVersion,
+                        AnkVersion = _customer.AnkVersion,
                         AgrNumber = string.Empty,
                         });
                     // control bindings
                     _ctrlAgreementBigRights.PaidPeriodDictionaryDataSource = _anketaDictionaries.period;// (Period)
-                    _ctrlAgreementBigRights.AnketaCompanyDataSource = _cust.Company.AnketaCompany;// (AnketaCompany);
-                    _ctrlAgreementBigRights.AgreementDataSource = _cust?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr; //(AgreementAddBr)
+                    _ctrlAgreementBigRights.AgreementDataSource = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr; //(AgreementAddBr)
 
                 }
                     break;
@@ -154,7 +155,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     }
 
                     _ctrlAgreementSmallRights.typeRights = TypeRights; // - - - - - - - - - - - - - - - - - - - - - - - -  Договір
-                    _ctrlAgreementSmallRights.SetDataSources(_cust, _anketaDictionaries, _anketeType); // - - - - - - - -  Договір
+                    _ctrlAgreementSmallRights.SetDataSources(_customer, _anketaDictionaries, _anketeType); // - - - - - - - -  Договір
                 }
                     break;
             }
@@ -167,7 +168,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         /// <param name="customer">об'єкт споживач</param>
         public void SetDataAndDictionaries(Customer customer)
         {
-            _cust = customer;
+            _customer = customer;
             if(IpsGlobal.AnketaDictionaties != null)
                 _anketaDictionaries = IpsGlobal.AnketaDictionaties;
         }
@@ -226,13 +227,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             WordEngine wordEngine = new WordEngine(_anketaDictionaries);
 
-            var licenseAgreement = _cust?.Client?.LicenseAgreement?.FirstOrDefault();
+            var licenseAgreement = _customer?.Client?.LicenseAgreement?.FirstOrDefault();
             int version = licenseAgreement?.LicVersion ?? default(int);
             string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
             templateName = string.Concat(@"Templates\", templateName);
 
             return await Task.Run(() => {
-                wordEngine.ProcessConsumer(templateName, _cust, licenseAgreement, version);
+                wordEngine.ProcessConsumer(templateName, _customer, licenseAgreement, version);
                 return wordEngine;
             });
 

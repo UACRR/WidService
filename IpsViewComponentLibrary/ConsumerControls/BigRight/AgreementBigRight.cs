@@ -42,12 +42,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             set => bsDictPaidPeriod.DataSource = value;
         }
 
-        public object AnketaCompanyDataSource
-        {
-            get => bsAnketaCompany.DataSource;
-            set => bsAnketaCompany.DataSource = value;
-        }
-
         public bool Validator()
         {
             bool isValid = true;

@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.lblTitle = new Telerik.WinControls.UI.RadLabel();
-            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgreementMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.ctrlAgreementSecond = new IpsViewComponentLibrary.ContractConsumerDetailControl();
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
@@ -45,8 +42,6 @@
             this.lblParam = new Telerik.WinControls.UI.RadLabel();
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
@@ -56,21 +51,6 @@
             this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblTitle
-            // 
-            this.lblTitle.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true));
-            this.lblTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTitle.Location = new System.Drawing.Point(35, 3);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(132, 22);
-            this.lblTitle.TabIndex = 9;
-            this.lblTitle.Text = "Назва «Клієнта»";
-            this.lblTitle.ThemeName = "Office2013Light";
-            // 
-            // anketaCompanyBindingSource
-            // 
-            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            // 
             // ctrlAgreementMain
             // 
             this.ctrlAgreementMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
@@ -78,7 +58,7 @@
             this.ctrlAgreementMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgreementMain.DateEndNullText = "";
             this.ctrlAgreementMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
-            this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 31);
+            this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 3);
             this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementMain.Name = "ctrlAgreementMain";
             this.ctrlAgreementMain.Size = new System.Drawing.Size(477, 49);
@@ -114,7 +94,7 @@
             this.ddlLicType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlLicType.Location = new System.Drawing.Point(93, 86);
+            this.ddlLicType.Location = new System.Drawing.Point(93, 58);
             this.ddlLicType.Name = "ddlLicType";
             this.ddlLicType.Size = new System.Drawing.Size(594, 21);
             this.ddlLicType.TabIndex = 12;
@@ -124,7 +104,7 @@
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(3, 86);
+            this.radLabel1.Location = new System.Drawing.Point(3, 58);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(84, 19);
             this.radLabel1.TabIndex = 13;
@@ -136,7 +116,7 @@
             this.gvPlaces.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvPlaces.Location = new System.Drawing.Point(3, 110);
+            this.gvPlaces.Location = new System.Drawing.Point(3, 83);
             // 
             // 
             // 
@@ -186,7 +166,7 @@
             this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvPlaces.Name = "gvPlaces";
             this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvPlaces.Size = new System.Drawing.Size(684, 150);
+            this.gvPlaces.Size = new System.Drawing.Size(684, 177);
             this.gvPlaces.TabIndex = 31;
             this.gvPlaces.ThemeName = "Office2013Light";
             this.gvPlaces.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPlaces_CellValueChanged);
@@ -220,12 +200,9 @@
             this.Controls.Add(this.ddlLicType);
             this.Controls.Add(this.radLabel1);
             this.Controls.Add(this.ctrlAgreementMain);
-            this.Controls.Add(this.lblTitle);
             this.MinimumSize = new System.Drawing.Size(490, 218);
             this.Name = "MiddleControlAgreementAnketaType";
             this.Size = new System.Drawing.Size(690, 404);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
@@ -239,8 +216,6 @@
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadLabel lblTitle;
         private ContractConsumerMainControl ctrlAgreementMain;
         private ContractConsumerDetailControl ctrlAgreementSecond;
         private Telerik.WinControls.UI.RadDropDownList ddlLicType;
@@ -248,7 +223,6 @@
         private Telerik.WinControls.UI.RadGridView gvPlaces;
         private Telerik.WinControls.UI.RadLabel lblParam;
         private Telerik.WinControls.UI.RadPanel panel;
-        private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

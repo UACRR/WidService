@@ -2,7 +2,7 @@
 
 namespace IpsViewComponentLibrary
 {
-    partial class AnketaConsumerForm
+    partial class AnketaConsumerJurForm
     {
         /// <summary>
         /// Required designer variable.
@@ -67,7 +67,7 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Анкета нового споживача";
+            this.Text = "Анкета користувача [юридична особа]";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary
         private Func<string, IList<AutoCompleteData>> getAutoCompList;
         private Func<int, Customer> getCustomerAnketa;
 
+        public event EventHandler<string> TextNameChanged;
+
         public IpsAnketaCompanyControl()
         {
             InitializeComponent();
@@ -142,17 +144,13 @@ namespace IpsViewComponentLibrary
             }
         }
 
+        private void txtName_Leave(object sender, EventArgs e)
+        {
+            TextNameChanged?.Invoke(sender, txtName.Text);
+        }
+
 
         #endregion
 
-        //private void txtShortName_BindingContextChanged(object sender, EventArgs e)
-        //{
-        //    var test = sender;
-        //}
-
-        //private void anketaCompanyBindingSource_BindingComplete(object sender, BindingCompleteEventArgs e)
-        //{
-        //    var test = sender;
-        //}
     }
 }

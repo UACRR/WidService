@@ -38,7 +38,6 @@ namespace IpsViewComponentLibrary
         {
             _consumerAnketeType = anketeType;
             _customer = cust;
-            AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
             var license = cust?.Client?.LicenseAgreement?.LastOrDefault(rec => rec.LicStatus < 4);
             var licenseParam = license?.LicenseAgrParam?.SingleOrDefault(rec => rec?.LicVersion == license?.LicVersion);
             _licenseAgr = licenseParam;
@@ -62,7 +61,7 @@ namespace IpsViewComponentLibrary
             });
 
             ddlLicType.DataBindings.Clear();
-            ddlLicType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", license, "LicCode", true));
+            ddlLicType.DataBindings.Add(new Binding("SelectedValue", license, "LicCode", true, DataSourceUpdateMode.OnPropertyChanged, default(int)));
 
             ddlLicType.DisplayMember = "name";
             ddlLicType.ValueMember = "codeI";
@@ -89,7 +88,6 @@ namespace IpsViewComponentLibrary
                 ctrlAgreementSecond.SelectedItem = 0;
             else
                 ctrlAgreementSecond.AutoprolongationPercent = null;
-            anketaCompanyBindingSource.DataSource = anketa;
 
             //TODO: джерело даних з розрахованою сумою
             gvPlaces.DataSource = SetChoosePlaces();

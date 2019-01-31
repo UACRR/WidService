@@ -208,11 +208,12 @@ namespace IpsViewComponentLibrary
             // lblOKPOExists
             // 
             this.lblOKPOExists.ForeColor = System.Drawing.Color.Red;
-            this.lblOKPOExists.Location = new System.Drawing.Point(247, 4);
+            this.lblOKPOExists.Location = new System.Drawing.Point(247, 3);
             this.lblOKPOExists.Name = "lblOKPOExists";
-            this.lblOKPOExists.Size = new System.Drawing.Size(102, 18);
+            this.lblOKPOExists.Size = new System.Drawing.Size(111, 19);
             this.lblOKPOExists.TabIndex = 6;
             this.lblOKPOExists.Text = "ЄДРПОУ вже існує";
+            this.lblOKPOExists.ThemeName = "Office2013Light";
             this.lblOKPOExists.Visible = false;
             // 
             // IpsRegistrationsCompanyControl

@@ -112,7 +112,7 @@ namespace IpsViewComponentLibrary
             var agreementBr = license?.Agr.AgreementAddBr.SingleOrDefault(rec => rec.Version == version);
             var anketaComp = _customer?.Company?.AnketaCompany.SingleOrDefault(rec => rec.Version == _customer.AnkVersion);
 
-            var agreementBrForm = new GeneralAgreementBrForm(IpsGlobal.AnketaDictionaties, agreementBr, anketaComp, formName)
+            var agreementBrForm = new GeneralAgreementBrForm(IpsGlobal.AnketaDictionaties, agreementBr, formName)
             {
                 StartPosition = FormStartPosition.CenterParent
             };

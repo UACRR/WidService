@@ -38,6 +38,7 @@ namespace IpsViewComponentLibrary
             this.txtPostIndex = new Telerik.WinControls.UI.RadTextBox();
             this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
             this.anketaDictionatiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCity)).BeginInit();
             this.tableLayoutPanel.SuspendLayout();
@@ -57,7 +58,7 @@ namespace IpsViewComponentLibrary
             this.ddlRegion.Location = new System.Drawing.Point(240, 0);
             this.ddlRegion.Margin = new System.Windows.Forms.Padding(0);
             this.ddlRegion.Name = "ddlRegion";
-            this.ddlRegion.Size = new System.Drawing.Size(220, 20);
+            this.ddlRegion.Size = new System.Drawing.Size(220, 21);
             this.ddlRegion.TabIndex = 1;
             this.ddlRegion.ThemeName = "Office2013Light";
             // 
@@ -68,7 +69,7 @@ namespace IpsViewComponentLibrary
             this.txtCity.Margin = new System.Windows.Forms.Padding(0);
             this.txtCity.Name = "txtCity";
             this.txtCity.NullText = "Місто";
-            this.txtCity.Size = new System.Drawing.Size(220, 20);
+            this.txtCity.Size = new System.Drawing.Size(220, 21);
             this.txtCity.TabIndex = 2;
             this.txtCity.ThemeName = "Office2013Light";
             // 
@@ -109,7 +110,7 @@ namespace IpsViewComponentLibrary
             this.ddlCountry.Location = new System.Drawing.Point(0, 0);
             this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
             this.ddlCountry.Name = "ddlCountry";
-            this.ddlCountry.Size = new System.Drawing.Size(220, 20);
+            this.ddlCountry.Size = new System.Drawing.Size(220, 21);
             this.ddlCountry.TabIndex = 0;
             this.ddlCountry.ThemeName = "Office2013Light";
             // 
@@ -122,7 +123,7 @@ namespace IpsViewComponentLibrary
             this.txtPostIndex.Margin = new System.Windows.Forms.Padding(0);
             this.txtPostIndex.Name = "txtPostIndex";
             this.txtPostIndex.NullText = "Поштовий індекс";
-            this.txtPostIndex.Size = new System.Drawing.Size(220, 20);
+            this.txtPostIndex.Size = new System.Drawing.Size(220, 21);
             this.txtPostIndex.TabIndex = 4;
             this.txtPostIndex.ThemeName = "Office2013Light";
             // 
@@ -137,7 +138,7 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.txtAddress.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.txtAddress.Size = new System.Drawing.Size(460, 20);
+            this.txtAddress.Size = new System.Drawing.Size(460, 21);
             this.txtAddress.TabIndex = 5;
             this.txtAddress.ThemeName = "Office2013Light";
             // 
@@ -173,5 +174,6 @@ namespace IpsViewComponentLibrary
         private System.Windows.Forms.BindingSource anketaDictionatiesBindingSource;
         private Telerik.WinControls.UI.RadTextBox txtPostIndex;
         private Telerik.WinControls.UI.RadTextBox txtAddress;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

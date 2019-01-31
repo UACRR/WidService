@@ -7,13 +7,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     public partial class GeneralAgreementBrForm : Telerik.WinControls.UI.RadForm
     {
-        public GeneralAgreementBrForm(AnketaDictionaties dictionaties, AgreementAddBr agreementAddBr, AnketaCompany company, string dialogFormText = null)
+        public GeneralAgreementBrForm(AnketaDictionaties dictionaties, AgreementAddBr agreementAddBr, string dialogFormText = null)
         {
             InitializeComponent();
             DialogResult = DialogResult.None;
             ctrlAgreement.PaidPeriodDictionaryDataSource = dictionaties.period;// typeof(Period);
             ctrlAgreement.AgreementDataSource = agreementAddBr;
-            ctrlAgreement.AnketaCompanyDataSource = company;
 
             if (!string.IsNullOrEmpty(dialogFormText))
                 Text = dialogFormText;
