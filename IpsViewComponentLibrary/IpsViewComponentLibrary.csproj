@@ -418,6 +418,7 @@
     <Compile Include="ImportDBF\PaymentsAttachForm.Designer.cs">
       <DependentUpon>PaymentsAttachForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\GridStateRecorder.cs" />
     <Compile Include="Utilities\MessageSuccessError.cs" />
     <Compile Include="ConsumerForms\AnketaConsumerPhisForm.cs">
       <SubType>Form</SubType>

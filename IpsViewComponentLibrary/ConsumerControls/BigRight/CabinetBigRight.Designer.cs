@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight
+﻿using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+
+namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
     partial class CabinetBigRight
     {
@@ -49,7 +51,7 @@
             this.ctrlRequest = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
             this.ctrlReference = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
             this.ctrlPayslips = new IpsViewComponentLibrary.MiddleControlCabinetPayslips();
-            this.ctrlCalculation = new IpsViewComponentLibrary.CalculationInfoControl();
+            this.ctrlCalculation = new CalculationInfoControl();
             this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
             this.ctrlContactHeader = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();

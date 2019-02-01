@@ -93,6 +93,7 @@ namespace IpsViewComponentLibrary
                 CountUse = 1,
                 DurationUse = TimeSpan.FromSeconds(1),
                 CodeItem = 1,
+                Ticks = 1,
                 
             });
             gvReportContentView.DataSource = bindingRegItems.DataSource;
@@ -102,7 +103,7 @@ namespace IpsViewComponentLibrary
         private void gvReportContentView_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             if(e.Column.FieldName == "DurationItem" || e.Column.FieldName == "CountUse")
-                if(e?.Row?.DataBoundItem is RegisterItem item && item.DurationItem != null)
+                if(e.Row?.DataBoundItem is RegisterItem item && item.DurationItem != null)
                 {
                     item.DurationUse = TimeSpan.FromSeconds(item.DurationItem.Value.TotalSeconds * item.CountUse ?? default(double));
                     item.Ticks = (int) (item.DurationUse.Value.Ticks / 10000);
