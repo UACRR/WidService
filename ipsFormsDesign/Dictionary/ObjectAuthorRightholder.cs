@@ -72,8 +72,8 @@ namespace ipsFormsDesign.Dictionary
                     }
                     else if (_folkType == 3)
                     {
-                        AuthorName = "Народне";
                         ClearRightholderData();
+                        AuthorName = "Народне";
                     }
                 }
             }
@@ -133,6 +133,7 @@ namespace ipsFormsDesign.Dictionary
             Rate = null;
             BeginDate = null;
             EndDate = null;
+            AuthorName = string.Empty;
         }
 
         private void OnPropertyChanged(string propertyName)
