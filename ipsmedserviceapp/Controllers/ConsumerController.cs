@@ -1254,11 +1254,27 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                     (isNew, sorsRec, destRec) =>
                     {
                         destRec.SetFields(sorsRec);
+                        // TICKS *********************************
+                        // Виправлення даних для вирахування пропорціність використання твору
                         if (destRec.DurationItem == null)
-                            destRec.Ticks = 0;
+                        {
+                            destRec.DurationItem = TimeSpan.FromTicks(10000);
+                            destRec.Ticks = 1;
+                        }
+
+                        if (destRec.Ticks == 0 )
+                        {
+                            if (destItem.AlgorithmId == 1)  // Duration
+                                destRec.Ticks = Math.Max( 1, 
+                                                         (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / 10000));
+                            else
+                                destRec.Ticks = 1;          // Count
+                        }
+                        // TICKS *********************************
 
                         if (isNew)
                             destRec.RegIitemId = regItemId++;
+
                         _dbContext.UpdateList(sorsRec.RegisterExtra, destRec.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
                     }
                     , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);

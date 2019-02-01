@@ -104,12 +104,12 @@
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.pageObjects = new Telerik.WinControls.UI.RadPageViewPage();
+            this.btnUploadFromExcel = new Telerik.WinControls.UI.RadButton();
             this.btnAddExistingObjectRightForRightholder = new Telerik.WinControls.UI.RadButton();
             this.ddbAddObjectRightForRightholder = new Telerik.WinControls.UI.RadDropDownButton();
             this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.btnUploadFromExcel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -175,9 +175,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).BeginInit();
             this.pageObjects.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,6 +199,7 @@
             this.anketaPageView.Size = new System.Drawing.Size(1006, 444);
             this.anketaPageView.TabIndex = 2;
             this.anketaPageView.ThemeName = "Office2013Light";
+            this.anketaPageView.SelectedPageChanged += new System.EventHandler(this.anketaPageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.anketaPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.anketaPageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.anketaPageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
@@ -799,7 +800,7 @@
             this.pageViewMain.DefaultPage = this.radPageViewPage1;
             this.pageViewMain.Location = new System.Drawing.Point(0, 1);
             this.pageViewMain.Name = "pageViewMain";
-            this.pageViewMain.SelectedPage = this.pageObjects;
+            this.pageViewMain.SelectedPage = this.radPageViewPage1;
             this.pageViewMain.Size = new System.Drawing.Size(1019, 481);
             this.pageViewMain.TabIndex = 20;
             this.pageViewMain.ThemeName = "Office2013Light";
@@ -958,6 +959,17 @@
             this.pageObjects.Size = new System.Drawing.Size(1009, 445);
             this.pageObjects.Text = "Об\'єкти";
             // 
+            // btnUploadFromExcel
+            // 
+            this.btnUploadFromExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUploadFromExcel.Location = new System.Drawing.Point(292, 420);
+            this.btnUploadFromExcel.Name = "btnUploadFromExcel";
+            this.btnUploadFromExcel.Size = new System.Drawing.Size(140, 24);
+            this.btnUploadFromExcel.TabIndex = 11;
+            this.btnUploadFromExcel.Text = "Завантажити з Excel";
+            this.btnUploadFromExcel.ThemeName = "Office2013Light";
+            this.btnUploadFromExcel.Click += new System.EventHandler(this.btnUploadFromExcel_Click);
+            // 
             // btnAddExistingObjectRightForRightholder
             // 
             this.btnAddExistingObjectRightForRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -991,6 +1003,7 @@
             // 
             // ctrlRightholdersObjectsRight
             // 
+            this.ctrlRightholdersObjectsRight.AllowMarkingRows = false;
             this.ctrlRightholdersObjectsRight.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -1009,17 +1022,6 @@
             this.radPageViewPage4.Name = "radPageViewPage4";
             this.radPageViewPage4.Size = new System.Drawing.Size(1009, 445);
             this.radPageViewPage4.Text = "Файли";
-            // 
-            // btnUploadFromExcel
-            // 
-            this.btnUploadFromExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnUploadFromExcel.Location = new System.Drawing.Point(292, 420);
-            this.btnUploadFromExcel.Name = "btnUploadFromExcel";
-            this.btnUploadFromExcel.Size = new System.Drawing.Size(140, 24);
-            this.btnUploadFromExcel.TabIndex = 11;
-            this.btnUploadFromExcel.Text = "Завантажити з Excel";
-            this.btnUploadFromExcel.ThemeName = "Office2013Light";
-            this.btnUploadFromExcel.Click += new System.EventHandler(this.btnUploadFromExcel_Click);
             // 
             // RightholderView
             // 
@@ -1108,9 +1110,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).EndInit();
             this.pageObjects.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
