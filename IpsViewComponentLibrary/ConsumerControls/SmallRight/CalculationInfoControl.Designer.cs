@@ -374,7 +374,7 @@
             this.btnNewPeriod.TabIndex = 4;
             this.btnNewPeriod.Text = "Створити період";
             this.btnNewPeriod.ThemeName = "Office2013Light";
-            this.btnNewPeriod.Click += new System.EventHandler(this.radButton1_Click);
+            this.btnNewPeriod.Click += new System.EventHandler(this.btnNewPeriod_Click);
             // 
             // btnClosePeriod
             // 

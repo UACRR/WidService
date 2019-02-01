@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Extensions
 {
+    ///<remarks>
+    /// Реалізує зберігання поточного обраного рядка RadGridView.
+    /// Необхідно додати гріди, зберегти стан до оновлення, повернути збережений стан.
+    ///</remarks>
     public class GridStateRecorder
     {
         private readonly List<RadGridView> _gridViewList;
@@ -16,6 +19,10 @@ namespace IpsViewComponentLibrary.Extensions
             _stateDictionary = new Dictionary<string, int>();
         }
 
+        /// <summary>
+        ///  Додати RadGridView для роботи методів з ним
+        /// </summary>
+        /// <param name="gridView"></param>
         public void AddGrid(RadGridView gridView)
         {
             if(gridView != null)
@@ -49,6 +56,7 @@ namespace IpsViewComponentLibrary.Extensions
                     view.CurrentRow = view.Rows[_stateDictionary[view.Name]];
                 }
             }
+            _stateDictionary.Clear();
         }
     }
 }

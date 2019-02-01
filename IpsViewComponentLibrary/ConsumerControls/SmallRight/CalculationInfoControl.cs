@@ -339,8 +339,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             }
         }
 
-
-        private void radButton1_Click(object sender, EventArgs e)
+        // додати період
+        private void btnNewPeriod_Click(object sender, EventArgs e)
         {
             var currentAgree = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
             CreatePeriod dialog = new CreatePeriod(currentAgree.Lic);
