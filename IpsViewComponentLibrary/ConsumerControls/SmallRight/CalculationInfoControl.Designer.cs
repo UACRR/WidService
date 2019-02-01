@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     partial class CalculationInfoControl
     {
@@ -337,7 +337,7 @@
             this.gvLicenseAgr.Size = new System.Drawing.Size(944, 144);
             this.gvLicenseAgr.TabIndex = 10;
             this.gvLicenseAgr.ThemeName = "Office2013Light";
-            this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
+            this.gvLicenseAgr.SelectionChanged += new System.EventHandler(this.gvLicenseAgr_SelectionChanged);
             // 
             // LicAgreementBindingSource
             // 
@@ -374,7 +374,7 @@
             this.btnNewPeriod.TabIndex = 4;
             this.btnNewPeriod.Text = "Створити період";
             this.btnNewPeriod.ThemeName = "Office2013Light";
-            this.btnNewPeriod.Click += new System.EventHandler(this.radButton1_Click);
+            this.btnNewPeriod.Click += new System.EventHandler(this.btnNewPeriod_Click);
             // 
             // btnClosePeriod
             // 
@@ -429,7 +429,7 @@
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnUpdate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnUpdate.Location = new System.Drawing.Point(842, 3);
+            this.btnUpdate.Location = new System.Drawing.Point(839, 3);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(110, 24);
             this.btnUpdate.TabIndex = 15;

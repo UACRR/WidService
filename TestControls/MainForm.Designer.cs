@@ -1,4 +1,6 @@
-﻿namespace TestControls
+﻿using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+
+namespace TestControls
 {
     partial class MainForm
     {
@@ -74,7 +76,7 @@
             this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.bindPayPeriod1 = new IpsViewComponentLibrary.CalculationInfoControl();
+            this.bindPayPeriod1 = new CalculationInfoControl();
             this.reportsControl1 = new IpsViewComponentLibrary.ReportsControl();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
@@ -580,7 +582,7 @@
         private Telerik.WinControls.UI.SplitPanel splitPanel2;
         private System.Windows.Forms.CheckBox checkBox1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme1;
-        private IpsViewComponentLibrary.CalculationInfoControl bindPayPeriod1;
+        private CalculationInfoControl bindPayPeriod1;
         private IpsViewComponentLibrary.ReportsControl reportsControl1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPagePay;
     }

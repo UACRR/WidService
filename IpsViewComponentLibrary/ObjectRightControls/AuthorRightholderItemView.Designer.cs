@@ -383,7 +383,7 @@
             // 
             // rdbNotProtected
             // 
-            this.rdbNotProtected.Location = new System.Drawing.Point(177, 5);
+            this.rdbNotProtected.Location = new System.Drawing.Point(159, 5);
             this.rdbNotProtected.Name = "rdbNotProtected";
             this.rdbNotProtected.Size = new System.Drawing.Size(119, 19);
             this.rdbNotProtected.TabIndex = 4;
@@ -395,10 +395,10 @@
             // 
             this.rdbAuthorRightholder.Location = new System.Drawing.Point(8, 5);
             this.rdbAuthorRightholder.Name = "rdbAuthorRightholder";
-            this.rdbAuthorRightholder.Size = new System.Drawing.Size(149, 19);
+            this.rdbAuthorRightholder.Size = new System.Drawing.Size(103, 19);
             this.rdbAuthorRightholder.TabIndex = 3;
             this.rdbAuthorRightholder.Tag = "1";
-            this.rdbAuthorRightholder.Text = "Автор / правовласник";
+            this.rdbAuthorRightholder.Text = "Охороняється";
             this.rdbAuthorRightholder.ThemeName = "Office2013Light";
             // 
             // AuthorRightholderItemView

@@ -34,26 +34,26 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.lblSex = new Telerik.WinControls.UI.RadLabel();
             this.lblMidleName = new Telerik.WinControls.UI.RadLabel();
-            this.rtxtBoxFirstName = new Telerik.WinControls.UI.RadTextBox();
+            this.txtFirstName = new Telerik.WinControls.UI.RadTextBox();
             this.lblFirstName = new Telerik.WinControls.UI.RadLabel();
             this.lblLastName = new Telerik.WinControls.UI.RadLabel();
             this.lblBirthDate = new Telerik.WinControls.UI.RadLabel();
-            this.rtxtBoxMidleName = new Telerik.WinControls.UI.RadTextBox();
+            this.txtSurName = new Telerik.WinControls.UI.RadTextBox();
             this.dtBirthDay = new Telerik.WinControls.UI.RadDateTimePicker();
-            this.rtxtBoxLastName = new Telerik.WinControls.UI.RadTextBox();
+            this.txtLastName = new Telerik.WinControls.UI.RadTextBox();
             this.rtxtBoxIPN = new Telerik.WinControls.UI.RadTextBox();
             this.lblipn = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ddlSexType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMidleName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxFirstName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFirstName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMidleName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSurName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtBirthDay)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxLastName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).BeginInit();
             this.SuspendLayout();
@@ -89,16 +89,17 @@
             this.lblMidleName.Text = "По-батькові:";
             this.lblMidleName.ThemeName = "Office2013Light";
             // 
-            // rtxtBoxFirstName
+            // txtFirstName
             // 
-            this.rtxtBoxFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtBoxFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "FirstName", true));
-            this.rtxtBoxFirstName.Location = new System.Drawing.Point(115, 27);
-            this.rtxtBoxFirstName.Name = "rtxtBoxFirstName";
-            this.rtxtBoxFirstName.Size = new System.Drawing.Size(324, 21);
-            this.rtxtBoxFirstName.TabIndex = 12;
-            this.rtxtBoxFirstName.ThemeName = "Office2013Light";
+            this.txtFirstName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "FirstName", true));
+            this.txtFirstName.Location = new System.Drawing.Point(115, 27);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(324, 21);
+            this.txtFirstName.TabIndex = 12;
+            this.txtFirstName.ThemeName = "Office2013Light";
+            this.txtFirstName.Leave += new System.EventHandler(this.Name_Leave);
             // 
             // lblFirstName
             // 
@@ -126,16 +127,17 @@
             this.lblBirthDate.Text = "Дата народження:";
             this.lblBirthDate.ThemeName = "Office2013Light";
             // 
-            // rtxtBoxMidleName
+            // txtSurName
             // 
-            this.rtxtBoxMidleName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtBoxMidleName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "SurName", true));
-            this.rtxtBoxMidleName.Location = new System.Drawing.Point(115, 52);
-            this.rtxtBoxMidleName.Name = "rtxtBoxMidleName";
-            this.rtxtBoxMidleName.Size = new System.Drawing.Size(324, 21);
-            this.rtxtBoxMidleName.TabIndex = 14;
-            this.rtxtBoxMidleName.ThemeName = "Office2013Light";
+            this.txtSurName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "SurName", true));
+            this.txtSurName.Location = new System.Drawing.Point(115, 52);
+            this.txtSurName.Name = "txtSurName";
+            this.txtSurName.Size = new System.Drawing.Size(324, 21);
+            this.txtSurName.TabIndex = 14;
+            this.txtSurName.ThemeName = "Office2013Light";
+            this.txtSurName.Leave += new System.EventHandler(this.Name_Leave);
             // 
             // dtBirthDay
             // 
@@ -153,16 +155,17 @@
             this.dtBirthDay.ThemeName = "Office2013Light";
             this.dtBirthDay.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // rtxtBoxLastName
+            // txtLastName
             // 
-            this.rtxtBoxLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtxtBoxLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "LastName", true));
-            this.rtxtBoxLastName.Location = new System.Drawing.Point(115, 2);
-            this.rtxtBoxLastName.Name = "rtxtBoxLastName";
-            this.rtxtBoxLastName.Size = new System.Drawing.Size(324, 21);
-            this.rtxtBoxLastName.TabIndex = 11;
-            this.rtxtBoxLastName.ThemeName = "Office2013Light";
+            this.txtLastName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaPerson, "LastName", true));
+            this.txtLastName.Location = new System.Drawing.Point(115, 2);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(324, 21);
+            this.txtLastName.TabIndex = 11;
+            this.txtLastName.ThemeName = "Office2013Light";
+            this.txtLastName.Leave += new System.EventHandler(this.Name_Leave);
             // 
             // rtxtBoxIPN
             // 
@@ -192,13 +195,13 @@
             this.Controls.Add(this.ddlSexType);
             this.Controls.Add(this.lblSex);
             this.Controls.Add(this.lblMidleName);
-            this.Controls.Add(this.rtxtBoxFirstName);
+            this.Controls.Add(this.txtFirstName);
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.lblBirthDate);
-            this.Controls.Add(this.rtxtBoxMidleName);
+            this.Controls.Add(this.txtSurName);
             this.Controls.Add(this.dtBirthDay);
-            this.Controls.Add(this.rtxtBoxLastName);
+            this.Controls.Add(this.txtLastName);
             this.Name = "PartnerNameControl";
             this.Size = new System.Drawing.Size(443, 131);
             this.Load += new System.EventHandler(this.PartnerNameControl_Load);
@@ -206,13 +209,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblMidleName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxFirstName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblFirstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblBirthDate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxMidleName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSurName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtBirthDay)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxLastName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).EndInit();
             this.ResumeLayout(false);
@@ -226,13 +229,13 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadLabel lblSex;
         private Telerik.WinControls.UI.RadLabel lblMidleName;
-        private Telerik.WinControls.UI.RadTextBox rtxtBoxFirstName;
+        private Telerik.WinControls.UI.RadTextBox txtFirstName;
         private Telerik.WinControls.UI.RadLabel lblFirstName;
         private Telerik.WinControls.UI.RadLabel lblLastName;
         private Telerik.WinControls.UI.RadLabel lblBirthDate;
-        private Telerik.WinControls.UI.RadTextBox rtxtBoxMidleName;
+        private Telerik.WinControls.UI.RadTextBox txtSurName;
         private Telerik.WinControls.UI.RadDateTimePicker dtBirthDay;
-        private Telerik.WinControls.UI.RadTextBox rtxtBoxLastName;
+        private Telerik.WinControls.UI.RadTextBox txtLastName;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxIPN;
         private Telerik.WinControls.UI.RadLabel lblipn;
     }

@@ -418,6 +418,7 @@
     <Compile Include="ImportDBF\PaymentsAttachForm.Designer.cs">
       <DependentUpon>PaymentsAttachForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\GridStateRecorder.cs" />
     <Compile Include="Utilities\MessageSuccessError.cs" />
     <Compile Include="ConsumerForms\AnketaConsumerPhisForm.cs">
       <SubType>Form</SubType>
@@ -665,11 +666,11 @@
     <Compile Include="RightholderControls\AnketaAddNickView.Designer.cs">
       <DependentUpon>AnketaAddNickView.cs</DependentUpon>
     </Compile>
-    <Compile Include="AnketaConsumerForm.cs">
+    <Compile Include="ConsumerForms\AnketaConsumerJurForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnketaConsumerForm.Designer.cs">
-      <DependentUpon>AnketaConsumerForm.cs</DependentUpon>
+    <Compile Include="ConsumerForms\AnketaConsumerJurForm.Designer.cs">
+      <DependentUpon>AnketaConsumerJurForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ObjectRightControls\AuthorRightholderItemView.cs">
       <SubType>Form</SubType>
@@ -836,10 +837,10 @@
     <Compile Include="MiddleControlAgreementProlPlacesType.Designer.cs">
       <DependentUpon>MiddleControlAgreementProlPlacesType.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlBankRequisites.cs">
+    <Compile Include="_trash\MiddleControlBankRequisites.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlBankRequisites.Designer.cs">
+    <Compile Include="_trash\MiddleControlBankRequisites.Designer.cs">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\BigRight\CabinetBigRight.cs">
@@ -1288,8 +1289,8 @@
     <EmbeddedResource Include="RightholderControls\AnketaAddNickView.resx">
       <DependentUpon>AnketaAddNickView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnketaConsumerForm.resx">
-      <DependentUpon>AnketaConsumerForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerForms\AnketaConsumerJurForm.resx">
+      <DependentUpon>AnketaConsumerJurForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AnketaPersonControl.resx">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
@@ -1381,7 +1382,7 @@
     <EmbeddedResource Include="MiddleControlAgreementProlPlacesType.resx">
       <DependentUpon>MiddleControlAgreementProlPlacesType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlBankRequisites.resx">
+    <EmbeddedResource Include="_trash\MiddleControlBankRequisites.resx">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\CabinetBigRight.resx">
@@ -1642,8 +1643,6 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_trash\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -149,7 +149,7 @@
             // ctrlConsumerName
             // 
             this.ctrlConsumerName.DataSourceAnketa = typeof(ipsFormsDesign.Model.AnketaPerson);
-            this.ctrlConsumerName.Location = new System.Drawing.Point(19, 7);
+            this.ctrlConsumerName.Location = new System.Drawing.Point(20, 5);
             this.ctrlConsumerName.Name = "ctrlConsumerName";
             this.ctrlConsumerName.Size = new System.Drawing.Size(689, 157);
             this.ctrlConsumerName.TabIndex = 34;
@@ -465,7 +465,7 @@
             // ctrlBankAccount
             // 
             this.ctrlBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
-            this.ctrlBankAccount.Location = new System.Drawing.Point(30, 3);
+            this.ctrlBankAccount.Location = new System.Drawing.Point(20, 5);
             this.ctrlBankAccount.Name = "ctrlBankAccount";
             this.ctrlBankAccount.Size = new System.Drawing.Size(434, 127);
             this.ctrlBankAccount.TabIndex = 1;
@@ -482,7 +482,7 @@
             // ctrlAgreementPhis
             // 
             this.ctrlAgreementPhis.LicenseAgreementDataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
-            this.ctrlAgreementPhis.Location = new System.Drawing.Point(30, 4);
+            this.ctrlAgreementPhis.Location = new System.Drawing.Point(20, 5);
             this.ctrlAgreementPhis.Name = "ctrlAgreementPhis";
             this.ctrlAgreementPhis.Size = new System.Drawing.Size(514, 220);
             this.ctrlAgreementPhis.TabIndex = 0;
@@ -515,7 +515,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(957, 39);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(957, 0);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -598,7 +598,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Анкета споживача [фізична особа]";
+            this.Text = "Анкета користувача [фізична особа]";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).EndInit();
             this.pageAnketaConsumer.ResumeLayout(false);

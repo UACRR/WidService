@@ -17,11 +17,15 @@ namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class AnketaConsumerPhisForm : RadForm
     {
+        private const string DefaultTitle = "Анкета користувача [фізична особа]";
+
         private readonly LicenseAgreement _license;
         private readonly Customer _customer;
         public AnketaConsumerPhisForm(Customer customer)
         {
             InitializeComponent();
+
+            ctrlConsumerName.TextNameChanged += CtrlConsumerName_TextNameChanged;
 
             ctrlTabNavigationExpanded.SetDefaultState(pageAnketaConsumer, FLoadType.Create);
             ctrlTabNavigationExpanded.SaveClick += Save;
@@ -81,6 +85,18 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlAgreementPhis.LicenseAgreementDataSource = _license;
 
             _customer = customer;
+        }
+
+        private void CtrlConsumerName_TextNameChanged(string lastName, string firstName, string surName)
+        {
+            if (lastName.Length == 0 && firstName.Length == 0 && surName.Length == 0)
+            {
+                Text = DefaultTitle;
+                return;
+            }
+
+            Text = string.Concat(DefaultTitle, $": {lastName} {firstName} {surName}");
+
         }
 
         private void Save(object sender, bool e)

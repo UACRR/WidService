@@ -14,6 +14,8 @@ namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class PartnerNameControl : UserControl
     {
+        public delegate void NameChangeEventHandler(string lastName, string firstName, string surName);
+        public event NameChangeEventHandler TextNameChanged;
         private bool _birthDateSelected = false;
         public PartnerNameControl()
         {
@@ -23,8 +25,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             dtBirthDay.SetUserCalendarSettingsm();
         }
 
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
         public object DataSourceAnketa
         {
             get => bsAnketaPerson.DataSource;
@@ -54,7 +54,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             else
                 lblBirthDate.ForeColor = Color.Black;
 
-            if (rtxtBoxFirstName.Text == string.Empty)
+            if (txtFirstName.Text == string.Empty)
             {
                 lblFirstName.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
@@ -62,7 +62,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             else
                 lblFirstName.ForeColor = Color.Black;
 
-            if (rtxtBoxLastName.Text == string.Empty)
+            if (txtLastName.Text == string.Empty)
             {
                 lblLastName.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
@@ -90,6 +90,11 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             if (IpsGlobal.AnketaDictionaties?.sexType != null)
                 ddlSexType.SetDataSource(IpsGlobal.AnketaDictionaties.sexType);
+        }
+
+        private void Name_Leave(object sender, EventArgs e)
+        {
+            TextNameChanged?.Invoke(txtLastName.Text, txtFirstName.Text, txtSurName.Text);
         }
     }
 }

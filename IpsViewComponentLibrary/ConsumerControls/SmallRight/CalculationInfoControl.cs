@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Interfaces;
-using ipsFormsDesign.Model;
-using Telerik.WinControls.UI;
-using Telerik.WinControls;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public partial class CalculationInfoControl : UserControl
     {
-
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
         public event EventHandler<List<MoneyPeriodLink>> SaveLinkCommandExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
@@ -28,6 +24,8 @@ namespace IpsViewComponentLibrary
         private GridDataRowElement dragRow;
         private GridDataRowElement dropRow;
         private ButtonController buttonController;
+
+        private GridStateRecorder _stateRecorder = new GridStateRecorder();
 
         private TypeRights _typeRights = TypeRights.All;
 
@@ -62,7 +60,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        // 
+        
         private void _currentAgreementController_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
         {
             if (sender == this)
@@ -84,8 +82,9 @@ namespace IpsViewComponentLibrary
             SetupDragDrop();
 
             buttonController = new ButtonController(btnNewPeriod, btnDistribute, btnClosePeriod);
-
-
+            _stateRecorder.AddGrid(gvUserMoneys);
+            _stateRecorder.AddGrid(gvLicenseAgr);
+            _stateRecorder.AddGrid(gvPeriodsPayment);
         }
 
         private void reinitValidClass()
@@ -246,14 +245,7 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
-
-        /// <summary>
-        /// 
-        /// </summary>
-
-        /// <summary>
-        /// 
-        /// </summary>
+        
         private Customer _customer;
         public Customer Customer
         {
@@ -324,12 +316,6 @@ namespace IpsViewComponentLibrary
                 AllmoneyReceivedBindingSource.DataSource = list;
         }
 
-        private void gvLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
-        {
-            SetGrid3DataSource();
-        }
-
-
         // Period
         private void SetGrid3DataSource()
         {
@@ -353,8 +339,8 @@ namespace IpsViewComponentLibrary
             }
         }
 
-
-        private void radButton1_Click(object sender, EventArgs e)
+        // додати період
+        private void btnNewPeriod_Click(object sender, EventArgs e)
         {
             var currentAgree = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
             CreatePeriod dialog = new CreatePeriod(currentAgree.Lic);
@@ -366,17 +352,9 @@ namespace IpsViewComponentLibrary
                 SetupAllBinding();
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
+        
         bool boolRunFromDragDrop = false;
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        
         private void btnDistribute_Click(object sender, EventArgs e)
         {
 
@@ -455,10 +433,7 @@ namespace IpsViewComponentLibrary
                 RefreshData();
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
+        
         private void RefreshData()
         {
             gvPeriodsPayment.MasterTemplate.Refresh();
@@ -474,7 +449,6 @@ namespace IpsViewComponentLibrary
 
             SetGrid3DataSource();
         }
-
 
         /// Закрити період
         private void btnClosePeriod_Click(object sender, EventArgs e)
@@ -497,10 +471,19 @@ namespace IpsViewComponentLibrary
             buttonController.changePeriod(e.CurrentRow?.DataBoundItem as PaidPeriod);
         }
 
+        // оновити дані
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            _stateRecorder.RecordState();
             UpdateData?.Invoke();
             SetupAllBinding();
+            _stateRecorder.RestoreState();
+        }
+
+        // зміни на гріду активних ліцензій
+        private void gvLicenseAgr_SelectionChanged(object sender, EventArgs e)
+        {
+            SetGrid3DataSource();
         }
     }
 

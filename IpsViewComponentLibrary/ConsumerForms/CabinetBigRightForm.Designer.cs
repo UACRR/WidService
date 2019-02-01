@@ -31,7 +31,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.cabinet = new CabinetBigRight();
+            this.cabinet = new IpsViewComponentLibrary.ConsumerControls.BigRight.CabinetBigRight();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
@@ -43,7 +43,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.cabinet.AutoScroll = true;
             this.cabinet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cabinet.Location = new System.Drawing.Point(0, 0);
-            this.cabinet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cabinet.Margin = new System.Windows.Forms.Padding(4);
             this.cabinet.Name = "cabinet";
             this.cabinet.Size = new System.Drawing.Size(1141, 514);
             this.cabinet.TabIndex = 0;
@@ -66,7 +66,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // CabinetBigRightForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1141, 514);
             this.Controls.Add(this.radWaitingBar1);
@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Кабінет";
+            this.Text = "Кабінет користувача";
             this.ThemeName = "Office2013Light";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CabinetBigRightForm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();

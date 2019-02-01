@@ -49,8 +49,6 @@ namespace IpsViewComponentLibrary
             addressLetter.RegionsValueMember = "codeI";
             addressLetter.RegionsDisplayMember = "name";
             addressLetter.PostIndexDataMember = "LePostIndex";
-
-            anketaCompanyBindingSource.DataSource = anketa;
         }
 
         public bool Validator()

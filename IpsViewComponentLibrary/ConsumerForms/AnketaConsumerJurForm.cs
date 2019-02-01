@@ -15,10 +15,12 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class AnketaConsumerForm : RadForm
+    public partial class AnketaConsumerJurForm : RadForm
     {
+        private const string DefaultTitle = "Анкета користувача [юридична особа]";
+
         private Customer _customer;
-        
+
         private readonly Func<int, Customer> _getCustomerAnketa;
         private readonly Customer _newCustomerCopy = null;
 
@@ -33,11 +35,11 @@ namespace IpsViewComponentLibrary
         /// <param name="getCustomerAnketa"></param>
         /// <param name="isNew"></param>
         /// <param name="typeRights"></param>
-        public AnketaConsumerForm(Customer customer, Func<string, IList<AutoCompleteData>> getAutoCompList,
+        public AnketaConsumerJurForm(Customer customer, Func<string, IList<AutoCompleteData>> getAutoCompList,
             Func<int, Customer> getCustomerAnketa, TypeRights typeRights = TypeRights.SmallRights )
         {
             InitializeComponent();
-
+            ctrlConsumerAnketa.ctrlClientName.TextNameChanged += CtrlClientName_TextNameChanged;
             _newCustomerCopy = customer.CloneJson();
 
             //_getAutoCompList = getAutoCompList;
@@ -50,6 +52,11 @@ namespace IpsViewComponentLibrary
             ctrlConsumerAnketa.TypeRights = typeRights;
             ctrlConsumerAnketa.SetDataAndDictionaries(_customer);
             ctrlConsumerAnketa.InitializeControl(getAutoCompList, GetExistsCustomer, ConsumerAnketeType.CreateNewAnketa);
+        }
+
+        private void CtrlClientName_TextNameChanged(object sender, string e)
+        {
+            Text = e.Length == 0 ? DefaultTitle : string.Concat(DefaultTitle, $": {e}");
         }
 
         public Customer GetExistsCustomer(int custId)

@@ -43,7 +43,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankRequisites = new IpsViewComponentLibrary.MiddleControlBankRequisites();
+            this.ctrlBankRequisites = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlManagers = new IpsViewComponentLibrary.ConsumerControls.ManagersControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
@@ -123,7 +123,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // ctrlClientName
             // 
-            this.ctrlClientName.Location = new System.Drawing.Point(4, 35);
+            this.ctrlClientName.Location = new System.Drawing.Point(19, 5);
             this.ctrlClientName.MaximumSize = new System.Drawing.Size(800, 194);
             this.ctrlClientName.MinimumSize = new System.Drawing.Size(607, 194);
             this.ctrlClientName.Name = "ctrlClientName";
@@ -147,6 +147,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlPlaces.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlPlaces.Location = new System.Drawing.Point(0, 0);
             this.ctrlPlaces.Name = "ctrlPlaces";
+            this.ctrlPlaces.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
             this.ctrlPlaces.Size = new System.Drawing.Size(1010, 654);
             this.ctrlPlaces.TabIndex = 11;
             // 
@@ -181,7 +182,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.ctrlAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAddress.Location = new System.Drawing.Point(4, 35);
+            this.ctrlAddress.Location = new System.Drawing.Point(19, 5);
             this.ctrlAddress.MaximumSize = new System.Drawing.Size(1000, 313);
             this.ctrlAddress.MinimumSize = new System.Drawing.Size(727, 313);
             this.ctrlAddress.Name = "ctrlAddress";
@@ -200,11 +201,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // ctrlBankRequisites
             // 
-            this.ctrlBankRequisites.Location = new System.Drawing.Point(4, 35);
-            this.ctrlBankRequisites.MaximumSize = new System.Drawing.Size(1300, 160);
-            this.ctrlBankRequisites.MinimumSize = new System.Drawing.Size(300, 160);
+            this.ctrlBankRequisites.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
+            this.ctrlBankRequisites.Location = new System.Drawing.Point(19, 5);
             this.ctrlBankRequisites.Name = "ctrlBankRequisites";
-            this.ctrlBankRequisites.Size = new System.Drawing.Size(522, 160);
+            this.ctrlBankRequisites.Size = new System.Drawing.Size(434, 127);
             this.ctrlBankRequisites.TabIndex = 0;
             // 
             // pvManagers
@@ -218,7 +218,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // ctrlManagers
             // 
-            this.ctrlManagers.Location = new System.Drawing.Point(4, 35);
+            this.ctrlManagers.Location = new System.Drawing.Point(19, 5);
             this.ctrlManagers.Name = "ctrlManagers";
             this.ctrlManagers.Size = new System.Drawing.Size(750, 454);
             this.ctrlManagers.TabIndex = 0;
@@ -259,7 +259,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1004, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1004, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -360,9 +360,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.RadLabel ctrlPlacesTitle;
         private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator;
         private Telerik.WinControls.UI.RadPdfViewer radPdfViewer;
-        private MiddleControlClientName ctrlClientName;
         private MiddleControlAddress ctrlAddress;
-        private MiddleControlBankRequisites ctrlBankRequisites;
         private ConsumerPlacesControl ctrlPlaces;
         private Telerik.WinControls.UI.RadButton btnLoadPdf;
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
@@ -370,5 +368,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
         private ManagersControl ctrlManagers;
+        public MiddleControlClientName ctrlClientName;
+        private IpsBankAccountControl ctrlBankRequisites;
     }
 }

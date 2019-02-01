@@ -187,7 +187,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             int custType = 3; // Юридична особа
             var customer = _service.NewCustomer(custType);
 
-            var form = new AnketaConsumerForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights)
+            var form = new IpsViewComponentLibrary.AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -219,6 +219,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             //_cabinetBigRightForm.radWaitingBar1.StartWaiting();
             if (!_cabinetBigRightForm.Visible)
             {
+                _cabinetBigRightForm.Title = _mainGrid.ViewRow.Name;
                 _cabinetBigRightForm.Show();
             }
             // завантаження даних

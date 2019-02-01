@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary
     {
         public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
+        public ConsumerMainView ViewRow => gvViewConsumers.CurrentRow?.DataBoundItem as ConsumerMainView;
 
         public GlobalControlConsumerMainGrid()
         {

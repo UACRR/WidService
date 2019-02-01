@@ -14,14 +14,21 @@ namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class CabinetSmallRightForm : Telerik.WinControls.UI.RadForm
     {
+        private const string DefaultTitle = "Кабінет користувача";
         private Customer _customer;
-        public event UpdateCustomerDataEventHandler Update;
+        public event UpdateCustomerDataEventHandler OnUpdate;
 
         public CabinetSmallRightForm()
         {
             InitializeComponent();
             cabinet.Rights = TypeRights.SmallRights;
             cabinet.UpdateData += UpdateData;
+        }
+
+        public string Title
+        {
+            get => Text;
+            set => Text = value.Length == 0 ? DefaultTitle : string.Concat(DefaultTitle, $": {value}");
         }
 
         public void SetCustomer(Customer customer)
@@ -33,7 +40,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         //оновлення даних
         private void UpdateData(int id)
         {
-            Update?.Invoke(id);
+            OnUpdate?.Invoke(id);
         }
 
         private void CabinetSmallRightForm_FormClosing(object sender, FormClosingEventArgs e)

@@ -60,7 +60,6 @@
             // ctrlAgreement
             // 
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddBr);
-            this.ctrlAgreement.AnketaCompanyDataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             this.ctrlAgreement.Location = new System.Drawing.Point(12, 12);
             this.ctrlAgreement.Name = "ctrlAgreement";
             this.ctrlAgreement.PaidPeriodDictionaryDataSource = typeof(ipsFormsDesign.Model.Period);

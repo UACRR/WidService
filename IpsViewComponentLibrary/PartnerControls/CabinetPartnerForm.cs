@@ -74,7 +74,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // статус договору
             var statusid = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
             lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
-
+            btnAcceptAgr.Enabled = statusid != 2;
             // умови договору
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
             bsPartner.DataSource = _customer?.Partner;

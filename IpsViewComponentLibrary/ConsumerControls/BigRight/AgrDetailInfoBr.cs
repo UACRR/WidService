@@ -29,8 +29,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         {
             bindingSourceComment.DataSource = licenseParam;
             //шапка
-            txtAgrNumber.Text = licenseAgreementBigRightView.AgrNumber ?? string.Empty;
-            txtAgrDate.Text = licenseAgreementBigRightView.AgrDate?.ToShortDateString() ?? string.Empty;
+            txtAgrNumber.Text = licenseAgreementBigRightView.LicNum?? string.Empty;
+            txtAgrDate.Text = licenseAgreementBigRightView.LicDate?.ToShortDateString() ?? string.Empty;
             txtIsProlong.Text = licenseAgreementBigRightView.ToProlong;
             
             //блок 1

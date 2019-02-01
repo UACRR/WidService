@@ -61,13 +61,13 @@ namespace IpsViewComponentLibrary
             lblTour.Enabled = checkIsTour.Checked;
             _deleteLicense = formType == FormType.Create;
             dtDate.SetUserCalendarSettingsm();
-            dtDate.MinDate = DateTime.Today;
             switch (_formType)
             {
                 case FormType.Create:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     CreateNewRequest();
                     Text = "Створення нової заявки на ліцензію";
+                    dtDate.MinDate = DateTime.Today;
                     break;
                 case FormType.Edit:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;

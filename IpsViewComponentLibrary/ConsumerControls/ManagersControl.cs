@@ -27,10 +27,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
         public void SetDataSources(Customer cust)
         {
             _customer = cust;
-            AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
-            bsAnketaCompany.DataSource = anketa;
 
-            RelEmployee relEmpl = cust?.Company?.RelEmployee?.FirstOrDefault(rec => rec.PositionCode == 1);
+            var relEmpl = _customer.Company?.RelEmployee?.FirstOrDefault(rec => rec.PositionCode == 1);
             if (relEmpl == null)
             {
                 relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 1 };

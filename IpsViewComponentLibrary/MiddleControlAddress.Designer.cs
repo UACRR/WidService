@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.lblTitle = new Telerik.WinControls.UI.RadLabel();
             this.addressFactual = new IpsViewComponentLibrary.IpsAddressControl();
             this.addressLegal = new IpsViewComponentLibrary.IpsAddressControl();
             this.btnCopyFromJaToLe = new Telerik.WinControls.UI.RadButton();
@@ -42,8 +40,7 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.addressLetter = new IpsViewComponentLibrary.AddressLetter();
             this.btnCopyFromFaToLe = new Telerik.WinControls.UI.RadButton();
-            this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToLe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
@@ -58,18 +55,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtPostIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromFaToLe)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblTitle
-            // 
-            this.lblTitle.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true));
-            this.lblTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblTitle.Location = new System.Drawing.Point(35, 3);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(132, 22);
-            this.lblTitle.TabIndex = 8;
-            this.lblTitle.Text = "Назва «Клієнта»";
             // 
             // addressFactual
             // 
@@ -78,7 +64,7 @@
             this.addressFactual.CountryDataMember = null;
             this.addressFactual.DataMember = "";
             this.addressFactual.DataSource = null;
-            this.addressFactual.Location = new System.Drawing.Point(20, 161);
+            this.addressFactual.Location = new System.Drawing.Point(20, 133);
             this.addressFactual.Name = "addressFactual";
             this.addressFactual.RegionDataMember = null;
             this.addressFactual.Size = new System.Drawing.Size(700, 53);
@@ -91,7 +77,7 @@
             this.addressLegal.CountryDataMember = null;
             this.addressLegal.DataMember = "";
             this.addressLegal.DataSource = null;
-            this.addressLegal.Location = new System.Drawing.Point(20, 58);
+            this.addressLegal.Location = new System.Drawing.Point(20, 30);
             this.addressLegal.Name = "addressLegal";
             this.addressLegal.RegionDataMember = null;
             this.addressLegal.Size = new System.Drawing.Size(700, 52);
@@ -99,7 +85,7 @@
             // 
             // btnCopyFromJaToLe
             // 
-            this.btnCopyFromJaToLe.Location = new System.Drawing.Point(20, 239);
+            this.btnCopyFromJaToLe.Location = new System.Drawing.Point(20, 211);
             this.btnCopyFromJaToLe.Name = "btnCopyFromJaToLe";
             this.btnCopyFromJaToLe.Size = new System.Drawing.Size(153, 19);
             this.btnCopyFromJaToLe.TabIndex = 30;
@@ -111,7 +97,7 @@
             // 
             this.radSeparator6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator6.Location = new System.Drawing.Point(128, 212);
+            this.radSeparator6.Location = new System.Drawing.Point(128, 184);
             this.radSeparator6.Name = "radSeparator6";
             this.radSeparator6.Size = new System.Drawing.Size(613, 21);
             this.radSeparator6.TabIndex = 29;
@@ -120,7 +106,7 @@
             // radLabel9
             // 
             this.radLabel9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel9.Location = new System.Drawing.Point(3, 212);
+            this.radLabel9.Location = new System.Drawing.Point(3, 184);
             this.radLabel9.Name = "radLabel9";
             this.radLabel9.Size = new System.Drawing.Size(108, 21);
             this.radLabel9.TabIndex = 28;
@@ -128,7 +114,7 @@
             // 
             // btnCopyFromJaToFa
             // 
-            this.btnCopyFromJaToFa.Location = new System.Drawing.Point(20, 136);
+            this.btnCopyFromJaToFa.Location = new System.Drawing.Point(20, 108);
             this.btnCopyFromJaToFa.Name = "btnCopyFromJaToFa";
             this.btnCopyFromJaToFa.Size = new System.Drawing.Size(153, 19);
             this.btnCopyFromJaToFa.TabIndex = 27;
@@ -140,7 +126,7 @@
             // 
             this.radSeparator2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator2.Location = new System.Drawing.Point(128, 109);
+            this.radSeparator2.Location = new System.Drawing.Point(128, 81);
             this.radSeparator2.Name = "radSeparator2";
             this.radSeparator2.Size = new System.Drawing.Size(613, 21);
             this.radSeparator2.TabIndex = 26;
@@ -149,7 +135,7 @@
             // radLabel3
             // 
             this.radLabel3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel3.Location = new System.Drawing.Point(3, 109);
+            this.radLabel3.Location = new System.Drawing.Point(3, 81);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(111, 21);
             this.radLabel3.TabIndex = 25;
@@ -159,7 +145,7 @@
             // 
             this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator1.Location = new System.Drawing.Point(128, 31);
+            this.radSeparator1.Location = new System.Drawing.Point(128, 3);
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(613, 21);
             this.radSeparator1.TabIndex = 24;
@@ -168,7 +154,7 @@
             // radLabel2
             // 
             this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel2.Location = new System.Drawing.Point(3, 31);
+            this.radLabel2.Location = new System.Drawing.Point(3, 3);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(119, 21);
             this.radLabel2.TabIndex = 23;
@@ -222,7 +208,7 @@
             this.addressLetter.DdlRegion.RootElement.StretchVertically = true;
             this.addressLetter.DdlRegion.Size = new System.Drawing.Size(220, 20);
             this.addressLetter.DdlRegion.TabIndex = 1;
-            this.addressLetter.Location = new System.Drawing.Point(20, 265);
+            this.addressLetter.Location = new System.Drawing.Point(20, 237);
             this.addressLetter.MaximumSize = new System.Drawing.Size(700, 45);
             this.addressLetter.MinimumSize = new System.Drawing.Size(700, 45);
             this.addressLetter.Name = "addressLetter";
@@ -285,17 +271,13 @@
             // 
             // btnCopyFromFaToLe
             // 
-            this.btnCopyFromFaToLe.Location = new System.Drawing.Point(179, 239);
+            this.btnCopyFromFaToLe.Location = new System.Drawing.Point(179, 211);
             this.btnCopyFromFaToLe.Name = "btnCopyFromFaToLe";
             this.btnCopyFromFaToLe.Size = new System.Drawing.Size(153, 19);
             this.btnCopyFromFaToLe.TabIndex = 34;
             this.btnCopyFromFaToLe.Text = "Вставити з фактичної";
             this.btnCopyFromFaToLe.ThemeName = "Office2013Light";
             this.btnCopyFromFaToLe.Click += new System.EventHandler(this.btnCopyFromFaToLe_Click);
-            // 
-            // anketaCompanyBindingSource
-            // 
-            this.anketaCompanyBindingSource.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             // 
             // MiddleControlAddress
             // 
@@ -313,12 +295,10 @@
             this.Controls.Add(this.radLabel3);
             this.Controls.Add(this.radSeparator1);
             this.Controls.Add(this.radLabel2);
-            this.Controls.Add(this.lblTitle);
-            this.MaximumSize = new System.Drawing.Size(1000, 313);
-            this.MinimumSize = new System.Drawing.Size(727, 313);
+            this.MaximumSize = new System.Drawing.Size(1000, 290);
+            this.MinimumSize = new System.Drawing.Size(727, 290);
             this.Name = "MiddleControlAddress";
-            this.Size = new System.Drawing.Size(744, 313);
-            ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).EndInit();
+            this.Size = new System.Drawing.Size(744, 290);
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToLe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
@@ -333,15 +313,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.addressLetter.TxtPostIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromFaToLe)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadLabel lblTitle;
         private IpsAddressControl addressFactual;
         private IpsAddressControl addressLegal;
         private Telerik.WinControls.UI.RadButton btnCopyFromJaToLe;
@@ -354,6 +331,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private AddressLetter addressLetter;
         private Telerik.WinControls.UI.RadButton btnCopyFromFaToLe;
-        private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

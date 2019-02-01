@@ -38,7 +38,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
 
-            _cabinetSmallRightForm.Update += LoadCustomerCabinet;
+            _cabinetSmallRightForm.OnUpdate += LoadCustomerCabinet;
             _cabinetSmallRightForm.cabinet.SaveCustomer += SaveCustomer;
             _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
             _cabinetSmallRightForm.cabinet.GetPartner += Cabinet_GetPartner;
@@ -164,7 +164,10 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetSmallRightForm.SetCustomer(mainCust);
             _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;
             if (!_cabinetSmallRightForm.Visible)
+            {
+                _cabinetSmallRightForm.Title = _mainGrid.ViewRow.Name;
                 _cabinetSmallRightForm.Show();
+            }
 
             GC.Collect();
         }
@@ -202,7 +205,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             switch (custType)
             {
                 case 1:
-                    var formPhis = new AnketaConsumerPhisForm(cust)
+                    var formPhis = new IpsViewComponentLibrary.ConsumerForms.AnketaConsumerPhisForm(cust)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
@@ -219,7 +222,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
                     }
                     break;
                 case 3: // Юридична особа
-                    var form = new AnketaConsumerForm(cust, _service.GetAutoCompleteList, _service.GetData)
+                    var form = new IpsViewComponentLibrary.AnketaConsumerJurForm(cust, _service.GetAutoCompleteList, _service.GetData)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };

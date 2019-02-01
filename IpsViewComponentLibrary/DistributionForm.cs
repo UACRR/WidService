@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 

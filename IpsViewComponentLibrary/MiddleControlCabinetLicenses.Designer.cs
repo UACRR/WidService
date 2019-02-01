@@ -49,23 +49,16 @@ namespace IpsViewComponentLibrary
             this.btnCloseAgr = new Telerik.WinControls.UI.RadButton();
             this.btnToProlongation = new Telerik.WinControls.UI.RadButton();
             this.btnToAccept = new Telerik.WinControls.UI.RadButton();
-            this.pageView = new Telerik.WinControls.UI.RadPageView();
-            this.pvInformation = new Telerik.WinControls.UI.RadPageViewPage();
+            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             this.ctrlAgrDetailInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.AgrDetailInfoBr();
-            this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvHistory = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
-            this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToProlongation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
-            this.pageView.SuspendLayout();
-            this.pvInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +97,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 194;
+            gridViewTextBoxColumn3.Width = 193;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ ліцензійного договору";
@@ -112,7 +105,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "LicNum";
-            gridViewTextBoxColumn4.Width = 100;
+            gridViewTextBoxColumn4.Width = 94;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "LicDate";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
@@ -227,7 +220,7 @@ namespace IpsViewComponentLibrary
             // btnCloseAgr
             // 
             this.btnCloseAgr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseAgr.Location = new System.Drawing.Point(819, 47);
+            this.btnCloseAgr.Location = new System.Drawing.Point(902, 366);
             this.btnCloseAgr.Name = "btnCloseAgr";
             this.btnCloseAgr.Size = new System.Drawing.Size(95, 40);
             this.btnCloseAgr.TabIndex = 9;
@@ -239,7 +232,7 @@ namespace IpsViewComponentLibrary
             // btnToProlongation
             // 
             this.btnToProlongation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToProlongation.Location = new System.Drawing.Point(819, 0);
+            this.btnToProlongation.Location = new System.Drawing.Point(902, 319);
             this.btnToProlongation.Name = "btnToProlongation";
             this.btnToProlongation.Size = new System.Drawing.Size(95, 40);
             this.btnToProlongation.TabIndex = 11;
@@ -260,58 +253,26 @@ namespace IpsViewComponentLibrary
             this.btnToAccept.ThemeName = "Office2013Light";
             this.btnToAccept.Click += new System.EventHandler(this.btnToAccept_Click);
             // 
-            // pageView
+            // btnUpdate
             // 
-            this.pageView.Controls.Add(this.pvInformation);
-            this.pageView.Controls.Add(this.pvAgreement);
-            this.pageView.Controls.Add(this.pvHistory);
-            this.pageView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pageView.Location = new System.Drawing.Point(0, 319);
-            this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvInformation;
-            this.pageView.Size = new System.Drawing.Size(1000, 219);
-            this.pageView.TabIndex = 13;
-            this.pageView.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Left;
-            ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
-            // 
-            // pvInformation
-            // 
-            this.pvInformation.Controls.Add(this.ctrlAgrDetailInfo);
-            this.pvInformation.Controls.Add(this.btnToProlongation);
-            this.pvInformation.Controls.Add(this.btnCloseAgr);
-            this.pvInformation.ItemSize = new System.Drawing.SizeF(79F, 27F);
-            this.pvInformation.Location = new System.Drawing.Point(83, 5);
-            this.pvInformation.Name = "pvInformation";
-            this.pvInformation.Size = new System.Drawing.Size(912, 209);
-            this.pvInformation.Text = "Інформація";
+            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.btnUpdate.Location = new System.Drawing.Point(887, 3);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(110, 24);
+            this.btnUpdate.TabIndex = 15;
+            this.btnUpdate.Text = "Оновити дані";
+            this.btnUpdate.ThemeName = "Office2013Light";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // ctrlAgrDetailInfo
             // 
-            this.ctrlAgrDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.ctrlAgrDetailInfo.Location = new System.Drawing.Point(4, 4);
+            this.ctrlAgrDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ctrlAgrDetailInfo.Location = new System.Drawing.Point(3, 319);
             this.ctrlAgrDetailInfo.MinimumSize = new System.Drawing.Size(795, 170);
             this.ctrlAgrDetailInfo.Name = "ctrlAgrDetailInfo";
-            this.ctrlAgrDetailInfo.Size = new System.Drawing.Size(795, 202);
+            this.ctrlAgrDetailInfo.Size = new System.Drawing.Size(800, 216);
             this.ctrlAgrDetailInfo.TabIndex = 0;
-            // 
-            // pvAgreement
-            // 
-            this.pvAgreement.ItemSize = new System.Drawing.SizeF(79F, 27F);
-            this.pvAgreement.Location = new System.Drawing.Point(83, 5);
-            this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(905, 209);
-            this.pvAgreement.Text = "Договір";
-            // 
-            // pvHistory
-            // 
-            this.pvHistory.ItemSize = new System.Drawing.SizeF(79F, 27F);
-            this.pvHistory.Location = new System.Drawing.Point(83, 5);
-            this.pvHistory.Name = "pvHistory";
-            this.pvHistory.Size = new System.Drawing.Size(905, 209);
-            this.pvHistory.Text = "Історія";
             // 
             // ctrlSearch
             // 
@@ -333,25 +294,15 @@ namespace IpsViewComponentLibrary
             this.ctrlAgrInfo.Size = new System.Drawing.Size(705, 79);
             this.ctrlAgrInfo.TabIndex = 0;
             // 
-            // btnUpdate
-            // 
-            this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUpdate.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.btnUpdate.Location = new System.Drawing.Point(887, 3);
-            this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(110, 24);
-            this.btnUpdate.TabIndex = 15;
-            this.btnUpdate.Text = "Оновити дані";
-            this.btnUpdate.ThemeName = "Office2013Light";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
-            // 
             // MiddleControlCabinetLicenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ctrlAgrDetailInfo);
             this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnToProlongation);
+            this.Controls.Add(this.btnCloseAgr);
             this.Controls.Add(this.ctrlSearch);
-            this.Controls.Add(this.pageView);
             this.Controls.Add(this.btnToAccept);
             this.Controls.Add(this.separator);
             this.Controls.Add(this.gvViewLicences);
@@ -365,9 +316,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToProlongation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
-            this.pageView.ResumeLayout(false);
-            this.pvInformation.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
             this.ResumeLayout(false);
 
@@ -381,10 +329,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadButton btnCloseAgr;
         private Telerik.WinControls.UI.RadButton btnToProlongation;
         private Telerik.WinControls.UI.RadButton btnToAccept;
-        private Telerik.WinControls.UI.RadPageView pageView;
-        private Telerik.WinControls.UI.RadPageViewPage pvInformation;
-        private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
-        private Telerik.WinControls.UI.RadPageViewPage pvHistory;
         private ConsumerControls.BigRight.AgrDetailInfoBr ctrlAgrDetailInfo;
         private Common.SearchTextBoxControl ctrlSearch;
         private Telerik.WinControls.UI.RadButton btnUpdate;

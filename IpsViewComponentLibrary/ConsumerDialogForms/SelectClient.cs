@@ -15,10 +15,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
     {
         public delegate bool SetClientId(int clientId);
         public event SetClientId OnAddSelectedClient;
+
         /// <summary>
-        /// Для настройки виводу діалогу у разних випадках
+        /// Для настройки виводу діалогу у різних випадках
         /// </summary>
         private SuccessErrorMsg _msg = new SuccessErrorMsg("Нового клієнта додано!", "Неможливо додати клієнта!");
+
         public SelectClient(List<PartnerAllFreeClientsView> clientsList, SuccessErrorMsg msg = null )
         {
             InitializeComponent();
