@@ -1,20 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
-using IpsViewComponentLibrary.PartnerControls;
-using Telerik.WinControls;
 
-namespace IpsViewComponentLibrary.ConsumerForms
+namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class CabinetPartnerForm : Telerik.WinControls.UI.RadForm
     {
@@ -30,6 +24,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public event SetPartnerEventHandler OnDetachClientInPartner;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event SaveCustomerEventHandler OnSaveCustomer;
+        public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
         public event GetCustomerByIdEventHandler UpdateCustomer;
         public IAnketaControls control;
 
@@ -72,11 +67,16 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // договір
             ctrlAgreement.AgreementDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
             // статус договору
-            var statusid = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
-            lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
-            btnAcceptAgr.Enabled = statusid != 2;
+            var agrStatus = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault()?.AgrStatus;
+            lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == agrStatus)?.Name;
+            // можливість змінювати договір
+            btnAcceptAgr.Enabled = agrStatus != 2;
+            panelOfButtons.Enabled = agrStatus != 2;
+            ctrlAgreement.IsReadOnly = agrStatus == 2;
             // умови договору
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
+            ctrlConditions.IsReadOnly = agrStatus == 2;
+
             bsPartner.DataSource = _customer?.Partner;
         }
 
@@ -114,7 +114,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlPartnerClients.SetData(list);
         }
 
-        // підтвердити
+        // підтвердити договір
         private void btnAcceptAgr_Click(object sender, EventArgs e)
         {
             var result = ChangeStatusAgr?.Invoke(_customer.CustId, CPartnerObjectStatus.Activate);
@@ -125,7 +125,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             }
         }
 
-        // закрити
+        // закрити договір
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Ви дійсно хочете закрити договір з представником?", "Підтверження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -139,6 +139,21 @@ namespace IpsViewComponentLibrary.ConsumerForms
             }
         }
 
-        
+        // зберегти зміни договору
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var result = OnSaveAgreement?.Invoke(_customer.Partner.AgreementAddPartner.SingleOrDefault()) ?? false;
+            if(result)
+                MessageBox.Show("Зміни в договорі збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Неможливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        // скасувати зміни договору
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            _customer = UpdateCustomer?.Invoke(_customer.CustId);
+            BeginBinding();
+        }
     }
 }

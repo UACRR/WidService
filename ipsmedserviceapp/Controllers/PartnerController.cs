@@ -112,6 +112,32 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Збереження змін в договорі представника
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        [HttpPut("agreement")]
+        public async Task<IActionResult> UpdateAgreement([FromBody] AgreementAddPartner source)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var destinatopn = await _dbContext.AgreementAddPartner.SingleOrDefaultAsync(rec => rec.AgrId == source.AgrId);
+                destinatopn.SetFields(source, new []{ "CustId", "AgrId", "AgrStatus", });
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                transaction = null;
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e.Message);
+            }
+        }
+
         //основний метод збереження нових представників
         private async Task<IActionResult> SavePartner(Customer sourceCustomer, int? customerType)
         {

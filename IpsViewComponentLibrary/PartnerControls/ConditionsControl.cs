@@ -12,6 +12,7 @@ namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class ConditionsControl : UserControl
     {
+        private bool _isReadOnlyMode;
         public ConditionsControl()
         {
             InitializeComponent();
@@ -23,6 +24,22 @@ namespace IpsViewComponentLibrary.PartnerControls
             txtNoCourtRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             txtCourtCompRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
 
+        }
+
+        public bool IsReadOnly
+        {
+            get => _isReadOnlyMode;
+            set
+            {
+                _isReadOnlyMode = value;
+                txtSrFirstRate.ReadOnly = value;
+                txtSrMounthRate.ReadOnly = value;
+                txtPfFirstRate.ReadOnly = value;
+                txtPfMounthRate.ReadOnly = value;
+                txtCourtRate.ReadOnly = value;
+                txtNoCourtRate.ReadOnly = value;
+                txtCourtCompRate.ReadOnly = value;
+            }
         }
 
         /// <summary>

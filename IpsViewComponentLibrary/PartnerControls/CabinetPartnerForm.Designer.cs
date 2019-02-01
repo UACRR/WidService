@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerForms
+﻿namespace IpsViewComponentLibrary.PartnerControls
 {
     partial class CabinetPartnerForm
     {
@@ -38,6 +38,8 @@
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.pageViewAgreement = new Telerik.WinControls.UI.RadPageView();
             this.pvAgrMain = new Telerik.WinControls.UI.RadPageViewPage();
+            this.checkPartnerInternal = new Telerik.WinControls.UI.RadCheckBox();
+            this.bsPartner = new System.Windows.Forms.BindingSource(this.components);
             this.ddbtnChangeAgrStatus = new Telerik.WinControls.UI.RadSplitButton();
             this.btnAcceptAgr = new Telerik.WinControls.UI.RadMenuItem();
             this.btnCloseAgr = new Telerik.WinControls.UI.RadMenuItem();
@@ -47,9 +49,10 @@
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvAgrTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
+            this.panelOfButtons = new Telerik.WinControls.UI.RadPanel();
+            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
-            this.bsPartner = new System.Windows.Forms.BindingSource(this.components);
-            this.checkPartnerInternal = new Telerik.WinControls.UI.RadCheckBox();
             this.pvClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
@@ -57,14 +60,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pageViewAgreement)).BeginInit();
             this.pageViewAgreement.SuspendLayout();
             this.pvAgrMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkPartnerInternal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPartner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnChangeAgrStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             this.pvAgrTerms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.panelOfButtons)).BeginInit();
+            this.panelOfButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPartner)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkPartnerInternal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,6 +129,7 @@
             // pvAgreement
             // 
             this.pvAgreement.Controls.Add(this.pageViewAgreement);
+            this.pvAgreement.Controls.Add(this.panelOfButtons);
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(5, 31);
             this.pvAgreement.Name = "pvAgreement";
@@ -136,7 +144,7 @@
             this.pageViewAgreement.Location = new System.Drawing.Point(0, 0);
             this.pageViewAgreement.Name = "pageViewAgreement";
             this.pageViewAgreement.SelectedPage = this.pvAgrMain;
-            this.pageViewAgreement.Size = new System.Drawing.Size(1065, 510);
+            this.pageViewAgreement.Size = new System.Drawing.Size(1065, 479);
             this.pageViewAgreement.TabIndex = 0;
             this.pageViewAgreement.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewAgreement.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -154,19 +162,32 @@
             this.pvAgrMain.ItemSize = new System.Drawing.SizeF(136F, 27F);
             this.pvAgrMain.Location = new System.Drawing.Point(140, 5);
             this.pvAgrMain.Name = "pvAgrMain";
-            this.pvAgrMain.Size = new System.Drawing.Size(920, 500);
+            this.pvAgrMain.Size = new System.Drawing.Size(920, 469);
             this.pvAgrMain.Text = "Інформація договору";
+            // 
+            // checkPartnerInternal
+            // 
+            this.checkPartnerInternal.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsPartner, "IsMy", true));
+            this.checkPartnerInternal.Location = new System.Drawing.Point(35, 149);
+            this.checkPartnerInternal.Name = "checkPartnerInternal";
+            this.checkPartnerInternal.Size = new System.Drawing.Size(233, 19);
+            this.checkPartnerInternal.TabIndex = 2;
+            this.checkPartnerInternal.Text = "Представник - співробітник компанії";
+            this.checkPartnerInternal.ThemeName = "Office2013Light";
+            // 
+            // bsPartner
+            // 
+            this.bsPartner.DataSource = typeof(ipsFormsDesign.Model.Partner);
             // 
             // ddbtnChangeAgrStatus
             // 
-            this.ddbtnChangeAgrStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.ddbtnChangeAgrStatus.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.btnAcceptAgr,
             this.btnCloseAgr});
             this.ddbtnChangeAgrStatus.Location = new System.Drawing.Point(337, 200);
             this.ddbtnChangeAgrStatus.Name = "ddbtnChangeAgrStatus";
             this.ddbtnChangeAgrStatus.Size = new System.Drawing.Size(177, 19);
-            this.ddbtnChangeAgrStatus.TabIndex = 54;
+            this.ddbtnChangeAgrStatus.TabIndex = 3;
             this.ddbtnChangeAgrStatus.Text = "Змінити статус договору";
             this.ddbtnChangeAgrStatus.ThemeName = "Office2013Light";
             // 
@@ -191,7 +212,7 @@
             this.separator.Location = new System.Drawing.Point(3, 174);
             this.separator.Name = "separator";
             this.separator.Size = new System.Drawing.Size(914, 20);
-            this.separator.TabIndex = 5;
+            this.separator.TabIndex = 0;
             this.separator.ThemeName = "Office2013Light";
             // 
             // lblStatusName
@@ -206,7 +227,7 @@
             // 
             this.lblStatusName.RootElement.MinSize = new System.Drawing.Size(120, 18);
             this.lblStatusName.Size = new System.Drawing.Size(143, 18);
-            this.lblStatusName.TabIndex = 42;
+            this.lblStatusName.TabIndex = 0;
             this.lblStatusName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lblStatusName.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadLabelElement)(this.lblStatusName.GetChildAt(0))).BorderVisible = true;
@@ -228,7 +249,7 @@
             this.radLabel7.Location = new System.Drawing.Point(25, 200);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(157, 19);
-            this.radLabel7.TabIndex = 41;
+            this.radLabel7.TabIndex = 0;
             this.radLabel7.Text = "Поточний статус договору";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
@@ -236,12 +257,13 @@
             // 
             this.ctrlAgreement.AgreementCommunityDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlAgreement.IsReadOnly = false;
             this.ctrlAgreement.Location = new System.Drawing.Point(25, 3);
             this.ctrlAgreement.MaximumSize = new System.Drawing.Size(500, 140);
             this.ctrlAgreement.MinimumSize = new System.Drawing.Size(394, 140);
             this.ctrlAgreement.Name = "ctrlAgreement";
             this.ctrlAgreement.Size = new System.Drawing.Size(498, 140);
-            this.ctrlAgreement.TabIndex = 3;
+            this.ctrlAgreement.TabIndex = 1;
             // 
             // pvAgrTerms
             // 
@@ -249,34 +271,57 @@
             this.pvAgrTerms.ItemSize = new System.Drawing.SizeF(136F, 27F);
             this.pvAgrTerms.Location = new System.Drawing.Point(140, 5);
             this.pvAgrTerms.Name = "pvAgrTerms";
-            this.pvAgrTerms.Size = new System.Drawing.Size(920, 500);
+            this.pvAgrTerms.Size = new System.Drawing.Size(920, 469);
             this.pvAgrTerms.Text = "Умови представника";
             // 
             // ctrlConditions
             // 
             this.ctrlConditions.AgreementAddPartnerDataSource = typeof(ipsFormsDesign.Model.AgreementAddPartner);
+            this.ctrlConditions.IsReadOnly = false;
             this.ctrlConditions.Location = new System.Drawing.Point(25, 3);
             this.ctrlConditions.Name = "ctrlConditions";
             this.ctrlConditions.Size = new System.Drawing.Size(702, 357);
             this.ctrlConditions.TabIndex = 1;
             // 
+            // panelOfButtons
+            // 
+            this.panelOfButtons.BackColor = System.Drawing.Color.Silver;
+            this.panelOfButtons.Controls.Add(this.btnSave);
+            this.panelOfButtons.Controls.Add(this.btnCancel);
+            this.panelOfButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelOfButtons.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.panelOfButtons.Location = new System.Drawing.Point(0, 479);
+            this.panelOfButtons.Margin = new System.Windows.Forms.Padding(0);
+            this.panelOfButtons.Name = "panelOfButtons";
+            this.panelOfButtons.Size = new System.Drawing.Size(1065, 31);
+            this.panelOfButtons.TabIndex = 1;
+            this.panelOfButtons.ThemeName = "Office2013Light";
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(814, 4);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(121, 24);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Зберегти зміни";
+            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(941, 4);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(121, 24);
+            this.btnCancel.TabIndex = 1;
+            this.btnCancel.Text = "Скасувати зміни";
+            this.btnCancel.ThemeName = "Office2013Light";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // bsBankAccount
             // 
             this.bsBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
-            // 
-            // bsPartner
-            // 
-            this.bsPartner.DataSource = typeof(ipsFormsDesign.Model.Partner);
-            // 
-            // checkPartnerInternal
-            // 
-            this.checkPartnerInternal.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsPartner, "IsMy", true));
-            this.checkPartnerInternal.Location = new System.Drawing.Point(35, 149);
-            this.checkPartnerInternal.Name = "checkPartnerInternal";
-            this.checkPartnerInternal.Size = new System.Drawing.Size(233, 19);
-            this.checkPartnerInternal.TabIndex = 55;
-            this.checkPartnerInternal.Text = "Представник - співробітник компанії";
-            this.checkPartnerInternal.ThemeName = "Office2013Light";
             // 
             // CabinetPartnerForm
             // 
@@ -299,14 +344,18 @@
             this.pageViewAgreement.ResumeLayout(false);
             this.pvAgrMain.ResumeLayout(false);
             this.pvAgrMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.checkPartnerInternal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPartner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnChangeAgrStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             this.pvAgrTerms.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.panelOfButtons)).EndInit();
+            this.panelOfButtons.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPartner)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.checkPartnerInternal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -335,5 +384,8 @@
         private PartnerControls.ConditionsControl ctrlConditions;
         private Telerik.WinControls.UI.RadCheckBox checkPartnerInternal;
         private System.Windows.Forms.BindingSource bsPartner;
+        private Telerik.WinControls.UI.RadPanel panelOfButtons;
+        private Telerik.WinControls.UI.RadButton btnSave;
+        private Telerik.WinControls.UI.RadButton btnCancel;
     }
 }

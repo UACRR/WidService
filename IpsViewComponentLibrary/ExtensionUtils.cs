@@ -37,6 +37,7 @@ namespace IpsViewComponentLibrary
     public delegate bool SaveCustomerEventHandler(Customer customer);
     public delegate bool SaveObjectListEventHandler<T>(int cmCustId, List<T> listObj);
     public delegate bool SaveObjectByIdEventHandler<T>(int id, T saveObj);
+    public delegate bool SaveObjectEventHandler<T>(T obj);
     public delegate Customer GetCustomerEventHandler();
     public delegate Customer GetCustomerByIdEventHandler(int custId);
     public delegate List<T> ReturnViewEventHandler<T>(int custId);

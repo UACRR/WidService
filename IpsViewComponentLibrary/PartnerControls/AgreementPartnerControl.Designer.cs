@@ -70,7 +70,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.radLabel2.Location = new System.Drawing.Point(6, 19);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(155, 19);
-            this.radLabel2.TabIndex = 45;
+            this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "Останній день розрахунку";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
@@ -79,7 +79,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.radLabel4.Location = new System.Drawing.Point(6, 46);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(155, 19);
-            this.radLabel4.TabIndex = 44;
+            this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Періодичність розрахунку";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
@@ -89,7 +89,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.txtDayForPay.Location = new System.Drawing.Point(167, 19);
             this.txtDayForPay.Name = "txtDayForPay";
             this.txtDayForPay.Size = new System.Drawing.Size(48, 21);
-            this.txtDayForPay.TabIndex = 46;
+            this.txtDayForPay.TabIndex = 1;
             this.txtDayForPay.ThemeName = "Office2013Light";
             this.txtDayForPay.TextChanged += new System.EventHandler(this.txtDayForPay_TextChanged);
             // 
@@ -106,7 +106,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ddlPeriodPayment.Location = new System.Drawing.Point(167, 46);
             this.ddlPeriodPayment.Name = "ddlPeriodPayment";
             this.ddlPeriodPayment.Size = new System.Drawing.Size(194, 21);
-            this.ddlPeriodPayment.TabIndex = 43;
+            this.ddlPeriodPayment.TabIndex = 2;
             this.ddlPeriodPayment.ThemeName = "Office2013Light";
             this.ddlPeriodPayment.ValueMember = "CodeI";
             // 
@@ -124,7 +124,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.groupBox.Location = new System.Drawing.Point(3, 62);
             this.groupBox.Name = "groupBox";
             this.groupBox.Size = new System.Drawing.Size(367, 75);
-            this.groupBox.TabIndex = 47;
+            this.groupBox.TabIndex = 6;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Параметри договору";
             // 
@@ -133,7 +133,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.lblContrDo.Location = new System.Drawing.Point(9, 28);
             this.lblContrDo.Name = "lblContrDo";
             this.lblContrDo.Size = new System.Drawing.Size(100, 19);
-            this.lblContrDo.TabIndex = 52;
+            this.lblContrDo.TabIndex = 0;
             this.lblContrDo.Text = "Дія договору від";
             this.lblContrDo.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lblContrDo.ThemeName = "Office2013Light";
@@ -148,7 +148,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.dtDateEnd.Name = "dtDateEnd";
             this.dtDateEnd.NullText = "Оберіть дату";
             this.dtDateEnd.Size = new System.Drawing.Size(118, 21);
-            this.dtDateEnd.TabIndex = 55;
+            this.dtDateEnd.TabIndex = 4;
             this.dtDateEnd.TabStop = false;
             this.dtDateEnd.ThemeName = "Office2013Light";
             this.dtDateEnd.Value = new System.DateTime(((long)(0)));
@@ -158,7 +158,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.lblContrDoTo.Location = new System.Drawing.Point(243, 28);
             this.lblContrDoTo.Name = "lblContrDoTo";
             this.lblContrDoTo.Size = new System.Drawing.Size(21, 19);
-            this.lblContrDoTo.TabIndex = 56;
+            this.lblContrDoTo.TabIndex = 0;
             this.lblContrDoTo.Text = "до";
             this.lblContrDoTo.ThemeName = "Office2013Light";
             // 
@@ -167,12 +167,12 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.dtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddPartner, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateBegin.Location = new System.Drawing.Point(115, 27);
-            this.dtDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
+            this.dtDateBegin.MaxDate = new System.DateTime(2999, 1, 1, 0, 0, 0, 0);
             this.dtDateBegin.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtDateBegin.Name = "dtDateBegin";
             this.dtDateBegin.NullText = "Оберіть дату";
             this.dtDateBegin.Size = new System.Drawing.Size(120, 21);
-            this.dtDateBegin.TabIndex = 53;
+            this.dtDateBegin.TabIndex = 3;
             this.dtDateBegin.TabStop = false;
             this.dtDateBegin.ThemeName = "Office2013Light";
             this.dtDateBegin.Value = new System.DateTime(((long)(0)));
@@ -189,7 +189,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.dtAgrDate.Name = "dtAgrDate";
             this.dtAgrDate.NullText = "Оберіть дату";
             this.dtAgrDate.Size = new System.Drawing.Size(118, 21);
-            this.dtAgrDate.TabIndex = 50;
+            this.dtAgrDate.TabIndex = 2;
             this.dtAgrDate.TabStop = false;
             this.dtAgrDate.ThemeName = "Office2013Light";
             this.dtAgrDate.Value = new System.DateTime(((long)(0)));
@@ -199,7 +199,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.lblContrFrom.Location = new System.Drawing.Point(241, 3);
             this.lblContrFrom.Name = "lblContrFrom";
             this.lblContrFrom.Size = new System.Drawing.Size(23, 19);
-            this.lblContrFrom.TabIndex = 51;
+            this.lblContrFrom.TabIndex = 0;
             this.lblContrFrom.Text = "від";
             this.lblContrFrom.ThemeName = "Office2013Light";
             // 
@@ -210,7 +210,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.txtAgrNumber.Name = "txtAgrNumber";
             this.txtAgrNumber.NullText = "Номер договору";
             this.txtAgrNumber.Size = new System.Drawing.Size(152, 21);
-            this.txtAgrNumber.TabIndex = 48;
+            this.txtAgrNumber.TabIndex = 1;
             this.txtAgrNumber.ThemeName = "Office2013Light";
             // 
             // lblContrNumb
@@ -218,7 +218,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.lblContrNumb.Location = new System.Drawing.Point(9, 3);
             this.lblContrNumb.Name = "lblContrNumb";
             this.lblContrNumb.Size = new System.Drawing.Size(68, 19);
-            this.lblContrNumb.TabIndex = 49;
+            this.lblContrNumb.TabIndex = 0;
             this.lblContrNumb.Text = "Договір №";
             this.lblContrNumb.ThemeName = "Office2013Light";
             // 
@@ -227,7 +227,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.checkForever.Location = new System.Drawing.Point(394, 28);
             this.checkForever.Name = "checkForever";
             this.checkForever.Size = new System.Drawing.Size(80, 19);
-            this.checkForever.TabIndex = 57;
+            this.checkForever.TabIndex = 5;
             this.checkForever.Text = "Назавжди";
             this.checkForever.ThemeName = "Office2013Light";
             this.checkForever.CheckStateChanged += new System.EventHandler(this.checkForever_CheckStateChanged);

@@ -88,6 +88,12 @@ namespace ipsFormsDesign.Services
             return false;
         }
 
+        public bool UpdateAgreement(AgreementAddPartner agreement)
+        {
+            var url = string.Concat(Prefix, "agreement");
+            return _webApi.UpdateItem(url, null, agreement);
+        }
+
         #region  * * * ПРЕДСТАВНИК + КЛІЄНТ * * *
 
         /// <summary>

@@ -29,12 +29,18 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _partner.LoadData();
             _partner.OnCreateNewCustomerNeed += CreateNewCustomer;
             _partner.OnSaveCustomer += SaveCustomer;
+            _partner.OnSaveAgreement += SaveAgreement;
             _partner.GetPartnerById += GetPartner;
             _partner.GetFreeClientList += GetClientsView;
             _partner.GetPartnerClientList += GetPartnerClientsView;
             _partner.OnAddClientToPartner += AddClientToPartner;
             _partner.OnDetachClientInPartner += _partner_OnDetachClientInPartner;
             _partner.ChangeStatusAgr += AgreementPartnerStatusChange;
+        }
+
+        private bool SaveAgreement(AgreementAddPartner saveObj)
+        {
+            return _service.UpdateAgreement(saveObj);
         }
 
         private bool _partner_OnDetachClientInPartner(int clientId, int partnerId)
@@ -65,16 +71,13 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         //створити Customer
         private Customer CreateNewCustomer(int customerType)
         {
-            var customer = _service.GetPartnerTemplate(customerType);
-            return customer;
+            return _service.GetPartnerTemplate(customerType);
         }
 
         //зберегти Customer
         private bool SaveCustomer(Customer customer)
         {
-            var relust = _service.SavePartner(customer);
-            //UpdateData(customer.CustId);
-            return relust;
+            return _service.SavePartner(customer);
         }
 
         //отримати представника по його ID

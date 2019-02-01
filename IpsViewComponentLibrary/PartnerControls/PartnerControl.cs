@@ -21,6 +21,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
+        public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
         public event GetCustomerByIdEventHandler GetPartnerById;
         public delegate List<T> ReturnPartnerViewEventHandler<T>();
         public event ReturnPartnerViewEventHandler<PartnerView> GetPartnersView;
@@ -136,10 +137,16 @@ namespace IpsViewComponentLibrary.PartnerControls
                     cabinetPartner.OnDetachClientInPartner += CabinetPartner_OnDetachClientInPartner;
                     cabinetPartner.ChangeStatusAgr += CabinetPartner_ChangeStatusAgr;
                     cabinetPartner.UpdateCustomer += CabinetPartner_UpdateCustomer;
+                    cabinetPartner.OnSaveAgreement += CabinetPartner_OnSaveAgreement;
 
                     cabinetPartner.Show();
                     break;
             }
+        }
+
+        private bool CabinetPartner_OnSaveAgreement(AgreementAddPartner saveObj)
+        {
+            return OnSaveAgreement?.Invoke(saveObj) ?? false;
         }
 
         private Customer CabinetPartner_UpdateCustomer(int custId)
@@ -174,8 +181,8 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private bool SaveAnketaPartner(Customer customer)
         {
-            var result = OnSaveCustomer?.Invoke(customer);
-            if (result ?? false)
+            var result = OnSaveCustomer?.Invoke(customer) ?? false;
+            if (result)
             {
                 ExtensionUtils.ShowInfoMessage("Успішно збережено!", "Успішно", MessageBoxIcon.Information);
                 SetDataOfFilter(treeView.SelectedNode);
@@ -183,7 +190,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             else
                 ExtensionUtils.ShowInfoMessage("Не можливо зберегти!", "Помилка", MessageBoxIcon.Error);
 
-            return result ?? false;
+            return result;
         }
     }
 
