@@ -116,6 +116,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 pvParameters.SelectedPage = pvpNotProtected;
             else if (_authorRightholder.FolkType == 3)
                 pvParameters.SelectedPage = pvpFolk;
+
+            objectAuthorRightholderBindingSource.CurrencyManager.Refresh();
         }
 
         private void checkIsRightholder_CheckStateChanged(object sender, EventArgs e)
