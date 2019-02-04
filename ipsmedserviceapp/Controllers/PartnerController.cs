@@ -455,11 +455,8 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("list")]
         public async Task<IActionResult> GetPartnersList()
         {
-            
-            var list = await _dbContext.Customer.FromSql(@"
-select t1.* from Customer t1 
-join Partner t2 on t2.custId = t1.custId 
-")
+            var query = @"select t1.* from Customer t1 join Partner t2 on t2.custId = t1.custId ";
+            var list = await _dbContext.Customer.FromSql(query)
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.Person).ThenInclude(ank => ank.AnketaPerson)
                 .Include(item => item.Company).ThenInclude(rempl => rempl.RelEmployee).ThenInclude(eml => eml.Empl)

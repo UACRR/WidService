@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class AnketaConsumerJurForm : RadForm
     {
@@ -24,17 +18,6 @@ namespace IpsViewComponentLibrary
         private readonly Func<int, Customer> _getCustomerAnketa;
         private readonly Customer _newCustomerCopy = null;
 
-        //private readonly Func<string, IList<AutoCompleteData>> _getAutoCompList;
-
-        /// <summary>
-        /// Main constructor
-        /// </summary>
-        /// <param name="customer">Споживач</param>
-        /// <param name="dictionaties">Словник</param>
-        /// <param name="getAutoCompList"></param>
-        /// <param name="getCustomerAnketa"></param>
-        /// <param name="isNew"></param>
-        /// <param name="typeRights"></param>
         public AnketaConsumerJurForm(Customer customer, Func<string, IList<AutoCompleteData>> getAutoCompList,
             Func<int, Customer> getCustomerAnketa, TypeRights typeRights = TypeRights.SmallRights )
         {
@@ -45,13 +28,27 @@ namespace IpsViewComponentLibrary
             //_getAutoCompList = getAutoCompList;
             _getCustomerAnketa = getCustomerAnketa;
             _customer = customer;
-
-            ctrlTabNavigation.SetDefaultState(ctrlConsumerAnketa.GetPageView, FLoadType.Create);
-            ctrlTabNavigation.SaveClick += Save;
+            
+            ctrlTabNavigationExpanded.SetDefaultState(ctrlConsumerAnketa.GetPageView, FLoadType.Create);
+            ctrlTabNavigationExpanded.SaveClick += Save;
 
             ctrlConsumerAnketa.TypeRights = typeRights;
             ctrlConsumerAnketa.SetDataAndDictionaries(_customer);
             ctrlConsumerAnketa.InitializeControl(getAutoCompList, GetExistsCustomer, ConsumerAnketeType.CreateNewAnketa);
+        }
+
+        private void Save(object sender, bool e)
+        {
+            // відразу підтверджений договір?
+            var status = e ? 2 : 0;
+            _customer.Status = status;
+            _customer.AgreementMaster.SingleOrDefault().AgrStatus = status;
+            _customer.Company.AnketaCompany.SingleOrDefault().Status = status;
+            _customer.Client.LicenseAgreement.SingleOrDefault().LicStatus = status;
+            _customer.Client.LicenseAgreement.SingleOrDefault().Agr.AgreementAddBr.SingleOrDefault().AgrStatus = status;
+            _customer.Client.LicenseAgreement.SingleOrDefault().LicenseAgrParam.SingleOrDefault().LicStatus = status;
+            
+            DialogResult = DialogResult.OK;
         }
 
         private void CtrlClientName_TextNameChanged(object sender, string e)
@@ -78,11 +75,6 @@ namespace IpsViewComponentLibrary
             ctrlConsumerAnketa.ReInitControl();
 
             return retCustomer;
-        }
-
-        private void Save(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
         }
     }
 }

@@ -71,7 +71,7 @@
             // radLabel1
             // 
             this.radLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.radLabel1.Location = new System.Drawing.Point(25, 163);
+            this.radLabel1.Location = new System.Drawing.Point(25, 275);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(79, 19);
             this.radLabel1.TabIndex = 48;
@@ -91,7 +91,7 @@
             this.radPanel1.Controls.Add(this.radLabel7);
             this.radPanel1.Controls.Add(this.radLabel11);
             this.radPanel1.Controls.Add(this.lblAgrStatus);
-            this.radPanel1.Location = new System.Drawing.Point(12, 172);
+            this.radPanel1.Location = new System.Drawing.Point(12, 284);
             this.radPanel1.Name = "radPanel1";
             this.radPanel1.Size = new System.Drawing.Size(645, 64);
             this.radPanel1.TabIndex = 49;
@@ -284,7 +284,7 @@
             // btnSelectPartner
             // 
             this.btnSelectPartner.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSelectPartner.Location = new System.Drawing.Point(12, 242);
+            this.btnSelectPartner.Location = new System.Drawing.Point(12, 354);
             this.btnSelectPartner.Name = "btnSelectPartner";
             this.btnSelectPartner.Size = new System.Drawing.Size(171, 21);
             this.btnSelectPartner.TabIndex = 50;
@@ -297,7 +297,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(511, 242);
+            this.btnCancel.Location = new System.Drawing.Point(511, 354);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(146, 21);
             this.btnCancel.TabIndex = 51;
@@ -328,10 +328,10 @@
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.Name = "CustId";
             gridViewTextBoxColumn2.FieldName = "PartnerName";
-            gridViewTextBoxColumn2.HeaderText = "Ім\'я партнера";
+            gridViewTextBoxColumn2.HeaderText = "ПІБ представника";
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "PartnerName";
-            gridViewTextBoxColumn2.Width = 619;
+            gridViewTextBoxColumn2.Width = 623;
             gridViewTextBoxColumn2.WrapText = true;
             this.gvPartnerList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
@@ -343,7 +343,7 @@
             this.gvPartnerList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvPartnerList.Name = "gvPartnerList";
             this.gvPartnerList.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvPartnerList.Size = new System.Drawing.Size(645, 119);
+            this.gvPartnerList.Size = new System.Drawing.Size(645, 231);
             this.gvPartnerList.TabIndex = 55;
             this.gvPartnerList.ThemeName = "Office2013Light";
             // 
@@ -361,7 +361,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(667, 275);
+            this.ClientSize = new System.Drawing.Size(667, 387);
             this.Controls.Add(this.gvPartnerList);
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.btnCancel);

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -18,10 +19,12 @@ namespace IpsViewComponentLibrary
         public MainGridConsumerBigRightView ViewRow => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
         public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
+        private GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public GlobalControlConsumerMainGridBR()
         {
             InitializeComponent();
+            _gridStateRecorder.AddGrid(gvViewConsumers);
             ctrlSearch.SetUsageGrid(gvViewConsumers);
         }
 
@@ -39,21 +42,37 @@ namespace IpsViewComponentLibrary
         /// Джерело даних для грід
         /// </summary>
         /// <param name="source"></param>
-        public void SetGridDataSource(object source)
+        public void SetGridDataSource(object source, bool withSaveRow = true)
         {
-            // джерело
-            gvViewConsumers.DataSource = source;
+            if (withSaveRow)
+            {
+                _gridStateRecorder.RecordState();
+                gvViewConsumers.DataSource = source;
+                _gridStateRecorder.RestoreState();
+            }
+            else
+            {
+                _gridStateRecorder.ClearGridStates();
+                gvViewConsumers.DataSource = source;
+            }
         }
 
-        private void gvViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvViewConsumers_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            var row = e.Row.DataBoundItem as MainGridConsumerBigRightView;
-            OnLoadCustomerCabinetNeed?.Invoke(row.CustId);
+            OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as MainGridConsumerBigRightView).CustId);
         }
 
         private void btnNewConsumer_Click(object sender, EventArgs e)
         {
             OnAddNewCustomer?.Invoke(sender, e);
+        }
+
+        private void gvViewConsumers_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column is GridViewCommandColumn)
+                return;
+
+            OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as MainGridConsumerBigRightView).CustId);
         }
     }
 }

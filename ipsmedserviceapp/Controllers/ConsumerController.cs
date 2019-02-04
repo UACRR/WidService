@@ -929,6 +929,15 @@ namespace ipsmedserviceapp.Controllers
             if (lic == null)
                 return BadRequest();
 
+            if (typeId == 1)
+            {
+                var licenseBigR = await _dbContext.LicenseBigR.SingleOrDefaultAsync(rec => rec.LicId == lic.LicId);
+                var licenseAgrParam = await _dbContext.LicenseAgrParam.SingleOrDefaultAsync(rec => rec.LicId == lic.LicId);
+
+                licenseAgrParam.DateBegin = licenseBigR.DatePremiere;
+                if (licenseBigR.LicTerm is short licTerm)
+                    licenseAgrParam.DateEnd = licenseBigR.DatePremiere.Value.AddYears(licTerm);
+            }
             lic.LicType = typeId;
 
             await _dbContext.SaveChangesAsync();

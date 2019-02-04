@@ -178,7 +178,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             }
             // _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            _mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
+            _mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue), false);
         }
 
         //створити нового користувача
@@ -187,7 +187,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             int custType = 3; // Юридична особа
             var customer = _service.NewCustomer(custType);
 
-            var form = new IpsViewComponentLibrary.AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights)
+            var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights)
             {
                 StartPosition = FormStartPosition.CenterParent
             };

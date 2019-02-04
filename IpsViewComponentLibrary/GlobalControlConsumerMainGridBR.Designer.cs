@@ -202,6 +202,7 @@ namespace IpsViewComponentLibrary
             this.gvViewConsumers.Size = new System.Drawing.Size(1148, 556);
             this.gvViewConsumers.TabIndex = 6;
             this.gvViewConsumers.ThemeName = "Office2013Light";
+            this.gvViewConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
             this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewConsumers_CommandCellClick);
             // 
             // btnNewConsumer

@@ -38,8 +38,8 @@ namespace IpsViewComponentLibrary.Extensions
                 _stateDictionary.Clear();
             foreach (var view in _gridViewList)
             {
-                if(view.CurrentCell?.RowIndex is int index)
-                    _stateDictionary.Add(view.Name, index);
+                if(view.CurrentRow is GridViewDataRowInfo row)
+                    _stateDictionary.Add(view.Name, row.Index);
             }
         }
 
@@ -53,9 +53,21 @@ namespace IpsViewComponentLibrary.Extensions
                 if (_stateDictionary.ContainsKey(view.Name))
                 {
                     view.MasterTemplate.Refresh();
+                    var rowCountToIndex = view.RowCount;
+                    if (rowCountToIndex >= _stateDictionary[view.Name])
                     view.CurrentRow = view.Rows[_stateDictionary[view.Name]];
+                    else if (view.Rows.Any())
+                        view.CurrentRow = view.Rows.LastOrDefault();
                 }
             }
+            _stateDictionary.Clear();
+        }
+
+        /// <summary>
+        /// Видалити записані стани Grid's
+        /// </summary>
+        public void ClearGridStates()
+        {
             _stateDictionary.Clear();
         }
     }

@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
@@ -17,16 +14,28 @@ namespace IpsViewComponentLibrary
         public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
         public ConsumerMainView ViewRow => gvViewConsumers.CurrentRow?.DataBoundItem as ConsumerMainView;
+        private GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public GlobalControlConsumerMainGrid()
         {
             InitializeComponent();
+            _gridStateRecorder.AddGrid(gvViewConsumers);
             ctrlSearch.SetUsageGrid(gvViewConsumers);
         }
 
-        public void SetGridDataSource(IList<ConsumerMainView> source)
+        public void SetGridDataSource(IList<ConsumerMainView> source, bool withSaveRow = true)
         {
-            gvViewConsumers.DataSource = source;
+            if (withSaveRow)
+            {
+                _gridStateRecorder.RecordState();
+                gvViewConsumers.DataSource = source;
+                _gridStateRecorder.RestoreState();
+            }
+            else
+            {
+                _gridStateRecorder.ClearGridStates();
+                gvViewConsumers.DataSource = source;
+            }
         }
 
         private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
@@ -50,6 +59,14 @@ namespace IpsViewComponentLibrary
         private void btnAddPhisConsumer_Click(object sender, EventArgs e)
         {
             OnAddNewCustomer?.Invoke(1, EventArgs.Empty);
+        }
+
+        private void gvViewConsumers_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (e.Column is GridViewCommandColumn)
+                return;
+
+            OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as ConsumerMainView).CustId);
         }
     }
 }
