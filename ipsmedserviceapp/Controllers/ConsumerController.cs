@@ -1364,6 +1364,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
 
                 modifyRegister(body, modifyItem);
+                modifyItem.RgStatus = 0;
 
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();

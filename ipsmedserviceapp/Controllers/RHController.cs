@@ -650,8 +650,9 @@ t2.custId = @custid
                 });
 
             // Очищаємо CustId
-            foreach (var item in authtors.Where(rec => rec.CustId == rhId).ToArray())
-                item.CustId = null;
+            // Патлякевич Зберігаємо custId
+            //foreach (var author in authtors.Where(rec => rec.CustId == rhId).ToArray())
+            //    author.CustId = null;
 
             // Проставляємо кінцеву дату права
             listCopyRight.ForEach(item =>
@@ -659,10 +660,11 @@ t2.custId = @custid
                 //
                 item.EndDate = endDate;
 
-                foreach (var author in item.Obj.Authors.Where(a => a.CustId == item.CustId))
-                {
-                    author.CustId = null;
-                }
+                // Патлякевич Зберігаємо custId
+                //foreach (var author in item.Obj.Authors.Where(a => a.CustId == item.CustId))
+                //{
+                //    author.CustId = null;
+                //}
             });
         }
 

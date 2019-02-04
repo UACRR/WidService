@@ -221,7 +221,7 @@ namespace ipsmedserviceapp.Utilities
             {
                 var newCopyright = new CopyRight
                 {
-                    ParentId = 101, // TODO: only for debug
+                    //ParentId = 101, // TODO: only for debug
                     CustId = group.Key.CustId,
                     ObjId = group.Key.ObjId,
                     RoleCode = group.Key.RoleCode,
@@ -263,7 +263,7 @@ namespace ipsmedserviceapp.Utilities
                 {
                     _dbContext.Authors.Add(new Authors
                     {
-                        IsFolkOrUnknown = 1, // TODO: only for debug
+                        //IsFolkOrUnknown = 1, // TODO: only for debug
                         ObjId = group.Key.ObjId.Value,
                         RoleCode = group.Key.RoleCode.Value,
                         CustId = group.Key.CustId,
@@ -286,7 +286,7 @@ namespace ipsmedserviceapp.Utilities
                 {
                     var restoredCopyright = new CopyRight
                     {
-                        ParentId = 202, // TODO: only for debug
+                        //ParentId = 202, // TODO: only for debug
                         CustId = oldCopyright.CustId,
                         ObjId = oldCopyright.ObjId,
                         RoleCode = oldCopyright.RoleCode,
@@ -323,17 +323,18 @@ namespace ipsmedserviceapp.Utilities
             }
 
             // clear custId in authors table for old rightholder if rights are transfered at all
-            if (_transferParams.DateTill == _maxDate)
-            {
-                var authors = _dbContext.Authors
-                    .Where(a => _transferParams.ObjectsRightList.Any(o => o.ObjId == a.ObjId))
-                    .ToList();
+            // Патлякевич Зберігаємо custId
+            //if (_transferParams.DateTill == _maxDate)
+            //{
+            //    var authors = _dbContext.Authors
+            //        .Where(a => _transferParams.ObjectsRightList.Any(o => o.ObjId == a.ObjId))
+            //        .ToList();
 
-                foreach (var author in authors)
-                {
-                    author.CustId = null;
-                }
-            }
+            //    foreach (var author in authors)
+            //    {
+            //        author.CustId = null;
+            //    }
+            //}
         }
     }
 }
