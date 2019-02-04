@@ -66,7 +66,7 @@ namespace IpsViewComponentLibrary
         //змінити представника
         private void btnChangePartner_Click(object sender, EventArgs e)
         {
-            SelectPartner selectPartner = new SelectPartner(_customer?.CustId)
+            var selectPartner = new SelectPartner(_customer?.CustId)
             {
                 StartPosition = FormStartPosition.CenterParent
             };

@@ -1,6 +1,6 @@
 ﻿using IpsViewComponentLibrary.ConsumerControls;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerForms
 {
     partial class AnketaConsumerJurForm
     {
@@ -30,11 +30,21 @@ namespace IpsViewComponentLibrary
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlConsumerAnketa = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
+            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ConsumerControls.TabNavigationExpandedControl();
+            this.ctrlConsumerAnketa = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ctrlTabNavigationExpanded
+            // 
+            this.ctrlTabNavigationExpanded.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlTabNavigationExpanded.Location = new System.Drawing.Point(0, 671);
+            this.ctrlTabNavigationExpanded.MaximumSize = new System.Drawing.Size(2000, 31);
+            this.ctrlTabNavigationExpanded.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlTabNavigationExpanded.Name = "ctrlTabNavigationExpanded";
+            this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(1267, 31);
+            this.ctrlTabNavigationExpanded.TabIndex = 15;
             // 
             // ctrlConsumerAnketa
             // 
@@ -45,24 +55,14 @@ namespace IpsViewComponentLibrary
             this.ctrlConsumerAnketa.TabIndex = 0;
             this.ctrlConsumerAnketa.TypeRights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             // 
-            // ctrlTabNavigation
-            // 
-            this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 671);
-            this.ctrlTabNavigation.MaximumSize = new System.Drawing.Size(2000, 31);
-            this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
-            this.ctrlTabNavigation.Name = "ctrlTabNavigation";
-            this.ctrlTabNavigation.Size = new System.Drawing.Size(1267, 31);
-            this.ctrlTabNavigation.TabIndex = 1;
-            // 
-            // AnketaConsumerForm
+            // AnketaConsumerJurForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1267, 702);
             this.Controls.Add(this.ctrlConsumerAnketa);
-            this.Controls.Add(this.ctrlTabNavigation);
-            this.Name = "AnketaConsumerForm";
+            this.Controls.Add(this.ctrlTabNavigationExpanded);
+            this.Name = "AnketaConsumerJurForm";
             // 
             // 
             // 
@@ -78,6 +78,6 @@ namespace IpsViewComponentLibrary
 
         private AnketaConsumer ctrlConsumerAnketa;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private TabNavigationControl ctrlTabNavigation;
+        private TabNavigationExpandedControl ctrlTabNavigationExpanded;
     }
 }

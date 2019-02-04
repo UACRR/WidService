@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             btnNext.Text = btnNext.Enabled ? _pageView.Pages[index + 1].Text + " >" : " >";
         }
 
-        private void pageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
+        private void pageView_SelectedPageChanging(object sender, RadPageViewCancelEventArgs e)
         {
             if (!_buttonClick)
                 e.Cancel = true;
