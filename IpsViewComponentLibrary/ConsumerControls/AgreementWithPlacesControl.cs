@@ -1,26 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using Telerik.WinControls.UI;
 using LicenseForPlaces = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class AgreementWithPlacesControl : UserControl
     {
-        decimal _minAmount = default(decimal);
         private LicenseAgrParam _licenseAgr;
         private ObservableListSource<ClnBusinessPlace> _tempPlaces;
-        private ConsumerAgreementInitType _agreementInitType = ConsumerAgreementInitType.None;
+        private List<GridViewRowInfo> _existLicenses;
         private readonly AnketaDictionaties _anketaDictionaties;
+        private static bool PlaceChooserPredicate(GridViewRowInfo row, LicenseForPlaces license) => row.DataBoundItem as ClnBusinessPlace == license.Place
+                                                                         || (row.DataBoundItem as ClnBusinessPlace)?.PlaceId == license.PlaceId;
 
         public AgreementWithPlacesControl()
         {
             InitializeComponent();
-            if(IpsGlobal.AnketaDictionaties != null)
+            _existLicenses = new List<GridViewRowInfo>();
+            if (IpsGlobal.AnketaDictionaties != null)
                 _anketaDictionaties = IpsGlobal.AnketaDictionaties;
         }
 
@@ -28,7 +32,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public void InitializeObjects(ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
         {
-            _agreementInitType = agreementInitType;
             _tempPlaces = places;
             _licenseAgr = licenseAgr;
 
@@ -52,13 +55,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 ctrlAgrSecond.SelectedItem = 0;
             else
                 ctrlAgrSecond.AutoprolongationPercent = null;
-            
 
-            //TODO: джерело даних з розрахованою сумою
-            if (places != null && places.Any())
-                SetChoosePlaces();
-            else
-                gvPlaces.Enabled = false;
+            CheckPlaces();
 
             ctrlAgrMain.DataSource = _licenseAgr;
             ctrlAgrMain.DateTimeType = agreementInitType;
@@ -73,6 +71,22 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 }
                 return true;
             });
+        }
+
+        private void CheckPlaces()
+        {
+            if (_tempPlaces != null && _tempPlaces.Any())
+            {
+                SetChoosePlaces();
+                gvPlaces.Enabled = true;
+            }
+            else
+                gvPlaces.Enabled = false;
+        }
+        
+        private void AgreementWithPlacesControl_Paint(object sender, PaintEventArgs e)
+        {
+            CheckPlaces();
         }
 
         /// <summary>
@@ -94,106 +108,67 @@ namespace IpsViewComponentLibrary.ConsumerControls
             }
         }
 
-        //при зміні чекбокс
-        private void gvPlaces_CellValueChanged(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            var id = (int)e.Row.Cells["PlaceId"].Value;
-
-            if (_licenseAgr.License == null)
-             _licenseAgr.License = new ObservableListSource<LicenseForPlaces>();   
-            
-            
-            if (e.Value != null && (bool)e.Value)
-            {
-                _licenseAgr.License.Add(new LicenseForPlaces
-                {
-                    //LId = <pk>
-                    PlaceId = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id)?.PlaceId,
-                    LicId = _licenseAgr.LicId,
-                    LicVersion = _licenseAgr.LicVersion,
-                    LNum = "0" + (DateTime.Today.Year - 2000) + @"/" + (DateTime.Today.DayOfYear),
-                    LDate = DateTime.Today,
-                    Place = _tempPlaces.SingleOrDefault(rec => rec.PlaceId == id),
-                    Status = _licenseAgr.LicStatus
-                });
-                CalculateMinAmount(CalculationMinAmountType.AddCalcValue, e.Row.DataBoundItem as IntermediateDataSourcePlaces);
-            }
-            else if (e.Value != null && !(bool)e.Value)
-            {
-                CalculateMinAmount(CalculationMinAmountType.DeleteCalcValue, e.Row.DataBoundItem as IntermediateDataSourcePlaces);
-                _licenseAgr.License.Remove(_licenseAgr.License.SingleOrDefault(rec => rec.PlaceId == id));
-            }
-        }
-
         //початковий вибір чекбокс майданчиків що в ліцензії
         private void SetChoosePlaces()
         {
-            var dataSource = new ObservableListSource<IntermediateDataSourcePlaces>();
-            foreach (var place in _tempPlaces)
+            gvPlaces.DataSource = _tempPlaces;
+
+            foreach (var item in _licenseAgr.License)
             {
-                decimal amount = default(decimal);
-
-                foreach (var holl in place.ClnPlaceHoll)
+                var gvPlacesRow = gvPlaces.Rows.SingleOrDefault(row => PlaceChooserPredicate(row, item));
+                if (gvPlacesRow != null)
                 {
-                    decimal.TryParse(holl.ValuePlace, out decimal a);
-                    amount += a;
-                }
-
-                dataSource.Add(new IntermediateDataSourcePlaces
-                {
-                    PlaceId = place.PlaceId,
-                    PlaceName = place.PlaceName,
-                    PlaceAddress = place.PlaceAddress,
-                    Amount = amount
-                });
-            }
-            gvPlaces.DataSource = dataSource;
-
-            if (_agreementInitType == ConsumerAgreementInitType.EditAgreement ||
-                _agreementInitType == ConsumerAgreementInitType.Prolongation ||
-                _agreementInitType == ConsumerAgreementInitType.ChangeAgreement)
-            {
-                gvPlaces.CellValueChanged -= gvPlaces_CellValueChanged;
-                foreach (var item in _licenseAgr.License)
-                {
-                    // Оптимизация доступ к строке грида в переменную
-                    // Патлякевич 
-                    var gvPlacesRow = gvPlaces.Rows.SingleOrDefault(row => Convert.ToInt32(row.Cells["PlaceId"]?.Value) == item.PlaceId);
-                    if (gvPlacesRow == null)
-                        continue;
                     gvPlacesRow.Cells["CheckIn"].Value = true;
-                    var place = gvPlacesRow?.DataBoundItem as IntermediateDataSourcePlaces;
-                    CalculateMinAmount(CalculationMinAmountType.AddCalcValue, place);
+                    if (!_existLicenses.Contains(gvPlacesRow))
+                        _existLicenses.Add(gvPlacesRow);
                 }
-                gvPlaces.CellValueChanged += gvPlaces_CellValueChanged;
             }
         }
 
-        private void CalculateMinAmount(CalculationMinAmountType calcType, IntermediateDataSourcePlaces place)
+        /// <summary>
+        /// Оновити обрані майданчики в ліцензійному договорі
+        /// </summary>
+        public void UpdateLicenses()
         {
-            switch (calcType)
-            {
-                case CalculationMinAmountType.AddCalcValue:
-                    _minAmount += place.Amount;
-                    break;
-            
-                case CalculationMinAmountType.DeleteCalcValue:
-                    _minAmount -= place.Amount;
-                    break;
-            }
-                
-            ctrlAgrSecond.MinAmount = _minAmount;
-        }
-    }
+            if (gvPlaces.RowCount == 0)
+                return;
 
-    /// <summary>
-    /// Проміжний клас для відображення даних на грід та зручним обрахуванням суми
-    /// </summary>
-    internal class IntermediateDataSourcePlaces
-    {
-        public int PlaceId { get; set; }
-        public string PlaceAddress { get; set; }
-        public string PlaceName { get; set; }
-        public decimal Amount { get; set; }
+            if (_licenseAgr.License == null)
+                _licenseAgr.License = new ObservableListSource<LicenseForPlaces>();
+
+            foreach (var placesRow in gvPlaces.Rows)
+            {
+                if (!(placesRow.Cells["CheckIn"].Value is bool isChecked)) continue;
+                var item = placesRow.DataBoundItem as ClnBusinessPlace;
+
+                if (isChecked)
+                {
+                    if (_existLicenses.Contains(placesRow)) continue;
+                    var newLicense = new LicenseForPlaces
+                    {
+                        PlaceId = item.PlaceId,
+                        LicId = _licenseAgr.LicId,
+                        LicVersion = _licenseAgr.LicVersion,
+                        LNum = "0" + (DateTime.Today.Year - 2000) + @"/" + (DateTime.Today.DayOfYear),
+                        LDate = DateTime.Today,
+                        Place = item,
+                    };
+                    _licenseAgr.License.Add(newLicense);
+                    item.License.Add(newLicense);
+                }
+                else
+                {
+                    var license = _licenseAgr.License.SingleOrDefault(rec => rec.Place == item || (rec.PlaceId == item.PlaceId && item.PlaceId != 0 ));
+                    _licenseAgr.License.Remove(license);
+                    item.License.Remove(license);
+                }
+            }
+
+            foreach (var lic in _licenseAgr.License)
+                lic.Place = null;
+            foreach (var place in _tempPlaces)
+                foreach (var license in place.License)
+                    license.Place = null;
+        }
     }
 }

@@ -46,7 +46,10 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private void ProlongationWithPlaces_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (DialogResult == DialogResult.OK)
+            {
+                ctrlProlongation.UpdateLicenses();
                 return;
+            }
 
             if (_goal == DialogGoal.forNew)
             {

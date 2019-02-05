@@ -226,7 +226,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="destCustomer"></param>
         private void InternalUpdateConsumer(Customer sorsCustomer, Customer destCustomer)
         {
-            destCustomer.SetFields(sorsCustomer);
+            destCustomer.SetFields(sorsCustomer, new [] {"CustId"});
             //.Include(item => item.BankAccount)
             _dbContext.UpdateList(sorsCustomer.BankAccount, destCustomer.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
             //.Include(item => item.RightHolder)

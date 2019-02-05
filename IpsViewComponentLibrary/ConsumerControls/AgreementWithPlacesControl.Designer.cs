@@ -163,17 +163,16 @@
             gridViewTextBoxColumn2.HeaderText = "Фактична адреса закладу";
             gridViewTextBoxColumn2.Name = "PlaceAddress";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 359;
+            gridViewTextBoxColumn2.Width = 299;
             gridViewTextBoxColumn3.FieldName = "PlaceName";
             gridViewTextBoxColumn3.HeaderText = "Назва Закладу";
             gridViewTextBoxColumn3.Name = "PlaceName";
             gridViewTextBoxColumn3.ReadOnly = true;
-            gridViewTextBoxColumn3.Width = 178;
+            gridViewTextBoxColumn3.Width = 257;
             gridViewTextBoxColumn4.FieldName = "Amount";
             gridViewTextBoxColumn4.HeaderText = "Сума";
             gridViewTextBoxColumn4.IsVisible = false;
-            gridViewTextBoxColumn4.MaxWidth = 135;
-            gridViewTextBoxColumn4.MinWidth = 120;
+            gridViewTextBoxColumn4.MinWidth = 20;
             gridViewTextBoxColumn4.Name = "Amount";
             gridViewTextBoxColumn4.ReadOnly = true;
             gridViewTextBoxColumn4.Width = 120;
@@ -181,8 +180,10 @@
             gridViewCheckBoxColumn1.EnableHeaderCheckBox = true;
             gridViewCheckBoxColumn1.FieldName = "CheckIn";
             gridViewCheckBoxColumn1.HeaderText = "";
+            gridViewCheckBoxColumn1.MaxWidth = 35;
+            gridViewCheckBoxColumn1.MinWidth = 35;
             gridViewCheckBoxColumn1.Name = "CheckIn";
-            gridViewCheckBoxColumn1.Width = 54;
+            gridViewCheckBoxColumn1.Width = 35;
             this.gvPlaces.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -196,7 +197,6 @@
             this.gvPlaces.Size = new System.Drawing.Size(684, 135);
             this.gvPlaces.TabIndex = 28;
             this.gvPlaces.ThemeName = "Office2013Light";
-            this.gvPlaces.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPlaces_CellValueChanged);
             // 
             // ddlLicType
             // 
@@ -253,7 +253,7 @@
             this.txtSeries.TabIndex = 33;
             this.txtSeries.ThemeName = "Office2013Light";
             // 
-            // MiddleControlAgreementProlPlacesType
+            // AgreementWithPlacesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -266,8 +266,9 @@
             this.Controls.Add(this.ctrlAgrMain);
             this.Controls.Add(this.panel);
             this.MinimumSize = new System.Drawing.Size(690, 390);
-            this.Name = "MiddleControlAgreementProlPlacesType";
+            this.Name = "AgreementWithPlacesControl";
             this.Size = new System.Drawing.Size(690, 390);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.AgreementWithPlacesControl_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);

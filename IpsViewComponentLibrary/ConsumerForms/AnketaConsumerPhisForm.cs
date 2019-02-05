@@ -79,10 +79,13 @@ namespace IpsViewComponentLibrary.ConsumerForms
             
             // майданчики
             ctrlPlaces.SetData(customer);
-
-            _license = customer.Client.LicenseAgreement.SingleOrDefault();
+            
             // agreement
-            ctrlAgreementPhis.LicenseAgreementDataSource = _license;
+            var places = customer.Client.ClnBusinessPlace;
+            _license = customer.Client.LicenseAgreement.SingleOrDefault();
+            var licAgr = _license?.LicenseAgrParam.SingleOrDefault();
+            ctrlAgreementPhis.Rights = TypeRights.SmallRights;
+            ctrlAgreementPhis.InitializeObjects(places, _license, licAgr, ConsumerAgreementInitType.AddNewAgreement);
 
             _customer = customer;
         }
@@ -110,7 +113,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _license.LicStatus = status;
             // ReSharper disable once PossibleNullReferenceException - is not null
             _license.LicenseAgrParam.SingleOrDefault().LicStatus = status;
-            
+            ctrlAgreementPhis.UpdateLicenses();
             DialogResult = DialogResult.OK;
         }
 

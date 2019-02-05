@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.ConsumerControls
@@ -34,7 +35,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
             // agreement
             if (anketeType != ConsumerAnketeType.EditAnketa)
-                ctrlAgreementPhis.LicenseAgreementDataSource = customer.Client.LicenseAgreement.SingleOrDefault();
+            {
+                var places = customer.Client.ClnBusinessPlace;
+                var license = customer.Client.LicenseAgreement.SingleOrDefault();
+                var licAgr = license?.LicenseAgrParam.SingleOrDefault();
+                ctrlAgreementPhis.Rights = TypeRights.SmallRights;
+                ctrlAgreementPhis.InitializeObjects(places, license, licAgr, ConsumerAgreementInitType.AddNewAgreement);
+            }
 
             // anketaPerson
             var anketaPerson = customer.Person.AnketaPerson.SingleOrDefault();

@@ -42,10 +42,10 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.btnCopyFromRegToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToReg = new Telerik.WinControls.UI.RadButton();
-            this.ctrlAddressLetter = new IpsViewComponentLibrary.AddressLetter();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+            this.ctrlAddressLetter = new IpsViewComponentLibrary.AddressLetter();
             this.ctrlAddressRegister = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlAddressLive = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
@@ -57,14 +57,14 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.SmallRight.AgreementPhis();
+            this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.AgreementWithPlacesControl();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.ctrlTabNavigationExpanded = new TabNavigationExpandedControl();
+            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ExtensionControls.TabNavigationExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
             this.pvClientName.SuspendLayout();
@@ -75,14 +75,14 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromRegToLett)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToLett)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtAddress)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtCity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtPostIndex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.pvPasport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
@@ -164,10 +164,10 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.pvContacts.Controls.Add(this.btnCopyFromRegToLett);
             this.pvContacts.Controls.Add(this.btnCopyFromLiveToLett);
             this.pvContacts.Controls.Add(this.btnCopyFromLiveToReg);
-            this.pvContacts.Controls.Add(this.ctrlAddressLetter);
             this.pvContacts.Controls.Add(this.radLabel3);
             this.pvContacts.Controls.Add(this.radLabel2);
             this.pvContacts.Controls.Add(this.radLabel1);
+            this.pvContacts.Controls.Add(this.ctrlAddressLetter);
             this.pvContacts.Controls.Add(this.ctrlAddressRegister);
             this.pvContacts.Controls.Add(this.ctrlAddressLive);
             this.pvContacts.Controls.Add(this.ctrlContacts);
@@ -233,6 +233,33 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.btnCopyFromLiveToReg.TabIndex = 67;
             this.btnCopyFromLiveToReg.Text = "Копіювати з адреси проживання";
             this.btnCopyFromLiveToReg.ThemeName = "Office2013Light";
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(23, 189);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(114, 19);
+            this.radLabel3.TabIndex = 65;
+            this.radLabel3.Text = "Адреса листування";
+            this.radLabel3.ThemeName = "Office2013Light";
+            // 
+            // radLabel2
+            // 
+            this.radLabel2.Location = new System.Drawing.Point(23, 85);
+            this.radLabel2.Name = "radLabel2";
+            this.radLabel2.Size = new System.Drawing.Size(108, 19);
+            this.radLabel2.TabIndex = 64;
+            this.radLabel2.Text = "Адреса реєстрації";
+            this.radLabel2.ThemeName = "Office2013Light";
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(23, 7);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(122, 19);
+            this.radLabel1.TabIndex = 63;
+            this.radLabel1.Text = "Адреса проживання";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // ctrlAddressLetter
             // 
@@ -342,33 +369,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.ctrlAddressLetter.TxtPostIndex.Size = new System.Drawing.Size(192, 20);
             this.ctrlAddressLetter.TxtPostIndex.TabIndex = 4;
             this.ctrlAddressLetter.TxtPostIndex.ThemeName = "Office2013Light";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(23, 189);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(114, 19);
-            this.radLabel3.TabIndex = 65;
-            this.radLabel3.Text = "Адреса листування";
-            this.radLabel3.ThemeName = "Office2013Light";
-            // 
-            // radLabel2
-            // 
-            this.radLabel2.Location = new System.Drawing.Point(23, 85);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(108, 19);
-            this.radLabel2.TabIndex = 64;
-            this.radLabel2.Text = "Адреса реєстрації";
-            this.radLabel2.ThemeName = "Office2013Light";
-            // 
-            // radLabel1
-            // 
-            this.radLabel1.Location = new System.Drawing.Point(23, 7);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(122, 19);
-            this.radLabel1.TabIndex = 63;
-            this.radLabel1.Text = "Адреса проживання";
-            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // ctrlAddressRegister
             // 
@@ -483,11 +483,14 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             // ctrlAgreementPhis
             // 
-            this.ctrlAgreementPhis.LicenseAgreementDataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            this.ctrlAgreementPhis.IsAttached = false;
+            this.ctrlAgreementPhis.LicenseEnabled = true;
             this.ctrlAgreementPhis.Location = new System.Drawing.Point(20, 5);
+            this.ctrlAgreementPhis.MinimumSize = new System.Drawing.Size(690, 390);
             this.ctrlAgreementPhis.Name = "ctrlAgreementPhis";
-            this.ctrlAgreementPhis.Size = new System.Drawing.Size(514, 220);
-            this.ctrlAgreementPhis.TabIndex = 0;
+            this.ctrlAgreementPhis.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
+            this.ctrlAgreementPhis.Size = new System.Drawing.Size(690, 390);
+            this.ctrlAgreementPhis.TabIndex = 2;
             // 
             // pvPrint
             // 
@@ -613,14 +616,14 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromRegToLett)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToLett)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtAddress)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtCity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtPostIndex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.pvPasport.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
@@ -675,6 +678,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private PassportControl ctrlConsumerPassport;
         private IpsBankAccountControl ctrlBankAccount;
         private TabNavigationExpandedControl ctrlTabNavigationExpanded;
-        private ConsumerControls.SmallRight.AgreementPhis ctrlAgreementPhis;
+        private ConsumerControls.AgreementWithPlacesControl ctrlAgreementPhis;
     }
 }

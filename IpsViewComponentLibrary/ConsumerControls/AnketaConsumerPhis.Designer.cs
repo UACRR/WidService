@@ -54,7 +54,7 @@
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.SmallRight.AgreementPhis();
+            this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.AgreementWithPlacesControl();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnLoadPdf = new Telerik.WinControls.UI.RadButton();
             this.radPdfViewerNavigator = new Telerik.WinControls.UI.RadPdfViewerNavigator();
@@ -479,11 +479,14 @@
             // 
             // ctrlAgreementPhis
             // 
-            this.ctrlAgreementPhis.LicenseAgreementDataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            this.ctrlAgreementPhis.IsAttached = false;
+            this.ctrlAgreementPhis.LicenseEnabled = true;
             this.ctrlAgreementPhis.Location = new System.Drawing.Point(30, 4);
+            this.ctrlAgreementPhis.MinimumSize = new System.Drawing.Size(690, 390);
             this.ctrlAgreementPhis.Name = "ctrlAgreementPhis";
-            this.ctrlAgreementPhis.Size = new System.Drawing.Size(514, 220);
-            this.ctrlAgreementPhis.TabIndex = 0;
+            this.ctrlAgreementPhis.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
+            this.ctrlAgreementPhis.Size = new System.Drawing.Size(690, 390);
+            this.ctrlAgreementPhis.TabIndex = 1;
             // 
             // pvPrint
             // 
@@ -512,7 +515,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1032, 39);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1032, 0);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -644,7 +647,6 @@
         private Telerik.WinControls.UI.RadPageViewPage pvBankRequisites;
         private IpsBankAccountControl ctrlBankAccount;
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
-        private SmallRight.AgreementPhis ctrlAgreementPhis;
         private Telerik.WinControls.UI.RadPageViewPage pvPrint;
         private Telerik.WinControls.UI.RadButton btnLoadPdf;
         private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator;
@@ -652,5 +654,6 @@
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private AgreementWithPlacesControl ctrlAgreementPhis;
     }
 }
