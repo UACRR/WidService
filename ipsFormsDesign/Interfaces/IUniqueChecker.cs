@@ -8,7 +8,8 @@ namespace ipsFormsDesign.Interfaces
 {
     public interface IUniqueChecker
     {
-        bool CheckOKPOIsUnique(string okpo);
-        bool CheckIPIIsUnique(string okpo);
+        bool CheckOKPOIsUnique(string okpo, int? custId);
+        bool CheckIPIIsUnique(string ipi, int? custId);
+        bool CheckINNIsUnique(string okpo, int? custId);
     }
 }

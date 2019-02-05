@@ -115,7 +115,7 @@
             this.ctrlRegistrationsPerson.DataSource = this.bsAnketaPerson;
             this.ctrlRegistrationsPerson.Location = new System.Drawing.Point(7, 200);
             this.ctrlRegistrationsPerson.Name = "ctrlRegistrationsPerson";
-            this.ctrlRegistrationsPerson.Size = new System.Drawing.Size(397, 53);
+            this.ctrlRegistrationsPerson.Size = new System.Drawing.Size(482, 53);
             this.ctrlRegistrationsPerson.TabIndex = 30;
             // 
             // lblIPIExists

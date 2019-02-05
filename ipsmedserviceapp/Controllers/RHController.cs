@@ -558,9 +558,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         {
             var vCust = await _dbContext.vCustomer
                         .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where INNOKPO = @okpo", new SqlParameter("@okpo", okpo))
-                        .FirstOrDefaultAsync();
-            if (vCust == null)
-                return NotFound();
+                        .ToArrayAsync();
 
             return Ok(vCust);
         }
@@ -569,9 +567,8 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         public async Task<IActionResult> CheckExistsIpi(string ipi)
         {
             var vCust = await _dbContext.vCustomer
-                        .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where IPI = @ipi", new SqlParameter("@ipi", ipi)).FirstOrDefaultAsync();
-            if (vCust == null)
-                return NotFound();
+                        .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where IPI = @ipi", new SqlParameter("@ipi", ipi))
+                        .ToArrayAsync();
 
             return Ok(vCust);
 

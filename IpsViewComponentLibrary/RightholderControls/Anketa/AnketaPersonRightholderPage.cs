@@ -63,7 +63,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
             IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
             if (checker != null)
-                lblIPIExists.Visible = !checker.CheckIPIIsUnique(txtInterCode.Text);
+                lblIPIExists.Visible = !checker.CheckIPIIsUnique(txtInterCode.Text, anketa.CustId);
         }
     }
 }
