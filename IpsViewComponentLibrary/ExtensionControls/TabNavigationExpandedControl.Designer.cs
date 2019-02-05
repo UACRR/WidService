@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls
+﻿namespace IpsViewComponentLibrary.ExtensionControls
 {
     partial class TabNavigationExpandedControl
     {

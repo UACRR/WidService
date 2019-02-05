@@ -115,7 +115,7 @@
             this.pageAnketaConsumer.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pageAnketaConsumer.SelectedPage = this.pvClientName;
             this.pageAnketaConsumer.SelectionWrap = false;
-            this.pageAnketaConsumer.Size = new System.Drawing.Size(1272, 598);
+            this.pageAnketaConsumer.Size = new System.Drawing.Size(1177, 598);
             this.pageAnketaConsumer.TabIndex = 3;
             this.pageAnketaConsumer.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAnketaConsumer.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -140,7 +140,7 @@
             this.pvClientName.Location = new System.Drawing.Point(134, 5);
             this.pvClientName.Name = "pvClientName";
             this.pvClientName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.pvClientName.Size = new System.Drawing.Size(1133, 588);
+            this.pvClientName.Size = new System.Drawing.Size(1038, 588);
             this.pvClientName.TabStop = true;
             this.pvClientName.Text = "Споживач";
             // 
@@ -170,7 +170,7 @@
             this.pvContacts.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvContacts.Location = new System.Drawing.Point(134, 5);
             this.pvContacts.Name = "pvContacts";
-            this.pvContacts.Size = new System.Drawing.Size(1133, 588);
+            this.pvContacts.Size = new System.Drawing.Size(1038, 588);
             this.pvContacts.Text = "Контакти";
             // 
             // radSeparator2
@@ -179,7 +179,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator2.Location = new System.Drawing.Point(151, 7);
             this.radSeparator2.Name = "radSeparator2";
-            this.radSeparator2.Size = new System.Drawing.Size(806, 18);
+            this.radSeparator2.Size = new System.Drawing.Size(711, 18);
             this.radSeparator2.TabIndex = 70;
             this.radSeparator2.ThemeName = "Office2013Light";
             // 
@@ -189,7 +189,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator3.Location = new System.Drawing.Point(143, 189);
             this.radSeparator3.Name = "radSeparator3";
-            this.radSeparator3.Size = new System.Drawing.Size(814, 19);
+            this.radSeparator3.Size = new System.Drawing.Size(719, 19);
             this.radSeparator3.TabIndex = 72;
             this.radSeparator3.ThemeName = "Office2013Light";
             // 
@@ -199,7 +199,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(137, 85);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(820, 19);
+            this.radSeparator1.Size = new System.Drawing.Size(725, 19);
             this.radSeparator1.TabIndex = 71;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
@@ -407,7 +407,7 @@
             this.pvPasport.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPasport.Location = new System.Drawing.Point(134, 5);
             this.pvPasport.Name = "pvPasport";
-            this.pvPasport.Size = new System.Drawing.Size(1133, 588);
+            this.pvPasport.Size = new System.Drawing.Size(1038, 588);
             this.pvPasport.Text = "Паспортні дані";
             // 
             // radGroupBox3
@@ -438,7 +438,7 @@
             this.pvPlaces.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPlaces.Location = new System.Drawing.Point(134, 5);
             this.pvPlaces.Name = "pvPlaces";
-            this.pvPlaces.Size = new System.Drawing.Size(1133, 588);
+            this.pvPlaces.Size = new System.Drawing.Size(1038, 588);
             this.pvPlaces.Text = "Майданчики";
             // 
             // ctrlPlaces
@@ -447,7 +447,7 @@
             this.ctrlPlaces.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlPlaces.Location = new System.Drawing.Point(0, 0);
             this.ctrlPlaces.Name = "ctrlPlaces";
-            this.ctrlPlaces.Size = new System.Drawing.Size(1133, 588);
+            this.ctrlPlaces.Size = new System.Drawing.Size(1038, 588);
             this.ctrlPlaces.TabIndex = 11;
             // 
             // pvBankRequisites
@@ -457,7 +457,7 @@
             this.pvBankRequisites.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvBankRequisites.Location = new System.Drawing.Point(134, 5);
             this.pvBankRequisites.Name = "pvBankRequisites";
-            this.pvBankRequisites.Size = new System.Drawing.Size(1133, 588);
+            this.pvBankRequisites.Size = new System.Drawing.Size(1038, 588);
             this.pvBankRequisites.Text = "Банківські реквізити";
             // 
             // ctrlBankAccount
@@ -474,7 +474,7 @@
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(134, 5);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(1133, 588);
+            this.pvAgreement.Size = new System.Drawing.Size(1038, 588);
             this.pvAgreement.Text = "Договір";
             // 
             // ctrlAgreementPhis
@@ -493,7 +493,7 @@
             this.pvPrint.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPrint.Location = new System.Drawing.Point(134, 5);
             this.pvPrint.Name = "pvPrint";
-            this.pvPrint.Size = new System.Drawing.Size(1133, 588);
+            this.pvPrint.Size = new System.Drawing.Size(1038, 588);
             this.pvPrint.Text = "Друк";
             // 
             // btnLoadPdf
@@ -512,7 +512,7 @@
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1127, 39);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1032, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -540,7 +540,7 @@
             this.radPdfViewer.EnableThumbnails = false;
             this.radPdfViewer.Location = new System.Drawing.Point(3, 82);
             this.radPdfViewer.Name = "radPdfViewer";
-            this.radPdfViewer.Size = new System.Drawing.Size(1127, 461);
+            this.radPdfViewer.Size = new System.Drawing.Size(1032, 461);
             this.radPdfViewer.TabIndex = 3;
             this.radPdfViewer.ThemeName = "Office2013Light";
             this.radPdfViewer.ThumbnailsScaleFactor = 0.15F;
@@ -579,7 +579,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pageAnketaConsumer);
             this.Name = "AnketaConsumerPhis";
-            this.Size = new System.Drawing.Size(1272, 598);
+            this.Size = new System.Drawing.Size(1177, 598);
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).EndInit();
             this.pageAnketaConsumer.ResumeLayout(false);
             this.pvClientName.ResumeLayout(false);

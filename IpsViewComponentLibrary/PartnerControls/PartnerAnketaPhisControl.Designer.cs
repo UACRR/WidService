@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.PartnerControls
+﻿using IpsViewComponentLibrary.ExtensionControls;
+
+namespace IpsViewComponentLibrary.PartnerControls
 {
     partial class PartnerAnketaPhisControl
     {
@@ -57,7 +59,7 @@
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
-            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ConsumerControls.TabNavigationExpandedControl();
+            this.ctrlTabNavigationExpanded = new TabNavigationExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
@@ -548,7 +550,7 @@
         private AgreementPartnerControl ctrlAgreement;
         private Telerik.WinControls.UI.RadPageViewPage pvTerms;
         private ConditionsControl ctrlConditions;
-        private ConsumerControls.TabNavigationExpandedControl ctrlTabNavigationExpanded;
+        private TabNavigationExpandedControl ctrlTabNavigationExpanded;
         private Telerik.WinControls.UI.RadCheckBox checkPartnerInternal;
         private System.Windows.Forms.BindingSource bsPartner;
     }

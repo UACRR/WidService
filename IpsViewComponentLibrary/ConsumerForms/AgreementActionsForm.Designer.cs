@@ -1,6 +1,8 @@
-﻿namespace IpsViewComponentLibrary.ConsumerForms
+﻿using IpsViewComponentLibrary.ConsumerControls;
+
+namespace IpsViewComponentLibrary.ConsumerForms
 {
-    partial class ProlongationAgreementForm
+    partial class AgreementActionsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +30,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlProlongation = new IpsViewComponentLibrary.MiddleControlAgreementProlPlacesType();
+            this.ctrlProlongation = new AgreementWithPlacesControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.ExtensionControls.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlProlongation
             // 
-            this.ctrlProlongation.ClientName = "Назва «Клієнта»";
-            this.ctrlProlongation.Dictionaties = null;
             this.ctrlProlongation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlProlongation.IsAttached = false;
             this.ctrlProlongation.LicenseEnabled = true;
@@ -44,16 +45,27 @@
             this.ctrlProlongation.MinimumSize = new System.Drawing.Size(690, 390);
             this.ctrlProlongation.Name = "ctrlProlongation";
             this.ctrlProlongation.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
-            this.ctrlProlongation.Size = new System.Drawing.Size(871, 515);
+            this.ctrlProlongation.Size = new System.Drawing.Size(871, 484);
             this.ctrlProlongation.TabIndex = 0;
             // 
-            // ProlongationWithPlaces
+            // ctrlSaveCancelButtons
+            // 
+            this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 484);
+            this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
+            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(871, 31);
+            this.ctrlSaveCancelButtons.TabIndex = 1;
+            // 
+            // ProlongationAgreementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(871, 515);
             this.Controls.Add(this.ctrlProlongation);
-            this.Name = "ProlongationWithPlaces";
+            this.Controls.Add(this.ctrlSaveCancelButtons);
+            this.Name = "ProlongationAgreementForm";
             // 
             // 
             // 
@@ -67,7 +79,8 @@
 
         #endregion
 
-        private MiddleControlAgreementProlPlacesType ctrlProlongation;
+        private AgreementWithPlacesControl ctrlProlongation;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private ExtensionControls.SaveCancelButtonsControl ctrlSaveCancelButtons;
     }
 }

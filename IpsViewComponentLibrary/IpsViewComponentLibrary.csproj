@@ -368,10 +368,10 @@
     <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\TabNavigationControl.cs">
+    <Compile Include="ExtensionControls\TabNavigationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\TabNavigationControl.Designer.cs">
+    <Compile Include="ExtensionControls\TabNavigationControl.Designer.cs">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.cs">
@@ -400,6 +400,12 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="ExtensionControls\SaveCancelButtonsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ExtensionControls\SaveCancelButtonsControl.Designer.cs">
+      <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ImportDBF\ImportDBFControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -561,10 +567,10 @@
     <Compile Include="PartnerControls\PartnerClientsControl.Designer.cs">
       <DependentUpon>PartnerClientsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartnerControls\TabNavigationExpandedControl.cs">
+    <Compile Include="ExtensionControls\TabNavigationExpandedControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PartnerControls\TabNavigationExpandedControl.Designer.cs">
+    <Compile Include="ExtensionControls\TabNavigationExpandedControl.Designer.cs">
       <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterControls\RegisterItemListControl.cs">
@@ -747,10 +753,10 @@
     <Compile Include="InformationAgrBR.Designer.cs">
       <DependentUpon>InformationAgrBR.cs</DependentUpon>
     </Compile>
-    <Compile Include="InformationAboutTheContractTitleControl.cs">
+    <Compile Include="_trash\InformationAboutTheContractTitleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="InformationAboutTheContractTitleControl.Designer.cs">
+    <Compile Include="_trash\InformationAboutTheContractTitleControl.Designer.cs">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsAnketaCompanyControl.cs">
@@ -831,11 +837,11 @@
     <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlAgreementProlPlacesType.cs">
+    <Compile Include="ConsumerControls\AgreementWithPlacesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlAgreementProlPlacesType.Designer.cs">
-      <DependentUpon>MiddleControlAgreementProlPlacesType.cs</DependentUpon>
+    <Compile Include="ConsumerControls\AgreementWithPlacesControl.Designer.cs">
+      <DependentUpon>AgreementWithPlacesControl.cs</DependentUpon>
     </Compile>
     <Compile Include="_trash\MiddleControlBankRequisites.cs">
       <SubType>UserControl</SubType>
@@ -946,11 +952,11 @@
     <Compile Include="PassportInternationalControl.Designer.cs">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerForms\ProlongationAgreementForm.cs">
+    <Compile Include="ConsumerForms\AgreementActionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerForms\ProlongationAgreementForm.Designer.cs">
-      <DependentUpon>ProlongationAgreementForm.cs</DependentUpon>
+    <Compile Include="ConsumerForms\AgreementActionsForm.Designer.cs">
+      <DependentUpon>AgreementActionsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RightholderControls\Anketa\ServiceComissionControl.cs">
@@ -1165,7 +1171,7 @@
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\TabNavigationControl.resx">
+    <EmbeddedResource Include="ExtensionControls\TabNavigationControl.resx">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx">
@@ -1183,6 +1189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\AnketaConsumerPhisForm.resx">
       <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExtensionControls\SaveCancelButtonsControl.resx">
+      <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportDBF\ImportDBFControl.resx">
       <DependentUpon>ImportDBFControl.cs</DependentUpon>
@@ -1271,7 +1280,7 @@
     <EmbeddedResource Include="PartnerControls\PartnerNameControl.resx">
       <DependentUpon>PartnerNameControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartnerControls\TabNavigationExpandedControl.resx">
+    <EmbeddedResource Include="ExtensionControls\TabNavigationExpandedControl.resx">
       <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PayslipsCrEdForm.resx">
@@ -1349,7 +1358,7 @@
     <EmbeddedResource Include="InformationAgrBR.resx">
       <DependentUpon>InformationAgrBR.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="InformationAboutTheContractTitleControl.resx">
+    <EmbeddedResource Include="_trash\InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsAnketaCompanyControl.resx">
@@ -1379,8 +1388,8 @@
     <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlAgreementProlPlacesType.resx">
-      <DependentUpon>MiddleControlAgreementProlPlacesType.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\AgreementWithPlacesControl.resx">
+      <DependentUpon>AgreementWithPlacesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\MiddleControlBankRequisites.resx">
       <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
@@ -1437,8 +1446,8 @@
     <EmbeddedResource Include="PassportInternationalControl.resx">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerForms\ProlongationAgreementForm.resx">
-      <DependentUpon>ProlongationAgreementForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerForms\AgreementActionsForm.resx">
+      <DependentUpon>AgreementActionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\ServiceComissionControl.resx">
       <DependentUpon>ServiceComissionControl.cs</DependentUpon>

@@ -46,6 +46,7 @@ namespace IpsViewComponentLibrary
             this.bsAgreementAddBr = new System.Windows.Forms.BindingSource(this.components);
             this.bsLicenseAgrParamBr = new System.Windows.Forms.BindingSource(this.components);
             this.bsAgreementAddRh = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgrParam)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
@@ -224,5 +225,6 @@ namespace IpsViewComponentLibrary
         private BindingSource bsAgreementAddBr;
         private BindingSource bsLicenseAgrParamBr;
         private BindingSource bsAgreementAddRh;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

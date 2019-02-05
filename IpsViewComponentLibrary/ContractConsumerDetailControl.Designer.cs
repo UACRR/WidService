@@ -45,6 +45,7 @@ namespace IpsViewComponentLibrary
             this.rddListPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
             this.rddListTypeAutoProl = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
@@ -218,5 +219,6 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadDropDownList rddListTypeAutoProl;
         private System.Windows.Forms.BindingSource bsCheckedProlongation;
         private Telerik.WinControls.UI.RadLabel radLabel5;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
+﻿using IpsViewComponentLibrary.ExtensionControls;
+
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     partial class CabinetSmallRight
     {
@@ -88,7 +90,7 @@
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.anketaPanel = new Telerik.WinControls.UI.RadPanel();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
+            this.ctrlTabNavigation = new TabNavigationControl();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
             this.pvClosedAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClosedAgreements = new IpsViewComponentLibrary.ConsumerControls.ClosedAgreementsControl();
@@ -792,7 +794,7 @@
         private Telerik.WinControls.UI.RadMenuItem btnProlongation;
         private Telerik.WinControls.UI.RadMenuItem btnAddAgrNewVersion;
         private MiddleControlCabinetPartner ctrlPartner;
-        private ConsumerControls.TabNavigationControl ctrlTabNavigation;
+        private TabNavigationControl ctrlTabNavigation;
         private Telerik.WinControls.UI.RadPanel anketaPanel;
         private MiddleControlCabinetFiles ctrlFiles;
         private Telerik.WinControls.UI.RadPageViewPage pvClosedAgreement;

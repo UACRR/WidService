@@ -1,4 +1,5 @@
 ﻿using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+using IpsViewComponentLibrary.ExtensionControls;
 
 namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
@@ -45,7 +46,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAnketaConsumer = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
+            this.ctrlTabNavigation = new TabNavigationControl();
             this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
             this.ctrlLicense = new IpsViewComponentLibrary.MiddleControlCabinetLicenses();
             this.ctrlRequest = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
@@ -387,6 +388,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private ConsumerControls.ConsumerHeaderInfo ctrlContactHeader;
         private AnketaConsumer ctrlAnketaConsumer;
         private ConsumerControls.PaysInfo ctrlPaysInfo;
-        private ConsumerControls.TabNavigationControl ctrlTabNavigation;
+        private TabNavigationControl ctrlTabNavigation;
     }
 }

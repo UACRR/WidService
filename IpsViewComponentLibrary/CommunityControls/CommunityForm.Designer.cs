@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.CommunityControls
+﻿using IpsViewComponentLibrary.ExtensionControls;
+
+namespace IpsViewComponentLibrary.CommunityControls
 {
     partial class CommunityForm
     {
@@ -51,7 +53,7 @@
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.CommunityControls.CommunityAgreementControl();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
+            this.ctrlTabNavigation = new TabNavigationControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvCommunityName.SuspendLayout();
@@ -449,7 +451,7 @@
         private Telerik.WinControls.UI.RadPageViewPage pvBank;
         private IpsBankAccountControl ctrlBankAccount;
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
-        private ConsumerControls.TabNavigationControl ctrlTabNavigation;
+        private TabNavigationControl ctrlTabNavigation;
         private CommunityAddressControl ctrlAddressFa;
         private CommunityAddressControl ctrlAddressJu;
         private Telerik.WinControls.UI.RadLabel radLabel7;

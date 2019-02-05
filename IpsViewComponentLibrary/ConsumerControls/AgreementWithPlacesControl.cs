@@ -1,35 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using LicenseForPlaces = ipsFormsDesign.Model.License;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls
 {
-    public partial class MiddleControlAgreementProlPlacesType : UserControl
+    public partial class AgreementWithPlacesControl : UserControl
     {
-        public event EventHandler OnSaveChangesClick;
-
         decimal _minAmount = default(decimal);
         private LicenseAgrParam _licenseAgr;
         private ObservableListSource<ClnBusinessPlace> _tempPlaces;
         private ConsumerAgreementInitType _agreementInitType = ConsumerAgreementInitType.None;
+        private readonly AnketaDictionaties _anketaDictionaties;
 
-        public MiddleControlAgreementProlPlacesType()
+        public AgreementWithPlacesControl()
         {
             InitializeComponent();
+            if(IpsGlobal.AnketaDictionaties != null)
+                _anketaDictionaties = IpsGlobal.AnketaDictionaties;
         }
 
         public TypeRights Rights { get; set; }
-        public AnketaDictionaties Dictionaties { get; set; }
 
         public void InitializeObjects(ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
         {
@@ -45,7 +40,7 @@ namespace IpsViewComponentLibrary
             ctrlAgrSecond.MinPayment = "MinAmount";
             ctrlAgrSecond.PercentPayment = "RateAmount";
 
-            ctrlAgrSecond.PeriodPaymentDataSource = Dictionaties?.period;
+            ctrlAgrSecond.PeriodPaymentDataSource = _anketaDictionaties.period;
             ctrlAgrSecond.PeriodPaymentValueMember = "codeI";
             ctrlAgrSecond.PeriodPaymentDisplayMember = "name";
             ctrlAgrSecond.PeriodPaymentDataMember = "PeriodCode";
@@ -67,7 +62,7 @@ namespace IpsViewComponentLibrary
 
             ctrlAgrMain.DataSource = _licenseAgr;
             ctrlAgrMain.DateTimeType = agreementInitType;
-            bindingSourceDictionary.DataSource = Dictionaties?.agrLicenseType.Where(rec =>
+            bindingSourceDictionary.DataSource = _anketaDictionaties.agrLicenseType.Where(rec =>
             {
                 switch (Rights)
                 {
@@ -97,20 +92,6 @@ namespace IpsViewComponentLibrary
                 ddlLicType.Enabled = value;
                 txtSeries.Enabled = value;
             }
-        }
-
-        /// <summary>
-        /// Найменування customer
-        /// </summary>
-        public string ClientName
-        {
-            get => lblTitleClientName.Text;
-            set => lblTitleClientName.Text = value;
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            OnSaveChangesClick?.Invoke(sender, e);
         }
 
         //при зміні чекбокс
@@ -147,7 +128,7 @@ namespace IpsViewComponentLibrary
         //початковий вибір чекбокс майданчиків що в ліцензії
         private void SetChoosePlaces()
         {
-            ObservableListSource<IntermediateDataSourcePlaces> dataSource = new ObservableListSource<IntermediateDataSourcePlaces>();
+            var dataSource = new ObservableListSource<IntermediateDataSourcePlaces>();
             foreach (var place in _tempPlaces)
             {
                 decimal amount = default(decimal);

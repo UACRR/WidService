@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerForms
+﻿using IpsViewComponentLibrary.ExtensionControls;
+
+namespace IpsViewComponentLibrary.ConsumerForms
 {
     partial class AnketaConsumerPhisForm
     {
@@ -62,7 +64,7 @@
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ConsumerControls.TabNavigationExpandedControl();
+            this.ctrlTabNavigationExpanded = new TabNavigationExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
             this.pvClientName.SuspendLayout();
@@ -672,7 +674,7 @@
         private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
         private PassportControl ctrlConsumerPassport;
         private IpsBankAccountControl ctrlBankAccount;
-        private ConsumerControls.TabNavigationExpandedControl ctrlTabNavigationExpanded;
+        private TabNavigationExpandedControl ctrlTabNavigationExpanded;
         private ConsumerControls.SmallRight.AgreementPhis ctrlAgreementPhis;
     }
 }

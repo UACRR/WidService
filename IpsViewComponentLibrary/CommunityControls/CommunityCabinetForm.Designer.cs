@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.CommunityControls
+﻿using IpsViewComponentLibrary.ExtensionControls;
+
+namespace IpsViewComponentLibrary.CommunityControls
 {
     partial class CommunityCabinetForm
     {
@@ -60,7 +62,7 @@
             this.ctrlAddressJu = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ConsumerControls.TabNavigationControl();
+            this.ctrlTabNavigation = new TabNavigationControl();
             this.pvAgrData = new Telerik.WinControls.UI.RadPageViewPage();
             this.lblCommunityName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -789,7 +791,7 @@
         private CommunityAddressControl ctrlAddressJu;
         private Telerik.WinControls.UI.RadPageViewPage pvBank;
         private IpsBankAccountControl ctrlBankAccount;
-        private ConsumerControls.TabNavigationControl ctrlTabNavigation;
+        private TabNavigationControl ctrlTabNavigation;
         private Common.SearchTextBoxControl ctrlSearch;
         private Telerik.WinControls.UI.RadGridView gvViewAutors;
         private Telerik.WinControls.UI.RadButton btnAddCommunity;

@@ -598,7 +598,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         /// <param name="licenseParam"></param>
         private void RunDialogForLicenseAgrParam(LicenseAgreement license, LicenseAgrParam licenseParam, DialogGoal goal)
         {
-            var prolongation = new ProlongationAgreementForm(licenseParam, _dictionaties, license, _customer, goal, Rights)
+            var prolongation = new AgreementActionsForm(licenseParam, license, _customer, goal, Rights)
             {
                 Text = goal == DialogGoal.forEdit ? "Редагування договору"
                     : goal == DialogGoal.forProlongation ? "Пролонгація договору"

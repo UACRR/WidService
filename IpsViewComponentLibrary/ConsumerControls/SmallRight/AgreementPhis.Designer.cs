@@ -246,7 +246,7 @@
             this.ddlLicType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlLicType.Location = new System.Drawing.Point(93, 58);
             this.ddlLicType.Name = "ddlLicType";
-            this.ddlLicType.Size = new System.Drawing.Size(418, 21);
+            this.ddlLicType.Size = new System.Drawing.Size(401, 21);
             this.ddlLicType.TabIndex = 32;
             this.ddlLicType.ThemeName = "Office2013Light";
             this.ddlLicType.ValueMember = "CodeI";
@@ -380,7 +380,7 @@
             this.Controls.Add(this.ddlLicType);
             this.Controls.Add(this.radLabel1);
             this.Name = "AgreementPhis";
-            this.Size = new System.Drawing.Size(514, 220);
+            this.Size = new System.Drawing.Size(497, 220);
             ((System.ComponentModel.ISupportInitialize)(this.lblParam)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
