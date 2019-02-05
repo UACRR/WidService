@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Interfaces;
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace ipsFormsDesign.Dictionary
 {
@@ -11,7 +12,14 @@ namespace ipsFormsDesign.Dictionary
         public int AuthId { get; set; }
         public int ObjId { get; set; }
         public int RoleCode { get; set; }
-        public string AuthorName { get; set; }
+        private string _authorName = string.Empty;
+        public string AuthorName {
+            get => _authorName;
+            set {
+                // Debug.WriteLine(value);
+                _authorName = value;
+            }
+        }
         public int? CustId { get; set; }
         public int? CRightId { get; set; }
         public int? CopyrightStatus { get; set; }

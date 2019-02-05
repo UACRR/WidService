@@ -57,6 +57,11 @@ namespace IpsViewComponentLibrary.CommunityControls
             //спільнота
             ctrlClientName.DataSource = anketaCompany;
             var empl = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3)?.Empl;
+            if(empl == null)
+            {
+                empl = new Employee();
+                _customer.Company.RelEmployee.Add(new RelEmployee { PositionCode = 3, Empl = empl });
+            }
             ctrlContactPerson.DataSource = empl;
             ctrlContactPerson.OutsidePhone = true;
             ctrlContactPerson.TxtPhone.NullText = string.Empty;
@@ -86,6 +91,11 @@ namespace IpsViewComponentLibrary.CommunityControls
                     CustId = _customer.CustId,
                 });
             var bank = _customer.BankAccount.SingleOrDefault();
+            if( bank == null )
+            {
+                bank = new BankAccount();
+                _customer.BankAccount.Add(bank);
+            }
             ctrlBankAccount.DataSource = bank;
 
             // договір

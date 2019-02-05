@@ -558,9 +558,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         {
             var vCust = await _dbContext.vCustomer
                         .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where INNOKPO = @okpo", new SqlParameter("@okpo", okpo))
-                        .FirstOrDefaultAsync();
-            if (vCust == null)
-                return NotFound();
+                        .ToArrayAsync();
 
             return Ok(vCust);
         }
@@ -569,9 +567,8 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         public async Task<IActionResult> CheckExistsIpi(string ipi)
         {
             var vCust = await _dbContext.vCustomer
-                        .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where IPI = @ipi", new SqlParameter("@ipi", ipi)).FirstOrDefaultAsync();
-            if (vCust == null)
-                return NotFound();
+                        .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where IPI = @ipi", new SqlParameter("@ipi", ipi))
+                        .ToArrayAsync();
 
             return Ok(vCust);
 
@@ -650,8 +647,9 @@ t2.custId = @custid
                 });
 
             // Очищаємо CustId
-            foreach (var item in authtors.Where(rec => rec.CustId == rhId).ToArray())
-                item.CustId = null;
+            // Патлякевич Зберігаємо custId
+            //foreach (var author in authtors.Where(rec => rec.CustId == rhId).ToArray())
+            //    author.CustId = null;
 
             // Проставляємо кінцеву дату права
             listCopyRight.ForEach(item =>
@@ -659,10 +657,11 @@ t2.custId = @custid
                 //
                 item.EndDate = endDate;
 
-                foreach (var author in item.Obj.Authors.Where(a => a.CustId == item.CustId))
-                {
-                    author.CustId = null;
-                }
+                // Патлякевич Зберігаємо custId
+                //foreach (var author in item.Obj.Authors.Where(a => a.CustId == item.CustId))
+                //{
+                //    author.CustId = null;
+                //}
             });
         }
 

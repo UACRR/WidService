@@ -63,7 +63,7 @@ namespace IpsViewComponentLibrary
 
         public bool Validator()
         {
-            bool isValid = true;
+            bool isValid = !lblOKPOExists.Visible;
 
             if (txtOkpo.Text == string.Empty)
             {
@@ -143,7 +143,7 @@ namespace IpsViewComponentLibrary
 
             IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
             if (checker != null)
-                lblOKPOExists.Visible = !checker.CheckOKPOIsUnique(txtOkpo.Text);
+                lblOKPOExists.Visible = !checker.CheckOKPOIsUnique(txtOkpo.Text, cust.CustId );
         }
     }
 }

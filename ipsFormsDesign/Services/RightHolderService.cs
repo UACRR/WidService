@@ -94,15 +94,18 @@ namespace ipsFormsDesign.Services
             return listOfAuthors;
         }
 
-        public bool CheckOkpoExists(string okpo)
+        public List<vCustomer> CheckOkpoExists(string okpo)
         {
-            var result = _webApi.GetItemById<vCustomer>("rh/checkexists/okpo", okpo);
-            return result != null;
+            string url = $"rh/checkexists/okpo/{okpo}";
+            var result = _webApi.GetList<vCustomer>(url);
+            return result ;
         }
-        public bool CheckIpiExists(string ipi)
+        public List<vCustomer> CheckIpiExists(string ipi)
         {
-            var result = _webApi.GetItemById<vCustomer>("rh/checkexists/ipi", ipi);
-            return result != null;
+            string url = $"rh/checkexists/ipi/{ipi}";
+
+            var result = _webApi.GetList<vCustomer>(url);
+            return result;
         }
 
         #region Copyright requests

@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
         public bool Validator()
         {
-            return ctrlAnketaPerson.Validator() & ctrlRegistrationsPerson.Validator();
+            return ctrlAnketaPerson.Validator() & ctrlRegistrationsPerson.Validator() & !lblIPIExists.Visible;
         }
 
         private void txtInterCode_Leave(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
             IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
             if (checker != null)
-                lblIPIExists.Visible = !checker.CheckIPIIsUnique(txtInterCode.Text);
+                lblIPIExists.Visible = !checker.CheckIPIIsUnique(txtInterCode.Text, anketa.CustId);
         }
     }
 }

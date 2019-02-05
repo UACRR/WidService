@@ -31,19 +31,21 @@
             this.components = new System.ComponentModel.Container();
             this.lblipn = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxIPN = new Telerik.WinControls.UI.RadTextBox();
-            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             this.lblCitizenship = new Telerik.WinControls.UI.RadLabel();
             this.ddlCitizenship = new Telerik.WinControls.UI.RadDropDownList();
             this.ddlResidency = new Telerik.WinControls.UI.RadDropDownList();
             this.lblResidency = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.lblINNPresent = new Telerik.WinControls.UI.RadLabel();
+            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCitizenship)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCitizenship)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlResidency)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblResidency)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblINNPresent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             this.SuspendLayout();
             // 
             // lblipn
@@ -65,10 +67,7 @@
             this.rtxtBoxIPN.TabIndex = 0;
             this.rtxtBoxIPN.ThemeName = "Office2013Light";
             this.rtxtBoxIPN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtxtBoxIPN_KeyPress);
-            // 
-            // bsAnketaPerson
-            // 
-            this.bsAnketaPerson.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
+            this.rtxtBoxIPN.Leave += new System.EventHandler(this.rtxtBoxIPN_Leave);
             // 
             // lblCitizenship
             // 
@@ -107,10 +106,25 @@
             this.lblResidency.Text = "Резидентність:";
             this.lblResidency.ThemeName = "Office2013Light";
             // 
+            // lblINNPresent
+            // 
+            this.lblINNPresent.ForeColor = System.Drawing.Color.Red;
+            this.lblINNPresent.Location = new System.Drawing.Point(400, 4);
+            this.lblINNPresent.Name = "lblINNPresent";
+            this.lblINNPresent.Size = new System.Drawing.Size(77, 18);
+            this.lblINNPresent.TabIndex = 4;
+            this.lblINNPresent.Text = "ІПН вже існує";
+            this.lblINNPresent.Visible = false;
+            // 
+            // bsAnketaPerson
+            // 
+            this.bsAnketaPerson.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
+            // 
             // RegistrationPersonsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblINNPresent);
             this.Controls.Add(this.ddlResidency);
             this.Controls.Add(this.lblResidency);
             this.Controls.Add(this.ddlCitizenship);
@@ -118,14 +132,15 @@
             this.Controls.Add(this.rtxtBoxIPN);
             this.Controls.Add(this.lblipn);
             this.Name = "RegistrationPersonsControl";
-            this.Size = new System.Drawing.Size(397, 53);
+            this.Size = new System.Drawing.Size(479, 53);
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblCitizenship)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCitizenship)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlResidency)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblResidency)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblINNPresent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -141,5 +156,6 @@
         private Telerik.WinControls.UI.RadLabel lblResidency;
         private System.Windows.Forms.BindingSource bsAnketaPerson;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadLabel lblINNPresent;
     }
 }

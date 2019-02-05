@@ -198,24 +198,45 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("lrightsupd/{cmCustId}")]
         public async Task<IActionResult> SaveLimitRights(int cmCustId, [FromBody] List<CustCmRight> sourceList)
         {
-            IDbContextTransaction tran = null;
-            var destinationList = await _dbContext.CustCmRight.Where(rec => rec.CmCustId == cmCustId).ToListAsync();
+            int[] workedCustId = sourceList.Select(rec => rec.CustId).Distinct().ToArray();
+            int[] workedCRkindCode = sourceList.Select(rec => rec.CRkindCode).Distinct().ToArray();
+
+            var destinationList = await _dbContext.CustCmRight.Where(rec => rec.CmCustId == cmCustId && workedCustId.Contains( rec.CustId ) )
+                .Include( rec => rec.C )
+                .ToListAsync();
+
+            var termOfService = await _dbContext.TermsOfService
+                            .Where(rec => workedCustId.Contains(rec.CustId) && workedCRkindCode.Contains(rec.CrkindCode))
+                            .ToArrayAsync();
 
             try
             {
                 // remove
-                var removeList = destinationList.Where(dest => !sourceList.Any(sors => sors.CmCustId == dest.CmCustId && sors.CRkindCode == dest.CRkindCode)).ToList();
+                var removeList = destinationList.Where(dest => !sourceList.Any(sors => sors.CmCustId == dest.CmCustId
+                                                                        && sors.CRkindCode == dest.CRkindCode &&
+                                                                            sors.CustId == dest.CustId )).ToList();
                 removeList.ForEach(item =>
                 {
+                    item.C.OurService = true;
                     destinationList.Remove(item);
                     _dbContext.CustCmRight.Remove(item);
-                    var terms = _dbContext.TermsOfService.SingleOrDefault(r => r.CustId == item.CustId && r.CrkindCode == item.CRkindCode);
-                    if (terms != null)
-                        terms.OurService = true;
+
+                    //var terms = _dbContext.TermsOfService.SingleOrDefault(r => r.CustId == item.CustId && r.CrkindCode == item.CRkindCode);
+                    //if (terms != null)
+                    //    terms.OurService = true;
+                });
+
+                // update
+                var updList = sourceList.Where(dest => destinationList.Any(sors => sors.CmCustId == dest.CmCustId
+                                                                        && sors.CRkindCode == dest.CRkindCode &&
+                                                                            sors.CustId == dest.CustId)).ToList();
+                updList.ForEach(item =>
+                {
+                    item.SetFields(item);
                 });
 
                 // add new
-                var addList = sourceList.Where(sors => !destinationList.Any(dest => dest.CustId == sors.CustId && dest.CRkindCode == sors.CRkindCode) && sors.CmCustId == 0).ToList();
+                var addList = sourceList.Where(sors => !destinationList.Any(dest => dest.CustId == sors.CustId && dest.CRkindCode == sors.CRkindCode && dest.CmCustId == sors.CmCustId )  ).ToList();
                 addList.ForEach(item =>
                 {
                     var right = new CustCmRight
@@ -224,35 +245,20 @@ namespace ipsmedserviceapp.Controllers
                     };
                     right.SetFields(item, new []{ "CmCustId" });
 
-                    destinationList.Add(right);
+                    //destinationList.Add(right);
                     _dbContext.CustCmRight.Add(right);
-                    var terms = _dbContext.TermsOfService.SingleOrDefault(r => r.CustId == item.CustId && r.CrkindCode == item.CRkindCode);
+                    var terms = termOfService.FirstOrDefault(r => r.CustId == item.CustId && r.CrkindCode == item.CRkindCode);
                     if (terms != null)
                         terms.OurService = false;
                 });
 
-                // update
-                var updList = sourceList.Where(rec => rec.CmCustId != 0 && rec.CmCustId != cmCustId).ToList();
-                updList.ForEach(item =>
-                {
-                    _dbContext.CustCmRight.Remove(item);
-                    var newItem = new CustCmRight();
-                    newItem.SetFields(item);
-                    newItem.CmCustId = cmCustId;
-                    destinationList.Add(newItem);
-                    _dbContext.CustCmRight.Add(newItem);
-                });
 
-                tran = _dbContext.Database.BeginTransaction();
                 _dbContext.SaveChanges();
-                tran.Commit();
-                tran = null;
 
                 return Json(destinationList);
             }
             catch (Exception ex)
             {
-                tran?.Rollback();
                 return BadRequest(ex.Message);
             }
         }

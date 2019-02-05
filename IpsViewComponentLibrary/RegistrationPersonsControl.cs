@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
+using ipsFormsDesign.Interfaces;
 
 namespace IpsViewComponentLibrary
 {
@@ -58,7 +60,7 @@ namespace IpsViewComponentLibrary
 
         public bool Validator()
         {
-            bool isValid = true;
+            bool isValid = !lblINNPresent.Visible;
 
             if (rtxtBoxIPN.Text == string.Empty)
             {
@@ -68,21 +70,6 @@ namespace IpsViewComponentLibrary
             else
                 lblipn.ForeColor = Color.Black;
 
-            //if (!_citizenshipSelected)
-            //{
-            //    lblCitizenship.ForeColor = Color.FromArgb(180, 255, 0, 2); ;
-            //    isValid = false;
-            //}
-            //else 
-            //    lblCitizenship.ForeColor = Color.Black;
-
-            //if (!_residencySelected)
-            //{
-            //    lblResidency.ForeColor= Color.FromArgb(180, 255, 0, 2);
-            //    isValid = false;
-            //}
-            //else
-            //    lblResidency.ForeColor = Color.Black;
 
             return isValid;
         }
@@ -90,6 +77,24 @@ namespace IpsViewComponentLibrary
         private void Setter()
         {
             //rDropListCitizenship.Items[0].
+        }
+
+
+        private void rtxtBoxIPN_Leave(object sender, EventArgs e)
+        {
+            var anketa = bsAnketaPerson.Current as AnketaPerson;
+            if (anketa == null)
+            {
+                lblINNPresent.Visible = false;
+                return;
+            }
+
+            if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))
+                return;
+
+            IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
+            if (checker != null)
+                lblINNPresent.Visible = !checker.CheckINNIsUnique(rtxtBoxIPN.Text, anketa.CustId);
         }
     }
 }

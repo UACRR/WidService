@@ -50,14 +50,14 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
         public bool Validator()
         {
-            return ctrlAnketaCompany.Validator() & ctrlRegistrationsCompany.Validator();
+            return ctrlAnketaCompany.Validator() & ctrlRegistrationsCompany.Validator() &!lblIPIExists.Visible;
         }
 
         private void txtInterCode_Leave(object sender, EventArgs e)
         {
             // Тільки нові правовласники
-            RightHolder cust = bsRightHolder.DataSource as RightHolder;
-            if (cust == null || cust.CustId != 0)
+            RightHolder cust = bsRightHolder.Current as RightHolder;
+            if (cust == null )
                 return;
 
             if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))
@@ -65,7 +65,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
             IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
             if (checker != null)
-                lblIPIExists.Visible = !checker.CheckIPIIsUnique( txtInterCode.Text );
+                lblIPIExists.Visible = !checker.CheckIPIIsUnique( txtInterCode.Text, cust.CustId );
         }
     }
 }
