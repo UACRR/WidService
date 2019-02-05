@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -130,7 +131,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 var result = true;
 
-                if (_isCompany)
+                if (!_isCompany)
                 {
                     result = ctrlAnketaPersonRightholderPage.Validator();
                 }
@@ -139,7 +140,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                     result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
                 }
 
-                return result & ctrlServiceComissionControl.ValidateChildren() & ctrlContacts.Validator();
+                return result & ctrlServiceComissionControl.ValidateChildren(); // & ctrlContacts.Validator();
             }
         }
 
@@ -169,7 +170,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
+        private void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
         {
             // TODO: move to presenter and show in the separate dialog
             var customer = bsCustomer.Current as Customer;
@@ -193,11 +194,21 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void miSave_Click(object sender, EventArgs e)
         {
+            if( IsValid == false )
+            {
+                MessageBox.Show("ПОМИЛКА ВАЛІДАЦІЇ ДАНИХ", "Перевірка даних", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             _presenter.Save(accept: false);
         }
 
         private void miAcceptAndSave_Click(object sender, EventArgs e)
         {
+            if (IsValid == false)
+            {
+                MessageBox.Show("Дані не пройшли валідацію", "Перевірка даних", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             _presenter.SetAgreementRightholderStatus(AgreementStatuses.Active);
             _presenter.Save(accept: true);
         }

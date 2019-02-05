@@ -60,7 +60,7 @@ namespace IpsViewComponentLibrary
 
         public bool Validator()
         {
-            bool isValid = true;
+            bool isValid = !lblINNPresent.Visible;
 
             if (rtxtBoxIPN.Text == string.Empty)
             {

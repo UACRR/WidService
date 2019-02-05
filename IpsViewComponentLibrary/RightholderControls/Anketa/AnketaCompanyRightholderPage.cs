@@ -50,7 +50,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
         public bool Validator()
         {
-            return ctrlAnketaCompany.Validator() & ctrlRegistrationsCompany.Validator();
+            return ctrlAnketaCompany.Validator() & ctrlRegistrationsCompany.Validator() &!lblIPIExists.Visible;
         }
 
         private void txtInterCode_Leave(object sender, EventArgs e)

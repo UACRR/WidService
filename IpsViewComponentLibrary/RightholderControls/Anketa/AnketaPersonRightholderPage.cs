@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 
         public bool Validator()
         {
-            return ctrlAnketaPerson.Validator() & ctrlRegistrationsPerson.Validator();
+            return ctrlAnketaPerson.Validator() & ctrlRegistrationsPerson.Validator() & !lblIPIExists.Visible;
         }
 
         private void txtInterCode_Leave(object sender, EventArgs e)

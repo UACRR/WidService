@@ -63,7 +63,7 @@ namespace IpsViewComponentLibrary
 
         public bool Validator()
         {
-            bool isValid = true;
+            bool isValid = !lblOKPOExists.Visible;
 
             if (txtOkpo.Text == string.Empty)
             {
