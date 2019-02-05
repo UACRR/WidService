@@ -80,6 +80,11 @@ namespace IpsViewComponentLibrary.CommunityControls
             ctrlAddressLe.PostIndexDataMember = "LePostIndex";
 
             // банківські дані
+            if (!_customer.BankAccount.Any())
+                _customer.BankAccount.Add(new BankAccount
+                {
+                    CustId = _customer.CustId,
+                });
             var bank = _customer.BankAccount.SingleOrDefault();
             ctrlBankAccount.DataSource = bank;
 
