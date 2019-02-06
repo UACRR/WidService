@@ -647,6 +647,11 @@ namespace ipsmedserviceapp.Controllers
             Closed = 8,
 
             /// <summary>
+            /// Не підтверджені
+            /// </summary>
+            NotConfirmed = 9,
+
+            /// <summary>
             /// Всі
             /// </summary>
             All
@@ -723,7 +728,7 @@ namespace ipsmedserviceapp.Controllers
             { TypeBRDocument.GenAgreement, new Dictionary<ConsumerFilterEnum, string> {
                 { ConsumerFilterEnum.All, ""  },
                 { ConsumerFilterEnum.Working, "statusMasterActive=1" },
-                { ConsumerFilterEnum.NotActive, "statusMasterNoactive=1" },
+                { ConsumerFilterEnum.NotConfirmed, "agrStatus=0" },
                 { ConsumerFilterEnum.ForProlongation, "statusMasterProlong=1" },
                 { ConsumerFilterEnum.Closed, "agrStatus=4" }
             } },

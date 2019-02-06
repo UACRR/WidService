@@ -55,6 +55,11 @@ namespace ipsFormsDesign.Dictionary
         Closed = 8,
 
         /// <summary>
+        /// Не підтверджені
+        /// </summary>
+        NotConfirmed = 9,
+
+        /// <summary>
         /// Всі
         /// </summary>
         All

@@ -103,14 +103,14 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn5.FieldName = "JaCity";
             gridViewTextBoxColumn5.HeaderText = "Місто";
             gridViewTextBoxColumn5.Name = "JaCity";
-            gridViewTextBoxColumn5.Width = 110;
+            gridViewTextBoxColumn5.Width = 63;
             gridViewTextBoxColumn6.FieldName = "StatusName";
             gridViewTextBoxColumn6.HeaderText = "Статус Угоди";
-            gridViewTextBoxColumn6.MaxWidth = 100;
-            gridViewTextBoxColumn6.MinWidth = 55;
+            gridViewTextBoxColumn6.MaxWidth = 115;
+            gridViewTextBoxColumn6.MinWidth = 115;
             gridViewTextBoxColumn6.Multiline = true;
             gridViewTextBoxColumn6.Name = "StatusName";
-            gridViewTextBoxColumn6.Width = 58;
+            gridViewTextBoxColumn6.Width = 115;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "CountLic1Active";
             gridViewTextBoxColumn7.HeaderText = "К-сть ліцензій";
@@ -162,7 +162,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn13.HeaderText = "Представник";
             gridViewTextBoxColumn13.MinWidth = 80;
             gridViewTextBoxColumn13.Name = "PartnerName";
-            gridViewTextBoxColumn13.Width = 106;
+            gridViewTextBoxColumn13.Width = 96;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";

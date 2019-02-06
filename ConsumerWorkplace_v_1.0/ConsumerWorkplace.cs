@@ -58,7 +58,7 @@ namespace ConsumerWorkplace_v_1._0
                                 new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
                                 new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
                                 new RadTreeNode { Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
-                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.None },
+                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.NotConfirmed },
                                 new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation },
                                 new RadTreeNode { Text = "Закриті", Value = ConsumerFilterEnum.Closed },
                             }
@@ -174,7 +174,7 @@ namespace ConsumerWorkplace_v_1._0
                                 new RadTreeNode { Text = "Всі", Value = ConsumerFilterEnum.All },
                                 new RadTreeNode { Text = "Активні", Value = ConsumerFilterEnum.Working },
                                 new RadTreeNode { Text = "На акцепті", Value = ConsumerFilterEnum.NotAccepted},
-                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.None },
+                                new RadTreeNode { Text = "Не підтверджені", Value = ConsumerFilterEnum.NotConfirmed },
                                 new RadTreeNode { Text = "Для пролонгації", Value = ConsumerFilterEnum.ForProlongation },
                                 new RadTreeNode { Text = "Закриті", Value = ConsumerFilterEnum.Closed},
                             }
