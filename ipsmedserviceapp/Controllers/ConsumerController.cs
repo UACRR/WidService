@@ -605,38 +605,47 @@ namespace ipsmedserviceapp.Controllers
             /// Не визначено
             /// </summary>
             None = 0,
+
             /// <summary>
             /// Діючі
             /// </summary>
             Working = 1,
+
             /// <summary>
             /// Для акцепту
             /// </summary>
             NotAccepted = 2,
+
             /// <summary>
             /// Не активні
             /// </summary>
             NotActive = 3,
+
             /// <summary>
             /// Для пролонгації
             /// </summary>
             ForProlongation = 4,
+
             /// <summary>
             /// Для розподілу
             /// </summary>
             ForDistribution = 5,
-            /// <summary>
-            /// Активні
-            /// </summary>
-            // Active = 2,
+
             /// <summary>
             /// Заборгованість
             /// </summary>
             Debt = 6,
+
             /// <summary>
             /// В роботі(прийом звітів)
             /// </summary>
             UnattachData = 7,
+
+            /// <summary>
+            /// Закриті
+            /// </summary>
+            Closed = 8,
+
             /// <summary>
             /// Всі
             /// </summary>
@@ -713,9 +722,11 @@ namespace ipsmedserviceapp.Controllers
         Dictionary<TypeBRDocument, Dictionary<ConsumerFilterEnum, string>> validDocRequest = new Dictionary<TypeBRDocument, Dictionary<ConsumerFilterEnum, string>> {
             { TypeBRDocument.GenAgreement, new Dictionary<ConsumerFilterEnum, string> {
                 { ConsumerFilterEnum.All, ""  },
-                { ConsumerFilterEnum.Working, "statusMasterActive=1"  },
-                { ConsumerFilterEnum.NotActive, "statusMasterNoactive=1"},
-                { ConsumerFilterEnum.ForProlongation, "statusMasterProlong=1"} } },
+                { ConsumerFilterEnum.Working, "statusMasterActive=1" },
+                { ConsumerFilterEnum.NotActive, "statusMasterNoactive=1" },
+                { ConsumerFilterEnum.ForProlongation, "statusMasterProlong=1" },
+                { ConsumerFilterEnum.Closed, "agrStatus=4" }
+            } },
             { TypeBRDocument.LicAgreement, new Dictionary<ConsumerFilterEnum, string> {
                 { ConsumerFilterEnum.All, "countLic1NoActive+countLic1Active>0"  },
                 { ConsumerFilterEnum.Working, "statusLic1Active=1"  },

@@ -12,6 +12,7 @@ using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -19,6 +20,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 {
     class SmallRightPresenter: IUpdateProviderSmallRight
     {
+        private const string ConsumerAdded = "Нового користувача додано!";
+        private const string ConsumerNotAdded = "Не вдалося додати нового користувача!";
+
         private readonly CabinetSmallRightForm _cabinetSmallRightForm = new CabinetSmallRightForm
         {
             StartPosition = FormStartPosition.CenterParent,
@@ -205,15 +209,14 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             switch (custType)
             {
                 case 1:
-                    var formPhis = new IpsViewComponentLibrary.ConsumerForms.AnketaConsumerPhisForm(cust)
+                    var formPhis = new AnketaConsumerPhisForm(cust)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
                     if (formPhis.ShowDialog() == DialogResult.OK)
                     {
-                        // save
                         var relust = _service.Save(cust);
-                        MessageBox.Show(relust ? "Успішно!" : "Не вдалося зберегти!");
+                        MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
                     }
                     if (!formPhis.Disposing)
                     {
@@ -228,9 +231,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
                     };
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        // save
                         var relust = _service.Save(cust);
-                        MessageBox.Show(relust ? "Успішно!" : "Не вдалося зберегти!");
+                        MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
                     }
                     if (!form.Disposing)
                     {

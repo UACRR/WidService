@@ -406,6 +406,7 @@
     <Compile Include="ExtensionControls\SaveCancelButtonsControl.Designer.cs">
       <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\MessageShow.cs" />
     <Compile Include="ImportDBF\ImportDBFControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
