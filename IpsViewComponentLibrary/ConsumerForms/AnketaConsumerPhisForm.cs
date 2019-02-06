@@ -111,6 +111,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _customer.Person.AnketaPerson.SingleOrDefault().Status = status;
 
             _license.LicStatus = status;
+            _license.Agr.AgrStatus = status;
             // ReSharper disable once PossibleNullReferenceException - is not null
             _license.LicenseAgrParam.SingleOrDefault().LicStatus = status;
             ctrlAgreementPhis.UpdateLicenses();

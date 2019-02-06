@@ -44,9 +44,11 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _customer.Status = status;
             _customer.AgreementMaster.SingleOrDefault().AgrStatus = status;
             _customer.Company.AnketaCompany.SingleOrDefault().Status = status;
-            _customer.Client.LicenseAgreement.SingleOrDefault().LicStatus = status;
-            _customer.Client.LicenseAgreement.SingleOrDefault().Agr.AgreementAddBr.SingleOrDefault().AgrStatus = status;
-            _customer.Client.LicenseAgreement.SingleOrDefault().LicenseAgrParam.SingleOrDefault().LicStatus = status;
+            var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault();
+            licenseAgreement.LicStatus = status;
+            licenseAgreement.Agr.AgrStatus = status;
+            licenseAgreement.Agr.AgreementAddBr.SingleOrDefault().AgrStatus = status;
+            licenseAgreement.LicenseAgrParam.SingleOrDefault().LicStatus = status;
             
             DialogResult = DialogResult.OK;
         }
