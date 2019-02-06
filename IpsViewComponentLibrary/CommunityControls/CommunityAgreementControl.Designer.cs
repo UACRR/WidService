@@ -87,7 +87,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // txtAgrNumber
             // 
-            this.txtAgrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "AgrNumber", true));
+            this.txtAgrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "AgrNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtAgrNumber.Location = new System.Drawing.Point(86, 2);
             this.txtAgrNumber.Name = "txtAgrNumber";
             this.txtAgrNumber.NullText = "Номер договору";
@@ -110,7 +110,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // txtDayForPay
             // 
-            this.txtDayForPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "DayForPay", true));
+            this.txtDayForPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "DayForPay", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtDayForPay.Location = new System.Drawing.Point(167, 19);
             this.txtDayForPay.Name = "txtDayForPay";
             this.txtDayForPay.Size = new System.Drawing.Size(48, 21);
@@ -166,7 +166,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // dtDateEnd
             // 
-            this.dtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "DateEnd", true));
+            this.dtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateEnd.Location = new System.Drawing.Point(273, 27);
             this.dtDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -190,7 +190,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // dtDateBegin
             // 
-            this.dtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "DateBegin", true));
+            this.dtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "DateBegin", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDateBegin.Location = new System.Drawing.Point(118, 27);
             this.dtDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -207,7 +207,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // dtAgrDate
             // 
-            this.dtAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "AgrDate", true));
+            this.dtAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddCommunity, "AgrDate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.dtAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtAgrDate.Location = new System.Drawing.Point(273, 2);
             this.dtAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -301,7 +301,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // txtRateCommis
             // 
             this.txtRateCommis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtRateCommis.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCommiss", true));
+            this.txtRateCommis.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCommiss", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtRateCommis.Location = new System.Drawing.Point(285, 76);
             this.txtRateCommis.Name = "txtRateCommis";
             this.txtRateCommis.Size = new System.Drawing.Size(54, 21);
@@ -343,7 +343,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // txtRateCourt
             // 
             this.txtRateCourt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCourt", true));
+            this.txtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCourt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtRateCourt.Location = new System.Drawing.Point(284, 35);
             this.txtRateCourt.Name = "txtRateCourt";
             this.txtRateCourt.Size = new System.Drawing.Size(54, 21);

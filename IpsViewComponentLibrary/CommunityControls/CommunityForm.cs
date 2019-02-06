@@ -14,6 +14,7 @@ namespace IpsViewComponentLibrary.CommunityControls
     public partial class CommunityForm : Telerik.WinControls.UI.RadForm
     {
         private Customer _customer;
+
         public CommunityForm(Customer customer)
         {
             InitializeComponent();

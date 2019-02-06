@@ -138,6 +138,7 @@
             this.gvViewPartners.Size = new System.Drawing.Size(926, 434);
             this.gvViewPartners.TabIndex = 11;
             this.gvViewPartners.ThemeName = "Office2013Light";
+            this.gvViewPartners.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewPartners_CellDoubleClick);
             this.gvViewPartners.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewPartners_CommandCellClick);
             // 
             // ctrlSearch

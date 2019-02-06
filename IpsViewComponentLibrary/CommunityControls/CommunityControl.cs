@@ -10,11 +10,17 @@ using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityControl : UserControl
     {
+        private const string ErrorMsg = "Неможливо додати нову спільноту!";
+        private const string SeccessMsg = "Нову спільноту додано!";
+        private GridStateRecorder _gridStateRecorder = new GridStateRecorder();
+
         public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
         public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
         public event ReturnViewEventHandler<CommunityAutorsListView> GetCommunityAutorsList;
@@ -28,8 +34,18 @@ namespace IpsViewComponentLibrary.CommunityControls
         public CommunityControl()
         {
             InitializeComponent();
+            _gridStateRecorder.AddGrid(gvViewPartners);
             ctrlSearch.SetUsageGrid(gvViewPartners);
             Load += CommunityControlLoad;
+        }
+
+        // оновлення даних на грід зі збереженням обраного рядка
+        private void UpdateDataGrid()
+        {
+            _gridStateRecorder.RecordState();
+            gvViewPartners.DataSource = SetCommunityList?.Invoke(-1);
+            gvViewPartners.ResetBindings();
+            _gridStateRecorder.RestoreState();
         }
 
         private void CommunityControlLoad(object sender, EventArgs e)
@@ -43,15 +59,34 @@ namespace IpsViewComponentLibrary.CommunityControls
             var communityForm = new CommunityForm(community);
             if (communityForm.ShowDialog() == DialogResult.OK)
             {
-                var result = SaveCommunity?.Invoke(community);
-                if (result ?? false) // true -> update data
-                    gvViewPartners.DataSource = SetCommunityList?.Invoke(-1);
+                var result = SaveCommunity?.Invoke(community) ?? false;
+                MessageShow.ShowInfoByResult(SeccessMsg, ErrorMsg, result);
+                if (result)
+                    UpdateDataGrid();
             }
         }
 
-        private void gvViewPartners_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        // командна кнопка
+        private void gvViewPartners_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            if (e.Row.DataBoundItem is CommunityListView item)
+            OpenCommunityCabinet(e);
+        }
+
+        // даблклік по рядку
+        private void gvViewPartners_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column.Name == "viewBtn")
+                return;
+            OpenCommunityCabinet(e);
+        }
+
+        /// <summary>
+        /// Відкрити кабінет спільноти
+        /// </summary>
+        /// <param name="currentCell"></param>
+        private void OpenCommunityCabinet(GridViewCellEventArgs currentCell)
+        {
+            if (currentCell.Row.DataBoundItem is CommunityListView item)
             {
                 var customer = GetCommunity?.Invoke(item.CustId);
                 var autors = GetCommunityAutorsList?.Invoke(item.CustId);
@@ -96,7 +131,10 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private bool CabinetForm_SaveCustomer(Customer customer)
         {
-            return SaveCommunity?.Invoke(customer) ?? false;
+            var result = SaveCommunity?.Invoke(customer) ?? false;
+            if (result)
+                UpdateDataGrid();
+            return result;
         }
     }
 }

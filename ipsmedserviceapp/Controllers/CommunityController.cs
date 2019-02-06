@@ -115,8 +115,17 @@ namespace ipsmedserviceapp.Controllers
             IDbContextTransaction tran = null;
             try
             {
+                if (sourceCustomer == null)
+                    throw new Exception("New comunity object is empty!");
+                if (!(sourceCustomer.CustType > 0 && sourceCustomer.CustType < 4))
+                    throw new Exception("Bad customer type for new comunity");
+
                 var newCommunity = new Customer();
+                // Збереження Customer
+                newCommunity.SetFields(sourceCustomer, new[] { "CustId" });
+
                 _dbContext.Customer.Add(newCommunity);
+
                 SyncCommunityObjects(sourceCustomer, newCommunity);
 
                 tran = _dbContext.Database.BeginTransaction();
@@ -124,7 +133,7 @@ namespace ipsmedserviceapp.Controllers
                 tran.Commit();
                 tran = null;
 
-                return await GetCommunity(newCommunity.CustId);
+                return Ok(await GetCommunity(newCommunity.CustId));
             }
             catch (Exception ex)
             {
@@ -304,15 +313,6 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="destination"></param>
         private void SyncCommunityObjects(Customer source, Customer destination)
         {
-            var excludeFields = new string[] { "CustId" };
-            if (source == null)
-                throw new Exception("New comunity object is empty!");
-            if (!(source.CustType > 0 && source.CustType < 4))
-                throw new Exception("Bad customer type for new comunity");
-
-            // Збереження Customer
-            destination.SetFields(source, excludeFields);
-
             // Збереження BankAccount
             if (source.BankAccount.Count > 0)
                 _dbContext.UpdateList(source.BankAccount, destination.BankAccount, rec => { }, (l, r) => l.BanAccId == r.BanAccId);
@@ -364,19 +364,28 @@ namespace ipsmedserviceapp.Controllers
                 destination.Employee.Add(addEmpl);
                 destination.Company.RelEmployee.Add(addRelItem);
             });
-            
+
+            // збереження Community
+            if (destination.Community == null)
+            {
+                var community = new Community();
+                community.SetFields(source.Community);
+                destination.Community = community;
+            }
+            destination.Community.SetFields(source.Community);
+
             // --  збереження договору
             // збереження AgreementAddCommunity
             var sorsAgrAddCommunity = source.Community.AgreementAddCommunity.ToList();
-            var destAgrAddCommunity = destination?.Community?.AgreementAddCommunity.ToList();
-            var agrList = destAgrAddCommunity?.Where(row => sorsAgrAddCommunity.All(item => item.AgrId != row.AgrId)).ToList();
+            var destAgrAddCommunity = destination.Community?.AgreementAddCommunity.ToList();
+            var agrList = destAgrAddCommunity.Where(row => sorsAgrAddCommunity.All(item => item.AgrId != row.AgrId)).ToList();
             // Delete
-            agrList?.ForEach(item => _dbContext.AgreementAddCommunity.RemoveRange(item));
+            agrList.ForEach(item => _dbContext.AgreementAddCommunity.RemoveRange(item));
             // Modify
             {
                 agrList = destAgrAddCommunity?.Where(row => sorsAgrAddCommunity.Any(item => item.AgrId == row.AgrId)).ToList();
                 var sorsDic = sorsAgrAddCommunity.ToDictionary(rec => rec.AgrId);
-                agrList?.ForEach(item =>
+                agrList.ForEach(item =>
                 {
                     var sorsItem = sorsDic[item.AgrId];
                     item.SetFields(sorsItem, new[] { "AgrId" });
@@ -387,7 +396,7 @@ namespace ipsmedserviceapp.Controllers
                 var sorsAgrList = source.AgreementMaster.ToList();
                 var destAgrList = destination.AgreementMaster.ToList();
                 var agreementMasters = sorsAgrList.Where(row => destAgrList.All(item => item.AgrId != row.AgrId)).ToList();
-                var agrs = source.Community.AgreementAddCommunity.Where(row => destAgrList.All(item => item.AgrId != row.AgrId)).ToList();
+                var agreementAddCommunities = source.Community.AgreementAddCommunity.Where(row => destAgrList.All(item => item.AgrId != row.AgrId)).ToList();
 
                 agreementMasters.ForEach(item =>
                 {
@@ -395,27 +404,18 @@ namespace ipsmedserviceapp.Controllers
                     var agreement = new AgreementMaster();
                     // оновлення з ресурсу 1
                     agreement.SetFields(item);
-                    foreach(var i in agrs)
-                        item.AgreementAddCommunity.Add(i);
+                    foreach(var agrCommunity in agreementAddCommunities)
+                        item.AgreementAddCommunity.Add(agrCommunity);
+                    
                     // оновлення AgreementAddCommunity
                     _dbContext.AppendList(item.AgreementAddCommunity, agreement.AgreementAddCommunity, i => { }, (l, r) => l.AgrId == r.AgrId && l.Version == r.Version, new[] { "AgrId" });
 
                     destination.AgreementMaster.Add(agreement); // додано 1
+                    foreach (var agreementAddCommunity in agreement.AgreementAddCommunity)
+                        destination.Community.AgreementAddCommunity.Add(agreementAddCommunity);
                 });
             }
             
-            // збереження Community
-            if (destination.Community == null)
-            {
-                var community = new Community();
-                community.SetFields(source.Community);
-                destination.Community = community;
-            }
-            destination.Community.SetFields(source.Community);
-            var addCommunity = source.Community.AgreementAddCommunity.Where(row => destination.AgreementMaster.ToList().All(item => item.AgrId != row.AgrId)).ToList();
-            foreach (var i in addCommunity)
-                destination.Community.AgreementAddCommunity.Add(i);
-
             // збереження RightHolder
             if (destination.RightHolder == null)
                 destination.RightHolder = new RightHolder();
@@ -478,7 +478,6 @@ namespace ipsmedserviceapp.Controllers
                 {
                     new BankAccount()
                 }
-
             };
         }
 

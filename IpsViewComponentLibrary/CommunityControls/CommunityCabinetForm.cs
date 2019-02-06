@@ -10,12 +10,16 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityCabinetForm : Telerik.WinControls.UI.RadForm
     {
+        private const string SuccessMsg = "Внесені зміни збережено!";
+        private const string ErrorMsg = "Неможливо зберегти внесені зміни!";
+
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerByIdEventHandler UpdateCustomer;
@@ -41,6 +45,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void CtrlTabNavigation_SaveClick(object sender, EventArgs e)
         {
             var result = SaveCustomer?.Invoke(_customer) ?? false;
+
             if(result)
                 ExtensionUtils.ShowInfoMessage("Зміни збережено!", "Успішно", MessageBoxIcon.Information);
         }
@@ -49,7 +54,6 @@ namespace IpsViewComponentLibrary.CommunityControls
         {
             //grid
             gvViewAutors.DataSource = _list;
-
 
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
@@ -91,16 +95,12 @@ namespace IpsViewComponentLibrary.CommunityControls
                     CustId = _customer.CustId,
                 });
             var bank = _customer.BankAccount.SingleOrDefault();
-            if( bank == null )
-            {
-                bank = new BankAccount();
-                _customer.BankAccount.Add(bank);
-            }
+
             ctrlBankAccount.DataSource = bank;
 
             // договір
             ctrlAgreement.AgreementDataSource = agreement;
-            var statusid = _customer?.Community?.AgreementAddCommunity?.SingleOrDefault()?.AgrStatus;
+            var statusid = agreement.AgrStatus;
             lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
             lblCommunityName.Text = anketaCompany?.Name;
         }
@@ -173,14 +173,12 @@ namespace IpsViewComponentLibrary.CommunityControls
             if (addAutorForm.ShowDialog() == DialogResult.OK)
             {
                 var result = SaveLimitRights?.Invoke(_customer.CustId, addAutorForm.LimitRights) ?? false;
+                MessageShow.ShowInfoByResult(SuccessMsg, ErrorMsg, result);
                 if(result)
                 {
-                    ExtensionUtils.ShowInfoMessage("Внесені зміни збережено!", "Успішно", MessageBoxIcon.Information);
                     _customer = UpdateCustomer?.Invoke(_customer.CustId);
                     BeginBindings();
                 }
-                else
-                    ExtensionUtils.ShowInfoMessage("Неможливо зберегти внесені зміни!", "Помика", MessageBoxIcon.Error);
             }
         }
 
