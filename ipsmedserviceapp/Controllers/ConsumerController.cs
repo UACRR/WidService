@@ -578,7 +578,7 @@ namespace ipsmedserviceapp.Controllers
 
                 //fillLicenseAgreement(sorsCustomer); // -> визначається контролом GlobalControlConsumerAnketa >371
                 // Збереження Customer
-                Customer destConsumer = new Customer();
+                Customer destConsumer = new Customer { CustId = 0 };
                 _dbContext.Customer.Add(destConsumer);
 
                 InternalUpdateConsumer(sorsCustomer, destConsumer);

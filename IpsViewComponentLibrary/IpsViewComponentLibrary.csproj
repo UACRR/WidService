@@ -754,6 +754,18 @@
     <Compile Include="InformationAgrBR.Designer.cs">
       <DependentUpon>InformationAgrBR.cs</DependentUpon>
     </Compile>
+    <Compile Include="_trash\ControlWithDataSource.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_trash\ControlWithDataSource.Designer.cs">
+      <DependentUpon>ControlWithDataSource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_trash\FormTestDataSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_trash\FormTestDataSource.Designer.cs">
+      <DependentUpon>FormTestDataSource.cs</DependentUpon>
+    </Compile>
     <Compile Include="_trash\InformationAboutTheContractTitleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1358,6 +1370,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="InformationAgrBR.resx">
       <DependentUpon>InformationAgrBR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_trash\ControlWithDataSource.resx">
+      <DependentUpon>ControlWithDataSource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_trash\FormTestDataSource.resx">
+      <DependentUpon>FormTestDataSource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_trash\InformationAboutTheContractTitleControl.resx">
       <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
