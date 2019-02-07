@@ -60,6 +60,7 @@
             this.btnSave.TabIndex = 56;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -70,6 +71,7 @@
             this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // SaveCancelButtonsControl
             // 

@@ -14,10 +14,14 @@ namespace IpsViewComponentLibrary.PartnerControls
     {
         private const string TitlePhis = "Кабінет представника (фізична особа)";
         private const string TitleJur = "Кабінет представника (юридична особа)";
+        private const string SuccessAgrMsg = "Зміни в договорі збережено!";
+        private const string ErrorAgrMsg = "Неможливо зберегти зміни в договорі!";
+        private const string SuccessAnketaMsg = "Зміни в анкеті збережено!";
+        private const string ErrorAnketaMsg = "Неможливо зберегти зміни в анкеті!";
 
         private Customer _customer;
-        private PartnerCabinetAnketaPhisControl _phisControl = null;
-        private PartnerCabinetAnketaJurControl _jurControl = null;
+        private readonly PartnerCabinetAnketaPhisControl _phisControl = null;
+        private readonly PartnerCabinetAnketaJurControl _jurControl = null;
         public event ReturnViewEventHandler<PartnerClientListView> GetPartnerClientList;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
         public event SetPartnerEventHandler OnAddClientToPartner;
@@ -26,7 +30,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public event SaveCustomerEventHandler OnSaveCustomer;
         public event SaveObjectEventHandler<AgreementAddPartner> OnSaveAgreement;
         public event GetCustomerByIdEventHandler UpdateCustomer;
-        public IAnketaControls control;
+        private IAnketaControls _control;
 
         public CabinetPartnerForm(Customer customer)
         {
@@ -38,20 +42,21 @@ namespace IpsViewComponentLibrary.PartnerControls
             switch (_customer.CustType)
             {
                 case 1: // фіз особа
-                    control = Architector.IncludeInstanceWhithReturn(pvAnketa, _phisControl);
+                    _control = Architector.IncludeInstanceWhithReturn(pvAnketa, _phisControl);
                     ctrlPartnerClients.ClientName = _customer.Person.AnketaPerson.SingleOrDefault(); //найменування клієнта
                     Text = TitlePhis;
                     break; 
                 case 3: // юр особа
-                    control = Architector.IncludeInstanceWhithReturn(pvAnketa, _jurControl);
+                    _control = Architector.IncludeInstanceWhithReturn(pvAnketa, _jurControl);
                     ctrlPartnerClients.ClientName = _customer.Company.AnketaCompany.SingleOrDefault(); //найменування клієнта
                     Text = TitleJur;
                     checkPartnerInternal.Visible = false;
                     break;
             }
-            control.BeginBindings(_customer);
-            control.SaveClick += SaveClick;
-
+            _control.BeginBindings(_customer);
+            _control.SaveClick += SaveClick;
+            ctrlSaveCancelButtons.SaveClck += Save_Click;
+            ctrlSaveCancelButtons.CancelClick += Cancel_Click;
             BeginBinding();
             SubscribeEvents();
         }
@@ -71,7 +76,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == agrStatus)?.Name;
             // можливість змінювати договір
             btnAcceptAgr.Enabled = agrStatus != 2;
-            panelOfButtons.Enabled = agrStatus != 2;
+            ctrlSaveCancelButtons.Enabled = agrStatus != 2;
             ctrlAgreement.IsReadOnly = agrStatus == 2;
             // умови договору
             ctrlConditions.AgreementAddPartnerDataSource = _customer?.Partner?.AgreementAddPartner?.SingleOrDefault();
@@ -90,7 +95,8 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void SaveClick(object sender, bool e)
         {
-            OnSaveCustomer?.Invoke(_customer);
+            var result = OnSaveCustomer?.Invoke(_customer) ?? false;
+            MessageShow.ShowInfoByResult(SuccessAnketaMsg, ErrorAnketaMsg, result);
         }
 
         private bool CtrlPartnerClients_OnDetachClientInPartner(int clientId, int partnerId)
@@ -140,17 +146,14 @@ namespace IpsViewComponentLibrary.PartnerControls
         }
 
         // зберегти зміни договору
-        private void btnSave_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
             var result = OnSaveAgreement?.Invoke(_customer.Partner.AgreementAddPartner.SingleOrDefault()) ?? false;
-            if(result)
-                MessageBox.Show("Зміни в договорі збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("Неможливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageShow.ShowInfoByResult(SuccessAgrMsg, ErrorAgrMsg, result);
         }
 
         // скасувати зміни договору
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void Cancel_Click(object sender, EventArgs e)
         {
             _customer = UpdateCustomer?.Invoke(_customer.CustId);
             BeginBinding();
