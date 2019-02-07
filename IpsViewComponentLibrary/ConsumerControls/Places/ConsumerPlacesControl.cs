@@ -14,6 +14,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
     public partial class ConsumerPlacesControl : UserControl
     {
+        private const string AddFromFile = "Додати з файлу";
+        private const string DeletePlaceQuestion = "Ви дійсно хочете видалити обраний заклад?";
+        private const string DeletePlaceQuestionTitle = "Підтвердження";
+
         private readonly AnketaDictionaties _dictionaties;
         private IPlacesControl _placesControl;
         private readonly SinglePlaceParameterControl _singlePlaceParameterControl;
@@ -22,6 +26,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
 
         private ObservableListSource<ClnBusinessPlace> _clnBusinessPlaces;
         private ClnBusinessPlace _tempPlace;
+        private int _placeIdNegativeCounter = default(int);
 
         // ReSharper disable once InconsistentNaming
         private int CurentCustomerId = default(int);
@@ -89,7 +94,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 item.Click += Item_Click;
                 ddBtnAddPlace.Items.Add(item);
             }
-            var fromFile = new RadMenuItem("Додати з файлу", null);
+            var fromFile = new RadMenuItem(AddFromFile, null);
             fromFile.Click += AddPlacesFromFile_Click; ;
             ddBtnAddPlace.Items.Add(fromFile);
         }
@@ -104,11 +109,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         {
             _clnBusinessPlaces = customer.Client.ClnBusinessPlace;
             gvPlaces.DataSource = _clnBusinessPlaces;
-            if (CurentCustomerId != customer.CustId)
-            {
-                CurentCustomerId = customer.CustId;
-                // переведення на початковий стан
-            }
+            CurentCustomerId = customer.CustId;
         }
 
         // Додавання нового майданчика (click on drop down btn)
@@ -127,6 +128,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
 
             _tempPlace = new ClnBusinessPlace
             {
+                // TODO: переробити костиль з ID
+                PlaceId = --_placeIdNegativeCounter,
                 CustId = CurentCustomerId,
                 PlCode = typePlace.CodeI, //код типу закладу,
                 PlaceCountry = "804",
@@ -240,13 +243,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             }
         }
 
-
         //  * * * ВИДАЛЕННЯ МАЙДАНЧИКА
         private void btnDeletePlace_Click(object sender, EventArgs e)
         {
             if(gvPlaces.Rows.Count == 0)
                 return;
-            if (MessageBox.Show("Ви дійсно хочете видалити обраний заклад?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(DeletePlaceQuestion, DeletePlaceQuestionTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 var deleteItem = gvPlaces.CurrentRow.DataBoundItem as ClnBusinessPlace;
                 _clnBusinessPlaces.Remove(deleteItem);
