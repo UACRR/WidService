@@ -219,6 +219,9 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        private void prepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
+        {
+        }
         /// <summary>
         /// Внутрішній метод збереження змін по Споживачу
         /// </summary>
@@ -226,6 +229,9 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="destCustomer"></param>
         private void InternalUpdateConsumer(Customer sorsCustomer, Customer destCustomer)
         {
+
+            prepareDataToUpdate(sorsCustomer, destCustomer);
+
             destCustomer.SetFields(sorsCustomer, new [] {"CustId"});
             //.Include(item => item.BankAccount)
             _dbContext.UpdateList(sorsCustomer.BankAccount, destCustomer.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
@@ -239,6 +245,8 @@ namespace ipsmedserviceapp.Controllers
             destCustomer.Company.SetFields(sorsCustomer.Company);
             //dest.Company.RelEmployee.SetFields(updCustomer.Company.RelEmployee);
 
+            // Звязок BuisnessPlace джерела та цілі
+            Dictionary<int, ClnBusinessPlace> dicPlace = new Dictionary<int, ClnBusinessPlace>();
             // 
             var places = destCustomer.Client.ClnBusinessPlace.Where(rec => !sorsCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
             places.ForEach(item =>
@@ -250,37 +258,31 @@ namespace ipsmedserviceapp.Controllers
             places = destCustomer.Client.ClnBusinessPlace.Where(rec => sorsCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
             places.ForEach(item =>
             {
+
                 var sorsItem = sorsCustomer.Client.ClnBusinessPlace.Where(rec => item.PlaceId == rec.PlaceId).SingleOrDefault();
                 _dbContext.UpdateList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.HollId == r.HollId);
                 item.SetFields(sorsItem);
+                dicPlace.Add( sorsItem.PlaceId, item );
             });
             places = sorsCustomer.Client.ClnBusinessPlace.Where(rec => !destCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
-            places.ForEach(item =>
+            places.ForEach(sorsItem =>
             {
-                ClnBusinessPlace clnPlace = new ClnBusinessPlace();
-                clnPlace.SetFields(item);
-                _dbContext.AppendList(item.ClnPlaceHoll, clnPlace.ClnPlaceHoll, i => { }, (l, r) => l.PlaceId == r.PlaceId);
-                destCustomer.Client.ClnBusinessPlace.Add(clnPlace);
+                ClnBusinessPlace item = new ClnBusinessPlace();
+                item.SetFields(sorsItem, new[] { "PlaceId" });
+                _dbContext.AppendList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.PlaceId == r.PlaceId);
+                destCustomer.Client.ClnBusinessPlace.Add(item);
+                dicPlace.Add(sorsItem.PlaceId, item);
             });
 
             // LicenseAgreement
             {
-                Dictionary<int, ClnBusinessPlace> dicPlace = destCustomer.Client.ClnBusinessPlace.Where(rec => rec.PlaceId != 0).ToDictionary(rec => rec.PlaceId);
-                Action<License> addLicense = (lic) =>
+                Action<bool, License, License> addLicense = (isNew, oldLic, lic) =>
                 {
-                    if (lic.PlaceId == null)
-                        return;
-                    int placeId = (int)lic.PlaceId;
-                    ClnBusinessPlace place = null;
-                    if (!dicPlace.Keys.Contains(placeId))
-                    {
-                        place = new ClnBusinessPlace { PlaceId = placeId };
-                        _dbContext.ClnBusinessPlace.Attach(place);
-                        dicPlace.Add(placeId, place);
-                    }
-                    else
-                        place = dicPlace[placeId];
+                    if (isNew == false) return;
+                    if (oldLic.PlaceId == null) return;
+                    if (dicPlace.Keys.Contains(oldLic.PlaceId ?? 0) == false) return;
 
+                    ClnBusinessPlace place = dicPlace[oldLic.PlaceId ?? 0];
                     place.License.Add(lic);
                 };
                 // Delete
@@ -322,7 +324,7 @@ namespace ipsmedserviceapp.Controllers
                     foreach (var destParam in license.LicenseAgrParam)
                     {
                         var sorsParam = sorsDic[destParam.LicVersion];
-                        _dbContext.UpdateList(sorsParam.License, destParam.License, i => addLicense(i), (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId, new[] { "LId" });
+                        _dbContext.UpdateListExtra(sorsParam.License, destParam.License, (isNew, oldItem, newItem) => addLicense(isNew, oldItem, newItem ), (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId, new[] { "LId" });
                     }
 
                     _dbContext.UpdateList(agreeItemSors.AgreementAddBr, agreeItemDest.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
@@ -348,7 +350,7 @@ namespace ipsmedserviceapp.Controllers
 
                     _dbContext.AppendList(item.LicenseAgrParam, license.LicenseAgrParam, (sors, dest) =>
                     {
-                        _dbContext.AppendList(sors.License, dest.License, i => addLicense(i), (l, r) => l.PlaceId == r.PlaceId, new[] { "LId" });
+                        _dbContext.AppendListExtra(sors.License, dest.License, (isNew, oldItem, newItem) => addLicense(isNew, oldItem, newItem), (l, r) => l.PlaceId == r.PlaceId, new[] { "LId" });
                     }, (l, r) => l.LicVersion == r.LicVersion);
 
 
