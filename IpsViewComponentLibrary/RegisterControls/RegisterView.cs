@@ -213,14 +213,14 @@ namespace IpsViewComponentLibrary.RegisterControls
         }
         private void btnSetStatus_Click(object sender, EventArgs e)
         {
-            _presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag);
+            if (_presenter.SetStatus((RegisterStatusType)btnSetStatus.Tag) == false) return; ;
             bsRegister.ResetCurrentItem();
             disableButtons();
         }
 
         private void btnSetCanceledStatus_Click(object sender, EventArgs e)
         {
-            _presenter.SetStatus(RegisterStatusType.Canceled);
+            if (_presenter.SetStatus(RegisterStatusType.Canceled) == false) return; 
             bsRegister.ResetCurrentItem();
             disableButtons();
         }

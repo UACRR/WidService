@@ -238,7 +238,15 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (customer == null)
                 return;
 
-            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_ГО УААСП Автор.docx");
+            var agrMaster = customer.AgreementMaster.First();
+            if (agrMaster == null) return;
+
+            var templateName = IpsGlobal.AnketaDictionaties.agreementType.FirstOrDefault(item => item.CodeI == agrMaster.AgrType)?.TemplateName;
+            if (string.IsNullOrEmpty(templateName))
+                templateName = "F_ГО УААСП Автор.docx";
+
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", templateName);
+
 
             btnGenerateRightholderAgreement.Enabled = false;
             waitbarAgreement.StartWaiting();

@@ -224,7 +224,11 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 .AsNoTracking().ToListAsync();
 
             copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec }));
-            var agrMaster = new AgreementMaster { Version = 1, AgrStatus = 0, AgrType = 1 };
+            var agrMaster = new AgreementMaster {
+                Version = 1,
+                AgrStatus = 0,
+                AgrType = custType == 3 ? 5 : 1 // Якщо юридична особа то тип правовласника - Видавництво
+            };
             agrMaster.AgreementAddRh.Add(new AgreementAddRh { Version = 1, AgrStatus = 0, AgrDate = DateTime.Now, DateBegin = DateTime.Now, DateEnd = new DateTime(3000,1,1) });
 
             newCust.AgreementMaster.Add(agrMaster);
@@ -315,6 +319,10 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             if (sorsCust.BankAccount.Count > 0)
                 _dbContext.UpdateList(sorsCust.BankAccount, destCustomer.BankAccount
                                                                 , rec => { }, (l, r) => l.BanAccId == r.BanAccId);
+            else // !!!! Помилка, запис рахуноку повинен бути завжди 
+            {
+                destCustomer.BankAccount.Add(new BankAccount());
+            }
 
             var destAgrList = destCustomer.AgreementMaster.ToList();
             var sorsAgrList = sorsCust.AgreementMaster.ToList();

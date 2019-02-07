@@ -157,15 +157,16 @@ namespace IpsViewComponentLibrary.RegisterControls
             _dialogService.ShowMessage(_view, $"Створено {createdObjectCount} об'єктів.");
         }
 
-        public void SetStatus(RegisterStatusType status)
+        public bool SetStatus(RegisterStatusType status)
         {
             if (status == RegisterStatusType.OnDistribution && _view.RegisterItemList.Any(item => item.ObjId == null))
             {
                 _dialogService.ShowError(_view, "Не всі об'єкти прив'язані. Закінчіть роботу зі звітом.");
-                return;
+                return false;
             }
 
             _register.RgStatus = (int)status;
+            return true;
         }
 
         public void Save()
