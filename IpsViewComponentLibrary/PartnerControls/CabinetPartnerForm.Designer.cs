@@ -49,9 +49,7 @@
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvAgrTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
-            this.panelOfButtons = new Telerik.WinControls.UI.RadPanel();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.ExtensionControls.SaveCancelButtonsControl();
             this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.pvClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
@@ -67,10 +65,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             this.pvAgrTerms.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.panelOfButtons)).BeginInit();
-            this.panelOfButtons.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -129,7 +123,7 @@
             // pvAgreement
             // 
             this.pvAgreement.Controls.Add(this.pageViewAgreement);
-            this.pvAgreement.Controls.Add(this.panelOfButtons);
+            this.pvAgreement.Controls.Add(this.ctrlSaveCancelButtons);
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(5, 31);
             this.pvAgreement.Name = "pvAgreement";
@@ -283,41 +277,15 @@
             this.ctrlConditions.Size = new System.Drawing.Size(702, 357);
             this.ctrlConditions.TabIndex = 1;
             // 
-            // panelOfButtons
+            // ctrlSaveCancelButtons
             // 
-            this.panelOfButtons.BackColor = System.Drawing.Color.Silver;
-            this.panelOfButtons.Controls.Add(this.btnSave);
-            this.panelOfButtons.Controls.Add(this.btnCancel);
-            this.panelOfButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelOfButtons.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.panelOfButtons.Location = new System.Drawing.Point(0, 479);
-            this.panelOfButtons.Margin = new System.Windows.Forms.Padding(0);
-            this.panelOfButtons.Name = "panelOfButtons";
-            this.panelOfButtons.Size = new System.Drawing.Size(1065, 31);
-            this.panelOfButtons.TabIndex = 1;
-            this.panelOfButtons.ThemeName = "Office2013Light";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(814, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(121, 24);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Зберегти зміни";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(941, 4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(121, 24);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Скасувати зміни";
-            this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 479);
+            this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
+            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(1065, 31);
+            this.ctrlSaveCancelButtons.TabIndex = 2;
             // 
             // bsBankAccount
             // 
@@ -351,10 +319,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             this.pvAgrTerms.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.panelOfButtons)).EndInit();
-            this.panelOfButtons.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -384,8 +348,6 @@
         private PartnerControls.ConditionsControl ctrlConditions;
         private Telerik.WinControls.UI.RadCheckBox checkPartnerInternal;
         private System.Windows.Forms.BindingSource bsPartner;
-        private Telerik.WinControls.UI.RadPanel panelOfButtons;
-        private Telerik.WinControls.UI.RadButton btnSave;
-        private Telerik.WinControls.UI.RadButton btnCancel;
+        private ExtensionControls.SaveCancelButtonsControl ctrlSaveCancelButtons;
     }
 }

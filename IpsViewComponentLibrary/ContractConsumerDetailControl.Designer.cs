@@ -42,7 +42,7 @@ namespace IpsViewComponentLibrary
             this.rCheckBoxAutoprolongation = new Telerik.WinControls.UI.RadCheckBox();
             this.bsCheckedProlongation = new System.Windows.Forms.BindingSource(this.components);
             this.txtPercentAutoProl = new Telerik.WinControls.UI.RadTextBox();
-            this.rddListPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlPeriodPayment = new Telerik.WinControls.UI.RadDropDownList();
             this.rddListTypeAutoProl = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
@@ -55,7 +55,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.rCheckBoxAutoprolongation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCheckedProlongation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             this.SuspendLayout();
@@ -137,14 +137,14 @@ namespace IpsViewComponentLibrary
             this.txtPercentAutoProl.TabIndex = 4;
             this.txtPercentAutoProl.ThemeName = "Office2013Light";
             // 
-            // rddListPeriodPayment
+            // ddlPeriodPayment
             // 
-            this.rddListPeriodPayment.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.rddListPeriodPayment.Location = new System.Drawing.Point(147, 78);
-            this.rddListPeriodPayment.Name = "rddListPeriodPayment";
-            this.rddListPeriodPayment.Size = new System.Drawing.Size(194, 21);
-            this.rddListPeriodPayment.TabIndex = 5;
-            this.rddListPeriodPayment.ThemeName = "Office2013Light";
+            this.ddlPeriodPayment.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlPeriodPayment.Location = new System.Drawing.Point(147, 78);
+            this.ddlPeriodPayment.Name = "ddlPeriodPayment";
+            this.ddlPeriodPayment.Size = new System.Drawing.Size(194, 21);
+            this.ddlPeriodPayment.TabIndex = 5;
+            this.ddlPeriodPayment.ThemeName = "Office2013Light";
             // 
             // rddListTypeAutoProl
             // 
@@ -175,7 +175,7 @@ namespace IpsViewComponentLibrary
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radLabel5);
             this.Controls.Add(this.rddListTypeAutoProl);
-            this.Controls.Add(this.rddListPeriodPayment);
+            this.Controls.Add(this.ddlPeriodPayment);
             this.Controls.Add(this.txtPercentAutoProl);
             this.Controls.Add(this.rCheckBoxAutoprolongation);
             this.Controls.Add(this.rtxtBoxMinAuthorPayment);
@@ -197,7 +197,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.rCheckBoxAutoprolongation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCheckedProlongation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentAutoProl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rddListPeriodPayment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rddListTypeAutoProl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             this.ResumeLayout(false);
@@ -215,7 +215,7 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadTextBox rtxtBoxMinAuthorPayment;
         private Telerik.WinControls.UI.RadCheckBox rCheckBoxAutoprolongation;
         private Telerik.WinControls.UI.RadTextBox txtPercentAutoProl;
-        private Telerik.WinControls.UI.RadDropDownList rddListPeriodPayment;
+        private Telerik.WinControls.UI.RadDropDownList ddlPeriodPayment;
         private Telerik.WinControls.UI.RadDropDownList rddListTypeAutoProl;
         private System.Windows.Forms.BindingSource bsCheckedProlongation;
         private Telerik.WinControls.UI.RadLabel radLabel5;

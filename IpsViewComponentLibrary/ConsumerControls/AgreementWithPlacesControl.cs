@@ -73,6 +73,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
             });
         }
 
+        public bool Validator()
+        {
+            bool isValid = true;
+            // TODO: перевірка валідації
+            return isValid;
+        }
+
         private void CheckPlaces()
         {
             if (_tempPlaces != null && _tempPlaces.Any())
@@ -169,6 +176,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             foreach (var place in _tempPlaces)
                 foreach (var license in place.License)
                     license.Place = null;
+        }
+
+        private void AgreementWithPlacesControl_Load(object sender, EventArgs e)
+        {
+            ddlLicType.SelectedIndex = 0;
+            ctrlAgrSecond.SelectDefaultItem();
         }
     }
 }

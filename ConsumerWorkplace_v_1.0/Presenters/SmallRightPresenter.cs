@@ -167,12 +167,12 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
             _cabinetSmallRightForm.SetCustomer(mainCust);
             _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;
+            // форма відкрита -> зміна даних
+            if (_cabinetSmallRightForm.Visible)
+                _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
+            _cabinetSmallRightForm.Title = _mainGrid?.ViewRow?.Name;
             if (!_cabinetSmallRightForm.Visible)
-            {
-                _cabinetSmallRightForm.Title = _mainGrid.ViewRow.Name;
                 _cabinetSmallRightForm.Show();
-            }
-
             GC.Collect();
         }
 

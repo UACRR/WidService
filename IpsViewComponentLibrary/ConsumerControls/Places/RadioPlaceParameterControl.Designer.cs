@@ -63,7 +63,7 @@
             this.separatorButtons.Location = new System.Drawing.Point(3, 123);
             this.separatorButtons.Name = "separatorButtons";
             this.separatorButtons.Size = new System.Drawing.Size(654, 14);
-            this.separatorButtons.TabIndex = 29;
+            this.separatorButtons.TabIndex = 0;
             this.separatorButtons.ThemeName = "Office2013Light";
             // 
             // btnSave
@@ -72,7 +72,7 @@
             this.btnSave.Location = new System.Drawing.Point(3, 143);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 24);
-            this.btnSave.TabIndex = 27;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -83,7 +83,7 @@
             this.btnCancel.Location = new System.Drawing.Point(547, 143);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 28;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -95,7 +95,7 @@
             this.titleParametr.Location = new System.Drawing.Point(3, 60);
             this.titleParametr.Name = "titleParametr";
             this.titleParametr.Size = new System.Drawing.Size(106, 43);
-            this.titleParametr.TabIndex = 26;
+            this.titleParametr.TabIndex = 0;
             this.titleParametr.Text = "Адреси трансляції";
             this.titleParametr.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.titleParametr.ThemeName = "Office2013Light";
@@ -117,7 +117,7 @@
             this.txtPlaceValue.RootElement.StretchVertically = true;
             this.txtPlaceValue.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtPlaceValue.Size = new System.Drawing.Size(542, 60);
-            this.txtPlaceValue.TabIndex = 25;
+            this.txtPlaceValue.TabIndex = 3;
             this.txtPlaceValue.ThemeName = "Office2013Light";
             // 
             // bsClnPlaceHoll
@@ -130,7 +130,7 @@
             this.rLblTypeInst.Location = new System.Drawing.Point(3, 32);
             this.rLblTypeInst.Name = "rLblTypeInst";
             this.rLblTypeInst.Size = new System.Drawing.Size(112, 21);
-            this.rLblTypeInst.TabIndex = 23;
+            this.rLblTypeInst.TabIndex = 0;
             this.rLblTypeInst.Text = "Тип бізнес-точки";
             this.rLblTypeInst.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblTypeInst.ThemeName = "Office2013Light";
@@ -141,7 +141,7 @@
             this.rLblName.Location = new System.Drawing.Point(3, 3);
             this.rLblName.Name = "rLblName";
             this.rLblName.Size = new System.Drawing.Size(77, 23);
-            this.rLblName.TabIndex = 21;
+            this.rLblName.TabIndex = 0;
             this.rLblName.Text = "Позивний";
             this.rLblName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblName.ThemeName = "Office2013Light";
@@ -152,7 +152,7 @@
             this.txtPlaceType.Name = "txtPlaceType";
             this.txtPlaceType.ReadOnly = true;
             this.txtPlaceType.Size = new System.Drawing.Size(283, 21);
-            this.txtPlaceType.TabIndex = 24;
+            this.txtPlaceType.TabIndex = 2;
             this.txtPlaceType.ThemeName = "Office2013Light";
             // 
             // txtPlaceName
@@ -164,7 +164,7 @@
             this.txtPlaceName.Location = new System.Drawing.Point(115, 6);
             this.txtPlaceName.Name = "txtPlaceName";
             this.txtPlaceName.Size = new System.Drawing.Size(542, 21);
-            this.txtPlaceName.TabIndex = 22;
+            this.txtPlaceName.TabIndex = 1;
             this.txtPlaceName.ThemeName = "Office2013Light";
             // 
             // bsClnBusinessPlace

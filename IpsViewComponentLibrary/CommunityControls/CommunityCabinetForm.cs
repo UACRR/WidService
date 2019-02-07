@@ -37,8 +37,15 @@ namespace IpsViewComponentLibrary.CommunityControls
             _list = list;
             ctrlTabNavigation.SetDefaultState(pageViewAnketa, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
+            ctrlTabNavigation.CancelClick += CtrlTabNavigation_CancelClick;
             ctrlSearch.SetUsageGrid(gvViewAutors);
 
+            BeginBindings();
+        }
+
+        private void CtrlTabNavigation_CancelClick()
+        {
+            _customer = UpdateCustomer?.Invoke(_customer.CustId);
             BeginBindings();
         }
 

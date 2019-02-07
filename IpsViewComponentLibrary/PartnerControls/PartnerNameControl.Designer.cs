@@ -61,6 +61,7 @@
             // ddlSexType
             // 
             this.ddlSexType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaPerson, "Sex", true));
+            this.ddlSexType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlSexType.Location = new System.Drawing.Point(313, 80);
             this.ddlSexType.Name = "ddlSexType";
             this.ddlSexType.Size = new System.Drawing.Size(125, 21);

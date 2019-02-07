@@ -12,12 +12,14 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerForms;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class PartnerControl : UserControl
     {
+        private GridStateRecorder _gridStateRecorder = new GridStateRecorder();
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
@@ -36,6 +38,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             InitializeComponent();
             InitTemplate();
             ctrlSearch.SetUsageGrid(gvViewPartners);
+            _gridStateRecorder.AddGrid(gvViewPartners);
             //btnNewPartnerJur.Enabled = false; // заблокувати кнопку
         }
 
@@ -121,36 +124,50 @@ namespace IpsViewComponentLibrary.PartnerControls
         // кнопка перегляду/редагування на грід
         private void gvViewPartners_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            var row = e.Row.DataBoundItem as PartnerView;
-            switch (e.Column.FieldName)
-            {
-                case "viewBtn":
-                    var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
-                    CabinetPartnerForm cabinetPartner = new CabinetPartnerForm(customer)
-                    {
-                        StartPosition = FormStartPosition.CenterScreen,
-                    };
-                    cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
-                    cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
-                    cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
-                    cabinetPartner.OnAddClientToPartner += CabinetPartner_OnAddClientToPartner;
-                    cabinetPartner.OnDetachClientInPartner += CabinetPartner_OnDetachClientInPartner;
-                    cabinetPartner.ChangeStatusAgr += CabinetPartner_ChangeStatusAgr;
-                    cabinetPartner.UpdateCustomer += CabinetPartner_UpdateCustomer;
-                    cabinetPartner.OnSaveAgreement += CabinetPartner_OnSaveAgreement;
-
-                    cabinetPartner.Show();
-                    break;
-            }
+            if(e.Column.FieldName == "viewBtn")
+                OpenPartnerCabinet(e);
         }
 
+        // дабл клік перегляду/редагування на грід
+        private void gvViewPartners_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if(e.Column.FieldName == "viewBtn")
+                return;
+            OpenPartnerCabinet(e);
+        }
+
+        private void OpenPartnerCabinet(GridViewCellEventArgs cell)
+        {
+            var row = cell.Row.DataBoundItem as PartnerView;
+            var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
+            var cabinetPartner = new CabinetPartnerForm(customer)
+            {
+                StartPosition = FormStartPosition.CenterScreen,
+            };
+            cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
+            cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
+            cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
+            cabinetPartner.OnAddClientToPartner += CabinetPartner_OnAddClientToPartner;
+            cabinetPartner.OnDetachClientInPartner += CabinetPartner_OnDetachClientInPartner;
+            cabinetPartner.ChangeStatusAgr += CabinetPartner_ChangeStatusAgr;
+            cabinetPartner.UpdateCustomer += CabinetPartner_UpdateCustomer;
+            cabinetPartner.OnSaveAgreement += CabinetPartner_OnSaveAgreement;
+
+            cabinetPartner.Show();
+        }
+
+        // збереження змін договору
         private bool CabinetPartner_OnSaveAgreement(AgreementAddPartner saveObj)
         {
-            return OnSaveAgreement?.Invoke(saveObj) ?? false;
+            var result = OnSaveAgreement?.Invoke(saveObj) ?? false;
+            if (result)
+                UpdateGridData();
+            return result;
         }
 
         private Customer CabinetPartner_UpdateCustomer(int custId)
         {
+            UpdateGridData();
             return GetPartnerById?.Invoke(custId);
         }
 
@@ -179,18 +196,21 @@ namespace IpsViewComponentLibrary.PartnerControls
             return GetPartnerClientList?.Invoke(custId);
         }
 
+        // збереження даних по анкеті
         private bool SaveAnketaPartner(Customer customer)
         {
             var result = OnSaveCustomer?.Invoke(customer) ?? false;
             if (result)
-            {
-                ExtensionUtils.ShowInfoMessage("Успішно збережено!", "Успішно", MessageBoxIcon.Information);
-                SetDataOfFilter(treeView.SelectedNode);
-            }
-            else
-                ExtensionUtils.ShowInfoMessage("Не можливо зберегти!", "Помилка", MessageBoxIcon.Error);
-
+                UpdateGridData();
             return result;
+        }
+
+        // оновлення даних гріда
+        private void UpdateGridData()
+        {
+            _gridStateRecorder.RecordState();
+            SetDataOfFilter(treeView.SelectedNode);
+            _gridStateRecorder.RestoreState();
         }
     }
 

@@ -75,7 +75,7 @@
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";
             this.ctrlAgrMain.Size = new System.Drawing.Size(477, 49);
-            this.ctrlAgrMain.TabIndex = 23;
+            this.ctrlAgrMain.TabIndex = 0;
             // 
             // bindingSourceAgr
             // 
@@ -104,7 +104,7 @@
             this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
             this.ctrlAgrSecond.PeriodPaymentValueMember = "";
             this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.TabIndex = 17;
+            this.ctrlAgrSecond.TabIndex = 0;
             // 
             // panel
             // 
@@ -115,7 +115,7 @@
             this.panel.Location = new System.Drawing.Point(3, 237);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(684, 150);
-            this.panel.TabIndex = 26;
+            this.panel.TabIndex = 3;
             this.panel.ThemeName = "Office2013Light";
             // 
             // checkAttach
@@ -124,7 +124,7 @@
             this.checkAttach.Location = new System.Drawing.Point(6, 125);
             this.checkAttach.Name = "checkAttach";
             this.checkAttach.Size = new System.Drawing.Size(308, 19);
-            this.checkAttach.TabIndex = 22;
+            this.checkAttach.TabIndex = 1;
             this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
             this.checkAttach.ThemeName = "Office2013Light";
             // 
@@ -134,7 +134,7 @@
             this.radLabel3.Location = new System.Drawing.Point(13, 227);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(116, 18);
-            this.radLabel3.TabIndex = 25;
+            this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "Параметри договору";
             // 
             // gvPlaces
@@ -195,7 +195,7 @@
             this.gvPlaces.Name = "gvPlaces";
             this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPlaces.Size = new System.Drawing.Size(684, 135);
-            this.gvPlaces.TabIndex = 28;
+            this.gvPlaces.TabIndex = 0;
             this.gvPlaces.ThemeName = "Office2013Light";
             // 
             // ddlLicType
@@ -209,7 +209,7 @@
             this.ddlLicType.Location = new System.Drawing.Point(96, 60);
             this.ddlLicType.Name = "ddlLicType";
             this.ddlLicType.Size = new System.Drawing.Size(468, 21);
-            this.ddlLicType.TabIndex = 30;
+            this.ddlLicType.TabIndex = 1;
             this.ddlLicType.ThemeName = "Office2013Light";
             this.ddlLicType.ValueMember = "CodeI";
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -229,7 +229,7 @@
             this.radLabel2.Location = new System.Drawing.Point(17, 60);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(73, 18);
-            this.radLabel2.TabIndex = 31;
+            this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "Тип ліцензії";
             // 
             // radLabel4
@@ -239,7 +239,7 @@
             this.radLabel4.Location = new System.Drawing.Point(570, 62);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(37, 18);
-            this.radLabel4.TabIndex = 32;
+            this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Серія";
             // 
             // txtSeries
@@ -250,7 +250,7 @@
             this.txtSeries.Name = "txtSeries";
             this.txtSeries.ReadOnly = true;
             this.txtSeries.Size = new System.Drawing.Size(73, 21);
-            this.txtSeries.TabIndex = 33;
+            this.txtSeries.TabIndex = 2;
             this.txtSeries.ThemeName = "Office2013Light";
             // 
             // AgreementWithPlacesControl
@@ -268,6 +268,7 @@
             this.MinimumSize = new System.Drawing.Size(690, 390);
             this.Name = "AgreementWithPlacesControl";
             this.Size = new System.Drawing.Size(690, 390);
+            this.Load += new System.EventHandler(this.AgreementWithPlacesControl_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.AgreementWithPlacesControl_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();

@@ -55,7 +55,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.btnSave.Location = new System.Drawing.Point(13, 64);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(143, 24);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 3;
             this.btnSave.Text = "Додати приміщення";
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -67,7 +67,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.btnCancel.Location = new System.Drawing.Point(384, 64);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 3;
+            this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             // 
@@ -88,7 +88,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.lblTitlePlace.Location = new System.Drawing.Point(12, 37);
             this.lblTitlePlace.Name = "lblTitlePlace";
             this.lblTitlePlace.Size = new System.Drawing.Size(102, 18);
-            this.lblTitlePlace.TabIndex = 1;
+            this.lblTitlePlace.TabIndex = 0;
             this.lblTitlePlace.Text = "Місць";
             this.lblTitlePlace.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lblTitlePlace.ThemeName = "Office2013Light";
@@ -101,7 +101,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.txtPlaceName.Location = new System.Drawing.Point(120, 12);
             this.txtPlaceName.Name = "txtPlaceName";
             this.txtPlaceName.Size = new System.Drawing.Size(374, 21);
-            this.txtPlaceName.TabIndex = 0;
+            this.txtPlaceName.TabIndex = 1;
             this.txtPlaceName.ThemeName = "Office2013Light";
             // 
             // bsClnPlaceHoll
@@ -116,7 +116,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.txtPlaceValue.Location = new System.Drawing.Point(120, 36);
             this.txtPlaceValue.Name = "txtPlaceValue";
             this.txtPlaceValue.Size = new System.Drawing.Size(89, 21);
-            this.txtPlaceValue.TabIndex = 1;
+            this.txtPlaceValue.TabIndex = 2;
             this.txtPlaceValue.ThemeName = "Office2013Light";
             // 
             // PremisesActionsForm
