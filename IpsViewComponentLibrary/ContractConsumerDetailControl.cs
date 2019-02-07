@@ -36,10 +36,10 @@ namespace IpsViewComponentLibrary
             rddListTypeAutoProl.Enabled = false;
             txtPercentAutoProl.Enabled = false;
 
-            if (rddListPeriodPayment.Items.Count != 0)
+            if (ddlPeriodPayment.Items.Count != 0)
             {
-                rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.Last.Index;
-                rddListPeriodPayment.SelectedIndex = rddListPeriodPayment.Items.First.Index;
+                ddlPeriodPayment.SelectedIndex = ddlPeriodPayment.Items.Last.Index;
+                ddlPeriodPayment.SelectedIndex = ddlPeriodPayment.Items.First.Index;
             }
         }
 
@@ -120,26 +120,26 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object PeriodPaymentDataSource
         {
-            get => rddListPeriodPayment.DataSource;
+            get => ddlPeriodPayment.DataSource;
             set
             {
-                if (rddListPeriodPayment.DataSource != value)
-                    rddListPeriodPayment.DataSource = value;
+                if (ddlPeriodPayment.DataSource != value)
+                    ddlPeriodPayment.DataSource = value;
             }
         }
 
         [Category("Dictionaries")]
         public string PeriodPaymentDisplayMember
         {
-            get => rddListPeriodPayment.DisplayMember;
-            set => rddListPeriodPayment.DisplayMember = value;
+            get => ddlPeriodPayment.DisplayMember;
+            set => ddlPeriodPayment.DisplayMember = value;
         }
 
         [Category("Dictionaries")]
         public string PeriodPaymentValueMember
         {
-            get => rddListPeriodPayment.ValueMember;
-            set => rddListPeriodPayment.ValueMember = value;
+            get => ddlPeriodPayment.ValueMember;
+            set => ddlPeriodPayment.ValueMember = value;
         }
 
         [Category("Dictionary")]
@@ -149,16 +149,16 @@ namespace IpsViewComponentLibrary
             set
             {
                 _periodPaymentDataMember = value;
-                rddListPeriodPayment.DataBindings.Clear();
-                rddListPeriodPayment.DataBindings.Add("SelectedValue", _bindingSource, _periodPaymentDataMember, true, DataSourceUpdateMode.OnPropertyChanged, value);
+                ddlPeriodPayment.DataBindings.Clear();
+                ddlPeriodPayment.DataBindings.Add("SelectedValue", _bindingSource, _periodPaymentDataMember, true, DataSourceUpdateMode.OnPropertyChanged, value);
             }
         }
 
         [Category("Dictionary")]
         public object PeriodPaymentSelectedValue
         {
-            get => rddListPeriodPayment.SelectedValue;
-            set => rddListPeriodPayment.SelectedValue = value;
+            get => ddlPeriodPayment.SelectedValue;
+            set => ddlPeriodPayment.SelectedValue = value;
         }
 
 
@@ -170,6 +170,11 @@ namespace IpsViewComponentLibrary
         {
             get => rCheckBoxAutoprolongation.IsChecked;
             set => rCheckBoxAutoprolongation.IsChecked = value;
+        }
+
+        public void SelectDefaultItem()
+        {
+            ddlPeriodPayment.SelectedIndex = 0;
         }
         
         private void rCheckBoxAutoprolongation_CheckStateChanged(object sender, EventArgs e)

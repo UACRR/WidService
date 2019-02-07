@@ -170,5 +170,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 foreach (var license in place.License)
                     license.Place = null;
         }
+
+        private void AgreementWithPlacesControl_Load(object sender, EventArgs e)
+        {
+            ddlLicType.SelectedIndex = 0;
+            ctrlAgrSecond.SelectDefaultItem();
+        }
     }
 }
