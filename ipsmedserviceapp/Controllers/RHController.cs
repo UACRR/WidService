@@ -204,7 +204,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             }
             else if (custType == 3)
             {
-                newCust.RightHolder.RHolderType = 2;
+                newCust.RightHolder.RHolderType = 3;
                 newCust.Company = new Company();
                 newCust.Company.AnketaCompany.Add(new AnketaCompany
                 {
@@ -238,6 +238,26 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
 
         }
 
+        private void prepareToUpdate(Customer sorsCust, Customer destCustomer)
+        {
+            // Сінхронизація Договора з типом Правовласника Begin ********************
+            int correctAgrType = 1;
+            switch( sorsCust.RightHolder.RHolderType )
+            {
+                case 2: // Видавництво
+                    correctAgrType = 4;
+                    break;
+                case 3:
+                    correctAgrType = 5;
+                    break;
+            }
+
+            var listToUpdate = sorsCust.AgreementMaster.Where(rec => rec.AgrType != correctAgrType);
+            foreach (var item in listToUpdate)
+                item.AgrType = correctAgrType;
+            // Сінхронизація Договора з типом Правовласника End *************************
+
+        }
         /// <summary>
         /// Сінхронізація структури Правовласника
         /// </summary>
@@ -245,6 +265,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         /// <param name="destCustomer"></param>
         private void updateRihtholder(Customer sorsCust, Customer destCustomer)
         {
+            prepareToUpdate(sorsCust, destCustomer);
 
             var excludeFields = new string[] { "CustId", "UserId" };
             if (sorsCust == null)

@@ -60,6 +60,7 @@
             // 
             this.ddlRightholderType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRightHolder, "RHolderType", true));
             this.ddlRightholderType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlRightholderType.Enabled = false;
             this.ddlRightholderType.Location = new System.Drawing.Point(122, 64);
             this.ddlRightholderType.Name = "ddlRightholderType";
             this.ddlRightholderType.Size = new System.Drawing.Size(218, 21);

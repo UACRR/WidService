@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn2 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.countryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnRemove = new Telerik.WinControls.UI.RadButton();
@@ -98,6 +98,7 @@
             // rightHolderBindingSource
             // 
             this.rightHolderBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IRightHolder);
+            this.rightHolderBindingSource.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.rightHolderBindingSource_BindingComplete);
             // 
             // gvCountries
             // 
@@ -111,18 +112,18 @@
             this.gvCountries.MasterTemplate.AllowAddNewRow = false;
             this.gvCountries.MasterTemplate.AutoGenerateColumns = false;
             this.gvCountries.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewComboBoxColumn1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            gridViewComboBoxColumn1.DataSource = this.countryBindingSource;
-            gridViewComboBoxColumn1.DisplayMember = "CountryName";
-            gridViewComboBoxColumn1.FieldName = "CountryCode";
-            gridViewComboBoxColumn1.HeaderText = "Країна";
-            gridViewComboBoxColumn1.Name = "CountryCode";
-            gridViewComboBoxColumn1.ValueMember = "CountryCode";
-            gridViewComboBoxColumn1.Width = 348;
+            gridViewComboBoxColumn2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            gridViewComboBoxColumn2.DataSource = this.countryBindingSource;
+            gridViewComboBoxColumn2.DisplayMember = "CountryName";
+            gridViewComboBoxColumn2.FieldName = "CountryCode";
+            gridViewComboBoxColumn2.HeaderText = "Країна";
+            gridViewComboBoxColumn2.Name = "CountryCode";
+            gridViewComboBoxColumn2.ValueMember = "CountryCode";
+            gridViewComboBoxColumn2.Width = 348;
             this.gvCountries.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewComboBoxColumn1});
+            gridViewComboBoxColumn2});
             this.gvCountries.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvCountries.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvCountries.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvCountries.Name = "gvCountries";
             this.gvCountries.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvCountries.ShowGroupPanel = false;
