@@ -32,7 +32,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlTabNavigationExpanded = new TabNavigationExpandedControl();
+            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ExtensionControls.TabNavigationExpandedControl();
             this.ctrlConsumerAnketa = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -44,7 +44,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.ctrlTabNavigationExpanded.MaximumSize = new System.Drawing.Size(2000, 31);
             this.ctrlTabNavigationExpanded.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlTabNavigationExpanded.Name = "ctrlTabNavigationExpanded";
-            this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(1267, 31);
+            this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(1192, 31);
             this.ctrlTabNavigationExpanded.TabIndex = 15;
             // 
             // ctrlConsumerAnketa
@@ -52,7 +52,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.ctrlConsumerAnketa.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlConsumerAnketa.Location = new System.Drawing.Point(0, 0);
             this.ctrlConsumerAnketa.Name = "ctrlConsumerAnketa";
-            this.ctrlConsumerAnketa.Size = new System.Drawing.Size(1267, 671);
+            this.ctrlConsumerAnketa.Size = new System.Drawing.Size(1192, 671);
             this.ctrlConsumerAnketa.TabIndex = 0;
             this.ctrlConsumerAnketa.TypeRights = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
             // 
@@ -60,7 +60,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1267, 702);
+            this.ClientSize = new System.Drawing.Size(1192, 702);
             this.Controls.Add(this.ctrlConsumerAnketa);
             this.Controls.Add(this.ctrlTabNavigationExpanded);
             this.Name = "AnketaConsumerJurForm";

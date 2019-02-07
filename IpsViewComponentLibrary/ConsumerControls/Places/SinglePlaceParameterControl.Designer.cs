@@ -83,7 +83,7 @@
             this.radSeparator1.Location = new System.Drawing.Point(5, 58);
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(652, 21);
-            this.radSeparator1.TabIndex = 3;
+            this.radSeparator1.TabIndex = 0;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // rLblMainHeader
@@ -92,7 +92,7 @@
             this.rLblMainHeader.Location = new System.Drawing.Point(10, 0);
             this.rLblMainHeader.Name = "rLblMainHeader";
             this.rLblMainHeader.Size = new System.Drawing.Size(136, 21);
-            this.rLblMainHeader.TabIndex = 5;
+            this.rLblMainHeader.TabIndex = 0;
             this.rLblMainHeader.Text = "Адреса бізнес-точки";
             this.rLblMainHeader.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblMainHeader.ThemeName = "Office2013Light";
@@ -106,7 +106,7 @@
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.NullText = " Назва вулиці / № будинку ";
             this.txtStreet.Size = new System.Drawing.Size(542, 21);
-            this.txtStreet.TabIndex = 9;
+            this.txtStreet.TabIndex = 4;
             this.txtStreet.ThemeName = "Office2013Light";
             // 
             // bsClnBusinessPlace
@@ -124,7 +124,7 @@
             this.ddlRegion.Name = "ddlRegion";
             this.ddlRegion.NullText = "Оберіть область";
             this.ddlRegion.Size = new System.Drawing.Size(164, 21);
-            this.ddlRegion.TabIndex = 7;
+            this.ddlRegion.TabIndex = 2;
             this.ddlRegion.ThemeName = "Office2013Light";
             this.ddlRegion.ValueMember = "CodeI";
             // 
@@ -138,7 +138,7 @@
             this.lblStreet.Location = new System.Drawing.Point(49, 113);
             this.lblStreet.Name = "lblStreet";
             this.lblStreet.Size = new System.Drawing.Size(60, 17);
-            this.lblStreet.TabIndex = 10;
+            this.lblStreet.TabIndex = 0;
             this.lblStreet.Text = "Вулиця";
             this.lblStreet.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lblStreet.ThemeName = "Office2013Light";
@@ -149,7 +149,7 @@
             this.lblRegion.Location = new System.Drawing.Point(49, 85);
             this.lblRegion.Name = "lblRegion";
             this.lblRegion.Size = new System.Drawing.Size(60, 18);
-            this.lblRegion.TabIndex = 8;
+            this.lblRegion.TabIndex = 0;
             this.lblRegion.Text = "Область";
             this.lblRegion.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lblRegion.ThemeName = "Office2013Light";
@@ -159,7 +159,7 @@
             this.lblTown.Location = new System.Drawing.Point(290, 85);
             this.lblTown.Name = "lblTown";
             this.lblTown.Size = new System.Drawing.Size(98, 18);
-            this.lblTown.TabIndex = 4;
+            this.lblTown.TabIndex = 0;
             this.lblTown.Text = "<html>Населений пункт</html>";
             this.lblTown.ThemeName = "Office2013Light";
             // 
@@ -171,7 +171,7 @@
             this.txtTownName.Location = new System.Drawing.Point(394, 83);
             this.txtTownName.Name = "txtTownName";
             this.txtTownName.Size = new System.Drawing.Size(263, 21);
-            this.txtTownName.TabIndex = 6;
+            this.txtTownName.TabIndex = 3;
             this.txtTownName.ThemeName = "Office2013Light";
             // 
             // txtPlaceValue
@@ -185,7 +185,7 @@
             // 
             this.txtPlaceValue.RootElement.MaxSize = new System.Drawing.Size(481, 20);
             this.txtPlaceValue.Size = new System.Drawing.Size(78, 20);
-            this.txtPlaceValue.TabIndex = 15;
+            this.txtPlaceValue.TabIndex = 5;
             this.txtPlaceValue.ThemeName = "Office2013Light";
             // 
             // bsClnPlaceHoll
@@ -198,7 +198,7 @@
             this.rLblTypeInst.Location = new System.Drawing.Point(29, 32);
             this.rLblTypeInst.Name = "rLblTypeInst";
             this.rLblTypeInst.Size = new System.Drawing.Size(112, 21);
-            this.rLblTypeInst.TabIndex = 13;
+            this.rLblTypeInst.TabIndex = 0;
             this.rLblTypeInst.Text = "Тип бізнес-точки";
             this.rLblTypeInst.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblTypeInst.ThemeName = "Office2013Light";
@@ -209,7 +209,7 @@
             this.rLblName.Location = new System.Drawing.Point(3, 3);
             this.rLblName.Name = "rLblName";
             this.rLblName.Size = new System.Drawing.Size(141, 23);
-            this.rLblName.TabIndex = 11;
+            this.rLblName.TabIndex = 0;
             this.rLblName.Text = "Назва бізнес-точки";
             this.rLblName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblName.ThemeName = "Office2013Light";
@@ -220,7 +220,7 @@
             this.txtPlaceType.Name = "txtPlaceType";
             this.txtPlaceType.ReadOnly = true;
             this.txtPlaceType.Size = new System.Drawing.Size(248, 21);
-            this.txtPlaceType.TabIndex = 14;
+            this.txtPlaceType.TabIndex = 0;
             this.txtPlaceType.ThemeName = "Office2013Light";
             // 
             // txtPlaceName
@@ -232,7 +232,7 @@
             this.txtPlaceName.Location = new System.Drawing.Point(150, 6);
             this.txtPlaceName.Name = "txtPlaceName";
             this.txtPlaceName.Size = new System.Drawing.Size(507, 21);
-            this.txtPlaceName.TabIndex = 12;
+            this.txtPlaceName.TabIndex = 1;
             this.txtPlaceName.ThemeName = "Office2013Light";
             // 
             // titleParametr
@@ -241,7 +241,7 @@
             this.titleParametr.Location = new System.Drawing.Point(15, 140);
             this.titleParametr.Name = "titleParametr";
             this.titleParametr.Size = new System.Drawing.Size(94, 17);
-            this.titleParametr.TabIndex = 17;
+            this.titleParametr.TabIndex = 0;
             this.titleParametr.Text = "parametr";
             this.titleParametr.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.titleParametr.ThemeName = "Office2013Light";
@@ -256,7 +256,7 @@
             this.btnSave.Location = new System.Drawing.Point(3, 180);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 24);
-            this.btnSave.TabIndex = 18;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -267,7 +267,7 @@
             this.btnCancel.Location = new System.Drawing.Point(547, 180);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 19;
+            this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -279,7 +279,7 @@
             this.separatorButtons.Location = new System.Drawing.Point(3, 163);
             this.separatorButtons.Name = "separatorButtons";
             this.separatorButtons.Size = new System.Drawing.Size(654, 12);
-            this.separatorButtons.TabIndex = 20;
+            this.separatorButtons.TabIndex = 0;
             this.separatorButtons.ThemeName = "Office2013Light";
             // 
             // SinglePlaceParameterControl

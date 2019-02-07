@@ -73,6 +73,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
             });
         }
 
+        public bool Validator()
+        {
+            bool isValid = true;
+            // TODO: перевірка валідації
+            return isValid;
+        }
+
         private void CheckPlaces()
         {
             if (_tempPlaces != null && _tempPlaces.Any())

@@ -83,7 +83,7 @@
             this.rLblTypeInst.Location = new System.Drawing.Point(29, 32);
             this.rLblTypeInst.Name = "rLblTypeInst";
             this.rLblTypeInst.Size = new System.Drawing.Size(112, 21);
-            this.rLblTypeInst.TabIndex = 24;
+            this.rLblTypeInst.TabIndex = 0;
             this.rLblTypeInst.Text = "Тип бізнес-точки";
             this.rLblTypeInst.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblTypeInst.ThemeName = "Office2013Light";
@@ -94,7 +94,7 @@
             this.rLblName.Location = new System.Drawing.Point(3, 3);
             this.rLblName.Name = "rLblName";
             this.rLblName.Size = new System.Drawing.Size(141, 23);
-            this.rLblName.TabIndex = 22;
+            this.rLblName.TabIndex = 0;
             this.rLblName.Text = "Назва бізнес-точки";
             this.rLblName.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblName.ThemeName = "Office2013Light";
@@ -105,7 +105,7 @@
             this.txtPlaceType.Name = "txtPlaceType";
             this.txtPlaceType.ReadOnly = true;
             this.txtPlaceType.Size = new System.Drawing.Size(248, 21);
-            this.txtPlaceType.TabIndex = 25;
+            this.txtPlaceType.TabIndex = 0;
             this.txtPlaceType.ThemeName = "Office2013Light";
             // 
             // txtPlaceName
@@ -117,7 +117,7 @@
             this.txtPlaceName.Location = new System.Drawing.Point(150, 6);
             this.txtPlaceName.Name = "txtPlaceName";
             this.txtPlaceName.Size = new System.Drawing.Size(507, 21);
-            this.txtPlaceName.TabIndex = 23;
+            this.txtPlaceName.TabIndex = 1;
             this.txtPlaceName.ThemeName = "Office2013Light";
             // 
             // bsClnBusinessPlace
@@ -132,7 +132,7 @@
             this.radSeparator1.Location = new System.Drawing.Point(5, 58);
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(652, 21);
-            this.radSeparator1.TabIndex = 15;
+            this.radSeparator1.TabIndex = 0;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // rLblMainHeader
@@ -141,7 +141,7 @@
             this.rLblMainHeader.Location = new System.Drawing.Point(10, 0);
             this.rLblMainHeader.Name = "rLblMainHeader";
             this.rLblMainHeader.Size = new System.Drawing.Size(136, 21);
-            this.rLblMainHeader.TabIndex = 5;
+            this.rLblMainHeader.TabIndex = 0;
             this.rLblMainHeader.Text = "Адреса бізнес-точки";
             this.rLblMainHeader.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.rLblMainHeader.ThemeName = "Office2013Light";
@@ -155,7 +155,7 @@
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.NullText = " Назва вулиці / № будинку ";
             this.txtStreet.Size = new System.Drawing.Size(542, 21);
-            this.txtStreet.TabIndex = 20;
+            this.txtStreet.TabIndex = 5;
             this.txtStreet.ThemeName = "Office2013Light";
             // 
             // ddlRegion
@@ -169,7 +169,7 @@
             this.ddlRegion.Name = "ddlRegion";
             this.ddlRegion.NullText = "Оберіть область";
             this.ddlRegion.Size = new System.Drawing.Size(164, 21);
-            this.ddlRegion.TabIndex = 18;
+            this.ddlRegion.TabIndex = 3;
             this.ddlRegion.ThemeName = "Office2013Light";
             this.ddlRegion.ValueMember = "CodeI";
             // 
@@ -179,7 +179,7 @@
             this.lblStreet.Location = new System.Drawing.Point(49, 113);
             this.lblStreet.Name = "lblStreet";
             this.lblStreet.Size = new System.Drawing.Size(60, 17);
-            this.lblStreet.TabIndex = 21;
+            this.lblStreet.TabIndex = 0;
             this.lblStreet.Text = "Вулиця";
             this.lblStreet.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lblStreet.ThemeName = "Office2013Light";
@@ -190,7 +190,7 @@
             this.lblRegion.Location = new System.Drawing.Point(49, 85);
             this.lblRegion.Name = "lblRegion";
             this.lblRegion.Size = new System.Drawing.Size(60, 18);
-            this.lblRegion.TabIndex = 19;
+            this.lblRegion.TabIndex = 0;
             this.lblRegion.Text = "Область";
             this.lblRegion.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lblRegion.ThemeName = "Office2013Light";
@@ -200,7 +200,7 @@
             this.lblTown.Location = new System.Drawing.Point(290, 85);
             this.lblTown.Name = "lblTown";
             this.lblTown.Size = new System.Drawing.Size(98, 18);
-            this.lblTown.TabIndex = 16;
+            this.lblTown.TabIndex = 0;
             this.lblTown.Text = "<html>Населений пункт</html>";
             this.lblTown.ThemeName = "Office2013Light";
             // 
@@ -212,26 +212,26 @@
             this.txtTownName.Location = new System.Drawing.Point(394, 83);
             this.txtTownName.Name = "txtTownName";
             this.txtTownName.Size = new System.Drawing.Size(263, 21);
-            this.txtTownName.TabIndex = 17;
+            this.txtTownName.TabIndex = 4;
             this.txtTownName.ThemeName = "Office2013Light";
             // 
             // separatorButtons
             // 
             this.separatorButtons.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.separatorButtons.Location = new System.Drawing.Point(3, 403);
+            this.separatorButtons.Location = new System.Drawing.Point(3, 339);
             this.separatorButtons.Name = "separatorButtons";
             this.separatorButtons.Size = new System.Drawing.Size(654, 12);
-            this.separatorButtons.TabIndex = 28;
+            this.separatorButtons.TabIndex = 0;
             this.separatorButtons.ThemeName = "Office2013Light";
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(3, 420);
+            this.btnSave.Location = new System.Drawing.Point(3, 356);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 24);
-            this.btnSave.TabIndex = 26;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -239,10 +239,10 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(547, 421);
+            this.btnCancel.Location = new System.Drawing.Point(547, 357);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 27;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -252,12 +252,12 @@
             this.ctrlPremises.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlPremises.Location = new System.Drawing.Point(3, 137);
-            this.ctrlPremises.MinimumSize = new System.Drawing.Size(450, 260);
+            this.ctrlPremises.MinimumSize = new System.Drawing.Size(450, 200);
             this.ctrlPremises.Name = "ctrlPremises";
             this.ctrlPremises.PlaceHollDataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
             this.ctrlPremises.PlaceType = IpsViewComponentLibrary.MeasurementOfPlaces.Empty;
-            this.ctrlPremises.Size = new System.Drawing.Size(654, 260);
-            this.ctrlPremises.TabIndex = 29;
+            this.ctrlPremises.Size = new System.Drawing.Size(654, 200);
+            this.ctrlPremises.TabIndex = 6;
             // 
             // MultiplePlaceParameterControl
             // 
@@ -278,10 +278,10 @@
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblTown);
             this.Controls.Add(this.txtTownName);
-            this.MaximumSize = new System.Drawing.Size(660, 447);
-            this.MinimumSize = new System.Drawing.Size(520, 447);
+            this.MaximumSize = new System.Drawing.Size(660, 383);
+            this.MinimumSize = new System.Drawing.Size(520, 383);
             this.Name = "MultiplePlaceParameterControl";
-            this.Size = new System.Drawing.Size(660, 447);
+            this.Size = new System.Drawing.Size(660, 383);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).EndInit();

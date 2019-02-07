@@ -119,7 +119,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.pageAnketaConsumer.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pageAnketaConsumer.SelectedPage = this.pvClientName;
             this.pageAnketaConsumer.SelectionWrap = false;
-            this.pageAnketaConsumer.Size = new System.Drawing.Size(1102, 546);
+            this.pageAnketaConsumer.Size = new System.Drawing.Size(1192, 671);
             this.pageAnketaConsumer.TabIndex = 2;
             this.pageAnketaConsumer.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAnketaConsumer.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -144,7 +144,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.pvClientName.Location = new System.Drawing.Point(134, 5);
             this.pvClientName.Name = "pvClientName";
             this.pvClientName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.pvClientName.Size = new System.Drawing.Size(963, 536);
+            this.pvClientName.Size = new System.Drawing.Size(1053, 661);
             this.pvClientName.TabStop = true;
             this.pvClientName.Text = "Споживач";
             // 
@@ -443,7 +443,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.pvPlaces.Location = new System.Drawing.Point(134, 5);
             this.pvPlaces.Name = "pvPlaces";
             this.pvPlaces.Size = new System.Drawing.Size(963, 536);
-            this.pvPlaces.Text = "Майданчики";
+            this.pvPlaces.Text = "Бізнес-точки";
             // 
             // ctrlPlaces
             // 
@@ -584,18 +584,18 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // ctrlTabNavigationExpanded
             // 
             this.ctrlTabNavigationExpanded.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlTabNavigationExpanded.Location = new System.Drawing.Point(0, 546);
+            this.ctrlTabNavigationExpanded.Location = new System.Drawing.Point(0, 671);
             this.ctrlTabNavigationExpanded.MaximumSize = new System.Drawing.Size(2000, 31);
             this.ctrlTabNavigationExpanded.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlTabNavigationExpanded.Name = "ctrlTabNavigationExpanded";
-            this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(1102, 31);
+            this.ctrlTabNavigationExpanded.Size = new System.Drawing.Size(1192, 31);
             this.ctrlTabNavigationExpanded.TabIndex = 14;
             // 
             // AnketaConsumerPhisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1102, 577);
+            this.ClientSize = new System.Drawing.Size(1192, 702);
             this.Controls.Add(this.pageAnketaConsumer);
             this.Controls.Add(this.ctrlTabNavigationExpanded);
             this.Name = "AnketaConsumerPhisForm";

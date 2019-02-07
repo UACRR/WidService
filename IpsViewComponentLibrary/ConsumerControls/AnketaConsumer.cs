@@ -18,21 +18,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
     public partial class AnketaConsumer : UserControl
     {
         private bool isEdit = false;
-        private readonly Dictionary<int, string[]> _buttonsName = new Dictionary<int, string[]>
-        {
-            {1, new []{"","Адреса >"} },
-            {2, new []{"< Назва","Керівники >"} },
-            {3, new []{"< Адреса","Майданчики >"} },
-            {4, new []{"< Керівники","Реквізити >"} },
-            {5, new []{"< Майданчики","Договір >"} },
-            {6, new []{"< Реквізити","Друк >"} },
-            {7, new []{"< Договір","Зберегти"} },
-            {11, new []{ "< Адреса", "Реквізити >" } },
-            {12, new []{ "< Керівники", "Договір >" } }
-        };
 
-
-        private MiddleControlAgreementAnketaType _ctrlAgreementSmallRights;
+        private AgreementWithPlacesControl _ctrlAgreementSmallRights;
         private AgreementBigRight _ctrlAgreementBigRights;
 
         private ConsumerAnketeType _anketeType = ConsumerAnketeType.None;
@@ -143,19 +130,22 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     // ініціалізація контролу малих прав
                     if(_ctrlAgreementSmallRights == null)
                     {
-                        _ctrlAgreementSmallRights = new MiddleControlAgreementAnketaType
+                        _ctrlAgreementSmallRights = new AgreementWithPlacesControl
                         {
                             Location = _locationAgreement,
-                            MinimumSize = new Size(490, 218),
                             Name = "ctrlAgreementSmallRights",
-                            Size = new Size(690, 469),
+                            Size = new Size(690, 390),
                             TabIndex = 0
                         };
                         pvAgreement.Controls.Add(_ctrlAgreementSmallRights);
                     }
 
-                    _ctrlAgreementSmallRights.typeRights = TypeRights; // - - - - - - - - - - - - - - - - - - - - - - - -  Договір
-                    _ctrlAgreementSmallRights.SetDataSources(_customer, _anketaDictionaries, _anketeType); // - - - - - - - -  Договір
+                    _ctrlAgreementSmallRights.Rights = TypeRights;
+                    // дані договору
+                    var places = _customer.Client.ClnBusinessPlace;
+                    var license = _customer.Client.LicenseAgreement.SingleOrDefault();
+                    var licAgr = license?.LicenseAgrParam.SingleOrDefault();
+                    _ctrlAgreementSmallRights.InitializeObjects(places, license, licAgr, ConsumerAgreementInitType.AddNewAgreement);
                 }
                     break;
             }
@@ -171,6 +161,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
             _customer = customer;
             if(IpsGlobal.AnketaDictionaties != null)
                 _anketaDictionaries = IpsGlobal.AnketaDictionaties;
+        }
+
+        public void UpdateLicenses()
+        {
+            _ctrlAgreementSmallRights?.UpdateLicenses();
         }
 
         /// <summary>
