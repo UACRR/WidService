@@ -969,7 +969,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="licid"></param>
         /// <param name="version"></param>
         /// <param name="status"></param>
-        private async Task<LicenseAgreement> setLicAgrStatus(int licid, int version, /*int? oldStatus,*/ int status, bool toChangeVersion)
+        private async Task<LicenseAgreement> SetLicAgrStatus(int licid, int version, /*int? oldStatus,*/ int status, bool toChangeVersion)
         {
             // *******  Отримати дані з бази по договорам
             var licAgreement = await _dbContext.LicenseAgreement.Where(rec => rec.LicId == licid)
@@ -1063,11 +1063,25 @@ namespace ipsmedserviceapp.Controllers
             return licAgreement;
 
         }
-      
+
         /// <summary>
-        /// Акцептувати Ліценз. Договір або Доп договір до нього
+        /// Видалення ліцензійного договору
         /// </summary>
-        /// <param name="licid">Id Ліцензійного договору</param>
+        /// <param name="licId">ID ліцензії</param>
+        /// <param name="licVersion">Версія ліцензії</param>
+        /// <returns></returns>
+        private async Task<LicenseAgrParam> DeleteLicenseAgreement(int licId, int licVersion)
+        {
+            var licenseAgrParam = await _dbContext.LicenseAgrParam
+                .SingleOrDefaultAsync(rec => rec.LicId == licId && rec.LicVersion == licVersion);
+            licenseAgrParam.LicStatus = 10;
+            return licenseAgrParam;
+        }
+
+        /// <summary>
+        /// Зміна статусу ліцензії: підтвердження, закривання, видалення і т.д.
+        /// </summary>
+        /// <param name="lic">Ліцензія з якою будуть виконані дії</param>
         /// <param name="version">Версія доп угоди</param>
         /// <returns></returns>
         [HttpPut("license/State/{version}/{status}/{toChangeVersion}")]
@@ -1076,8 +1090,11 @@ namespace ipsmedserviceapp.Controllers
             IDbContextTransaction tran = null;
             try
             {
+                if (status == 10)
+                    await DeleteLicenseAgreement(lic.LicId, version);
+                else
+                    await SetLicAgrStatus(lic.LicId, version, status, toChangeVersion == 0 ? false : true);
 
-                await setLicAgrStatus(lic.LicId, version, status, toChangeVersion == 0 ? false : true);
                 tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
