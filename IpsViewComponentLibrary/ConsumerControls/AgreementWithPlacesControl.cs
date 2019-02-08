@@ -17,6 +17,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private ObservableListSource<ClnBusinessPlace> _tempPlaces;
         private List<GridViewRowInfo> _existLicenses;
         private readonly AnketaDictionaties _anketaDictionaties;
+        private bool _selectFirstItemNeed;
         private static bool PlaceChooserPredicate(GridViewRowInfo row, LicenseForPlaces license) => row.DataBoundItem as ClnBusinessPlace == license.Place
                                                                          || (row.DataBoundItem as ClnBusinessPlace)?.PlaceId == license.PlaceId;
 
@@ -32,6 +33,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public void InitializeObjects(ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
         {
+            _selectFirstItemNeed = agreementInitType == ConsumerAgreementInitType.AddNewAgreement;
             _tempPlaces = places;
             _licenseAgr = licenseAgr;
 
@@ -180,6 +182,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void AgreementWithPlacesControl_Load(object sender, EventArgs e)
         {
+            if (!_selectFirstItemNeed)
+                return;
             ddlLicType.SelectedIndex = 0;
             ctrlAgrSecond.SelectDefaultItem();
         }

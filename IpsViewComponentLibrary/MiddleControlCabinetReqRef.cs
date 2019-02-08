@@ -83,7 +83,10 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Дані для контрола
         /// </summary>
-        /// <param name="comsumerBigRightView"></param>
+        /// <param name="customer"></param>
+        /// <param name="bigRightView"></param>
+        /// <param name="listRequests"></param>
+        /// <param name="author"></param>
         public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView, IList<RequestsOrReferenceBigRightView> listRequests, IList<AuthorsForLicenseBigRightView> author)
         {
             _customer = customer;
@@ -128,7 +131,7 @@ namespace IpsViewComponentLibrary
         }
 
         //клік на гріду по кнопках
-        private void gvViewRequests_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvViewRequests_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             if (e.Row.DataBoundItem is RequestsOrReferenceBigRightView item && item.LicStatus != 4)
                 switch (e.Column.FieldName)

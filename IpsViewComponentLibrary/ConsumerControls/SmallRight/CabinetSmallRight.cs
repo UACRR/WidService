@@ -9,11 +9,17 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerForms;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public partial class CabinetSmallRight : UserControl
     {
+        private const string AcceptDeleteAgrMsg = "Ліцензія буде закрита та автоматично видалена. Підтвердити дію?";
+        private const string AcceptDeleteTitle = "Підтвердження";
+        private const string SuccessDeleteAgrMsg = "Ліцензію закрито та невдовзі буде видалено!";
+        private const string ErrorDeleteAgrMsg = "Не можливо видалити ліцензію!";
+
         private Customer _customer;
         private readonly AnketaDictionaties _dictionaties;
         private readonly AnketaConsumer _anketaConsumerJur;
@@ -397,6 +403,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     if (license.LicenseAgrParam.Count == 1 && license.LicStatus != 2)
                     {
                         var agrParam = license.LicenseAgrParam?.SingleOrDefault();
+                        if(agrParam?.LicStatus == 10)
+                            continue;
                         source.Add(new GridLicenseAgreementView
                         {
                             Id = license.AgrId,
@@ -421,7 +429,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
                     foreach (var agrParam in license.LicenseAgrParam)
                     {
-                        if (agrParam.LicVersion > license.LicVersion)
+                        if (agrParam.LicStatus != 10 && agrParam.LicVersion > license.LicVersion)
                             source.Add(new GridLicenseAgreementView
                             {
                                 Id = license.AgrId,
@@ -508,6 +516,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
         #region * * * PRIVATE METHODS * * * 
 
+
+
         // кнопка на гріду [Видалити договір]
         private void ColumnDeleteClick()
         {
@@ -515,15 +525,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
             if (license == null) return;
 
-            if (MessageBox.Show("Ліцензія буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            if (MessageBox.Show(AcceptDeleteAgrMsg, AcceptDeleteTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                if (OnChangeLicenseStatus?.Invoke(license, curRow?.LicVersion ?? default(int), 4, false) ?? false)
-                {
-                    ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
+                var result = OnChangeLicenseStatus?.Invoke(license, curRow.LicVersion ?? default(int), 10, false) ?? false;
+                if (result)
                     UpdateCustomer();
-                }
-                else
-                    ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
+                MessageShow.ShowInfoByResult(SuccessDeleteAgrMsg, ErrorDeleteAgrMsg, result);
             }
         }
 
@@ -583,12 +590,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         {
             var result = SaveCustomer?.Invoke(_customer) ?? false;
             if (result)
-            {
-                MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 UpdateCustomer();
-            }
-            else
-                MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageShow.ShowInfoAfterChanges(result);
         }
 
         /// <summary>
@@ -613,12 +616,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             {
                 var result = SaveCustomer?.Invoke(_customer) ?? false;
                 if (result)
-                {
-                    MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UpdateCustomer();
-                }
-                else
-                    MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageShow.ShowInfoAfterChanges(result);
             }
         }
 

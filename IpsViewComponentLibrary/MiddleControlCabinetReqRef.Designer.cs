@@ -53,7 +53,7 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.bsDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewRequests = new Telerik.WinControls.UI.RadGridView();
@@ -279,7 +279,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn11.Multiline = true;
             gridViewTextBoxColumn11.Name = "RoleName";
             gridViewTextBoxColumn11.ReadOnly = true;
-            gridViewTextBoxColumn11.Width = 205;
+            gridViewTextBoxColumn11.Width = 217;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.FieldName = "AuthorName";
             gridViewTextBoxColumn12.HeaderText = "ПІБ (ориг)";
@@ -287,7 +287,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn12.Multiline = true;
             gridViewTextBoxColumn12.Name = "AuthorName";
             gridViewTextBoxColumn12.ReadOnly = true;
-            gridViewTextBoxColumn12.Width = 100;
+            gridViewTextBoxColumn12.Width = 106;
             gridViewTextBoxColumn12.WrapText = true;
             gridViewTextBoxColumn13.FieldName = "InnerCode";
             gridViewTextBoxColumn13.HeaderText = "Код автора";
@@ -305,7 +305,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn14.Multiline = true;
             gridViewTextBoxColumn14.Name = "CountryName";
             gridViewTextBoxColumn14.ReadOnly = true;
-            gridViewTextBoxColumn14.Width = 54;
+            gridViewTextBoxColumn14.Width = 57;
             gridViewTextBoxColumn14.WrapText = true;
             gridViewTextBoxColumn15.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn15.FieldName = "RoleRate";
@@ -334,14 +334,14 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn17.Multiline = true;
             gridViewTextBoxColumn17.Name = "PrepaySum";
             gridViewTextBoxColumn17.ReadOnly = true;
-            gridViewTextBoxColumn17.Width = 103;
+            gridViewTextBoxColumn17.Width = 109;
             gridViewTextBoxColumn17.WrapText = true;
             gridViewTextBoxColumn18.FieldName = "PrepayTypeName";
             gridViewTextBoxColumn18.HeaderText = "Тип";
             gridViewTextBoxColumn18.MinWidth = 50;
             gridViewTextBoxColumn18.Name = "PrepayTypeName";
             gridViewTextBoxColumn18.ReadOnly = true;
-            gridViewTextBoxColumn18.Width = 141;
+            gridViewTextBoxColumn18.Width = 114;
             gridViewTextBoxColumn19.FieldName = "WorkTypeRHName";
             gridViewTextBoxColumn19.HeaderText = "Статус роботи з Автором";
             gridViewTextBoxColumn19.MaxWidth = 100;
@@ -350,18 +350,13 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn19.ReadOnly = true;
             gridViewTextBoxColumn19.Width = 100;
             gridViewTextBoxColumn19.WrapText = true;
-            gridViewComboBoxColumn1.DataSource = this.bsDictionary;
-            gridViewComboBoxColumn1.DataType = typeof(System.Nullable<int>);
-            gridViewComboBoxColumn1.DisplayMember = "Name";
-            gridViewComboBoxColumn1.FieldName = "WorkRh.WorkTypeCl";
-            gridViewComboBoxColumn1.HeaderText = "Статус роботи з Клієнтом";
-            gridViewComboBoxColumn1.MaxWidth = 100;
-            gridViewComboBoxColumn1.MinWidth = 100;
-            gridViewComboBoxColumn1.Name = "WorkTypeCl";
-            gridViewComboBoxColumn1.ReadOnly = true;
-            gridViewComboBoxColumn1.ValueMember = "CodeI";
-            gridViewComboBoxColumn1.Width = 100;
-            gridViewComboBoxColumn1.WrapText = true;
+            gridViewTextBoxColumn20.FieldName = "WorkTypeRHCl";
+            gridViewTextBoxColumn20.HeaderText = "Статус роботи з Клієнтом";
+            gridViewTextBoxColumn20.MaxWidth = 100;
+            gridViewTextBoxColumn20.MinWidth = 100;
+            gridViewTextBoxColumn20.Name = "WorkTypeRHCl";
+            gridViewTextBoxColumn20.Width = 100;
+            gridViewTextBoxColumn20.WrapText = true;
             this.gvCreativeRole.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn10,
             gridViewTextBoxColumn11,
@@ -373,7 +368,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn17,
             gridViewTextBoxColumn18,
             gridViewTextBoxColumn19,
-            gridViewComboBoxColumn1});
+            gridViewTextBoxColumn20});
             this.gvCreativeRole.MasterTemplate.DataSource = this.bindingSource1;
             this.gvCreativeRole.MasterTemplate.EnableCustomFiltering = true;
             this.gvCreativeRole.MasterTemplate.EnableFiltering = true;
