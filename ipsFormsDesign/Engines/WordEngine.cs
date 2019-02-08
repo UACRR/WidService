@@ -184,7 +184,7 @@ namespace ipsFormsDesign.Services
                 vOsobi = " в особі ";
                 Pasport = $"{anketaPerson?.PUseries ?? string.Empty} {anketaPerson?.PUnumber ?? string.Empty}";
                 PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy ?? string.Empty}";
-                if (anketaPerson.Citizenship != "804")
+                if ((anketaPerson?.Citizenship ?? "804") != "804")
                     {
                     Pasport = $"{anketaPerson?.PFseries ?? string.Empty} {anketaPerson?.PFnumber ?? string.Empty}";
                     PasportIssued = $"{anketaPerson?.PFissuedDate:dd.MM.yyyy}";
@@ -552,7 +552,7 @@ namespace ipsFormsDesign.Services
 
                 Pasport = $"{anketaPerson?.PUseries ?? string.Empty} {anketaPerson?.PUnumber ?? string.Empty}";
                 PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy ?? string.Empty}";
-                if (anketaPerson.Citizenship != "804")
+                if ((anketaPerson?.Citizenship ?? "804") != "804")
                 {
                     Pasport = $"{anketaPerson?.PFseries ?? string.Empty} {anketaPerson?.PFnumber ?? string.Empty}";
                     PasportIssued = $"{anketaPerson?.PFissuedDate:dd.MM.yyyy}";
@@ -1684,7 +1684,7 @@ namespace ipsFormsDesign.Services
                 eMail = anketaPerson.EMail;
                 Pasport = $"{anketaPerson?.PUseries ?? string.Empty} {anketaPerson?.PUnumber ?? string.Empty}";
                 PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy ?? string.Empty}";
-                if (anketaPerson.Citizenship != "804")
+                if ((anketaPerson?.Citizenship ?? "804") != "804")
                 {
                     Pasport = $"{anketaPerson?.PFseries ?? string.Empty} {anketaPerson?.PFnumber ?? string.Empty}";
                     PasportIssued = $"{anketaPerson?.PFissuedDate:dd.MM.yyyy}";
