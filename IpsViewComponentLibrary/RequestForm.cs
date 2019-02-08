@@ -73,7 +73,7 @@ namespace IpsViewComponentLibrary
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     //ctrlAuthorRightholderList.OnGetWorkRh += CtrlAuthorRightholderList_OnGetWorkRh;
                     Text = "Редагування заявки на ліцезнію";
-                    btnSave.Text = "Зберегти редаговану заявку";
+                    btnSave.Text = "Зберегти"; // "Зберегти редаговану заявку";
                     btnSave.Enabled = true;
                     break;
                 case FormType.View:
