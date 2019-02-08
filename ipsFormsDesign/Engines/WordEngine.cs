@@ -154,6 +154,8 @@ namespace ipsFormsDesign.Services
             string CstPerson = string.Empty;
             string naPidstavi = string.Empty;
             string CstPersonReason = string.Empty;
+            string Pasport = string.Empty;
+            string PasportIssued = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
             {
@@ -180,6 +182,13 @@ namespace ipsFormsDesign.Services
                 if (cust.CustType == 2)
                     fop = "Фізична особа-підприємець ";
                 vOsobi = " в особі ";
+                Pasport = $"{anketaPerson?.PUseries ?? string.Empty} {anketaPerson?.PUnumber ?? string.Empty}";
+                PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy ?? string.Empty}";
+                if (anketaPerson.Citizenship != "804")
+                    {
+                    Pasport = $"{anketaPerson?.PFseries ?? string.Empty} {anketaPerson?.PFnumber ?? string.Empty}";
+                    PasportIssued = $"{anketaPerson?.PFissuedDate:dd.MM.yyyy}";
+                }
             }
             else // юр. особа
             {
@@ -331,10 +340,10 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = Okpo;
                         break;
                     case "CstPasport":
-                        item.Range.Text = $"{anketaPerson?.PUseries} {anketaPerson?.PUnumber}";
+                        item.Range.Text = Pasport;
                         break;
                     case "CstPasportIssued":
-                        item.Range.Text = $"{anketaPerson?.PUissuedWho} {anketaPerson?.PUissuedWhen:dd.MM.yyyy}";
+                        item.Range.Text = PasportIssued;
                         break;
                     case "CstBankName":
                         item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
@@ -512,6 +521,10 @@ namespace ipsFormsDesign.Services
             string vOsobi = String.Empty;
             string naPidstavi = String.Empty;
             string prcntIncText = String.Empty;
+            string Pasport = string.Empty;
+            string PasportIssued = string.Empty;
+
+
 
             if (cust.CustType < 3) // фіз. особа
             {
@@ -536,6 +549,15 @@ namespace ipsFormsDesign.Services
                 {
                     fop = " Фізична особа - підприємець ";
                 }
+
+                Pasport = $"{anketaPerson?.PUseries ?? string.Empty} {anketaPerson?.PUnumber ?? string.Empty}";
+                PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy ?? string.Empty}";
+                if (anketaPerson.Citizenship != "804")
+                {
+                    Pasport = $"{anketaPerson?.PFseries ?? string.Empty} {anketaPerson?.PFnumber ?? string.Empty}";
+                    PasportIssued = $"{anketaPerson?.PFissuedDate:dd.MM.yyyy}";
+                }
+
             }
             else // юр. особа
             {
@@ -667,7 +689,7 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = minRltGrn;
                         break;
                     case "minRltGrnText":
-                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32((int)licenseAgrParam.MinAmount), true);
+	                        item.Range.Text = Utils.NumPhraseL(Convert.ToUInt32((int)licenseAgrParam.MinAmount), true);
                         break;
                     case "minRltKop":
                         item.Range.Text = minRltKop;
@@ -745,13 +767,13 @@ namespace ipsFormsDesign.Services
                         break;
 
 
-
                     case "CstPasport":
-                        item.Range.Text = $"{anketaPerson.PUseries} {anketaPerson.PUnumber}";
+                        item.Range.Text = Pasport;
                         break;
                     case "CstPasportIssued":
-                        item.Range.Text = $"{anketaPerson.PUissuedWho} {anketaPerson.PUissuedWhen:dd.MM.yyyy}";
+                        item.Range.Text = PasportIssued;
                         break;
+
                     case "CstBankEDRPOU":
                         item.Range.Text = $"{bankacc?.MfoOkpo ?? string.Empty}";
                         break;
@@ -840,7 +862,7 @@ namespace ipsFormsDesign.Services
                 {
                     case "CstName":
                         item.Range.Text = rightholder.Name;
-                        break;
+	                        break;
                     case "data":
                         item.Range.Text = DateTime.Now.ToShortDateString();
                         break;
@@ -1274,6 +1296,7 @@ namespace ipsFormsDesign.Services
             string aPayShowGrnText = string.Empty;
             string aPayShowKop = string.Empty;
 
+
             if (cust.CustType < 3) // фіз. особа
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
@@ -1297,6 +1320,7 @@ namespace ipsFormsDesign.Services
                 {
                     fop = " Фізична особа - підприємець ";
                 }
+
             }
             else // юр. особа
             {
@@ -1640,6 +1664,8 @@ namespace ipsFormsDesign.Services
 
             string faAddress = string.Empty;
             string eMail = string.Empty;
+            string Pasport = string.Empty;
+            string PasportIssued = string.Empty;
 
             {
                 CstName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
@@ -1656,6 +1682,14 @@ namespace ipsFormsDesign.Services
                 faAddress = $"{countries[anketaPerson.FaCountry ?? "804"].CountryName}{","} {anketaPerson.FaCity}{","} {anketaPerson.FaAddress}";
 
                 eMail = anketaPerson.EMail;
+                Pasport = $"{anketaPerson?.PUseries ?? string.Empty} {anketaPerson?.PUnumber ?? string.Empty}";
+                PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy ?? string.Empty}";
+                if (anketaPerson.Citizenship != "804")
+                {
+                    Pasport = $"{anketaPerson?.PFseries ?? string.Empty} {anketaPerson?.PFnumber ?? string.Empty}";
+                    PasportIssued = $"{anketaPerson?.PFissuedDate:dd.MM.yyyy}";
+                }
+
 
             }
 
@@ -1688,7 +1722,7 @@ namespace ipsFormsDesign.Services
             pfFirstRate = pprcntrate.ToString("F");
             pfFirstRateText = Utils.PrcnPhrase(pprcntrate);
 
-
+        	
 
             foreach (ContentControl item in list)
             {
@@ -1742,8 +1776,11 @@ namespace ipsFormsDesign.Services
                     case "pfFirstRateText":
                         item.Range.Text = pfFirstRateText;
                         break;
-                    case "cstPasport":
-                        item.Range.Text = cstPasport;
+                    case "CstPasport":
+                        item.Range.Text = Pasport;
+                        break;
+                    case "CstPasportIssuid":
+                        item.Range.Text = PasportIssued;
                         break;
                     case "CstINN":
                         item.Range.Text = CstINN;
@@ -2220,7 +2257,7 @@ namespace ipsFormsDesign.Services
                     curRowRange.Font.Bold = 0;
 
                     curRow.Cells[1].Range.Text = item.CrkindCodeNavigation.NameDescript;
-                    curRow.Cells[2].Range.Text = item.OurService == true ? "Tak" : "Ні";
+                    curRow.Cells[2].Range.Text = item.OurService == true ? "Taк" : "Ні";
                 }
             }
         }

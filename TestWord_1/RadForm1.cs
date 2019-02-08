@@ -40,11 +40,12 @@ namespace TestWord_1
                       Filename = "F_Акт_публічне сповіщення TV+радио.docx";
                     Filename = "F_Акт_публічне сповіщення кTV.docx";
                         Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
+            Filename = "F_ГО УААСП Автор.docx";
               //          Filename = "F_Лицензионный договор на спектакль (БП).docx";
-            //  Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
-            //   Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
-            //Filename = "F_3_МБВ.docx";
-         //   Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+              //  Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
+              //   Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
+              //Filename = "F_3_МБВ.docx";
+              //   Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
             ProcessWord(template, Filename);
@@ -68,18 +69,23 @@ namespace TestWord_1
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
+                case "F_ГО УААСП Автор.docx":
+                    cust = service1.GetData(196);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
+                    break;
                 case "F_ГО УААСП Правовласник-Видавництво.docx":
                     cust = service1.GetData(131);
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
-
+/*
                 case "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx":
-                    cust = service.GetPartner(300);
+                   // cust = service.GetPartner(300);
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.processPartner(template, cust, cust.AgreementMaster.First());
                     break;
-
+                    */
                 case "F_Лицензионный договор на спектакль (БП).docx":
                     /*                    cust = service.GetData(134);
                                         LicenseAgreement licAgr4 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
