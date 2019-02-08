@@ -204,7 +204,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             }
             else if (custType == 3)
             {
-                newCust.RightHolder.RHolderType = 2;
+                newCust.RightHolder.RHolderType = 3;
                 newCust.Company = new Company();
                 newCust.Company.AnketaCompany.Add(new AnketaCompany
                 {
@@ -224,7 +224,11 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 .AsNoTracking().ToListAsync();
 
             copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec }));
-            var agrMaster = new AgreementMaster { Version = 1, AgrStatus = 0, AgrType = 1 };
+            var agrMaster = new AgreementMaster {
+                Version = 1,
+                AgrStatus = 0,
+                AgrType = custType == 3 ? 5 : 1 // Якщо юридична особа то тип правовласника - Видавництво
+            };
             agrMaster.AgreementAddRh.Add(new AgreementAddRh { Version = 1, AgrStatus = 0, AgrDate = DateTime.Now, DateBegin = DateTime.Now, DateEnd = new DateTime(3000,1,1) });
 
             newCust.AgreementMaster.Add(agrMaster);
@@ -234,6 +238,26 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
 
         }
 
+        private void prepareToUpdate(Customer sorsCust, Customer destCustomer)
+        {
+            // Сінхронизація Договора з типом Правовласника Begin ********************
+            int correctAgrType = 1;
+            switch( sorsCust.RightHolder.RHolderType )
+            {
+                case 2: // Видавництво
+                    correctAgrType = 4;
+                    break;
+                case 3:
+                    correctAgrType = 5;
+                    break;
+            }
+
+            var listToUpdate = sorsCust.AgreementMaster.Where(rec => rec.AgrType != correctAgrType);
+            foreach (var item in listToUpdate)
+                item.AgrType = correctAgrType;
+            // Сінхронизація Договора з типом Правовласника End *************************
+
+        }
         /// <summary>
         /// Сінхронізація структури Правовласника
         /// </summary>
@@ -241,6 +265,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         /// <param name="destCustomer"></param>
         private void updateRihtholder(Customer sorsCust, Customer destCustomer)
         {
+            prepareToUpdate(sorsCust, destCustomer);
 
             var excludeFields = new string[] { "CustId", "UserId" };
             if (sorsCust == null)
@@ -315,6 +340,10 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             if (sorsCust.BankAccount.Count > 0)
                 _dbContext.UpdateList(sorsCust.BankAccount, destCustomer.BankAccount
                                                                 , rec => { }, (l, r) => l.BanAccId == r.BanAccId);
+            else // !!!! Помилка, запис рахуноку повинен бути завжди 
+            {
+                destCustomer.BankAccount.Add(new BankAccount());
+            }
 
             var destAgrList = destCustomer.AgreementMaster.ToList();
             var sorsAgrList = sorsCust.AgreementMaster.ToList();

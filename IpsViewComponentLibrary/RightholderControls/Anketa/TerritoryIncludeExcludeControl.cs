@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class TerritoryIncludeExcludeControl : UserControl
     {
+        private RightHolder _rh = null;
         protected bool IsDesignMode
         {
             get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
@@ -24,6 +26,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
                 if (rightHolderBindingSource.DataSource != value)
                 {
                     rightHolderBindingSource.DataSource = value;
+
                 }
             }
         }
@@ -89,6 +92,18 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
                 gvCountries.DataSource = rightHolderBindingSource;
                 gvCountries.DataMember = "TerritoryInclude";
             }
+        }
+
+        private void rightHolderBindingSource_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+            var rh = rightHolderBindingSource.Current as RightHolder;
+            if (rh != null && _rh != rh )
+            {
+                _rh = rh;
+                SetIncludeExcludeBinding(_rh.AroundWord ?? true);
+            }
+
+
         }
     }
 }
