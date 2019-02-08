@@ -12,15 +12,27 @@ using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
+using IpsViewComponentLibrary.Common.Form;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class RequestForm : IpsViewComponentLibrary.Common.Form.IpsForm
+    public partial class RequestForm : IpsForm
     {
-        private readonly ConsumerService _consumerService = new ConsumerService();
+        private const string ViewRequest = "Перегляд заявки";
+        private const string ViewReference = "Перегляд довідки";
+        private const string ViewLicense = "Перегляд ліцензії";
+
+        private const string CreateRequest = "Створення нової заявки на ліцензію";
+        private const string EditRequest = "Редагування заявки на ліцезнію";
+        private const string EditReference = "Редагування довідки";
+
+        private const string CloseButtonText = "Закрити";
+
+
         private readonly ObjectRightService _objectRightService = new ObjectRightService();
         private readonly DialogService _dialogService = new DialogService();
+        private readonly AnketaDictionaties _dictionaties;
 
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
         private BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
@@ -30,20 +42,20 @@ namespace IpsViewComponentLibrary
         private FormType _formType;
         private FormMode _formMode;
         private bool _deleteLicense = true;
-        private IList<RelGenrePercent> _percent;
         private int? _licId = null;
 
-        public RequestForm()
+        public sealed override string Text
         {
-            InitializeComponent();
+            get => base.Text;
+            set => base.Text = value;
         }
 
         public RequestForm( Customer customer,
                             MainGridConsumerBigRightView bigRightView,
-                            AnketaDictionaties dictionaties,
                             FormType formType = FormType.Create,
                             int? licId = null,
-                            FormMode formMode = FormMode.ForBigRightAdmin)
+                            FormMode formMode = FormMode.ForBigRightAdmin,
+                            ControlRequestOrReferenceType windowType = ControlRequestOrReferenceType.None)
         {
             InitializeComponent();
 
@@ -51,7 +63,8 @@ namespace IpsViewComponentLibrary
 
             txtMusicRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             txtVinagoroda.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
-            dictionaties = IpsGlobal.AnketaDictionaties;
+            if(IpsGlobal.AnketaDictionaties != null)
+                _dictionaties = IpsGlobal.AnketaDictionaties;
             _licId = licId;
             _customer = customer;
             DialogResult = DialogResult.None;
@@ -66,70 +79,59 @@ namespace IpsViewComponentLibrary
                 case FormType.Create:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     CreateNewRequest();
-                    Text = "Створення нової заявки на ліцензію";
+                    Text = CreateRequest;
                     dtDate.MinDate = DateTime.Today;
                     break;
                 case FormType.Edit:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
-                    //ctrlAuthorRightholderList.OnGetWorkRh += CtrlAuthorRightholderList_OnGetWorkRh;
-                    Text = "Редагування заявки на ліцезнію";
-                    btnSave.Text = "Зберегти редаговану заявку";
+                    if (windowType == ControlRequestOrReferenceType.Request)
+                        Text = EditRequest;
+                    if (windowType == ControlRequestOrReferenceType.Reference)
+                        Text = EditReference;
                     btnSave.Enabled = true;
                     break;
                 case FormType.View:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
-                    Text = "Перегляд ліцензії";
-                    btnCancel.Text = "Закрити";
+                    if (windowType == ControlRequestOrReferenceType.Request)
+                        Text = ViewRequest;
+                    if (windowType == ControlRequestOrReferenceType.Reference)
+                        Text = ViewReference;
+                    if (windowType == ControlRequestOrReferenceType.None)
+                        Text = ViewLicense;
+                    btnCancel.Text = CloseButtonText;
                     break;
             }
 
-            #region BINDING
+
+
+            #region * * * BINDING * * *
+
+            bsDictObjAct.DataSource = _dictionaties.objAct;
+            bsDictPerformType.DataSource = _dictionaties.performType;
+            bsDictGenreType.DataSource = _dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
+            bsDictLanguage.DataSource = _dictionaties.language;
+
+            bsConsumerBigRightView.DataSource = bigRightView;
+            bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
 
             if (licId == null)
             {
-                bsConsumerBigRightView.DataSource = bigRightView;
                 _licenseAgreement = _customer.Client.LicenseAgreement.LastOrDefault();
-                bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
-                bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
-                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam
-                    .SingleOrDefault()?.License;
-                _percent = dictionaties.relGenrePercent;
-                bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-
-                bsDictObjAct.DataSource = dictionaties.objAct;
-                bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
-
-                bsDictLanguage.DataSource = dictionaties.language;
-                bsDictPerformType.DataSource = dictionaties.performType;
-
-                ddlPerformType.SelectedIndex = ddlPerformType.Items.Last.Index;
-                ddlPerformType.SelectedIndex = ddlPerformType.Items.First.Index;
-
-                ddlLang.SelectedIndex = ddlLang.Items.Last.Index;
-                ddlLang.SelectedIndex = ddlLang.Items.First.Index;
+                bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault()?.License;
             }
             else
             {
-                bsConsumerBigRightView.DataSource = bigRightView;
                 _licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == licId);
-                bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
-                bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
                 bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == _licenseAgreement.LicVersion)?.License;
-                _percent = dictionaties.relGenrePercent;
-                bsClnBusinessPlace.DataSource = _customer.Client.ClnBusinessPlace;
-
-                bsDictObjAct.DataSource = dictionaties.objAct;
-                bsDictPerformType.DataSource = dictionaties.performType;
-                bsDictGenreType.DataSource = dictionaties.genreType.Where(rec => rec.CategoryCode == 6);
-                bsDictLanguage.DataSource = dictionaties.language;
 
                 SetMusicalDesignData(_licenseAgreement);
                 ctrlMusicalDesignList.DataSource = _musicalDesignList;
                 if (_licenseAgreement.LicStatus != 3)
-                {
                     panelStatusees.Enabled = false;
-                }
             }
+
+            bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
+            bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
 
             _objectRight = _licenseAgreement?.LicenseBigR?.Obj;
             var rightholderList = _objectRightService.GetDataBr(_objectRight.ObjId).rhList;
@@ -142,9 +144,15 @@ namespace IpsViewComponentLibrary
 
             #endregion
 
-            if (GetReadOnly() == true) // TODO: read only must be a enum
+            if (GetReadOnly()) // TODO: read only must be a enum
                 ReadOnly = true;
             SetControlsVisibility();
+        }
+
+        private void RequestForm_Load(object sender, EventArgs e)
+        {
+            ddlPerformType.SelectedIndex = 0;
+            ddlLang.SelectedIndex = 0;
         }
 
         private void SetDictionaries()
@@ -226,12 +234,6 @@ namespace IpsViewComponentLibrary
             {
                 _musicalDesignList.Add(new RegisterItemViewModel(m));
             }
-        }
-
-        private void CtrlAuthorRightholderList_OnGetWorkRh(WorkRh workRh)
-        {
-            if (workRh != null)
-                bsWorkRh.DataSource = workRh;
         }
 
         public void ParseAuthors()
@@ -451,7 +453,7 @@ namespace IpsViewComponentLibrary
             {
                 var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
 
-                var rate = _percent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
+                var rate = _dictionaties.relGenrePercent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
 
                 txtVinagoroda.Text = rate.ToString();
                 _licenseAgreement.LicenseBigR.Rate = rate;

@@ -187,11 +187,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     new LicenseAgrParam
                     {
                         LicVersion = 1,
-                        //LicDate = DateTime.Today,
-                        //DateBegin = DateTime.Today,
-                        //DateEnd = DateTime.Today.AddYears(1),
                         LicStatus = 0,
                     }
+                },
+                Agr = new AgreementMaster
+                {
+                    CustId = _customer.CustId,
+                    AgrStatus = 0,
+                    Version = 1,
+                    AgrType = 2,
                 }
             });
             var license = _customer?.Client?.LicenseAgreement?.LastOrDefault();

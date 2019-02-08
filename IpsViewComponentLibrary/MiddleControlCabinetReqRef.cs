@@ -8,6 +8,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 using Microsoft.Office.Interop.Excel;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -16,6 +17,9 @@ namespace IpsViewComponentLibrary
 {
     public partial class MiddleControlCabinetReqRef : UserControl
     {
+        private const string SuccessRequestAdd = "Нову завявку додано!";
+        private const string ErrorRequestAdd = "Неможливо зберегти нову заявку!";
+
         public event ChangeLicenseTypeEventHandler OnLicenseTypeChange;
         public event SaveCustomerEventHandler OnLicenseSaveNeed;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
@@ -130,7 +134,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        //клік на гріду по кнопках
+        //клік по кнопках на гріду
         private void gvViewRequests_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             if (e.Row.DataBoundItem is RequestsOrReferenceBigRightView item && item.LicStatus != 4)
@@ -158,7 +162,7 @@ namespace IpsViewComponentLibrary
                     }
                         break;
                     case "deleteBtn":
-                        if(_typeControl == ControlRequestOrReferenceType.Request && item?.LicStatus == 0)
+                        if(_typeControl == ControlRequestOrReferenceType.Request && item.LicStatus == 0)
                             DeleteLicense();
                         break;
                 }
@@ -166,23 +170,22 @@ namespace IpsViewComponentLibrary
 
         private void CallRequestForm(FormType type, RequestsOrReferenceBigRightView item)
         {
-            RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties, type, item.LicId) { StartPosition = FormStartPosition.CenterParent };
+            var requestForm = new RequestForm(_customer, _bigRightView, type, item.LicId, windowType: _typeControl) { StartPosition = FormStartPosition.CenterParent };
 
             if (requestForm.ShowDialog() == DialogResult.OK && type == FormType.Edit)
             {
-                if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
+                var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
+                if (result)
                 {
                     OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
-                    MessageBox.Show("Зміни збережено!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     UpdateData?.Invoke();
                 }
-                else
-                    MessageBox.Show("Не можливо зберегти зміни!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageShow.ShowInfoAfterChanges(result);
             }
         }
 
         //зміна рядка на грід
-        private void gvViewRequests_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        private void gvViewRequests_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             //нема в наявності записів заявоч чи довідок (залежно від типу ctrl)
             if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)
@@ -230,16 +233,13 @@ namespace IpsViewComponentLibrary
                     break;
                 case ControlRequestOrReferenceType.Request:
                 {
-                    RequestForm requestForm = new RequestForm(_customer, _bigRightView, _dictionaties);
+                    var requestForm = new RequestForm(_customer, _bigRightView);
                     if(requestForm.ShowDialog() == DialogResult.OK)
                     {
-                        if (OnLicenseSaveNeed?.Invoke(_customer) ?? false)
-                            {
-                                MessageBox.Show("Нову завявку додано!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                UpdateData?.Invoke();
-                            }
-                            else
-                            MessageBox.Show("Не можливо зберегти нову заявку!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
+                        if (result)
+                            UpdateData?.Invoke();
+                        MessageShow.ShowInfoByResult(SuccessRequestAdd, ErrorRequestAdd,result);
                     }
                 }break;
 
@@ -295,7 +295,7 @@ namespace IpsViewComponentLibrary
 
                 if (MessageBox.Show(reqref + "а буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec=> rec.LicId == item.LicId),item.LicVersion,4, false) ?? false)
+                    if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec=> rec.LicId == item.LicId),item.LicVersion, 10, false) ?? false)
                     {
                         ExtensionUtils.ShowInfoMessage(reqref + "у закрито!", "Успішно", MessageBoxIcon.Information);
                         UpdateData?.Invoke();

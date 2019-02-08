@@ -187,7 +187,7 @@ namespace IpsViewComponentLibrary
             var consumer = consumerService.GetData(selectedLicenseAgreement.CustId.Value);
             var bigRightView = consumerService.getMainViewBR().FirstOrDefault(rec => rec.CustId == selectedLicenseAgreement.CustId.Value);
 
-            var view = new RequestForm(consumer, bigRightView, IpsGlobal.AnketaDictionaties, FormType.Edit, selectedLicenseAgreement.LicId, RequestForm.FormMode.ForSmallRightAdmin);
+            var view = new RequestForm(consumer, bigRightView, FormType.Edit, selectedLicenseAgreement.LicId, RequestForm.FormMode.ForSmallRightAdmin);
 
             if (view.ShowDialog() == DialogResult.OK)
             {
