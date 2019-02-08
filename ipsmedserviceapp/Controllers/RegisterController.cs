@@ -69,6 +69,7 @@ namespace ipsmedserviceapp.Controllers
                 BadRequest();
 
             var foundedRegister = await GetRegisterById((int)regId);
+            var oldStatus = foundedRegister.RgStatus;
 
             if (foundedRegister == null)
                 NotFound();
@@ -76,8 +77,10 @@ namespace ipsmedserviceapp.Controllers
             UpdateRegister(foundedRegister, register);
 
             await _dbContext.SaveChangesAsync();
-
+            if (oldStatus != 3 && foundedRegister.RgStatus == 3) // До розподілу
+                await _dbContext.Database.ExecuteSqlCommandAsync("exec p_Tsk3_AddAltName @regId", new SqlParameter("@regId", (int)regId));
             return Ok();
+
         }
 
         private void UpdateRegister(Register destRegister, Register sourceRegister)
@@ -166,6 +169,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 register.RgStatus = newStatus;
                 await _dbContext.SaveChangesAsync();
+
             }
             else
             {
