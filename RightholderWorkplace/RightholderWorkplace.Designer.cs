@@ -47,7 +47,6 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.mainPageViewReportsSR = new Telerik.WinControls.UI.RadPageViewPage();
-            this.fixationListControl1 = new IpsViewComponentLibrary.FixationControls.FixationListControl();
             this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
             this.objectsPageView = new Telerik.WinControls.UI.RadPageView();
             this.actualObjectsPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -57,7 +56,6 @@
             this.pageReportSR = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRegisterList = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.licenseAgreementListControl1 = new IpsViewComponentLibrary.LicenseAgreementListControl();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -78,23 +76,13 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.splitPanel6 = new Telerik.WinControls.UI.SplitPanel();
             this.btnClearNewCopyright = new Telerik.WinControls.UI.RadButton();
-            this.dtChangeCopyrightDateTill = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.lblChangeCopyrightDateTill = new Telerik.WinControls.UI.RadLabel();
             this.btnSaveNewCopyrights = new Telerik.WinControls.UI.RadButton();
             this.btnAddNewRightholder = new Telerik.WinControls.UI.RadButton();
-            this.dtChangeCopyrightDateFrom = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
             this.radLabel22 = new Telerik.WinControls.UI.RadLabel();
             this.gvObjectRightForTransfering = new Telerik.WinControls.UI.RadGridView();
-            this.bsObjectRightForTransfering = new System.Windows.Forms.BindingSource(this.components);
             this.gvChangeCopyrightsTemplate = new Telerik.WinControls.UI.GridViewTemplate();
-            this.bsObjectCopyright = new System.Windows.Forms.BindingSource(this.components);
             this.copyrightRequestsPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlCopyrightRequests = new IpsViewComponentLibrary.ObjectRightControls.CopyrightRequestControl();
-            this.rightHolderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.agreementAddRhBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.rightHolderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.anketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.MainPageView = new Telerik.WinControls.UI.RadPageView();
             this.radMenuButtonItem1 = new Telerik.WinControls.UI.RadDropDownMenu();
             this.radContextMenu = new Telerik.WinControls.UI.RadContextMenu(this.components);
@@ -104,6 +92,14 @@
             this.radMenuItem2 = new Telerik.WinControls.UI.RadMenuItem();
             this.radMenuButtonItem2 = new Telerik.WinControls.UI.RadMenuButtonItem();
             this.radMenuHeaderItem1 = new Telerik.WinControls.UI.RadMenuHeaderItem();
+            this.bsObjectRightForTransfering = new System.Windows.Forms.BindingSource(this.components);
+            this.bsObjectCopyright = new System.Windows.Forms.BindingSource(this.components);
+            this.ctrlCopyrightRequests = new IpsViewComponentLibrary.ObjectRightControls.CopyrightRequestControl();
+            this.rightHolderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.agreementAddRhBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.rightHolderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.anketaPersonBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bankAccountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectAuthorRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.seekObjectBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -111,14 +107,12 @@
             this.objectRightForRightholderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.mainPageViewReportsSR.SuspendLayout();
             this.mainPageRightsObjects.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).BeginInit();
             this.objectsPageView.SuspendLayout();
             this.actualObjectsPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRight)).BeginInit();
             this.pageReportSR.SuspendLayout();
-            this.radPageViewPage1.SuspendLayout();
             this.mainPageRightholders.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rightholdersPageView)).BeginInit();
             this.rightholdersPageView.SuspendLayout();
@@ -139,27 +133,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel6)).BeginInit();
             this.splitPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearNewCopyright)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveNewCopyrights)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRightholder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightForTransfering)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightForTransfering.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).BeginInit();
             this.copyrightRequestsPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
+            this.MainPageView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenuComboItem1.ComboBoxElement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementAddRhBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
-            this.MainPageView.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenuComboItem1.ComboBoxElement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.seekObjectBindingSource)).BeginInit();
@@ -172,27 +164,16 @@
             // 
             // mainPageViewReportsSR
             // 
-            this.mainPageViewReportsSR.Controls.Add(this.fixationListControl1);
-            this.mainPageViewReportsSR.ItemSize = new System.Drawing.SizeF(122F, 27F);
+            this.mainPageViewReportsSR.ItemSize = new System.Drawing.SizeF(120F, 25F);
             this.mainPageViewReportsSR.Location = new System.Drawing.Point(5, 29);
             this.mainPageViewReportsSR.Name = "mainPageViewReportsSR";
             this.mainPageViewReportsSR.Size = new System.Drawing.Size(1182, 634);
             this.mainPageViewReportsSR.Text = "Фіксація порушень";
             // 
-            // fixationListControl1
-            // 
-            this.fixationListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fixationListControl1.FixationDataSource = typeof(ipsFormsDesign.ViewModels.Fixations.FixationListViewModel);
-            this.fixationListControl1.Location = new System.Drawing.Point(0, 0);
-            this.fixationListControl1.Name = "fixationListControl1";
-            this.fixationListControl1.SelectedFixation = null;
-            this.fixationListControl1.Size = new System.Drawing.Size(1182, 634);
-            this.fixationListControl1.TabIndex = 0;
-            // 
             // mainPageRightsObjects
             // 
             this.mainPageRightsObjects.Controls.Add(this.objectsPageView);
-            this.mainPageRightsObjects.ItemSize = new System.Drawing.SizeF(95F, 27F);
+            this.mainPageRightsObjects.ItemSize = new System.Drawing.SizeF(93F, 25F);
             this.mainPageRightsObjects.Location = new System.Drawing.Point(5, 29);
             this.mainPageRightsObjects.Name = "mainPageRightsObjects";
             this.mainPageRightsObjects.Size = new System.Drawing.Size(1182, 634);
@@ -219,9 +200,10 @@
             // 
             this.actualObjectsPage.Controls.Add(this.ddbAddObjectRight);
             this.actualObjectsPage.Controls.Add(this.ctrlObjectRightList);
-            this.actualObjectsPage.Location = new System.Drawing.Point(5, 29);
+            this.actualObjectsPage.ItemSize = new System.Drawing.SizeF(95F, 27F);
+            this.actualObjectsPage.Location = new System.Drawing.Point(5, 31);
             this.actualObjectsPage.Name = "actualObjectsPage";
-            this.actualObjectsPage.Size = new System.Drawing.Size(1172, 600);
+            this.actualObjectsPage.Size = new System.Drawing.Size(1172, 598);
             this.actualObjectsPage.Text = "Об\'єкти права";
             // 
             // ddbAddObjectRight
@@ -260,6 +242,7 @@
             // pageReportSR
             // 
             this.pageReportSR.Controls.Add(this.ctrlRegisterList);
+            this.pageReportSR.ItemSize = new System.Drawing.SizeF(66F, 27F);
             this.pageReportSR.Location = new System.Drawing.Point(5, 31);
             this.pageReportSR.Name = "pageReportSR";
             this.pageReportSR.Size = new System.Drawing.Size(1172, 596);
@@ -276,28 +259,19 @@
             // 
             // radPageViewPage1
             // 
-            this.radPageViewPage1.Controls.Add(this.licenseAgreementListControl1);
+            this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
             this.radPageViewPage1.Size = new System.Drawing.Size(1172, 596);
             this.radPageViewPage1.Text = "Заявки / Довідки ВП";
             // 
-            // licenseAgreementListControl1
-            // 
-            this.licenseAgreementListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.licenseAgreementListControl1.Location = new System.Drawing.Point(0, 0);
-            this.licenseAgreementListControl1.Name = "licenseAgreementListControl1";
-            this.licenseAgreementListControl1.SelectedLicenseAgreement = null;
-            this.licenseAgreementListControl1.Size = new System.Drawing.Size(1172, 596);
-            this.licenseAgreementListControl1.TabIndex = 0;
-            // 
             // mainPageRightholders
             // 
             this.mainPageRightholders.Controls.Add(this.rightholdersPageView);
-            this.mainPageRightholders.ItemSize = new System.Drawing.SizeF(103F, 27F);
-            this.mainPageRightholders.Location = new System.Drawing.Point(5, 31);
+            this.mainPageRightholders.ItemSize = new System.Drawing.SizeF(101F, 25F);
+            this.mainPageRightholders.Location = new System.Drawing.Point(5, 29);
             this.mainPageRightholders.Name = "mainPageRightholders";
-            this.mainPageRightholders.Size = new System.Drawing.Size(1182, 632);
+            this.mainPageRightholders.Size = new System.Drawing.Size(1182, 634);
             this.mainPageRightholders.Text = "Правовласники";
             // 
             // rightholdersPageView
@@ -324,10 +298,10 @@
             // 
             this.rightholdersPage.Controls.Add(this.ctrlRightholderList);
             this.rightholdersPage.Controls.Add(this.ddbNewRightholder);
-            this.rightholdersPage.ItemSize = new System.Drawing.SizeF(136F, 27F);
-            this.rightholdersPage.Location = new System.Drawing.Point(5, 31);
+            this.rightholdersPage.ItemSize = new System.Drawing.SizeF(134F, 25F);
+            this.rightholdersPage.Location = new System.Drawing.Point(5, 29);
             this.rightholdersPage.Name = "rightholdersPage";
-            this.rightholdersPage.Size = new System.Drawing.Size(1172, 596);
+            this.rightholdersPage.Size = new System.Drawing.Size(1172, 598);
             this.rightholdersPage.Text = "Правовласники";
             // 
             // ctrlRightholderList
@@ -337,7 +311,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRightholderList.Location = new System.Drawing.Point(1, 4);
             this.ctrlRightholderList.Name = "ctrlRightholderList";
-            this.ctrlRightholderList.SearchText = "";
             this.ctrlRightholderList.SelectedRightholder = null;
             this.ctrlRightholderList.ShowCommandColumns = true;
             this.ctrlRightholderList.Size = new System.Drawing.Size(1173, 563);
@@ -375,7 +348,7 @@
             // rightholdersChangePage
             // 
             this.rightholdersChangePage.Controls.Add(this.radSplitContainer3);
-            this.rightholdersChangePage.ItemSize = new System.Drawing.SizeF(136F, 27F);
+            this.rightholdersChangePage.ItemSize = new System.Drawing.SizeF(134F, 25F);
             this.rightholdersChangePage.Location = new System.Drawing.Point(5, 31);
             this.rightholdersChangePage.Name = "rightholdersChangePage";
             this.rightholdersChangePage.Size = new System.Drawing.Size(1172, 596);
@@ -444,7 +417,6 @@
             // 
             // ctrlRightholdersObjectsForChange
             // 
-            this.ctrlRightholdersObjectsForChange.AllowMarkingRows = false;
             this.ctrlRightholdersObjectsForChange.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -452,7 +424,6 @@
             this.ctrlRightholdersObjectsForChange.Name = "ctrlRightholdersObjectsForChange";
             this.ctrlRightholdersObjectsForChange.SelectedObject = null;
             this.ctrlRightholdersObjectsForChange.SelectedRightholder = null;
-            this.ctrlRightholdersObjectsForChange.ShowRightholderSelector = true;
             this.ctrlRightholdersObjectsForChange.Size = new System.Drawing.Size(1166, 190);
             this.ctrlRightholdersObjectsForChange.TabIndex = 1;
             this.ctrlRightholdersObjectsForChange.RightholderChanged += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholdersObjectsForChange_RightholderChanged);
@@ -515,11 +486,9 @@
             // splitPanel6
             // 
             this.splitPanel6.Controls.Add(this.btnClearNewCopyright);
-            this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateTill);
             this.splitPanel6.Controls.Add(this.lblChangeCopyrightDateTill);
             this.splitPanel6.Controls.Add(this.btnSaveNewCopyrights);
             this.splitPanel6.Controls.Add(this.btnAddNewRightholder);
-            this.splitPanel6.Controls.Add(this.dtChangeCopyrightDateFrom);
             this.splitPanel6.Controls.Add(this.radLabel22);
             this.splitPanel6.Controls.Add(this.gvObjectRightForTransfering);
             this.splitPanel6.Location = new System.Drawing.Point(0, 261);
@@ -546,22 +515,6 @@
             this.btnClearNewCopyright.Text = "Очистити";
             this.btnClearNewCopyright.ThemeName = "Office2013Light";
             this.btnClearNewCopyright.Click += new System.EventHandler(this.btnClearNewCopyright_Click);
-            // 
-            // dtChangeCopyrightDateTill
-            // 
-            this.dtChangeCopyrightDateTill.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtChangeCopyrightDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtChangeCopyrightDateTill.Location = new System.Drawing.Point(235, 3);
-            this.dtChangeCopyrightDateTill.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateTill.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateTill.Name = "dtChangeCopyrightDateTill";
-            this.dtChangeCopyrightDateTill.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateTill.NullText = "Оберіть дату";
-            this.dtChangeCopyrightDateTill.Size = new System.Drawing.Size(122, 21);
-            this.dtChangeCopyrightDateTill.TabIndex = 72;
-            this.dtChangeCopyrightDateTill.TabStop = false;
-            this.dtChangeCopyrightDateTill.ThemeName = "Office2013Light";
-            this.dtChangeCopyrightDateTill.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // lblChangeCopyrightDateTill
             // 
@@ -593,22 +546,6 @@
             this.btnAddNewRightholder.Text = "Додати правонаступника";
             this.btnAddNewRightholder.ThemeName = "Office2013Light";
             this.btnAddNewRightholder.Click += new System.EventHandler(this.btnAddNewRightholder_Click);
-            // 
-            // dtChangeCopyrightDateFrom
-            // 
-            this.dtChangeCopyrightDateFrom.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtChangeCopyrightDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtChangeCopyrightDateFrom.Location = new System.Drawing.Point(80, 3);
-            this.dtChangeCopyrightDateFrom.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateFrom.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateFrom.Name = "dtChangeCopyrightDateFrom";
-            this.dtChangeCopyrightDateFrom.NullDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtChangeCopyrightDateFrom.NullText = "Оберіть дату";
-            this.dtChangeCopyrightDateFrom.Size = new System.Drawing.Size(122, 21);
-            this.dtChangeCopyrightDateFrom.TabIndex = 71;
-            this.dtChangeCopyrightDateFrom.TabStop = false;
-            this.dtChangeCopyrightDateFrom.ThemeName = "Office2013Light";
-            this.dtChangeCopyrightDateFrom.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // radLabel22
             // 
@@ -703,10 +640,6 @@
             this.gvObjectRightForTransfering.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvObjectRightForTransfering_CellValueChanged);
             this.gvObjectRightForTransfering.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectRightForTransfering_CommandCellClick);
             // 
-            // bsObjectRightForTransfering
-            // 
-            this.bsObjectRightForTransfering.DataSource = typeof(ipsFormsDesign.ViewModels.ObjectsRight.ObjectRightForTransfering);
-            // 
             // gvChangeCopyrightsTemplate
             // 
             this.gvChangeCopyrightsTemplate.AllowAddNewRow = false;
@@ -776,50 +709,14 @@
             this.gvChangeCopyrightsTemplate.ShowTotals = true;
             this.gvChangeCopyrightsTemplate.ViewDefinition = tableViewDefinition1;
             // 
-            // bsObjectCopyright
-            // 
-            this.bsObjectCopyright.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectCopyright);
-            // 
             // copyrightRequestsPage
             // 
             this.copyrightRequestsPage.Controls.Add(this.ctrlCopyrightRequests);
-            this.copyrightRequestsPage.ItemSize = new System.Drawing.SizeF(136F, 27F);
+            this.copyrightRequestsPage.ItemSize = new System.Drawing.SizeF(134F, 25F);
             this.copyrightRequestsPage.Location = new System.Drawing.Point(5, 31);
             this.copyrightRequestsPage.Name = "copyrightRequestsPage";
             this.copyrightRequestsPage.Size = new System.Drawing.Size(1172, 596);
             this.copyrightRequestsPage.Text = "Запити";
-            // 
-            // ctrlCopyrightRequests
-            // 
-            this.ctrlCopyrightRequests.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlCopyrightRequests.Location = new System.Drawing.Point(0, 0);
-            this.ctrlCopyrightRequests.Name = "ctrlCopyrightRequests";
-            this.ctrlCopyrightRequests.ObjectRightListDataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightNotAccepted);
-            this.ctrlCopyrightRequests.Presenter = null;
-            this.ctrlCopyrightRequests.RightholderListDataSource = typeof(ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel);
-            this.ctrlCopyrightRequests.SelectedRightholder = null;
-            this.ctrlCopyrightRequests.Size = new System.Drawing.Size(1172, 596);
-            this.ctrlCopyrightRequests.TabIndex = 0;
-            // 
-            // rightHolderMainViewBindingSource
-            // 
-            this.rightHolderMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.RightholderMainView);
-            // 
-            // agreementAddRhBindingSource
-            // 
-            this.agreementAddRhBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementAddRh);
-            // 
-            // rightHolderBindingSource
-            // 
-            this.rightHolderBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IRightHolder);
-            // 
-            // anketaPersonBindingSource
-            // 
-            this.anketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
-            // 
-            // bankAccountBindingSource
-            // 
-            this.bankAccountBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
             // 
             // MainPageView
             // 
@@ -938,6 +835,45 @@
             this.radMenuHeaderItem1.Name = "radMenuHeaderItem1";
             this.radMenuHeaderItem1.Text = "radMenuHeaderItem1";
             // 
+            // bsObjectRightForTransfering
+            // 
+            this.bsObjectRightForTransfering.DataSource = typeof(ipsFormsDesign.ViewModels.ObjectsRight.ObjectRightForTransfering);
+            // 
+            // bsObjectCopyright
+            // 
+            this.bsObjectCopyright.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectCopyright);
+            // 
+            // ctrlCopyrightRequests
+            // 
+            this.ctrlCopyrightRequests.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlCopyrightRequests.Location = new System.Drawing.Point(0, 0);
+            this.ctrlCopyrightRequests.Name = "ctrlCopyrightRequests";
+            this.ctrlCopyrightRequests.ObjectRightListDataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightNotAccepted);
+            this.ctrlCopyrightRequests.Presenter = null;
+            this.ctrlCopyrightRequests.RightholderListDataSource = typeof(ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel);
+            this.ctrlCopyrightRequests.Size = new System.Drawing.Size(1172, 596);
+            this.ctrlCopyrightRequests.TabIndex = 0;
+            // 
+            // rightHolderMainViewBindingSource
+            // 
+            this.rightHolderMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.RightholderMainView);
+            // 
+            // agreementAddRhBindingSource
+            // 
+            this.agreementAddRhBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementAddRh);
+            // 
+            // rightHolderBindingSource
+            // 
+            this.rightHolderBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IRightHolder);
+            // 
+            // anketaPersonBindingSource
+            // 
+            this.anketaPersonBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaPerson);
+            // 
+            // bankAccountBindingSource
+            // 
+            this.bankAccountBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IBankAccount);
+            // 
             // objectRightBindingSource
             // 
             this.objectRightBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.IObjectRight);
@@ -981,14 +917,12 @@
             this.Text = "Робоче місце адмінстратора права";
             this.ThemeName = "Office2013Light";
             this.Load += new System.EventHandler(this.RightholderWorkplace_Load);
-            this.mainPageViewReportsSR.ResumeLayout(false);
             this.mainPageRightsObjects.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.objectsPageView)).EndInit();
             this.objectsPageView.ResumeLayout(false);
             this.actualObjectsPage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRight)).EndInit();
             this.pageReportSR.ResumeLayout(false);
-            this.radPageViewPage1.ResumeLayout(false);
             this.mainPageRightholders.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rightholdersPageView)).EndInit();
             this.rightholdersPageView.ResumeLayout(false);
@@ -1012,27 +946,25 @@
             this.splitPanel6.ResumeLayout(false);
             this.splitPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnClearNewCopyright)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateTill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblChangeCopyrightDateTill)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveNewCopyrights)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRightholder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtChangeCopyrightDateFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightForTransfering.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectRightForTransfering)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).EndInit();
             this.copyrightRequestsPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
+            this.MainPageView.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radMenuComboItem1.ComboBoxElement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.agreementAddRhBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightHolderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPersonBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankAccountBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
-            this.MainPageView.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radMenuButtonItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radMenuComboItem1.ComboBoxElement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectAuthorRightholderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.seekObjectBindingSource)).EndInit();
@@ -1076,7 +1008,6 @@
         private Telerik.WinControls.UI.SplitPanel splitPanel6;
         private Telerik.WinControls.UI.RadGridView gvObjectRightForTransfering;
         private Telerik.WinControls.UI.RadLabel radLabel22;
-        private IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker dtChangeCopyrightDateFrom;
         private Telerik.WinControls.UI.RadButton btnAddNewRightholder;
         private Telerik.WinControls.UI.RadButton btnSaveNewCopyrights;
         private System.Windows.Forms.BindingSource bsObjectCopyright;
@@ -1086,7 +1017,6 @@
         private Telerik.WinControls.UI.RadRadioButton rdbDeath;
         private Telerik.WinControls.UI.RadRadioButton rdbTransfer;
         private Telerik.WinControls.UI.RadRadioButton rdbAlienation;
-        private IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker dtChangeCopyrightDateTill;
         private Telerik.WinControls.UI.RadLabel lblChangeCopyrightDateTill;
         private Telerik.WinControls.UI.RadContextMenu radContextMenu;
         private Telerik.WinControls.UI.RadMenuItem radMenuItem1;
@@ -1106,9 +1036,7 @@
         private Telerik.WinControls.UI.RadDropDownButton ddbNewRightholder;
         private Telerik.WinControls.UI.RadMenuItem miNewRightholderPerson;
         private Telerik.WinControls.UI.RadMenuItem miNewRigthholderCompany;
-        private IpsViewComponentLibrary.LicenseAgreementListControl licenseAgreementListControl1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
-        private IpsViewComponentLibrary.FixationControls.FixationListControl fixationListControl1;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadButton btnTransferSelected;
         private Telerik.WinControls.UI.RadButton btnTransferAll;
