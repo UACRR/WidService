@@ -246,8 +246,7 @@ namespace IpsViewComponentLibrary
             btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
             if (CurrentAgreementController != null
                 && !CurrentAgreementController.Broadcast
-                && lic != null
-                && lic.Lic.LicId != CurrentAgreementController.LicId)
+                && lic.Lic?.LicId != CurrentAgreementController.LicId)
             {
                 CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
 
@@ -256,7 +255,7 @@ namespace IpsViewComponentLibrary
         }
 
         // * * * [Періоди платежів]
-        private void gvPeriods_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
+        private void gvPeriods_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             if (!(gvPeriods.CurrentRow?.DataBoundItem is PaidPeriod))
             {

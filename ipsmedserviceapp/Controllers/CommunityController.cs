@@ -17,7 +17,7 @@ namespace ipsmedserviceapp.Controllers
     [Route("api/community")]
     public class CommunityController : Controller
     {
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
         private IConfiguration _config;
         public CommunityController(MediaServiceContext dbContext, IConfiguration config)
         {
@@ -236,12 +236,14 @@ namespace ipsmedserviceapp.Controllers
                 });
 
                 // update
-                var updList = sourceList.Where(dest => destinationList.Any(sors => sors.CmCustId == dest.CmCustId
-                                                                        && sors.CRkindCode == dest.CRkindCode &&
-                                                                            sors.CustId == dest.CustId)).ToList();
+                var updList = destinationList.Where(dest => sourceList.Any(sors => sors.CmCustId == dest.CmCustId
+                                                                                && sors.CRkindCode == dest.CRkindCode 
+                                                                                && sors.CustId == dest.CustId)).ToList();
+                var sourceDict = sourceList.ToDictionary(rec => rec.CmCustId);
                 updList.ForEach(item =>
                 {
-                    item.SetFields(item);
+                    var sourceItem = sourceDict[item.CmCustId];
+                    item.SetFields(sourceItem);
                 });
 
                 // add new

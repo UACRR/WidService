@@ -50,16 +50,16 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlContacts.DataSource = anketaPerson;
             // - проживання
             ctrlAddressLive.DataSource = anketaPerson;
-            ctrlAddressLive.AddressDataMember = "ReAddress";
-            ctrlAddressLive.CityDataMember = "ReCity";
-            ctrlAddressLive.CountryDataMember = "ReCountry";
-            ctrlAddressLive.RegionDataMember = "ReRegion";
-            // - фактична
+            ctrlAddressLive.AddressDataMember = "FaAddress"; 
+            ctrlAddressLive.CityDataMember = "FaCity";       
+            ctrlAddressLive.CountryDataMember = "FaCountry"; 
+            ctrlAddressLive.RegionDataMember = "FaRegion";
+            // - реєстрації
             ctrlAddressRegister.DataSource = anketaPerson;
-            ctrlAddressRegister.AddressDataMember = "FaAddress";
-            ctrlAddressRegister.CityDataMember = "FaCity";
-            ctrlAddressRegister.CountryDataMember = "FaCountry";
-            ctrlAddressRegister.RegionDataMember = "FaRegion";
+            ctrlAddressRegister.AddressDataMember = "ReAddress";
+            ctrlAddressRegister.CityDataMember = "ReCity";
+            ctrlAddressRegister.CountryDataMember = "ReCountry";
+            ctrlAddressRegister.RegionDataMember = "ReRegion";
             //- -поштова
 
             //поштова
