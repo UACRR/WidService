@@ -17,6 +17,8 @@ using ipsFormsDesign.Data;
 using AutoMapper;
 //using Autofac;
 
+
+
 namespace UnitTestMediaPortal
 {
     [TestClass]

@@ -107,7 +107,7 @@ namespace ipsFormsDesign.Services
                     RegisterItem registerItem = new RegisterItem
                     {
                         RegIitemId = 1 + regitemid++,
-                        CategoryCode = 0, //parse
+                        CategoryCode = 5, //parse
                         ModifyLogin = null, //parse
                                             //                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
                         ItemName = GetFirst(dim[index, 2], 100 ),

@@ -163,8 +163,10 @@ namespace IpsViewComponentLibrary
                 RgStatus = 0,
                 CustId = _customer.CustId,
                 LicId = default(int),
+                
                 RegisterItem = new ObservableListSource<RegisterItem> { new RegisterItem
                     {
+                        CategoryCode = 6,
                         Ticks = 1,
                         CodeItem = 2,
                     }

@@ -55,7 +55,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             AnketaPerson anketa = bsAnketaPerson.DataSource is AnketaPerson @customer ? @customer :
                             bsAnketaPerson.DataSource is BindingSource @source ? @source.Current as AnketaPerson : null;
 
-            if (anketa == null || (anketa.CustId != 0 &&  anketa.Inn == txtInterCode.Text))
+            if (anketa == null || (anketa.CustId != 0 &&  string.IsNullOrEmpty(anketa.Inn) == false && anketa.Inn == txtInterCode.Text))
                 return;
 
             if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))
