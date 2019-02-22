@@ -82,7 +82,7 @@ namespace ipsmedserviceapp.Controllers
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
-                .Include(item => item.RightHolder).SingleOrDefaultAsync();
+                .SingleOrDefaultAsync();
             return Json(community);
         }
 
@@ -157,7 +157,7 @@ namespace ipsmedserviceapp.Controllers
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
-                .Include(item => item.RightHolder).SingleOrDefaultAsync();
+                .SingleOrDefaultAsync();
 
             IDbContextTransaction tran = null;
             try
@@ -417,11 +417,6 @@ namespace ipsmedserviceapp.Controllers
                         destination.Community.AgreementAddCommunity.Add(agreementAddCommunity);
                 });
             }
-            
-            // збереження RightHolder
-            if (destination.RightHolder == null)
-                destination.RightHolder = new RightHolder();
-            destination.RightHolder.SetFields(source.RightHolder);
         }
 
         private Customer GetTemplate()
@@ -471,10 +466,6 @@ namespace ipsmedserviceapp.Controllers
                             Version = 1,
                         }
                     },
-                },
-                RightHolder = new RightHolder
-                {
-                    RHolderType = 2,
                 },
                 BankAccount = new List<BankAccount>
                 {
