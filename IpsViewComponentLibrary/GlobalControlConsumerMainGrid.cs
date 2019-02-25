@@ -14,7 +14,7 @@ namespace IpsViewComponentLibrary
         public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
         public ConsumerMainView ViewRow => gvViewConsumers.CurrentRow?.DataBoundItem as ConsumerMainView;
-        private GridStateRecorder _gridStateRecorder = new GridStateRecorder();
+        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public GlobalControlConsumerMainGrid()
         {
