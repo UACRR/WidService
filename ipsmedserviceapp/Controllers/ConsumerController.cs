@@ -1245,7 +1245,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         private void modifyRatedList(RegisterRatedList sors, RegisterRatedList dest)
         {
 
-            if (dest.Status == 0 && sors.Status == 1 && dest.Period.Status == 1) // MED-197 Період переходить в стан "Прийом коштів"
+            if (dest.Status == 0 && sors.Status == 1) // MED-197 Період переходить в стан "Прийом коштів"
             {
                 dest.Period.Status = 2;
 
