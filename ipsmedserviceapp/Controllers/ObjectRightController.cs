@@ -264,7 +264,10 @@ namespace ipsmedserviceapp.Controllers
                     conditions.Add($"genreType = {query.Genre.Value}");
 
                 if (query.SearchText != null)
+                {
+                    query.SearchText = query.SearchText.Replace("'", "_");
                     conditions.Add($"name like '%{query.SearchText}%'");
+                }
 
                 if (conditions.Any())
                     queryText = queryText + " where " + string.Join(" and ", conditions);
