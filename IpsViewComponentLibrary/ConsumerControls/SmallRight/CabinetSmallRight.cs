@@ -473,6 +473,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             if (!(e?.CurrentRow?.DataBoundItem is GridLicenseAgreementView curRow))
             {
                 ctrlAgrDetailInfoMore.ClearData();
+                btnAccept.Enabled = false;
+                btnDenied.Enabled = false;
                 return;
             }
 
