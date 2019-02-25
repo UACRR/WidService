@@ -81,6 +81,7 @@
             this.mebCountPerPage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mebCountPerPage.ThemeName = "Office2013Light";
             this.mebCountPerPage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mebCountPerPage_KeyPress);
+            this.mebCountPerPage.Leave += new System.EventHandler(this.mebCountPerPage_Leave);
             // 
             // radLabel4
             // 
@@ -158,12 +159,12 @@
             this.btnMoveFirst.ThemeName = "Office2013Light";
             this.btnMoveFirst.Click += new System.EventHandler(this.btnMoveFirst_Click);
             // 
-            // NavigatorPanel
+            // NavigatorPanelControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel);
-            this.Name = "NavigatorPanel";
+            this.Name = "NavigatorPanelControl";
             this.Size = new System.Drawing.Size(350, 28);
             this.panel.ResumeLayout(false);
             this.panel.PerformLayout();
