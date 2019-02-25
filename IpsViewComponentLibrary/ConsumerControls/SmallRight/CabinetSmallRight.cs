@@ -20,6 +20,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private const string SuccessDeleteAgrMsg = "Ліцензію закрито та невдовзі буде видалено!";
         private const string ErrorDeleteAgrMsg = "Не можливо видалити ліцензію!";
 
+        private const string ChangeLicenseStatusAcceptSuccess = "Ліцензійний договір переведено в статус \"Активний\"!";
+        private const string ChangeLicenseStatusDenySuccess = "Ліцензійний договір переведено в статус \"Відхилений\"!";
+        private const string ChangeLicenseStatusError = "Неможливо змінити статус ліцензійного договору!";
+
+        private const string AgreementDataAuditWarning = "Неможливо змінити статус! Заповніть всі необхідні дані договору!";
+
+
         private Customer _customer;
         private readonly AnketaDictionaties _dictionaties;
         private readonly AnketaConsumer _anketaConsumerJur;
@@ -399,7 +406,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             List<GridLicenseAgreementView> source = new List<GridLicenseAgreementView>();
             if (_customer?.Client.LicenseAgreement != null)
             {
-                foreach (var license in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus != 4 && rec.LicClass == 0).ToList())
+                foreach (var license in _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus != 4 && rec.LicStatus != 9 && rec.LicClass == 0).ToList())
                 {
                     if (license.LicenseAgrParam.Count == 1 && license.LicStatus == 2)
                         continue;
@@ -484,18 +491,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 if(status == 2)
                 {
                     result = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, status, true) ?? false;
-                    if (result)
-                        ExtensionUtils.ShowInfoMessage("Ліцензійний договір переведено в статус \"Активний\"!", "Успішно", MessageBoxIcon.Information);
-                    else
-                        ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензійного договору!", "Помилка", MessageBoxIcon.Error);
+                    MessageShow.ShowInfoByResult(ChangeLicenseStatusAcceptSuccess, ChangeLicenseStatusError, result);
                 }
                 else if(status == 5)
                 {
                     result = OnChangeLicenseStatus?.Invoke(license, license?.LicenseAgrParam?.LastOrDefault()?.LicVersion ?? 0, status, false) ?? false;
-                    if (result)
-                        ExtensionUtils.ShowInfoMessage("Ліцензійний договір переведено в статус \"Відхилений\"!", "Успішно", MessageBoxIcon.Exclamation);
-                    else
-                        ExtensionUtils.ShowInfoMessage("Неможливо змінити статус ліцензійного договору!", "Помилка", MessageBoxIcon.Error);
+                    MessageShow.ShowInfoByResult(ChangeLicenseStatusDenySuccess, ChangeLicenseStatusError, result);
                 }
                 if(result)
                     UpdateCustomer();
@@ -505,7 +506,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // кнопка [Підтвердити договір]
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            ChangeStatusAgreement(2);
+            if (AgreementDataAudit())
+            {
+                ChangeStatusAgreement(2);
+                return;
+            }
+            MessageShow.ShowWarning(AgreementDataAuditWarning);
         }
 
         // кнопка [Відхилити договір]
@@ -519,8 +525,26 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // * * * * * * * * * * * * * * * * * * * * * * * * //
 
         #region * * * PRIVATE METHODS * * * 
-
-
+        
+        /// <summary>
+        /// Перевірка наявності необхідних даних ліцензійної угоди
+        /// </summary>
+        /// <returns>Результат перевірки: true - необхідні дані наявні; false - необхідні дані відсутні</returns>
+        private bool AgreementDataAudit()
+        {
+            if (!(gvMoreLicenseAgr.CurrentRow.DataBoundItem is GridLicenseAgreementView item))
+                return false;
+            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
+            var licParam = license?.LicenseAgrParam?.LastOrDefault();
+            var success = !string.IsNullOrEmpty(licParam?.LicNum)
+                          && licParam.LicDate != null
+                          && licParam.DateBegin != null
+                          && licParam.DateEnd != null
+                          && licParam.PeriodCode != null
+                          && licParam.MinAmount != null
+                          && licParam.RateAmount != null;
+            return success;
+        }
 
         // кнопка на гріду [Видалити договір]
         private void ColumnDeleteClick()
@@ -644,21 +668,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             /// Не підтверджені договори
             /// </summary>
             NotActiveAgreementGrid
-        }
-
-        /// <summary>
-        /// Кількість анкет користувачів
-        /// </summary>
-        public enum AnketaCount
-        {
-            /// <summary>
-            /// Немає жодної анкети
-            /// </summary>
-            Empty,
-            /// <summary>
-            /// Присутня принаймні одна анкета
-            /// </summary>
-            NotEmpty
         }
 
         #endregion
