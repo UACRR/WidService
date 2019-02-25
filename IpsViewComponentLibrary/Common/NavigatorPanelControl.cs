@@ -113,21 +113,26 @@ namespace IpsViewComponentLibrary.Common
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                int size;
-                if (int.TryParse(mebCountPerPage.Text, out size))
-                {
-                    // change current page to 1 without raising CurrentPageChanged event
-                    _currentPage = 1;
-                    UpdateCurrentPage();
+                SetSize();
+            }
+        }
 
-                    if (size < 10)
-                    {
-                        PageSize = 10;
-                    }
-                    else
-                    {
-                        PageSize = size;
-                    }
+        private void SetSize()
+        {
+            int size;
+            if (int.TryParse(mebCountPerPage.Text, out size))
+            {
+                // change current page to 1 without raising CurrentPageChanged event
+                _currentPage = 1;
+                UpdateCurrentPage();
+
+                if (size < 10)
+                {
+                    PageSize = 10;
+                }
+                else
+                {
+                    PageSize = size;
                 }
             }
         }
@@ -155,6 +160,11 @@ namespace IpsViewComponentLibrary.Common
         protected void OnPageSizeChanged()
         {
             PageSizeChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void mebCountPerPage_Leave(object sender, EventArgs e)
+        {
+            SetSize();
         }
     }
 }
