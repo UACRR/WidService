@@ -101,8 +101,7 @@ namespace IpsViewComponentLibrary
             inProcess = false;
         }
 
-        string _cacheSearch = string.Empty;
-        private int startChar = 0;
+        string _savedSearch = string.Empty;
         private void TxtName_TextChanged(object sender, EventArgs e)
         {
             if (inProcess || getAutoCompList == null || getCustomerAnketa == null)
@@ -110,35 +109,30 @@ namespace IpsViewComponentLibrary
             // Якщо анкета існуючого клієнту
             if (anketaCompanyBindingSource.DataSource is AnketaCompany @company && @company.CustId != 0)
                 return;
-            if( txtName.Text.Trim().Length > 0 )
+            if (txtName.Text.Trim().Length > 0)
             {
-                if(_cacheSearch.Length == 0
-                    || !_cacheSearch.ToUpper().StartsWith(txtName.Text.Substring(startChar, 1).ToUpper())
-                    || !_cacheSearch.ToUpper().StartsWith(txtName.Text.Substring(0,1).ToUpper())
-                    //|| _cacheSearch.Length > txtName.Text.Length + 2 // видалення з пошуку по 2 символи
-                    //|| _cacheSearch.Length + 2 < txtName.Text.Length
+                if (_savedSearch.Length == 0
+                    || !_savedSearch.ToUpper().StartsWith(txtName.Text.ToUpper())
                     )
                 {
+                    string _cacheSearch = string.Empty;
                     inProcess = true;
                     _cacheSearch = txtName.Text.Trim();
-                    if(!char.IsLetterOrDigit( _cacheSearch[0] ) )
+                    _savedSearch = _cacheSearch;
+                    if (!char.IsLetterOrDigit(_cacheSearch[0]))
                     {
                         _cacheSearch = string.Concat("%", _cacheSearch);
-                        startChar = 1;
                     }
-                    else
+
+
+                    var list = getAutoCompList(_cacheSearch).Select(rec =>
                     {
-                        startChar = 0;
-
-                    }
-
-                    var list = getAutoCompList(_cacheSearch).Select(rec=>{
-                            return new RadListDataItem(rec.DisplayValue, rec.Value);
+                        return new RadListDataItem(rec.DisplayValue, rec.Value);
                     })?.ToArray();
                     var tmpText = txtName.Text;
                     //txtName.Clear();
                     txtName.AutoCompleteDataSource = list;
-                    //txtName.Text = tmpText;
+                    txtName.Text = tmpText;
                     inProcess = false;
                 }
             }

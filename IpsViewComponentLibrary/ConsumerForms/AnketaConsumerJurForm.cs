@@ -14,6 +14,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private const string DefaultTitle = "Анкета користувача [юридична особа]";
 
         private Customer _customer;
+        public Customer Customer { get => _customer; }
 
         private readonly Func<int, Customer> _getCustomerAnketa;
         private readonly Customer _newCustomerCopy = null;

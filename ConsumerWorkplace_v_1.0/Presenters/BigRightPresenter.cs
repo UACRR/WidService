@@ -194,6 +194,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
             if (form.ShowDialog() == DialogResult.OK)
             {
+                customer = form.Customer;
                 var relust = _service.Save(customer);
                 if(relust)
                     MessageBox.Show("Нового споживача додано!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
