@@ -939,14 +939,23 @@ namespace ipsmedserviceapp.Controllers
 
             if (typeId == 1)
             {
-                var licenseBigR = await _dbContext.LicenseBigR.SingleOrDefaultAsync(rec => rec.LicId == lic.LicId);
+                var licenseBigR = await _dbContext.LicenseBigR
+                    .Include( rec => rec.Obj)
+                        .ThenInclude( obj => obj.CopyRight )
+                    .SingleOrDefaultAsync(rec => rec.LicId == lic.LicId);
                 var licenseAgrParam = await _dbContext.LicenseAgrParam.SingleOrDefaultAsync(rec => rec.LicId == lic.LicId);
 
                 licenseAgrParam.DateBegin = licenseBigR.DatePremiere;
                 if (licenseBigR.LicTerm is short licTerm)
                     licenseAgrParam.DateEnd = licenseBigR.DatePremiere.Value.AddYears(licTerm);
+                
+                // MED-505
+                foreach (var cpRight in licenseBigR.Obj.CopyRight)
+                    cpRight.Status = 1;
             }
+
             lic.LicType = typeId;
+
 
             await _dbContext.SaveChangesAsync();
 
