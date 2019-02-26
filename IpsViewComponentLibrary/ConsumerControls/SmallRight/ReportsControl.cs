@@ -394,15 +394,26 @@ namespace IpsViewComponentLibrary
                 };
 
                 // для визначення рапортички
-                var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
+                var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
 
-                if (licKind == 2 || licKind == 3) // рапортичка
+                if (schemaId == 2) // рапортичка
                 {
+                    string customerName;
+                    if (_customer.CustType == 3)
+                    {
+                        customerName = _customer.Company?.AnketaCompany?.SingleOrDefault()?.ShortName;
+                    }
+                    else
+                    {
+                        var anketaPerson = _customer.Person?.AnketaPerson?.SingleOrDefault();
+                        customerName = anketaPerson?.LastName + " " + anketaPerson?.FirstName + " " + anketaPerson?.SurName;
+                    }
+
                     registerTemp.SchemaId = 2;
                     var progReportBigRight = new CreateProgReportBigRight(registerTemp)
                     {
                         StartPosition = FormStartPosition.CenterParent,
-                        HeaderInfoCustomerName = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.ShortName,
+                        HeaderInfoCustomerName = customerName,
                         HeaderInfoLicenseNumberString = ((IAgreementData) gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
                         HeaderInfoPeriodName = period.PeriodName,
                         HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
@@ -506,7 +517,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void gvPeriodReports_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvPeriodReports_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var columnName = e.Column.Name;
 
@@ -520,7 +531,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void gvPeriodReports_CellFormatting(object sender, Telerik.WinControls.UI.CellFormattingEventArgs e)
+        private void gvPeriodReports_CellFormatting(object sender, CellFormattingEventArgs e)
         {
             string Name = e.Column.Name;
             int[] EditingStatus = { 0, 5 };
@@ -728,25 +739,5 @@ namespace IpsViewComponentLibrary
             }
         }
 
-    }
-
-
-    public class GridPeriodsR
-    {
-        public int PeriodId { get; set; }
-        public string PeriodName { get; set; }
-        public int Status { get; set; }
-        public decimal Amount { get; set; }
-        public decimal Distribamount { get; set; }
-        public int ReportCounts { get; set; }
-        public string IsActFormed { get; set; }
-    }
-
-    public class GridReportsP
-    {
-        public int ReportId { get; set; }
-        public string PeriodName { get; set; }
-        public string ReportsName { get; set; }
-        public string PathString { get; set; }
     }
 }
