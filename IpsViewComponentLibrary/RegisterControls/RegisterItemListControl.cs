@@ -372,6 +372,23 @@ namespace IpsViewComponentLibrary.RegisterControls
             Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
+        // MED-526
+        public void resetErrorText()
+        {
+            foreach( var row in gvRegisterItemList.Rows )
+            {
+                row.Cells["ObjectName"].ErrorText = "";
+            }
+        }
+
+        public void setErrorForUnlinkRows( string errTxt )
+        {
+            foreach (var row in gvRegisterItemList.Rows)
+            {
+                if( (row.DataBoundItem as RegisterItemViewModel).ObjId == null )
+                    row.Cells["ObjectName"].ErrorText = errTxt;
+            }
+        }
         private void gvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
             var registerItem = e.RowElement.RowInfo.DataBoundItem as RegisterItemViewModel;

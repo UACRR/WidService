@@ -43,6 +43,7 @@ namespace IpsViewComponentLibrary
         private FormMode _formMode;
         private bool _deleteLicense = true;
         private int? _licId = null;
+        private string _validateString = string.Empty;
 
         public sealed override string Text
         {
@@ -466,10 +467,58 @@ namespace IpsViewComponentLibrary
             ForSmallRightAdmin,
         }
 
+        /// <summary>
+        /// Перевірка на прив'язку Мужичного оформлення
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidateMusicalDesign()
+        {
+            bool isValid = _licenseAgreement.LicenseBigR.MusicalDesign.Count( rec => (rec.Objid ?? 0) == 0 ) == 0;
+
+            if (!isValid)
+            {
+                _validateString = "Є твори 'Збірної музики' не прив'язані до об'єкту права";
+                pageView.SelectedPage = pvMusicalArrangement;
+                ctrlMusicalDesignList.setErrorForUnlinkRows(_validateString);
+            }
+            return isValid;
+        }
+        /// <summary>
+        /// Перевірка на підтверження права
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidateAllSetPogodgeno()
+        {
+            bool isValid = _licenseAgreement.LicenseBigR.Obj.CopyRight.Count(rec => rec.WorkRh.WorkTypeRh != 4) == 0;
+
+            if (!isValid)
+            {
+                _validateString = "Є непогоджені Правовласником права";
+                ctrlAuthorRightholderList.SetInvalidProlong(_validateString);
+            }
+            return isValid;
+        }
         private void btnSetActiveStatus_Click(object sender, EventArgs e)
         {
+            bool isValid = true;
+            string errText = string.Empty;
+            ctrlAuthorRightholderList.resetErrorText();
+            ctrlMusicalDesignList.resetErrorText();
+
+            if ( !ValidateMinRewardAndTotalRate() || !ValidateAllSetPogodgeno() || !ValidateMusicalDesign() )
+            {
+                isValid = false;
+                errText = _validateString;
+            }
+
+            if( !isValid )
+            {
+                MessageBox.Show(_validateString, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             _licenseAgreement.LicStatus = 2;
-            _licenseAgreement.LicenseAgrParam.First().LicStatus = 2;
+            _licenseAgreement.LicenseAgrParam.First( rec => rec.LicVersion == _licenseAgreement.LicVersion).LicStatus = 2;
             bsLicAgrParam.ResetCurrentItem();
             panelStatusees.Enabled = false;
         }
@@ -477,7 +526,7 @@ namespace IpsViewComponentLibrary
         private void btnSetCanceledStatus_Click(object sender, EventArgs e)
         {
             _licenseAgreement.LicStatus = 5;
-            _licenseAgreement.LicenseAgrParam.First().LicStatus = 5;
+            _licenseAgreement.LicenseAgrParam.First(rec => rec.LicVersion == _licenseAgreement.LicVersion).LicStatus = 5;
             bsLicAgrParam.ResetCurrentItem();
             panelStatusees.Enabled = false;
         }
@@ -520,6 +569,7 @@ namespace IpsViewComponentLibrary
                 else
                     errorText = "";
 
+                _validateString = errorText;
                 errorProvider.SetError(txtVinagoroda, errorText);
                 ctrlAuthorRightholderList.RoleRateErrorText = errorText;
             }
