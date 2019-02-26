@@ -554,8 +554,7 @@ namespace IpsViewComponentLibrary
 
         private void btnToAcception_Click(object sender, EventArgs e)
         {
-            var list = bindingReports.DataSource as List<Register>;
-            if (list != null)
+            if (bindingReports.DataSource is List<Register> list)
             {
                 var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
                 var regStatus = dicRegStatus[1];
@@ -566,8 +565,6 @@ namespace IpsViewComponentLibrary
 
                 }
                 SetRegisterStateExecuted?.Invoke(this, paramList);
-
-
 
                 gvPeriodReports.MasterTemplate.Refresh();
                 btnToAcception.Enabled = false;
