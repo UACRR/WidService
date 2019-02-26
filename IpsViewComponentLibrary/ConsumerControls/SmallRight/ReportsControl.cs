@@ -235,7 +235,8 @@ namespace IpsViewComponentLibrary
 
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             // Цирк,Філармонія,Концертна діяльність
-            bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
+            bool isCollapsed = agrType.SchemaId == 2;
+            //bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
             btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
             if (CurrentAgreementController != null
@@ -243,9 +244,7 @@ namespace IpsViewComponentLibrary
                 && lic.Lic?.LicId != CurrentAgreementController.LicId)
             {
                 CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
-
             }
-
         }
 
         // * * * [Періоди платежів]
@@ -285,7 +284,7 @@ namespace IpsViewComponentLibrary
 
         // * * *  * * *  КНОПКИ:
         // * * * НА ГРІД [Періоди платежів]
-        private void gvPeriods_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvPeriods_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             switch (e.Column.FieldName)
             {
@@ -312,13 +311,13 @@ namespace IpsViewComponentLibrary
             if (!(gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period))
                 return;
 
-            OpenFileDialog dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
+            var dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 radWaitingBar1.StartWaiting();
                 EnableButtons(false);
 
-                var tsk = Task.Run(() =>
+                Task.Run(() =>
                 {
                     var list = _excel.GetReportItems(dialog.FileName);
                     if (!period.RegisterRatedList.Any())
@@ -328,7 +327,7 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register
+                    var addRegister = new Register
                     {
                         RgStatus = 0,
                         FileName = Path.GetFileName(dialog.FileName),
@@ -340,6 +339,7 @@ namespace IpsViewComponentLibrary
                         SchemaId = 1,
                         AlgorithmId = 1
                     };
+
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
