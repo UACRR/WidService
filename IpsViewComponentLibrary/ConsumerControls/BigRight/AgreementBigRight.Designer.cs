@@ -42,9 +42,9 @@
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
             this.rdtPickerDateBegin = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblContrDoFrom = new Telerik.WinControls.UI.RadLabel();
-            this.rdtPickerAgrDate = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtAgrDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
-            this.rtxtBoxContrNumber = new Telerik.WinControls.UI.RadTextBox();
+            this.txtAgreementNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPeriodPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddBr)).BeginInit();
@@ -60,9 +60,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateBegin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoFrom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtAgrDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAgreementNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,7 +76,7 @@
             this.ddlPeriodPayment.Location = new System.Drawing.Point(164, 41);
             this.ddlPeriodPayment.Name = "ddlPeriodPayment";
             this.ddlPeriodPayment.Size = new System.Drawing.Size(194, 21);
-            this.ddlPeriodPayment.TabIndex = 38;
+            this.ddlPeriodPayment.TabIndex = 2;
             this.ddlPeriodPayment.ThemeName = "Office2013Light";
             this.ddlPeriodPayment.ValueMember = "CodeI";
             // 
@@ -94,7 +94,7 @@
             this.radLabel2.Location = new System.Drawing.Point(3, 14);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(155, 19);
-            this.radLabel2.TabIndex = 40;
+            this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "Останній день розрахунку";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
@@ -104,7 +104,7 @@
             this.radLabel4.Location = new System.Drawing.Point(3, 41);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(141, 19);
-            this.radLabel4.TabIndex = 39;
+            this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Періодичність платежів";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
@@ -115,7 +115,7 @@
             this.txtDayForPay.Location = new System.Drawing.Point(164, 14);
             this.txtDayForPay.Name = "txtDayForPay";
             this.txtDayForPay.Size = new System.Drawing.Size(48, 21);
-            this.txtDayForPay.TabIndex = 41;
+            this.txtDayForPay.TabIndex = 1;
             this.txtDayForPay.ThemeName = "Office2013Light";
             // 
             // lblParam
@@ -123,7 +123,7 @@
             this.lblParam.Location = new System.Drawing.Point(13, 60);
             this.lblParam.Name = "lblParam";
             this.lblParam.Size = new System.Drawing.Size(116, 18);
-            this.lblParam.TabIndex = 48;
+            this.lblParam.TabIndex = 0;
             this.lblParam.Text = "Параметри договору";
             // 
             // panel
@@ -135,7 +135,7 @@
             this.panel.Location = new System.Drawing.Point(3, 70);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(489, 69);
-            this.panel.TabIndex = 49;
+            this.panel.TabIndex = 5;
             this.panel.ThemeName = "Office2013Light";
             // 
             // lblContrDo
@@ -143,7 +143,7 @@
             this.lblContrDo.Location = new System.Drawing.Point(6, 30);
             this.lblContrDo.Name = "lblContrDo";
             this.lblContrDo.Size = new System.Drawing.Size(81, 19);
-            this.lblContrDo.TabIndex = 54;
+            this.lblContrDo.TabIndex = 0;
             this.lblContrDo.Text = "Дія договору";
             this.lblContrDo.ThemeName = "Office2013Light";
             // 
@@ -157,7 +157,7 @@
             this.rdtPickerDateEnd.Name = "rdtPickerDateEnd";
             this.rdtPickerDateEnd.NullText = "Оберіть дату";
             this.rdtPickerDateEnd.Size = new System.Drawing.Size(118, 21);
-            this.rdtPickerDateEnd.TabIndex = 57;
+            this.rdtPickerDateEnd.TabIndex = 4;
             this.rdtPickerDateEnd.TabStop = false;
             this.rdtPickerDateEnd.ThemeName = "Office2013Light";
             this.rdtPickerDateEnd.Value = new System.DateTime(((long)(0)));
@@ -167,7 +167,7 @@
             this.lblContrDoTo.Location = new System.Drawing.Point(332, 29);
             this.lblContrDoTo.Name = "lblContrDoTo";
             this.lblContrDoTo.Size = new System.Drawing.Size(21, 19);
-            this.lblContrDoTo.TabIndex = 58;
+            this.lblContrDoTo.TabIndex = 0;
             this.lblContrDoTo.Text = "до";
             this.lblContrDoTo.ThemeName = "Office2013Light";
             // 
@@ -181,7 +181,7 @@
             this.rdtPickerDateBegin.Name = "rdtPickerDateBegin";
             this.rdtPickerDateBegin.NullText = "Оберіть дату";
             this.rdtPickerDateBegin.Size = new System.Drawing.Size(112, 21);
-            this.rdtPickerDateBegin.TabIndex = 55;
+            this.rdtPickerDateBegin.TabIndex = 3;
             this.rdtPickerDateBegin.TabStop = false;
             this.rdtPickerDateBegin.ThemeName = "Office2013Light";
             this.rdtPickerDateBegin.Value = new System.DateTime(((long)(0)));
@@ -192,50 +192,50 @@
             this.lblContrDoFrom.Location = new System.Drawing.Point(136, 30);
             this.lblContrDoFrom.Name = "lblContrDoFrom";
             this.lblContrDoFrom.Size = new System.Drawing.Size(23, 19);
-            this.lblContrDoFrom.TabIndex = 56;
+            this.lblContrDoFrom.TabIndex = 0;
             this.lblContrDoFrom.Text = "від";
             this.lblContrDoFrom.ThemeName = "Office2013Light";
             // 
-            // rdtPickerAgrDate
+            // dtAgrDate
             // 
-            this.rdtPickerAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddBr, "AgrDate", true));
-            this.rdtPickerAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerAgrDate.Location = new System.Drawing.Point(359, 3);
-            this.rdtPickerAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.rdtPickerAgrDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.rdtPickerAgrDate.Name = "rdtPickerAgrDate";
-            this.rdtPickerAgrDate.NullText = "Оберіть дату";
-            this.rdtPickerAgrDate.Size = new System.Drawing.Size(118, 21);
-            this.rdtPickerAgrDate.TabIndex = 52;
-            this.rdtPickerAgrDate.TabStop = false;
-            this.rdtPickerAgrDate.ThemeName = "Office2013Light";
-            this.rdtPickerAgrDate.Value = new System.DateTime(((long)(0)));
+            this.dtAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsAgreementAddBr, "AgrDate", true));
+            this.dtAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtAgrDate.Location = new System.Drawing.Point(359, 3);
+            this.dtAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
+            this.dtAgrDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtAgrDate.Name = "dtAgrDate";
+            this.dtAgrDate.NullText = "Оберіть дату";
+            this.dtAgrDate.Size = new System.Drawing.Size(118, 21);
+            this.dtAgrDate.TabIndex = 2;
+            this.dtAgrDate.TabStop = false;
+            this.dtAgrDate.ThemeName = "Office2013Light";
+            this.dtAgrDate.Value = new System.DateTime(((long)(0)));
             // 
             // lblContrFrom
             // 
             this.lblContrFrom.Location = new System.Drawing.Point(330, 5);
             this.lblContrFrom.Name = "lblContrFrom";
             this.lblContrFrom.Size = new System.Drawing.Size(23, 19);
-            this.lblContrFrom.TabIndex = 53;
+            this.lblContrFrom.TabIndex = 0;
             this.lblContrFrom.Text = "від";
             this.lblContrFrom.ThemeName = "Office2013Light";
             // 
-            // rtxtBoxContrNumber
+            // txtAgreementNumber
             // 
-            this.rtxtBoxContrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBr, "AgrNumber", true));
-            this.rtxtBoxContrNumber.Location = new System.Drawing.Point(167, 4);
-            this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
-            this.rtxtBoxContrNumber.NullText = "Номер договору";
-            this.rtxtBoxContrNumber.Size = new System.Drawing.Size(157, 21);
-            this.rtxtBoxContrNumber.TabIndex = 50;
-            this.rtxtBoxContrNumber.ThemeName = "Office2013Light";
+            this.txtAgreementNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBr, "AgrNumber", true));
+            this.txtAgreementNumber.Location = new System.Drawing.Point(167, 4);
+            this.txtAgreementNumber.Name = "txtAgreementNumber";
+            this.txtAgreementNumber.NullText = "Номер договору";
+            this.txtAgreementNumber.Size = new System.Drawing.Size(157, 21);
+            this.txtAgreementNumber.TabIndex = 1;
+            this.txtAgreementNumber.ThemeName = "Office2013Light";
             // 
             // lblContrNumb
             // 
             this.lblContrNumb.Location = new System.Drawing.Point(6, 5);
             this.lblContrNumb.Name = "lblContrNumb";
             this.lblContrNumb.Size = new System.Drawing.Size(157, 19);
-            this.lblContrNumb.TabIndex = 51;
+            this.lblContrNumb.TabIndex = 0;
             this.lblContrNumb.Text = "Договір про співпрацю №";
             this.lblContrNumb.ThemeName = "Office2013Light";
             // 
@@ -248,9 +248,9 @@
             this.Controls.Add(this.lblContrDoTo);
             this.Controls.Add(this.rdtPickerDateBegin);
             this.Controls.Add(this.lblContrDoFrom);
-            this.Controls.Add(this.rdtPickerAgrDate);
+            this.Controls.Add(this.dtAgrDate);
             this.Controls.Add(this.lblContrFrom);
-            this.Controls.Add(this.rtxtBoxContrNumber);
+            this.Controls.Add(this.txtAgreementNumber);
             this.Controls.Add(this.lblContrNumb);
             this.Controls.Add(this.lblParam);
             this.Controls.Add(this.panel);
@@ -271,9 +271,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateBegin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoFrom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdtPickerAgrDate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtAgrDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAgreementNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -294,9 +294,9 @@
         private Telerik.WinControls.UI.RadLabel lblContrDoTo;
         private Telerik.WinControls.UI.RadDateTimePicker rdtPickerDateBegin;
         private Telerik.WinControls.UI.RadLabel lblContrDoFrom;
-        private Telerik.WinControls.UI.RadDateTimePicker rdtPickerAgrDate;
+        private Telerik.WinControls.UI.RadDateTimePicker dtAgrDate;
         private Telerik.WinControls.UI.RadLabel lblContrFrom;
-        private Telerik.WinControls.UI.RadTextBox rtxtBoxContrNumber;
+        private Telerik.WinControls.UI.RadTextBox txtAgreementNumber;
         private Telerik.WinControls.UI.RadLabel lblContrNumb;
     }
 }

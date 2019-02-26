@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public AgreementBigRight()
         {
             InitializeComponent();
-            rdtPickerAgrDate.SetUserCalendarSettingsm();
+            dtAgrDate.SetUserCalendarSettingsm();
             rdtPickerDateBegin.SetUserCalendarSettingsm();
             rdtPickerDateEnd.SetUserCalendarSettingsm();
             rdtPickerDateBegin.ValueChanged += rdtPickerDateBegin_ValueChanged;
@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         {
             bool isValid = true;
 
-            if (rtxtBoxContrNumber.Text == string.Empty)
+            if (txtAgreementNumber.Text == string.Empty)
             {
                 lblContrNumb.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;

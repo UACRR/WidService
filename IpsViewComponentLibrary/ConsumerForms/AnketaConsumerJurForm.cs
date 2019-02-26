@@ -42,13 +42,13 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // відразу підтверджений договір?
             var status = e ? 2 : 0;
             _customer.Status = status;
-            _customer.AgreementMaster.SingleOrDefault().AgrStatus = status;
+            //_customer.AgreementMaster.SingleOrDefault().AgrStatus = status;
             _customer.Company.AnketaCompany.SingleOrDefault().Status = status;
-            var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault();
+            var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == 0);
             licenseAgreement.LicStatus = status;
             licenseAgreement.Agr.AgrStatus = status;
-            if(licenseAgreement.Agr.AgreementAddBr.Any())
-                licenseAgreement.Agr.AgreementAddBr.SingleOrDefault().AgrStatus = status;
+            if(licenseAgreement.Agr.AgreementAddBr.Any(rec => rec.AgrId == 0))
+                licenseAgreement.Agr.AgreementAddBr.SingleOrDefault(rec => rec.AgrId == 0).AgrStatus = status;
             licenseAgreement.LicenseAgrParam.SingleOrDefault().LicStatus = status;
             ctrlConsumerAnketa.UpdateLicenses();
             DialogResult = DialogResult.OK;

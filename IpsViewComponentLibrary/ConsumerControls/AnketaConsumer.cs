@@ -120,7 +120,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
                         });
                     // control bindings
                     _ctrlAgreementBigRights.PaidPeriodDictionaryDataSource = _anketaDictionaries.period;// (Period)
-                    _ctrlAgreementBigRights.AgreementDataSource = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr; //(AgreementAddBr)
+                    var agreementData = _customer.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == 0)?.Agr?.AgreementAddBr;
+                    _ctrlAgreementBigRights.AgreementDataSource = agreementData; //(AgreementAddBr)
 
                 }
                     break;
