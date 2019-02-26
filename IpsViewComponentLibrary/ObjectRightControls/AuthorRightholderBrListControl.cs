@@ -260,5 +260,23 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             CurrentAuthorRightholderChanged?.Invoke(this, EventArgs.Empty);
         }
+
+        internal void SetInvalidProlong( string errText )
+        {
+            foreach (var row in gvAuthorRightholderList.Rows)
+            {
+                if( (row.DataBoundItem as ObjectAuthorRightholderBrViewModel).WorkRh.WorkTypeRh != 4 )
+                    row.Cells["WorkTypeRh"].ErrorText = errText;
+            }
+        }
+
+        internal void resetErrorText()
+        {
+            RoleRateErrorText = "";
+            foreach (var row in gvAuthorRightholderList.Rows)
+            {
+               row.Cells["WorkTypeRh"].ErrorText = "";
+            }
+        }
     }
 }
