@@ -37,8 +37,37 @@ namespace IpsViewComponentLibrary
         private Dictionary<int, PeriodStatus> dicPeriodStatus;
         private Dictionary<int, RegisterStatus> dicRegStatus;
         private Dictionary<int, RegisterListStatus> dicRatedListStatus;
-
         private TypeRights _typeRights = TypeRights.All;
+        private List<int> validClass;
+        private Customer _customer;
+
+        public ReportsControl()
+        {
+            InitializeComponent();
+
+            gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+
+            gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
+            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
+
+            if (IpsGlobal.AnketaDictionaties != null)
+            {
+                subscribeDictionary(null, null);
+            }
+            else
+                IpsGlobal.AnketaDictionatiesChanged += subscribeDictionary;
+        }
+        public Customer Customer
+        {
+            get => _customer;
+            set
+            {
+                _customer = value;
+                SetupBindings();
+            }
+        }
+
         /// <summary>
         /// Керування зміною поточного активного договору
         /// </summary>
@@ -57,7 +86,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        // 
         private void _currentAgreementController_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
         {
             if (sender == this) return;
@@ -77,8 +105,6 @@ namespace IpsViewComponentLibrary
 
         [EditorBrowsable]
         public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } }
-        private List<int> validClass;
-
 
         private void reinitValidClass()
         {
@@ -89,23 +115,6 @@ namespace IpsViewComponentLibrary
                 validClass.Add(1);
 
         }
-        public ReportsControl()
-        {
-            InitializeComponent();
-
-            gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
-            gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
-
-            gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
-            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
-
-            if (IpsGlobal.AnketaDictionaties != null)
-            {
-                subscribeDictionary(null, null);
-            }
-            else
-                IpsGlobal.AnketaDictionatiesChanged += subscribeDictionary;
-        }
 
         private void subscribeDictionary(object sender, EventArgs args)
         {
@@ -115,19 +124,7 @@ namespace IpsViewComponentLibrary
 
         }
 
-        private Customer _customer;
-
-        public Customer Customer
-        {
-            get => _customer;
-            set
-            {
-                _customer = value;
-                SetupBindings();
-            }
-        }
-
-        internal void RefreshData()
+        public void RefreshData()
         {
             normalizeData(_customer);
             bindingReports.ResetBindings(false);
@@ -171,9 +168,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         private void SetupBindings()
         {
             if (_customer == null)
@@ -241,7 +235,8 @@ namespace IpsViewComponentLibrary
 
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             // Цирк,Філармонія,Концертна діяльність
-            bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
+            bool isCollapsed = agrType.SchemaId == 2;
+            //bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
             btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
             if (CurrentAgreementController != null
@@ -249,9 +244,7 @@ namespace IpsViewComponentLibrary
                 && lic.Lic?.LicId != CurrentAgreementController.LicId)
             {
                 CurrentAgreementController.ChangeCurrentLicenseAgreement(this, lic.Lic);
-
             }
-
         }
 
         // * * * [Періоди платежів]
@@ -291,7 +284,7 @@ namespace IpsViewComponentLibrary
 
         // * * *  * * *  КНОПКИ:
         // * * * НА ГРІД [Періоди платежів]
-        private void gvPeriods_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvPeriods_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             switch (e.Column.FieldName)
             {
@@ -318,13 +311,13 @@ namespace IpsViewComponentLibrary
             if (!(gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period))
                 return;
 
-            OpenFileDialog dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
+            var dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 radWaitingBar1.StartWaiting();
                 EnableButtons(false);
 
-                var tsk = Task.Run(() =>
+                Task.Run(() =>
                 {
                     var list = _excel.GetReportItems(dialog.FileName);
                     if (!period.RegisterRatedList.Any())
@@ -334,7 +327,7 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    Register addRegister = new Register
+                    var addRegister = new Register
                     {
                         RgStatus = 0,
                         FileName = Path.GetFileName(dialog.FileName),
@@ -346,6 +339,7 @@ namespace IpsViewComponentLibrary
                         SchemaId = 1,
                         AlgorithmId = 1
                     };
+
                     foreach (var item in list)
                         addRegister.RegisterItem.Add(item);
 
@@ -457,14 +451,14 @@ namespace IpsViewComponentLibrary
 
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
             var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.SingleOrDefault(r => r.RmId == register.RmId && r.RegId == register.RegId);
-            var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
+            var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
 
             var list = GetRegisterItems(register.RegId);
 
             register.RegisterItem.Clear();
             list.ForEach(item => register.RegisterItem.Add(item));
 
-            if (reg != null && (licKind == 2 || licKind == 3)) // рапортичка
+            if (reg != null && (schemaId == 2 || schemaId == 3)) // рапортичка
             {
                 var progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
@@ -554,8 +548,7 @@ namespace IpsViewComponentLibrary
 
         private void btnToAcception_Click(object sender, EventArgs e)
         {
-            var list = bindingReports.DataSource as List<Register>;
-            if (list != null)
+            if (bindingReports.DataSource is List<Register> list)
             {
                 var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
                 var regStatus = dicRegStatus[1];
@@ -566,8 +559,6 @@ namespace IpsViewComponentLibrary
 
                 }
                 SetRegisterStateExecuted?.Invoke(this, paramList);
-
-
 
                 gvPeriodReports.MasterTemplate.Refresh();
                 btnToAcception.Enabled = false;
@@ -724,7 +715,7 @@ namespace IpsViewComponentLibrary
                 case 5: // 
                 case 6: // Кошти отримані
                     _addReport.Enabled = false;
-                    _toAcception.Enabled = regStates[2] > 0; // Нових > 0;
+                    _toAcception.Enabled = regStates[0] > 0; // Нових > 0;
                     _acceptedType1.Enabled = false;
                     _acceptedType2.Enabled = false;
                     _create.Enabled = false;
