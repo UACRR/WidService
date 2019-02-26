@@ -37,8 +37,37 @@ namespace IpsViewComponentLibrary
         private Dictionary<int, PeriodStatus> dicPeriodStatus;
         private Dictionary<int, RegisterStatus> dicRegStatus;
         private Dictionary<int, RegisterListStatus> dicRatedListStatus;
-
         private TypeRights _typeRights = TypeRights.All;
+        private List<int> validClass;
+        private Customer _customer;
+
+        public ReportsControl()
+        {
+            InitializeComponent();
+
+            gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
+
+            gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
+            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
+
+            if (IpsGlobal.AnketaDictionaties != null)
+            {
+                subscribeDictionary(null, null);
+            }
+            else
+                IpsGlobal.AnketaDictionatiesChanged += subscribeDictionary;
+        }
+        public Customer Customer
+        {
+            get => _customer;
+            set
+            {
+                _customer = value;
+                SetupBindings();
+            }
+        }
+
         /// <summary>
         /// Керування зміною поточного активного договору
         /// </summary>
@@ -57,7 +86,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        // 
         private void _currentAgreementController_CurrentLicenseAgreementChanged(object sender, LicenseAgreement e)
         {
             if (sender == this) return;
@@ -77,8 +105,6 @@ namespace IpsViewComponentLibrary
 
         [EditorBrowsable]
         public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } }
-        private List<int> validClass;
-
 
         private void reinitValidClass()
         {
@@ -89,23 +115,6 @@ namespace IpsViewComponentLibrary
                 validClass.Add(1);
 
         }
-        public ReportsControl()
-        {
-            InitializeComponent();
-
-            gvPeriodReports.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
-            gvPeriodReports.SetCommandColumnImageAlignment("DeleteColumn", ContentAlignment.MiddleCenter);
-
-            gvRatedList.SetCommandColumnImageAlignment("ViewColumn", ContentAlignment.MiddleCenter);
-            buttonController = new ButtonEnableControl(btnAddReport, btnToAcception, btnAcceptType1, btnAcceptType2, btnCreateReport);
-
-            if (IpsGlobal.AnketaDictionaties != null)
-            {
-                subscribeDictionary(null, null);
-            }
-            else
-                IpsGlobal.AnketaDictionatiesChanged += subscribeDictionary;
-        }
 
         private void subscribeDictionary(object sender, EventArgs args)
         {
@@ -115,19 +124,7 @@ namespace IpsViewComponentLibrary
 
         }
 
-        private Customer _customer;
-
-        public Customer Customer
-        {
-            get => _customer;
-            set
-            {
-                _customer = value;
-                SetupBindings();
-            }
-        }
-
-        internal void RefreshData()
+        public void RefreshData()
         {
             normalizeData(_customer);
             bindingReports.ResetBindings(false);
@@ -171,9 +168,6 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
         private void SetupBindings()
         {
             if (_customer == null)
@@ -457,14 +451,14 @@ namespace IpsViewComponentLibrary
 
             var period = gvPeriods?.CurrentRow?.DataBoundItem as PaidPeriod;
             var reg = period?.RegisterRatedList?.SingleOrDefault()?.Register.SingleOrDefault(r => r.RmId == register.RmId && r.RegId == register.RegId);
-            var licKind = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.UsesKind;
+            var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
 
             var list = GetRegisterItems(register.RegId);
 
             register.RegisterItem.Clear();
             list.ForEach(item => register.RegisterItem.Add(item));
 
-            if (reg != null && (licKind == 2 || licKind == 3)) // рапортичка
+            if (reg != null && (schemaId == 2 || schemaId == 3)) // рапортичка
             {
                 var progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
@@ -721,7 +715,7 @@ namespace IpsViewComponentLibrary
                 case 5: // 
                 case 6: // Кошти отримані
                     _addReport.Enabled = false;
-                    _toAcception.Enabled = regStates[2] > 0; // Нових > 0;
+                    _toAcception.Enabled = regStates[0] > 0; // Нових > 0;
                     _acceptedType1.Enabled = false;
                     _acceptedType2.Enabled = false;
                     _create.Enabled = false;
