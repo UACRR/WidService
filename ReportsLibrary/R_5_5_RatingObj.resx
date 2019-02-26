@@ -121,7 +121,7 @@
   <data name="$this.ShowSnapGrid" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=12.2.18.912, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
   <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
     <value>0.1cm</value>
   </data>
