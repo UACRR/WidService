@@ -49,7 +49,7 @@
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.btnCopyAddressFaRe = new Telerik.WinControls.UI.RadButton();
             this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
+            this.ctrlContacts = new ContactsPersonControl();
             this.contactsCompanyPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
             this.passportPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -890,7 +890,7 @@
         private Telerik.WinControls.UI.RadPageViewPage rightholderPersonPage;
         private IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl ctrlServiceComissionControl;
         private Telerik.WinControls.UI.RadPageViewPage contactsPersonPage;
-        private DebugFormForControls.ContactsPersonControl ctrlContacts;
+        private ContactsPersonControl ctrlContacts;
         private Telerik.WinControls.UI.RadPageViewPage passportPage;
         private Telerik.WinControls.UI.RadPageView createRightholderPassportPageView;
         private Telerik.WinControls.UI.RadPageViewPage pasportPage;

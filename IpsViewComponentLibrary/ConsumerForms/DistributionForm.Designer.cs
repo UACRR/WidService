@@ -1,6 +1,6 @@
 ﻿using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerForms
 {
     partial class DistributionForm
     {
@@ -39,12 +39,12 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.office2007SilverTheme = new Telerik.WinControls.Themes.Office2007SilverTheme();
             this.gvDistributionPayment = new Telerik.WinControls.UI.RadGridView();
             this.btnSaveDistrib = new Telerik.WinControls.UI.RadButton();
-            this.btnExit = new Telerik.WinControls.UI.RadButton();
+            this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.txtPayNumber = new Telerik.WinControls.UI.RadTextBox();
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtPayDate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtPayAmount = new Telerik.WinControls.UI.RadTextBox();
@@ -54,20 +54,21 @@ namespace IpsViewComponentLibrary
             this.txtPayGoalInvoice = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.txtAgrNum = new Telerik.WinControls.UI.RadTextBox();
+            this.bindingSourceAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.txtLicDate = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
-            this.bindingSourceAgreement = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveDistrib)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayAmount)).BeginInit();
@@ -77,6 +78,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNum)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
@@ -84,8 +86,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
             this.radSeparator2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,7 +99,7 @@ namespace IpsViewComponentLibrary
             this.gvDistributionPayment.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.gvDistributionPayment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
             this.gvDistributionPayment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.gvDistributionPayment.Location = new System.Drawing.Point(12, 129);
+            this.gvDistributionPayment.Location = new System.Drawing.Point(12, 128);
             // 
             // 
             // 
@@ -149,7 +149,7 @@ namespace IpsViewComponentLibrary
             gridViewCheckBoxColumn1.HeaderText = "Автоматично";
             gridViewCheckBoxColumn1.MinWidth = 20;
             gridViewCheckBoxColumn1.Name = "AutoSet";
-            gridViewCheckBoxColumn1.Width = 74;
+            gridViewCheckBoxColumn1.Width = 76;
             this.gvDistributionPayment.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -167,40 +167,40 @@ namespace IpsViewComponentLibrary
             this.gvDistributionPayment.ShowGroupPanel = false;
             this.gvDistributionPayment.Size = new System.Drawing.Size(962, 196);
             this.gvDistributionPayment.TabIndex = 10;
-            this.gvDistributionPayment.ThemeName = "Office2007Silver";
+            this.gvDistributionPayment.ThemeName = "Office2013Light";
             this.gvDistributionPayment.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvDistributionPayment_CellValueChanged);
             // 
             // btnSaveDistrib
             // 
             this.btnSaveDistrib.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSaveDistrib.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnSaveDistrib.Location = new System.Drawing.Point(12, 331);
+            this.btnSaveDistrib.Location = new System.Drawing.Point(12, 330);
             this.btnSaveDistrib.Name = "btnSaveDistrib";
             this.btnSaveDistrib.Size = new System.Drawing.Size(110, 24);
             this.btnSaveDistrib.TabIndex = 12;
             this.btnSaveDistrib.Text = "Зберегти";
-            this.btnSaveDistrib.ThemeName = "Office2007Silver";
+            this.btnSaveDistrib.ThemeName = "Office2013Light";
             this.btnSaveDistrib.Click += new System.EventHandler(this.btnSaveDistrib_Click);
             // 
-            // btnExit
+            // btnCancel
             // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(864, 331);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(110, 24);
-            this.btnExit.TabIndex = 13;
-            this.btnExit.Text = "Скасувати";
-            this.btnExit.ThemeName = "Office2007Silver";
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(864, 330);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(110, 24);
+            this.btnCancel.TabIndex = 13;
+            this.btnCancel.Text = "Скасувати";
+            this.btnCancel.ThemeName = "Office2013Light";
             // 
             // radLabel1
             // 
             this.radLabel1.Location = new System.Drawing.Point(13, 13);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(87, 18);
+            this.radLabel1.Size = new System.Drawing.Size(95, 19);
             this.radLabel1.TabIndex = 14;
             this.radLabel1.Text = "Номер платежу";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // txtPayNumber
             // 
@@ -208,9 +208,13 @@ namespace IpsViewComponentLibrary
             this.txtPayNumber.Location = new System.Drawing.Point(106, 12);
             this.txtPayNumber.Name = "txtPayNumber";
             this.txtPayNumber.ReadOnly = true;
-            this.txtPayNumber.Size = new System.Drawing.Size(224, 20);
+            this.txtPayNumber.Size = new System.Drawing.Size(224, 21);
             this.txtPayNumber.TabIndex = 15;
-            this.txtPayNumber.ThemeName = "Office2007Silver";
+            this.txtPayNumber.ThemeName = "Office2013Light";
+            // 
+            // bindingSource
+            // 
+            this.bindingSource.DataSource = typeof(ipsFormsDesign.Model.MoneyReceived);
             // 
             // txtPayDate
             // 
@@ -218,17 +222,18 @@ namespace IpsViewComponentLibrary
             this.txtPayDate.Location = new System.Drawing.Point(418, 12);
             this.txtPayDate.Name = "txtPayDate";
             this.txtPayDate.ReadOnly = true;
-            this.txtPayDate.Size = new System.Drawing.Size(102, 20);
+            this.txtPayDate.Size = new System.Drawing.Size(102, 21);
             this.txtPayDate.TabIndex = 17;
-            this.txtPayDate.ThemeName = "Office2007Silver";
+            this.txtPayDate.ThemeName = "Office2013Light";
             // 
             // radLabel2
             // 
             this.radLabel2.Location = new System.Drawing.Point(336, 13);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(76, 18);
+            this.radLabel2.Size = new System.Drawing.Size(83, 19);
             this.radLabel2.TabIndex = 16;
             this.radLabel2.Text = "Дата платежу";
+            this.radLabel2.ThemeName = "Office2013Light";
             // 
             // txtPayAmount
             // 
@@ -236,17 +241,18 @@ namespace IpsViewComponentLibrary
             this.txtPayAmount.Location = new System.Drawing.Point(610, 12);
             this.txtPayAmount.Name = "txtPayAmount";
             this.txtPayAmount.ReadOnly = true;
-            this.txtPayAmount.Size = new System.Drawing.Size(122, 20);
+            this.txtPayAmount.Size = new System.Drawing.Size(122, 21);
             this.txtPayAmount.TabIndex = 19;
-            this.txtPayAmount.ThemeName = "Office2007Silver";
+            this.txtPayAmount.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
             this.radLabel3.Location = new System.Drawing.Point(526, 13);
             this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(78, 18);
+            this.radLabel3.Size = new System.Drawing.Size(85, 19);
             this.radLabel3.TabIndex = 18;
             this.radLabel3.Text = "Сума платежу";
+            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // txtPayDistribution
             // 
@@ -256,17 +262,18 @@ namespace IpsViewComponentLibrary
             this.txtPayDistribution.Location = new System.Drawing.Point(852, 12);
             this.txtPayDistribution.Name = "txtPayDistribution";
             this.txtPayDistribution.ReadOnly = true;
-            this.txtPayDistribution.Size = new System.Drawing.Size(122, 20);
+            this.txtPayDistribution.Size = new System.Drawing.Size(122, 21);
             this.txtPayDistribution.TabIndex = 21;
-            this.txtPayDistribution.ThemeName = "Office2007Silver";
+            this.txtPayDistribution.ThemeName = "Office2013Light";
             // 
             // radLabel4
             // 
             this.radLabel4.Location = new System.Drawing.Point(738, 13);
             this.radLabel4.Name = "radLabel4";
-            this.radLabel4.Size = new System.Drawing.Size(108, 18);
+            this.radLabel4.Size = new System.Drawing.Size(117, 19);
             this.radLabel4.TabIndex = 20;
             this.radLabel4.Text = "Сума для прив\'язки";
+            this.radLabel4.ThemeName = "Office2013Light";
             // 
             // txtPayGoalInvoice
             // 
@@ -276,17 +283,18 @@ namespace IpsViewComponentLibrary
             this.txtPayGoalInvoice.Location = new System.Drawing.Point(141, 36);
             this.txtPayGoalInvoice.Name = "txtPayGoalInvoice";
             this.txtPayGoalInvoice.ReadOnly = true;
-            this.txtPayGoalInvoice.Size = new System.Drawing.Size(833, 20);
+            this.txtPayGoalInvoice.Size = new System.Drawing.Size(833, 21);
             this.txtPayGoalInvoice.TabIndex = 23;
-            this.txtPayGoalInvoice.ThemeName = "Office2007Silver";
+            this.txtPayGoalInvoice.ThemeName = "Office2013Light";
             // 
             // radLabel5
             // 
             this.radLabel5.Location = new System.Drawing.Point(13, 37);
             this.radLabel5.Name = "radLabel5";
-            this.radLabel5.Size = new System.Drawing.Size(122, 18);
+            this.radLabel5.Size = new System.Drawing.Size(133, 19);
             this.radLabel5.TabIndex = 22;
             this.radLabel5.Text = "Призначення платежу";
+            this.radLabel5.ThemeName = "Office2013Light";
             // 
             // txtAgrNum
             // 
@@ -294,17 +302,22 @@ namespace IpsViewComponentLibrary
             this.txtAgrNum.Location = new System.Drawing.Point(112, 77);
             this.txtAgrNum.Name = "txtAgrNum";
             this.txtAgrNum.ReadOnly = true;
-            this.txtAgrNum.Size = new System.Drawing.Size(228, 20);
+            this.txtAgrNum.Size = new System.Drawing.Size(228, 21);
             this.txtAgrNum.TabIndex = 25;
-            this.txtAgrNum.ThemeName = "Office2007Silver";
+            this.txtAgrNum.ThemeName = "Office2013Light";
+            // 
+            // bindingSourceAgreement
+            // 
+            this.bindingSourceAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
             // 
             // radLabel6
             // 
             this.radLabel6.Location = new System.Drawing.Point(13, 78);
             this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(93, 18);
+            this.radLabel6.Size = new System.Drawing.Size(101, 19);
             this.radLabel6.TabIndex = 24;
             this.radLabel6.Text = "Номер договору";
+            this.radLabel6.ThemeName = "Office2013Light";
             // 
             // txtLicDate
             // 
@@ -312,17 +325,18 @@ namespace IpsViewComponentLibrary
             this.txtLicDate.Location = new System.Drawing.Point(434, 77);
             this.txtLicDate.Name = "txtLicDate";
             this.txtLicDate.ReadOnly = true;
-            this.txtLicDate.Size = new System.Drawing.Size(102, 20);
+            this.txtLicDate.Size = new System.Drawing.Size(102, 21);
             this.txtLicDate.TabIndex = 27;
-            this.txtLicDate.ThemeName = "Office2007Silver";
+            this.txtLicDate.ThemeName = "Office2013Light";
             // 
             // radLabel7
             // 
             this.radLabel7.Location = new System.Drawing.Point(346, 78);
             this.radLabel7.Name = "radLabel7";
-            this.radLabel7.Size = new System.Drawing.Size(82, 18);
+            this.radLabel7.Size = new System.Drawing.Size(89, 19);
             this.radLabel7.TabIndex = 26;
             this.radLabel7.Text = "Дата договору";
+            this.radLabel7.ThemeName = "Office2013Light";
             // 
             // radSeparator1
             // 
@@ -330,7 +344,7 @@ namespace IpsViewComponentLibrary
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(961, 10);
             this.radSeparator1.TabIndex = 28;
-            this.radSeparator1.ThemeName = "Office2007Silver";
+            this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // radSeparator2
             // 
@@ -339,7 +353,7 @@ namespace IpsViewComponentLibrary
             this.radSeparator2.Name = "radSeparator2";
             this.radSeparator2.Size = new System.Drawing.Size(961, 28);
             this.radSeparator2.TabIndex = 29;
-            this.radSeparator2.ThemeName = "Office2007Silver";
+            this.radSeparator2.ThemeName = "Office2013Light";
             // 
             // radLabel8
             // 
@@ -350,21 +364,15 @@ namespace IpsViewComponentLibrary
             this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "Періоди та суми прив\'язки";
             this.radLabel8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // bindingSourceAgreement
-            // 
-            this.bindingSourceAgreement.DataSource = typeof(ipsFormsDesign.Interfaces.IAgreementData);
-            // 
-            // bindingSource
-            // 
-            this.bindingSource.DataSource = typeof(ipsFormsDesign.Model.MoneyReceived);
+            this.radLabel8.ThemeName = "Office2013Light";
             // 
             // DistributionForm
             // 
             this.AcceptButton = this.btnSaveDistrib;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(986, 375);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(986, 376);
             this.Controls.Add(this.radSeparator2);
             this.Controls.Add(this.radSeparator1);
             this.Controls.Add(this.txtLicDate);
@@ -381,7 +389,7 @@ namespace IpsViewComponentLibrary
             this.Controls.Add(this.radLabel2);
             this.Controls.Add(this.txtPayNumber);
             this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSaveDistrib);
             this.Controls.Add(this.gvDistributionPayment);
             this.MaximumSize = new System.Drawing.Size(994, 407);
@@ -393,13 +401,14 @@ namespace IpsViewComponentLibrary
             this.RootElement.ApplyShapeToControl = true;
             this.RootElement.MaxSize = new System.Drawing.Size(994, 407);
             this.Text = "Прив\'язка суми платежу до Розрахункових періодів";
-            this.ThemeName = "Office2007Silver";
+            this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvDistributionPayment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveDistrib)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnExit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPayAmount)).EndInit();
@@ -409,6 +418,7 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.txtPayGoalInvoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAgrNum)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLicDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
@@ -416,8 +426,6 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
             this.radSeparator2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgreement)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -425,11 +433,9 @@ namespace IpsViewComponentLibrary
         }
 
         #endregion
-
-        private Telerik.WinControls.Themes.Office2007SilverTheme office2007SilverTheme;
         private Telerik.WinControls.UI.RadGridView gvDistributionPayment;
         private Telerik.WinControls.UI.RadButton btnSaveDistrib;
-        private RadButton btnExit;
+        private RadButton btnCancel;
         private RadLabel radLabel1;
         private RadTextBox txtPayNumber;
         private RadTextBox txtAgrNum;
@@ -449,5 +455,6 @@ namespace IpsViewComponentLibrary
         private RadLabel radLabel8;
         private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.BindingSource bindingSourceAgreement;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

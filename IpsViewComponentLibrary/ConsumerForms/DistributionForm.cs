@@ -1,37 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerForms
 {
-    //    [ComplexBindingProperties("DataSource", "DataMember")]
-    public partial class DistributionForm : Telerik.WinControls.UI.RadForm
+    public partial class DistributionForm : RadForm
     {
         private Calcularor _calculator;
         private IAgreementData _licenseAgr;
         private List<GridPeriods> _source;
         private MoneyReceived _pay;
-        public DistributionForm()
-        {
-            InitializeComponent();
-        }
 
         /// <summary>
         /// Отримати максимальну суму для періоду 
         /// </summary>
         /// <param name="period"></param>
         /// <returns></returns>
-        private decimal? getMaxSumForPeriod( PaidPeriod period )
+        private decimal? GetMaxSumForPeriod(PaidPeriod period)
         {
             // сума Р/Л не проставлена
             if (period.RegisterRatedList.Any(item => item.Royalty == null))
@@ -43,18 +33,16 @@ namespace IpsViewComponentLibrary
         public DistributionForm(MoneyReceived undistrinbMoney, IAgreementData licenseAgr, PaidPeriod period)
         {
             InitializeComponent();
-
+            StartPosition = FormStartPosition.CenterScreen;
             _licenseAgr = licenseAgr;
             _pay = undistrinbMoney;
 
             bindingSource.DataSource = undistrinbMoney;
             bindingSourceAgreement.DataSource = licenseAgr;
 
-            _source = licenseAgr.Lic.PaidPeriod.Where(rec =>
-                        (rec.Status >= 2 && rec.Status < 7)
-                        // &&( rec.) // l
-                        && (period == null || period.PeriodId == rec.PeriodId)
-                        ).OrderBy(rec => rec.BeginDate)
+            _source = licenseAgr.Lic.PaidPeriod
+                .Where(rec => (rec.Status >= 2 && rec.Status < 7) && (period == null || period.PeriodId == rec.PeriodId))
+                .OrderBy(rec => rec.BeginDate)
                 .Select(rec => new GridPeriods
                 {
                     PeriodId = rec.PeriodId,
@@ -64,8 +52,8 @@ namespace IpsViewComponentLibrary
                     Arrears = Math.Max(0, rec.Amount - (rec.Undistribamount + rec.Distribamount)),
                     DistAmount = 0,
                     Status = rec.Status,
-                    AutoSet = period != null && period.PeriodId == rec.PeriodId ? true : false,
-                    MaxSum = getMaxSumForPeriod(rec)
+                    AutoSet = period != null && period.PeriodId == rec.PeriodId,
+                    MaxSum = GetMaxSumForPeriod(rec)
                 }).ToList(); //periodsList as List<GridPeriods>;
             gvDistributionPayment.DataSource = _source;
             _calculator = new Calcularor(undistrinbMoney.Amount - undistrinbMoney.DestribAmount - (undistrinbMoney.DestribPrepay ?? 0), _source);
@@ -79,11 +67,6 @@ namespace IpsViewComponentLibrary
             _calculator.Calculate();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnSaveDistrib_Click(object sender, EventArgs e)
         {
             var paidDic = _licenseAgr.Lic.PaidPeriod.ToDictionary(rec => rec.PeriodId);
@@ -112,11 +95,6 @@ namespace IpsViewComponentLibrary
                 link.Paid.DestribAmount += item.DistAmount;
             }
             DialogResult = DialogResult.OK;
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
         }
 
         private void gvDistributionPayment_CellValueChanged(object sender, GridViewCellEventArgs e)
