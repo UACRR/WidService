@@ -24,11 +24,11 @@ namespace ipsFormsDesign.Model
         public string PlacePhone { get; set; }
         public bool? FreeEntry { get; set; }
 
-        public Client Cust { get; set; }
-        public TypePlace PlCodeNavigation { get; set; }
-        public ObservableListSource<ClnPlaceHoll> ClnPlaceHoll { get; set; }
-        public ObservableListSource<LicPlace> LicPlace { get; set; }
-        public ObservableListSource<License> License { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual TypePlace PlCodeNavigation { get; set; }
+        public virtual ObservableListSource<ClnPlaceHoll> ClnPlaceHoll { get; set; }
+        public virtual ObservableListSource<LicPlace> LicPlace { get; set; }
+        public virtual ObservableListSource<License> License { get; set; }
     }
 }
 

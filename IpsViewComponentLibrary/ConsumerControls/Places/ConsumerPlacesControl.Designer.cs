@@ -216,7 +216,7 @@
             this.btnEdit.TabIndex = 8;
             this.btnEdit.Text = "Редагування";
             this.btnEdit.ThemeName = "Office2013Light";
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.angle_double_down_solid;
             ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
             ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).Text = "Редагування";

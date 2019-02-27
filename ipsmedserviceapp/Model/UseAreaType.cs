@@ -16,9 +16,9 @@ namespace ipsmedserviceapp.Model
         public int ReqType { get; set; }
         public string Name { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public RequestType ReqTypeNavigation { get; set; }
-        public ICollection<RelAdaptUseArea> RelAdaptUseArea { get; set; }
-        public ICollection<UseAreaTypeTr> UseAreaTypeTr { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual RequestType ReqTypeNavigation { get; set; }
+        public virtual ICollection<RelAdaptUseArea> RelAdaptUseArea { get; set; }
+        public virtual ICollection<UseAreaTypeTr> UseAreaTypeTr { get; set; }
     }
 }

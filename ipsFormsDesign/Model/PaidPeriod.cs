@@ -27,13 +27,13 @@ namespace ipsFormsDesign.Model
         public bool? FagFirst { get; set; }
         public DateTime? DateActPrint { get; set; }
 
-        public Client Cust { get; set; }
-        public LicenseAgreement Lic { get; set; }
-        public Period PeriodTypeNavigation { get; set; }
-        public PeriodStatus StatusNavigation { get; set; }
-        public ObservableListSource<BrRegister> BrRegister { get; set; }
-        public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ObservableListSource<RegisterRatedList> RegisterRatedList { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual LicenseAgreement Lic { get; set; }
+        public virtual Period PeriodTypeNavigation { get; set; }
+        public virtual PeriodStatus StatusNavigation { get; set; }
+        public virtual ObservableListSource<BrRegister> BrRegister { get; set; }
+        public virtual ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ObservableListSource<RegisterRatedList> RegisterRatedList { get; set; }
     }
 }
 

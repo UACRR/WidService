@@ -13,6 +13,6 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<RholderTypeTr> RholderTypeTr { get; set; }
+        public virtual ICollection<RholderTypeTr> RholderTypeTr { get; set; }
     }
 }

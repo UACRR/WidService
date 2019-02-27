@@ -13,6 +13,6 @@ namespace ipsmedserviceapp.Model
         public int Code { get; set; }
         public string Name { get; set; }
 
-        public ICollection<DicCategoryItems> DicCategoryItems { get; set; }
+        public virtual ICollection<DicCategoryItems> DicCategoryItems { get; set; }
     }
 }

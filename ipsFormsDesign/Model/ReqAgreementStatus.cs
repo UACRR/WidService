@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Model
         public string StatusNameRu { get; set; }
         public string StatusNameEn { get; set; }
 
-        public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
     }
 }
 

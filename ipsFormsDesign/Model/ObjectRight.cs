@@ -40,24 +40,24 @@ namespace ipsFormsDesign.Model
         public int? ActCode { get; set; }
         public string InnerCode { get; set; }
 
-        public ObjAct ActCodeNavigation { get; set; }
-        public Category CategoryCodeNavigation { get; set; }
-        public SpecType SpecTypeNavigation { get; set; }
-        public ObjectStatus StatusNavigation { get; set; }
-        public MediaTrack MediaTrack { get; set; }
-        public ObservableListSource<Account> Account { get; set; }
-        public ObservableListSource<Authors> Authors { get; set; }
-        public ObservableListSource<BrRegItem> BrRegItem { get; set; }
-        public ObservableListSource<CopyRight> CopyRight { get; set; }
-        public ObservableListSource<DistributionItem> DistributionItem { get; set; }
-        public ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
-        public ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
-        public ObservableListSource<PortalObjectRights> PortalObjectRights { get; set; }
-        public ObservableListSource<RegisterItem> RegisterItem { get; set; }
-        public ObservableListSource<RelObjPerformer> RelObjPerformer { get; set; }
-        public ObservableListSource<RelPopGenre> RelPopGenre { get; set; }
-        public ObservableListSource<Request> Request { get; set; }
-        public ObservableListSource<SeekObject> SeekObject { get; set; }
+        public virtual ObjAct ActCodeNavigation { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual SpecType SpecTypeNavigation { get; set; }
+        public virtual ObjectStatus StatusNavigation { get; set; }
+        public virtual MediaTrack MediaTrack { get; set; }
+        public virtual ObservableListSource<Account> Account { get; set; }
+        public virtual ObservableListSource<Authors> Authors { get; set; }
+        public virtual ObservableListSource<BrRegItem> BrRegItem { get; set; }
+        public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
+        public virtual ObservableListSource<DistributionItem> DistributionItem { get; set; }
+        public virtual ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
+        public virtual ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
+        public virtual ObservableListSource<PortalObjectRights> PortalObjectRights { get; set; }
+        public virtual ObservableListSource<RegisterItem> RegisterItem { get; set; }
+        public virtual ObservableListSource<RelObjPerformer> RelObjPerformer { get; set; }
+        public virtual ObservableListSource<RelPopGenre> RelPopGenre { get; set; }
+        public virtual ObservableListSource<Request> Request { get; set; }
+        public virtual ObservableListSource<SeekObject> SeekObject { get; set; }
     }
 }
 

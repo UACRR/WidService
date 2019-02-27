@@ -10,8 +10,8 @@ namespace ipsFormsDesign.Model
         public int EpisodeTypeCode { get; set; }
         public double? EpDuration { get; set; }
 
-        public EpisodeType EpisodeTypeCodeNavigation { get; set; }
-        public RequestTvradio Req { get; set; }
+        public virtual EpisodeType EpisodeTypeCodeNavigation { get; set; }
+        public virtual RequestTvradio Req { get; set; }
     }
 }
 

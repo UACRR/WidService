@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<ActivityTypeTr> ActivityTypeTr { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
-        public ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
+        public virtual ObservableListSource<ActivityTypeTr> ActivityTypeTr { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        public virtual ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
     }
 }
 

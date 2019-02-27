@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<PositionTypeTr> PositionTypeTr { get; set; }
-        public ObservableListSource<RelEmployee> RelEmployee { get; set; }
+        public virtual ObservableListSource<PositionTypeTr> PositionTypeTr { get; set; }
+        public virtual ObservableListSource<RelEmployee> RelEmployee { get; set; }
     }
 }
 

@@ -19,12 +19,12 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public int Id { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public ObservableListSource<PopGenreTr> PopGenreTr { get; set; }
-        public ObservableListSource<RelGenreAdapt> RelGenreAdapt { get; set; }
-        public ObservableListSource<RelGenreMovie> RelGenreMovie { get; set; }
-        public ObservableListSource<RelGenreSerial> RelGenreSerial { get; set; }
-        public ObservableListSource<RelPopGenre> RelPopGenre { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual ObservableListSource<PopGenreTr> PopGenreTr { get; set; }
+        public virtual ObservableListSource<RelGenreAdapt> RelGenreAdapt { get; set; }
+        public virtual ObservableListSource<RelGenreMovie> RelGenreMovie { get; set; }
+        public virtual ObservableListSource<RelGenreSerial> RelGenreSerial { get; set; }
+        public virtual ObservableListSource<RelPopGenre> RelPopGenre { get; set; }
     }
 }
 

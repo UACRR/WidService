@@ -18,8 +18,8 @@ namespace ipsmedserviceapp.Model
         public int? NumbPerfom { get; set; }
 
         [JsonIgnore]
-        public LicenseBigR Lic { get; set; }
-        public ObjectRight Obj { get; set; }
+        public virtual LicenseBigR Lic { get; set; }
+        public virtual ObjectRight Obj { get; set; }
     }
 }
 

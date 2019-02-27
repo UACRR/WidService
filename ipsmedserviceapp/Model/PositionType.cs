@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<PositionTypeTr> PositionTypeTr { get; set; }
-        public ICollection<RelEmployee> RelEmployee { get; set; }
+        public virtual ICollection<PositionTypeTr> PositionTypeTr { get; set; }
+        public virtual ICollection<RelEmployee> RelEmployee { get; set; }
     }
 }

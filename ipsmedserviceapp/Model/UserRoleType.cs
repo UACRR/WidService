@@ -17,7 +17,7 @@ namespace ipsmedserviceapp.Model
         public string TypeNameEn { get; set; }
         public string Name { get; set; }
 
-        public ICollection<UserRole> UserRole { get; set; }
-        public ICollection<UserRoleTypeTr> UserRoleTypeTr { get; set; }
+        public virtual ICollection<UserRole> UserRole { get; set; }
+        public virtual ICollection<UserRoleTypeTr> UserRoleTypeTr { get; set; }
     }
 }

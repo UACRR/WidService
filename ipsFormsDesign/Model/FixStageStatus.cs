@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Model
         public int? StageCode { get; set; }
         public int? StatusCode { get; set; }
 
-        public ObservableListSource<Fixation> Fixation { get; set; }
+        public virtual ObservableListSource<Fixation> Fixation { get; set; }
     }
 }
 

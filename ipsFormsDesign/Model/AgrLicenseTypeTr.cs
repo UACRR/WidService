@@ -10,7 +10,7 @@ namespace ipsFormsDesign.Model
         public string Lang { get; set; }
         public string Name { get; set; }
 
-        public AgrLicenseType CodeINavigation { get; set; }
+        public virtual AgrLicenseType CodeINavigation { get; set; }
     }
 }
 

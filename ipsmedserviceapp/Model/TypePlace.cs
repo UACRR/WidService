@@ -18,11 +18,11 @@ namespace ipsmedserviceapp.Model
         public int? ParamType { get; set; }
 
         [JsonIgnore]
-        public TypePlaceParam ParamTypeNavigation { get; set; }
+        public virtual TypePlaceParam ParamTypeNavigation { get; set; }
         [JsonIgnore]
-        public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        public virtual ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         [JsonIgnore]
-        public ICollection<TypePlaceTr> TypePlaceTr { get; set; }
+        public virtual ICollection<TypePlaceTr> TypePlaceTr { get; set; }
     }
 }
 

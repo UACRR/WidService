@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
         public int RoleCode { get; set; }
         public string Name { get; set; }
 
-        public RegisterItem RegI { get; set; }
-        public CreativeRoleType RoleCodeNavigation { get; set; }
+        public virtual RegisterItem RegI { get; set; }
+        public virtual CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }
 

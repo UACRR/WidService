@@ -10,8 +10,8 @@ namespace ipsFormsDesign.Model
         public int CRkindCode { get; set; }
         public int Enable { get; set; }
 
-        public PortalSupportRights CRkindCodeNavigation { get; set; }
-        public ObjectRight Obj { get; set; }
+        public virtual PortalSupportRights CRkindCodeNavigation { get; set; }
+        public virtual ObjectRight Obj { get; set; }
     }
 }
 

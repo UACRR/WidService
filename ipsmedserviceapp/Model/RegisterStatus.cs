@@ -15,8 +15,8 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<Register> Register { get; set; }
-        public ICollection<RegisterStatusTr> RegisterStatusTr { get; set; }
+        public virtual ICollection<BrRegister> BrRegister { get; set; }
+        public virtual ICollection<Register> Register { get; set; }
+        public virtual ICollection<RegisterStatusTr> RegisterStatusTr { get; set; }
     }
 }

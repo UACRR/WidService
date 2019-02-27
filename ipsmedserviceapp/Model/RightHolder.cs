@@ -26,20 +26,20 @@ namespace ipsmedserviceapp.Model
         public string InnerCode { get; set; }
         public int? RHolderType { get; set; }
 
-        public Customer Cust { get; set; }
+        public virtual Customer Cust { get; set; }
         [JsonIgnore]
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<AnketaAddNick> AnketaAddNick { get; set; }
+        public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ICollection<AnketaAddNick> AnketaAddNick { get; set; }
         [JsonIgnore]
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<CopyRight> CopyRight { get; set; }
+        public virtual ICollection<Authors> Authors { get; set; }
+        public virtual ICollection<CopyRight> CopyRight { get; set; }
         [JsonIgnore]
-        public ICollection<RegisterCount> RegisterCount { get; set; }
+        public virtual ICollection<RegisterCount> RegisterCount { get; set; }
         [JsonIgnore]
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
-        public ICollection<TermsOfService> TermsOfService { get; set; }
-        public ICollection<TerritoryExclude> TerritoryExclude { get; set; }
-        public ICollection<TerritoryInclude> TerritoryInclude { get; set; }
+        public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ICollection<TermsOfService> TermsOfService { get; set; }
+        public virtual ICollection<TerritoryExclude> TerritoryExclude { get; set; }
+        public virtual ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
 

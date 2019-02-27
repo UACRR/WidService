@@ -28,22 +28,22 @@ namespace ipsmedserviceapp.Model
         public int? CRightId { get; set; }
 
         [JsonIgnore]
-        public CopyRight CRight { get; set; }
+        public virtual CopyRight CRight { get; set; }
         [JsonIgnore]
-        public CopyrightKind CRkindCodeNavigation { get; set; }
+        public virtual CopyrightKind CRkindCodeNavigation { get; set; }
         [JsonIgnore]
-        public Client Cust { get; set; }
+        public virtual Client Cust { get; set; }
         [JsonIgnore]
-        public Partner Partner { get; set; }
+        public virtual Partner Partner { get; set; }
         [JsonIgnore]
-        public Register Reg { get; set; }
+        public virtual Register Reg { get; set; }
         [JsonIgnore]
-        public BrRegister RegIdBrNavigation { get; set; }
+        public virtual BrRegister RegIdBrNavigation { get; set; }
         [JsonIgnore]
-        public RegisterRatedList Rm { get; set; }
+        public virtual RegisterRatedList Rm { get; set; }
         [JsonIgnore]
-        public DistribStatus StatusNavigation { get; set; }
-        public ICollection<DistributionItem> DistributionItem { get; set; }
+        public virtual DistribStatus StatusNavigation { get; set; }
+        public virtual ICollection<DistributionItem> DistributionItem { get; set; }
     }
 }
 

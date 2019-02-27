@@ -8,6 +8,6 @@ namespace ipsmedserviceapp.Model
         public int ReqId { get; set; }
         public string UseDesc { get; set; }
 
-        public Request Req { get; set; }
+        public virtual Request Req { get; set; }
     }
 }

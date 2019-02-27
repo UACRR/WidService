@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<MoneyLinkStatusTr> MoneyLinkStatusTr { get; set; }
-        public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ObservableListSource<MoneyLinkStatusTr> MoneyLinkStatusTr { get; set; }
+        public virtual ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
     }
 }
 

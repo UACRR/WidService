@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<TypePlace> TypePlace { get; set; }
-        public ICollection<TypePlaceParamTr> TypePlaceParamTr { get; set; }
+        public virtual ICollection<TypePlace> TypePlace { get; set; }
+        public virtual ICollection<TypePlaceParamTr> TypePlaceParamTr { get; set; }
     }
 }

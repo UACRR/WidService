@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<TypeMethodGetTr> TypeMethodGetTr { get; set; }
+        public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ICollection<TypeMethodGetTr> TypeMethodGetTr { get; set; }
     }
 }

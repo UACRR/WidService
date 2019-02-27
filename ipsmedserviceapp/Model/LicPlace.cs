@@ -8,7 +8,7 @@ namespace ipsmedserviceapp.Model
         public int LicId { get; set; }
         public int PlaceId { get; set; }
 
-        public LicenseAgreement Lic { get; set; }
-        public ClnBusinessPlace Place { get; set; }
+        public virtual LicenseAgreement Lic { get; set; }
+        public virtual ClnBusinessPlace Place { get; set; }
     }
 }

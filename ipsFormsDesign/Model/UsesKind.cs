@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public int? UsesType { get; set; }
         public string Name { get; set; }
 
-        public UsesType UsesTypeNavigation { get; set; }
-        public ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
-        public ObservableListSource<UsesKindTr> UsesKindTr { get; set; }
+        public virtual UsesType UsesTypeNavigation { get; set; }
+        public virtual ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
+        public virtual ObservableListSource<UsesKindTr> UsesKindTr { get; set; }
     }
 }
 

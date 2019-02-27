@@ -29,17 +29,17 @@ namespace ipsFormsDesign.Model
         public int? ParentId { get; set; }
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
+        public decimal? RateMech { get; set; }
 
-        public RightHolder Cust { get; set; }
-        public ObjectRight Obj { get; set; }
-        public CreativeRoleType RoleCodeNavigation { get; set; }
-        public CrightStatus StatusNavigation { get; set; }
-        public CopyRtranslate CopyRtranslate { get; set; }
-        public LicAuthorBr LicAuthorBr { get; set; }
-        public WorkRh WorkRh { get; set; }
-        public ObservableListSource<CopyRightHistory> CopyRightHistoryChild { get; set; }
-        public ObservableListSource<CopyRightHistory> CopyRightHistoryParent { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual RightHolder Cust { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual CreativeRoleType RoleCodeNavigation { get; set; }
+        public virtual CrightStatus StatusNavigation { get; set; }
+        public virtual LicAuthorBr LicAuthorBr { get; set; }
+        public virtual WorkRh WorkRh { get; set; }
+        public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryChild { get; set; }
+        public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryParent { get; set; }
+        public virtual ObservableListSource<Distribution> Distribution { get; set; }
     }
 }
 

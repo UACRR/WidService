@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<DocumentTypeTr> DocumentTypeTr { get; set; }
-        public ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
-        public ObservableListSource<RelDocAgrType> RelDocAgrType { get; set; }
+        public virtual ObservableListSource<DocumentTypeTr> DocumentTypeTr { get; set; }
+        public virtual ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
+        public virtual ObservableListSource<RelDocAgrType> RelDocAgrType { get; set; }
     }
 }
 

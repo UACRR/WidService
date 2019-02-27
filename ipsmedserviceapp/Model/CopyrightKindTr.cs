@@ -10,6 +10,6 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string NameDescript { get; set; }
 
-        public CopyrightKind CodeINavigation { get; set; }
+        public virtual CopyrightKind CodeINavigation { get; set; }
     }
 }

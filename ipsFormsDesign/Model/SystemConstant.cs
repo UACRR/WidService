@@ -15,7 +15,7 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public decimal? Rate { get; set; }
 
-        public ObservableListSource<SystemConstantTr> SystemConstantTr { get; set; }
+        public virtual ObservableListSource<SystemConstantTr> SystemConstantTr { get; set; }
     }
 }
 

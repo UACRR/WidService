@@ -12,6 +12,6 @@ namespace ipsmedserviceapp.Model
         public string DicType { get; set; }
         public int? DicLevel { get; set; }
 
-        public DictCategory CodeNavigation { get; set; }
+        public virtual DictCategory CodeNavigation { get; set; }
     }
 }

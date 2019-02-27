@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<FolkTypeTr> FolkTypeTr { get; set; }
+        public virtual ICollection<Authors> Authors { get; set; }
+        public virtual ICollection<FolkTypeTr> FolkTypeTr { get; set; }
     }
 }

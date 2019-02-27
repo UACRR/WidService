@@ -21,14 +21,14 @@ namespace ipsFormsDesign.Model
         public int CrGroupCode { get; set; }
         public string NameDescript { get; set; }
 
-        public CrkindGroup CrGroupCodeNavigation { get; set; }
-        public PortalSupportRights PortalSupportRights { get; set; }
-        public ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
-        public ObservableListSource<CopyrightKindTr> CopyrightKindTr { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
-        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
-        public ObservableListSource<RelLicCopyR> RelLicCopyR { get; set; }
-        public ObservableListSource<TermsOfService> TermsOfService { get; set; }
+        public virtual CrkindGroup CrGroupCodeNavigation { get; set; }
+        public virtual PortalSupportRights PortalSupportRights { get; set; }
+        public virtual ObservableListSource<AgrLicenseType> AgrLicenseType { get; set; }
+        public virtual ObservableListSource<CopyrightKindTr> CopyrightKindTr { get; set; }
+        public virtual ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public virtual ObservableListSource<RelLicCopyR> RelLicCopyR { get; set; }
+        public virtual ObservableListSource<TermsOfService> TermsOfService { get; set; }
     }
 }
 

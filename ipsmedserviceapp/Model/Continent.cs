@@ -15,8 +15,8 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<ContinentTr> ContinentTr { get; set; }
-        public ICollection<Country> Country { get; set; }
-        public ICollection<ReqLocationUse> ReqLocationUse { get; set; }
+        public virtual ICollection<ContinentTr> ContinentTr { get; set; }
+        public virtual ICollection<Country> Country { get; set; }
+        public virtual ICollection<ReqLocationUse> ReqLocationUse { get; set; }
     }
 }

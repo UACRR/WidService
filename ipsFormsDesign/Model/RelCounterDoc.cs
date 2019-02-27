@@ -11,9 +11,9 @@ namespace ipsFormsDesign.Model
         public int DocType { get; set; }
         public int? LicType { get; set; }
 
-        public CounterNumber Counter { get; set; }
-        public DocumentType DocTypeNavigation { get; set; }
-        public AgrLicenseType LicTypeNavigation { get; set; }
+        public virtual CounterNumber Counter { get; set; }
+        public virtual DocumentType DocTypeNavigation { get; set; }
+        public virtual AgrLicenseType LicTypeNavigation { get; set; }
     }
 }
 

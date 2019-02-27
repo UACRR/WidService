@@ -15,6 +15,6 @@ namespace ipsmedserviceapp.Model
         public string R031NameRu { get; set; }
         public string R031NameEn { get; set; }
 
-        public ICollection<KlR030> KlR030 { get; set; }
+        public virtual ICollection<KlR030> KlR030 { get; set; }
     }
 }

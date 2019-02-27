@@ -10,7 +10,7 @@ namespace ipsmedserviceapp.Model
         public decimal? Rate { get; set; }
         public int ActCode { get; set; }
 
-        public GenreType GenreTypeNavigation { get; set; }
-        public CreativeRoleType RoleCodeNavigation { get; set; }
+        public virtual GenreType GenreTypeNavigation { get; set; }
+        public virtual CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }

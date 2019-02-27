@@ -26,10 +26,10 @@ namespace ipsFormsDesign.Model
         public string PCountry { get; set; }
         public int? PRegion { get; set; }
 
-        public KlR030 CurrencyNavigation { get; set; }
-        public Customer Cust { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public virtual KlR030 CurrencyNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
     }
 }
 

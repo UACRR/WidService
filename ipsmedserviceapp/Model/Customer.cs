@@ -33,42 +33,42 @@ namespace ipsmedserviceapp.Model
         public string UserId { get; set; }
 
         [JsonIgnore]
-        public CustomerType CustTypeNavigation { get; set; }
+        public virtual CustomerType CustTypeNavigation { get; set; }
         [JsonIgnore]
-        public CustomerStatus StatusNavigation { get; set; }
+        public virtual CustomerStatus StatusNavigation { get; set; }
         [JsonIgnore]
-        public AspNetUsers User { get; set; }
-        public AnketaExternal AnketaExternal { get; set; }
-        public Client Client { get; set; }
-        public Community Community { get; set; }
-        public Company Company { get; set; }
+        public virtual AspNetUsers User { get; set; }
+        public virtual AnketaExternal AnketaExternal { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Community Community { get; set; }
+        public virtual Company Company { get; set; }
         [JsonIgnore]
-        public MyAnketa MyAnketa { get; set; }
-        public Partner Partner { get; set; }
-        public Person Person { get; set; }
-        public RightHolder RightHolder { get; set; }
+        public virtual MyAnketa MyAnketa { get; set; }
+        public virtual Partner Partner { get; set; }
+        public virtual Person Person { get; set; }
+        public virtual RightHolder RightHolder { get; set; }
         [JsonIgnore]
-        public ICollection<Account> Account { get; set; }
-        public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        public ICollection<AnketaAddName> AnketaAddName { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<AgreementMaster> AgreementMaster { get; set; }
+        public virtual ICollection<AnketaAddName> AnketaAddName { get; set; }
         [JsonIgnore]
-        public ICollection<AnketaAddParam> AnketaAddParam { get; set; }
+        public virtual ICollection<AnketaAddParam> AnketaAddParam { get; set; }
         [JsonIgnore]
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompany { get; set; }
         [JsonIgnore]
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
-        public ICollection<BankAccount> BankAccount { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPerson { get; set; }
+        public virtual ICollection<BankAccount> BankAccount { get; set; }
         [JsonIgnore]
-        public ICollection<Employee> Employee { get; set; }
-        public ICollection<FileCustomer> FileCustomer { get; set; }
+        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<FileCustomer> FileCustomer { get; set; }
         [JsonIgnore]
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
         [JsonIgnore]
-        public ICollection<ReqCustomer> ReqCustomer { get; set; }
+        public virtual ICollection<ReqCustomer> ReqCustomer { get; set; }
         [JsonIgnore]
-        public ICollection<Request> Request { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
         [JsonIgnore]
-        public ICollection<UserRole> UserRole { get; set; }
+        public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }
 

@@ -32,20 +32,20 @@ namespace ipsFormsDesign.Model
         public short? ShortChoise { get; set; }
         public int? OrderBy { get; set; }
 
-        public Continent ContinentCodeNavigation { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
-        public ObservableListSource<AnketaExternal> AnketaExternal { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }
-        public ObservableListSource<CountryTr> CountryTr { get; set; }
-        public ObservableListSource<KlR030> KlR030 { get; set; }
-        public ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
-        public ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
-        public ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
-        public ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
+        public virtual Continent ContinentCodeNavigation { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
+        public virtual ObservableListSource<AnketaExternal> AnketaExternal { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }
+        public virtual ObservableListSource<CountryTr> CountryTr { get; set; }
+        public virtual ObservableListSource<KlR030> KlR030 { get; set; }
+        public virtual ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
+        public virtual ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
+        public virtual ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
+        public virtual ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
 

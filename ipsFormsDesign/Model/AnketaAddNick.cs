@@ -10,7 +10,7 @@ namespace ipsFormsDesign.Model
         public int CustId { get; set; }
         public string NikName { get; set; }
 
-        public RightHolder Cust { get; set; }
+        public virtual RightHolder Cust { get; set; }
     }
 }
 

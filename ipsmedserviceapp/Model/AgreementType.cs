@@ -16,8 +16,8 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string TemplateName { get; set; }
 
-        public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        public ICollection<AgreementTypeTr> AgreementTypeTr { get; set; }
-        public ICollection<RelDocAgrType> RelDocAgrType { get; set; }
+        public virtual ICollection<AgreementMaster> AgreementMaster { get; set; }
+        public virtual ICollection<AgreementTypeTr> AgreementTypeTr { get; set; }
+        public virtual ICollection<RelDocAgrType> RelDocAgrType { get; set; }
     }
 }

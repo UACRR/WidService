@@ -32,30 +32,30 @@ namespace ipsFormsDesign.Model
         public byte? AnkTech { get; set; }
         public string UserId { get; set; }
 
-        public CustomerType CustTypeNavigation { get; set; }
-        public CustomerStatus StatusNavigation { get; set; }
-        public AspNetUsers User { get; set; }
-        public AnketaExternal AnketaExternal { get; set; }
-        public Client Client { get; set; }
-        public Community Community { get; set; }
-        public Company Company { get; set; }
-        public MyAnketa MyAnketa { get; set; }
-        public Partner Partner { get; set; }
-        public Person Person { get; set; }
-        public RightHolder RightHolder { get; set; }
-        public ObservableListSource<Account> Account { get; set; }
-        public ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
-        public ObservableListSource<AnketaAddName> AnketaAddName { get; set; }
-        public ObservableListSource<AnketaAddParam> AnketaAddParam { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
-        public ObservableListSource<BankAccount> BankAccount { get; set; }
-        public ObservableListSource<Employee> Employee { get; set; }
-        public ObservableListSource<FileCustomer> FileCustomer { get; set; }
-        public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
-        public ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
-        public ObservableListSource<Request> Request { get; set; }
-        public ObservableListSource<UserRole> UserRole { get; set; }
+        public virtual CustomerType CustTypeNavigation { get; set; }
+        public virtual CustomerStatus StatusNavigation { get; set; }
+        public virtual AspNetUsers User { get; set; }
+        public virtual AnketaExternal AnketaExternal { get; set; }
+        public virtual Client Client { get; set; }
+        public virtual Community Community { get; set; }
+        public virtual Company Company { get; set; }
+        public virtual MyAnketa MyAnketa { get; set; }
+        public virtual Partner Partner { get; set; }
+        public virtual Person Person { get; set; }
+        public virtual RightHolder RightHolder { get; set; }
+        public virtual ObservableListSource<Account> Account { get; set; }
+        public virtual ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
+        public virtual ObservableListSource<AnketaAddName> AnketaAddName { get; set; }
+        public virtual ObservableListSource<AnketaAddParam> AnketaAddParam { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompany { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public virtual ObservableListSource<BankAccount> BankAccount { get; set; }
+        public virtual ObservableListSource<Employee> Employee { get; set; }
+        public virtual ObservableListSource<FileCustomer> FileCustomer { get; set; }
+        public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
+        public virtual ObservableListSource<Request> Request { get; set; }
+        public virtual ObservableListSource<UserRole> UserRole { get; set; }
     }
 }
 

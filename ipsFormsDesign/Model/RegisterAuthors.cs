@@ -12,7 +12,7 @@ namespace ipsFormsDesign.Model
         public int CodeRole { get; set; }
         public string Name { get; set; }
 
-        public CreativeRoleType CodeRoleNavigation { get; set; }
+        public virtual CreativeRoleType CodeRoleNavigation { get; set; }
     }
 }
 

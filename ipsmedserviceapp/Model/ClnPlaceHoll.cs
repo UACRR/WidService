@@ -11,6 +11,6 @@ namespace ipsmedserviceapp.Model
         public string ValuePlace { get; set; }
         public string ValueAdd { get; set; }
 
-        public ClnBusinessPlace Place { get; set; }
+        public virtual ClnBusinessPlace Place { get; set; }
     }
 }

@@ -25,6 +25,6 @@ namespace ipsmedserviceapp.Model
         public byte? FlCourt { get; set; }
         public int? CustIdRh { get; set; }
 
-        public PaymentStatus PayStatusNavigation { get; set; }
+        public virtual PaymentStatus PayStatusNavigation { get; set; }
     }
 }

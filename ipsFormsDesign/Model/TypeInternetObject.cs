@@ -17,8 +17,8 @@ namespace ipsFormsDesign.Model
         public string TypeInetNameEn { get; set; }
         public string TypeInetNameRu { get; set; }
 
-        public ObservableListSource<RequestInternet> RequestInternet { get; set; }
-        public ObservableListSource<TypeInternetObjectTr> TypeInternetObjectTr { get; set; }
+        public virtual ObservableListSource<RequestInternet> RequestInternet { get; set; }
+        public virtual ObservableListSource<TypeInternetObjectTr> TypeInternetObjectTr { get; set; }
     }
 }
 

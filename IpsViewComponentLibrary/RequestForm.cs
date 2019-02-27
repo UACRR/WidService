@@ -376,7 +376,7 @@ namespace IpsViewComponentLibrary
             _customer.Client.LicenseAgreement.Add(_licenseAgreement);
         }
 
-        private void checkIsTour_CheckStateChanged(object sender, EventArgs e)
+        private void CheckIsTour_CheckStateChanged(object sender, EventArgs e)
         {
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
@@ -393,12 +393,12 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             if (_formMode == FormMode.ForSmallRightAdmin && !ValidateMinRewardAndTotalRate())
             {
@@ -424,18 +424,18 @@ namespace IpsViewComponentLibrary
             Close();
         }
 
-        private void ddlPlaceName_SelectedValueChanged(object sender, EventArgs e)
+        private void DdlPlaceName_SelectedValueChanged(object sender, EventArgs e)
         {
             bsClnPlaceHoll.DataSource = _customer.Client.ClnBusinessPlace.SingleOrDefault(rec => rec?.PlaceId == (int?)ddlPlaceName?.SelectedItem?.Value)?.ClnPlaceHoll;
         }
 
-        private void pageView_SelectedPageChanged(object sender, EventArgs e)
+        private void PageView_SelectedPageChanged(object sender, EventArgs e)
         {
             if (pageView.SelectedPage == pvMusicalArrangement && ReadOnly == false)
                 btnSave.Enabled = true;
         }
 
-        private void txtActCode_TextChanged(object sender, EventArgs e)
+        private void TxtActCode_TextChanged(object sender, EventArgs e)
         {
             if (Int32.TryParse(txtActCode.Text, out int val))
                 if (val > 3)
@@ -443,7 +443,7 @@ namespace IpsViewComponentLibrary
             UpdateGenrePersent();
         }
 
-        private void ddlGenreType_SelectedValueChanged(object sender, EventArgs e)
+        private void DdlGenreType_SelectedValueChanged(object sender, EventArgs e)
         {
             UpdateGenrePersent();
         }
@@ -473,8 +473,7 @@ namespace IpsViewComponentLibrary
         /// <returns></returns>
         private bool ValidateMusicalDesign()
         {
-            bool isValid = _licenseAgreement.LicenseBigR.MusicalDesign.Count( rec => (rec.Objid ?? 0) == 0 ) == 0;
-
+            bool isValid = ctrlMusicalDesignList.GetCountUnlink() == 0;
             if (!isValid)
             {
                 _validateString = "Є твори 'Збірної музики' не прив'язані до об'єкту права";
@@ -489,7 +488,7 @@ namespace IpsViewComponentLibrary
         /// <returns></returns>
         private bool ValidateAllSetPogodgeno()
         {
-            bool isValid = _licenseAgreement.LicenseBigR.Obj.CopyRight.Count(rec => rec.WorkRh.WorkTypeRh != 4) == 0;
+            bool isValid = ctrlAuthorRightholderList.GetCountNoPogod() == 0;
 
             if (!isValid)
             {
@@ -498,23 +497,26 @@ namespace IpsViewComponentLibrary
             }
             return isValid;
         }
-        private void btnSetActiveStatus_Click(object sender, EventArgs e)
+        private void BtnSetActiveStatus_Click(object sender, EventArgs e)
         {
-            bool isValid = true;
-            string errText = string.Empty;
-            ctrlAuthorRightholderList.resetErrorText();
-            ctrlMusicalDesignList.resetErrorText();
-
-            if ( !ValidateMinRewardAndTotalRate() || !ValidateAllSetPogodgeno() || !ValidateMusicalDesign() )
+            if (_licenseAgreement.LicType == 3) // Довідка
             {
-                isValid = false;
-                errText = _validateString;
-            }
+                bool isValid = true;
+                string errText = string.Empty;
+                ctrlAuthorRightholderList.resetErrorText();
+                ctrlMusicalDesignList.resetErrorText();
 
-            if( !isValid )
-            {
-                MessageBox.Show(_validateString, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                if (!ValidateMinRewardAndTotalRate() || !ValidateAllSetPogodgeno() || !ValidateMusicalDesign())
+                {
+                    isValid = false;
+                    errText = _validateString;
+                }
+
+                if (!isValid)
+                {
+                    MessageBox.Show(_validateString, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             _licenseAgreement.LicStatus = 2;
@@ -523,7 +525,7 @@ namespace IpsViewComponentLibrary
             panelStatusees.Enabled = false;
         }
 
-        private void btnSetCanceledStatus_Click(object sender, EventArgs e)
+        private void BtnSetCanceledStatus_Click(object sender, EventArgs e)
         {
             _licenseAgreement.LicStatus = 5;
             _licenseAgreement.LicenseAgrParam.First(rec => rec.LicVersion == _licenseAgreement.LicVersion).LicStatus = 5;
@@ -531,24 +533,24 @@ namespace IpsViewComponentLibrary
             panelStatusees.Enabled = false;
         }
 
-        private void ddlPerformType_Leave(object sender, EventArgs e)
+        private void DdlPerformType_Leave(object sender, EventArgs e)
         {
             UpdateGenrePersent();
         }
 
-        private void ddlLang_Leave(object sender, EventArgs e)
+        private void DdlLang_Leave(object sender, EventArgs e)
         {
             UpdateGenrePersent();
         }
 
-        private void txtMusicRate_TextChanged(object sender, EventArgs e)
+        private void TxtMusicRate_TextChanged(object sender, EventArgs e)
         {
             if (Int32.TryParse(txtMusicRate.Text, out int val))
                 if (val > 100)
                     txtMusicRate.Text = "100";
         }
 
-        private void ctrlAuthorRightholderList_CurrentAuthorRightholderChanged(object sender, EventArgs e)
+        private void CtrlAuthorRightholderList_CurrentAuthorRightholderChanged(object sender, EventArgs e)
         {
             ValidateMinRewardAndTotalRate();
         }
@@ -557,7 +559,7 @@ namespace IpsViewComponentLibrary
         {
             var errorText = "";
 
-            if (int.TryParse(txtVinagoroda.Text, out int minReward))
+            if (decimal.TryParse(txtVinagoroda.Text, out decimal minReward))
             {
                 var tolalRate = _objectRight.CopyRight.GetTotalRoleRate();
 

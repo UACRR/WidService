@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
-        public ObservableListSource<PerformTypeTr> PerformTypeTr { get; set; }
+        public virtual ObservableListSource<LicenseBigR> LicenseBigR { get; set; }
+        public virtual ObservableListSource<PerformTypeTr> PerformTypeTr { get; set; }
     }
 }
 

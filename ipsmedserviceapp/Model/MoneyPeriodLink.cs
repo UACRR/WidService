@@ -14,12 +14,12 @@ namespace ipsmedserviceapp.Model
         public int? Status { get; set; }
 
         [JsonIgnore]
-        public LicenseAgreement Lic { get; set; }
-        public MoneyReceived Paid { get; set; }
+        public virtual LicenseAgreement Lic { get; set; }
+        public virtual MoneyReceived Paid { get; set; }
         [JsonIgnore]
-        public PaidPeriod Period { get; set; }
+        public virtual PaidPeriod Period { get; set; }
         [JsonIgnore]
-        public MoneyLinkStatus StatusNavigation { get; set; }
+        public virtual MoneyLinkStatus StatusNavigation { get; set; }
     }
 }
 

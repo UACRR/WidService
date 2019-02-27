@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<Document> Document { get; set; }
-        public ObservableListSource<DocumentStatusTr> DocumentStatusTr { get; set; }
+        public ICollection<Document> Document { get; set; }
+        public ICollection<DocumentStatusTr> DocumentStatusTr { get; set; }
     }
 }
 

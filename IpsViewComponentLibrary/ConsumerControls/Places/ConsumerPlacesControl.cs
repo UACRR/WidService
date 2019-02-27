@@ -217,7 +217,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         #region * * * ALL BUTTONS * * *
 
         // * * * РЕДАГУВАННЯ МАЙДАНЧИКА
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void BtnEdit_Click(object sender, EventArgs e)
         {
             if(gvPlaces.RowCount == 0) return;
             if (!(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace place)) return;

@@ -13,6 +13,6 @@ namespace ipsmedserviceapp.Model
         public bool CodeB { get; set; }
         public string Name { get; set; }
 
-        public ICollection<PermitTypeTr> PermitTypeTr { get; set; }
+        public virtual ICollection<PermitTypeTr> PermitTypeTr { get; set; }
     }
 }

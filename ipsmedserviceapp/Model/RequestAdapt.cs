@@ -20,11 +20,11 @@ namespace ipsmedserviceapp.Model
         public string ModifyMusictComment { get; set; }
         public string UseAreaComment { get; set; }
 
-        public ModifyMusicType ModifyMusicTypeNavigation { get; set; }
-        public ModifyTextType ModifyTextTypeNavigation { get; set; }
-        public ModifyType ModifyTypeNavigation { get; set; }
-        public Request Req { get; set; }
-        public ICollection<RelAdaptUseArea> RelAdaptUseArea { get; set; }
-        public ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
+        public virtual ModifyMusicType ModifyMusicTypeNavigation { get; set; }
+        public virtual ModifyTextType ModifyTextTypeNavigation { get; set; }
+        public virtual ModifyType ModifyTypeNavigation { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual ICollection<RelAdaptUseArea> RelAdaptUseArea { get; set; }
+        public virtual ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
     }
 }

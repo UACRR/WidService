@@ -18,9 +18,9 @@ namespace ipsmedserviceapp.Model
         public string TradeComment { get; set; }
         public int? CauseCode { get; set; }
 
-        public CommentCause CauseCodeNavigation { get; set; }
-        public ReqAgreement RAgr { get; set; }
-        public Request Req { get; set; }
-        public TradeStatus StatusNavigation { get; set; }
+        public virtual CommentCause CauseCodeNavigation { get; set; }
+        public virtual ReqAgreement RAgr { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual TradeStatus StatusNavigation { get; set; }
     }
 }

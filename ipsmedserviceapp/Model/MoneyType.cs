@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<MoneyReceived> MoneyReceived { get; set; }
-        public ICollection<MoneyTypeTr> MoneyTypeTr { get; set; }
+        public virtual ICollection<MoneyReceived> MoneyReceived { get; set; }
+        public virtual ICollection<MoneyTypeTr> MoneyTypeTr { get; set; }
     }
 }

@@ -15,8 +15,8 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public int? CategoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public ICollection<EtGenreRole> EtGenreRole { get; set; }
-        public ICollection<RelEtRole> RelEtRole { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual ICollection<EtGenreRole> EtGenreRole { get; set; }
+        public virtual ICollection<RelEtRole> RelEtRole { get; set; }
     }
 }

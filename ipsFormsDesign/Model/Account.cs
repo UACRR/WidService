@@ -24,12 +24,12 @@ namespace ipsFormsDesign.Model
         public short? AccDk { get; set; }
         public DateTime? DateModify { get; set; }
 
-        public AccountStatus AccStatusNavigation { get; set; }
-        public AccountBals BalsCodeNavigation { get; set; }
-        public Customer Cust { get; set; }
-        public ObjectRight Obj { get; set; }
-        public Currency R030Navigation { get; set; }
-        public ObservableListSource<PayTurn> PayTurn { get; set; }
+        public virtual AccountStatus AccStatusNavigation { get; set; }
+        public virtual AccountBals BalsCodeNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual Currency R030Navigation { get; set; }
+        public virtual ObservableListSource<PayTurn> PayTurn { get; set; }
     }
 }
 

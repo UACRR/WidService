@@ -20,8 +20,8 @@ namespace ipsFormsDesign.Model
         public decimal? PrepayRest { get; set; }
         public decimal? PrepayUsed { get; set; }
 
-        public CopyRight CRight { get; set; }
-        public PrePayType PrepayTypeNavigation { get; set; }
+        public virtual CopyRight CRight { get; set; }
+        public virtual PrePayType PrepayTypeNavigation { get; set; }
     }
 }
 

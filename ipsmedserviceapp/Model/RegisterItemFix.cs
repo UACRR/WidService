@@ -10,6 +10,6 @@ namespace ipsmedserviceapp.Model
         public TimeSpan? TimeStart { get; set; }
         public TimeSpan? TimeEnd { get; set; }
 
-        public RegisterItem RegI { get; set; }
+        public virtual RegisterItem RegI { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace ipsmedserviceapp.Model
 
         public int CRkindCode { get; set; }
 
-        public CopyrightKind CRkindCodeNavigation { get; set; }
-        public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
+        public virtual CopyrightKind CRkindCodeNavigation { get; set; }
+        public virtual ICollection<PortalObjectRights> PortalObjectRights { get; set; }
     }
 }

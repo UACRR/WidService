@@ -12,6 +12,6 @@ namespace ipsmedserviceapp.Model
         public double? PlayTime { get; set; }
         public int? ObjId { get; set; }
 
-        public MediaTrack Obj { get; set; }
+        public virtual MediaTrack Obj { get; set; }
     }
 }

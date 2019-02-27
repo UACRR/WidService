@@ -12,8 +12,8 @@ namespace ipsFormsDesign.Model
         public DateTime DateBegin { get; set; }
         public DateTime DateEnd { get; set; }
 
-        public TermsOfService C { get; set; }
-        public Community CmCust { get; set; }
+        public virtual TermsOfService C { get; set; }
+        public virtual Community CmCust { get; set; }
     }
 }
 

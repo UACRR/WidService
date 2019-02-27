@@ -8,7 +8,7 @@ namespace ipsmedserviceapp.Model
         public int RoleCode { get; set; }
         public int EtRoleCode { get; set; }
 
-        public EtRole EtRoleCodeNavigation { get; set; }
-        public CreativeRoleType RoleCodeNavigation { get; set; }
+        public virtual EtRole EtRoleCodeNavigation { get; set; }
+        public virtual CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }

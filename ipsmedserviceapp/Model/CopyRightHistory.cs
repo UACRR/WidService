@@ -9,7 +9,7 @@ namespace ipsmedserviceapp.Model
         public int ChildId { get; set; }
         public decimal? Rate { get; set; }
 
-        public CopyRight Child { get; set; }
-        public CopyRight Parent { get; set; }
+        public virtual CopyRight Child { get; set; }
+        public virtual CopyRight Parent { get; set; }
     }
 }

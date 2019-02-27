@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Model
         public int Code { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<DicCategoryItems> DicCategoryItems { get; set; }
+        public virtual ObservableListSource<DicCategoryItems> DicCategoryItems { get; set; }
     }
 }
 

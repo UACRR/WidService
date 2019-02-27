@@ -40,17 +40,17 @@ namespace ipsFormsDesign.Model
         public bool TwoFactorEnabled { get; set; }
         public string UserName { get; set; }
 
-        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
-        public ObservableListSource<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public ObservableListSource<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public ObservableListSource<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public ObservableListSource<BrRegister> BrRegister { get; set; }
-        public ObservableListSource<Customer> Customer { get; set; }
-        public ObservableListSource<Employee> Employee { get; set; }
-        public ObservableListSource<Fixation> Fixation { get; set; }
-        public ObservableListSource<Register> Register { get; set; }
-        public ObservableListSource<Request> Request { get; set; }
-        public ObservableListSource<UserRole> UserRole { get; set; }
+        public virtual ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ObservableListSource<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual ObservableListSource<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual ObservableListSource<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public virtual ObservableListSource<BrRegister> BrRegister { get; set; }
+        public virtual ObservableListSource<Customer> Customer { get; set; }
+        public virtual ObservableListSource<Employee> Employee { get; set; }
+        public virtual ObservableListSource<Fixation> Fixation { get; set; }
+        public virtual ObservableListSource<Register> Register { get; set; }
+        public virtual ObservableListSource<Request> Request { get; set; }
+        public virtual ObservableListSource<UserRole> UserRole { get; set; }
     }
 }
 

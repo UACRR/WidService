@@ -13,9 +13,9 @@ namespace ipsmedserviceapp.Model
         public int? IsFolkOrUnknown { get; set; }
         public int? FolkType { get; set; }
 
-        public RightHolder Cust { get; set; }
-        public FolkType FolkTypeNavigation { get; set; }
-        public ObjectRight Obj { get; set; }
-        public CreativeRoleType RoleCodeNavigation { get; set; }
+        public virtual RightHolder Cust { get; set; }
+        public virtual FolkType FolkTypeNavigation { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual CreativeRoleType RoleCodeNavigation { get; set; }
     }
 }

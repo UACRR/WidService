@@ -13,10 +13,12 @@ namespace ipsmedserviceapp.Model
         }
 
         public int CustId { get; set; }
+        public string InterCode { get; set; }
+        public string InnerCode { get; set; }
 
-        public Customer Cust { get; set; }
-        public ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
-        public ICollection<CustCmRight> CustCmRight { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
+        public virtual ICollection<CustCmRight> CustCmRight { get; set; }
+        public virtual ICollection<RegisterCount> RegisterCount { get; set; }
     }
 }

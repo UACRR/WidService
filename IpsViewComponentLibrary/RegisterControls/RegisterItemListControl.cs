@@ -372,7 +372,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
-        // MED-526
+        // *** MED-526
         public void resetErrorText()
         {
             foreach( var row in gvRegisterItemList.Rows )
@@ -389,6 +389,15 @@ namespace IpsViewComponentLibrary.RegisterControls
                     row.Cells["ObjectName"].ErrorText = errTxt;
             }
         }
+
+        public int GetCountUnlink()
+        {
+            var cnt = gvRegisterItemList.Rows.Count(rec => (rec.DataBoundItem as RegisterItemViewModel).ObjId == null);
+            return cnt;
+        }
+
+        // *** MED-526
+
         private void gvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
             var registerItem = e.RowElement.RowInfo.DataBoundItem as RegisterItemViewModel;

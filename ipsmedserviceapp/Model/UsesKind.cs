@@ -15,8 +15,8 @@ namespace ipsmedserviceapp.Model
         public int? UsesType { get; set; }
         public string Name { get; set; }
 
-        public UsesType UsesTypeNavigation { get; set; }
-        public ICollection<AgrLicenseType> AgrLicenseType { get; set; }
-        public ICollection<UsesKindTr> UsesKindTr { get; set; }
+        public virtual UsesType UsesTypeNavigation { get; set; }
+        public virtual ICollection<AgrLicenseType> AgrLicenseType { get; set; }
+        public virtual ICollection<UsesKindTr> UsesKindTr { get; set; }
     }
 }

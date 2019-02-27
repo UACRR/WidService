@@ -36,14 +36,14 @@ namespace ipsFormsDesign.Model
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
 
-        public AlgorithmType Algorithm { get; set; }
-        public Client Cust { get; set; }
-        public RegisterStatus RgStatusNavigation { get; set; }
-        public RegisterRatedList Rm { get; set; }
-        public AspNetUsers User { get; set; }
-        public ObservableListSource<BrRegItem> BrRegItem { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
-        public ObservableListSource<RegisterItem> RegisterItem { get; set; }
+        public virtual AlgorithmType Algorithm { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual RegisterStatus RgStatusNavigation { get; set; }
+        public virtual RegisterRatedList Rm { get; set; }
+        public virtual AspNetUsers User { get; set; }
+        public virtual ObservableListSource<BrRegItem> BrRegItem { get; set; }
+        public virtual ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual ObservableListSource<RegisterItem> RegisterItem { get; set; }
     }
 }
 

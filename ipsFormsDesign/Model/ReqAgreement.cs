@@ -27,11 +27,11 @@ namespace ipsFormsDesign.Model
         public DateTime? StatusDate { get; set; }
         public string RAgrComment { get; set; }
 
-        public Customer Cust { get; set; }
-        public RightHolder CustIdRhNavigation { get; set; }
-        public Request Req { get; set; }
-        public ReqAgreementStatus StatusNavigation { get; set; }
-        public ObservableListSource<ReqTrade> ReqTrade { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual RightHolder CustIdRhNavigation { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual ReqAgreementStatus StatusNavigation { get; set; }
+        public virtual ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }
 

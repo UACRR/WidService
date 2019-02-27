@@ -278,5 +278,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                row.Cells["WorkTypeRh"].ErrorText = "";
             }
         }
+
+        internal int GetCountNoPogod()
+        {
+            var count = gvAuthorRightholderList.Rows.Count(rec => (rec.DataBoundItem as ObjectAuthorRightholderBrViewModel).WorkRh.WorkTypeRh != 4);
+            return count;
+        }
     }
 }
