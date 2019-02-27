@@ -10,6 +10,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
@@ -31,9 +32,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private readonly ConsumerService _service;
         private readonly PartnerService _partnerService;
-        private readonly GlobalControlConsumerMainGrid _mainGrid;
+        private readonly ConsumersViewSmallRightControl _mainGrid;
 
-        public SmallRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, GlobalControlConsumerMainGrid mainGrid)
+        public SmallRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, ConsumersViewSmallRightControl mainGrid)
         {
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _service = service;

@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls
 {
-    partial class GlobalControlConsumerMainGridBR
+    partial class ConsumersViewBigRightControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -224,14 +222,14 @@ namespace IpsViewComponentLibrary
             this.ctrlSearch.Size = new System.Drawing.Size(479, 20);
             this.ctrlSearch.TabIndex = 11;
             // 
-            // GlobalControlConsumerMainGridBR
+            // ConsumersViewBRControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.btnNewConsumer);
             this.Controls.Add(this.gvViewConsumers);
-            this.Name = "GlobalControlConsumerMainGridBR";
+            this.Name = "ConsumersViewBRControl";
             this.Size = new System.Drawing.Size(1154, 588);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).EndInit();

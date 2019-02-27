@@ -36,20 +36,20 @@
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.ddlDocType = new Telerik.WinControls.UI.RadDropDownList();
+            this.fileTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtComment = new Telerik.WinControls.UI.RadTextBox();
             this.txtFileName = new Telerik.WinControls.UI.RadTextBox();
             this.btnOpenFileDialog = new Telerik.WinControls.UI.RadButton();
-            this.fileTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlDocType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenFileDialog)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileTypeBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,13 +91,13 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(154, 101);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // ddlDocType
             // 
@@ -110,6 +110,10 @@
             this.ddlDocType.TabIndex = 5;
             this.ddlDocType.ThemeName = "Office2013Light";
             this.ddlDocType.ValueMember = "CodeI";
+            // 
+            // fileTypeBindingSource
+            // 
+            this.fileTypeBindingSource.DataSource = typeof(ipsFormsDesign.Model.FileType);
             // 
             // txtComment
             // 
@@ -139,14 +143,11 @@
             this.btnOpenFileDialog.ThemeName = "Office2013Light";
             this.btnOpenFileDialog.Click += new System.EventHandler(this.btnOpenFileDialog_Click);
             // 
-            // fileTypeBindingSource
-            // 
-            this.fileTypeBindingSource.DataSource = typeof(ipsFormsDesign.Model.FileType);
-            // 
             // AddFileDialogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(597, 137);
             this.Controls.Add(this.btnOpenFileDialog);
             this.Controls.Add(this.txtFileName);
@@ -171,10 +172,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlDocType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFileName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnOpenFileDialog)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fileTypeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

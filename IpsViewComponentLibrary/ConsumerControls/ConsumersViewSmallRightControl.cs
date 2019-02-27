@@ -3,20 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
-using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls
 {
-    public partial class GlobalControlConsumerMainGrid : UserControl
+    public partial class ConsumersViewSmallRightControl : UserControl
     {
         public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
         public ConsumerMainView ViewRow => gvViewConsumers.CurrentRow?.DataBoundItem as ConsumerMainView;
         private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
-        public GlobalControlConsumerMainGrid()
+        public ConsumersViewSmallRightControl()
         {
             InitializeComponent();
             _gridStateRecorder.AddGrid(gvViewConsumers);
@@ -43,12 +42,6 @@ namespace IpsViewComponentLibrary
             OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as ConsumerMainView).CustId);
         }
 
-        public void SetSelectCustomer(int custId)
-        {
-            if (gvViewConsumers.Rows.Count != 0)
-                gvViewConsumers.CurrentRow = gvViewConsumers.Rows.SingleOrDefault(rec => (int)rec.Cells["CustId"].Value == custId);
-        }
-
         // створити споживача юридичної особи
         private void btnAddJurConsumer_Click(object sender, EventArgs e)
         {
@@ -61,7 +54,7 @@ namespace IpsViewComponentLibrary
             OnAddNewCustomer?.Invoke(1, EventArgs.Empty);
         }
 
-        private void gvViewConsumers_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvViewConsumers_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
             if (e.Column is GridViewCommandColumn)
                 return;

@@ -11,6 +11,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerForms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -41,13 +42,13 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         private readonly ConsumerService _service;
         private readonly PartnerService _partnerService;
-        private readonly GlobalControlConsumerMainGridBR _mainGrid;
+        private readonly ConsumersViewBigRightControl _mainGrid;
 
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
         private ConsumerWorkplace _parentForm = null;
 
-        public BigRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, GlobalControlConsumerMainGridBR mainGrid, ConsumerWorkplace parentForm)
+        public BigRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, ConsumersViewBigRightControl mainGrid, ConsumerWorkplace parentForm)
         {
             _parentForm = parentForm;
             _service = service;
