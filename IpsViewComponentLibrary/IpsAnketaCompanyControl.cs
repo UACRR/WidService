@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return anketaCompanyBindingSource.DataSource; }
+            get => anketaCompanyBindingSource.DataSource;
             set
             {
                 if (anketaCompanyBindingSource.DataSource != value)
@@ -45,8 +45,6 @@ namespace IpsViewComponentLibrary
         }
 
         #region Activity code dictionary
-
-        public string CompanyFullName => txtName.Text;
 
         /// <summary>
         /// Перевірка на правильність введених полів
@@ -109,27 +107,21 @@ namespace IpsViewComponentLibrary
             // Якщо анкета існуючого клієнту
             if (anketaCompanyBindingSource.DataSource is AnketaCompany @company && @company.CustId != 0)
                 return;
+
             string txtName_Text = txtName.Text.Trim();
-           if (txtName_Text.Length > 0)
+            if (txtName_Text.Length > 0)
             {
-                if (_savedSearch.Length == 0
-                    || !txtName_Text.ToUpper().StartsWith( _savedSearch.ToUpper() )
-                    )
+                if (_savedSearch.Length == 0 || !txtName_Text.ToUpper().StartsWith( _savedSearch.ToUpper()))
                 {
-                    string _cacheSearch = string.Empty;
                     inProcess = true;
-                    _cacheSearch = txtName.Text.Trim();
+                    var _cacheSearch = txtName.Text.Trim();
                     _savedSearch = _cacheSearch;
                     if (!char.IsLetterOrDigit(_cacheSearch[0]))
                     {
                         _cacheSearch = string.Concat("%", _cacheSearch);
                     }
 
-
-                    var list = getAutoCompList(_cacheSearch).Select(rec =>
-                    {
-                        return new RadListDataItem(rec.DisplayValue, rec.Value);
-                    })?.ToArray();
+                    var list = getAutoCompList(_cacheSearch).Select(rec => new RadListDataItem(rec.DisplayValue, rec.Value)).ToArray();
                     var tmpText = txtName.Text;
                     //txtName.Clear();
 
@@ -147,8 +139,6 @@ namespace IpsViewComponentLibrary
             TextNameChanged?.Invoke(sender, txtName.Text);
         }
 
-
         #endregion
-
     }
 }

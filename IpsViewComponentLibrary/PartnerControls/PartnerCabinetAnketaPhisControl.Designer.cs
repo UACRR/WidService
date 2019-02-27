@@ -44,7 +44,7 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlAddressRegister = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlAddressLive = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
+            this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
@@ -508,7 +508,7 @@
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private IpsAddressControl ctrlAddressRegister;
         private IpsAddressControl ctrlAddressLive;
-        private DebugFormForControls.ContactsPersonControl ctrlContacts;
+        private ContactsPersonControl ctrlContacts;
         private Telerik.WinControls.UI.RadPageViewPage pvPasport;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
         private PassportControl ctrlInternalPassport;

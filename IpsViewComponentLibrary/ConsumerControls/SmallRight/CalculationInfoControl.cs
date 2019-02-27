@@ -7,6 +7,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
@@ -409,7 +410,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 return;
 
 
-            DistributionForm form = new DistributionForm(pay, licParam, period);
+            var form = new DistributionForm(pay, licParam, period);
 
             if (form.ShowDialog() == DialogResult.OK)
             {

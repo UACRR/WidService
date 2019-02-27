@@ -1,4 +1,4 @@
-﻿namespace DebugFormForControls
+﻿namespace IpsViewComponentLibrary
 {
     partial class ContactsPersonControl
     {

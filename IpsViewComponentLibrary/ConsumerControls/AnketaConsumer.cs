@@ -144,7 +144,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     _ctrlAgreementSmallRights.Rights = TypeRights;
                     // дані договору
                     var places = _customer.Client.ClnBusinessPlace;
-                    var license = _customer.Client.LicenseAgreement.FirstOrDefault(rec=>rec.LicStatus != 4);
+                    var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == 0);
                     var licAgr = license?.LicenseAgrParam.SingleOrDefault();
                     _ctrlAgreementSmallRights.InitializeObjects(places, license, licAgr, ConsumerAgreementInitType.AddNewAgreement);
                 }
