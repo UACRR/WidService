@@ -49,7 +49,7 @@ CREATE TABLE #PayTurn(
 --отбор подготовленных distribution (status=1)
 insert #doc (dateWork,paidid,regId ,distid,custID,ObjId,distribDate,amount	,kindCode,periodId,payNote,docNum
 					)
-select		inputDate, paidId,NULL,NULL,custID,NULL ,dateOper,sCredit	,NULL,NULL,nplat,docNum
+select		t1.inputDate, t1.paidId, NULL, NULL, t2.custID, NULL ,dateOper,sCredit	,NULL,NULL,nplat,docNum
 from Externalpay t1,AnketaCompany t2
 where t2.okpo=t1.okpocorr
 and

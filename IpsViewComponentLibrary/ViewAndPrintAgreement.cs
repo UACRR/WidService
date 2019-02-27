@@ -80,7 +80,7 @@ namespace IpsViewComponentLibrary
                 _wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
             else // Належить великим правам
             {
-                _wordEngine.processConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
+                _wordEngine.ProcessConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
             }
 
             SetResult(_wordEngine.Pdf, _wordEngine.Docx);
@@ -99,7 +99,7 @@ namespace IpsViewComponentLibrary
                 _wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
             else // Належить великим правам
             {
-                _wordEngine.processConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
+                _wordEngine.ProcessConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
             }
 
             SetResult(_wordEngine.Pdf, _wordEngine.Docx);

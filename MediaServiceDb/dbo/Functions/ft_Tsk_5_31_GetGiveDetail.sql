@@ -30,7 +30,7 @@ set @dateEnd = isnull(@dateEnd, getdate())
 insert into @Rt
 (t1.dateWork, nd, ndDate, accDebet, accCredit, amount, payNote, regId, fileName, rowNum)
 select t1.dateWork, t1.nd, t1.ndDate, t1.accDebet, t1.accCredit, t1.Amount, t5.name +' '+isnull(t1.payNote,''), t1.regId, t4.fileName, 
-ROW_NUMBER() OVER( ORDER BY dateWork, t1.turnId) 
+ROW_NUMBER() OVER( ORDER BY t1.dateWork, t1.turnId) 
 from payTurn t1 
 join PayTurnExtra t11 on t1.turnId = t11.turnid
 join account t2 on t1.accIdDebet = t2.accId
