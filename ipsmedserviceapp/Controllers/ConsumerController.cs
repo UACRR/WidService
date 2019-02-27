@@ -1189,10 +1189,16 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         public async Task<IActionResult> SetPeriodState(int periodid, int stateid, [FromBody] PaidPeriod body)
         {
             var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == periodid)
+                .Include( rec => rec.Lic )
+                    .ThenInclude( lic => lic.LicCodeNavigation )
+                        .ThenInclude( licCode => licCode.UsesKindNavigation )
                 .Include(rec => rec.RegisterRatedList)
                 .SingleOrDefaultAsync();
             if (period == null)
                 return BadRequest();
+
+            foreach (var rrl in period.RegisterRatedList)
+                await _dbContext.Entry(rrl).Collection(rec => rec.Register).LoadAsync();
 
             var oldStatus = period.Status;
             period.Status = stateid;
@@ -1201,8 +1207,13 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             // Розрахункові листи переходять в статус Погоджені
             if (oldStatus == 1 && stateid == 2)
             {
+                var rgStatus = period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType == 1 ? 3 : 2; // Для ВП 3
                 foreach (var rrl in period.RegisterRatedList)
+                {
                     rrl.Status = 1;
+                    foreach (var reg in rrl.Register)
+                        reg.RgStatus = rgStatus;
+                }
             }
 
             await _dbContext.SaveChangesAsync();
@@ -1240,10 +1251,11 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             if (dest.Status == 0 && sors.Status == 1) // MED-197 Період переходить в стан "Прийом коштів"
             {
                 dest.Period.Status = 2;
-
-                if (dest.Period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType == 1)  // Великі права
+                // Великі права
+                if (dest.Period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType == 1)  
                 {
-                    foreach (var item in dest.Register)
+                    // Змінюємо в джерелі статус з 2 на 3
+                    foreach (var item in sors.Register)
                         item.RgStatus = 3;
                 }
             }
@@ -1795,8 +1807,18 @@ and isnull(licType,1) between 1 and 3
                 RegisterRatedList dest = null;
 
                 dest = new RegisterRatedList { CreateDate = DateTime.Today };
-                _dbContext.RegisterRatedList.Add(dest);
+                // _dbContext.RegisterRatedList.Add(dest);
+                var period = await _dbContext.PaidPeriod
+                    .Include( rec => rec.Lic)
+                        .ThenInclude( lic => lic.LicCodeNavigation )
+                            .ThenInclude( licCode => licCode.UsesKindNavigation )
+                    .FirstOrDefaultAsync(rec => rec.PeriodId == body.PeriodId);
 
+                if (period == null)
+                    return NotFound();
+                dest.SetFields(body);
+
+                period.RegisterRatedList.Add(dest);
 
                 modifyRatedList(body, dest);
 
