@@ -152,10 +152,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddCompositionForm.cs">
+    <Compile Include="_UnusedControls\AddCompositionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddCompositionForm.Designer.cs">
+    <Compile Include="_UnusedControls\AddCompositionForm.Designer.cs">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AddFileDialogForm.cs">
@@ -697,10 +697,10 @@
     <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.Designer.cs">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerTitleControl.cs">
+    <Compile Include="_trash\ConsumerTitleControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerTitleControl.Designer.cs">
+    <Compile Include="_trash\ConsumerTitleControl.Designer.cs">
       <DependentUpon>ConsumerTitleControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ContractConsumerDetailControl.cs">
@@ -736,17 +736,17 @@
     </Compile>
     <Compile Include="Utilities\FixationStageStatusMenuFactory.cs" />
     <Compile Include="Utilities\TimeSpanToDateTimeConverter.cs" />
-    <Compile Include="GlobalControlConsumerMainGrid.cs">
+    <Compile Include="ConsumerControls\ConsumersViewSmallRightControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GlobalControlConsumerMainGrid.Designer.cs">
-      <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
+    <Compile Include="ConsumerControls\ConsumersViewSmallRightControl.Designer.cs">
+      <DependentUpon>ConsumersViewSmallRightControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="GlobalControlConsumerMainGridBR.cs">
+    <Compile Include="ConsumerControls\ConsumersViewBigRightControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GlobalControlConsumerMainGridBR.Designer.cs">
-      <DependentUpon>GlobalControlConsumerMainGridBR.cs</DependentUpon>
+    <Compile Include="ConsumerControls\ConsumersViewBigRightControl.Designer.cs">
+      <DependentUpon>ConsumersViewBigRightControl.cs</DependentUpon>
     </Compile>
     <Compile Include="InformationAgrBR.cs">
       <SubType>UserControl</SubType>
@@ -778,10 +778,10 @@
     <Compile Include="IpsAnketaCompanyControl.Designer.cs">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="AnketaPersonControl.cs">
+    <Compile Include="_trash\AnketaPersonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AnketaPersonControl.Designer.cs">
+    <Compile Include="_trash\AnketaPersonControl.Designer.cs">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.cs">
@@ -832,10 +832,10 @@
     <Compile Include="RightholderControls\Anketa\RightLimitationsControl.Designer.cs">
       <DependentUpon>RightLimitationsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainViewSwitcher.cs">
+    <Compile Include="_UnusedControls\MainViewSwitcher.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MainViewSwitcher.Designer.cs">
+    <Compile Include="_UnusedControls\MainViewSwitcher.Designer.cs">
       <DependentUpon>MainViewSwitcher.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlAddress.cs">
@@ -1085,7 +1085,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AddCompositionForm.resx">
+    <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="AddFileDialogForm.resx">
@@ -1314,7 +1314,7 @@
     <EmbeddedResource Include="ConsumerForms\AnketaConsumerJurForm.resx">
       <DependentUpon>AnketaConsumerJurForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AnketaPersonControl.resx">
+    <EmbeddedResource Include="_trash\AnketaPersonControl.resx">
       <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.resx">
@@ -1332,7 +1332,7 @@
     <EmbeddedResource Include="ConsumerControls\Places\ConsumerPlacesControl.resx">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerTitleControl.resx">
+    <EmbeddedResource Include="_trash\ConsumerTitleControl.resx">
       <DependentUpon>ConsumerTitleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ContactsPersonControl.resx">
@@ -1362,11 +1362,11 @@
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightholderPage.resx">
       <DependentUpon>AnketaPersonRightholderPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalControlConsumerMainGrid.resx">
-      <DependentUpon>GlobalControlConsumerMainGrid.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\ConsumersViewSmallRightControl.resx">
+      <DependentUpon>ConsumersViewSmallRightControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GlobalControlConsumerMainGridBR.resx">
-      <DependentUpon>GlobalControlConsumerMainGridBR.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\ConsumersViewBigRightControl.resx">
+      <DependentUpon>ConsumersViewBigRightControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformationAgrBR.resx">
       <DependentUpon>InformationAgrBR.cs</DependentUpon>
@@ -1398,7 +1398,7 @@
     <EmbeddedResource Include="RightholderControls\Anketa\RightLimitationsControl.resx">
       <DependentUpon>RightLimitationsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainViewSwitcher.resx">
+    <EmbeddedResource Include="_UnusedControls\MainViewSwitcher.resx">
       <DependentUpon>MainViewSwitcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlAddress.resx">

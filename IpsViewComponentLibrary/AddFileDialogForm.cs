@@ -9,10 +9,11 @@ using ipsFormsDesign;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class AddFileDialogForm : Telerik.WinControls.UI.RadForm
+    public partial class AddFileDialogForm : RadForm
     {
         public string FileName => txtFileName.Text;
         public string Comment => txtComment.Text;
@@ -21,14 +22,13 @@ namespace IpsViewComponentLibrary
         public AddFileDialogForm()
         {
             InitializeComponent();
-            this.DialogResult = DialogResult.None;
+            DialogResult = DialogResult.None;
             fileTypeBindingSource.DataSource = IpsGlobal.AnketaDictionaties.fileType;
-            var val = ddlDocType.SelectedValue;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             Close();
         }
 
@@ -40,12 +40,6 @@ namespace IpsViewComponentLibrary
             {
                 txtFileName.Text = fileDialog.FileName;
             }
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
-            Close();
         }
     }
 }

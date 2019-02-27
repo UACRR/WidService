@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using IpsViewComponentLibrary.ConsumerControls;
 
 namespace ConsumerWorkplace_v_1._0
 {
@@ -36,10 +37,10 @@ namespace ConsumerWorkplace_v_1._0
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainGridBigRight = new IpsViewComponentLibrary.GlobalControlConsumerMainGridBR();
+            this.mainGridBigRight = new ConsumersViewBigRightControl();
             this.treeViewBR = new Telerik.WinControls.UI.RadTreeView();
             this.pageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainGridSmallRight = new IpsViewComponentLibrary.GlobalControlConsumerMainGrid();
+            this.mainGridSmallRight = new ConsumersViewSmallRightControl();
             this.treeViewSR = new Telerik.WinControls.UI.RadTreeView();
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pageViewOwner = new Telerik.WinControls.UI.RadPageView();
@@ -442,8 +443,8 @@ namespace ConsumerWorkplace_v_1._0
         private System.Windows.Forms.BindingSource licenseAgrParamBindingSource;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadTreeView treeViewBR;
-        private IpsViewComponentLibrary.GlobalControlConsumerMainGrid mainGridSmallRight;
-        private IpsViewComponentLibrary.GlobalControlConsumerMainGridBR mainGridBigRight;
+        private ConsumersViewSmallRightControl mainGridSmallRight;
+        private ConsumersViewBigRightControl mainGridBigRight;
         private IpsViewComponentLibrary.PartnerControls.PartnerControl ctrlPartner;
         private IpsViewComponentLibrary.CommunityControls.CommunityControl ctrlCommunity;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;

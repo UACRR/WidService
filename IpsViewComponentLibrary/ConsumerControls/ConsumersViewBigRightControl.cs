@@ -1,27 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls
 {
-    public partial class GlobalControlConsumerMainGridBR : UserControl
+    public partial class ConsumersViewBigRightControl : UserControl
     {
         public MainGridConsumerBigRightView ViewRow => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
         public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
-        private GridStateRecorder _gridStateRecorder = new GridStateRecorder();
+        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
-        public GlobalControlConsumerMainGridBR()
+        public ConsumersViewBigRightControl()
         {
             InitializeComponent();
             _gridStateRecorder.AddGrid(gvViewConsumers);

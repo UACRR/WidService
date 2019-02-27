@@ -7,10 +7,11 @@ using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class AddCompositionForm : Telerik.WinControls.UI.RadForm
+    public partial class AddCompositionForm : RadForm
     {
         public AddCompositionForm()
         {
