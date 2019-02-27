@@ -191,7 +191,7 @@
             this.gvPlaces.Size = new System.Drawing.Size(746, 235);
             this.gvPlaces.TabIndex = 5;
             this.gvPlaces.ThemeName = "Office2013Light";
-            this.gvPlaces.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.rGridViewInstitution_CurrentRowChanged);
+            this.gvPlaces.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.RGridViewInstitution_CurrentRowChanged);
             // 
             // btnDelete
             // 
@@ -202,7 +202,7 @@
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Видалити бізнес-точку";
             this.btnDelete.ThemeName = "Office2013Light";
-            this.btnDelete.Click += new System.EventHandler(this.btnDeletePlace_Click);
+            this.btnDelete.Click += new System.EventHandler(this.BtnDeletePlace_Click);
             // 
             // btnEdit
             // 

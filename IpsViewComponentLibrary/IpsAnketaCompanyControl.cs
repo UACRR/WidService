@@ -86,14 +86,14 @@ namespace IpsViewComponentLibrary
             getCustomerAnketa = _getCustomerAnketa;
             txtName.ListItemSelected += TxtName_ListItemSelected;
             txtName.TextChanged += TxtName_TextChanged;
-            txtName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtName.AutoCompleteMode = AutoCompleteMode.Suggest;
         }
 
         bool inProcess = false;
         private void TxtName_ListItemSelected(object sender, Telerik.WinControls.UI.RadListDataItem e)
         {
             inProcess = true;
-            RadListDataItem curItem = (RadListDataItem)e.Value;
+            RadListDataItem curItem = e;
             var getCustomer = getCustomerAnketa((int)curItem.Value);
             txtName.Text = (DataSource as AnketaCompany).Name;
             //var anketa = getCustomer.Company.AnketaCompany.Where(rec => rec.Version == getCustomer.AnkVersion).Single();
@@ -109,10 +109,11 @@ namespace IpsViewComponentLibrary
             // Якщо анкета існуючого клієнту
             if (anketaCompanyBindingSource.DataSource is AnketaCompany @company && @company.CustId != 0)
                 return;
-            if (txtName.Text.Trim().Length > 0)
+            string txtName_Text = txtName.Text.Trim();
+           if (txtName_Text.Length > 0)
             {
                 if (_savedSearch.Length == 0
-                    || !_savedSearch.ToUpper().StartsWith(txtName.Text.ToUpper())
+                    || !txtName_Text.ToUpper().StartsWith( _savedSearch.ToUpper() )
                     )
                 {
                     string _cacheSearch = string.Empty;
@@ -131,7 +132,10 @@ namespace IpsViewComponentLibrary
                     })?.ToArray();
                     var tmpText = txtName.Text;
                     //txtName.Clear();
-                    txtName.AutoCompleteDataSource = list;
+
+                    txtName.AutoCompleteItems.Clear();
+                    txtName.AutoCompleteItems.AddRange(list);
+                    // txtName.AutoCompleteDataSource = list;
                     txtName.Text = tmpText;
                     inProcess = false;
                 }

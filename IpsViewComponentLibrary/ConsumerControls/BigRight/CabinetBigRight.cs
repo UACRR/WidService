@@ -248,6 +248,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlLicense.SetDataSources(_gridMainView);
             ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
             ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
+            var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
+            setupRl(_customer, custRl);
             ctrlCalculation.Customer = _customer;
             ctrlPaysInfo.Customer = _customer;
             ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
