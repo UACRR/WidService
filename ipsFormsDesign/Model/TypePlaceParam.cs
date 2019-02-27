@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<TypePlace> TypePlace { get; set; }
-        public ObservableListSource<TypePlaceParamTr> TypePlaceParamTr { get; set; }
+        public virtual ObservableListSource<TypePlace> TypePlace { get; set; }
+        public virtual ObservableListSource<TypePlaceParamTr> TypePlaceParamTr { get; set; }
     }
 }
 

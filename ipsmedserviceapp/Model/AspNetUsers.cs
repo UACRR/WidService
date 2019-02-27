@@ -39,16 +39,16 @@ namespace ipsmedserviceapp.Model
         public bool TwoFactorEnabled { get; set; }
         public string UserName { get; set; }
 
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
-        public ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
-        public ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<Customer> Customer { get; set; }
-        public ICollection<Employee> Employee { get; set; }
-        public ICollection<Fixation> Fixation { get; set; }
-        public ICollection<Register> Register { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<UserRole> UserRole { get; set; }
+        public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
+        public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual ICollection<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public virtual ICollection<BrRegister> BrRegister { get; set; }
+        public virtual ICollection<Customer> Customer { get; set; }
+        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<Fixation> Fixation { get; set; }
+        public virtual ICollection<Register> Register { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
+        public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }

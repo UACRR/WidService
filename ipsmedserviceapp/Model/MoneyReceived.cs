@@ -23,13 +23,13 @@ namespace ipsmedserviceapp.Model
         public decimal? DestribPrepay { get; set; }
 
         [JsonIgnore]
-        public Client Cust { get; set; }
+        public virtual Client Cust { get; set; }
         [JsonIgnore]
-        public MoneyType MoneyTypeNavigation { get; set; }
+        public virtual MoneyType MoneyTypeNavigation { get; set; }
         [JsonIgnore]
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
         [JsonIgnore]
-        public ICollection<MoneyPrepayLink> MoneyPrepayLink { get; set; }
+        public virtual ICollection<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
 

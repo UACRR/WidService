@@ -20,13 +20,13 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<AnketaCompany> AnketaCompanyFaRegionNavigation { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompanyJaRegionNavigation { get; set; }
-        public ObservableListSource<AnketaCompany> AnketaCompanyLeRegionNavigation { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonFaRegionNavigation { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonLeRegionNavigation { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPersonReRegionNavigation { get; set; }
-        public ObservableListSource<RegionTr> RegionTr { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompanyFaRegionNavigation { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompanyJaRegionNavigation { get; set; }
+        public virtual ObservableListSource<AnketaCompany> AnketaCompanyLeRegionNavigation { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPersonFaRegionNavigation { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPersonLeRegionNavigation { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPersonReRegionNavigation { get; set; }
+        public virtual ObservableListSource<RegionTr> RegionTr { get; set; }
     }
 }
 

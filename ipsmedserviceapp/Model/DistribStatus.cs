@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<DistribStatusTr> DistribStatusTr { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
+        public virtual ICollection<DistribStatusTr> DistribStatusTr { get; set; }
+        public virtual ICollection<Distribution> Distribution { get; set; }
     }
 }

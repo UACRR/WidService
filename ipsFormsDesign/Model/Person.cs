@@ -14,8 +14,8 @@ namespace ipsFormsDesign.Model
         public int CustId { get; set; }
         public int Version { get; set; }
 
-        public Customer Cust { get; set; }
-        public ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObservableListSource<AnketaPerson> AnketaPerson { get; set; }
     }
 }
 

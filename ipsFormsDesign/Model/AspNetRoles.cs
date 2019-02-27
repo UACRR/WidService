@@ -18,8 +18,8 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public string NormalizedName { get; set; }
 
-        public ObservableListSource<AspNetRoleClaims> AspNetRoleClaims { get; set; }
-        public ObservableListSource<AspNetUserRoles> AspNetUserRoles { get; set; }
+        public virtual ObservableListSource<AspNetRoleClaims> AspNetRoleClaims { get; set; }
+        public virtual ObservableListSource<AspNetUserRoles> AspNetUserRoles { get; set; }
     }
 }
 

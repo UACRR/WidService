@@ -22,12 +22,12 @@ namespace ipsFormsDesign.Model
         public string FileName { get; set; }
         public string UserId { get; set; }
 
-        public Client Cust { get; set; }
-        public PaidPeriod Period { get; set; }
-        public RegisterStatus StatusNavigation { get; set; }
-        public AspNetUsers User { get; set; }
-        public ObservableListSource<BrRegItem> BrRegItem { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual PaidPeriod Period { get; set; }
+        public virtual RegisterStatus StatusNavigation { get; set; }
+        public virtual AspNetUsers User { get; set; }
+        public virtual ObservableListSource<BrRegItem> BrRegItem { get; set; }
+        public virtual ObservableListSource<Distribution> Distribution { get; set; }
     }
 }
 

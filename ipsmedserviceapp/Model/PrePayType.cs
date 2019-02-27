@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<LicAuthorBr> LicAuthorBr { get; set; }
-        public ICollection<PrePayTypeTr> PrePayTypeTr { get; set; }
+        public virtual ICollection<LicAuthorBr> LicAuthorBr { get; set; }
+        public virtual ICollection<PrePayTypeTr> PrePayTypeTr { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Model
         public string r031NameRu { get; set; }
         public string r031NameEn { get; set; }
 
-        public ObservableListSource<KL_R030> KL_R030 { get; set; }
+        public ICollection<KL_R030> KL_R030 { get; set; }
     }
 }
 

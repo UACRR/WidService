@@ -17,11 +17,11 @@ namespace ipsmedserviceapp.Model
         public string ModifyLogin { get; set; }
 
         [JsonIgnore]
-        public CopyRight CRight { get; set; }
+        public virtual CopyRight CRight { get; set; }
         [JsonIgnore]
-        public WorkType WorkTypeClNavigation { get; set; }
+        public virtual WorkType WorkTypeClNavigation { get; set; }
         [JsonIgnore]
-        public WorkType WorkTypeRhNavigation { get; set; }
+        public virtual WorkType WorkTypeRhNavigation { get; set; }
     }
 }
 

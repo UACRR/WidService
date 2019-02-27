@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<Fixation> Fixation { get; set; }
-        public ObservableListSource<UsesKind> UsesKind { get; set; }
-        public ObservableListSource<UsesTypeTr> UsesTypeTr { get; set; }
+        public virtual ObservableListSource<Fixation> Fixation { get; set; }
+        public virtual ObservableListSource<UsesKind> UsesKind { get; set; }
+        public virtual ObservableListSource<UsesTypeTr> UsesTypeTr { get; set; }
     }
 }
 

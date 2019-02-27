@@ -226,7 +226,7 @@ namespace IpsViewComponentLibrary
             this.pageView.Size = new System.Drawing.Size(1077, 414);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
-            this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
+            this.pageView.SelectedPageChanged += new System.EventHandler(this.PageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripAlignment = Telerik.WinControls.UI.StripViewAlignment.Top;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ItemContentOrientation = Telerik.WinControls.UI.PageViewContentOrientation.Horizontal;
@@ -254,7 +254,7 @@ namespace IpsViewComponentLibrary
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
             this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1069, 363);
             this.ctrlAuthorRightholderList.TabIndex = 2;
-            this.ctrlAuthorRightholderList.CurrentAuthorRightholderChanged += new System.EventHandler(this.ctrlAuthorRightholderList_CurrentAuthorRightholderChanged);
+            this.ctrlAuthorRightholderList.CurrentAuthorRightholderChanged += new System.EventHandler(this.CtrlAuthorRightholderList_CurrentAuthorRightholderChanged);
             // 
             // pvConditions
             // 
@@ -295,7 +295,7 @@ namespace IpsViewComponentLibrary
             this.checkIsTour.TabIndex = 40;
             this.checkIsTour.Text = "Чи плануються гастролі";
             this.checkIsTour.ThemeName = "Office2013Light";
-            this.checkIsTour.CheckStateChanged += new System.EventHandler(this.checkIsTour_CheckStateChanged);
+            this.checkIsTour.CheckStateChanged += new System.EventHandler(this.CheckIsTour_CheckStateChanged);
             // 
             // bsLicenseBigR
             // 
@@ -330,7 +330,7 @@ namespace IpsViewComponentLibrary
             this.ddlPlaceName.TabIndex = 19;
             this.ddlPlaceName.ThemeName = "Office2013Light";
             this.ddlPlaceName.ValueMember = "PlaceId";
-            this.ddlPlaceName.SelectedValueChanged += new System.EventHandler(this.ddlPlaceName_SelectedValueChanged);
+            this.ddlPlaceName.SelectedValueChanged += new System.EventHandler(this.DdlPlaceName_SelectedValueChanged);
             // 
             // bsLicense
             // 
@@ -523,7 +523,7 @@ namespace IpsViewComponentLibrary
             this.txtMusicRate.Size = new System.Drawing.Size(50, 21);
             this.txtMusicRate.TabIndex = 32;
             this.txtMusicRate.ThemeName = "Office2013Light";
-            this.txtMusicRate.TextChanged += new System.EventHandler(this.txtMusicRate_TextChanged);
+            this.txtMusicRate.TextChanged += new System.EventHandler(this.TxtMusicRate_TextChanged);
             // 
             // ctrlMusicalDesignList
             // 
@@ -576,7 +576,7 @@ namespace IpsViewComponentLibrary
             this.btnSetCenceledStatus.TabIndex = 1;
             this.btnSetCenceledStatus.Text = "Відхилити";
             this.btnSetCenceledStatus.ThemeName = "Office2013Light";
-            this.btnSetCenceledStatus.Click += new System.EventHandler(this.btnSetCanceledStatus_Click);
+            this.btnSetCenceledStatus.Click += new System.EventHandler(this.BtnSetCanceledStatus_Click);
             // 
             // btnSetActiveStatus
             // 
@@ -586,7 +586,7 @@ namespace IpsViewComponentLibrary
             this.btnSetActiveStatus.TabIndex = 0;
             this.btnSetActiveStatus.Text = "Дозвіл на видачу ліцензії";
             this.btnSetActiveStatus.ThemeName = "Office2013Light";
-            this.btnSetActiveStatus.Click += new System.EventHandler(this.btnSetActiveStatus_Click);
+            this.btnSetActiveStatus.Click += new System.EventHandler(this.BtnSetActiveStatus_Click);
             // 
             // bsMusicDesign
             // 
@@ -868,7 +868,7 @@ namespace IpsViewComponentLibrary
             this.ddlLang.TabIndex = 26;
             this.ddlLang.ThemeName = "Office2013Light";
             this.ddlLang.ValueMember = "CodeS";
-            this.ddlLang.Leave += new System.EventHandler(this.ddlLang_Leave);
+            this.ddlLang.Leave += new System.EventHandler(this.DdlLang_Leave);
             // 
             // bsDictLanguage
             // 
@@ -913,7 +913,7 @@ namespace IpsViewComponentLibrary
             this.txtActCode.Size = new System.Drawing.Size(49, 21);
             this.txtActCode.TabIndex = 23;
             this.txtActCode.ThemeName = "Office2013Light";
-            this.txtActCode.TextChanged += new System.EventHandler(this.txtActCode_TextChanged);
+            this.txtActCode.TextChanged += new System.EventHandler(this.TxtActCode_TextChanged);
             // 
             // bsObjectRight
             // 
@@ -930,7 +930,7 @@ namespace IpsViewComponentLibrary
             this.ddlPerformType.TabIndex = 21;
             this.ddlPerformType.ThemeName = "Office2013Light";
             this.ddlPerformType.ValueMember = "CodeI";
-            this.ddlPerformType.Leave += new System.EventHandler(this.ddlPerformType_Leave);
+            this.ddlPerformType.Leave += new System.EventHandler(this.DdlPerformType_Leave);
             // 
             // bsDictPerformType
             // 
@@ -957,7 +957,7 @@ namespace IpsViewComponentLibrary
             this.ddlGenreType.TabIndex = 19;
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
-            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.ddlGenreType_SelectedValueChanged);
+            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.DdlGenreType_SelectedValueChanged);
             // 
             // bsDictGenreType
             // 
@@ -1032,7 +1032,7 @@ namespace IpsViewComponentLibrary
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnSave
             // 
@@ -1043,7 +1043,7 @@ namespace IpsViewComponentLibrary
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // radLabel2
             // 

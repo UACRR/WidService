@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Model
         public string ClaimValue { get; set; }
         public string RoleId { get; set; }
 
-        public AspNetRoles Role { get; set; }
+        public virtual AspNetRoles Role { get; set; }
     }
 }
 

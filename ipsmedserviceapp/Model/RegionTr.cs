@@ -9,6 +9,6 @@ namespace ipsmedserviceapp.Model
         public string Lang { get; set; }
         public string Name { get; set; }
 
-        public Region CodeINavigation { get; set; }
+        public virtual Region CodeINavigation { get; set; }
     }
 }

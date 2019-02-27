@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
 
-        public CopyRight CRight { get; set; }
-        public WorkType WorkTypeClNavigation { get; set; }
-        public WorkType WorkTypeRhNavigation { get; set; }
+        public virtual CopyRight CRight { get; set; }
+        public virtual WorkType WorkTypeClNavigation { get; set; }
+        public virtual WorkType WorkTypeRhNavigation { get; set; }
     }
 }
 

@@ -25,18 +25,18 @@ namespace ipsFormsDesign.Model
         public string ClientBrand { get; set; }
         public string ClientGroup { get; set; }
 
-        public Customer Cust { get; set; }
-        public ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
-        public ObservableListSource<BrRegister> BrRegister { get; set; }
-        public ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
-        public ObservableListSource<ExternalPay> ExternalPay { get; set; }
-        public ObservableListSource<Fixation> Fixation { get; set; }
-        public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
-        public ObservableListSource<MoneyReceived> MoneyReceived { get; set; }
-        public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
-        public ObservableListSource<PartnerClient> PartnerClient { get; set; }
-        public ObservableListSource<Register> Register { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObservableListSource<AgreementAddBr> AgreementAddBr { get; set; }
+        public virtual ObservableListSource<BrRegister> BrRegister { get; set; }
+        public virtual ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        public virtual ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual ObservableListSource<ExternalPay> ExternalPay { get; set; }
+        public virtual ObservableListSource<Fixation> Fixation { get; set; }
+        public virtual ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
+        public virtual ObservableListSource<MoneyReceived> MoneyReceived { get; set; }
+        public virtual ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
+        public virtual ObservableListSource<PartnerClient> PartnerClient { get; set; }
+        public virtual ObservableListSource<Register> Register { get; set; }
     }
 }
 

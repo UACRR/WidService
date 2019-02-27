@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<KindFilmTr> KindFilmTr { get; set; }
-        public ICollection<RequestMovie> RequestMovie { get; set; }
+        public virtual ICollection<KindFilmTr> KindFilmTr { get; set; }
+        public virtual ICollection<RequestMovie> RequestMovie { get; set; }
     }
 }

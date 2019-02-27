@@ -24,18 +24,18 @@ namespace ipsmedserviceapp.Model
         public int? Version { get; set; }
 
         [JsonIgnore]
-        public AgreementStatus AgrStatusNavigation { get; set; }
+        public virtual AgreementStatus AgrStatusNavigation { get; set; }
         [JsonIgnore]
-        public AgreementType AgrTypeNavigation { get; set; }
+        public virtual AgreementType AgrTypeNavigation { get; set; }
         [JsonIgnore]
-        public Customer Cust { get; set; }
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ICollection<AgreementAddBr> AgreementAddBr { get; set; }
         [JsonIgnore]
-        public ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
-        public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
+        public virtual ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
         [JsonIgnore]
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public virtual ICollection<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }
 

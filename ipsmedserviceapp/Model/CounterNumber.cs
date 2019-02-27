@@ -17,6 +17,6 @@ namespace ipsmedserviceapp.Model
         public string SymbolN { get; set; }
         public short? TemplYear { get; set; }
 
-        public ICollection<RelCounterDoc> RelCounterDoc { get; set; }
+        public virtual ICollection<RelCounterDoc> RelCounterDoc { get; set; }
     }
 }

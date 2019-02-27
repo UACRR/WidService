@@ -21,11 +21,11 @@ namespace ipsmedserviceapp.Model
         public int? DistItemId { get; set; }
         public int? DistId { get; set; }
 
-        public CopyrightKind CRkindCodeNavigation { get; set; }
-        public Community CmCust { get; set; }
-        public RightHolder Cust { get; set; }
-        public DistributionItem DistI { get; set; }
-        public RegisterItem RegI { get; set; }
-        public BrRegItem RegINavigation { get; set; }
+        public virtual CopyrightKind CRkindCodeNavigation { get; set; }
+        public virtual Community CmCust { get; set; }
+        public virtual RightHolder Cust { get; set; }
+        public virtual DistributionItem DistI { get; set; }
+        public virtual RegisterItem RegI { get; set; }
+        public virtual BrRegItem RegINavigation { get; set; }
     }
 }

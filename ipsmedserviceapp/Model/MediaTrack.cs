@@ -25,7 +25,7 @@ namespace ipsmedserviceapp.Model
         public string ModifyLogin { get; set; }
         public TimeSpan? Duration { get; set; }
 
-        public ObjectRight Obj { get; set; }
-        public ICollection<MediaFile> MediaFile { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual ICollection<MediaFile> MediaFile { get; set; }
     }
 }

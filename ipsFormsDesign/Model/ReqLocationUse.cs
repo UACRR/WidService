@@ -11,9 +11,9 @@ namespace ipsFormsDesign.Model
         public string CountryCode { get; set; }
         public int? ContinentCode { get; set; }
 
-        public Continent ContinentCodeNavigation { get; set; }
-        public Country CountryCodeNavigation { get; set; }
-        public Request Req { get; set; }
+        public virtual Continent ContinentCodeNavigation { get; set; }
+        public virtual Country CountryCodeNavigation { get; set; }
+        public virtual Request Req { get; set; }
     }
 }
 

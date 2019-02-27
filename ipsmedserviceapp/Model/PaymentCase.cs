@@ -16,8 +16,8 @@ namespace ipsmedserviceapp.Model
         public DateTime? DatePayFact { get; set; }
         public string OtherCase { get; set; }
 
-        public PaymentKind PayKindNavigation { get; set; }
-        public PayMethodType PayMethodNavigation { get; set; }
-        public Request Req { get; set; }
+        public virtual PaymentKind PayKindNavigation { get; set; }
+        public virtual PayMethodType PayMethodNavigation { get; set; }
+        public virtual Request Req { get; set; }
     }
 }

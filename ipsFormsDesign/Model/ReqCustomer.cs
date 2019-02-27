@@ -20,10 +20,10 @@ namespace ipsFormsDesign.Model
         public int? ActivityCode { get; set; }
         public string Comment { get; set; }
 
-        public ActivityType ActivityCodeNavigation { get; set; }
-        public Country CountryCodeNavigation { get; set; }
-        public Customer Cust { get; set; }
-        public ObservableListSource<Request> Request { get; set; }
+        public virtual ActivityType ActivityCodeNavigation { get; set; }
+        public virtual Country CountryCodeNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObservableListSource<Request> Request { get; set; }
     }
 }
 

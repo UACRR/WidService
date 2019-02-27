@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Model
         public int PerId { get; set; }
         public string PerName { get; set; }
 
-        public ObservableListSource<RelObjPerformer> RelObjPerformer { get; set; }
+        public virtual ObservableListSource<RelObjPerformer> RelObjPerformer { get; set; }
     }
 }
 

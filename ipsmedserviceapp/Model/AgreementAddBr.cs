@@ -21,13 +21,13 @@ namespace ipsmedserviceapp.Model
         public int? CustId { get; set; }
 
         [JsonIgnore]
-        public AgreementMaster Agr { get; set; }
+        public virtual AgreementMaster Agr { get; set; }
         [JsonIgnore]
-        public AgreementStatus AgrStatusNavigation { get; set; }
+        public virtual AgreementStatus AgrStatusNavigation { get; set; }
         [JsonIgnore]
-        public Client Cust { get; set; }
+        public virtual Client Cust { get; set; }
         [JsonIgnore]
-        public Period PeriodCodeNavigation { get; set; }
+        public virtual Period PeriodCodeNavigation { get; set; }
     }
 }
 

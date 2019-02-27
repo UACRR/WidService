@@ -21,15 +21,14 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public int Crtype { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public CopyrightType CrtypeNavigation { get; set; }
-        public CreativeTranslate CreativeTranslate { get; set; }
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
-        public ICollection<RegisterAuthors> RegisterAuthors { get; set; }
-        public ICollection<RegisterExtra> RegisterExtra { get; set; }
-        public ICollection<RelEtRole> RelEtRole { get; set; }
-        public ICollection<RelGenreRole> RelGenreRole { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual CopyrightType CrtypeNavigation { get; set; }
+        public virtual ICollection<Authors> Authors { get; set; }
+        public virtual ICollection<CopyRight> CopyRight { get; set; }
+        public virtual ICollection<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
+        public virtual ICollection<RegisterAuthors> RegisterAuthors { get; set; }
+        public virtual ICollection<RegisterExtra> RegisterExtra { get; set; }
+        public virtual ICollection<RelEtRole> RelEtRole { get; set; }
+        public virtual ICollection<RelGenreRole> RelGenreRole { get; set; }
     }
 }

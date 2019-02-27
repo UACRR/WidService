@@ -13,7 +13,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public PeriodStatusTr PeriodStatusTr { get; set; }
-        public ICollection<PaidPeriod> PaidPeriod { get; set; }
+        public virtual PeriodStatusTr PeriodStatusTr { get; set; }
+        public virtual ICollection<PaidPeriod> PaidPeriod { get; set; }
     }
 }

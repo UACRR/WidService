@@ -12,7 +12,7 @@ namespace ipsFormsDesign.Model
         public decimal? CAmount { get; set; }
         public decimal? CAmountNbu { get; set; }
 
-        public KlR030 R030Navigation { get; set; }
+        public virtual KlR030 R030Navigation { get; set; }
     }
 }
 

@@ -17,10 +17,10 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public int CategoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public RequestType ReqTypeNavigation { get; set; }
-        public ObservableListSource<RelReqMedia> RelReqMedia { get; set; }
-        public ObservableListSource<UseMediaTypeTr> UseMediaTypeTr { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual RequestType ReqTypeNavigation { get; set; }
+        public virtual ObservableListSource<RelReqMedia> RelReqMedia { get; set; }
+        public virtual ObservableListSource<UseMediaTypeTr> UseMediaTypeTr { get; set; }
     }
 }
 

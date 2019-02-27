@@ -27,26 +27,26 @@ namespace ipsmedserviceapp.Model
         public int? LicVersion { get; set; }
         public int? ProlongVersion { get; set; }
 
-        public AgreementMaster Agr { get; set; }
+        public virtual AgreementMaster Agr { get; set; }
         [JsonIgnore]
-        public Client Cust { get; set; }
+        public virtual Client Cust { get; set; }
         [JsonIgnore]
-        public AgrLicenseType LicCodeNavigation { get; set; }
+        public virtual AgrLicenseType LicCodeNavigation { get; set; }
         [JsonIgnore]
-        public AgreementStatus LicStatusNavigation { get; set; }
+        public virtual AgreementStatus LicStatusNavigation { get; set; }
         [JsonIgnore]
-        public LicenseType LicTypeNavigation { get; set; }
-        public LicenseBigR LicenseBigR { get; set; }
+        public virtual LicenseType LicTypeNavigation { get; set; }
+        public virtual LicenseBigR LicenseBigR { get; set; }
         [JsonIgnore]
-        public ICollection<BrRegItem> BrRegItem { get; set; }
+        public virtual ICollection<BrRegItem> BrRegItem { get; set; }
         [JsonIgnore]
-        public ICollection<Fixation> Fixation { get; set; }
+        public virtual ICollection<Fixation> Fixation { get; set; }
         [JsonIgnore]
-        public ICollection<LicPlace> LicPlace { get; set; }
-        public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public virtual ICollection<LicPlace> LicPlace { get; set; }
+        public virtual ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
         [JsonIgnore]
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ICollection<PaidPeriod> PaidPeriod { get; set; }
+        public virtual ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ICollection<PaidPeriod> PaidPeriod { get; set; }
     }
 }
 

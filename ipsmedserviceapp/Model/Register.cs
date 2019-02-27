@@ -37,19 +37,19 @@ namespace ipsmedserviceapp.Model
         public int? AlgorithmId { get; set; }
 
         [JsonIgnore]
-        public AlgorithmType Algorithm { get; set; }
+        public virtual AlgorithmType Algorithm { get; set; }
         [JsonIgnore]
-        public Client Cust { get; set; }
+        public virtual Client Cust { get; set; }
         [JsonIgnore]
-        public RegisterStatus RgStatusNavigation { get; set; }
+        public virtual RegisterStatus RgStatusNavigation { get; set; }
         [JsonIgnore]
-        public RegisterRatedList Rm { get; set; }
+        public virtual RegisterRatedList Rm { get; set; }
         [JsonIgnore]
-        public AspNetUsers User { get; set; }
+        public virtual AspNetUsers User { get; set; }
         [JsonIgnore]
-        public ICollection<BrRegItem> BrRegItem { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
-        public ICollection<RegisterItem> RegisterItem { get; set; }
+        public virtual ICollection<BrRegItem> BrRegItem { get; set; }
+        public virtual ICollection<Distribution> Distribution { get; set; }
+        public virtual ICollection<RegisterItem> RegisterItem { get; set; }
     }
 }
 

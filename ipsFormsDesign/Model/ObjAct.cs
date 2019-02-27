@@ -18,11 +18,11 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<EtGenreRate> EtGenreRate { get; set; }
-        public ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
-        public ObservableListSource<ObjActTr> ObjActTr { get; set; }
-        public ObservableListSource<ObjectRight> ObjectRight { get; set; }
-        public ObservableListSource<RelGenrePercent> RelGenrePercent { get; set; }
+        public virtual ObservableListSource<EtGenreRate> EtGenreRate { get; set; }
+        public virtual ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
+        public virtual ObservableListSource<ObjActTr> ObjActTr { get; set; }
+        public virtual ObservableListSource<ObjectRight> ObjectRight { get; set; }
+        public virtual ObservableListSource<RelGenrePercent> RelGenrePercent { get; set; }
     }
 }
 

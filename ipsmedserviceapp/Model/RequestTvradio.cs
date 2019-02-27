@@ -15,7 +15,7 @@ namespace ipsmedserviceapp.Model
         public string NameTvchanel { get; set; }
         public string EpisodeComment { get; set; }
 
-        public Request Req { get; set; }
-        public ICollection<RelTvepisode> RelTvepisode { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual ICollection<RelTvepisode> RelTvepisode { get; set; }
     }
 }

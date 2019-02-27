@@ -22,10 +22,10 @@ namespace ipsFormsDesign.Model
         public int? CntReport { get; set; }
         public decimal? PaidAmount { get; set; }
 
-        public PaidPeriod Period { get; set; }
-        public RegisterListStatus StatusNavigation { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
-        public ObservableListSource<Register> Register { get; set; }
+        public virtual PaidPeriod Period { get; set; }
+        public virtual RegisterListStatus StatusNavigation { get; set; }
+        public virtual ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual ObservableListSource<Register> Register { get; set; }
     }
 }
 

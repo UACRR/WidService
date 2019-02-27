@@ -8,7 +8,7 @@ namespace ipsmedserviceapp.Model
         public int AgrType { get; set; }
         public int DocType { get; set; }
 
-        public AgreementType AgrTypeNavigation { get; set; }
-        public DocumentType DocTypeNavigation { get; set; }
+        public virtual AgreementType AgrTypeNavigation { get; set; }
+        public virtual DocumentType DocTypeNavigation { get; set; }
     }
 }

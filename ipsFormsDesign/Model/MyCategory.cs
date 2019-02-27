@@ -9,8 +9,8 @@ namespace ipsFormsDesign.Model
         public int CustId { get; set; }
         public int CodeI { get; set; }
 
-        public Category CodeINavigation { get; set; }
-        public MyAnketa Cust { get; set; }
+        public virtual Category CodeINavigation { get; set; }
+        public virtual MyAnketa Cust { get; set; }
     }
 }
 

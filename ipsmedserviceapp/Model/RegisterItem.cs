@@ -31,13 +31,13 @@ namespace ipsmedserviceapp.Model
         public bool IsAuto { get; set; }
 
         [JsonIgnore]
-        public RegisterItemType CodeItemNavigation { get; set; }
-        public ObjectRight Obj { get; set; }
+        public virtual RegisterItemType CodeItemNavigation { get; set; }
+        public virtual ObjectRight Obj { get; set; }
         [JsonIgnore]
-        public Register Reg { get; set; }
-        public RegisterItemFix RegisterItemFix { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
-        public ICollection<RegisterExtra> RegisterExtra { get; set; }
+        public virtual Register Reg { get; set; }
+        public virtual RegisterItemFix RegisterItemFix { get; set; }
+        public virtual ICollection<RegisterCount> RegisterCount { get; set; }
+        public virtual ICollection<RegisterExtra> RegisterExtra { get; set; }
     }
 }
 

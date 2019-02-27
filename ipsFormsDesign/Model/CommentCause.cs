@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Model
         public string CauseNameRu { get; set; }
         public string CauseNameEn { get; set; }
 
-        public ObservableListSource<ReqTrade> ReqTrade { get; set; }
+        public virtual ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }
 

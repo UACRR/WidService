@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<KindSerialTr> KindSerialTr { get; set; }
-        public ICollection<RequestSerial> RequestSerial { get; set; }
+        public virtual ICollection<KindSerialTr> KindSerialTr { get; set; }
+        public virtual ICollection<RequestSerial> RequestSerial { get; set; }
     }
 }

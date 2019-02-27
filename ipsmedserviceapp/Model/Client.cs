@@ -26,26 +26,26 @@ namespace ipsmedserviceapp.Model
         public string ClientGroup { get; set; }
 
         [JsonIgnore]
-        public Customer Cust { get; set; }
+        public virtual Customer Cust { get; set; }
         [JsonIgnore]
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        public virtual ICollection<AgreementAddBr> AgreementAddBr { get; set; }
         [JsonIgnore]
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        public virtual ICollection<BrRegister> BrRegister { get; set; }
+        public virtual ICollection<ClnBusinessPlace> ClnBusinessPlace { get; set; }
         [JsonIgnore]
-        public ICollection<Distribution> Distribution { get; set; }
+        public virtual ICollection<Distribution> Distribution { get; set; }
         [JsonIgnore]
-        public ICollection<ExternalPay> ExternalPay { get; set; }
+        public virtual ICollection<ExternalPay> ExternalPay { get; set; }
         [JsonIgnore]
-        public ICollection<Fixation> Fixation { get; set; }
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
-        public ICollection<MoneyReceived> MoneyReceived { get; set; }
+        public virtual ICollection<Fixation> Fixation { get; set; }
+        public virtual ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public virtual ICollection<MoneyReceived> MoneyReceived { get; set; }
         [JsonIgnore]
-        public ICollection<PaidPeriod> PaidPeriod { get; set; }
+        public virtual ICollection<PaidPeriod> PaidPeriod { get; set; }
         [JsonIgnore]
-        public ICollection<PartnerClient> PartnerClient { get; set; }
+        public virtual ICollection<PartnerClient> PartnerClient { get; set; }
         [JsonIgnore]
-        public ICollection<Register> Register { get; set; }
+        public virtual ICollection<Register> Register { get; set; }
     }
 }
 

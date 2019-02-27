@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<BrRegister> BrRegister { get; set; }
-        public ObservableListSource<Register> Register { get; set; }
-        public ObservableListSource<RegisterStatusTr> RegisterStatusTr { get; set; }
+        public virtual ObservableListSource<BrRegister> BrRegister { get; set; }
+        public virtual ObservableListSource<Register> Register { get; set; }
+        public virtual ObservableListSource<RegisterStatusTr> RegisterStatusTr { get; set; }
     }
 }
 

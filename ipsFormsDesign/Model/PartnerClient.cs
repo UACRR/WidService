@@ -9,8 +9,8 @@ namespace ipsFormsDesign.Model
         public int CustId { get; set; }
         public int ClCustId { get; set; }
 
-        public Client ClCust { get; set; }
-        public Partner Cust { get; set; }
+        public virtual Client ClCust { get; set; }
+        public virtual Partner Cust { get; set; }
     }
 }
 

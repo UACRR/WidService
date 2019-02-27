@@ -127,12 +127,12 @@ namespace ipsFormsDesign.Utilities
             return authorRightholderList;
         }
 
-        public static decimal GetTotalRate(this IList<CopyRight> copyrightList)
+        public static decimal GetTotalRate(this ICollection<CopyRight> copyrightList)
         {
             return copyrightList.Where(cr => cr.Rate != null).Sum(cr => cr.Rate.Value);
         }
 
-        public static decimal GetTotalRoleRate(this IList<CopyRight> copyrightList)
+        public static decimal GetTotalRoleRate(this ICollection<CopyRight> copyrightList)
         {
             return copyrightList.Where(cr => cr.RoleRate != null).Sum(cr => cr.RoleRate.Value);
         }

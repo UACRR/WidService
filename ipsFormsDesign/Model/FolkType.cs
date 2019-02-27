@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<Authors> Authors { get; set; }
-        public ObservableListSource<FolkTypeTr> FolkTypeTr { get; set; }
+        public virtual ObservableListSource<Authors> Authors { get; set; }
+        public virtual ObservableListSource<FolkTypeTr> FolkTypeTr { get; set; }
     }
 }
 

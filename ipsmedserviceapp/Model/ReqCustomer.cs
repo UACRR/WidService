@@ -19,9 +19,9 @@ namespace ipsmedserviceapp.Model
         public int? ActivityCode { get; set; }
         public string Comment { get; set; }
 
-        public ActivityType ActivityCodeNavigation { get; set; }
-        public Country CountryCodeNavigation { get; set; }
-        public Customer Cust { get; set; }
-        public ICollection<Request> Request { get; set; }
+        public virtual ActivityType ActivityCodeNavigation { get; set; }
+        public virtual Country CountryCodeNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
     }
 }

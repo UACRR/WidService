@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<SeekObject> SeekObject { get; set; }
-        public ICollection<SeekTypeTr> SeekTypeTr { get; set; }
+        public virtual ICollection<SeekObject> SeekObject { get; set; }
+        public virtual ICollection<SeekTypeTr> SeekTypeTr { get; set; }
     }
 }

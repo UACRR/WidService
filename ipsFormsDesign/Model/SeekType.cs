@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<SeekObject> SeekObject { get; set; }
-        public ObservableListSource<SeekTypeTr> SeekTypeTr { get; set; }
+        public virtual ObservableListSource<SeekObject> SeekObject { get; set; }
+        public virtual ObservableListSource<SeekTypeTr> SeekTypeTr { get; set; }
     }
 }
 

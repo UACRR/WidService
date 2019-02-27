@@ -13,6 +13,6 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<ClientGroupTr> ClientGroupTr { get; set; }
+        public virtual ICollection<ClientGroupTr> ClientGroupTr { get; set; }
     }
 }

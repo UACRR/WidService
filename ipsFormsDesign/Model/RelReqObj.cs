@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Model
         public int KindGroupId { get; set; }
         public int? CrkindCode { get; set; }
 
-        public RequestType ReqTypeNavigation { get; set; }
+        public virtual RequestType ReqTypeNavigation { get; set; }
     }
 }
 

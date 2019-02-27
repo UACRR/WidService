@@ -15,9 +15,9 @@ namespace ipsmedserviceapp.Model
         public int? Status { get; set; }
 
         [JsonIgnore]
-        public LicenseAgrParam Lic { get; set; }
+        public virtual LicenseAgrParam Lic { get; set; }
         [JsonIgnore]
-        public ClnBusinessPlace Place { get; set; }
+        public virtual ClnBusinessPlace Place { get; set; }
     }
 }
 

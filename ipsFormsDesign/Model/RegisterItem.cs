@@ -30,12 +30,12 @@ namespace ipsFormsDesign.Model
         public int Ticks { get; set; }
         public bool IsAuto { get; set; }
 
-        public RegisterItemType CodeItemNavigation { get; set; }
-        public ObjectRight Obj { get; set; }
-        public Register Reg { get; set; }
-        public RegisterItemFix RegisterItemFix { get; set; }
-        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
-        public ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
+        public virtual RegisterItemType CodeItemNavigation { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual Register Reg { get; set; }
+        public virtual RegisterItemFix RegisterItemFix { get; set; }
+        public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public virtual ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
     }
 }
 

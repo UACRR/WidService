@@ -8,7 +8,7 @@ namespace ipsmedserviceapp.Model
         public int CustId { get; set; }
         public int CRtype { get; set; }
 
-        public CopyrightType CRtypeNavigation { get; set; }
-        public MyAnketa Cust { get; set; }
+        public virtual CopyrightType CRtypeNavigation { get; set; }
+        public virtual MyAnketa Cust { get; set; }
     }
 }

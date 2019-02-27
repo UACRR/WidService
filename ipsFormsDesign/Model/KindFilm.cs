@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<KindFilmTr> KindFilmTr { get; set; }
-        public ObservableListSource<RequestMovie> RequestMovie { get; set; }
+        public virtual ObservableListSource<KindFilmTr> KindFilmTr { get; set; }
+        public virtual ObservableListSource<RequestMovie> RequestMovie { get; set; }
     }
 }
 

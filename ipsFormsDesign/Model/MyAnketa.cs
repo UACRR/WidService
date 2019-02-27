@@ -18,9 +18,9 @@ namespace ipsFormsDesign.Model
         public string AccInCommission { get; set; }
         public string AccCourt { get; set; }
 
-        public Customer Cust { get; set; }
-        public ObservableListSource<MyCategory> MyCategory { get; set; }
-        public ObservableListSource<MyCopyRightType> MyCopyRightType { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObservableListSource<MyCategory> MyCategory { get; set; }
+        public virtual ObservableListSource<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }
 

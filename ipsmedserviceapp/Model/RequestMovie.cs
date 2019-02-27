@@ -17,9 +17,9 @@ namespace ipsmedserviceapp.Model
         public bool? UseHire { get; set; }
         public bool? UseFestival { get; set; }
 
-        public KindFilm KindFilmNavigation { get; set; }
-        public Request Req { get; set; }
-        public ICollection<RelGenreMovie> RelGenreMovie { get; set; }
-        public ICollection<RelMovieEpisode> RelMovieEpisode { get; set; }
+        public virtual KindFilm KindFilmNavigation { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual ICollection<RelGenreMovie> RelGenreMovie { get; set; }
+        public virtual ICollection<RelMovieEpisode> RelMovieEpisode { get; set; }
     }
 }

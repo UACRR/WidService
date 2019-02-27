@@ -9,8 +9,8 @@ namespace ipsFormsDesign.Model
         public int ReqId { get; set; }
         public int UseAreaTypeCode { get; set; }
 
-        public RequestAdapt Req { get; set; }
-        public UseAreaType UseAreaTypeCodeNavigation { get; set; }
+        public virtual RequestAdapt Req { get; set; }
+        public virtual UseAreaType UseAreaTypeCodeNavigation { get; set; }
     }
 }
 

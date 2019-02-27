@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<MonthNameTr> MonthNameTr { get; set; }
+        public virtual ObservableListSource<MonthNameTr> MonthNameTr { get; set; }
     }
 }
 

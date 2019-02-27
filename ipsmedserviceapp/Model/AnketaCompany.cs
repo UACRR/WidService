@@ -34,17 +34,17 @@ namespace ipsmedserviceapp.Model
         public int? LeRegion { get; set; }
         public string LeAddress { get; set; }
 
-        public ActivityType ActivityCodeNavigation { get; set; }
-        public BankAccount BanAcc { get; set; }
-        public Company Cust { get; set; }
-        public Customer CustNavigation { get; set; }
-        public Country FaCountryNavigation { get; set; }
-        public Region FaRegionNavigation { get; set; }
-        public Country JaCountryNavigation { get; set; }
-        public Region JaRegionNavigation { get; set; }
-        public Country LeCountryNavigation { get; set; }
-        public Region LeRegionNavigation { get; set; }
-        public AnketaStatus StatusNavigation { get; set; }
-        public TypeVat TypeVatNavigation { get; set; }
+        public virtual ActivityType ActivityCodeNavigation { get; set; }
+        public virtual BankAccount BanAcc { get; set; }
+        public virtual Company Cust { get; set; }
+        public virtual Customer CustNavigation { get; set; }
+        public virtual Country FaCountryNavigation { get; set; }
+        public virtual Region FaRegionNavigation { get; set; }
+        public virtual Country JaCountryNavigation { get; set; }
+        public virtual Region JaRegionNavigation { get; set; }
+        public virtual Country LeCountryNavigation { get; set; }
+        public virtual Region LeRegionNavigation { get; set; }
+        public virtual AnketaStatus StatusNavigation { get; set; }
+        public virtual TypeVat TypeVatNavigation { get; set; }
     }
 }

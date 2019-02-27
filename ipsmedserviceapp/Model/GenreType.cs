@@ -17,10 +17,10 @@ namespace ipsmedserviceapp.Model
         public int CategoryCode { get; set; }
         public string Name { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public ICollection<GenreTypeTr> GenreTypeTr { get; set; }
-        public ICollection<RelEtGenre> RelEtGenre { get; set; }
-        public ICollection<RelGenrePercent> RelGenrePercent { get; set; }
-        public ICollection<RelGenreRole> RelGenreRole { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual ICollection<GenreTypeTr> GenreTypeTr { get; set; }
+        public virtual ICollection<RelEtGenre> RelEtGenre { get; set; }
+        public virtual ICollection<RelGenrePercent> RelGenrePercent { get; set; }
+        public virtual ICollection<RelGenreRole> RelGenreRole { get; set; }
     }
 }

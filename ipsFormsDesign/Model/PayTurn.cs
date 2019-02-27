@@ -25,8 +25,8 @@ namespace ipsFormsDesign.Model
         public int? CustIdRh { get; set; }
         public int? RegIitemId { get; set; }
 
-        public Account AccIdDebetNavigation { get; set; }
-        public PaymentStatus PayStatusNavigation { get; set; }
+        public virtual Account AccIdDebetNavigation { get; set; }
+        public virtual PaymentStatus PayStatusNavigation { get; set; }
     }
 }
 

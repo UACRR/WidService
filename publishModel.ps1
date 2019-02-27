@@ -18,7 +18,7 @@ foreach( $fileName in $files )
     $designContent = [regex]::Replace($designContent, 'public partial class (\w+)', 'public partial class $1 : I$1' );  
     $designContent = "using ipsFormsDesign.Interfaces;`n" + $designContent;
     $designContent = [regex]::Replace($designContent, '^(\s+\w+\s+\=\snew )HashSet(<\w+>\(\);)\s', '$1ObservableListSource$2', [System.Text.RegularExpressions.RegexOptions]::Multiline );
-    $designContent = [regex]::Replace($designContent, '(\s+public) ICollection<(\w+)> (\w+ { get; set; })?(\s)', '$1 ObservableListSource<$2> $3$4', [System.Text.RegularExpressions.RegexOptions]::Singleline );
+    $designContent = [regex]::Replace($designContent, '(\s+public virtual) ICollection<(\w+)> (\w+ { get; set; })?(\s)', '$1 ObservableListSource<$2> $3$4', [System.Text.RegularExpressions.RegexOptions]::Singleline );
     $designContent = [regex]::Replace($designContent, '^(\s+).JsonIgnore.\s', '', [System.Text.RegularExpressions.RegexOptions]::Singleline );
     $designContent | Set-Content $formDesignFile;
 

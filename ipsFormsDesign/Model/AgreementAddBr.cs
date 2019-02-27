@@ -20,10 +20,10 @@ namespace ipsFormsDesign.Model
         public string ModifyLogin { get; set; }
         public int? CustId { get; set; }
 
-        public AgreementMaster Agr { get; set; }
-        public AgreementStatus AgrStatusNavigation { get; set; }
-        public Client Cust { get; set; }
-        public Period PeriodCodeNavigation { get; set; }
+        public virtual AgreementMaster Agr { get; set; }
+        public virtual AgreementStatus AgrStatusNavigation { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual Period PeriodCodeNavigation { get; set; }
     }
 }
 

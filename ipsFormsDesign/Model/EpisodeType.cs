@@ -17,10 +17,10 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<EpisodeTypeTr> EpisodeTypeTr { get; set; }
-        public ObservableListSource<RelMovieEpisode> RelMovieEpisode { get; set; }
-        public ObservableListSource<RelSerialEpisode> RelSerialEpisode { get; set; }
-        public ObservableListSource<RelTvepisode> RelTvepisode { get; set; }
+        public virtual ObservableListSource<EpisodeTypeTr> EpisodeTypeTr { get; set; }
+        public virtual ObservableListSource<RelMovieEpisode> RelMovieEpisode { get; set; }
+        public virtual ObservableListSource<RelSerialEpisode> RelSerialEpisode { get; set; }
+        public virtual ObservableListSource<RelTvepisode> RelTvepisode { get; set; }
     }
 }
 

@@ -10,6 +10,6 @@ namespace ipsmedserviceapp.Model
         public string CountryName { get; set; }
         public string CountryNameShort { get; set; }
 
-        public Country CountryCodeNavigation { get; set; }
+        public virtual Country CountryCodeNavigation { get; set; }
     }
 }

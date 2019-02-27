@@ -24,9 +24,9 @@ namespace ipsFormsDesign.Model
 
         public Country countryCodeNavigation { get; set; }
         public KL_R031 r031Navigation { get; set; }
-        public ObservableListSource<BankAccount> BankAccount { get; set; }
-        public ObservableListSource<CurrencyCourse> CurrencyCourse { get; set; }
-        public ObservableListSource<KL_R030Tr> KL_R030Tr { get; set; }
+        public ICollection<BankAccount> BankAccount { get; set; }
+        public ICollection<CurrencyCourse> CurrencyCourse { get; set; }
+        public ICollection<KL_R030Tr> KL_R030Tr { get; set; }
     }
 }
 

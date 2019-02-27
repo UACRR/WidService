@@ -20,13 +20,13 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
-        public ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
-        public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<AgreementMaster> AgreementMaster { get; set; }
-        public ICollection<AgreementStatusTr> AgreementStatusTr { get; set; }
-        public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public virtual ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        public virtual ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
+        public virtual ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ICollection<AgreementMaster> AgreementMaster { get; set; }
+        public virtual ICollection<AgreementStatusTr> AgreementStatusTr { get; set; }
+        public virtual ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public virtual ICollection<LicenseAgreement> LicenseAgreement { get; set; }
     }
 }

@@ -23,7 +23,7 @@ namespace ipsFormsDesign.Model
         public short? PrNc { get; set; }
         public int? OrderBy { get; set; }
 
-        public ObservableListSource<Account> Account { get; set; }
+        public virtual ObservableListSource<Account> Account { get; set; }
     }
 }
 

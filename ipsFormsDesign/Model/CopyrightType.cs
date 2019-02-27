@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<CopyrightTypeTr> CopyrightTypeTr { get; set; }
-        public ObservableListSource<CreativeRoleType> CreativeRoleType { get; set; }
-        public ObservableListSource<MyCopyRightType> MyCopyRightType { get; set; }
+        public virtual ObservableListSource<CopyrightTypeTr> CopyrightTypeTr { get; set; }
+        public virtual ObservableListSource<CreativeRoleType> CreativeRoleType { get; set; }
+        public virtual ObservableListSource<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }
 

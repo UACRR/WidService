@@ -18,8 +18,8 @@ namespace ipsFormsDesign.Model
         public string TypeNameEn { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<UserRole> UserRole { get; set; }
-        public ObservableListSource<UserRoleTypeTr> UserRoleTypeTr { get; set; }
+        public virtual ObservableListSource<UserRole> UserRole { get; set; }
+        public virtual ObservableListSource<UserRoleTypeTr> UserRoleTypeTr { get; set; }
     }
 }
 

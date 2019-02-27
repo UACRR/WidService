@@ -21,9 +21,9 @@ namespace ipsmedserviceapp.Model
         public decimal? PrepayUsed { get; set; }
 
         [JsonIgnore]
-        public CopyRight CRight { get; set; }
+        public virtual CopyRight CRight { get; set; }
         [JsonIgnore]
-        public PrePayType PrepayTypeNavigation { get; set; }
+        public virtual PrePayType PrepayTypeNavigation { get; set; }
     }
 }
 

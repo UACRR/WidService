@@ -53,20 +53,20 @@ namespace ipsFormsDesign.Model
         public string LeAddress { get; set; }
         public string LePostIndex { get; set; }
 
-        public BankAccount BanAcc { get; set; }
-        public Country CitizenshipNavigation { get; set; }
-        public Customer Cust { get; set; }
-        public Person CustNavigation { get; set; }
-        public Country FaCountryNavigation { get; set; }
-        public Region FaRegionNavigation { get; set; }
-        public Lang LangNavigation { get; set; }
-        public Region LeRegionNavigation { get; set; }
-        public Country ReCountryNavigation { get; set; }
-        public Region ReRegionNavigation { get; set; }
-        public ResidentType ResidencyNavigation { get; set; }
-        public SexType SexNavigation { get; set; }
-        public AnketaStatus StatusNavigation { get; set; }
-        public TypeVat TypeVatNavigation { get; set; }
+        public virtual BankAccount BanAcc { get; set; }
+        public virtual Country CitizenshipNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual Person CustNavigation { get; set; }
+        public virtual Country FaCountryNavigation { get; set; }
+        public virtual Region FaRegionNavigation { get; set; }
+        public virtual Lang LangNavigation { get; set; }
+        public virtual Region LeRegionNavigation { get; set; }
+        public virtual Country ReCountryNavigation { get; set; }
+        public virtual Region ReRegionNavigation { get; set; }
+        public virtual ResidentType ResidencyNavigation { get; set; }
+        public virtual SexType SexNavigation { get; set; }
+        public virtual AnketaStatus StatusNavigation { get; set; }
+        public virtual TypeVat TypeVatNavigation { get; set; }
     }
 }
 

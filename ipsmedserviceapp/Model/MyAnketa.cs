@@ -17,8 +17,8 @@ namespace ipsmedserviceapp.Model
         public string AccInCommission { get; set; }
         public string AccCourt { get; set; }
 
-        public Customer Cust { get; set; }
-        public ICollection<MyCategory> MyCategory { get; set; }
-        public ICollection<MyCopyRightType> MyCopyRightType { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ICollection<MyCategory> MyCategory { get; set; }
+        public virtual ICollection<MyCopyRightType> MyCopyRightType { get; set; }
     }
 }

@@ -27,18 +27,18 @@ namespace ipsFormsDesign.Model
         public int? LicVersion { get; set; }
         public int? ProlongVersion { get; set; }
 
-        public AgreementMaster Agr { get; set; }
-        public Client Cust { get; set; }
-        public AgrLicenseType LicCodeNavigation { get; set; }
-        public AgreementStatus LicStatusNavigation { get; set; }
-        public LicenseType LicTypeNavigation { get; set; }
-        public LicenseBigR LicenseBigR { get; set; }
-        public ObservableListSource<BrRegItem> BrRegItem { get; set; }
-        public ObservableListSource<Fixation> Fixation { get; set; }
-        public ObservableListSource<LicPlace> LicPlace { get; set; }
-        public ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
-        public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
+        public virtual AgreementMaster Agr { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual AgrLicenseType LicCodeNavigation { get; set; }
+        public virtual AgreementStatus LicStatusNavigation { get; set; }
+        public virtual LicenseType LicTypeNavigation { get; set; }
+        public virtual LicenseBigR LicenseBigR { get; set; }
+        public virtual ObservableListSource<BrRegItem> BrRegItem { get; set; }
+        public virtual ObservableListSource<Fixation> Fixation { get; set; }
+        public virtual ObservableListSource<LicPlace> LicPlace { get; set; }
+        public virtual ObservableListSource<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public virtual ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
     }
 }
 

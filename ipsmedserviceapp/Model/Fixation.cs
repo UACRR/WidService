@@ -31,13 +31,13 @@ namespace ipsmedserviceapp.Model
         public decimal? CourtFeeAmount { get; set; }
         public string UserId { get; set; }
 
-        public Client ClientCust { get; set; }
-        public LicenseAgreement Lic { get; set; }
-        public Partner PartnerCust { get; set; }
-        public FixStageStatus StageStatusNavigation { get; set; }
-        public AspNetUsers User { get; set; }
-        public UsesType UsesTypeNavigation { get; set; }
-        public ICollection<FixFile> FixFile { get; set; }
-        public ICollection<FixStorageDevice> FixStorageDevice { get; set; }
+        public virtual Client ClientCust { get; set; }
+        public virtual LicenseAgreement Lic { get; set; }
+        public virtual Partner PartnerCust { get; set; }
+        public virtual FixStageStatus StageStatusNavigation { get; set; }
+        public virtual AspNetUsers User { get; set; }
+        public virtual UsesType UsesTypeNavigation { get; set; }
+        public virtual ICollection<FixFile> FixFile { get; set; }
+        public virtual ICollection<FixStorageDevice> FixStorageDevice { get; set; }
     }
 }

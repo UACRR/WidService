@@ -24,12 +24,12 @@ namespace ipsFormsDesign.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
 
-        public AgreementMaster Agr { get; set; }
-        public AgreementStatus AgrStatusNavigation { get; set; }
-        public RightHolder Cust { get; set; }
-        public TypeMethodGet GetCodeNavigation { get; set; }
-        public Period PeriodCodeNavigation { get; set; }
-        public AspNetUsers ResponsUserNavigation { get; set; }
+        public virtual AgreementMaster Agr { get; set; }
+        public virtual AgreementStatus AgrStatusNavigation { get; set; }
+        public virtual RightHolder Cust { get; set; }
+        public virtual TypeMethodGet GetCodeNavigation { get; set; }
+        public virtual Period PeriodCodeNavigation { get; set; }
+        public virtual AspNetUsers ResponsUserNavigation { get; set; }
     }
 }
 

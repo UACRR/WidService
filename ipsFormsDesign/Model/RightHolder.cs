@@ -26,16 +26,16 @@ namespace ipsFormsDesign.Model
         public string InnerCode { get; set; }
         public int? RHolderType { get; set; }
 
-        public Customer Cust { get; set; }
-        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
-        public ObservableListSource<AnketaAddNick> AnketaAddNick { get; set; }
-        public ObservableListSource<Authors> Authors { get; set; }
-        public ObservableListSource<CopyRight> CopyRight { get; set; }
-        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
-        public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
-        public ObservableListSource<TermsOfService> TermsOfService { get; set; }
-        public ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
-        public ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ObservableListSource<AnketaAddNick> AnketaAddNick { get; set; }
+        public virtual ObservableListSource<Authors> Authors { get; set; }
+        public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
+        public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ObservableListSource<TermsOfService> TermsOfService { get; set; }
+        public virtual ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
+        public virtual ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }
 

@@ -28,11 +28,11 @@ namespace ipsmedserviceapp.Model
         public decimal? MusicAmount { get; set; }
         public int? CategoryCode { get; set; }
 
-        public LicenseAgreement Lic { get; set; }
-        public ObjectRight Obj { get; set; }
-        public BrRegister Reg { get; set; }
-        public Register RegIdSrNavigation { get; set; }
-        public ItemStatus StatusNavigation { get; set; }
-        public ICollection<RegisterCount> RegisterCount { get; set; }
+        public virtual LicenseAgreement Lic { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual BrRegister Reg { get; set; }
+        public virtual Register RegIdSrNavigation { get; set; }
+        public virtual ItemStatus StatusNavigation { get; set; }
+        public virtual ICollection<RegisterCount> RegisterCount { get; set; }
     }
 }

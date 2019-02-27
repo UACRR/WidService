@@ -515,6 +515,8 @@ public interface ICommentCause
 }
 public interface ICommunity
     {    int CustId { get; set; }
+         string InterCode { get; set; }
+         string InnerCode { get; set; }
 }
 public interface ICompany
     {    int CustId { get; set; }
@@ -547,6 +549,7 @@ public interface ICopyRight
          int? ParentId { get; set; }
          int? RoleCode { get; set; }
          int? Status { get; set; }
+         decimal? RateMech { get; set; }
 }
 public interface ICopyRightHistory
     {
@@ -1561,6 +1564,49 @@ public interface IPayTurn
          int? CustIdRh { get; set; }
          int? RegIitemId { get; set; }
 }
+public interface IPayTurnCm
+    {
+         int AccId { get; set; }
+         DateTime DateWork { get; set; }
+         int KindCode { get; set; }
+         decimal? AmountSum { get; set; }
+         decimal? AmountCourtSum { get; set; }
+         decimal? RateCommiss { get; set; }
+         decimal? RateCourt { get; set; }
+         decimal? Amount { get; set; }
+         decimal? AmountCourt { get; set; }
+         decimal? AmountCommiss { get; set; }
+         int? Custid { get; set; }
+         int? CustIdRh { get; set; }
+         int? CustIdCm { get; set; }
+         string AccNls { get; set; }
+    }
+public interface IPayTurnExtra
+    {
+         int Turnid { get; set; }
+         DateTime Datework { get; set; }
+         int? Custid { get; set; }
+         int? Payturntype { get; set; }
+    }
+public interface IPayTurnRed
+    {
+         int RedId { get; set; }
+         DateTime DateWork { get; set; }
+         int TurnId { get; set; }
+         int? TurnIdRed { get; set; }
+         DateTime? DateWorkRed { get; set; }
+         decimal Amount { get; set; }
+         decimal? AmountRest { get; set; }
+         int? AccId { get; set; }
+         int? RedType { get; set; }
+    }
+public interface IPayTurnType
+    {
+         int Codei { get; set; }
+         string Name { get; set; }
+         int? BalsDbt { get; set; }
+         int? BalsCrdt { get; set; }
+    }
 public interface IPerformer
     {    int PerId { get; set; }
          string PerName { get; set; }
@@ -1893,10 +1939,25 @@ public interface IRelTvepisode
          int EpisodeTypeCode { get; set; }
          double? EpDuration { get; set; }
 }
+public interface IReportList
+    {
+         int Id { get; set; }
+         string RepCode { get; set; }
+         int? RepType { get; set; }
+         string RepName { get; set; }
+         string RepDesc { get; set; }
+         string RepDescFile { get; set; }
+         string RepExec { get; set; }
+    }
 public interface IReports
     {
          int Id { get; set; }
          string Repname { get; set; }
+    }
+public interface IReportType
+    {
+         int CodeI { get; set; }
+         string Name { get; set; }
     }
 public interface IReqAgreement
     {    int RAgrId { get; set; }

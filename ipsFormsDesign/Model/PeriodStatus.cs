@@ -14,8 +14,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public PeriodStatusTr PeriodStatusTr { get; set; }
-        public ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
+        public virtual PeriodStatusTr PeriodStatusTr { get; set; }
+        public virtual ObservableListSource<PaidPeriod> PaidPeriod { get; set; }
     }
 }
 

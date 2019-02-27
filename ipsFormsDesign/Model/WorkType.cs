@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<WorkRh> WorkRhWorkTypeClNavigation { get; set; }
-        public ObservableListSource<WorkRh> WorkRhWorkTypeRhNavigation { get; set; }
-        public ObservableListSource<WorkTypeTr> WorkTypeTr { get; set; }
+        public virtual ObservableListSource<WorkRh> WorkRhWorkTypeClNavigation { get; set; }
+        public virtual ObservableListSource<WorkRh> WorkRhWorkTypeRhNavigation { get; set; }
+        public virtual ObservableListSource<WorkTypeTr> WorkTypeTr { get; set; }
     }
 }
 

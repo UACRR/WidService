@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<CopyrightKind> CopyrightKind { get; set; }
-        public ICollection<CrkindGroupTr> CrkindGroupTr { get; set; }
+        public virtual ICollection<CopyrightKind> CopyrightKind { get; set; }
+        public virtual ICollection<CrkindGroupTr> CrkindGroupTr { get; set; }
     }
 }

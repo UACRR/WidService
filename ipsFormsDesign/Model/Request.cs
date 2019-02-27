@@ -40,30 +40,30 @@ namespace ipsFormsDesign.Model
         public string WorkName { get; set; }
         public TimeSpan? DurationUse { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public Customer Cust { get; set; }
-        public KindComposition KindCompCodeNavigation { get; set; }
-        public LicenseType LicCodeNavigation { get; set; }
-        public ObjectRight Obj { get; set; }
-        public RequestAim ReqAimCodeNavigation { get; set; }
-        public ReqCustomer ReqCust { get; set; }
-        public RequestType ReqTypeNavigation { get; set; }
-        public RequestStatusType ReqstatusNavigation { get; set; }
-        public TermUse TermUseCodeNavigation { get; set; }
-        public AspNetUsers User { get; set; }
-        public PaymentCase PaymentCase { get; set; }
-        public RequestAdapt RequestAdapt { get; set; }
-        public RequestAdvertising RequestAdvertising { get; set; }
-        public RequestInternet RequestInternet { get; set; }
-        public RequestMovie RequestMovie { get; set; }
-        public RequestOther RequestOther { get; set; }
-        public RequestSerial RequestSerial { get; set; }
-        public RequestTvradio RequestTvradio { get; set; }
-        public ObservableListSource<DocReq> DocReq { get; set; }
-        public ObservableListSource<RelReqMedia> RelReqMedia { get; set; }
-        public ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
-        public ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
-        public ObservableListSource<ReqTrade> ReqTrade { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual KindComposition KindCompCodeNavigation { get; set; }
+        public virtual LicenseType LicCodeNavigation { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual RequestAim ReqAimCodeNavigation { get; set; }
+        public virtual ReqCustomer ReqCust { get; set; }
+        public virtual RequestType ReqTypeNavigation { get; set; }
+        public virtual RequestStatusType ReqstatusNavigation { get; set; }
+        public virtual TermUse TermUseCodeNavigation { get; set; }
+        public virtual AspNetUsers User { get; set; }
+        public virtual PaymentCase PaymentCase { get; set; }
+        public virtual RequestAdapt RequestAdapt { get; set; }
+        public virtual RequestAdvertising RequestAdvertising { get; set; }
+        public virtual RequestInternet RequestInternet { get; set; }
+        public virtual RequestMovie RequestMovie { get; set; }
+        public virtual RequestOther RequestOther { get; set; }
+        public virtual RequestSerial RequestSerial { get; set; }
+        public virtual RequestTvradio RequestTvradio { get; set; }
+        public virtual ObservableListSource<DocReq> DocReq { get; set; }
+        public virtual ObservableListSource<RelReqMedia> RelReqMedia { get; set; }
+        public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
+        public virtual ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }
 

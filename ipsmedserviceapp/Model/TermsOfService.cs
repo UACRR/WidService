@@ -14,8 +14,8 @@ namespace ipsmedserviceapp.Model
         public int CrkindCode { get; set; }
         public bool OurService { get; set; }
 
-        public CopyrightKind CrkindCodeNavigation { get; set; }
-        public RightHolder Cust { get; set; }
-        public ICollection<CustCmRight> CustCmRight { get; set; }
+        public virtual CopyrightKind CrkindCodeNavigation { get; set; }
+        public virtual RightHolder Cust { get; set; }
+        public virtual ICollection<CustCmRight> CustCmRight { get; set; }
     }
 }

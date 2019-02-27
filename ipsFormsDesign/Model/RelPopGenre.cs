@@ -9,8 +9,8 @@ namespace ipsFormsDesign.Model
         public int GenreId { get; set; }
         public int ObjId { get; set; }
 
-        public PopGenre Genre { get; set; }
-        public ObjectRight Obj { get; set; }
+        public virtual PopGenre Genre { get; set; }
+        public virtual ObjectRight Obj { get; set; }
     }
 }
 

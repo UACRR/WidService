@@ -14,11 +14,13 @@ namespace ipsFormsDesign.Model
         }
 
         public int CustId { get; set; }
+        public string InterCode { get; set; }
+        public string InnerCode { get; set; }
 
-        public Customer Cust { get; set; }
-        public ObservableListSource<AgreementAddCommunity> AgreementAddCommunity { get; set; }
-        public ObservableListSource<CustCmRight> CustCmRight { get; set; }
-        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObservableListSource<AgreementAddCommunity> AgreementAddCommunity { get; set; }
+        public virtual ObservableListSource<CustCmRight> CustCmRight { get; set; }
+        public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }
 }
 

@@ -15,8 +15,8 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<WorkRh> WorkRhWorkTypeClNavigation { get; set; }
-        public ICollection<WorkRh> WorkRhWorkTypeRhNavigation { get; set; }
-        public ICollection<WorkTypeTr> WorkTypeTr { get; set; }
+        public virtual ICollection<WorkRh> WorkRhWorkTypeClNavigation { get; set; }
+        public virtual ICollection<WorkRh> WorkRhWorkTypeRhNavigation { get; set; }
+        public virtual ICollection<WorkTypeTr> WorkTypeTr { get; set; }
     }
 }

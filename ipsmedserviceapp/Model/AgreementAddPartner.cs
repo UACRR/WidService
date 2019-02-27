@@ -26,9 +26,9 @@ namespace ipsmedserviceapp.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
 
-        public AgreementMaster Agr { get; set; }
-        public AgreementStatus AgrStatusNavigation { get; set; }
-        public Partner Cust { get; set; }
-        public Period PeriodCodeNavigation { get; set; }
+        public virtual AgreementMaster Agr { get; set; }
+        public virtual AgreementStatus AgrStatusNavigation { get; set; }
+        public virtual Partner Cust { get; set; }
+        public virtual Period PeriodCodeNavigation { get; set; }
     }
 }

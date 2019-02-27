@@ -20,8 +20,8 @@ namespace ipsmedserviceapp.Model
         public string Email { get; set; }
         public string Comment { get; set; }
 
-        public Customer Cust { get; set; }
-        public AspNetUsers User { get; set; }
-        public ICollection<RelEmployee> RelEmployee { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual AspNetUsers User { get; set; }
+        public virtual ICollection<RelEmployee> RelEmployee { get; set; }
     }
 }

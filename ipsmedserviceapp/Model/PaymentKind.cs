@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<PaymentCase> PaymentCase { get; set; }
-        public ICollection<PaymentKindTr> PaymentKindTr { get; set; }
+        public virtual ICollection<PaymentCase> PaymentCase { get; set; }
+        public virtual ICollection<PaymentKindTr> PaymentKindTr { get; set; }
     }
 }

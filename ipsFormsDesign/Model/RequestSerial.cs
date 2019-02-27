@@ -19,10 +19,10 @@ namespace ipsFormsDesign.Model
         public bool? UseHire { get; set; }
         public bool? UseFestival { get; set; }
 
-        public KindSerial KindSerialNavigation { get; set; }
-        public Request Req { get; set; }
-        public ObservableListSource<RelGenreSerial> RelGenreSerial { get; set; }
-        public ObservableListSource<RelSerialEpisode> RelSerialEpisode { get; set; }
+        public virtual KindSerial KindSerialNavigation { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual ObservableListSource<RelGenreSerial> RelGenreSerial { get; set; }
+        public virtual ObservableListSource<RelSerialEpisode> RelSerialEpisode { get; set; }
     }
 }
 

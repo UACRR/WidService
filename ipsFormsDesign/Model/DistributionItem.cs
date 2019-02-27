@@ -21,9 +21,9 @@ namespace ipsFormsDesign.Model
         public int DistItemId { get; set; }
         public int? ObjId { get; set; }
 
-        public Distribution Dist { get; set; }
-        public ObjectRight Obj { get; set; }
-        public ObservableListSource<RegisterCount> RegisterCount { get; set; }
+        public virtual Distribution Dist { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
     }
 }
 

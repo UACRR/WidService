@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<DistribStatusTr> DistribStatusTr { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual ObservableListSource<DistribStatusTr> DistribStatusTr { get; set; }
+        public virtual ObservableListSource<Distribution> Distribution { get; set; }
     }
 }
 
