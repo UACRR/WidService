@@ -96,7 +96,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pageView.Size = new System.Drawing.Size(1146, 620);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
-            this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
+            this.pageView.SelectedPageChanged += new System.EventHandler(this.PageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ShowItemPinButton = false;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).ShowItemCloseButton = false;
