@@ -1,10 +1,13 @@
 ﻿CREATE TABLE [dbo].[CopyrightKindTr] (
-    [codeI] INT           NOT NULL,
-    [lang]  CHAR (2)      NOT NULL,
-    [name]  VARCHAR (600) NULL,
+    [codeI]        INT           NOT NULL,
+    [lang]         CHAR (2)      NOT NULL,
+    [name]         VARCHAR (600) NULL,
+    [nameDescript] VARCHAR (700) NULL,
     CONSTRAINT [PK_CRIGHTKINDT] PRIMARY KEY CLUSTERED ([codeI] ASC, [lang] ASC),
     CONSTRAINT [FK_COPYRIGH_REFERENCE_COPYR] FOREIGN KEY ([codeI]) REFERENCES [dbo].[CopyrightKind] ([codeI])
 );
+
+
 
 
 GO

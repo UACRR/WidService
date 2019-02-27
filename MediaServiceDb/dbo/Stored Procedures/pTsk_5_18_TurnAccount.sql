@@ -9,20 +9,20 @@ if @dateBegin > @dateEnd
 
 declare @result TABLE(
 	turnid				int  not	null,
-	dateOper			date,
-	Korname			varchar(60) NULL,
+	datework			date,
+	Korname			varchar(120) NULL,
 	accKorr			int,
 	Debet				varchar(20),
 	Credit				varchar(20),
 	amount				money,
-	nD					varchar(10),
-	payNote			varchar(120),
+	nD					varchar(20),
+	payNote			varchar(180),
 	primary key  (turnid)
 	)
 
-insert @result(	turnid,	dateOper,	Korname,	accKorr,	Debet,	Credit,	amount	,	nD,	payNote)
+insert @result(	turnid,	dateWork,	Korname,	accKorr,	Debet,	Credit,	amount	,	nD,	payNote)
 select 
-		t2.turnid, t2.dateOper,null KorName,
+		t2.turnid, t2.dateWork,null KorName,
 case when (t1.accid= t2.accidCredit ) then t2.accIdDebet
 				else  t2.accIdCredit
 end accKorr,
@@ -34,12 +34,12 @@ case when (t1.accid= t2.accidCredit ) then NULL
 end crdt,
 t2.amount,
 t2.nD,
-t2.paynote
+rtrim(ltrim(t2.paynote))
  from Account t1, PayTurn t2
 where
 t1.accNls=@account	and
 (t2.accIdCredit = t1.accId or t2.accIdDebet = t1.accId)
-and t2.dateOper between @dateBegin and @dateEnd
+and t2.dateWork between @dateBegin and @dateEnd
 
 update @result
 	set Korname =t2.accName
@@ -49,8 +49,8 @@ where
 
 select * from @result
 
-return
+
 
 END
 
---exec  pTsk_5_18_TurnAccount  '20180101','20180802','20000135'
+--exec  pTsk_5_18_TurnAccount  '20180101','20190802','301015842'

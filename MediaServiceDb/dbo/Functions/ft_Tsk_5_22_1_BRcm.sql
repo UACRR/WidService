@@ -21,31 +21,18 @@ set @cmCustId = (Case When isnull(@cmCustId,0) = 0 Then NULL Else @cmCustId end)
 
 ;with TabTurn as 
 ( 
-select t3.custId, t2.objid, sum(t1.amount) as amount
-from PayTurn t1 
-join Account t2 on t1.accIdCredit = t2.accId and t2.balsCode in (30,31) 
-join Account t3 on t1.accIdDebet = t3.accId and t3.balsCode = 21
-join objectRight t4 on t2.objid = t4.objid  and t4.categoryCode = 6  --Большие права
-where dateOper between @dateBegin and @dateEnd
-group by t3.custId, t2.objId
-union 
-select -1, t1.objid, sum(t2.deboborot) - sum(t2.krdoborot) as amount
-from Account t1 
-join SaldoDay t2 on t1.accId = t2.accId and @dateBegin <= t2.dateBegin and t2.dateEnd >=@dateEnd
-join objectRight t3 on t1.objid = t3.objId and t3.categoryCode = 6 --Большие права
-where t1.balsCode = 31
-group by t1.objid
+select  isnull(t1.rhCustId,-1) as rhCustId, isnull(t1.cmCustId,-1) as cmCustId, isnull(t2.rateCommiss,0) as rateCommiss, sum(t1.amount) as amount 
+from ft_Tsk_5_distributed (@dateBegin, @dateEnd, NULL, NULL) t1, 
+     vCustomerRHolder t2 
+where t1.rhCustId = t2.custId and  
+      t1.cmCustId = isnull(@cmCustId, t1.cmCustId) 
+ group by isnull(t1.rhCustId, -1), isnull(t1.cmCustId, -1), t2.rateCommiss
 )
 insert into @RT (cmCustId, cmName, rateCommiss, amount)
-select t11.cmCustId, max(t11.cmName) as cmName, isnull(t10.rateCommiss,0), SUM(amount) as amount
+select t3.cmCustId, max(t4.cmName) as cmName, isnull(t3.rateCommiss,0), SUM(amount) as amount
 from TabTurn t3 
-join vLicenseAgreement t2 on t3.objid = t2.objId
-join vCustCmService t11 on t11.custId = t3.custId and t2.kindCode = t11.CRKindCode
-join vCustomer t7 on t7.custId = t2.custId
-left join AgreementMaster t9 on t3.custId = t9.custId --and isnull(t9.agrStatus,0) <> 4 
-left join AgreementAddRH t10 on t10.agrId = t9.agrId and t10.version = t9.version
-where t11.cmCustId = ISNULL(@cmCustId, t11.cmCustId)
-group by t11.cmCustId, t10.rateCommiss 
+  join vCommunity t4 on t4.cmCustId = t3.cmCustId
+group by t3.cmCustId, t3.rateCommiss 
 order by 2,3
 
 update @RT set rowNum = id
@@ -56,5 +43,5 @@ update @RT set rowNum = 0
 RETURN
 END
 
---select * from ft_Tsk_5_22_1_BRcm ('2018-01-01', '2018-12-31', 0)
+--select * from ft_Tsk_5_22_1_BRcm ('2018-01-01', '2019-12-31', 0)
 --select * from ft_Tsk_5_22_BRcm ('2018-01-01', '2018-12-31')

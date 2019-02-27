@@ -1,4 +1,4 @@
-﻿CREATE view vtsk_1_LicenseAgreementList as
+﻿CREATE view [dbo].[vtsk_1_LicenseAgreementList] as
 with mV as 
 (
 select t1.licid, t1.licVersion, t1.licStatus from 
@@ -31,7 +31,7 @@ max((Case when isnull(t6.amount,0) > isnull(t6.distribAmount,0)+isnull(t6.undist
 max(t8.name) as partnerName
 from LicenseAgreement t1 
 join vAgrLicenseType t2 on t1.licCode = t2.licCode and t2.usesType = 2
-join LicenseAgrParam t3 on t1.licId = t3.licId and t1.licVersion = t3.licVersion
+join LicenseAgrParam t3 on t1.licId = t3.licId and t1.licVersion = t3.licVersion and isnull(t3.licStatus,0) not in (9,10) --!26-02-2019
 join vCustomer t4 on t1.custId = t4.custId
 join mV t5 on t5.licId = t1.licId 
 left join pP t6 on t6.licId = t1.licId

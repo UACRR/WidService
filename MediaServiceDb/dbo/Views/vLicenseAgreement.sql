@@ -1,4 +1,5 @@
 ﻿CREATE view [dbo].[vLicenseAgreement] as 
+--актуальные договора
 select 
 (case When t8.codeI = 1 Then 3 Else (Case When t8.codeI in (2,3,4) Then 2 else 1 end) end) as registerType,
 t1.licStatus,

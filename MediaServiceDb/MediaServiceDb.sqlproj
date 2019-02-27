@@ -113,10 +113,19 @@
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="MediaServiceDb">
+      <HintPath>Assemblies\MediaServiceDb.dll</HintPath>
+      <SqlAssemblyName>MediaServiceDb</SqlAssemblyName>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+      <SqlOwnerName>dbo</SqlOwnerName>
+      <SqlPermissionSet>SAFE</SqlPermissionSet>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MediaServiceDb.publish.xml" />
     <None Include="ipskeys.snk" />
+    <None Include="Assemblies\MediaServiceDb.dll" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\WorkTypeTr.sql" />
@@ -344,13 +353,11 @@
     <Build Include="dbo\Tables\CRKindGroup.sql" />
     <Build Include="dbo\Tables\CRightStatusTr.sql" />
     <Build Include="dbo\Tables\CRightStatus.sql" />
-    <Build Include="dbo\Tables\CreativeTranslate.sql" />
     <Build Include="dbo\Tables\CreativeRoleTypeTr.sql" />
     <Build Include="dbo\Tables\CreativeRoleType.sql" />
     <Build Include="dbo\Tables\CountryTr.sql" />
     <Build Include="dbo\Tables\Country.sql" />
     <Build Include="dbo\Tables\CounterNumber.sql" />
-    <Build Include="dbo\Tables\CopyRTranslate.sql" />
     <Build Include="dbo\Tables\CopyrightTypeTr.sql" />
     <Build Include="dbo\Tables\CopyrightType.sql" />
     <Build Include="dbo\Tables\CopyrightKindTr.sql" />
@@ -509,7 +516,6 @@
     <Build Include="dbo\Functions\ft_Tsk_7_RegisterRegisterCounts.sql" />
     <Build Include="dbo\Functions\ft_Tsk_7_ObjectRightholders.sql" />
     <Build Include="dbo\Functions\ft_Tsk_7_Fixations.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_8_Consolidated.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_6_Customers.sql" />
     <Build Include="dbo\Functions\ft_tsk_3_WRH_03.sql" />
     <Build Include="dbo\Functions\ft_tsk_3_SearchObj.sql" />
@@ -586,7 +592,6 @@
     <Build Include="dbo\Views\vTSK_1_BRMoneyPrepay.sql" />
     <Build Include="dbo\Functions\ft_AccountName.sql" />
     <Build Include="dbo\Views\vCustCmService.sql" />
-    <Build Include="dbo\Tables\TaxRate.sql" />
     <Build Include="dbo\Tables\inputFile.sql" />
     <Build Include="dbo\Tables\CopyRightHistory.sql" />
     <Build Include="dbo\Tables\CheckParamPays.sql" />
@@ -612,7 +617,6 @@
     <Build Include="dbo\Functions\ft_Tsk_5_21_SRcomm.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_21_BRcomm.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_20_SRMain.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_20_BRMain.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_20_2_BR.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_20_1_BR.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR__.sql" />
@@ -629,5 +633,107 @@
     <Build Include="dbo\Stored Procedures\p_Tsk_1_LinkExternalPay.sql" />
     <Build Include="dbo\Stored Procedures\p_Tsk_1_CheckInputFile.sql" />
     <Build Include="dbo\Stored Procedures\p_Num2Word.sql" />
+    <Build Include="dbo\Tables\SystemMessage.sql" />
+    <Build Include="dbo\Tables\SystemConstantTr.sql" />
+    <Build Include="dbo\Tables\SystemConstant.sql" />
+    <Build Include="dbo\Tables\ReportType.sql" />
+    <Build Include="dbo\Tables\ReportList.sql" />
+    <Build Include="dbo\Tables\PayTurnType.sql" />
+    <Build Include="dbo\Tables\PayTurnRed.sql" />
+    <Build Include="dbo\Tables\PayTurnExtra.sql" />
+    <Build Include="dbo\Tables\PayTurnCm.sql" />
+    <Build Include="dbo\Tables\MonthNameTr.sql" />
+    <Build Include="dbo\Tables\MonthName.sql" />
+    <Build Include="dbo\Views\vTsk9_5_Object.sql" />
+    <Build Include="dbo\Views\vtsk_1_MasterListBR__.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListRightHolder01_test.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer01__.sql" />
+    <Build Include="dbo\Views\vTsk_1_ListConsumer01_.sql" />
+    <Build Include="dbo\Views\vTermsOfService.sql" />
+    <Build Include="dbo\Views\vRelObjPerformer.sql" />
+    <Build Include="dbo\Views\vLicenseAgrParam.sql" />
+    <Build Include="dbo\Views\vLicenseAgreementPortal_.sql" />
+    <Build Include="dbo\Views\vLicenseAgreementPortal.sql" />
+    <Build Include="dbo\Views\vCustomerRHolder.sql" />
+    <Build Include="dbo\Views\vCustomerClient.sql" />
+    <Build Include="dbo\Views\vCustCmService__.sql" />
+    <Build Include="dbo\Views\vCustCmService_.sql" />
+    <Build Include="dbo\Views\vCategory.sql" />
+    <Build Include="dbo\Functions\ParseStr.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Compare.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Accurace.sql" />
+    <Build Include="dbo\Functions\fs_PeriodName.sql" />
+    <Build Include="dbo\Functions\fs_PeriodEnd.sql" />
+    <Build Include="dbo\Functions\fs_PeriodBegin.sql" />
+    <Build Include="dbo\Functions\ParseStr3.sql" />
+    <Build Include="dbo\Functions\ParseStr2.sql" />
+    <Build Include="dbo\Functions\ft_vCommunity.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_6_MoneyR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_6_MoneyPeriod.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_5_Object.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_4_RhRegister.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_3_RhCrProfit.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_2_RhObjProfit.sql" />
+    <Build Include="dbo\Functions\ft_Tsk9_1_RhProfit.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_FACTToPay.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_DistributedRed.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_DISTRIBUTED.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_COLLECTED.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_8_DistribMain.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_8_Consolidated.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_4_RatingRH__.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_4_RatingRH_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_32_RegRH.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_31_GetGiveDetail.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_31_GetGive_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_31_GetGive.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_30_Booker_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_30_Booker.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_25_2_SRLic.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_25_1_SRLic.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_24_SR__.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_2_BRcm_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_22_1_BRcm_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_20_BRMain_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_OldOk.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_Old.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_2_0SR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_19_1_0BR.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBRSum__.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBRSum_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR_New.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_14_RegisterSR_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_8_Consolidated_.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_35_Start.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_33_RegRH.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_1_ListRightHolder01.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk9_CustMapping.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk9_CustMapAnk.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_StartDay.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_LicProlongCreate.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_LicProlongActive.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_LicPeriodCreate.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_LicPeriodBorg.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk8_AgrDelete.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_DistribMain_.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_8_Consolidated_.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_2_CrKind_.sql" />
+    <Build Include="dbo\Stored Procedures\PayTurnRedForm.sql" />
+    <Build Include="dbo\Stored Procedures\PayTurnExtra_form.sql" />
+    <Build Include="dbo\Stored Procedures\Pay_Pay_ASaldoDay_storno.sql" />
+    <Build Include="dbo\Stored Procedures\Pay_Pay_A_rollback_regId.sql" />
+    <Build Include="dbo\Stored Procedures\p_Tsk3_AddAltName.sql" />
+    <Build Include="dbo\Stored Procedures\p_CreateDistribution_L.sql" />
+    <Build Include="dbo\Stored Procedures\MPay6_D20_K21.sql" />
+    <Build Include="dbo\Stored Procedures\MPay4_D20_K21____.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_regId.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_distid.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_OpenObjects.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_OpenCopyRight.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_OpenAnkRhFO.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_OpenAnkRh2.sql" />
+    <Build Include="dbo\Stored Procedures\Intr_DelObject.sql" />
   </ItemGroup>
 </Project>

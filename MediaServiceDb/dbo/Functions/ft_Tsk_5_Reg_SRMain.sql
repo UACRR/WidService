@@ -33,7 +33,7 @@ from PayTurn t1
 join Account t2 on t1.accIdCredit = t2.accId and t2.balsCode in (30,31) 
 join Account t3 on t1.accIdDebet = t3.accId and t3.balsCode = 21
 join objectRight t4 on t2.objid = t4.objid  and t4.categoryCode = 5  --Малі права
-where dateOper between @dateBegin and @dateEnd
+where dateWork between @dateBegin and @dateEnd
 group by t3.custId, regId, convert(smallint,substring(t2.accnls,3,2))
 union 
 select -1, convert(smallint,substring(t1.accnls,3,2)) as kindCode, sum(t2.deboborot) - sum(t2.krdoborot) as amount, -1 as regId

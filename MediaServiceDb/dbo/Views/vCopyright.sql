@@ -1,8 +1,4 @@
-﻿
-/*==============================================================*/
-/* View: vCopyright                                             */
-/*==============================================================*/
-CREATE view [dbo].[vCopyright] as
+﻿CREATE view [dbo].[vCopyright] as
 select
    t2.categoryCode, 
    t2.objId,
@@ -33,8 +29,9 @@ from
    left join AgreementAddRH t6 on  t1.custId = t6.custId
    left join CustCmRight t7 on  t5.custId = t7.custId and t5.CRKindCode = t7.cRKindCode
    left join AgreementAddRH t8 on  t7.cmCustId = t8.custId
-   join CRightStatus t11 on t1.status = t11.codeI
-union 
+   join CRightStatus t11 on  t11.codeI = isnull(t1.status,0) 
+   where getdate() between t1.beginDate and t1.endDate
+/*union 
 select
    t2.categoryCode, 
    t2.objId,
@@ -53,12 +50,13 @@ select
    NULL as rateCommiss,
    NULL as rateCourt,
    NULL as cmCustId, 
-   t2.status, 
-   t3.name as statusName
+   NULL as status,   --как для copyright 
+   NULL as statusName
 from
    ObjectRight t2 
    left join ObjectStatus t3 on t2.status = t3.codeI
      where not exists (select 1 from CopyRight t1 where t2.objid = t1.objid)
+*/
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Используется для оплаты
    ', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'VIEW', @level1name = N'vCopyright';

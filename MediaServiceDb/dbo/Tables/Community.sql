@@ -1,8 +1,12 @@
 ﻿CREATE TABLE [dbo].[Community] (
-    [custId] INT NOT NULL,
+    [custId]    INT          NOT NULL,
+    [interCode] VARCHAR (25) NULL,
+    [innerCode] VARCHAR (25) NULL,
     CONSTRAINT [PK_COMMUNITY] PRIMARY KEY CLUSTERED ([custId] ASC),
     CONSTRAINT [FK_COMMUNIT_REFERENCE_CUSTOMER] FOREIGN KEY ([custId]) REFERENCES [dbo].[Customer] ([custId])
 );
+
+
 
 
 GO

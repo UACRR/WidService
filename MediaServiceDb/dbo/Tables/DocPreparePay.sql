@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[DocPreparePay] (
     [docPayId]    INT             IDENTITY (1, 1) NOT NULL,
-    [dateWork]    DATETIME        NOT NULL,
+    [dateWork]    DATE            NOT NULL,
     [regId]       INT             NULL,
     [distId]      INT             NULL,
     [nD]          VARCHAR (25)    NULL,
@@ -13,7 +13,7 @@
     [amountCur]   NUMERIC (20, 2) NULL,
     [payNote]     VARCHAR (256)   NULL,
     [r030]        CHAR (3)        NULL,
-    [dateOper]    DATE            NOT NULL,
+    [dateOper]    DATETIME        NOT NULL,
     [payStatus]   INT             NULL,
     [paidid]      INT             NULL,
     [flCourt]     TINYINT         NULL,
@@ -21,6 +21,8 @@
     CONSTRAINT [PK_DOCPREPAREPAY] PRIMARY KEY CLUSTERED ([docPayId] ASC, [dateWork] ASC),
     CONSTRAINT [FK_DOCPREPA_REFERENCE_PAYMENTS] FOREIGN KEY ([payStatus]) REFERENCES [dbo].[PaymentStatus] ([codeI])
 );
+
+
 
 
 GO

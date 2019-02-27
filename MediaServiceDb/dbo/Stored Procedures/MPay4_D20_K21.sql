@@ -41,7 +41,7 @@ primary key (custid)
 
 CREATE TABLE #PayTurn(
 	TurnId						 int			NOT NULL,
-	DateWork				datetime NOT NULL,
+	DateWork				date NOT NULL,
 	ND							varchar(25)		NULL,
 	NDDate					datetime	NULL,
 	AccIdDebet			 int			NULL,
@@ -51,7 +51,7 @@ CREATE TABLE #PayTurn(
 	Amount					numeric(20, 2	)	NULL,
 	AmountCur				numeric(20, 2)	NULL,
 	PayNote					varchar(200) 	NULL,
-	DateOper				date						NOT NULL,
+	DateOper				datetime						NOT NULL,
 	PayStatus				int					 NULL,
 	regId						int,
 	distid					int,
@@ -144,13 +144,13 @@ t3.custId=t1.CustID and
 t3.agrId = t2.agrId
 
 
-
+/*
 update t2
 set rateCourt=isnull(t1.rateComm,0)
 from #Doc t2,#percentComm t1
 where
 t2.CustID=t1.custid
-
+*/
 
 --повышенная комиссия за обслуживание
 update t2
@@ -237,7 +237,7 @@ END
 
 --проплата документов
 declare @DateOper date
-declare curso  cursor for   select    distinct dateOper from 
+declare curso  cursor for   select    distinct dateWork from 
  DocPreparePay
 where
 	PayStatus=1				and
@@ -259,7 +259,7 @@ insert #PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCr
 where
 PayStatus=1			
 --and isnull(flCourt,0)=0
-and dateOper=@DateOper
+and dateWork=@DateOper
 
  	if @@error	<> 0
 		goto __retErr

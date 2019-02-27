@@ -2,6 +2,7 @@
 
 
 
+
 /*==============================================================*/
 /* View: vtsk_3_OR_03_V3                                        */
 /*==============================================================*/
@@ -26,8 +27,8 @@ select t0.custId, t8.name as nameClient, t1.objid, t1.name,
  t0.rate as rateRH, 
  isnull(t1.performer, '') as performer, 
  isnull(t6.proffit,0) as profit
-,(Case When t1.status = 1 Then 1 Else 0 end ) as statusActive
-,(Case When t1.status = 0 Then 1 Else 0 end ) as statusNoActive
+,(Case When t0.status = 1 Then 1 Else 0 end ) as statusActive
+,(Case When t0.status = 0 Then 1 Else 0 end ) as statusNoActive
 ,(Case When t5.rate <100 Then 1 Else 0 end ) as statusNoRelate
 ,(Case When t9.workTypeRh = 1 Then 1 Else 0 end ) as statusWokrRq
 ,(Case When isnull(t11.Rest,0) <> 0 Then 1 Else 0 end ) statusUnDistrib

@@ -11,7 +11,7 @@ set @return =
 (
 select 
 STUFF (( 
-select ', '+useMediaTypeName 
+select ', '+ t1.useMediaTypeName 
 from 
 (
 select r1.reqid, t1.useMediaTypeName 

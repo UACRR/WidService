@@ -1,5 +1,6 @@
-﻿CREATE function  dbo.ft_Tsk_5_15_RegisterBR  ( @dateBegin date = NULL, @dateEnd date = NULL)
---Реестры Больших прав за период по Distribution & Registry
+﻿CREATE function  [dbo].[ft_Tsk_5_15_RegisterBR]  ( @dateBegin date = NULL, @dateEnd date = NULL)
+--Реестры Больших прав за период 
+-- Беру Р/Л в период и смотрю результат 
 RETURNS @RT TABLE
 (
 id integer not null identity primary key,
@@ -18,65 +19,105 @@ authorCustId integer,
 authorName	varchar(100),
 rateRole	decimal(5,2),
 rate    	decimal(5,2),
-amount      money
+amount      money, 
+regId integer, 
+regItemId integer,
+status integer
 )
 AS
 BEGIN  
 
 --declare @dateBegin date, @dateEnd date, @cRightKind integer, @category integer
-set @dateBegin = isnull(@dateBegin, (select convert(date, (convert(char(4),year(getdate()))+'-01-01'))))
+set  @dateBegin  =  (Case WHEN isnull(@dateBegin , '1900-01-01') ='1900-01-01'
+                    THEN convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102)
+                    ELSE @dateBegin  END)
 set @dateEnd = isnull(@dateEnd, getdate())
 
-insert into @RT 
+declare @TmpRT table 
 (
-custId, 
-custName,
-periodId,
-periodName, 
-beginDate, 
-endDate, 
-rmId, 
-codeItem	, 
-itemName	,
-authorCustId, 
-authorName,
-objid       , 
-rateRole	,
-rate    	,
-amount      
+id integer not null identity primary key,
+custId      integer, --клиент
+custName    varchar(100),
+periodId    integer,
+periodName	varchar(100), 
+beginDate	date, 
+endDate	    date, 
+rmId        integer, 
+codeItem	integer, 
+itemName	varchar(100), 
+objid       integer, 
+distId      integer,
+authorCustId integer, 
+authorName	varchar(100),
+rateRole	decimal(5,2),
+rate    	decimal(5,2),
+amount      money, 
+regId integer, 
+regItemId integer,
+status integer
 )
-select 
-max(t1.custId) as custId, 
-max(t7.name) as name, 
-t1.periodId, max(t1.periodName) as periodName, min(t1.beginDate) as beginDate, max(t1.endDate) as endDate, 
-t2.rmId,
-max(t4.codeItem) as codeItem, 
-max(t4.itemName) as itemName, 
-t9.custId as authorCustId, 
-max(t8.name) as authorName,
-max(t4.objId) as objid, 
-max(t10.roleRate) as roleRate, 
-max(t9.rate) as rate, 
-sum(isnull(t11.amount,0)) as amount
-from 
-PaidPeriod t1 
-join vLicenseAgreement t0 on t1.licId = t0.licId and t0.usesType = 1
-join RegisterRatedList t2 on t1.periodId = t2.periodId
-join Register t3 on t3.rmId = t2.rmId
-join RegisterItem t4 on t4.regId = t3.regId and t4.codeItem = 2
-left join Distribution t5 on t3.regId = t5.regId 
-join DistributionItem t6 on t6.distId = t5.distId and t6.regId = t4.regId and t6.regIItemId = t4.regIItemId
-join vCustomer t7 on t1.custId = t7.custId
-join RegisterCount t9 on t4.objId = t9.objId and t5.regId = t9.regId
-join CopyRight t10 on t9.custId = t10.custId and t10.objid = t9.objId
-join vCustomer t8 on t8.custId = t9.custId 
-left join payTurn t11 on t5.distId = t11.distId and t11.accDebet like '21%' and t11.accCredit like '30%' and t9.custId = convert(integer, substring(t11.accDebet,3,10)) 
-     and t4.objId = convert(integer, substring(t11.accCredit,6,10))
-where @dateBegin <= t1.beginDate and t1.endDate <= @dateEnd
 
-group by t1.periodId, t2.rmId, t9.custId, t4.objid
-order by 1,3
+--Остатки по распределению
+insert into @TmpRT
+( custId, authorCustId, objid, amount, regId, regItemId )
+SELECT 
+clCustId, rhCustId, objid, amount, regId, regItemId
+ from ft_Tsk_5_DISTRIBUTEDRED (@dateBegin, @dateEnd, 6, NULL) 
+
+declare @TabObj table
+(id integer not null identity, 
+ objid integer not null, 
+ regId integer  null, 
+ custId integer null
+ primary key (objid, id) )
+
+insert into @TabObj (objid, regId, custId) 
+select distinct objid, regId, custId
+   from @TmpRT 
+
+update @TmpRT set rate = t2.rate, rateRole = t2.roleRate, status = t2.status
+  from @TmpRT  t1 
+   join CopyRight t2 on t1.objid = t2.objid and t1.authorCustId = t2.custId
+ 
+--добавляю недостающих авторов
+insert into @TmpRT (custId, objid, authorCustId, rate, rateRole, regId, status)
+ select distinct t1.custId, t1.objid, t2.custId, t2.rate, t2.roleRate, t1.regId, t2.status
+   from @TmpRT t1 
+    join CopyRight t2 on t1.objid = t2.objId
+	and not exists ( select 1 from @TmpRT t3 where t2.objid = t1.objid and t3.authorCustId = t2.custId )
+
+update @TmpRT 
+  set authorName = isnull(t2.name, ' НЕ ВИЗНАЧЕНИЙ') 
+   from @TmpRT  t1 
+    left join vCustomer t2 on t1.authorCustId = t2.custId
+
+ update @TmpRT
+   set custName = t2.name 
+   from @TmpRT  t1 
+        join vCustomer t2 on t1.custId = t2.custId
+ 
+ update @TmpRT
+    set periodId = t3.periodId, 
+        periodName = t4.periodName,  
+        beginDate = t4.beginDate,  
+        endDate = t4.endDate, 
+        rmId = t3.rmId 
+  from @TmpRT t1 
+   join Register t2 on t1.regId = t2.regId 
+   join RegisterRatedList t3 on t3.rmId = t2.rmId 
+   join PaidPeriod t4 on t4.periodId = t3.periodId
+
+ update @TmpRT 
+   set itemName = t2.name 
+    from @TmpRT t1 
+	 join objectRight t2 on t1.objid = t2.objid 
+
+insert into @RT (custId, custName, periodId, periodName, beginDate, endDate, rmId, codeItem, itemName, objid, distId, authorCustId, authorName, rateRole, rate, amount, regId,regItemId,status)
+select custId, custName, periodId, periodName, beginDate, endDate, rmId, codeItem, itemName, objid, distId, authorCustId, authorName, rateRole, rate, amount, regId,regItemId,status
+ from @TmpRT 
+ order by custName, beginDate, itemName, authorName
+
 RETURN
 END
 
---select  * from dbo.ft_Tsk_5_15_RegisterBR  ('2018-01-01', '2018-12-01') --2507,48
+--select  * from dbo.ft_Tsk_5_15_RegisterBR  ('2019-01-01', '2028-12-01') --31097,11

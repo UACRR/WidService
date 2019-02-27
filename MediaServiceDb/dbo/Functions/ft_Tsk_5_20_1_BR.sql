@@ -14,6 +14,7 @@ AS
 BEGIN  
 set @dateBegin = isnull(@dateBegin, (select convert(date, (convert(char(4),year(getdate()))+'-01-01'))))
 set @dateEnd = isnull(@dateEnd, getdate())
+/*
 insert into @RT (custId, clName, amount)
 select t4.custId, max(t5.name) as clName, SUM(t1.amount) as amount
 from PayTurn t1 
@@ -21,8 +22,17 @@ join Account t2 on t1.accIdDebet = t2.accId and t2.balsCode = 30 and t1.accDebet
 join LicenseBigR t3 on t2.objId = t3.objId
 join LicenseAgreement t4 on t3.licId = t4.licId
 join vCustomer t5 on t4.custId = t5.custId
-where t1.dateOper between @dateBegin and @dateEnd 
+where t1.dateWork between @dateBegin and @dateEnd 
 group by t4.custId
+*/
+insert into @RT (custId, amount)
+select clCustId, sum(amount) 
+   from ft_Tsk_5_COLLECTED(@dateBegin, @dateEnd, 6, NULL) 
+group by clCustId
+
+ update @RT set clName = t2.name 
+    from @RT t1 
+	   join vCustomer t2 on t2.custId = t1.custId
 
  RETURN
  END

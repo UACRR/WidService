@@ -22,7 +22,7 @@ select t3.custId, t2.objid, sum(t1.amount) as amount
 from PayTurn t1 
 join Account t2 on t1.accIdCredit = t2.accId and t2.balsCode in (30,31) 
 join Account t3 on t1.accIdDebet = t3.accId and t3.balsCode = 21
-where dateOper between @dateBegin and @dateEnd
+where dateWork between @dateBegin and @dateEnd
 group by t3.custId, t2.objId
 )
 insert into @RT (cmCustId, cmName,  amount)

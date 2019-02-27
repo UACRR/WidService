@@ -35,7 +35,7 @@ from PayTurn t1
   join account t2 on t2.accid = t1.accIdDebet  
   join ObjectRight t3 on t3.objId = t2.objId
 where t1.accDebet like '30%' and accCredit like '22%'   --собрали на объекты
-   and t1.dateOper between @dateBegin and @dateEnd
+   and t1.dateWork between @dateBegin and @dateEnd
    and convert(integer,substring(t1.accDebet,4,2) ) = isnull(@cRightKind,convert(integer,substring(t1.accDebet,4,2) ))
    and t3.categoryCode = isnull(@category,t3.categoryCode)
  group by t2.objid

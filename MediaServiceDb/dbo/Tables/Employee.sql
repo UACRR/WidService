@@ -16,6 +16,8 @@
 
 
 
+
+
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'EMail', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Employee', @level2type = N'COLUMN', @level2name = N'email';
 
@@ -46,4 +48,9 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'ИД сот�
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Сотрудники компаний клиентов покупателей', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Employee';
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UI_Employee_Email]
+    ON [dbo].[Employee]([email] ASC) WHERE ([email] IS NOT NULL);
 

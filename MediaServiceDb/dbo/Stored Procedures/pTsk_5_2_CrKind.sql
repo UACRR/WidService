@@ -1,135 +1,116 @@
-﻿
-
-CREATE procedure [dbo].[pTsk_5_2_CrKind] (@Type integer = NULL, @dateBegin date = NULL, @dateEnd date = NULL)
+﻿CREATE procedure [dbo].[pTsk_5_2_CrKind] (@Type integer = NULL, @dateBegin date = NULL, @dateEnd date = NULL)
 --@Type = 0/NULL - всі, 1-Великі права, 2-Малі Права
  as
 begin
 
 --Звіт по видам права у розрізі великих та малих прав
-set @dateBegin = isnull(@dateBegin,(select convert(date, (convert(char(4),year(getdate()))+'-01-01'))))
+declare @category integer
+set @dateBegin =  isnull(@dateBegin, convert(date, (convert(char(4),year(getdate()))+'.'+ substring(convert(char(3),100+MONTH(getdate())),2,2)+'.01' ),102))
 set @dateEnd = isnull(@dateEnd, getdate())
 set @type = (Case When isnull(@type,0) not in (1,2) Then NULL Else @type end)
+set @category = (Case When isnull(@type,0) not in (1,2) Then NULL Else (Case @type WHEN 1 Then 6 Else 5 End ) end)
 
-declare @result table
+declare @result table 
 ( --id integer not null identity, 
  usesType integer, 
  usesTypeName varchar(100), 
+ categoryCode integer, 
  cRKindCode integer not Null, 
  cRKindName varchar(600) NULL, 
  countRh integer null, 
+ countCl integer null,
+ countObj integer null,
  sPaid money null, 
  sComm money null, 
  primary key (cRKindCode,usesType) )
 
 --Матрица для вывода
-;with TabKind as 
-(
-select distinct t1.codeI, t1.name as cRKindName, isnull(t3.usesType ,2) as usesType
-from CopyrightKind t1 
-left join  AgrLicenseType t2 on t1.codeI = t2.kindCode 
-left join UsesKind t3 on t2.usesKind = t3.codeI
-)
-insert into @result (usesType, usesTypeName, cRKindCode, cRKindName)
-select t1.usesType, t2.name, t1.codeI, cRKindName  
-  from TabKind t1 
-     join UsesType t2 on t1.usesType = t2.codeI 
-   where usesType = isnull(@type, usesType)
+delete @result
+insert into @result (usesType, usesTypeName, cRKindCode, cRKindName, categoryCode)
+select distinct usesType, usesTypeName, kindCode, kindName, (CASE WHEN usesType =1 Then 6 else 5 end)
+   from  vAgrLicenseType
+   where UsesType = isnull(@type, usesType)
 union 
-select 0, '',0, 'Всього'
+select 0, '',0, 'Всього',0
 --------------------------------
-declare  @CustUAASP table
-(custId integer not null,  
- typeBr smallint null, 
- typeSr smallint null, 
- primary key (custId) )
-
---Правообладатели УААСП  
-insert into @CustUAASP (custId) 
-select distinct t1.custId
-from vCustomer t1
-  left join AgreementMaster t2 on t1.custId = t2.custId and t2.agrStatus = 2 
-where t1.isRHolder = 1 
-
---Правообладатели Малых и Больших прав (объектов)
-;with TabCR as 
-( select distinct t1.custId, max((Case When t3.categoryCode = 5 Then 1 else 0 end)) as typeSr, max((Case When t3.categoryCode = 6 Then 1 else 0 end)) as typeBr
- from @CustUAASP t1 
-      join CopyRight t2 on t1.custId = t2.custId  
-      join objectRight t3 on t2.objid = t3.objid 
-  group by t1.custId)
-update @CustUAASP 
-  set typeBr = t2.typeBr, typeSr = t2.typeSr  
-  from @CustUAASP t1 
-    join TabCR t2 on t1.custId = t2.custId  
-
---удаляю лишних (большие или малые права) 
-if @type = 1  
-delete @CustUAASP where typeSr = 1
-if @type = 2  
-delete @CustUAASP where typeBr = 1
-
-
-;with TabCountRH as 
-(select count(*) as countRH, crKindCode
- from TermsOfService t1 
-   join @CustUAASP t2 on t1.custId  = t2.custId
- where isnull(t1.ourService,0) = 1 
- group by crKindCode)
-update @result set countRh = t2.countRH  
+--Сколько всего правообладателей по видам использования
+;with TabRH as 
+(select count(*) as countRH, CRKindCode
+  from vCustCmService 
+  where agrStatusRH = 2 and ourService = 1
+  group by CRKindCode
+)
+update @result set countRh = t2.countRh 
   from @result t1 
-    join TabCountRH t2 on t1.crKindCode = t2.crKindCode
-
+   join TabRH t2 on t1.cRKindCode = t2.CRKindCode 
 --------------------------------
-create table #Object
-( usesType integer, 
-  objid integer not null, 
- primary key (objid) )
 
---объекты наших правообладателей
- insert into #Object (objid, usesType)
- select t3.objId, max((case t3.categoryCode when 6 then 1 else 2 end)) as usesType
- from @CustUAASP t1 
- join CopyRight t2 on t1.custId = t2.custId
- right join objectRight t3 on t2.objId = t3.objId
- where categoryCode = (Case When isnull(@type,0) = 1 Then 6 Else Case When isnull(@type,0) = 2 Then 5 Else categoryCode end end)
- group by t3.objId
-
---Собрано по объектам права наших правообладателей
-; with TabObj as 
-(select t1.usesType, convert(integer, substring(t2.accNls,4,2)) as crKindCode, 
-        t1.objid, accId 
-  from #Object t1 join Account t2 on t1.objid = t2.objid 
-  where t2.accNls like '301%'
+--Остатки по собраным
+create table #TmpR 
+(id integer not null primary key,
+ clCustId integer, 
+ objid integer, 
+ accIdDebet integer,
+ accIdCredit integer,
+ kindCode integer, 
+ categoryCode integer,
+ amount money 
 )
-update @result set sPaid = amount 
- from @result t1 join 
-(
-select  t1.usesType, t1.crKindCode, sum(t2.amount) as amount
-from TabObj t1 
- join PayTurn t2 on t1.accId = t2.accIdDebet 
-   where accDebet like '301%' and accCredit like '22%'
-        and t2.dateOper between  @dateBegin and @dateEnd
- group by t1.crKindCode, t1.usesType ) t77 on t1.cRKindCode = t77.crKindCode and t1.usesType = t77.usesType
+delete #TmpR  
+insert into #TmpR  
+(id, clCustId,  objid, accIdDebet, accIdCredit, kindCode,  categoryCode, amount) 
+ select id, clCustId,  objid, accIdDebet, accIdCredit, kindCode,  categoryCode, amount 
+   from dbo.ft_Tsk_5_COLLECTED   ('2019-01-01', NULL, NULL, NULL) --(@dateBegin, @dateEnd, @category, NULL) 
 
---Собрано комиссий от авторов
-;with TabCommiss as 
-(select sum(t2.amount) as amount 
-from account t1 
-join PayTurn t2 on t1.accId = t2.accIdDebet and t1.balsCode = 11 and t2.dateOper between @dateBegin  and @dateEnd
-join account t3 on t2.accIdCredit = t3.accId and t3.balsCode = 21
-join @CustUAASP t4 on t3.custId = t4.custId
+--корректирую матрицу - если часть счета не соответствует справочнику 
+insert into @result (usesType, usesTypeName, cRKindCode, cRKindName, categoryCode)
+select distinct (CASE WHEN categoryCode = 6 Then 1 else 2 end) as usesType, 
+                  (CASE WHEN categoryCode = 6 Then 'Великі права' else 'Малі права' end), 
+				  kindCode, '', categoryCode
+   from  #TmpR t1 
+   where t1.categoryCode = isnull(@category, t1.categoryCode)
+    and not exists ( select 1 from @result t2 where t1.categoryCode = t2.categoryCode and t2.cRKindCode = t1.kindCode)
+
+update @result set crKindName = t2.name + '!'
+  from @result t1 
+      join CopyrightKind t2 on t1.cRKindCode = t2.codeI 
+   where isnull(t1.cRKindName, '' ) ='' 
+
+-----------------
+--остатки
+;With TabGr as 
+(select  categoryCode, kindCode, sum(amount) as amount, count (distinct clCustId) as countCl, count (distinct objid) as countObj  
+   from #TmpR 
+   group by categoryCode, kindCode
 )
-update @result set sComm = isnull(t2.amount,0), 
-                   sPaid = (select sum(isnull(sPaid,0)) from @result where cRKindCode <> 0)
-  from TabCommiss t2 
-  where  cRKindCode = 0 
- 
-update @result set countRh = (select max(isnull(countRh,0)) from @result )
-  where  cRKindCode = 0 
- 
-select usesType, usesTypeName, cRKindCode, cRKindName, countRh, sPaid,  sComm 
+update @result set sPaid = amount, 
+       countCl = t2.countCl, 
+	   countObj = t2.countObj
+ from  @result t1 
+       join TabGr t2 on t1.categoryCode = t2.categoryCode and t1.cRKindCode = t2.kindCode
+
+--Собрано комиссий от партнеров --не могу разбить на виды права - будет общая сумма
+--ВСЕГО 
+;with TabCl as 
+(select distinct accIdCredit, clCustId from #TmpR 
+)
+ update @result set sComm = 
+  (select sum(amount) 
+    from TabCl t1 
+	 join PayTurn t2 on t1.accIdCredit = t2.accIdCredit and t2.accDebet like '40%' )
+   where cRKindCode = 0
+
+--ВСЕГО 
+;with TabSum as 
+(select 0 as cRKindCode, max(isnull(countRh,0)) as countRh, max(isnull(countCl,0)) as countCl, sum(isnull(countObj,0))  as countObj, sum(sPaid) as sPaid
+  from @result )
+update @result set countRh = t2.countRH, countCl = t2.countCl, countObj = t2.countObj, sPaid = t2.sPaid
+  from @result t1 
+   join TabSum t2 on t1.cRKindCode = t2.cRKindCode
+
+select usesType, usesTypeName, cRKindCode, cRKindName, countRh, sPaid,  sComm, countCl, countObj
  from @result
  order by usesType,cRKindCode
 end
 
---exec pTsk_5_2_CrKind 1
+--exec pTsk_5_2_CrKind 0, '2019-01-01'

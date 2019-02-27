@@ -1,4 +1,4 @@
-﻿CREATE function  [dbo].[ft_Tsk_5_20_BRMain]  (@dateBegin date = NULL, @dateEnd date = NULL)
+﻿CREATE function  [dbo].[ft_Tsk_5_20_BRMain_]  (@dateBegin date = NULL, @dateEnd date = NULL)
 -- Відомість розподіл АВ ВП по ТОВ і комісіям у розрізі об'єктів права ф правовласників
 RETURNS @RT TABLE
 (
@@ -23,7 +23,7 @@ from PayTurn t1
 join Account t2 on t1.accIdCredit = t2.accId and t2.balsCode in (30,31) 
 join Account t3 on t1.accIdDebet = t3.accId and t3.balsCode = 21
 join objectRight t4 on t2.objid = t4.objid  and t4.categoryCode = 6  --Большие права
-where dateOper between @dateBegin and @dateEnd
+where dateWork between @dateBegin and @dateEnd
 group by t3.custId, t2.objId
 union 
 select -1, t1.objid, sum(t2.deboborot) - sum(t2.krdoborot) as amount

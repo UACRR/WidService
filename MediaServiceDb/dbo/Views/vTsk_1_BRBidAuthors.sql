@@ -1,4 +1,5 @@
-﻿CREATE view [dbo].[vTsk_1_BRBidAuthors] as 
+﻿
+CREATE view [dbo].[vTsk_1_BRBidAuthors] as 
 --объекты ВП
 with TabObject as 
 (
@@ -38,5 +39,5 @@ left join RightHolder t7 on t4.custId = t7.custId
 left join PrePayType t8 on t3.prepayType = t8.codeI
 left join WorkRH t9 on t4.cRightId = t9.cRightId 
 left join WorkType t10 on t9.workTypeRH = t10.codeI
-left join WorkType t11 on t9.workTypeRH = t11.codeI
+left join WorkType t11 on t9.workTypeCl = t11.codeI
 left join Country t12 on t6.countryCode = t12.countryCode

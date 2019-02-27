@@ -10,7 +10,7 @@ from copyright t1
 join ObjectRight t2 on t1.objId = t2.objId 
 join CreativeRoleType t3 on t1.roleCode = t3.codeI
 join GenreType t4 on t2.genreType = t4.codeI
-join MediaTrack t5 on t2.objid = t5.objId
+left join MediaTrack t5 on t2.objid = t5.objId
 left join SpecType t6 on t2.specType = t6.codeI
 left join WorkRH t7 on t1.cRightId = t7.cRightId
 where isnull(t1.status,0) = 0 and getdate() between isnull(t1.beginDate,'1900-01-01') and isnull(t1.endDate,'3000-01-01')
