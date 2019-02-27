@@ -82,11 +82,10 @@ namespace IpsViewComponentLibrary.RegisterControls
             {
                 var registerItemsList = new Collection<RegisterItemViewModel>();
 
-                foreach (var row in gvRegisterItemList.SelectedRows)
+                foreach (GridViewRowInfo row in gvRegisterItemList.SelectedRows)
                 {
-                    var registerItem = row.DataBoundItem as RegisterItemViewModel;
 
-                    if (registerItem != null)
+                    if (row.DataBoundItem is RegisterItemViewModel registerItem)
                         registerItemsList.Add(registerItem);
                 }
 
@@ -323,7 +322,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             gvRegisterItemList.MasterTemplate.ExpandAll();
         }
 
-        private void gvRegisterItemList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void GvRegisterItemList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var currentColumnName = e.Column.Name;
 
@@ -367,13 +366,13 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        private void gvRegisterItemList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        private void GvRegisterItemList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
             Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
         // *** MED-526
-        public void resetErrorText()
+        public void ResetErrorText()
         {
             foreach( var row in gvRegisterItemList.Rows )
             {
@@ -381,7 +380,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        public void setErrorForUnlinkRows( string errTxt )
+        public void SetErrorForUnlinkRows( string errTxt )
         {
             foreach (var row in gvRegisterItemList.Rows)
             {
@@ -398,11 +397,10 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         // *** MED-526
 
-        private void gvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
+        private void GvRegisterItemList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
-            var registerItem = e.RowElement.RowInfo.DataBoundItem as RegisterItemViewModel;
 
-            if (registerItem != null)
+            if (e.RowElement.RowInfo.DataBoundItem is RegisterItemViewModel registerItem)
             {
                 if (!e.RowElement.IsCurrent && !e.RowElement.IsSelected)
                 {
@@ -435,21 +433,19 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        private void gvRegisterItemList_CellFormatting(object sender, CellFormattingEventArgs e)
+        private void GvRegisterItemList_CellFormatting(object sender, CellFormattingEventArgs e)
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
         }
 
-        private void gvRegisterItemList_ViewCellFormatting(object sender, CellFormattingEventArgs e)
+        private void GvRegisterItemList_ViewCellFormatting(object sender, CellFormattingEventArgs e)
         {
             // collapse page tabs, as in one moment only one tab must be visible (RegisterExtra or RegisterCount)
-            GridDetailViewCellElement detailCell = e.CellElement as GridDetailViewCellElement;
-            if (detailCell != null)
+            if (e.CellElement is GridDetailViewCellElement detailCell)
             {
                 detailCell.PageViewElement.Header.Visibility = ElementVisibility.Collapsed;
 
-                RadPageViewStripElement el = detailCell.PageViewElement as RadPageViewStripElement;
-                if (el != null)
+                if (detailCell.PageViewElement is RadPageViewStripElement el)
                 {
                     foreach (RadPageViewItem item in el.Items)
                     {
@@ -459,7 +455,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        private void gvRegisterItemList_SelectionChanged(object sender, EventArgs e)
+        private void GvRegisterItemList_SelectionChanged(object sender, EventArgs e)
         {
             if (gvRegisterItemList.CurrentRow == null)
                 return;
@@ -470,7 +466,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             if (!_allowEditList)
                 return;
@@ -489,7 +485,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             RegisterItemAdded?.Invoke(this, args);
         }
 
-        private void ddlLinkedStatus_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        private void DdlLinkedStatus_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             SetFilter(ddlLinkedStatus.SelectedIndex);
         }
@@ -500,11 +496,13 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             if (linkedStatus != 0)
             {
-                FilterDescriptor filterByObjId = new FilterDescriptor();
-                filterByObjId.PropertyName = "ObjId";
-                filterByObjId.Operator = linkedStatus == 1 ? FilterOperator.IsNotEqualTo : FilterOperator.IsEqualTo;
-                filterByObjId.Value = null;
-                filterByObjId.IsFilterEditor = true;
+                FilterDescriptor filterByObjId = new FilterDescriptor
+                {
+                    PropertyName = "ObjId",
+                    Operator = linkedStatus == 1 ? FilterOperator.IsNotEqualTo : FilterOperator.IsEqualTo,
+                    Value = null,
+                    IsFilterEditor = true
+                };
                 gvRegisterItemList.FilterDescriptors.Add(filterByObjId);
             }
         }
@@ -559,7 +557,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             );
         }
 
-        private void bsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)
+        private void BsRegisterItemViewModel_ListChanged(object sender, ListChangedEventArgs e)
         {
             if (e.ListChangedType == ListChangedType.ItemChanged && e.PropertyDescriptor.Name == "ObjId")
             {
@@ -652,12 +650,12 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         #region Validation
 
-        private void gvRegisterItemList_Validating(object sender, CancelEventArgs e)
+        private void GvRegisterItemList_Validating(object sender, CancelEventArgs e)
         {
             OnRegisterItemListValidating(sender, e);
         }
 
-        private void gvRegisterItemList_RowValidating(object sender, RowValidatingEventArgs e)
+        private void GvRegisterItemList_RowValidating(object sender, RowValidatingEventArgs e)
         {
             // this event is for register item validation only (not reg. count ang reg. fix)
             if (e.Row.ViewTemplate == gvRegisterItemList.MasterTemplate)

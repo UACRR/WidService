@@ -250,7 +250,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.btnLoadPdf.TabIndex = 4;
             this.btnLoadPdf.Text = "Завантажити PDF договору";
             this.btnLoadPdf.ThemeName = "Office2013Light";
-            this.btnLoadPdf.Click += new System.EventHandler(this.btnLoadPdf_Click);
+            this.btnLoadPdf.Click += new System.EventHandler(this.BtnLoadPdf_Click);
             // 
             // radPdfViewerNavigator
             // 
@@ -309,8 +309,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radWaitingBar1.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
             this.radWaitingBar1.WaitingSpeed = 50;
             this.radWaitingBar1.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
-            this.radWaitingBar1.WaitingStarted += new System.EventHandler(this.radWaitingBar1_WaitingStarted);
-            this.radWaitingBar1.WaitingStopped += new System.EventHandler(this.radWaitingBar1_WaitingStopped);
+            this.radWaitingBar1.WaitingStarted += new System.EventHandler(this.RadWaitingBar1_WaitingStarted);
+            this.radWaitingBar1.WaitingStopped += new System.EventHandler(this.RadWaitingBar1_WaitingStopped);
             ((Telerik.WinControls.UI.RadWaitingBarElement)(this.radWaitingBar1.GetChildAt(0))).WaitingSpeed = 50;
             ((Telerik.WinControls.UI.WaitingBarContentElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
             ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.radWaitingBar1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;

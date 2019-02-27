@@ -197,7 +197,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         }
 
         // при зміні рядка грід 
-        private void rGridViewInstitution_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        private void RGridViewInstitution_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             var visible = gvPlaces.RowCount != 0;
             btnEdit.Enabled = visible;
@@ -244,7 +244,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         }
 
         //  * * * ВИДАЛЕННЯ МАЙДАНЧИКА
-        private void btnDeletePlace_Click(object sender, EventArgs e)
+        private void BtnDeletePlace_Click(object sender, EventArgs e)
         {
             if(gvPlaces.Rows.Count == 0)
                 return;

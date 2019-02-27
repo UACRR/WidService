@@ -124,13 +124,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gvAuthorRightholderList.SetComboboxColumnDataSource("WorkTypeCl", IpsGlobal.AnketaDictionaties.workType);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
             gvAuthorRightholderList.Rows.AddNew();
             gvAuthorRightholderList.CurrentRow.Cells[0].BeginEdit();
         }
 
-        private void gvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void GvObjectsRightsList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var currentColumnName = e.Column.Name;
 
@@ -152,7 +152,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             gvAuthorRightholderList.SetColumnVisibility("WorkTypeCl", visibility);
         }
 
-        private void gvAuthorRightholderList_EditorRequired(object sender, EditorRequiredEventArgs e)
+        private void GvAuthorRightholderList_EditorRequired(object sender, EditorRequiredEventArgs e)
         {
             var columnName = gvAuthorRightholderList.CurrentColumn.Name;
 
@@ -167,7 +167,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
-        private void gvAuthorRightholderList_CellEditorInitialized(object sender, GridViewCellEventArgs e)
+        private void GvAuthorRightholderList_CellEditorInitialized(object sender, GridViewCellEventArgs e)
         {
             var columnName = gvAuthorRightholderList.CurrentColumn.Name;
 
@@ -228,17 +228,17 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
-        private void gvAuthorRightholderList_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        private void GvAuthorRightholderList_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             OnGetWorkRh?.Invoke((e.CurrentRow.DataBoundItem as ObjectAuthorRightholderBrViewModel)?.WorkRh);
         }
 
-        private void gvAuthorRightholderList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
+        private void GvAuthorRightholderList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.SetTooltipText(sender, e);
         }
 
-        private void gvAuthorRightholderList_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
+        private void GvAuthorRightholderList_CellBeginEdit(object sender, GridViewCellCancelEventArgs e)
         {
             var readOnlyColumns = "RoleRate, PrepayType, Currency, PrepaySum, WorkTypeRh, WorkTypeCl";
 
@@ -246,12 +246,12 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 e.Cancel = true;
         }
 
-        private void gvAuthorRightholderList_CellFormatting(object sender, CellFormattingEventArgs e)
+        private void GvAuthorRightholderList_CellFormatting(object sender, CellFormattingEventArgs e)
         {
             IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
         }
 
-        private void gvAuthorRightholderList_CellValueChanged(object sender, GridViewCellEventArgs e)
+        private void GvAuthorRightholderList_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
             OnCurrentAuthorRightholderChanged();
         }
@@ -270,7 +270,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             }
         }
 
-        internal void resetErrorText()
+        internal void ResetErrorText()
         {
             RoleRateErrorText = "";
             foreach (var row in gvAuthorRightholderList.Rows)

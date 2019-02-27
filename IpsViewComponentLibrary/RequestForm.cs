@@ -478,7 +478,7 @@ namespace IpsViewComponentLibrary
             {
                 _validateString = "Є твори 'Збірної музики' не прив'язані до об'єкту права";
                 pageView.SelectedPage = pvMusicalArrangement;
-                ctrlMusicalDesignList.setErrorForUnlinkRows(_validateString);
+                ctrlMusicalDesignList.SetErrorForUnlinkRows(_validateString);
             }
             return isValid;
         }
@@ -503,8 +503,8 @@ namespace IpsViewComponentLibrary
             {
                 bool isValid = true;
                 string errText = string.Empty;
-                ctrlAuthorRightholderList.resetErrorText();
-                ctrlMusicalDesignList.resetErrorText();
+                ctrlAuthorRightholderList.ResetErrorText();
+                ctrlMusicalDesignList.ResetErrorText();
 
                 if (!ValidateMinRewardAndTotalRate() || !ValidateAllSetPogodgeno() || !ValidateMusicalDesign())
                 {

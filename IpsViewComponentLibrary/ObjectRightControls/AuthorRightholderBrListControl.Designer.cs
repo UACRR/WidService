@@ -187,14 +187,14 @@
             this.gvAuthorRightholderList.Size = new System.Drawing.Size(693, 369);
             this.gvAuthorRightholderList.TabIndex = 23;
             this.gvAuthorRightholderList.ThemeName = "Office2013Light";
-            this.gvAuthorRightholderList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvAuthorRightholderList_CellFormatting);
-            this.gvAuthorRightholderList.EditorRequired += new Telerik.WinControls.UI.EditorRequiredEventHandler(this.gvAuthorRightholderList_EditorRequired);
-            this.gvAuthorRightholderList.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.gvAuthorRightholderList_CellBeginEdit);
-            this.gvAuthorRightholderList.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvAuthorRightholderList_CellEditorInitialized);
-            this.gvAuthorRightholderList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvAuthorRightholderList_CurrentRowChanged);
-            this.gvAuthorRightholderList.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvAuthorRightholderList_CellValueChanged);
-            this.gvAuthorRightholderList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvObjectsRightsList_CommandCellClick);
-            this.gvAuthorRightholderList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.gvAuthorRightholderList_ToolTipTextNeeded);
+            this.gvAuthorRightholderList.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.GvAuthorRightholderList_CellFormatting);
+            this.gvAuthorRightholderList.EditorRequired += new Telerik.WinControls.UI.EditorRequiredEventHandler(this.GvAuthorRightholderList_EditorRequired);
+            this.gvAuthorRightholderList.CellBeginEdit += new Telerik.WinControls.UI.GridViewCellCancelEventHandler(this.GvAuthorRightholderList_CellBeginEdit);
+            this.gvAuthorRightholderList.CellEditorInitialized += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GvAuthorRightholderList_CellEditorInitialized);
+            this.gvAuthorRightholderList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.GvAuthorRightholderList_CurrentRowChanged);
+            this.gvAuthorRightholderList.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GvAuthorRightholderList_CellValueChanged);
+            this.gvAuthorRightholderList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.GvObjectsRightsList_CommandCellClick);
+            this.gvAuthorRightholderList.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.GvAuthorRightholderList_ToolTipTextNeeded);
             // 
             // btnAdd
             // 
@@ -205,7 +205,7 @@
             this.btnAdd.TabIndex = 24;
             this.btnAdd.Text = "Додати";
             this.btnAdd.ThemeName = "Office2013Light";
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // objectAuthorRightholderBrViewModelBindingSource
             // 
