@@ -13,8 +13,14 @@ as
 begin
 --Внесение процентов
 SET NOCOUNT ON;
-
---create table #TabDel (objid integet not null primary key)
+------
+create table #TabObjDel (objid integer not null primary key) 
+delete #TabObjDel
+  insert into #TabObjDel (objid) --select distinct objid from test..Go_InCRight
+  select objid from objectRight where isnull(loadId,0) <> 0 
+  and objid=0 --!!!!!! от случайного запуска
+  order by objid 
+------
 
 declare @RetCode integer 
 set @RetCode = 0

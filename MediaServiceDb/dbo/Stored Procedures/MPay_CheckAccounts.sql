@@ -1,13 +1,14 @@
-﻿CREATE procedure MPay_CheckAccounts
+﻿CREATE procedure [dbo].[MPay_CheckAccounts]
 as
 begin
-/*
+if ( object_id('tempdb..#doc1') is null)
+
 CREATE TABLE #doc1(
 	id	int identity,
 	regIItemId int  NULL,
 	distId int  NULL,
 	regId int  NULL,
-	periodId int  NULL,
+	--periodId int  NULL,
 	distribDate date NOT NULL,
 	amount money NOT NULL,
 	kindCode int NOT NULL,
@@ -16,8 +17,8 @@ CREATE TABLE #doc1(
 	categoryCode int NULL,
 	AccIdDebet int NULL,
 	AccIdCredit int NULL,
-	AccDebet int NULL,
-	AccCredit int NULL,
+	AccDebet				varchar(25)			NULL,
+	AccCredit				varchar(25)			NULL,
 	name varchar(254) NULL,
 	author varchar(254) NULL,
 	performer varchar(254) NULL,
@@ -29,9 +30,10 @@ CREATE TABLE #doc1(
 	cRType int NULL,
 	disttype		int,
 	paynote varchar	(100)		null,
+	custIdRh integer NULL,  --!T
 	primary key (id)
 	)
-	*/
+	
 --проверка/открытие 301/302 счетов плательщика
 
     declare cur cursor for   select   regIItemId,KindCode,ObjId,AccCredit,AccDebet,ItemName,custId from #Doc1                                   

@@ -1,4 +1,4 @@
-﻿create procedure dbo.DelAgreement 
+﻿CREATE procedure [dbo].[DelAgreement] 
 --------------------
 --Удаление генеральных договоров клиента по @agrId
   @agrId  integer, 
@@ -12,13 +12,13 @@ BEGIN
 
 --Проверка на наличие остатков
 IF exists ( select 1 from MoneyPeriodLink t0 
-              join LicenceAgreement t1 on t1.licId = t0.licId  and t1.licClass = 1 and t1.agrId = @agrId )
+              join LicenseAgreement t1 on t1.licId = t0.licId  and t1.licClass = 1 and t1.agrId = @agrId )
  Begin 
    set @RetCode = 1
    set @ErrMsg = @ErrMsg + ' ' +'Виявлено платежі по договору!'
  end 
 
-IF exists ( select 1 from LicenceAgreement t0 where t1.agrId = @agrId and t1.licClass <> 1   )
+IF exists ( select 1 from LicenseAgreement t0 where t0.agrId = @agrId and t0.licClass <> 1   )
  Begin 
    set @RetCode = 1
    set @ErrMsg = @ErrMsg + ' ' +'Виявлено ліцензійні угоди по головному договору!'
@@ -45,7 +45,7 @@ begin tran
        delete AgreementAddRH where agrId = @agrId
        delete AgreementAddPartner where agrId = @agrId
        delete LicenseAgreement where agrId = @agrId and licClass = 1 
-
+	   
      IF @@TRANCOUNT > 0 
            commit tran
 

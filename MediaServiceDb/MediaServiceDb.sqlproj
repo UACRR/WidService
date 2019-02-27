@@ -113,14 +113,6 @@
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="MediaServiceDb">
-      <HintPath>Assemblies\MediaServiceDb.dll</HintPath>
-      <SqlAssemblyName>MediaServiceDb</SqlAssemblyName>
-      <IsModelAware>True</IsModelAware>
-      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
-      <SqlOwnerName>dbo</SqlOwnerName>
-      <SqlPermissionSet>SAFE</SqlPermissionSet>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <None Include="MediaServiceDb.publish.xml" />
@@ -477,18 +469,12 @@
     <Build Include="dbo\Functions\fs_GetCounter.sql" />
     <Build Include="dbo\Functions\fMyCustId.sql" />
     <Build Include="dbo\Functions\fMyCountry.sql" />
-    <Build Include="dbo\Functions\FCRightControl.sql" />
     <Build Include="dbo\Functions\f_rest_out.sql" />
     <Build Include="dbo\Functions\f_rest_in.sql" />
-    <Build Include="dbo\Functions\f_PrtUseMedia.sql" />
-    <Build Include="dbo\Functions\f_PrtAddUse.sql" />
     <Build Include="dbo\Functions\f_Num2Word.sql" />
     <Build Include="dbo\Functions\f_N2TUk.sql" />
     <Build Include="dbo\Functions\f_N2TRu.sql" />
     <Build Include="dbo\Functions\f_N2TEn.sql" />
-    <Build Include="dbo\Functions\f_docNumber.sql" />
-    <Build Include="dbo\Functions\CRLocationUse.sql" />
-    <Build Include="dbo\Functions\CRLocationExept.sql" />
     <Build Include="dbo\Functions\splitstring.sql" />
     <Build Include="dbo\Functions\ft_tsk_7_FixDistr01.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_5_RatingObj.sql" />
@@ -500,18 +486,8 @@
     <Build Include="dbo\Functions\ft_Tsk_5_14_RegisterSR.sql" />
     <Build Include="dbo\Functions\ft_tsk_3_DistribMain.sql" />
     <Build Include="dbo\Functions\ft_Tsk_3_AutoLink.sql" />
-    <Build Include="dbo\Functions\ft_TradeHistory.sql" />
     <Build Include="dbo\Functions\ft_TradeAmount.sql" />
-    <Build Include="dbo\Functions\ft_PrtRHolder.sql" />
     <Build Include="dbo\Functions\ft_PrtmyAnk.sql" />
-    <Build Include="dbo\Functions\ft_PrtLicense.sql" />
-    <Build Include="dbo\Functions\ft_PrtCustAnk.sql" />
-    <Build Include="dbo\Functions\ft_ProductTime.sql" />
-    <Build Include="dbo\Functions\ft_ProductLocate_old.sql" />
-    <Build Include="dbo\Functions\ft_ProductLocate.sql" />
-    <Build Include="dbo\Functions\ft_ProductDesc.sql" />
-    <Build Include="dbo\Functions\ft_PrlListDoc1.sql" />
-    <Build Include="dbo\Functions\ft_PrlListDoc.sql" />
     <Build Include="dbo\Functions\ft_Tsk_7_Users.sql" />
     <Build Include="dbo\Functions\ft_Tsk_7_RegisterRegisterCounts.sql" />
     <Build Include="dbo\Functions\ft_Tsk_7_ObjectRightholders.sql" />
@@ -544,12 +520,6 @@
     <Build Include="dbo\Stored Procedures\pTsk_5_17_1_BalanseGroup.sql" />
     <Build Include="dbo\Stored Procedures\pTsk_5_1_Main.sql" />
     <Build Include="dbo\Stored Procedures\pTsk_3_AutoLink.sql" />
-    <Build Include="dbo\Stored Procedures\prtDocument1.sql" />
-    <Build Include="dbo\Stored Procedures\prtDocument.sql" />
-    <Build Include="dbo\Stored Procedures\prtDocLic1.sql" />
-    <Build Include="dbo\Stored Procedures\prtDocLic.sql" />
-    <Build Include="dbo\Stored Procedures\prtDocInv1.sql" />
-    <Build Include="dbo\Stored Procedures\prtDocInv.sql" />
     <Build Include="dbo\Stored Procedures\ppTsk_5_2_CrKind.sql" />
     <Build Include="dbo\Stored Procedures\Pay_SaldoDay_Court.sql" />
     <Build Include="dbo\Stored Procedures\Pay_Pay_SaldoDay.sql" />
@@ -560,8 +530,6 @@
     <Build Include="dbo\Stored Procedures\p_CreateDistribution.sql" />
     <Build Include="dbo\Stored Procedures\p_CreateDistribForFixation.sql" />
     <Build Include="dbo\Stored Procedures\p_BRlicView.sql" />
-    <Build Include="dbo\Stored Procedures\OpenAccountFound.sql" />
-    <Build Include="dbo\Stored Procedures\OpenAccount.sql" />
     <Build Include="dbo\Stored Procedures\OpenAccNLS.sql" />
     <Build Include="dbo\Stored Procedures\MPayCheck_Accounts.sql" />
     <Build Include="dbo\Stored Procedures\MPay931_D21_2_K301_.sql" />
@@ -579,14 +547,11 @@
     <Build Include="dbo\Stored Procedures\MPay_A_main.sql" />
     <Build Include="dbo\Stored Procedures\getCounter.sql" />
     <Build Include="dbo\Stored Procedures\Get_correspondent.sql" />
-    <Build Include="dbo\Stored Procedures\DelRequest.sql" />
     <Build Include="dbo\Stored Procedures\DelObjectRight.sql" />
     <Build Include="dbo\Stored Procedures\DelLicenseAgr.sql" />
     <Build Include="dbo\Stored Procedures\DelFullCustomer.sql" />
     <Build Include="dbo\Stored Procedures\DelCustomer.sql" />
     <Build Include="dbo\Stored Procedures\DelAgreement.sql" />
-    <Build Include="dbo\Stored Procedures\CRightMainInsert.sql" />
-    <Build Include="dbo\Stored Procedures\CreateInvoice.sql" />
     <Build Include="dbo\User Defined Types\CopyRightParam.sql" />
     <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
     <Build Include="dbo\Views\vTSK_1_BRMoneyPrepay.sql" />
@@ -608,7 +573,6 @@
     <Build Include="dbo\Functions\ft_Tsk_5_24_BR.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_23_BR.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_22_SRcm.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_22_BRcm__.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_22_BRcm_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_22_BRcm.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_22_2_SRcm.sql" />
@@ -692,7 +656,6 @@
     <Build Include="dbo\Functions\ft_Tsk_5_25_2_SRLic.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_25_1_SRLic.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_24_SR__.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_22_2_BRcm_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_22_1_BRcm_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_20_BRMain_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_OldOk.sql" />
@@ -730,10 +693,9 @@
     <Build Include="dbo\Stored Procedures\MPay4_D20_K21____.sql" />
     <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_regId.sql" />
     <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_distid.sql" />
-    <Build Include="dbo\Stored Procedures\Intr_OpenObjects.sql" />
-    <Build Include="dbo\Stored Procedures\Intr_OpenCopyRight.sql" />
-    <Build Include="dbo\Stored Procedures\Intr_OpenAnkRhFO.sql" />
-    <Build Include="dbo\Stored Procedures\Intr_OpenAnkRh2.sql" />
     <Build Include="dbo\Stored Procedures\Intr_DelObject.sql" />
+    <Build Include="dbo\Functions\ft_Tsk_5_ForPayFact.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_18_1_ObjUnattached.sql" />
+    <Build Include="dbo\Stored Procedures\pTsk_5_18_1_ObjUnattache_.sql" />
   </ItemGroup>
 </Project>

@@ -15,12 +15,15 @@
     [parentId]      INT            NULL,
     [roleCode]      INT            NULL,
     [status]        INT            NULL,
+    [rateMech]      DECIMAL (5, 2) NULL,
     CONSTRAINT [PK_COPYRIGHT] PRIMARY KEY CLUSTERED ([cRightId] ASC),
     CONSTRAINT [FK_COPYRIGH_ASSOCIATI_RIGHTHOL] FOREIGN KEY ([custId]) REFERENCES [dbo].[RightHolder] ([custId]),
     CONSTRAINT [FK_COPYRIGH_REFERENCE_CREATIVE] FOREIGN KEY ([roleCode]) REFERENCES [dbo].[CreativeRoleType] ([codeI]),
     CONSTRAINT [FK_COPYRIGH_REFERENCE_CRIGHTST] FOREIGN KEY ([status]) REFERENCES [dbo].[CRightStatus] ([codeI]),
     CONSTRAINT [FK_COPYRIGH_REFERENCE_OBJECTRI] FOREIGN KEY ([objId]) REFERENCES [dbo].[ObjectRight] ([objId])
 );
+
+
 
 
 

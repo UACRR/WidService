@@ -4,6 +4,7 @@
 -- @cmCustId - по конкретному сообществу, 0-выбрать всесообщества
 
 RETURNS @RT TABLE
+--create table #RT
 (
  id integer not null identity primary key,
  clCustId integer, --назва театру
@@ -54,9 +55,11 @@ set @cmCustId = (Case When isnull(@cmCustId,0) = 0 Then NULL Else @cmCustId end)
 
 --Большие права
 insert into @RT 
+--insert into #RT 
 (clCustId,  regId, regIItemId,  rhCustId, amount, cmCustId, t1.objid)
 select  t1.clCustId,  t1.regId, t1.regItemId,  isnull(t1.rhCustId,-1), t1.amount, isnull(t1.cmCustId,-1), t1.objid
 from ft_Tsk_5_DISTRIBUTEDRed (@dateBegin, @dateEnd, 6, NULL) t1
+--from ft_Tsk_5_DISTRIBUTEDRed ('2019-01-01', '2019-03-01', 6, NULL) t1
  where isnull(t1.rhCustId,-1) = isnull(@custId, isnull(t1.rhCustId,-1)) and isnull(t1.cmCustId,-1) = isnull(@cmCustId, isnull(t1.cmCustId,-1))
 --categoryCode, cmCustId		
 
@@ -78,6 +81,7 @@ update @RT
 	  countUse = t5.countUse,    --к-ть вистав
 	  ItemName =  t5.ItemName,   --назва твору
 	  regAmount = t2.regAmount,  --сума валового збору
+	  authAmount = t2.authAmount, 
 	  regRate = t2.regRate      --ставка роялті 
  from @RT  t1 
    join Register t2 on t1.regId = t2.regId 
@@ -85,13 +89,20 @@ update @RT
    join paidPeriod t4 on t4.periodId = t3.periodId 
    join RegisterItem t5 on t5.regId = t2.regId 
 
+   --Если ставка роялти в листе не проставлена - ошибка, но заполню здесь
+   update @RT set regRate = t3.rate 
+     from @RT t1
+	    join LicenseAgreement t2 on t2.custId = t1.clCustId
+	    join LicenseBigR t3 on t3.licId = t2.licId and t3.objid = t1.objid 
+	  where isnull(t1.regRate,0) = 0
+	      
    update @RT 
       set roleCode = t2.roleCode, 
 	      roleName = t3.name,  
 		  roleRate = t2.roleRate
      from @RT  t1 
-	  join copyRight t2 on t2.objid = t1.objId and t2.custId = t1.rhCustId
-	  join CreativeRoleType t3 on t3.codeI = t1.roleCode
+	  join CopyRight t2 on t2.objid = t1.objId and t2.custId = t1.rhCustId
+	  join CreativeRoleType t3 on t3.codeI = t2.roleCode
 
   update @RT set cmCustIdName = isnull(t2.name , 'НЕ ВИЗНАЧЕНО')
      from @RT t1 
