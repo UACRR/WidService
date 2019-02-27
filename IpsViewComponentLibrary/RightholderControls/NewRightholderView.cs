@@ -230,16 +230,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
-        private async void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
+        private void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
         {
             // TODO: move to presenter and show in the separate dialog
             var customer = bsCustomer.Current as Customer;
 
-            if (customer == null)
+            var agrMaster = customer?.AgreementMaster.First();
+            if (agrMaster == null)
                 return;
-
-            var agrMaster = customer.AgreementMaster.First();
-            if (agrMaster == null) return;
 
             var templateName = IpsGlobal.AnketaDictionaties.agreementType.FirstOrDefault(item => item.CodeI == agrMaster.AgrType)?.TemplateName;
             if (string.IsNullOrEmpty(templateName))

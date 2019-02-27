@@ -27,7 +27,6 @@ namespace IpsViewComponentLibrary.FixationControls
         private readonly RegisterService _registerService;
         private readonly PrintService _printService;
         private Fixation _fixation;
-        private bool _canClose;
         private int _lastId = 0;
 
         public FixationPresenter(FixationView view)

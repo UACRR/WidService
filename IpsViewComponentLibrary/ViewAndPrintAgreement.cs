@@ -14,19 +14,20 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class ViewAndPrintAgreement : Telerik.WinControls.UI.RadForm
+    public partial class ViewAndPrintAgreement : RadForm
     {
         private WordEngine _wordEngine;
         private readonly AnketaDictionaties _dictionaties;
+        private const string DefaultTemplate = "F_Тестовий шаблон.docx";
         private string _pdf;
         private string _docx;
 
-        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        private new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public ViewAndPrintAgreement()
         {
             InitializeComponent();
-            if (!IsDesignMode)
+            if (!this.IsDesignMode)
                 _dictionaties = IpsGlobal.AnketaDictionaties;
             SetupCustomSaveAsButton();
         }
@@ -58,7 +59,7 @@ namespace IpsViewComponentLibrary
             saveFileDialog.ShowDialog();
         }
 
-        private void saveFileDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        private void saveFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             string fileName = saveFileDialog.FileName;
 
@@ -73,10 +74,10 @@ namespace IpsViewComponentLibrary
             radWaitingBar1.StartWaiting();
             _wordEngine = new WordEngine(_dictionaties);
             int version = licenseAgreement?.LicVersion ?? default(int);
-            string templateName = _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            string templateName = _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? DefaultTemplate;
             templateName = string.Concat(@"Templates\", templateName);
             // Ліцензія не належить великим правам
-            if (!(licenseAgreement.Agr != null && licenseAgreement.Agr.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Count() > 0))
+            if (!(licenseAgreement?.Agr?.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Any()))
                 _wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
             else // Належить великим правам
             {
@@ -92,10 +93,10 @@ namespace IpsViewComponentLibrary
         {
             radWaitingBar1.StartWaiting();
             _wordEngine = new WordEngine(_dictionaties);
-            string templateName = _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            string templateName = _dictionaties?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? DefaultTemplate;
             templateName = string.Concat(@"Templates\", templateName);
             // Ліцензія не належить великим правам
-            if (!(licenseAgreement.Agr != null && licenseAgreement.Agr.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Count() > 0))
+            if (licenseAgreement.Agr?.AgreementAddBr != null && licenseAgreement.Agr.AgreementAddBr.Any())
                 _wordEngine.ProcessConsumer(templateName, customer, licenseAgreement, version);
             else // Належить великим правам
             {
