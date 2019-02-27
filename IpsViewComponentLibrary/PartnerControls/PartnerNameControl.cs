@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.PartnerControls

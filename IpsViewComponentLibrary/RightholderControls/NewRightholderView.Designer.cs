@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.RightholderControls
+﻿using IpsViewComponentLibrary.Extensions;
+
+namespace IpsViewComponentLibrary.RightholderControls
 {
     partial class NewRightholderView
     {
@@ -445,7 +447,6 @@
             // 
             // ctrlInternationalPassport
             // 
-            this.ctrlInternationalPassport.DataMember = "";
             this.ctrlInternationalPassport.DataSource = this.bsAnketaPerson;
             this.ctrlInternationalPassport.Location = new System.Drawing.Point(9, 34);
             this.ctrlInternationalPassport.Name = "ctrlInternationalPassport";
@@ -500,7 +501,7 @@
             this.ctrlAgreementNumberDate.DataSourceRh = this.bsAgreementAddRh;
             this.ctrlAgreementNumberDate.DateEndNullDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.ctrlAgreementNumberDate.DateEndNullText = "Не обмежено";
-            this.ctrlAgreementNumberDate.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
+            this.ctrlAgreementNumberDate.DateTimeType = ConsumerAgreementInitType.None;
             this.ctrlAgreementNumberDate.Location = new System.Drawing.Point(187, 6);
             this.ctrlAgreementNumberDate.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementNumberDate.Name = "ctrlAgreementNumberDate";

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Properties;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;

@@ -17,6 +17,7 @@ using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerDialogForms;
 using ipsFormsDesign.Dictionary;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary
 {

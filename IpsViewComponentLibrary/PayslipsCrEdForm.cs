@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;

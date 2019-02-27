@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerForms

@@ -1,5 +1,6 @@
 ﻿using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ExtensionControls;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
@@ -256,7 +257,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlRequest.Name = "ctrlRequest";
             this.ctrlRequest.Size = new System.Drawing.Size(1136, 584);
             this.ctrlRequest.TabIndex = 0;
-            this.ctrlRequest.TypeControl = IpsViewComponentLibrary.ControlRequestOrReferenceType.None;
+            this.ctrlRequest.TypeControl = ControlRequestOrReferenceType.None;
             // 
             // ctrlReference
             // 
@@ -265,7 +266,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlReference.Name = "ctrlReference";
             this.ctrlReference.Size = new System.Drawing.Size(1136, 584);
             this.ctrlReference.TabIndex = 0;
-            this.ctrlReference.TypeControl = IpsViewComponentLibrary.ControlRequestOrReferenceType.None;
+            this.ctrlReference.TypeControl = ControlRequestOrReferenceType.None;
             // 
             // ctrlPayslips
             // 

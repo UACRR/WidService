@@ -20,6 +20,11 @@ namespace IpsViewComponentLibrary.Extensions
             MessageBox.Show(msg, DefaultTitleMsg, MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        public static void ShowError(string msg)
+        {
+            MessageBox.Show(msg, ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         /// <summary>
         /// Показати повідомлення після спроби зробити зміни.
         /// Успішно: "Внесені зміни збережено!"

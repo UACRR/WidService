@@ -12,6 +12,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using Telerik.WinControls;
 using IpsViewComponentLibrary.ConsumerDialogForms;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary
 {

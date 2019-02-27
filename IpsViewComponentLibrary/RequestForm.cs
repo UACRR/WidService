@@ -13,6 +13,7 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.Common.Form;
+using IpsViewComponentLibrary.Extensions;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary

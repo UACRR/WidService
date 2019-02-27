@@ -721,7 +721,7 @@
     <Compile Include="ConsumerForms\DistributionForm.Designer.cs">
       <DependentUpon>DistributionForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionUtils.cs" />
+    <Compile Include="Extensions\ExtensionUtils.cs" />
     <Compile Include="GeneralAgreementInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>

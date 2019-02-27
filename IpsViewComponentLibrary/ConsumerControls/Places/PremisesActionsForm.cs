@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
