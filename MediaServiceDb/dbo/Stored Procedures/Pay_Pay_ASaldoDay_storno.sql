@@ -1,6 +1,29 @@
 ﻿CREATE	 procedure [dbo].[Pay_Pay_ASaldoDay_storno]
 as
 begin
+if ( object_id('tempdb..#PayTurn') is null)
+
+CREATE TABLE #PayTurn(
+	TurnId						 int			NOT NULL,
+	DateWork				date NOT NULL,
+	ND							varchar(25)		NULL,
+	NDDate					datetime	NULL,
+	AccIdDebet			 int			NULL,
+	AccIdCredit			 int			NULL,
+	AccDebet				varchar(25)			NULL,
+	AccCredit				varchar(25)			NULL,
+	Amount					numeric(20, 2	)	NULL,
+	AmountCur				numeric(20, 2)	NULL,
+	PayNote					varchar(200) 	NULL,
+	DateOper				datetime						NOT NULL,
+	PayStatus				int					 NULL,
+	regId						int,
+	distid					int,
+	paidid				int null,
+	flCourt		tinyint		null,
+	custidRh				int		null,
+ PRIMARY KEY CLUSTERED (	TurnId ASC,	DateWork ASC)
+)
 
 create table #saldo_turns(
 AccID				int,

@@ -84,7 +84,17 @@ begin tran
 		delete Fixation where clientCustId = @CustId
 --//Конец Фиксация
 
+
+        delete CopyRightHistory 
+		  from CopyRightHistory t1 
+		   join CopyRight t2 on t2.cRightId = t1.childId and t2.custId = @CustId
+		   
+        delete CopyRightHistory 
+		  from CopyRightHistory t1 
+		   join CopyRight t2 on t2.cRightId = t1.parentId and t2.custId = @CustId
+   
         delete CopyRight where custId = @custid
+
 		delete AnketaAddNick where custId = @custid  
 		delete AnketaPerson where custId = @custid 
 		delete AnketaCompany where custId = @custid 

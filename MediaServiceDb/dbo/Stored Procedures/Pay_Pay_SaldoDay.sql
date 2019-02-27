@@ -1,7 +1,9 @@
 ﻿CREATE	 procedure [dbo].[Pay_Pay_SaldoDay]
 as
 begin
-/*
+
+if ( object_id('tempdb..#PayTurn') is null)
+
 CREATE TABLE #PayTurn(
 	TurnId						 int			NOT NULL,
 	DateWork				date NOT NULL,
@@ -20,9 +22,12 @@ CREATE TABLE #PayTurn(
 	distid					int,
 	paidid				int null,
 	flCourt		tinyint		null,
+	custidRh				int		null,
  PRIMARY KEY CLUSTERED (	TurnId ASC,	DateWork ASC)
 )
-nsert #PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,Amount,
+
+/*
+insert #PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,Amount,
 							AmountCur,PayNote,DateOper,PayStatus,regId,distid,paidid ,flCourt)
   select 
 							DocPayId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,Amount,
@@ -313,7 +318,7 @@ Using (select AccId,R030,DateBegin,DateEnd,Krdoborot,Deboborot,Rest,RestBegin  ,
 						then insert( accId,dateBegin,dateEnd,r030,rest,restCourt,deboborot,krdOborot,
 						deboborotCourt,krdOborotCourt,restBegin,restBeginCourt)
 						values(src.AccId,src.DateBegin,src.DateEnd,src.R030,src.Rest,src.RestCourt,src.Deboborot,src.Krdoborot,
-						deboborotCourt,krdoborotCourt,	RestBegin,	RestBeginCourt);
+						src.deboborotCourt,src.krdoborotCourt,	src.RestBegin,	src.RestBeginCourt);
 --						values(src.AccId,src.R030,src.DateBegin,src.DateEnd,src.Krdoborot,	src.Deboborot,src.Rest,RestBegin);
 
 

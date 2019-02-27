@@ -134,7 +134,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void txtName_Leave(object sender, EventArgs e)
+        private void TxtName_Leave(object sender, EventArgs e)
         {
             TextNameChanged?.Invoke(sender, txtName.Text);
         }

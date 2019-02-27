@@ -20,6 +20,7 @@ declare @cntrRow integer, @cntrRow2 integer
    isLicFull smallint null,   --признак полного удаления договора
    custId integer not null, 
    isAnk smallint null, --признак удаления анкеты
+   status integer null,  --для проставления статуса закрытия вместо удаления
   primary key (licId, licVersion)) 
 
  create table #TabAgrId 
@@ -27,6 +28,7 @@ declare @cntrRow integer, @cntrRow2 integer
    custId integer null, 
    agrType integer null, 
    isAnk smallint null, --признак удаления анкеты
+   status integer null, --для проставления статуса закрытия вместо удаления
   primary key (agrId)) 
 
  create table #TabCust 
@@ -91,6 +93,7 @@ PRINT @name+'. Всього ліц.дог. - '+ convert(char(10),@cntrRow) + 'В
      join LicenseAgreement t2 on t2.licId = t1.licId and t1.isLicFull = 1 
 	   and not exists (select 1 from LicenseAgreement t3 where t3.agrId = t2.agrId and t3.licId <> t2.licId)
 
+
 --Помеченные 
   insert into #TabAgrId (agrId)
    select distinct agrId
@@ -118,7 +121,8 @@ PRINT @name+'. Всього ліц.дог. - '+ convert(char(10),@cntrRow) + 'В
   update #TabAgrId set isAnk = 1 
     from #TabAgrId t1 
 	 where not exists ( select 1 from agreementMaster t2 where t2.custId = t1.custId and t2.agrId <> t1.agrId)
-
+	   and not exists ( select  1 from LicenseAgreement t3 join LicenseAgrParam t4 on t3.licId = t4.licId 
+	                     where t3.custId = t1.custId and t4.licStatus not in (10) )
 ------------------------------
 --Удаляю анкеты 
 delete #TabCust
@@ -137,15 +141,31 @@ declare cur cursor  for  select custId from  #TabCust
     while @@fetch_status = 0                                                   
     BEGIN 
 
-  --Запись в журнал об удалении анкеты
-   insert into SystemMessage (modifydate, nameMain, sysName, keyObj, text, name)  
-   select getdate(), 'StarDay', @procName, NULL, 
+--Перед удалением проверить - нет ли связей с реестром и платежами. Если есть - ставить "закрыто"
+------------------------------
+     If exists (select 1 from ExternalPay where custId = @custId ) --платежи
+	   or exists (select 1 from PaidPeriod t1  join registerRatedList t2  on t1.periodId = t2.periodId  --отчеты
+			 where t1.custId = @custId ) 
+	   or exists (select 1 from account where custId = @custId )  --счета
+	 Begin 
+    --Запись в журнал об удалении анкеты
+     insert into SystemMessage (modifydate, nameMain, sysName, keyObj, text, name)  
+     select getdate(), 'StarDay', @procName, NULL, 
+          'Закрито анкету - шифр '+ convert(varchar(20),@custId) + '  '+ t1.name
+		  , @name
+		 from vCustomer t1 where custId = @custId 
+	 update Customer set status = 9 where custId = @custId
+      END
+     ELSE 
+      BEGIN
+    --Запись в журнал об удалении анкеты
+     insert into SystemMessage (modifydate, nameMain, sysName, keyObj, text, name)  
+     select getdate(), 'StarDay', @procName, NULL, 
           'Вилучено анкету - шифр '+ convert(varchar(20),@custId) + '  '+ t1.name
 		  , @name
 		 from vCustomer t1 where custId = @custId 
-
-     exec DelFullCustomer @custId
-
+	 exec DelFullCustomer @custId
+	  END
      if @@ERROR <> 0 
 	  Return -1
 
@@ -158,6 +178,34 @@ END
 ------------------------------
 delete #TabAgrId where isnull(isAnk,0) = 1
 delete #TabLicId where isnull(isAnk,0) = 1
+------------------------------
+------------------------------
+--Перед удалением проверить - нет ли связей с периодом. Если есть - ставить "закрыто"
+------------------------------
+     update #TabLicId set status = 4
+	  from  #TabLicId t1 
+	    join PaidPeriod t2 on t1.licId = t2.licId 
+		join RegisterRatedList t3 on t3.periodId = t2.periodId
+
+      update LicenseAgrParam set licStatus = 4 
+	     from LicenseAgrParam t1 
+		   join LicenseAgreement t3 on t3.licId = t1.licId and t3.licVersion = t1.licVersion
+		   join #TabLicId t2 on t2.licId = t1.licId
+
+      update LicenseAgreement set licStatus = 4 
+	     from LicenseAgreement t1 
+		   join #TabLicId t2 on t2.licId = t1.licId
+      
+      set @cntrRow = (select count( distinct licId) from #TabLicId where isnull(isLicFull,0) <> 0 and status = 4)
+      PRINT 'Закрито договорів = '+ convert(char(10), @cntrRow) 
+
+   insert into SystemMessage (modifydate, nameMain, sysName, keyObj, text, name)  
+   select getdate(), 'StarDay', @procName, NULL, 
+          'Закрито договорів = '+ convert(char(10), @cntrRow) 
+       , @name
+
+    delete #TabLicId where status = 4
+
 ------------------------------
 ----Удаляю конкретные лицензионные договора
  begin Transaction DelAgreement
@@ -227,8 +275,29 @@ PRINT 'Вилучено договорів = '+ convert(char(10), @cntrRow) +
        '   Вилучено додатків = '+ cast(@cntrRow2 as varchar(20)) 
        , @name
 
-
 ------Удаляю договора из Agreement с сохранением анкеты и других договоров
+
+---ПРоверяю - можно ли удалить или закрыть 
+   --Были реестры
+   update #TabAgrId set status = 4 
+     from #TabAgrId t1 
+	   join paidPeriod t2 on t2.custId = t1.custId 
+	   join RegisterRatedList t3 on t3.periodId = t2.periodId
+
+   --Были платежи
+    update #TabAgrId set status = 4 
+     from #TabAgrId t1,  
+	      Account t2 
+	where t2.custId = t1.custId 
+	   and exists ( select 1 from SaldoDay t3 where t3.accId = t2.accId )
+
+    update AgreementMaster set agrStatus = 4 
+	   from AgreementMaster t1 
+	      join #TabAgrId t2 on t2.custId = t1.custId
+
+    delete #TabAgrId where status = 4
+
+------------------------------------------------
 ---Удаляю правообладателя
  delete CustCmRight 
     from CustCmRight  t1 
@@ -286,12 +355,12 @@ PRINT 'Вилучено договорів = '+ convert(char(10), @cntrRow) +
     from LicenseAgreement t1 
 	 join AgreementAddBR  t2 on t2.agrId = t1.agrId 
 	 join #TabAgrId t3 on t3.custId = t1.custId and t3.agrType in ( 2) 
-	 where not exists ( select 1 from LicenseAgreement t4 where t4.custId = t3.custId and t4.licStatus not in (0,9,1,10))
+	 where not exists ( select 1 from LicenseAgreement t4 where t4.custId = t3.custId and t4.licStatus not in (0,9,1,10)) --странно
 
   delete AgreementAddBR  
     from AgreementAddBR   t1 
 	  join #TabAgrId t2 on t2.agrId = t1.agrId and t2.agrType in ( 2) 
-    where not exists ( select 1 from LicenseAgreement t3 where t3.custId = t2.custId and t3.licStatus not in (0,9,1,10))
+    where not exists ( select 1 from LicenseAgreement t3 where t3.custId = t2.custId and t3.licStatus not in (0,9,1,10)) --странно
 
 ---------------------------
 
@@ -330,3 +399,7 @@ END
 
 --exec pTsk8_AgrDelete
 --select * from SystemMessage
+/*
+select * from vCustomer where custid = 1391
+select * from LicenseAgreement where licStatus = 10
+*/

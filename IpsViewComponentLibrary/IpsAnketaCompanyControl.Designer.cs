@@ -91,7 +91,7 @@
             this.txtName.Size = new System.Drawing.Size(333, 21);
             this.txtName.TabIndex = 0;
             this.txtName.ThemeName = "Office2013Light";
-            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+            this.txtName.Leave += new System.EventHandler(this.TxtName_Leave);
             // 
             // IpsAnketaCompanyControl
             // 

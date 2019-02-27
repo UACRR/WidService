@@ -250,7 +250,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
             ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
             var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
-            setupRl(_customer, custRl);
+            SetupRl(_customer, custRl);
             ctrlCalculation.Customer = _customer;
             ctrlPaysInfo.Customer = _customer;
             ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
@@ -299,7 +299,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                         _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
                         ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
                         var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
-                        setupRl(_customer, custRl);
+                        SetupRl(_customer, custRl);
                         ctrlCalculation.Customer = _customer;
                     }
                     break;
@@ -357,7 +357,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         /// </summary>
         /// <param name="customer"></param>
         /// <param name="custRl"></param>
-        private void setupRl(Customer customer, Customer custRl)
+        private void SetupRl(Customer customer, Customer custRl)
         {
             foreach( var lic in customer.Client.LicenseAgreement )
             {
@@ -447,7 +447,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         }
 
         //оновлення даних на вкладкі при переході на іншу
-        private void pageView_SelectedPageChanged(object sender, EventArgs e)
+        private void PageView_SelectedPageChanged(object sender, EventArgs e)
         {
             string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
             _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
