@@ -24,10 +24,10 @@ namespace IpsViewComponentLibrary
             ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
         }
 
-        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties )
+        public void SetDataSources(Customer customer, AnketaDictionaties dictionaties )
         {
             _dictionaties = dictionaties;
-            AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == cust.AnkVersion);
+            AnketaCompany anketa = customer?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == customer.AnkVersion);
             
             ctrlAnketaCompany.DataSource = anketa;
 

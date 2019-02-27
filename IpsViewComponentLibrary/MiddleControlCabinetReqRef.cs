@@ -8,10 +8,12 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Microsoft.Office.Interop.Excel;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using static ipsFormsDesign.Services.ConsumerService;
 
 namespace IpsViewComponentLibrary
 {
@@ -19,6 +21,10 @@ namespace IpsViewComponentLibrary
     {
         private const string SuccessRequestAdd = "Нову завявку додано!";
         private const string ErrorRequestAdd = "Неможливо зберегти нову заявку!";
+        private const string ChangeToReferenceSuccess = "Заявка переведена в довідку!";
+        private const string ChangeToReferenceError = "Неможливо перевести заявку в довідку!";
+        private const string ChangeToLicenseSuccess = "Довідка переведена в ліцензію!";
+        private const string ChangeToLicenseError = "Неможливо перевести довідку в ліцензію!";
 
         public event ChangeLicenseTypeEventHandler OnLicenseTypeChange;
         public event SaveCustomerEventHandler OnLicenseSaveNeed;
@@ -30,7 +36,7 @@ namespace IpsViewComponentLibrary
         private AnketaDictionaties _dictionaties;
         private IList<AuthorsForLicenseBigRightView> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
-        private Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
+        private readonly Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
             {ButtonFunctionType.Accept, "Акцептувати"},
             {ButtonFunctionType.Agree, "На погодження"},
             {ButtonFunctionType.None, string.Empty}
@@ -300,37 +306,44 @@ namespace IpsViewComponentLibrary
                         UpdateData?.Invoke();
                     }
                     else
-                        ExtensionUtils.ShowInfoMessage("Не можливо закрити " + reqrefl, "Помилка", MessageBoxIcon.Error);
+                        ExtensionUtils.ShowInfoMessage("Неможливо закрити " + reqrefl, "Помилка", MessageBoxIcon.Error);
                 }
             }
         }
 
+        // перевести в довідку
         private void btnChangeToReference_Click(object sender, EventArgs e)
         {
-            if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
-            {
-                if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.Reference) ?? false)
-                {
-                    ExtensionUtils.ShowInfoMessage("Заявка переведена в довідку", "Успішно", MessageBoxIcon.Information);
-                    UpdateData?.Invoke();
-                }
-                else
-                    ExtensionUtils.ShowInfoMessage("Не можливо створити довідку з заявки", "Помилка", MessageBoxIcon.Error);
-            }
+            if (!(ChangeLicenseType(LicType.Reference) is bool result))
+                return;
+
+            MessageShow.ShowInfoByResult(ChangeToReferenceSuccess, ChangeToReferenceError, result);
         }
 
+        // перевести в ліцензію
         private void btnChangeToLicense_Click(object sender, EventArgs e)
         {
-            if (gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item)
-            {
-                if (OnLicenseTypeChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), ConsumerService.LicType.License) ?? false)
-                {
-                    ExtensionUtils.ShowInfoMessage("Довідка переведена в Ліцензію", "Успішно", MessageBoxIcon.Information);
-                    UpdateData?.Invoke();
-                }
-                else
-                    ExtensionUtils.ShowInfoMessage("Не можливо створити ліцензію з довідки", "Помилка", MessageBoxIcon.Error);
-            }
+            if (!(ChangeLicenseType(LicType.License) is bool result))
+                return;
+
+            MessageShow.ShowInfoByResult(ChangeToLicenseSuccess, ChangeToLicenseError, result);
+        }
+
+        /// <summary>
+        /// Змінити тип ліцензії
+        /// </summary>
+        /// <param name="licenseType">Тип ліцензії на який потрібно змінити</param>
+        /// <returns>Результат обробки запиту</returns>
+        private bool? ChangeLicenseType(LicType licenseType)
+        {
+            if (!(gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item))
+                return null;
+
+            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
+            var success = OnLicenseTypeChange?.Invoke(license, licenseType) ?? false;
+            if (success)
+                UpdateData?.Invoke();
+            return success;
         }
 
         // оновлення даних
@@ -338,12 +351,6 @@ namespace IpsViewComponentLibrary
         {
             UpdateData?.Invoke();
         }
-    }
-
-    public enum SaveNeedStatus
-    {
-        Yes,
-        No
     }
 
     public enum ButtonFunctionType

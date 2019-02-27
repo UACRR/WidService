@@ -648,11 +648,11 @@
     <Compile Include="ObjectRightControls\ObjectRightBrView.Designer.cs">
       <DependentUpon>ObjectRightBrView.cs</DependentUpon>
     </Compile>
-    <Compile Include="PayslipsCrEdForm.cs">
+    <Compile Include="ConsumerForms\RegisterRatedListForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="PayslipsCrEdForm.Designer.cs">
-      <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
+    <Compile Include="ConsumerForms\RegisterRatedListForm.Designer.cs">
+      <DependentUpon>RegisterRatedListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\CreatePeriod.cs">
       <SubType>Form</SubType>
@@ -1296,8 +1296,8 @@
     <EmbeddedResource Include="ExtensionControls\TabNavigationExpandedControl.resx">
       <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PayslipsCrEdForm.resx">
-      <DependentUpon>PayslipsCrEdForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerForms\RegisterRatedListForm.resx">
+      <DependentUpon>RegisterRatedListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\CreatePeriod.resx">
       <DependentUpon>CreatePeriod.cs</DependentUpon>

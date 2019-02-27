@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerForms
 {
-    partial class PayslipsCrEdForm
+    partial class RegisterRatedListForm
     {
         /// <summary>
         /// Required designer variable.

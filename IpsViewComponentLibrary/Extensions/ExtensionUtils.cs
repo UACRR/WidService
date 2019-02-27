@@ -197,10 +197,10 @@ namespace IpsViewComponentLibrary.Extensions
         /// <summary>
         /// Встановлення джерела даних для DataBinding
         /// </summary>
-        /// <param name="cust">Дані споживача</param>
+        /// <param name="customer">Дані споживача</param>
         /// <param name="dictionaties">Словники</param>
         /// <param name="anketeType">Тип анкети: редагування/створення нової</param>
-        void SetDataSources(Customer cust, AnketaDictionaties dictionaties);
+        void SetDataSources(Customer customer, AnketaDictionaties dictionaties);
 
         /// <summary>
         /// Перевірка на правильність введених даних

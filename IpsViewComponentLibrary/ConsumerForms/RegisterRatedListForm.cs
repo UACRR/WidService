@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
-using ArgumentOutOfRangeException = System.ArgumentOutOfRangeException;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerForms
 {
-    public partial class PayslipsCrEdForm : Telerik.WinControls.UI.RadForm
+    public partial class RegisterRatedListForm : RadForm
     {
+        private const string EmptySpectacleWarning = "Не додано жодної вистави!";
+
         private int _tempRegId = 0;
         private readonly IList<BigRightSpectacleView> _spectacleViews;
         private Customer _customer;
@@ -27,13 +23,14 @@ namespace IpsViewComponentLibrary
         private FormType _type;
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
-        public PayslipsCrEdForm(FormType formType, Customer customer, IList<BigRightSpectacleView> spectacleViews, RegisterRatedList registerRatedList)
+        public RegisterRatedListForm(FormType formType, Customer customer, IList<BigRightSpectacleView> spectacleViews, RegisterRatedList registerRatedList)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterParent;
+            DialogResult = DialogResult.None;
             Load += PayslipsCrEdForm_Load;
             _type = formType;
             ddlPeriod.SelectedValueChanged -= ddlPeriod_SelectedValueChanged;
-            DialogResult = DialogResult.None;
             //передача ссилок
             _customer = customer;
             _spectacleViews = spectacleViews.Where(rec => rec.LicType == 1 ).ToList();
@@ -180,7 +177,8 @@ namespace IpsViewComponentLibrary
         //Натискання кнопки видалення на гріду
         private void gvViewPayslipsItems_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            if(_type == FormType.View) return;
+            if(_type == FormType.View)
+                return;
 
             var item = e.Row.DataBoundItem as PayslipsGridDataSource;
             var delitem = _registerRatedList.Register.SingleOrDefault(rec =>rec.RegId == item?.TempRegId);
@@ -192,44 +190,44 @@ namespace IpsViewComponentLibrary
         //зміна значень полів гріда
         private void gvViewPayslipsItems_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
-            if(e.Row.DataBoundItem is PayslipsGridDataSource item)
+            if (!(e.Row.DataBoundItem is PayslipsGridDataSource item))
+                return;
+
+            var sw = _spectacleViews.SingleOrDefault(rec => rec.ObjId == item.ObjId);
+            var reg = _registerRatedList?.Register?.SingleOrDefault(rec => rec.RegId == item?.TempRegId);
+            var regItem = _registerRatedList?.Register?.SingleOrDefault(rec => rec.RegId == item?.TempRegId)?.RegisterItem.SingleOrDefault();
+            if (reg != null && regItem != null)
             {
-                var sw = _spectacleViews.SingleOrDefault(rec => rec.ObjId == item.ObjId);
-                var reg = _registerRatedList?.Register?.SingleOrDefault(rec => rec.RegId == item?.TempRegId);
-                var regItem = _registerRatedList?.Register?.SingleOrDefault(rec => rec.RegId == item?.TempRegId)?.RegisterItem.SingleOrDefault();
-                if (reg != null && regItem != null)
+                if (e.Column.FieldName == "ObjId")
                 {
-                    if (e.Column.FieldName == "ObjId")
-                    {
-                        regItem.ItemName = sw?.Name;
-                        regItem.ObjId = sw?.ObjId;
-                        item.ActCode = sw?.ActCode;
-                        reg.AuthRate = sw?.Rate;
-                        reg.MusicRate = sw?.RateMusic;
-                        item.LicId = sw?.LicId;
-                        reg.LicId = (sw?.LicId ?? default(int));
-                        //var mus = _customer?.Client?.LicenseAgreementChange?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
-                    }
-                    else if (e.Column.FieldName == "Amount")
-                    {
-                        reg.RegAmount = item.Amount;
-                        reg.AuthAmount = (decimal?)(reg.RegAmount / 100 * reg.AuthRate);
-                        reg.MusicAmount = (decimal?)(reg.RegAmount / 100 * reg.MusicRate);
-                    }
-                    else if (e.Column.FieldName == "CountUse")
-                    {
-                        regItem.CountUse = item.CountUse;
-                    }
+                    regItem.ItemName = sw?.Name;
+                    regItem.ObjId = sw?.ObjId;
+                    item.ActCode = sw?.ActCode;
+                    reg.AuthRate = sw?.Rate;
+                    reg.MusicRate = sw?.RateMusic;
+                    item.LicId = sw?.LicId;
+                    reg.LicId = (sw?.LicId ?? default(int));
+                    //var mus = _customer?.Client?.LicenseAgreementChange?.SingleOrDefault(m => m.LicId == sw?.LicId)?.LicenseBigR?.MusicalDesign;
                 }
-                UpdateRegisterGridDataSource();
-                UpdFullSum();
+                else if (e.Column.FieldName == "Amount")
+                {
+                    reg.RegAmount = item.Amount;
+                    reg.AuthAmount = reg.RegAmount / 100 * reg.AuthRate;
+                    reg.MusicAmount = reg.RegAmount / 100 * reg.MusicRate;
+                }
+                else if (e.Column.FieldName == "CountUse")
+                {
+                    regItem.CountUse = item.CountUse;
+                }
             }
+            UpdateRegisterGridDataSource();
+            UpdFullSum();
         }
 
         private void btnAddPeriod_Click(object sender, EventArgs e)
         {
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
-            CreatePeriod dialog = new CreatePeriod(license)
+            var dialog = new CreatePeriod(license)
             {
                 StartPosition = FormStartPosition.CenterParent
             };
@@ -254,7 +252,7 @@ namespace IpsViewComponentLibrary
         {
             if(!_registerRatedList.Register.Any())
             {
-                ExtensionUtils.ShowInfoMessage("Не додано жодної вистави!", "Неможливо зберегти!", MessageBoxIcon.Stop);
+                MessageShow.ShowWarning(EmptySpectacleWarning);
                 return;
             }
 

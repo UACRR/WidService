@@ -20,16 +20,16 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
+        public void SetDataSources(Customer customer, AnketaDictionaties dictionaties)
         {
-            AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
+            AnketaCompany anketa = customer?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == customer?.AnkVersion);
             anketaCompanyBindingSource.DataSource = anketa;
 
-            RelEmployee relEmpl = cust?.Company?.RelEmployee?.FirstOrDefault(rec => rec.PositionCode == 1);
+            RelEmployee relEmpl = customer?.Company?.RelEmployee?.FirstOrDefault(rec => rec.PositionCode == 1);
             if (relEmpl == null)
             {
                 relEmpl = new RelEmployee { Empl = new Employee(), PositionCode = 1 };
-                cust?.Company?.RelEmployee?.Add(relEmpl);
+                customer?.Company?.RelEmployee?.Add(relEmpl);
             }
 
             txtOnBasicsIfHeadBoss.DataBindings.Clear();
@@ -38,19 +38,19 @@ namespace IpsViewComponentLibrary
 
             ctrlHeadBoss.DataSource = relEmpl.Empl;             // - - -  Керівник
 
-            var relEmplBuh = cust?.Company?.RelEmployee?.FirstOrDefault(rec => rec?.PositionCode == 2);
+            var relEmplBuh = customer?.Company?.RelEmployee?.FirstOrDefault(rec => rec?.PositionCode == 2);
             if (relEmplBuh == null)
             {
                 relEmplBuh = new RelEmployee { Empl = new Employee(), PositionCode = 2 };
-                cust?.Company?.RelEmployee?.Add(relEmplBuh);
+                customer?.Company?.RelEmployee?.Add(relEmplBuh);
             }
             ctrlBookkeeper.DataSource = relEmplBuh.Empl;         // - - - Бухгалтер
 
-            var relEmplContPers = cust?.Company?.RelEmployee?.FirstOrDefault(rec => rec?.PositionCode == 3);
+            var relEmplContPers = customer?.Company?.RelEmployee?.FirstOrDefault(rec => rec?.PositionCode == 3);
             if (relEmplContPers == null)
             {
                 relEmplContPers = new RelEmployee { Empl = new Employee(), PositionCode = 3 };
-                cust?.Company?.RelEmployee?.Add(relEmplContPers);
+                customer?.Company?.RelEmployee?.Add(relEmplContPers);
             }
             ctrlContactPerson.DataSource = relEmplContPers.Empl; // - - - Контакта особа
 

@@ -11,6 +11,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.ObjectRightControls;
 
 namespace IpsViewComponentLibrary

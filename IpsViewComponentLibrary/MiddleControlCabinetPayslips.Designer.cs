@@ -430,7 +430,7 @@ namespace IpsViewComponentLibrary
             this.btnAddNewRl.TabIndex = 8;
             this.btnAddNewRl.Text = "Додати новий Р/Л";
             this.btnAddNewRl.ThemeName = "Office2013Light";
-            this.btnAddNewRl.Click += new System.EventHandler(this.btnAddNewRl_Click);
+            this.btnAddNewRl.Click += new System.EventHandler(this.btnCreateRegisterRatedList_Click);
             // 
             // splitContainer
             // 
@@ -533,7 +533,7 @@ namespace IpsViewComponentLibrary
             // 
             this.btnAcceptSpectacles.Name = "btnAcceptSpectacles";
             this.btnAcceptSpectacles.Text = "Погоджений";
-            this.btnAcceptSpectacles.Click += new System.EventHandler(this.btnAcceptSpectacles_Click);
+            this.btnAcceptSpectacles.Click += new System.EventHandler(this.btnConfirmSpectacles_Click);
             // 
             // ctrlHeaderInfo
             // 
@@ -571,7 +571,7 @@ namespace IpsViewComponentLibrary
             this.pageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
-            this.pageView.SelectedPage = this.pvSpectacle;
+            this.pageView.SelectedPage = this.pvMusicalDesign;
             this.pageView.Size = new System.Drawing.Size(1000, 218);
             this.pageView.TabIndex = 1;
             this.pageView.ThemeName = "Office2013Light";
@@ -601,7 +601,7 @@ namespace IpsViewComponentLibrary
             this.pvMusicalDesign.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvMusicalDesign.Location = new System.Drawing.Point(5, 31);
             this.pvMusicalDesign.Name = "pvMusicalDesign";
-            this.pvMusicalDesign.Size = new System.Drawing.Size(1031, 182);
+            this.pvMusicalDesign.Size = new System.Drawing.Size(990, 182);
             this.pvMusicalDesign.Text = "Збірна музика";
             // 
             // gvMusicDesignView
@@ -636,7 +636,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn16.MinWidth = 0;
             gridViewTextBoxColumn16.Multiline = true;
             gridViewTextBoxColumn16.Name = "ObjName";
-            gridViewTextBoxColumn16.Width = 510;
+            gridViewTextBoxColumn16.Width = 489;
             gridViewTextBoxColumn16.WrapText = true;
             gridViewTextBoxColumn17.FieldName = "NameMusician";
             gridViewTextBoxColumn17.HeaderText = "ПІБ композитора";
@@ -644,7 +644,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn17.MinWidth = 100;
             gridViewTextBoxColumn17.Multiline = true;
             gridViewTextBoxColumn17.Name = "NameMusician";
-            gridViewTextBoxColumn17.Width = 202;
+            gridViewTextBoxColumn17.Width = 194;
             gridViewTextBoxColumn17.WrapText = true;
             gridViewTextBoxColumn18.FieldName = "NameSinger";
             gridViewTextBoxColumn18.HeaderText = "ПІБ виконавця";
@@ -652,7 +652,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn18.MinWidth = 100;
             gridViewTextBoxColumn18.Multiline = true;
             gridViewTextBoxColumn18.Name = "NameSinger";
-            gridViewTextBoxColumn18.Width = 194;
+            gridViewTextBoxColumn18.Width = 181;
             gridViewTextBoxColumn18.WrapText = true;
             gridViewTextBoxColumn19.FieldName = "Duration";
             gridViewTextBoxColumn19.HeaderText = "Тривалість звучання (хв)";
@@ -685,7 +685,7 @@ namespace IpsViewComponentLibrary
             this.gvMusicDesignView.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.gvMusicDesignView.Name = "gvMusicDesignView";
             this.gvMusicDesignView.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvMusicDesignView.Size = new System.Drawing.Size(1028, 113);
+            this.gvMusicDesignView.Size = new System.Drawing.Size(987, 113);
             this.gvMusicDesignView.TabIndex = 28;
             this.gvMusicDesignView.ThemeName = "Office2013Light";
             // 
@@ -714,8 +714,8 @@ namespace IpsViewComponentLibrary
             this.cMusAmount.MaximumSize = new System.Drawing.Size(1000, 28);
             this.cMusAmount.MinimumSize = new System.Drawing.Size(150, 25);
             this.cMusAmount.Name = "cMusAmount";
-            this.cMusAmount.Size = new System.Drawing.Size(287, 28);
-            this.cMusAmount.SplitterRatio = 167;
+            this.cMusAmount.Size = new System.Drawing.Size(273, 28);
+            this.cMusAmount.SplitterRatio = 158;
             this.cMusAmount.StringFormat = "";
             this.cMusAmount.TabIndex = 26;
             this.cMusAmount.TextTitle = "Сума за муз. супровід";
@@ -748,8 +748,8 @@ namespace IpsViewComponentLibrary
             this.cAuthorAmount.MaximumSize = new System.Drawing.Size(1000, 28);
             this.cAuthorAmount.MinimumSize = new System.Drawing.Size(150, 25);
             this.cAuthorAmount.Name = "cAuthorAmount";
-            this.cAuthorAmount.Size = new System.Drawing.Size(287, 28);
-            this.cAuthorAmount.SplitterRatio = 167;
+            this.cAuthorAmount.Size = new System.Drawing.Size(273, 28);
+            this.cAuthorAmount.SplitterRatio = 158;
             this.cAuthorAmount.StringFormat = "";
             this.cAuthorAmount.TabIndex = 24;
             this.cAuthorAmount.TextTitle = "Сума авторського гонорару";
