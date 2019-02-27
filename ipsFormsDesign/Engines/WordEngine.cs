@@ -131,7 +131,6 @@ namespace ipsFormsDesign.Services
             BankAccount bankacc = cust.BankAccount.FirstOrDefault();
             //   AnketaCompany anketaComp = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
             RightHolder rightHolder = cust.RightHolder;
-            // bool isCompany = false;
 
             string customerName = string.Empty;
             string leAddress = string.Empty;
@@ -192,7 +191,6 @@ namespace ipsFormsDesign.Services
             }
             else // юр. особа
             {
-                // isCompany = true;
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
                     $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
@@ -2167,8 +2165,6 @@ namespace ipsFormsDesign.Services
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
 
             Row curRow = null;
-            WdRowAlignment aa;
-
             foreach (var item in rightHolder.TerritoryExclude)
             {
                 curRow = table.Rows.Add();

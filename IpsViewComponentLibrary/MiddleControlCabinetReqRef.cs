@@ -30,7 +30,6 @@ namespace IpsViewComponentLibrary
         private AnketaDictionaties _dictionaties;
         private IList<AuthorsForLicenseBigRightView> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
-        private SaveNeedStatus _saveNeedStatus = SaveNeedStatus.No;
         private Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
             {ButtonFunctionType.Accept, "Акцептувати"},
             {ButtonFunctionType.Agree, "На погодження"},

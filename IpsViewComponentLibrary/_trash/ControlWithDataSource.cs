@@ -32,8 +32,6 @@ namespace IpsViewComponentLibrary._trash
             }
         }
 
-        private string _adress;
-
         [Category("Data")]
         [Bindable(true)]
         //[Browsable(true)]
