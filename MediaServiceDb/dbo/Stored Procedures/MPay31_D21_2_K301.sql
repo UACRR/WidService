@@ -24,8 +24,8 @@ CREATE TABLE #doc1(
 	categoryCode int NULL,
 	AccIdDebet int NULL,
 	AccIdCredit int NULL,
-	AccDebet int NULL,
-	AccCredit int NULL,
+	AccDebet				varchar(25)			NULL,
+	AccCredit				varchar(25)			NULL,
 	name varchar(254) NULL,
 	author varchar(254) NULL,
 	performer varchar(254) NULL,
@@ -50,7 +50,7 @@ create table #balance(
 	
 	CREATE TABLE #PayTurn(
 	TurnId						 int			NOT NULL,
-	DateWork				datetime NOT NULL,
+	DateWork				date NOT NULL,
 	ND							varchar(25)		NULL,
 	NDDate					datetime	NULL,
 	AccIdDebet			 int			NULL,
@@ -60,7 +60,7 @@ create table #balance(
 	Amount					numeric(20, 2	)	NULL,
 	AmountCur				numeric(20, 2)	NULL,
 	PayNote					varchar(200) 	NULL,
-	DateOper				date						NOT NULL,
+	DateOper				datetime						NOT NULL,
 	PayStatus				int					 NULL,
 	regId						int,
 	distid					int,
@@ -89,10 +89,14 @@ select
 from 
 		distribution t1,DistributionItem t3,RegisterCount t4
 where
-		t3.distId=t4.distId	and
-		t3.distItemId=t4.distItemId and
-		t3.distId=t1.distid and
-		t1.status=2		and
+		t3.regId=t4.regId	and
+		t3.regIItemId=t4.regIItemId and
+		t3.distId=t1.distid
+--		t3.distId=t4.distId	and
+--		t3.distItemId=t4.distItemId and
+--		t3.distId=t1.distid and
+--and t1.distid=2411
+and	t1.status=2		and
 		t1.distType=2	
   	if @@error	<> 0
 		goto __retErr
@@ -186,7 +190,7 @@ END
 
 	
 declare @DateOper date
-declare curso  cursor for   select    distinct dateOper from 
+declare curso  cursor for   select    distinct dateWork from 
 DocPreparePay
 where
 PayStatus=1			
@@ -210,7 +214,7 @@ insert #PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCr
 where
 PayStatus=1			
 and isnull(flCourt,0)=0
-and dateOper=@DateOper
+and dateWork=@DateOper
 
  	if @@error	<> 0
 		goto __retErr

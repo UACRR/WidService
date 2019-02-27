@@ -1,6 +1,7 @@
 ﻿
 
-create procedure dbo.p_MusDesignToRegItems as
+
+CREATE procedure [dbo].[p_MusDesignToRegItems] as
 begin
 /*
  begin tran
@@ -37,7 +38,7 @@ isnull(t3.regIItemId,0) + ROW_NUMBER() over (partition by t1.regid order by t1.r
 t4.objId,                                                                                               -- objId,
 3,                                                                                                      -- codeItem,
 t4.objName,                                                                                             -- ItemName,
-null,                                                                                                   -- categoryCode,
+5,                                                                                                   -- categoryCode,
 t4.nameSinger,                                                                                          -- performer,
 t4.nameMusician,                                                                                        -- authorMusic,
 t4.authorText,                                                                                          -- authorText,

@@ -70,8 +70,20 @@ begin tran
             join paidPeriod t4 on t4.periodId = t1.periodId and t4.custId = @custId
 
         delete paidPeriod where custId = @custId 
-
 --//Конец удаления звітів по клиенту
+
+--//Фиксация
+       delete FixStorageDevice 
+		  from FixStorageDevice t1 
+		   join Fixation t2 on t1.fixId = t2.fixId and clientCustId = @CustId
+	 
+		delete FixFile
+		  from FixFile t1 
+		   join Fixation t2 on t1.fixId = t2.fixId and clientCustId = @CustId
+
+		delete Fixation where clientCustId = @CustId
+--//Конец Фиксация
+
         delete CopyRight where custId = @custid
 		delete AnketaAddNick where custId = @custid  
 		delete AnketaPerson where custId = @custid 
@@ -149,16 +161,7 @@ begin tran
 
 --// End Лицензии
 
-        delete FixStorageDevice 
-		  from FixStorageDevice t1 
-		   join Fixation t2 on t1.fixId = t2.fixId and clientCustId = @CustId
-	 
-		delete FixFile
-		  from FixFile t1 
-		   join Fixation t2 on t1.fixId = t2.fixId and clientCustId = @CustId
-
-		delete Fixation where clientCustId = @CustId
-
+ 
         delete CustCmRight where custId = @CustId
         delete CustCmRight where cmCustId = @CustId
 		delete FileCustomer where  custId = @CustId

@@ -28,7 +28,7 @@ primary key (custId,accidCredit)
 
 CREATE TABLE #PayTurn(
 	TurnId						 int			NOT NULL,
-	DateWork				datetime NOT NULL,
+	DateWork				date NOT NULL,
 	ND							varchar(25)		NULL,
 	NDDate					datetime	NULL,
 	AccIdDebet			 int			NULL,
@@ -38,7 +38,7 @@ CREATE TABLE #PayTurn(
 	Amount					numeric(20, 2	)	NULL,
 	AmountCur				numeric(20, 2)	NULL,
 	PayNote					varchar(200) 	NULL,
-	DateOper				date						NOT NULL,
+	DateOper				datetime						NOT NULL,
 	PayStatus				int					 NULL,
 	regId						int,
 	distid					int,
@@ -111,7 +111,7 @@ END CATCH
 END
 --проплата документов
 declare @DateOper date
-declare curso  cursor for   select    distinct dateOper from 
+declare curso  cursor for   select    distinct dateWork from 
  DocPreparePay
 where
 	PayStatus=1				and
@@ -134,7 +134,7 @@ where
 PayStatus=1			
 and accDebet like '10%'
 and accCredit like'20%'
-and dateOper=@DateOper
+and dateWork=@DateOper
 
  	if @@error	<> 0
 		goto __retErr

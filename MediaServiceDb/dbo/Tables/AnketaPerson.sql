@@ -63,6 +63,8 @@
 );
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [Association26_FK]
     ON [dbo].[AnketaPerson]([custId] ASC);
@@ -190,4 +192,9 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Иденти
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Анкета клиента физического лица', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'AnketaPerson';
+
+
+GO
+CREATE UNIQUE NONCLUSTERED INDEX [UI_AnketaPerson_Email]
+    ON [dbo].[AnketaPerson]([eMail] ASC) WHERE ([email] IS NOT NULL);
 

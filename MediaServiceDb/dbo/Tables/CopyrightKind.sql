@@ -1,11 +1,14 @@
 ﻿CREATE TABLE [dbo].[CopyrightKind] (
-    [codeI]       INT           NOT NULL,
-    [name]        VARCHAR (600) NULL,
-    [crGroupCode] INT           NULL,
+    [codeI]        INT           NOT NULL,
+    [name]         VARCHAR (600) NULL,
+    [crGroupCode]  INT           NOT NULL,
+    [nameDescript] VARCHAR (700) NULL,
     CONSTRAINT [PK_CopyrightKind_1] PRIMARY KEY CLUSTERED ([codeI] ASC),
     CONSTRAINT [CKC_CODEI_COPYRIGH] CHECK ([codeI]>=(1)),
     CONSTRAINT [FK_COPYRIGH_REFERENCE_CRKINDGR] FOREIGN KEY ([crGroupCode]) REFERENCES [dbo].[CRKindGroup] ([codeI])
 );
+
+
 
 
 GO

@@ -5,8 +5,8 @@
     [lBasis]        INT            NULL,
     [rate]          DECIMAL (5, 2) NULL,
     [roleRate]      DECIMAL (5, 2) NULL,
-    [beginDate]     DATE           NULL,
-    [endDate]       DATE           NULL,
+    [beginDate]     DATE           CONSTRAINT [col_beginDate_def] DEFAULT ('1900-01-01') NULL,
+    [endDate]       DATE           CONSTRAINT [col_endDate_def] DEFAULT ('3000-01-01') NULL,
     [lBasisComment] VARCHAR (254)  NULL,
     [createDate]    DATETIME       NULL,
     [modifyDate]    DATETIME       NULL,
@@ -25,91 +25,17 @@
 
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [Association10_FK]
     ON [dbo].[CopyRight]([custId] ASC);
 
 
 GO
---drop trigger CopyRightUpdate
 
-CREATE trigger [dbo].[CopyRightUpdate] on [dbo].[CopyRight] for update as
-begin
--- SET NOCOUNT ON;
-   declare
-	  @copyRt   CopyRightParam,
-      @numrows  int,
-      @numnull  int,
-      @errno    int,
-      @errmsg   varchar(255)
-
-      select  @numrows = @@rowcount
-      if @numrows = 0
-         return
-     
-	  if( UPDATE( status ) )
-	  begin
-	  -- Перевірка правильності зміни статусу 
-		select @numrows = count(*) from inserted t1
-		join deleted t2 on t2.cRightId = t1.cRightId
-		where
-		t1.status < t2.status;
-
-		if @numrows > 0 
-		begin
-			set @errmsg = 'Помилка зміни статусу з "Підтверженого" на "Непідтвержений"';
-			goto error;
-		end
-	  end
-
-	  insert into @copyRt(cRightId, objid )
-	  select cRightId, objid from inserted where status = 1 and getdate() between beginDate and endDate
-
-	  if (select count(*) from @copyRt ) = 0
-		return;
-
-	  exec p_DistribForNewRHolder @copyRt
-
-      return
-
-/*  Errors handling  */
-error:
-    raiserror( @errmsg, 10, 1 )
-    rollback  transaction
-end
 GO
-CREATE trigger dbo.CopyRightInsert on dbo.CopyRight for insert as
-begin
-SET NOCOUNT ON;
-    declare
-       @maxcard  int,
-       @numrows  int,
-       @numnull  int,
-       @errno    int,
-       @errmsg   varchar(255),
-	   @cprght   CopyRightParam;
 
-    select  @numrows = @@rowcount
-    if @numrows = 0
-       return
-	
-	insert into @cprght(cRightId,objid)
-	select cRightId,objid from inserted 
-	where status = 1;
-
-	if( (select count(*) from @cprght ) = 0 )
-	return;
-
-	exec p_DistribForNewRHolder @cprght;
-	
-
-    return
-
-/*  Errors handling  */
-error:
-    raiserror( @errmsg,10,1 );
-    rollback  transaction
-end
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Идентификатор в таблице правообладания авторским правом', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'CopyRight', @level2type = N'COLUMN', @level2name = N'parentId';
 
@@ -167,3 +93,61 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Иденти
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Права Правообладателя в разрезе видов права', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'CopyRight';
 
+
+GO
+CREATE trigger [dbo].[tu_CopyRight] on [dbo].[CopyRight] for update as
+begin
+SET NOCOUNT ON;
+   declare
+	  @copyRt   CopyRightParam,
+      @numrows  int,
+      @numnull  int,
+      @errno    int,
+      @errmsg   varchar(255)
+
+   
+      update CopyRight set modifyDate = getdate() 
+      from INSERTED t1 where CopyRight.CRightId = t1.CRightId;
+
+	  if( UPDATE( status ) )
+	  begin
+	  -- Перевірка правильності зміни статусу 
+		select @numrows = count(*) from inserted t1
+		join deleted t2 on t2.cRightId = t1.cRightId
+		where
+		t1.status < t2.status;
+
+		if @numrows > 0 
+		begin
+			set @errmsg = 'Помилка зміни статусу з "Підтверженого" на "Непідтвержений"';
+			goto error;
+		end
+	  end
+
+	  insert into @copyRt(cRightId, objid )
+	  select t1.cRightId, t1.objid from inserted t1 
+	  join deleted t2 on t2.cRightId = t1.cRightId and isnull(t2.status,0) = 0
+	  where t1.status = 1
+
+	  if (select count(*) from @copyRt ) = 0
+		return;
+
+	  exec p_DistribForNewRHolder @copyRt
+
+      return
+
+/*  Errors handling  */
+error:
+    raiserror( @errmsg, 10, 1 )
+    rollback  transaction
+end
+GO
+CREATE TRIGGER ti_CopyRight
+   ON  CopyRight 
+   AFTER INSERT
+ AS BEGIN
+
+	SET NOCOUNT ON;
+   update CopyRight set createDate = getdate() 
+      from inserted t1 where CopyRight.cRightId = t1.cRightId
+END

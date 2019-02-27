@@ -1,4 +1,4 @@
-﻿CREATE FUNCTION ft_Tsk_5_18_1_ObjUnattached (@date date = NULL)
+﻿CREATE FUNCTION [dbo].[ft_Tsk_5_18_1_ObjUnattached] (@date date = NULL)
 RETURNS @RT TABLE 
 ( id integer not null identity primary key, 
   objid integer  null, 

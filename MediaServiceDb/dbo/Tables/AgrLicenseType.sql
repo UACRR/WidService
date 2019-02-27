@@ -7,11 +7,14 @@
     [needPlace]    BIT           NULL,
     [schemaId]     INT           NULL,
     [algorithmId]  INT           NULL,
+    [series]       VARCHAR (10)  NULL,
     CONSTRAINT [PK_ARGLICENSETYPE] PRIMARY KEY CLUSTERED ([codeI] ASC),
     CONSTRAINT [FK_AGRLICEN_REFERENCE_COPYRIGH] FOREIGN KEY ([kindCode]) REFERENCES [dbo].[CopyrightKind] ([codeI]),
     CONSTRAINT [FK_AGRLICEN_REFERENCE_USESKIND] FOREIGN KEY ([usesKind]) REFERENCES [dbo].[UsesKind] ([codeI]),
     CONSTRAINT [FK_AGRLICENTYPE_REF_ALGORITH] FOREIGN KEY ([algorithmId]) REFERENCES [dbo].[AlgorithmType] ([codeI])
 );
+
+
 
 
 GO

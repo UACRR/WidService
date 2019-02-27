@@ -28,7 +28,7 @@ okpo     varchar(20)
 
 CREATE TABLE #PayTurn(
 	TurnId						 int			NOT NULL,
-	DateWork				datetime NOT NULL,
+	DateWork				date NOT NULL,
 	ND							varchar(25)		NULL,
 	NDDate					datetime	NULL,
 	AccIdDebet			 int			NULL,
@@ -38,7 +38,7 @@ CREATE TABLE #PayTurn(
 	Amount					numeric(20, 2	)	NULL,
 	AmountCur				numeric(20, 2)	NULL,
 	PayNote					varchar(200) 	NULL,
-	DateOper				date						NOT NULL,
+	DateOper				datetime						NOT NULL,
 	PayStatus				int					 NULL,
 	regId						int,
 	distid					int,
@@ -49,7 +49,7 @@ CREATE TABLE #PayTurn(
 
 --отбор подготовленных distribution (status=1)
 insert #doc (dateWork,paidid,regId ,distid,custID,ObjId,distribDate,amount	,kindCode,periodId,payNote,docNum,okpo	)
-select	distinct	inputDate, paidId,NULL,NULL,null  --custID
+select	distinct	getdate(), paidId,NULL,NULL,null  --custID
 ,NULL ,dateOper,sCredit	,NULL,NULL,nplat,docNum,okpoCorr
 from Externalpay 
 where 
@@ -96,7 +96,7 @@ if (select count(*) from #doc)<>0
 BEGIN
 	begin Transaction 
 	BEGIN TRY
---проверка/открытие 20 счетов плательщика
+--проверка/открытие 22 счетов плательщика
 --и 10счетов системы
     declare cur cursor for   select    distinct CustID  from #Doc                                    
     declare     @CustID		integer
@@ -167,7 +167,7 @@ END
 
 --проплата документов
 declare @DateOper date
-declare curso  cursor for   select    distinct dateOper from 
+declare curso  cursor for   select    distinct dateWork from 
  DocPreparePay
 where
 	PayStatus=1				and
@@ -190,7 +190,7 @@ BEGIN
 	PayStatus=1				and
 	AccCredit='100001'	and
 	AccDebet like '22%'	and
-	dateOper=@DateOper
+	dateWork=@DateOper
 
   	if @@error	<> 0
 		goto __retErr

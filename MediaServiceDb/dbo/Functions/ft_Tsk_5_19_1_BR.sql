@@ -37,7 +37,8 @@ RETURNS @RT TABLE
  sborESVMoney money, -- Відрахування(19%)
  sborMiliRate decimal(5,2), -- Відрахування(1.5%)
  sborMiliMoney money, -- Відрахування\r(1.5%%)
- AmountToPay money -- До виплати 
+ AmountToPay money, -- До виплати 
+ objId integer
  )
 AS
 BEGIN  --Користувачі
@@ -50,60 +51,83 @@ set @dateEnd = isnull(@dateEnd, getdate())
 set @custId = (Case When isnull(@custId,0) = 0 Then NULL Else @custId end)
 set @cmCustId = (Case When isnull(@cmCustId,0) = 0 Then NULL Else @cmCustId end)
 
+
 --Большие права
 insert into @RT 
-(
- clCustId,  clName, periodId, periodName, periodDate, regId, regIItemId, countUse, ItemName, regAmount, regRate, authAmount,
- rHcustId,  cRName,  innerCode, interCode, roleCode, roleName, roleRate, 
- amount, 
- cmCustId,
- cmCustIdName)
-select distinct
-t3.custId as clCustId, --назва театру
-t17.name as clName,
-t6.periodId, t6.periodName, CONVERT(char(10),t6.beginDate,104) +'-'+convert(char(10), t6.endDate),  --період
-t3.regId, --t3.fileName, 
-t4.regIItemId,  
-t4.countUse, --к-ть вистав
-t4.ItemName, --назва твору
-t3.regAmount, --сума валового збору
-t3.regRate, --ставка роялті
-t3.authAmount, --АВ за твір
-t7.custId as rHcustId, 
-t16.nameRH as cRName,
---t15.name as cRName, 
-t8.innerCode, t8.interCode, 
-t7.roleCode, 
-t9.name as roleName, 
-t7.roleRate, 
-t1.amount, 
---t13.cmCustId,
---t14.name as cmCustIdName
-t16.cmCustId, 
-t16.cmName as cmCustIdName
+(clCustId,  regId, regIItemId,  rhCustId, amount, cmCustId, t1.objid)
+select  t1.clCustId,  t1.regId, t1.regItemId,  isnull(t1.rhCustId,-1), t1.amount, isnull(t1.cmCustId,-1), t1.objid
+from ft_Tsk_5_DISTRIBUTEDRed (@dateBegin, @dateEnd, 6, NULL) t1
+ where isnull(t1.rhCustId,-1) = isnull(@custId, isnull(t1.rhCustId,-1)) and isnull(t1.cmCustId,-1) = isnull(@cmCustId, isnull(t1.cmCustId,-1))
+--categoryCode, cmCustId		
 
-from PayTurn t1 
-join Account t2 on t1.accIdDebet = t2.accId and t2.balsCode = 21
-join Register t3 on t1.regId = t3.regId 
-join RegisterItem t4 on t4.regId = t3.regId and t1.regIItemId = t4.regIItemId and t4.regId = t1.regid and t4.regIItemId = t1.regIItemId 
-join RegisterRatedList t5 on t5.rmId = t3.rmId 
-join PaidPeriod t6 on t5.periodId = t6.periodId 
-join CopyRight t7 on t4.objId = t7.objId
-join RightHolder t8 on t7.custId = t8.custId
-join CreativeRoleType t9 on t7.roleCode = t9.codeI
-join LicenseBigR t10 on t4.objId = t10.objId 
-join LicenseAgreement t11 on t11.licid = t10.licId and t11.licStatus <> 4
-join vAgrLicenseType t12 on t11.licCode = t12.licCode
---left join CustCmRight t13 on t7.custId = t13.custId and t12.kindCode = t13.cRKindCode and isnull(t13.dateBegin, '1900-01-01')<'2018-01-01' and '2018-12-01' < ISNULL(t13.dateEnd, '3000-01-01')
---left join vCustomer t14 on t13.cmCustId = t14.custId
---join vCustomer t15 on t7.custId = t15.custId
-join vCustCmService t16 on t7.custId = t16.custId and t12.kindCode = t16.CRKindCode
-join vCustomer t17 on t6.custId = t17.custId
-where t1.dateOper between @dateBegin and @dateEnd 
-    and t2.custId = isnull(@custId, t2.custId) 
-	and t16.cmCustId = ISNULL(@cmCustId, t16.cmCustId)
+update @RT  
+  set clName = t2.name 
+   from @RT t1 
+     join vCustomer t2 on t1.clCustId = t2.custId
+  
+update @RT  
+  set cRName = isnull(t3.name, 'НЕ ВИЗНАЧЕНИЙ'), innerCode = t2.innerCode, interCode = t2.interCode 
+   from @RT t1 
+     left join vCustomerRHolder t2 on t1.rHcustId = t2.custId
+	 left join vCustomer t3 on t1.rHcustId = t3.custId
+
+update @RT 
+  set periodId = t4.PeriodId, 
+      periodName = t4.periodName, 
+	  periodDate = convert(varchar(10), t4.beginDate)+' -  '+   convert(varchar(10), t4.endDate), 
+	  countUse = t5.countUse,    --к-ть вистав
+	  ItemName =  t5.ItemName,   --назва твору
+	  regAmount = t2.regAmount,  --сума валового збору
+	  regRate = t2.regRate      --ставка роялті 
+ from @RT  t1 
+   join Register t2 on t1.regId = t2.regId 
+   join RegisterRatedList t3 on t3.rmId = t2.rmid 
+   join paidPeriod t4 on t4.periodId = t3.periodId 
+   join RegisterItem t5 on t5.regId = t2.regId 
+
+   update @RT 
+      set roleCode = t2.roleCode, 
+	      roleName = t3.name,  
+		  roleRate = t2.roleRate
+     from @RT  t1 
+	  join copyRight t2 on t2.objid = t1.objId and t2.custId = t1.rhCustId
+	  join CreativeRoleType t3 on t3.codeI = t1.roleCode
+
+  update @RT set cmCustIdName = isnull(t2.name , 'НЕ ВИЗНАЧЕНО')
+     from @RT t1 
+	    left join vCustomer t2 on t2.custId = t1.cmCustId
+
+update @RT  
+set  commRate = t2.rateCommiss, 
+     commAmount = convert(numeric(20,2), t1.authAmount*t2.rateCommiss/100)
+from @RT   t1 
+join AgreementAddRH t2 on t1.rHcustId = t2.custId 
+left join vMyAnk t3 on t1.cmCustId = t3.custId
+where ISNULL(t1.cmCustId,0) = t3.custId
+
+update @RT  
+set  sborESVRate = t2.rate, 
+     sborESVMoney = convert(numeric(20,2), t1.authAmount*t2.rate/100)
+from @RT t1
+left join vMyAnk t3 on t1.cmCustId = t3.custId
+full outer join SystemConstant t2 on codei = 1
+where ISNULL(t1.cmCustId,0) = t3.custId
+
+update @RT  
+set  sborMiliRate = t2.rate, 
+	 sborMiliMoney = convert(numeric(20,2), t1.authAmount*t2.rate/100)
+from @RT t1
+left join vMyAnk t3 on t1.cmCustId = t3.custId
+FULL OUTER JOIN SystemConstant t2 on t2.codeI = 2
+where  ISNULL(t1.cmCustId,0) = t3.custId
+ 
+update @RT  
+  set AmountToPay = authAmount - isnull(commAmount,0) - isnull(sborESVMoney,0) - isnull(sborMiliMoney,0)
+from @RT t1
+left join vMyAnk t3 on t1.cmCustId = t3.custId
+where ISNULL(t1.cmCustId,0) = t3.custId
 
 
  RETURN
  END
- --select  * from ft_Tsk_5_19_1_BR ('2018-01-01', '2019-01-01',0,0 )
+ --select  * from ft_Tsk_5_19_1_BR ('2019-01-01', '2019-03-01',NULL, NULL)  --80737,12

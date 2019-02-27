@@ -14,13 +14,15 @@
     [modifyDate]    DATETIME      NULL,
     [modifyLogin]   VARCHAR (48)  NULL,
     [durationticks] INT           NULL,
-    [ticks]         INT           NULL,
+    [ticks]         INT           NOT NULL,
     [isAuto]        BIT           NOT NULL,
     CONSTRAINT [PK_REGISTERITEM] PRIMARY KEY CLUSTERED ([regId] ASC, [regIItemId] ASC),
     CONSTRAINT [FK_REGISTER_REF_REGITEM] FOREIGN KEY ([regId]) REFERENCES [dbo].[Register] ([regId]),
     CONSTRAINT [FK_REGITEM_REF_OBJRIGHT] FOREIGN KEY ([objId]) REFERENCES [dbo].[ObjectRight] ([objId]),
     CONSTRAINT [FK_REGITEM_REF_REGITEMTYPE] FOREIGN KEY ([codeItem]) REFERENCES [dbo].[RegisterItemType] ([codeI])
 );
+
+
 
 
 GO

@@ -20,6 +20,8 @@
 );
 
 
+
+
 GO
 CREATE UNIQUE NONCLUSTERED INDEX [AccountUI]
     ON [dbo].[Account]([r030] ASC, [accNls] ASC, [accStatus] ASC);
@@ -74,4 +76,9 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Иденти
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Таблица счетов учетной системы портала', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'Account';
+
+
+GO
+CREATE NONCLUSTERED INDEX [idx_custId]
+    ON [dbo].[Account]([accId] ASC, [custId] ASC);
 

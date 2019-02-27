@@ -6,7 +6,8 @@ declare @workedPeriod table (
 periodid int not null, 
 periodAmount decimal not null, 
 withSum	bit not null,
-flagFirst bit not null
+flagFirst bit not null,
+kindCode integer null   --KRPV
 primary key(periodid) );
 
 -- Розрахункові листи
@@ -36,6 +37,7 @@ regid int not null primary key
 , regSum	money
 , runRegSum money
 , algorithmId	int
+, cntWithTicks  int -- Кількість записів в RegistryItems з проставленим Ticks
  );
 -- Розподіл
 declare @distrib table ( 
@@ -89,7 +91,15 @@ BEGIN TRY
 			and sum( case when t3.objId is null then 1 else 0 end ) = 0 -- всі об'єкти прив'язані
 		    and min( case when t1.royalty is null then 0 else 1 end ) = max (case when t1.royalty is null then 0 else 1 end); -- Однотипні суми;
 
-
+--KRPV
+--Проставляю тип прав
+  update @workedPeriod 
+     set kindCode = t4.kindCode
+	from @workedPeriod  t1 
+	   join PaidPeriod t2 on t1.periodid = t2.periodId 
+	   join LicenseAgreement t3 on t2.licId = t3.licId
+	   join AgrLicenseType t4 on t3.licCode = t4.codeI;
+--KRPV
 	
 	--print '@workedPeriod';
 	--select * from @workedPeriod;
@@ -102,6 +112,7 @@ BEGIN TRY
 		, count(*) as cntRows
 		, min(isnull( t2.authAmount, 0 ) + isnull(t2.musicAmount,0)) as regSum
 		, min(isnull(t2.algorithmId,2)) as algorithmId 
+		, sum( case when isnull( t3.ticks, 0  ) > 0 then 1 else 0 end ) as cntItemWithTics
 	from 
 	register t2 
 	join RegisterItem t3 on t3.regId = t2.regId
@@ -118,7 +129,7 @@ BEGIN TRY
 			, min(algorithmId) as uAlgorithmId -- Єдиний алгорітм для РЛ
 	from regSum group by rmId
 	)
-	insert into @regTicks(rmId,regid,ticks,sumTicks,cntRows, sumCntRows, regSum, runRegSum, algorithmId)
+	insert into @regTicks(rmId,regid,ticks,sumTicks,cntRows, sumCntRows, regSum, runRegSum, algorithmId, cntWithTicks)
 	select t1.rmid
 			, t1.regId
 			, t1.ticks
@@ -128,12 +139,16 @@ BEGIN TRY
 			, t1.regSum
 			, sum(t1.regSum) over (partition by t1.rmid order by t1.rmid, t1.regid) as runRegSum
 			, t2.uAlgorithmId
+			, t1.cntItemWithTics
 	from regSum t1
 	join rmSum t2 on t2.rmId = t1.rmId;
 
 	--print '@regTicks'
 	--select * from @regTicks
 	
+	delete @regTicks where cntWithTicks = 0;
+
+
 	-- Видалити звіти суми яких поза нерозподіленого залишку періоду
 	delete @regTicks 
 	from @regTicks t1
@@ -258,28 +273,9 @@ BEGIN TRY
 			join LicenseAgreement t4 on t4.agrId = t3.agrId and reg.licId = t4.licId
 
 	)
-	,workedObjid as 
-	(
-		select distinct objid
-		from @workedRmid t0
-		join Register t1 on t1.rmid = t0.rmid
-		join RegisterItem t2 on t2.regid = t1.regId 
-	)
-	--,role_right as -- for roleRate 
-	--(
-	--	select t1.objid, sum(t1.roleRate) as sumRoleRate from 
-	--	workedObjid t0
-	--	join Copyright t1 on t1.objId = t0.objid and getdate() between t1.beginDate and t1.endDate
-	--	where t1.roleRate is not null
-	--	group by t1.objid
-	--)
 	insert into @updateRate
     select t1.regId, t1.regIItemId, t1.objId, t2.custId, isnull(t2.cRType,1) as cRType, t6.kindCode
-								--, case when t2.roleRate is null and t2.rate is not null then t2.rate
-								--	   when t2.roleRate is null and t2.rate is null then 100 
-								--	   when t2.roleRate is not null and t3.sumRoleRate is not null then t2.roleRate / t3.sumRoleRate * 100
-								--	   else 100 end 
-								, t2.rate
+								, isnull(t2.rate, 100)
 								, isnull(t2.rateCommiss,20) as rateCommiss
 								, t2.cmCustId
 
@@ -287,11 +283,22 @@ BEGIN TRY
     join lic t5 on t5.regId = t1.regId 
 	join AgrLicenseType t6 on t6.codeI = t5.licCode 
     left outer join vCopyright t2 on t2.objId = t1.objId and t2.status = 1 and t6.kindCode = t2.CRKindCode
-	--left outer join role_right t3 on t3.objId = t1.objid
+
+	-- Додаємо нерозпізнані відсотки
+	insert into @updateRate
+    select regId, regIItemId, objId, null, cRType , kindCode
+								, 100.00 - sum(rate)
+								, null
+								, null
+	from @updateRate
+	group by regId, regIItemId, objId, cRType , kindCode
+	having sum(rate) < 100
+
 	-- поновлюємо таблицю розподілу по новим правовласникам
 	
 	--print '@updateRate';
 	--select * from @updateRate;
+	--select regId, regIItemId, objId, sum(rate) from @updateRate group by regId, regIItemId, objId 
 	
 	update RegisterCount 
 	set rate = t2.rate
@@ -304,20 +311,15 @@ BEGIN TRY
 	from RegisterCount t1
 	join @updateRate t2 on t2.regId = t1.regId and t2.regIItemId = t1.regIItemId and t2.objid = t1.objId 
 							and t2.custId is null and t1.custId is null and isnull(t2.rate,999) <> isnull(t1.rate,1000);
-	-- Уточнюєма відсоток нерозподілених коштів
-	update RegisterCount 
-	set rate = 100 - t2.rate
-	from RegisterCount t1
-	join @updateRate t2 on t2.regId = t1.regId and t2.regIItemId = t1.regIItemId and t2.objid = t1.objId 
-							and t2.custId is not null and t1.custId is null and t1.rate != 100 - t2.rate;
+
 	
 	delete 	@updateRate
 	from @updateRate t1
 	join RegisterCount t2 on t2.regId = t1.regId and t2.regIItemId = t1.regIItemId and t2.objId = t1.objid and isnull( t2.custid, 0 ) = isnull( t1.custid, 0)
 	
 	-- Додаємо нерозподілені відсотки
-	insert into RegisterCount(regId,regIItemId,objId,custId,cRType,cRKindCode,rate)
-	select regId,regIItemId,objId,custId,cRType,kindCode,rate 
+	insert into RegisterCount(regId,regIItemId,objId,custId,cRType,cRKindCode,rate, cmCustId)
+	select regId,regIItemId,objId,custId,cRType,kindCode,rate, cmCustId 
 	from @updateRate; 
 	
 	delete @updateRate;
@@ -336,7 +338,7 @@ BEGIN TRY
 	insert into Distribution( regId,rmId,custid,status,distribDate,amount, cRKindCode, partnerCommiss, courtFee, partnerId, distType )
     output inserted.distId, inserted.rmId, inserted.regId, inserted.amount	 into @distrib
     select t2.regId, treg.rmid, t2.custId, 1, getdate(), (cast( ti.ticks as float ) / treg.ticks) * treg.regAmount
-    , 1
+    , t1.kindCode
     , case when t4.custId is not null then  (case when ti.algorithmId = 1 then ti.ticks else ti.cntRows end / treg.ticks) * treg.regAmount 
     			* (case when t1.flagFirst = 1 then t4.srFirstRate else  t4.srMonthRate end) / 100 else 0 end
     , 0--@courtFee
@@ -355,7 +357,7 @@ BEGIN TRY
     output inserted.distId, inserted.rmId, inserted.regId, inserted.amount	 into @distrib
     select t2.regId, treg.rmid, t2.custId, 1, getdate()
 	, isnull(t2.authAmount,0) + isnull(t2.musicAmount,0)
-    , 1
+    , t1.kindCode
     , case when t4.custId is not null then  (isnull(t2.authAmount,0) + isnull(t2.musicAmount,0))
     			* (case when t1.flagFirst = 1 then t4.srFirstRate else  t4.srMonthRate end) / 100 else 0 end
     , 0--@courtFee
@@ -436,7 +438,6 @@ BEGIN TRY
 	join Distribution t3 on t3.distId = t2.distid 
 	where
 	t1.codeItem = 1; -- Звичайний розподіл
-
 
 
 	insert into DistributionItem(regId,regIItemId,distId,amount, status, objId )

@@ -1,4 +1,4 @@
-﻿CREATE function  dbo.ft_Tsk_5_22_BRcm  (@dateBegin date = NULL, @dateEnd date = NULL)
+﻿CREATE function  [dbo].[ft_Tsk_5_22_BRcm]  (@dateBegin date = NULL, @dateEnd date = NULL)
 -- Відомість розподіл АВ ВП зведена по ТОВ (4.0)
 RETURNS @RT TABLE
 (
@@ -21,13 +21,16 @@ set @dateBegin = '2018-01-01'
 set @dateEnd = '2018-12-31'
 */
 
-insert into @RT (cmCustId, cmName,  amount)
-select 
-t1.cmCustId, max(t2.cmName) as cmName , SUM(t1.amount) as amount
-from dbo.ft_Tsk_5_20_BRMain (@dateBegin, @dateEnd) as t1
-join vCommunity t2 on t1.cmCustId = t2.cmCustId
-group by t1.cmCustId
+insert into @RT (cmCustId, amount)
+select isnull(cmCustId,-1), sum(amount)
+  from ft_Tsk_5_DISTRIBUTED (@dateBegin, @dateEnd, 6, NULL) 
+  group by isnull(cmCustId,-1)
 
+update @RT set cmName = isnull(t2.name, 'НЕ ВИЗНАЧЕНО')
+   from @RT t1 
+    left join vCustomer t2 on t1.cmCustId = t2.custId
+
+	--Выстраиваю порядок для отображения
 update @RT set rowNum = id
 update @RT set rowNum = cmCustId where cmCustId < 0
 update @RT set rowNum = 0  
@@ -36,4 +39,4 @@ update @RT set rowNum = 0
 RETURN
 END
 
---select * from ft_Tsk_5_22_BRcm ('2018-01-01', '2018-12-31')
+--select * from ft_Tsk_5_22_BRcm ('2019-01-01', '2019-02-28')

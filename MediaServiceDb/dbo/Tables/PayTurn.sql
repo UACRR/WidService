@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[PayTurn] (
     [turnId]      INT             NOT NULL,
-    [dateWork]    DATETIME        NOT NULL,
+    [dateWork]    DATE            NOT NULL,
     [nD]          VARCHAR (25)    NULL,
     [nDDate]      DATE            NULL,
     [accIdDebet]  INT             NULL,
@@ -11,7 +11,7 @@
     [amountCur]   NUMERIC (20, 2) NULL,
     [payNote]     VARCHAR (160)   NULL,
     [r030]        CHAR (3)        NULL,
-    [dateOper]    DATE            NOT NULL,
+    [dateOper]    DATETIME        NULL,
     [payStatus]   INT             NULL,
     [regId]       INT             NULL,
     [distId]      INT             NULL,
@@ -23,9 +23,10 @@
 );
 
 
+
+
 GO
-CREATE NONCLUSTERED INDEX [date_idx]
-    ON [dbo].[PayTurn]([dateOper] ASC);
+
 
 
 GO
@@ -88,4 +89,9 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Иденти
 
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Таблица Платежей', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'PayTurn';
+
+
+GO
+CREATE NONCLUSTERED INDEX [idx_PayTurn_Reg]
+    ON [dbo].[PayTurn]([accIdCredit] ASC, [regId] ASC, [regIItemId] ASC);
 
