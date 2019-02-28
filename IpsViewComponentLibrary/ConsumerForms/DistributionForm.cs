@@ -67,7 +67,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             _calculator.Calculate();
         }
 
-        private void btnSaveDistrib_Click(object sender, EventArgs e)
+        private void BtnSaveDistrib_Click(object sender, EventArgs e)
         {
             var paidDic = _licenseAgr.Lic.PaidPeriod.ToDictionary(rec => rec.PeriodId);
             foreach( var item in _source.Where(rec => rec.DistAmount > 0) )
@@ -97,7 +97,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             DialogResult = DialogResult.OK;
         }
 
-        private void gvDistributionPayment_CellValueChanged(object sender, GridViewCellEventArgs e)
+        private void GvDistributionPayment_CellValueChanged(object sender, GridViewCellEventArgs e)
         {
             if (e.Column.FieldName != "DistAmount")
                 return;
@@ -123,7 +123,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
     class Calcularor
     {
         private List<GridPeriods> List = new List<GridPeriods>();
-        private decimal Rest = 0;
+        private readonly decimal Rest = 0;
 
         public Calcularor(decimal rest, List<GridPeriods> periods)
         {

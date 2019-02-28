@@ -34,8 +34,10 @@ namespace ipsmedserviceapp.Controllers
         {
             _dbContext = dbContext;
             _config = config;
-            _rateDistributor = new AmountDistributor();
-            _rateDistributor.Amount = 100;
+            _rateDistributor = new AmountDistributor
+            {
+                Amount = 100
+            };
         }
 
         /// <summary>
@@ -219,7 +221,7 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        private void prepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
+        private void PrepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
         {
         }
         /// <summary>
@@ -230,7 +232,7 @@ namespace ipsmedserviceapp.Controllers
         private void InternalUpdateConsumer(Customer sorsCustomer, Customer destCustomer)
         {
 
-            prepareDataToUpdate(sorsCustomer, destCustomer);
+            PrepareDataToUpdate(sorsCustomer, destCustomer);
 
             destCustomer.SetFields(sorsCustomer, new[] { "CustId" });
             //.Include(item => item.BankAccount)
@@ -276,7 +278,7 @@ namespace ipsmedserviceapp.Controllers
 
             // LicenseAgreement
             {
-                Action<bool, License, License> addLicense = (isNew, oldLic, lic) =>
+                void addLicense(bool isNew, License oldLic, License lic)
                 {
                     if (isNew == false) return;
                     if (oldLic.PlaceId == null) return;
@@ -284,7 +286,7 @@ namespace ipsmedserviceapp.Controllers
 
                     ClnBusinessPlace place = dicPlace[oldLic.PlaceId ?? 0];
                     place.License.Add(lic);
-                };
+                }
                 // Delete
                 List<LicenseAgreement> tempList = destCustomer.Client.LicenseAgreement.Where(row => !sorsCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
                 tempList.ForEach(item =>
@@ -316,7 +318,7 @@ namespace ipsmedserviceapp.Controllers
                     if (item.LicenseBigR != null)
                     {
                         // Nested update
-                        updateLicenseBigR(item, license);
+                        UpdateLicenseBigR(item, license);
                     }
 
 
@@ -356,7 +358,7 @@ namespace ipsmedserviceapp.Controllers
 
                     if (item.LicenseBigR != null)
                     {
-                        updateLicenseBigR(item, license);
+                        UpdateLicenseBigR(item, license);
                     }
 
                     destCustomer.Client.LicenseAgreement.Add(license);
@@ -436,7 +438,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="item"></param>
         /// <param name="license"></param>
-        private void updateLicenseBigR(LicenseAgreement item, LicenseAgreement license)
+        private void UpdateLicenseBigR(LicenseAgreement item, LicenseAgreement license)
         {
             if (item.LicenseBigR == null)
                 return;
@@ -548,7 +550,7 @@ namespace ipsmedserviceapp.Controllers
         /// Дані по LicenseAgrParam -> LicenseAgreement Для нового Споживача
         /// </summary>
         /// <param name="sorsCustomer"></param>
-        private void fillLicenseAgreement(Customer sorsCustomer)
+        private void FillLicenseAgreement(Customer sorsCustomer)
         {
             foreach (var item in sorsCustomer.Client.LicenseAgreement)
             {
@@ -777,7 +779,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="custId"></param>
         /// <returns></returns>
         [HttpGet("BR/view/list")]
-        public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
+        public async Task<IActionResult> GetBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
         {
             if (viewName == null || !listBrView.Keys.Contains(viewName))
                 return BadRequest();
@@ -1245,7 +1247,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// </summary>
         /// <param name="sors"></param>
         /// <param name="dest"></param>
-        private void modifyRatedList(RegisterRatedList sors, RegisterRatedList dest)
+        private void ModifyRatedList(RegisterRatedList sors, RegisterRatedList dest)
         {
 
             if (dest.Status == 0 && sors.Status == 1) // MED-197 Період переходить в стан "Прийом коштів"
@@ -1365,7 +1367,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 if (modifyItem == null)
                     throw new ApplicationException("Dont find Register item");
 
-                modifyRegister(body, modifyItem);
+                ModifyRegister(body, modifyItem);
 
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
@@ -1411,7 +1413,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                         .LoadAsync();
 
 
-                modifyRegister(body, modifyItem);
+                ModifyRegister(body, modifyItem);
                 modifyItem.RgStatus = 0;
 
                 tran = _dbContext.Database.BeginTransaction();
@@ -1428,7 +1430,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
 
         } // PoutRegisterDetail
-        private void modifyRegister(Register body, Register modifyItem)
+        private void ModifyRegister(Register body, Register modifyItem)
         {
             // addItem.PeriodId
             modifyItem.SetFields(body, new[] { "RegId" });
@@ -1820,7 +1822,7 @@ and isnull(licType,1) between 1 and 3
 
                 period.RegisterRatedList.Add(dest);
 
-                modifyRatedList(body, dest);
+                ModifyRatedList(body, dest);
 
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
@@ -1868,7 +1870,7 @@ and isnull(licType,1) between 1 and 3
                             .LoadAsync();
                 }
 
-                modifyRatedList(body, dest);
+                ModifyRatedList(body, dest);
 
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
