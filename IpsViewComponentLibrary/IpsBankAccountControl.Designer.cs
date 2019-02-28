@@ -40,7 +40,7 @@ namespace IpsViewComponentLibrary
             this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.txtTransitNumber = new Telerik.WinControls.UI.RadTextBox();
             this.txtMfoOkpo = new Telerik.WinControls.UI.RadTextBox();
-            this.txtMfo = new Telerik.WinControls.UI.RadTextBox();
+            this.txtMfo = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.txtMfoName = new Telerik.WinControls.UI.RadTextBox();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -140,14 +140,17 @@ namespace IpsViewComponentLibrary
             // txtMfo
             // 
             this.txtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "Mfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, default(int)));
+            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "Mfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtMfo.Location = new System.Drawing.Point(168, 28);
-            this.txtMfo.MaxLength = 6;
+            this.txtMfo.Mask = "000000";
+            this.txtMfo.MaskType = Telerik.WinControls.UI.MaskType.Standard;
             this.txtMfo.Name = "txtMfo";
             this.txtMfo.Size = new System.Drawing.Size(261, 21);
             this.txtMfo.TabIndex = 1;
+            this.txtMfo.TabStop = false;
+            this.txtMfo.Text = "______";
+            this.txtMfo.TextMaskFormat = System.Windows.Forms.MaskFormat.ExcludePromptAndLiterals;
             this.txtMfo.ThemeName = "Office2013Light";
-            this.txtMfo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox_KeyPress);
             // 
             // txtMfoName
             // 
@@ -201,7 +204,8 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadTextBox txtAccountNumber;
         private Telerik.WinControls.UI.RadTextBox txtMfoOkpo;
         private Telerik.WinControls.UI.RadTextBox txtTransitNumber;
-        private Telerik.WinControls.UI.RadTextBox txtMfo;
+        //private Telerik.WinControls.UI.RadTextBox txtMfo;
+        private Telerik.WinControls.UI.RadMaskedEditBox txtMfo;
         private Telerik.WinControls.UI.RadTextBox txtMfoName;
         private System.Windows.Forms.BindingSource bsBankAccount;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;

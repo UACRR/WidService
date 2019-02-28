@@ -168,7 +168,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.gvDistributionPayment.Size = new System.Drawing.Size(962, 196);
             this.gvDistributionPayment.TabIndex = 10;
             this.gvDistributionPayment.ThemeName = "Office2013Light";
-            this.gvDistributionPayment.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvDistributionPayment_CellValueChanged);
+            this.gvDistributionPayment.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.GvDistributionPayment_CellValueChanged);
             // 
             // btnSaveDistrib
             // 
@@ -180,7 +180,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.btnSaveDistrib.TabIndex = 12;
             this.btnSaveDistrib.Text = "Зберегти";
             this.btnSaveDistrib.ThemeName = "Office2013Light";
-            this.btnSaveDistrib.Click += new System.EventHandler(this.btnSaveDistrib_Click);
+            this.btnSaveDistrib.Click += new System.EventHandler(this.BtnSaveDistrib_Click);
             // 
             // btnCancel
             // 
