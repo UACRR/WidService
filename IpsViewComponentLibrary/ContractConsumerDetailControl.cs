@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary
@@ -199,7 +200,7 @@ namespace IpsViewComponentLibrary
             if (rtxtBoxAuthorPaymentPercent.Text == string.Empty)
             {
                 isValid = false;
-                radLabel1.ForeColor = Color.FromArgb(180, 255, 0, 2); ;
+                radLabel1.ForeColor = Color.FromArgb(180, 255, 0, 2);
             }
             else
                 radLabel1.ForeColor = Color.Black;
@@ -207,7 +208,7 @@ namespace IpsViewComponentLibrary
             if (rtxtBoxMinAuthorPayment.Text == string.Empty)
             {
                 isValid = false;
-                radLabel2.ForeColor = Color.FromArgb(180, 255, 0, 2); ;
+                radLabel2.ForeColor = Color.FromArgb(180, 255, 0, 2);
             }
             else
                 radLabel2.ForeColor = Color.Black;

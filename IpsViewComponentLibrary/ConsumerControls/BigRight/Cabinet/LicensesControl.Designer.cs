@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
-    partial class MiddleControlCabinetLicenses
+    partial class LicensesControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -97,7 +95,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 193;
+            gridViewTextBoxColumn3.Width = 194;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ ліцензійного договору";
@@ -105,7 +103,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "LicNum";
-            gridViewTextBoxColumn4.Width = 94;
+            gridViewTextBoxColumn4.Width = 100;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "LicDate";
             gridViewTextBoxColumn5.FormatString = "{0:d}";

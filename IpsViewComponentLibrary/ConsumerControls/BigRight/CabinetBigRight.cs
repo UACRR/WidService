@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerControls.BigRight
@@ -28,7 +30,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             {"pvAvances", CabinetTabType.Prepays},
             {"pvContacts", CabinetTabType.Contacts}
         };
-        private AnketaDictionaties _anketaDictionaties;
         private CabinetTabType _currenCabinetTab = CabinetTabType.GeneralAgreement;
         private readonly Dictionary<CabinetTabType, RadPageViewPage> _tab;
 
@@ -77,7 +78,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
         public event ActionByIdDelegate OnFileDelete;
-        public event MiddleControlCabinetPayslips.GetSpectacleView OnGetSpectacleNeed;
+        public event RegisterRatedListControl.GetSpectacleView OnGetSpectacleNeed;
         public event ChangeLicenseTypeEventHandler OnChangeLicenseType;
         public event SaveRegisterRatedListEventHandler OnSaveRegisterRatedList;
         public event GetRegisterRatedList OnGetRegisterRatedList;
@@ -89,11 +90,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public CabinetBigRight()
         {
             InitializeComponent();
-            if (IpsGlobal.AnketaDictionaties != null)
-            {
-                ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
-                ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
-            }
 
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
@@ -440,15 +436,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             return OnFileDelete?.Invoke(e) ?? false;
         }
 
-        public void SetDictionaries(AnketaDictionaties dictionaries)
-        {
-            _anketaDictionaties = dictionaries;
-        }
-
         //оновлення даних на вкладкі при переході на іншу
         private void PageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            string tabName = ((Telerik.WinControls.UI.RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
+            string tabName = ((RadPageViewItem)((Telerik.WinControls.RadControl)sender).FocusedElement)?.Page?.Name ?? string.Empty;
             _currenCabinetTab = _cabinetTab.SingleOrDefault(key => key.Key == tabName).Value;
 
             // ** Disable update when tab change

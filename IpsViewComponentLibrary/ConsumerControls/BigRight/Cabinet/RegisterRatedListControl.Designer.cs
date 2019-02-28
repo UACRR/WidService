@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
-    partial class MiddleControlCabinetPayslips
+    partial class RegisterRatedListControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -49,7 +47,7 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn12 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewRelation gridViewRelation1 = new Telerik.WinControls.UI.GridViewRelation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MiddleControlCabinetPayslips));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegisterRatedListControl));
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -74,7 +72,7 @@ namespace IpsViewComponentLibrary
             this.childTempl = new Telerik.WinControls.UI.GridViewTemplate();
             this.bsChildTemplate = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewSpectacles = new Telerik.WinControls.UI.RadGridView();
-            this.gvViewRl = new Telerik.WinControls.UI.RadGridView();
+            this.gvRegisterRatedListView = new Telerik.WinControls.UI.RadGridView();
             this.btnAddNewRl = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
@@ -100,8 +98,8 @@ namespace IpsViewComponentLibrary
             ((System.ComponentModel.ISupportInitialize)(this.bsChildTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewRl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewRl.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegisterRatedListView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegisterRatedListView.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
@@ -276,24 +274,24 @@ namespace IpsViewComponentLibrary
             this.gvViewSpectacles.TabIndex = 11;
             this.gvViewSpectacles.ThemeName = "Office2013Light";
             // 
-            // gvViewRl
+            // gvRegisterRatedListView
             // 
-            this.gvViewRl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gvRegisterRatedListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvViewRl.AutoScroll = true;
-            this.gvViewRl.AutoSizeRows = true;
-            this.gvViewRl.EnableCustomFiltering = true;
-            this.gvViewRl.Location = new System.Drawing.Point(5, 88);
+            this.gvRegisterRatedListView.AutoScroll = true;
+            this.gvRegisterRatedListView.AutoSizeRows = true;
+            this.gvRegisterRatedListView.EnableCustomFiltering = true;
+            this.gvRegisterRatedListView.Location = new System.Drawing.Point(5, 88);
             // 
             // 
             // 
-            this.gvViewRl.MasterTemplate.AllowAddNewRow = false;
-            this.gvViewRl.MasterTemplate.AllowDeleteRow = false;
-            this.gvViewRl.MasterTemplate.AllowDragToGroup = false;
-            this.gvViewRl.MasterTemplate.AllowEditRow = false;
-            this.gvViewRl.MasterTemplate.AutoGenerateColumns = false;
-            this.gvViewRl.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gvRegisterRatedListView.MasterTemplate.AllowAddNewRow = false;
+            this.gvRegisterRatedListView.MasterTemplate.AllowDeleteRow = false;
+            this.gvRegisterRatedListView.MasterTemplate.AllowDragToGroup = false;
+            this.gvRegisterRatedListView.MasterTemplate.AllowEditRow = false;
+            this.gvRegisterRatedListView.MasterTemplate.AutoGenerateColumns = false;
+            this.gvRegisterRatedListView.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn4.DataType = typeof(int);
             gridViewTextBoxColumn4.FieldName = "CustId";
             gridViewTextBoxColumn4.HeaderText = "ID";
@@ -395,7 +393,7 @@ namespace IpsViewComponentLibrary
             gridViewCommandColumn2.MinWidth = 30;
             gridViewCommandColumn2.Name = "deleteBtn";
             gridViewCommandColumn2.Width = 30;
-            this.gvViewRl.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            this.gvRegisterRatedListView.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
@@ -408,18 +406,18 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn13,
             gridViewCommandColumn1,
             gridViewCommandColumn2});
-            this.gvViewRl.MasterTemplate.EnableCustomFiltering = true;
-            this.gvViewRl.MasterTemplate.EnableFiltering = true;
-            this.gvViewRl.MasterTemplate.EnableGrouping = false;
-            this.gvViewRl.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewRl.MasterTemplate.ViewDefinition = tableViewDefinition3;
-            this.gvViewRl.Name = "gvViewRl";
-            this.gvViewRl.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewRl.Size = new System.Drawing.Size(990, 179);
-            this.gvViewRl.TabIndex = 7;
-            this.gvViewRl.ThemeName = "Office2013Light";
-            this.gvViewRl.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRl_CurrentRowChanged);
-            this.gvViewRl.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRl_CommandCellClick);
+            this.gvRegisterRatedListView.MasterTemplate.EnableCustomFiltering = true;
+            this.gvRegisterRatedListView.MasterTemplate.EnableFiltering = true;
+            this.gvRegisterRatedListView.MasterTemplate.EnableGrouping = false;
+            this.gvRegisterRatedListView.MasterTemplate.ShowFilteringRow = false;
+            this.gvRegisterRatedListView.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvRegisterRatedListView.Name = "gvRegisterRatedListView";
+            this.gvRegisterRatedListView.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvRegisterRatedListView.Size = new System.Drawing.Size(990, 179);
+            this.gvRegisterRatedListView.TabIndex = 7;
+            this.gvRegisterRatedListView.ThemeName = "Office2013Light";
+            this.gvRegisterRatedListView.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvRegisterRatedListView_CurrentRowChanged);
+            this.gvRegisterRatedListView.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRegisterRatedListView_CommandCellClick);
             // 
             // btnAddNewRl
             // 
@@ -430,7 +428,7 @@ namespace IpsViewComponentLibrary
             this.btnAddNewRl.TabIndex = 8;
             this.btnAddNewRl.Text = "Додати новий Р/Л";
             this.btnAddNewRl.ThemeName = "Office2013Light";
-            this.btnAddNewRl.Click += new System.EventHandler(this.btnAddNewRl_Click);
+            this.btnAddNewRl.Click += new System.EventHandler(this.btnCreateRegisterRatedList_Click);
             // 
             // splitContainer
             // 
@@ -489,7 +487,7 @@ namespace IpsViewComponentLibrary
             this.spHeader.Controls.Add(this.btnUpdate);
             this.spHeader.Controls.Add(this.ddBtnStatusChange);
             this.spHeader.Controls.Add(this.ctrlHeaderInfo);
-            this.spHeader.Controls.Add(this.gvViewRl);
+            this.spHeader.Controls.Add(this.gvRegisterRatedListView);
             this.spHeader.Controls.Add(this.btnAddNewRl);
             this.spHeader.Location = new System.Drawing.Point(0, 0);
             this.spHeader.Name = "spHeader";
@@ -533,7 +531,7 @@ namespace IpsViewComponentLibrary
             // 
             this.btnAcceptSpectacles.Name = "btnAcceptSpectacles";
             this.btnAcceptSpectacles.Text = "Погоджений";
-            this.btnAcceptSpectacles.Click += new System.EventHandler(this.btnAcceptSpectacles_Click);
+            this.btnAcceptSpectacles.Click += new System.EventHandler(this.btnConfirmSpectacles_Click);
             // 
             // ctrlHeaderInfo
             // 
@@ -601,7 +599,7 @@ namespace IpsViewComponentLibrary
             this.pvMusicalDesign.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvMusicalDesign.Location = new System.Drawing.Point(5, 31);
             this.pvMusicalDesign.Name = "pvMusicalDesign";
-            this.pvMusicalDesign.Size = new System.Drawing.Size(1031, 182);
+            this.pvMusicalDesign.Size = new System.Drawing.Size(990, 182);
             this.pvMusicalDesign.Text = "Збірна музика";
             // 
             // gvMusicDesignView
@@ -636,7 +634,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn16.MinWidth = 0;
             gridViewTextBoxColumn16.Multiline = true;
             gridViewTextBoxColumn16.Name = "ObjName";
-            gridViewTextBoxColumn16.Width = 510;
+            gridViewTextBoxColumn16.Width = 489;
             gridViewTextBoxColumn16.WrapText = true;
             gridViewTextBoxColumn17.FieldName = "NameMusician";
             gridViewTextBoxColumn17.HeaderText = "ПІБ композитора";
@@ -644,7 +642,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn17.MinWidth = 100;
             gridViewTextBoxColumn17.Multiline = true;
             gridViewTextBoxColumn17.Name = "NameMusician";
-            gridViewTextBoxColumn17.Width = 202;
+            gridViewTextBoxColumn17.Width = 194;
             gridViewTextBoxColumn17.WrapText = true;
             gridViewTextBoxColumn18.FieldName = "NameSinger";
             gridViewTextBoxColumn18.HeaderText = "ПІБ виконавця";
@@ -652,7 +650,7 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn18.MinWidth = 100;
             gridViewTextBoxColumn18.Multiline = true;
             gridViewTextBoxColumn18.Name = "NameSinger";
-            gridViewTextBoxColumn18.Width = 194;
+            gridViewTextBoxColumn18.Width = 181;
             gridViewTextBoxColumn18.WrapText = true;
             gridViewTextBoxColumn19.FieldName = "Duration";
             gridViewTextBoxColumn19.HeaderText = "Тривалість звучання (хв)";
@@ -685,7 +683,7 @@ namespace IpsViewComponentLibrary
             this.gvMusicDesignView.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.gvMusicDesignView.Name = "gvMusicDesignView";
             this.gvMusicDesignView.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvMusicDesignView.Size = new System.Drawing.Size(1028, 113);
+            this.gvMusicDesignView.Size = new System.Drawing.Size(987, 113);
             this.gvMusicDesignView.TabIndex = 28;
             this.gvMusicDesignView.ThemeName = "Office2013Light";
             // 
@@ -714,8 +712,8 @@ namespace IpsViewComponentLibrary
             this.cMusAmount.MaximumSize = new System.Drawing.Size(1000, 28);
             this.cMusAmount.MinimumSize = new System.Drawing.Size(150, 25);
             this.cMusAmount.Name = "cMusAmount";
-            this.cMusAmount.Size = new System.Drawing.Size(287, 28);
-            this.cMusAmount.SplitterRatio = 167;
+            this.cMusAmount.Size = new System.Drawing.Size(273, 28);
+            this.cMusAmount.SplitterRatio = 158;
             this.cMusAmount.StringFormat = "";
             this.cMusAmount.TabIndex = 26;
             this.cMusAmount.TextTitle = "Сума за муз. супровід";
@@ -748,8 +746,8 @@ namespace IpsViewComponentLibrary
             this.cAuthorAmount.MaximumSize = new System.Drawing.Size(1000, 28);
             this.cAuthorAmount.MinimumSize = new System.Drawing.Size(150, 25);
             this.cAuthorAmount.Name = "cAuthorAmount";
-            this.cAuthorAmount.Size = new System.Drawing.Size(287, 28);
-            this.cAuthorAmount.SplitterRatio = 167;
+            this.cAuthorAmount.Size = new System.Drawing.Size(273, 28);
+            this.cAuthorAmount.SplitterRatio = 158;
             this.cAuthorAmount.StringFormat = "";
             this.cAuthorAmount.TabIndex = 24;
             this.cAuthorAmount.TextTitle = "Сума авторського гонорару";
@@ -825,19 +823,19 @@ namespace IpsViewComponentLibrary
             this.cName.ValueDataMemger = "";
             this.cName.ValueDataSource = null;
             // 
-            // MiddleControlCabinetPayslips
+            // RegisterRatedListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer);
-            this.Name = "MiddleControlCabinetPayslips";
+            this.Name = "RegisterRatedListControl";
             this.Size = new System.Drawing.Size(1000, 539);
             ((System.ComponentModel.ISupportInitialize)(this.childTempl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsChildTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewRl.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewRl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegisterRatedListView.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegisterRatedListView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
@@ -860,7 +858,7 @@ namespace IpsViewComponentLibrary
         #endregion
 
         private GeneralAgreementInfo ctrlHeaderInfo;
-        private Telerik.WinControls.UI.RadGridView gvViewRl;
+        private Telerik.WinControls.UI.RadGridView gvRegisterRatedListView;
         private Telerik.WinControls.UI.RadButton btnAddNewRl;
         private System.Windows.Forms.BindingSource bsChildTemplate;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;

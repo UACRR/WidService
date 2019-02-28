@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.PartnerControls
 {

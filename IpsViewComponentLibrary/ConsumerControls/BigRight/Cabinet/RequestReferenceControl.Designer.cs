@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
-    partial class MiddleControlCabinetReqRef
+    partial class RequestReferenceControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -55,7 +53,7 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.bsDictionary = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDictionaryWorkType = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewRequests = new Telerik.WinControls.UI.RadGridView();
             this.separator = new Telerik.WinControls.UI.RadSeparator();
             this.btnCreate = new Telerik.WinControls.UI.RadButton();
@@ -73,7 +71,7 @@ namespace IpsViewComponentLibrary
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.GeneralAgreementInfo();
             this.spFooter = new Telerik.WinControls.UI.SplitPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictionaryWorkType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
@@ -92,9 +90,9 @@ namespace IpsViewComponentLibrary
             this.spFooter.SuspendLayout();
             this.SuspendLayout();
             // 
-            // bsDictionary
+            // bsDictionaryWorkType
             // 
-            this.bsDictionary.DataSource = typeof(ipsFormsDesign.Model.WorkType);
+            this.bsDictionaryWorkType.DataSource = typeof(ipsFormsDesign.Model.WorkType);
             // 
             // gvViewRequests
             // 
@@ -553,15 +551,15 @@ namespace IpsViewComponentLibrary
             this.spFooter.Text = "splitPanel2";
             this.spFooter.ThemeName = "Office2013Light";
             // 
-            // MiddleControlCabinetReqRef
+            // RequestReferenceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer);
-            this.Name = "MiddleControlCabinetReqRef";
+            this.Name = "RequestReferenceControl";
             this.Size = new System.Drawing.Size(1000, 587);
-            this.Load += new System.EventHandler(this.MiddleControlCabinetReqRef_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.bsDictionary)).EndInit();
+            this.Load += new System.EventHandler(this.RequestReferenceControl_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictionaryWorkType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
@@ -589,7 +587,7 @@ namespace IpsViewComponentLibrary
         private Telerik.WinControls.UI.RadSeparator separator;
         private Telerik.WinControls.UI.RadButton btnCreate;
         private Telerik.WinControls.UI.RadGridView gvCreativeRole;
-        private System.Windows.Forms.BindingSource bsDictionary;
+        private System.Windows.Forms.BindingSource bsDictionaryWorkType;
         private System.Windows.Forms.BindingSource bindingSource1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadDropDownButton ddBtnStateChange;

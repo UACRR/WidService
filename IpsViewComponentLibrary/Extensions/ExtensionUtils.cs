@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -12,7 +9,7 @@ using ipsFormsDesign.Services;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Extensions
 {
     public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
@@ -200,10 +197,10 @@ namespace IpsViewComponentLibrary
         /// <summary>
         /// Встановлення джерела даних для DataBinding
         /// </summary>
-        /// <param name="cust">Дані споживача</param>
+        /// <param name="customer">Дані споживача</param>
         /// <param name="dictionaties">Словники</param>
         /// <param name="anketeType">Тип анкети: редагування/створення нової</param>
-        void SetDataSources(Customer cust, AnketaDictionaties dictionaties);
+        void SetDataSources(Customer customer, AnketaDictionaties dictionaties);
 
         /// <summary>
         /// Перевірка на правильність введених даних

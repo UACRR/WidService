@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace DebugFormForControls

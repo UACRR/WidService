@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
+﻿using IpsViewComponentLibrary.Extensions;
+
+namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     partial class ProlongationBigRight
     {
@@ -91,7 +93,7 @@
             this.ctrlAgrMain.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             this.ctrlAgrMain.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
-            this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
+            this.ctrlAgrMain.DateTimeType = ConsumerAgreementInitType.None;
             this.ctrlAgrMain.Location = new System.Drawing.Point(12, 40);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";

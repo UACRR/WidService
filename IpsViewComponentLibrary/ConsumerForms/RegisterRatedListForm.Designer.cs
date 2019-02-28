@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerForms
 {
-    partial class PayslipsCrEdForm
+    partial class RegisterRatedListForm
     {
         /// <summary>
         /// Required designer variable.
@@ -68,7 +68,7 @@
             this.btnAddCheckedSpectacle = new Telerik.WinControls.UI.RadButton();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvSpectacle = new Telerik.WinControls.UI.RadPageViewPage();
-            this.gvViewPayslipsItems = new Telerik.WinControls.UI.RadGridView();
+            this.gvRegisterView = new Telerik.WinControls.UI.RadGridView();
             this.pvMusicDesign = new Telerik.WinControls.UI.RadPageViewPage();
             this.cMusRate = new IpsViewComponentLibrary.SingleShowInformationControl();
             this.cMusAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
@@ -101,8 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvSpectacle.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewPayslipsItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewPayslipsItems.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegisterView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegisterView.MasterTemplate)).BeginInit();
             this.pvMusicDesign.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView)).BeginInit();
@@ -206,7 +206,6 @@
             this.ddlPeriod.TabIndex = 5;
             this.ddlPeriod.ThemeName = "Office2013Light";
             this.ddlPeriod.ValueMember = "PeriodId";
-            this.ddlPeriod.SelectedValueChanged += new System.EventHandler(this.ddlPeriod_SelectedValueChanged);
             // 
             // bsRegister
             // 
@@ -265,30 +264,30 @@
             // pvSpectacle
             // 
             this.pvSpectacle.Controls.Add(this.btnAddCheckedSpectacle);
-            this.pvSpectacle.Controls.Add(this.gvViewPayslipsItems);
+            this.pvSpectacle.Controls.Add(this.gvRegisterView);
             this.pvSpectacle.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvSpectacle.Location = new System.Drawing.Point(5, 31);
             this.pvSpectacle.Name = "pvSpectacle";
             this.pvSpectacle.Size = new System.Drawing.Size(996, 358);
             this.pvSpectacle.Text = "Вистави";
             // 
-            // gvViewPayslipsItems
+            // gvRegisterView
             // 
-            this.gvViewPayslipsItems.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gvRegisterView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvViewPayslipsItems.AutoScroll = true;
-            this.gvViewPayslipsItems.AutoSizeRows = true;
-            this.gvViewPayslipsItems.EnableCustomFiltering = true;
-            this.gvViewPayslipsItems.Location = new System.Drawing.Point(0, 0);
+            this.gvRegisterView.AutoScroll = true;
+            this.gvRegisterView.AutoSizeRows = true;
+            this.gvRegisterView.EnableCustomFiltering = true;
+            this.gvRegisterView.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
-            this.gvViewPayslipsItems.MasterTemplate.AllowAddNewRow = false;
-            this.gvViewPayslipsItems.MasterTemplate.AllowDeleteRow = false;
-            this.gvViewPayslipsItems.MasterTemplate.AllowDragToGroup = false;
-            this.gvViewPayslipsItems.MasterTemplate.AutoGenerateColumns = false;
-            this.gvViewPayslipsItems.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gvRegisterView.MasterTemplate.AllowAddNewRow = false;
+            this.gvRegisterView.MasterTemplate.AllowDeleteRow = false;
+            this.gvRegisterView.MasterTemplate.AllowDragToGroup = false;
+            this.gvRegisterView.MasterTemplate.AutoGenerateColumns = false;
+            this.gvRegisterView.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.FieldName = "CustId";
             gridViewTextBoxColumn1.HeaderText = "ID";
@@ -406,7 +405,7 @@
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 35;
             gridViewCommandColumn1.WrapText = true;
-            this.gvViewPayslipsItems.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            this.gvRegisterView.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
@@ -420,18 +419,18 @@
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewCommandColumn1});
-            this.gvViewPayslipsItems.MasterTemplate.EnableCustomFiltering = true;
-            this.gvViewPayslipsItems.MasterTemplate.EnableFiltering = true;
-            this.gvViewPayslipsItems.MasterTemplate.EnableGrouping = false;
-            this.gvViewPayslipsItems.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewPayslipsItems.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.gvViewPayslipsItems.Name = "gvViewPayslipsItems";
-            this.gvViewPayslipsItems.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewPayslipsItems.Size = new System.Drawing.Size(996, 335);
-            this.gvViewPayslipsItems.TabIndex = 8;
-            this.gvViewPayslipsItems.ThemeName = "Office2013Light";
-            this.gvViewPayslipsItems.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewPayslipsItems_CellValueChanged);
-            this.gvViewPayslipsItems.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewPayslipsItems_CommandCellClick);
+            this.gvRegisterView.MasterTemplate.EnableCustomFiltering = true;
+            this.gvRegisterView.MasterTemplate.EnableFiltering = true;
+            this.gvRegisterView.MasterTemplate.EnableGrouping = false;
+            this.gvRegisterView.MasterTemplate.ShowFilteringRow = false;
+            this.gvRegisterView.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvRegisterView.Name = "gvRegisterView";
+            this.gvRegisterView.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvRegisterView.Size = new System.Drawing.Size(996, 335);
+            this.gvRegisterView.TabIndex = 8;
+            this.gvRegisterView.ThemeName = "Office2013Light";
+            this.gvRegisterView.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRegisterView_CellValueChanged);
+            this.gvRegisterView.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRegisterView_CommandCellClick);
             // 
             // pvMusicDesign
             // 
@@ -693,7 +692,7 @@
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             // 
-            // PayslipsCrEdForm
+            // RegisterRatedListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -703,7 +702,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.pageView);
             this.Controls.Add(this.panel);
-            this.Name = "PayslipsCrEdForm";
+            this.Name = "RegisterRatedListForm";
             // 
             // 
             // 
@@ -730,8 +729,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvSpectacle.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewPayslipsItems.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewPayslipsItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegisterView.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvRegisterView)).EndInit();
             this.pvMusicDesign.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView.MasterTemplate)).EndInit();
@@ -750,7 +749,7 @@
         private Telerik.WinControls.UI.RadPageView pageView;
         private Telerik.WinControls.UI.RadPageViewPage pvSpectacle;
         private Telerik.WinControls.UI.RadPageViewPage pvMusicDesign;
-        private Telerik.WinControls.UI.RadGridView gvViewPayslipsItems;
+        private Telerik.WinControls.UI.RadGridView gvRegisterView;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadTextBox txtRoyalty;

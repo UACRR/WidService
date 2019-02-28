@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ExtensionControls

@@ -10,31 +10,22 @@ using ipsFormsDesign.Events;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.AppController;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
-    public partial class RegisterListControl : UserControl,
-        ISubscriber<RegisterUpdatedEvent>
+    public partial class RegisterListControl : UserControl, ISubscriber<RegisterUpdatedEvent>
     {
         private readonly RegisterService _registerService;
 
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         private RegisterListViewModel _register;
         public RegisterListViewModel SelectedRegister
         {
-            get
-            {
-                if (gvRegisterList.CurrentRow == null)
-                    return null;
-
-                return gvRegisterList.CurrentRow.DataBoundItem as RegisterListViewModel;
-            }
+            get => gvRegisterList?.CurrentRow?.DataBoundItem as RegisterListViewModel;
             set
             {
                 if (_register != value)

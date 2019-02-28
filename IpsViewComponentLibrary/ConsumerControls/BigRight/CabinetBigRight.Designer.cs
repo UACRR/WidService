@@ -1,5 +1,7 @@
-﻿using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+﻿using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ExtensionControls;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
@@ -47,11 +49,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAnketaConsumer = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
             this.ctrlTabNavigation = new TabNavigationControl();
-            this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
-            this.ctrlLicense = new IpsViewComponentLibrary.MiddleControlCabinetLicenses();
-            this.ctrlRequest = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
-            this.ctrlReference = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
-            this.ctrlPayslips = new IpsViewComponentLibrary.MiddleControlCabinetPayslips();
+            this.ctrlGeneralAgreement = new GeneralAgreementControl();
+            this.ctrlLicense = new LicensesControl();
+            this.ctrlRequest = new RequestReferenceControl();
+            this.ctrlReference = new RequestReferenceControl();
+            this.ctrlPayslips = new RegisterRatedListControl();
             this.ctrlCalculation = new CalculationInfoControl();
             this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
@@ -256,7 +258,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlRequest.Name = "ctrlRequest";
             this.ctrlRequest.Size = new System.Drawing.Size(1136, 584);
             this.ctrlRequest.TabIndex = 0;
-            this.ctrlRequest.TypeControl = IpsViewComponentLibrary.ControlRequestOrReferenceType.None;
+            this.ctrlRequest.TypeControl = ControlRequestOrReferenceType.None;
             // 
             // ctrlReference
             // 
@@ -265,7 +267,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlReference.Name = "ctrlReference";
             this.ctrlReference.Size = new System.Drawing.Size(1136, 584);
             this.ctrlReference.TabIndex = 0;
-            this.ctrlReference.TypeControl = IpsViewComponentLibrary.ControlRequestOrReferenceType.None;
+            this.ctrlReference.TypeControl = ControlRequestOrReferenceType.None;
             // 
             // ctrlPayslips
             // 
@@ -372,16 +374,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private Telerik.WinControls.UI.RadPageViewPage pvFiles;
         private Telerik.WinControls.UI.RadPageViewPage pvAgent;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private MiddleControlCabinetLicenses ctrlLicense;
-        private MiddleControlCabinetGenAgreement ctrlGeneralAgreement;
+        private LicensesControl ctrlLicense;
+        private GeneralAgreementControl ctrlGeneralAgreement;
         private MiddleControlCabinetPartner ctrlPartner;
         private MiddleControlCabinetFiles ctrlFiles;
-        private MiddleControlCabinetReqRef ctrlRequest;
-        private MiddleControlCabinetReqRef ctrlReference;
+        private RequestReferenceControl ctrlRequest;
+        private RequestReferenceControl ctrlReference;
         private Telerik.WinControls.UI.RadPageViewPage pvPays;
         private Telerik.WinControls.UI.RadPageViewPage pvAvances;
         private Telerik.WinControls.UI.RadPageViewPage pvContacts;
-        private MiddleControlCabinetPayslips ctrlPayslips;
+        private RegisterRatedListControl ctrlPayslips;
         private MiddleControlCabinetAvances middleControlCabinetAvances1;
         public CalculationInfoControl ctrlCalculation;
         private Telerik.WinControls.UI.RadPageViewPage pvAnketa;

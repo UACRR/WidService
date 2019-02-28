@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
-    partial class MiddleControlCabinetGenAgreement
+    partial class GeneralAgreementControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

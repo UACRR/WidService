@@ -10,6 +10,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.BigRight;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 

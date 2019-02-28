@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls.Places
+﻿using IpsViewComponentLibrary.Extensions;
+
+namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
     public interface IPlacesControl
     {

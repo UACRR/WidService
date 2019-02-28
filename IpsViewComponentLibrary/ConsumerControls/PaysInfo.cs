@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Data;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {

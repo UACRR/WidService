@@ -6,6 +6,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 using LicenseForPlaces = ipsFormsDesign.Model.License;
 

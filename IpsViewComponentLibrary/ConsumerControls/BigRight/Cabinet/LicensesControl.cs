@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
+using IpsViewComponentLibrary.ConsumerForms;
+using IpsViewComponentLibrary.Extensions;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
-    public partial class MiddleControlCabinetLicenses : UserControl
+    public partial class LicensesControl : UserControl
     {
+        private const string AcceptSuccess = "Акцептовано!";
+        private const string AcceptError = "Неможливо акцептувати!";
+        private const string SendConfirmationSuccess = "Відправлено на погодження!";
+        private const string SendConfirmationError = "Неможливо відправити на погодження!";
+        private const string CloseLicenseQuestion = "Ліцензія буде закрита та автоматично видалена! Підтвердити дію?";
+        private const string CloseLicenseSuccess = "Ліцензію закрито!";
+        private const string CloseLicenseError = "Неможливо закрити ліцензію!";
+        private const string ProlongationSuccess = "Ліцензійний договір пролонговано!";
+        private const string ProlongationError = "Неможливо пролонгувати ліцензійний договір!";
+
         private Customer _customer;
         public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
         public event SaveCustomerEventHandler OnSaveCustomer;
@@ -23,13 +29,13 @@ namespace IpsViewComponentLibrary
         public event EmptyEventHandler UpdateData;
 
 
-        private ButtonFunctionType _functionType;
-        private readonly Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
-            {ButtonFunctionType.Accept, "Акцептувати"},
-            {ButtonFunctionType.Agree, "На погодження"},
-            {ButtonFunctionType.None, string.Empty}
+        private BRLicenseButtonActionType _functionType;
+        private readonly Dictionary<BRLicenseButtonActionType, string> _btnDictionary = new Dictionary<BRLicenseButtonActionType, string>{
+            {BRLicenseButtonActionType.Accept, "Акцептувати"},
+            {BRLicenseButtonActionType.Confirm, "На погодження"},
+            {BRLicenseButtonActionType.None, string.Empty}
         };
-        public MiddleControlCabinetLicenses()
+        public LicensesControl()
         {
             InitializeComponent();
             ctrlAgrDetailInfo.OnSaveCommentNeed += CtrlAgrDetailInfo_OnSaveCommentNeed;
@@ -39,7 +45,7 @@ namespace IpsViewComponentLibrary
         {
             var result = OnSaveCustomer?.Invoke(_customer);
             if (result ?? false)
-                ExtensionUtils.ShowInfoMessage("Примітку збережено!", "Успішно", MessageBoxIcon.Information);
+                MessageShow.ShowInfo("Примітку збережено!");
         }
 
         /// <summary>
@@ -81,9 +87,9 @@ namespace IpsViewComponentLibrary
 
             btnToProlongation.Enabled = lic?.LicStatus == 2;
             btnCloseAgr.Enabled = lic?.LicStatus != 4;
-            btnToAccept.Enabled = (lic?.LicStatus == 0 || lic?.LicStatus == 1);
+            btnToAccept.Enabled = lic?.LicStatus == 0 || lic?.LicStatus == 1;
 
-            SetBtnFunc(lic?.LicStatus == 0 ? ButtonFunctionType.Agree : lic?.LicStatus == 1 ? ButtonFunctionType.Accept : ButtonFunctionType.None);
+            SetBtnFunc(lic?.LicStatus == 0 ? BRLicenseButtonActionType.Confirm : lic?.LicStatus == 1 ? BRLicenseButtonActionType.Accept : BRLicenseButtonActionType.None);
 
             //оновлення інфи
             var licAgrParam = _customer.Client.LicenseAgreement
@@ -94,80 +100,71 @@ namespace IpsViewComponentLibrary
             ctrlAgrDetailInfo.SetDataInfo(licAgrParam, lic);
         }
 
-        private void SetBtnFunc(ButtonFunctionType type)
+        private void SetBtnFunc(BRLicenseButtonActionType type)
         {
             _functionType = type;
-            if(type != ButtonFunctionType.None)
+            if(type != BRLicenseButtonActionType.None)
                 btnToAccept.Text = _btnDictionary[type];
         }
 
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {
-            if (gvViewLicences?.CurrentRow?.DataBoundItem is LicenseAgreementBigRightView item)
+            if (!(gvViewLicences?.CurrentRow?.DataBoundItem is LicenseAgreementBigRightView item))
+                return;
+
+            if (MessageShow.ConfirmAction(CloseLicenseQuestion) == DialogResult.Yes)
             {
-                if (MessageBox.Show("Ліцензія буде закрита та автоматично видалена. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
-                    if (OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 4, false) ?? false)
-                    {
-                        ExtensionUtils.ShowInfoMessage("Ліцензію закрито", "Успішно", MessageBoxIcon.Information);
-                        UpdateData?.Invoke();
-                    }
-                    else
-                        ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
+                var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
+                var result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 4, false) ?? false;
+                if (result)
+                    UpdateData?.Invoke();
+                MessageShow.ShowInfoByResult(CloseLicenseSuccess, CloseLicenseError, result);
             }
         }
 
         // пролонгація
         private void btnToProlongation_Click(object sender, EventArgs e)
         {
-            if(!(gvViewLicences.CurrentRow.DataBoundItem is LicenseAgreementBigRightView item)) return;
+            if(!(gvViewLicences.CurrentRow.DataBoundItem is LicenseAgreementBigRightView item))
+                return;
+
             var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec?.LicId == item.LicId);
-            ProlongationBigRight prolongation = new ProlongationBigRight(_customer, license, item.Name);
+            var prolongation = new ProlongationBigRight(license, item.Name);
+
             if (prolongation.ShowDialog() == DialogResult.OK)
             {
-                var result = OnSaveCustomer?.Invoke(_customer);
-                if (result ?? false)
-                {
-                    ExtensionUtils.ShowInfoMessage("Ліцензійний договір пролонговано!","Успішно", MessageBoxIcon.Information);
+                var result = OnSaveCustomer?.Invoke(_customer) ?? false;
+                if (result)
                     UpdateData?.Invoke();
-                }
-                else
-                    ExtensionUtils.ShowInfoMessage("Неможливо пролонгувати ліцензійний договір!", "Помилка", MessageBoxIcon.Error);
+                MessageShow.ShowInfoByResult(ProlongationSuccess, ProlongationError, result);
             }
         }
 
         // на підтвердження / акцептування
         private void btnToAccept_Click(object sender, EventArgs e)
         {
-            if (gvViewLicences?.CurrentRow?.DataBoundItem is LicenseAgreementBigRightView item)
+            if (!(gvViewLicences?.CurrentRow?.DataBoundItem is LicenseAgreementBigRightView item))
+                return;
+
+            bool result = false;
+            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
+
+            switch (_functionType)
             {
-                bool result = false;
-                switch (_functionType)
-                {
-                    case ButtonFunctionType.None:
-                        break;
-                    case ButtonFunctionType.Accept:
-                    {
-                        result = OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false) ?? false;
-                        if (result)
-                            ExtensionUtils.ShowInfoMessage("Акцептовано!", "Успішно", MessageBoxIcon.Information);
-                        else
-                            ExtensionUtils.ShowInfoMessage("Не можливо акцептувати", "Помилка!", MessageBoxIcon.Error);
-                    }
-                        break;
-                    case ButtonFunctionType.Agree:
-                    {
-                        result = OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 3, false) ?? false;
-                        if (result)
-                            ExtensionUtils.ShowInfoMessage("Відправлено на погодження!", "Успішно", MessageBoxIcon.Information);
-                        else
-                            ExtensionUtils.ShowInfoMessage("Не можливо відправити на погодження", "Помилка!", MessageBoxIcon.Error);
-                    }
-                        break;
-                }
-                if (result)
-                    UpdateData?.Invoke();
+                case BRLicenseButtonActionType.Accept:
+                    result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 0, false) ?? false;
+                    MessageShow.ShowInfoByResult(AcceptSuccess, AcceptError, result);
+                    break;
+
+                case BRLicenseButtonActionType.Confirm:
+                    result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 3, false) ?? false;
+                    MessageShow.ShowInfoByResult(SendConfirmationSuccess, SendConfirmationError, result);
+                    break;
             }
+            if (result)
+                UpdateData?.Invoke();
         }
+
 
         private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
@@ -175,7 +172,7 @@ namespace IpsViewComponentLibrary
             {
                 case "viewBtn":
                     var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
-                    var viewLicenseForm = new RequestForm(_customer, _gridMainView, FormType.View, licId)
+                    var viewLicenseForm = new RequestForm(_customer, _gridMainView, ScopeOfUseForm.View, licId)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
