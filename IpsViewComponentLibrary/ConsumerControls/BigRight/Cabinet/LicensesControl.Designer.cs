@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
-    partial class MiddleControlCabinetLicenses
+    partial class LicensesControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

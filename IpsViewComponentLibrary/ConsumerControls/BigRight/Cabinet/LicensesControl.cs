@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
 using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
-    public partial class MiddleControlCabinetLicenses : UserControl
+    public partial class LicensesControl : UserControl
     {
         private const string AcceptSuccess = "Акцептовано!";
         private const string AcceptError = "Неможливо акцептувати!";
@@ -42,7 +35,7 @@ namespace IpsViewComponentLibrary
             {BRLicenseButtonActionType.Confirm, "На погодження"},
             {BRLicenseButtonActionType.None, string.Empty}
         };
-        public MiddleControlCabinetLicenses()
+        public LicensesControl()
         {
             InitializeComponent();
             ctrlAgrDetailInfo.OnSaveCommentNeed += CtrlAgrDetailInfo_OnSaveCommentNeed;
