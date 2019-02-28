@@ -880,11 +880,11 @@
     <Compile Include="MiddleControlCabinetFiles.Designer.cs">
       <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetGenAgreement.cs">
+    <Compile Include="ConsumerControls\BigRight\Cabinet\GeneralAgreementControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinetGenAgreement.Designer.cs">
-      <DependentUpon>MiddleControlCabinetGenAgreement.cs</DependentUpon>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\GeneralAgreementControl.Designer.cs">
+      <DependentUpon>GeneralAgreementControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\BigRight\Cabinet\LicensesControl.cs">
       <SubType>UserControl</SubType>
@@ -1419,8 +1419,8 @@
     <EmbeddedResource Include="MiddleControlCabinetFiles.resx">
       <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetGenAgreement.resx">
-      <DependentUpon>MiddleControlCabinetGenAgreement.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\GeneralAgreementControl.resx">
+      <DependentUpon>GeneralAgreementControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\LicensesControl.resx">
       <DependentUpon>LicensesControl.cs</DependentUpon>

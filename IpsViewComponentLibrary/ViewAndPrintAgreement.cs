@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -22,12 +23,14 @@ namespace IpsViewComponentLibrary
         private string _pdf;
         private string _docx;
 
-        private new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public ViewAndPrintAgreement()
         {
             InitializeComponent();
-            if (!this.IsDesignMode)
+            WindowState = FormWindowState.Maximized;
+            StartPosition = FormStartPosition.CenterScreen;
+            if (!IsDesignMode)
                 _dictionaties = IpsGlobal.AnketaDictionaties;
             SetupCustomSaveAsButton();
         }

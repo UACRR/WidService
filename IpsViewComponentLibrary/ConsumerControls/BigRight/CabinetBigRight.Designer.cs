@@ -49,7 +49,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAnketaConsumer = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
             this.ctrlTabNavigation = new TabNavigationControl();
-            this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
+            this.ctrlGeneralAgreement = new GeneralAgreementControl();
             this.ctrlLicense = new LicensesControl();
             this.ctrlRequest = new RequestReferenceControl();
             this.ctrlReference = new RequestReferenceControl();
@@ -375,7 +375,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private Telerik.WinControls.UI.RadPageViewPage pvAgent;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private LicensesControl ctrlLicense;
-        private MiddleControlCabinetGenAgreement ctrlGeneralAgreement;
+        private GeneralAgreementControl ctrlGeneralAgreement;
         private MiddleControlCabinetPartner ctrlPartner;
         private MiddleControlCabinetFiles ctrlFiles;
         private RequestReferenceControl ctrlRequest;
