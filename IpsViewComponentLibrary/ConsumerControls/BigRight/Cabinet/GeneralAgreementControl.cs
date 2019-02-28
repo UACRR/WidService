@@ -6,6 +6,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 
@@ -65,7 +66,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         {
             var row = e.Row.DataBoundItem as GeneralAgreementBigRightView;
             var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
-            var print = new ViewAndPrintAgreement(_customer, licenseAgreement);
+            var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
             print.ShowDialog();
         }
 

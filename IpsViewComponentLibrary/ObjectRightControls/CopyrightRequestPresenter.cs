@@ -4,6 +4,7 @@ using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
+using IpsViewComponentLibrary.ConsumerForms;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -75,7 +76,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             var objectRightList = (ICollection<ObjectRightNotAccepted>)_view.ObjectRightListDataSource;
 
-            var printView = new ViewAndPrintAgreement();
+            var printView = new ViewAndPrintAgreementForm();
             printView.Text = "Запит - " + _view.SelectedRightholder.Name;
             printView.ShowCopyrightRequest(_view.SelectedRightholder, objectRightList);
 

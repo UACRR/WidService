@@ -17,6 +17,7 @@ using Telerik.WinControls.UI;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerDialogForms;
 using ipsFormsDesign.Dictionary;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary
@@ -424,11 +425,7 @@ namespace IpsViewComponentLibrary
                 else // не рапотричка
                 {
                     registerTemp.SchemaId = 1;
-                    var viewForm = new ReportExcelViewForm(registerTemp, true)
-                    {
-                        StartPosition = FormStartPosition.CenterParent
-                    };
-
+                    var viewForm = new ReportExcelViewForm(registerTemp, true);
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
                         period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);

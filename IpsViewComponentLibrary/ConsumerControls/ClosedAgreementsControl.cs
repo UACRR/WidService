@@ -11,6 +11,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+using IpsViewComponentLibrary.ConsumerForms;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
@@ -75,11 +76,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             var row = e.Row.DataBoundItem as GridLicenseAgreementView;
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == row.LicId);
-            var print = new ViewAndPrintAgreement(_customer, license, (int)row.LicVersion)
-            {
-                WindowState = FormWindowState.Maximized,
-                StartPosition = FormStartPosition.CenterScreen
-            };
+            var print = new ViewAndPrintAgreementForm(_customer, license, (int)row.LicVersion);
             print.ShowDialog();
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerForms
 {
     partial class ReportExcelViewForm
     {
@@ -37,9 +37,9 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTimeSpanColumn gridViewTimeSpanColumn1 = new Telerik.WinControls.UI.GridViewTimeSpanColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn1 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
+            Telerik.WinControls.UI.GridViewTimeSpanColumn gridViewTimeSpanColumn2 = new Telerik.WinControls.UI.GridViewTimeSpanColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportExcelViewForm));
@@ -73,6 +73,8 @@ namespace IpsViewComponentLibrary
             // 
             // gvReportContentView
             // 
+            this.gvReportContentView.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvReportContentView.AutoSizeRows = true;
             this.gvReportContentView.Location = new System.Drawing.Point(12, 42);
             // 
@@ -91,36 +93,37 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn2.HeaderText = "Назва твору";
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "ItemName";
-            gridViewTextBoxColumn2.Width = 168;
+            gridViewTextBoxColumn2.Width = 214;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.FieldName = "Performer";
             gridViewTextBoxColumn3.HeaderText = "Виконавець";
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "Performer";
-            gridViewTextBoxColumn3.Width = 170;
+            gridViewTextBoxColumn3.Width = 219;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "AuthorMusic";
             gridViewTextBoxColumn4.HeaderText = "Автор музики";
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "AuthorMusic";
-            gridViewTextBoxColumn4.Width = 127;
+            gridViewTextBoxColumn4.Width = 162;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "AuthorText";
             gridViewTextBoxColumn5.HeaderText = "Автор тексту";
             gridViewTextBoxColumn5.Multiline = true;
             gridViewTextBoxColumn5.Name = "AuthorText";
-            gridViewTextBoxColumn5.Width = 88;
+            gridViewTextBoxColumn5.Width = 61;
             gridViewTextBoxColumn5.WrapText = true;
-            gridViewTextBoxColumn6.DataType = typeof(System.Nullable<System.TimeSpan>);
-            gridViewTextBoxColumn6.FieldName = "DurationItem";
-            gridViewTextBoxColumn6.FormatString = "{0:hh\\:mm\\:ss}";
-            gridViewTextBoxColumn6.HeaderText = "Тривалість звучання твору";
-            gridViewTextBoxColumn6.MaxWidth = 95;
-            gridViewTextBoxColumn6.MinWidth = 95;
-            gridViewTextBoxColumn6.Name = "DurationItem";
-            gridViewTextBoxColumn6.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn6.Width = 95;
-            gridViewTextBoxColumn6.WrapText = true;
+            gridViewTimeSpanColumn1.DataType = typeof(System.Nullable<System.TimeSpan>);
+            gridViewTimeSpanColumn1.FieldName = "DurationItem";
+            gridViewTimeSpanColumn1.Format = "dd:hh:mm:ss";
+            gridViewTimeSpanColumn1.FormatString = "dd:hh:mm:ss";
+            gridViewTimeSpanColumn1.HeaderText = "Тривалість звучання твору";
+            gridViewTimeSpanColumn1.MaxWidth = 95;
+            gridViewTimeSpanColumn1.Minimum = System.TimeSpan.Parse("00:00:01");
+            gridViewTimeSpanColumn1.MinWidth = 95;
+            gridViewTimeSpanColumn1.Name = "DurationItem";
+            gridViewTimeSpanColumn1.Width = 95;
+            gridViewTimeSpanColumn1.WrapText = true;
             gridViewDecimalColumn1.DataType = typeof(System.Nullable<int>);
             gridViewDecimalColumn1.DecimalPlaces = 0;
             gridViewDecimalColumn1.FieldName = "CountUse";
@@ -135,20 +138,22 @@ namespace IpsViewComponentLibrary
             gridViewDecimalColumn1.Name = "CountUse";
             gridViewDecimalColumn1.Width = 80;
             gridViewDecimalColumn1.WrapText = true;
-            gridViewDateTimeColumn1.DataType = typeof(System.Nullable<System.TimeSpan>);
-            gridViewDateTimeColumn1.EditorType = Telerik.WinControls.UI.GridViewDateTimeEditorType.TimePicker;
-            gridViewDateTimeColumn1.FieldName = "DurationUse";
-            gridViewDateTimeColumn1.HeaderText = "Загальна тривалість звучання твору";
-            gridViewDateTimeColumn1.MaxWidth = 120;
-            gridViewDateTimeColumn1.MinWidth = 120;
-            gridViewDateTimeColumn1.Name = "DurationUse";
-            gridViewDateTimeColumn1.ReadOnly = true;
-            gridViewDateTimeColumn1.Width = 120;
-            gridViewDateTimeColumn1.WrapText = true;
+            gridViewTimeSpanColumn2.DataType = typeof(System.Nullable<System.TimeSpan>);
+            gridViewTimeSpanColumn2.FieldName = "DurationUse";
+            gridViewTimeSpanColumn2.Format = "dd:hh:mm:ss";
+            gridViewTimeSpanColumn2.FormatString = "dd:hh:mm:ss";
+            gridViewTimeSpanColumn2.HeaderText = "Загальна тривалість звучання твору";
+            gridViewTimeSpanColumn2.MaxWidth = 120;
+            gridViewTimeSpanColumn2.Minimum = System.TimeSpan.Parse("00:00:01");
+            gridViewTimeSpanColumn2.MinWidth = 120;
+            gridViewTimeSpanColumn2.Name = "DurationUse";
+            gridViewTimeSpanColumn2.Width = 120;
+            gridViewTimeSpanColumn2.WrapText = true;
             gridViewCommandColumn1.FieldName = "Delete";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.IsVisible = false;
             gridViewCommandColumn1.MaxWidth = 25;
             gridViewCommandColumn1.MinWidth = 25;
@@ -161,9 +166,9 @@ namespace IpsViewComponentLibrary
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
-            gridViewTextBoxColumn6,
+            gridViewTimeSpanColumn1,
             gridViewDecimalColumn1,
-            gridViewDateTimeColumn1,
+            gridViewTimeSpanColumn2,
             gridViewCommandColumn1});
             this.gvReportContentView.MasterTemplate.DataSource = this.bindingRegItems;
             this.gvReportContentView.MasterTemplate.EnableGrouping = false;
@@ -171,7 +176,7 @@ namespace IpsViewComponentLibrary
             this.gvReportContentView.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvReportContentView.Name = "gvReportContentView";
             this.gvReportContentView.ShowGroupPanel = false;
-            this.gvReportContentView.Size = new System.Drawing.Size(868, 345);
+            this.gvReportContentView.Size = new System.Drawing.Size(971, 345);
             this.gvReportContentView.TabIndex = 2;
             this.gvReportContentView.ThemeName = "Office2013Light";
             this.gvReportContentView.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvReportContentView_CellValueChanged);
@@ -206,7 +211,7 @@ namespace IpsViewComponentLibrary
             // 
             // 
             this.txtReportPeriod.RootElement.PositionOffset = new System.Drawing.SizeF(0F, 0F);
-            this.txtReportPeriod.Size = new System.Drawing.Size(868, 24);
+            this.txtReportPeriod.Size = new System.Drawing.Size(971, 24);
             this.txtReportPeriod.TabIndex = 4;
             this.txtReportPeriod.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtReportPeriod.ThemeName = "Office2013Light";
@@ -223,7 +228,7 @@ namespace IpsViewComponentLibrary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 430);
+            this.ClientSize = new System.Drawing.Size(995, 430);
             this.Controls.Add(this.txtReportPeriod);
             this.Controls.Add(this.btnAddRow);
             this.Controls.Add(this.gvReportContentView);
