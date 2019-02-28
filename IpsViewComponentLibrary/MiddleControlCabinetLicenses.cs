@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
 using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
@@ -35,11 +36,11 @@ namespace IpsViewComponentLibrary
         public event EmptyEventHandler UpdateData;
 
 
-        private ButtonFunctionType _functionType;
-        private readonly Dictionary<ButtonFunctionType, string> _btnDictionary = new Dictionary<ButtonFunctionType, string>{
-            {ButtonFunctionType.Accept, "Акцептувати"},
-            {ButtonFunctionType.Agree, "На погодження"},
-            {ButtonFunctionType.None, string.Empty}
+        private BRLicenseButtonActionType _functionType;
+        private readonly Dictionary<BRLicenseButtonActionType, string> _btnDictionary = new Dictionary<BRLicenseButtonActionType, string>{
+            {BRLicenseButtonActionType.Accept, "Акцептувати"},
+            {BRLicenseButtonActionType.Confirm, "На погодження"},
+            {BRLicenseButtonActionType.None, string.Empty}
         };
         public MiddleControlCabinetLicenses()
         {
@@ -93,9 +94,9 @@ namespace IpsViewComponentLibrary
 
             btnToProlongation.Enabled = lic?.LicStatus == 2;
             btnCloseAgr.Enabled = lic?.LicStatus != 4;
-            btnToAccept.Enabled = (lic?.LicStatus == 0 || lic?.LicStatus == 1);
+            btnToAccept.Enabled = lic?.LicStatus == 0 || lic?.LicStatus == 1;
 
-            SetBtnFunc(lic?.LicStatus == 0 ? ButtonFunctionType.Agree : lic?.LicStatus == 1 ? ButtonFunctionType.Accept : ButtonFunctionType.None);
+            SetBtnFunc(lic?.LicStatus == 0 ? BRLicenseButtonActionType.Confirm : lic?.LicStatus == 1 ? BRLicenseButtonActionType.Accept : BRLicenseButtonActionType.None);
 
             //оновлення інфи
             var licAgrParam = _customer.Client.LicenseAgreement
@@ -106,10 +107,10 @@ namespace IpsViewComponentLibrary
             ctrlAgrDetailInfo.SetDataInfo(licAgrParam, lic);
         }
 
-        private void SetBtnFunc(ButtonFunctionType type)
+        private void SetBtnFunc(BRLicenseButtonActionType type)
         {
             _functionType = type;
-            if(type != ButtonFunctionType.None)
+            if(type != BRLicenseButtonActionType.None)
                 btnToAccept.Text = _btnDictionary[type];
         }
 
@@ -157,12 +158,12 @@ namespace IpsViewComponentLibrary
 
             switch (_functionType)
             {
-                case ButtonFunctionType.Accept:
+                case BRLicenseButtonActionType.Accept:
                     result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 0, false) ?? false;
                     MessageShow.ShowInfoByResult(AcceptSuccess, AcceptError, result);
                     break;
 
-                case ButtonFunctionType.Agree:
+                case BRLicenseButtonActionType.Confirm:
                     result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 3, false) ?? false;
                     MessageShow.ShowInfoByResult(SendConfirmationSuccess, SendConfirmationError, result);
                     break;

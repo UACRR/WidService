@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.ConsumerControls.SmallRight;
+﻿using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ExtensionControls;
 using IpsViewComponentLibrary.Extensions;
 
@@ -50,8 +51,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlTabNavigation = new TabNavigationControl();
             this.ctrlGeneralAgreement = new IpsViewComponentLibrary.MiddleControlCabinetGenAgreement();
             this.ctrlLicense = new IpsViewComponentLibrary.MiddleControlCabinetLicenses();
-            this.ctrlRequest = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
-            this.ctrlReference = new IpsViewComponentLibrary.MiddleControlCabinetReqRef();
+            this.ctrlRequest = new RequestReferenceControl();
+            this.ctrlReference = new RequestReferenceControl();
             this.ctrlPayslips = new IpsViewComponentLibrary.MiddleControlCabinetPayslips();
             this.ctrlCalculation = new CalculationInfoControl();
             this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
@@ -377,8 +378,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private MiddleControlCabinetGenAgreement ctrlGeneralAgreement;
         private MiddleControlCabinetPartner ctrlPartner;
         private MiddleControlCabinetFiles ctrlFiles;
-        private MiddleControlCabinetReqRef ctrlRequest;
-        private MiddleControlCabinetReqRef ctrlReference;
+        private RequestReferenceControl ctrlRequest;
+        private RequestReferenceControl ctrlReference;
         private Telerik.WinControls.UI.RadPageViewPage pvPays;
         private Telerik.WinControls.UI.RadPageViewPage pvAvances;
         private Telerik.WinControls.UI.RadPageViewPage pvContacts;

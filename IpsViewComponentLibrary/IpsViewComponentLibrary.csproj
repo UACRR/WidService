@@ -898,11 +898,11 @@
     <Compile Include="MiddleControlCabinetPayslips.Designer.cs">
       <DependentUpon>MiddleControlCabinetPayslips.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlCabinetReqRef.cs">
+    <Compile Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlCabinetReqRef.Designer.cs">
-      <DependentUpon>MiddleControlCabinetReqRef.cs</DependentUpon>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.Designer.cs">
+      <DependentUpon>RequestReferenceControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlClientName.cs">
       <SubType>UserControl</SubType>
@@ -1428,8 +1428,8 @@
     <EmbeddedResource Include="MiddleControlCabinetPayslips.resx">
       <DependentUpon>MiddleControlCabinetPayslips.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlCabinetReqRef.resx">
-      <DependentUpon>MiddleControlCabinetReqRef.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.resx">
+      <DependentUpon>RequestReferenceControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlClientName.resx">
       <DependentUpon>MiddleControlClientName.cs</DependentUpon>

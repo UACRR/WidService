@@ -14,4 +14,20 @@
         /// </summary>
         JuridicalPerson = 3,
     }
+
+    public enum BRLicenseButtonActionType
+    {
+        /// <summary>
+        /// None
+        /// </summary>
+        None,
+        /// <summary>
+        /// Акцептувати
+        /// </summary>
+        Accept,
+        /// <summary>
+        /// На погодження
+        /// </summary>
+        Confirm
+    }
 }

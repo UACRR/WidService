@@ -61,7 +61,7 @@ namespace IpsViewComponentLibrary
                             ControlRequestOrReferenceType windowType = ControlRequestOrReferenceType.None)
         {
             InitializeComponent();
-
+            StartPosition = FormStartPosition.CenterScreen;
             SetDictionaries();
 
             txtMusicRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
@@ -104,8 +104,6 @@ namespace IpsViewComponentLibrary
                     btnCancel.Text = CloseButtonText;
                     break;
             }
-
-
 
             #region * * * BINDING * * *
 

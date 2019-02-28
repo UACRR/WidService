@@ -90,11 +90,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public CabinetBigRight()
         {
             InitializeComponent();
-            if (IpsGlobal.AnketaDictionaties != null)
-            {
-                ctrlReference.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
-                ctrlRequest.SetAnketaDictionary(IpsGlobal.AnketaDictionaties);
-            }
 
             ctrlTabNavigation.SetDefaultState(null, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
