@@ -12,6 +12,7 @@ using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerForms;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
 
 namespace IpsViewComponentLibrary
@@ -22,10 +23,7 @@ namespace IpsViewComponentLibrary
         private readonly DialogService _dialogService;
         private AgreementStatuses[] _allowedStatuses = new[] { AgreementStatuses.Active, AgreementStatuses.OnNegotiation, AgreementStatuses.Closed, AgreementStatuses.Canceled };
 
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         private RequestsOrReferenceBigRightView _licenseAgreement;
         public RequestsOrReferenceBigRightView SelectedLicenseAgreement
@@ -188,7 +186,7 @@ namespace IpsViewComponentLibrary
             var consumer = consumerService.GetData(selectedLicenseAgreement.CustId.Value);
             var bigRightView = consumerService.getMainViewBR().FirstOrDefault(rec => rec.CustId == selectedLicenseAgreement.CustId.Value);
 
-            var view = new RequestForm(consumer, bigRightView, FormType.Edit, selectedLicenseAgreement.LicId, RequestForm.FormMode.ForSmallRightAdmin);
+            var view = new RequestForm(consumer, bigRightView, ScopeOfUseForm.Edit, selectedLicenseAgreement.LicId, RequestForm.FormMode.ForSmallRightAdmin);
 
             if (view.ShowDialog() == DialogResult.OK)
             {

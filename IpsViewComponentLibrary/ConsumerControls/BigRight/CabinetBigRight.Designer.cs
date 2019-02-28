@@ -53,7 +53,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlLicense = new LicensesControl();
             this.ctrlRequest = new RequestReferenceControl();
             this.ctrlReference = new RequestReferenceControl();
-            this.ctrlPayslips = new IpsViewComponentLibrary.MiddleControlCabinetPayslips();
+            this.ctrlPayslips = new RegisterRatedListControl();
             this.ctrlCalculation = new CalculationInfoControl();
             this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
             this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
@@ -383,7 +383,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private Telerik.WinControls.UI.RadPageViewPage pvPays;
         private Telerik.WinControls.UI.RadPageViewPage pvAvances;
         private Telerik.WinControls.UI.RadPageViewPage pvContacts;
-        private MiddleControlCabinetPayslips ctrlPayslips;
+        private RegisterRatedListControl ctrlPayslips;
         private MiddleControlCabinetAvances middleControlCabinetAvances1;
         public CalculationInfoControl ctrlCalculation;
         private Telerik.WinControls.UI.RadPageViewPage pvAnketa;

@@ -41,7 +41,7 @@ namespace IpsViewComponentLibrary
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
         private ObjectRight _objectRight;
-        private FormType _formType;
+        private ScopeOfUseForm _scopeOfUseForm;
         private FormMode _formMode;
         private bool _deleteLicense = true;
         private int? _licId = null;
@@ -55,7 +55,7 @@ namespace IpsViewComponentLibrary
 
         public RequestForm( Customer customer,
                             MainGridConsumerBigRightView bigRightView,
-                            FormType formType = FormType.Create,
+                            ScopeOfUseForm scopeOfUseForm = ScopeOfUseForm.Create,
                             int? licId = null,
                             FormMode formMode = FormMode.ForBigRightAdmin,
                             ControlRequestOrReferenceType windowType = ControlRequestOrReferenceType.None)
@@ -71,21 +71,21 @@ namespace IpsViewComponentLibrary
             _licId = licId;
             _customer = customer;
             DialogResult = DialogResult.None;
-            _formType = formType;
+            _scopeOfUseForm = scopeOfUseForm;
             _formMode = formMode;
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
-            _deleteLicense = formType == FormType.Create;
+            _deleteLicense = scopeOfUseForm == ScopeOfUseForm.Create;
             dtDate.SetUserCalendarSettingsm();
-            switch (_formType)
+            switch (_scopeOfUseForm)
             {
-                case FormType.Create:
+                case ScopeOfUseForm.Create:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     CreateNewRequest();
                     Text = CreateRequest;
                     dtDate.MinDate = DateTime.Today;
                     break;
-                case FormType.Edit:
+                case ScopeOfUseForm.Edit:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     if (windowType == ControlRequestOrReferenceType.Request)
                         Text = EditRequest;
@@ -93,7 +93,7 @@ namespace IpsViewComponentLibrary
                         Text = EditReference;
                     btnSave.Enabled = true;
                     break;
-                case FormType.View:
+                case ScopeOfUseForm.View:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     if (windowType == ControlRequestOrReferenceType.Request)
                         Text = ViewRequest;

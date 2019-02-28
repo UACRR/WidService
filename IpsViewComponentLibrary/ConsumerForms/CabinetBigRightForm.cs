@@ -19,7 +19,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
             WindowState = FormWindowState.Maximized;
-            cabinet.SetDictionaries(IpsGlobal.AnketaDictionaties);
         }
 
         public string Title

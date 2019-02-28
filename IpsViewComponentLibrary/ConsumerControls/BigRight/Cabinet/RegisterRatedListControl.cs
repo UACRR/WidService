@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerForms;
@@ -15,19 +9,22 @@ using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
-    public partial class MiddleControlCabinetPayslips : UserControl
+    public partial class RegisterRatedListControl : UserControl
     {
         private const string CreateRatedListSuccess = "Додано новий розрахунковий лист!";
         private const string CreateRatedListError = "Неможливо додати розрахунковий лист!";
         private const string ConfirmSpectacleSuccess = "Перелік вистав погоджено!";
         private const string ConfirmSpectacleError = "Неможливо погодити перелік вистав!";
 
-        private Customer _customer;
-        private MainGridConsumerBigRightView _bigRightView;
-        private IList<RatedListSpectacleBigRightView> _payslipsSpectacleViews;
+        private const string DeleteRegisterRatedListQuestion = "Видалити обраний розрахунковий лист?";
+        private const string DeleteRegisterRatedListSuccess = "Розрахунковий лист видалено!";
+        private const string DeleteRegisterRatedListError = "Неможливо видалити розрахунковий лист!";
 
+        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
+        private Customer _customer;
+        private IList<RatedListSpectacleBigRightView> _payslipsSpectacleViews;
         public delegate IList<BigRightSpectacleView> GetSpectacleView(int custId);
 
         public event GetSpectacleView OnSpectacleViewNeed;
@@ -44,7 +41,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         public event MusicDesingEventHandler GetMusicDesing;
 
-        public MiddleControlCabinetPayslips()
+        public RegisterRatedListControl()
         {
             InitializeComponent();
             gvViewSpectacles.MasterTemplate.ShowChildViewCaptions = false;
@@ -52,6 +49,7 @@ namespace IpsViewComponentLibrary
             splitContainer.Splitters.First().NextNavigationButton.Visibility = ElementVisibility.Collapsed;
             splitContainer.Splitters.First().PrevNavigationButton.PropertyChanged += ExtensionUtils.NavigationButtonPropertyChanged;
             splitContainer.Splitters.First().PrevNavigationButton.Visibility = ElementVisibility.Visible;
+            _gridStateRecorder.AddGrid(gvRegisterRatedListView);
         }
 
         private void SplitContainer_PanelCollapsing(object sender, RadSplitContainer.PanelCollapsingEventArgs e)
@@ -60,16 +58,15 @@ namespace IpsViewComponentLibrary
             splitter.PrevNavigationButton.AngleTransform = 180f;
         }
 
-        public void SetAndUpdateData(Customer customer, 
+        public void SetAndUpdateData(Customer customer,
             MainGridConsumerBigRightView bigRightView,
             IList<RatedListMainBigRightView> registers, 
             IList<RatedListSpectacleBigRightView> payslipsSpectacleViews)
         {
             _customer = customer;
-            _bigRightView = bigRightView;
             _payslipsSpectacleViews = payslipsSpectacleViews;
-            ctrlHeaderInfo.DataSource = _bigRightView;
-            gvViewRl.DataSource = registers;
+            ctrlHeaderInfo.DataSource = bigRightView;
+            gvRegisterRatedListView.DataSource = registers;
             btnAcceptSpectacles.Enabled = registers.Any();
         }
 
@@ -81,8 +78,8 @@ namespace IpsViewComponentLibrary
                 CreateDate = DateTime.Today,
                 Status = 0,
             };
-            
-            var addform = new RegisterRatedListForm(FormType.Create, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), ratedList);
+            var spectacles = OnSpectacleViewNeed?.Invoke(_customer.CustId);
+            var addform = new RegisterRatedListForm(ScopeOfUseForm.Create, _customer, spectacles, ratedList);
             addform.SavePariodCommandExecuted += SavePariod_Need;
 
             if (addform.ShowDialog() == DialogResult.OK)
@@ -97,7 +94,7 @@ namespace IpsViewComponentLibrary
         //погодити перелік вистав
         private void btnConfirmSpectacles_Click(object sender, EventArgs e)
         {
-            if (!(gvViewRl.CurrentRow?.DataBoundItem is RatedListMainBigRightView reg))
+            if (!(gvRegisterRatedListView.CurrentRow?.DataBoundItem is RatedListMainBigRightView reg))
                 return;
 
             var ratedlist = GetRatedList(reg);
@@ -118,61 +115,71 @@ namespace IpsViewComponentLibrary
         }
 
         // кнопки грід
-        private void gvViewRl_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void gvRegisterRatedListView_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            if (!(e.Row?.DataBoundItem is RatedListMainBigRightView row))
+            if (!(e.Row?.DataBoundItem is RatedListMainBigRightView item))
                 return;
 
-            bool result = false;
-            int? currentRow = null;
             switch (e.Column?.FieldName)
             {
                 case "editBtn":
-                    var payslip = GetRatedList(row);
-                    if (row.Status == 0) // edit
-                    {
-                        var addform = new RegisterRatedListForm(FormType.Edit, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip);
-                        addform.SavePariodCommandExecuted += SavePariod_Need;
-                        if (addform.ShowDialog() == DialogResult.OK)
-                        {
-                            result = OnSavePayslip?.Invoke(payslip) ?? false;
-                            if (result)
-                            {
-                                ExtensionUtils.ShowInfoMessage("Редагований розрахунковий лист збережено!", "Успішно", MessageBoxIcon.Information);
-                                currentRow = e.Row.Index;
-                            }
-                            else
-                                ExtensionUtils.ShowInfoMessage("Неможливо зберегти зміни!", "Помилка", MessageBoxIcon.Error);
-                        }
-                    }
-                    else if (row.Status == 1) // view
-                    {
-                        var addform = new RegisterRatedListForm(FormType.View, _customer, OnSpectacleViewNeed?.Invoke(_customer.CustId), payslip);
-                        addform.ShowDialog();
-                    }
-
+                    EditOrViewButtonAction(item);
                     break;
                 case "deleteBtn":
-                    if (row.Status == 0 && MessageBox.Show("Видалити обраний розрахунковий лист?", "Підтвердження",
-                            MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        result = DeleteRegisterRatedList?.Invoke(_customer.CustId, row.RmId) ?? false;
-                        if (result)
-                            ExtensionUtils.ShowInfoMessage("Розрахунковий лист видалено!", "Успішно",
-                                MessageBoxIcon.Information);
-                        else
-                            ExtensionUtils.ShowInfoMessage("Неможливо видалити розрахунковий лист!", "Помилка",
-                                MessageBoxIcon.Error);
-                    }
-
+                    DeleteButtonAction(item);
                     break;
             }
-            if (result)
+        }
+
+        /// <summary>
+        /// Редагувати або переглянути розрахунковий лист
+        /// </summary>
+        /// <param name="item"></param>
+        private void EditOrViewButtonAction(RatedListMainBigRightView item)
+        {
+            var ratedList = GetRatedList(item);
+            var spectacles = OnSpectacleViewNeed?.Invoke(_customer.CustId);
+
+            // edit
+            if (item.Status == 0)
             {
-                UpdateData?.Invoke();
-                if(currentRow != null)
-                    gvViewRl.CurrentRow = gvViewRl.Rows.SingleOrDefault(r => r.Index == currentRow);
+                _gridStateRecorder.RecordState();
+                var addform = new RegisterRatedListForm(ScopeOfUseForm.Edit, _customer, spectacles, ratedList);
+                addform.SavePariodCommandExecuted += SavePariod_Need;
+                if (addform.ShowDialog() == DialogResult.OK)
+                {
+                    var result = OnSavePayslip?.Invoke(ratedList) ?? false;
+                    if (result)
+                        UpdateData?.Invoke();
+
+                    MessageShow.ShowInfoAfterChanges(result);
+                }
+                _gridStateRecorder.RestoreState();
             }
+            // view
+            else if (item.Status == 1)
+            {
+                var addform = new RegisterRatedListForm(ScopeOfUseForm.View, _customer, spectacles, ratedList);
+                addform.ShowDialog();
+            }
+        }
+
+        /// <summary>
+        /// Видалити розрахунковий лист
+        /// </summary>
+        /// <param name="item">Результат обробки видалення</param>
+        private void DeleteButtonAction(RatedListMainBigRightView item)
+        {
+            _gridStateRecorder.RecordState();
+            // Status = 0 - дозвіл на видалення
+            if (item.Status == 0 && MessageShow.ConfirmAction(DeleteRegisterRatedListQuestion) == DialogResult.Yes)
+            {
+                var result = DeleteRegisterRatedList?.Invoke(_customer.CustId, item.RmId) ?? false;
+                if(result)
+                    UpdateData?.Invoke();
+                MessageShow.ShowInfoByResult(DeleteRegisterRatedListSuccess, DeleteRegisterRatedListError, result);
+            }
+            _gridStateRecorder.RestoreState();
         }
 
         private RegisterRatedList GetRatedList(RatedListMainBigRightView reg)
@@ -182,17 +189,17 @@ namespace IpsViewComponentLibrary
             var paidPeriod = license?.PaidPeriod?.SingleOrDefault(rec => rec?.PeriodId == reg?.PeriodId);
             var payslip = paidPeriod?.RegisterRatedList?.SingleOrDefault(rec => rec?.RmId == reg?.RmId);
 
-            if (payslip != null)
-                foreach (var register in payslip.Register)
+            if (payslip == null) return payslip;
+            foreach (var register in payslip.Register)
+            {
+                if (register?.RegId is int item)
                 {
-                    if (register?.RegId is int item)
-                    {
-                        var registerItem =
-                            OnRegisterItemListNeed?.Invoke(item); //TODO: виклик списку по rmID (оптимізація)
-                        if (registerItem != null)
-                            register.RegisterItem.Add(registerItem.FirstOrDefault());
-                    }
+                    var registerItem =
+                        OnRegisterItemListNeed?.Invoke(item); //TODO: виклик списку по rmID (оптимізація)
+                    if (registerItem != null)
+                        register.RegisterItem.Add(registerItem.FirstOrDefault());
                 }
+            }
 
             return payslip;
         }
@@ -205,12 +212,12 @@ namespace IpsViewComponentLibrary
             return result;
         }
 
-        private void gvViewRl_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        private void gvRegisterRatedListView_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             if (pageView.SelectedPage != pvSpectacle)
                 pageView.SelectedPage = pvSpectacle;
 
-            if (gvViewRl.Rows.Count == 0 || gvViewRl?.CurrentRow?.DataBoundItem == null)
+            if (gvRegisterRatedListView.Rows.Count == 0 || gvRegisterRatedListView?.CurrentRow?.DataBoundItem == null)
             {
                 gvViewSpectacles.DataSource = new List<ParentTemplate>();
                 bsChildTemplate.DataSource = new List<ChildTemplate>();
@@ -285,7 +292,7 @@ namespace IpsViewComponentLibrary
             cAuthorAmount.TextValue = rec?.AuthAmount.ToString();
             cAuthorRate.TextValue = rec?.AuthRate.ToString();
 
-            var row = gvViewRl.CurrentRow.DataBoundItem as RatedListMainBigRightView;
+            var row = gvRegisterRatedListView.CurrentRow.DataBoundItem as RatedListMainBigRightView;
 
             var musicd = _payslipsSpectacleViews
                 .Where(r => r.RmId == row?.RmId)
@@ -304,6 +311,5 @@ namespace IpsViewComponentLibrary
             if (pageView.SelectedPage == pvMusicalDesign)
                 UpdateMusicDesignData();
         }
-
     }
 }

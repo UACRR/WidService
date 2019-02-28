@@ -213,14 +213,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                         case ControlRequestOrReferenceType.Request:
                             // статуси 0, 1, 5 - редагування
                             if (2 <= item.LicStatus && item.LicStatus <= 3)
-                                CallRequestForm(FormType.View, item);
+                                CallRequestForm(ScopeOfUseForm.View, item);
                             else
-                                CallRequestForm(FormType.Edit, item);
+                                CallRequestForm(ScopeOfUseForm.Edit, item);
 
                             break;
 
                         case ControlRequestOrReferenceType.Reference:
-                            CallRequestForm(item.LicStatus != 3 ? FormType.Edit : FormType.View, item);
+                            CallRequestForm(item.LicStatus != 3 ? ScopeOfUseForm.Edit : ScopeOfUseForm.View, item);
                             break;
                     }
                     
@@ -237,11 +237,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// </summary>
         /// <param name="type"></param>
         /// <param name="item"></param>
-        private void CallRequestForm(FormType type, RequestsOrReferenceBigRightView item)
+        private void CallRequestForm(ScopeOfUseForm type, RequestsOrReferenceBigRightView item)
         {
             var requestForm = new RequestForm(_customer, _bigRightView, type, item.LicId, windowType: _typeControl);
 
-            if (requestForm.ShowDialog() == DialogResult.OK && type == FormType.Edit)
+            if (requestForm.ShowDialog() == DialogResult.OK && type == ScopeOfUseForm.Edit)
             {
                 var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
                 if (result)

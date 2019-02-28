@@ -13,39 +13,47 @@ namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class RegisterRatedListForm : RadForm
     {
-        private const string EmptySpectacleWarning = "Не додано жодної вистави!";
+        private const string NotAddedSpectacleWarning = "Не додано жодної вистави!";
+        private const string EmptyListSpectaclesWarning = "В даного користувача відсутні вистави (ліцензії) які можна додати!";
 
-        private int _tempRegId = 0;
-        private readonly IList<BigRightSpectacleView> _spectacleViews;
-        private Customer _customer;
-        private RegisterRatedList _registerRatedList;
-        private ObservableListSource<PayslipsGridDataSource> _source = null;
-        private FormType _type;
+        private const string TitleTextNewRL = "Новий Р/Л";
+        private const string TitleTextEditRL = "Редагування Р/Л";
+        private const string TitleTextViewRL = "Перегляд Р/Л";
+        private const string CancelButtonAltText = "Закрити";
+
+        private const string MoneyStringFormat = "#,###0.00 грн";
+
         public event SaveAndReturnNewPeriodListEventHandler SavePariodCommandExecuted;
 
-        public RegisterRatedListForm(FormType formType, Customer customer, IList<BigRightSpectacleView> spectacleViews, RegisterRatedList registerRatedList)
+        private int _tempRegId = 0;
+        private ObservableListSource<RegisterRatedListGridDataSource> _source;
+        private readonly Customer _customer;
+        private readonly RegisterRatedList _registerRatedList;
+        private readonly IList<BigRightSpectacleView> _spectacleViews;
+        private readonly ScopeOfUseForm _scopeOfUseForm;
+
+        public RegisterRatedListForm(ScopeOfUseForm scopeOfUseForm, Customer customer, IList<BigRightSpectacleView> spectacleViews, RegisterRatedList registerRatedList)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
             DialogResult = DialogResult.None;
-            Load += PayslipsCrEdForm_Load;
-            _type = formType;
-            ddlPeriod.SelectedValueChanged -= ddlPeriod_SelectedValueChanged;
-            //передача ссилок
+            Load += RegisterRatedListForm_Load;
+
+            _scopeOfUseForm = scopeOfUseForm;
             _customer = customer;
-            _spectacleViews = spectacleViews.Where(rec => rec.LicType == 1 ).ToList();
+            _spectacleViews = spectacleViews.Where(rec => rec.LicType == 1 && rec.CustId == _customer.CustId).ToList();
             _registerRatedList = registerRatedList;
-            //список періодів
+
+            bsSpectacleView.DataSource = _spectacleViews;
+
             var licAgr = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2);
             var paidPeriods = licAgr?.PaidPeriod;
             bsPeriodList.DataSource = paidPeriods;
             
             bsRegisterRatedList.DataSource = _registerRatedList;
-
-            bsSpectacleView.DataSource = _spectacleViews.Where(rec => rec.CustId == _customer.CustId);
             bsRegister.DataSource = _registerRatedList.Register;
 
-            if(_type == FormType.Create)
+            if(_scopeOfUseForm == ScopeOfUseForm.Create)
                 ddlPeriod.SelectedValueChanged += ddlPeriod_SelectedValueChanged;
 
             if (_registerRatedList.Register != null)
@@ -53,9 +61,9 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         }
 
-        private void PayslipsCrEdForm_Load(object sender, EventArgs e)
+        private void RegisterRatedListForm_Load(object sender, EventArgs e)
         {
-            if (ddlPeriod.Items.Any() && _type == FormType.Create)
+            if (ddlPeriod.Items.Any() && _scopeOfUseForm == ScopeOfUseForm.Create)
                 ddlPeriod.SelectedIndex = ddlPeriod.Items.First.Index;
             else if (ddlPeriod.Items.Any())
             {
@@ -63,16 +71,43 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 ddlPeriod.SelectedIndex = index;
             }
 
-            InitFormType(_type);
-            UpdFullSum();
+            InitializeFormType(_scopeOfUseForm);
+            UpdateFullSum();
+        }
+
+        private void InitializeFormType(ScopeOfUseForm type)
+        {
+            switch (type)
+            {
+                case ScopeOfUseForm.Create:
+                    Text = TitleTextNewRL;
+                    break;
+
+                case ScopeOfUseForm.Edit:
+                    Text = TitleTextEditRL;
+                    ddlPeriod.ReadOnly = true;
+                    break;
+
+                case ScopeOfUseForm.View:
+                    Text = TitleTextViewRL;
+                    btnCancel.Text = CancelButtonAltText;
+                    btnSave.Visible = false;
+                    btnAddPeriod.Enabled = false;
+                    btnAddCheckedSpectacle.Enabled = false;
+                    gvRegisterView.ReadOnly = true;
+                    ddlPeriod.ReadOnly = true;
+                    txtRoyalty.ReadOnly = true;
+                    txtAmount.ReadOnly = true;
+                    break;
+            }
         }
 
         private void UpdateRegisterGridDataSource()
         {
-            _source = new ObservableListSource<PayslipsGridDataSource>();
+            _source = new ObservableListSource<RegisterRatedListGridDataSource>();
             foreach (var register in _registerRatedList.Register)
             {
-                _source.Add(new PayslipsGridDataSource
+                _source.Add(new RegisterRatedListGridDataSource
                 {
                     CustId = register.CustId,
                     AuthRate = register?.AuthRate ?? 0m,
@@ -89,80 +124,59 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 });
             }
 
-            gvViewPayslipsItems.DataSource = typeof(PayslipsGridDataSource);
-            gvViewPayslipsItems.DataSource = _source;
-            gvViewPayslipsItems.MasterTemplate.Refresh();
+            gvRegisterView.DataSource = typeof(RegisterRatedListGridDataSource);
+            gvRegisterView.DataSource = _source;
+            gvRegisterView.MasterTemplate.Refresh();
         }
 
-        private void UpdFullSum()
+        /// <summary>
+        /// Перерахувати та перевірити суму зборів та суму авторської винагороди
+        /// </summary>
+        private void UpdateFullSum()
         {
             var royalty = default(decimal);
             var amount = default(decimal);
 
-            foreach (var items in gvViewPayslipsItems.Rows)
+            foreach (var items in gvRegisterView.Rows)
             {
-                var item = items.DataBoundItem as PayslipsGridDataSource;
+                var item = items.DataBoundItem as RegisterRatedListGridDataSource;
                 amount += item?.Amount ?? 0m;
                 royalty += (item?.MusicAmount ?? 0m) + (item?.AuthAmount ?? 0m);
             }
             
-            lblRoyalty.Text = amount.ToString("#,###0.00 грн");
-            lblAmount.Text = royalty.ToString("#,###0.00 грн");
+            lblRoyalty.Text = amount.ToString(MoneyStringFormat);
+            lblAmount.Text = royalty.ToString(MoneyStringFormat);
 
             decimal.TryParse(txtAmount.Text, out decimal amnt);
             decimal.TryParse(txtRoyalty.Text, out decimal rlt );
             lblAmount.ForeColor = Math.Round(rlt, 2) == Math.Round(royalty, 2) ? DefaultForeColor : Color.Red;
             lblRoyalty.ForeColor = Math.Round(amnt,2) == Math.Round(amount, 2) ? DefaultForeColor : Color.Red;
-
         }
 
-        private void InitFormType(FormType type)
-        {
-            switch (type)
-            {
-                case FormType.Create:
-                {
-                    Text = "Новий Р/Л";
-                }
-                    break;
-                case FormType.Edit:
-                {
-                    Text = "Редагування Р/Л";
-                    ddlPeriod.ReadOnly = true;
-                }
-                    break;
-                case FormType.View:
-                {
-                    Text = "Перегляд Р/Л";
-                    btnCancel.Text = "Закрити";
-                    btnSave.Visible = false;
-                    btnAddPeriod.Enabled = false;
-                    btnAddCheckedSpectacle.Enabled = false;
-                    gvViewPayslipsItems.ReadOnly = true;
-                    ddlPeriod.ReadOnly = true;
-                    txtRoyalty.ReadOnly = true;
-                    txtAmount.ReadOnly = true;
-                }
-                    break;
-            }
-        }
-
-        //при зміні обраного періоду
+        // при зміні обраного періоду
         private void ddlPeriod_SelectedValueChanged(object sender, EventArgs e)
         {
             _registerRatedList.PeriodId = (int?)ddlPeriod?.SelectedItem?.Value ?? default(int);
         }
 
-        //додати виставу
+        // додати виставу
         private void btnAddCheckedSpectacle_Click(object sender, EventArgs e)
         {
+            if (!_spectacleViews.Any())
+            {
+                MessageShow.ShowWarning(EmptyListSpectaclesWarning);
+                return;
+            }
+
             _registerRatedList.Register.Add(new Register
             {
                 RgStatus = 0,
                 CustId = _customer.CustId,
                 LicId = default(int),
                 
-                RegisterItem = new ObservableListSource<RegisterItem> { new RegisterItem
+                RegisterItem = new ObservableListSource<RegisterItem>
+                {
+                    new RegisterItem
                     {
                         CategoryCode = 6,
                         Ticks = 1,
@@ -174,28 +188,72 @@ namespace IpsViewComponentLibrary.ConsumerForms
             UpdateRegisterGridDataSource();
         }
 
-        //Натискання кнопки видалення на гріду
-        private void gvViewPayslipsItems_CommandCellClick(object sender, GridViewCellEventArgs e)
+        // додати період
+        private void btnAddPeriod_Click(object sender, EventArgs e)
         {
-            if(_type == FormType.View)
-                return;
+            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
+            var dialog = new CreatePeriod(license)
+            {
+                StartPosition = FormStartPosition.CenterParent
+            };
 
-            var item = e.Row.DataBoundItem as PayslipsGridDataSource;
-            var delitem = _registerRatedList.Register.SingleOrDefault(rec =>rec.RegId == item?.TempRegId);
-           _registerRatedList.Register.Remove(delitem);
-            UpdateRegisterGridDataSource();
-            UpdFullSum();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var paidPeriodList = license?.PaidPeriod?.ToList();
+                var periodlist = SavePariodCommandExecuted?.Invoke(_customer.CustId, paidPeriodList)?.Where(lId => lId.LicId == license?.LicId).ToList();
+                if (periodlist != null)
+                {
+                    foreach (var period in paidPeriodList?.Where(rec => rec.PeriodId == 0)?.ToList())
+                    {
+                        period.SetFields(periodlist.SingleOrDefault(rec => rec.PeriodName == period.PeriodName));
+                    }
+                }
+                bsPeriodList.ResetBindings(false);
+            }
+            UpdateFullSum();
         }
 
-        //зміна значень полів гріда
-        private void gvViewPayslipsItems_CellValueChanged(object sender, GridViewCellEventArgs e)
+        // зберегти розрахунковий лист
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            if (!(e.Row.DataBoundItem is PayslipsGridDataSource item))
+            if (!_registerRatedList.Register.Any())
+            {
+                MessageShow.ShowWarning(NotAddedSpectacleWarning);
+                return;
+            }
+
+            if (_scopeOfUseForm == ScopeOfUseForm.Create)
+                foreach (var item in _registerRatedList.Register)
+                {
+                    item.RegId = 0;
+                }
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        // натискання кнопки [видалення] на гріду
+        private void gvRegisterView_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            if(_scopeOfUseForm == ScopeOfUseForm.View)
+                return;
+
+            var item = e.Row.DataBoundItem as RegisterRatedListGridDataSource;
+            var delitem = _registerRatedList.Register.SingleOrDefault(rec =>rec.RegId == item?.TempRegId);
+            _registerRatedList.Register.Remove(delitem);
+            UpdateRegisterGridDataSource();
+            UpdateFullSum();
+        }
+
+        // зміна значень полів гріда
+        private void gvRegisterView_CellValueChanged(object sender, GridViewCellEventArgs e)
+        {
+            if (!(e.Row.DataBoundItem is RegisterRatedListGridDataSource item))
                 return;
 
             var sw = _spectacleViews.SingleOrDefault(rec => rec.ObjId == item.ObjId);
-            var reg = _registerRatedList?.Register?.SingleOrDefault(rec => rec.RegId == item?.TempRegId);
-            var regItem = _registerRatedList?.Register?.SingleOrDefault(rec => rec.RegId == item?.TempRegId)?.RegisterItem.SingleOrDefault();
+            var reg = _registerRatedList?.Register?.SingleOrDefault(rec => rec.RegId == item.TempRegId);
+            var regItem = _registerRatedList?.Register?.SingleOrDefault(rec => rec.RegId == item.TempRegId)?.RegisterItem.SingleOrDefault();
             if (reg != null && regItem != null)
             {
                 if (e.Column.FieldName == "ObjId")
@@ -221,112 +279,43 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 }
             }
             UpdateRegisterGridDataSource();
-            UpdFullSum();
+            UpdateFullSum();
         }
 
-        private void btnAddPeriod_Click(object sender, EventArgs e)
-        {
-            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1);
-            var dialog = new CreatePeriod(license)
-            {
-                StartPosition = FormStartPosition.CenterParent
-            };
-
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var paidPeriodList = license?.PaidPeriod?.ToList();
-                var periodlist = SavePariodCommandExecuted?.Invoke(_customer.CustId, paidPeriodList)?.Where(lId => lId.LicId == license?.LicId).ToList();
-                if (periodlist != null)
-                {
-                    foreach (var period in paidPeriodList?.Where(rec=>rec.PeriodId == 0)?.ToList())
-                    {
-                        period.SetFields(periodlist.SingleOrDefault(rec=>rec.PeriodName == period.PeriodName));
-                    }
-                }
-                bsPeriodList.ResetBindings(false);
-            }
-            UpdFullSum();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if(!_registerRatedList.Register.Any())
-            {
-                MessageShow.ShowWarning(EmptySpectacleWarning);
-                return;
-            }
-
-            if (_type == FormType.Create)
-                foreach (var item in _registerRatedList.Register)
-                {
-                    item.RegId = 0;
-                }
-            //_registerRatedList.Period = _;
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        //при переході на вкладку музичного супроводу
-        private void UpdateMusicDesignData()
-        {
-            if(gvViewPayslipsItems.Rows.Count == 0) return;
-            
-            var rec = gvViewPayslipsItems.CurrentRow.DataBoundItem as PayslipsGridDataSource;
-            cName.TextValue = rec?.ObjName;
-            cActCode.TextValue = _spectacleViews.SingleOrDefault(item => item.ObjId == rec?.ObjId)?.ActCode.ToString();
-            cCountUse.TextValue = rec?.CountUse.ToString();
-            cAmount.TextValue = rec?.Amount.ToString();
-            cAuthorAmount.TextValue = rec?.AuthAmount.ToString();
-            cAuthorRate.TextValue = rec?.AuthRate.ToString();
-            cMusAmount.TextValue = rec?.MusicAmount.ToString();
-            cMusRate.TextValue = rec?.MusicRate.ToString();
-            
-
-            var mus = _customer.Client.LicenseAgreement.SingleOrDefault(item => item.LicId == rec?.LicId)?.LicenseBigR?.MusicalDesign;
-
-            gvMusicDesignView.DataSource = mus;
-        }
-
+        // при переході на вкладку музичного супроводу
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            if(gvViewPayslipsItems?.CurrentRow == null) return;
-            
-            if(pageView.SelectedPage == pvMusicDesign)
-                UpdateMusicDesignData();
+            if(!(gvRegisterView.CurrentRow.DataBoundItem is RegisterRatedListGridDataSource item))
+                return;
+
+            if (pageView.SelectedPage == pvMusicDesign)
+            {
+                cName.TextValue = item.ObjName;
+                cActCode.TextValue = _spectacleViews.SingleOrDefault(rec => rec.ObjId == item.ObjId)?.ActCode.ToString();
+                cCountUse.TextValue = item.CountUse.ToString();
+                cAmount.TextValue = item.Amount.ToString();
+                cAuthorAmount.TextValue = item.AuthAmount.ToString();
+                cAuthorRate.TextValue = item.AuthRate.ToString();
+                cMusAmount.TextValue = item.MusicAmount.ToString();
+                cMusRate.TextValue = item.MusicRate.ToString();
+
+                var mus = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.MusicalDesign;
+                gvMusicDesignView.DataSource = mus;
+            }
         }
 
         private void txtRoyalty_Leave(object sender, EventArgs e)
         {
-            UpdFullSum();
+            UpdateFullSum();
         }
     }
 
-    /// <summary>
-    /// Тип ініціалізації форми
-    /// </summary>
-    public enum FormType
-    {
-        /// <summary>
-        /// Створення нового Р/Л
-        /// </summary>
-        Create,
-        /// <summary>
-        /// Редагування Р/Л
-        /// </summary>
-        Edit,
-        /// <summary>
-        /// Перегляд
-        /// </summary>
-        View,
-    }
-
-    internal class PayslipsGridDataSource
+    internal class RegisterRatedListGridDataSource
     {
         public int CustId { get; set; }
         public int RmId { get; set; }
         public int? LicId { get; set; }
         public int? TempRegId { get; set; }
-
 
         public int? ObjId { get; set; }
         public string ObjName { get; set; }

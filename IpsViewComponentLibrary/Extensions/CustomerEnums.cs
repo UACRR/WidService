@@ -30,4 +30,23 @@
         /// </summary>
         Confirm
     }
+
+    /// <summary>
+    /// Тип ініціалізації форми
+    /// </summary>
+    public enum ScopeOfUseForm
+    {
+        /// <summary>
+        /// Створення нового
+        /// </summary>
+        Create,
+        /// <summary>
+        /// Редагування
+        /// </summary>
+        Edit,
+        /// <summary>
+        /// Перегляд
+        /// </summary>
+        View,
+    }
 }
