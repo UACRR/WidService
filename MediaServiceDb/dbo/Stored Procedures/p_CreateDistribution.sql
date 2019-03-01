@@ -1,10 +1,11 @@
-﻿--ALTER procedure [%QUALIFIER%]%PROC%  as
+﻿
+--ALTER procedure [%QUALIFIER%]%PROC%  as
 CREATE procedure [dbo].[p_CreateDistribution]  as
 begin
 -- Period
 declare @workedPeriod table ( 
 periodid int not null, 
-periodAmount decimal not null, 
+periodAmount money not null, 
 withSum	bit not null,
 flagFirst bit not null,
 kindCode integer null   --KRPV
@@ -15,7 +16,7 @@ declare @workedRmid table (
 periodid int not null, 
 rmid int not null, 
 ticks int, 
-regAmount decimal not null,
+regAmount money not null,
 primary key(rmid) );
 
 -- Балансування
@@ -32,8 +33,12 @@ rmId int not null,
 regid int not null primary key
 , ticks		bigint
 , sumTicks	bigint
-, cntRows	int 
-, sumCntRows	int 
+, cnt1Rows	int 
+, sumCnt1Rows	int 
+, cnt2Rows	int 
+, sumCnt2Rows	int 
+, cnt3Rows	int 
+, sumCnt3Rows	int 
 , regSum	money
 , runRegSum money
 , algorithmId	int
@@ -91,6 +96,20 @@ BEGIN TRY
 			and sum( case when t3.objId is null then 1 else 0 end ) = 0 -- всі об'єкти прив'язані
 		    and min( case when t1.royalty is null then 0 else 1 end ) = max (case when t1.royalty is null then 0 else 1 end); -- Однотипні суми;
 
+	-- Для Рапортичок виравніваємо суми оплати по РЛ
+	with rrldata as 
+	(
+		select t1.periodid, sum( t2.royalty ) as royalty 
+		from @workedPeriod t1
+		join RegisterRatedList t2 on t2.periodId = t1.periodid
+		where t1.withSum = 1
+		group by t1.periodid
+	)
+	update @workedPeriod set 
+	periodAmount = case when t1.periodAmount <= t2.royalty then t1.periodAmount else t2.royalty end
+	from  @workedPeriod t1
+	join rrldata t2 on t2.periodid = t1.periodid;
+
 --KRPV
 --Проставляю тип прав
   update @workedPeriod 
@@ -102,14 +121,16 @@ BEGIN TRY
 --KRPV
 	
 	--print '@workedPeriod';
-	--select * from @workedPeriod;
+	--select '@workedPeriod', * from @workedPeriod;
 
 	-- Розраховуємо суму тривалості та  кількsсть використання треків
 	with regSum as (
 	select t2.rmId
 		, t2.regId
 		, sum(t3.ticks) as ticks
-		, count(*) as cntRows
+		, sum(case when isnull(t3.codeItem,1) = 1 then 1 else 0 end) as cnt1Rows
+		, sum(case when t3.codeItem = 2 then 1 else 0 end) as cnt2Rows
+		, sum(case when t3.codeItem = 3 then 1 else 0 end) as cnt3Rows
 		, min(isnull( t2.authAmount, 0 ) + isnull(t2.musicAmount,0)) as regSum
 		, min(isnull(t2.algorithmId,2)) as algorithmId 
 		, sum( case when isnull( t3.ticks, 0  ) > 0 then 1 else 0 end ) as cntItemWithTics
@@ -125,17 +146,23 @@ BEGIN TRY
 	(
 	select rmId
 			, sum(ticks) as sumTicks
-			, sum(cntRows) as sumCntRows
+			, sum(cnt1Rows) as sumCnt1Rows
+			, sum(cnt2Rows) as sumCnt2Rows
+			, sum(cnt3Rows) as sumCnt3Rows
 			, min(algorithmId) as uAlgorithmId -- Єдиний алгорітм для РЛ
 	from regSum group by rmId
 	)
-	insert into @regTicks(rmId,regid,ticks,sumTicks,cntRows, sumCntRows, regSum, runRegSum, algorithmId, cntWithTicks)
+	insert into @regTicks(rmId,regid,ticks,sumTicks,cnt1Rows,sumCnt1Rows,cnt2Rows,sumCnt2Rows,cnt3Rows, sumCnt3Rows, regSum, runRegSum, algorithmId, cntWithTicks)
 	select t1.rmid
 			, t1.regId
 			, t1.ticks
 			, t2.sumTicks
-			, t1.cntRows
-			, t2.sumCntRows
+			, t1.cnt1Rows
+			, t2.sumCnt1Rows
+			, t1.cnt2Rows
+			, t2.sumCnt2Rows
+			, t1.cnt3Rows
+			, t2.sumCnt3Rows
 			, t1.regSum
 			, sum(t1.regSum) over (partition by t1.rmid order by t1.rmid, t1.regid) as runRegSum
 			, t2.uAlgorithmId
@@ -144,7 +171,7 @@ BEGIN TRY
 	join rmSum t2 on t2.rmId = t1.rmId;
 
 	--print '@regTicks'
-	--select * from @regTicks
+	--select '@regTicks', * from @regTicks
 	
 	delete @regTicks where cntWithTicks = 0;
 
@@ -155,10 +182,11 @@ BEGIN TRY
 	join RegisterRatedList t2 on t2.rmId = t1.rmId
 	join @workedPeriod t3 on t3.periodId = t2.periodId
 	where
-	t1.runRegSum > t3.periodAmount;  
+	round(t1.runRegSum, 2 ) > t3.periodAmount;  
 
 	--print '@regTicks'
-	--select * from @regTicks
+	--select '@regTicks', * from @regTicks
+
 -- Суми по розрахунковому листу з проставленими сумами
 -- Враховувати, що сума періоду може бути меньшою за суму звіту
     insert into @workedRmid(periodid,rmid,ticks, regAmount)
@@ -166,7 +194,7 @@ BEGIN TRY
 	from @workedPeriod t1
 	join RegisterRatedList t2 on t2.periodId = t1.periodid
 	join ( select ti.rmId
-				, sum( case when algorithmId = 1 then ticks else cntRows end ) as durationticks
+				, sum( case when algorithmId = 1 then ticks else cnt3Rows + cnt2Rows + cnt1Rows end ) as durationticks
 		   from @regTicks ti 
 		   group by ti.rmId
 		   ) t3  on t3.rmId = t2.rmId 
@@ -199,7 +227,7 @@ BEGIN TRY
 
 -- Суми по розрахунковому листу з непроставленими сумами для алгоритму 2(ротації)
 	with periodTics as (
-		select t1.periodid, sum( t3.cntRows ) as sumCntRows
+		select t1.periodid, sum( t3.cnt3Rows + t3.cnt2Rows + t3.cnt1Rows ) as sumCntRows
 		from @workedPeriod t1
 	join RegisterRatedList t2 on t2.periodId = t1.periodid
 	join @regTicks t3 on t3.rmId = t2.rmId
@@ -209,7 +237,7 @@ BEGIN TRY
     output inserted.rmid, inserted.regAmount into @balansRmid(id,amount)
 	select max(t2.periodId), t2.rmId
 	, sum(ti.ticks)
-	, max(t1.periodAmount) * ( cast( sum(ti.cntRows) as float ) / max(t4.sumCntRows))   
+	, max(t1.periodAmount) * ( cast( sum(ti.cnt3Rows + ti.cnt2Rows + ti.cnt1Rows ) as float ) / max(t4.sumCntRows))   
 	from @workedPeriod t1
 	join RegisterRatedList t2 on t2.periodId = t1.periodid
 	join @regTicks ti on ti.rmId = t2.rmId
@@ -220,7 +248,7 @@ BEGIN TRY
 	group by t2.rmId;
 
 	--print '@workedRmid 1';
-	--select * from @workedRmid;
+	--select '@workedRmid 1', * from @workedRmid;
 
 	delete @workedRmid where regAmount <= 0;
 
@@ -247,7 +275,7 @@ BEGIN TRY
 
 
 	--print '@workedRmid 2';
-	--select * from @workedRmid;
+	--select '@workedRmid 2', * from @workedRmid;
 
 	
 	delete @balansRmid;
@@ -297,7 +325,7 @@ BEGIN TRY
 	-- поновлюємо таблицю розподілу по новим правовласникам
 	
 	--print '@updateRate';
-	--select * from @updateRate;
+	--select '@updateRate', * from @updateRate;
 	--select regId, regIItemId, objId, sum(rate) from @updateRate group by regId, regIItemId, objId 
 	
 	update RegisterCount 
@@ -318,15 +346,15 @@ BEGIN TRY
 	join RegisterCount t2 on t2.regId = t1.regId and t2.regIItemId = t1.regIItemId and t2.objId = t1.objid and isnull( t2.custid, 0 ) = isnull( t1.custid, 0)
 	
 	-- Додаємо нерозподілені відсотки
-	insert into RegisterCount(regId,regIItemId,objId,custId,cRType,cRKindCode,rate, cmCustId)
-	select regId,regIItemId,objId,custId,cRType,kindCode,rate, cmCustId 
+	insert into RegisterCount(regId,regIItemId,objId,custId,cRType,cRKindCode,rate)
+	select regId,regIItemId,objId,custId,cRType,kindCode,rate 
 	from @updateRate; 
 	
 	delete @updateRate;
 
 
 	--print 'RegisterCount';
-	--select t3.*
+	--select 'RegisterCount', t3.*
 	--from @workedRmid t1
 	--join Register t2 on t2.rmId = t1.rmid
 	--join RegisterCount t3 on t3.regId = t2.regId
@@ -339,7 +367,7 @@ BEGIN TRY
     output inserted.distId, inserted.rmId, inserted.regId, inserted.amount	 into @distrib
     select t2.regId, treg.rmid, t2.custId, 1, getdate(), (cast( ti.ticks as float ) / treg.ticks) * treg.regAmount
     , t1.kindCode
-    , case when t4.custId is not null then  (case when ti.algorithmId = 1 then ti.ticks else ti.cntRows end / treg.ticks) * treg.regAmount 
+    , case when t4.custId is not null then  (case when ti.algorithmId = 1 then ti.ticks else ti.cnt1Rows + ti.cnt2Rows + ti.cnt3Rows end / treg.ticks) * treg.regAmount 
     			* (case when t1.flagFirst = 1 then t4.srFirstRate else  t4.srMonthRate end) / 100 else 0 end
     , 0--@courtFee
     , t4.custId
@@ -370,12 +398,19 @@ BEGIN TRY
     left outer join vPartner t4 on t4.clCustId = t2.custId
    where 
    isnull(t2.authAmount,0) + isnull(t2.musicAmount,0) > 0
-   and isnull(t2.authAmount,0) + isnull(t2.musicAmount,0) < t2.paidAmount -- неоплачені
+   and isnull(t2.authAmount,0) + isnull(t2.musicAmount,0) > isnull(t2.paidAmount,0) -- неоплачені
    and treg.ticks > 0;
 
    --print '@distrib';
-   --select t2.* from @distrib t1
+   --select '@distrib', t2.* from @distrib t1
    --join Distribution t2 on t2.distId = t1.distid;
+
+   -- Видаляємо РЛ які не приймають участь в оплаті
+   delete @workedRmid where rmid not in ( select rmid from @distrib );
+
+   --print '@workedRmid';
+   --select '@workedRmid', * from @workedRmid;
+
 
 --	Балансировка
 	with deltaSum as
@@ -399,6 +434,8 @@ BEGIN TRY
 	join regOrder t3 on t3.rmid = t1.rmId and t3.regid = t1.regId and t3.rowid = 1
 
 	delete @balansRmid;
+    
+
 
 	-- Зберігаємо оплачені суми в періоді РЛ та в звіті
 	update Register set 
@@ -428,7 +465,7 @@ BEGIN TRY
 	insert into DistributionItem(regId,regIItemId,distId,amount, status, objId )
 	output inserted.regId, inserted.regIItemId, inserted.amount into @balansRmid( parentId, id, amount )
 	select t1.regId, t1.regIItemId,  t3.distId
-	, (case when ti.algorithmId = 1 then cast( t1.ticks as float ) / ti.ticks else 1./ ti.cntRows end ) * (t3.amount - t3.partnerCommiss - t3.courtFee )
+	, (case when ti.algorithmId = 1 then cast( t1.ticks as float ) / ti.ticks else 1./ ti.cnt1Rows end ) * (t3.amount - t3.partnerCommiss - t3.courtFee )
 	, 0 -- status
 	, t1.objId
 	from RegisterItem t1
@@ -443,7 +480,7 @@ BEGIN TRY
 	insert into DistributionItem(regId,regIItemId,distId,amount, status, objId )
 	output inserted.regId, inserted.regIItemId, inserted.amount into @balansRmid( parentId, id, amount )
  	select t1.regId, t1.regIItemId,  t3.distId
-	, (1. / t4.cntRows) * (treg.authRate / (treg.authRate+isnull(treg.musicRate,0))) * (t3.amount - t3.partnerCommiss - t3.courtFee )
+	, (1. / t4.cnt2Rows) * (treg.authRate / (treg.authRate+isnull(treg.musicRate,0))) * (t3.amount - t3.partnerCommiss - t3.courtFee )
 	, 0 -- status
 	, t1.objId
     from RegisterItem t1
@@ -458,7 +495,7 @@ BEGIN TRY
 	insert into DistributionItem(regId,regIItemId,distId,amount, status, objId )
 	output inserted.regId, inserted.regIItemId, inserted.amount into @balansRmid( parentId, id, amount )
      select t1.regId, t1.regIItemId,  t3.distId
-	, ( 1. / t4.cntRows )  * (isnull(treg.musicRate,0)/(isnull(treg.authRate,0)+isnull(treg.musicRate,0))) * (t3.amount - t3.partnerCommiss - t3.courtFee )
+	, ( 1. / t4.cnt3Rows )  * (isnull(treg.musicRate,0)/(isnull(treg.authRate,0)+isnull(treg.musicRate,0))) * (t3.amount - t3.partnerCommiss - t3.courtFee )
 	, 0 -- status
 	, t1.objId
     from RegisterItem t1
@@ -470,7 +507,7 @@ BEGIN TRY
 	t1.codeItem = 3; -- Музичне оформлення
 
 	--print '@balansRmid';
-	--select * from @balansRmid;
+	--select '@balansRmid', * from @balansRmid;
 
 -- balansing
 	with itemData as 
@@ -497,7 +534,7 @@ BEGIN TRY
 	join itemRow t3 on t3.distId = t1.distId and t3.distItemId = t1.distItemId and t3.rowid = 1;
 
 	--print '@distrib';
-	--select t2.*, t3.* from 		@distrib t2
+	--select '@distrib', t2.*, t3.* from 		@distrib t2
 	--	 join DistributionItem t3 on t3.distId = t2.distid 
 
     -- скидаємо суму для розподілу

@@ -55,20 +55,25 @@ create table   #TabAuthors
 
 --Отбираю авторов с процентом и ролью
 insert  #TabAuthors  
-select t1.objId, roleCode, custid, rate, 1 as isRh
-from copyright t1 , objectRight t2 
+select t1.objId, roleCode, t1.custid, rate, 1 as isRh
+from copyright t1 , objectRight t2 ,account t3
 where
  t1.objid = t2.objid and 
  t2.categoryCode = 5 and
+ t3.objid=t2.objid 
+ and t3.balscode=31 and
 @date between isnull(t1.beginDate,'1900-01-01') and    isnull(t1.endDate, '3000-01-01')
 -- '20190227' between isnull(t1.beginDate,'1900-01-01') and isnull(t1.endDate, '3000-01-01')
 --order by 1
 union 
-select t1.objId, roleCode, custid, 0 as rate, 0 as isRh
-from Authors t1 , objectRight t2 
+select t1.objId, roleCode, t1.custid, 0 as rate, 0 as isRh
+from Authors t1 , objectRight t2 ,account t3
 where 
 	t1.objid = t2.objid and 
 	t2.categoryCode = 5
+	and t3.objid=t2.objid 
+ and t3.balscode=31 
+
 --order by 1
 
 delete #tmpTab1
@@ -222,7 +227,7 @@ update #RT set comment = isnull(t1.comment,'')  + 'Не підтверджено
 RETURN ;
 END;
 
---exec ft_Tsk_5_18_1_ObjUnattached (NULL)
+--exec pTsk_5_18_1_ObjUnattached NULL
 
 /*
 select t1.custid, rate, t2.name, t3.agrStatus, t1.status

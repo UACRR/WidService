@@ -60,11 +60,11 @@ BEGIN
 
 			insert DocPreparePay( dateWork,regId,distId,nD,nDDate,accIdDebet,accIdCredit,accDebet,accCredit,amount,	amountCur,
 									payNote,r030,dateOper,payStatus
-									, custIdRh  --!T
+									, custIdRh,paidid  --!T
 									)
 			select		dateWork,regId,distId,nD,nDDate,accIdDebet,accIdCredit,accDebet,accCredit,amount,	amountCur,
 									payNote,r030,dateOper,10
-									, custIdRh
+									, custIdRh,regIItemId
 from PayTurn
 where 
 --distid=1200
@@ -101,7 +101,7 @@ BEGIN
 
 
 exec Pay_Pay_ASaldoDay_storno
-
+execute PayTurnExtra_form
 insert PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,
 						Amount,AmountCur,PayNote,R030,DateOper,PayStatus,regid,distid
 						,custIdRh,regIItemId --T

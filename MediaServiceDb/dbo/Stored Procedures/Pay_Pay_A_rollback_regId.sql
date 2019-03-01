@@ -2,7 +2,7 @@
 as
 begin
 /*
-
+[Pay_Pay_A_rollback_regId] 2336
 */
 SET NOCOUNT ON;
 declare @RetCode integer
@@ -15,6 +15,7 @@ set @RetCode = 0
 	DateWork				date NOT NULL,
 	ND							varchar(25)		NULL,
 	NDDate					datetime	NULL,
+	R030		char(3) null,
 	AccIdDebet			 int			NULL,
 	AccIdCredit			 int			NULL,
 	AccDebet				varchar(25)			NULL,
@@ -124,6 +125,12 @@ regId=@regId
 delete  DistributionItem
 where
 regId=@regId
+
+delete registercount
+where
+regId=@regId
+
+
 
 update Register
 set rgStatus =0

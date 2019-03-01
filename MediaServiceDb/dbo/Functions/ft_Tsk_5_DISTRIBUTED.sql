@@ -6,6 +6,7 @@
 RETURNS @RT TABLE
 (
 id integer not null identity primary key,
+custId integer, 
 clCustId integer, 
 rhCustId integer, 
 objid integer, 
@@ -44,21 +45,35 @@ insert into @TmpAcc (accId, balsCode, objid, kindCode, categoryCode)
    where t1.balsCode in ( 30, 31) and 
          cast(substring(accnls, 4,2) as integer) = isnull(@kindCode , cast(substring(accnls, 4,2) as integer))
 
-insert into @RT (rhCustId, objid, kindCode, amount, categoryCode, accIdDebet, accIdCredit, clCustId, regId, turnId, regItemId)
-  select t2.custId, t3.objid, t3.kindCode, t1.amount, t3.categoryCode, t1.accIdDebet, t1.accIdCredit, t4.custid, t1.regId, t1.turnId, t1.regIItemId
+insert into @RT (custId, rhCustId, objid, kindCode, amount, categoryCode, accIdDebet, accIdCredit, clCustId, regId, turnId, regItemId)
+  select --t2.custId, --здесь м.б. товариство
+   t2.custId, 
+   t1.custIdRh, 
+   t3.objid, t3.kindCode, t1.amount, t3.categoryCode, t1.accIdDebet, t1.accIdCredit, t4.custid, t1.regId, t1.turnId, t1.regIItemId
    from PayTurn t1 
     left join PayTurnExtra t4 on t4.turnId = t1.turnId and t4.dateWork = t1.dateWork
     join Account t2 on t2.accId = t1.accIdDebet and t2.balsCode = 21  --распределение на авторов, в т.ч. со счета 31
     join @TmpAcc t3 on t3.accId = t1.accIdCredit and t3.balsCode in (30, 31)    
    where t1.dateWork between @dateBegin and @dateEnd
 
-update @RT set cmCustId = t2.cmCustId 
+--Сообщество берется по обслуживанию
+--update @RT set cmCustId = t2.cmCustId 
+--   from @RT t1 
+--       join vCustCmService t2 on t1.rhCustId = t2.custId and t1.kindCode = t2.crKindCode
+
+--Сообщество теперь берется из платежки
+update @RT set cmCustId = t2.custId
    from @RT t1 
-       join vCustCmService t2 on t1.rhCustId = t2.custId 
+       join community t2 on t1.custId = t2.custId 
+
+update @RT set cmCustId = t2.custId
+   from @RT t1 
+       left join vMyAnk t2  on t2.custId = t2.custId 
+	   where t1.cmCustId is NULL
 
 --Нужно добавит зависшие на 31-м счете
- insert into @RT (clCustId, objid, kindCode, categoryCode, accIdDebet, accIdCredit,  amount, cmCustId, turnId )
- select -1, max(t1.objid), max(kindCode), max(categoryCode), t1.accId, NULL, 
+ insert into @RT (clCustId, rhCustId, objid, kindCode, categoryCode, accIdDebet, accIdCredit,  amount, cmCustId, turnId )
+ select -1, -1, max(t1.objid), max(kindCode), max(categoryCode), t1.accId, NULL, 
  (Case WHEN sum(t2.DebOborot) - sum(t2.krdOborot) > 0 Then sum(t2.DebOborot) - sum(t2.krdOborot) Else 0 END) as Amount, -1, NULL
   from @TmpAcc t1 
   join saldoDay t2 on t2.accId = t1.accId and t2.dateBegin between @dateBegin and @dateENd 
@@ -67,8 +82,9 @@ update @RT set cmCustId = t2.cmCustId
 
  RETURN
  END
---select sum(amount) from ft_Tsk_5_DISTRIBUTED ('2019-01-01', NULL, 5, 1) --141974,07
+--select * from ft_Tsk_5_DISTRIBUTED ('2019-02-20', NULL, 5, 1) --141974,07
 --select * from ft_Tsk_5_DISTRIBUTED (NULL, NULL, NULL, NULL) --141974,07
+--select * from payturn where custidRh <> cast(right(accdebet,6) as integer) and accDebet like '21%'
 /*
 select sum(amount) from payTurn where left(accdebet,2) ='21' and  left(accCredit,2) = '30'  and dateWork > ='2019-01-01' --76853.42
 select sum(amount) from payTurn where left(accdebet,2) ='21' and  left(accCredit,2) = '31'  and dateWork > ='2019-01-01' --20000.00

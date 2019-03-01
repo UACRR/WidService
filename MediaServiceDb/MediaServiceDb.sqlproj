@@ -94,9 +94,6 @@
     <Folder Include="Assemblies\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ft_tsk_3_Compare.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="Microsoft.SqlServer.PolicyEnum">
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.PolicyEnum.dll</HintPath>
     </Reference>
@@ -113,9 +110,16 @@
       <HintPath>C:\Program Files\Microsoft SQL Server\140\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="MediaServiceDb">
+      <HintPath>Assemblies\MediaServiceDb.dll</HintPath>
+      <SqlAssemblyName>MediaServiceDb</SqlAssemblyName>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+      <SqlOwnerName>dbo</SqlOwnerName>
+      <SqlPermissionSet>SAFE</SqlPermissionSet>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="MediaServiceDb.publish.xml" />
     <None Include="ipskeys.snk" />
     <None Include="Assemblies\MediaServiceDb.dll" />
   </ItemGroup>
@@ -663,8 +667,6 @@
     <Build Include="dbo\Functions\ft_Tsk_5_19_2_SR_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_19_2_0SR.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_19_1_0BR.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBRSum__.sql" />
-    <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBRSum_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR_New.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_15_RegisterBR_.sql" />
     <Build Include="dbo\Functions\ft_Tsk_5_14_RegisterSR_.sql" />
@@ -697,5 +699,14 @@
     <Build Include="dbo\Functions\ft_Tsk_5_ForPayFact.sql" />
     <Build Include="dbo\Stored Procedures\pTsk_5_18_1_ObjUnattached.sql" />
     <Build Include="dbo\Stored Procedures\pTsk_5_18_1_ObjUnattache_.sql" />
+    <Build Include="dbo\Views\vRegister.sql" />
+    <Build Include="dbo\Stored Procedures\MPay_Pay_A_rollback_turnid.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Compare.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Accurace.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Compare.sql" />
+    <Build Include="dbo\Functions\Ft_tsk_3_Accurace.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PreDeploy Include="Script.PreDeployment1.sql" />
   </ItemGroup>
 </Project>
