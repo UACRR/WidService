@@ -18,11 +18,11 @@ namespace ipsmedserviceapp.Model
         public int CategoryCode { get; set; }
         public string Name { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public ICollection<RelReqObj> RelReqObj { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<RequestTypeTr> RequestTypeTr { get; set; }
-        public ICollection<UseAreaType> UseAreaType { get; set; }
-        public ICollection<UseMediaType> UseMediaType { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual ICollection<RelReqObj> RelReqObj { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
+        public virtual ICollection<RequestTypeTr> RequestTypeTr { get; set; }
+        public virtual ICollection<UseAreaType> UseAreaType { get; set; }
+        public virtual ICollection<UseMediaType> UseMediaType { get; set; }
     }
 }

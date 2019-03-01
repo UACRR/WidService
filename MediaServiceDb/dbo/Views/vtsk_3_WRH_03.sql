@@ -1,4 +1,5 @@
 ﻿
+
 CREATE view [dbo].[vtsk_3_WRH_03] as
 with CountObj as 
 (
@@ -15,7 +16,8 @@ from
 RH as 
 (select t2.custId
 from WorkRH t1 
-join CopyRight t2 on t1.cRightId = t2.cRightId 
+join CopyRight t2 on t1.cRightId = t2.cRightId
+--join objectRight t3 on t2.objid = t3.objid and t3.categoryCode = 5
 group by t2.custId
 )
 select t3.custId, isnull(t4.innerCode, t3.custId) as innerCode, isnull(t4.interCode,'') as interCode, t3.name, t5.cntObj, t3.registrDate, 

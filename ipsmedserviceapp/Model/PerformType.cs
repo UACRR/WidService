@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<LicenseBigR> LicenseBigR { get; set; }
-        public ICollection<PerformTypeTr> PerformTypeTr { get; set; }
+        public virtual ICollection<LicenseBigR> LicenseBigR { get; set; }
+        public virtual ICollection<PerformTypeTr> PerformTypeTr { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace ipsmedserviceapp.Model
         public DateTime? ModifyDate { get; set; }
         public string ModifyLogin { get; set; }
 
-        public Customer Cust { get; set; }
-        public FileType DocTypeNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual FileType DocTypeNavigation { get; set; }
     }
 }

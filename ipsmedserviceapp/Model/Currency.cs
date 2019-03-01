@@ -22,6 +22,6 @@ namespace ipsmedserviceapp.Model
         public short? PrNc { get; set; }
         public int? OrderBy { get; set; }
 
-        public ICollection<Account> Account { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
     }
 }

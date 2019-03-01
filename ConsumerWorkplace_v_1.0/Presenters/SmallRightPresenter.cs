@@ -10,6 +10,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
@@ -31,9 +32,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private readonly ConsumerService _service;
         private readonly PartnerService _partnerService;
-        private readonly GlobalControlConsumerMainGrid _mainGrid;
+        private readonly ConsumersViewSmallRightControl _mainGrid;
 
-        public SmallRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, GlobalControlConsumerMainGrid mainGrid)
+        public SmallRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, ConsumersViewSmallRightControl mainGrid)
         {
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _service = service;
@@ -205,17 +206,17 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private void CreateNewCustomerAnketa(object sender, EventArgs e)
         {
             int custType = (int)sender;
-            var cust = _service.NewCustomer(custType);
+            var customer = _service.NewCustomer(custType);
             switch (custType)
             {
                 case 1:
-                    var formPhis = new AnketaConsumerPhisForm(cust)
+                    var formPhis = new AnketaConsumerPhisForm(customer)
                     {
                         StartPosition = FormStartPosition.CenterParent
                     };
                     if (formPhis.ShowDialog() == DialogResult.OK)
                     {
-                        var relust = _service.Save(cust);
+                        var relust = _service.Save(customer);
                         MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
                     }
                     if (!formPhis.Disposing)
@@ -225,13 +226,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
                     }
                     break;
                 case 3: // Юридична особа
-                    var form = new AnketaConsumerJurForm(cust, _service.GetAutoCompleteList, _service.GetData)
-                    {
-                        StartPosition = FormStartPosition.CenterParent
-                    };
+                    var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData);
                     if (form.ShowDialog() == DialogResult.OK)
                     {
-                        var relust = _service.Save(cust);
+                        customer = form.Customer;
+                        var relust = _service.Save(customer);
                         MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
                     }
                     if (!form.Disposing)

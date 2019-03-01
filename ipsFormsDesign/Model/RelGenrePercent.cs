@@ -10,8 +10,8 @@ namespace ipsFormsDesign.Model
         public int GenreType { get; set; }
         public decimal? Rate { get; set; }
 
-        public ObjAct ActCodeNavigation { get; set; }
-        public GenreType GenreTypeNavigation { get; set; }
+        public virtual ObjAct ActCodeNavigation { get; set; }
+        public virtual GenreType GenreTypeNavigation { get; set; }
     }
 }
 

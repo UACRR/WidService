@@ -10,7 +10,7 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public string Lang { get; set; }
 
-        public PeriodStatus CodeINavigation { get; set; }
+        public virtual PeriodStatus CodeINavigation { get; set; }
     }
 }
 

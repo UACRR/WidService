@@ -25,9 +25,9 @@ namespace ipsmedserviceapp.Model
         public string PCountry { get; set; }
         public int? PRegion { get; set; }
 
-        public KlR030 CurrencyNavigation { get; set; }
-        public Customer Cust { get; set; }
-        public ICollection<AnketaCompany> AnketaCompany { get; set; }
-        public ICollection<AnketaPerson> AnketaPerson { get; set; }
+        public virtual KlR030 CurrencyNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompany { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPerson { get; set; }
     }
 }

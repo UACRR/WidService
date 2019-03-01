@@ -26,8 +26,8 @@ CREATE TABLE #doc1(
 	categoryCode int NULL,
 	AccIdDebet int NULL,
 	AccIdCredit int NULL,
-	AccDebet int NULL,
-	AccCredit int NULL,
+	AccDebet				varchar(25)			NULL,
+	AccCredit				varchar(25)			NULL,
 	custId int NULL,
 	rate decimal(5, 2) NULL,
 	cRType int NULL,
@@ -35,6 +35,7 @@ CREATE TABLE #doc1(
 	amountBalans	money null,
 	amountPay	money null,
 	distribType		tinyint	null,
+	custIdRh integer NULL,  --!T
 	primary key (id)
 	)
 create table #balance(
@@ -49,7 +50,7 @@ create table #balance(
 
 CREATE TABLE #PayTurn(
 	TurnId						 int			NOT NULL,
-	DateWork				datetime NOT NULL,
+	DateWork				date NOT NULL,
 	ND							varchar(25)		NULL,
 	NDDate					datetime	NULL,
 	AccIdDebet			 int			NULL,
@@ -59,7 +60,7 @@ CREATE TABLE #PayTurn(
 	Amount					numeric(20, 2	)	NULL,
 	AmountCur				numeric(20, 2)	NULL,
 	PayNote					varchar(200) 	NULL,
-	DateOper				date						NOT NULL,
+	DateOper				datetime						NOT NULL,
 	PayStatus				int					 NULL,
 	regId						int,
 	distid					int,
@@ -86,14 +87,15 @@ create table #Doc(
 	AccDebet				varchar(25)			NULL,
 	AccCredit				varchar(25)			NULL,
 	kindcode				int			null,
-	paynote varchar	(100)		null,
-	distribType		tinyint	null
+	paynote varchar	(120)		null,
+	distribType		tinyint	null,
+	custIdRh integer NULL  --!T
 )
 insert #doc1
 		(regIItemId,distId,regId,--periodId,
 		distribDate,amount,CrKindCode,objid,ItemName,categoryCode,
 		AccIdDebet,AccIdCredit,AccDebet,AccCredit,custId,--clnName,
-		rate,		amountMy,	amountBalans,	amountPay,cRType,distribType
+		rate,		amountMy,	amountBalans,	amountPay,cRType,distribType,custIdRh 
 		)
 select   
 		t3.regIItemId,  t1.distId,t1.regId,--t1.periodId,
@@ -102,23 +104,24 @@ select
 		'21000'+convert(varchar(10),isnull(t4.cmCustId,t4.custId)) AccDebet,
 		rtrim(STUFF('30100',6-len(convert (varchar(2),t1.cRKindCode)),len(convert (varchar(2),t1.cRKindCode)),convert (varchar(2),t1.cRKindCode))
 		+convert(varchar(10),t4.objId))  AccCredit,isnull(t4.cmCustId,t4.custId) custid,
-		isnull(t4.rate,100.),0,0,0, t4.cRType,t1.distType
+		isnull(t4.rate,100.),0,0,0, t4.cRType,t1.distType,t4.custid
 from 
 		distribution t1,DistributionItem t3,RegisterCount t4
 where
 		t3.regId=t4.regId	and
 		t3.regIItemId=t4.regIItemId and
 		t3.distId=t1.distid and
+--t1.distid=2411
 		t1.status=2		and
 		t1.distType=1
-
+		
 union
  select t1.regIItemId,d1.distId,t1.regId,--d1.periodId,
  d1.distribDate,t3.rAmount,t1.cRKindCode,t3.objId,
 			t3.ItemName,t3.categoryCode,null AccIdDebet,null AccIdCredit,'21000'+convert(varchar(10),t1.custId) AccDebet,
 			rtrim(STUFF('30100',6-len(convert (varchar(2),t1.cRKindCode)),len(convert (varchar(2),t1.cRKindCode)),convert (varchar(2),t1.cRKindCode))
 		+convert(varchar(10),t3.objId))  AccCredit,t1.custId,
-		t1.rate,0	amountMy,0	amountBalans,0	amountPay,t1.cRType,d1.distType
+		t1.rate,0	amountMy,0	amountBalans,0	amountPay,t1.cRType,d1.distType,t1.custid
    from distribution d1, RegisterCount t1 , BrRegister t2 ,BrRegItem t3
 where
 	t1.regIdBr = t2.regId and 
@@ -128,7 +131,7 @@ where
 	d1.regIdBr=t2.regId	and
 	d1.status=2	and
 		d1.distType=1
-
+		
   	if @@error	<> 0
 		goto __retErr
 
@@ -206,12 +209,12 @@ end
 --формирование документов
 insert #Doc (regIItemId,distId,regId	,--periodId,
 distribDate,amount,kindcode,	custId,objid,
-					ItemName,	categoryCode,	AccIdDebet,	AccIdCredit,	AccDebet	,AccCredit,distribType
+					ItemName,	categoryCode,	AccIdDebet,	AccIdCredit,	AccDebet	,AccCredit,distribType,custIdRh 
 					)
 select   
 					t1.regIItemId,  t1.distId,t1.regId,--t1.periodId,
 					t1.distribDate,t1.amountPay,t1.CrKindCode,t1.custId ,t1.objid,
-					null ,t1.categoryCode ,AccIdDebet,  AccIdCredit,	AccDebet	,	AccCredit	,distribType
+					null ,t1.categoryCode ,AccIdDebet,  AccIdCredit,	AccDebet	,	AccCredit	,distribType,custIdRh 
 from 
 		#doc1 t1
 
@@ -219,7 +222,7 @@ from
 		goto __retErr
 
 update t1
-		set paynote=ltrim(rtrim(t4.Name))+'  '+ltrim(rtrim(t4.Author))
+			set paynote=substring(ltrim(rtrim(t4.Name))+'  '+ltrim(rtrim(t4.Author)),1,120)
 		from #doc t1,ObjectRight t4
 		where
 				t1.ObjId=t4.ObjId
@@ -287,7 +290,7 @@ BEGIN
 												   )
                  begin
 
-select  @objid,  '980', @AccDebet,@ItemName
+--select  @objid,  '980', @AccDebet,@ItemName
                          Exec  dbo.OpenAccNLS  null, @objid,  '980', @AccDebet,@ItemName
                  end
       end 
@@ -322,7 +325,7 @@ select			distribDate,regId,distId,null,distribDate,	AccIdDebet,	AccIdCredit,	Acc
 						when 4 then	1
 						else null
 					end,
-					custid
+					custIdRh 
 from #Doc t1
 	where not exists (select * from DocPreparePay t2
 								where 
@@ -347,7 +350,7 @@ END
 
 
 declare @DateOper date
-declare curso  cursor for   select    distinct dateOper from 
+declare curso  cursor for   select    distinct dateWork from 
 DocPreparePay
 	where
 	PayStatus=1	and
@@ -370,7 +373,7 @@ insert #PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCr
 	PayStatus=1	and
 	(AccDebet like '31%' or AccDebet like '21%')	and
 	AccCredit like '30%'
-			and dateOper=@DateOper
+			and dateWork=@DateOper
 
   	if @@error	<> 0
 		goto __retErr

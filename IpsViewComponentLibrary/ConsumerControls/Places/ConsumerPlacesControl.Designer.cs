@@ -191,7 +191,7 @@
             this.gvPlaces.Size = new System.Drawing.Size(746, 235);
             this.gvPlaces.TabIndex = 5;
             this.gvPlaces.ThemeName = "Office2013Light";
-            this.gvPlaces.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.rGridViewInstitution_CurrentRowChanged);
+            this.gvPlaces.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.RGridViewInstitution_CurrentRowChanged);
             // 
             // btnDelete
             // 
@@ -202,7 +202,7 @@
             this.btnDelete.TabIndex = 9;
             this.btnDelete.Text = "Видалити бізнес-точку";
             this.btnDelete.ThemeName = "Office2013Light";
-            this.btnDelete.Click += new System.EventHandler(this.btnDeletePlace_Click);
+            this.btnDelete.Click += new System.EventHandler(this.BtnDeletePlace_Click);
             // 
             // btnEdit
             // 
@@ -216,7 +216,7 @@
             this.btnEdit.TabIndex = 8;
             this.btnEdit.Text = "Редагування";
             this.btnEdit.ThemeName = "Office2013Light";
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.angle_double_down_solid;
             ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
             ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).Text = "Редагування";

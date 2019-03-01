@@ -22,28 +22,28 @@ namespace ipsmedserviceapp.Model
             TerritoryInclude = new HashSet<TerritoryInclude>();
         }
 
-        public int? ContinentCode { get; set; }//+
-        public string CountryCode { get; set; }//+
-        public string CountryName { get; set; }//+
-        public string A2 { get; set; }//-
-        public string KOdLit { get; set; }//+
-        public string CountryNameShort { get; set; }//
-        public short? ShortChoise { get; set; } //
-        public int? OrderBy { get; set; } // 
+        public int? ContinentCode { get; set; }
+        public string CountryCode { get; set; }
+        public string CountryName { get; set; }
+        public string A2 { get; set; }
+        public string KOdLit { get; set; }
+        public string CountryNameShort { get; set; }
+        public short? ShortChoise { get; set; }
+        public int? OrderBy { get; set; }
 
-        public Continent ContinentCodeNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
-        public ICollection<AnketaExternal> AnketaExternal { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }
-        public ICollection<CountryTr> CountryTr { get; set; }
-        public ICollection<KlR030> KlR030 { get; set; }
-        public ICollection<ReqCustomer> ReqCustomer { get; set; }
-        public ICollection<ReqLocationUse> ReqLocationUse { get; set; }
-        public ICollection<TerritoryExclude> TerritoryExclude { get; set; }
-        public ICollection<TerritoryInclude> TerritoryInclude { get; set; }
+        public virtual Continent ContinentCodeNavigation { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompanyFaCountryNavigation { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompanyJaCountryNavigation { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompanyLeCountryNavigation { get; set; }
+        public virtual ICollection<AnketaExternal> AnketaExternal { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPersonCitizenshipNavigation { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPersonFaCountryNavigation { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPersonReCountryNavigation { get; set; }
+        public virtual ICollection<CountryTr> CountryTr { get; set; }
+        public virtual ICollection<KlR030> KlR030 { get; set; }
+        public virtual ICollection<ReqCustomer> ReqCustomer { get; set; }
+        public virtual ICollection<ReqLocationUse> ReqLocationUse { get; set; }
+        public virtual ICollection<TerritoryExclude> TerritoryExclude { get; set; }
+        public virtual ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }
 }

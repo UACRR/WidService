@@ -20,12 +20,12 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string NameR { get; set; }
 
-        public ICollection<AgreementAddBr> AgreementAddBr { get; set; }
-        public ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
-        public ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ICollection<AgreementAddRh> AgreementAddRh { get; set; }
-        public ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
-        public ICollection<PaidPeriod> PaidPeriod { get; set; }
-        public ICollection<PeriodTr> PeriodTr { get; set; }
+        public virtual ICollection<AgreementAddBr> AgreementAddBr { get; set; }
+        public virtual ICollection<AgreementAddCommunity> AgreementAddCommunity { get; set; }
+        public virtual ICollection<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public virtual ICollection<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ICollection<LicenseAgrParam> LicenseAgrParam { get; set; }
+        public virtual ICollection<PaidPeriod> PaidPeriod { get; set; }
+        public virtual ICollection<PeriodTr> PeriodTr { get; set; }
     }
 }

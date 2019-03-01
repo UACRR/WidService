@@ -15,7 +15,7 @@ namespace ipsmedserviceapp.Model
         public short? BalsType { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Account> Account { get; set; }
-        public ICollection<AccountBalsTr> AccountBalsTr { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<AccountBalsTr> AccountBalsTr { get; set; }
     }
 }

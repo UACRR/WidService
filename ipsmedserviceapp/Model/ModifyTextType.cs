@@ -16,9 +16,9 @@ namespace ipsmedserviceapp.Model
         public int? KindCompCode { get; set; }
         public int CategoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public KindComposition KindCompCodeNavigation { get; set; }
-        public ICollection<ModifyTextTypeTr> ModifyTextTypeTr { get; set; }
-        public ICollection<RequestAdapt> RequestAdapt { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual KindComposition KindCompCodeNavigation { get; set; }
+        public virtual ICollection<ModifyTextTypeTr> ModifyTextTypeTr { get; set; }
+        public virtual ICollection<RequestAdapt> RequestAdapt { get; set; }
     }
 }

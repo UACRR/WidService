@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public string NameR { get; set; }
 
-        public Period CodeINavigation { get; set; }
+        public virtual Period CodeINavigation { get; set; }
     }
 }
 

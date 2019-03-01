@@ -1458,7 +1458,9 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("anketaStatus", await _dbContext.AnketaStatus.AsNoTracking().ToListAsync());
             retDictionary.Add("copyrightKind", await _dbContext.CopyrightKind.AsNoTracking().ToListAsync());
             retDictionary.Add("copyrightType", await _dbContext.CopyrightType.AsNoTracking().ToListAsync());
-            retDictionary.Add("country", await _dbContext.Country.Where(rec=>rec.ShortChoise == 1).OrderBy( rec => rec.OrderBy ?? 1000 ).AsNoTracking().ToListAsync());
+            retDictionary.Add("country", await _dbContext.Country
+                            //.Where(rec=>rec.ShortChoise == 1)
+                            .OrderBy( rec => rec.OrderBy ?? 1000).ThenBy( rec =>rec.CountryName ).AsNoTracking().ToListAsync());
             retDictionary.Add("creativeRoleType", await _dbContext.CreativeRoleType.AsNoTracking().ToListAsync());
             retDictionary.Add("crkindGroup", await _dbContext.CrkindGroup.AsNoTracking().ToListAsync());
             retDictionary.Add("customerStatus", await _dbContext.CustomerStatus.AsNoTracking().ToListAsync());

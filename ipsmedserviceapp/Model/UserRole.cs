@@ -10,8 +10,8 @@ namespace ipsmedserviceapp.Model
         public string UserId { get; set; }
         public int? Status { get; set; }
 
-        public Customer Cust { get; set; }
-        public UserRoleType RoleTypeNavigation { get; set; }
-        public AspNetUsers User { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual UserRoleType RoleTypeNavigation { get; set; }
+        public virtual AspNetUsers User { get; set; }
     }
 }

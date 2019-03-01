@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public int? CategoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
-        public ObservableListSource<RelEtRole> RelEtRole { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual ObservableListSource<EtGenreRole> EtGenreRole { get; set; }
+        public virtual ObservableListSource<RelEtRole> RelEtRole { get; set; }
     }
 }
 

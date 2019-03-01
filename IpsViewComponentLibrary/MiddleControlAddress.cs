@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary
 {
@@ -19,10 +20,10 @@ namespace IpsViewComponentLibrary
             InitializeComponent();
         }
 
-        public void SetDataSources(Customer cust, AnketaDictionaties dictionaties)
+        public void SetDataSources(Customer customer, AnketaDictionaties dictionaties)
         {
             //юридична
-            AnketaCompany anketa = cust?.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == cust?.AnkVersion);
+            var anketa = customer.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == customer.AnkVersion);
             addressLegal.DataSource = anketa;
             addressLegal.AddressDataMember = "JaAddress";
             addressLegal.CityDataMember = "JaCity";

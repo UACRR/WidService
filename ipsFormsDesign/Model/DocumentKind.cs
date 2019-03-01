@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Model
         public string DocMaker { get; set; }
 
         public Category CategoryCodeNavigation { get; set; }
-        public ObservableListSource<DocumentKindTr> DocumentKindTr { get; set; }
+        public ICollection<DocumentKindTr> DocumentKindTr { get; set; }
     }
 }
 

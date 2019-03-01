@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
-using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     public partial class GeneralAgreementBrForm : Telerik.WinControls.UI.RadForm
     {
-        public GeneralAgreementBrForm(AnketaDictionaties dictionaties, AgreementAddBr agreementAddBr, string dialogFormText = null)
+        public GeneralAgreementBrForm(AgreementAddBr agreementAddBr, string dialogFormText = null)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             DialogResult = DialogResult.None;
-            ctrlAgreement.PaidPeriodDictionaryDataSource = dictionaties.period;// typeof(Period);
+            if (IpsGlobal.AnketaDictionaties != null)
+                ctrlAgreement.PaidPeriodDictionaryDataSource = IpsGlobal.AnketaDictionaties.period;
             ctrlAgreement.AgreementDataSource = agreementAddBr;
 
             if (!string.IsNullOrEmpty(dialogFormText))

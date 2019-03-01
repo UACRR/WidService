@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls.Places
+﻿using IpsViewComponentLibrary.Extensions;
+
+namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
     partial class MultiplePlaceParameterControl
     {
@@ -255,7 +257,7 @@
             this.ctrlPremises.MinimumSize = new System.Drawing.Size(450, 200);
             this.ctrlPremises.Name = "ctrlPremises";
             this.ctrlPremises.PlaceHollDataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
-            this.ctrlPremises.PlaceType = IpsViewComponentLibrary.MeasurementOfPlaces.Empty;
+            this.ctrlPremises.PlaceType = MeasurementOfPlaces.Empty;
             this.ctrlPremises.Size = new System.Drawing.Size(654, 200);
             this.ctrlPremises.TabIndex = 6;
             // 

@@ -29,24 +29,23 @@ namespace ipsmedserviceapp.Model
         public int? ParentId { get; set; }
         public int? RoleCode { get; set; }
         public int? Status { get; set; }
+        public decimal? RateMech { get; set; }
 
         [JsonIgnore]
-        public RightHolder Cust { get; set; }
-        public ObjectRight Obj { get; set; }
+        public virtual RightHolder Cust { get; set; }
+        public virtual ObjectRight Obj { get; set; }
         [JsonIgnore]
-        public CreativeRoleType RoleCodeNavigation { get; set; }
+        public virtual CreativeRoleType RoleCodeNavigation { get; set; }
         [JsonIgnore]
-        public CrightStatus StatusNavigation { get; set; }
+        public virtual CrightStatus StatusNavigation { get; set; }
+        public virtual LicAuthorBr LicAuthorBr { get; set; }
+        public virtual WorkRh WorkRh { get; set; }
         [JsonIgnore]
-        public CopyRtranslate CopyRtranslate { get; set; }
-        public LicAuthorBr LicAuthorBr { get; set; }
-        public WorkRh WorkRh { get; set; }
+        public virtual ICollection<CopyRightHistory> CopyRightHistoryChild { get; set; }
         [JsonIgnore]
-        public ICollection<CopyRightHistory> CopyRightHistoryChild { get; set; }
+        public virtual ICollection<CopyRightHistory> CopyRightHistoryParent { get; set; }
         [JsonIgnore]
-        public ICollection<CopyRightHistory> CopyRightHistoryParent { get; set; }
-        [JsonIgnore]
-        public ICollection<Distribution> Distribution { get; set; }
+        public virtual ICollection<Distribution> Distribution { get; set; }
     }
 }
 

@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Model
         public bool CodeB { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<PermitTypeTr> PermitTypeTr { get; set; }
+        public virtual ObservableListSource<PermitTypeTr> PermitTypeTr { get; set; }
     }
 }
 

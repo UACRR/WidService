@@ -9,6 +9,6 @@ namespace ipsmedserviceapp.Model
         public int CRightId { get; set; }
         public decimal? Amount { get; set; }
 
-        public MoneyReceived Paid { get; set; }
+        public virtual MoneyReceived Paid { get; set; }
     }
 }

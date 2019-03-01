@@ -10,7 +10,7 @@ namespace ipsFormsDesign.Model
         public string Lang { get; set; }
         public string R030Name { get; set; }
 
-        public KlR030 R030Navigation { get; set; }
+        public virtual KlR030 R030Navigation { get; set; }
     }
 }
 

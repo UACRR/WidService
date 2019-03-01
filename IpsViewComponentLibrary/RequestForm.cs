@@ -13,6 +13,8 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
 using IpsViewComponentLibrary.Common.Form;
+using IpsViewComponentLibrary.ConsumerForms;
+using IpsViewComponentLibrary.Extensions;
 using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary
@@ -39,10 +41,11 @@ namespace IpsViewComponentLibrary
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
         private ObjectRight _objectRight;
-        private FormType _formType;
+        private ScopeOfUseForm _scopeOfUseForm;
         private FormMode _formMode;
         private bool _deleteLicense = true;
         private int? _licId = null;
+        private string _validateString = string.Empty;
 
         public sealed override string Text
         {
@@ -52,13 +55,13 @@ namespace IpsViewComponentLibrary
 
         public RequestForm( Customer customer,
                             MainGridConsumerBigRightView bigRightView,
-                            FormType formType = FormType.Create,
+                            ScopeOfUseForm scopeOfUseForm = ScopeOfUseForm.Create,
                             int? licId = null,
                             FormMode formMode = FormMode.ForBigRightAdmin,
                             ControlRequestOrReferenceType windowType = ControlRequestOrReferenceType.None)
         {
             InitializeComponent();
-
+            StartPosition = FormStartPosition.CenterScreen;
             SetDictionaries();
 
             txtMusicRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
@@ -68,21 +71,21 @@ namespace IpsViewComponentLibrary
             _licId = licId;
             _customer = customer;
             DialogResult = DialogResult.None;
-            _formType = formType;
+            _scopeOfUseForm = scopeOfUseForm;
             _formMode = formMode;
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
-            _deleteLicense = formType == FormType.Create;
+            _deleteLicense = scopeOfUseForm == ScopeOfUseForm.Create;
             dtDate.SetUserCalendarSettingsm();
-            switch (_formType)
+            switch (_scopeOfUseForm)
             {
-                case FormType.Create:
+                case ScopeOfUseForm.Create:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     CreateNewRequest();
                     Text = CreateRequest;
                     dtDate.MinDate = DateTime.Today;
                     break;
-                case FormType.Edit:
+                case ScopeOfUseForm.Edit:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     if (windowType == ControlRequestOrReferenceType.Request)
                         Text = EditRequest;
@@ -90,7 +93,7 @@ namespace IpsViewComponentLibrary
                         Text = EditReference;
                     btnSave.Enabled = true;
                     break;
-                case FormType.View:
+                case ScopeOfUseForm.View:
                     ctrlAuthorRightholderList.ListMode = AuthorRightholderBrListMode.Short;
                     if (windowType == ControlRequestOrReferenceType.Request)
                         Text = ViewRequest;
@@ -101,8 +104,6 @@ namespace IpsViewComponentLibrary
                     btnCancel.Text = CloseButtonText;
                     break;
             }
-
-
 
             #region * * * BINDING * * *
 
@@ -375,7 +376,7 @@ namespace IpsViewComponentLibrary
             _customer.Client.LicenseAgreement.Add(_licenseAgreement);
         }
 
-        private void checkIsTour_CheckStateChanged(object sender, EventArgs e)
+        private void CheckIsTour_CheckStateChanged(object sender, EventArgs e)
         {
             txtWhereTour.Enabled = checkIsTour.Checked;
             lblTour.Enabled = checkIsTour.Checked;
@@ -392,12 +393,12 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void BtnSave_Click(object sender, EventArgs e)
         {
             if (_formMode == FormMode.ForSmallRightAdmin && !ValidateMinRewardAndTotalRate())
             {
@@ -423,18 +424,18 @@ namespace IpsViewComponentLibrary
             Close();
         }
 
-        private void ddlPlaceName_SelectedValueChanged(object sender, EventArgs e)
+        private void DdlPlaceName_SelectedValueChanged(object sender, EventArgs e)
         {
             bsClnPlaceHoll.DataSource = _customer.Client.ClnBusinessPlace.SingleOrDefault(rec => rec?.PlaceId == (int?)ddlPlaceName?.SelectedItem?.Value)?.ClnPlaceHoll;
         }
 
-        private void pageView_SelectedPageChanged(object sender, EventArgs e)
+        private void PageView_SelectedPageChanged(object sender, EventArgs e)
         {
             if (pageView.SelectedPage == pvMusicalArrangement && ReadOnly == false)
                 btnSave.Enabled = true;
         }
 
-        private void txtActCode_TextChanged(object sender, EventArgs e)
+        private void TxtActCode_TextChanged(object sender, EventArgs e)
         {
             if (Int32.TryParse(txtActCode.Text, out int val))
                 if (val > 3)
@@ -442,7 +443,7 @@ namespace IpsViewComponentLibrary
             UpdateGenrePersent();
         }
 
-        private void ddlGenreType_SelectedValueChanged(object sender, EventArgs e)
+        private void DdlGenreType_SelectedValueChanged(object sender, EventArgs e)
         {
             UpdateGenrePersent();
         }
@@ -466,40 +467,90 @@ namespace IpsViewComponentLibrary
             ForSmallRightAdmin,
         }
 
-        private void btnSetActiveStatus_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Перевірка на прив'язку Мужичного оформлення
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidateMusicalDesign()
         {
+            bool isValid = ctrlMusicalDesignList.GetCountUnlink() == 0;
+            if (!isValid)
+            {
+                _validateString = "Є твори 'Збірної музики' не прив'язані до об'єкту права";
+                pageView.SelectedPage = pvMusicalArrangement;
+                ctrlMusicalDesignList.SetErrorForUnlinkRows(_validateString);
+            }
+            return isValid;
+        }
+        /// <summary>
+        /// Перевірка на підтверження права
+        /// </summary>
+        /// <returns></returns>
+        private bool ValidateAllSetPogodgeno()
+        {
+            bool isValid = ctrlAuthorRightholderList.GetCountNoPogod() == 0;
+
+            if (!isValid)
+            {
+                _validateString = "Є непогоджені Правовласником права";
+                ctrlAuthorRightholderList.SetInvalidProlong(_validateString);
+            }
+            return isValid;
+        }
+        private void BtnSetActiveStatus_Click(object sender, EventArgs e)
+        {
+            if (_licenseAgreement.LicType == 3) // Довідка
+            {
+                bool isValid = true;
+                string errText = string.Empty;
+                ctrlAuthorRightholderList.ResetErrorText();
+                ctrlMusicalDesignList.ResetErrorText();
+
+                if (!ValidateMinRewardAndTotalRate() || !ValidateAllSetPogodgeno() || !ValidateMusicalDesign())
+                {
+                    isValid = false;
+                    errText = _validateString;
+                }
+
+                if (!isValid)
+                {
+                    MessageBox.Show(_validateString, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+
             _licenseAgreement.LicStatus = 2;
-            _licenseAgreement.LicenseAgrParam.First().LicStatus = 2;
+            _licenseAgreement.LicenseAgrParam.First( rec => rec.LicVersion == _licenseAgreement.LicVersion).LicStatus = 2;
             bsLicAgrParam.ResetCurrentItem();
             panelStatusees.Enabled = false;
         }
 
-        private void btnSetCanceledStatus_Click(object sender, EventArgs e)
+        private void BtnSetCanceledStatus_Click(object sender, EventArgs e)
         {
             _licenseAgreement.LicStatus = 5;
-            _licenseAgreement.LicenseAgrParam.First().LicStatus = 5;
+            _licenseAgreement.LicenseAgrParam.First(rec => rec.LicVersion == _licenseAgreement.LicVersion).LicStatus = 5;
             bsLicAgrParam.ResetCurrentItem();
             panelStatusees.Enabled = false;
         }
 
-        private void ddlPerformType_Leave(object sender, EventArgs e)
+        private void DdlPerformType_Leave(object sender, EventArgs e)
         {
             UpdateGenrePersent();
         }
 
-        private void ddlLang_Leave(object sender, EventArgs e)
+        private void DdlLang_Leave(object sender, EventArgs e)
         {
             UpdateGenrePersent();
         }
 
-        private void txtMusicRate_TextChanged(object sender, EventArgs e)
+        private void TxtMusicRate_TextChanged(object sender, EventArgs e)
         {
             if (Int32.TryParse(txtMusicRate.Text, out int val))
                 if (val > 100)
                     txtMusicRate.Text = "100";
         }
 
-        private void ctrlAuthorRightholderList_CurrentAuthorRightholderChanged(object sender, EventArgs e)
+        private void CtrlAuthorRightholderList_CurrentAuthorRightholderChanged(object sender, EventArgs e)
         {
             ValidateMinRewardAndTotalRate();
         }
@@ -508,7 +559,7 @@ namespace IpsViewComponentLibrary
         {
             var errorText = "";
 
-            if (int.TryParse(txtVinagoroda.Text, out int minReward))
+            if (decimal.TryParse(txtVinagoroda.Text, out decimal minReward))
             {
                 var tolalRate = _objectRight.CopyRight.GetTotalRoleRate();
 
@@ -520,6 +571,7 @@ namespace IpsViewComponentLibrary
                 else
                     errorText = "";
 
+                _validateString = errorText;
                 errorProvider.SetError(txtVinagoroda, errorText);
                 ctrlAuthorRightholderList.RoleRateErrorText = errorText;
             }

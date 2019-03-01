@@ -16,8 +16,8 @@ namespace ipsFormsDesign.Model
         public string NameTvchanel { get; set; }
         public string EpisodeComment { get; set; }
 
-        public Request Req { get; set; }
-        public ObservableListSource<RelTvepisode> RelTvepisode { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual ObservableListSource<RelTvepisode> RelTvepisode { get; set; }
     }
 }
 

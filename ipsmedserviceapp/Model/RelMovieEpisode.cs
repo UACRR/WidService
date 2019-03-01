@@ -9,7 +9,7 @@ namespace ipsmedserviceapp.Model
         public int ReqId { get; set; }
         public double? EpDuration { get; set; }
 
-        public EpisodeType EpisodeTypeCodeNavigation { get; set; }
-        public RequestMovie Req { get; set; }
+        public virtual EpisodeType EpisodeTypeCodeNavigation { get; set; }
+        public virtual RequestMovie Req { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace ipsmedserviceapp.Model
         public string CountryCode { get; set; }
         public string InnOkpo { get; set; }
 
-        public Country CountryCodeNavigation { get; set; }
-        public Customer Cust { get; set; }
+        public virtual Country CountryCodeNavigation { get; set; }
+        public virtual Customer Cust { get; set; }
     }
 }

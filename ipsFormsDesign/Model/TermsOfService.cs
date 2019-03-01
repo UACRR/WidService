@@ -15,9 +15,9 @@ namespace ipsFormsDesign.Model
         public int CrkindCode { get; set; }
         public bool OurService { get; set; }
 
-        public CopyrightKind CrkindCodeNavigation { get; set; }
-        public RightHolder Cust { get; set; }
-        public ObservableListSource<CustCmRight> CustCmRight { get; set; }
+        public virtual CopyrightKind CrkindCodeNavigation { get; set; }
+        public virtual RightHolder Cust { get; set; }
+        public virtual ObservableListSource<CustCmRight> CustCmRight { get; set; }
     }
 }
 

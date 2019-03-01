@@ -1,9 +1,8 @@
-﻿
-CREATE VIEW [dbo].[vTsk_6_ListPartner] as
+﻿CREATE VIEW [dbo].[vTsk_6_ListPartner] as
 --к-ть клієнтів
 with TmpClnCount as 
 (
-select t1.custId, count(*) as clnCount 
+select t1.custId, count( distinct t1.clCustId ) as clnCount 
 from PartnerClient t1
 join AgreementMaster t2 on t1.clCustId = t2.custId and t2.agrStatus = 2
 group by t1.custId

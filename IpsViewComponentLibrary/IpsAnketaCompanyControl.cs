@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return anketaCompanyBindingSource.DataSource; }
+            get => anketaCompanyBindingSource.DataSource;
             set
             {
                 if (anketaCompanyBindingSource.DataSource != value)
@@ -45,8 +45,6 @@ namespace IpsViewComponentLibrary
         }
 
         #region Activity code dictionary
-
-        public string CompanyFullName => txtName.Text;
 
         /// <summary>
         /// Перевірка на правильність введених полів
@@ -86,14 +84,14 @@ namespace IpsViewComponentLibrary
             getCustomerAnketa = _getCustomerAnketa;
             txtName.ListItemSelected += TxtName_ListItemSelected;
             txtName.TextChanged += TxtName_TextChanged;
-            txtName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtName.AutoCompleteMode = AutoCompleteMode.Suggest;
         }
 
         bool inProcess = false;
         private void TxtName_ListItemSelected(object sender, Telerik.WinControls.UI.RadListDataItem e)
         {
             inProcess = true;
-            RadListDataItem curItem = (RadListDataItem)e.Value;
+            RadListDataItem curItem = e;
             var getCustomer = getCustomerAnketa((int)curItem.Value);
             txtName.Text = (DataSource as AnketaCompany).Name;
             //var anketa = getCustomer.Company.AnketaCompany.Where(rec => rec.Version == getCustomer.AnkVersion).Single();
@@ -101,8 +99,7 @@ namespace IpsViewComponentLibrary
             inProcess = false;
         }
 
-        string _cacheSearch = string.Empty;
-        private int startChar = 0;
+        string _savedSearch = string.Empty;
         private void TxtName_TextChanged(object sender, EventArgs e)
         {
             if (inProcess || getAutoCompList == null || getCustomerAnketa == null)
@@ -110,47 +107,38 @@ namespace IpsViewComponentLibrary
             // Якщо анкета існуючого клієнту
             if (anketaCompanyBindingSource.DataSource is AnketaCompany @company && @company.CustId != 0)
                 return;
-            if( txtName.Text.Trim().Length > 0 )
+
+            string txtName_Text = txtName.Text.Trim();
+            if (txtName_Text.Length > 0)
             {
-                if(_cacheSearch.Length == 0
-                    || !_cacheSearch.ToUpper().StartsWith(txtName.Text.Substring(startChar, 1).ToUpper())
-                    || !_cacheSearch.ToUpper().StartsWith(txtName.Text.Substring(0,1).ToUpper())
-                    //|| _cacheSearch.Length > txtName.Text.Length + 2 // видалення з пошуку по 2 символи
-                    //|| _cacheSearch.Length + 2 < txtName.Text.Length
-                    )
+                if (_savedSearch.Length == 0 || !txtName_Text.ToUpper().StartsWith( _savedSearch.ToUpper()))
                 {
                     inProcess = true;
-                    _cacheSearch = txtName.Text.Trim();
-                    if(!char.IsLetterOrDigit( _cacheSearch[0] ) )
+                    var _cacheSearch = txtName.Text.Trim();
+                    _savedSearch = _cacheSearch;
+                    if (!char.IsLetterOrDigit(_cacheSearch[0]))
                     {
                         _cacheSearch = string.Concat("%", _cacheSearch);
-                        startChar = 1;
-                    }
-                    else
-                    {
-                        startChar = 0;
-
                     }
 
-                    var list = getAutoCompList(_cacheSearch).Select(rec=>{
-                            return new RadListDataItem(rec.DisplayValue, rec.Value);
-                    })?.ToArray();
+                    var list = getAutoCompList(_cacheSearch).Select(rec => new RadListDataItem(rec.DisplayValue, rec.Value)).ToArray();
                     var tmpText = txtName.Text;
                     //txtName.Clear();
-                    txtName.AutoCompleteDataSource = list;
-                    //txtName.Text = tmpText;
+
+                    txtName.AutoCompleteItems.Clear();
+                    txtName.AutoCompleteItems.AddRange(list);
+                    // txtName.AutoCompleteDataSource = list;
+                    txtName.Text = tmpText;
                     inProcess = false;
                 }
             }
         }
 
-        private void txtName_Leave(object sender, EventArgs e)
+        private void TxtName_Leave(object sender, EventArgs e)
         {
             TextNameChanged?.Invoke(sender, txtName.Text);
         }
 
-
         #endregion
-
     }
 }

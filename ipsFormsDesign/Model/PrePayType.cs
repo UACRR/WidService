@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
-        public ObservableListSource<PrePayTypeTr> PrePayTypeTr { get; set; }
+        public virtual ObservableListSource<LicAuthorBr> LicAuthorBr { get; set; }
+        public virtual ObservableListSource<PrePayTypeTr> PrePayTypeTr { get; set; }
     }
 }
 

@@ -22,16 +22,15 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public int Crtype { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public CopyrightType CrtypeNavigation { get; set; }
-        public CreativeTranslate CreativeTranslate { get; set; }
-        public ObservableListSource<Authors> Authors { get; set; }
-        public ObservableListSource<CopyRight> CopyRight { get; set; }
-        public ObservableListSource<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
-        public ObservableListSource<RegisterAuthors> RegisterAuthors { get; set; }
-        public ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
-        public ObservableListSource<RelEtRole> RelEtRole { get; set; }
-        public ObservableListSource<RelGenreRole> RelGenreRole { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual CopyrightType CrtypeNavigation { get; set; }
+        public virtual ObservableListSource<Authors> Authors { get; set; }
+        public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
+        public virtual ObservableListSource<CreativeRoleTypeTr> CreativeRoleTypeTr { get; set; }
+        public virtual ObservableListSource<RegisterAuthors> RegisterAuthors { get; set; }
+        public virtual ObservableListSource<RegisterExtra> RegisterExtra { get; set; }
+        public virtual ObservableListSource<RelEtRole> RelEtRole { get; set; }
+        public virtual ObservableListSource<RelGenreRole> RelGenreRole { get; set; }
     }
 }
 

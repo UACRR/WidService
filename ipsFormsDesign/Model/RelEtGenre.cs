@@ -9,8 +9,8 @@ namespace ipsFormsDesign.Model
         public int GenreCode { get; set; }
         public int EtGenreCode { get; set; }
 
-        public EtGenre EtGenreCodeNavigation { get; set; }
-        public GenreType GenreCodeNavigation { get; set; }
+        public virtual EtGenre EtGenreCodeNavigation { get; set; }
+        public virtual GenreType GenreCodeNavigation { get; set; }
     }
 }
 

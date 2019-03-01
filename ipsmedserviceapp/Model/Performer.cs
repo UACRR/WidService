@@ -13,6 +13,6 @@ namespace ipsmedserviceapp.Model
         public int PerId { get; set; }
         public string PerName { get; set; }
 
-        public ICollection<RelObjPerformer> RelObjPerformer { get; set; }
+        public virtual ICollection<RelObjPerformer> RelObjPerformer { get; set; }
     }
 }

@@ -39,23 +39,23 @@ namespace ipsmedserviceapp.Model
         public int? ActCode { get; set; }
         public string InnerCode { get; set; }
 
-        public ObjAct ActCodeNavigation { get; set; }
-        public Category CategoryCodeNavigation { get; set; }
-        public SpecType SpecTypeNavigation { get; set; }
-        public ObjectStatus StatusNavigation { get; set; }
-        public MediaTrack MediaTrack { get; set; }
-        public ICollection<Account> Account { get; set; }
-        public ICollection<Authors> Authors { get; set; }
-        public ICollection<BrRegItem> BrRegItem { get; set; }
-        public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<DistributionItem> DistributionItem { get; set; }
-        public ICollection<LicenseBigR> LicenseBigR { get; set; }
-        public ICollection<MusicalDesign> MusicalDesign { get; set; }
-        public ICollection<PortalObjectRights> PortalObjectRights { get; set; }
-        public ICollection<RegisterItem> RegisterItem { get; set; }
-        public ICollection<RelObjPerformer> RelObjPerformer { get; set; }
-        public ICollection<RelPopGenre> RelPopGenre { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<SeekObject> SeekObject { get; set; }
+        public virtual ObjAct ActCodeNavigation { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual SpecType SpecTypeNavigation { get; set; }
+        public virtual ObjectStatus StatusNavigation { get; set; }
+        public virtual MediaTrack MediaTrack { get; set; }
+        public virtual ICollection<Account> Account { get; set; }
+        public virtual ICollection<Authors> Authors { get; set; }
+        public virtual ICollection<BrRegItem> BrRegItem { get; set; }
+        public virtual ICollection<CopyRight> CopyRight { get; set; }
+        public virtual ICollection<DistributionItem> DistributionItem { get; set; }
+        public virtual ICollection<LicenseBigR> LicenseBigR { get; set; }
+        public virtual ICollection<MusicalDesign> MusicalDesign { get; set; }
+        public virtual ICollection<PortalObjectRights> PortalObjectRights { get; set; }
+        public virtual ICollection<RegisterItem> RegisterItem { get; set; }
+        public virtual ICollection<RelObjPerformer> RelObjPerformer { get; set; }
+        public virtual ICollection<RelPopGenre> RelPopGenre { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
+        public virtual ICollection<SeekObject> SeekObject { get; set; }
     }
 }

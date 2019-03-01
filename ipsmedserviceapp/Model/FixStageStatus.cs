@@ -16,6 +16,6 @@ namespace ipsmedserviceapp.Model
         public int? StageCode { get; set; }
         public int? StatusCode { get; set; }
 
-        public ICollection<Fixation> Fixation { get; set; }
+        public virtual ICollection<Fixation> Fixation { get; set; }
     }
 }

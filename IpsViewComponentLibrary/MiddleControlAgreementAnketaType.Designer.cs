@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using IpsViewComponentLibrary.Extensions;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlAgreementAnketaType
     {
@@ -57,7 +59,7 @@
             this.ctrlAgreementMain.AgreementName = "";
             this.ctrlAgreementMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgreementMain.DateEndNullText = "";
-            this.ctrlAgreementMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
+            this.ctrlAgreementMain.DateTimeType = ConsumerAgreementInitType.None;
             this.ctrlAgreementMain.Location = new System.Drawing.Point(3, 3);
             this.ctrlAgreementMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementMain.Name = "ctrlAgreementMain";

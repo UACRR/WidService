@@ -245,7 +245,7 @@ namespace ConsumerWorkplace_v_1._0
         {
             _cust = (Customer)data;
             var licAgr = _cust.Client.LicenseAgreement.FirstOrDefault();
-            _curLicAgreement = licAgr?.LicenseAgrParam.Where(item => item.LicVersion == licAgr.LicVersion).SingleOrDefault();
+            _curLicAgreement = licAgr?.LicenseAgrParam?.SingleOrDefault(item => item.LicVersion == licAgr.LicVersion);
         }
 
         public void GetData(ICustomer data)

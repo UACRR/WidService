@@ -13,6 +13,6 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<MonthNameTr> MonthNameTr { get; set; }
+        public virtual ICollection<MonthNameTr> MonthNameTr { get; set; }
     }
 }

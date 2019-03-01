@@ -10,6 +10,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerControls.BigRight;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -120,7 +121,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
                         });
                     // control bindings
                     _ctrlAgreementBigRights.PaidPeriodDictionaryDataSource = _anketaDictionaries.period;// (Period)
-                    _ctrlAgreementBigRights.AgreementDataSource = _customer?.Client?.LicenseAgreement?.LastOrDefault()?.Agr?.AgreementAddBr; //(AgreementAddBr)
+                    var agreementData = _customer.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == 0)?.Agr?.AgreementAddBr;
+                    _ctrlAgreementBigRights.AgreementDataSource = agreementData; //(AgreementAddBr)
 
                 }
                     break;
@@ -143,7 +145,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                     _ctrlAgreementSmallRights.Rights = TypeRights;
                     // дані договору
                     var places = _customer.Client.ClnBusinessPlace;
-                    var license = _customer.Client.LicenseAgreement.SingleOrDefault();
+                    var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == 0);
                     var licAgr = license?.LicenseAgrParam.SingleOrDefault();
                     _ctrlAgreementSmallRights.InitializeObjects(places, license, licAgr, ConsumerAgreementInitType.AddNewAgreement);
                 }
@@ -234,7 +236,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         }
 
-        private void btnLoadPdf_Click(object sender, EventArgs e)
+        private void BtnLoadPdf_Click(object sender, EventArgs e)
         {
             radWaitingBar1.StartWaiting();
             var task = Task.Run(() => LoadPdfDocAsync());
@@ -245,12 +247,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             radPdfViewer.LoadDocument(wordEngine.Pdf);
         }
 
-        private void radWaitingBar1_WaitingStarted(object sender, EventArgs e)
+        private void RadWaitingBar1_WaitingStarted(object sender, EventArgs e)
         {
             radWaitingBar1.Visible = true;
         }
 
-        private void radWaitingBar1_WaitingStopped(object sender, EventArgs e)
+        private void RadWaitingBar1_WaitingStopped(object sender, EventArgs e)
         {
             radWaitingBar1.Visible = false;
 

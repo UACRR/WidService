@@ -19,12 +19,12 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<AnketaCompany> AnketaCompanyFaRegionNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyJaRegionNavigation { get; set; }
-        public ICollection<AnketaCompany> AnketaCompanyLeRegionNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonFaRegionNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonLeRegionNavigation { get; set; }
-        public ICollection<AnketaPerson> AnketaPersonReRegionNavigation { get; set; }
-        public ICollection<RegionTr> RegionTr { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompanyFaRegionNavigation { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompanyJaRegionNavigation { get; set; }
+        public virtual ICollection<AnketaCompany> AnketaCompanyLeRegionNavigation { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPersonFaRegionNavigation { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPersonLeRegionNavigation { get; set; }
+        public virtual ICollection<AnketaPerson> AnketaPersonReRegionNavigation { get; set; }
+        public virtual ICollection<RegionTr> RegionTr { get; set; }
     }
 }

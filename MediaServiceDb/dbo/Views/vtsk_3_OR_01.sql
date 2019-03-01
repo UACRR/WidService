@@ -1,4 +1,5 @@
 ﻿CREATE view [dbo].[vtsk_3_OR_01] as
+--
 with CPR as 
 (select t2.objid, sum(t2.rate) as rate, min(isnull(t2.status,0)) as isNotAccepted
   from copyright t2 
@@ -8,15 +9,18 @@ with CPR as
 )
 ,
 SDay as 
-(select t1.objid, t2.accId, t3.rest
+(select t1.objid, sum(t3.rest) as rest
  from ObjectRight t1 
  join Account t2 on t1.objid = t2.objid 
  join SaldoDay t3 on t2.accId = t3.accId and getdate() between t3.dateBegin and t3.dateEnd and t3.rest <> 0
+ group by t1.objId
 )
 
 select t1.objid, t1.name, 
 (Case When t1.categoryCode = 5 Then 'M' else 'B' end) as Category, t1.genreType, t2.name as genreName, 
- t3.duration, t4.name as specName, isnull(t5.rate,0) as rateTotal, isnull(t1.performer, '') as performer, isnull(t6.proffit,0) as profit
+ t3.duration, t4.name as specName, isnull(t5.rate,0) as rateTotal, 
+ isnull(t1.author, '') as author , -- Патлякевич додав для відображення автора при прив'язці
+ isnull(t1.performer, '') as performer, isnull(t6.proffit,0) as profit
 ,rest --залишок на рахунку
 ,(Case When t1.status = 1 Then 1 Else 0 end ) as statusActive -- Діючі
 ,(Case When t5.isNotAccepted = 0 Then 1 Else 0 end ) as statusNoActive -- Якщо є копірайт без підтвердження

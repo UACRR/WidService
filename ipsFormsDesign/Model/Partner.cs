@@ -17,11 +17,11 @@ namespace ipsFormsDesign.Model
         public int CustId { get; set; }
         public bool? IsMy { get; set; }
 
-        public Customer Cust { get; set; }
-        public ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
-        public ObservableListSource<Distribution> Distribution { get; set; }
-        public ObservableListSource<Fixation> Fixation { get; set; }
-        public ObservableListSource<PartnerClient> PartnerClient { get; set; }
+        public virtual Customer Cust { get; set; }
+        public virtual ObservableListSource<AgreementAddPartner> AgreementAddPartner { get; set; }
+        public virtual ObservableListSource<Distribution> Distribution { get; set; }
+        public virtual ObservableListSource<Fixation> Fixation { get; set; }
+        public virtual ObservableListSource<PartnerClient> PartnerClient { get; set; }
     }
 }
 

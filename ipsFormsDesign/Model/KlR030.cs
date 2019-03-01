@@ -22,11 +22,11 @@ namespace ipsFormsDesign.Model
         public string NAim { get; set; }
         public short? PrWork { get; set; }
 
-        public Country CountryCodeNavigation { get; set; }
-        public KlR031 R031Navigation { get; set; }
-        public ObservableListSource<BankAccount> BankAccount { get; set; }
-        public ObservableListSource<CurrencyCourse> CurrencyCourse { get; set; }
-        public ObservableListSource<KlR030tr> KlR030tr { get; set; }
+        public virtual Country CountryCodeNavigation { get; set; }
+        public virtual KlR031 R031Navigation { get; set; }
+        public virtual ObservableListSource<BankAccount> BankAccount { get; set; }
+        public virtual ObservableListSource<CurrencyCourse> CurrencyCourse { get; set; }
+        public virtual ObservableListSource<KlR030tr> KlR030tr { get; set; }
     }
 }
 

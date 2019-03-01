@@ -28,13 +28,13 @@ namespace ipsmedserviceapp.Model
         public decimal? RateMusic { get; set; }
 
         [JsonIgnore]
-        public Language LangCodeNavigation { get; set; }
+        public virtual Language LangCodeNavigation { get; set; }
         [JsonIgnore]
-        public LicenseAgreement Lic { get; set; }
-        public ObjectRight Obj { get; set; }
+        public virtual LicenseAgreement Lic { get; set; }
+        public virtual ObjectRight Obj { get; set; }
         [JsonIgnore]
-        public PerformType PerformTypeNavigation { get; set; }
-        public ICollection<MusicalDesign> MusicalDesign { get; set; }
+        public virtual PerformType PerformTypeNavigation { get; set; }
+        public virtual ICollection<MusicalDesign> MusicalDesign { get; set; }
     }
 }
 

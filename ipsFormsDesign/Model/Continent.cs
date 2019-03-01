@@ -16,9 +16,9 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<ContinentTr> ContinentTr { get; set; }
-        public ObservableListSource<Country> Country { get; set; }
-        public ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
+        public virtual ObservableListSource<ContinentTr> ContinentTr { get; set; }
+        public virtual ObservableListSource<Country> Country { get; set; }
+        public virtual ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
     }
 }
 

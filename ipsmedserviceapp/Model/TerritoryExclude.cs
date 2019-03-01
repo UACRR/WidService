@@ -8,7 +8,7 @@ namespace ipsmedserviceapp.Model
         public int CustId { get; set; }
         public string CountryCode { get; set; }
 
-        public Country CountryCodeNavigation { get; set; }
-        public RightHolder Cust { get; set; }
+        public virtual Country CountryCodeNavigation { get; set; }
+        public virtual RightHolder Cust { get; set; }
     }
 }

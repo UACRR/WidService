@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
-        public ObservableListSource<TypeMethodGetTr> TypeMethodGetTr { get; set; }
+        public virtual ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }
+        public virtual ObservableListSource<TypeMethodGetTr> TypeMethodGetTr { get; set; }
     }
 }
 

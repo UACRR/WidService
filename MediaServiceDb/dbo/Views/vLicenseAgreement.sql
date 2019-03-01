@@ -1,10 +1,15 @@
 ﻿CREATE view [dbo].[vLicenseAgreement] as 
+--актуальные договора
 select 
 (case When t8.codeI = 1 Then 3 Else (Case When t8.codeI in (2,3,4) Then 2 else 1 end) end) as registerType,
 t1.licStatus,
 t2.kindCode, t1.licCode, t2.name as licCodeName, 
-t1.licId, t1.licType, t3.name as licTypeName, t1.custId, t4.name as clnName, t10.licNum, t10.licDate, t10.dateBegin, 
-t10.dateEnd, t10.minAmount, t10.rateAmount, 
+t1.licId, t1.licType, t3.name as licTypeName, t1.custId, t4.name as clnName, 
+isnull(t10.licNum, t11.agrNumber) as licNum, 
+isnull(t10.licDate, t11.agrDate) as licDate, 
+isnull(t10.dateBegin, t11.dateBegin) as dateBegin, 
+isnull(t10.dateEnd, t11.dateEnd) as dateEnd, 
+t10.minAmount, t10.rateAmount, 
 t10.isAutoprolog, t10.addRate, t10.indxInfl, t10.periodCode, t5.name as periodName, t10.dayForPay, t1.licClass, t1.agrId, 
 t6.datePremiere, t6.fillingRate, t6.performNumb, t6.ticketPriceNC, t6.ticketPriceUSD, t6.isTour, t6.whereTour, 
 t6.objId, t7.name as objName,
@@ -20,3 +25,4 @@ join vcustomer t4 on t1.custId = t4.custId
 left join Period t5 on t10.periodCode = t5.codeI
 left join LicenseBigR t6 on t1.licId = t6.licId
 left join ObjectRight t7 on t6.objId = t7.objId
+left join AgreementAddBR t11 on t11.agrId = t1.agrId

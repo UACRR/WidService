@@ -33,23 +33,23 @@ namespace ipsmedserviceapp.Model
         public int? Utype { get; set; }
         public string Comment { get; set; }
 
-        public CategoryStatusType StatusNavigation { get; set; }
-        public ICollection<CategoryTr> CategoryTr { get; set; }
-        public ICollection<CreativeRoleType> CreativeRoleType { get; set; }
-        public ICollection<EtGenre> EtGenre { get; set; }
-        public ICollection<EtRole> EtRole { get; set; }
-        public ICollection<GenreType> GenreType { get; set; }
-        public ICollection<KindComposition> KindComposition { get; set; }
-        public ICollection<ModifyMusicType> ModifyMusicType { get; set; }
-        public ICollection<ModifyTextType> ModifyTextType { get; set; }
-        public ICollection<ModifyType> ModifyType { get; set; }
-        public ICollection<MyCategory> MyCategory { get; set; }
-        public ICollection<ObjectRight> ObjectRight { get; set; }
-        public ICollection<PopGenre> PopGenre { get; set; }
-        public ICollection<Request> Request { get; set; }
-        public ICollection<RequestAim> RequestAim { get; set; }
-        public ICollection<RequestType> RequestType { get; set; }
-        public ICollection<UseAreaType> UseAreaType { get; set; }
-        public ICollection<UseMediaType> UseMediaType { get; set; }
+        public virtual CategoryStatusType StatusNavigation { get; set; }
+        public virtual ICollection<CategoryTr> CategoryTr { get; set; }
+        public virtual ICollection<CreativeRoleType> CreativeRoleType { get; set; }
+        public virtual ICollection<EtGenre> EtGenre { get; set; }
+        public virtual ICollection<EtRole> EtRole { get; set; }
+        public virtual ICollection<GenreType> GenreType { get; set; }
+        public virtual ICollection<KindComposition> KindComposition { get; set; }
+        public virtual ICollection<ModifyMusicType> ModifyMusicType { get; set; }
+        public virtual ICollection<ModifyTextType> ModifyTextType { get; set; }
+        public virtual ICollection<ModifyType> ModifyType { get; set; }
+        public virtual ICollection<MyCategory> MyCategory { get; set; }
+        public virtual ICollection<ObjectRight> ObjectRight { get; set; }
+        public virtual ICollection<PopGenre> PopGenre { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
+        public virtual ICollection<RequestAim> RequestAim { get; set; }
+        public virtual ICollection<RequestType> RequestType { get; set; }
+        public virtual ICollection<UseAreaType> UseAreaType { get; set; }
+        public virtual ICollection<UseMediaType> UseMediaType { get; set; }
     }
 }

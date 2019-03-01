@@ -9,6 +9,6 @@ namespace ipsmedserviceapp.Model
         public string Lang { get; set; }
         public string Name { get; set; }
 
-        public PerformType CodeINavigation { get; set; }
+        public virtual PerformType CodeINavigation { get; set; }
     }
 }

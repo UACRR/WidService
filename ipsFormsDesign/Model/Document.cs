@@ -23,7 +23,7 @@ namespace ipsFormsDesign.Model
         public DocumentType DocTypeNavigation { get; set; }
         public PaidPeriod Period { get; set; }
         public Invoice Invoice { get; set; }
-        public ObservableListSource<DocReq> DocReq { get; set; }
+        public ICollection<DocReq> DocReq { get; set; }
     }
 }
 

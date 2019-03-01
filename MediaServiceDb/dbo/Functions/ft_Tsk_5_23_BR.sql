@@ -96,11 +96,11 @@ join vAgrLicenseType t12 on t11.licCode = t12.licCode
 --join vCustomer t15 on t7.custId = t15.custId
 join vCustCmService t16 on t7.custId = t16.custId and t12.kindCode = t16.CRKindCode
 join vCustomer t17 on t6.custId = t17.custId
-where t1.dateOper between @dateBegin and @dateEnd 
+where t1.dateWork between @dateBegin and @dateEnd 
 --    and t2.custId = isnull(@custId, t2.custId) 
 --	and t16.cmCustId = ISNULL(@cmCustId, t16.cmCustId)
 	and isnull(isMy,0) = 0
 
  RETURN
  END
- --select  * from ft_Tsk_5_23_BR ('2018-01-01', '2019-01-01' )
+ --select  * from ft_Tsk_5_23_BR ('2018-01-01', '2019-12-01' )

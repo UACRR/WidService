@@ -23,12 +23,12 @@ namespace ipsmedserviceapp.Model
         public int? AlgorithmId { get; set; }
         public string Series { get; set; }
 
-        public AlgorithmType Algorithm { get; set; }
-        public CopyrightKind KindCodeNavigation { get; set; }
-        public UsesKind UsesKindNavigation { get; set; }
-        public ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
-        public ICollection<LicenseAgreement> LicenseAgreement { get; set; }
-        public ICollection<RelCounterDoc> RelCounterDoc { get; set; }
-        public ICollection<RelLicCopyR> RelLicCopyR { get; set; }
+        public virtual AlgorithmType Algorithm { get; set; }
+        public virtual CopyrightKind KindCodeNavigation { get; set; }
+        public virtual UsesKind UsesKindNavigation { get; set; }
+        public virtual ICollection<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
+        public virtual ICollection<LicenseAgreement> LicenseAgreement { get; set; }
+        public virtual ICollection<RelCounterDoc> RelCounterDoc { get; set; }
+        public virtual ICollection<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }

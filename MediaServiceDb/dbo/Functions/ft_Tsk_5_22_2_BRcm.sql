@@ -26,12 +26,13 @@ set @dateEnd = isnull(@dateEnd, getdate())
 --set @dateEnd  = '2018-12-31'
 ;with TabTurn as 
 (
-select  rhCustId, cmCustId, rateCommiss, sum(amount) as amount 
-from --ft_Tsk_5_20SRMain (@dateBegin, @dateEnd) 
-ft_Tsk_5_20_BRMain (NULL, NULL) 
-where cmCustId = isnull(@cmCustId, cmCustId) 
-      and rateCommiss = isnull(@rateCommiss,rateCommiss)
-  group by rhCustId, cmCustId, rateCommiss
+select  isnull(t1.rhCustId,-1) as rhCustId, isnull(t1.cmCustId,-1) as cmCustId, isnull(t2.rateCommiss,0) as rateCommiss, sum(t1.amount) as amount 
+from ft_Tsk_5_distributed (@dateBegin, @dateEnd, NULL, NULL) t1, 
+     vCustomerRHolder t2 
+where t1.rhCustId = t2.custId and  
+      t1.cmCustId = isnull(@cmCustId, t1.cmCustId) 
+      and isnull(t2.rateCommiss,0) = isnull(@rateCommiss, isnull(t2.rateCommiss,0))
+  group by isnull(t1.rhCustId, -1), isnull(t1.cmCustId, -1), t2.rateCommiss
 )
 insert into @RT (rhCustId, rhCustIdName, innerInterCode, cmCustId, cmName, rateCommiss, amount, rowNum)
 select t1.rhCustId,  isnull(t7.name,'НЕВИЗНАЧЕНИЙ') as rhCustIdName, 
@@ -48,5 +49,5 @@ left join RightHolder t11 on t11.custId = t1.rhCustId
 RETURN
 END
 
---select * from ft_Tsk_5_22_2_BRcm ('2018-01-01', '2018-12-31', NULL, NULL) order by rowNum
+--select * from ft_Tsk_5_22_2_BRcm ('2018-01-01', '2019-12-31', -1, NULL) order by rowNum
 --select id,rhCustId,rhCustIdName,innerInterCode,cmCustId,amount,rateCommiss from ft_Tsk_5_22_2_BRcm ('2018-01-01', '2018-12-31', NULL, NULL) order by rowNum

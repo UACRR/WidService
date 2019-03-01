@@ -27,11 +27,11 @@ namespace ipsFormsDesign.Model
         public short? LicTerm { get; set; }
         public decimal? RateMusic { get; set; }
 
-        public Language LangCodeNavigation { get; set; }
-        public LicenseAgreement Lic { get; set; }
-        public ObjectRight Obj { get; set; }
-        public PerformType PerformTypeNavigation { get; set; }
-        public ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
+        public virtual Language LangCodeNavigation { get; set; }
+        public virtual LicenseAgreement Lic { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual PerformType PerformTypeNavigation { get; set; }
+        public virtual ObservableListSource<MusicalDesign> MusicalDesign { get; set; }
     }
 }
 

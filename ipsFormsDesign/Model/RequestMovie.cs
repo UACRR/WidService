@@ -18,10 +18,10 @@ namespace ipsFormsDesign.Model
         public bool? UseHire { get; set; }
         public bool? UseFestival { get; set; }
 
-        public KindFilm KindFilmNavigation { get; set; }
-        public Request Req { get; set; }
-        public ObservableListSource<RelGenreMovie> RelGenreMovie { get; set; }
-        public ObservableListSource<RelMovieEpisode> RelMovieEpisode { get; set; }
+        public virtual KindFilm KindFilmNavigation { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual ObservableListSource<RelGenreMovie> RelGenreMovie { get; set; }
+        public virtual ObservableListSource<RelMovieEpisode> RelMovieEpisode { get; set; }
     }
 }
 

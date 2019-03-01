@@ -17,7 +17,7 @@ namespace ipsmedserviceapp.Controllers
     [Route("api/community")]
     public class CommunityController : Controller
     {
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
         private IConfiguration _config;
         public CommunityController(MediaServiceContext dbContext, IConfiguration config)
         {
@@ -82,7 +82,7 @@ namespace ipsmedserviceapp.Controllers
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
-                .Include(item => item.RightHolder).SingleOrDefaultAsync();
+                .SingleOrDefaultAsync();
             return Json(community);
         }
 
@@ -157,7 +157,7 @@ namespace ipsmedserviceapp.Controllers
                 .Include(item => item.AgreementMaster)
                 .Include(item => item.BankAccount)
                 .Include(item => item.Community).ThenInclude(agr => agr.AgreementAddCommunity)
-                .Include(item => item.RightHolder).SingleOrDefaultAsync();
+                .SingleOrDefaultAsync();
 
             IDbContextTransaction tran = null;
             try
@@ -236,12 +236,14 @@ namespace ipsmedserviceapp.Controllers
                 });
 
                 // update
-                var updList = sourceList.Where(dest => destinationList.Any(sors => sors.CmCustId == dest.CmCustId
-                                                                        && sors.CRkindCode == dest.CRkindCode &&
-                                                                            sors.CustId == dest.CustId)).ToList();
+                var updList = destinationList.Where(dest => sourceList.Any(sors => sors.CmCustId == dest.CmCustId
+                                                                                && sors.CRkindCode == dest.CRkindCode 
+                                                                                && sors.CustId == dest.CustId)).ToList();
+                var sourceDict = sourceList.ToDictionary(rec => rec.CmCustId);
                 updList.ForEach(item =>
                 {
-                    item.SetFields(item);
+                    var sourceItem = sourceDict[item.CmCustId];
+                    item.SetFields(sourceItem);
                 });
 
                 // add new
@@ -415,11 +417,6 @@ namespace ipsmedserviceapp.Controllers
                         destination.Community.AgreementAddCommunity.Add(agreementAddCommunity);
                 });
             }
-            
-            // збереження RightHolder
-            if (destination.RightHolder == null)
-                destination.RightHolder = new RightHolder();
-            destination.RightHolder.SetFields(source.RightHolder);
         }
 
         private Customer GetTemplate()
@@ -469,10 +466,6 @@ namespace ipsmedserviceapp.Controllers
                             Version = 1,
                         }
                     },
-                },
-                RightHolder = new RightHolder
-                {
-                    RHolderType = 2,
                 },
                 BankAccount = new List<BankAccount>
                 {

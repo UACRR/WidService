@@ -48,7 +48,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.ctrlAddressLetter = new IpsViewComponentLibrary.AddressLetter();
             this.ctrlAddressRegister = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlAddressLive = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
+            this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.ctrlConsumerPassport = new IpsViewComponentLibrary.PassportControl();
@@ -673,7 +673,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private IpsAddressControl ctrlAddressRegister;
         private IpsAddressControl ctrlAddressLive;
-        private DebugFormForControls.ContactsPersonControl ctrlContacts;
+        private ContactsPersonControl ctrlContacts;
         private Telerik.WinControls.UI.RadGroupBox radGroupBox3;
         private PassportControl ctrlConsumerPassport;
         private IpsBankAccountControl ctrlBankAccount;

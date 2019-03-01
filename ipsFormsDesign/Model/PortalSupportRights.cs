@@ -13,8 +13,8 @@ namespace ipsFormsDesign.Model
 
         public int CRkindCode { get; set; }
 
-        public CopyrightKind CRkindCodeNavigation { get; set; }
-        public ObservableListSource<PortalObjectRights> PortalObjectRights { get; set; }
+        public virtual CopyrightKind CRkindCodeNavigation { get; set; }
+        public virtual ObservableListSource<PortalObjectRights> PortalObjectRights { get; set; }
     }
 }
 

@@ -8,7 +8,7 @@ namespace ipsmedserviceapp.Model
         public int ObjId { get; set; }
         public int PerId { get; set; }
 
-        public ObjectRight Obj { get; set; }
-        public Performer Per { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual Performer Per { get; set; }
     }
 }

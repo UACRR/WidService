@@ -83,7 +83,7 @@ namespace ipsFormsDesign.Services
                 streamTemplate.CopyTo(docStream);
             }
 
-            await System.Threading.Tasks.Task.Run(() => innerProcesRightHolder(cust, agr));
+            await System.Threading.Tasks.Task.Run(() => InnerProcesRightHolder(cust, agr));
 
         }
         /// <summary>
@@ -91,7 +91,7 @@ namespace ipsFormsDesign.Services
         /// </summary>
         /// <param name="pathTemplate"></param>
         /// <param name="rightHolder"></param>
-        public void processRightHolder(string pathTemplate, Customer cust, AgreementMaster agr)
+        public void ProcessRightHolder(string pathTemplate, Customer cust, AgreementMaster agr)
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -102,14 +102,14 @@ namespace ipsFormsDesign.Services
             File.Copy(pathTemplate, docFile);
             // відкрити шаблон
 
-            innerProcesRightHolder(cust, agr);
+            InnerProcesRightHolder(cust, agr);
         }
         /// <summary>
         /// Формування документу (внутріній метод)
         /// </summary>
         /// <param name="cust"></param>
         /// <param name="agr"></param>
-        private void innerProcesRightHolder(Customer cust, AgreementMaster agr)
+        private void InnerProcesRightHolder(Customer cust, AgreementMaster agr)
         {
 
 
@@ -131,7 +131,6 @@ namespace ipsFormsDesign.Services
             BankAccount bankacc = cust.BankAccount.FirstOrDefault();
             //   AnketaCompany anketaComp = cust.Company.AnketaCompany.Where(rec => rec.Version == cust.AnkVersion).SingleOrDefault();
             RightHolder rightHolder = cust.RightHolder;
-            bool isCompany = false;
 
             string customerName = string.Empty;
             string leAddress = string.Empty;
@@ -192,7 +191,6 @@ namespace ipsFormsDesign.Services
             }
             else // юр. особа
             {
-                isCompany = true;
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
                     $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
@@ -288,7 +286,7 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
                         break;
                     case "TableKind":
-                        formTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
+                        FormTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
                         break;
                     case "TableTrrUse":
                         if (rightHolder.AroundWord == true)
@@ -298,7 +296,7 @@ namespace ipsFormsDesign.Services
                             //item.Range.Text = "Всіх країн світу";
                         }
                         else
-                            formTableInUse(item.Range.Tables, cust.RightHolder);
+                            FormTableInUse(item.Range.Tables, cust.RightHolder);
                         break;
                     case "TableTrrNotUs":
                         if (rightHolder.AroundWord == false)
@@ -307,7 +305,7 @@ namespace ipsFormsDesign.Services
                         }
                         //item.Range.Text = "";
                         else
-                            formTableExclude(item.Range.Tables, cust.RightHolder);
+                            FormTableExclude(item.Range.Tables, cust.RightHolder);
                         break;
                     case "prcntARlt":
                         item.Range.Text = prcntARlt;
@@ -661,22 +659,22 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
                         break;
                     case "TableKind":
-                        formTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
+                        FormTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
                         break;
                     case "TableTrrUse":
-                        formTableInUse(item.Range.Tables, cust.RightHolder);
+                        FormTableInUse(item.Range.Tables, cust.RightHolder);
                         break;
                     case "TablePLh":
-                        formTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
+                        FormTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
                         break;
                     case "TablePLsm":
-                        formTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
+                        FormTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
                         break;
                     case "TablePLfe":
-                        formTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
+                        FormTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
                         break;
                     case "TablePLr":
-                        formTableRadioPlases(item.Range.Tables, clnBusinessPlaceLicense);
+                        FormTableRadioPlases(item.Range.Tables, clnBusinessPlaceLicense);
                         break;
                     case "prcntInc":
                         item.Range.Text = prcntInc;
@@ -808,7 +806,7 @@ namespace ipsFormsDesign.Services
 
         }
 
-        private void formTableRadioPlases(Tables tables, List<ClnBusinessPlace> clnBusinessPlaceBar)
+        private void FormTableRadioPlases(Tables tables, List<ClnBusinessPlace> clnBusinessPlaceBar)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
@@ -1208,18 +1206,18 @@ namespace ipsFormsDesign.Services
             public string RoleName { get; set; }
             public string AuthorName { get; set; }
             public string CountryName { get; set; }
-            public decimal? prepaySum { get; set; }
+            public decimal? PrepaySum { get; set; }
             public string Currency { get; set; }
-            public DateTime? prepayDateDo { get; set; }
+            public DateTime? PrepayDateDo { get; set; }
         }
-        class currency
+        class Currency
         {
-            public string r030 { get; set; }
-            public string countryCode { get; set; }
-            public string a3 { get; set; }
+            public string R030 { get; set; }
+            public string CountryCode { get; set; }
+            public string A3 { get; set; }
         }
 
-        public void processConsumerBR(string pathTemplate, Customer cust, AgreementMaster agrMain, LicenseAgreement licA)
+        public void ProcessConsumerBR(string pathTemplate, Customer cust, AgreementMaster agrMain, LicenseAgreement licA)
         {
 
             AgreementAddBr agr = agrMain.AgreementAddBr.Where(rec => rec.Version == agrMain.Version).First();
@@ -1238,7 +1236,7 @@ namespace ipsFormsDesign.Services
             var period = _dic.period.ToDictionary(rec => rec.CodeI);
             var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
             var KL030 = (from kl in _dic.klR030
-                         select new currency { r030 = kl.R030, countryCode = kl.CountryCode, a3 = kl.A3 }
+                         select new Currency { R030 = kl.R030, CountryCode = kl.CountryCode, A3 = kl.A3 }
             );
 
             app = StartWordApp();
@@ -1386,10 +1384,10 @@ namespace ipsFormsDesign.Services
                             RoleName = crt.Name,
                             AuthorName = aut.AuthorName,
                             CountryName = null,
-                            prepaySum = lab.PrepaySum ?? 0,
+                            PrepaySum = lab.PrepaySum ?? 0,
                             Currency = lab.R030 ?? "980"
                             ,
-                            prepayDateDo = lab.PrepayDateDo
+                            PrepayDateDo = lab.PrepayDateDo
                         }).ToList();
             }
             var TbAvAdv = new List<TbAuthorL>();
@@ -1405,10 +1403,10 @@ namespace ipsFormsDesign.Services
                                RoleName = crt.Name,
                                AuthorName = aut.AuthorName,
                                CountryName = null,
-                               prepaySum = lab.PrepaySum ?? 0,
+                               PrepaySum = lab.PrepaySum ?? 0,
                                Currency = lab.R030 ?? "980"
                                ,
-                               prepayDateDo = lab.PrepayDateDo
+                               PrepayDateDo = lab.PrepayDateDo
                            }).ToList();
             }
 
@@ -1483,16 +1481,16 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = CstPersonReason;
                         break;
                     case "TablePLk":
-                        formTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
+                        FormTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
                         break;
                     case "TableAvtorPrc":
-                        formTableAvtorPrc(item.Range.Tables, TbAPrc);
+                        FormTableAvtorPrc(item.Range.Tables, TbAPrc);
                         break;
                     case "TableAvtorLmp":
-                        formTableAvtorLmp(item.Range.Tables, TbAL);
+                        FormTableAvtorLmp(item.Range.Tables, TbAL);
                         break;
                     case "TableAvtorAdv":
-                        formTableAvtorLmp(item.Range.Tables, TbAvAdv);
+                        FormTableAvtorLmp(item.Range.Tables, TbAvAdv);
                         break;
 
 
@@ -1611,7 +1609,7 @@ namespace ipsFormsDesign.Services
 
 
 
-        public void processPartner(string pathTemplate, Customer cust, AgreementMaster agrMain)
+        public void ProcessPartner(string pathTemplate, Customer cust, AgreementMaster agrMain)
         {
 
             AgreementAddPartner agr = cust.Partner.AgreementAddPartner.
@@ -1631,7 +1629,7 @@ namespace ipsFormsDesign.Services
             var period = _dic.period.ToDictionary(rec => rec.CodeI);
             var typeVAT = _dic.typeVat.ToDictionary(rec => rec.CodeI);
             var KL030 = (from kl in _dic.klR030
-                         select new currency { r030 = kl.R030, countryCode = kl.CountryCode, a3 = kl.A3 }
+                         select new Currency { R030 = kl.R030, CountryCode = kl.CountryCode, A3 = kl.A3 }
             );
 
             app = StartWordApp();
@@ -1850,7 +1848,7 @@ namespace ipsFormsDesign.Services
         /// <param name="cust"></param>
         /// <param name="licAgr"></param>
         /// <param name="period"></param>
-        public void processAction(string pathTemplate, Customer cust, LicenseAgreement licAgrMain, PaidPeriod period)
+        public void ProcessAction(string pathTemplate, Customer cust, LicenseAgreement licAgrMain, PaidPeriod period)
         {
             // копіювати в тимчасову папку
             tempFileName = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
@@ -1981,7 +1979,7 @@ namespace ipsFormsDesign.Services
 
         }
 
-        private void formTableAvtorPrc(Tables tables, List<TbAuthorPrc> list)
+        private void FormTableAvtorPrc(Tables tables, List<TbAuthorPrc> list)
         {
             TbAuthorPrc tbAuthorPrc;
             if (tables.Count == 0) return;
@@ -1999,7 +1997,7 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[4].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
             }
         }
-        private void formTableAvtorLmp(Tables tables, List<TbAuthorL> list)
+        private void FormTableAvtorLmp(Tables tables, List<TbAuthorL> list)
         {
             TbAuthorL tbAuthorL;
             if (tables.Count == 0) return;
@@ -2014,9 +2012,9 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[1].Range.Text = tbAuthorL.RoleName.ToString();
                 curRow.Cells[2].Range.Text = tbAuthorL.AuthorName.ToString();
                 curRow.Cells[3].Range.Text = "Україна";
-                curRow.Cells[4].Range.Text = (Convert.ToDecimal(tbAuthorL.prepaySum)).ToString("F");
+                curRow.Cells[4].Range.Text = (Convert.ToDecimal(tbAuthorL.PrepaySum)).ToString("F");
                 curRow.Cells[5].Range.Text = tbAuthorL.Currency.ToString();
-                curRow.Cells[6].Range.Text = $"{tbAuthorL.prepayDateDo:dd.MM.yyyy}";
+                curRow.Cells[6].Range.Text = $"{tbAuthorL.PrepayDateDo:dd.MM.yyyy}";
             }
         }
 
@@ -2024,7 +2022,7 @@ namespace ipsFormsDesign.Services
 
 
 
-        private void formTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
+        private void FormTableAvtor(Tables tables, ICollection<LicAuthorBr> alicAuthorB)
         {
             LicAuthorBr authorBr;
             if (tables.Count == 0) return;
@@ -2050,7 +2048,7 @@ namespace ipsFormsDesign.Services
 
 
         }
-        private void formTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        private void FormTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
@@ -2077,7 +2075,7 @@ namespace ipsFormsDesign.Services
             }
         }
 
-        private void formTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        private void FormTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
@@ -2099,7 +2097,7 @@ namespace ipsFormsDesign.Services
             }
         }
 
-        private void formTableTheaterPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        private void FormTableTheaterPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
@@ -2126,7 +2124,7 @@ namespace ipsFormsDesign.Services
             }
         }
 
-        private void formTableBarPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        private void FormTableBarPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
@@ -2148,7 +2146,7 @@ namespace ipsFormsDesign.Services
             }
         }
 
-        private void formTableExclude(Tables tables, RightHolder rightHolder)
+        private void FormTableExclude(Tables tables, RightHolder rightHolder)
         {
             if (tables.Count == 0) return;
             Table table = tables[1];
@@ -2167,8 +2165,6 @@ namespace ipsFormsDesign.Services
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
 
             Row curRow = null;
-            WdRowAlignment aa;
-
             foreach (var item in rightHolder.TerritoryExclude)
             {
                 curRow = table.Rows.Add();
@@ -2178,7 +2174,7 @@ namespace ipsFormsDesign.Services
 
         }
 
-        private void formTableInUse(Tables tables, RightHolder rightHolder)
+        private void FormTableInUse(Tables tables, RightHolder rightHolder)
         {
             if (tables.Count == 0) return;
             Table table = tables[1];
@@ -2213,7 +2209,7 @@ namespace ipsFormsDesign.Services
                 }
         }
 
-        private void formTermUse(Tables tables, ICollection<TermsOfService> termsOfServices)
+        private void FormTermUse(Tables tables, ICollection<TermsOfService> termsOfServices)
         {
             if (tables.Count == 0) return;
             Table table = tables[1];

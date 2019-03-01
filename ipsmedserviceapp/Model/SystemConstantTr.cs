@@ -9,6 +9,6 @@ namespace ipsmedserviceapp.Model
         public string Lang { get; set; }
         public string Name { get; set; }
 
-        public SystemConstant CodeINavigation { get; set; }
+        public virtual SystemConstant CodeINavigation { get; set; }
     }
 }

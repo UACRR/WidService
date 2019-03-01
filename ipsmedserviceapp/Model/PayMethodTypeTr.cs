@@ -9,6 +9,6 @@ namespace ipsmedserviceapp.Model
         public string Lang { get; set; }
         public string Name { get; set; }
 
-        public PayMethodType CodeINavigation { get; set; }
+        public virtual PayMethodType CodeINavigation { get; set; }
     }
 }

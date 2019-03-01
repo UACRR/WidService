@@ -11,43 +11,31 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerForms;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace ConsumerWorkplace_v_1._0.Presenters
 {
-    class BigRightPresenter: IUpdateProviderBigRight
+    class BigRightPresenter : IUpdateProviderBigRight
     {
-        //кабінет великих прав
+        private const string AddNewConsumerSuccess = "Нового користувача додано!";
+        private const string AddNewConsumerError = "Не вдалося додати нового користувача!";
 
         private CabinetBigRightForm _localcabinetBigRightForm = null;
-        private CabinetBigRightForm _cabinetBigRightForm
-        {
-            get
-            {
-                if (_localcabinetBigRightForm == null)
-                {
-                    _localcabinetBigRightForm = new CabinetBigRightForm
-                    {
-                        StartPosition = FormStartPosition.CenterParent,
-                        WindowState = FormWindowState.Maximized
-                    };
-                }
-                return _localcabinetBigRightForm;
-            }
-        }
-
+        private CabinetBigRightForm _cabinetBigRightForm => _localcabinetBigRightForm ?? ( _localcabinetBigRightForm = new CabinetBigRightForm());
 
         private readonly ConsumerService _service;
         private readonly PartnerService _partnerService;
-        private readonly GlobalControlConsumerMainGridBR _mainGrid;
+        private readonly ConsumersViewBigRightControl _mainGrid;
 
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
         private ConsumerWorkplace _parentForm = null;
 
-        public BigRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, GlobalControlConsumerMainGridBR mainGrid, ConsumerWorkplace parentForm)
+        public BigRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, ConsumersViewBigRightControl mainGrid, ConsumerWorkplace parentForm)
         {
             _parentForm = parentForm;
             _service = service;
@@ -187,18 +175,13 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             int custType = 3; // Юридична особа
             var customer = _service.NewCustomer(custType);
 
-            var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights)
-            {
-                StartPosition = FormStartPosition.CenterParent
-            };
+            var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
+                customer = form.Customer;
                 var relust = _service.Save(customer);
-                if(relust)
-                    MessageBox.Show("Нового споживача додано!", "Успішно", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                    MessageBox.Show("Не вдалося додати нового споживача!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                MessageShow.ShowInfoByResult(AddNewConsumerSuccess, AddNewConsumerError, relust);
             }
             if (!form.Disposing)
             {
@@ -292,20 +275,15 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             }
             catch (FileNotFoundException flnfexcpt)
             {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Файл не знайдено: " + flnfexcpt.FileName + "\nПовідомлення: " + flnfexcpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error);
+                MessageShow.ShowError($"Файл \"{flnfexcpt.FileName}\" не знайдено!");
             }
             catch (FileLoadException flexcpt)
             {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Не можливо відкрити файл: " + flexcpt.FileName + "\nПовідомлення: " + flexcpt.Message, "Помилка відкривання файла", MessageBoxButtons.OK, RadMessageIcon.Error);
+                MessageShow.ShowError($"Неможливо відкрити файл \"{flexcpt.FileName}\"! {flexcpt.Message}");
             }
             catch (Exception excpt)
             {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Повідомлення: " + excpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error,
-                    MessageBoxDefaultButton.Button1,
-                    " Data: " + excpt.Data + Environment.NewLine + " StackTrace: " + excpt.StackTrace);
+                MessageShow.ShowError(excpt.Message);
             }
         }
 

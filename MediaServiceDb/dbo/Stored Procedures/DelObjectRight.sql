@@ -1,5 +1,5 @@
 ﻿---------------------
-CREATE PROCEDURE dbo.DelObjectRight   
+CREATE PROCEDURE [dbo].[DelObjectRight]   
   @Objid  integer
   AS   
 
@@ -48,14 +48,25 @@ delete MediaFile
   from  MediaFile  t0 join MediaTrack t1 on (t0.objid = t1.objid) 
   where t1.objId = @objid
 delete MediaTrack  where objId = @objid 
-delete relObjGenre where objId = @objid 
-delete LocationExept 
-  from LocationUse  t0 join CopyRight t1 on ( t0.CrightId = t1.CrightId) 
-  where t1.objId = @objid 
-delete LocationUse 
-  from LocationUse  t0 join CopyRight t1 on ( t0.CrightId = t1.CrightId) 
-  where t1.objId = @objid 
+delete from Authors where objId = @objid 
+delete from SeekObject where objId = @objid 
+delete from RelPopGenre where objId = @objid 
+delete from MusicalDesign where objId = @objid 
+delete CopyRightHistory 
+   from CopyRightHistory t1, 
+        CopyRight   t2 
+  where (t1.parentId = t2.cRightId or t1.childId = t2.cRightId)
+      and t2.objId = @Objid
+  
 delete CopyRight   where objId = @objid
+declare @licId integer
+set @licId = (select licId from LicenseBigR where objId = @objid)
+delete from MusicalDesign where licId = @licId 
+delete from LicenseBigR where objId = @objid 
+delete License where licId = @licId 
+delete from LicenseAgrParam where licId = @licId 
+delete LicenseAgreement where licId = @licId 
+delete from RelObjPerformer where objid = @Objid
 delete ObjectRight where objId = @objid
 
  IF (@@TRANCOUNT > 0 and @RetCode = 0 ) commit tran

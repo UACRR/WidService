@@ -83,7 +83,7 @@ namespace IpsViewComponentLibrary
         /// <param name="e"></param>
         private void radTextBoxControl1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (ListElement.ActiveItem != null && (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter))
+           if (ListElement.ActiveItem != null && (e.KeyCode == Keys.Tab || e.KeyCode == Keys.Enter))
             {
                 _callProcessDialogKey = false;
                 OnListItemSelected(ListElement.ActiveItem);

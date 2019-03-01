@@ -19,12 +19,12 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public int CategoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public ObservableListSource<KindCompositionTr> KindCompositionTr { get; set; }
-        public ObservableListSource<ModifyMusicType> ModifyMusicType { get; set; }
-        public ObservableListSource<ModifyTextType> ModifyTextType { get; set; }
-        public ObservableListSource<ModifyType> ModifyType { get; set; }
-        public ObservableListSource<Request> Request { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual ObservableListSource<KindCompositionTr> KindCompositionTr { get; set; }
+        public virtual ObservableListSource<ModifyMusicType> ModifyMusicType { get; set; }
+        public virtual ObservableListSource<ModifyTextType> ModifyTextType { get; set; }
+        public virtual ObservableListSource<ModifyType> ModifyType { get; set; }
+        public virtual ObservableListSource<Request> Request { get; set; }
     }
 }
 

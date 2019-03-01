@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
 
         public CreativeRoleType CodeINavigation { get; set; }
-        public ObservableListSource<CopyRtranslate> CopyRtranslate { get; set; }
+        public ICollection<CopyRtranslate> CopyRtranslate { get; set; }
     }
 }
 

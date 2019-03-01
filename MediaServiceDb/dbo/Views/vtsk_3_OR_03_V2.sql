@@ -1,7 +1,4 @@
-﻿/*==============================================================*/
-/* View: vtsk_3_OR_03_V2                                        */
-/*==============================================================*/
-CREATE view [dbo].[vtsk_3_OR_03_V2] as
+﻿CREATE view [dbo].[vtsk_3_OR_03_V2] as
 with CPR as 
 (select t2.objid, sum(t2.rate) as rate
 from copyright t2 
@@ -10,7 +7,7 @@ group by t2.objid
 )
 , 
 CPRH as 
-(select t1.custId, t1.objid, sum(rate) as rate, 
+(select t1.custId, t1.objid, sum(rate) as rate, min(isnull(status,0)) as status,
 roleName = STUFF (
 (select ','+t22.name 
 from copyright t11 
@@ -29,9 +26,10 @@ select t7.custId, t8.name as nameClient, t1.objid, t1.name,
  t7.rate as rateRH, 
  isnull(t1.performer, '') as performer, 
  isnull(t6.proffit,0) as profit
-,(Case When t1.status = 1 Then 1 Else 0 end ) as statusActive
-,(Case When t1.status = 0 Then 1 Else 0 end ) as statusNoActive
-,(Case When t5.rate <100 Then 1 Else 0 end ) statusNoRelate
+,(Case When t7.status = 1 Then 1 Else 0 end ) as statusActive
+,(Case When t7.status = 0 Then 1 Else 0 end ) as statusNoActive
+,(Case When t5.rate <100 Then 1 Else 0 end ) statusNoRelate, 
+t3.iswc
  from objectRight t1 
 left join MediaTrack t3 on t1.objid = t3.objId
 join GenreType t2 on t1.genreType = t2.codeI

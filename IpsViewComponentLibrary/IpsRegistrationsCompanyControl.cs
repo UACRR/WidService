@@ -12,6 +12,7 @@ using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary
 {
@@ -135,7 +136,8 @@ namespace IpsViewComponentLibrary
             AnketaCompany cust = bsAnketaCompany.DataSource is AnketaCompany ? 
                             bsAnketaCompany.DataSource as AnketaCompany :
                             (bsAnketaCompany.DataSource as BindingSource)?.Current as AnketaCompany;
-            if (cust != null && (cust.CustId != 0 && cust.Okpo.Trim() == txtOkpo.Text.Trim() ) )
+
+            if (cust != null && (cust.CustId != 0 && string.IsNullOrEmpty(cust.Okpo) == false && cust.Okpo.Trim() == txtOkpo.Text.Trim() ) )
                 return;
 
             if (!IpsGlobal.Instances.Keys.Contains(typeof(IUniqueChecker)))

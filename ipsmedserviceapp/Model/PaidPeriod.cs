@@ -28,16 +28,16 @@ namespace ipsmedserviceapp.Model
         public DateTime? DateActPrint { get; set; }
 
         [JsonIgnore]
-        public Client Cust { get; set; }
+        public virtual Client Cust { get; set; }
         [JsonIgnore]
-        public LicenseAgreement Lic { get; set; }
+        public virtual LicenseAgreement Lic { get; set; }
         [JsonIgnore]
-        public Period PeriodTypeNavigation { get; set; }
+        public virtual Period PeriodTypeNavigation { get; set; }
         [JsonIgnore]
-        public PeriodStatus StatusNavigation { get; set; }
-        public ICollection<BrRegister> BrRegister { get; set; }
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ICollection<RegisterRatedList> RegisterRatedList { get; set; }
+        public virtual PeriodStatus StatusNavigation { get; set; }
+        public virtual ICollection<BrRegister> BrRegister { get; set; }
+        public virtual ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ICollection<RegisterRatedList> RegisterRatedList { get; set; }
     }
 }
 

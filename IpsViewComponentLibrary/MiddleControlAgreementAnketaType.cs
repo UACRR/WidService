@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using LicenseForPlaces = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary

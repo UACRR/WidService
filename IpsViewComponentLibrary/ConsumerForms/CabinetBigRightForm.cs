@@ -17,7 +17,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public CabinetBigRightForm()
         {
             InitializeComponent();
-            cabinet.SetDictionaries(IpsGlobal.AnketaDictionaties);
+            StartPosition = FormStartPosition.CenterParent;
+            WindowState = FormWindowState.Maximized;
         }
 
         public string Title

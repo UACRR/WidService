@@ -84,13 +84,14 @@
             // 
             this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.anketaCompanyBindingSource, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtName.Location = new System.Drawing.Point(119, 1);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(333, 21);
             this.txtName.TabIndex = 0;
             this.txtName.ThemeName = "Office2013Light";
-            this.txtName.Leave += new System.EventHandler(this.txtName_Leave);
+            this.txtName.Leave += new System.EventHandler(this.TxtName_Leave);
             // 
             // IpsAnketaCompanyControl
             // 

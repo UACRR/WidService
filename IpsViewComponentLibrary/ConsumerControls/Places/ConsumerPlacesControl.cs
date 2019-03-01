@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Properties;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -197,7 +198,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         }
 
         // при зміні рядка грід 
-        private void rGridViewInstitution_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        private void RGridViewInstitution_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             var visible = gvPlaces.RowCount != 0;
             btnEdit.Enabled = visible;
@@ -217,7 +218,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         #region * * * ALL BUTTONS * * *
 
         // * * * РЕДАГУВАННЯ МАЙДАНЧИКА
-        private void btnEdit_Click(object sender, EventArgs e)
+        private void BtnEdit_Click(object sender, EventArgs e)
         {
             if(gvPlaces.RowCount == 0) return;
             if (!(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace place)) return;
@@ -244,7 +245,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         }
 
         //  * * * ВИДАЛЕННЯ МАЙДАНЧИКА
-        private void btnDeletePlace_Click(object sender, EventArgs e)
+        private void BtnDeletePlace_Click(object sender, EventArgs e)
         {
             if(gvPlaces.Rows.Count == 0)
                 return;

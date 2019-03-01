@@ -19,7 +19,7 @@ namespace ipsmedserviceapp.Model
         public int CountInput { get; set; }
         public int CountAutoLink { get; set; }
 
-        public ICollection<CheckParamPays> CheckParamPays { get; set; }
-        public ICollection<ExternalPay> ExternalPay { get; set; }
+        public virtual ICollection<CheckParamPays> CheckParamPays { get; set; }
+        public virtual ICollection<ExternalPay> ExternalPay { get; set; }
     }
 }

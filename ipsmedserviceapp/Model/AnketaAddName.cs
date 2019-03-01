@@ -14,6 +14,6 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string ShortName { get; set; }
 
-        public Customer Cust { get; set; }
+        public virtual Customer Cust { get; set; }
     }
 }

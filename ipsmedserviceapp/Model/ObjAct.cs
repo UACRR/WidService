@@ -17,10 +17,10 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<EtGenreRate> EtGenreRate { get; set; }
-        public ICollection<EtGenreRole> EtGenreRole { get; set; }
-        public ICollection<ObjActTr> ObjActTr { get; set; }
-        public ICollection<ObjectRight> ObjectRight { get; set; }
-        public ICollection<RelGenrePercent> RelGenrePercent { get; set; }
+        public virtual ICollection<EtGenreRate> EtGenreRate { get; set; }
+        public virtual ICollection<EtGenreRole> EtGenreRole { get; set; }
+        public virtual ICollection<ObjActTr> ObjActTr { get; set; }
+        public virtual ICollection<ObjectRight> ObjectRight { get; set; }
+        public virtual ICollection<RelGenrePercent> RelGenrePercent { get; set; }
     }
 }

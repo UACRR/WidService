@@ -10,6 +10,6 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public string Path { get; set; }
 
-        public Fixation Fix { get; set; }
+        public virtual Fixation Fix { get; set; }
     }
 }

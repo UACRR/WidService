@@ -15,8 +15,8 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<KindSerialTr> KindSerialTr { get; set; }
-        public ObservableListSource<RequestSerial> RequestSerial { get; set; }
+        public virtual ObservableListSource<KindSerialTr> KindSerialTr { get; set; }
+        public virtual ObservableListSource<RequestSerial> RequestSerial { get; set; }
     }
 }
 

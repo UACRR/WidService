@@ -25,17 +25,17 @@ namespace ipsmedserviceapp.Model
         public string ModifyLogin { get; set; }
 
         [JsonIgnore]
-        public AgreementMaster Agr { get; set; }
+        public virtual AgreementMaster Agr { get; set; }
         [JsonIgnore]
-        public AgreementStatus AgrStatusNavigation { get; set; }
+        public virtual AgreementStatus AgrStatusNavigation { get; set; }
         [JsonIgnore]
-        public RightHolder Cust { get; set; }
+        public virtual RightHolder Cust { get; set; }
         [JsonIgnore]
-        public TypeMethodGet GetCodeNavigation { get; set; }
+        public virtual TypeMethodGet GetCodeNavigation { get; set; }
         [JsonIgnore]
-        public Period PeriodCodeNavigation { get; set; }
+        public virtual Period PeriodCodeNavigation { get; set; }
         [JsonIgnore]
-        public AspNetUsers ResponsUserNavigation { get; set; }
+        public virtual AspNetUsers ResponsUserNavigation { get; set; }
     }
 }
 

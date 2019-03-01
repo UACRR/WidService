@@ -10,7 +10,7 @@ namespace ipsFormsDesign.Model
         public string Lang { get; set; }
         public string Name { get; set; }
 
-        public PopGenre IdNavigation { get; set; }
+        public virtual PopGenre IdNavigation { get; set; }
     }
 }
 

@@ -18,11 +18,11 @@ namespace ipsmedserviceapp.Model
         public string Name { get; set; }
         public int Id { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public ICollection<PopGenreTr> PopGenreTr { get; set; }
-        public ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
-        public ICollection<RelGenreMovie> RelGenreMovie { get; set; }
-        public ICollection<RelGenreSerial> RelGenreSerial { get; set; }
-        public ICollection<RelPopGenre> RelPopGenre { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual ICollection<PopGenreTr> PopGenreTr { get; set; }
+        public virtual ICollection<RelGenreAdapt> RelGenreAdapt { get; set; }
+        public virtual ICollection<RelGenreMovie> RelGenreMovie { get; set; }
+        public virtual ICollection<RelGenreSerial> RelGenreSerial { get; set; }
+        public virtual ICollection<RelPopGenre> RelPopGenre { get; set; }
     }
 }

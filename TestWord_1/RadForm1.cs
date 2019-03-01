@@ -67,17 +67,17 @@ namespace TestWord_1
                 case "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx":
                     cust = service1.GetData(221);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
+                    wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
                 case "F_ГО УААСП Автор.docx":
                     cust = service1.GetData(196);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
+                    wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
                 case "F_ГО УААСП Правовласник-Видавництво.docx":
                     cust = service1.GetData(131);
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processRightHolder(template, cust, cust.AgreementMaster.First());
+                    wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
 /*
                 case "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx":
@@ -101,7 +101,7 @@ namespace TestWord_1
                     AgreementMaster agreementMaster = cust.AgreementMaster?.Where(rec => rec.AgrId == 2334).Single();
 // для теста берем agrid=13 и licid=3;
                     LicenseAgreement licA = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 2334 &  rec.LicId == 1202)).Single();
-                    wordApp.processConsumerBR(template, cust, agreementMaster , licA);
+                    wordApp.ProcessConsumerBR(template, cust, agreementMaster , licA);
                     break;
 
                 case "F_Акт_публічне виконання.docx":
@@ -109,21 +109,21 @@ namespace TestWord_1
                     LicenseAgreement licAgr = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     PaidPeriod Period1 = licAgr.PaidPeriod.FirstOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processAction(template, cust, licAgr, Period1);
+                    wordApp.ProcessAction(template, cust, licAgr, Period1);
                     break;
                 case "F_Акт_публічне сповіщення TV+радио.docx":
                     cust = service.GetData(134);
                     LicenseAgreement licAgr1 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     PaidPeriod Period2 = licAgr1.PaidPeriod.FirstOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processAction(template, cust, licAgr1, Period2);
+                    wordApp.ProcessAction(template, cust, licAgr1, Period2);
                     break;
                 case "F_Акт_публічне сповіщення кTV.docx":
                     cust = service.GetData(134);
                     LicenseAgreement licAgr2 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
                     PaidPeriod Period3 = licAgr2.PaidPeriod.FirstOrDefault();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processAction(template, cust, licAgr2, Period3);
+                    wordApp.ProcessAction(template, cust, licAgr2, Period3);
                     break;
                 case "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx":
                     cust = service.GetData(321);
@@ -132,7 +132,7 @@ namespace TestWord_1
                     // для теста берем agrid=13 и licid=3;
                     LicenseAgreement licA11 = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 2334 & rec.LicId == 1201)).Single();
                     wordApp = new WordEngine(service.GetDictionary());
-                    wordApp.processConsumerBR(template, cust, agreementMaster11, licA11);
+                    wordApp.ProcessConsumerBR(template, cust, agreementMaster11, licA11);
                     break;
                 case "F_7_Г готелі.docx":
                     cust = service.GetData(226);

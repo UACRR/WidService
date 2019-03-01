@@ -27,15 +27,15 @@ namespace ipsFormsDesign.Model
         public int? CustId { get; set; }
         public int? CRightId { get; set; }
 
-        public CopyRight CRight { get; set; }
-        public CopyrightKind CRkindCodeNavigation { get; set; }
-        public Client Cust { get; set; }
-        public Partner Partner { get; set; }
-        public Register Reg { get; set; }
-        public BrRegister RegIdBrNavigation { get; set; }
-        public RegisterRatedList Rm { get; set; }
-        public DistribStatus StatusNavigation { get; set; }
-        public ObservableListSource<DistributionItem> DistributionItem { get; set; }
+        public virtual CopyRight CRight { get; set; }
+        public virtual CopyrightKind CRkindCodeNavigation { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual Partner Partner { get; set; }
+        public virtual Register Reg { get; set; }
+        public virtual BrRegister RegIdBrNavigation { get; set; }
+        public virtual RegisterRatedList Rm { get; set; }
+        public virtual DistribStatus StatusNavigation { get; set; }
+        public virtual ObservableListSource<DistributionItem> DistributionItem { get; set; }
     }
 }
 

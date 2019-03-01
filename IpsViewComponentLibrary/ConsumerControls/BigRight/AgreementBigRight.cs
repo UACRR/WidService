@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public AgreementBigRight()
         {
             InitializeComponent();
-            rdtPickerAgrDate.SetUserCalendarSettingsm();
+            dtAgrDate.SetUserCalendarSettingsm();
             rdtPickerDateBegin.SetUserCalendarSettingsm();
             rdtPickerDateEnd.SetUserCalendarSettingsm();
             rdtPickerDateBegin.ValueChanged += rdtPickerDateBegin_ValueChanged;
@@ -46,7 +46,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         {
             bool isValid = true;
 
-            if (rtxtBoxContrNumber.Text == string.Empty)
+            if (txtAgreementNumber.Text == string.Empty)
             {
                 lblContrNumb.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         // допускати числа не більші 31
         private void txtDayForPay_TextChanged(object sender, EventArgs e)
         {
-            if (Int32.TryParse(txtDayForPay.Text, out int val) && val > 31)
+            if (int.TryParse(txtDayForPay.Text, out int val) && val > 31)
                 txtDayForPay.Text = "31";
         }
     }

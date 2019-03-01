@@ -26,8 +26,8 @@ namespace ipsFormsDesign.Model
         public string ModifyLogin { get; set; }
         public TimeSpan? Duration { get; set; }
 
-        public ObjectRight Obj { get; set; }
-        public ObservableListSource<MediaFile> MediaFile { get; set; }
+        public virtual ObjectRight Obj { get; set; }
+        public virtual ObservableListSource<MediaFile> MediaFile { get; set; }
     }
 }
 

@@ -16,8 +16,8 @@ namespace ipsFormsDesign.Model
         public short? BalsType { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<Account> Account { get; set; }
-        public ObservableListSource<AccountBalsTr> AccountBalsTr { get; set; }
+        public virtual ObservableListSource<Account> Account { get; set; }
+        public virtual ObservableListSource<AccountBalsTr> AccountBalsTr { get; set; }
     }
 }
 

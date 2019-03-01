@@ -24,13 +24,13 @@ namespace ipsFormsDesign.Model
         public int? AlgorithmId { get; set; }
         public string Series { get; set; }
 
-        public AlgorithmType Algorithm { get; set; }
-        public CopyrightKind KindCodeNavigation { get; set; }
-        public UsesKind UsesKindNavigation { get; set; }
-        public ObservableListSource<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
-        public ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
-        public ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
-        public ObservableListSource<RelLicCopyR> RelLicCopyR { get; set; }
+        public virtual AlgorithmType Algorithm { get; set; }
+        public virtual CopyrightKind KindCodeNavigation { get; set; }
+        public virtual UsesKind UsesKindNavigation { get; set; }
+        public virtual ObservableListSource<AgrLicenseTypeTr> AgrLicenseTypeTr { get; set; }
+        public virtual ObservableListSource<LicenseAgreement> LicenseAgreement { get; set; }
+        public virtual ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
+        public virtual ObservableListSource<RelLicCopyR> RelLicCopyR { get; set; }
     }
 }
 

@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<MoneyLinkStatusTr> MoneyLinkStatusTr { get; set; }
-        public ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ICollection<MoneyLinkStatusTr> MoneyLinkStatusTr { get; set; }
+        public virtual ICollection<MoneyPeriodLink> MoneyPeriodLink { get; set; }
     }
 }

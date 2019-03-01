@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls
+﻿using IpsViewComponentLibrary.Extensions;
+
+namespace IpsViewComponentLibrary.ConsumerControls
 {
     partial class AgreementWithPlacesControl
     {
@@ -70,7 +72,7 @@
             this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
             this.ctrlAgrMain.DateEndNullText = "";
-            this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
+            this.ctrlAgrMain.DateTimeType = ConsumerAgreementInitType.None;
             this.ctrlAgrMain.Location = new System.Drawing.Point(14, 3);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";

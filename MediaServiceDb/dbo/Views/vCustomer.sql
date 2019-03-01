@@ -1,5 +1,8 @@
 ﻿
 
+
+
+
 CREATE view [dbo].[vCustomer] as 
  with Cust as 
 ( select t1.custId, custType, status, ankVersion, ankPublish, ankTech, 
@@ -8,12 +11,15 @@ CREATE view [dbo].[vCustomer] as
   (Case When t4.custid is NUll Then 0 else 1 end) as isPartner,
   (Case When t5.custid is NUll Then 0 else 1 end) as ankMy, 
    t2.signP,  
-   isnull((Case When isnull(t2.signP,0) = 0 Then t2.CustId Else (select custId from customer where isnull(ankPublish,0)= 1) end), t1.custId) as custIdSP
+   isnull((Case When isnull(t2.signP,0) = 0 Then t2.CustId Else (select custId from customer where isnull(ankPublish,0)= 1) end), t1.custId) as custIdSP, t2.interCode as IPI, 
+   t1.userId, 
+   t6.userName
  from customer t1 
     left join RightHolder t2 on t1.custId = t2.custId 
     left join Client t3 on t3.custId = t1.custId 
     left join Partner t4 on t4.custId = t1.custId 
-    left join myAnketa t5 on t5.custId = t1.custId 
+    left join myAnketa t5 on t5.custId = t1.custId
+	left join AspNetUsers t6 on t1.userId = t6.id
  )
 select
    t1.custId,
@@ -37,7 +43,10 @@ select
    t3.jaRegion, 
    t3.jaCity, 
    t3.jaAddress,
-   cast(0 as bit) as isAnkExtrn
+   cast(0 as bit) as isAnkExtrn,
+   t1.IPI, 
+   t1.userId, 
+   t1.userName
 from
    Cust t1
    join Company t2 on  t2.CustId = t1.CustId
@@ -66,8 +75,10 @@ select
    t3.reRegion as jaRegion, 
    t3.reCity as jaCity, 
    t3.reAddress as jaAdress,
-   cast(0 as bit) as isAnkExtrn
-
+   cast(0 as bit) as isAnkExtrn,
+   t1.IPI,
+   t1.userId, 
+   t1.userName
 from
    Cust t1
    join Person t2 on  t2.CustId = t1.CustId
@@ -95,7 +106,10 @@ select
    NULL as jaRegion, 
    NULL as jaCity, 
    NULL as jaAdress,
-   cast(1 as bit) as isAnkExtrn
+   cast(1 as bit) as isAnkExtrn, 
+   isnull(t1.IPI,t2.interCode) as IPI, 
+   t1.userId, 
+   t1.userName
 from
    Cust t1
    join AnketaExternal t2 on  t2.CustId = t1.CustId

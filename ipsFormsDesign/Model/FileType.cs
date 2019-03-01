@@ -14,7 +14,7 @@ namespace ipsFormsDesign.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ObservableListSource<FileCustomer> FileCustomer { get; set; }
+        public virtual ObservableListSource<FileCustomer> FileCustomer { get; set; }
     }
 }
 

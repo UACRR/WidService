@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Model
         public TimeSpan? DurationAll { get; set; }
         public TimeSpan? DurationShort { get; set; }
 
-        public Request Req { get; set; }
+        public virtual Request Req { get; set; }
     }
 }
 

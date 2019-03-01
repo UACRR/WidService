@@ -17,10 +17,10 @@ namespace ipsFormsDesign.Model
         public int? KindCompCode { get; set; }
         public int CategoryCode { get; set; }
 
-        public Category CategoryCodeNavigation { get; set; }
-        public KindComposition KindCompCodeNavigation { get; set; }
-        public ObservableListSource<ModifyTextTypeTr> ModifyTextTypeTr { get; set; }
-        public ObservableListSource<RequestAdapt> RequestAdapt { get; set; }
+        public virtual Category CategoryCodeNavigation { get; set; }
+        public virtual KindComposition KindCompCodeNavigation { get; set; }
+        public virtual ObservableListSource<ModifyTextTypeTr> ModifyTextTypeTr { get; set; }
+        public virtual ObservableListSource<RequestAdapt> RequestAdapt { get; set; }
     }
 }
 

@@ -34,8 +34,10 @@ namespace ipsmedserviceapp.Controllers
         {
             _dbContext = dbContext;
             _config = config;
-            _rateDistributor = new AmountDistributor();
-            _rateDistributor.Amount = 100;
+            _rateDistributor = new AmountDistributor
+            {
+                Amount = 100
+            };
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace ipsmedserviceapp.Controllers
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.Authors)
                     .Include(rec => rec.Obj).ThenInclude(obj => obj.CopyRight)
                     .LoadAsync();
-                
+
                 await _dbContext.Entry(item).Collection(rec => rec.MoneyPeriodLink).Query().Include(rec => rec.Period).LoadAsync();
 
                 foreach (var royalty in item.LicenseBigR.Obj.CopyRight)
@@ -201,7 +203,7 @@ namespace ipsmedserviceapp.Controllers
             {
                 var destinationAgr = await _dbContext.AgreementAddBr.SingleOrDefaultAsync(rec => rec.AgrId == agrId);
                 var sourceAgr = licenseAgreement.Agr.AgreementAddBr.SingleOrDefault();
-                destinationAgr.SetFields(sourceAgr, new []{ "CustId", "AgrId" });
+                destinationAgr.SetFields(sourceAgr, new[] { "CustId", "AgrId" });
 
                 tran = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.SaveChangesAsync();
@@ -219,7 +221,7 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        private void prepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
+        private void PrepareDataToUpdate(Customer sorsCustomer, Customer destCustomer)
         {
         }
         /// <summary>
@@ -230,9 +232,9 @@ namespace ipsmedserviceapp.Controllers
         private void InternalUpdateConsumer(Customer sorsCustomer, Customer destCustomer)
         {
 
-            prepareDataToUpdate(sorsCustomer, destCustomer);
+            PrepareDataToUpdate(sorsCustomer, destCustomer);
 
-            destCustomer.SetFields(sorsCustomer, new [] {"CustId"});
+            destCustomer.SetFields(sorsCustomer, new[] { "CustId" });
             //.Include(item => item.BankAccount)
             _dbContext.UpdateList(sorsCustomer.BankAccount, destCustomer.BankAccount, row => row.BanAccId = 0, (sorsItem, destItem) => sorsItem.BanAccId == destItem.BanAccId);
             //.Include(item => item.RightHolder)
@@ -262,7 +264,7 @@ namespace ipsmedserviceapp.Controllers
                 var sorsItem = sorsCustomer.Client.ClnBusinessPlace.Where(rec => item.PlaceId == rec.PlaceId).SingleOrDefault();
                 _dbContext.UpdateList(sorsItem.ClnPlaceHoll, item.ClnPlaceHoll, i => { }, (l, r) => l.HollId == r.HollId);
                 item.SetFields(sorsItem);
-                dicPlace.Add( sorsItem.PlaceId, item );
+                dicPlace.Add(sorsItem.PlaceId, item);
             });
             places = sorsCustomer.Client.ClnBusinessPlace.Where(rec => !destCustomer.Client.ClnBusinessPlace.Any(item => item.PlaceId == rec.PlaceId)).ToList();
             places.ForEach(sorsItem =>
@@ -276,7 +278,7 @@ namespace ipsmedserviceapp.Controllers
 
             // LicenseAgreement
             {
-                Action<bool, License, License> addLicense = (isNew, oldLic, lic) =>
+                void addLicense(bool isNew, License oldLic, License lic)
                 {
                     if (isNew == false) return;
                     if (oldLic.PlaceId == null) return;
@@ -284,7 +286,7 @@ namespace ipsmedserviceapp.Controllers
 
                     ClnBusinessPlace place = dicPlace[oldLic.PlaceId ?? 0];
                     place.License.Add(lic);
-                };
+                }
                 // Delete
                 List<LicenseAgreement> tempList = destCustomer.Client.LicenseAgreement.Where(row => !sorsCustomer.Client.LicenseAgreement.Any(item => row.LicId == item.LicId)).ToList();
                 tempList.ForEach(item =>
@@ -316,7 +318,7 @@ namespace ipsmedserviceapp.Controllers
                     if (item.LicenseBigR != null)
                     {
                         // Nested update
-                        updateLicenseBigR(item, license);
+                        UpdateLicenseBigR(item, license);
                     }
 
 
@@ -324,7 +326,7 @@ namespace ipsmedserviceapp.Controllers
                     foreach (var destParam in license.LicenseAgrParam)
                     {
                         var sorsParam = sorsDic[destParam.LicVersion];
-                        _dbContext.UpdateListExtra(sorsParam.License, destParam.License, (isNew, oldItem, newItem) => addLicense(isNew, oldItem, newItem ), (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId, new[] { "LId" });
+                        _dbContext.UpdateListExtra(sorsParam.License, destParam.License, (isNew, oldItem, newItem) => addLicense(isNew, oldItem, newItem), (l, r) => l.LicVersion == r.LicVersion && l.PlaceId == r.PlaceId, new[] { "LId" });
                     }
 
                     _dbContext.UpdateList(agreeItemSors.AgreementAddBr, agreeItemDest.AgreementAddBr, i => { }, (l, r) => l.Version == r.Version);
@@ -356,7 +358,7 @@ namespace ipsmedserviceapp.Controllers
 
                     if (item.LicenseBigR != null)
                     {
-                        updateLicenseBigR(item, license);
+                        UpdateLicenseBigR(item, license);
                     }
 
                     destCustomer.Client.LicenseAgreement.Add(license);
@@ -436,7 +438,7 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <param name="item"></param>
         /// <param name="license"></param>
-        private void updateLicenseBigR(LicenseAgreement item, LicenseAgreement license)
+        private void UpdateLicenseBigR(LicenseAgreement item, LicenseAgreement license)
         {
             if (item.LicenseBigR == null)
                 return;
@@ -525,14 +527,14 @@ namespace ipsmedserviceapp.Controllers
                     // Компанія
                     newCust.Company = new Company();
                     // Анкета
-                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status = 2, TypeVat = 1});
+                    newCust.Company.AnketaCompany.Add(new AnketaCompany { Version = 1, Status = 2, TypeVat = 1 });
                 }
                 else
                 {
                     // Фіз. особа
                     newCust.Person = new Person();
                     // Анкета
-                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, Status = 2});
+                    newCust.Person.AnketaPerson.Add(new AnketaPerson { Version = 1, Status = 2 });
                 }
 
                 return Json(newCust);
@@ -548,7 +550,7 @@ namespace ipsmedserviceapp.Controllers
         /// Дані по LicenseAgrParam -> LicenseAgreement Для нового Споживача
         /// </summary>
         /// <param name="sorsCustomer"></param>
-        private void fillLicenseAgreement(Customer sorsCustomer)
+        private void FillLicenseAgreement(Customer sorsCustomer)
         {
             foreach (var item in sorsCustomer.Client.LicenseAgreement)
             {
@@ -607,52 +609,42 @@ namespace ipsmedserviceapp.Controllers
             /// Не визначено
             /// </summary>
             None = 0,
-
             /// <summary>
             /// Діючі
             /// </summary>
             Working = 1,
-
             /// <summary>
             /// Для акцепту
             /// </summary>
             NotAccepted = 2,
-
             /// <summary>
             /// Не активні
             /// </summary>
             NotActive = 3,
-
             /// <summary>
             /// Для пролонгації
             /// </summary>
             ForProlongation = 4,
-
             /// <summary>
             /// Для розподілу
             /// </summary>
             ForDistribution = 5,
-
             /// <summary>
             /// Заборгованість
             /// </summary>
             Debt = 6,
-
             /// <summary>
             /// В роботі(прийом звітів)
             /// </summary>
             UnattachData = 7,
-
             /// <summary>
             /// Закриті
             /// </summary>
             Closed = 8,
-
             /// <summary>
             /// Не підтверджені
             /// </summary>
             NotConfirmed = 9,
-
             /// <summary>
             /// Всі
             /// </summary>
@@ -751,7 +743,7 @@ namespace ipsmedserviceapp.Controllers
                 { ConsumerFilterEnum.NotActive, "statusLic3Noactive=1"}
             } }
         };
-        
+
         #endregion
 
 
@@ -787,7 +779,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="custId"></param>
         /// <returns></returns>
         [HttpGet("BR/view/list")]
-        public async Task<IActionResult> getBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
+        public async Task<IActionResult> GetBigRightView([FromQuery] string viewName, [FromQuery] int? custId)
         {
             if (viewName == null || !listBrView.Keys.Contains(viewName))
                 return BadRequest();
@@ -949,14 +941,23 @@ namespace ipsmedserviceapp.Controllers
 
             if (typeId == 1)
             {
-                var licenseBigR = await _dbContext.LicenseBigR.SingleOrDefaultAsync(rec => rec.LicId == lic.LicId);
+                var licenseBigR = await _dbContext.LicenseBigR
+                    .Include( rec => rec.Obj)
+                        .ThenInclude( obj => obj.CopyRight )
+                    .SingleOrDefaultAsync(rec => rec.LicId == lic.LicId);
                 var licenseAgrParam = await _dbContext.LicenseAgrParam.SingleOrDefaultAsync(rec => rec.LicId == lic.LicId);
 
                 licenseAgrParam.DateBegin = licenseBigR.DatePremiere;
                 if (licenseBigR.LicTerm is short licTerm)
                     licenseAgrParam.DateEnd = licenseBigR.DatePremiere.Value.AddYears(licTerm);
+                
+                // MED-505
+                foreach (var cpRight in licenseBigR.Obj.CopyRight)
+                    cpRight.Status = 1;
             }
+
             lic.LicType = typeId;
+
 
             await _dbContext.SaveChangesAsync();
 
@@ -1009,7 +1010,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     // попередня ліцензія що повинна закритись
                     var closeAgr = await _dbContext.LicenseAgrParam
-                        .SingleOrDefaultAsync(rec => rec.LicId == licAgreement.LicId && 
+                        .SingleOrDefaultAsync(rec => rec.LicId == licAgreement.LicId &&
                                                      rec.LicVersion == licAgreement.LicVersion);
                     if (closeAgr != null)
                         closeAgr.LicStatus = 4; // Close
@@ -1189,32 +1190,36 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         [HttpPut("period/state/{periodid}/{stateid}")]
         public async Task<IActionResult> SetPeriodState(int periodid, int stateid, [FromBody] PaidPeriod body)
         {
-            IDbContextTransaction tran = null;
+            var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == periodid)
+                .Include( rec => rec.Lic )
+                    .ThenInclude( lic => lic.LicCodeNavigation )
+                        .ThenInclude( licCode => licCode.UsesKindNavigation )
+                .Include(rec => rec.RegisterRatedList)
+                .SingleOrDefaultAsync();
+            if (period == null)
+                return BadRequest();
 
-            try
+            foreach (var rrl in period.RegisterRatedList)
+                await _dbContext.Entry(rrl).Collection(rec => rec.Register).LoadAsync();
+
+            var oldStatus = period.Status;
+            period.Status = stateid;
+
+            // При переході періоду зі статусу Прийом звітів на Прийом коштів
+            // Розрахункові листи переходять в статус Погоджені
+            if (oldStatus == 1 && stateid == 2)
             {
-                var period = await _dbContext.PaidPeriod.Where(rec => rec.PeriodId == periodid)
-                    .SingleOrDefaultAsync();
-                if (period == null)
-                    return BadRequest();
-
-                period.Status = stateid;
-
-
-                tran = await _dbContext.Database.BeginTransactionAsync();
-                await _dbContext.SaveChangesAsync();
-
-                tran.Commit();
-                tran = null;
-                body = period;
-            }
-            catch (Exception)
-            {
-                tran?.Rollback();
-                throw;
+                var rgStatus = period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType == 1 ? 3 : 2; // Для ВП 3
+                foreach (var rrl in period.RegisterRatedList)
+                {
+                    rrl.Status = 1;
+                    foreach (var reg in rrl.Register)
+                        reg.RgStatus = rgStatus;
+                }
             }
 
-            return Json(body);
+            await _dbContext.SaveChangesAsync();
+            return Ok(body);
         }
 
         /// <summary>
@@ -1242,16 +1247,17 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// </summary>
         /// <param name="sors"></param>
         /// <param name="dest"></param>
-        private void modifyRatedList(RegisterRatedList sors, RegisterRatedList dest)
+        private void ModifyRatedList(RegisterRatedList sors, RegisterRatedList dest)
         {
 
-            if (dest.Status == 0 && sors.Status == 1 && dest.Period.Status == 1) // MED-197 Період переходить в стан "Прийом коштів"
+            if (dest.Status == 0 && sors.Status == 1) // MED-197 Період переходить в стан "Прийом коштів"
             {
                 dest.Period.Status = 2;
-
-                if( dest.Period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType == 1 )  // Великі права
+                // Великі права
+                if (dest.Period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType == 1)  
                 {
-                    foreach (var item in dest.Register)
+                    // Змінюємо в джерелі статус з 2 на 3
+                    foreach (var item in sors.Register)
                         item.RgStatus = 3;
                 }
             }
@@ -1306,10 +1312,10 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                             destRec.Ticks = 1;
                         }
 
-                        if (destRec.Ticks == 0 )
+                        if (destRec.Ticks == 0)
                         {
                             if (destItem.AlgorithmId == 1)  // Duration
-                                destRec.Ticks = Math.Max( 1, 
+                                destRec.Ticks = Math.Max(1,
                                                          (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / 10000));
                             else
                                 destRec.Ticks = 1;          // Count
@@ -1361,7 +1367,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 if (modifyItem == null)
                     throw new ApplicationException("Dont find Register item");
 
-                modifyRegister(body, modifyItem);
+                ModifyRegister(body, modifyItem);
 
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
@@ -1407,7 +1413,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                         .LoadAsync();
 
 
-                modifyRegister(body, modifyItem);
+                ModifyRegister(body, modifyItem);
                 modifyItem.RgStatus = 0;
 
                 tran = _dbContext.Database.BeginTransaction();
@@ -1424,7 +1430,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             }
 
         } // PoutRegisterDetail
-        private void modifyRegister(Register body, Register modifyItem)
+        private void ModifyRegister(Register body, Register modifyItem)
         {
             // addItem.PeriodId
             modifyItem.SetFields(body, new[] { "RegId" });
@@ -1445,7 +1451,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         }
 
         /// <summary>
-        /// Змінити звіт періоду
+        /// Видалити звіт періоду
         /// </summary>
         /// <param name="regid">Ід звіта</param>
         /// <returns></returns>
@@ -1542,7 +1548,7 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
         /// </summary>
         /// <param name="custId"></param>
         /// <returns></returns>
-        [HttpGet("Period/Payments/{custId}")]
+        [HttpGet("period/payments/{custId}")]
         public async Task<IActionResult> GetConsumerPayments(int custId)
         {
             string query = @"
@@ -1558,7 +1564,7 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
             return Json(list);
         }
 
-        [HttpPut("Period/Payments/{custId}")]
+        [HttpPut("period/payments/{custId}")]
         public async Task<IActionResult> PutExternalPay(int custId, [FromBody] List<ExternalPay> pays)
         {
             List<ExternalPay> dest = new List<ExternalPay>();
@@ -1606,42 +1612,8 @@ or t3.amount > (t3.destribAmount+t3.destribPrepay)
             }
         }
 
-        [HttpGet("Period/GetCustomerInfo/{custId}")]
-        public async Task<IActionResult> GetCustomerInfo(int custId)
-        {
-            var cust = await _dbContext.Customer.Where(rec => rec.CustId == custId)
-                .Include(rec => rec.Client)
-                .SingleOrDefaultAsync();
 
-            await _dbContext.LicenseAgrParam.FromSql(@"
-            select t1.* from LicenseAgrParam t1
-            join LicenseAgreement t2 on t2.licId = t1.licId and t2.licVersion = t1.licVersion
-            where t2.licStatus between 0 and 3 and  t2.custId = @custId
-            ", new SqlParameter("@custId", custId))
-                .Include(rec => rec.Lic)
-                .LoadAsync();
-
-            await _dbContext.MoneyReceived.FromSql(@"
-select t1.* from MoneyReceived t1
-where t1.custId = @custId
-", new SqlParameter("@custId", custId))
-                .Include(rec => rec.MoneyPeriodLink)
-                .LoadAsync();
-
-            await _dbContext.PaidPeriod.FromSql(@"
-select t1.* from PaidPeriod t1
-join LicenseAgreement t2 on t2.licId = t1.licId 
-where t2.licStatus between 0 and 3
-and t2.custId = @custId
-", new SqlParameter("@custId", custId))
-                .LoadAsync();
-
-
-
-            return Json(cust);
-        }
-
-        [HttpPut("Period/Payments/paidperiods/{custId}")]
+        [HttpPut("period/payments/paidperiods/{custId}")]
         public async Task<IActionResult> SavePeriods(int custId, [FromBody] List<PaidPeriod> body)
         {
             var dest = await _dbContext.PaidPeriod.FromSql(@"
@@ -1672,7 +1644,7 @@ and t2.custId = @custId
 
         }
 
-        [HttpPut("Period/Payments/linkperiods/{custId}")]
+        [HttpPut("period/payments/linkperiods/{custId}")]
         public async Task<IActionResult> SaveLink(int custId, [FromBody] List<MoneyPeriodLink> body)
         {
             string query = @"
@@ -1708,6 +1680,252 @@ and t3.licStatus between 0 and 3
             }
 
             return Json(linkList);
+        }
+
+        [HttpGet("period/getcustomerinfo/{custId}")]
+        public async Task<IActionResult> GetCustomerInfo(int custId)
+        {
+            var cust = await _dbContext.Customer.Where(rec => rec.CustId == custId)
+                .Include(rec => rec.Client)
+                .SingleOrDefaultAsync();
+
+            await _dbContext.LicenseAgrParam.FromSql(@"
+            select t1.* from LicenseAgrParam t1
+            join LicenseAgreement t2 on t2.licId = t1.licId and t2.licVersion = t1.licVersion
+            where t2.licStatus between 0 and 3 and  t2.custId = @custId
+            ", new SqlParameter("@custId", custId))
+                .Include(rec => rec.Lic)
+                .LoadAsync();
+
+            await _dbContext.MoneyReceived.FromSql(@"
+select t1.* from MoneyReceived t1
+where t1.custId = @custId
+", new SqlParameter("@custId", custId))
+                .Include(rec => rec.MoneyPeriodLink)
+                .LoadAsync();
+
+            await _dbContext.PaidPeriod.FromSql(@"
+select t1.* from PaidPeriod t1
+join LicenseAgreement t2 on t2.licId = t1.licId 
+where t2.licStatus between 0 and 3
+and t2.custId = @custId
+", new SqlParameter("@custId", custId))
+                .LoadAsync();
+
+
+
+            return Json(cust);
+        }
+
+
+        /// <summary>
+        /// Отримати розрахункові листи для споживача
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        [HttpGet("period/register/RatedList")]
+        public async Task<IActionResult> GetRegisterInfoForCustomer([FromQuery] int custId)
+        {
+            var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
+select t" + @"1.* 
+from LicenseAgreement t1 
+where t1.custId = @custId
+and isnull(licType,1) between 1 and 3
+", new SqlParameter("@custId", custId))
+                .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
+                .Include(lic => lic.Cust)
+                .Include(lic => lic.Agr)
+                .ToListAsync();
+
+
+            if (licenseAgreement.Count() == 0)
+                return Ok();
+
+            await _dbContext.MoneyReceived.Where(rec => rec.CustId == custId).LoadAsync();
+
+
+            foreach (var item in licenseAgreement)
+            {
+                await _dbContext.Entry(item).Collection(rec => rec.PaidPeriod)
+                    .Query()
+                    // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
+                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register)
+                    .LoadAsync();
+
+                await _dbContext.Entry(item).Collection(rec => rec.LicenseAgrParam).Query()
+                    .Where(rec => rec.LicVersion == item.LicVersion).LoadAsync();
+
+                await _dbContext.Entry(item.Agr).Collection(rec => rec.AgreementAddBr).Query()
+                    .Where(rec => rec.Version == item.Agr.Version).LoadAsync();
+            }
+
+            var customer = licenseAgreement.First().Cust.Cust;
+            return Json(customer);
+
+        }
+
+        /// <summary>
+        /// Отримати Р/Л по ідентифікатору
+        /// </summary>
+        /// <param name="rmId"></param>
+        /// <returns></returns>
+        [HttpGet("period/register/RatedList/{rmId}")]
+        public async Task<IActionResult> GetRatedListById(int rmId)
+        {
+            var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == rmId)
+                        .Include(rec => rec.Period)
+                        .Include(rec => rec.Register)
+                        .SingleOrDefaultAsync();
+
+            return Json(item);
+        }
+
+        /// <summary>
+        /// Створити новий Р/Л
+        /// </summary>
+        /// <param name="regId"></param>
+        /// <returns></returns>
+        [HttpGet("period/register/RegisterItem/{regId}")]
+        public async Task<IActionResult> GetRegisterItems(int regId)
+        {
+            var list = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId)
+                .Include(rec => rec.RegisterExtra)
+                .AsNoTracking().ToListAsync();
+            return Json(list);
+        }
+
+        /// <summary>
+        /// Створити звіту періоду
+        /// </summary>
+        /// <param name="regid">Ід звіта</param>
+        /// <returns></returns>
+        [HttpPost("period/register/RatedList")]
+        public async Task<IActionResult> PostRegisterDetail([FromBody] RegisterRatedList body)
+        {
+
+            IDbContextTransaction tran = null;
+            try
+            {
+                RegisterRatedList dest = null;
+
+                dest = new RegisterRatedList { CreateDate = DateTime.Today };
+                // _dbContext.RegisterRatedList.Add(dest);
+                var period = await _dbContext.PaidPeriod
+                    .Include( rec => rec.Lic)
+                        .ThenInclude( lic => lic.LicCodeNavigation )
+                            .ThenInclude( licCode => licCode.UsesKindNavigation )
+                    .FirstOrDefaultAsync(rec => rec.PeriodId == body.PeriodId);
+
+                if (period == null)
+                    return NotFound();
+                dest.SetFields(body);
+
+                period.RegisterRatedList.Add(dest);
+
+                ModifyRatedList(body, dest);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(dest);
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        }
+
+        // PostRegisterDetail
+        /// <summary>
+        /// Змінити Р/Л
+        /// </summary>
+        /// <param name="RmId"></param>
+        /// <param name="body"></param>
+        /// <returns></returns>
+        [HttpPut("period/register/RatedList/{RmId}")]
+        public async Task<IActionResult> PutRegisterDetail(int RmId, [FromBody] RegisterRatedList body)
+        {
+
+            IDbContextTransaction tran = null;
+            try
+            {
+                RegisterRatedList dest = null;
+                dest = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
+                    .Include(rec => rec.Register)
+                    .Include(rec => rec.Period) // MED-197
+                            .ThenInclude(p => p.Lic)
+                                .ThenInclude(lic => lic.LicCodeNavigation)
+                                    .ThenInclude(code => code.UsesKindNavigation)
+
+                    .Single();
+
+                foreach (var item in dest.Register)
+                {
+                    await _dbContext.RegisterItem.Where(rec => rec.RegId == item.RegId)
+                            .Include(rec => rec.RegisterExtra)
+                            .LoadAsync();
+                }
+
+                ModifyRatedList(body, dest);
+
+                tran = _dbContext.Database.BeginTransaction();
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+                return Json(dest);
+            }
+            catch (Exception e)
+            {
+                if (tran != null)
+                    tran.Rollback();
+                return BadRequest(e.Message);
+            }
+
+        } // PostRegisterDetail
+
+        /// <summary>
+        /// Видалення розрахункового листа
+        /// </summary>
+        /// <param name="RmId"></param>
+        /// <returns></returns>
+        [HttpDelete("period/register/RatedList/{RmId}")]
+        public async Task<IActionResult> DeleteRatedList(int RmId)
+        {
+            var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == RmId)
+                .Include(rec => rec.Register)
+                .SingleOrDefaultAsync();
+            if (item == null)
+                return BadRequest();
+
+
+            _dbContext.Register.RemoveRange(item.Register);
+            _dbContext.RegisterRatedList.Remove(item);
+
+            IDbContextTransaction tran = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                await _dbContext.Database.ExecuteSqlCommandAsync(@"
+delete RegisterItem
+from RegisterItem t1
+join Register t2 on t2.regId = t1.regId
+where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
+
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                tran = null;
+
+            }
+            catch (Exception)
+            {
+                tran?.Rollback();
+                throw;
+            }
+
+            return Ok();
         }
 
         #endregion
@@ -1865,207 +2083,6 @@ and t3.licStatus between 0 and 3
         }
 
         #endregion
-
-        /// <summary>
-        /// Отримати розрахункові листи для споживача
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <returns></returns>
-        [HttpGet("period/register/RatedList")]
-        public async Task<IActionResult> GetRegisterInfoForCustomer([FromQuery] int custId)
-        {
-            var licenseAgreement = await _dbContext.LicenseAgreement.FromSql(@"
-select t" + @"1.* 
-from LicenseAgreement t1 
-where t1.custId = @custId
-and isnull(licType,1) between 1 and 3
-", new SqlParameter("@custId", custId))
-                .Include(lic => lic.Cust).ThenInclude(cln => cln.Cust)
-                .Include(lic => lic.Cust)
-                .Include(lic => lic.Agr)
-                .ToListAsync();
-
-
-            if (licenseAgreement.Count() == 0)
-                return Ok();
-
-            await _dbContext.MoneyReceived.Where(rec => rec.CustId == custId).LoadAsync();
-
-
-            foreach (var item in licenseAgreement)
-            {
-                await _dbContext.Entry(item).Collection(rec => rec.PaidPeriod)
-                    .Query()
-                    // .Where(rec => rec.BeginDate >= item.DateBegin && rec.EndDate <= item.DateEnd )
-                    .Include(rec => rec.RegisterRatedList).ThenInclude(reg => reg.Register)
-                    .LoadAsync();
-
-                await _dbContext.Entry(item).Collection(rec => rec.LicenseAgrParam).Query()
-                    .Where(rec => rec.LicVersion == item.LicVersion).LoadAsync();
-
-                await _dbContext.Entry(item.Agr).Collection(rec => rec.AgreementAddBr).Query()
-                    .Where(rec => rec.Version == item.Agr.Version).LoadAsync();
-            }
-
-            var customer = licenseAgreement.First().Cust.Cust;
-            return Json(customer);
-
-        }
-
-        /// <summary>
-        /// Отримати Р/Л по ідентифікатору
-        /// </summary>
-        /// <param name="rmId"></param>
-        /// <returns></returns>
-        [HttpGet("period/register/RatedList/{rmId}")]
-        public async Task<IActionResult> GetRatedListById(int rmId)
-        {
-            var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == rmId)
-                        .Include(rec => rec.Period)
-                        .Include(rec => rec.Register)
-                        .SingleOrDefaultAsync();
-
-            return Json(item);
-        }
-
-        /// <summary>
-        /// Створити новий Р/Л
-        /// </summary>
-        /// <param name="regId"></param>
-        /// <returns></returns>
-        [HttpGet("period/register/RegisterItem/{regId}")]
-        public async Task<IActionResult> GetRegisterItems(int regId)
-        {
-            var list = await _dbContext.RegisterItem.Where(rec => rec.RegId == regId)
-                .Include(rec => rec.RegisterExtra)
-                .AsNoTracking().ToListAsync();
-            return Json(list);
-        }
-
-        /// <summary>
-        /// Створити звіту періоду
-        /// </summary>
-        /// <param name="regid">Ід звіта</param>
-        /// <returns></returns>
-        [HttpPost("period/register/RatedList")]
-        public async Task<IActionResult> PostRegisterDetail([FromBody] RegisterRatedList body)
-        {
-
-            IDbContextTransaction tran = null;
-            try
-            {
-                RegisterRatedList dest = null;
-
-                dest = new RegisterRatedList { CreateDate = DateTime.Today };
-                _dbContext.RegisterRatedList.Add(dest);
-
-
-                modifyRatedList(body, dest);
-
-                tran = _dbContext.Database.BeginTransaction();
-                await _dbContext.SaveChangesAsync();
-                tran.Commit();
-                tran = null;
-                return Json(dest);
-            }
-            catch (Exception e)
-            {
-                if (tran != null)
-                    tran.Rollback();
-                return BadRequest(e.Message);
-            }
-
-        }
-
-        // PostRegisterDetail
-        /// <summary>
-        /// Змінити Р/Л
-        /// </summary>
-        /// <param name="RmId"></param>
-        /// <param name="body"></param>
-        /// <returns></returns>
-        [HttpPut("period/register/RatedList/{RmId}")]
-        public async Task<IActionResult> PutRegisterDetail(int RmId, [FromBody] RegisterRatedList body)
-        {
-
-            IDbContextTransaction tran = null;
-            try
-            {
-                RegisterRatedList dest = null;
-                dest = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
-                    .Include(rec => rec.Register)
-                    .Include( rec => rec.Period) // MED-197
-                            .ThenInclude( p => p.Lic )
-                                .ThenInclude( lic => lic.LicCodeNavigation )
-                                    .ThenInclude ( code => code.UsesKindNavigation )
-                            
-                    .Single();
-
-                foreach (var item in dest.Register)
-                {
-                    await _dbContext.RegisterItem.Where(rec => rec.RegId == item.RegId)
-                            .Include(rec => rec.RegisterExtra)
-                            .LoadAsync();
-                }
-
-                modifyRatedList(body, dest);
-
-                tran = _dbContext.Database.BeginTransaction();
-                await _dbContext.SaveChangesAsync();
-                tran.Commit();
-                tran = null;
-                return Json(dest);
-            }
-            catch (Exception e)
-            {
-                if (tran != null)
-                    tran.Rollback();
-                return BadRequest(e.Message);
-            }
-
-        } // PostRegisterDetail
-
-        /// <summary>
-        /// Видалення розрахункового листа
-        /// </summary>
-        /// <param name="RmId"></param>
-        /// <returns></returns>
-        [HttpDelete("period/register/RatedList/{RmId}")]
-        public async Task<IActionResult> DeleteRatedList(int RmId)
-        {
-            var item = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == RmId)
-                .Include(rec => rec.Register)
-                .SingleOrDefaultAsync();
-            if (item == null)
-                return BadRequest();
-
-            
-            _dbContext.Register.RemoveRange(item.Register);
-            _dbContext.RegisterRatedList.Remove(item);
-
-            IDbContextTransaction tran = await _dbContext.Database.BeginTransactionAsync();
-            try
-            {
-                await _dbContext.Database.ExecuteSqlCommandAsync(@"
-delete RegisterItem
-from RegisterItem t1
-join Register t2 on t2.regId = t1.regId
-where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
-
-                await _dbContext.SaveChangesAsync();
-                tran.Commit();
-                tran = null;
-
-            }
-            catch (Exception)
-            {
-                tran?.Rollback();
-                throw;
-            }
-
-            return Ok();
-        }
-
     }
 
     public class CloseAgreementWithActiveLicense : Exception

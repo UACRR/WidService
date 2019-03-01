@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Request> Request { get; set; }
-        public ICollection<RequestStatusTypeTr> RequestStatusTypeTr { get; set; }
+        public virtual ICollection<Request> Request { get; set; }
+        public virtual ICollection<RequestStatusTypeTr> RequestStatusTypeTr { get; set; }
     }
 }

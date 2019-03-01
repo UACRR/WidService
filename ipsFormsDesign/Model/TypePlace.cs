@@ -17,9 +17,9 @@ namespace ipsFormsDesign.Model
         public bool? IsHoll { get; set; }
         public int? ParamType { get; set; }
 
-        public TypePlaceParam ParamTypeNavigation { get; set; }
-        public ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
-        public ObservableListSource<TypePlaceTr> TypePlaceTr { get; set; }
+        public virtual TypePlaceParam ParamTypeNavigation { get; set; }
+        public virtual ObservableListSource<ClnBusinessPlace> ClnBusinessPlace { get; set; }
+        public virtual ObservableListSource<TypePlaceTr> TypePlaceTr { get; set; }
     }
 }
 

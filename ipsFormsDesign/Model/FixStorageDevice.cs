@@ -12,7 +12,7 @@ namespace ipsFormsDesign.Model
         public string SerialNumber { get; set; }
         public decimal? Capacity { get; set; }
 
-        public Fixation Fix { get; set; }
+        public virtual Fixation Fix { get; set; }
     }
 }
 

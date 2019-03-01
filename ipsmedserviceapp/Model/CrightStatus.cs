@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<CopyRight> CopyRight { get; set; }
-        public ICollection<CrightStatusTr> CrightStatusTr { get; set; }
+        public virtual ICollection<CopyRight> CopyRight { get; set; }
+        public virtual ICollection<CrightStatusTr> CrightStatusTr { get; set; }
     }
 }

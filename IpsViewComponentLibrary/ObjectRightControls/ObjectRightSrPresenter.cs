@@ -171,35 +171,37 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             foreach (var a in objectRight.Authors)
             {
-                var foundedCopyright = listOfCopyRight.FirstOrDefault(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode);
+                var foundedCopyrightList = listOfCopyRight.Where(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode).ToArray();
                 var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
-
-                // Патлякевич
-                // Бородьба з подвійними записами в Авторах
-                if (foundedCopyright != null)
-                    listOfCopyRight.Remove(foundedCopyright);
-
-                // Патлякевич
-                // Не виводимо правовласників, права яких на об'єкт права вже закінчилися
-                if (RightHolderOnlyCode.Contains(a.RoleCode) && foundedCopyright == null)
-                    continue;
-
-                _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
+                foreach (var foundedCopyright in foundedCopyrightList)
                 {
-                    IsRightholder = a.CustId != null,
-                    AuthId = a.AuthId,
-                    ObjId = a.ObjId,
-                    RoleCode = a.RoleCode,
-                    FolkType = a.FolkType,
-                    AuthorName = a.AuthorName,
-                    CustId = a.CustId,
-                    CRightId = foundedCopyright?.CRightId,
-                    CopyrightStatus = foundedCopyright?.Status,
-                    CommunityName = foundedRightholder?.Community_Name,
-                    Rate = foundedCopyright?.Rate,
-                    BeginDate = foundedCopyright?.BeginDate,
-                    EndDate = foundedCopyright?.EndDate,
-                });
+                    // Патлякевич
+                    // Бородьба з подвійними записами в Авторах
+                    if (foundedCopyright != null)
+                        listOfCopyRight.Remove(foundedCopyright);
+
+                    // Патлякевич
+                    // Не виводимо правовласників, права яких на об'єкт права вже закінчилися
+                    if (RightHolderOnlyCode.Contains(a.RoleCode) && foundedCopyright == null)
+                        continue;
+
+                    _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
+                    {
+                        IsRightholder = a.CustId != null,
+                        AuthId = a.AuthId,
+                        ObjId = a.ObjId,
+                        RoleCode = a.RoleCode,
+                        FolkType = a.FolkType,
+                        AuthorName = a.AuthorName,
+                        CustId = a.CustId,
+                        CRightId = foundedCopyright?.CRightId,
+                        CopyrightStatus = foundedCopyright?.Status,
+                        CommunityName = foundedRightholder?.Community_Name,
+                        Rate = foundedCopyright?.Rate,
+                        BeginDate = foundedCopyright?.BeginDate,
+                        EndDate = foundedCopyright?.EndDate,
+                    });
+                }
             }
         }
 

@@ -1,10 +1,12 @@
 ﻿CREATE	 procedure [dbo].[Pay_Pay_SaldoDay]
 as
 begin
-/*
+
+if ( object_id('tempdb..#PayTurn') is null)
+
 CREATE TABLE #PayTurn(
 	TurnId						 int			NOT NULL,
-	DateWork				datetime NOT NULL,
+	DateWork				date NOT NULL,
 	ND							varchar(25)		NULL,
 	NDDate					datetime	NULL,
 	AccIdDebet			 int			NULL,
@@ -14,15 +16,18 @@ CREATE TABLE #PayTurn(
 	Amount					numeric(20, 2	)	NULL,
 	AmountCur				numeric(20, 2)	NULL,
 	PayNote					varchar(200) 	NULL,
-	DateOper				date						NOT NULL,
+	DateOper				datetime						NOT NULL,
 	PayStatus				int					 NULL,
 	regId						int,
 	distid					int,
 	paidid				int null,
 	flCourt		tinyint		null,
+	custidRh				int		null,
  PRIMARY KEY CLUSTERED (	TurnId ASC,	DateWork ASC)
 )
-nsert #PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,Amount,
+
+/*
+insert #PayTurn( TurnId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,Amount,
 							AmountCur,PayNote,DateOper,PayStatus,regId,distid,paidid ,flCourt)
   select 
 							DocPayId,DateWork,ND,NDDate,AccIdDebet,AccIdCredit,AccDebet,AccCredit,Amount,
@@ -94,15 +99,15 @@ insert  #saldo_turns(
 	R030
 	)
 select 
-max(AccIdDebet) AccID	,max(DateOper) DateOper,0 crdob,sum(Amount) 	debob,0 crdobCourt,sum(AmountCur) debobCourt,  '980'
+max(AccIdDebet) AccID	,max(DateWork) DateWork,0 crdob,sum(Amount) 	debob,0 crdobCourt,sum(AmountCur) debobCourt,  '980'
 from 
- #PayTurn group by 	AccIdDebet,DateOper
+ #PayTurn group by 	AccIdDebet,DateWork
 
 merge
  #saldo_turns t1
- using  (select max(AccIdCredit) AccID	,max(DateOper) DateOper,sum(Amount) crdob,0	debob,sum(AmountCur) crdobCourt, 0 debobCourt
+ using  (select max(AccIdCredit) AccID	,max(DateWork) DateWork,sum(Amount) crdob,0	debob,sum(AmountCur) crdobCourt, 0 debobCourt
  from 
- #PayTurn group by 	AccIdCredit,DateOper
+ #PayTurn group by 	AccIdCredit,DateWork
 ) a1
   on 
      (t1.AccID=a1.Accid)
@@ -113,7 +118,7 @@ merge
 			KrdoborotCourt=a1.crdobCourt
 	 when not matched then
 	 insert (AccID	,	DateBegin,	KrdOborot,Deboborot,	KrdOborotCourt,DeboborotCourt,	R030)
-	 values (a1.AccId,a1.DateOper,a1.crdob,0,crdobCourt,0,'980');
+	 values (a1.AccId,a1.DateWork,a1.crdob,0,crdobCourt,0,'980');
 
 
 
@@ -313,7 +318,7 @@ Using (select AccId,R030,DateBegin,DateEnd,Krdoborot,Deboborot,Rest,RestBegin  ,
 						then insert( accId,dateBegin,dateEnd,r030,rest,restCourt,deboborot,krdOborot,
 						deboborotCourt,krdOborotCourt,restBegin,restBeginCourt)
 						values(src.AccId,src.DateBegin,src.DateEnd,src.R030,src.Rest,src.RestCourt,src.Deboborot,src.Krdoborot,
-						deboborotCourt,krdoborotCourt,	RestBegin,	RestBeginCourt);
+						src.deboborotCourt,src.krdoborotCourt,	src.RestBegin,	src.RestBeginCourt);
 --						values(src.AccId,src.R030,src.DateBegin,src.DateEnd,src.Krdoborot,	src.Deboborot,src.Rest,RestBegin);
 
 

@@ -10,7 +10,7 @@ namespace ipsFormsDesign.Model
         public string Lang { get; set; }
         public string Name { get; set; }
 
-        public CreativeRoleType CodeINavigation { get; set; }
+        public virtual CreativeRoleType CodeINavigation { get; set; }
     }
 }
 

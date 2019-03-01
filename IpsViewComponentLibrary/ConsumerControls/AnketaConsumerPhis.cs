@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
@@ -19,9 +20,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             InitializeComponent();
 
-            btnCopyFromLiveToLett.Click += btnCopyFromLiveToLett_Click;
-            btnCopyFromLiveToReg.Click += btnCopyFromLiveToReg_Click;
-            btnCopyFromRegToLett.Click += btnCopyFromRegToLett_Click;
+            btnCopyFromLiveToLett.Click += BtnCopyFromLiveToLett_Click;
+            btnCopyFromLiveToReg.Click += BtnCopyFromLiveToReg_Click;
+            btnCopyFromRegToLett.Click += BtnCopyFromRegToLett_Click;
         }
 
         public void SetData(Customer customer, ConsumerAnketeType anketeType = ConsumerAnketeType.CreateNewAnketa)
@@ -50,16 +51,16 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlContacts.DataSource = anketaPerson;
             // - проживання
             ctrlAddressLive.DataSource = anketaPerson;
-            ctrlAddressLive.AddressDataMember = "ReAddress";
-            ctrlAddressLive.CityDataMember = "ReCity";
-            ctrlAddressLive.CountryDataMember = "ReCountry";
-            ctrlAddressLive.RegionDataMember = "ReRegion";
-            // - фактична
+            ctrlAddressLive.AddressDataMember = "FaAddress"; 
+            ctrlAddressLive.CityDataMember = "FaCity";       
+            ctrlAddressLive.CountryDataMember = "FaCountry"; 
+            ctrlAddressLive.RegionDataMember = "FaRegion";
+            // - реєстрації
             ctrlAddressRegister.DataSource = anketaPerson;
-            ctrlAddressRegister.AddressDataMember = "FaAddress";
-            ctrlAddressRegister.CityDataMember = "FaCity";
-            ctrlAddressRegister.CountryDataMember = "FaCountry";
-            ctrlAddressRegister.RegionDataMember = "FaRegion";
+            ctrlAddressRegister.AddressDataMember = "ReAddress";
+            ctrlAddressRegister.CityDataMember = "ReCity";
+            ctrlAddressRegister.CountryDataMember = "ReCountry";
+            ctrlAddressRegister.RegionDataMember = "ReRegion";
             //- -поштова
 
             //поштова
@@ -90,7 +91,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlPlaces.SetData(customer);
         }
 
-        private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)
+        private void BtnCopyFromLiveToReg_Click(object sender, EventArgs e)
         {
             ctrlAddressRegister.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
             ctrlAddressRegister.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
@@ -100,7 +101,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlAddressRegister.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
         }
 
-        private void btnCopyFromLiveToLett_Click(object sender, EventArgs e)
+        private void BtnCopyFromLiveToLett_Click(object sender, EventArgs e)
         {
             ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
             ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
@@ -111,7 +112,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlAddressLetter.TxtPostIndex.Select();
         }
 
-        private void btnCopyFromRegToLett_Click(object sender, EventArgs e)
+        private void BtnCopyFromRegToLett_Click(object sender, EventArgs e)
         {
             ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressRegister.DdlCountry.SelectedValue;
             ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressRegister.DdlRegion.SelectedIndex;

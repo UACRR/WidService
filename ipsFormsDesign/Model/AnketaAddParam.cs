@@ -12,7 +12,7 @@ namespace ipsFormsDesign.Model
         public int? CustId { get; set; }
         public string ParamValue { get; set; }
 
-        public Customer Cust { get; set; }
+        public virtual Customer Cust { get; set; }
     }
 }
 

@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.RightholderControls
+﻿using IpsViewComponentLibrary.Extensions;
+
+namespace IpsViewComponentLibrary.RightholderControls
 {
     partial class NewRightholderView
     {
@@ -49,7 +51,7 @@
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.btnCopyAddressFaRe = new Telerik.WinControls.UI.RadButton();
             this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlContacts = new DebugFormForControls.ContactsPersonControl();
+            this.ctrlContacts = new ContactsPersonControl();
             this.contactsCompanyPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
             this.passportPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -445,7 +447,6 @@
             // 
             // ctrlInternationalPassport
             // 
-            this.ctrlInternationalPassport.DataMember = "";
             this.ctrlInternationalPassport.DataSource = this.bsAnketaPerson;
             this.ctrlInternationalPassport.Location = new System.Drawing.Point(9, 34);
             this.ctrlInternationalPassport.Name = "ctrlInternationalPassport";
@@ -500,7 +501,7 @@
             this.ctrlAgreementNumberDate.DataSourceRh = this.bsAgreementAddRh;
             this.ctrlAgreementNumberDate.DateEndNullDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.ctrlAgreementNumberDate.DateEndNullText = "Не обмежено";
-            this.ctrlAgreementNumberDate.DateTimeType = IpsViewComponentLibrary.ConsumerAgreementInitType.None;
+            this.ctrlAgreementNumberDate.DateTimeType = ConsumerAgreementInitType.None;
             this.ctrlAgreementNumberDate.Location = new System.Drawing.Point(187, 6);
             this.ctrlAgreementNumberDate.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgreementNumberDate.Name = "ctrlAgreementNumberDate";
@@ -890,7 +891,7 @@
         private Telerik.WinControls.UI.RadPageViewPage rightholderPersonPage;
         private IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl ctrlServiceComissionControl;
         private Telerik.WinControls.UI.RadPageViewPage contactsPersonPage;
-        private DebugFormForControls.ContactsPersonControl ctrlContacts;
+        private ContactsPersonControl ctrlContacts;
         private Telerik.WinControls.UI.RadPageViewPage passportPage;
         private Telerik.WinControls.UI.RadPageView createRightholderPassportPageView;
         private Telerik.WinControls.UI.RadPageViewPage pasportPage;

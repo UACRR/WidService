@@ -175,7 +175,7 @@
             this.gvPeriodsPayment.Size = new System.Drawing.Size(944, 166);
             this.gvPeriodsPayment.TabIndex = 0;
             this.gvPeriodsPayment.ThemeName = "Office2013Light";
-            this.gvPeriodsPayment.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriodsPayment_CurrentRowChanged);
+            this.gvPeriodsPayment.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.GvPeriodsPayment_CurrentRowChanged);
             // 
             // paidPeriodBindingSource
             // 
@@ -337,7 +337,7 @@
             this.gvLicenseAgr.Size = new System.Drawing.Size(944, 144);
             this.gvLicenseAgr.TabIndex = 10;
             this.gvLicenseAgr.ThemeName = "Office2013Light";
-            this.gvLicenseAgr.SelectionChanged += new System.EventHandler(this.gvLicenseAgr_SelectionChanged);
+            this.gvLicenseAgr.SelectionChanged += new System.EventHandler(this.GvLicenseAgr_SelectionChanged);
             // 
             // LicAgreementBindingSource
             // 
@@ -374,7 +374,7 @@
             this.btnNewPeriod.TabIndex = 4;
             this.btnNewPeriod.Text = "Створити період";
             this.btnNewPeriod.ThemeName = "Office2013Light";
-            this.btnNewPeriod.Click += new System.EventHandler(this.btnNewPeriod_Click);
+            this.btnNewPeriod.Click += new System.EventHandler(this.BtnNewPeriod_Click);
             // 
             // btnClosePeriod
             // 
@@ -385,7 +385,7 @@
             this.btnClosePeriod.TabIndex = 4;
             this.btnClosePeriod.Text = "Закрити період";
             this.btnClosePeriod.ThemeName = "Office2013Light";
-            this.btnClosePeriod.Click += new System.EventHandler(this.btnClosePeriod_Click);
+            this.btnClosePeriod.Click += new System.EventHandler(this.BtnClosePeriod_Click);
             // 
             // radSplitContainer1
             // 
@@ -435,7 +435,7 @@
             this.btnUpdate.TabIndex = 15;
             this.btnUpdate.Text = "Оновити дані";
             this.btnUpdate.ThemeName = "Office2013Light";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // splitPanel2
             // 
@@ -493,7 +493,7 @@
             // 
             this.btnDistribute.Name = "btnDistribute";
             this.btnDistribute.Text = "Прив\'язати суму";
-            this.btnDistribute.Click += new System.EventHandler(this.btnDistribute_Click);
+            this.btnDistribute.Click += new System.EventHandler(this.BtnDistribute_Click);
             // 
             // btnCancelDistribute
             // 

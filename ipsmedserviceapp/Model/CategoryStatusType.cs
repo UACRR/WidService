@@ -14,7 +14,7 @@ namespace ipsmedserviceapp.Model
         public int CodeI { get; set; }
         public string Name { get; set; }
 
-        public ICollection<Category> Category { get; set; }
-        public ICollection<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
+        public virtual ICollection<Category> Category { get; set; }
+        public virtual ICollection<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
     }
 }

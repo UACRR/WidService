@@ -10,7 +10,7 @@ namespace ipsmedserviceapp.Model
         public string Url { get; set; }
         public string UseDesc { get; set; }
 
-        public Request Req { get; set; }
-        public TypeInternetObject TypeInternetObjectNavigation { get; set; }
+        public virtual Request Req { get; set; }
+        public virtual TypeInternetObject TypeInternetObjectNavigation { get; set; }
     }
 }

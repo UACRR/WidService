@@ -246,8 +246,8 @@
             // 
             // ctrlObjectRightList
             // 
-            this.ctrlObjectRightList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ctrlObjectRightList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlObjectRightList.Location = new System.Drawing.Point(0, -2);
             this.ctrlObjectRightList.Name = "ctrlObjectRightList";
@@ -332,8 +332,8 @@
             // 
             // ctrlRightholderList
             // 
-            this.ctrlRightholderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ctrlRightholderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRightholderList.Location = new System.Drawing.Point(1, 4);
             this.ctrlRightholderList.Name = "ctrlRightholderList";
@@ -445,8 +445,8 @@
             // ctrlRightholdersObjectsForChange
             // 
             this.ctrlRightholdersObjectsForChange.AllowMarkingRows = false;
-            this.ctrlRightholdersObjectsForChange.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.ctrlRightholdersObjectsForChange.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRightholdersObjectsForChange.Location = new System.Drawing.Point(3, 33);
             this.ctrlRightholdersObjectsForChange.Name = "ctrlRightholdersObjectsForChange";
@@ -621,8 +621,8 @@
             // 
             // gvObjectRightForTransfering
             // 
-            this.gvObjectRightForTransfering.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.gvObjectRightForTransfering.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvObjectRightForTransfering.BackColor = System.Drawing.Color.White;
             this.gvObjectRightForTransfering.Cursor = System.Windows.Forms.Cursors.Default;

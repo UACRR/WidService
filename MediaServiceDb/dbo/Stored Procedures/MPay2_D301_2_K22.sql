@@ -32,7 +32,7 @@ create table #Doc(
 	kindCode			int			null,
 	custId				int			null ,
 	objid					int			null,
-	ItemName			varchar(100)  null,
+	ItemName			varchar(120)  null,
 	categoryCode	int			null,
 	AccIdDebet		int			NULL,
 	AccIdCredit		int			NULL,
@@ -40,11 +40,11 @@ create table #Doc(
 	AccCredit			varchar(25)			NULL,
 --	partnerId			int				null,
 --	partnerComiss	money,
-	paynote			varchar	(100)		null
+	paynote			varchar	(200)		null
 )
 CREATE TABLE #PayTurn(
 	TurnId						 int				NOT NULL,
-	DateWork					datetime		NOT NULL,
+	DateWork					date		NOT NULL,
 	ND							varchar(25)	NULL,
 	NDDate					datetime		NULL,
 	AccIdDebet				int					NULL,
@@ -54,7 +54,7 @@ CREATE TABLE #PayTurn(
 	Amount						numeric(20, 2)	NULL,
 	AmountCur				numeric(20, 2)	NULL,
 	PayNote					varchar(200) 	NULL,
-	DateOper					date					NOT NULL,
+	DateOper					datetime					NOT NULL,
 	PayStatus				int					 NULL,
 	regId							int,
 	distid						int,
@@ -116,8 +116,7 @@ where
 --select * from #doc
 --select * from #partner
 update t1
-	set paynote=ltrim(rtrim(t4.Name))+'  '+ltrim(rtrim(t4.Author))
-	from 
+	set paynote=substring(ltrim(rtrim(t4.Name))+'  '+ltrim(rtrim(t4.Author)),1,120)	from 
 			#doc t1,ObjectRight t4
 	where
 			t1.ObjId=t4.ObjId
@@ -284,7 +283,7 @@ END CATCH
 END
 
 declare @DateOper date
-declare curso  cursor for   select    distinct dateOper 
+declare curso  cursor for   select    distinct dateWork
 		from 	DocPreparePay
 		where
 			PayStatus=1	
@@ -304,7 +303,7 @@ BEGIN
 							from DocPreparePay
 	where
 		PayStatus=1	
-		and dateOper=@DateOper
+		and dateWork=@DateOper
 and isnull(flCourt,0)=0			and
 (AccDebet like '3%' or AccDebet like '4%')	and
 AccCredit like '22%'

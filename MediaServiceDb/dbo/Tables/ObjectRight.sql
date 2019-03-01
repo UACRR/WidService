@@ -23,6 +23,8 @@
 );
 
 
+
+
 GO
 CREATE NONCLUSTERED INDEX [idx_name]
     ON [dbo].[ObjectRight]([name] ASC, [author] ASC, [performer] ASC);
@@ -68,3 +70,23 @@ EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Код ка�
 GO
 EXECUTE sp_addextendedproperty @name = N'MS_Description', @value = 'Объект права', @level0type = N'SCHEMA', @level0name = N'dbo', @level1type = N'TABLE', @level1name = N'ObjectRight';
 
+
+GO
+create TRIGGER dbo.tu_ObjectRight
+  ON  dbo.ObjectRight   AFTER UPDATE  
+  AS 
+BEGIN
+	SET NOCOUNT ON;
+   update ObjectRight set modifyDate = getdate() 
+      from INSERTED t1 where ObjectRight.objId = t1.objId
+END
+GO
+CREATE TRIGGER ti_ObjectRight
+   ON  ObjectRight 
+   AFTER INSERT
+ AS BEGIN
+
+   SET NOCOUNT ON;
+   update ObjectRight set createDate = getdate() 
+      from inserted t1 where ObjectRight.objId = t1.objId
+END

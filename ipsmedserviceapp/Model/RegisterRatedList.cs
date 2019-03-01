@@ -21,9 +21,9 @@ namespace ipsmedserviceapp.Model
         public int? CntReport { get; set; }
         public decimal? PaidAmount { get; set; }
 
-        public PaidPeriod Period { get; set; }
-        public RegisterListStatus StatusNavigation { get; set; }
-        public ICollection<Distribution> Distribution { get; set; }
-        public ICollection<Register> Register { get; set; }
+        public virtual PaidPeriod Period { get; set; }
+        public virtual RegisterListStatus StatusNavigation { get; set; }
+        public virtual ICollection<Distribution> Distribution { get; set; }
+        public virtual ICollection<Register> Register { get; set; }
     }
 }

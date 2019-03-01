@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Model
         public int? InputStatus { get; set; }
         public int? LinkStatus { get; set; }
 
-        public InputFile InputFile { get; set; }
+        public virtual InputFile InputFile { get; set; }
     }
 }
 

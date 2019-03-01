@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Model
         public string SymbolN { get; set; }
         public short? TemplYear { get; set; }
 
-        public ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
+        public virtual ObservableListSource<RelCounterDoc> RelCounterDoc { get; set; }
     }
 }
 

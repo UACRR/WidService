@@ -15,6 +15,6 @@ namespace ipsmedserviceapp.Model
         public string StatusNameRu { get; set; }
         public string StatusNameEn { get; set; }
 
-        public ICollection<ReqTrade> ReqTrade { get; set; }
+        public virtual ICollection<ReqTrade> ReqTrade { get; set; }
     }
 }

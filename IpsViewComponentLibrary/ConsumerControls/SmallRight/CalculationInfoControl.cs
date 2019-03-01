@@ -7,6 +7,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
@@ -36,7 +37,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             set
             {
                 _typeRights = value;
-                reinitValidClass();
+                ReinitValidClass();
             }
         }
         private List<int> validClass;
@@ -87,7 +88,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             _stateRecorder.AddGrid(gvPeriodsPayment);
         }
 
-        private void reinitValidClass()
+        private void ReinitValidClass()
         {
             validClass = new List<int>();
             if (TypeRights == TypeRights.SmallRights)
@@ -108,9 +109,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void SubscribeForGridEvents(RadGridView grid, RadGridView GridTarget)
         {
             RadDragDropService dragDropService = grid.GridViewElement.GetService<RadDragDropService>();
-            dragDropService.PreviewDragOver += new EventHandler<RadDragOverEventArgs>(dragDropService_PreviewDragOver);
-            dragDropService.PreviewDragDrop += new EventHandler<RadDropEventArgs>(dragDropService_PreviewDragDrop);
-            dragDropService.PreviewDragStart += new EventHandler<PreviewDragStartEventArgs>(svc_PreviewDragStart);
+            dragDropService.PreviewDragOver += new EventHandler<RadDragOverEventArgs>(DragDropService_PreviewDragOver);
+            dragDropService.PreviewDragDrop += new EventHandler<RadDropEventArgs>(DragDropService_PreviewDragDrop);
+            dragDropService.PreviewDragStart += new EventHandler<PreviewDragStartEventArgs>(Svc_PreviewDragStart);
 
             var behavior = grid.GridBehavior as BaseGridBehavior;
             grid.GridBehavior = behavior;
@@ -156,7 +157,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void svc_PreviewDragStart(object sender, PreviewDragStartEventArgs e)
+        private void Svc_PreviewDragStart(object sender, PreviewDragStartEventArgs e)
         {
             RadItem target = e.DragInstance as RadItem;
             var row = target as GridDataRowElement;
@@ -190,10 +191,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dragDropService_PreviewDragDrop(object sender, RadDropEventArgs e)
+        private void DragDropService_PreviewDragDrop(object sender, RadDropEventArgs e)
         {
-            RadItem dropTarget = e.HitTarget as RadItem;
-            if (dropTarget == null)
+            if (!(e.HitTarget is RadItem dropTarget))
                 return;
 
             RadGridView targetGrid = dropTarget.ElementTree.Control as RadGridView;
@@ -219,7 +219,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dragDropService_PreviewDragOver(object sender, RadDragOverEventArgs e)
+        private void DragDropService_PreviewDragOver(object sender, RadDragOverEventArgs e)
         {
             if (e.DragInstance is GridDataRowElement && e.HitTarget is GridDataRowElement)
             {
@@ -260,13 +260,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     return;
                 }
 
-                normalizeData(_customer);
+                NormalizeData(_customer);
                 SetupAllBinding();
             }
 
         }
 
-        private void normalizeData(Customer cust)
+        private void NormalizeData(Customer cust)
         {
             var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
             var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
@@ -296,7 +296,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void BindLicAgreements()
         {
             if (validClass == null)
-                reinitValidClass();
+                ReinitValidClass();
 
             var licAgr = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && validClass.Contains(rec.LicClass)).Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
             if (licAgr.Count() > 0)
@@ -340,7 +340,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         }
 
         // додати період
-        private void btnNewPeriod_Click(object sender, EventArgs e)
+        private void BtnNewPeriod_Click(object sender, EventArgs e)
         {
             var currentAgree = gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData;
             CreatePeriod dialog = new CreatePeriod(currentAgree.Lic);
@@ -355,7 +355,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         
         bool boolRunFromDragDrop = false;
         
-        private void btnDistribute_Click(object sender, EventArgs e)
+        private void BtnDistribute_Click(object sender, EventArgs e)
         {
 
             MoneyReceived pay = null;
@@ -410,7 +410,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 return;
 
 
-            DistributionForm form = new DistributionForm(pay, licParam, period);
+            var form = new DistributionForm(pay, licParam, period);
 
             if (form.ShowDialog() == DialogResult.OK)
             {
@@ -451,10 +451,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         }
 
         /// Закрити період
-        private void btnClosePeriod_Click(object sender, EventArgs e)
+        private void BtnClosePeriod_Click(object sender, EventArgs e)
         {
-            var period = gvPeriodsPayment.CurrentRow?.DataBoundItem as PaidPeriod;
-            if (period == null)
+            if (!(gvPeriodsPayment.CurrentRow?.DataBoundItem is PaidPeriod period))
                 return;
 
             if (MessageBox.Show($"Закрити період {period.PeriodName} ?", "Закриття періоду", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -466,13 +465,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             }
         }
 
-        private void gvPeriodsPayment_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        private void GvPeriodsPayment_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            buttonController.changePeriod(e.CurrentRow?.DataBoundItem as PaidPeriod);
+            buttonController.ChangePeriod(e.CurrentRow?.DataBoundItem as PaidPeriod);
         }
 
         // оновити дані
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void BtnUpdate_Click(object sender, EventArgs e)
         {
             _stateRecorder.RecordState();
             UpdateData?.Invoke();
@@ -481,7 +480,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         }
 
         // зміни на гріду активних ліцензій
-        private void gvLicenseAgr_SelectionChanged(object sender, EventArgs e)
+        private void GvLicenseAgr_SelectionChanged(object sender, EventArgs e)
         {
             SetGrid3DataSource();
         }
@@ -489,9 +488,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
     class ButtonController
     {
-        private RadButton _btnNewPeriod,
-                            _btnClosePeriod;
-        private RadMenuItem _btnDistribute;
+        private readonly RadButton _btnNewPeriod;
+        private RadButton _btnClosePeriod;
+        private readonly RadMenuItem _btnDistribute;
 
         public ButtonController(RadButton btnNewPeriod, RadMenuItem btnDistribute, RadButton btnClosePeriod)
         {
@@ -500,7 +499,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             _btnClosePeriod = btnClosePeriod;
         }
 
-        public void changePeriod(PaidPeriod period)
+        public void ChangePeriod(PaidPeriod period)
         {
             if (period == null
                 || period.Amount > period.Distribamount + period.Undistribamount)

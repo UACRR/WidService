@@ -17,9 +17,9 @@ namespace ipsFormsDesign.Model
         public string Name { get; set; }
         public string TemplateName { get; set; }
 
-        public ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
-        public ObservableListSource<AgreementTypeTr> AgreementTypeTr { get; set; }
-        public ObservableListSource<RelDocAgrType> RelDocAgrType { get; set; }
+        public virtual ObservableListSource<AgreementMaster> AgreementMaster { get; set; }
+        public virtual ObservableListSource<AgreementTypeTr> AgreementTypeTr { get; set; }
+        public virtual ObservableListSource<RelDocAgrType> RelDocAgrType { get; set; }
     }
 }
 

@@ -20,8 +20,8 @@ namespace ipsFormsDesign.Model
         public int CountInput { get; set; }
         public int CountAutoLink { get; set; }
 
-        public ObservableListSource<CheckParamPays> CheckParamPays { get; set; }
-        public ObservableListSource<ExternalPay> ExternalPay { get; set; }
+        public virtual ObservableListSource<CheckParamPays> CheckParamPays { get; set; }
+        public virtual ObservableListSource<ExternalPay> ExternalPay { get; set; }
     }
 }
 

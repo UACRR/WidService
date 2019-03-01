@@ -22,10 +22,10 @@ namespace ipsFormsDesign.Model
         public decimal DestribAmount { get; set; }
         public decimal? DestribPrepay { get; set; }
 
-        public Client Cust { get; set; }
-        public MoneyType MoneyTypeNavigation { get; set; }
-        public ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
-        public ObservableListSource<MoneyPrepayLink> MoneyPrepayLink { get; set; }
+        public virtual Client Cust { get; set; }
+        public virtual MoneyType MoneyTypeNavigation { get; set; }
+        public virtual ObservableListSource<MoneyPeriodLink> MoneyPeriodLink { get; set; }
+        public virtual ObservableListSource<MoneyPrepayLink> MoneyPrepayLink { get; set; }
     }
 }
 

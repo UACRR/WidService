@@ -15,6 +15,6 @@ namespace ipsmedserviceapp.Model
         public string StatusNameRu { get; set; }
         public string StatusNameEn { get; set; }
 
-        public ICollection<ReqAgreement> ReqAgreement { get; set; }
+        public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
     }
 }
