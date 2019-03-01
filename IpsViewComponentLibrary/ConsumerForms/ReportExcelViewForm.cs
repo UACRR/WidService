@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using Telerik.WinControls;
-using Excel = Microsoft.Office.Interop.Excel;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerForms
 {
     public partial class ReportExcelViewForm : Telerik.WinControls.UI.RadForm
     {
@@ -40,6 +32,7 @@ namespace IpsViewComponentLibrary
         public ReportExcelViewForm(Register register, bool isManual = false)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             IsManual = isManual;
             DialogResult = DialogResult.None;
             if (isManual)

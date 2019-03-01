@@ -100,7 +100,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             }
 
             Text = string.Concat(DefaultTitle, $": {lastName} {firstName} {surName}");
-
         }
 
         private void Save(object sender, bool e)
@@ -153,11 +152,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         private void btnLoadPdf_Click(object sender, EventArgs e)
         {
-            var printForm = new ViewAndPrintAgreement(_customer, _license)
-            {
-                WindowState = FormWindowState.Maximized,
-                StartPosition = FormStartPosition.CenterScreen
-            };
+            var printForm = new ViewAndPrintAgreementForm(_customer, _license);
             printForm.ShowDialog();
         }
     }

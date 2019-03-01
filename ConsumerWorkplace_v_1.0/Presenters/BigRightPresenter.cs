@@ -175,10 +175,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             int custType = 3; // Юридична особа
             var customer = _service.NewCustomer(custType);
 
-            var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights)
-            {
-                StartPosition = FormStartPosition.CenterParent
-            };
+            var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights);
 
             if (form.ShowDialog() == DialogResult.OK)
             {

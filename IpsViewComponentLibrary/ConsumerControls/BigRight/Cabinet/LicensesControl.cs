@@ -168,24 +168,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
         private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
+            if (!(e.Row.DataBoundItem is LicenseAgreementBigRightView item))
+                return;
+
             switch (e.Column.FieldName)
             {
                 case "viewBtn":
-                    var licId = (e.Row.DataBoundItem as LicenseAgreementBigRightView)?.LicId;
-                    var viewLicenseForm = new RequestForm(_customer, _gridMainView, ScopeOfUseForm.View, licId)
-                    {
-                        StartPosition = FormStartPosition.CenterParent
-                    };
+                    var viewLicenseForm = new RequestForm(_customer, _gridMainView, ScopeOfUseForm.View, item.LicId);
                     viewLicenseForm.ShowDialog();
                     break;
                 case "printBtn":
-                    var row = e.Row.DataBoundItem as LicenseAgreementBigRightView;
-                    var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == row?.LicId);
-                    var print = new ViewAndPrintAgreement(_customer, licenseAgreement)
-                    {
-                        WindowState = FormWindowState.Maximized,
-                        StartPosition = FormStartPosition.CenterScreen
-                    };
+                    var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == item.LicId);
+                    var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
                     print.ShowDialog();
                     break;
             }
