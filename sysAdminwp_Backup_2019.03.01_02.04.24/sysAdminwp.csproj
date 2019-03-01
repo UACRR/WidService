@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C08CD8F1-BC04-4EB9-99D1-BE924649F23A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>sysAdminwp</RootNamespace>
+    <AssemblyName>sysAdminwp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug IIS|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug IIS\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug HttpSys|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug HttpSys\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.1016.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.1016.40\Telerik.WinControls.GridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.RichTextEditor, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.1016.40\Telerik.WinControls.Themes.Windows8.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.1016.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.1016.40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ComplexDictionaryControls\CountryDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\CountryDictionaryControl.Designer.cs">
+      <DependentUpon>CountryDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.Designer.cs">
+      <DependentUpon>CopyRightKindDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.Designer.cs">
+      <DependentUpon>CreativeRoleTypeDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\GenreTypeDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\GenreTypeDictionaryControl.Designer.cs">
+      <DependentUpon>GenreTypeDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\IComplexDictionary.cs" />
+    <Compile Include="ComplexDictionaryControls\Klr030DictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\Klr030DictionaryControl.Designer.cs">
+      <DependentUpon>Klr030DictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\SystemConstantDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\SystemConstantDictionaryControl.Designer.cs">
+      <DependentUpon>SystemConstantDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\TypePlaceDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionaryControls\TypePlaceDictionaryControl.Designer.cs">
+      <DependentUpon>TypePlaceDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DictionaryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DictionaryForm.Designer.cs">
+      <DependentUpon>DictionaryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.Designer.cs">
+      <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTable.cs" />
+    <EmbeddedResource Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.resx">
+      <DependentUpon>CopyRightKindDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\CountryDictionaryControl.resx">
+      <DependentUpon>CountryDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.resx">
+      <DependentUpon>CreativeRoleTypeDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\GenreTypeDictionaryControl.resx">
+      <DependentUpon>GenreTypeDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\Klr030DictionaryControl.resx">
+      <DependentUpon>Klr030DictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\SystemConstantDictionaryControl.resx">
+      <DependentUpon>SystemConstantDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionaryControls\TypePlaceDictionaryControl.resx">
+      <DependentUpon>TypePlaceDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="DictionaryForm.resx">
+      <DependentUpon>DictionaryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="viewPageDictionaryControls\ComplexDictionaryControl.resx">
+      <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictBaseTypeI.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Category.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Continent.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKind.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Country.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CrkindGroup.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.SystemConstant.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="workplace.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <!--sirinie -->
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
+      <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
+      <Name>IpsViewComponentLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
+      <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
+      <Name>WebAPIConnector</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{16A23FDD-F783-4F80-9141-43B5C03CB3D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ReportsLibrary</RootNamespace>
+    <AssemblyName>ReportsLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.1016.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.1016.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2018.3.1016.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2018.3.1016.40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=12.2.18.912, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WinForms, Version=12.2.18.912, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LIcAgr.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LIcAgr.Designer.cs">
+      <DependentUpon>LIcAgr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="accmove.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="accmove.Designer.cs">
+      <DependentUpon>accmove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report1.Designer.cs">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report2.Designer.cs">
+      <DependentUpon>Report2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report3.Designer.cs">
+      <DependentUpon>Report3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportS.Designer.cs">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_14_RegisterSR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_14_RegisterSR.Designer.cs">
+      <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_15_RegisterBRSum.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_15_RegisterBRSum.Designer.cs">
+      <DependentUpon>R_5_15_RegisterBRSum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_15_RegisterSR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_15_RegisterSR.Designer.cs">
+      <DependentUpon>R_5_15_RegisterSR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_17_Balance.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_17_Balance.Designer.cs">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_17_BalanceAccount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_17_BalanceAccount.Designer.cs">
+      <DependentUpon>R_5_17_BalanceAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_18_TurnAccounN.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_18_TurnAccounN.Designer.cs">
+      <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_3_Community.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_3_Community.Designer.cs">
+      <DependentUpon>R_5_3_Community.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_1_main.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_1_main.Designer.cs">
+      <DependentUpon>R_5_1_main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_2_CrKind.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_2_CrKind.Designer.cs">
+      <DependentUpon>R_5_2_CrKind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_4_RatingRh.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_4_RatingRh.Designer.cs">
+      <DependentUpon>R_5_4_RatingRh.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_5_RatingObj.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_5_RatingObj.Designer.cs">
+      <DependentUpon>R_5_5_RatingObj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_6_Customers.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_6_Customers.Designer.cs">
+      <DependentUpon>R_5_6_Customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_8_Consolidated.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_8_Consolidated.Designer.cs">
+      <DependentUpon>R_5_8_Consolidated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_8_DistribMain.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_8_DistribMain.Designer.cs">
+      <DependentUpon>R_5_8_DistribMain.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LIcAgr.resx">
+      <DependentUpon>LIcAgr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="accmove.resx">
+      <DependentUpon>accmove.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report1.resx">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report2.resx">
+      <DependentUpon>Report2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report3.resx">
+      <DependentUpon>Report3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_14_RegisterSR.resx">
+      <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_15_RegisterBRSum.resx">
+      <DependentUpon>R_5_15_RegisterBRSum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_15_RegisterSR.resx">
+      <DependentUpon>R_5_15_RegisterSR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
+      <DependentUpon>R_5_17_BalanceAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_18_TurnAccounN.resx">
+      <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_3_Community.resx">
+      <DependentUpon>R_5_3_Community.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_1_main.resx">
+      <DependentUpon>R_5_1_main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_2_CrKind.resx">
+      <DependentUpon>R_5_2_CrKind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_4_RatingRh.resx">
+      <DependentUpon>R_5_4_RatingRh.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_5_RatingObj.resx">
+      <DependentUpon>R_5_5_RatingObj.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_6_Customers.resx">
+      <DependentUpon>R_5_6_Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_8_Consolidated.resx">
+      <DependentUpon>R_5_8_Consolidated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_8_DistribMain.resx">
+      <DependentUpon>R_5_8_DistribMain.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -10,9 +10,9 @@ namespace ReportsLibrary
     /// <summary>
     /// Summary description for R_5_15_RegisterBRSum.
     /// </summary>
-    public partial class R_5_15_RegisterBRSum : Telerik.Reporting.Report
+    public partial class R_5_14_RegisterBRsum : Telerik.Reporting.Report
     {
-        public R_5_15_RegisterBRSum()
+        public R_5_14_RegisterBRsum()
         {
             //
             // Required for telerik Reporting designer support
