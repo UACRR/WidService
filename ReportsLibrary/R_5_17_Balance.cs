@@ -10,9 +10,9 @@ namespace ReportsLibrary
     /// <summary>
     /// Summary description for R_5_17_Balance.
     /// </summary>
-    public partial class R_5_17_Balance : Telerik.Reporting.Report
+    public partial class R_5_17_1_Balance : Telerik.Reporting.Report
     {
-        public R_5_17_Balance()
+        public R_5_17_1_Balance()
         {
             //
             // Required for telerik Reporting designer support

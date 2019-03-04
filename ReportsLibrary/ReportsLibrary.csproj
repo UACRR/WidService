@@ -78,12 +78,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="accmove.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="accmove.Designer.cs">
-      <DependentUpon>accmove.cs</DependentUpon>
-    </Compile>
     <Compile Include="Report1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -102,11 +96,13 @@
     <Compile Include="Report3.Designer.cs">
       <DependentUpon>Report3.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReportS.cs">
+    <Compile Include="..\..\TEMP\ReportS.cs">
       <SubType>Component</SubType>
+      <Link>ReportS.cs</Link>
     </Compile>
-    <Compile Include="ReportS.Designer.cs">
+    <Compile Include="..\..\TEMP\ReportS.Designer.cs">
       <DependentUpon>ReportS.cs</DependentUpon>
+      <Link>ReportS.Designer.cs</Link>
     </Compile>
     <Compile Include="R_5_14_RegisterSR.cs">
       <SubType>Component</SubType>
@@ -126,6 +122,18 @@
     <Compile Include="R_5_15_RegisterSR.Designer.cs">
       <DependentUpon>R_5_15_RegisterSR.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_16_AuthorSR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_16_AuthorSR.Designer.cs">
+      <DependentUpon>R_5_16_AuthorSR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_16_AuthorSRFact.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_16_AuthorSRFact.Designer.cs">
+      <DependentUpon>R_5_16_AuthorSRFact.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_17_Balance.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -138,23 +146,167 @@
     <Compile Include="R_5_17_BalanceAccount.Designer.cs">
       <DependentUpon>R_5_17_BalanceAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_18_1_ObjUnattached.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_18_1_ObjUnattached.Designer.cs">
+      <DependentUpon>R_5_18_1_ObjUnattached.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_18_TurnAccounN.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="R_5_18_TurnAccounN.Designer.cs">
       <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_19_0_BR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_0_BR.Designer.cs">
+      <DependentUpon>R_5_19_0_BR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_19_1_BR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_1_BR.Designer.cs">
+      <DependentUpon>R_5_19_1_BR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_19_2_0SR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_2_0SR.Designer.cs">
+      <DependentUpon>R_5_19_2_0SR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_19_2_SR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_19_2_SR.Designer.cs">
+      <DependentUpon>R_5_19_2_SR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_20_1_BR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_20_1_BR.Designer.cs">
+      <DependentUpon>R_5_20_1_BR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_20_2_BR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_20_2_BR.Designer.cs">
+      <DependentUpon>R_5_20_2_BR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_21_BRcomm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_21_BRcomm.Designer.cs">
+      <DependentUpon>R_5_21_BRcomm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_22_1_BRcm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_22_1_BRcm.Designer.cs">
+      <DependentUpon>R_5_22_1_BRcm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_22_2_BRcm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_22_2_BRcm.Designer.cs">
+      <DependentUpon>R_5_22_2_BRcm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_22_2_SRcm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_22_2_SRcm.Designer.cs">
+      <DependentUpon>R_5_22_2_SRcm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_22_BRcm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_22_BRcm.Designer.cs">
+      <DependentUpon>R_5_22_BRcm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_22_SRcm.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_22_SRcm.Designer.cs">
+      <DependentUpon>R_5_22_SRcm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_23_BR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_23_BR.Designer.cs">
+      <DependentUpon>R_5_23_BR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_24_BR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_24_BR.Designer.cs">
+      <DependentUpon>R_5_24_BR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_24_SR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_24_SR.Designer.cs">
+      <DependentUpon>R_5_24_SR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_25_SRLic.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_25_SRLic.Designer.cs">
+      <DependentUpon>R_5_25_SRLic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_25_SRLic_1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_25_SRLic_1.Designer.cs">
+      <DependentUpon>R_5_25_SRLic_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_25_SRLic_2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_25_SRLic_2.Designer.cs">
+      <DependentUpon>R_5_25_SRLic_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_30_Booker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_30_Booker.Designer.cs">
+      <DependentUpon>R_5_30_Booker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_31_GetGive.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_31_GetGive.Designer.cs">
+      <DependentUpon>R_5_31_GetGive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_31_GetGiveDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_31_GetGiveDetail.Designer.cs">
+      <DependentUpon>R_5_31_GetGiveDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_32_RegRH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_32_RegRH.Designer.cs">
+      <DependentUpon>R_5_32_RegRH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_33_RegRH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_33_RegRH.Designer.cs">
+      <DependentUpon>R_5_33_RegRH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="R_5_35_Start.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_35_Start.Designer.cs">
+      <DependentUpon>R_5_35_Start.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_3_Community.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="R_5_3_Community.Designer.cs">
       <DependentUpon>R_5_3_Community.cs</DependentUpon>
-    </Compile>
-    <Compile Include="R_5_1_main.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="R_5_1_main.Designer.cs">
-      <DependentUpon>R_5_1_main.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_2_CrKind.cs">
       <SubType>Component</SubType>
@@ -198,10 +350,6 @@
       <DependentUpon>LIcAgr.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="accmove.resx">
-      <DependentUpon>accmove.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -215,8 +363,9 @@
     <EmbeddedResource Include="Report3.resx">
       <DependentUpon>Report3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportS.resx">
+    <EmbeddedResource Include="..\..\TEMP\ReportS.resx">
       <DependentUpon>ReportS.cs</DependentUpon>
+      <Link>ReportS.resx</Link>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_14_RegisterSR.resx">
       <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
@@ -227,20 +376,104 @@
     <EmbeddedResource Include="R_5_15_RegisterSR.resx">
       <DependentUpon>R_5_15_RegisterSR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_16_AuthorSR.resx">
+      <DependentUpon>R_5_16_AuthorSR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_16_AuthorSRFact.resx">
+      <DependentUpon>R_5_16_AuthorSRFact.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_Balance.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
       <DependentUpon>R_5_17_BalanceAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_18_1_ObjUnattached.resx">
+      <DependentUpon>R_5_18_1_ObjUnattached.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_18_TurnAccounN.resx">
       <DependentUpon>R_5_18_TurnAccounN.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_0_BR.resx">
+      <DependentUpon>R_5_19_0_BR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_1_BR.resx">
+      <DependentUpon>R_5_19_1_BR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_2_0SR.resx">
+      <DependentUpon>R_5_19_2_0SR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_19_2_SR.resx">
+      <DependentUpon>R_5_19_2_SR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_20_1_BR.resx">
+      <DependentUpon>R_5_20_1_BR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_20_2_BR.resx">
+      <DependentUpon>R_5_20_2_BR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_21_BRcomm.resx">
+      <DependentUpon>R_5_21_BRcomm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_22_1_BRcm.resx">
+      <DependentUpon>R_5_22_1_BRcm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_22_2_BRcm.resx">
+      <DependentUpon>R_5_22_2_BRcm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_22_2_SRcm.resx">
+      <DependentUpon>R_5_22_2_SRcm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_22_BRcm.resx">
+      <DependentUpon>R_5_22_BRcm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_22_SRcm.resx">
+      <DependentUpon>R_5_22_SRcm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_23_BR.resx">
+      <DependentUpon>R_5_23_BR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_24_BR.resx">
+      <DependentUpon>R_5_24_BR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_24_SR.resx">
+      <DependentUpon>R_5_24_SR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_25_SRLic.resx">
+      <DependentUpon>R_5_25_SRLic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_25_SRLic_1.resx">
+      <DependentUpon>R_5_25_SRLic_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_25_SRLic_2.resx">
+      <DependentUpon>R_5_25_SRLic_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_30_Booker.resx">
+      <DependentUpon>R_5_30_Booker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_31_GetGive.en-US.resx">
+      <DependentUpon>R_5_31_GetGive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_31_GetGive.resx">
+      <DependentUpon>R_5_31_GetGive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_31_GetGive.ru.resx">
+      <DependentUpon>R_5_31_GetGive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_31_GetGiveDetail.resx">
+      <DependentUpon>R_5_31_GetGiveDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_32_RegRH.resx">
+      <DependentUpon>R_5_32_RegRH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_33_RegRH.resx">
+      <DependentUpon>R_5_33_RegRH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_35_Start.resx">
+      <DependentUpon>R_5_35_Start.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_3_Community.resx">
       <DependentUpon>R_5_3_Community.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="R_5_1_main.resx">
-      <DependentUpon>R_5_1_main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_2_CrKind.resx">
       <DependentUpon>R_5_2_CrKind.cs</DependentUpon>

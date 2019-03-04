@@ -30,7 +30,7 @@ from
    left join CustCmRight t7 on  t5.custId = t7.custId and t5.CRKindCode = t7.cRKindCode
    left join AgreementAddRH t8 on  t7.cmCustId = t8.custId
    join CRightStatus t11 on  t11.codeI = isnull(t1.status,0) 
-   where getdate() between t1.beginDate and t1.endDate
+   where getdate() between isnull(t1.beginDate,'1900-01-01') and isnull(t1.endDate,'3000-01-01')
 /*union 
 select
    t2.categoryCode, 

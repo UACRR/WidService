@@ -29,6 +29,8 @@ if (@cmFlag not in (0,1))
 if (@dateBegin>@dateEnd)
 	return
 
+set @cmFlag = (CASE When @cmFlag = 0 Then NULL else @cmFlag end)
+
 delete @result
 insert into @result
 ( custId,	sCollect,	sCommiss,	sDistrib,	rateCommiss, categoryCode, cmFlag)
@@ -36,10 +38,12 @@ select custId,  sCollect, sCommiss,	sDistrib,	rateCommiss, categoryCode, cmFlag
   from ft_Tsk_5_8_DistribMain  ( @dateBegin, @dateEnd, @cmFlag, @categoryCode ) t1 
   --from ft_Tsk_5_8_DistribMain  ( '2019-01-01', '3000-01-01', 0, 5 )  
 
-select ROW_NUMBER() OVER(ORDER BY name ASC) id, t2.name, isnull(t3.innerCode, t1.custId) as innerCode, t1.sCollect, t1.sCommiss, t1.sDistrib, t1.rateCommiss  
+select ROW_NUMBER() OVER(ORDER BY name ASC) id, isnull(t2.name, 'НЕ ВИЗНАЧЕНО') as name, isnull(t3.innerCode, t1.custId) as innerCode, t1.sCollect, t1.sCommiss, t1.sDistrib, t1.rateCommiss, 
+cmFlag
  from 
-(select *  from @result where
-@cmFlag=cmFlag  and
+(select *
+from @result where
+isnull(@cmFlag,cmFlag)=cmFlag  and
 @categoryCode=categoryCode 
 ) t1
 left join  vCustomer t2 on t1.custid  = t2.custId 
@@ -48,4 +52,6 @@ left join  RightHolder t3 on t1.custId=t3.custId
 RETURN
 END
 
---exec pTsk_5_8_DistribMain '2019-01-01', '3000-01-01', 1, 5
+
+
+--exec pTsk_5_8_DistribMain '2019-02-27', '2019-02-27', 0, 5

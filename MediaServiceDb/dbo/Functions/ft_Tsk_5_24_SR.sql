@@ -33,12 +33,12 @@ select  t3.periodId, t3.periodName, dbo.Month_name(MONTH(t3.endDate)), convert(c
         t4.name as custName, t4.innokpo, t1.numberInvoice, t1.dateInvoice, isnull(t2.amount,t1.amount), t3.licId, t1.custId, t1.paidId
 from MoneyReceived t1 
  left join MoneyPeriodLink t2 on t2.paidId = t1.paidId 
- left join paidPeriod t3 on t3.periodId = t2.periodId
+ left join vRegister t3 on t3.periodId = t2.periodId and t3.usesType = 2 
  join vCustomerClient t4 on t1.custId = t4.custId and isnull(isSR,0) = 1
 where (t1.dateInvoice  between @dateBegin and @dateEnd) 
    or (t3.beginDate between @dateBegin and  @dateEnd) -- t3.endDate<=EOMONTH(@dateEnd))
    or (t2.modifyDate between @dateBegin and  @dateEnd)   --привязали в этот период к чему-нибудь, но сработает когда Леша исправит modifyDate
-
+   or (t3.createDate between @dateBegin and  @dateEnd)   --отчет в периоде
  update @RT set dogNumber = t2.licNum
   from @RT t0  
     join LicenseAgreement t1 on t1.licId = t0.agrLicId

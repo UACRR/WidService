@@ -1,0 +1,133 @@
+﻿using System;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
+using Telerik.WinControls.UI;
+
+namespace IpsViewComponentLibrary.ExtensionControls
+{
+    public partial class TabNavigationControl : UserControl
+    {
+        private RadPageView _pageView;
+        private bool _buttonClick = false;
+        public event EventHandler SaveClick;
+        public event EmptyEventHandler CancelClick;
+
+        public TabNavigationControl()
+        {
+            InitializeComponent();
+            btnCancel.DialogResult = DialogResult.Cancel;
+        }
+
+        public void SetDefaultState(RadPageView pageView, FLoadType loadType)
+        {
+            _pageView = pageView;
+            switch (loadType)
+            {
+                case FLoadType.Create:
+                    _pageView.SelectedPageChanging += pageView_SelectedPageChanging;
+                    btnBack.Text = "< ";
+                    btnBack.Enabled = false;
+                    btnNext.Text = _pageView.Pages[1].Text + " >";
+                    btnSave.DialogResult = DialogResult.OK;
+                    break;
+                case FLoadType.View:
+                    break;
+                case FLoadType.Edit:
+                    btnBack.Visible = false;
+                    btnNext.Visible = false;
+                    btnSave.Enabled = true;
+                    btnSave.Click += BtnSave_Click;
+                    break;
+            }
+        }
+
+        // TODO: доробити метод
+        /// <summary>
+        /// Set color page view tabs
+        /// </summary>
+        /// <param name="isNew">If new item set 'true' - set gray color, else 'false' - set default color</param>
+        private void SetColorTabs(ConsumerAnketeType anketeType)
+        {
+            switch (anketeType)
+            {
+                case ConsumerAnketeType.CreateNewAnketa:
+                {
+                    foreach (var page in _pageView.Pages)
+                    {
+                        page.Item.ForeColor = Color.DarkGray;
+                    }
+                    _pageView.Pages[0].Item.ForeColor = DefaultForeColor;
+                }
+                    break;
+
+                case ConsumerAnketeType.EditAnketa:
+                {
+                    foreach (var page in _pageView.Pages)
+                    {
+                        page.Item.ForeColor = DefaultForeColor;
+                    }
+                }
+                    break;
+            }
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            SaveClick?.Invoke(sender, e);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            CancelClick?.Invoke();
+        }
+
+        private void TabNavigateAction(NavigateType navigateType)
+        {
+            int index = _pageView.SelectedPage.TabIndex;
+            _buttonClick = true;
+            switch (navigateType)
+            {
+                case NavigateType.Next:
+                    if (index == _pageView.Pages.Last().TabIndex) break;
+                    _pageView.SelectedPage = _pageView.Pages[index + 1];
+                    break;
+                case NavigateType.Previous:
+                    if (index == 0) break;
+                    _pageView.SelectedPage = _pageView.Pages[index - 1];
+                    break;
+            }
+            index = _pageView.SelectedPage.TabIndex;
+
+            btnBack.Enabled = index != 0;
+            btnBack.Text = btnBack.Enabled ? "< " + _pageView.Pages[index - 1].Text : "< ";
+
+            btnNext.Enabled = index != _pageView.Pages.Last().TabIndex;
+            btnSave.Enabled = index == _pageView.Pages.Last().TabIndex;
+            btnNext.Text = btnNext.Enabled ? _pageView.Pages[index + 1].Text + " >" : " >";
+        }
+
+        private void pageView_SelectedPageChanging(object sender, Telerik.WinControls.UI.RadPageViewCancelEventArgs e)
+        {
+            if (!_buttonClick)
+                e.Cancel = true;
+            else
+                _buttonClick = false;
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            TabNavigateAction(NavigateType.Previous);
+        }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            TabNavigateAction(NavigateType.Next);
+        }
+    }
+    public enum NavigateType
+    {
+        Next,
+        Previous
+    }
+}

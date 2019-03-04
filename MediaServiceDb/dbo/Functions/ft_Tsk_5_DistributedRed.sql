@@ -6,6 +6,7 @@
 RETURNS @RT TABLE
 (
 id integer not null identity primary key,
+custId integer, 
 clCustId integer, 
 rhCustId integer, 
 objid integer, 
@@ -45,17 +46,27 @@ insert into @TmpAcc (accId, balsCode, objid, kindCode, categoryCode)
    where t1.balsCode in ( 30, 31) and 
          cast(substring(accnls, 4,2) as integer) = isnull(@kindCode , cast(substring(accnls, 4,2) as integer))
 
-insert into @RT (rhCustId, objid, kindCode, amount, categoryCode, accIdDebet, accIdCredit, clCustId, regId, regItemId, turnId, dateWork)
-  select t2.custId, t3.objid, t3.kindCode, t1.amount, t3.categoryCode, t1.accIdDebet, t1.accIdCredit, t4.custid, t1.regId, t1.regIItemId, t1.turnId, t1.dateWork
+insert into @RT (custId, rhCustId, objid, kindCode, amount, categoryCode, accIdDebet, accIdCredit, clCustId, regId, regItemId, turnId, dateWork)
+  select t2.custId, t1.custIdRh, t3.objid, t3.kindCode, t1.amount, t3.categoryCode, t1.accIdDebet, t1.accIdCredit, t4.custid, t1.regId, t1.regIItemId, t1.turnId, t1.dateWork
    from PayTurn t1 
     left join PayTurnExtra t4 on t4.turnId = t1.turnId and t4.datework = t1.dateWork
     join Account t2 on t2.accId = t1.accIdDebet and t2.balsCode = 21  --распределение на авторов, в т.ч. со счета 31
     join @TmpAcc t3 on t3.accId = t1.accIdCredit and t3.balsCode in (30,31)    
    where t1.dateWork between @dateBegin and @dateEnd
 
-update @RT set cmCustId = t2.cmCustId 
+--Сообщество берется по обслуживанию
+--update @RT set cmCustId = t2.cmCustId 
+--   from @RT t1 
+--       join vCustCmService t2 on t1.rhCustId = t2.custId and t1.kindCode = t2.crKindCode
+
+--Сообщество теперь берется из платежки
+update @RT set cmCustId = t2.custId
    from @RT t1 
-       join vCustCmService t2 on t1.rhCustId = t2.custId 
+       join community t2 on t1.custId = t2.custId 
+update @RT set cmCustId = t2.custId
+   from @RT t1 
+       left join vMyAnk t2  on t2.custId = t2.custId 
+	   where t1.cmCustId is NULL
 
 --Нужно добавить зависшие на 31-м счете с учетом дораспределенияБ чтобі в дальнейшем не брать проводки на 31-1, которые дораспределены
 ;with TabTurnRed as 
@@ -66,13 +77,16 @@ update @RT set cmCustId = t2.cmCustId
   where t1.dateWork  between @dateBegin and @dateEnd
   group by t1.turnIdRed, t1.dateWorkRed
 )
-insert into @RT (rhCustId, objid, kindCode, amount, categoryCode, accIdDebet, accIdCredit, clCustId, regId, regItemId, turnId, dateWork)
-select t2.custIdRh, t1.objid, t1.kindCode, t1.amount, t1.categoryCode, t2.accIdDebet, t2.accIdCredit, t3.custid, t2.regId, t2.regIItemId, t2.turnId, t2.dateWork
+insert into @RT (custId, rhCustId, cmCustId, objid, kindCode, amount, categoryCode, accIdDebet, accIdCredit, clCustId, regId, regItemId, turnId, dateWork)
+select -1, isnull(t2.custIdRh, -1), -1, 
+       t1.objid, t1.kindCode, t1.amount, t1.categoryCode, t2.accIdDebet, t2.accIdCredit, 
+       t3.custid, t2.regId, t2.regIItemId, t2.turnId, t2.dateWork
  from TabTurnRed t1 
    join payTurn t2 on t2.turnId = t1.turnIdRed and t2.dateWork = t1.dateWorkRed and t2.dateWork  between @dateBegin and @dateEnd
    join PayTurnExtra t3 on t3.turnid = t2.turnId and t3.datework = t2.dateWork
+   
 
---Для тех
+--Для тех, у кот. не проставлен clCustId
 update @RT set clCustId = t2.custId, regId = t4.regId, regItemId = t4.regIItemId
   from @RT t1 
 	join payTurnRed t3 on t3.turnId = t1.turnId and t3.dateWork = t1.dateWork
@@ -80,8 +94,9 @@ update @RT set clCustId = t2.custId, regId = t4.regId, regItemId = t4.regIItemId
 	join PayTurn t4 on t4.turnid = t2.turnid and t4.dateWork = t2.datework
   where isnull(clCustId,0) = 0
 
+--Если схлопнулись на 31-м счете
  delete from @RT 
-  where rhCustId is NULL and isnull(amount,0) = 0
+  where isnull(rhCustId,-1) = -1 and isnull(amount,0) = 0
 
  /*--Это в ft_Tsk_5_Distributed
 --Нужно добавит зависшие на 31-м счете
@@ -96,6 +111,6 @@ update @RT set clCustId = t2.custId, regId = t4.regId, regItemId = t4.regIItemId
 
  RETURN
  END
---select sum(amount) from ft_Tsk_5_DistributedRed ('2019-01-01', NULL, 0, 0) --142213,34
---select sum(amount) from ft_Tsk_5_Distributed ('2019-01-01', '3000-01-01', NULL, NULL) --183942,87
+--select sum(amount) from ft_Tsk_5_DistributedRed ('2019-01-01', '2019-02-15', 0, 0) --142213,34
+--select sum(amount) from ft_Tsk_5_Distributed ('2019-02-28', '3000-01-01', NULL, NULL) --183942,87
 --select * from ft_Tsk_5_DistributedRed (NULL, NULL, 5, NULL) --141974,07

@@ -8,6 +8,7 @@ CREATE TABLE #PayTurn(
 	DateWork				date NOT NULL,
 	ND							varchar(25)		NULL,
 	NDDate					datetime	NULL,
+	R030		char(3) null,
 	AccIdDebet			 int			NULL,
 	AccIdCredit			 int			NULL,
 	AccDebet				varchar(25)			NULL,

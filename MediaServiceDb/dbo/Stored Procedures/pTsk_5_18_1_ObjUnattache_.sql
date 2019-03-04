@@ -55,21 +55,24 @@ declare   @TabAuthors table
 
 --Отбираю авторов с процентом и ролью
 insert  @TabAuthors  
-select t1.objId, roleCode, custid, rate, 1 as isRh
-from copyright t1 , objectRight t2 
+select t1.objId, roleCode, t1.custid, rate, 1 as isRh
+from copyright t1 , objectRight t2 ,account t3
 where
  t1.objid = t2.objid and 
  t2.categoryCode = 5 and
+ t3.objid=t2.objid 
+ and t3.balscode=31 and
 @date between isnull(t1.beginDate,'1900-01-01') and    isnull(t1.endDate, '3000-01-01')
 -- '20190227' between isnull(t1.beginDate,'1900-01-01') and isnull(t1.endDate, '3000-01-01')
 --order by 1
 union 
-select t1.objId, roleCode, custid, 0 as rate, 0 as isRh
-from Authors t1 , objectRight t2 
+select t1.objId, roleCode, t1.custid, 0 as rate, 0 as isRh
+from Authors t1 , objectRight t2 ,account t3
 where 
 	t1.objid = t2.objid and 
 	t2.categoryCode = 5
---order by 1
+	and t3.objid=t2.objid 
+ and t3.balscode=31 
 
 delete @tmpTab1
 insert into @tmpTab1 (objid, roleCode, roleName, custId, custName, rate, isRh)

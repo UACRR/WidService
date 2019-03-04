@@ -121,8 +121,8 @@
   <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
     <value>0.1cm</value>
   </data>
-  <data name="sqlDataSource3.ParameterValues" xml:space="preserve">
-    <value>{"@licid":"1198"}</value>
+  <data name="sqlDataSource1.ParameterValues" xml:space="preserve">
+    <value>{"@licid":"1237"}</value>
   </data>
   <data name="sqlDataSource1.SelectCommand" xml:space="preserve">
     <value>select isnull(t1.name,'') name, isnull(agrNumber,'') agrNumber,isnull(agrDate,getdate()) agrDate,isnull(dateBegin,getdate()) dateBegin,
@@ -139,7 +139,7 @@ left join ClnPlaceHoll t4 on t4.placeId = t3.placeId
 where
 t1.licId =@licid</value>
   </data>
-  <data name="sqlDataSource1.ParameterValues" xml:space="preserve">
+  <data name="sqlDataSource3.ParameterValues" xml:space="preserve">
     <value>{"@licid":"1198"}</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
