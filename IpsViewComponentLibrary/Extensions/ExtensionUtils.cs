@@ -11,7 +11,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Extensions
 {
-    public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
+    public delegate bool LicenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
     public delegate bool SaveRegisterRatedListEventHandler(RegisterRatedList list);
@@ -376,7 +376,7 @@ namespace IpsViewComponentLibrary.Extensions
         /// <summary>
         /// Розрахункові листи
         /// </summary>
-        Payslips,
+        RegisterRatedList,
         /// <summary>
         /// Заявки
         /// </summary>
