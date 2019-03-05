@@ -862,6 +862,7 @@ namespace IpsViewComponentLibrary
             this.ddlLang.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "LangCode", true));
             this.ddlLang.DataSource = this.bsDictLanguage;
             this.ddlLang.DisplayMember = "Name";
+            this.ddlLang.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlLang.Location = new System.Drawing.Point(114, 96);
             this.ddlLang.Name = "ddlLang";
             this.ddlLang.Size = new System.Drawing.Size(138, 21);
@@ -924,6 +925,7 @@ namespace IpsViewComponentLibrary
             this.ddlPerformType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "PerformType", true));
             this.ddlPerformType.DataSource = this.bsDictPerformType;
             this.ddlPerformType.DisplayMember = "Name";
+            this.ddlPerformType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlPerformType.Location = new System.Drawing.Point(375, 96);
             this.ddlPerformType.Name = "ddlPerformType";
             this.ddlPerformType.Size = new System.Drawing.Size(136, 21);
@@ -951,6 +953,7 @@ namespace IpsViewComponentLibrary
             this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectRight, "GenreType", true));
             this.ddlGenreType.DataSource = this.bsDictGenreType;
             this.ddlGenreType.DisplayMember = "Name";
+            this.ddlGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlGenreType.Location = new System.Drawing.Point(114, 69);
             this.ddlGenreType.Name = "ddlGenreType";
             this.ddlGenreType.Size = new System.Drawing.Size(397, 21);

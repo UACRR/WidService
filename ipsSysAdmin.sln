@@ -123,6 +123,7 @@ Global
 		{C0C413B4-086C-422C-82D6-A02E6284ABDF}.Release|x86.ActiveCfg = Release|Any CPU
 		{C0C413B4-086C-422C-82D6-A02E6284ABDF}.Release|x86.Build.0 = Release|Any CPU
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug HttpSys|Any CPU.ActiveCfg = Debug HttpSys|x86
+		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug HttpSys|Any CPU.Build.0 = Debug HttpSys|x86
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug HttpSys|x64.ActiveCfg = Debug HttpSys|x86
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug HttpSys|x86.ActiveCfg = Debug HttpSys|x86
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Debug HttpSys|x86.Build.0 = Debug HttpSys|x86
@@ -136,6 +137,7 @@ Global
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.ActiveCfg = Release|x86
 		{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}.Release|x86.Build.0 = Release|x86
 		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug HttpSys|Any CPU.ActiveCfg = Debug HttpSys|x86
+		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug HttpSys|Any CPU.Build.0 = Debug HttpSys|x86
 		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug HttpSys|x64.ActiveCfg = Debug HttpSys|x86
 		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug HttpSys|x86.ActiveCfg = Debug HttpSys|x86
 		{BE2B9387-9119-454B-B94F-297DCE752D8D}.Debug HttpSys|x86.Build.0 = Debug HttpSys|x86
@@ -171,7 +173,6 @@ Global
 		{BDD677E3-5B78-4E5D-B3AF-59830C31CD3C}.Release|x86.ActiveCfg = Release|x86
 		{BDD677E3-5B78-4E5D-B3AF-59830C31CD3C}.Release|x86.Build.0 = Release|x86
 		{EAB30505-849E-4C57-9BAD-A4693C674F6F}.Debug HttpSys|Any CPU.ActiveCfg = Debug HttpSys|Any CPU
-		{EAB30505-849E-4C57-9BAD-A4693C674F6F}.Debug HttpSys|Any CPU.Build.0 = Debug HttpSys|Any CPU
 		{EAB30505-849E-4C57-9BAD-A4693C674F6F}.Debug HttpSys|x64.ActiveCfg = Debug HttpSys|Any CPU
 		{EAB30505-849E-4C57-9BAD-A4693C674F6F}.Debug HttpSys|x64.Build.0 = Debug HttpSys|Any CPU
 		{EAB30505-849E-4C57-9BAD-A4693C674F6F}.Debug HttpSys|x86.ActiveCfg = Debug HttpSys|Any CPU
