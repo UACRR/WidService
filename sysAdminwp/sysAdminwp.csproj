@@ -147,6 +147,48 @@
     <Compile Include="ComplexDictionaryControls\TypePlaceDictionaryControl.Designer.cs">
       <DependentUpon>TypePlaceDictionaryControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComplexParamForms\CopyRightKindParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplexParamForms\CopyRightKindParams.Designer.cs">
+      <DependentUpon>CopyRightKindParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexParamForms\CountryParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplexParamForms\CountryParams.Designer.cs">
+      <DependentUpon>CountryParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexParamForms\CreativeRoleTypeParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplexParamForms\CreativeRoleTypeParams.Designer.cs">
+      <DependentUpon>CreativeRoleTypeParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexParamForms\GenreTypeParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplexParamForms\GenreTypeParams.Designer.cs">
+      <DependentUpon>GenreTypeParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexParamForms\KLR030Params.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplexParamForms\KLR030Params.Designer.cs">
+      <DependentUpon>KLR030Params.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexParamForms\SystemConstantParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplexParamForms\SystemConstantParams.Designer.cs">
+      <DependentUpon>SystemConstantParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexParamForms\TypePlaceParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComplexParamForms\TypePlaceParams.Designer.cs">
+      <DependentUpon>TypePlaceParams.cs</DependentUpon>
+    </Compile>
     <Compile Include="DictionaryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -180,6 +222,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComplexDictionaryControls\TypePlaceDictionaryControl.resx">
       <DependentUpon>TypePlaceDictionaryControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexParamForms\CopyRightKindParams.resx">
+      <DependentUpon>CopyRightKindParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexParamForms\CountryParams.resx">
+      <DependentUpon>CountryParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexParamForms\CreativeRoleTypeParams.resx">
+      <DependentUpon>CreativeRoleTypeParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexParamForms\GenreTypeParams.resx">
+      <DependentUpon>GenreTypeParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexParamForms\KLR030Params.resx">
+      <DependentUpon>KLR030Params.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexParamForms\SystemConstantParams.resx">
+      <DependentUpon>SystemConstantParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexParamForms\TypePlaceParams.resx">
+      <DependentUpon>TypePlaceParams.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="DictionaryForm.resx">

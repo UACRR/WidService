@@ -10,6 +10,7 @@ using sysAdminwp.ComplexDictionaryControls;
 using System.Drawing;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
+using sysAdminwp.ComplexParamForms;
 
 namespace sysAdminwp.viewPageDictionaryControls
 {
@@ -22,7 +23,6 @@ namespace sysAdminwp.viewPageDictionaryControls
         private const string PrefixDelete = "dictionary/complex/delete/";
 
         private List<DictCategory> _dictionaryCategories;
-        private List<DicCategoryItems> _complexDictionary;
         private List<CopyrightKind> _copyrightKindList;
         private List<Country> _countryList;
         private List<CreativeRoleType> _creativeRoleTypeList;
@@ -31,6 +31,7 @@ namespace sysAdminwp.viewPageDictionaryControls
         private List<SystemConstant> _systemConstantList;
         private List<TypePlace> _typePlaceList;
 
+        //unusable code
         private CopyRightKindDictionaryControl _copyRightKindControl;
         private CountryDictionaryControl _countryDictionaryControl;
         private CreativeRoleTypeDictionaryControl _creativeRoleDictionaryControl;
@@ -47,7 +48,24 @@ namespace sysAdminwp.viewPageDictionaryControls
         private SystemConstant _systemConstant;
         private TypePlace _typePlace;
         private int SaveNode;
+
+        //for saved complex dictionaries from DictionaryForm and use for
+        //- UrlForComplexDictionaries
+        //- ComplexDictionaryName
+        private List<DicCategoryItems> complexDictionary;
+        public List<DicCategoryItems> ComplexDictionarySaved
+        {
+            get { return complexDictionary; }
+            set
+            {
+                if (value != null)
+                    complexDictionary = value;
+            }
+        }
+        
+        //mass for color setting for textBox color
         private byte[] borderDefault = new byte[4];
+        //sequence of complex dictionaries
         private readonly List<string> _complexDictionaryList = new List<string>
         {
             "copyrightkind",
@@ -66,7 +84,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 var nodeComplexDictionary = complexTreeView.SelectedNode;
                 if (nodeComplexDictionary == null) return string.Empty;
-                var currentDataComplexdictionary = _complexDictionary[nodeComplexDictionary.Index];
+                var currentDataComplexdictionary = ComplexDictionarySaved[nodeComplexDictionary.Index];
                 if (currentDataComplexdictionary == null) return string.Empty;
                 return currentDataComplexdictionary.Url;
             }
@@ -78,51 +96,192 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 var node = complexTreeView.SelectedNode;
                 if (node == null) return string.Empty;
-                var currentDataDictionary = _complexDictionary[node.Index];
+                var currentDataDictionary = ComplexDictionarySaved[node.Index];
                 if (currentDataDictionary == null) return string.Empty;
                 return currentDataDictionary.DicName;
             }
         }
-        
+        private bool controlEnabledActiveElements = true;
+        public bool ControlEnabledActiveElements
+        {
+            get { return controlEnabledActiveElements; }
+            set
+            {
+                controlEnabledActiveElements = value;
+                complexTreeView.Enabled = value;
+                txtSearchComplex.Enabled = value;
+                gvComplexDictionariesList.Enabled = value;
+                btnAddComplex.Enabled = value;
+                btnDeleteComplex.Enabled = value;
+                btnSave.Enabled = !value;
+                btnCancel.Enabled = !value;
+            }
+        }
         public ViewTable CurrentGridRow => gvComplexDictionariesList.CurrentRow.DataBoundItem as ViewTable;
-        public ComplexDictionaryControl() { }
-        public ComplexDictionaryControl(ApiConnector connector)
+        public ComplexDictionaryControl(ApiConnector connector, List<DicCategoryItems> complexDictionaries)
         {
             InitializeComponent();
+            //initialize connector
             _connector = connector;
-            SetTreeViewComplexDictionaryDataSource();
-
+            //save for NodeSelected property
+            ComplexDictionarySaved = complexDictionaries;
+            //initialize data for TreeView
+            SetComplexDictionaryToTree(complexDictionaries);
+            //setup search posibility for textBox element
             txtSearchComplex.SetUsageGrid(gvComplexDictionariesList);
-
+            //if grid is empty then hide other elements
             ElementsEnabledStatesControler();
-            ChangeEnabledStateButtonsEditPanels(false);
-            
+            //fix Enabled state for active elements
+            ControlEnabledActiveElements = true;
         }
 
-        private void SetTreeViewComplexDictionaryDataSource()
+        //initialize sequence complex dictionaries for 'TreeView' element
+        private void SetComplexDictionaryToTree(List<DicCategoryItems> complexDictionaries)
         {
-            _dictionaryCategories = _connector.GetList<DictCategory>("dictionary/list");//дерево
-            _complexDictionary = new List<DicCategoryItems>();
-            foreach (var category in _dictionaryCategories)
-            {
-                var items = category.DicCategoryItems.Where(rec => rec.DicLevel == 2).ToList();
-                if (items.Any())
-                {
-                    _complexDictionary.AddRange(items);
-                }
-            }
-            _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
-            complexTreeView.DataSource = _complexDictionary;
+            //set data for element
+            complexTreeView.DataSource = complexDictionaries;
             complexTreeView.DisplayMember = "Name";
         }
 
-        private List<ViewTable> GetComplexDictionariesData()
+        private void ElementsEnabledStatesControler()
+        {
+            bool stateEnabled = gvComplexDictionariesList.RowCount != 0;
+            txtSearchComplex.Enabled = stateEnabled;
+            btnAddComplex.Enabled = stateEnabled;
+            btnDeleteComplex.Enabled = stateEnabled;
+            controlsParamPanel.Enabled = stateEnabled;
+            editPanel.Enabled = stateEnabled;
+        }
+
+        //after initialize data for grid, check 'Enable' state for other elements
+        private void gvComplexDictionariesList_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
+        {
+            //check 'Enable' state for elements
+            ElementsEnabledStatesControler();
+        }
+
+        //set Enable state for elements
+        private void OnHideElements(object sender, EventArgs e)
+        {
+            //set Enable state
+            ControlEnabledActiveElements = false;
+        }
+
+        private void btnDeleteComplex_Click(object sender, EventArgs e)
+        {
+            indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
+            var result = _connector.DeleteItem(string.Concat(PrefixDelete, ComplexDictionaryName.ToLower()), CurrentGridRow.Code);
+
+            gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
+            UpdateEditPanelComplex();
+            gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid - 1];
+        }
+
+        //filter data for grid
+        private void FilterGrid(object sender, EventArgs e)
+        {
+            //get value for filter data
+            int value = (int)sender;
+            //update grid data after filter
+            gvComplexDictionariesList.DataSource = GetComplexDictionariesData(value);
+        }
+
+        //initialize data for grid of the selected dictionary
+        private void complexTreeView_SelectedNodeChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
+        {
+            //--need review
+            var obj = SaveNode;
+            try
+            {
+                SaveNode = complexTreeView.SelectedNode.Index;
+            }
+            catch (NullReferenceException)
+            {
+                SaveNode = obj;
+            }
+            //--need review
+
+            //clean paramPanel element
+            controlsParamPanel.Controls.Clear();
+            switch (ComplexDictionaryName.ToLower())
+            {
+                case "copyrightkind":
+                    var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+                    //show CopyRightKind form
+                    CopyRightKindParams copyRightKindParams = new CopyRightKindParams(baseDictsCopyRight);
+                    //attach for filter grid
+                    copyRightKindParams.CopyRightKindItem += FilterGrid;
+                    copyRightKindParams.Show(this);
+                    break;
+                case "country":
+                    var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
+                    //show country form
+                    CountryParams countryParams = new CountryParams(baseDictsContinent);
+                    //attach for filter grid
+                    countryParams.CountryItem += FilterGrid;
+                    countryParams.Show(this);
+                    break;
+                case "creativeroletype":
+                    var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+                    //show creativeRoleType form
+                    CreativeRoleTypeParams creativeRoleTypeParams = new CreativeRoleTypeParams(baseDictsCategory);
+                    //attach for filter grid
+                    creativeRoleTypeParams.CreativeRoleTypeItem += FilterGrid;
+                    creativeRoleTypeParams.Show(this);
+                    break;
+                case "genretype":
+                    var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+                    //show genreType form
+                    GenreTypeParams genreTypeParams = new GenreTypeParams(baseDictsGenreType);
+                    //attach for filter grid
+                    genreTypeParams.GenreTypeItem += FilterGrid;
+                    genreTypeParams.Show(this);
+                    break;
+                case "klr030":
+                    var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
+                    //show KLR030 form
+                    KLR030Params klr030Params = new KLR030Params(customDictCountry);
+                    //attach for filter grid
+                    klr030Params.KLR030Item += FilterGrid;
+                    klr030Params.Show(this);
+                    break;
+                case "systemconstant":
+                    var baseDictsSystemConstant = _connector.GetList<DictBaseTypeI>("dictionary/base/SystemConstant");
+                    //disabled code -> field for params is not exist
+                    // show SystemConstantParams form
+                    //SystemConstantParams systemConstantParams = new SystemConstantParams(baseDictsSystemConstant);
+                    //attach for filter grid
+                    //systemConstantParams.SystemConstantItem += FilterGrid;
+                    //systemConstantParams.Show(this);
+                    break;
+                case "typeplace":
+                    var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/TypePlaceParam");
+                    //show typePlace form
+                    TypePlaceParams typePlaceParams = new TypePlaceParams(baseDictsTypePlaceParam);
+                    //attach for filter grid
+                    typePlaceParams.TypePlaceItem += FilterGrid;
+                    typePlaceParams.Show(this);
+                    break;
+            }
+            //set data to grid of the current complex dictionary
+            gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
+        }
+
+        //fill dictionary data for grid
+        private List<ViewTable> GetComplexDictionariesData(int code = 0)
         {
             var view = new List<ViewTable>();
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
+                    //all data of CopyrightKind items
                     _copyrightKindList = _connector.GetList<CopyrightKind>(UrlForComplexDictionaries);
+                    //if selected value of parameter
+                    if (code != 0)
+                    {
+                        //filter data for grid
+                        _copyrightKindList = _copyrightKindList.Where(item => item.CrGroupCode == code).ToList();
+                    }
                     foreach (var item in _copyrightKindList)
                     {
                         view.Add(new ViewTable
@@ -135,7 +294,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     break;
                 case "country":
+                    //all data of Country items
                     _countryList = _connector.GetList<Country>(UrlForComplexDictionaries);
+                    //if selected value of parameter
+                    if (code != 0)
+                    {
+                        //filter data for grid
+                        _countryList = _countryList.Where(item => item.ContinentCode == code).ToList();
+                    }
                     foreach (var item in _countryList)
                     {
                         view.Add(new ViewTable
@@ -149,7 +315,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     break;
                 case "creativeroletype":
+                    //all data of CreativeRoleType items
                     _creativeRoleTypeList = _connector.GetList<CreativeRoleType>(UrlForComplexDictionaries);
+                    //if selected value of parameter
+                    if (code != 0)
+                    {
+                        //filter data for grid
+                        _creativeRoleTypeList = _creativeRoleTypeList.Where(item => item.CategoryCode == code).ToList();
+                    }
                     foreach (var item in _creativeRoleTypeList)
                     {
                         view.Add(new ViewTable
@@ -162,7 +335,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     break;
                 case "genretype":
+                    //all data of GenreType items
                     _genreTypeList = _connector.GetList<GenreType>(UrlForComplexDictionaries);
+                    //if selected value of parameter
+                    if (code != 0)
+                    {
+                        //filter data for grid
+                        _genreTypeList = _genreTypeList.Where(item => item.CategoryCode == code).ToList();
+                    }
                     foreach (var item in _genreTypeList)
                     {
                         view.Add(new ViewTable
@@ -175,7 +355,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     break;
                 case "klr030":
+                    //all data of KLR030 items
                     _klR030List = _connector.GetList<KlR030>(UrlForComplexDictionaries);
+                    //if selected value of parameter
+                    if (code != 0)
+                    {
+                        //filter data for grid
+                        _klR030List = _klR030List.Where(item => item.R031 == code).ToList();
+                    }
                     foreach (var item in _klR030List)
                     {
                         view.Add(new ViewTable
@@ -188,7 +375,15 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     break;
                 case "systemconstant":
+                    //all data of SystemConstant items
                     _systemConstantList = _connector.GetList<SystemConstant>(UrlForComplexDictionaries);
+                    //if selected value of parameter
+                    if (code != 0)
+                    {
+                        //filter data for grid
+                        //disabled code -> is not exist field for compare
+                        //_systemConstantList = _systemConstantList.Where(item => item.CodeI == code).ToList();
+                    }
                     foreach (var item in _systemConstantList)
                     {
                         view.Add(new ViewTable
@@ -201,7 +396,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                     }
                     break;
                 case "typeplace":
+                    //all data of TypePlace items
                     _typePlaceList = _connector.GetList<TypePlace>(UrlForComplexDictionaries);
+                    //if selected value of parameter
+                    if (code != 0)
+                    {
+                        //filter data for grid
+                        _typePlaceList = _typePlaceList.Where(item => item.ParamType == code).ToList();
+                    }
                     foreach (var item in _typePlaceList)
                     {
                         view.Add(new ViewTable
@@ -217,14 +419,16 @@ namespace sysAdminwp.viewPageDictionaryControls
             return view;
         }
 
+        //select sequence data for dictionary parameters
         private void gvComplexDictionariesList_SelectionChanged(object sender, EventArgs e)
         {
+            //clean data for 'editPanel' element
             UpdateEditPanelComplex();
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
                     var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    _copyRightKindControl.CopyrightKindDataSource = copyrightKind;
+                    //_copyRightKindControl.CopyrightKindDataSource = copyrightKind;
                     break;
                 case "country":
                     var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(CurrentGridRow.Code));
@@ -232,140 +436,37 @@ namespace sysAdminwp.viewPageDictionaryControls
                     break;
                 case "creativeroletype":
                     var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    _creativeRoleDictionaryControl.CreativeRoleTypeDataSource = creativeroletype;
+                    //_creativeRoleDictionaryControl.CreativeRoleTypeDataSource = creativeroletype;
                     break;
                 case "genretype":
                     var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    _genreTypeDictionaryControl.GenreTypeDataSource = genretype;
+                    //_genreTypeDictionaryControl.GenreTypeDataSource = genretype;
                     break;
                 case "klr030":
                     var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(CurrentGridRow.Code));
-                    _klrDictionaryControl.KlR030DataSource = klr030;
+                    //_klrDictionaryControl.KlR030DataSource = klr030;
                     break;
                 case "systemconstant":
                     var systemConstant = _systemConstantList?.SingleOrDefault(getObj => getObj.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    _systemConstantDictionaryControl.SystemConstantSource = systemConstant;
+                    //_systemConstantDictionaryControl.SystemConstantSource = systemConstant;
                     break;
                 case "typeplace":
                     var typePlace = _typePlaceList?.SingleOrDefault(getObj => getObj.CodeI == Convert.ToInt32(CurrentGridRow.Code));
-                    _typePlaceDictionaryControl.TypePlaceSource = typePlace;
+                    //_typePlaceDictionaryControl.TypePlaceSource = typePlace;
                     break;
             }
         }
 
-        private void complexTreeView_SelectedNodeChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
-        {
-            var obj = SaveNode;
-            try
-            {
-                SaveNode = complexTreeView.SelectedNode.Index;
-            } catch (NullReferenceException) {
-                SaveNode = obj;
-            }
-            controlsParamPanel.Controls.Clear();
-            switch (ComplexDictionaryName.ToLower())
-            {
-                case "copyrightkind":
-                    var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
-                    var baseDictsPortalSupportRights = _connector.GetList<DictBaseTypeI>("dictionary/base/PortalSupportRights");
-                    if (_copyRightKindControl == null)
-                    {
-                        _copyRightKindControl = new CopyRightKindDictionaryControl(baseDictsCopyRight, baseDictsPortalSupportRights);
-                        _copyRightKindControl.HideElements += OnHideElements;
-
-                    }
-                    controlsParamPanel.Controls.Add(_copyRightKindControl);
-                    break;
-                case "country":
-                    var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
-                    if (_countryDictionaryControl == null)
-                    {
-                        _countryDictionaryControl = new CountryDictionaryControl(baseDictsContinent);
-                        _countryDictionaryControl.HideElem += OnHideElements;
-                    }
-                    controlsParamPanel.Controls.Add(_countryDictionaryControl);
-                    break;
-                case "creativeroletype":
-                    var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
-                    var baseDictsCopyRightType = _connector.GetList<DictBaseTypeI>("dictionary/base/CopyrightType");
-                    if (_creativeRoleDictionaryControl == null)
-                    {
-                        _creativeRoleDictionaryControl = new CreativeRoleTypeDictionaryControl(baseDictsCategory, baseDictsCopyRightType);
-                        _creativeRoleDictionaryControl.HideElem += OnHideElements;
-                    }
-                    controlsParamPanel.Controls.Add(_creativeRoleDictionaryControl);
-                    break;
-                case "genretype":
-                    var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
-                    if (_genreTypeDictionaryControl == null)
-                    {
-                        _genreTypeDictionaryControl = new GenreTypeDictionaryControl(baseDictsGenreType);
-                        _genreTypeDictionaryControl.HideElem += OnHideElements;
-                    }
-                    controlsParamPanel.Controls.Add(_genreTypeDictionaryControl);
-                    break;
-                case "klr030":
-                    var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
-                    var customDictKlR031 = _connector.GetList<DictBaseTypeI>("dictionary/base/KlR031");
-                    if (_klrDictionaryControl == null)
-                    {
-                        _klrDictionaryControl = new Klr030DictionaryControl(customDictCountry, customDictKlR031);
-                        _klrDictionaryControl.HideElem += OnHideElements;
-                    }
-                    controlsParamPanel.Controls.Add(_klrDictionaryControl);
-                    break;
-                case "systemconstant":
-                    var baseDictsSystemConstant = _connector.GetList<DictBaseTypeI>("dictionary/base/SystemConstant");
-                    if (_systemConstantDictionaryControl == null)
-                        _systemConstantDictionaryControl = new SystemConstantDictionaryControl(baseDictsSystemConstant);
-                    controlsParamPanel.Controls.Add(_systemConstantDictionaryControl);
-                    break;
-                case "typeplace":
-                    var baseDictsTypePlace = _connector.GetList<DictBaseTypeI>("dictionary/base/TypePlace");
-                    var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/TypePlaceParam");
-                    if (_typePlaceDictionaryControl == null)
-                    {
-                        _typePlaceDictionaryControl = new TypePlaceDictionaryControl(baseDictsTypePlace, baseDictsTypePlaceParam);
-                        _typePlaceDictionaryControl.HideElem += OnHideElements;
-                    }
-                    controlsParamPanel.Controls.Add(_typePlaceDictionaryControl);
-                    break;
-            }
-            var returnedList = GetComplexDictionariesData();
-            gvComplexDictionariesList.DataSource = returnedList;
-            
-        }
-
-        private void OnHideElements(object sender, EventArgs e)
-        {
-            ChangeEnableElementsWhenAdd(false);
-            ChangeEnabledStateButtonsEditPanels(true);
-        }
-
-        private void ElementsEnabledStatesControler()
-        {
-            bool stateEnabled = gvComplexDictionariesList.RowCount != 0;
-            txtSearchComplex.Enabled = stateEnabled;
-            btnAddComplex.Enabled = stateEnabled;
-            btnDeleteComplex.Enabled = stateEnabled;
-            controlsParamPanel.Enabled = stateEnabled;
-            editPanel.Enabled = stateEnabled;
-        }
-        private void gvComplexDictionariesList_DataBindingComplete(object sender, Telerik.WinControls.UI.GridViewBindingCompleteEventArgs e)
-        {
-            ElementsEnabledStatesControler();
-        }
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
             indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
             btnSave.Text = "Додати";
-            ChangeEnableElementsWhenAdd(false);
+            ControlEnabledActiveElements = false;
             txtCodeComplex.Clear();
             txtNameUaComplex.Clear();
             txtNameRuComplex.Clear();
             txtNameEnComplex.Clear();
             editPanel.Enabled = true;
-            ChangeEnabledStateButtonsEditPanels(true);
 
             switch (ComplexDictionaryName.ToLower())
             {
@@ -400,15 +501,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             }
         }
 
-        private void ChangeEnableElementsWhenAdd(bool isEnable)
-        {
-            complexTreeView.Enabled = isEnable;
-            txtSearchComplex.Enabled = isEnable;
-            gvComplexDictionariesList.Enabled = isEnable;
-            btnAddComplex.Enabled = isEnable;
-            btnDeleteComplex.Enabled = isEnable;
-        }
-
         private void txtCodeComplex_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
             indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
@@ -428,15 +520,9 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 txtCodeComplex.TextBoxElement.Border.ForeColor = Color.FromArgb(borderDefault[0], borderDefault[1], borderDefault[2], borderDefault[3]);
             }
-            ChangeEnableElementsWhenAdd(false);
+            ControlEnabledActiveElements = false;
             controlsParamPanel.Enabled = true;
             editPanel.Enabled = true;
-            ChangeEnabledStateButtonsEditPanels(true);
-        }
-        private void ChangeEnabledStateButtonsEditPanels(bool isEnable)
-        {
-            btnSave.Enabled = isEnable;
-            btnCancel.Enabled = isEnable;
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -445,15 +531,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                 if(!SaveAddNewRow())
                     return;
                 btnSave.Text = "Зберегти";
-                ChangeEnabledStateButtonsEditPanels(false);
+                ControlEnabledActiveElements = true;
                 gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[gvComplexDictionariesList.RowCount - 1];
             }
             else
             {
                 if (SaveUpdate())
                 {
-                    ChangeEnabledStateButtonsEditPanels(false);
-                    ChangeEnableElementsWhenAdd(true);
+                    ControlEnabledActiveElements = true;
                     gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid];
                 }
             }
@@ -461,15 +546,14 @@ namespace sysAdminwp.viewPageDictionaryControls
         private void btnCancel_Click(object sender, EventArgs e)
         {
             var node = SaveNode;
-            SetTreeViewComplexDictionaryDataSource();
-            
-            GetComplexDictionariesData();
-            UpdateEditPanelComplex();
             complexTreeView.SelectedNode = complexTreeView.Nodes[node];
-
+            //update data into grid
+            gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
+            //update edit panel
+            UpdateEditPanelComplex();
+            //set default color for textBox -> 'Code' value
             txtCodeComplex.TextBoxElement.Border.ForeColor = Color.FromArgb(borderDefault[0], borderDefault[1], borderDefault[2], borderDefault[3]);
-            ChangeEnabledStateButtonsEditPanels(false);
-            ChangeEnableElementsWhenAdd(true);
+            ControlEnabledActiveElements = true;
             //complexTreeView.SelectedNode = saveNode;
         }
 
@@ -673,7 +757,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                 }
                 gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
                 UpdateEditPanelComplex();
-                ChangeEnableElementsWhenAdd(true);
+                ControlEnabledActiveElements = true;
                 return true;
             }
             catch (Exception e)
@@ -1164,19 +1248,11 @@ namespace sysAdminwp.viewPageDictionaryControls
 
                     break;
             }
+            //set data to grid of current dictionary
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
+            //clean data into 'editPanel' element
             UpdateEditPanelComplex();
             return true;
-        }
-
-        private void btnDeleteComplex_Click(object sender, EventArgs e)
-        {
-            indexValueGrid = gvComplexDictionariesList.CurrentRow.Index;
-            var result = _connector.DeleteItem(string.Concat(PrefixDelete, ComplexDictionaryName.ToLower()), CurrentGridRow.Code);
-
-            gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
-            UpdateEditPanelComplex();
-            gvComplexDictionariesList.CurrentRow = gvComplexDictionariesList.Rows[indexValueGrid - 1];
         }
     }
 }
