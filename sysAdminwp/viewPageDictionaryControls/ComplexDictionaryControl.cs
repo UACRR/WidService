@@ -255,7 +255,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     //systemConstantParams.Show(this);
                     break;
                 case "typeplace":
-                    var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/TypePlaceParam");
+                    var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/typePlaceParam");
                     //show typePlace form
                     TypePlaceParams typePlaceParams = new TypePlaceParams(baseDictsTypePlaceParam);
                     //attach for filter grid
