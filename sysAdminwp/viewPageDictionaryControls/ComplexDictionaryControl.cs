@@ -158,7 +158,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             txtSearchComplex.Enabled = stateEnabled;
             btnAddComplex.Enabled = stateEnabled;
             btnDeleteComplex.Enabled = stateEnabled;
-            controlsParamPanel.Enabled = stateEnabled;
             editPanel.Enabled = stateEnabled;
         }
 
@@ -235,9 +234,8 @@ namespace sysAdminwp.viewPageDictionaryControls
                 SaveNode = obj;
             }
             //--need review
-
-            //clean paramPanel element
-            controlsParamPanel.Controls.Clear();
+        
+        
             switch (ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
@@ -561,7 +559,6 @@ namespace sysAdminwp.viewPageDictionaryControls
                 txtCodeComplex.TextBoxElement.Border.ForeColor = Color.FromArgb(borderDefault[0], borderDefault[1], borderDefault[2], borderDefault[3]);
             }
             ControlEnabledActiveElements = false;
-            controlsParamPanel.Enabled = true;
             editPanel.Enabled = true;
         }
         private void btnSave_Click(object sender, EventArgs e)
