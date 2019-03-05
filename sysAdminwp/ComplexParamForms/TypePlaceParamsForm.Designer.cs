@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexParamForms
 {
-    partial class TypePlaceParams
+    partial class TypePlaceParamsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -42,7 +42,7 @@
             this.lbTypePlace.AutoSize = true;
             this.lbTypePlace.Location = new System.Drawing.Point(12, 9);
             this.lbTypePlace.Name = "lbTypePlace";
-            this.lbTypePlace.Size = new System.Drawing.Size(46, 13);
+            this.lbTypePlace.Size = new System.Drawing.Size(46, 15);
             this.lbTypePlace.TabIndex = 1;
             this.lbTypePlace.Text = "Обьект";
             // 
@@ -66,19 +66,20 @@
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
-            // TypePlaceParams
+            // TypePlaceParamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 270);
             this.Controls.Add(this.ddlTypePlace);
             this.Controls.Add(this.lbTypePlace);
-            this.Name = "TypePlaceParams";
+            this.Name = "TypePlaceParamsForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "TypePlaceParams";
+            this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.ddlTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

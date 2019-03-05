@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexParamForms
 {
-    partial class KLR030Params
+    partial class KLR030ParamsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -42,7 +42,7 @@
             this.lbKlr.AutoSize = true;
             this.lbKlr.Location = new System.Drawing.Point(12, 9);
             this.lbKlr.Name = "lbKlr";
-            this.lbKlr.Size = new System.Drawing.Size(37, 13);
+            this.lbKlr.Size = new System.Drawing.Size(39, 15);
             this.lbKlr.TabIndex = 1;
             this.lbKlr.Text = "Місто";
             // 
@@ -66,19 +66,20 @@
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
-            // KLR030Params
+            // KLR030ParamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(535, 270);
             this.Controls.Add(this.ddlCountry);
             this.Controls.Add(this.lbKlr);
-            this.Name = "KLR030Params";
+            this.Name = "KLR030ParamsForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "KLR030Params";
+            this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

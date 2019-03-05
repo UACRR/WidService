@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexParamForms
 {
-    partial class GenreTypeParams
+    partial class CreativeRoleTypeParamsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,22 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lbCategory = new System.Windows.Forms.Label();
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ddlCategory = new Telerik.WinControls.UI.RadDropDownList();
             this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // lbCategory
+            // radLabel1
             // 
-            this.lbCategory.AutoSize = true;
-            this.lbCategory.Location = new System.Drawing.Point(12, 9);
-            this.lbCategory.Name = "lbCategory";
-            this.lbCategory.Size = new System.Drawing.Size(69, 13);
-            this.lbCategory.TabIndex = 1;
-            this.lbCategory.Text = "Вид об\'єкта";
+            this.radLabel1.Location = new System.Drawing.Point(12, 12);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(60, 19);
+            this.radLabel1.TabIndex = 9;
+            this.radLabel1.Text = "Категорія";
+            this.radLabel1.ThemeName = "Office2013Light";
             // 
             // ddlCategory
             // 
@@ -54,10 +55,10 @@
             this.ddlCategory.DisplayMember = "Name";
             this.ddlCategory.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCategory.FormattingEnabled = false;
-            this.ddlCategory.Location = new System.Drawing.Point(87, 7);
+            this.ddlCategory.Location = new System.Drawing.Point(78, 12);
             this.ddlCategory.Name = "ddlCategory";
-            this.ddlCategory.Size = new System.Drawing.Size(536, 21);
-            this.ddlCategory.TabIndex = 2;
+            this.ddlCategory.Size = new System.Drawing.Size(421, 21);
+            this.ddlCategory.TabIndex = 10;
             this.ddlCategory.ThemeName = "Office2013Light";
             this.ddlCategory.ValueMember = "CodeI";
             this.ddlCategory.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCategory_SelectedIndexChanged);
@@ -66,19 +67,21 @@
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
-            // GenreTypeParams
+            // CreativeRoleTypeParamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 270);
+            this.ClientSize = new System.Drawing.Size(511, 270);
             this.Controls.Add(this.ddlCategory);
-            this.Controls.Add(this.lbCategory);
-            this.Name = "GenreTypeParams";
+            this.Controls.Add(this.radLabel1);
+            this.Name = "CreativeRoleTypeParamsForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "GenreTypeParams";
+            this.Text = "CreativeRoleTypeParams";
+            this.ThemeName = "Office2013Light";
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -89,7 +92,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lbCategory;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadDropDownList ddlCategory;
         private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
     }

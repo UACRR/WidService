@@ -208,7 +208,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "copyrightkind":
                     var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
                     //show CopyRightKind form
-                    CopyRightKindParams copyRightKindParams = new CopyRightKindParams(baseDictsCopyRight);
+                    CopyRightKindParamsForm copyRightKindParams = new CopyRightKindParamsForm(baseDictsCopyRight);
                     //attach for filter grid
                     copyRightKindParams.CopyRightKindItem += FilterGrid;
                     copyRightKindParams.Show(this);
@@ -216,7 +216,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "country":
                     var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
                     //show country form
-                    CountryParams countryParams = new CountryParams(baseDictsContinent);
+                    CountryParamsForm countryParams = new CountryParamsForm(baseDictsContinent);
                     //attach for filter grid
                     countryParams.CountryItem += FilterGrid;
                     countryParams.Show(this);
@@ -224,7 +224,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "creativeroletype":
                     var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
                     //show creativeRoleType form
-                    CreativeRoleTypeParams creativeRoleTypeParams = new CreativeRoleTypeParams(baseDictsCategory);
+                    CreativeRoleTypeParamsForm creativeRoleTypeParams = new CreativeRoleTypeParamsForm(baseDictsCategory);
                     //attach for filter grid
                     creativeRoleTypeParams.CreativeRoleTypeItem += FilterGrid;
                     creativeRoleTypeParams.Show(this);
@@ -232,7 +232,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "genretype":
                     var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
                     //show genreType form
-                    GenreTypeParams genreTypeParams = new GenreTypeParams(baseDictsGenreType);
+                    GenreTypeParamsForm genreTypeParams = new GenreTypeParamsForm(baseDictsGenreType);
                     //attach for filter grid
                     genreTypeParams.GenreTypeItem += FilterGrid;
                     genreTypeParams.Show(this);
@@ -240,14 +240,14 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "klr030":
                     var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
                     //show KLR030 form
-                    KLR030Params klr030Params = new KLR030Params(customDictCountry);
+                    KLR030ParamsForm klr030Params = new KLR030ParamsForm(customDictCountry);
                     //attach for filter grid
                     klr030Params.KLR030Item += FilterGrid;
                     klr030Params.Show(this);
                     break;
                 case "systemconstant":
-                    var baseDictsSystemConstant = _connector.GetList<DictBaseTypeI>("dictionary/base/SystemConstant");
                     //disabled code -> field for params is not exist
+                    //var baseDictsSystemConstant = _connector.GetList<DictBaseTypeI>("dictionary/base/SystemConstant");
                     // show SystemConstantParams form
                     //SystemConstantParams systemConstantParams = new SystemConstantParams(baseDictsSystemConstant);
                     //attach for filter grid
@@ -257,7 +257,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "typeplace":
                     var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/typePlaceParam");
                     //show typePlace form
-                    TypePlaceParams typePlaceParams = new TypePlaceParams(baseDictsTypePlaceParam);
+                    TypePlaceParamsForm typePlaceParams = new TypePlaceParamsForm(baseDictsTypePlaceParam);
                     //attach for filter grid
                     typePlaceParams.TypePlaceItem += FilterGrid;
                     typePlaceParams.Show(this);

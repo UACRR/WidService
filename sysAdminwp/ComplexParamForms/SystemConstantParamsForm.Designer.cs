@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexParamForms
 {
-    partial class SystemConstantParams
+    partial class SystemConstantParamsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,12 +31,18 @@
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // SystemConstantParams
+            // SystemConstantParamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "SystemConstantParams";
+            this.ClientSize = new System.Drawing.Size(292, 270);
+            this.Name = "SystemConstantParamsForm";
+            // 
+            // 
+            // 
+            this.RootElement.ApplyShapeToControl = true;
             this.Text = "SystemConstantParams";
+            this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

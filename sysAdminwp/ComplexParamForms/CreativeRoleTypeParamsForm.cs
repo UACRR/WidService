@@ -10,11 +10,11 @@ using Telerik.WinControls;
 
 namespace sysAdminwp.ComplexParamForms
 {
-    public partial class CreativeRoleTypeParams : Telerik.WinControls.UI.RadForm
+    public partial class CreativeRoleTypeParamsForm : Telerik.WinControls.UI.RadForm
     {
         //for send data to 'ComplexDictionaryControl'
         public event EventHandler CreativeRoleTypeItem;
-        public CreativeRoleTypeParams(List<DictBaseTypeI> list)
+        public CreativeRoleTypeParamsForm(List<DictBaseTypeI> list)
         {
             InitializeComponent();
             //show data for dropDownList

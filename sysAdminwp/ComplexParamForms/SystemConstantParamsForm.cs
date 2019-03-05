@@ -10,9 +10,9 @@ using Telerik.WinControls;
 
 namespace sysAdminwp.ComplexParamForms
 {
-    public partial class SystemConstantParams : Telerik.WinControls.UI.RadForm
+    public partial class SystemConstantParamsForm : Telerik.WinControls.UI.RadForm
     {
-        public SystemConstantParams(List<DictBaseTypeI> list)
+        public SystemConstantParamsForm(List<DictBaseTypeI> list)
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexParamForms
 {
-    partial class CountryParams
+    partial class GenreTypeParamsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,58 +29,58 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lbContinent = new Telerik.WinControls.UI.RadLabel();
-            this.ddlContinent = new Telerik.WinControls.UI.RadDropDownList();
+            this.lbCategory = new System.Windows.Forms.Label();
+            this.ddlCategory = new Telerik.WinControls.UI.RadDropDownList();
             this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.lbContinent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlContinent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // lbContinent
+            // lbCategory
             // 
-            this.lbContinent.Location = new System.Drawing.Point(12, 21);
-            this.lbContinent.Name = "lbContinent";
-            this.lbContinent.Size = new System.Drawing.Size(61, 18);
-            this.lbContinent.TabIndex = 2;
-            this.lbContinent.Text = "Континент";
+            this.lbCategory.AutoSize = true;
+            this.lbCategory.Location = new System.Drawing.Point(12, 9);
+            this.lbCategory.Name = "lbCategory";
+            this.lbCategory.Size = new System.Drawing.Size(70, 15);
+            this.lbCategory.TabIndex = 1;
+            this.lbCategory.Text = "Вид об\'єкта";
             // 
-            // ddlContinent
+            // ddlCategory
             // 
-            this.ddlContinent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ddlCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlContinent.DataSource = this.dictBaseTypeIBindingSource;
-            this.ddlContinent.DisplayMember = "Name";
-            this.ddlContinent.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlContinent.FormattingEnabled = false;
-            this.ddlContinent.Location = new System.Drawing.Point(79, 21);
-            this.ddlContinent.Name = "ddlContinent";
-            this.ddlContinent.Size = new System.Drawing.Size(432, 21);
-            this.ddlContinent.TabIndex = 3;
-            this.ddlContinent.ThemeName = "Office2013Light";
-            this.ddlContinent.ValueMember = "CodeI";
-            this.ddlContinent.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlContinent_SelectedIndexChanged);
+            this.ddlCategory.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlCategory.DisplayMember = "Name";
+            this.ddlCategory.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCategory.FormattingEnabled = false;
+            this.ddlCategory.Location = new System.Drawing.Point(87, 7);
+            this.ddlCategory.Name = "ddlCategory";
+            this.ddlCategory.Size = new System.Drawing.Size(536, 21);
+            this.ddlCategory.TabIndex = 2;
+            this.ddlCategory.ThemeName = "Office2013Light";
+            this.ddlCategory.ValueMember = "CodeI";
+            this.ddlCategory.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCategory_SelectedIndexChanged);
             // 
             // dictBaseTypeIBindingSource
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
-            // CountryParams
+            // GenreTypeParamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(523, 270);
-            this.Controls.Add(this.ddlContinent);
-            this.Controls.Add(this.lbContinent);
-            this.Name = "CountryParams";
+            this.ClientSize = new System.Drawing.Size(635, 270);
+            this.Controls.Add(this.ddlCategory);
+            this.Controls.Add(this.lbCategory);
+            this.Name = "GenreTypeParamsForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "CountryParams";
-            ((System.ComponentModel.ISupportInitialize)(this.lbContinent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlContinent)).EndInit();
+            this.Text = "GenreTypeParams";
+            this.ThemeName = "Office2013Light";
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCategory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -90,8 +90,8 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadLabel lbContinent;
-        private Telerik.WinControls.UI.RadDropDownList ddlContinent;
+        private System.Windows.Forms.Label lbCategory;
+        private Telerik.WinControls.UI.RadDropDownList ddlCategory;
         private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
     }
 }

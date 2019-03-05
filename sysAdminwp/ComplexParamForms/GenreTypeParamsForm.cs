@@ -10,11 +10,11 @@ using Telerik.WinControls;
 
 namespace sysAdminwp.ComplexParamForms
 {
-    public partial class KLR030Params : Telerik.WinControls.UI.RadForm
+    public partial class GenreTypeParamsForm : Telerik.WinControls.UI.RadForm
     {
         //for send data to 'ComplexDictionaryControl'
-        public event EventHandler KLR030Item;
-        public KLR030Params(List<DictBaseTypeI> list)
+        public event EventHandler GenreTypeItem;
+        public GenreTypeParamsForm(List<DictBaseTypeI> list)
         {
             InitializeComponent();
             //show data for dropDownList
@@ -22,7 +22,7 @@ namespace sysAdminwp.ComplexParamForms
         }
 
         //when select item into dropDownList
-        private void ddlCountry_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        private void ddlCategory_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
             //interrupt if selected item is not exist
             if (e.Position == -1)
@@ -30,7 +30,7 @@ namespace sysAdminwp.ComplexParamForms
                 return;
             }
             //send value of the selected item
-            KLR030Item?.Invoke(ddlCountry.Items[e.Position].Value, e);
+            GenreTypeItem?.Invoke(ddlCategory.Items[e.Position].Value, e);
         }
     }
 }

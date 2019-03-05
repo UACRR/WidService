@@ -1,6 +1,6 @@
 ﻿namespace sysAdminwp.ComplexParamForms
 {
-    partial class CopyRightKindParams
+    partial class CopyRightKindParamsForm
     {
         /// <summary>
         /// Required designer variable.
@@ -66,19 +66,20 @@
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
-            // CopyRightKindParams
+            // CopyRightKindParamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(483, 270);
             this.Controls.Add(this.ddlCrkindGroup);
             this.Controls.Add(this.lbCrkindGroup);
-            this.Name = "CopyRightKindParams";
+            this.Name = "CopyRightKindParamsForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "CopyRightKind";
+            this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.lbCrkindGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCrkindGroup)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();

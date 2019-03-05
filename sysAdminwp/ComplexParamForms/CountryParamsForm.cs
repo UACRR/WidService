@@ -10,11 +10,11 @@ using Telerik.WinControls;
 
 namespace sysAdminwp.ComplexParamForms
 {
-    public partial class CountryParams : Telerik.WinControls.UI.RadForm
+    public partial class CountryParamsForm : Telerik.WinControls.UI.RadForm
     {
         //for send data to 'ComplexDictionaryControl'
         public event EventHandler CountryItem;
-        public CountryParams(List<DictBaseTypeI> list)
+        public CountryParamsForm(List<DictBaseTypeI> list)
         {
             InitializeComponent();
             //show data for dropDownList
