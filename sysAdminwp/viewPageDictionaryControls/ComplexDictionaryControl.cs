@@ -40,6 +40,15 @@ namespace sysAdminwp.viewPageDictionaryControls
         private SystemConstantDictionaryControl _systemConstantDictionaryControl;
         private TypePlaceDictionaryControl _typePlaceDictionaryControl;
 
+        //forms for ComplexParamForms
+        CopyRightKindParamsForm copyRightKindParamsForm;
+        CountryParamsForm countryParamsForm;
+        CreativeRoleTypeParamsForm creativeRoleTypeParamsForm;
+        GenreTypeParamsForm genreTypeParamsForm;
+        KLR030ParamsForm klr030ParamsForm;
+        TypePlaceParamsForm typePlaceParamsForm;
+
+
         private CopyrightKind _copyrightKind;
         private Country _country;
         private CreativeRoleType _creativeRoleType;
@@ -186,9 +195,35 @@ namespace sysAdminwp.viewPageDictionaryControls
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData(value);
         }
 
+        //close if form active
+        private void FixActiveFormsParam()
+        {
+            if (copyRightKindParamsForm != null && !copyRightKindParamsForm.IsDisposed)
+            {
+                copyRightKindParamsForm.Close();
+            } else if (countryParamsForm != null && !countryParamsForm.IsDisposed)
+            {
+                countryParamsForm.Close();
+            } else if (creativeRoleTypeParamsForm != null && !creativeRoleTypeParamsForm.IsDisposed)
+            {
+                creativeRoleTypeParamsForm.Close();
+            } else if (genreTypeParamsForm != null && !genreTypeParamsForm.IsDisposed)
+            {
+                genreTypeParamsForm.Close();
+            } else if (klr030ParamsForm != null && !klr030ParamsForm.IsDisposed)
+            {
+                klr030ParamsForm.Close();
+            } else if (typePlaceParamsForm != null && !typePlaceParamsForm.IsDisposed)
+            {
+                typePlaceParamsForm.Close();
+            }
+        }
+
         //initialize data for grid of the selected dictionary
         private void complexTreeView_SelectedNodeChanged(object sender, Telerik.WinControls.UI.RadTreeViewEventArgs e)
         {
+            //close form of params if active
+            FixActiveFormsParam();
             //--need review
             var obj = SaveNode;
             try
@@ -208,42 +243,42 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "copyrightkind":
                     var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
                     //show CopyRightKind form
-                    CopyRightKindParamsForm copyRightKindParams = new CopyRightKindParamsForm(baseDictsCopyRight);
+                    copyRightKindParamsForm = new CopyRightKindParamsForm(baseDictsCopyRight);
                     //attach for filter grid
-                    copyRightKindParams.CopyRightKindItem += FilterGrid;
-                    copyRightKindParams.Show(this);
+                    copyRightKindParamsForm.CopyRightKindItem += FilterGrid;
+                    copyRightKindParamsForm.Show(this);
                     break;
                 case "country":
                     var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
                     //show country form
-                    CountryParamsForm countryParams = new CountryParamsForm(baseDictsContinent);
+                    countryParamsForm = new CountryParamsForm(baseDictsContinent);
                     //attach for filter grid
-                    countryParams.CountryItem += FilterGrid;
-                    countryParams.Show(this);
+                    countryParamsForm.CountryItem += FilterGrid;
+                    countryParamsForm.Show(this);
                     break;
                 case "creativeroletype":
                     var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
                     //show creativeRoleType form
-                    CreativeRoleTypeParamsForm creativeRoleTypeParams = new CreativeRoleTypeParamsForm(baseDictsCategory);
+                    creativeRoleTypeParamsForm = new CreativeRoleTypeParamsForm(baseDictsCategory);
                     //attach for filter grid
-                    creativeRoleTypeParams.CreativeRoleTypeItem += FilterGrid;
-                    creativeRoleTypeParams.Show(this);
+                    creativeRoleTypeParamsForm.CreativeRoleTypeItem += FilterGrid;
+                    creativeRoleTypeParamsForm.Show(this);
                     break;
                 case "genretype":
                     var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
                     //show genreType form
-                    GenreTypeParamsForm genreTypeParams = new GenreTypeParamsForm(baseDictsGenreType);
+                    genreTypeParamsForm = new GenreTypeParamsForm(baseDictsGenreType);
                     //attach for filter grid
-                    genreTypeParams.GenreTypeItem += FilterGrid;
-                    genreTypeParams.Show(this);
+                    genreTypeParamsForm.GenreTypeItem += FilterGrid;
+                    genreTypeParamsForm.Show(this);
                     break;
                 case "klr030":
                     var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
                     //show KLR030 form
-                    KLR030ParamsForm klr030Params = new KLR030ParamsForm(customDictCountry);
+                    klr030ParamsForm = new KLR030ParamsForm(customDictCountry);
                     //attach for filter grid
-                    klr030Params.KLR030Item += FilterGrid;
-                    klr030Params.Show(this);
+                    klr030ParamsForm.KLR030Item += FilterGrid;
+                    klr030ParamsForm.Show(this);
                     break;
                 case "systemconstant":
                     //disabled code -> field for params is not exist
@@ -257,15 +292,20 @@ namespace sysAdminwp.viewPageDictionaryControls
                 case "typeplace":
                     var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/typePlaceParam");
                     //show typePlace form
-                    TypePlaceParamsForm typePlaceParams = new TypePlaceParamsForm(baseDictsTypePlaceParam);
+                    typePlaceParamsForm = new TypePlaceParamsForm(baseDictsTypePlaceParam);
                     //attach for filter grid
-                    typePlaceParams.TypePlaceItem += FilterGrid;
-                    typePlaceParams.Show(this);
+                    typePlaceParamsForm.TypePlaceItem += FilterGrid;
+                    typePlaceParamsForm.Show(this);
                     break;
             }
             //set data to grid of the current complex dictionary
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
         }
+        
+        //control Show/close action for forms complex dictionaries
+        //get list of open forms
+        //define names of detected forms 'ComplexParamForms'
+        //close forms from list
 
         //fill dictionary data for grid
         private List<ViewTable> GetComplexDictionariesData(int code = 0)
