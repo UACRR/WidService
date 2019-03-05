@@ -1490,7 +1490,8 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("rholderType", await _dbContext.RholderType.AsNoTracking().ToListAsync());
             retDictionary.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
             retDictionary.Add("typeMethodGet", await _dbContext.TypeMethodGet.AsNoTracking().ToListAsync());
-            retDictionary.Add("typePlace", await _dbContext.TypePlace.Include(rec=>rec.ParamTypeNavigation).AsNoTracking().ToListAsync());
+            retDictionary.Add("typePlace", await _dbContext.TypePlace.Include(rec => rec.ParamTypeNavigation).AsNoTracking().ToListAsync());
+            retDictionary.Add("typePlaceParam", await _dbContext.TypePlaceParam.AsNoTracking().ToListAsync());
             retDictionary.Add("typeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
             retDictionary.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
             retDictionary.Add("usesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());
