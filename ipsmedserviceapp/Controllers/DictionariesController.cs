@@ -380,6 +380,16 @@ namespace ipsmedserviceapp.Controllers
                             (sors, dest) => ((TypePlaceTr)sors).CodeI == ((TypePlaceTr)dest).CodeI && ((TypePlaceTr)sors).Lang == ((TypePlaceTr)dest).Lang,
                             rec => rec.TypePlaceTr)
                         );
+
+            baseEng.Add("typeplaceparam".ToLower(),
+                            new BaseDictionaryEng<TypePlaceParam, TypePlaceParamTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (TypePlaceParam)sors,
+                            sors => sors.TypePlaceParamTr.ToList(),
+                            (sors, dest) => ((TypePlaceParamTr)sors).CodeI == ((TypePlaceParamTr)dest).CodeI && ((TypePlaceParamTr)sors).Lang == ((TypePlaceParamTr)dest).Lang,
+                            rec => rec.TypePlaceParamTr)
+                        );
+
             baseEng.Add("typevat".ToLower(),
                             new BaseDictionaryEng<TypeVat, TypeVattr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
                             sors => (DictBaseTypeI)sors,

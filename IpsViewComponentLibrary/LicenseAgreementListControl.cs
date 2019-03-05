@@ -14,6 +14,7 @@ using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
+using IpsViewComponentLibrary.Shared.Forms;
 
 namespace IpsViewComponentLibrary
 {

@@ -7,6 +7,7 @@ using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Forms;
 
 namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {

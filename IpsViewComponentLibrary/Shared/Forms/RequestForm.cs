@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
@@ -10,14 +9,13 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.Common.Form;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
-using IpsViewComponentLibrary.Common.Form;
-using IpsViewComponentLibrary.ConsumerForms;
-using IpsViewComponentLibrary.Extensions;
 using License = ipsFormsDesign.Model.License;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Forms
 {
     public partial class RequestForm : IpsForm
     {
@@ -31,13 +29,12 @@ namespace IpsViewComponentLibrary
 
         private const string CloseButtonText = "Закрити";
 
-
         private readonly ObjectRightService _objectRightService = new ObjectRightService();
         private readonly DialogService _dialogService = new DialogService();
+        private readonly BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
         private readonly AnketaDictionaties _dictionaties;
 
         private BindingList<ObjectAuthorRightholderBrViewModel> _authorRightholderList;
-        private BindingList<RegisterItemViewModel> _musicalDesignList = new BindingList<RegisterItemViewModel>();
         private Customer _customer;
         private LicenseAgreement _licenseAgreement;
         private ObjectRight _objectRight;
@@ -246,9 +243,11 @@ namespace IpsViewComponentLibrary
             _objectRight.Authors.Clear();
             _objectRight.CopyRight.Clear();
 
-            foreach (var ar in _authorRightholderList)
+            foreach (var authorRightholder in _authorRightholderList)
             {
-                _objectRight.AddObjectBrAuthorRightholder(ar);
+                if(string.IsNullOrEmpty(authorRightholder.Author.AuthorName))
+                    continue;
+                _objectRight.AddObjectBrAuthorRightholder(authorRightholder);
             }
         }
 
@@ -269,20 +268,23 @@ namespace IpsViewComponentLibrary
             }
 
             licenseAgreement.LicenseBigR.MusicalDesign.Clear();
-            if(_musicalDesignList.Any())
-            foreach (var rvm in _musicalDesignList)
+            //if(_musicalDesignList.Any())
+            foreach (var item in _musicalDesignList)
             {
+                if(!AuditMusicalDesignObject(item))
+                    continue;
+
                 var musicalDesign = new MusicalDesign
                 {
-                    MdId = rvm.MdId,
-                    LicId = rvm.LicId,
-                    Objid = rvm.ObjId,
-                    ObjName = rvm.ItemName,
-                    NameSinger = rvm.Performer,
-                    NameMusician = rvm.AuthorMusic,
-                    Duration = rvm.DurationItem,
-                    NumbPerfom = rvm.CountUse,
-                    AuthorText = rvm.AuthorText,
+                    MdId = item.MdId,
+                    LicId = item.LicId,
+                    Objid = item.ObjId,
+                    ObjName = item.ItemName,
+                    NameSinger = item.Performer,
+                    NameMusician = item.AuthorMusic,
+                    Duration = item.DurationItem,
+                    NumbPerfom = item.CountUse,
+                    AuthorText = item.AuthorText,
                     //LicVersion = rvm.LicVersion,
                 };
 
@@ -294,34 +296,22 @@ namespace IpsViewComponentLibrary
 
                 licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
             }
-            else
-            {
-                var viewModel = ctrlMusicalDesignList.GetDataSource;
-                foreach (var item in viewModel)
-                {
-                    var musicalDesign = new MusicalDesign
-                    {
-                        MdId = item.MdId,
-                        LicId = item.LicId,
-                        Objid = item.ObjId,
-                        ObjName = item.ItemName,
-                        NameSinger = item.Performer,
-                        NameMusician = item.AuthorMusic,
-                        Duration = item.DurationItem,
-                        NumbPerfom = item.CountUse,
-                        AuthorText = item.AuthorText,
-                        //LicVersion = item.LicVersion,
-                    };
+        }
 
-                    if (_licId.HasValue)
-                    {
-                        musicalDesign.LicId = licenseAgreement.LicId;
-                        //musicalDesign.LicVersion = licenseAgreement.LicVersion;
-                    }
-
-                    licenseAgreement.LicenseBigR.MusicalDesign.Add(musicalDesign);
-                }
-            }
+        /// <summary>
+        /// Перевірка об'єкта на наявність хоча б однї необхідної властивості для збереження цього об'єкта.
+        /// True - об'єкт можна записати, False - об'єкт не містить необхідних для запису даних.
+        /// </summary>
+        /// <param name="item">Об'єкт музичного оформлення</param>
+        /// <returns>Результат перевірки об'єкта</returns>
+        private bool AuditMusicalDesignObject(RegisterItemViewModel item)
+        {
+            return !(string.IsNullOrEmpty(item.AuthorMusic)
+                  && string.IsNullOrEmpty(item.AuthorText)
+                  && string.IsNullOrEmpty(item.Performer)
+                  && string.IsNullOrEmpty(item.ItemName)
+                  && item.CountUse == null
+                  && item.DurationItem == null);
         }
 
         private void SetObjectRightData(ObjectRight objectRight, IList<ViewCustomer> rightholderList = null)
