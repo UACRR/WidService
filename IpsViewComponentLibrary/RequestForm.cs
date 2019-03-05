@@ -453,6 +453,10 @@ namespace IpsViewComponentLibrary
 
         private void UpdateGenrePersent()
         {
+            // Якщо винагороду встановлено
+            if (_licenseAgreement != null && ( _licenseAgreement.LicenseBigR.Rate  ?? 0 ) > 0)
+                return;
+
             if (Int32.TryParse(txtActCode.Text, out int actCode))
             {
                 var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
