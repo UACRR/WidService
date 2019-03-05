@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Forms
 {
     partial class RequestForm
     {

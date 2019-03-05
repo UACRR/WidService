@@ -239,6 +239,14 @@ namespace ipsFormsDesign.Dictionary
         {
             return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.TypePlaceTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
         }
+        public static implicit operator TypePlaceParam(DictBaseTypeI test)
+        {
+            return new TypePlaceParam { CodeI = test.CodeI, Name = test.Name, TypePlaceParamTr = test.DictTrI.Select(rec => new TypePlaceParamTr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
+        public static implicit operator DictBaseTypeI(TypePlaceParam test)
+        {
+            return new DictBaseTypeI { CodeI = test.CodeI, Name = test.Name, DictTrI = test.TypePlaceParamTr.Select(rec => new DictTrI { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };
+        }
         public static implicit operator TypeVat(DictBaseTypeI test)
         {
             return new TypeVat { CodeI = test.CodeI, Name = test.Name, TypeVattr = test.DictTrI.Select(rec => new TypeVattr { CodeI = rec.CodeI, Name = rec.Name, Lang = rec.Lang }).ToList() };

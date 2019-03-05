@@ -1016,10 +1016,10 @@
     <Compile Include="ConsumerControls\SmallRight\ReportsControl.Designer.cs">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="RequestForm.cs">
+    <Compile Include="Shared\Forms\RequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RequestForm.Designer.cs">
+    <Compile Include="Shared\Forms\RequestForm.Designer.cs">
       <DependentUpon>RequestForm.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\RightholderListControl.cs">
@@ -1486,7 +1486,7 @@
     <EmbeddedResource Include="ConsumerControls\SmallRight\ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RequestForm.resx">
+    <EmbeddedResource Include="Shared\Forms\RequestForm.resx">
       <DependentUpon>RequestForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\RightholderListControl.resx">
@@ -1666,6 +1666,8 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Shared\Controls\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
