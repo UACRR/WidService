@@ -890,7 +890,6 @@ namespace IpsViewComponentLibrary
             this.txtVinagoroda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "Rate", true));
             this.txtVinagoroda.Location = new System.Drawing.Point(375, 123);
             this.txtVinagoroda.Name = "txtVinagoroda";
-            this.txtVinagoroda.ReadOnly = true;
             this.txtVinagoroda.Size = new System.Drawing.Size(49, 21);
             this.txtVinagoroda.TabIndex = 25;
             this.txtVinagoroda.ThemeName = "Office2013Light";
