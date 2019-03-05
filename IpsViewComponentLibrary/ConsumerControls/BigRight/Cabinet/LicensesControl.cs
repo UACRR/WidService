@@ -12,10 +12,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
     public partial class LicensesControl : UserControl
     {
-        private const string AcceptSuccess = "Акцептовано!";
-        private const string AcceptError = "Неможливо акцептувати!";
-        private const string SendConfirmationSuccess = "Відправлено на погодження!";
-        private const string SendConfirmationError = "Неможливо відправити на погодження!";
         private const string CloseLicenseQuestion = "Ліцензія буде закрита та автоматично видалена! Підтвердити дію?";
         private const string CloseLicenseSuccess = "Ліцензію закрито!";
         private const string CloseLicenseError = "Неможливо закрити ліцензію!";
@@ -28,13 +24,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         private MainGridConsumerBigRightView _gridMainView;
         public event EmptyEventHandler UpdateData;
 
-
-        private BRLicenseButtonActionType _functionType;
-        private readonly Dictionary<BRLicenseButtonActionType, string> _btnDictionary = new Dictionary<BRLicenseButtonActionType, string>{
-            {BRLicenseButtonActionType.Accept, "Акцептувати"},
-            {BRLicenseButtonActionType.Confirm, "На погодження"},
-            {BRLicenseButtonActionType.None, string.Empty}
-        };
         public LicensesControl()
         {
             InitializeComponent();
@@ -75,7 +64,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 btnCloseAgr.Enabled = false;
                 return;
             }
-
+            
             if (ctrlAgrDetailInfo.Enabled == false)
             {
                 ctrlAgrDetailInfo.Enabled = true;
@@ -87,9 +76,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             btnToProlongation.Enabled = lic?.LicStatus == 2;
             btnCloseAgr.Enabled = lic?.LicStatus != 4;
-            btnToAccept.Enabled = lic?.LicStatus == 0 || lic?.LicStatus == 1;
-
-            SetBtnFunc(lic?.LicStatus == 0 ? BRLicenseButtonActionType.Confirm : lic?.LicStatus == 1 ? BRLicenseButtonActionType.Accept : BRLicenseButtonActionType.None);
 
             //оновлення інфи
             var licAgrParam = _customer.Client.LicenseAgreement
@@ -98,13 +84,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 .SingleOrDefault(rec => rec.LicVersion == lic?.LicVersion);
             if(licAgrParam == null) return;
             ctrlAgrDetailInfo.SetDataInfo(licAgrParam, lic);
-        }
-
-        private void SetBtnFunc(BRLicenseButtonActionType type)
-        {
-            _functionType = type;
-            if(type != BRLicenseButtonActionType.None)
-                btnToAccept.Text = _btnDictionary[type];
         }
 
         private void btnCloseAgr_Click(object sender, EventArgs e)
@@ -139,32 +118,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 MessageShow.ShowInfoByResult(ProlongationSuccess, ProlongationError, result);
             }
         }
-
-        // на підтвердження / акцептування
-        private void btnToAccept_Click(object sender, EventArgs e)
-        {
-            if (!(gvViewLicences?.CurrentRow?.DataBoundItem is LicenseAgreementBigRightView item))
-                return;
-
-            bool result = false;
-            var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
-
-            switch (_functionType)
-            {
-                case BRLicenseButtonActionType.Accept:
-                    result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 0, false) ?? false;
-                    MessageShow.ShowInfoByResult(AcceptSuccess, AcceptError, result);
-                    break;
-
-                case BRLicenseButtonActionType.Confirm:
-                    result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 3, false) ?? false;
-                    MessageShow.ShowInfoByResult(SendConfirmationSuccess, SendConfirmationError, result);
-                    break;
-            }
-            if (result)
-                UpdateData?.Invoke();
-        }
-
 
         private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {

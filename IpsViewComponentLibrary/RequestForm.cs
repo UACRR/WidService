@@ -332,7 +332,9 @@ namespace IpsViewComponentLibrary
             ctrlAuthorRightholderList.DataSource = _authorRightholderList;
         }
 
-        //створення ліцензійного договору
+        /// <summary>
+        /// Створити нову заявку
+        /// </summary>
         private void CreateNewRequest()
         {
             _licenseAgreement = new LicenseAgreement
@@ -454,24 +456,19 @@ namespace IpsViewComponentLibrary
         private void UpdateGenrePersent()
         {
             // Якщо винагороду встановлено
-            if (_licenseAgreement != null && ( _licenseAgreement.LicenseBigR.Rate  ?? 0 ) > 0)
+            if (_licenseAgreement?.LicenseBigR?.Rate > 0)
                 return;
 
-            if (Int32.TryParse(txtActCode.Text, out int actCode))
+            if (int.TryParse(txtActCode.Text, out int actCode))
             {
                 var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
 
                 var rate = _dictionaties.relGenrePercent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
 
                 txtVinagoroda.Text = rate.ToString();
-                _licenseAgreement.LicenseBigR.Rate = rate;
+                if(_licenseAgreement?.LicenseBigR != null)
+                    _licenseAgreement.LicenseBigR.Rate = rate;
             }
-        }
-
-        public enum FormMode
-        {
-            ForBigRightAdmin,
-            ForSmallRightAdmin,
         }
 
         /// <summary>
@@ -489,6 +486,7 @@ namespace IpsViewComponentLibrary
             }
             return isValid;
         }
+
         /// <summary>
         /// Перевірка на підтверження права
         /// </summary>
@@ -504,6 +502,7 @@ namespace IpsViewComponentLibrary
             }
             return isValid;
         }
+
         private void BtnSetActiveStatus_Click(object sender, EventArgs e)
         {
             if (_licenseAgreement.LicType == 3) // Довідка
@@ -584,6 +583,12 @@ namespace IpsViewComponentLibrary
             }
 
             return errorText == "";
+        }
+
+        public enum FormMode
+        {
+            ForBigRightAdmin,
+            ForSmallRightAdmin,
         }
     }
 }
