@@ -431,6 +431,7 @@
             // 
             this.splitContainer.Controls.Add(this.spHeader);
             this.splitContainer.Controls.Add(this.spFooter);
+            this.splitContainer.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.EnableCollapsing = true;
             this.splitContainer.Location = new System.Drawing.Point(0, 0);

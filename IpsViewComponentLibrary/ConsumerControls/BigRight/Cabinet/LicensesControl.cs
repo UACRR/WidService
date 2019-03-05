@@ -23,7 +23,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         private const string ProlongationError = "Неможливо пролонгувати ліцензійний договір!";
 
         private Customer _customer;
-        public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
+        public event LicenseStatusChangeEventHandler OnLicenseCloseAndDelete;
         public event SaveCustomerEventHandler OnSaveCustomer;
         private MainGridConsumerBigRightView _gridMainView;
         public event EmptyEventHandler UpdateData;

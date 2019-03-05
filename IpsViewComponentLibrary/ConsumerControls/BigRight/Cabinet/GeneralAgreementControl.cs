@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         private const string ProlongationError = "Неможливо пролонгувати генеральний договір!";
 
         private Customer _customer;
-        public event LisenseStatusChangeEventHandler OnLicStatusChange;
+        public event LicenseStatusChangeEventHandler OnLicStatusChange;
         public event SaveObjectByIdEventHandler<LicenseAgreement> GeneralAgreementSaveChanges;
         public event EmptyEventHandler UpdateData;
 

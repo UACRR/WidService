@@ -102,6 +102,7 @@ namespace IpsViewComponentLibrary
                     if (windowType == ControlRequestOrReferenceType.None)
                         Text = ViewLicense;
                     btnCancel.Text = CloseButtonText;
+                    btnSave.Visible = false;
                     break;
             }
 
@@ -152,8 +153,10 @@ namespace IpsViewComponentLibrary
 
         private void RequestForm_Load(object sender, EventArgs e)
         {
-            ddlPerformType.SelectedIndex = 0;
-            ddlLang.SelectedIndex = 0;
+            if (ddlPerformType.SelectedIndex < 0)
+                ddlPerformType.SelectedIndex = 0;
+            if (ddlLang.SelectedIndex < 0)
+                ddlLang.SelectedIndex = 0;
         }
 
         private void SetDictionaries()
@@ -421,7 +424,7 @@ namespace IpsViewComponentLibrary
             if(_licenseAgreement.AgrId != agrid)
                 _licenseAgreement.AgrId = agrid;// прив'язка  до ген. угоди
             DialogResult = DialogResult.OK;
-            Close();
+            //Close();
         }
 
         private void DdlPlaceName_SelectedValueChanged(object sender, EventArgs e)
@@ -450,6 +453,10 @@ namespace IpsViewComponentLibrary
 
         private void UpdateGenrePersent()
         {
+            // Якщо винагороду встановлено
+            if (_licenseAgreement != null && ( _licenseAgreement.LicenseBigR.Rate  ?? 0 ) > 0)
+                return;
+
             if (Int32.TryParse(txtActCode.Text, out int actCode))
             {
                 var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
