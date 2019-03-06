@@ -335,12 +335,13 @@ namespace ipsFormsDesign.Interfaces
     /// <summary>
     /// Р/Л вистави
     /// </summary>
-    public class RatedListSpectacleBigRightView : IChildTemplate, IParentTemplate
+    public class RatedListSpectacleBigRightView
     {
         public int RmId { get; set; }
         public int RegId { get; set; }
         public int? ObjId { get; set; }
         public int? ActCode { get; set; }
+        public int? CountUse { get; set; }
         public int CustId { get; set; }
         public decimal? RegAmount { get; set; }
         public decimal? AuthAmount { get; set; }
@@ -444,57 +445,5 @@ namespace ipsFormsDesign.Interfaces
         public string Community_name { get; set; }
         public string Country { get; set; }
     }
-
-    #region класи для створення ієрархії
-
-    public class ParentTemplate : IParentTemplate
-    {
-        public int? ObjId { get; set; }
-        public  int? RegId { get; set; }
-        public string ItemName { get; set; }
-        public decimal? RegAmount { get; set; }
-        public int? ActCode { get; set; }
-
-        public decimal? AuthRate { get; set; }
-        public decimal? AuthAmount { get; set; }
-        public decimal PrepaySumAuthor { get; set; }
-        public decimal? AvanseRest { get; set; }
-    }
-
-    public class ChildTemplate
-    {
-        public int? ObjId { get; set; }
-        public int CustId { get; set; }
-        public string RoleName { get; set; }
-        public string NameRh { get; set; }
-        public decimal? RoleRate { get; set; }
-        public decimal? AmountDistributed { get; set; }
-        public decimal AvanseUsed { get; set; }
-    }
-
-    public interface IChildTemplate
-    {
-        int? ObjId { get; set; }
-        int CustId { get; set; }
-        string RoleName { get; set; }
-        string NameRh { get; set; }
-        decimal? RoleRate { get; set; }
-        decimal? AmountDistributed { get; set; }
-        decimal AvanseUsed { get; set; }
-    }
-
-    public interface IParentTemplate
-    {
-        int? ObjId { get; set; }
-        string ItemName { get; set; }
-        decimal? RegAmount { get; set; }
-        int? ActCode { get; set; }
-        decimal? AuthRate { get; set; }
-        decimal? AuthAmount { get; set; }
-        decimal PrepaySumAuthor { get; set; }
-        decimal? AvanseRest { get; set; }
-    }
-
-    #endregion
 
 }

@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
     partial class GeneralAgreementInfo
     {

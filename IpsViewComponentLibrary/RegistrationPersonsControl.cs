@@ -16,10 +16,7 @@ namespace IpsViewComponentLibrary
 {
     public partial class RegistrationPersonsControl : UserControl
     {
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
@@ -73,12 +70,6 @@ namespace IpsViewComponentLibrary
 
             return isValid;
         }
-
-        private void Setter()
-        {
-            //rDropListCitizenship.Items[0].
-        }
-
 
         private void rtxtBoxIPN_Leave(object sender, EventArgs e)
         {

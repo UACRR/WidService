@@ -146,6 +146,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.Designer.cs">
+      <DependentUpon>MusicDesignHeaderInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
+    <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
     <Compile Include="_UnusedControls\AddCompositionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -691,12 +699,6 @@
     <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.Designer.cs">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="_trash\ConsumerTitleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\ConsumerTitleControl.Designer.cs">
-      <DependentUpon>ConsumerTitleControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="ContractConsumerDetailControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -716,10 +718,10 @@
       <DependentUpon>DistributionForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ExtensionUtils.cs" />
-    <Compile Include="GeneralAgreementInfo.cs">
+    <Compile Include="ConsumerControls\BigRight\GeneralAgreementInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="GeneralAgreementInfo.Designer.cs">
+    <Compile Include="ConsumerControls\BigRight\GeneralAgreementInfo.Designer.cs">
       <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\AnketaConsumer.cs">
@@ -742,41 +744,11 @@
     <Compile Include="ConsumerControls\ConsumersViewBigRightControl.Designer.cs">
       <DependentUpon>ConsumersViewBigRightControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="InformationAgrBR.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="InformationAgrBR.Designer.cs">
-      <DependentUpon>InformationAgrBR.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\ControlWithDataSource.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\ControlWithDataSource.Designer.cs">
-      <DependentUpon>ControlWithDataSource.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\FormTestDataSource.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="_trash\FormTestDataSource.Designer.cs">
-      <DependentUpon>FormTestDataSource.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\InformationAboutTheContractTitleControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\InformationAboutTheContractTitleControl.Designer.cs">
-      <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="IpsAnketaCompanyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="IpsAnketaCompanyControl.Designer.cs">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\AnketaPersonControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\AnketaPersonControl.Designer.cs">
-      <DependentUpon>AnketaPersonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.cs">
       <SubType>UserControl</SubType>
@@ -789,12 +761,6 @@
     </Compile>
     <Compile Include="ContactsPersonControl.Designer.cs">
       <DependentUpon>ContactsPersonControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\ContractControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\ContractControl.Designer.cs">
-      <DependentUpon>ContractControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsAddressControl.cs">
       <SubType>UserControl</SubType>
@@ -849,12 +815,6 @@
     </Compile>
     <Compile Include="ConsumerControls\AgreementWithPlacesControl.Designer.cs">
       <DependentUpon>AgreementWithPlacesControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="_trash\MiddleControlBankRequisites.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="_trash\MiddleControlBankRequisites.Designer.cs">
-      <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\BigRight\CabinetBigRight.cs">
       <SubType>UserControl</SubType>
@@ -1053,10 +1013,10 @@
     <Compile Include="RegisterControls\SearchObjectView.Designer.cs">
       <DependentUpon>SearchObjectView.cs</DependentUpon>
     </Compile>
-    <Compile Include="SingleShowInformationControl.cs">
+    <Compile Include="_trash\SingleShowInformationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="SingleShowInformationControl.Designer.cs">
+    <Compile Include="_trash\SingleShowInformationControl.Designer.cs">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.cs">
@@ -1079,6 +1039,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.resx">
+      <DependentUpon>MusicDesignHeaderInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1308,9 +1271,6 @@
     <EmbeddedResource Include="ConsumerForms\AnketaConsumerJurForm.resx">
       <DependentUpon>AnketaConsumerJurForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\AnketaPersonControl.resx">
-      <DependentUpon>AnketaPersonControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.resx">
       <DependentUpon>AnketaCompanyRightholderPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -1326,9 +1286,6 @@
     <EmbeddedResource Include="ConsumerControls\Places\ConsumerPlacesControl.resx">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\ConsumerTitleControl.resx">
-      <DependentUpon>ConsumerTitleControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ContactsPersonControl.resx">
       <DependentUpon>ContactsPersonControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1338,13 +1295,10 @@
     <EmbeddedResource Include="ContractConsumerMainControl.resx">
       <DependentUpon>ContractConsumerMainControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="_trash\ContractControl.resx">
-      <DependentUpon>ContractControl.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\DistributionForm.resx">
       <DependentUpon>DistributionForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GeneralAgreementInfo.resx">
+    <EmbeddedResource Include="ConsumerControls\BigRight\GeneralAgreementInfo.resx">
       <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\AnketaConsumer.resx">
@@ -1361,18 +1315,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\ConsumersViewBigRightControl.resx">
       <DependentUpon>ConsumersViewBigRightControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="InformationAgrBR.resx">
-      <DependentUpon>InformationAgrBR.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\ControlWithDataSource.resx">
-      <DependentUpon>ControlWithDataSource.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\FormTestDataSource.resx">
-      <DependentUpon>FormTestDataSource.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\InformationAboutTheContractTitleControl.resx">
-      <DependentUpon>InformationAboutTheContractTitleControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsAnketaCompanyControl.resx">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
@@ -1403,9 +1345,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\AgreementWithPlacesControl.resx">
       <DependentUpon>AgreementWithPlacesControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_trash\MiddleControlBankRequisites.resx">
-      <DependentUpon>MiddleControlBankRequisites.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\CabinetBigRight.resx">
       <DependentUpon>CabinetBigRight.cs</DependentUpon>
@@ -1510,7 +1449,7 @@
     <EmbeddedResource Include="RightholderControls\RightholderView.resx">
       <DependentUpon>RightholderView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SingleShowInformationControl.resx">
+    <EmbeddedResource Include="_trash\SingleShowInformationControl.resx">
       <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.resx">
@@ -1592,6 +1531,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.RightholderControls.RightholderView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
