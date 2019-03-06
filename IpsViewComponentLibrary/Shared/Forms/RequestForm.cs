@@ -63,6 +63,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
             txtMusicRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             txtVinagoroda.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
+            txtActCode.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
             if(IpsGlobal.AnketaDictionaties != null)
                 _dictionaties = IpsGlobal.AnketaDictionaties;
             _licId = licId;
@@ -432,9 +433,14 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private void TxtActCode_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(txtActCode.Text, out int val))
-                if (val > 3)
-                    txtActCode.Text = "3";
+            if (!int.TryParse(txtActCode.Text, out int val))
+                return;
+            if (val > 3)
+            {
+                _objectRight.ActCode = 3;
+                bsObjectRight.ResetBindings(false);
+            }
+
             UpdateGenrePersent();
         }
         private void GenrePersent_UpdateNeed(object sender, EventArgs e)
@@ -492,6 +498,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             return isValid;
         }
 
+        // дозвіл на видачу ліцензії
         private void BtnSetActiveStatus_Click(object sender, EventArgs e)
         {
             if (_licenseAgreement.LicType == 3) // Довідка
@@ -520,6 +527,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             panelStatusees.Enabled = false;
         }
 
+        // відхилити
         private void BtnSetCanceledStatus_Click(object sender, EventArgs e)
         {
             _licenseAgreement.LicStatus = 5;
@@ -530,9 +538,14 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private void TxtMusicRate_TextChanged(object sender, EventArgs e)
         {
-            if (Int32.TryParse(txtMusicRate.Text, out int val))
-                if (val > 100)
-                    txtMusicRate.Text = "100";
+            if (!int.TryParse(txtMusicRate.Text, out int val))
+                return;
+            if (val > 100)
+            {
+                _licenseAgreement.LicenseBigR.RateMusic = 100m;
+                bsLicenseBigR.ResetBindings(false);
+            }
+
         }
 
         private void CtrlAuthorRightholderList_CurrentAuthorRightholderChanged(object sender, EventArgs e)

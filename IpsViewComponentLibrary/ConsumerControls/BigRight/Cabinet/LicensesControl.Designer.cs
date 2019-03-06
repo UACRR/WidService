@@ -49,7 +49,7 @@
             this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             this.ctrlAgrDetailInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.AgrDetailInfoBr();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.ctrlAgrInfo = new GeneralAgreementInfo();
+            this.ctrlAgrInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.GeneralAgreementInfo();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();

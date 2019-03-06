@@ -192,34 +192,22 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             UpdateData(customer.CustId);
         }
 
-        //відкрити кабінет
+        /// <summary>
+        /// Відкрити кабінет користувача великих прав
+        /// </summary>
+        /// <param name="id"></param>
         private void LoadCustomerCabinet(int id)
         {
             if (!_cabinetBigRightForm.IsInit)
             {
                 SubscribeBRCabinet();
             }
-            //_cabinetBigRightForm.radWaitingBar1.StartWaiting();
-            if (!_cabinetBigRightForm.Visible)
-            {
-                _cabinetBigRightForm.Title = _mainGrid.ViewRow.Name;
-                _cabinetBigRightForm.Show();
-            }
+
             // завантаження даних
             _cabinetBigRightForm.cabinet.LoadData(_mainGrid.ViewRow.CustId);
+            _cabinetBigRightForm.Title = _mainGrid.ViewRow.Name;
 
-            //var customer = _service.GetData(id);
-            //var view = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>();
-            // vTSK_1_BRMaster - - - - - - - генеральні угоди
-            // vTsk_vBRLicense - - - - - - - ліцензії
-            // vTsk_1_BRBid  - - - - - - - - заявки
-            // vTsk_1_BRNotice - - - - - - - довідки
-            // vTsk_1_BRBidAuthors - - - - - автори для всіх типів ліцензій
-            // vTsk_1_MoneyUndescrib - - - - незакріплені кошти користувачів великих прав
-            // vTSK_1_BRRegister - - - - - - Р/Л основні дані
-            // vTsk_1_BRAuthorsDistributed - Р/Л вистави
-
-            //_cabinetBigRightForm.radWaitingBar1.StopWaiting();
+            WindowsFormsVisible.ShowHiddenWindow(_cabinetBigRightForm);
         }
 
         //ЗБЕРЕЖЕННЯ Customer

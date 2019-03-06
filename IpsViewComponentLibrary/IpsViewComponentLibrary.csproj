@@ -152,6 +152,7 @@
     <Compile Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.Designer.cs">
       <DependentUpon>MusicDesignHeaderInfoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\WindowsFormsVisible.cs" />
     <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
     <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
     <Compile Include="_UnusedControls\AddCompositionForm.cs">

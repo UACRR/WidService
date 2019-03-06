@@ -120,6 +120,20 @@ namespace IpsViewComponentLibrary.Extensions
             }
         }
 
+        /// <summary>
+        /// Перевірка натиснутої кнопки. Допускаються: цифри, видалення
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static void TextBoxNumeric_KeyPressEvent(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8)
+            {
+                e.Handled = true;
+            }
+        }
+
         public static List<T> ToListOfType<T>(this IList<object> listObjects) where T : class 
         {
             var itemsList = new List<T>();
