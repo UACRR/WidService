@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         public object DataSource
         {
-            get { return bsRegisterItemViewModel.DataSource; }
+            get => bsRegisterItemViewModel.DataSource;
             set
             {
                 if (bsRegisterItemViewModel.DataSource != value)
@@ -61,9 +61,6 @@ namespace IpsViewComponentLibrary.RegisterControls
                 }
             }
         }
-
-        //TODO: повернути значення
-        public IList<RegisterItemViewModel> GetDataSource => ((System.Windows.Forms.BindingSource)gvRegisterItemList.DataSource).List as IList<RegisterItemViewModel>;
 
         private RegisterItemViewModel _selectedRegisterItem;
         public RegisterItemViewModel SelectedRegisterItem

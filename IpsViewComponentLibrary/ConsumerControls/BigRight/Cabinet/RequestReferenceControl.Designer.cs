@@ -130,7 +130,7 @@
             gridViewTextBoxColumn3.MinWidth = 0;
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 317;
+            gridViewTextBoxColumn3.Width = 310;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.FieldName = "LicNum";
             gridViewTextBoxColumn4.HeaderText = "№ заявки";
@@ -177,10 +177,10 @@
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "LicStatusName";
             gridViewTextBoxColumn9.HeaderText = "Статус";
-            gridViewTextBoxColumn9.MaxWidth = 110;
-            gridViewTextBoxColumn9.MinWidth = 110;
+            gridViewTextBoxColumn9.MaxWidth = 117;
+            gridViewTextBoxColumn9.MinWidth = 117;
             gridViewTextBoxColumn9.Name = "LicStatusName";
-            gridViewTextBoxColumn9.Width = 110;
+            gridViewTextBoxColumn9.Width = 117;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
@@ -431,7 +431,6 @@
             // 
             this.splitContainer.Controls.Add(this.spHeader);
             this.splitContainer.Controls.Add(this.spFooter);
-            this.splitContainer.Cursor = System.Windows.Forms.Cursors.HSplit;
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.EnableCollapsing = true;
             this.splitContainer.Location = new System.Drawing.Point(0, 0);

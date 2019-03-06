@@ -9,6 +9,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -403,7 +404,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         // кнопка оновлення даних
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            UpdateData?.Invoke();
+            RefreshData();
         }
 
         /// <summary>

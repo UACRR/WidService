@@ -46,7 +46,6 @@
             this.separator = new Telerik.WinControls.UI.RadSeparator();
             this.btnCloseAgr = new Telerik.WinControls.UI.RadButton();
             this.btnToProlongation = new Telerik.WinControls.UI.RadButton();
-            this.btnToAccept = new Telerik.WinControls.UI.RadButton();
             this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             this.ctrlAgrDetailInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.AgrDetailInfoBr();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
@@ -56,7 +55,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToProlongation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
             this.SuspendLayout();
             // 
@@ -239,18 +237,6 @@
             this.btnToProlongation.ThemeName = "Office2013Light";
             this.btnToProlongation.Click += new System.EventHandler(this.btnToProlongation_Click);
             // 
-            // btnToAccept
-            // 
-            this.btnToAccept.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToAccept.Enabled = false;
-            this.btnToAccept.Location = new System.Drawing.Point(821, 105);
-            this.btnToAccept.Name = "btnToAccept";
-            this.btnToAccept.Size = new System.Drawing.Size(174, 20);
-            this.btnToAccept.TabIndex = 12;
-            this.btnToAccept.Text = "Відправити на погодження";
-            this.btnToAccept.ThemeName = "Office2013Light";
-            this.btnToAccept.Click += new System.EventHandler(this.btnToAccept_Click);
-            // 
             // btnUpdate
             // 
             this.btnUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -292,7 +278,7 @@
             this.ctrlAgrInfo.Size = new System.Drawing.Size(705, 79);
             this.ctrlAgrInfo.TabIndex = 0;
             // 
-            // MiddleControlCabinetLicenses
+            // LicensesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -301,19 +287,17 @@
             this.Controls.Add(this.btnToProlongation);
             this.Controls.Add(this.btnCloseAgr);
             this.Controls.Add(this.ctrlSearch);
-            this.Controls.Add(this.btnToAccept);
             this.Controls.Add(this.separator);
             this.Controls.Add(this.gvViewLicences);
             this.Controls.Add(this.ctrlAgrInfo);
             this.MinimumSize = new System.Drawing.Size(993, 538);
-            this.Name = "MiddleControlCabinetLicenses";
+            this.Name = "LicensesControl";
             this.Size = new System.Drawing.Size(1000, 538);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewLicences)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCloseAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnToProlongation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnToAccept)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
             this.ResumeLayout(false);
 
@@ -326,7 +310,6 @@
         private Telerik.WinControls.UI.RadSeparator separator;
         private Telerik.WinControls.UI.RadButton btnCloseAgr;
         private Telerik.WinControls.UI.RadButton btnToProlongation;
-        private Telerik.WinControls.UI.RadButton btnToAccept;
         private ConsumerControls.BigRight.AgrDetailInfoBr ctrlAgrDetailInfo;
         private Common.SearchTextBoxControl ctrlSearch;
         private Telerik.WinControls.UI.RadButton btnUpdate;
