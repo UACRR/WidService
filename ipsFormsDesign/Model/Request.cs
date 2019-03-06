@@ -11,7 +11,6 @@ namespace ipsFormsDesign.Model
             DocReq = new ObservableListSource<DocReq>();
             RelReqMedia = new ObservableListSource<RelReqMedia>();
             ReqAgreement = new ObservableListSource<ReqAgreement>();
-            ReqLocationUse = new ObservableListSource<ReqLocationUse>();
             ReqTrade = new ObservableListSource<ReqTrade>();
         }
 
@@ -62,7 +61,6 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<DocReq> DocReq { get; set; }
         public virtual ObservableListSource<RelReqMedia> RelReqMedia { get; set; }
         public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
-        public virtual ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
         public virtual ObservableListSource<ReqTrade> ReqTrade { get; set; }
     }
 }
