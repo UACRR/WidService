@@ -52,9 +52,10 @@ namespace IpsViewComponentLibrary.Extensions
             {
                 if (_stateDictionary.ContainsKey(view.Name))
                 {
+                    var currRow = _stateDictionary[view.Name];
                     view.MasterTemplate.Refresh();
                     var rowCountToIndex = view.RowCount;
-                    if (rowCountToIndex > _stateDictionary[view.Name])
+                    if (rowCountToIndex > currRow && currRow >= 0 )
                     view.CurrentRow = view.Rows[_stateDictionary[view.Name]];
                     else if (view.Rows.Any())
                         view.CurrentRow = view.Rows.LastOrDefault();
