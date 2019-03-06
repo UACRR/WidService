@@ -774,10 +774,10 @@
     <Compile Include="ConsumerControls\Places\PremisesControl.Designer.cs">
       <DependentUpon>PremisesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsBankAccountControl.cs">
+    <Compile Include="Shared\Controls\IpsBankAccountControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsBankAccountControl.Designer.cs">
+    <Compile Include="Shared\Controls\IpsBankAccountControl.Designer.cs">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsBossNameContactsControl.cs">
@@ -1325,7 +1325,7 @@
     <EmbeddedResource Include="ConsumerControls\Places\PremisesControl.resx">
       <DependentUpon>PremisesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsBankAccountControl.resx">
+    <EmbeddedResource Include="Shared\Controls\IpsBankAccountControl.resx">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsBossNameContactsControl.resx">
@@ -1606,8 +1606,6 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Shared\Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
