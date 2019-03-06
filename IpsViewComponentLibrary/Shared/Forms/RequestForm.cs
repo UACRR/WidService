@@ -412,9 +412,14 @@ namespace IpsViewComponentLibrary.Shared.Forms
             _deleteLicense = false;
             ParseAuthors();
             ParseMusicalDisign();
-            var agrid = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2)?.AgrId ?? default(int);
-            if(_licenseAgreement.AgrId != agrid)
-                _licenseAgreement.AgrId = agrid;// прив'язка  до ген. угоди
+            int?[] checkInt =  { 4, 5, 7 };
+            var GenLic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && !checkInt.Contains( rec.LicStatus ));
+            if(GenLic != null && _licenseAgreement.AgrId != GenLic.AgrId )
+            {
+                _licenseAgreement.Agr.LicenseAgreement.Remove(_licenseAgreement);
+                GenLic.Agr.LicenseAgreement.Add(_licenseAgreement);
+                _licenseAgreement.AgrId = GenLic.AgrId;// прив'язка  до ген. угоди
+            }
             DialogResult = DialogResult.OK;
             //Close();
         }
