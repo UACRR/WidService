@@ -10,7 +10,6 @@ namespace ipsFormsDesign.Model
         {
             ContinentTr = new ObservableListSource<ContinentTr>();
             Country = new ObservableListSource<Country>();
-            ReqLocationUse = new ObservableListSource<ReqLocationUse>();
         }
 
         public int CodeI { get; set; }
@@ -18,7 +17,6 @@ namespace ipsFormsDesign.Model
 
         public virtual ObservableListSource<ContinentTr> ContinentTr { get; set; }
         public virtual ObservableListSource<Country> Country { get; set; }
-        public virtual ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
     }
 }
 

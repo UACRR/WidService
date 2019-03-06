@@ -17,7 +17,6 @@ namespace ipsmedserviceapp.Model
             CountryTr = new HashSet<CountryTr>();
             KlR030 = new HashSet<KlR030>();
             ReqCustomer = new HashSet<ReqCustomer>();
-            ReqLocationUse = new HashSet<ReqLocationUse>();
             TerritoryExclude = new HashSet<TerritoryExclude>();
             TerritoryInclude = new HashSet<TerritoryInclude>();
         }
@@ -42,7 +41,6 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<CountryTr> CountryTr { get; set; }
         public virtual ICollection<KlR030> KlR030 { get; set; }
         public virtual ICollection<ReqCustomer> ReqCustomer { get; set; }
-        public virtual ICollection<ReqLocationUse> ReqLocationUse { get; set; }
         public virtual ICollection<TerritoryExclude> TerritoryExclude { get; set; }
         public virtual ICollection<TerritoryInclude> TerritoryInclude { get; set; }
     }

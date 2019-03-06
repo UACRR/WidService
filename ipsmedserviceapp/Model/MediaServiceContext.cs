@@ -253,7 +253,6 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<ReqAgreement> ReqAgreement { get; set; }
         public virtual DbSet<ReqAgreementStatus> ReqAgreementStatus { get; set; }
         public virtual DbSet<ReqCustomer> ReqCustomer { get; set; }
-        public virtual DbSet<ReqLocationUse> ReqLocationUse { get; set; }
         public virtual DbSet<ReqTrade> ReqTrade { get; set; }
         public virtual DbSet<Request> Request { get; set; }
         public virtual DbSet<RequestAdapt> RequestAdapt { get; set; }
@@ -2342,7 +2341,7 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.MfoCorr)
                     .HasColumnName("mfoCorr")
-                    .HasMaxLength(256)
+                    .HasMaxLength(32)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Nplat)
@@ -3822,11 +3821,6 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.Emplid)
                     .HasName("PK_EMPLOYEE");
-
-                entity.HasIndex(e => e.Email)
-                    .HasName("UI_Employee_Email")
-                    .IsUnique()
-                    .HasFilter("([email] IS NOT NULL)");
 
                 entity.Property(e => e.Emplid).HasColumnName("emplid");
 
@@ -8230,39 +8224,6 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.ReqCustomer)
                     .HasForeignKey(d => d.CustId)
                     .HasConstraintName("FK_REQCUSTO_REFERENCE_CUSTOMER");
-            });
-
-            modelBuilder.Entity<ReqLocationUse>(entity =>
-            {
-                entity.HasKey(e => e.LocUsId)
-                    .HasName("PK_REQLOCATIONUSE");
-
-                entity.Property(e => e.LocUsId).HasColumnName("locUsId");
-
-                entity.Property(e => e.ContinentCode).HasColumnName("continentCode");
-
-                entity.Property(e => e.CountryCode)
-                    .HasColumnName("countryCode")
-                    .HasMaxLength(3)
-                    .IsUnicode(false)
-                    .IsFixedLength();
-
-                entity.Property(e => e.ReqId).HasColumnName("reqId");
-
-                entity.HasOne(d => d.ContinentCodeNavigation)
-                    .WithMany(p => p.ReqLocationUse)
-                    .HasForeignKey(d => d.ContinentCode)
-                    .HasConstraintName("FK_REQLOCAT_REFERENCE_CONTINEN");
-
-                entity.HasOne(d => d.CountryCodeNavigation)
-                    .WithMany(p => p.ReqLocationUse)
-                    .HasForeignKey(d => d.CountryCode)
-                    .HasConstraintName("FK_REQLOCAT_REFERENCE_COUNTRY");
-
-                entity.HasOne(d => d.Req)
-                    .WithMany(p => p.ReqLocationUse)
-                    .HasForeignKey(d => d.ReqId)
-                    .HasConstraintName("FK_REQLOCAT_REFERENCE_REQUEST");
             });
 
             modelBuilder.Entity<ReqTrade>(entity =>

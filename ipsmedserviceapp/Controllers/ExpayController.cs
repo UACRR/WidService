@@ -42,16 +42,26 @@ namespace ipsmedserviceapp.Controllers
             }
 
             await _dbContext.InputFile.AddAsync(dest);
-            await _dbContext.CheckParamPays.AddRangeAsync(dest.CheckParamPays);
+            // await _dbContext.CheckParamPays.AddRangeAsync(dest.CheckParamPays);
+            var tran = await _dbContext.Database.BeginTransactionAsync();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+                tran.Commit();
+                _dbContext.Database.ExecuteSqlCommand("exec p_Tsk_1_CheckInputFile @fileId", new SqlParameter("@fileId", dest.FileId));
+                var retDest = await _dbContext.InputFile.Where(rec => rec.FileId == dest.FileId)
+                    .Include(rec => rec.CheckParamPays)
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync();
 
-            await _dbContext.SaveChangesAsync();
-            _dbContext.Database.ExecuteSqlCommand("exec p_Tsk_1_CheckInputFile @fileId", new SqlParameter("@fileId", dest.FileId));
-            var retDest = await _dbContext.InputFile.Where(rec => rec.FileId == dest.FileId)
-                .Include(rec => rec.CheckParamPays)
-                .AsNoTracking()
-                .FirstOrDefaultAsync();
+                return Ok(retDest);
 
-            return Ok(retDest);
+            }
+            catch( Exception ex )
+            {
+                tran.Rollback();
+                throw ex;
+            }
         }
         /// <summary>
         /// Зберігти файл проводок
@@ -85,20 +95,20 @@ namespace ipsmedserviceapp.Controllers
         }
 
         [HttpDelete("file/{fileId}")]
-        public async Task<IActionResult> DeleteInputFile( int fileId )
+        public async Task<IActionResult> DeleteInputFile(int fileId)
         {
             IDbContextTransaction tran = null;
             try
             {
                 tran = await _dbContext.Database.BeginTransactionAsync();
-                await _dbContext.Database.ExecuteSqlCommandAsync("delete CheckParamPays where inputFileId = @fileId", new SqlParameter("@fileId", fileId ));
-                await _dbContext.Database.ExecuteSqlCommandAsync("delete InputFile where fileId = @fileId", new SqlParameter("@fileId", fileId ));
+                await _dbContext.Database.ExecuteSqlCommandAsync("delete CheckParamPays where inputFileId = @fileId", new SqlParameter("@fileId", fileId));
+                await _dbContext.Database.ExecuteSqlCommandAsync("delete InputFile where fileId = @fileId", new SqlParameter("@fileId", fileId));
 
                 tran.Commit();
 
                 return Ok();
             }
-            catch( Exception ex)
+            catch (Exception ex)
             {
                 if (tran != null)
                     tran.Rollback();
@@ -111,11 +121,11 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("unlink")]
         public async Task<IActionResult> GetUnlink()
         {
-            var list = await _dbContext.ExternalPay.Where(rec => rec.CustId == null ).ToListAsync();
+            var list = await _dbContext.ExternalPay.Where(rec => rec.CustId == null).ToListAsync();
             return Ok(list);
         }
 
-        private void insertNewMoneyResived( ExternalPay exPay )
+        private void insertNewMoneyResived(ExternalPay exPay)
         {
             _dbContext.MoneyReceived.Add(
                     new MoneyReceived
@@ -145,7 +155,8 @@ namespace ipsmedserviceapp.Controllers
 
             _dbContext.UpdateList(pays, dest, i => { }, (l, r) => l.PaidId == r.PaidId);
             dest.Where(rec => rec.CustId != null && !moneyRecived.Any(pay => pay.PaidId == rec.PaidId)).ToList()
-                .ForEach(exPay => {
+                .ForEach(exPay =>
+                {
                     insertNewMoneyResived(exPay);
                 });
 
@@ -156,7 +167,7 @@ namespace ipsmedserviceapp.Controllers
         }
         // get unlink/id Отримати неприв'язану проводку по ІД
         [HttpGet("unlink/{payId}")]
-        public async Task<IActionResult> GetUnlinkPay( int payId )
+        public async Task<IActionResult> GetUnlinkPay(int payId)
         {
             var exPay = await _dbContext.ExternalPay.SingleOrDefaultAsync(rec => rec.PaidId == payId);
             if (exPay == null)
@@ -166,7 +177,7 @@ namespace ipsmedserviceapp.Controllers
         }
         // put unlink/id Зберігти неприв'язану проводку по ІД
         [HttpPut("unlink/{payId}")]
-        public async Task<IActionResult> SaveUnlinkPay( int payId, [FromBody] ExternalPay exPay )
+        public async Task<IActionResult> SaveUnlinkPay(int payId, [FromBody] ExternalPay exPay)
         {
             var dest = await _dbContext.ExternalPay
                 .SingleOrDefaultAsync(rec => rec.PaidId == payId);
@@ -174,7 +185,7 @@ namespace ipsmedserviceapp.Controllers
                 return NotFound();
             var moneyRecived = await _dbContext.MoneyReceived.FirstOrDefaultAsync(rec => rec.PaidId == exPay.PaidId);
 
-            if( dest.CustId == null && exPay.CustId != null && moneyRecived == null )
+            if (dest.CustId == null && exPay.CustId != null && moneyRecived == null)
             {
                 insertNewMoneyResived(exPay);
             }
