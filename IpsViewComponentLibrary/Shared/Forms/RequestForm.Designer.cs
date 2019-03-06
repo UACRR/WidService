@@ -869,7 +869,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlLang.TabIndex = 26;
             this.ddlLang.ThemeName = "Office2013Light";
             this.ddlLang.ValueMember = "CodeS";
-            this.ddlLang.Leave += new System.EventHandler(this.DdlLang_Leave);
+            this.ddlLang.Leave += new System.EventHandler(this.GenrePersent_UpdateNeed);
             // 
             // bsDictLanguage
             // 
@@ -931,7 +931,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlPerformType.TabIndex = 21;
             this.ddlPerformType.ThemeName = "Office2013Light";
             this.ddlPerformType.ValueMember = "CodeI";
-            this.ddlPerformType.Leave += new System.EventHandler(this.DdlPerformType_Leave);
+            this.ddlPerformType.Leave += new System.EventHandler(this.GenrePersent_UpdateNeed);
             // 
             // bsDictPerformType
             // 
@@ -959,7 +959,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlGenreType.TabIndex = 19;
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
-            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.DdlGenreType_SelectedValueChanged);
+            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.GenrePersent_UpdateNeed);
             // 
             // bsDictGenreType
             // 
@@ -1034,7 +1034,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.btnCancel.TabIndex = 15;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // btnSave
             // 
@@ -1098,6 +1097,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1082, 675);
             this.Controls.Add(this.ddlStatus);
             this.Controls.Add(this.ddlState);

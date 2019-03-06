@@ -388,11 +388,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void BtnSave_Click(object sender, EventArgs e)
         {
             if (_formMode == FormMode.ForSmallRightAdmin && !ValidateMinRewardAndTotalRate())
@@ -437,13 +432,12 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private void TxtActCode_TextChanged(object sender, EventArgs e)
         {
-            if (Int32.TryParse(txtActCode.Text, out int val))
+            if (int.TryParse(txtActCode.Text, out int val))
                 if (val > 3)
                     txtActCode.Text = "3";
             UpdateGenrePersent();
         }
-
-        private void DdlGenreType_SelectedValueChanged(object sender, EventArgs e)
+        private void GenrePersent_UpdateNeed(object sender, EventArgs e)
         {
             UpdateGenrePersent();
         }
@@ -532,16 +526,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             _licenseAgreement.LicenseAgrParam.First(rec => rec.LicVersion == _licenseAgreement.LicVersion).LicStatus = 5;
             bsLicAgrParam.ResetCurrentItem();
             panelStatusees.Enabled = false;
-        }
-
-        private void DdlPerformType_Leave(object sender, EventArgs e)
-        {
-            UpdateGenrePersent();
-        }
-
-        private void DdlLang_Leave(object sender, EventArgs e)
-        {
-            UpdateGenrePersent();
         }
 
         private void TxtMusicRate_TextChanged(object sender, EventArgs e)
