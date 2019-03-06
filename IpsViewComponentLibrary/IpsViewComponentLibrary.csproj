@@ -959,10 +959,10 @@
     <Compile Include="RegisterControls\RegisterView.Designer.cs">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationPersonsControl.cs">
+    <Compile Include="RightholderControls\RegistrationPersonsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RegistrationPersonsControl.Designer.cs">
+    <Compile Include="RightholderControls\RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerForms\ReportExcelViewForm.cs">
@@ -1417,7 +1417,7 @@
     <EmbeddedResource Include="RegisterControls\RegisterView.resx">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegistrationPersonsControl.resx">
+    <EmbeddedResource Include="RightholderControls\RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\ReportExcelViewForm.resx">
