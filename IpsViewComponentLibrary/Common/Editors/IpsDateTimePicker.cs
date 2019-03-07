@@ -10,13 +10,7 @@ namespace IpsViewComponentLibrary.Common.Editors
 {
     public class IpsDateTimePicker : RadDateTimePicker
     {
-        public override string ThemeClassName
-        {
-            get
-            {
-                return typeof(RadDateTimePicker).FullName;
-            }
-        }
+        public override string ThemeClassName => typeof(RadDateTimePicker).FullName;
 
         public IpsDateTimePicker()
         {

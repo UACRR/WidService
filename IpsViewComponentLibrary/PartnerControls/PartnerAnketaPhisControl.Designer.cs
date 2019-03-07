@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.ExtensionControls;
+﻿using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.PartnerControls
 {
@@ -50,9 +51,9 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
+            this.ctrlInternalPassport = new PassportControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.checkPartnerInternal = new Telerik.WinControls.UI.RadCheckBox();
             this.bsPartner = new System.Windows.Forms.BindingSource(this.components);

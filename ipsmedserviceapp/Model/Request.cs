@@ -10,7 +10,6 @@ namespace ipsmedserviceapp.Model
             DocReq = new HashSet<DocReq>();
             RelReqMedia = new HashSet<RelReqMedia>();
             ReqAgreement = new HashSet<ReqAgreement>();
-            ReqLocationUse = new HashSet<ReqLocationUse>();
             ReqTrade = new HashSet<ReqTrade>();
         }
 
@@ -61,7 +60,6 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<DocReq> DocReq { get; set; }
         public virtual ICollection<RelReqMedia> RelReqMedia { get; set; }
         public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
-        public virtual ICollection<ReqLocationUse> ReqLocationUse { get; set; }
         public virtual ICollection<ReqTrade> ReqTrade { get; set; }
     }
 }

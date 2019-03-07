@@ -37,7 +37,7 @@
             this.ctrlAnketaPerson = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaPersonRightHolderControl();
             this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlRegistrationsPerson = new IpsViewComponentLibrary.RegistrationPersonsControl();
+            this.ctrlRegistrationsPerson = new RegistrationPersonsControl();
             this.lblIPIExists = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();

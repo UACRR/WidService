@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using IpsViewComponentLibrary.ConsumerControls.Places;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
@@ -43,7 +44,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankRequisites = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankRequisites = new IpsBankAccountControl();
             this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlManagers = new IpsViewComponentLibrary.ConsumerControls.ManagersControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();

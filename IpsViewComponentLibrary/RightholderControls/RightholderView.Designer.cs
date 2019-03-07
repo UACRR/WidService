@@ -1,4 +1,5 @@
 ﻿using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -101,13 +102,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
             this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
-            this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
-            this.ctrlInternationalPassport = new IpsViewComponentLibrary.PassportInternationalControl();
+            this.ctrlInternalPassport = new PassportControl();
+            this.ctrlInternationalPassport = new PassportInternationalControl();
             this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
             this.ddlAgreementStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsBankAccountControl();
             this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlRightLimitations = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
             this.ctrlTerritoryIncludeExclude = new IpsViewComponentLibrary.RightholderControls.Anketa.TerritoryIncludeExcludeControl();

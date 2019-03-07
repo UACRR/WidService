@@ -63,6 +63,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
             txtMusicRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             txtVinagoroda.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
+            txtActCode.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
             if(IpsGlobal.AnketaDictionaties != null)
                 _dictionaties = IpsGlobal.AnketaDictionaties;
             _licId = licId;
@@ -388,11 +389,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             }
         }
 
-        private void BtnCancel_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
-
         private void BtnSave_Click(object sender, EventArgs e)
         {
             if (_formMode == FormMode.ForSmallRightAdmin && !ValidateMinRewardAndTotalRate())
@@ -412,9 +408,12 @@ namespace IpsViewComponentLibrary.Shared.Forms
             _deleteLicense = false;
             ParseAuthors();
             ParseMusicalDisign();
-            var agrid = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && rec.LicStatus == 2)?.AgrId ?? default(int);
-            if(_licenseAgreement.AgrId != agrid)
-                _licenseAgreement.AgrId = agrid;// прив'язка  до ген. угоди
+            int?[] checkInt =  { 4, 5, 7 };
+            var GenLic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && !checkInt.Contains( rec.LicStatus ));
+            if(GenLic != null && _licenseAgreement.AgrId != GenLic.AgrId )
+            {
+                _licenseAgreement.AgrId = GenLic.AgrId;// прив'язка  до ген. угоди
+            }
             DialogResult = DialogResult.OK;
             //Close();
         }
@@ -432,13 +431,17 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private void TxtActCode_TextChanged(object sender, EventArgs e)
         {
-            if (Int32.TryParse(txtActCode.Text, out int val))
-                if (val > 3)
-                    txtActCode.Text = "3";
+            if (!int.TryParse(txtActCode.Text, out int val))
+                return;
+            if (val > 3)
+            {
+                _objectRight.ActCode = 3;
+                bsObjectRight.ResetBindings(false);
+            }
+
             UpdateGenrePersent();
         }
-
-        private void DdlGenreType_SelectedValueChanged(object sender, EventArgs e)
+        private void GenrePersent_UpdateNeed(object sender, EventArgs e)
         {
             UpdateGenrePersent();
         }
@@ -493,6 +496,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             return isValid;
         }
 
+        // дозвіл на видачу ліцензії
         private void BtnSetActiveStatus_Click(object sender, EventArgs e)
         {
             if (_licenseAgreement.LicType == 3) // Довідка
@@ -521,6 +525,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             panelStatusees.Enabled = false;
         }
 
+        // відхилити
         private void BtnSetCanceledStatus_Click(object sender, EventArgs e)
         {
             _licenseAgreement.LicStatus = 5;
@@ -529,21 +534,16 @@ namespace IpsViewComponentLibrary.Shared.Forms
             panelStatusees.Enabled = false;
         }
 
-        private void DdlPerformType_Leave(object sender, EventArgs e)
-        {
-            UpdateGenrePersent();
-        }
-
-        private void DdlLang_Leave(object sender, EventArgs e)
-        {
-            UpdateGenrePersent();
-        }
-
         private void TxtMusicRate_TextChanged(object sender, EventArgs e)
         {
-            if (Int32.TryParse(txtMusicRate.Text, out int val))
-                if (val > 100)
-                    txtMusicRate.Text = "100";
+            if (!int.TryParse(txtMusicRate.Text, out int val))
+                return;
+            if (val > 100)
+            {
+                _licenseAgreement.LicenseBigR.RateMusic = 100m;
+                bsLicenseBigR.ResetBindings(false);
+            }
+
         }
 
         private void CtrlAuthorRightholderList_CurrentAuthorRightholderChanged(object sender, EventArgs e)

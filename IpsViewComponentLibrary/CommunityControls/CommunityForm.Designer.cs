@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.ExtensionControls;
+﻿using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
@@ -50,7 +51,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlAddressFa = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.ctrlAddressJu = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.CommunityControls.CommunityAgreementControl();
             this.ctrlTabNavigation = new TabNavigationControl();

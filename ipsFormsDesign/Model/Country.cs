@@ -18,7 +18,6 @@ namespace ipsFormsDesign.Model
             CountryTr = new ObservableListSource<CountryTr>();
             KlR030 = new ObservableListSource<KlR030>();
             ReqCustomer = new ObservableListSource<ReqCustomer>();
-            ReqLocationUse = new ObservableListSource<ReqLocationUse>();
             TerritoryExclude = new ObservableListSource<TerritoryExclude>();
             TerritoryInclude = new ObservableListSource<TerritoryInclude>();
         }
@@ -43,7 +42,6 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<CountryTr> CountryTr { get; set; }
         public virtual ObservableListSource<KlR030> KlR030 { get; set; }
         public virtual ObservableListSource<ReqCustomer> ReqCustomer { get; set; }
-        public virtual ObservableListSource<ReqLocationUse> ReqLocationUse { get; set; }
         public virtual ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
         public virtual ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }
     }

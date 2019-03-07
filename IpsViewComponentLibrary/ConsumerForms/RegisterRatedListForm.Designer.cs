@@ -70,16 +70,9 @@
             this.pvSpectacle = new Telerik.WinControls.UI.RadPageViewPage();
             this.gvRegisterView = new Telerik.WinControls.UI.RadGridView();
             this.pvMusicDesign = new Telerik.WinControls.UI.RadPageViewPage();
-            this.cMusRate = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cMusAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cAuthorRate = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cAuthorAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cAmount = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cCountUse = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.cActCode = new IpsViewComponentLibrary.SingleShowInformationControl();
-            this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.gvMusicDesignView = new Telerik.WinControls.UI.RadGridView();
-            this.cName = new IpsViewComponentLibrary.SingleShowInformationControl();
+            this.separator = new Telerik.WinControls.UI.RadSeparator();
+            this.ctrlMusicDesignHeaderInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.MusicDesignHeaderInfoControl();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsSpectacleView)).BeginInit();
@@ -104,9 +97,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterView.MasterTemplate)).BeginInit();
             this.pvMusicDesign.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -130,7 +123,7 @@
             this.panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel.Location = new System.Drawing.Point(0, 0);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(1006, 58);
+            this.panel.Size = new System.Drawing.Size(1029, 58);
             this.panel.TabIndex = 1;
             this.panel.ThemeName = "Office2013Light";
             // 
@@ -255,7 +248,7 @@
             this.pageView.Location = new System.Drawing.Point(0, 64);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvSpectacle;
-            this.pageView.Size = new System.Drawing.Size(1006, 394);
+            this.pageView.Size = new System.Drawing.Size(1029, 394);
             this.pageView.TabIndex = 2;
             this.pageView.ThemeName = "Office2013Light";
             this.pageView.SelectedPageChanged += new System.EventHandler(this.pageView_SelectedPageChanged);
@@ -268,7 +261,7 @@
             this.pvSpectacle.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvSpectacle.Location = new System.Drawing.Point(5, 31);
             this.pvSpectacle.Name = "pvSpectacle";
-            this.pvSpectacle.Size = new System.Drawing.Size(996, 358);
+            this.pvSpectacle.Size = new System.Drawing.Size(1019, 358);
             this.pvSpectacle.Text = "Вистави";
             // 
             // gvRegisterView
@@ -313,7 +306,7 @@
             gridViewTextBoxColumn4.Name = "ObjId";
             gridViewTextBoxColumn4.ReadOnly = true;
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 97;
+            gridViewTextBoxColumn4.Width = 99;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewComboBoxColumn1.DataSource = this.bsSpectacleView;
             gridViewComboBoxColumn1.DisplayMember = "Name";
@@ -322,7 +315,7 @@
             gridViewComboBoxColumn1.MinWidth = 0;
             gridViewComboBoxColumn1.Name = "ItemName";
             gridViewComboBoxColumn1.ValueMember = "ObjId";
-            gridViewComboBoxColumn1.Width = 220;
+            gridViewComboBoxColumn1.Width = 225;
             gridViewDecimalColumn1.DataType = typeof(int);
             gridViewDecimalColumn1.FieldName = "ActCode";
             gridViewDecimalColumn1.HeaderText = "К-сть актів";
@@ -344,7 +337,7 @@
             gridViewDecimalColumn3.HeaderText = "Сума збору";
             gridViewDecimalColumn3.MinWidth = 100;
             gridViewDecimalColumn3.Name = "Amount";
-            gridViewDecimalColumn3.Width = 105;
+            gridViewDecimalColumn3.Width = 108;
             gridViewDecimalColumn3.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "AuthRate";
             gridViewTextBoxColumn5.FormatString = "{0:0.00 \'%\'}";
@@ -365,7 +358,7 @@
             gridViewTextBoxColumn6.MinWidth = 110;
             gridViewTextBoxColumn6.Name = "AuthAmount";
             gridViewTextBoxColumn6.ReadOnly = true;
-            gridViewTextBoxColumn6.Width = 114;
+            gridViewTextBoxColumn6.Width = 117;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.FieldName = "MusicRate";
             gridViewTextBoxColumn7.FormatString = "{0:0.00 \'%\'}";
@@ -388,7 +381,7 @@
             gridViewTextBoxColumn8.Name = "MusicAmount";
             gridViewTextBoxColumn8.ReadOnly = true;
             gridViewTextBoxColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn8.Width = 143;
+            gridViewTextBoxColumn8.Width = 153;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
@@ -426,7 +419,7 @@
             this.gvRegisterView.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvRegisterView.Name = "gvRegisterView";
             this.gvRegisterView.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvRegisterView.Size = new System.Drawing.Size(996, 335);
+            this.gvRegisterView.Size = new System.Drawing.Size(1019, 337);
             this.gvRegisterView.TabIndex = 8;
             this.gvRegisterView.ThemeName = "Office2013Light";
             this.gvRegisterView.CellValueChanged += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRegisterView_CellValueChanged);
@@ -434,155 +427,21 @@
             // 
             // pvMusicDesign
             // 
-            this.pvMusicDesign.Controls.Add(this.cMusRate);
-            this.pvMusicDesign.Controls.Add(this.cMusAmount);
-            this.pvMusicDesign.Controls.Add(this.cAuthorRate);
-            this.pvMusicDesign.Controls.Add(this.cAuthorAmount);
-            this.pvMusicDesign.Controls.Add(this.cAmount);
-            this.pvMusicDesign.Controls.Add(this.cCountUse);
-            this.pvMusicDesign.Controls.Add(this.cActCode);
-            this.pvMusicDesign.Controls.Add(this.radSeparator1);
             this.pvMusicDesign.Controls.Add(this.gvMusicDesignView);
-            this.pvMusicDesign.Controls.Add(this.cName);
+            this.pvMusicDesign.Controls.Add(this.separator);
+            this.pvMusicDesign.Controls.Add(this.ctrlMusicDesignHeaderInfo);
             this.pvMusicDesign.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvMusicDesign.Location = new System.Drawing.Point(5, 31);
             this.pvMusicDesign.Name = "pvMusicDesign";
-            this.pvMusicDesign.Size = new System.Drawing.Size(996, 358);
+            this.pvMusicDesign.Size = new System.Drawing.Size(1019, 358);
             this.pvMusicDesign.Text = "Збірна музика";
-            // 
-            // cMusRate
-            // 
-            this.cMusRate.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cMusRate.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cMusRate.Location = new System.Drawing.Point(558, 29);
-            this.cMusRate.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.cMusRate.MinimumSize = new System.Drawing.Size(150, 25);
-            this.cMusRate.Name = "cMusRate";
-            this.cMusRate.Size = new System.Drawing.Size(150, 28);
-            this.cMusRate.SplitterRatio = 110;
-            this.cMusRate.StringFormat = "";
-            this.cMusRate.TabIndex = 19;
-            this.cMusRate.TextTitle = "% Муз. супроводу";
-            this.cMusRate.TextValue = "";
-            this.cMusRate.ValueDataMemger = "";
-            this.cMusRate.ValueDataSource = null;
-            // 
-            // cMusAmount
-            // 
-            this.cMusAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cMusAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cMusAmount.Location = new System.Drawing.Point(714, 29);
-            this.cMusAmount.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.cMusAmount.MinimumSize = new System.Drawing.Size(150, 25);
-            this.cMusAmount.Name = "cMusAmount";
-            this.cMusAmount.Size = new System.Drawing.Size(287, 28);
-            this.cMusAmount.SplitterRatio = 167;
-            this.cMusAmount.StringFormat = "";
-            this.cMusAmount.TabIndex = 18;
-            this.cMusAmount.TextTitle = "Сума за муз. супровід";
-            this.cMusAmount.TextValue = "";
-            this.cMusAmount.ValueDataMemger = "";
-            this.cMusAmount.ValueDataSource = null;
-            // 
-            // cAuthorRate
-            // 
-            this.cAuthorRate.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cAuthorRate.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cAuthorRate.Location = new System.Drawing.Point(558, 0);
-            this.cAuthorRate.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.cAuthorRate.MinimumSize = new System.Drawing.Size(150, 25);
-            this.cAuthorRate.Name = "cAuthorRate";
-            this.cAuthorRate.Size = new System.Drawing.Size(150, 28);
-            this.cAuthorRate.SplitterRatio = 110;
-            this.cAuthorRate.StringFormat = "";
-            this.cAuthorRate.TabIndex = 17;
-            this.cAuthorRate.TextTitle = "% Нарахувань";
-            this.cAuthorRate.TextValue = "";
-            this.cAuthorRate.ValueDataMemger = "";
-            this.cAuthorRate.ValueDataSource = null;
-            // 
-            // cAuthorAmount
-            // 
-            this.cAuthorAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cAuthorAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cAuthorAmount.Location = new System.Drawing.Point(714, 0);
-            this.cAuthorAmount.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.cAuthorAmount.MinimumSize = new System.Drawing.Size(150, 25);
-            this.cAuthorAmount.Name = "cAuthorAmount";
-            this.cAuthorAmount.Size = new System.Drawing.Size(287, 28);
-            this.cAuthorAmount.SplitterRatio = 167;
-            this.cAuthorAmount.StringFormat = "";
-            this.cAuthorAmount.TabIndex = 16;
-            this.cAuthorAmount.TextTitle = "Сума авторського гонорару";
-            this.cAuthorAmount.TextValue = "";
-            this.cAuthorAmount.ValueDataMemger = "";
-            this.cAuthorAmount.ValueDataSource = null;
-            // 
-            // cAmount
-            // 
-            this.cAmount.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cAmount.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cAmount.Location = new System.Drawing.Point(363, 0);
-            this.cAmount.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.cAmount.MinimumSize = new System.Drawing.Size(150, 25);
-            this.cAmount.Name = "cAmount";
-            this.cAmount.Size = new System.Drawing.Size(189, 28);
-            this.cAmount.SplitterRatio = 89;
-            this.cAmount.StringFormat = "";
-            this.cAmount.TabIndex = 15;
-            this.cAmount.TextTitle = "Сума збору";
-            this.cAmount.TextValue = "";
-            this.cAmount.ValueDataMemger = "";
-            this.cAmount.ValueDataSource = null;
-            // 
-            // cCountUse
-            // 
-            this.cCountUse.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cCountUse.AlignmentValue = System.Drawing.ContentAlignment.MiddleCenter;
-            this.cCountUse.Location = new System.Drawing.Point(156, 29);
-            this.cCountUse.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.cCountUse.MinimumSize = new System.Drawing.Size(150, 25);
-            this.cCountUse.Name = "cCountUse";
-            this.cCountUse.Size = new System.Drawing.Size(201, 28);
-            this.cCountUse.SplitterRatio = 135;
-            this.cCountUse.StringFormat = "";
-            this.cCountUse.TabIndex = 14;
-            this.cCountUse.TextTitle = "К-сть вистав за період";
-            this.cCountUse.TextValue = "";
-            this.cCountUse.ValueDataMemger = "";
-            this.cCountUse.ValueDataSource = null;
-            // 
-            // cActCode
-            // 
-            this.cActCode.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cActCode.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cActCode.Location = new System.Drawing.Point(0, 29);
-            this.cActCode.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.cActCode.MinimumSize = new System.Drawing.Size(150, 25);
-            this.cActCode.Name = "cActCode";
-            this.cActCode.Size = new System.Drawing.Size(150, 28);
-            this.cActCode.SplitterRatio = 71;
-            this.cActCode.StringFormat = "";
-            this.cActCode.TabIndex = 13;
-            this.cActCode.TextTitle = "К-сть актів";
-            this.cActCode.TextValue = "";
-            this.cActCode.ValueDataMemger = "";
-            this.cActCode.ValueDataSource = null;
-            // 
-            // radSeparator1
-            // 
-            this.radSeparator1.Location = new System.Drawing.Point(0, 63);
-            this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(996, 10);
-            this.radSeparator1.TabIndex = 12;
-            this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // gvMusicDesignView
             // 
             this.gvMusicDesignView.AutoSizeRows = true;
-            this.gvMusicDesignView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.gvMusicDesignView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvMusicDesignView.EnableCustomFiltering = true;
-            this.gvMusicDesignView.Location = new System.Drawing.Point(0, 73);
+            this.gvMusicDesignView.Location = new System.Drawing.Point(0, 76);
             // 
             // 
             // 
@@ -602,7 +461,7 @@
             gridViewTextBoxColumn10.MinWidth = 0;
             gridViewTextBoxColumn10.Multiline = true;
             gridViewTextBoxColumn10.Name = "ObjName";
-            gridViewTextBoxColumn10.Width = 350;
+            gridViewTextBoxColumn10.Width = 358;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.FieldName = "NameMusician";
             gridViewTextBoxColumn11.HeaderText = "ПІБ композитора";
@@ -610,7 +469,7 @@
             gridViewTextBoxColumn11.MinWidth = 100;
             gridViewTextBoxColumn11.Multiline = true;
             gridViewTextBoxColumn11.Name = "NameMusician";
-            gridViewTextBoxColumn11.Width = 214;
+            gridViewTextBoxColumn11.Width = 219;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.FieldName = "NameSinger";
             gridViewTextBoxColumn12.HeaderText = "ПІБ виконавця";
@@ -618,7 +477,7 @@
             gridViewTextBoxColumn12.MinWidth = 100;
             gridViewTextBoxColumn12.Multiline = true;
             gridViewTextBoxColumn12.Name = "NameSinger";
-            gridViewTextBoxColumn12.Width = 210;
+            gridViewTextBoxColumn12.Width = 220;
             gridViewTextBoxColumn12.WrapText = true;
             gridViewTextBoxColumn13.FieldName = "Duration";
             gridViewTextBoxColumn13.HeaderText = "Тривалість звучання (хв)";
@@ -649,31 +508,34 @@
             this.gvMusicDesignView.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvMusicDesignView.Name = "gvMusicDesignView";
             this.gvMusicDesignView.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvMusicDesignView.Size = new System.Drawing.Size(996, 285);
-            this.gvMusicDesignView.TabIndex = 10;
+            this.gvMusicDesignView.Size = new System.Drawing.Size(1019, 282);
+            this.gvMusicDesignView.TabIndex = 15;
             this.gvMusicDesignView.ThemeName = "Office2013Light";
             // 
-            // cName
+            // separator
             // 
-            this.cName.AlignmentTitle = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cName.AlignmentValue = System.Drawing.ContentAlignment.MiddleLeft;
-            this.cName.Location = new System.Drawing.Point(0, 0);
-            this.cName.MaximumSize = new System.Drawing.Size(1000, 28);
-            this.cName.MinimumSize = new System.Drawing.Size(150, 25);
-            this.cName.Name = "cName";
-            this.cName.Size = new System.Drawing.Size(357, 28);
-            this.cName.SplitterRatio = 90;
-            this.cName.StringFormat = "";
-            this.cName.TabIndex = 11;
-            this.cName.TextTitle = "Назва вистави";
-            this.cName.TextValue = "";
-            this.cName.ValueDataMemger = "";
-            this.cName.ValueDataSource = null;
+            this.separator.Dock = System.Windows.Forms.DockStyle.Top;
+            this.separator.Location = new System.Drawing.Point(0, 55);
+            this.separator.Name = "separator";
+            this.separator.Size = new System.Drawing.Size(1019, 21);
+            this.separator.TabIndex = 14;
+            this.separator.ThemeName = "Office2013Light";
+            // 
+            // ctrlMusicDesignHeaderInfo
+            // 
+            this.ctrlMusicDesignHeaderInfo.DataSource = typeof(IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo);
+            this.ctrlMusicDesignHeaderInfo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ctrlMusicDesignHeaderInfo.Location = new System.Drawing.Point(0, 0);
+            this.ctrlMusicDesignHeaderInfo.MaximumSize = new System.Drawing.Size(1380, 55);
+            this.ctrlMusicDesignHeaderInfo.MinimumSize = new System.Drawing.Size(700, 55);
+            this.ctrlMusicDesignHeaderInfo.Name = "ctrlMusicDesignHeaderInfo";
+            this.ctrlMusicDesignHeaderInfo.Size = new System.Drawing.Size(1019, 55);
+            this.ctrlMusicDesignHeaderInfo.TabIndex = 13;
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(754, 464);
+            this.btnSave.Location = new System.Drawing.Point(777, 464);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 24);
             this.btnSave.TabIndex = 3;
@@ -685,7 +547,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(884, 464);
+            this.btnCancel.Location = new System.Drawing.Point(907, 464);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 4;
@@ -697,7 +559,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1006, 500);
+            this.ClientSize = new System.Drawing.Size(1029, 500);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.pageView);
@@ -732,9 +594,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterView)).EndInit();
             this.pvMusicDesign.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radSeparator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvMusicDesignView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -763,18 +625,11 @@
         private System.Windows.Forms.BindingSource bsRegister;
         private System.Windows.Forms.BindingSource bsPeriodList;
         private System.Windows.Forms.BindingSource bsSpectacleView;
-        private Telerik.WinControls.UI.RadGridView gvMusicDesignView;
-        private SingleShowInformationControl cMusRate;
-        private SingleShowInformationControl cMusAmount;
-        private SingleShowInformationControl cAuthorRate;
-        private SingleShowInformationControl cAuthorAmount;
-        private SingleShowInformationControl cAmount;
-        private SingleShowInformationControl cCountUse;
-        private SingleShowInformationControl cActCode;
-        private Telerik.WinControls.UI.RadSeparator radSeparator1;
-        private SingleShowInformationControl cName;
         private System.Windows.Forms.BindingSource bsRegisterRatedList;
         private Telerik.WinControls.UI.RadLabel lblAmount;
         private Telerik.WinControls.UI.RadLabel lblRoyalty;
+        private Telerik.WinControls.UI.RadGridView gvMusicDesignView;
+        private Telerik.WinControls.UI.RadSeparator separator;
+        private ConsumerControls.BigRight.MusicDesignHeaderInfoControl ctrlMusicDesignHeaderInfo;
     }
 }

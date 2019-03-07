@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.ExtensionControls;
+﻿using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.ConsumerForms
 {
@@ -51,11 +52,11 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlConsumerPassport = new IpsViewComponentLibrary.PassportControl();
+            this.ctrlConsumerPassport = new PassportControl();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.AgreementWithPlacesControl();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
@@ -64,7 +65,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.ExtensionControls.TabNavigationExpandedControl();
+            this.ctrlTabNavigationExpanded = new TabNavigationExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
             this.pvClientName.SuspendLayout();

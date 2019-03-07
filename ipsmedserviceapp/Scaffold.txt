@@ -237,7 +237,6 @@
 "ReqAgreement",
 "ReqAgreementStatus",
 "ReqCustomer",
-"ReqLocationUse",
 "ReqTrade",
 "Request",
 "RequestAdapt",

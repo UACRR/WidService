@@ -452,9 +452,9 @@ public interface ICheckParamPays
     {
          int InputFileId { get; set; }
          int CheckId { get; set; }
-         string MfoCorr { get; set; }
          string AccountCorr { get; set; }
          string OkpoCorr { get; set; }
+         string MfoCorr { get; set; }
          string DocNum { get; set; }
          DateTime DocDate { get; set; }
          decimal SCredit { get; set; }
