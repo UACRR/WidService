@@ -660,31 +660,31 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 case "copyrightkind":
                     _copyrightKind = new CopyrightKind() {CrGroupCode = 1, };
-                    _copyRightKindControl.CopyrightKindDataSource = _copyrightKind;
+                    //_copyRightKindControl.CopyrightKindDataSource = _copyrightKind;
                     break;
                 case "country":
                     _country = new Country();
-                    _countryDictionaryControl.CountryDataSource = _country;
+                    //_countryDictionaryControl.CountryDataSource = _country;
                     break;
                 case "creativeroletype":
                     _creativeRoleType = new CreativeRoleType();
-                    _creativeRoleDictionaryControl.CreativeRoleTypeDataSource = _creativeRoleType;
+                    //_creativeRoleDictionaryControl.CreativeRoleTypeDataSource = _creativeRoleType;
                     break;
                 case "genretype":
                     _genreType = new GenreType();
-                    _genreTypeDictionaryControl.GenreTypeDataSource = _genreType;
+                    //_genreTypeDictionaryControl.GenreTypeDataSource = _genreType;
                     break;
                 case "klr030":
                     _klR030 = new KlR030();
-                    _klrDictionaryControl.KlR030DataSource = _klR030;
+                    //_klrDictionaryControl.KlR030DataSource = _klR030;
                     break;
                 case "systemconstant":
                     _systemConstant = new SystemConstant();
-                    _systemConstantDictionaryControl.SystemConstantSource = _systemConstant;
+                    //_systemConstantDictionaryControl.SystemConstantSource = _systemConstant;
                     break;
                 case "typeplace":
                     _typePlace = new TypePlace();
-                    _typePlaceDictionaryControl.TypePlaceSource = _typePlace;
+                    //_typePlaceDictionaryControl.TypePlaceSource = _typePlace;
                     break;
             }
         }
@@ -782,6 +782,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
+                        _copyrightKind.CrGroupCode = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _copyrightKind);
                         break;
                     case "country":
@@ -805,6 +806,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             CountryName = txtNameEnComplex.Text,
                             Lang = "En"
                         });
+                        _country.ContinentCode = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _country);
                         break;
                     case "creativeroletype":
@@ -833,6 +835,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
+                        _creativeRoleType.CategoryCode = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _creativeRoleType);
                         break;
                     case "genretype":
@@ -861,6 +864,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
+                        _genreType.CategoryCode = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _genreType);
                         break;
                     case "klr030":
@@ -884,6 +888,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                             R030Name = txtNameEnComplex.Text
                         });
+                        _klR030.R031 = (short)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _klR030);
                         break;
                     case "systemconstant":
@@ -939,6 +944,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                             Name = txtNameEnComplex.Text
                         });
+                        _typePlace.ParamType = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _typePlace);
                         break;
                 }
