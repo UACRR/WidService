@@ -1,4 +1,4 @@
-﻿using IpsViewComponentLibrary.ExtensionControls;
+﻿using IpsViewComponentLibrary.Common;
 
 namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
@@ -90,7 +90,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.anketaPanel = new Telerik.WinControls.UI.RadPanel();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ExtensionControls.TabNavigationControl();
+            this.ctrlTabNavigation = new TabNavigationControl();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
             this.pvClosedAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClosedAgreements = new IpsViewComponentLibrary.ConsumerControls.ClosedAgreementsControl();

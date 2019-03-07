@@ -59,9 +59,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.createRightholderPassportPageView = new Telerik.WinControls.UI.RadPageView();
             this.pasportPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
+            this.ctrlInternalPassport = new PassportControl();
             this.createRightholderForeignPassportPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlInternationalPassport = new IpsViewComponentLibrary.PassportInternationalControl();
+            this.ctrlInternationalPassport = new PassportInternationalControl();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.managersPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();

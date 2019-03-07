@@ -50,7 +50,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlConsumerPassport = new IpsViewComponentLibrary.PassportControl();
+            this.ctrlConsumerPassport = new PassportControl();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();

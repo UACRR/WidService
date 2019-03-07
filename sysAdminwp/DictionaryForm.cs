@@ -99,7 +99,7 @@ namespace sysAdminwp
             btnRemove.Enabled = false;
 
             //initialize object for complex dictionaries
-            ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl(_connector)
+            ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl(_connector, _complexDictionary)
             {
                 Dock = DockStyle.Fill,
             };
@@ -137,6 +137,7 @@ namespace sysAdminwp
             }
 
             _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
+
             treeViewList.DataSource = _dictionaryCategories;
             treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             treeViewList.DisplayMember = "Name\\Name";

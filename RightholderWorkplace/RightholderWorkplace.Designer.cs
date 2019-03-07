@@ -1,4 +1,7 @@
-﻿namespace RightholderWorkplace
+﻿using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.Common.Editors;
+
+namespace RightholderWorkplace
 {
     partial class RightholderWorkplace
     {
@@ -71,7 +74,7 @@
             this.btnTransferSelected = new Telerik.WinControls.UI.RadButton();
             this.btnTransferAll = new Telerik.WinControls.UI.RadButton();
             this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
-            this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.RadioPanel();
+            this.ctrlChangeRightholderOperation = new RadioPanel();
             this.rdbDeath = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbTransfer = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbAlienation = new Telerik.WinControls.UI.RadRadioButton();
@@ -1082,7 +1085,7 @@
         private System.Windows.Forms.BindingSource bsObjectCopyright;
         private System.Windows.Forms.BindingSource bsObjectRightForTransfering;
         private Telerik.WinControls.UI.GridViewTemplate gvChangeCopyrightsTemplate;
-        private IpsViewComponentLibrary.RadioPanel ctrlChangeRightholderOperation;
+        private RadioPanel ctrlChangeRightholderOperation;
         private Telerik.WinControls.UI.RadRadioButton rdbDeath;
         private Telerik.WinControls.UI.RadRadioButton rdbTransfer;
         private Telerik.WinControls.UI.RadRadioButton rdbAlienation;

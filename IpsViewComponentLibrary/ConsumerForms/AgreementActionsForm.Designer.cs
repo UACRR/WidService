@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.ConsumerControls;
+﻿using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.ConsumerControls;
 
 namespace IpsViewComponentLibrary.ConsumerForms
 {
@@ -32,7 +33,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         {
             this.ctrlProlongation = new AgreementWithPlacesControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.ExtensionControls.SaveCancelButtonsControl();
+            this.ctrlSaveCancelButtons = new SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,6 +82,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
         private AgreementWithPlacesControl ctrlProlongation;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private ExtensionControls.SaveCancelButtonsControl ctrlSaveCancelButtons;
+        private SaveCancelButtonsControl ctrlSaveCancelButtons;
     }
 }

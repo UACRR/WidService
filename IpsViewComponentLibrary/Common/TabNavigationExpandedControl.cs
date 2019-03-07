@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ExtensionControls
+namespace IpsViewComponentLibrary.Common
 {
     public partial class TabNavigationExpandedControl : UserControl
     {
+        private readonly Color GrayColor = Color.DarkGray;
         private RadPageView _pageView;
         private bool _buttonClick = false;
         public event EventHandler<bool> SaveClick;
@@ -24,6 +26,7 @@ namespace IpsViewComponentLibrary.ExtensionControls
             switch (loadType)
             {
                 case FLoadType.Create:
+                    ChangeColorTabs();
                     _pageView.SelectedPageChanging += pageView_SelectedPageChanging;
                     btnBack.Text = "< ";
                     btnBack.Enabled = false;
@@ -37,8 +40,8 @@ namespace IpsViewComponentLibrary.ExtensionControls
                     btnNext.Visible = false;
                     break;
             }
-            //btnSave.Click += BtnSave_Click;
         }
+
         // зберегти / ..та погодити
         private void Save_Click(object sender, EventArgs e)
         {
@@ -46,6 +49,22 @@ namespace IpsViewComponentLibrary.ExtensionControls
             SaveClick?.Invoke(sender, accept);
         }
 
+        // < попередня вкладка
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            TabNavigateAction(NavigateType.Previous);
+        }
+
+        // > наступна вкладка
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            TabNavigateAction(NavigateType.Next);
+        }
+
+        /// <summary>
+        /// Здійснити перехід на іншу вкладку
+        /// </summary>
+        /// <param name="navigateType">вперед/назад</param>
         private void TabNavigateAction(NavigateType navigateType)
         {
             int index = _pageView.SelectedPage.TabIndex;
@@ -69,6 +88,17 @@ namespace IpsViewComponentLibrary.ExtensionControls
             btnNext.Enabled = index != _pageView.Pages.Last().TabIndex;
             ddbtnSave.Enabled = index == _pageView.Pages.Last().TabIndex;
             btnNext.Text = btnNext.Enabled ? _pageView.Pages[index + 1].Text + " >" : " >";
+
+            ChangeColorTabs();
+        }
+
+        /// <summary>
+        /// Змінити підсвічування вкладок
+        /// </summary>
+        private void ChangeColorTabs()
+        {
+            foreach (var page in _pageView.Pages)
+                page.Item.ForeColor = _pageView.SelectedPage == page ? DefaultForeColor : GrayColor;
         }
 
         private void pageView_SelectedPageChanging(object sender, RadPageViewCancelEventArgs e)
@@ -77,16 +107,6 @@ namespace IpsViewComponentLibrary.ExtensionControls
                 e.Cancel = true;
             else
                 _buttonClick = false;
-        }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            TabNavigateAction(NavigateType.Previous);
-        }
-
-        private void btnNext_Click(object sender, EventArgs e)
-        {
-            TabNavigateAction(NavigateType.Next);
         }
     }
 }

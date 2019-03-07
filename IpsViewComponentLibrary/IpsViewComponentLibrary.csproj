@@ -371,10 +371,10 @@
     <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionControls\TabNavigationControl.cs">
+    <Compile Include="Common\TabNavigationControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ExtensionControls\TabNavigationControl.Designer.cs">
+    <Compile Include="Common\TabNavigationControl.Designer.cs">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.cs">
@@ -403,10 +403,10 @@
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
     <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
-    <Compile Include="ExtensionControls\SaveCancelButtonsControl.cs">
+    <Compile Include="Common\SaveCancelButtonsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ExtensionControls\SaveCancelButtonsControl.Designer.cs">
+    <Compile Include="Common\SaveCancelButtonsControl.Designer.cs">
       <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\MessageShow.cs" />
@@ -571,10 +571,10 @@
     <Compile Include="PartnerControls\PartnerClientsControl.Designer.cs">
       <DependentUpon>PartnerClientsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ExtensionControls\TabNavigationExpandedControl.cs">
+    <Compile Include="Common\TabNavigationExpandedControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ExtensionControls\TabNavigationExpandedControl.Designer.cs">
+    <Compile Include="Common\TabNavigationExpandedControl.Designer.cs">
       <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RegisterControls\RegisterItemListControl.cs">
@@ -902,10 +902,10 @@
     <Compile Include="ObjectRightControls\ObjectRightSelectionView.Designer.cs">
       <DependentUpon>ObjectRightSelectionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="PassportControl.cs">
+    <Compile Include="Shared\Controls\PassportControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PassportControl.Designer.cs">
+    <Compile Include="Shared\Controls\PassportControl.Designer.cs">
       <DependentUpon>PassportControl.cs</DependentUpon>
     </Compile>
     <Compile Include="IpsRegistrationsCompanyControl.cs">
@@ -914,10 +914,10 @@
     <Compile Include="IpsRegistrationsCompanyControl.Designer.cs">
       <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PassportInternationalControl.cs">
+    <Compile Include="RightholderControls\PassportInternationalControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PassportInternationalControl.Designer.cs">
+    <Compile Include="RightholderControls\PassportInternationalControl.Designer.cs">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerForms\AgreementActionsForm.cs">
@@ -943,7 +943,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="RadioPanel.cs">
+    <Compile Include="Common\RadioPanel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RegisterControls\RegisterListControl.cs">
@@ -959,10 +959,10 @@
     <Compile Include="RegisterControls\RegisterView.Designer.cs">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </Compile>
-    <Compile Include="RegistrationPersonsControl.cs">
+    <Compile Include="RightholderControls\RegistrationPersonsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="RegistrationPersonsControl.Designer.cs">
+    <Compile Include="RightholderControls\RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerForms\ReportExcelViewForm.cs">
@@ -1142,7 +1142,7 @@
     <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
       <DependentUpon>CreateRatedList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExtensionControls\TabNavigationControl.resx">
+    <EmbeddedResource Include="Common\TabNavigationControl.resx">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx">
@@ -1161,7 +1161,7 @@
     <EmbeddedResource Include="ConsumerForms\AnketaConsumerPhisForm.resx">
       <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExtensionControls\SaveCancelButtonsControl.resx">
+    <EmbeddedResource Include="Common\SaveCancelButtonsControl.resx">
       <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ImportDBF\ImportDBFControl.resx">
@@ -1251,7 +1251,7 @@
     <EmbeddedResource Include="PartnerControls\PartnerNameControl.resx">
       <DependentUpon>PartnerNameControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExtensionControls\TabNavigationExpandedControl.resx">
+    <EmbeddedResource Include="Common\TabNavigationExpandedControl.resx">
       <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\RegisterRatedListForm.resx">
@@ -1390,13 +1390,13 @@
     <EmbeddedResource Include="ObjectRightControls\ObjectRightSelectionView.resx">
       <DependentUpon>ObjectRightSelectionView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PassportControl.resx">
+    <EmbeddedResource Include="Shared\Controls\PassportControl.resx">
       <DependentUpon>PassportControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IpsRegistrationsCompanyControl.resx">
       <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PassportInternationalControl.resx">
+    <EmbeddedResource Include="RightholderControls\PassportInternationalControl.resx">
       <DependentUpon>PassportInternationalControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\AgreementActionsForm.resx">
@@ -1417,7 +1417,7 @@
     <EmbeddedResource Include="RegisterControls\RegisterView.resx">
       <DependentUpon>RegisterView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RegistrationPersonsControl.resx">
+    <EmbeddedResource Include="RightholderControls\RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\ReportExcelViewForm.resx">
@@ -1607,6 +1607,8 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ExtensionControls\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

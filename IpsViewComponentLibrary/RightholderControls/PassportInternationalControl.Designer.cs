@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.RightholderControls
 {
     partial class PassportInternationalControl
     {

@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ExtensionControls
+﻿namespace IpsViewComponentLibrary.Common
 {
-    partial class TabNavigationControl
+    partial class TabNavigationExpandedControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,13 +29,15 @@
         private void InitializeComponent()
         {
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.ddbtnSave = new Telerik.WinControls.UI.RadDropDownButton();
+            this.btnSave = new Telerik.WinControls.UI.RadMenuItem();
+            this.btnSaveAccepted = new Telerik.WinControls.UI.RadMenuItem();
             this.btnNext = new Telerik.WinControls.UI.RadButton();
             this.btnBack = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbtnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -44,7 +46,7 @@
             // radPanel1
             // 
             this.radPanel1.BackColor = System.Drawing.Color.Silver;
-            this.radPanel1.Controls.Add(this.btnSave);
+            this.radPanel1.Controls.Add(this.ddbtnSave);
             this.radPanel1.Controls.Add(this.btnNext);
             this.radPanel1.Controls.Add(this.btnBack);
             this.radPanel1.Controls.Add(this.btnCancel);
@@ -57,16 +59,30 @@
             this.radPanel1.TabIndex = 21;
             this.radPanel1.ThemeName = "Office2013Light";
             // 
+            // ddbtnSave
+            // 
+            this.ddbtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddbtnSave.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.btnSave,
+            this.btnSaveAccepted});
+            this.ddbtnSave.Location = new System.Drawing.Point(445, 4);
+            this.ddbtnSave.Name = "ddbtnSave";
+            this.ddbtnSave.Size = new System.Drawing.Size(121, 24);
+            this.ddbtnSave.TabIndex = 57;
+            this.ddbtnSave.Text = "Зберегти";
+            this.ddbtnSave.ThemeName = "Office2013Light";
+            // 
             // btnSave
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Enabled = false;
-            this.btnSave.Location = new System.Drawing.Point(445, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(121, 24);
-            this.btnSave.TabIndex = 56;
             this.btnSave.Text = "Зберегти";
-            this.btnSave.ThemeName = "Office2013Light";
+            this.btnSave.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // btnSaveAccepted
+            // 
+            this.btnSaveAccepted.Name = "btnSaveAccepted";
+            this.btnSaveAccepted.Text = "Зберегти та погодити";
+            this.btnSaveAccepted.Click += new System.EventHandler(this.Save_Click);
             // 
             // btnNext
             // 
@@ -99,20 +115,19 @@
             this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // TabNavigationControl
+            // TabNavigationExpandedControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radPanel1);
             this.MaximumSize = new System.Drawing.Size(2000, 31);
             this.MinimumSize = new System.Drawing.Size(300, 31);
-            this.Name = "TabNavigationControl";
+            this.Name = "TabNavigationExpandedControl";
             this.Size = new System.Drawing.Size(696, 31);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbtnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
@@ -123,9 +138,11 @@
         #endregion
 
         private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnNext;
         private Telerik.WinControls.UI.RadButton btnBack;
         private Telerik.WinControls.UI.RadButton btnCancel;
+        private Telerik.WinControls.UI.RadDropDownButton ddbtnSave;
+        private Telerik.WinControls.UI.RadMenuItem btnSave;
+        private Telerik.WinControls.UI.RadMenuItem btnSaveAccepted;
     }
 }

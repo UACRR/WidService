@@ -1,4 +1,4 @@
-﻿using IpsViewComponentLibrary.ExtensionControls;
+﻿using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.CommunityControls
@@ -63,7 +63,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlAddressJu = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsBankAccountControl();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.ExtensionControls.TabNavigationControl();
+            this.ctrlTabNavigation = new TabNavigationControl();
             this.pvAgrData = new Telerik.WinControls.UI.RadPageViewPage();
             this.lblCommunityName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();

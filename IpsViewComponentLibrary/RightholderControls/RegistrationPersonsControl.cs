@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
-using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Utilities;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class RegistrationPersonsControl : UserControl
     {
@@ -38,6 +35,7 @@ namespace IpsViewComponentLibrary
         public RegistrationPersonsControl()
         {
             InitializeComponent();
+            txtIPN.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
 
             if (!IsDesignMode)
             {
@@ -46,20 +44,11 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void rtxtBoxIPN_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8)
-            {
-                e.Handled = true;
-            }
-        }
-
         public bool Validator()
         {
             bool isValid = !lblINNPresent.Visible;
 
-            if (rtxtBoxIPN.Text == string.Empty)
+            if (txtIPN.Text == string.Empty)
             {
                 lblipn.ForeColor = Color.FromArgb(180, 255, 0, 2);
                 isValid = false;
@@ -71,7 +60,7 @@ namespace IpsViewComponentLibrary
             return isValid;
         }
 
-        private void rtxtBoxIPN_Leave(object sender, EventArgs e)
+        private void txtIPN_Leave(object sender, EventArgs e)
         {
             var anketa = bsAnketaPerson.Current as AnketaPerson;
             if (anketa == null)
@@ -85,7 +74,7 @@ namespace IpsViewComponentLibrary
 
             IUniqueChecker checker = IpsGlobal.Instances[typeof(IUniqueChecker)] as IUniqueChecker;
             if (checker != null)
-                lblINNPresent.Visible = !checker.CheckINNIsUnique(rtxtBoxIPN.Text, anketa.CustId);
+                lblINNPresent.Visible = !checker.CheckINNIsUnique(txtIPN.Text, anketa.CustId);
         }
     }
 }
