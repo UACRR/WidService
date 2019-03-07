@@ -1,4 +1,5 @@
 ﻿using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -72,7 +73,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.createRightholderRoyaltyPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderRoyaltyBankPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsBankAccountControl();
             this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.createRightholderRoyaltyCashPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderRoyaltyPostalTransfer = new Telerik.WinControls.UI.RadPageViewPage();

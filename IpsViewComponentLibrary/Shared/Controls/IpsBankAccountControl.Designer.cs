@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.Shared.Controls
 {
     partial class IpsBankAccountControl
     {

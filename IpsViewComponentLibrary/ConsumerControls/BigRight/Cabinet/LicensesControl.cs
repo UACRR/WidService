@@ -13,7 +13,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 {
     public partial class LicensesControl : UserControl
     {
-        private const string CloseLicenseQuestion = "Ліцензія буде закрита та автоматично видалена! Підтвердити дію?";
+        private const string CloseLicenseQuestion = "Ліцензія буде закрита! Підтвердити дію?";
         private const string CloseLicenseSuccess = "Ліцензію закрито!";
         private const string CloseLicenseError = "Неможливо закрити ліцензію!";
         private const string ProlongationSuccess = "Ліцензійний договір пролонговано!";
@@ -29,6 +29,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         {
             InitializeComponent();
             ctrlAgrDetailInfo.OnSaveCommentNeed += CtrlAgrDetailInfo_OnSaveCommentNeed;
+            ctrlSearch.SetUsageGrid(gvViewLicences);
         }
 
         private void CtrlAgrDetailInfo_OnSaveCommentNeed(object sender, EventArgs e)
@@ -46,7 +47,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         {
             _gridMainView = comsumerBigRightView;
             ctrlAgrInfo.DataSource = _gridMainView;
-            ctrlSearch.SetUsageGrid(gvViewLicences);
         }
 
         public void SetData(Customer customer, List<LicenseAgreementBigRightView> sourceGrid)
@@ -87,6 +87,27 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             ctrlAgrDetailInfo.SetDataInfo(licAgrParam, lic);
         }
 
+        // командні кнопки на грід
+        private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            if (!(e.Row.DataBoundItem is LicenseAgreementBigRightView item))
+                return;
+
+            switch (e.Column.FieldName)
+            {
+                case "viewBtn":
+                    var viewLicenseForm = new RequestForm(_customer, _gridMainView, ScopeOfUseForm.View, item.LicId);
+                    viewLicenseForm.ShowDialog();
+                    break;
+                case "printBtn":
+                    var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == item.LicId);
+                    var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
+                    print.ShowDialog();
+                    break;
+            }
+        }
+
+        // закрити ліцензію
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {
             if (!(gvViewLicences?.CurrentRow?.DataBoundItem is LicenseAgreementBigRightView item))
@@ -117,25 +138,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 if (result)
                     UpdateData?.Invoke();
                 MessageShow.ShowInfoByResult(ProlongationSuccess, ProlongationError, result);
-            }
-        }
-
-        private void gvViewLicences_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
-        {
-            if (!(e.Row.DataBoundItem is LicenseAgreementBigRightView item))
-                return;
-
-            switch (e.Column.FieldName)
-            {
-                case "viewBtn":
-                    var viewLicenseForm = new RequestForm(_customer, _gridMainView, ScopeOfUseForm.View, item.LicId);
-                    viewLicenseForm.ShowDialog();
-                    break;
-                case "printBtn":
-                    var licenseAgreement = _customer.Client.LicenseAgreement.SingleOrDefault(r => r.LicId == item.LicId);
-                    var print = new ViewAndPrintAgreementForm(_customer, licenseAgreement);
-                    print.ShowDialog();
-                    break;
             }
         }
 

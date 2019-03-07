@@ -6,6 +6,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.InternalControlsModel;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -246,13 +247,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                     {
                         ObjId = (int)item.ObjId,
                         RegId = item.RegId,
-                        ItemName = item.ItemName,
+                        ObjName = item.ItemName,
                         ActCode = item.ActCode,
                         AuthAmount = item.AuthAmount,
                         AuthRate = item.AuthRate,
+                        MusicAmount = item.MusicAmount,
+                        MusicRate = item.MusicRate,
                         AvanseRest = item.AvanseRest,
                         PrepaySumAuthor = item.PrepaySumAuthor,
-                        RegAmount = item.RegAmount,
+                        Amount = item.RegAmount,
+                        CountUse = item.CountUse,
                     };
                     dicParent.Add((int)parent.ObjId, parent);
                     parentList.Add(parent);
@@ -282,28 +286,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             if (gvViewSpectacles?.CurrentRow?.DataBoundItem == null)
                 return;
 
-            if(!(gvViewSpectacles.CurrentRow.DataBoundItem is ParentTemplate rec))
-                rec = ((GridViewRowInfo)((GridViewHierarchyRowInfo)gvViewSpectacles.CurrentRow).Parent)?.DataBoundItem as ParentTemplate;
-            
-            cName.TextValue = rec?.ItemName;
-            cActCode.TextValue = rec?.ActCode.ToString();//_spectacleViews.SingleOrDefault(item => item.ObjId == rec?.ObjId)?.ActCode.ToString();
-            cCountUse.TextValue = "";//rec?.ToString();
-            cAmount.TextValue = rec?.RegAmount.ToString();
-            cAuthorAmount.TextValue = rec?.AuthAmount.ToString();
-            cAuthorRate.TextValue = rec?.AuthRate.ToString();
+            if(!(gvViewSpectacles.CurrentRow.DataBoundItem is ParentTemplate source))
+                source = ((GridViewRowInfo)((GridViewHierarchyRowInfo)gvViewSpectacles.CurrentRow).Parent)?.DataBoundItem as ParentTemplate;
 
-            var row = gvRegisterRatedListView.CurrentRow.DataBoundItem as RatedListMainBigRightView;
-
-            var musicd = _payslipsSpectacleViews
-                .Where(r => r.RmId == row?.RmId)
-                .FirstOrDefault(r => r.ObjId == rec?.ObjId);
-
-            cMusAmount.TextValue = musicd?.MusicAmount.ToString();
-            cMusRate.TextValue = musicd?.MusicRate.ToString();
+            ctrlMusicDesignHeaderInfo.DataSource = source;
 
             var musicDesign = GetMusicDesing?.Invoke();
-            var source = musicDesign?.Where(r => r.RegId == rec?.RegId).ToList();
-            gvMusicDesignView.DataSource = source;
+            var dataSource = musicDesign?.Where(r => r.RegId == source?.RegId).ToList();
+            gvMusicDesignView.DataSource = dataSource ;
         }
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using IpsViewComponentLibrary.ExtensionControls;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.PartnerControls
 {
@@ -38,7 +39,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.pvManager = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvTerms = new Telerik.WinControls.UI.RadPageViewPage();
