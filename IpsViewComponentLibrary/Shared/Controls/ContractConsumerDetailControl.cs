@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
     public partial class ContractConsumerDetailControl : UserControl
     {
@@ -233,16 +226,6 @@ namespace IpsViewComponentLibrary
         public int SelectedItem
         {
             set => rddListTypeAutoProl.SelectedItem = rddListTypeAutoProl.Items[value];
-        }
-
-        /// <summary>
-        /// Мінімальна допустима сума
-        /// </summary>
-        public decimal MinAmount { get; set; }
-
-        private void rtxtBoxMinAuthorPayment_TextChanged(object sender, EventArgs e)
-        {
-            //TODO: перевірка мін суми
         }
     }
 }

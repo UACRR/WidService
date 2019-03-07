@@ -700,16 +700,16 @@
     <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.Designer.cs">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ContractConsumerDetailControl.cs">
+    <Compile Include="Shared\Controls\ContractConsumerDetailControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ContractConsumerDetailControl.Designer.cs">
+    <Compile Include="Shared\Controls\ContractConsumerDetailControl.Designer.cs">
       <DependentUpon>ContractConsumerDetailControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ContractConsumerMainControl.cs">
+    <Compile Include="Shared\Controls\ContractConsumerMainControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ContractConsumerMainControl.Designer.cs">
+    <Compile Include="Shared\Controls\ContractConsumerMainControl.Designer.cs">
       <DependentUpon>ContractConsumerMainControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerForms\DistributionForm.cs">
@@ -1290,10 +1290,10 @@
     <EmbeddedResource Include="Shared\Controls\ContactsPersonControl.resx">
       <DependentUpon>ContactsPersonControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ContractConsumerDetailControl.resx">
+    <EmbeddedResource Include="Shared\Controls\ContractConsumerDetailControl.resx">
       <DependentUpon>ContractConsumerDetailControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ContractConsumerMainControl.resx">
+    <EmbeddedResource Include="Shared\Controls\ContractConsumerMainControl.resx">
       <DependentUpon>ContractConsumerMainControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerForms\DistributionForm.resx">
