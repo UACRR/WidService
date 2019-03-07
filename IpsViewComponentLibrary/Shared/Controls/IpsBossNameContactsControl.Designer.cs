@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.Shared.Controls
 {
     partial class IpsBossNameContactsControl
     {

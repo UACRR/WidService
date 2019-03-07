@@ -1,5 +1,6 @@
 ﻿using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Common.Editors;
+using IpsViewComponentLibrary.RightholderControls;
 
 namespace RightholderWorkplace
 {
@@ -60,7 +61,7 @@ namespace RightholderWorkplace
             this.pageReportSR = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRegisterList = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.licenseAgreementListControl1 = new IpsViewComponentLibrary.LicenseAgreementListControl();
+            this.licenseAgreementListControl1 = new LicenseAgreementListControl();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -1109,7 +1110,7 @@ namespace RightholderWorkplace
         private Telerik.WinControls.UI.RadDropDownButton ddbNewRightholder;
         private Telerik.WinControls.UI.RadMenuItem miNewRightholderPerson;
         private Telerik.WinControls.UI.RadMenuItem miNewRigthholderCompany;
-        private IpsViewComponentLibrary.LicenseAgreementListControl licenseAgreementListControl1;
+        private LicenseAgreementListControl licenseAgreementListControl1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private IpsViewComponentLibrary.FixationControls.FixationListControl fixationListControl1;
         private Telerik.WinControls.UI.RadLabel radLabel1;

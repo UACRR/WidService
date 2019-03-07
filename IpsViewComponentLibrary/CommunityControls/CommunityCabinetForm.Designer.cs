@@ -46,8 +46,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageViewAnketa = new Telerik.WinControls.UI.RadPageView();
             this.pvCommunityName = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
-            this.ctrlClientName = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
+            this.ctrlContactPerson = new IpsBossNameContactsControl();
+            this.ctrlClientName = new IpsAnketaCompanyControl();
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddressLe = new IpsViewComponentLibrary.CommunityControls.CommunityAddressLetterControl();
             this.btnCopyFromJuToFa = new Telerik.WinControls.UI.RadButton();

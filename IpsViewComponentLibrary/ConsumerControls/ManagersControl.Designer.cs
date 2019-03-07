@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
@@ -46,9 +47,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.ctrlBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.ctrlBookkeeper = new IpsBossNameContactsControl();
             this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
-            this.ctrlHeadBoss = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.ctrlHeadBoss = new IpsBossNameContactsControl();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator5 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
