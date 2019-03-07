@@ -10,9 +10,9 @@ namespace ReportsLibrary
     /// <summary>
     /// Summary description for R_5_5_RatingObj.
     /// </summary>
-    public partial class R_5_4_RatingObj : Telerik.Reporting.Report
+    public partial class R_5_5_RatingObj : Telerik.Reporting.Report
     {
-        public R_5_4_RatingObj()
+        public R_5_5_RatingObj()
         {
             //
             // Required for telerik Reporting designer support
