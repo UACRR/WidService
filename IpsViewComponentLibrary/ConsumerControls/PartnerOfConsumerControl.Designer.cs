@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.ConsumerControls
 {
-    partial class MiddleControlCabinetPartner
+    partial class PartnerOfConsumerControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

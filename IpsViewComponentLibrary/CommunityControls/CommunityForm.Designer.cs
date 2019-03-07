@@ -59,11 +59,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageView.SuspendLayout();
             this.pvCommunityName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtFirstName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtLastName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtPhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtSurName)).BeginInit();
             this.pvAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
@@ -119,98 +114,11 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // ctrlContactPerson
             // 
-            this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlContactPerson.Location = new System.Drawing.Point(21, 87);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
             this.ctrlContactPerson.OutsidePhone = false;
             this.ctrlContactPerson.Size = new System.Drawing.Size(600, 56);
             this.ctrlContactPerson.TabIndex = 2;
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlContactPerson.TxtEmail.Location = new System.Drawing.Point(425, 35);
-            this.ctrlContactPerson.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtEmail.Name = "txtEmail";
-            this.ctrlContactPerson.TxtEmail.NullText = "#####@####.##";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 36, 175, 20);
-            this.ctrlContactPerson.TxtEmail.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtEmail.Size = new System.Drawing.Size(175, 21);
-            this.ctrlContactPerson.TxtEmail.TabIndex = 4;
-            this.ctrlContactPerson.TxtEmail.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlContactPerson.TxtFirstName.Location = new System.Drawing.Point(229, 3);
-            this.ctrlContactPerson.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtFirstName.Name = "txtFirstName";
-            this.ctrlContactPerson.TxtFirstName.NullText = "Ім\'я";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(229, 4, 173, 20);
-            this.ctrlContactPerson.TxtFirstName.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtFirstName.Size = new System.Drawing.Size(173, 21);
-            this.ctrlContactPerson.TxtFirstName.TabIndex = 1;
-            this.ctrlContactPerson.TxtFirstName.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlContactPerson.TxtLastName.Location = new System.Drawing.Point(33, 3);
-            this.ctrlContactPerson.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtLastName.Name = "txtLastName";
-            this.ctrlContactPerson.TxtLastName.NullText = "Прізвище";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 173, 20);
-            this.ctrlContactPerson.TxtLastName.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtLastName.Size = new System.Drawing.Size(173, 21);
-            this.ctrlContactPerson.TxtLastName.TabIndex = 0;
-            this.ctrlContactPerson.TxtLastName.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtPhone.AutoSize = false;
-            this.ctrlContactPerson.TxtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlContactPerson.TxtPhone.Location = new System.Drawing.Point(33, 35);
-            this.ctrlContactPerson.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtPhone.MaxLength = 13;
-            this.ctrlContactPerson.TxtPhone.Name = "txtPhone";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 173, 20);
-            this.ctrlContactPerson.TxtPhone.RootElement.StretchVertically = false;
-            this.ctrlContactPerson.TxtPhone.Size = new System.Drawing.Size(173, 20);
-            this.ctrlContactPerson.TxtPhone.TabIndex = 3;
-            this.ctrlContactPerson.TxtPhone.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtSurName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlContactPerson.TxtSurName.Location = new System.Drawing.Point(425, 3);
-            this.ctrlContactPerson.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtSurName.Name = "txtSurName";
-            this.ctrlContactPerson.TxtSurName.NullText = "По батькові";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(425, 3, 175, 20);
-            this.ctrlContactPerson.TxtSurName.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtSurName.Size = new System.Drawing.Size(175, 21);
-            this.ctrlContactPerson.TxtSurName.TabIndex = 2;
-            this.ctrlContactPerson.TxtSurName.ThemeName = "Office2013Light";
             // 
             // ctrlClientName
             // 
@@ -420,11 +328,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvCommunityName.ResumeLayout(false);
             this.pvCommunityName.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtFirstName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtLastName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtPhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtSurName)).EndInit();
             this.pvAddress.ResumeLayout(false);
             this.pvAddress.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).EndInit();

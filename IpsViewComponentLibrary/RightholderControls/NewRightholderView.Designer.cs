@@ -64,7 +64,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlInternationalPassport = new PassportInternationalControl();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.managersPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
+            this.ctrlMiddleControlManagers = new JuridicalManagersControl();
             this.agreementPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
             this.bsAgreementAddRh = new System.Windows.Forms.BindingSource(this.components);
@@ -951,6 +951,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadPageViewPage contactsCompanyPage;
         private JuridicalAddressControl ctrlMiddleControlAddress;
         private Telerik.WinControls.UI.RadPageViewPage managersPage;
-        private MiddleControlManagers ctrlMiddleControlManagers;
+        private JuridicalManagersControl ctrlMiddleControlManagers;
     }
 }

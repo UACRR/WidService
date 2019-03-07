@@ -104,7 +104,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlMiddleControlAddress = new JuridicalAddressControl();
             this.ctrlInternalPassport = new PassportControl();
             this.ctrlInternationalPassport = new PassportInternationalControl();
-            this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
+            this.ctrlMiddleControlManagers = new JuridicalManagersControl();
             this.ddlAgreementStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
@@ -1211,7 +1211,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadPageViewPage contactsCompanyPage;
         private JuridicalAddressControl ctrlMiddleControlAddress;
         private Telerik.WinControls.UI.RadPageViewPage managersPage;
-        private MiddleControlManagers ctrlMiddleControlManagers;
+        private JuridicalManagersControl ctrlMiddleControlManagers;
         private Telerik.WinControls.UI.RadButton btnUploadFromExcel;
     }
 }

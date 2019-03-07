@@ -106,7 +106,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
                 managersPage.Item.Visibility = ElementVisibility.Visible;
                 passportPage.Item.Visibility = ElementVisibility.Collapsed;
-                ctrlMiddleControlManagers.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
+                ctrlMiddleControlManagers.SetDataSources(customer);
             }
             else
             {
