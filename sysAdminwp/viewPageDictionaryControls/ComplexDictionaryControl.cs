@@ -380,6 +380,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                             NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            VariantUse = ddlCommonKeyData.Items[item.CrGroupCode - 1].Text,
                         });
                     }
                     break;
@@ -412,6 +413,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
                             NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
                             NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
+                            Continent = ddlCommonKeyData.Items[(int)item.ContinentCode - 1].Text,
                         });
                         
                     }
@@ -445,6 +447,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                             NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            Category = ddlCommonKeyData.Items[item.CategoryCode - 1].Text,
                         });
                     }
                     break;
@@ -477,6 +480,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                             NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            VariantObject = ddlCommonKeyData.Items[item.CategoryCode - 1].Text,
                         });
                     }
                     break;
@@ -509,6 +513,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
                             NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
                             NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                            klrCountry = ddlCommonKeyData.Items[(int)item.R031 - 1].Text,
                         });
                     }
                     break;
@@ -562,6 +567,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                             NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            Object = ddlCommonKeyData.Items[(int)item.ParamType - 1].Text,
                         });
                     }
                     break;
