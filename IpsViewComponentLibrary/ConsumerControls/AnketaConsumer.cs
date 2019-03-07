@@ -64,7 +64,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             ctrlClientName.SetDataSources(_customer); // - - - - - - - -  Назва клієнта
             ctrlManagers.SetDataSources(_customer); // - - - - - - - - - - - - - - Керівники
-            ctrlAddress.SetDataSources(_customer, _anketaDictionaries);    // - - - - - - - -  Адреса
+            ctrlAddress.SetDataSources(_customer);    // - - - - - - - -  Адреса
             ctrlPlaces.SetData(_customer);  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
             anketaCompanyBindingSource.DataSource = _customer.Company?.AnketaCompany?.// - - - - - - - - - - - -
                 SingleOrDefault(rec => rec?.Version == _customer.AnkVersion); // - - - - - -  Майданчики (title)

@@ -59,7 +59,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
             this.ctrlContactHeader = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
-            this.ctrlPartner = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
+            this.ctrlPartner = new PartnerOfConsumerControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -376,7 +376,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private LicensesControl ctrlLicense;
         private GeneralAgreementControl ctrlGeneralAgreement;
-        private MiddleControlCabinetPartner ctrlPartner;
+        private PartnerOfConsumerControl ctrlPartner;
         private MiddleControlCabinetFiles ctrlFiles;
         private RequestReferenceControl ctrlRequest;
         private RequestReferenceControl ctrlReference;

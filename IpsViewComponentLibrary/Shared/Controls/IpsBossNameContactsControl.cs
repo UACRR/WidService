@@ -8,7 +8,6 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsBossNameContactsControl : UserControl
     {
         private const string phoneCode = "+380";
@@ -26,40 +25,17 @@ namespace IpsViewComponentLibrary.Shared.Controls
             txtPhone.Enter += txtPhone_Enter;
         }
 
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
             get => employeeBindingSource.DataSource;
-            set
-            {
-                if (employeeBindingSource.DataSource != value)
-                    employeeBindingSource.DataSource = value;
-            }
+            set => employeeBindingSource.DataSource = value;
         }
 
-        #region Edit controls
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtEmail => txtEmail;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtFirstName => txtFirstName;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtLastName => txtLastName;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtPhone
+        public string PhoneNullText
         {
-            get => txtPhone;
-            set => txtPhone = value;
+            get => txtPhone.NullText;
+            set => txtPhone.NullText = value;
         }
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtSurName => txtSurName;
-
-        #endregion
 
         private bool IsValidMail(string email)
         {

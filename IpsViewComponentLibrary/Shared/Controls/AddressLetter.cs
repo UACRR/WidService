@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class AddressLetter : UserControl

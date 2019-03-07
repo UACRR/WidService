@@ -75,7 +75,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             }
             ctrlContactPerson.DataSource = empl;
             ctrlContactPerson.OutsidePhone = true;
-            ctrlContactPerson.TxtPhone.NullText = string.Empty;
+            ctrlContactPerson.PhoneNullText = string.Empty;
 
             // - - адреса
             // юридична

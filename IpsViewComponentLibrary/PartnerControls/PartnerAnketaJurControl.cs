@@ -29,9 +29,9 @@ namespace IpsViewComponentLibrary.PartnerControls
             // представник
             ctrlClientName.SetDataSources(customer, dict);
             // контакти
-            ctrlAddress.SetDataSources(customer, dict);
+            ctrlAddress.SetDataSources(customer);
             // керівники
-            ctrlManagers.SetDataSources(customer,dict);
+            ctrlManagers.SetDataSources(customer);
             // банківські реквізити
             ctrlBankAccount.DataSource = customer?.BankAccount.FirstOrDefault();
             // договір
