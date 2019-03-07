@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
+﻿using IpsViewComponentLibrary.Shared.Controls;
+
+namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     partial class ContactPersonActionForm
     {
@@ -32,7 +34,7 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.ctrlContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.ctrlContactPerson = new IpsBossNameContactsControl();
             this.ddlPosition = new Telerik.WinControls.UI.RadDropDownList();
             this.bsRelEmpl = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();

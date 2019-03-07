@@ -1,41 +1,54 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
 using System.Windows.Forms;
-using ipsFormsDesign.Services;
-using ipsFormsDesign.Interfaces;
-using Telerik.WinControls.UI;
-using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Data;
-using IpsViewComponentLibrary.Utilities;
+using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.ConsumerForms;
+using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Shared.Forms;
+using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.RightholderControls
 {
     public partial class LicenseAgreementListControl : UserControl
     {
+        private RequestsOrReferenceBigRightView _licenseAgreement;
+
         private readonly LicenseDataService _licenseDataService;
         private readonly DialogService _dialogService;
-        private AgreementStatuses[] _allowedStatuses = new[] { AgreementStatuses.Active, AgreementStatuses.OnNegotiation, AgreementStatuses.Closed, AgreementStatuses.Canceled };
+        private readonly AgreementStatuses[] _allowedStatuses =
+        {
+            AgreementStatuses.Active,
+            AgreementStatuses.OnNegotiation,
+            AgreementStatuses.Closed,
+            AgreementStatuses.Canceled
+        };
 
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
-        private RequestsOrReferenceBigRightView _licenseAgreement;
+        public LicenseAgreementListControl()
+        {
+            InitializeComponent();
+
+            gvLicenseAgreementList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
+            gvLicenseAgreementList.SetCommandColumnImageAlignment("ShowObjectColumn", ContentAlignment.MiddleCenter);
+
+            if (!IsDesignMode)
+            {
+                _licenseDataService = new LicenseDataService();
+                _dialogService = new DialogService();
+            }
+        }
+
         public RequestsOrReferenceBigRightView SelectedLicenseAgreement
         {
-            get
-            {
-                if (gvLicenseAgreementList.CurrentRow == null)
-                    return null;
-
-                return gvLicenseAgreementList.CurrentRow.DataBoundItem as RequestsOrReferenceBigRightView;
-            }
+            get => gvLicenseAgreementList.CurrentRow?.DataBoundItem as RequestsOrReferenceBigRightView;
             set
             {
                 if (_licenseAgreement != value)
@@ -52,20 +65,6 @@ namespace IpsViewComponentLibrary
                         }
                     }
                 }
-            }
-        }
-
-        public LicenseAgreementListControl()
-        {
-            InitializeComponent();
-
-            gvLicenseAgreementList.SetCommandColumnImageAlignment("EditColumn", ContentAlignment.MiddleCenter);
-            gvLicenseAgreementList.SetCommandColumnImageAlignment("ShowObjectColumn", ContentAlignment.MiddleCenter);
-
-            if (!IsDesignMode)
-            {
-                _licenseDataService = new LicenseDataService();
-                _dialogService = new DialogService();
             }
         }
 

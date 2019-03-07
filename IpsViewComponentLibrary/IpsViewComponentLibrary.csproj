@@ -535,10 +535,10 @@
     <Compile Include="FixationControls\FixationView.Designer.cs">
       <DependentUpon>FixationView.cs</DependentUpon>
     </Compile>
-    <Compile Include="LicenseAgreementListControl.cs">
+    <Compile Include="RightholderControls\LicenseAgreementListControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="LicenseAgreementListControl.Designer.cs">
+    <Compile Include="RightholderControls\LicenseAgreementListControl.Designer.cs">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PartnerControls\AgreementPartnerControl.cs">
@@ -745,10 +745,10 @@
     <Compile Include="ConsumerControls\ConsumersViewBigRightControl.Designer.cs">
       <DependentUpon>ConsumersViewBigRightControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsAnketaCompanyControl.cs">
+    <Compile Include="Shared\Controls\IpsAnketaCompanyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsAnketaCompanyControl.Designer.cs">
+    <Compile Include="Shared\Controls\IpsAnketaCompanyControl.Designer.cs">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.cs">
@@ -757,16 +757,16 @@
     <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.Designer.cs">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ContactsPersonControl.cs">
+    <Compile Include="Shared\Controls\ContactsPersonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ContactsPersonControl.Designer.cs">
+    <Compile Include="Shared\Controls\ContactsPersonControl.Designer.cs">
       <DependentUpon>ContactsPersonControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsAddressControl.cs">
+    <Compile Include="Shared\Controls\IpsAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsAddressControl.Designer.cs">
+    <Compile Include="Shared\Controls\IpsAddressControl.Designer.cs">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\Places\PremisesControl.cs">
@@ -781,10 +781,10 @@
     <Compile Include="Shared\Controls\IpsBankAccountControl.Designer.cs">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsBossNameContactsControl.cs">
+    <Compile Include="Shared\Controls\IpsBossNameContactsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsBossNameContactsControl.Designer.cs">
+    <Compile Include="Shared\Controls\IpsBossNameContactsControl.Designer.cs">
       <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\Anketa\RightLimitationsControl.cs">
@@ -908,10 +908,10 @@
     <Compile Include="Shared\Controls\PassportControl.Designer.cs">
       <DependentUpon>PassportControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsRegistrationsCompanyControl.cs">
+    <Compile Include="Shared\Controls\IpsRegistrationsCompanyControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsRegistrationsCompanyControl.Designer.cs">
+    <Compile Include="Shared\Controls\IpsRegistrationsCompanyControl.Designer.cs">
       <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
     </Compile>
     <Compile Include="RightholderControls\PassportInternationalControl.cs">
@@ -1218,7 +1218,7 @@
     <EmbeddedResource Include="FixationControls\FixationView.resx">
       <DependentUpon>FixationView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="LicenseAgreementListControl.resx">
+    <EmbeddedResource Include="RightholderControls\LicenseAgreementListControl.resx">
       <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlCabinetAvances.resx">
@@ -1287,7 +1287,7 @@
     <EmbeddedResource Include="ConsumerControls\Places\ConsumerPlacesControl.resx">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ContactsPersonControl.resx">
+    <EmbeddedResource Include="Shared\Controls\ContactsPersonControl.resx">
       <DependentUpon>ContactsPersonControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ContractConsumerDetailControl.resx">
@@ -1317,10 +1317,10 @@
     <EmbeddedResource Include="ConsumerControls\ConsumersViewBigRightControl.resx">
       <DependentUpon>ConsumersViewBigRightControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsAnketaCompanyControl.resx">
+    <EmbeddedResource Include="Shared\Controls\IpsAnketaCompanyControl.resx">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsAddressControl.resx">
+    <EmbeddedResource Include="Shared\Controls\IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\PremisesControl.resx">
@@ -1329,7 +1329,7 @@
     <EmbeddedResource Include="Shared\Controls\IpsBankAccountControl.resx">
       <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsBossNameContactsControl.resx">
+    <EmbeddedResource Include="Shared\Controls\IpsBossNameContactsControl.resx">
       <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\RightLimitationsControl.resx">
@@ -1393,7 +1393,7 @@
     <EmbeddedResource Include="Shared\Controls\PassportControl.resx">
       <DependentUpon>PassportControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsRegistrationsCompanyControl.resx">
+    <EmbeddedResource Include="Shared\Controls\IpsRegistrationsCompanyControl.resx">
       <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\PassportInternationalControl.resx">
@@ -1607,8 +1607,6 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ExtensionControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

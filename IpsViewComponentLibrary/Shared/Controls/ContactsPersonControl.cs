@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
     public partial class ContactsPersonControl : UserControl
     {

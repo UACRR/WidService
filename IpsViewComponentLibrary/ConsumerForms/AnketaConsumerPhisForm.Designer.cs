@@ -47,8 +47,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlAddressLetter = new IpsViewComponentLibrary.AddressLetter();
-            this.ctrlAddressRegister = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlAddressLive = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlAddressRegister = new IpsAddressControl();
+            this.ctrlAddressLive = new IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();

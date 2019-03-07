@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telerik.WinControls.UI;
-using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsRegistrationsCompanyControl : UserControl
@@ -25,6 +21,8 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             dtRegisterDate.SetUserCalendarSettingsm();
+            txtOkpo.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
+            txtNumberVat.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
 
             if (!IsDesignMode)
                 ddlTypeVat.SetDataSource(IpsGlobal.AnketaDictionaties.typeVat);
@@ -95,47 +93,18 @@ namespace IpsViewComponentLibrary
         
         private void ddlTypeVat_SelectedValueChanged(object sender, EventArgs e)
         {
-
-            if (ddlTypeVat.SelectedValue == null)
+            if (!int.TryParse(ddlTypeVat?.SelectedValue?.ToString(), out int typeVat))
                 return;
 
-            if (ddlTypeVat.SelectedValue.ToString() == "2")
-            {
-                lblIPN.Enabled = false;
-                txtNumberVat.Enabled = false;
-
-            }
-            if (ddlTypeVat?.SelectedValue?.ToString() == "1")
-            {
-                 lblIPN.Enabled = true;
-                txtNumberVat.Enabled = true;
-            }
-        }
-
-        private void txtOkpo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8)
-            {
-                e.Handled = true;
-            }
-        }
-
-        private void txtNumberVat_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            char ch = e.KeyChar;
-            if (!char.IsDigit(ch) && ch != 8)
-            {
-                e.Handled = true;
-            }
+            lblIPN.Enabled = typeVat == 1;
+            txtNumberVat.Enabled = typeVat == 1;
         }
 
         private void txtOkpo_Leave(object sender, EventArgs e)
         {
             // Тільки нові правовласники
-            AnketaCompany cust = bsAnketaCompany.DataSource is AnketaCompany ? 
-                            bsAnketaCompany.DataSource as AnketaCompany :
-                            (bsAnketaCompany.DataSource as BindingSource)?.Current as AnketaCompany;
+            var cust = bsAnketaCompany.DataSource is AnketaCompany company ? company 
+                : (bsAnketaCompany.DataSource as BindingSource)?.Current as AnketaCompany;
 
             if (cust != null && (cust.CustId != 0 && string.IsNullOrEmpty(cust.Okpo) == false && cust.Okpo.Trim() == txtOkpo.Text.Trim() ) )
                 return;

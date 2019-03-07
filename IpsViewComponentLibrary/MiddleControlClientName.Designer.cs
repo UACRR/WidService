@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using IpsViewComponentLibrary.Shared.Controls;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlClientName
     {
@@ -28,8 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlRegistrationsCompany = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
-            this.ctrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
+            this.ctrlRegistrationsCompany = new IpsRegistrationsCompanyControl();
+            this.ctrlAnketaCompany = new IpsAnketaCompanyControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.DtRegisterDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtNumberVat)).BeginInit();

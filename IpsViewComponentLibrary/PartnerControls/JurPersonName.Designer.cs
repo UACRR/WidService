@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using IpsViewComponentLibrary.Shared.Controls;
+
+namespace IpsViewComponentLibrary
 {
     partial class JurPersonName
     {
@@ -28,8 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlRegistrationsCompany = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
-            this.ctrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
+            this.ctrlRegistrationsCompany = new IpsRegistrationsCompanyControl();
+            this.ctrlAnketaCompany = new IpsAnketaCompanyControl();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.DtRegisterDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtNumberVat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ctrlRegistrationsCompany.TxtOkpo)).BeginInit();
