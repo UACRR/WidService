@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
             this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
@@ -116,35 +116,35 @@
             this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn13.FieldName = "Code";
-            gridViewTextBoxColumn13.HeaderText = "Код";
-            gridViewTextBoxColumn13.Name = "Code";
-            gridViewTextBoxColumn13.Width = 109;
-            gridViewTextBoxColumn14.FieldName = "NameUk";
-            gridViewTextBoxColumn14.HeaderText = "Назва";
-            gridViewTextBoxColumn14.Name = "NameUk";
-            gridViewTextBoxColumn14.Width = 326;
-            gridViewTextBoxColumn15.FieldName = "NameRu";
-            gridViewTextBoxColumn15.HeaderText = "Название";
-            gridViewTextBoxColumn15.Name = "NameRu";
-            gridViewTextBoxColumn15.Width = 326;
-            gridViewTextBoxColumn16.FieldName = "NameEn";
-            gridViewTextBoxColumn16.HeaderText = "Name";
-            gridViewTextBoxColumn16.Name = "NameEn";
-            gridViewTextBoxColumn16.Width = 397;
+            gridViewTextBoxColumn5.FieldName = "Code";
+            gridViewTextBoxColumn5.HeaderText = "Код";
+            gridViewTextBoxColumn5.Name = "Code";
+            gridViewTextBoxColumn5.Width = 109;
+            gridViewTextBoxColumn6.FieldName = "NameUk";
+            gridViewTextBoxColumn6.HeaderText = "Назва";
+            gridViewTextBoxColumn6.Name = "NameUk";
+            gridViewTextBoxColumn6.Width = 326;
+            gridViewTextBoxColumn7.FieldName = "NameRu";
+            gridViewTextBoxColumn7.HeaderText = "Название";
+            gridViewTextBoxColumn7.Name = "NameRu";
+            gridViewTextBoxColumn7.Width = 326;
+            gridViewTextBoxColumn8.FieldName = "NameEn";
+            gridViewTextBoxColumn8.HeaderText = "Name";
+            gridViewTextBoxColumn8.Name = "NameEn";
+            gridViewTextBoxColumn8.Width = 397;
             this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8});
             this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
             this.gvComplexDictionariesList.ReadOnly = true;
             this.gvComplexDictionariesList.ShowGroupPanel = false;
-            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1176, 316);
+            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1176, 236);
             this.gvComplexDictionariesList.TabIndex = 11;
             this.gvComplexDictionariesList.ThemeName = "Office2013Light";
             this.gvComplexDictionariesList.SelectionChanged += new System.EventHandler(this.gvComplexDictionariesList_SelectionChanged);
@@ -153,7 +153,7 @@
             // btnDeleteComplex
             // 
             this.btnDeleteComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteComplex.Location = new System.Drawing.Point(392, 352);
+            this.btnDeleteComplex.Location = new System.Drawing.Point(395, 272);
             this.btnDeleteComplex.Name = "btnDeleteComplex";
             this.btnDeleteComplex.Size = new System.Drawing.Size(110, 24);
             this.btnDeleteComplex.TabIndex = 16;
@@ -164,7 +164,7 @@
             // btnAddComplex
             // 
             this.btnAddComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddComplex.Location = new System.Drawing.Point(253, 352);
+            this.btnAddComplex.Location = new System.Drawing.Point(253, 272);
             this.btnAddComplex.Name = "btnAddComplex";
             this.btnAddComplex.Size = new System.Drawing.Size(110, 24);
             this.btnAddComplex.TabIndex = 15;
@@ -188,9 +188,9 @@
             this.editPanel.Controls.Add(this.lblCode);
             this.editPanel.Controls.Add(this.btnCancel);
             this.editPanel.Controls.Add(this.btnSave);
-            this.editPanel.Location = new System.Drawing.Point(253, 382);
+            this.editPanel.Location = new System.Drawing.Point(253, 302);
             this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(1176, 181);
+            this.editPanel.Size = new System.Drawing.Size(1176, 261);
             this.editPanel.TabIndex = 18;
             this.editPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.editPanel.ThemeName = "Office2013Light";
@@ -204,7 +204,7 @@
             // 
             // ddlEditKeyField
             // 
-            this.ddlEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ddlEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ddlEditKeyField.DataSource = this.dictBaseEditPanel;
             this.ddlEditKeyField.DisplayMember = "Name";
@@ -223,7 +223,6 @@
             // 
             // lbEditKeyField
             // 
-            this.lbEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lbEditKeyField.AutoSize = false;
             this.lbEditKeyField.Location = new System.Drawing.Point(633, 30);
             this.lbEditKeyField.Name = "lbEditKeyField";
@@ -234,7 +233,6 @@
             // 
             // txtNameRuComplex
             // 
-            this.txtNameRuComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNameRuComplex.Location = new System.Drawing.Point(162, 81);
             this.txtNameRuComplex.MaxLength = 500;
             this.txtNameRuComplex.Name = "txtNameRuComplex";
@@ -244,7 +242,6 @@
             // 
             // txtNameEnComplex
             // 
-            this.txtNameEnComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNameEnComplex.Location = new System.Drawing.Point(162, 108);
             this.txtNameEnComplex.MaxLength = 500;
             this.txtNameEnComplex.Name = "txtNameEnComplex";
@@ -254,7 +251,6 @@
             // 
             // txtNameUaComplex
             // 
-            this.txtNameUaComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtNameUaComplex.Location = new System.Drawing.Point(162, 55);
             this.txtNameUaComplex.MaxLength = 500;
             this.txtNameUaComplex.Name = "txtNameUaComplex";
@@ -264,7 +260,6 @@
             // 
             // txtCodeComplex
             // 
-            this.txtCodeComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtCodeComplex.Location = new System.Drawing.Point(162, 28);
             this.txtCodeComplex.MaxLength = 20;
             this.txtCodeComplex.Name = "txtCodeComplex";
@@ -393,7 +388,7 @@
             // 
             this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lbTotal.AutoSize = false;
-            this.lbTotal.Location = new System.Drawing.Point(1240, 358);
+            this.lbTotal.Location = new System.Drawing.Point(1250, 272);
             this.lbTotal.Name = "lbTotal";
             this.lbTotal.Size = new System.Drawing.Size(97, 18);
             this.lbTotal.TabIndex = 19;
@@ -403,10 +398,11 @@
             // total
             // 
             this.total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.total.Location = new System.Drawing.Point(1343, 358);
+            this.total.Location = new System.Drawing.Point(1353, 272);
             this.total.Name = "total";
-            this.total.Size = new System.Drawing.Size(2, 2);
+            this.total.Size = new System.Drawing.Size(29, 18);
             this.total.TabIndex = 20;
+            this.total.Text = "dfgh";
             // 
             // ComplexDictionaryControl
             // 
