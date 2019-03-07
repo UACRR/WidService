@@ -142,6 +142,9 @@ namespace sysAdminwp.viewPageDictionaryControls
             ElementsEnabledStatesControler();
             //fix Enabled state for active elements
             ControlEnabledActiveElements = true;
+
+            lbCommonNameKey.Visible = false;
+            ddlCommonKeyData.Visible = false;
         }
 
         //initialize sequence complex dictionaries for 'TreeView' element
@@ -194,27 +197,89 @@ namespace sysAdminwp.viewPageDictionaryControls
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData(value);
         }
 
-        //close if form active
+        //control active elements for filtering grid
         private void FixActiveFormsParam()
         {
-            if (copyRightKindParamsForm != null && !copyRightKindParamsForm.IsDisposed)
+            lbCommonNameKey.Visible = true;
+            ddlCommonKeyData.Visible = true;
+            switch(ComplexDictionaryName.ToLower())
             {
-                copyRightKindParamsForm.Close();
-            } else if (countryParamsForm != null && !countryParamsForm.IsDisposed)
-            {
-                countryParamsForm.Close();
-            } else if (creativeRoleTypeParamsForm != null && !creativeRoleTypeParamsForm.IsDisposed)
-            {
-                creativeRoleTypeParamsForm.Close();
-            } else if (genreTypeParamsForm != null && !genreTypeParamsForm.IsDisposed)
-            {
-                genreTypeParamsForm.Close();
-            } else if (klr030ParamsForm != null && !klr030ParamsForm.IsDisposed)
-            {
-                klr030ParamsForm.Close();
-            } else if (typePlaceParamsForm != null && !typePlaceParamsForm.IsDisposed)
-            {
-                typePlaceParamsForm.Close();
+                case "copyrightkind":
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Continent"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Category"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantObject"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["klrCountry"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Object"]);
+                    gvComplexDictionariesList.Columns.Add("Спосіб використання");
+                    gvComplexDictionariesList.Columns["Спосіб використання"].MinWidth = 200;
+                    gvComplexDictionariesList.Columns["Спосіб використання"].FieldName = "VariantUse";
+                    gvComplexDictionariesList.Columns["Спосіб використання"].Name = "VariantUse";
+                    break;
+                case "country":
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantUse"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Category"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantObject"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["klrCountry"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Object"]);
+                    gvComplexDictionariesList.Columns.Add("Континент");
+                    gvComplexDictionariesList.Columns["Континент"].MinWidth = 200;
+                    gvComplexDictionariesList.Columns["Континент"].FieldName = "Continent";
+                    gvComplexDictionariesList.Columns["Континент"].Name = "Continent";
+                    break;
+                case "creativeroletype":
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantUse"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Continent"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantObject"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["klrCountry"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Object"]);
+                    gvComplexDictionariesList.Columns.Add("Категорія");
+                    gvComplexDictionariesList.Columns["Категорія"].MinWidth = 200;
+                    gvComplexDictionariesList.Columns["Категорія"].FieldName = "Category";
+                    gvComplexDictionariesList.Columns["Категорія"].Name = "Category";
+                    break;
+                case "genretype":
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantUse"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Continent"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Category"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["klrCountry"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Object"]);
+                    gvComplexDictionariesList.Columns.Add("Вид об'єкта");
+                    gvComplexDictionariesList.Columns["Вид об'єкта"].MinWidth = 200;
+                    gvComplexDictionariesList.Columns["Вид об'єкта"].FieldName = "VariantObject";
+                    gvComplexDictionariesList.Columns["Вид об'єкта"].Name = "VariantObject";
+                    break;
+                case "klr030":
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantUse"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Continent"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Category"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantObject"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Object"]);
+                    gvComplexDictionariesList.Columns.Add("Місто");
+                    gvComplexDictionariesList.Columns["Місто"].MinWidth = 200;
+                    gvComplexDictionariesList.Columns["Місто"].FieldName = "klrCountry";
+                    gvComplexDictionariesList.Columns["Місто"].Name = "klrCountry";
+                    break;
+                case "systemconstant":
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantUse"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Category"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantObject"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["klrCountry"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Object"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Continent"]);
+                    lbCommonNameKey.Visible = false;
+                    ddlCommonKeyData.Visible = false;
+                    break;
+                case "typeplace":
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantUse"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Continent"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["Category"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["VariantObject"]);
+                    gvComplexDictionariesList.Columns.Remove(gvComplexDictionariesList.Columns["klrCountry"]);
+                    gvComplexDictionariesList.Columns.Add("Об'єкт");
+                    gvComplexDictionariesList.Columns["Об'єкт"].MinWidth = 200;
+                    gvComplexDictionariesList.Columns["Об'єкт"].FieldName = "Object";
+                    gvComplexDictionariesList.Columns["Об'єкт"].Name = "Object";
+                    break;
             }
         }
 
@@ -240,60 +305,35 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 case "copyrightkind":
                     var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
-                    //show CopyRightKind form
-                    copyRightKindParamsForm = new CopyRightKindParamsForm(baseDictsCopyRight);
-                    //attach for filter grid
-                    copyRightKindParamsForm.CopyRightKindItem += FilterGrid;
-                    copyRightKindParamsForm.Show(this);
+                    lbCommonNameKey.Text = "Спосіб використання";
+                    ddlCommonKeyData.DataSource = baseDictsCopyRight;
                     break;
                 case "country":
                     var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
-                    //show country form
-                    countryParamsForm = new CountryParamsForm(baseDictsContinent);
-                    //attach for filter grid
-                    countryParamsForm.CountryItem += FilterGrid;
-                    countryParamsForm.Show(this);
+                    lbCommonNameKey.Text = "Континент";
+                    ddlCommonKeyData.DataSource = baseDictsContinent;
                     break;
                 case "creativeroletype":
                     var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
-                    //show creativeRoleType form
-                    creativeRoleTypeParamsForm = new CreativeRoleTypeParamsForm(baseDictsCategory);
-                    //attach for filter grid
-                    creativeRoleTypeParamsForm.CreativeRoleTypeItem += FilterGrid;
-                    creativeRoleTypeParamsForm.Show(this);
+                    lbCommonNameKey.Text = "Категорія";
+                    ddlCommonKeyData.DataSource = baseDictsCategory;
                     break;
                 case "genretype":
                     var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
-                    //show genreType form
-                    genreTypeParamsForm = new GenreTypeParamsForm(baseDictsGenreType);
-                    //attach for filter grid
-                    genreTypeParamsForm.GenreTypeItem += FilterGrid;
-                    genreTypeParamsForm.Show(this);
+                    lbCommonNameKey.Text = "Вид об'єкта";
+                    ddlCommonKeyData.DataSource = baseDictsGenreType;
                     break;
                 case "klr030":
                     var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
-                    //show KLR030 form
-                    klr030ParamsForm = new KLR030ParamsForm(customDictCountry);
-                    //attach for filter grid
-                    klr030ParamsForm.KLR030Item += FilterGrid;
-                    klr030ParamsForm.Show(this);
+                    lbCommonNameKey.Text = "Місто";
+                    ddlCommonKeyData.DataSource = customDictCountry;
                     break;
                 case "systemconstant":
-                    //disabled code -> field for params is not exist
-                    //var baseDictsSystemConstant = _connector.GetList<DictBaseTypeI>("dictionary/base/SystemConstant");
-                    // show SystemConstantParams form
-                    //SystemConstantParams systemConstantParams = new SystemConstantParams(baseDictsSystemConstant);
-                    //attach for filter grid
-                    //systemConstantParams.SystemConstantItem += FilterGrid;
-                    //systemConstantParams.Show(this);
                     break;
                 case "typeplace":
                     var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/typePlaceParam");
-                    //show typePlace form
-                    typePlaceParamsForm = new TypePlaceParamsForm(baseDictsTypePlaceParam);
-                    //attach for filter grid
-                    typePlaceParamsForm.TypePlaceItem += FilterGrid;
-                    typePlaceParamsForm.Show(this);
+                    lbCommonNameKey.Text = "Об'єкт";
+                    ddlCommonKeyData.DataSource = baseDictsTypePlaceParam;
                     break;
             }
             //set data to grid of the current complex dictionary
@@ -319,6 +359,18 @@ namespace sysAdminwp.viewPageDictionaryControls
                     {
                         //filter data for grid
                         _copyrightKindList = _copyrightKindList.Where(item => item.CrGroupCode == code).ToList();
+                        foreach (var item in _copyrightKindList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                                VariantUse = ddlCommonKeyData.Items[code - 1].Text,
+                            });
+                        }
+                        break;
                     }
                     foreach (var item in _copyrightKindList)
                     {
@@ -339,6 +391,18 @@ namespace sysAdminwp.viewPageDictionaryControls
                     {
                         //filter data for grid
                         _countryList = _countryList.Where(item => item.ContinentCode == code).ToList();
+                        foreach (var item in _countryList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CountryCode,
+                                NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
+                                NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
+                                NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
+                                Continent = ddlCommonKeyData.Items[code - 1].Text,
+                            });
+                        }
+                        break;
                     }
                     foreach (var item in _countryList)
                     {
@@ -360,6 +424,18 @@ namespace sysAdminwp.viewPageDictionaryControls
                     {
                         //filter data for grid
                         _creativeRoleTypeList = _creativeRoleTypeList.Where(item => item.CategoryCode == code).ToList();
+                        foreach (var item in _creativeRoleTypeList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                                Category = ddlCommonKeyData.Items[code - 1].Text,
+                            });
+                        }
+                        break;
                     }
                     foreach (var item in _creativeRoleTypeList)
                     {
@@ -380,6 +456,18 @@ namespace sysAdminwp.viewPageDictionaryControls
                     {
                         //filter data for grid
                         _genreTypeList = _genreTypeList.Where(item => item.CategoryCode == code).ToList();
+                        foreach (var item in _genreTypeList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                                VariantObject = ddlCommonKeyData.Items[code - 1].Text,
+                            });
+                        }
+                        break;
                     }
                     foreach (var item in _genreTypeList)
                     {
@@ -400,6 +488,18 @@ namespace sysAdminwp.viewPageDictionaryControls
                     {
                         //filter data for grid
                         _klR030List = _klR030List.Where(item => item.R031 == code).ToList();
+                        foreach (var item in _klR030List)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.R030,
+                                NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
+                                NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
+                                NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                                klrCountry = ddlCommonKeyData.Items[code - 1].Text,
+                            });
+                        }
+                        break;
                     }
                     foreach (var item in _klR030List)
                     {
@@ -441,6 +541,18 @@ namespace sysAdminwp.viewPageDictionaryControls
                     {
                         //filter data for grid
                         _typePlaceList = _typePlaceList.Where(item => item.ParamType == code).ToList();
+                        foreach (var item in _typePlaceList)
+                        {
+                            view.Add(new ViewTable
+                            {
+                                Code = item.CodeI.ToString(),
+                                NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                                NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                                NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                                Object = ddlCommonKeyData.Items[code - 1].Text,
+                            });
+                        }
+                        break;
                     }
                     foreach (var item in _typePlaceList)
                     {
@@ -470,7 +582,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     break;
                 case "country":
                     var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(CurrentGridRow.Code));
-                    _countryDictionaryControl.CountryDataSource = country;
+                    //_countryDictionaryControl.CountryDataSource = country;
                     break;
                 case "creativeroletype":
                     var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(CurrentGridRow.Code));
@@ -1290,6 +1402,16 @@ namespace sysAdminwp.viewPageDictionaryControls
             //clean data into 'editPanel' element
             UpdateEditPanelComplex();
             return true;
+        }
+
+        private void ddlCrkindGroup_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            if (e.Position == -1)
+            {
+                return;
+            }
+            int value = (int)ddlCommonKeyData.Items[e.Position].Value;
+            gvComplexDictionariesList.DataSource = GetComplexDictionariesData(value);
         }
     }
 }
