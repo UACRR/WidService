@@ -1,4 +1,8 @@
-﻿namespace RightholderWorkplace
+﻿using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.Common.Editors;
+using IpsViewComponentLibrary.RightholderControls;
+
+namespace RightholderWorkplace
 {
     partial class RightholderWorkplace
     {
@@ -57,7 +61,7 @@
             this.pageReportSR = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRegisterList = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.licenseAgreementListControl1 = new IpsViewComponentLibrary.LicenseAgreementListControl();
+            this.licenseAgreementListControl1 = new LicenseAgreementListControl();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -71,7 +75,7 @@
             this.btnTransferSelected = new Telerik.WinControls.UI.RadButton();
             this.btnTransferAll = new Telerik.WinControls.UI.RadButton();
             this.ctrlRightholdersObjectsForChange = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
-            this.ctrlChangeRightholderOperation = new IpsViewComponentLibrary.RadioPanel();
+            this.ctrlChangeRightholderOperation = new RadioPanel();
             this.rdbDeath = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbTransfer = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbAlienation = new Telerik.WinControls.UI.RadRadioButton();
@@ -1082,7 +1086,7 @@
         private System.Windows.Forms.BindingSource bsObjectCopyright;
         private System.Windows.Forms.BindingSource bsObjectRightForTransfering;
         private Telerik.WinControls.UI.GridViewTemplate gvChangeCopyrightsTemplate;
-        private IpsViewComponentLibrary.RadioPanel ctrlChangeRightholderOperation;
+        private RadioPanel ctrlChangeRightholderOperation;
         private Telerik.WinControls.UI.RadRadioButton rdbDeath;
         private Telerik.WinControls.UI.RadRadioButton rdbTransfer;
         private Telerik.WinControls.UI.RadRadioButton rdbAlienation;
@@ -1106,7 +1110,7 @@
         private Telerik.WinControls.UI.RadDropDownButton ddbNewRightholder;
         private Telerik.WinControls.UI.RadMenuItem miNewRightholderPerson;
         private Telerik.WinControls.UI.RadMenuItem miNewRigthholderCompany;
-        private IpsViewComponentLibrary.LicenseAgreementListControl licenseAgreementListControl1;
+        private LicenseAgreementListControl licenseAgreementListControl1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private IpsViewComponentLibrary.FixationControls.FixationListControl fixationListControl1;
         private Telerik.WinControls.UI.RadLabel radLabel1;

@@ -9,6 +9,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -40,8 +41,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
         public event ChangeLicenseTypeEventHandler OnLicenseTypeChange;
         public event SaveCustomerEventHandler OnLicenseSaveNeed;
-        public event LisenseStatusChangeEventHandler OnLicenseCloseAndDelete;
+        public event LicenseStatusChangeEventHandler OnLicenseStatusChange;
         public event EmptyEventHandler UpdateData;
+
+        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         private Customer _customer;
         private MainGridConsumerBigRightView _bigRightView;
@@ -64,6 +67,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             splitContainer.PanelCollapsing += SplitContainer_PanelCollapsing;
             ctrlSearch.SetUsageGrid(gvViewRequests);
+            _gridStateRecorder.AddGrid(gvViewRequests);
         }
 
         /// <summary>
@@ -246,8 +250,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;
                 if (result)
                 {
-                    OnLicenseCloseAndDelete?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
-                    UpdateData?.Invoke();
+                    OnLicenseStatusChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
+                    RefreshData();
                 }
                 MessageShow.ShowInfoAfterChanges(result);
             }
@@ -318,6 +322,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             }
         }
 
+        // [на погодження]
         private void btnToAccept_Click(object sender, EventArgs e)
         {
             if (!(gvViewRequests?.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item))
@@ -328,16 +333,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             switch (_functionType)
             {
                 case BRLicenseButtonActionType.Accept:
-                    result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 0, false) ?? false;
+                    result = OnLicenseStatusChange?.Invoke(license, item.LicVersion, 0, false) ?? false;
                     MessageShow.ShowInfoByResult(AcceptSuccess, AcceptError, result);
                     break;
                 case BRLicenseButtonActionType.Confirm:
-                    result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 3, false) ?? false;
+                    result = OnLicenseStatusChange?.Invoke(license, item.LicVersion, 3, false) ?? false;
                     MessageShow.ShowInfoByResult(SendConfirmationSuccess, SendConfirmationError, result);
                     break;
             }
             if(result)
-                UpdateData?.Invoke();
+                RefreshData();
         }
 
         /// <summary>
@@ -352,15 +357,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             if (MessageShow.ConfirmAction(QuestionDeleteMsg) == DialogResult.Yes)
             {
                 var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
-                var result = OnLicenseCloseAndDelete?.Invoke(license, item.LicVersion, 10, false) ?? false;
+                var result = OnLicenseStatusChange?.Invoke(license, item.LicVersion, 10, false) ?? false;
 
                 if (result)
-                    UpdateData?.Invoke();
+                    RefreshData();
+
                 MessageShow.ShowInfoByResult(ResultSuccessMsg, ResultErrorMsg, result);
             }
         }
 
-        // перевести в довідку
+        // [перевести в довідку]
         private void btnChangeToReference_Click(object sender, EventArgs e)
         {
             if (!(ChangeLicenseType(ConsumerService.LicType.Reference) is bool result))
@@ -369,7 +375,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             MessageShow.ShowInfoByResult(ChangeToReferenceSuccess, ChangeToReferenceError, result);
         }
 
-        // перевести в ліцензію
+        // [перевести в ліцензію]
         private void btnChangeToLicense_Click(object sender, EventArgs e)
         {
             if (!(ChangeLicenseType(ConsumerService.LicType.License) is bool result))
@@ -391,14 +397,24 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
             var success = OnLicenseTypeChange?.Invoke(license, licenseType) ?? false;
             if (success)
-                UpdateData?.Invoke();
+                RefreshData();
             return success;
         }
 
-        // оновлення даних
+        // кнопка оновлення даних
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            RefreshData();
+        }
+
+        /// <summary>
+        /// Оновити дані зі збереженням обраного рядка гріда
+        /// </summary>
+        private void RefreshData()
+        {
+            _gridStateRecorder.RecordState();
             UpdateData?.Invoke();
+            _gridStateRecorder.RestoreState();
         }
     }
 }

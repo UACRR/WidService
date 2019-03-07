@@ -7,6 +7,7 @@ using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.InternalControlsModel;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerForms
@@ -110,8 +111,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 _source.Add(new RegisterRatedListGridDataSource
                 {
                     CustId = register.CustId,
-                    AuthRate = register?.AuthRate ?? 0m,
-                    MusicRate = register?.MusicRate ?? 0m,
+                    AuthRate = register.AuthRate ?? 0m,
+                    MusicRate = register.MusicRate ?? 0m,
                     AuthAmount = register.AuthAmount,
                     MusicAmount = register.MusicAmount,
                     ObjId = register.RegisterItem.FirstOrDefault()?.ObjId,
@@ -290,15 +291,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
             if (pageView.SelectedPage == pvMusicDesign)
             {
-                cName.TextValue = item.ObjName;
-                cActCode.TextValue = _spectacleViews.SingleOrDefault(rec => rec.ObjId == item.ObjId)?.ActCode.ToString();
-                cCountUse.TextValue = item.CountUse.ToString();
-                cAmount.TextValue = item.Amount.ToString();
-                cAuthorAmount.TextValue = item.AuthAmount.ToString();
-                cAuthorRate.TextValue = item.AuthRate.ToString();
-                cMusAmount.TextValue = item.MusicAmount.ToString();
-                cMusRate.TextValue = item.MusicRate.ToString();
-
+                ctrlMusicDesignHeaderInfo.DataSource = item;
                 var mus = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.MusicalDesign;
                 gvMusicDesignView.DataSource = mus;
             }
@@ -310,22 +303,12 @@ namespace IpsViewComponentLibrary.ConsumerForms
         }
     }
 
-    internal class RegisterRatedListGridDataSource
+    internal class RegisterRatedListGridDataSource: MusicDesignHeaderInfo
     {
         public int CustId { get; set; }
         public int RmId { get; set; }
         public int? LicId { get; set; }
         public int? TempRegId { get; set; }
-
         public int? ObjId { get; set; }
-        public string ObjName { get; set; }
-        public int? ActCode { get; set; }
-        public int? CountUse { get; set; }
-        public decimal? Amount { get; set; }
-        
-        public decimal? AuthAmount { get; set; }
-        public decimal? AuthRate { get; set; }
-        public decimal? MusicAmount { get; set; }
-        public decimal? MusicRate { get; set; }
     }
 }

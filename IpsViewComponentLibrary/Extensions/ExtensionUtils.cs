@@ -11,7 +11,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Extensions
 {
-    public delegate bool LisenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
+    public delegate bool LicenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
     public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
     public delegate bool SaveRegisterRatedListEventHandler(RegisterRatedList list);
@@ -115,6 +115,20 @@ namespace IpsViewComponentLibrary.Extensions
         {
             char ch = e.KeyChar;
             if (!char.IsDigit(ch) && ch != 8 && ch != 44)
+            {
+                e.Handled = true;
+            }
+        }
+
+        /// <summary>
+        /// Перевірка натиснутої кнопки. Допускаються: цифри, видалення
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public static void TextBoxNumeric_KeyPressEvent(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (!char.IsDigit(ch) && ch != 8)
             {
                 e.Handled = true;
             }
@@ -376,7 +390,7 @@ namespace IpsViewComponentLibrary.Extensions
         /// <summary>
         /// Розрахункові листи
         /// </summary>
-        Payslips,
+        RegisterRatedList,
         /// <summary>
         /// Заявки
         /// </summary>

@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using IpsViewComponentLibrary.Shared.Controls;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlManagers
     {
@@ -39,9 +41,9 @@
             this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlHeadBoss = new IpsViewComponentLibrary.IpsBossNameContactsControl();
-            this.ctrlBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
-            this.ctrlContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.ctrlHeadBoss = new IpsBossNameContactsControl();
+            this.ctrlBookkeeper = new IpsBossNameContactsControl();
+            this.ctrlContactPerson = new IpsBossNameContactsControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.anketaCompanyBindingSource)).BeginInit();

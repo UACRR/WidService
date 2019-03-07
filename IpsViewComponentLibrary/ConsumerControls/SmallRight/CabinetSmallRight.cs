@@ -34,7 +34,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
         public event SaveCustomerEventHandler SaveCustomer;
         public event UpdateCustomerDataEventHandler UpdateData;
-        public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
+        public event LicenseStatusChangeEventHandler OnChangeLicenseStatus;
 
         public event ReturnObjectEventHandler<Customer> GetPartner;
         public event SetPartnerEventHandler OnSetPartner;

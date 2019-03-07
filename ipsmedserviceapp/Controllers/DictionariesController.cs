@@ -380,6 +380,16 @@ namespace ipsmedserviceapp.Controllers
                             (sors, dest) => ((TypePlaceTr)sors).CodeI == ((TypePlaceTr)dest).CodeI && ((TypePlaceTr)sors).Lang == ((TypePlaceTr)dest).Lang,
                             rec => rec.TypePlaceTr)
                         );
+
+            baseEng.Add("typeplaceparam".ToLower(),
+                            new BaseDictionaryEng<TypePlaceParam, TypePlaceParamTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+                            sors => (DictBaseTypeI)sors,
+                            sors => (TypePlaceParam)sors,
+                            sors => sors.TypePlaceParamTr.ToList(),
+                            (sors, dest) => ((TypePlaceParamTr)sors).CodeI == ((TypePlaceParamTr)dest).CodeI && ((TypePlaceParamTr)sors).Lang == ((TypePlaceParamTr)dest).Lang,
+                            rec => rec.TypePlaceParamTr)
+                        );
+
             baseEng.Add("typevat".ToLower(),
                             new BaseDictionaryEng<TypeVat, TypeVattr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
                             sors => (DictBaseTypeI)sors,
@@ -1480,7 +1490,8 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("rholderType", await _dbContext.RholderType.AsNoTracking().ToListAsync());
             retDictionary.Add("sexType", await _dbContext.SexType.AsNoTracking().ToListAsync());
             retDictionary.Add("typeMethodGet", await _dbContext.TypeMethodGet.AsNoTracking().ToListAsync());
-            retDictionary.Add("typePlace", await _dbContext.TypePlace.Include(rec=>rec.ParamTypeNavigation).AsNoTracking().ToListAsync());
+            retDictionary.Add("typePlace", await _dbContext.TypePlace.Include(rec => rec.ParamTypeNavigation).AsNoTracking().ToListAsync());
+            retDictionary.Add("typePlaceParam", await _dbContext.TypePlaceParam.AsNoTracking().ToListAsync());
             retDictionary.Add("typeVat", await _dbContext.TypeVat.AsNoTracking().ToListAsync());
             retDictionary.Add("userRoleType", await _dbContext.UserRoleType.AsNoTracking().ToListAsync());
             retDictionary.Add("usesKind", await _dbContext.UsesKind.AsNoTracking().ToListAsync());

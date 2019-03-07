@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls
+﻿using IpsViewComponentLibrary.Shared.Controls;
+
+namespace IpsViewComponentLibrary.ConsumerControls
 {
     partial class AnketaConsumerPhis
     {
@@ -43,16 +45,16 @@
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlAddressRegister = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlAddressLive = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlAddressRegister = new IpsAddressControl();
+            this.ctrlAddressLive = new IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlConsumerPassport = new IpsViewComponentLibrary.PassportControl();
+            this.ctrlConsumerPassport = new PassportControl();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.AgreementWithPlacesControl();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();

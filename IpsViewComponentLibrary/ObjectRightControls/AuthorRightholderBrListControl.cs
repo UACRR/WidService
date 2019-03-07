@@ -18,16 +18,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public delegate void GetWorkRhEventHandler(WorkRh workRh);
         public event GetWorkRhEventHandler OnGetWorkRh;
 
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return objectAuthorRightholderBrViewModelBindingSource.DataSource; }
+            get => objectAuthorRightholderBrViewModelBindingSource.DataSource;
             set
             {
                 if (objectAuthorRightholderBrViewModelBindingSource.DataSource != value)
@@ -40,7 +37,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private AuthorRightholderBrListMode _listMode;
         public AuthorRightholderBrListMode ListMode
         {
-            get { return _listMode; }
+            get => _listMode;
             set
             {
                 if (_listMode != value)
@@ -54,7 +51,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private bool _allowEditList = false;
         public bool AllowEditList
         {
-            get { return _allowEditList; }
+            get => _allowEditList;
             set
             {
                 _allowEditList = value;
@@ -117,7 +114,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void SetDictionaries()
         {
-            gvAuthorRightholderList.SetComboboxColumnDataSource("RoleCode", IpsGlobal.ObjectRightDictionaries.creativeRoleType);
+            var creativeRoleTypeData = IpsGlobal.ObjectRightDictionaries.creativeRoleType
+                .Where(rec => rec.CategoryCode == 6 && rec.Crtype == 1).ToList();
+            gvAuthorRightholderList.SetComboboxColumnDataSource("RoleCode", creativeRoleTypeData);
             gvAuthorRightholderList.SetComboboxColumnDataSource("PrepayType", IpsGlobal.AnketaDictionaties.PrePayType);
             gvAuthorRightholderList.SetComboboxColumnDataSource("Currency", IpsGlobal.AnketaDictionaties.klR030, "r030", "a3");
             gvAuthorRightholderList.SetComboboxColumnDataSource("WorkTypeRh", IpsGlobal.AnketaDictionaties.workType);

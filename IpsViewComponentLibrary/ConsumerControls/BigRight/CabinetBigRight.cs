@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             {"pvLicence" , CabinetTabType.Licenses},
             {"pvRequest" , CabinetTabType.Requests},
             {"pvReference" , CabinetTabType.References},
-            {"pvPayslips" , CabinetTabType.Payslips},
+            {"pvPayslips" , CabinetTabType.RegisterRatedList},
             {"pvCalculation" , CabinetTabType.Calculations},
             {"pvFiles" , CabinetTabType.Files},
             {"pvAgent", CabinetTabType.Agent},
@@ -73,7 +73,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         /// </summary>
         public event SaveCustomerEventHandler OnSaveCustomerNeed;
 
-        public event LisenseStatusChangeEventHandler OnChangeLicenseStatus;
+        public event LicenseStatusChangeEventHandler OnChangeLicenseStatus;
 
         public event MiddleControlCabinetFiles.AddNewDocumentHandler OnAddNewDocument;
         public event MiddleControlCabinetFiles.ViewDocumentHandler OnViewDocumentNeed;
@@ -112,7 +112,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 {CabinetTabType.Requests, pvRequest},
                 {CabinetTabType.References, pvReference},
                 {CabinetTabType.Calculations, pvCalculation},
-                {CabinetTabType.Payslips, pvPayslips},
+                {CabinetTabType.RegisterRatedList, pvPayslips},
                 {CabinetTabType.Files, pvFiles},
                 {CabinetTabType.Agent, pvAgent},
                 {CabinetTabType.PaysInfo, pvPays},
@@ -143,9 +143,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             // заявка
             ctrlRequest.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
             ctrlRequest.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
-            ctrlRequest.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlRequest.OnLicenseStatusChange += Ctrls_OnLicStatusChange;
             // довідка
-            ctrlReference.OnLicenseCloseAndDelete += Ctrls_OnLicStatusChange;
+            ctrlReference.OnLicenseStatusChange += Ctrls_OnLicStatusChange;
             ctrlReference.OnLicenseTypeChange += CtrlRequest_OnLicenseTypeChange;
             ctrlReference.OnLicenseSaveNeed += Ctrls_OnSaveCustomer;
             // розрахункові листи
@@ -287,7 +287,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                     break;
 
 
-                case CabinetTabType.Payslips:
+                case CabinetTabType.RegisterRatedList:
                 case CabinetTabType.Calculations:
                     {
                         _registerRatedListView = GetRatedListMainView?.Invoke(custId);
@@ -320,9 +320,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                         ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
                         _requestsLicenseView = GetRequestsView?.Invoke(custId);
                         _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
-                        ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
                         _referenceLicenseView = GetReferenceView?.Invoke(custId);
-                        //_authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
+                        ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
                         ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
                     }
                     break;

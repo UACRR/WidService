@@ -85,7 +85,7 @@ namespace ipsFormsDesign.Services
 
         private void LoadData(InputFile dest, DataTable data)
         {
-            int index = 0;
+            int index = 1;
             for( int i = 0, cnt=data.Rows.Count; i < cnt; i++  )
             {
                 var item = data.Rows[i];

@@ -1,4 +1,5 @@
 ﻿using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -43,14 +44,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
             this.contactsPersonPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox1 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlFaAddress = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlFaAddress = new IpsAddressControl();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
             this.btnCopyAddressReLe = new Telerik.WinControls.UI.RadButton();
             this.btnCopyAddressFaLe = new Telerik.WinControls.UI.RadButton();
-            this.ctrlLeAddress = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlLeAddress = new IpsAddressControl();
             this.radGroupBox2 = new Telerik.WinControls.UI.RadGroupBox();
             this.btnCopyAddressFaRe = new Telerik.WinControls.UI.RadButton();
-            this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlReAddress = new IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
             this.contactsCompanyPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
@@ -58,9 +59,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.createRightholderPassportPageView = new Telerik.WinControls.UI.RadPageView();
             this.pasportPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
+            this.ctrlInternalPassport = new PassportControl();
             this.createRightholderForeignPassportPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlInternationalPassport = new IpsViewComponentLibrary.PassportInternationalControl();
+            this.ctrlInternationalPassport = new PassportInternationalControl();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.managersPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
@@ -72,11 +73,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.createRightholderRoyaltyPageView = new Telerik.WinControls.UI.RadPageView();
             this.createRightholderRoyaltyBankPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsBankAccountControl();
             this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.createRightholderRoyaltyCashPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderRoyaltyPostalTransfer = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlBaAddress = new IpsAddressControl();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.txtPostalIndex = new Telerik.WinControls.UI.RadTextBox();

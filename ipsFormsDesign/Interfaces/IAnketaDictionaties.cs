@@ -36,6 +36,7 @@ namespace ipsFormsDesign.Interfaces
         public IList<RholderType> rholderType { get; set; }
         public IList<SexType> sexType { get; set; }
         public IList<TypePlace> typePlace { get; set; }
+        public IList<TypePlaceParam> typePlaceParam { get; set; }
         public IList<TypeVat> typeVat { get; set; }
         public IList<UserRoleType> userRoleType { get; set; }
         public IList<UsesKind> usesKind { get; set; }
