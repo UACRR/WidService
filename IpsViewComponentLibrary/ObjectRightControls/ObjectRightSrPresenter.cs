@@ -171,6 +171,23 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
             foreach (var a in objectRight.Authors)
             {
+                // Тільки автор
+                if ( (a.CustId ?? 0) == 0 )
+                {
+                    _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
+                    {
+                        IsRightholder = a.CustId != null,
+                        AuthId = a.AuthId,
+                        ObjId = a.ObjId,
+                        RoleCode = a.RoleCode,
+                        FolkType = a.FolkType,
+                        AuthorName = a.AuthorName
+                    });
+
+                    continue;
+                }
+                
+                // Автор-Правовласник
                 var foundedCopyrightList = listOfCopyRight.Where(c => c.CustId == a.CustId && c.RoleCode == a.RoleCode).ToArray();
                 var foundedRightholder = rightholderList?.FirstOrDefault(r => r.custId == a.CustId);
                 foreach (var foundedCopyright in foundedCopyrightList)
