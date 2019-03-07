@@ -757,16 +757,16 @@
     <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.Designer.cs">
       <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ContactsPersonControl.cs">
+    <Compile Include="Shared\Controls\ContactsPersonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ContactsPersonControl.Designer.cs">
+    <Compile Include="Shared\Controls\ContactsPersonControl.Designer.cs">
       <DependentUpon>ContactsPersonControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="IpsAddressControl.cs">
+    <Compile Include="Shared\Controls\IpsAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IpsAddressControl.Designer.cs">
+    <Compile Include="Shared\Controls\IpsAddressControl.Designer.cs">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\Places\PremisesControl.cs">
@@ -1287,7 +1287,7 @@
     <EmbeddedResource Include="ConsumerControls\Places\ConsumerPlacesControl.resx">
       <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ContactsPersonControl.resx">
+    <EmbeddedResource Include="Shared\Controls\ContactsPersonControl.resx">
       <DependentUpon>ContactsPersonControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ContractConsumerDetailControl.resx">
@@ -1320,7 +1320,7 @@
     <EmbeddedResource Include="IpsAnketaCompanyControl.resx">
       <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="IpsAddressControl.resx">
+    <EmbeddedResource Include="Shared\Controls\IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\PremisesControl.resx">
@@ -1607,8 +1607,6 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ExtensionControls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

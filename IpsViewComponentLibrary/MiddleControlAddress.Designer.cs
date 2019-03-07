@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿using IpsViewComponentLibrary.Shared.Controls;
+
+namespace IpsViewComponentLibrary
 {
     partial class MiddleControlAddress
     {
@@ -28,8 +30,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.addressFactual = new IpsViewComponentLibrary.IpsAddressControl();
-            this.addressLegal = new IpsViewComponentLibrary.IpsAddressControl();
+            this.addressFactual = new IpsAddressControl();
+            this.addressLegal = new IpsAddressControl();
             this.btnCopyFromJaToLe = new Telerik.WinControls.UI.RadButton();
             this.radSeparator6 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
