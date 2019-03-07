@@ -10,4 +10,10 @@ namespace ReportsLibrary
     {
         public static Telerik.Reporting.Report CurrentReport { get; set; }
     }
+
+    public static class language
+    {
+        public static String Currenlanguage { get; set; }
+    }
+
 }

@@ -457,8 +457,9 @@ namespace ReportsLibrary
             this.textBox20.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox20.StyleName = "BlueOpal.TableBody";
-            this.textBox20.Value = "=\'           Всьго по регістру \'+ Substr( CStr(Fields.rateCommiss),0, Len(CStr(Fi" +
-    "elds.rateCommiss))-1)";
+            this.textBox20.Value = "=\'           Всьго по регістру \'+ IIf( IsNull(CStr(Fields.rateCommiss),\'\')=\'\',\'  " +
+    "        не визначено\',\r\nSubstr( CStr(Fields.rateCommiss),0, Len(CStr(Fields.rate" +
+    "Commiss))-1)\r\n)";
             // 
             // pageFooterSection1
             // 
