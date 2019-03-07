@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
             this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
@@ -54,6 +54,8 @@
             this.lbCommonNameKey = new Telerik.WinControls.UI.RadLabel();
             this.ddlCommonKeyData = new Telerik.WinControls.UI.RadDropDownList();
             this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lbTotal = new Telerik.WinControls.UI.RadLabel();
+            this.total = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).BeginInit();
@@ -74,6 +76,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.total)).BeginInit();
             this.SuspendLayout();
             // 
             // complexTreeView
@@ -106,31 +110,31 @@
             this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn29.FieldName = "Code";
-            gridViewTextBoxColumn29.HeaderText = "Код";
-            gridViewTextBoxColumn29.Name = "Code";
-            gridViewTextBoxColumn29.Width = 109;
-            gridViewTextBoxColumn30.FieldName = "NameUk";
-            gridViewTextBoxColumn30.HeaderText = "Назва";
-            gridViewTextBoxColumn30.Name = "NameUk";
-            gridViewTextBoxColumn30.Width = 325;
-            gridViewTextBoxColumn31.FieldName = "NameRu";
-            gridViewTextBoxColumn31.HeaderText = "Название";
-            gridViewTextBoxColumn31.Name = "NameRu";
-            gridViewTextBoxColumn31.Width = 325;
-            gridViewTextBoxColumn32.FieldName = "NameEn";
-            gridViewTextBoxColumn32.HeaderText = "Name";
-            gridViewTextBoxColumn32.Name = "NameEn";
-            gridViewTextBoxColumn32.Width = 394;
+            gridViewTextBoxColumn17.FieldName = "Code";
+            gridViewTextBoxColumn17.HeaderText = "Код";
+            gridViewTextBoxColumn17.Name = "Code";
+            gridViewTextBoxColumn17.Width = 109;
+            gridViewTextBoxColumn18.FieldName = "NameUk";
+            gridViewTextBoxColumn18.HeaderText = "Назва";
+            gridViewTextBoxColumn18.Name = "NameUk";
+            gridViewTextBoxColumn18.Width = 325;
+            gridViewTextBoxColumn19.FieldName = "NameRu";
+            gridViewTextBoxColumn19.HeaderText = "Название";
+            gridViewTextBoxColumn19.Name = "NameRu";
+            gridViewTextBoxColumn19.Width = 325;
+            gridViewTextBoxColumn20.FieldName = "NameEn";
+            gridViewTextBoxColumn20.HeaderText = "Name";
+            gridViewTextBoxColumn20.Name = "NameEn";
+            gridViewTextBoxColumn20.Width = 394;
             this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn29,
-            gridViewTextBoxColumn30,
-            gridViewTextBoxColumn31,
-            gridViewTextBoxColumn32});
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18,
+            gridViewTextBoxColumn19,
+            gridViewTextBoxColumn20});
             this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition8;
+            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
             this.gvComplexDictionariesList.ReadOnly = true;
             this.gvComplexDictionariesList.ShowGroupPanel = false;
@@ -351,10 +355,32 @@
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
+            // lbTotal
+            // 
+            this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTotal.AutoSize = false;
+            this.lbTotal.Location = new System.Drawing.Point(1240, 358);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(97, 18);
+            this.lbTotal.TabIndex = 19;
+            this.lbTotal.Text = "Всього записів";
+            this.lbTotal.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // total
+            // 
+            this.total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.total.Location = new System.Drawing.Point(1343, 358);
+            this.total.Name = "total";
+            this.total.Size = new System.Drawing.Size(28, 18);
+            this.total.TabIndex = 20;
+            this.total.Text = "dsfg";
+            // 
             // ComplexDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.total);
+            this.Controls.Add(this.lbTotal);
             this.Controls.Add(this.ddlCommonKeyData);
             this.Controls.Add(this.lbCommonNameKey);
             this.Controls.Add(this.radLblSearch);
@@ -387,6 +413,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.total)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,5 +442,7 @@
         private Telerik.WinControls.UI.RadLabel lbCommonNameKey;
         private Telerik.WinControls.UI.RadDropDownList ddlCommonKeyData;
         private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
+        private Telerik.WinControls.UI.RadLabel lbTotal;
+        private Telerik.WinControls.UI.RadLabel total;
     }
 }

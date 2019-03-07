@@ -370,6 +370,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 VariantUse = ddlCommonKeyData.Items[code - 1].Text,
                             });
                         }
+                        total.Text = _copyrightKindList.Count.ToString();
                         break;
                     }
                     foreach (var item in _copyrightKindList)
@@ -383,6 +384,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             VariantUse = ddlCommonKeyData.Items[item.CrGroupCode - 1].Text,
                         });
                     }
+                    total.Text = _copyrightKindList.Count.ToString();
                     break;
                 case "country":
                     //all data of Country items
@@ -403,6 +405,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 Continent = ddlCommonKeyData.Items[code - 1].Text,
                             });
                         }
+                        total.Text = _countryList.Count.ToString();
                         break;
                     }
                     foreach (var item in _countryList)
@@ -417,6 +420,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                         });
                         
                     }
+                    total.Text = _countryList.Count.ToString();
                     break;
                 case "creativeroletype":
                     //all data of CreativeRoleType items
@@ -437,6 +441,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 Category = ddlCommonKeyData.Items[code - 1].Text,
                             });
                         }
+                        total.Text = _creativeRoleTypeList.Count.ToString();
                         break;
                     }
                     foreach (var item in _creativeRoleTypeList)
@@ -450,6 +455,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Category = ddlCommonKeyData.Items[item.CategoryCode - 1].Text,
                         });
                     }
+                    total.Text = _creativeRoleTypeList.Count.ToString();
                     break;
                 case "genretype":
                     //all data of GenreType items
@@ -470,6 +476,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 VariantObject = ddlCommonKeyData.Items[code - 1].Text,
                             });
                         }
+                        total.Text = _genreTypeList.Count.ToString();
                         break;
                     }
                     foreach (var item in _genreTypeList)
@@ -483,6 +490,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             VariantObject = ddlCommonKeyData.Items[item.CategoryCode - 1].Text,
                         });
                     }
+                    total.Text = _genreTypeList.Count.ToString();
                     break;
                 case "klr030":
                     //all data of KLR030 items
@@ -503,6 +511,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 klrCountry = ddlCommonKeyData.Items[code - 1].Text,
                             });
                         }
+                        total.Text = _klR030List.Count.ToString();
                         break;
                     }
                     foreach (var item in _klR030List)
@@ -516,6 +525,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             klrCountry = ddlCommonKeyData.Items[(int)item.R031 - 1].Text,
                         });
                     }
+                    total.Text = _klR030List.Count.ToString();
                     break;
                 case "systemconstant":
                     //all data of SystemConstant items
@@ -537,6 +547,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameEn = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                         });
                     }
+                    total.Text = _systemConstantList.Count.ToString();
                     break;
                 case "typeplace":
                     //all data of TypePlace items
@@ -557,6 +568,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 Object = ddlCommonKeyData.Items[code - 1].Text,
                             });
                         }
+                        total.Text = _typePlaceList.Count.ToString();
                         break;
                     }
                     foreach (var item in _typePlaceList)
@@ -570,6 +582,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Object = ddlCommonKeyData.Items[(int)item.ParamType - 1].Text,
                         });
                     }
+                    total.Text = _typePlaceList.Count.ToString();
                     break;
             }
             return view;
