@@ -1,4 +1,4 @@
-﻿using IpsViewComponentLibrary.ExtensionControls;
+﻿using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.PartnerControls

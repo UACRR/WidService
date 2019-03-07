@@ -1,6 +1,6 @@
-﻿using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
+﻿using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
 using IpsViewComponentLibrary.ConsumerControls.SmallRight;
-using IpsViewComponentLibrary.ExtensionControls;
 using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls.BigRight

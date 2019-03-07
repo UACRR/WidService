@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.PartnerControls
+﻿using IpsViewComponentLibrary.Common;
+
+namespace IpsViewComponentLibrary.PartnerControls
 {
     partial class CabinetPartnerForm
     {
@@ -49,7 +51,7 @@
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvAgrTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
-            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.ExtensionControls.SaveCancelButtonsControl();
+            this.ctrlSaveCancelButtons = new SaveCancelButtonsControl();
             this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.pvClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
@@ -348,6 +350,6 @@
         private PartnerControls.ConditionsControl ctrlConditions;
         private Telerik.WinControls.UI.RadCheckBox checkPartnerInternal;
         private System.Windows.Forms.BindingSource bsPartner;
-        private ExtensionControls.SaveCancelButtonsControl ctrlSaveCancelButtons;
+        private SaveCancelButtonsControl ctrlSaveCancelButtons;
     }
 }

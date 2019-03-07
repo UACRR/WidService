@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ExtensionControls
+﻿namespace IpsViewComponentLibrary.Common
 {
     partial class SaveCancelButtonsControl
     {

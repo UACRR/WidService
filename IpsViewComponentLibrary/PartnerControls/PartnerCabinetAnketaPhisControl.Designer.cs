@@ -49,7 +49,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
+            this.ctrlInternalPassport = new PassportControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsBankAccountControl();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();

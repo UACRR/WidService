@@ -102,8 +102,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
             this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
-            this.ctrlInternalPassport = new IpsViewComponentLibrary.PassportControl();
-            this.ctrlInternationalPassport = new IpsViewComponentLibrary.PassportInternationalControl();
+            this.ctrlInternalPassport = new PassportControl();
+            this.ctrlInternationalPassport = new PassportInternationalControl();
             this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
             this.ddlAgreementStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();

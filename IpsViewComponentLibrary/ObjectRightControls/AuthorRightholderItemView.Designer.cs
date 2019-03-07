@@ -1,4 +1,7 @@
-﻿namespace IpsViewComponentLibrary.ObjectRightControls
+﻿using IpsViewComponentLibrary.Common;
+using IpsViewComponentLibrary.Common.Editors;
+
+namespace IpsViewComponentLibrary.ObjectRightControls
 {
     partial class AuthorRightholderItemView
     {
@@ -54,7 +57,7 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.pvpFolk = new Telerik.WinControls.UI.RadPageViewPage();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.rpanelFolkType = new IpsViewComponentLibrary.RadioPanel();
+            this.rpanelFolkType = new RadioPanel();
             this.rdbFolk = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbNotProtected = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbAuthorRightholder = new Telerik.WinControls.UI.RadRadioButton();
