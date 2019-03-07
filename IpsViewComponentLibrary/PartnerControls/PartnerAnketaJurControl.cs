@@ -29,7 +29,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             // представник
             ctrlClientName.SetDataSources(customer, dict);
             // контакти
-            ctrlAddress.SetDataSources(customer, dict);
+            ctrlAddress.SetDataSources(customer);
             // керівники
             ctrlManagers.SetDataSources(customer,dict);
             // банківські реквізити

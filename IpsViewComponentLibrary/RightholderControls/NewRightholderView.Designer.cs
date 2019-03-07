@@ -54,7 +54,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlReAddress = new IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
             this.contactsCompanyPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
+            this.ctrlMiddleControlAddress = new JuridicalAddressControl();
             this.passportPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderPassportPageView = new Telerik.WinControls.UI.RadPageView();
             this.pasportPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -949,7 +949,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private System.Windows.Forms.BindingSource bsAnketaCompany;
         private Anketa.AnketaPersonRightholderPage ctrlAnketaPersonRightholderPage;
         private Telerik.WinControls.UI.RadPageViewPage contactsCompanyPage;
-        private MiddleControlAddress ctrlMiddleControlAddress;
+        private JuridicalAddressControl ctrlMiddleControlAddress;
         private Telerik.WinControls.UI.RadPageViewPage managersPage;
         private MiddleControlManagers ctrlMiddleControlManagers;
     }

@@ -35,7 +35,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.pvPartnerName = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClientName = new IpsViewComponentLibrary.JurPersonName();
             this.pvContact = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
+            this.ctrlAddress = new JuridicalAddressControl();
             this.pvManager = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
@@ -227,7 +227,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         private ConditionsControl ctrlConditions;
         private TabNavigationExpandedControl ctrlTabNavigationExpanded;
         private Telerik.WinControls.UI.RadPageViewPage pvManager;
-        private MiddleControlAddress ctrlAddress;
+        private JuridicalAddressControl ctrlAddress;
         private MiddleControlManagers ctrlManagers;
         private JurPersonName ctrlClientName;
     }

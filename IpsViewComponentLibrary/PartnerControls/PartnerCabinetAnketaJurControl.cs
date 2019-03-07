@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             var dict = IpsGlobal.AnketaDictionaties;
             ctrlClientName.SetDataSources(customer, dict);
-            ctrlAddress.SetDataSources(customer, dict);
+            ctrlAddress.SetDataSources(customer);
             ctrlManagers.SetDataSources(customer, dict);
             ctrlBankAccount.DataSource = customer.BankAccount;
         }

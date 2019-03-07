@@ -229,10 +229,10 @@
     <Compile Include="ConsumerControls\Places\PremisesActionsForm.Designer.cs">
       <DependentUpon>PremisesActionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddressLetter.cs">
+    <Compile Include="Shared\Controls\AddressLetter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddressLetter.Designer.cs">
+    <Compile Include="Shared\Controls\AddressLetter.Designer.cs">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </Compile>
     <Compile Include="AppController\ApplicationController.cs" />
@@ -799,11 +799,11 @@
     <Compile Include="_UnusedControls\MainViewSwitcher.Designer.cs">
       <DependentUpon>MainViewSwitcher.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlAddress.cs">
+    <Compile Include="Shared\Controls\JuridicalAddressControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlAddress.Designer.cs">
-      <DependentUpon>MiddleControlAddress.cs</DependentUpon>
+    <Compile Include="Shared\Controls\JuridicalAddressControl.Designer.cs">
+      <DependentUpon>JuridicalAddressControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MiddleControlAgreementAnketaType.cs">
       <SubType>UserControl</SubType>
@@ -1079,7 +1079,7 @@
     <EmbeddedResource Include="ConsumerControls\Places\PremisesActionsForm.resx">
       <DependentUpon>PremisesActionsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AddressLetter.resx">
+    <EmbeddedResource Include="Shared\Controls\AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\ButtonGroupBoxControl.resx">
@@ -1338,8 +1338,8 @@
     <EmbeddedResource Include="_UnusedControls\MainViewSwitcher.resx">
       <DependentUpon>MainViewSwitcher.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlAddress.resx">
-      <DependentUpon>MiddleControlAddress.cs</DependentUpon>
+    <EmbeddedResource Include="Shared\Controls\JuridicalAddressControl.resx">
+      <DependentUpon>JuridicalAddressControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>

@@ -101,7 +101,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlLeAddress = new IpsAddressControl();
             this.ctrlReAddress = new IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
-            this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
+            this.ctrlMiddleControlAddress = new JuridicalAddressControl();
             this.ctrlInternalPassport = new PassportControl();
             this.ctrlInternationalPassport = new PassportInternationalControl();
             this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
@@ -1209,7 +1209,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Anketa.AnketaCompanyRightholderPage ctrlAnketaCompanyRightholderPage;
         private Anketa.AnketaPersonRightholderPage ctrlAnketaPersonRightholderPage;
         private Telerik.WinControls.UI.RadPageViewPage contactsCompanyPage;
-        private MiddleControlAddress ctrlMiddleControlAddress;
+        private JuridicalAddressControl ctrlMiddleControlAddress;
         private Telerik.WinControls.UI.RadPageViewPage managersPage;
         private MiddleControlManagers ctrlMiddleControlManagers;
         private Telerik.WinControls.UI.RadButton btnUploadFromExcel;

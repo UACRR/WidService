@@ -41,7 +41,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.btnCopyFromRegToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToReg = new Telerik.WinControls.UI.RadButton();
-            this.ctrlAddressLetter = new IpsViewComponentLibrary.AddressLetter();
+            this.ctrlAddressLetter = new AddressLetter();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
