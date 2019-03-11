@@ -1,4 +1,5 @@
 ﻿using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
@@ -37,9 +38,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.ctrlAgrMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.ctrlAgrMain = new ContractConsumerMainControl();
             this.bindingSourceAgr = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlAgrSecond = new IpsViewComponentLibrary.ContractConsumerDetailControl();
+            this.ctrlAgrSecond = new ContractConsumerDetailControl();
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -91,11 +92,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlAgrSecond.IsAutoprolongation = false;
             this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
             this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.MinAmount = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
             this.ctrlAgrSecond.MinPayment = null;
             this.ctrlAgrSecond.Name = "ctrlAgrSecond";

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Windows.Forms;
-using Telerik.WinControls.UI;
+﻿using System.Windows.Forms;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
     partial class ContractConsumerMainControl
     {

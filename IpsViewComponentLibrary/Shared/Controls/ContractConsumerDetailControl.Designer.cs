@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.Shared.Controls
 {
     partial class ContractConsumerDetailControl
     {
@@ -112,7 +110,6 @@ namespace IpsViewComponentLibrary
             this.rtxtBoxMinAuthorPayment.Size = new System.Drawing.Size(100, 21);
             this.rtxtBoxMinAuthorPayment.TabIndex = 1;
             this.rtxtBoxMinAuthorPayment.ThemeName = "Office2013Light";
-            this.rtxtBoxMinAuthorPayment.TextChanged += new System.EventHandler(this.rtxtBoxMinAuthorPayment_TextChanged);
             // 
             // rCheckBoxAutoprolongation
             // 

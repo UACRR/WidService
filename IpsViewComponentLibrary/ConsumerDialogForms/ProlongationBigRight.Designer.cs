@@ -1,4 +1,5 @@
 ﻿using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
@@ -35,7 +36,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitleClientName = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlAgrMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.ctrlAgrMain = new ContractConsumerMainControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();

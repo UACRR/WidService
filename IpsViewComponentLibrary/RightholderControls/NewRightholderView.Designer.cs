@@ -66,7 +66,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.managersPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlMiddleControlManagers = new JuridicalManagersControl();
             this.agreementPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.ctrlAgreementNumberDate = new ContractConsumerMainControl();
             this.bsAgreementAddRh = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.royaltyPage = new Telerik.WinControls.UI.RadPageViewPage();

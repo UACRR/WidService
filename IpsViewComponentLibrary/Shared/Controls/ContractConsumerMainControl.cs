@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
     public partial class ContractConsumerMainControl : UserControl
     {
@@ -209,7 +204,7 @@ namespace IpsViewComponentLibrary
         [Browsable(true)]
         public string AgreementName
         {
-            get { return _agreemnentName; }
+            get => _agreemnentName;
             set
             {
                 if (_agreemnentName != value)
@@ -223,7 +218,7 @@ namespace IpsViewComponentLibrary
         [Browsable(true)]
         public DateTime DateEndNullDate
         {
-            get { return _dateEndNullDate; }
+            get => _dateEndNullDate;
             set
             {
                 if (_dateEndNullDate != value)
@@ -241,7 +236,7 @@ namespace IpsViewComponentLibrary
         [Browsable(true)]
         public string DateEndNullText
         {
-            get { return _dateEndNullText; }
+            get => _dateEndNullText;
             set
             {
                 if (_dateEndNullText != value)

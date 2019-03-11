@@ -107,7 +107,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlMiddleControlManagers = new JuridicalManagersControl();
             this.ddlAgreementStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
-            this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.ctrlAgreementNumberDate = new ContractConsumerMainControl();
             this.ctrlBankAccount = new IpsBankAccountControl();
             this.ctrlBaAddress = new IpsAddressControl();
             this.ctrlRightLimitations = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
