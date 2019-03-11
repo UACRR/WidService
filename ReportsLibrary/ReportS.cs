@@ -8,7 +8,7 @@ namespace ReportsLibrary
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for ReportS.
+    /// Summary description for ReportSS.
     /// </summary>
     public partial class ReportS : Telerik.Reporting.Report
     {
@@ -18,7 +18,6 @@ namespace ReportsLibrary
             // Required for telerik Reporting designer support
             //
             InitializeComponent();
-         
 
             //
             // TODO: Add any constructor code after InitializeComponent call
