@@ -42,7 +42,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlPlacesTitle = new Telerik.WinControls.UI.RadLabel();
             this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
+            this.ctrlAddress = new JuridicalAddressControl();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankRequisites = new IpsBankAccountControl();
             this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
@@ -361,7 +361,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.RadLabel ctrlPlacesTitle;
         private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator;
         private Telerik.WinControls.UI.RadPdfViewer radPdfViewer;
-        private MiddleControlAddress ctrlAddress;
+        private JuridicalAddressControl ctrlAddress;
         private ConsumerPlacesControl ctrlPlaces;
         private Telerik.WinControls.UI.RadButton btnLoadPdf;
         private Telerik.WinControls.UI.RadWaitingBar radWaitingBar1;

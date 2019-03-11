@@ -1227,7 +1227,7 @@ namespace ipsmedserviceapp.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        #region Extra Dictionary ******************
         [HttpGet("extra/crkindgroup")]
         public async Task<ActionResult> GetCrkindgroup()
         {
@@ -1262,7 +1262,6 @@ namespace ipsmedserviceapp.Controllers
             return crkindgroup;
 
         }
-        
 
         [HttpGet("extra/crkindgroup/{id}")]
         public async Task<ActionResult> GetCrkindgroupById(int id)
@@ -1449,6 +1448,70 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok();
         }
+
+        // CopyRightKind BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/copyrightkind/{id}")]
+        public async Task<IActionResult> GetCopyRightKind(int id, [FromBody] CopyrightKind sors)
+        {
+            var dest = await _dbContext.CopyrightKind.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.CopyrightKindTr)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+        // Create New  ****************************
+        [HttpPost("extra/copyrightkind")]
+        public async Task<IActionResult> CreateCopyRightKind([FromBody] CopyrightKind sors)
+        {
+            var dest = new CopyrightKind();
+            dest.SetFields(sors, new[] { "CodeI" });
+            _dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+
+            await _dbContext.SaveChangesAsync();
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/copyrightkind/{id}")]
+        public async Task<IActionResult> UpdateCopyRightKind(int id, [FromBody] CopyrightKind sors )
+        {
+            var dest = await _dbContext.CopyrightKind.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.CopyrightKindTr)
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/copyrightkind/{id}")]
+        public async Task<IActionResult> DeleteCopyRightKind( int id )
+        {
+            var delRow = await _dbContext.CopyrightKind.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.CopyrightKindTr)
+                                .FirstOrDefaultAsync();
+            if (delRow == null)
+                return NotFound();
+
+            _dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
+            _dbContext.CopyrightKind.Remove( delRow );
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+        // CopyRightKind END **********************
+
+
+        #endregion
 
         /// <summary>
         /// Отримати довідники для інтерфейсів роботи з анкетами та договорами

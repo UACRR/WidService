@@ -54,7 +54,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlReAddress = new IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
             this.contactsCompanyPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
+            this.ctrlMiddleControlAddress = new JuridicalAddressControl();
             this.passportPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.createRightholderPassportPageView = new Telerik.WinControls.UI.RadPageView();
             this.pasportPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -64,9 +64,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlInternationalPassport = new PassportInternationalControl();
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.managersPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
+            this.ctrlMiddleControlManagers = new JuridicalManagersControl();
             this.agreementPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.ctrlAgreementNumberDate = new ContractConsumerMainControl();
             this.bsAgreementAddRh = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
             this.royaltyPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -949,8 +949,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         private System.Windows.Forms.BindingSource bsAnketaCompany;
         private Anketa.AnketaPersonRightholderPage ctrlAnketaPersonRightholderPage;
         private Telerik.WinControls.UI.RadPageViewPage contactsCompanyPage;
-        private MiddleControlAddress ctrlMiddleControlAddress;
+        private JuridicalAddressControl ctrlMiddleControlAddress;
         private Telerik.WinControls.UI.RadPageViewPage managersPage;
-        private MiddleControlManagers ctrlMiddleControlManagers;
+        private JuridicalManagersControl ctrlMiddleControlManagers;
     }
 }

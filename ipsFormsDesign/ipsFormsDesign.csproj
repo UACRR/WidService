@@ -443,6 +443,7 @@
     <Compile Include="Engines\DbfEngine.cs" />
     <Compile Include="Engines\ExcelEngine.cs" />
     <Compile Include="Services\DbfService.cs" />
+    <Compile Include="Services\DictionaryService.cs" />
     <Compile Include="Services\FixationService.cs" />
     <Compile Include="Services\LicenseDataService.cs" />
     <Compile Include="Services\ObjectUploading\ObjectRightData.cs" />

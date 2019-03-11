@@ -1,4 +1,5 @@
 ﻿using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary
 {
@@ -36,8 +37,8 @@ namespace IpsViewComponentLibrary
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.ctrlAgreementMain = new IpsViewComponentLibrary.ContractConsumerMainControl();
-            this.ctrlAgreementSecond = new IpsViewComponentLibrary.ContractConsumerDetailControl();
+            this.ctrlAgreementMain = new ContractConsumerMainControl();
+            this.ctrlAgreementSecond = new ContractConsumerDetailControl();
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
@@ -74,11 +75,6 @@ namespace IpsViewComponentLibrary
             this.ctrlAgreementSecond.IsAutoprolongation = false;
             this.ctrlAgreementSecond.Location = new System.Drawing.Point(3, 17);
             this.ctrlAgreementSecond.MaximumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgreementSecond.MinAmount = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
             this.ctrlAgreementSecond.MinimumSize = new System.Drawing.Size(480, 105);
             this.ctrlAgreementSecond.MinPayment = null;
             this.ctrlAgreementSecond.Name = "ctrlAgreementSecond";
