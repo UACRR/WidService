@@ -40,12 +40,12 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.btnCopyFromRegToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToReg = new Telerik.WinControls.UI.RadButton();
-            this.ctrlAddressLetter = new IpsViewComponentLibrary.AddressLetter();
+            this.ctrlAddressLetter = new AddressLetter();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlAddressRegister = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlAddressLive = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlAddressRegister = new IpsAddressControl();
+            this.ctrlAddressLive = new IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();

@@ -145,6 +145,8 @@ namespace sysAdminwp.viewPageDictionaryControls
 
             lbCommonNameKey.Visible = false;
             ddlCommonKeyData.Visible = false;
+            lbEditKeyField.Visible = false;
+            ddlEditKeyField.Visible = false;
         }
 
         //initialize sequence complex dictionaries for 'TreeView' element
@@ -202,6 +204,8 @@ namespace sysAdminwp.viewPageDictionaryControls
         {
             lbCommonNameKey.Visible = true;
             ddlCommonKeyData.Visible = true;
+            lbEditKeyField.Visible = true;
+            ddlEditKeyField.Visible = true;
             switch(ComplexDictionaryName.ToLower())
             {
                 case "copyrightkind":
@@ -307,26 +311,36 @@ namespace sysAdminwp.viewPageDictionaryControls
                     var baseDictsCopyRight = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
                     lbCommonNameKey.Text = "Спосіб використання";
                     ddlCommonKeyData.DataSource = baseDictsCopyRight;
+                    lbEditKeyField.Text = "Спосіб використання";
+                    ddlEditKeyField.DataSource = baseDictsCopyRight;
                     break;
                 case "country":
                     var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
                     lbCommonNameKey.Text = "Континент";
                     ddlCommonKeyData.DataSource = baseDictsContinent;
+                    lbEditKeyField.Text = "Континент";
+                    ddlEditKeyField.DataSource = baseDictsContinent;
                     break;
                 case "creativeroletype":
                     var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
                     lbCommonNameKey.Text = "Категорія";
                     ddlCommonKeyData.DataSource = baseDictsCategory;
+                    lbEditKeyField.Text = "Категорія";
+                    ddlEditKeyField.DataSource = baseDictsCategory;
                     break;
                 case "genretype":
                     var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
                     lbCommonNameKey.Text = "Вид об'єкта";
                     ddlCommonKeyData.DataSource = baseDictsGenreType;
+                    lbEditKeyField.Text = "Вид об'єкта";
+                    ddlEditKeyField.DataSource = baseDictsGenreType;
                     break;
                 case "klr030":
                     var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
                     lbCommonNameKey.Text = "Місто";
                     ddlCommonKeyData.DataSource = customDictCountry;
+                    lbEditKeyField.Text = "Місто";
+                    ddlEditKeyField.DataSource = customDictCountry;
                     break;
                 case "systemconstant":
                     break;
@@ -334,6 +348,8 @@ namespace sysAdminwp.viewPageDictionaryControls
                     var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/typePlaceParam");
                     lbCommonNameKey.Text = "Об'єкт";
                     ddlCommonKeyData.DataSource = baseDictsTypePlaceParam;
+                    lbEditKeyField.Text = "Об'єкт";
+                    ddlEditKeyField.DataSource = baseDictsTypePlaceParam;
                     break;
             }
             //set data to grid of the current complex dictionary
@@ -367,9 +383,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                                 NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                                 NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                                VariantUse = ddlCommonKeyData.Items[code - 1].Text,
+                                VariantUse = ddlCommonKeyData.SelectedItem.Text,
                             });
                         }
+                        total.Text = _copyrightKindList.Count.ToString();
                         break;
                     }
                     foreach (var item in _copyrightKindList)
@@ -380,8 +397,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                             NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            VariantUse = ddlCommonKeyData.Items.First(el => (int)el.Value == item.CrGroupCode).Text,
                         });
                     }
+                    total.Text = _copyrightKindList.Count.ToString();
                     break;
                 case "country":
                     //all data of Country items
@@ -399,9 +418,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
                                 NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
                                 NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
-                                Continent = ddlCommonKeyData.Items[code - 1].Text,
+                                Continent = ddlCommonKeyData.SelectedItem.Text,
                             });
                         }
+                        total.Text = _countryList.Count.ToString();
                         break;
                     }
                     foreach (var item in _countryList)
@@ -412,9 +432,12 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
                             NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
                             NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
+                            Continent = item.ContinentCode != null ?
+                                ddlCommonKeyData.Items.First(el => (int)el.Value == item.ContinentCode).Text : "",
                         });
                         
                     }
+                    total.Text = _countryList.Count.ToString();
                     break;
                 case "creativeroletype":
                     //all data of CreativeRoleType items
@@ -432,9 +455,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                                 NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                                 NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                                Category = ddlCommonKeyData.Items[code - 1].Text,
+                                Category = ddlCommonKeyData.SelectedItem.Text,
                             });
                         }
+                        total.Text = _creativeRoleTypeList.Count.ToString();
                         break;
                     }
                     foreach (var item in _creativeRoleTypeList)
@@ -445,8 +469,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                             NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            Category = ddlCommonKeyData.Items.First(el => (int)el.Value == item.CategoryCode).Text,
                         });
                     }
+                    total.Text = _creativeRoleTypeList.Count.ToString();
                     break;
                 case "genretype":
                     //all data of GenreType items
@@ -464,9 +490,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                                 NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                                 NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                                VariantObject = ddlCommonKeyData.Items[code - 1].Text,
+                                VariantObject = ddlCommonKeyData.SelectedItem.Text,
                             });
                         }
+                        total.Text = _genreTypeList.Count.ToString();
                         break;
                     }
                     foreach (var item in _genreTypeList)
@@ -477,8 +504,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                             NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            VariantObject = ddlCommonKeyData.Items.First(el => (int)el.Value == item.CategoryCode).Text,
                         });
                     }
+                    total.Text = _genreTypeList.Count.ToString();
                     break;
                 case "klr030":
                     //all data of KLR030 items
@@ -496,9 +525,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
                                 NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
                                 NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
-                                klrCountry = ddlCommonKeyData.Items[code - 1].Text,
+                                klrCountry = ddlCommonKeyData.SelectedItem.Text,
                             });
                         }
+                        total.Text = _klR030List.Count.ToString();
                         break;
                     }
                     foreach (var item in _klR030List)
@@ -509,8 +539,11 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
                             NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
                             NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
+                            klrCountry = item.R031 != null ?
+                                ddlCommonKeyData.Items.First(el => (int)el.Value == item.R031).Text : "",
                         });
                     }
+                    total.Text = _klR030List.Count.ToString();
                     break;
                 case "systemconstant":
                     //all data of SystemConstant items
@@ -532,6 +565,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameEn = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                         });
                     }
+                    total.Text = _systemConstantList.Count.ToString();
                     break;
                 case "typeplace":
                     //all data of TypePlace items
@@ -549,9 +583,10 @@ namespace sysAdminwp.viewPageDictionaryControls
                                 NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                                 NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                                 NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                                Object = ddlCommonKeyData.Items[code - 1].Text,
+                                Object = ddlCommonKeyData.SelectedItem.Text,
                             });
                         }
+                        total.Text = _typePlaceList.Count.ToString();
                         break;
                     }
                     foreach (var item in _typePlaceList)
@@ -562,8 +597,11 @@ namespace sysAdminwp.viewPageDictionaryControls
                             NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                             NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                             NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                            Object = item.ParamType != null ?
+                                ddlCommonKeyData.Items.First(el => (int)el.Value == item.ParamType).Text : "",
                         });
                     }
+                    total.Text = _typePlaceList.Count.ToString();
                     break;
             }
             return view;
@@ -622,31 +660,31 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 case "copyrightkind":
                     _copyrightKind = new CopyrightKind() {CrGroupCode = 1, };
-                    _copyRightKindControl.CopyrightKindDataSource = _copyrightKind;
+                    //_copyRightKindControl.CopyrightKindDataSource = _copyrightKind;
                     break;
                 case "country":
                     _country = new Country();
-                    _countryDictionaryControl.CountryDataSource = _country;
+                    //_countryDictionaryControl.CountryDataSource = _country;
                     break;
                 case "creativeroletype":
                     _creativeRoleType = new CreativeRoleType();
-                    _creativeRoleDictionaryControl.CreativeRoleTypeDataSource = _creativeRoleType;
+                    //_creativeRoleDictionaryControl.CreativeRoleTypeDataSource = _creativeRoleType;
                     break;
                 case "genretype":
                     _genreType = new GenreType();
-                    _genreTypeDictionaryControl.GenreTypeDataSource = _genreType;
+                    //_genreTypeDictionaryControl.GenreTypeDataSource = _genreType;
                     break;
                 case "klr030":
                     _klR030 = new KlR030();
-                    _klrDictionaryControl.KlR030DataSource = _klR030;
+                    //_klrDictionaryControl.KlR030DataSource = _klR030;
                     break;
                 case "systemconstant":
                     _systemConstant = new SystemConstant();
-                    _systemConstantDictionaryControl.SystemConstantSource = _systemConstant;
+                    //_systemConstantDictionaryControl.SystemConstantSource = _systemConstant;
                     break;
                 case "typeplace":
                     _typePlace = new TypePlace();
-                    _typePlaceDictionaryControl.TypePlaceSource = _typePlace;
+                    //_typePlaceDictionaryControl.TypePlaceSource = _typePlace;
                     break;
             }
         }
@@ -744,6 +782,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
+                        _copyrightKind.CrGroupCode = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _copyrightKind);
                         break;
                     case "country":
@@ -767,6 +806,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             CountryName = txtNameEnComplex.Text,
                             Lang = "En"
                         });
+                        _country.ContinentCode = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _country);
                         break;
                     case "creativeroletype":
@@ -795,6 +835,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
+                        _creativeRoleType.CategoryCode = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _creativeRoleType);
                         break;
                     case "genretype":
@@ -823,6 +864,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Name = txtNameEnComplex.Text,
                             Lang = "En"
                         });
+                        _genreType.CategoryCode = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _genreType);
                         break;
                     case "klr030":
@@ -846,6 +888,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                             R030Name = txtNameEnComplex.Text
                         });
+                        _klR030.R031 = (short)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _klR030);
                         break;
                     case "systemconstant":
@@ -901,6 +944,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                             Lang = "En",
                             Name = txtNameEnComplex.Text
                         });
+                        _typePlace.ParamType = (int)ddlEditKeyField.SelectedItem.Value;
                         _connector.NewItem(string.Concat(PrefixCreate, ComplexDictionaryName.ToLower()), _typePlace);
                         break;
                 }
@@ -1056,6 +1100,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                         en.Name = txtNameEnComplex.Text;
                         en.CodeI = copyrightKind.CodeI;
                     }
+                    copyrightKind.CrGroupCode = ddlEditKeyField.SelectedIndex;
 
                     _connector.UpdateItem(string.Concat(PrefixUpdate, ComplexDictionaryName.ToLower()), copyrightKind.CodeI.ToString(), copyrightKind);
                     break;
@@ -1412,6 +1457,15 @@ namespace sysAdminwp.viewPageDictionaryControls
             }
             int value = (int)ddlCommonKeyData.Items[e.Position].Value;
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData(value);
+        }
+
+        private void ddlEditKeyField_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            if (e.Position == -1)
+            {
+                return;
+            }
+
         }
     }
 }

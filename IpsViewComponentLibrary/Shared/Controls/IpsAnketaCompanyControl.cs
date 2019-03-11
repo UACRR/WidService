@@ -2,17 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Telerik.WinControls;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
     [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsAnketaCompanyControl : UserControl
@@ -67,17 +63,6 @@ namespace IpsViewComponentLibrary
             return isValid;
         }
 
-        public void ClearData()
-        {
-            txtName.Clear();
-            txtShortName.Clear();
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="_getAutoCompList"></param>
-        /// <param name="_getCustomerAnketa"></param>
         internal void SetAutoComplete(Func<string, IList<AutoCompleteData>> _getAutoCompList, Func<int, Customer> _getCustomerAnketa)
         {
             getAutoCompList = _getAutoCompList;

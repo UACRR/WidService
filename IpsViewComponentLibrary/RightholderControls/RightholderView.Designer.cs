@@ -97,19 +97,19 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAnketaPersonRightholderPage = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaPersonRightholderPage();
             this.ctrlAnketaCompanyRightholderPage = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaCompanyRightholderPage();
-            this.ctrlFaAddress = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlLeAddress = new IpsViewComponentLibrary.IpsAddressControl();
-            this.ctrlReAddress = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlFaAddress = new IpsAddressControl();
+            this.ctrlLeAddress = new IpsAddressControl();
+            this.ctrlReAddress = new IpsAddressControl();
             this.ctrlContacts = new ContactsPersonControl();
-            this.ctrlMiddleControlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
+            this.ctrlMiddleControlAddress = new JuridicalAddressControl();
             this.ctrlInternalPassport = new PassportControl();
             this.ctrlInternationalPassport = new PassportInternationalControl();
-            this.ctrlMiddleControlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
+            this.ctrlMiddleControlManagers = new JuridicalManagersControl();
             this.ddlAgreementStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.ctrlServiceComissionControl = new IpsViewComponentLibrary.RightholderControls.Anketa.ServiceComissionControl();
-            this.ctrlAgreementNumberDate = new IpsViewComponentLibrary.ContractConsumerMainControl();
+            this.ctrlAgreementNumberDate = new ContractConsumerMainControl();
             this.ctrlBankAccount = new IpsBankAccountControl();
-            this.ctrlBaAddress = new IpsViewComponentLibrary.IpsAddressControl();
+            this.ctrlBaAddress = new IpsAddressControl();
             this.ctrlRightLimitations = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
             this.ctrlTerritoryIncludeExclude = new IpsViewComponentLibrary.RightholderControls.Anketa.TerritoryIncludeExcludeControl();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
@@ -1209,9 +1209,9 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Anketa.AnketaCompanyRightholderPage ctrlAnketaCompanyRightholderPage;
         private Anketa.AnketaPersonRightholderPage ctrlAnketaPersonRightholderPage;
         private Telerik.WinControls.UI.RadPageViewPage contactsCompanyPage;
-        private MiddleControlAddress ctrlMiddleControlAddress;
+        private JuridicalAddressControl ctrlMiddleControlAddress;
         private Telerik.WinControls.UI.RadPageViewPage managersPage;
-        private MiddleControlManagers ctrlMiddleControlManagers;
+        private JuridicalManagersControl ctrlMiddleControlManagers;
         private Telerik.WinControls.UI.RadButton btnUploadFromExcel;
     }
 }

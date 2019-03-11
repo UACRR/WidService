@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.Shared.Controls
 {
     partial class IpsRegistrationsCompanyControl
     {
@@ -74,7 +72,6 @@ namespace IpsViewComponentLibrary
             this.txtNumberVat.Size = new System.Drawing.Size(161, 21);
             this.txtNumberVat.TabIndex = 5;
             this.txtNumberVat.ThemeName = "Office2013Light";
-            this.txtNumberVat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberVat_KeyPress);
             // 
             // bsAnketaCompany
             // 
@@ -122,7 +119,6 @@ namespace IpsViewComponentLibrary
             this.txtOkpo.Size = new System.Drawing.Size(134, 21);
             this.txtOkpo.TabIndex = 0;
             this.txtOkpo.ThemeName = "Office2013Light";
-            this.txtOkpo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtOkpo_KeyPress);
             this.txtOkpo.Leave += new System.EventHandler(this.txtOkpo_Leave);
             // 
             // lblIssuedBy

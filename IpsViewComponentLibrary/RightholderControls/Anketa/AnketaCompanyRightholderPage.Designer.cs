@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.RightholderControls.Anketa
+﻿using IpsViewComponentLibrary.Shared.Controls;
+
+namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     partial class AnketaCompanyRightholderPage
     {
@@ -32,9 +34,9 @@
             this.ddlRightholderType = new Telerik.WinControls.UI.RadDropDownList();
             this.bsRightHolder = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlRegistrationsCompany = new IpsViewComponentLibrary.IpsRegistrationsCompanyControl();
+            this.ctrlRegistrationsCompany = new IpsRegistrationsCompanyControl();
             this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
-            this.ctrlAnketaCompany = new IpsViewComponentLibrary.IpsAnketaCompanyControl();
+            this.ctrlAnketaCompany = new IpsAnketaCompanyControl();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.txtInnerCode = new Telerik.WinControls.UI.RadTextBox();

@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsBossNameContactsControl : UserControl
     {
+        private const string phoneCode = "+380";
+
         /// <summary>
         /// Зовнішній номер телефону
         /// </summary>
-        public bool OutsidePhone { get; set; } = false;
-        private const string phoneCode = "+380";
+        public bool OutsidePhone { get; set; }
+
         public IpsBossNameContactsControl()
         {
             InitializeComponent();
@@ -30,67 +25,17 @@ namespace IpsViewComponentLibrary
             txtPhone.Enter += txtPhone_Enter;
         }
 
-        [Category("Data")]
-        [AttributeProvider(typeof(IListSource))]
         public object DataSource
         {
-            get { return employeeBindingSource.DataSource; }
-            set
-            {
-                if (employeeBindingSource.DataSource != value)
-                    employeeBindingSource.DataSource = value;
-            }
+            get => employeeBindingSource.DataSource;
+            set => employeeBindingSource.DataSource = value;
         }
 
-        #region Edit controls
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtEmail
+        public string PhoneNullText
         {
-            get
-            {
-                return txtEmail;
-            }
+            get => txtPhone.NullText;
+            set => txtPhone.NullText = value;
         }
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtFirstName
-        {
-            get
-            {
-                return txtFirstName;
-            }
-        }
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtLastName
-        {
-            get
-            {
-                return txtLastName;
-            }
-        }
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtPhone
-        {
-            get
-            {
-                return txtPhone;
-            }
-            set => txtPhone = value;
-        }
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtSurName
-        {
-            get
-            {
-                return txtSurName;
-            }
-        }
-
-        #endregion
 
         private bool IsValidMail(string email)
         {
@@ -165,7 +110,6 @@ namespace IpsViewComponentLibrary
                 e.Handled = true;
             }
         }
-
 
         private void txtPhone_KeyPress(object sender, KeyPressEventArgs e)
         {

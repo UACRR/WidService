@@ -1,6 +1,6 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.Shared.Controls
 {
-    partial class MiddleControlAddress
+    partial class JuridicalAddressControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.addressFactual = new IpsViewComponentLibrary.IpsAddressControl();
-            this.addressLegal = new IpsViewComponentLibrary.IpsAddressControl();
+            this.addressFactual = new IpsAddressControl();
+            this.addressLegal = new IpsAddressControl();
             this.btnCopyFromJaToLe = new Telerik.WinControls.UI.RadButton();
             this.radSeparator6 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
@@ -38,7 +38,7 @@
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.addressLetter = new IpsViewComponentLibrary.AddressLetter();
+            this.addressLetter = new AddressLetter();
             this.btnCopyFromFaToLe = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJaToLe)).BeginInit();

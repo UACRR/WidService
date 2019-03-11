@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary
+﻿namespace IpsViewComponentLibrary.RightholderControls
 {
     partial class LicenseAgreementListControl
     {

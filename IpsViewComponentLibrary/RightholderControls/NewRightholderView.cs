@@ -102,11 +102,11 @@ namespace IpsViewComponentLibrary.RightholderControls
 
                 contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
                 contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
-                ctrlMiddleControlAddress.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
+                ctrlMiddleControlAddress.SetDataSources(customer);
 
                 managersPage.Item.Visibility = ElementVisibility.Visible;
                 passportPage.Item.Visibility = ElementVisibility.Collapsed;
-                ctrlMiddleControlManagers.SetDataSources(customer, IpsGlobal.AnketaDictionaties);
+                ctrlMiddleControlManagers.SetDataSources(customer);
             }
             else
             {

@@ -34,9 +34,9 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.pvPartnerName = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClientName = new IpsViewComponentLibrary.JurPersonName();
             this.pvContact = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAddress = new IpsViewComponentLibrary.MiddleControlAddress();
+            this.ctrlAddress = new JuridicalAddressControl();
             this.pvManager = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlManagers = new IpsViewComponentLibrary.MiddleControlManagers();
+            this.ctrlManagers = new JuridicalManagersControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsBankAccountControl();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
@@ -208,9 +208,9 @@ namespace IpsViewComponentLibrary.PartnerControls
         private Telerik.WinControls.UI.RadPageViewPage pvPartnerName;
         private JurPersonName ctrlClientName;
         private Telerik.WinControls.UI.RadPageViewPage pvContact;
-        private MiddleControlAddress ctrlAddress;
+        private JuridicalAddressControl ctrlAddress;
         private Telerik.WinControls.UI.RadPageViewPage pvManager;
-        private MiddleControlManagers ctrlManagers;
+        private JuridicalManagersControl ctrlManagers;
         private Telerik.WinControls.UI.RadPageViewPage pvBank;
         private IpsBankAccountControl ctrlBankAccount;
         private Telerik.WinControls.UI.RadPanel radPanel1;

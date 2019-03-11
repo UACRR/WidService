@@ -62,7 +62,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.currentAgreementController1 = new IpsViewComponentLibrary.Utilities.CurrentAgreementController();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlPartner = new IpsViewComponentLibrary.MiddleControlCabinetPartner();
+            this.ctrlPartner = new PartnerOfConsumerControl();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
@@ -793,7 +793,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private Telerik.WinControls.UI.RadDropDownButton btnActionOfAgr;
         private Telerik.WinControls.UI.RadMenuItem btnProlongation;
         private Telerik.WinControls.UI.RadMenuItem btnAddAgrNewVersion;
-        private MiddleControlCabinetPartner ctrlPartner;
+        private PartnerOfConsumerControl ctrlPartner;
         private TabNavigationControl ctrlTabNavigation;
         private Telerik.WinControls.UI.RadPanel anketaPanel;
         private MiddleControlCabinetFiles ctrlFiles;

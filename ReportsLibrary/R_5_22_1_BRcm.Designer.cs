@@ -1,6 +1,6 @@
 namespace ReportsLibrary
 {
-    partial class R_5_22_1_BR
+    partial class R_5_22_1_BRcm
     {
         #region Component Designer generated code
         /// <summary>
@@ -22,7 +22,7 @@ namespace ReportsLibrary
             Telerik.Reporting.ReportParameter reportParameter3 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter4 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter5 = new Telerik.Reporting.ReportParameter();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(R_5_22_1_BR));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(R_5_22_1_BRcm));
             Telerik.Reporting.ReportParameter reportParameter6 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter7 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter8 = new Telerik.Reporting.ReportParameter();
@@ -337,7 +337,7 @@ namespace ReportsLibrary
             tableGroup4.Groupings.Add(new Telerik.Reporting.Grouping(null));
             tableGroup4.Name = "detail";
             this.table1.RowGroups.Add(tableGroup4);
-            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(12.656D), Telerik.Reporting.Drawing.Unit.Cm(1.291D));
+            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(12.657D), Telerik.Reporting.Drawing.Unit.Cm(1.291D));
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox8
@@ -384,13 +384,13 @@ namespace ReportsLibrary
             this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2D);
             this.pageFooterSection1.Name = "pageFooterSection1";
             // 
-            // R_5_22_1_BR
+            // R_5_22_1_BRcm
             // 
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.pageHeaderSection1,
             this.detailSection1,
             this.pageFooterSection1});
-            this.Name = "R_5_22_1_BR";
+            this.Name = "R_5_22_1_BRcm";
             this.PageSettings.Landscape = false;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;

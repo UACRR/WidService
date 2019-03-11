@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
+﻿using IpsViewComponentLibrary.Shared.Controls;
+
+namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
     partial class ContactPersonActionForm
     {
@@ -32,7 +34,7 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.ctrlContactPerson = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.ctrlContactPerson = new IpsBossNameContactsControl();
             this.ddlPosition = new Telerik.WinControls.UI.RadDropDownList();
             this.bsRelEmpl = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -41,11 +43,6 @@
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtFirstName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtLastName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtPhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtSurName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRelEmpl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -81,86 +78,11 @@
             // 
             this.ctrlContactPerson.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlContactPerson.Location = new System.Drawing.Point(12, 39);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
             this.ctrlContactPerson.OutsidePhone = false;
             this.ctrlContactPerson.Size = new System.Drawing.Size(624, 56);
             this.ctrlContactPerson.TabIndex = 33;
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtEmail.Location = new System.Drawing.Point(441, 35);
-            this.ctrlContactPerson.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtEmail.Name = "txtEmail";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(441, 36, 183, 20);
-            this.ctrlContactPerson.TxtEmail.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtEmail.Size = new System.Drawing.Size(183, 20);
-            this.ctrlContactPerson.TxtEmail.TabIndex = 4;
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtFirstName.Location = new System.Drawing.Point(237, 4);
-            this.ctrlContactPerson.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtFirstName.Name = "txtFirstName";
-            this.ctrlContactPerson.TxtFirstName.NullText = "Ім\'я";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(237, 4, 181, 20);
-            this.ctrlContactPerson.TxtFirstName.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtFirstName.Size = new System.Drawing.Size(181, 20);
-            this.ctrlContactPerson.TxtFirstName.TabIndex = 1;
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtLastName.Location = new System.Drawing.Point(33, 4);
-            this.ctrlContactPerson.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtLastName.Name = "txtLastName";
-            this.ctrlContactPerson.TxtLastName.NullText = "Прізвище";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 181, 20);
-            this.ctrlContactPerson.TxtLastName.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtLastName.Size = new System.Drawing.Size(181, 20);
-            this.ctrlContactPerson.TxtLastName.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtPhone.Location = new System.Drawing.Point(33, 35);
-            this.ctrlContactPerson.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtPhone.MaxLength = 13;
-            this.ctrlContactPerson.TxtPhone.Name = "txtPhone";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 181, 20);
-            this.ctrlContactPerson.TxtPhone.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtPhone.Size = new System.Drawing.Size(181, 20);
-            this.ctrlContactPerson.TxtPhone.TabIndex = 3;
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlContactPerson.TxtSurName.Location = new System.Drawing.Point(441, 4);
-            this.ctrlContactPerson.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlContactPerson.TxtSurName.Name = "txtSurName";
-            this.ctrlContactPerson.TxtSurName.NullText = "По батькові";
-            // 
-            // 
-            // 
-            this.ctrlContactPerson.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(441, 4, 183, 20);
-            this.ctrlContactPerson.TxtSurName.RootElement.StretchVertically = true;
-            this.ctrlContactPerson.TxtSurName.Size = new System.Drawing.Size(183, 20);
-            this.ctrlContactPerson.TxtSurName.TabIndex = 2;
             // 
             // ddlPosition
             // 
@@ -229,11 +151,6 @@
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtFirstName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtLastName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtPhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlContactPerson.TxtSurName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlPosition)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRelEmpl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();

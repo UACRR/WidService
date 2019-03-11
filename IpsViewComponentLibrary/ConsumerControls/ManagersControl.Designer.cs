@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.ConsumerControls
 {
@@ -46,9 +47,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.ctrlBookkeeper = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.ctrlBookkeeper = new IpsBossNameContactsControl();
             this.txtOnBasicsIfHeadBoss = new Telerik.WinControls.UI.RadTextBox();
-            this.ctrlHeadBoss = new IpsViewComponentLibrary.IpsBossNameContactsControl();
+            this.ctrlHeadBoss = new IpsBossNameContactsControl();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radSeparator5 = new Telerik.WinControls.UI.RadSeparator();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
@@ -60,17 +61,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.gvContactPersons = new Telerik.WinControls.UI.RadGridView();
             this.bsEmployee = new System.Windows.Forms.BindingSource(this.components);
             this.btnAddContact = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtFirstName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtLastName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtPhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtSurName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtEmail)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtFirstName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtLastName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtPhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtSurName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
@@ -86,86 +77,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // ctrlBookkeeper
             // 
-            this.ctrlBookkeeper.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlBookkeeper.Location = new System.Drawing.Point(54, 145);
             this.ctrlBookkeeper.Name = "ctrlBookkeeper";
             this.ctrlBookkeeper.OutsidePhone = false;
             this.ctrlBookkeeper.Size = new System.Drawing.Size(682, 56);
             this.ctrlBookkeeper.TabIndex = 32;
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtEmail.Location = new System.Drawing.Point(481, 35);
-            this.ctrlBookkeeper.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlBookkeeper.TxtEmail.Name = "txtEmail";
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(481, 36, 201, 20);
-            this.ctrlBookkeeper.TxtEmail.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtEmail.Size = new System.Drawing.Size(201, 20);
-            this.ctrlBookkeeper.TxtEmail.TabIndex = 4;
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtFirstName.Location = new System.Drawing.Point(257, 4);
-            this.ctrlBookkeeper.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlBookkeeper.TxtFirstName.Name = "txtFirstName";
-            this.ctrlBookkeeper.TxtFirstName.NullText = "Ім\'я";
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(257, 4, 201, 20);
-            this.ctrlBookkeeper.TxtFirstName.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtFirstName.Size = new System.Drawing.Size(201, 20);
-            this.ctrlBookkeeper.TxtFirstName.TabIndex = 1;
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtLastName.Location = new System.Drawing.Point(33, 4);
-            this.ctrlBookkeeper.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlBookkeeper.TxtLastName.Name = "txtLastName";
-            this.ctrlBookkeeper.TxtLastName.NullText = "Прізвище";
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 201, 20);
-            this.ctrlBookkeeper.TxtLastName.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtLastName.Size = new System.Drawing.Size(201, 20);
-            this.ctrlBookkeeper.TxtLastName.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtPhone.Location = new System.Drawing.Point(33, 35);
-            this.ctrlBookkeeper.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlBookkeeper.TxtPhone.MaxLength = 13;
-            this.ctrlBookkeeper.TxtPhone.Name = "txtPhone";
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 201, 20);
-            this.ctrlBookkeeper.TxtPhone.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtPhone.Size = new System.Drawing.Size(201, 20);
-            this.ctrlBookkeeper.TxtPhone.TabIndex = 3;
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlBookkeeper.TxtSurName.Location = new System.Drawing.Point(481, 4);
-            this.ctrlBookkeeper.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlBookkeeper.TxtSurName.Name = "txtSurName";
-            this.ctrlBookkeeper.TxtSurName.NullText = "По батькові";
-            // 
-            // 
-            // 
-            this.ctrlBookkeeper.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(481, 4, 201, 20);
-            this.ctrlBookkeeper.TxtSurName.RootElement.StretchVertically = true;
-            this.ctrlBookkeeper.TxtSurName.Size = new System.Drawing.Size(201, 20);
-            this.ctrlBookkeeper.TxtSurName.TabIndex = 2;
             // 
             // txtOnBasicsIfHeadBoss
             // 
@@ -180,91 +96,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // ctrlHeadBoss
             // 
-            this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Interfaces.IEmployee);
             this.ctrlHeadBoss.Location = new System.Drawing.Point(54, 56);
             this.ctrlHeadBoss.Name = "ctrlHeadBoss";
             this.ctrlHeadBoss.OutsidePhone = false;
             this.ctrlHeadBoss.Size = new System.Drawing.Size(682, 56);
             this.ctrlHeadBoss.TabIndex = 31;
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlHeadBoss.TxtEmail.Location = new System.Drawing.Point(481, 35);
-            this.ctrlHeadBoss.TxtEmail.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlHeadBoss.TxtEmail.Name = "txtEmail";
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtEmail.RootElement.ControlBounds = new System.Drawing.Rectangle(481, 36, 201, 20);
-            this.ctrlHeadBoss.TxtEmail.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtEmail.Size = new System.Drawing.Size(201, 20);
-            this.ctrlHeadBoss.TxtEmail.TabIndex = 4;
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtFirstName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlHeadBoss.TxtFirstName.Location = new System.Drawing.Point(257, 4);
-            this.ctrlHeadBoss.TxtFirstName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlHeadBoss.TxtFirstName.Name = "txtFirstName";
-            this.ctrlHeadBoss.TxtFirstName.NullText = "Ім\'я";
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtFirstName.RootElement.ControlBounds = new System.Drawing.Rectangle(257, 4, 201, 20);
-            this.ctrlHeadBoss.TxtFirstName.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtFirstName.Size = new System.Drawing.Size(201, 20);
-            this.ctrlHeadBoss.TxtFirstName.TabIndex = 1;
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtLastName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlHeadBoss.TxtLastName.Location = new System.Drawing.Point(33, 4);
-            this.ctrlHeadBoss.TxtLastName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlHeadBoss.TxtLastName.Name = "txtLastName";
-            this.ctrlHeadBoss.TxtLastName.NullText = "Прізвище";
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtLastName.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 4, 201, 20);
-            this.ctrlHeadBoss.TxtLastName.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtLastName.Size = new System.Drawing.Size(201, 20);
-            this.ctrlHeadBoss.TxtLastName.TabIndex = 0;
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlHeadBoss.TxtPhone.Location = new System.Drawing.Point(33, 35);
-            this.ctrlHeadBoss.TxtPhone.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlHeadBoss.TxtPhone.MaxLength = 13;
-            this.ctrlHeadBoss.TxtPhone.Name = "txtPhone";
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtPhone.RootElement.ControlBounds = new System.Drawing.Rectangle(33, 36, 201, 20);
-            this.ctrlHeadBoss.TxtPhone.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtPhone.Size = new System.Drawing.Size(201, 20);
-            this.ctrlHeadBoss.TxtPhone.TabIndex = 3;
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtSurName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlHeadBoss.TxtSurName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ctrlHeadBoss.TxtSurName.Location = new System.Drawing.Point(481, 4);
-            this.ctrlHeadBoss.TxtSurName.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.ctrlHeadBoss.TxtSurName.Name = "txtSurName";
-            this.ctrlHeadBoss.TxtSurName.NullText = "По батькові";
-            // 
-            // 
-            // 
-            this.ctrlHeadBoss.TxtSurName.RootElement.ControlBounds = new System.Drawing.Rectangle(481, 4, 201, 20);
-            this.ctrlHeadBoss.TxtSurName.RootElement.StretchVertically = true;
-            this.ctrlHeadBoss.TxtSurName.Size = new System.Drawing.Size(201, 20);
-            this.ctrlHeadBoss.TxtSurName.TabIndex = 2;
             // 
             // radLabel8
             // 
@@ -492,17 +328,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.Controls.Add(this.radLabel4);
             this.Name = "ManagersControl";
             this.Size = new System.Drawing.Size(893, 454);
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtFirstName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtLastName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtPhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlBookkeeper.TxtSurName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtOnBasicsIfHeadBoss)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtEmail)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtFirstName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtLastName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtPhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlHeadBoss.TxtSurName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();

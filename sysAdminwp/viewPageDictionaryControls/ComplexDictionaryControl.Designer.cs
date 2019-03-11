@@ -29,16 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn29 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn30 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn31 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn32 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
             this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
             this.btnAddComplex = new Telerik.WinControls.UI.RadButton();
             this.editPanel = new Telerik.WinControls.UI.RadPanel();
+            this.ddlEditKeyField = new Telerik.WinControls.UI.RadDropDownList();
+            this.dictBaseEditPanel = new System.Windows.Forms.BindingSource(this.components);
+            this.lbEditKeyField = new Telerik.WinControls.UI.RadLabel();
             this.txtNameRuComplex = new Telerik.WinControls.UI.RadTextBox();
             this.txtNameEnComplex = new Telerik.WinControls.UI.RadTextBox();
             this.txtNameUaComplex = new Telerik.WinControls.UI.RadTextBox();
@@ -54,6 +57,8 @@
             this.lbCommonNameKey = new Telerik.WinControls.UI.RadLabel();
             this.ddlCommonKeyData = new Telerik.WinControls.UI.RadDropDownList();
             this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lbTotal = new Telerik.WinControls.UI.RadLabel();
+            this.total = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).BeginInit();
@@ -61,6 +66,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanel)).BeginInit();
             this.editPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).BeginInit();
@@ -74,6 +82,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.total)).BeginInit();
             this.SuspendLayout();
             // 
             // complexTreeView
@@ -106,35 +116,35 @@
             this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
             this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn29.FieldName = "Code";
-            gridViewTextBoxColumn29.HeaderText = "Код";
-            gridViewTextBoxColumn29.Name = "Code";
-            gridViewTextBoxColumn29.Width = 109;
-            gridViewTextBoxColumn30.FieldName = "NameUk";
-            gridViewTextBoxColumn30.HeaderText = "Назва";
-            gridViewTextBoxColumn30.Name = "NameUk";
-            gridViewTextBoxColumn30.Width = 325;
-            gridViewTextBoxColumn31.FieldName = "NameRu";
-            gridViewTextBoxColumn31.HeaderText = "Название";
-            gridViewTextBoxColumn31.Name = "NameRu";
-            gridViewTextBoxColumn31.Width = 325;
-            gridViewTextBoxColumn32.FieldName = "NameEn";
-            gridViewTextBoxColumn32.HeaderText = "Name";
-            gridViewTextBoxColumn32.Name = "NameEn";
-            gridViewTextBoxColumn32.Width = 394;
+            gridViewTextBoxColumn5.FieldName = "Code";
+            gridViewTextBoxColumn5.HeaderText = "Код";
+            gridViewTextBoxColumn5.Name = "Code";
+            gridViewTextBoxColumn5.Width = 109;
+            gridViewTextBoxColumn6.FieldName = "NameUk";
+            gridViewTextBoxColumn6.HeaderText = "Назва";
+            gridViewTextBoxColumn6.Name = "NameUk";
+            gridViewTextBoxColumn6.Width = 326;
+            gridViewTextBoxColumn7.FieldName = "NameRu";
+            gridViewTextBoxColumn7.HeaderText = "Название";
+            gridViewTextBoxColumn7.Name = "NameRu";
+            gridViewTextBoxColumn7.Width = 326;
+            gridViewTextBoxColumn8.FieldName = "NameEn";
+            gridViewTextBoxColumn8.HeaderText = "Name";
+            gridViewTextBoxColumn8.Name = "NameEn";
+            gridViewTextBoxColumn8.Width = 397;
             this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn29,
-            gridViewTextBoxColumn30,
-            gridViewTextBoxColumn31,
-            gridViewTextBoxColumn32});
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8});
             this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
             this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition8;
+            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
             this.gvComplexDictionariesList.ReadOnly = true;
             this.gvComplexDictionariesList.ShowGroupPanel = false;
-            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1176, 316);
+            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1176, 236);
             this.gvComplexDictionariesList.TabIndex = 11;
             this.gvComplexDictionariesList.ThemeName = "Office2013Light";
             this.gvComplexDictionariesList.SelectionChanged += new System.EventHandler(this.gvComplexDictionariesList_SelectionChanged);
@@ -143,7 +153,7 @@
             // btnDeleteComplex
             // 
             this.btnDeleteComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteComplex.Location = new System.Drawing.Point(392, 352);
+            this.btnDeleteComplex.Location = new System.Drawing.Point(395, 272);
             this.btnDeleteComplex.Name = "btnDeleteComplex";
             this.btnDeleteComplex.Size = new System.Drawing.Size(110, 24);
             this.btnDeleteComplex.TabIndex = 16;
@@ -154,7 +164,7 @@
             // btnAddComplex
             // 
             this.btnAddComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddComplex.Location = new System.Drawing.Point(253, 352);
+            this.btnAddComplex.Location = new System.Drawing.Point(253, 272);
             this.btnAddComplex.Name = "btnAddComplex";
             this.btnAddComplex.Size = new System.Drawing.Size(110, 24);
             this.btnAddComplex.TabIndex = 15;
@@ -166,6 +176,8 @@
             // 
             this.editPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.editPanel.Controls.Add(this.ddlEditKeyField);
+            this.editPanel.Controls.Add(this.lbEditKeyField);
             this.editPanel.Controls.Add(this.txtNameRuComplex);
             this.editPanel.Controls.Add(this.txtNameEnComplex);
             this.editPanel.Controls.Add(this.txtNameUaComplex);
@@ -176,9 +188,9 @@
             this.editPanel.Controls.Add(this.lblCode);
             this.editPanel.Controls.Add(this.btnCancel);
             this.editPanel.Controls.Add(this.btnSave);
-            this.editPanel.Location = new System.Drawing.Point(253, 382);
+            this.editPanel.Location = new System.Drawing.Point(253, 302);
             this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(1176, 181);
+            this.editPanel.Size = new System.Drawing.Size(1176, 261);
             this.editPanel.TabIndex = 18;
             this.editPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
             this.editPanel.ThemeName = "Office2013Light";
@@ -190,47 +202,68 @@
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).LineLimit = false;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // ddlEditKeyField
+            // 
+            this.ddlEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlEditKeyField.DataSource = this.dictBaseEditPanel;
+            this.ddlEditKeyField.DisplayMember = "Name";
+            this.ddlEditKeyField.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlEditKeyField.Location = new System.Drawing.Point(783, 29);
+            this.ddlEditKeyField.Name = "ddlEditKeyField";
+            this.ddlEditKeyField.Size = new System.Drawing.Size(390, 20);
+            this.ddlEditKeyField.TabIndex = 11;
+            this.ddlEditKeyField.ThemeName = "Office2013Light";
+            this.ddlEditKeyField.ValueMember = "CodeI";
+            this.ddlEditKeyField.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlEditKeyField_SelectedIndexChanged);
+            // 
+            // dictBaseEditPanel
+            // 
+            this.dictBaseEditPanel.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
+            // 
+            // lbEditKeyField
+            // 
+            this.lbEditKeyField.AutoSize = false;
+            this.lbEditKeyField.Location = new System.Drawing.Point(633, 30);
+            this.lbEditKeyField.Name = "lbEditKeyField";
+            this.lbEditKeyField.Size = new System.Drawing.Size(144, 19);
+            this.lbEditKeyField.TabIndex = 10;
+            this.lbEditKeyField.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbEditKeyField.ThemeName = "Office2013Light";
+            // 
             // txtNameRuComplex
             // 
-            this.txtNameRuComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameRuComplex.Location = new System.Drawing.Point(162, 81);
             this.txtNameRuComplex.MaxLength = 500;
             this.txtNameRuComplex.Name = "txtNameRuComplex";
-            this.txtNameRuComplex.Size = new System.Drawing.Size(996, 20);
+            this.txtNameRuComplex.Size = new System.Drawing.Size(465, 20);
             this.txtNameRuComplex.TabIndex = 9;
             this.txtNameRuComplex.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txtCodeComplex_TextChanging);
             // 
             // txtNameEnComplex
             // 
-            this.txtNameEnComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameEnComplex.Location = new System.Drawing.Point(162, 108);
             this.txtNameEnComplex.MaxLength = 500;
             this.txtNameEnComplex.Name = "txtNameEnComplex";
-            this.txtNameEnComplex.Size = new System.Drawing.Size(996, 20);
+            this.txtNameEnComplex.Size = new System.Drawing.Size(465, 20);
             this.txtNameEnComplex.TabIndex = 8;
             this.txtNameEnComplex.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txtCodeComplex_TextChanging);
             // 
             // txtNameUaComplex
             // 
-            this.txtNameUaComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNameUaComplex.Location = new System.Drawing.Point(162, 55);
             this.txtNameUaComplex.MaxLength = 500;
             this.txtNameUaComplex.Name = "txtNameUaComplex";
-            this.txtNameUaComplex.Size = new System.Drawing.Size(996, 20);
+            this.txtNameUaComplex.Size = new System.Drawing.Size(465, 20);
             this.txtNameUaComplex.TabIndex = 7;
             this.txtNameUaComplex.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txtCodeComplex_TextChanging);
             // 
             // txtCodeComplex
             // 
-            this.txtCodeComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCodeComplex.Location = new System.Drawing.Point(162, 28);
             this.txtCodeComplex.MaxLength = 20;
             this.txtCodeComplex.Name = "txtCodeComplex";
-            this.txtCodeComplex.Size = new System.Drawing.Size(996, 20);
+            this.txtCodeComplex.Size = new System.Drawing.Size(465, 20);
             this.txtCodeComplex.TabIndex = 6;
             this.txtCodeComplex.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txtCodeComplex_TextChanging);
             // 
@@ -340,7 +373,7 @@
             this.ddlCommonKeyData.FormattingEnabled = false;
             this.ddlCommonKeyData.Location = new System.Drawing.Point(1019, 3);
             this.ddlCommonKeyData.Name = "ddlCommonKeyData";
-            this.ddlCommonKeyData.Size = new System.Drawing.Size(410, 21);
+            this.ddlCommonKeyData.Size = new System.Drawing.Size(410, 20);
             this.ddlCommonKeyData.TabIndex = 6;
             this.ddlCommonKeyData.ThemeName = "Office2013Light";
             this.ddlCommonKeyData.ValueMember = "CodeI";
@@ -351,10 +384,32 @@
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
+            // lbTotal
+            // 
+            this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTotal.AutoSize = false;
+            this.lbTotal.Location = new System.Drawing.Point(1250, 272);
+            this.lbTotal.Name = "lbTotal";
+            this.lbTotal.Size = new System.Drawing.Size(97, 18);
+            this.lbTotal.TabIndex = 19;
+            this.lbTotal.Text = "Всього записів";
+            this.lbTotal.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // total
+            // 
+            this.total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.total.Location = new System.Drawing.Point(1353, 272);
+            this.total.Name = "total";
+            this.total.Size = new System.Drawing.Size(29, 18);
+            this.total.TabIndex = 20;
+            this.total.Text = "dfgh";
+            // 
             // ComplexDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.total);
+            this.Controls.Add(this.lbTotal);
             this.Controls.Add(this.ddlCommonKeyData);
             this.Controls.Add(this.lbCommonNameKey);
             this.Controls.Add(this.radLblSearch);
@@ -374,6 +429,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.editPanel)).EndInit();
             this.editPanel.ResumeLayout(false);
             this.editPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).EndInit();
@@ -387,6 +445,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.total)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -414,5 +474,10 @@
         private Telerik.WinControls.UI.RadLabel lbCommonNameKey;
         private Telerik.WinControls.UI.RadDropDownList ddlCommonKeyData;
         private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
+        private Telerik.WinControls.UI.RadLabel lbTotal;
+        private Telerik.WinControls.UI.RadLabel total;
+        private Telerik.WinControls.UI.RadDropDownList ddlEditKeyField;
+        private Telerik.WinControls.UI.RadLabel lbEditKeyField;
+        private System.Windows.Forms.BindingSource dictBaseEditPanel;
     }
 }

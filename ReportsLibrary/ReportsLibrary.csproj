@@ -97,13 +97,11 @@
     <Compile Include="Report3.Designer.cs">
       <DependentUpon>Report3.cs</DependentUpon>
     </Compile>
-    <Compile Include="..\..\TEMP\ReportS.cs">
+    <Compile Include="ReportS.cs">
       <SubType>Component</SubType>
-      <Link>ReportS.cs</Link>
     </Compile>
-    <Compile Include="..\..\TEMP\ReportS.Designer.cs">
+    <Compile Include="ReportS.designer.cs">
       <DependentUpon>ReportS.cs</DependentUpon>
-      <Link>ReportS.Designer.cs</Link>
     </Compile>
     <Compile Include="R_5_14_RegisterSR.cs">
       <SubType>Component</SubType>
@@ -364,9 +362,11 @@
     <EmbeddedResource Include="Report3.resx">
       <DependentUpon>Report3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="..\..\TEMP\ReportS.resx">
+    <EmbeddedResource Include="ReportS.resx">
       <DependentUpon>ReportS.cs</DependentUpon>
-      <Link>ReportS.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportS.ru.resx">
+      <DependentUpon>ReportS.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_14_RegisterSR.resx">
       <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
@@ -384,6 +384,9 @@
       <DependentUpon>R_5_16_AuthorSRFact.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_Balance.resx">
+      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_17_Balance.ru.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
@@ -501,6 +504,13 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="RepNew_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

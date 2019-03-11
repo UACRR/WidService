@@ -1,26 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.Extensions;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.Shared.Controls
 {
-    public partial class MiddleControlAddress : UserControl, IMiddleCtrlAnketaConsumer
+    public partial class JuridicalAddressControl : UserControl
     {
-        public MiddleControlAddress()
+        private readonly AnketaDictionaties _dictionaties;
+        public JuridicalAddressControl()
         {
             InitializeComponent();
+            if (IpsGlobal.AnketaDictionaties != null)
+                _dictionaties = IpsGlobal.AnketaDictionaties;
         }
 
-        public void SetDataSources(Customer customer, AnketaDictionaties dictionaties)
+        public void SetDataSources(Customer customer)
         {
             //юридична
             var anketa = customer.Company?.AnketaCompany?.SingleOrDefault(rec => rec?.Version == customer.AnkVersion);
@@ -42,11 +39,11 @@ namespace IpsViewComponentLibrary
             addressLetter.AddressDataMember = "LeAddress";
             addressLetter.CityDataMember = "LeCity";
             addressLetter.CountryDataMember = "LeCountry";
-            addressLetter.CountriesDataSource = dictionaties.country;
+            addressLetter.CountriesDataSource = _dictionaties.country;
             addressLetter.CountriesValueMember = "countryCode";
             addressLetter.CountriesDisplayMember = "countryName";
             addressLetter.RegionDataMember = "LeRegion";
-            addressLetter.RegionsDataSource = dictionaties.region;
+            addressLetter.RegionsDataSource = _dictionaties.region;
             addressLetter.RegionsValueMember = "codeI";
             addressLetter.RegionsDisplayMember = "name";
             addressLetter.PostIndexDataMember = "LePostIndex";
