@@ -61,7 +61,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IpsReportGlobal.cs" />
     <Compile Include="LIcAgr.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -100,7 +99,7 @@
     <Compile Include="ReportS.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportS.designer.cs">
+    <Compile Include="ReportS.Designer.cs">
       <DependentUpon>ReportS.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_14_RegisterSR.cs">
@@ -136,7 +135,7 @@
     <Compile Include="R_5_17_Balance.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="R_5_17_Balance.Designer.cs">
+    <Compile Include="R_5_17_Balance.designer.cs">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_17_BalanceAccount.cs">
@@ -274,7 +273,7 @@
     <Compile Include="R_5_31_GetGive.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="R_5_31_GetGive.Designer.cs">
+    <Compile Include="R_5_31_GetGive.designer.cs">
       <DependentUpon>R_5_31_GetGive.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_31_GetGiveDetail.cs">
@@ -365,9 +364,6 @@
     <EmbeddedResource Include="ReportS.resx">
       <DependentUpon>ReportS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportS.ru.resx">
-      <DependentUpon>ReportS.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="R_5_14_RegisterSR.resx">
       <DependentUpon>R_5_14_RegisterSR.cs</DependentUpon>
     </EmbeddedResource>
@@ -384,9 +380,6 @@
       <DependentUpon>R_5_16_AuthorSRFact.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_Balance.resx">
-      <DependentUpon>R_5_17_Balance.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="R_5_17_Balance.ru.resx">
       <DependentUpon>R_5_17_Balance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_17_BalanceAccount.resx">
@@ -455,13 +448,7 @@
     <EmbeddedResource Include="R_5_30_Booker.resx">
       <DependentUpon>R_5_30_Booker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="R_5_31_GetGive.en-US.resx">
-      <DependentUpon>R_5_31_GetGive.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="R_5_31_GetGive.resx">
-      <DependentUpon>R_5_31_GetGive.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="R_5_31_GetGive.ru.resx">
       <DependentUpon>R_5_31_GetGive.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_31_GetGiveDetail.resx">
@@ -504,7 +491,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="RepNew_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">

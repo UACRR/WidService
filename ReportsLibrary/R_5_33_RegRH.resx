@@ -117,82 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="textBox6.Value" xml:space="preserve">
-    <value>Правовласник</value>
-  </data>
-  <data name="textBox26.Value" xml:space="preserve">
-    <value>Шифр</value>
-  </data>
-  <data name="textBox24.Value" xml:space="preserve">
-    <value>= Fields.rHolderTypeName</value>
-  </data>
-  <data name="textBox9.Value" xml:space="preserve">
-    <value>Країна правовласника</value>
-  </data>
-  <data name="textBox8.Value" xml:space="preserve">
-    <value>Товариство</value>
-  </data>
-  <data name="textBox14.Value" xml:space="preserve">
-    <value>= Fields.IPI</value>
-  </data>
-  <data name="textBox5.Value" xml:space="preserve">
-    <value>ІРІ</value>
-  </data>
-  <data name="textBox11.Value" xml:space="preserve">
-    <value>Тип правовласника</value>
-  </data>
-  <data name="textBox20.Value" xml:space="preserve">
-    <value>= Fields.agrStatusName</value>
-  </data>
-  <data name="textBox15.Value" xml:space="preserve">
-    <value>= Fields.rhName</value>
-  </data>
-  <data name="textBox7.Value" xml:space="preserve">
-    <value>Кількість об'єктів</value>
-  </data>
-  <data name="textBox3.Value" xml:space="preserve">
-    <value>= Parameters.dateBegin.Value</value>
-  </data>
-  <data name="textBox16.Value" xml:space="preserve">
-    <value>= Fields.cntObj</value>
-  </data>
-  <data name="textBox17.Value" xml:space="preserve">
-    <value>= Fields.cmName</value>
-  </data>
-  <data name="textBox4.Value" xml:space="preserve">
-    <value>№п/п</value>
-  </data>
-  <data name="textBox18.Value" xml:space="preserve">
-    <value>= Fields.country</value>
-  </data>
-  <data name="textBox1.Value" xml:space="preserve">
-    <value>Реєстр Правовласників    станом за</value>
-  </data>
-  <data name="reportParameter1.Text" xml:space="preserve">
-    <value>За період з </value>
-  </data>
-  <data name="textBox10.Value" xml:space="preserve">
-    <value>Стан договору</value>
-  </data>
-  <data name="textBox27.Value" xml:space="preserve">
-    <value>= Fields.custId</value>
-  </data>
-  <data name="textBox13.Value" xml:space="preserve">
-    <value>= Fields.rowNum</value>
-  </data>
-  <data name="textBox55.Value" xml:space="preserve">
-    <value>Звіти. Головна.</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
     <value>0.1cm</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>uk-UA</value>
-  </metadata>
-  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
   </metadata>
 </root>

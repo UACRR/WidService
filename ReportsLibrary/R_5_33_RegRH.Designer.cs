@@ -22,7 +22,6 @@ namespace ReportsLibrary
             Telerik.Reporting.TableGroup tableGroup10 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.NavigateToReportAction navigateToReportAction1 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(R_5_33_RegRH));
             Telerik.Reporting.SortingAction sortingAction2 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction3 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction4 = new Telerik.Reporting.SortingAction();
@@ -86,7 +85,7 @@ namespace ReportsLibrary
             this.textBox4.Style.Font.Bold = true;
             this.textBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox4.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox4, "textBox4");
+            this.textBox4.Value = "№п/п";
             // 
             // table1
             // 
@@ -179,7 +178,7 @@ namespace ReportsLibrary
             this.textBox13.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox13.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox13.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox13, "textBox13");
+            this.textBox13.Value = "= Fields.rowNum";
             // 
             // textBox14
             // 
@@ -188,7 +187,7 @@ namespace ReportsLibrary
             this.textBox14.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.37D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox14.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox14.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox14, "textBox14");
+            this.textBox14.Value = "= Fields.IPI";
             // 
             // textBox15
             // 
@@ -197,7 +196,7 @@ namespace ReportsLibrary
             this.textBox15.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(4.434D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox15.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox15.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox15, "textBox15");
+            this.textBox15.Value = "= Fields.rhName";
             // 
             // textBox16
             // 
@@ -207,7 +206,7 @@ namespace ReportsLibrary
             this.textBox16.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox16.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox16.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox16, "textBox16");
+            this.textBox16.Value = "= Fields.cntObj";
             // 
             // textBox17
             // 
@@ -216,7 +215,7 @@ namespace ReportsLibrary
             this.textBox17.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.212D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox17.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox17.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox17, "textBox17");
+            this.textBox17.Value = "= Fields.cmName";
             // 
             // textBox18
             // 
@@ -225,7 +224,7 @@ namespace ReportsLibrary
             this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.529D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox18.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox18.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox18, "textBox18");
+            this.textBox18.Value = "= Fields.country";
             // 
             // textBox20
             // 
@@ -234,7 +233,7 @@ namespace ReportsLibrary
             this.textBox20.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.217D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox20.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox20.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox20, "textBox20");
+            this.textBox20.Value = "= Fields.agrStatusName";
             // 
             // textBox24
             // 
@@ -243,7 +242,7 @@ namespace ReportsLibrary
             this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.582D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox24.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox24, "textBox24");
+            this.textBox24.Value = "= Fields.rHolderTypeName";
             // 
             // textBox27
             // 
@@ -253,7 +252,7 @@ namespace ReportsLibrary
             this.textBox27.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox27.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox27.StyleName = "BlueOpal.TableBody";
-            resources.ApplyResources(this.textBox27, "textBox27");
+            this.textBox27.Value = "= Fields.custId";
             // 
             // textBox26
             // 
@@ -266,7 +265,7 @@ namespace ReportsLibrary
             this.textBox26.Style.Font.Bold = true;
             this.textBox26.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox26.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox26, "textBox26");
+            this.textBox26.Value = "Шифр";
             // 
             // textBox5
             // 
@@ -279,7 +278,7 @@ namespace ReportsLibrary
             this.textBox5.Style.Font.Bold = true;
             this.textBox5.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox5.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox5, "textBox5");
+            this.textBox5.Value = "ІРІ";
             // 
             // textBox6
             // 
@@ -292,7 +291,7 @@ namespace ReportsLibrary
             this.textBox6.Style.Font.Bold = true;
             this.textBox6.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox6.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox6, "textBox6");
+            this.textBox6.Value = "Правовласник";
             // 
             // textBox7
             // 
@@ -305,7 +304,7 @@ namespace ReportsLibrary
             this.textBox7.Style.Font.Bold = true;
             this.textBox7.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox7.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox7, "textBox7");
+            this.textBox7.Value = "Кількість об\'єктів";
             // 
             // textBox8
             // 
@@ -319,7 +318,7 @@ namespace ReportsLibrary
             this.textBox8.Style.Font.Bold = true;
             this.textBox8.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox8.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox8, "textBox8");
+            this.textBox8.Value = "Товариство";
             // 
             // textBox9
             // 
@@ -333,7 +332,7 @@ namespace ReportsLibrary
             this.textBox9.Style.Font.Bold = true;
             this.textBox9.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox9.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox9, "textBox9");
+            this.textBox9.Value = "Країна правовласника";
             // 
             // textBox10
             // 
@@ -346,7 +345,7 @@ namespace ReportsLibrary
             this.textBox10.Style.Font.Bold = true;
             this.textBox10.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox10.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox10, "textBox10");
+            this.textBox10.Value = "Стан договору";
             // 
             // textBox11
             // 
@@ -359,7 +358,7 @@ namespace ReportsLibrary
             this.textBox11.Style.Font.Bold = true;
             this.textBox11.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox11.StyleName = "BlueOpal.TableHeader";
-            resources.ApplyResources(this.textBox11, "textBox11");
+            this.textBox11.Value = "Тип правовласника";
             // 
             // sqlDataSource1
             // 
@@ -408,7 +407,7 @@ namespace ReportsLibrary
             this.textBox3.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.005D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
             this.textBox3.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(13D);
             this.textBox3.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            resources.ApplyResources(this.textBox3, "textBox3");
+            this.textBox3.Value = "= Parameters.dateBegin.Value";
             // 
             // textBox1
             // 
@@ -417,7 +416,7 @@ namespace ReportsLibrary
             this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(8.6D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(13D);
             this.textBox1.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            resources.ApplyResources(this.textBox1, "textBox1");
+            this.textBox1.Value = "Реєстр Правовласників    станом за";
             // 
             // textBox55
             // 
@@ -439,7 +438,7 @@ namespace ReportsLibrary
             this.textBox55.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
             this.textBox55.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox55.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            resources.ApplyResources(this.textBox55, "textBox55");
+            this.textBox55.Value = "Звіти. Головна.";
             // 
             // R_5_33_RegRH
             // 
@@ -454,7 +453,7 @@ namespace ReportsLibrary
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
             reportParameter1.AutoRefresh = true;
             reportParameter1.Name = "dateBegin";
-            resources.ApplyResources(reportParameter1, "reportParameter1");
+            reportParameter1.Text = "На";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter1.Value = "= Now()";
             reportParameter1.Visible = true;
