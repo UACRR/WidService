@@ -1446,13 +1446,14 @@ namespace ipsmedserviceapp.Controllers
             transaction.Commit();
 
 
+
             return Ok();
         }
 
         // CopyRightKind BEGIN ********************
         // Get By Id   ****************************
         [HttpGet("extra/copyrightkind/{id}")]
-        public async Task<IActionResult> GetCopyRightKind(int id, [FromBody] CopyrightKind sors)
+        public async Task<IActionResult> GetCopyRightKind(int id)
         {
             var dest = await _dbContext.CopyrightKind.Where(rec => rec.CodeI == id)
                                 .Include(rec => rec.CopyrightKindTr)

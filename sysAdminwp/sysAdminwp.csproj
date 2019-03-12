@@ -278,6 +278,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Category.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Continent.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKind.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKindTr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Country.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />

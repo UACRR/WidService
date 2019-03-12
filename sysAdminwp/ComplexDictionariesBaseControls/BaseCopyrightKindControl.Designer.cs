@@ -28,19 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.components = new System.ComponentModel.Container();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.total = new Telerik.WinControls.UI.RadLabel();
             this.lbTotal = new Telerik.WinControls.UI.RadLabel();
             this.ddlCommonKeyData = new Telerik.WinControls.UI.RadDropDownList();
+            this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbCommonNameKey = new Telerik.WinControls.UI.RadLabel();
             this.radLblSearch = new System.Windows.Forms.Label();
             this.editPanel = new Telerik.WinControls.UI.RadPanel();
             this.ddlEditKeyField = new Telerik.WinControls.UI.RadDropDownList();
+            this.dsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameRuComplex = new Telerik.WinControls.UI.RadTextBox();
             this.lbEditKeyField = new Telerik.WinControls.UI.RadLabel();
             this.txtNameEnComplex = new Telerik.WinControls.UI.RadTextBox();
@@ -54,15 +57,20 @@
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
             this.btnAddComplex = new Telerik.WinControls.UI.RadButton();
-            this.gvComplexDictionariesList = new Telerik.WinControls.UI.RadGridView();
+            this.gvCopyrightKindList = new Telerik.WinControls.UI.RadGridView();
             this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.bindingSourceEn = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceUk = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceRu = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.total)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanel)).BeginInit();
             this.editPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).BeginInit();
@@ -76,8 +84,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).BeginInit();
             this.SuspendLayout();
             // 
             // total
@@ -103,6 +114,7 @@
             // ddlCommonKeyData
             // 
             this.ddlCommonKeyData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlCommonKeyData.DataSource = this.dictBaseTypeIBindingSource;
             this.ddlCommonKeyData.DisplayMember = "Name";
             this.ddlCommonKeyData.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlCommonKeyData.FormattingEnabled = false;
@@ -112,6 +124,10 @@
             this.ddlCommonKeyData.TabIndex = 22;
             this.ddlCommonKeyData.ThemeName = "Office2013Light";
             this.ddlCommonKeyData.ValueMember = "CodeI";
+            // 
+            // dictBaseTypeIBindingSource
+            // 
+            this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // lbCommonNameKey
             // 
@@ -142,9 +158,9 @@
             // 
             this.editPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.editPanel.Controls.Add(this.lbEditKeyField);
             this.editPanel.Controls.Add(this.ddlEditKeyField);
             this.editPanel.Controls.Add(this.txtNameRuComplex);
-            this.editPanel.Controls.Add(this.lbEditKeyField);
             this.editPanel.Controls.Add(this.txtNameEnComplex);
             this.editPanel.Controls.Add(this.txtNameUaComplex);
             this.editPanel.Controls.Add(this.txtCodeComplex);
@@ -172,6 +188,8 @@
             // 
             this.ddlEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlEditKeyField.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dsCopyrightKind, "CrGroupCode", true));
+            this.ddlEditKeyField.DataSource = this.dictBaseTypeIBindingSource;
             this.ddlEditKeyField.DisplayMember = "Name";
             this.ddlEditKeyField.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyField.Location = new System.Drawing.Point(783, 28);
@@ -181,8 +199,13 @@
             this.ddlEditKeyField.ThemeName = "Office2013Light";
             this.ddlEditKeyField.ValueMember = "CodeI";
             // 
+            // dsCopyrightKind
+            // 
+            this.dsCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
+            // 
             // txtNameRuComplex
             // 
+            this.txtNameRuComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRu, "Name", true));
             this.txtNameRuComplex.Location = new System.Drawing.Point(162, 81);
             this.txtNameRuComplex.MaxLength = 500;
             this.txtNameRuComplex.Name = "txtNameRuComplex";
@@ -196,11 +219,13 @@
             this.lbEditKeyField.Name = "lbEditKeyField";
             this.lbEditKeyField.Size = new System.Drawing.Size(144, 19);
             this.lbEditKeyField.TabIndex = 12;
+            this.lbEditKeyField.Text = "Спосіб використання";
             this.lbEditKeyField.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lbEditKeyField.ThemeName = "Office2013Light";
             // 
             // txtNameEnComplex
             // 
+            this.txtNameEnComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceEn, "Name", true));
             this.txtNameEnComplex.Location = new System.Drawing.Point(162, 108);
             this.txtNameEnComplex.MaxLength = 500;
             this.txtNameEnComplex.Name = "txtNameEnComplex";
@@ -209,6 +234,7 @@
             // 
             // txtNameUaComplex
             // 
+            this.txtNameUaComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUk, "Name", true));
             this.txtNameUaComplex.Location = new System.Drawing.Point(162, 55);
             this.txtNameUaComplex.MaxLength = 500;
             this.txtNameUaComplex.Name = "txtNameUaComplex";
@@ -217,6 +243,7 @@
             // 
             // txtCodeComplex
             // 
+            this.txtCodeComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsCopyrightKind, "CodeI", true));
             this.txtCodeComplex.Location = new System.Drawing.Point(162, 28);
             this.txtCodeComplex.MaxLength = 20;
             this.txtCodeComplex.Name = "txtCodeComplex";
@@ -305,61 +332,62 @@
             this.btnAddComplex.Text = "Додати";
             this.btnAddComplex.ThemeName = "Office2013Light";
             // 
-            // gvComplexDictionariesList
+            // gvCopyrightKindList
             // 
-            this.gvComplexDictionariesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gvCopyrightKindList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvComplexDictionariesList.EnableCustomFiltering = true;
-            this.gvComplexDictionariesList.Location = new System.Drawing.Point(0, 27);
-            this.gvComplexDictionariesList.Margin = new System.Windows.Forms.Padding(1);
+            this.gvCopyrightKindList.EnableCustomFiltering = true;
+            this.gvCopyrightKindList.Location = new System.Drawing.Point(0, 27);
+            this.gvCopyrightKindList.Margin = new System.Windows.Forms.Padding(1);
             // 
             // 
             // 
-            this.gvComplexDictionariesList.MasterTemplate.AllowAddNewRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.AllowColumnReorder = false;
-            this.gvComplexDictionariesList.MasterTemplate.AllowDeleteRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.AllowDragToGroup = false;
-            this.gvComplexDictionariesList.MasterTemplate.AllowEditRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.AutoGenerateColumns = false;
-            this.gvComplexDictionariesList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Code";
-            gridViewTextBoxColumn1.HeaderText = "Код";
-            gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 105;
-            gridViewTextBoxColumn2.FieldName = "NameUk";
-            gridViewTextBoxColumn2.HeaderText = "Назва";
-            gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 315;
-            gridViewTextBoxColumn3.FieldName = "NameRu";
-            gridViewTextBoxColumn3.HeaderText = "Название";
-            gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 315;
-            gridViewTextBoxColumn4.FieldName = "NameEn";
-            gridViewTextBoxColumn4.HeaderText = "Name";
-            gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 230;
-            gridViewTextBoxColumn5.FieldName = "VariantUse";
-            gridViewTextBoxColumn5.HeaderText = "Спосіб використання";
-            gridViewTextBoxColumn5.MinWidth = 200;
-            gridViewTextBoxColumn5.Name = "VariantUse";
-            gridViewTextBoxColumn5.Width = 200;
-            this.gvComplexDictionariesList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
-            this.gvComplexDictionariesList.MasterTemplate.EnableCustomFiltering = true;
-            this.gvComplexDictionariesList.MasterTemplate.EnableFiltering = true;
-            this.gvComplexDictionariesList.MasterTemplate.ShowFilteringRow = false;
-            this.gvComplexDictionariesList.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.gvComplexDictionariesList.Name = "gvComplexDictionariesList";
-            this.gvComplexDictionariesList.ReadOnly = true;
-            this.gvComplexDictionariesList.ShowGroupPanel = false;
-            this.gvComplexDictionariesList.Size = new System.Drawing.Size(1187, 309);
-            this.gvComplexDictionariesList.TabIndex = 25;
-            this.gvComplexDictionariesList.ThemeName = "Office2013Light";
+            this.gvCopyrightKindList.MasterTemplate.AllowAddNewRow = false;
+            this.gvCopyrightKindList.MasterTemplate.AllowColumnReorder = false;
+            this.gvCopyrightKindList.MasterTemplate.AllowDeleteRow = false;
+            this.gvCopyrightKindList.MasterTemplate.AllowDragToGroup = false;
+            this.gvCopyrightKindList.MasterTemplate.AllowEditRow = false;
+            this.gvCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
+            this.gvCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn6.FieldName = "Code";
+            gridViewTextBoxColumn6.HeaderText = "Код";
+            gridViewTextBoxColumn6.Name = "Code";
+            gridViewTextBoxColumn6.Width = 105;
+            gridViewTextBoxColumn7.FieldName = "NameUk";
+            gridViewTextBoxColumn7.HeaderText = "Назва";
+            gridViewTextBoxColumn7.Name = "NameUk";
+            gridViewTextBoxColumn7.Width = 315;
+            gridViewTextBoxColumn8.FieldName = "NameRu";
+            gridViewTextBoxColumn8.HeaderText = "Название";
+            gridViewTextBoxColumn8.Name = "NameRu";
+            gridViewTextBoxColumn8.Width = 315;
+            gridViewTextBoxColumn9.FieldName = "NameEn";
+            gridViewTextBoxColumn9.HeaderText = "Name";
+            gridViewTextBoxColumn9.Name = "NameEn";
+            gridViewTextBoxColumn9.Width = 230;
+            gridViewTextBoxColumn10.FieldName = "VariantUse";
+            gridViewTextBoxColumn10.HeaderText = "Спосіб використання";
+            gridViewTextBoxColumn10.MinWidth = 200;
+            gridViewTextBoxColumn10.Name = "VariantUse";
+            gridViewTextBoxColumn10.Width = 200;
+            this.gvCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10});
+            this.gvCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
+            this.gvCopyrightKindList.MasterTemplate.EnableFiltering = true;
+            this.gvCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
+            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvCopyrightKindList.Name = "gvCopyrightKindList";
+            this.gvCopyrightKindList.ReadOnly = true;
+            this.gvCopyrightKindList.ShowGroupPanel = false;
+            this.gvCopyrightKindList.Size = new System.Drawing.Size(1187, 309);
+            this.gvCopyrightKindList.TabIndex = 25;
+            this.gvCopyrightKindList.ThemeName = "Office2013Light";
+            this.gvCopyrightKindList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
             // 
             // txtSearchComplex
             // 
@@ -371,6 +399,18 @@
             this.txtSearchComplex.Name = "txtSearchComplex";
             this.txtSearchComplex.Size = new System.Drawing.Size(568, 20);
             this.txtSearchComplex.TabIndex = 24;
+            // 
+            // bindingSourceEn
+            // 
+            this.bindingSourceEn.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            // 
+            // bindingSourceUk
+            // 
+            this.bindingSourceUk.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            // 
+            // bindingSourceRu
+            // 
+            this.bindingSourceRu.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             // 
             // BaseCopyrightKindControl
             // 
@@ -384,18 +424,20 @@
             this.Controls.Add(this.editPanel);
             this.Controls.Add(this.btnDeleteComplex);
             this.Controls.Add(this.btnAddComplex);
-            this.Controls.Add(this.gvComplexDictionariesList);
+            this.Controls.Add(this.gvCopyrightKindList);
             this.Controls.Add(this.txtSearchComplex);
             this.Name = "BaseCopyrightKindControl";
             this.Size = new System.Drawing.Size(1187, 572);
             ((System.ComponentModel.ISupportInitialize)(this.total)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanel)).EndInit();
             this.editPanel.ResumeLayout(false);
             this.editPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).EndInit();
@@ -409,8 +451,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvComplexDictionariesList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -436,9 +481,14 @@
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnDeleteComplex;
         private Telerik.WinControls.UI.RadButton btnAddComplex;
-        private Telerik.WinControls.UI.RadGridView gvComplexDictionariesList;
+        private Telerik.WinControls.UI.RadGridView gvCopyrightKindList;
         private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchComplex;
         private Telerik.WinControls.UI.RadDropDownList ddlEditKeyField;
         private Telerik.WinControls.UI.RadLabel lbEditKeyField;
+        private System.Windows.Forms.BindingSource dsCopyrightKind;
+        private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
+        private System.Windows.Forms.BindingSource bindingSourceRu;
+        private System.Windows.Forms.BindingSource bindingSourceEn;
+        private System.Windows.Forms.BindingSource bindingSourceUk;
     }
 }
