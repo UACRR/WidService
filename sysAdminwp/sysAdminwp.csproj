@@ -82,6 +82,7 @@
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.RichTextEditor.dll</HintPath>
       <Private>True</Private>
@@ -104,6 +105,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.Designer.cs">
+      <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComplexDictionaryControls\CountryDictionaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +209,9 @@
       <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewTable.cs" />
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.resx">
+      <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.resx">
       <DependentUpon>CopyRightKindDictionaryControl.cs</DependentUpon>
     </EmbeddedResource>

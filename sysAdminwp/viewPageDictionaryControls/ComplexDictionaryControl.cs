@@ -11,6 +11,7 @@ using System.Drawing;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
 using sysAdminwp.ComplexParamForms;
+using sysAdminwp.ComplexDictionariesBaseControls;
 
 namespace sysAdminwp.viewPageDictionaryControls
 {
@@ -147,6 +148,10 @@ namespace sysAdminwp.viewPageDictionaryControls
             ddlCommonKeyData.Visible = false;
             lbEditKeyField.Visible = false;
             ddlEditKeyField.Visible = false;
+
+            //BaseCopyrightKindControl baseCopyrightKind = new BaseCopyrightKindControl() {  };
+            //Controls.Add(baseCopyrightKind);
+            
         }
 
         //initialize sequence complex dictionaries for 'TreeView' element
@@ -354,6 +359,9 @@ namespace sysAdminwp.viewPageDictionaryControls
             }
             //set data to grid of the current complex dictionary
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
+            //initialize base control 'CopyrightKind'
+            BaseCopyrightKindControl baseCopyrightKind = new BaseCopyrightKindControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+            tableLayout_MarkupElement.Controls.Add(baseCopyrightKind, 1, 0);
         }
         
         //control Show/close action for forms complex dictionaries
@@ -1465,6 +1473,11 @@ namespace sysAdminwp.viewPageDictionaryControls
             {
                 return;
             }
+
+        }
+
+        private void radDock1_Click(object sender, EventArgs e)
+        {
 
         }
     }
