@@ -24,7 +24,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //url for get data to grid
         private readonly string urlDataGrid;
         //control 'Enabled' state for elements
-        private bool controlEnabledActiveElements = true;
+        private bool controlEnabledActiveElements = false;
         public bool ControlEnabledActiveElements
         {
             get { return controlEnabledActiveElements; }
@@ -62,6 +62,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
             gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
+            //set 'Enabled' state by default
+            ControlEnabledActiveElements = true;
             
         }
         
@@ -221,54 +223,60 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ControlEnabledActiveElements = true;
         }
 
-        /// <summary>
-        /// events for TextBoxes
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //changed data of the field 'Code'
-        private void txtCodeComplex_TextChanged(object sender, EventArgs e)
-        {
-            //stop perform if elements have 'Enabled' -> false
-            if (!ControlEnabledActiveElements) return;
-            //change 'Enabled' state for elements
-            ControlEnabledActiveElements = false;
-        }
-
         //changed data of the field 'Uk'
-        private void txtNameUaComplex_TextChanged(object sender, EventArgs e)
+        private void bindingSourceUk_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            //stop perform if elements have 'Enabled' -> false
-            if (!ControlEnabledActiveElements) return;
-            //change 'Enabled' state for elements
-            ControlEnabledActiveElements = false;
+            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            {
+                //MessageBox.Show("Updated");
+                //stop perform if elements have 'Enabled' -> false
+                if (!ControlEnabledActiveElements) return;
+                //change 'Enabled' state for elements
+                ControlEnabledActiveElements = false;
+            }
         }
 
         //changed data of the field 'Ru'
-        private void txtNameRuComplex_TextChanged(object sender, EventArgs e)
+        private void bindingSourceRu_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            //stop perform if elements have 'Enabled' -> false
-            if (!ControlEnabledActiveElements) return;
-            //change 'Enabled' state for elements
-            ControlEnabledActiveElements = false;
+            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            {
+                //MessageBox.Show("Updated");
+                //stop perform if elements have 'Enabled' -> false
+                if (!ControlEnabledActiveElements) return;
+                //change 'Enabled' state for elements
+                ControlEnabledActiveElements = false;
+            }
         }
 
         //changed data of the field 'En'
-        private void txtNameEnComplex_TextChanged(object sender, EventArgs e)
+        private void bindingSourceEn_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            //stop perform if elements have 'Enabled' -> false
-            if (!ControlEnabledActiveElements) return;
-            //change 'Enabled' state for elements
-            ControlEnabledActiveElements = false;
+            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            {
+                //MessageBox.Show("Updated");
+                //stop perform if elements have 'Enabled' -> false
+                if (!ControlEnabledActiveElements) return;
+                //change 'Enabled' state for elements
+                ControlEnabledActiveElements = false;
+            }
         }
 
-        //chaged data of field 'CrGroupKind'
-        private void ddlEditKeyField_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        /// <summary>
+        /// event for field 'Code' and for dropDownList (bottom panel)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void dsCopyrightKind_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            //stop perform if elements have 'Enabled' -> false
-            if (!ControlEnabledActiveElements) return;
-            //change 'Enabled' state for elements
-            ControlEnabledActiveElements = false;
+            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            {
+                //MessageBox.Show("Updated");
+                //stop perform if elements have 'Enabled' -> false
+                if (!ControlEnabledActiveElements) return;
+                //change 'Enabled' state for elements
+                ControlEnabledActiveElements = false;
+            }
         }
     }
 }
