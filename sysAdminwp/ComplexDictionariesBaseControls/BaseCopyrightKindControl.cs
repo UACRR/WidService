@@ -19,10 +19,14 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
     {
         //data grid
         List<CopyrightKind> _copyrightKindList;
+        //item data
+        CopyrightKind copyrightKindData;
         //define connector
         private readonly ApiConnector _connector;
         //url for get data to grid
         private readonly string urlDataGrid;
+        //value 'code' for refresh data when 'Cancel' action
+        private int codeForRefresh;
         //control 'Enabled' state for elements
         private bool controlEnabledActiveElements = false;
         public bool ControlEnabledActiveElements
@@ -120,12 +124,23 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
+            //save value 'code' for use when action -> 'Cancel'
+
             //get object by parameter 'code' from service
-            CopyrightKind copyrightKindData = dictService.GetCopyrightKind(code);
+            copyrightKindData = dictService.GetCopyrightKind(code);
             //stop perform if data is not exist
             if (copyrightKindData == null) return;
-            //use data for binding source
-            dsCopyrightKind.DataSource = copyrightKindData;
+            //save value 'code' -> fr refresh data when 'Cancel' action
+            codeForRefresh = code;
+            //update data for bottom panel
+            DataUpdateForBottomPanel();
+        }
+
+        //refresh changed data for bottom panel
+        private void DataUpdateForBottomPanel()
+        {
+            //use data for 'Edit' binding source
+            bsCopyrightKind.DataSource = copyrightKindData;
             //define binding for source of the 'Uk'
             SetupBindSourcw(copyrightKindData, "Uk", bindingSourceUk);
             //defined binding for source of the 'Ru'
@@ -217,6 +232,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Cancel' reset changed data for selected item
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            //reset changed data
+            DataUpdateForBottomPanel();
+            //set data without changes
+            bsCopyrightKind.DataSource = bsCopyrightKind_ForSave.DataSource;
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements

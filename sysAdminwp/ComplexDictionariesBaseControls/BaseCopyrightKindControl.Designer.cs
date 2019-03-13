@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.total = new Telerik.WinControls.UI.RadLabel();
             this.lbTotal = new Telerik.WinControls.UI.RadLabel();
             this.ddlCommonKeyData = new Telerik.WinControls.UI.RadDropDownList();
@@ -44,7 +44,7 @@
             this.editPanel = new Telerik.WinControls.UI.RadPanel();
             this.lbEditKeyField = new Telerik.WinControls.UI.RadLabel();
             this.ddlEditKeyField = new Telerik.WinControls.UI.RadDropDownList();
-            this.dsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
+            this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameRuComplex = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSourceRu = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameEnComplex = new Telerik.WinControls.UI.RadTextBox();
@@ -71,7 +71,7 @@
             this.editPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCopyrightKind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).BeginInit();
@@ -200,7 +200,7 @@
             // 
             this.ddlEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlEditKeyField.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.dsCopyrightKind, "CrGroupCode", true));
+            this.ddlEditKeyField.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
             this.ddlEditKeyField.DataSource = this.dictBaseTypeIBindingSource;
             this.ddlEditKeyField.DisplayMember = "Name";
             this.ddlEditKeyField.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -211,10 +211,10 @@
             this.ddlEditKeyField.ThemeName = "Office2013Light";
             this.ddlEditKeyField.ValueMember = "CodeI";
             // 
-            // dsCopyrightKind
+            // bsCopyrightKind
             // 
-            this.dsCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
-            this.dsCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
+            this.bsCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
+            this.bsCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtNameRuComplex
             // 
@@ -260,7 +260,7 @@
             // 
             // txtCodeComplex
             // 
-            this.txtCodeComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsCopyrightKind, "CodeI", true));
+            this.txtCodeComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
             this.txtCodeComplex.Location = new System.Drawing.Point(162, 28);
             this.txtCodeComplex.MaxLength = 10;
             this.txtCodeComplex.Name = "txtCodeComplex";
@@ -371,37 +371,37 @@
             this.gvCopyrightKindList.MasterTemplate.AllowEditRow = false;
             this.gvCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
             this.gvCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn6.FieldName = "Code";
-            gridViewTextBoxColumn6.HeaderText = "Код";
-            gridViewTextBoxColumn6.Name = "Code";
-            gridViewTextBoxColumn6.Width = 105;
-            gridViewTextBoxColumn7.FieldName = "NameUk";
-            gridViewTextBoxColumn7.HeaderText = "Назва";
-            gridViewTextBoxColumn7.Name = "NameUk";
-            gridViewTextBoxColumn7.Width = 316;
-            gridViewTextBoxColumn8.FieldName = "NameRu";
-            gridViewTextBoxColumn8.HeaderText = "Название";
-            gridViewTextBoxColumn8.Name = "NameRu";
-            gridViewTextBoxColumn8.Width = 316;
-            gridViewTextBoxColumn9.FieldName = "NameEn";
-            gridViewTextBoxColumn9.HeaderText = "Name";
-            gridViewTextBoxColumn9.Name = "NameEn";
-            gridViewTextBoxColumn9.Width = 231;
-            gridViewTextBoxColumn10.FieldName = "VariantUse";
-            gridViewTextBoxColumn10.HeaderText = "Спосіб використання";
-            gridViewTextBoxColumn10.MinWidth = 200;
-            gridViewTextBoxColumn10.Name = "VariantUse";
-            gridViewTextBoxColumn10.Width = 202;
+            gridViewTextBoxColumn11.FieldName = "Code";
+            gridViewTextBoxColumn11.HeaderText = "Код";
+            gridViewTextBoxColumn11.Name = "Code";
+            gridViewTextBoxColumn11.Width = 105;
+            gridViewTextBoxColumn12.FieldName = "NameUk";
+            gridViewTextBoxColumn12.HeaderText = "Назва";
+            gridViewTextBoxColumn12.Name = "NameUk";
+            gridViewTextBoxColumn12.Width = 316;
+            gridViewTextBoxColumn13.FieldName = "NameRu";
+            gridViewTextBoxColumn13.HeaderText = "Название";
+            gridViewTextBoxColumn13.Name = "NameRu";
+            gridViewTextBoxColumn13.Width = 316;
+            gridViewTextBoxColumn14.FieldName = "NameEn";
+            gridViewTextBoxColumn14.HeaderText = "Name";
+            gridViewTextBoxColumn14.Name = "NameEn";
+            gridViewTextBoxColumn14.Width = 231;
+            gridViewTextBoxColumn15.FieldName = "VariantUse";
+            gridViewTextBoxColumn15.HeaderText = "Спосіб використання";
+            gridViewTextBoxColumn15.MinWidth = 200;
+            gridViewTextBoxColumn15.Name = "VariantUse";
+            gridViewTextBoxColumn15.Width = 202;
             this.gvCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10});
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15});
             this.gvCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
             this.gvCopyrightKindList.MasterTemplate.EnableFiltering = true;
             this.gvCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
-            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gvCopyrightKindList.Name = "gvCopyrightKindList";
             this.gvCopyrightKindList.ReadOnly = true;
             this.gvCopyrightKindList.ShowGroupPanel = false;
@@ -447,7 +447,7 @@
             this.editPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCopyrightKind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).EndInit();
@@ -494,7 +494,7 @@
         private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchComplex;
         private Telerik.WinControls.UI.RadDropDownList ddlEditKeyField;
         private Telerik.WinControls.UI.RadLabel lbEditKeyField;
-        private System.Windows.Forms.BindingSource dsCopyrightKind;
+        private System.Windows.Forms.BindingSource bsCopyrightKind;
         private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
         private System.Windows.Forms.BindingSource bindingSourceRu;
         private System.Windows.Forms.BindingSource bindingSourceEn;
