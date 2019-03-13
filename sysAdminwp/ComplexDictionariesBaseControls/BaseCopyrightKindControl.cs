@@ -30,6 +30,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtSearchComplex.SetUsageGrid(gvCopyrightKindList);
             //initialize data for drop down list - 'Спосіб використання'
             ddlCommonKeyData.DataSource = InitializeDataForFilter();
+            //initialize data for binding source of the Dictionaries 'dropDownList'
             dictBaseTypeIBindingSource.DataSource = ddlCommonKeyData.DataSource;
             //initialize data for grid
             gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
@@ -77,26 +78,40 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //get id dictionary
             GridViewRowInfo rowDetail = gvCopyrightKindList.CurrentRow;
+            //get data of the current row
             var @curRow = rowDetail.DataBoundItem as ViewTable;
+            //stop perform if data is not exist
             if (@curRow == null) return;
-
+            
             DictionaryService dictService = new DictionaryService();
-            CopyrightKind copyrightKindData = dictService.GetCopyrightKind( int.Parse(@curRow.Code));
+
+            //check field 'Code' on correct type 'int'
+            if (!int.TryParse(@curRow.Code, out int code)) return;
+            //get object by parameter 'code' from service
+            CopyrightKind copyrightKindData = dictService.GetCopyrightKind(code);
+            //stop perform if data is not exist
             if (copyrightKindData == null) return;
+            //use data for binding source
             dsCopyrightKind.DataSource = copyrightKindData;
-            SetupBindSourcw(copyrightKindData, "Uk", bindingSourceUk );
-            SetupBindSourcw(copyrightKindData, "Ru", bindingSourceRu );
-            SetupBindSourcw(copyrightKindData, "En", bindingSourceEn );
+            //define binding for source of the 'Uk'
+            SetupBindSourcw(copyrightKindData, "Uk", bindingSourceUk);
+            //defined binding for source of the 'Ru'
+            SetupBindSourcw(copyrightKindData, "Ru", bindingSourceRu);
+            //define binding for source of the 'En'
+            SetupBindSourcw(copyrightKindData, "En", bindingSourceEn);
         }
 
+        //binding for textBox elements
         private void SetupBindSourcw(CopyrightKind copyrightKindData, string Lang, BindingSource dest)
         {
+            // get object by 'Lang'
             var copyKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == Lang);
             if (copyKind == null)
             {
                 copyKind = new CopyrightKindTr { Lang = Lang };
                 copyrightKindData.CopyrightKindTr.Add(copyKind);
             }
+            //use data for source
             dest.DataSource = copyKind;
         }
     }
