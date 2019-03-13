@@ -137,12 +137,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void DataUpdateForBottomPanel()
         {
             DictionaryService dictService = new DictionaryService();
+            //set default first item of the grid
+            if (codeForRefresh == 0) codeForRefresh = _copyrightKindList[0].CodeI;
             //get object by parameter 'code' from service
             copyrightKindData = dictService.GetCopyrightKind(codeForRefresh);
             //use data for binding source
             bsCopyrightKind.DataSource = copyrightKindData;
-
-
             //define binding for source of the 'Uk'
             ukCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Uk");
             if (ukCopyrightKind == null)
@@ -303,8 +303,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                //change property 'Text' of the btnSave for 'Save' action
-                btnSave.Text = "Зберегти";
+                if (btnSave.Text != "Додати")
+                {
+                    //change property 'Text' of the btnSave for 'Save' action
+                    btnSave.Text = "Зберегти";
+                }
                 //MessageBox.Show("Updated");
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -318,8 +321,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                //change property 'Text' of the btnSave for 'Save' action
-                btnSave.Text = "Зберегти";
+                if (btnSave.Text != "Додати")
+                {
+                    //change property 'Text' of the btnSave for 'Save' action
+                    btnSave.Text = "Зберегти";
+                }
                 //MessageBox.Show("Updated");
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -333,8 +339,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                //change property 'Text' of the btnSave for 'Save' action
-                btnSave.Text = "Зберегти";
+                if (btnSave.Text != "Додати")
+                {
+                    //change property 'Text' of the btnSave for 'Save' action
+                    btnSave.Text = "Зберегти";
+                }
                 //MessageBox.Show("Updated");
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -352,8 +361,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                //change property 'Text' of the btnSave for 'Save' action
-                btnSave.Text = "Зберегти";
+                if (btnSave.Text != "Додати")
+                {
+                    //change property 'Text' of the btnSave for 'Save' action
+                    btnSave.Text = "Зберегти";
+                }
                 //MessageBox.Show("Updated");
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
