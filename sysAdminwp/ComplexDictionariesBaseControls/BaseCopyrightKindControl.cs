@@ -228,6 +228,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Add' new object to grid
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
+            //change property 'Text' of the btnSave for 'Add' action
+            btnSave.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
             copyrightKindData = new CopyrightKind();
@@ -253,18 +255,31 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            //stop perform if elements have 'Enabled' -> false
-            if (!ControlEnabledActiveElements) return;
-            //change 'Enabled' state for elements
-            ControlEnabledActiveElements = false;
+            DictionaryService dictService = new DictionaryService();
+            //delete selected item of grid by field 'Code'
+            dictService.DeleteCopyrightKind(codeForRefresh);
+            DataUpdateForBottomPanel();
+            ////stop perform if elements have 'Enabled' -> false
+            //if (!ControlEnabledActiveElements) return;
+            ////change 'Enabled' state for elements
+            //ControlEnabledActiveElements = false;
         }
 
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
             DictionaryService dictService = new DictionaryService();
-            //send created object
-            var result = dictService.CreateCopyrightKind(copyrightKindData);
+            if (btnSave.Text == "Додати")
+            {
+                //send created object
+                var result = dictService.CreateCopyrightKind(copyrightKindData);
+                //set default state for 'Text' of the btnSave
+                btnSave.Text = "Зберегти";
+            } else if (btnSave.Text == "Зберегти")
+            {
+                //save changes
+                var result = dictService.UpdateCopyrightKind(copyrightKindData);
+            }
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
@@ -288,6 +303,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSave.Text = "Зберегти";
                 //MessageBox.Show("Updated");
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -301,6 +318,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSave.Text = "Зберегти";
                 //MessageBox.Show("Updated");
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -314,6 +333,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSave.Text = "Зберегти";
                 //MessageBox.Show("Updated");
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -331,6 +352,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSave.Text = "Зберегти";
                 //MessageBox.Show("Updated");
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
