@@ -1471,7 +1471,7 @@ namespace ipsmedserviceapp.Controllers
             var dest = new CopyrightKind();
             dest.SetFields(sors, new[] { "CodeI" });
             _dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-
+            _dbContext.CopyrightKind.Add(dest);
             await _dbContext.SaveChangesAsync();
             return Ok(dest);
         }

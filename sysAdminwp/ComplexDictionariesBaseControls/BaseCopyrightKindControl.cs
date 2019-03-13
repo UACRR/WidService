@@ -239,6 +239,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
             dictService.DeleteCopyrightKind(codeForRefresh);
+            //update data for grid
+            gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
         }
 
