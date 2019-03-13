@@ -31,12 +31,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             set
             {
                 controlEnabledActiveElements = value;
+                //'search' element
                 txtSearchComplex.Enabled = value;
+                //filter for grid
                 ddlCommonKeyData.Enabled = value;
+                //grid element
                 gvCopyrightKindList.Enabled = value;
+                //'Add' button
                 btnAddComplex.Enabled = value;
+                //'Delete' button
                 btnDeleteComplex.Enabled = value;
+                //'Save' button (bottom panel)
                 btnSave.Enabled = !value;
+                //'Cancel' button (bottom panel)
                 btnCancel.Enabled = !value;
             }
         }
