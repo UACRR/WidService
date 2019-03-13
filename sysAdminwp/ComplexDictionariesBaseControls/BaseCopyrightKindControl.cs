@@ -23,6 +23,23 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private readonly ApiConnector _connector;
         //url for get data to grid
         private readonly string urlDataGrid;
+        //control 'Enabled' state for elements
+        private bool controlEnabledActiveElements = true;
+        public bool ControlEnabledActiveElements
+        {
+            get { return controlEnabledActiveElements; }
+            set
+            {
+                controlEnabledActiveElements = value;
+                txtSearchComplex.Enabled = value;
+                ddlCommonKeyData.Enabled = value;
+                gvCopyrightKindList.Enabled = value;
+                btnAddComplex.Enabled = value;
+                btnDeleteComplex.Enabled = value;
+                btnSave.Enabled = !value;
+                btnCancel.Enabled = !value;
+            }
+        }
         public BaseCopyrightKindControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
@@ -159,6 +176,92 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //show current count elements into grid
             total.Text = _copyrightKindList.Count.ToString();
             return filteredData;
+        }
+
+        //action 'Add' new object to grid
+        private void btnAddComplex_Click(object sender, EventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
+        }
+
+        //action 'Delete' exist object from grid
+        private void btnDeleteComplex_Click(object sender, EventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
+        }
+
+        //action 'Save' object to grid
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> true
+            if (ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = true;
+        }
+
+        //action 'Cancel' reset changed data for selected item
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> true
+            if (ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = true;
+        }
+
+        /// <summary>
+        /// events for TextBoxes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //changed data of the field 'Code'
+        private void txtCodeComplex_TextChanged(object sender, EventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
+        }
+
+        //changed data of the field 'Uk'
+        private void txtNameUaComplex_TextChanged(object sender, EventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
+        }
+
+        //changed data of the field 'Ru'
+        private void txtNameRuComplex_TextChanged(object sender, EventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
+        }
+
+        //changed data of the field 'En'
+        private void txtNameEnComplex_TextChanged(object sender, EventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
+        }
+
+        //chaged data of field 'CrGroupKind'
+        private void ddlEditKeyField_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
         }
     }
 }
