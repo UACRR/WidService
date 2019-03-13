@@ -318,6 +318,9 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsCopyRight;
                     lbEditKeyField.Text = "Спосіб використання";
                     ddlEditKeyField.DataSource = baseDictsCopyRight;
+                    //initialize base control 'CopyrightKind'
+                    BaseCopyrightKindControl baseCopyrightKind = new BaseCopyrightKindControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+                    tableLayout_MarkupElement.Controls.Add(baseCopyrightKind, 1, 0);
                     break;
                 case "country":
                     var baseDictsContinent = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
@@ -359,9 +362,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             }
             //set data to grid of the current complex dictionary
             gvComplexDictionariesList.DataSource = GetComplexDictionariesData();
-            //initialize base control 'CopyrightKind'
-            BaseCopyrightKindControl baseCopyrightKind = new BaseCopyrightKindControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
-            tableLayout_MarkupElement.Controls.Add(baseCopyrightKind, 1, 0);
         }
         
         //control Show/close action for forms complex dictionaries
