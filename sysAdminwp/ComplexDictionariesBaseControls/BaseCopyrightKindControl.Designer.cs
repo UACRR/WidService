@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.total = new Telerik.WinControls.UI.RadLabel();
             this.lbTotal = new Telerik.WinControls.UI.RadLabel();
             this.ddlCommonKeyData = new Telerik.WinControls.UI.RadDropDownList();
@@ -42,12 +42,15 @@
             this.lbCommonNameKey = new Telerik.WinControls.UI.RadLabel();
             this.radLblSearch = new System.Windows.Forms.Label();
             this.editPanel = new Telerik.WinControls.UI.RadPanel();
+            this.lbEditKeyField = new Telerik.WinControls.UI.RadLabel();
             this.ddlEditKeyField = new Telerik.WinControls.UI.RadDropDownList();
             this.dsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameRuComplex = new Telerik.WinControls.UI.RadTextBox();
-            this.lbEditKeyField = new Telerik.WinControls.UI.RadLabel();
+            this.bindingSourceRu = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameEnComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.bindingSourceEn = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameUaComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.bindingSourceUk = new System.Windows.Forms.BindingSource(this.components);
             this.txtCodeComplex = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -59,9 +62,6 @@
             this.btnAddComplex = new Telerik.WinControls.UI.RadButton();
             this.gvCopyrightKindList = new Telerik.WinControls.UI.RadGridView();
             this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.bindingSourceEn = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceUk = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceRu = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.total)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).BeginInit();
@@ -69,12 +69,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanel)).BeginInit();
             this.editPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
@@ -86,9 +89,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).BeginInit();
             this.SuspendLayout();
             // 
             // total
@@ -120,10 +120,11 @@
             this.ddlCommonKeyData.FormattingEnabled = false;
             this.ddlCommonKeyData.Location = new System.Drawing.Point(760, 2);
             this.ddlCommonKeyData.Name = "ddlCommonKeyData";
-            this.ddlCommonKeyData.Size = new System.Drawing.Size(427, 21);
+            this.ddlCommonKeyData.Size = new System.Drawing.Size(427, 20);
             this.ddlCommonKeyData.TabIndex = 22;
             this.ddlCommonKeyData.ThemeName = "Office2013Light";
             this.ddlCommonKeyData.ValueMember = "CodeI";
+            this.ddlCommonKeyData.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
             // 
             // dictBaseTypeIBindingSource
             // 
@@ -184,6 +185,17 @@
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).LineLimit = false;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // lbEditKeyField
+            // 
+            this.lbEditKeyField.AutoSize = false;
+            this.lbEditKeyField.Location = new System.Drawing.Point(633, 29);
+            this.lbEditKeyField.Name = "lbEditKeyField";
+            this.lbEditKeyField.Size = new System.Drawing.Size(144, 19);
+            this.lbEditKeyField.TabIndex = 12;
+            this.lbEditKeyField.Text = "Спосіб використання";
+            this.lbEditKeyField.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbEditKeyField.ThemeName = "Office2013Light";
+            // 
             // ddlEditKeyField
             // 
             this.ddlEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -194,7 +206,7 @@
             this.ddlEditKeyField.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyField.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyField.Name = "ddlEditKeyField";
-            this.ddlEditKeyField.Size = new System.Drawing.Size(401, 21);
+            this.ddlEditKeyField.Size = new System.Drawing.Size(401, 20);
             this.ddlEditKeyField.TabIndex = 13;
             this.ddlEditKeyField.ThemeName = "Office2013Light";
             this.ddlEditKeyField.ValueMember = "CodeI";
@@ -212,16 +224,9 @@
             this.txtNameRuComplex.Size = new System.Drawing.Size(465, 20);
             this.txtNameRuComplex.TabIndex = 9;
             // 
-            // lbEditKeyField
+            // bindingSourceRu
             // 
-            this.lbEditKeyField.AutoSize = false;
-            this.lbEditKeyField.Location = new System.Drawing.Point(633, 29);
-            this.lbEditKeyField.Name = "lbEditKeyField";
-            this.lbEditKeyField.Size = new System.Drawing.Size(144, 19);
-            this.lbEditKeyField.TabIndex = 12;
-            this.lbEditKeyField.Text = "Спосіб використання";
-            this.lbEditKeyField.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbEditKeyField.ThemeName = "Office2013Light";
+            this.bindingSourceRu.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             // 
             // txtNameEnComplex
             // 
@@ -232,6 +237,10 @@
             this.txtNameEnComplex.Size = new System.Drawing.Size(465, 20);
             this.txtNameEnComplex.TabIndex = 8;
             // 
+            // bindingSourceEn
+            // 
+            this.bindingSourceEn.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            // 
             // txtNameUaComplex
             // 
             this.txtNameUaComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUk, "Name", true));
@@ -240,6 +249,10 @@
             this.txtNameUaComplex.Name = "txtNameUaComplex";
             this.txtNameUaComplex.Size = new System.Drawing.Size(465, 20);
             this.txtNameUaComplex.TabIndex = 7;
+            // 
+            // bindingSourceUk
+            // 
+            this.bindingSourceUk.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             // 
             // txtCodeComplex
             // 
@@ -350,37 +363,37 @@
             this.gvCopyrightKindList.MasterTemplate.AllowEditRow = false;
             this.gvCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
             this.gvCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn6.FieldName = "Code";
-            gridViewTextBoxColumn6.HeaderText = "Код";
-            gridViewTextBoxColumn6.Name = "Code";
-            gridViewTextBoxColumn6.Width = 105;
-            gridViewTextBoxColumn7.FieldName = "NameUk";
-            gridViewTextBoxColumn7.HeaderText = "Назва";
-            gridViewTextBoxColumn7.Name = "NameUk";
-            gridViewTextBoxColumn7.Width = 315;
-            gridViewTextBoxColumn8.FieldName = "NameRu";
-            gridViewTextBoxColumn8.HeaderText = "Название";
-            gridViewTextBoxColumn8.Name = "NameRu";
-            gridViewTextBoxColumn8.Width = 315;
-            gridViewTextBoxColumn9.FieldName = "NameEn";
-            gridViewTextBoxColumn9.HeaderText = "Name";
-            gridViewTextBoxColumn9.Name = "NameEn";
-            gridViewTextBoxColumn9.Width = 230;
-            gridViewTextBoxColumn10.FieldName = "VariantUse";
-            gridViewTextBoxColumn10.HeaderText = "Спосіб використання";
-            gridViewTextBoxColumn10.MinWidth = 200;
-            gridViewTextBoxColumn10.Name = "VariantUse";
-            gridViewTextBoxColumn10.Width = 200;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 105;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 316;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 316;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 231;
+            gridViewTextBoxColumn5.FieldName = "VariantUse";
+            gridViewTextBoxColumn5.HeaderText = "Спосіб використання";
+            gridViewTextBoxColumn5.MinWidth = 200;
+            gridViewTextBoxColumn5.Name = "VariantUse";
+            gridViewTextBoxColumn5.Width = 202;
             this.gvCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5});
             this.gvCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
             this.gvCopyrightKindList.MasterTemplate.EnableFiltering = true;
             this.gvCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
-            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvCopyrightKindList.Name = "gvCopyrightKindList";
             this.gvCopyrightKindList.ReadOnly = true;
             this.gvCopyrightKindList.ShowGroupPanel = false;
@@ -399,18 +412,6 @@
             this.txtSearchComplex.Name = "txtSearchComplex";
             this.txtSearchComplex.Size = new System.Drawing.Size(568, 20);
             this.txtSearchComplex.TabIndex = 24;
-            // 
-            // bindingSourceEn
-            // 
-            this.bindingSourceEn.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            // 
-            // bindingSourceUk
-            // 
-            this.bindingSourceUk.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            // 
-            // bindingSourceRu
-            // 
-            this.bindingSourceRu.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             // 
             // BaseCopyrightKindControl
             // 
@@ -436,12 +437,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.editPanel)).EndInit();
             this.editPanel.ResumeLayout(false);
             this.editPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -453,9 +457,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

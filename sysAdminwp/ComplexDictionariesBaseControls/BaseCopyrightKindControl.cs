@@ -21,6 +21,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         List<CopyrightKind> _copyrightKindList;
         //define connector
         private readonly ApiConnector _connector;
+        //url for get data to grid
+        private readonly string urlDataGrid;
         public BaseCopyrightKindControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
@@ -32,6 +34,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ddlCommonKeyData.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
             dictBaseTypeIBindingSource.DataSource = ddlCommonKeyData.DataSource;
+            //save url for filter data into grid
+            urlDataGrid = urlForComplexDict;
             //initialize data for grid
             gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
             
@@ -40,6 +44,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
+            //save url for 'filtering' grid
+
             //result data for initialize to grid
             List<ViewTable> dataGrid = new List<ViewTable>();
             //check on valid state parameter
@@ -57,11 +63,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                     VariantUse = ddlCommonKeyData.Items.First(el => (int)el.Value == item.CrGroupCode).Text,
                 });
-                //show current count elements into grid
-                total.Text = _copyrightKindList.Count.ToString();
             }
+            //show current count elements into grid
+            total.Text = _copyrightKindList.Count.ToString();
             return dataGrid;
         }
+
         //handle data for drop down list - 'Спосіб використання'
         private List<DictBaseTypeI> InitializeDataForFilter()
         {
@@ -113,6 +120,45 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
             //use data for source
             dest.DataSource = copyKind;
+        }
+
+        //select item into drop down list for filtered data into grid
+        private void ddlCommonKeyData_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
+        {
+            //stop perform if position is not exist
+            if (e.Position == -1) return;
+            //get field 'value' of the current selected item
+            int selectedItemData = (int)ddlCommonKeyData.Items[e.Position].Value;
+            //set filtered data to grid
+            gvCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
+        }
+
+        //filter data for grid
+        private List<ViewTable> FilterDataIntoGrid(int code)
+        {
+            //initialzie empty data for result
+            List<ViewTable> filteredData = new List<ViewTable>();
+            //get all data of the 'CopyrightKind'
+            _copyrightKindList = _connector.GetList<CopyrightKind>(urlDataGrid);
+            //stop perform if data is not exist
+            if (_copyrightKindList == null) return new List<ViewTable>();
+            //filter data by parameter 'code'
+            _copyrightKindList = _copyrightKindList.Where(item => item.CrGroupCode == code).ToList();
+            //initialize data for grid
+            foreach (var item in _copyrightKindList)
+            {
+                filteredData.Add(new ViewTable
+                {
+                    Code = item.CodeI.ToString(),
+                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    VariantUse = ddlCommonKeyData.SelectedItem.Text,
+                });
+            }
+            //show current count elements into grid
+            total.Text = _copyrightKindList.Count.ToString();
+            return filteredData;
         }
     }
 }
