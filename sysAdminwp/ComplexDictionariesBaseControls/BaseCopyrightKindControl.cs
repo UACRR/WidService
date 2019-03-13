@@ -17,6 +17,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCopyrightKindControl : UserControl
     {
+        //Uk data item
+        CopyrightKindTr ukCopyrightKind;
+        //Ru data item
+        CopyrightKindTr ruCopyrightKind;
+        //En data item
+        CopyrightKindTr enCopyrightKind;
         //data grid
         List<CopyrightKind> _copyrightKindList;
         //item data
@@ -119,17 +125,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             var @curRow = rowDetail.DataBoundItem as ViewTable;
             //stop perform if data is not exist
             if (@curRow == null) return;
-            
-            DictionaryService dictService = new DictionaryService();
-
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
-            //save value 'code' for use when action -> 'Cancel'
-
-            //get object by parameter 'code' from service
-            copyrightKindData = dictService.GetCopyrightKind(code);
-            //stop perform if data is not exist
-            if (copyrightKindData == null) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
             codeForRefresh = code;
             //update data for bottom panel
@@ -139,29 +136,55 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel()
         {
-            //use data for 'Edit' binding source
+            DictionaryService dictService = new DictionaryService();
+            //get object by parameter 'code' from service
+            copyrightKindData = dictService.GetCopyrightKind(codeForRefresh);
+            //use data for binding source
             bsCopyrightKind.DataSource = copyrightKindData;
+
+
             //define binding for source of the 'Uk'
-            SetupBindSourcw(copyrightKindData, "Uk", bindingSourceUk);
+            ukCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            if (ukCopyrightKind == null)
+            {
+                ukCopyrightKind = new CopyrightKindTr { Lang = "Uk" };
+                copyrightKindData.CopyrightKindTr.Add(ukCopyrightKind);
+            }
+            bindingSourceUk.DataSource = ukCopyrightKind;
+            //SetupBindSource("Uk", bindingSourceUk);
             //defined binding for source of the 'Ru'
-            SetupBindSourcw(copyrightKindData, "Ru", bindingSourceRu);
+            ruCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            if (ruCopyrightKind == null)
+            {
+                ruCopyrightKind = new CopyrightKindTr { Lang = "Ru" };
+                copyrightKindData.CopyrightKindTr.Add(ruCopyrightKind);
+            }
+            bindingSourceRu.DataSource = ruCopyrightKind;
+            //SetupBindSource("Ru", bindingSourceRu);
             //define binding for source of the 'En'
-            SetupBindSourcw(copyrightKindData, "En", bindingSourceEn);
+            enCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "En");
+            if (enCopyrightKind == null)
+            {
+                enCopyrightKind = new CopyrightKindTr { Lang = "En" };
+                copyrightKindData.CopyrightKindTr.Add(enCopyrightKind);
+            }
+            bindingSourceEn.DataSource = enCopyrightKind;
+            //SetupBindSource("En", bindingSourceEn);
         }
 
-        //binding for textBox elements
-        private void SetupBindSourcw(CopyrightKind copyrightKindData, string Lang, BindingSource dest)
-        {
-            // get object by 'Lang'
-            var copyKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == Lang);
-            if (copyKind == null)
-            {
-                copyKind = new CopyrightKindTr { Lang = Lang };
-                copyrightKindData.CopyrightKindTr.Add(copyKind);
-            }
-            //use data for source
-            dest.DataSource = copyKind;
-        }
+        ////binding for textBox elements
+        //private void SetupBindSource(string Lang, BindingSource dest)
+        //{
+        //    // get object by 'Lang'
+        //    var copyKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == Lang);
+        //    if (copyKind == null)
+        //    {
+        //        copyKind = new CopyrightKindTr { Lang = Lang };
+        //        copyrightKindData.CopyrightKindTr.Add(copyKind);
+        //    }
+        //    //use data for source
+        //    dest.DataSource = copyrightKindData;
+        //}
 
         //select item into drop down list for filtered data into grid
         private void ddlCommonKeyData_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
@@ -205,6 +228,22 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Add' new object to grid
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
+            //clear data into bottom panel
+            //refresh data for field 'Code'
+            copyrightKindData = new CopyrightKind();
+            bsCopyrightKind.DataSource = copyrightKindData;
+            //refresh data for field 'Uk'
+            ukCopyrightKind = new CopyrightKindTr();
+            copyrightKindData.CopyrightKindTr.Add(ukCopyrightKind);
+            bindingSourceUk.DataSource = ukCopyrightKind;
+            //refresh data for field 'Ru'
+            ruCopyrightKind = new CopyrightKindTr();
+            copyrightKindData.CopyrightKindTr.Add(ruCopyrightKind);
+            bindingSourceRu.DataSource = ruCopyrightKind;
+            //refresh data for field 'Ru'
+            enCopyrightKind = new CopyrightKindTr();
+            copyrightKindData.CopyrightKindTr.Add(enCopyrightKind);
+            bindingSourceEn.DataSource = enCopyrightKind;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -223,6 +262,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
+            DictionaryService dictService = new DictionaryService();
+            //send created object
+            var result = dictService.CreateCopyrightKind(copyrightKindData);
+            DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -234,8 +277,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //reset changed data
             DataUpdateForBottomPanel();
-            //set data without changes
-            bsCopyrightKind.DataSource = bsCopyrightKind_ForSave.DataSource;
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
