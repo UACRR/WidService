@@ -138,6 +138,31 @@ namespace ipsFormsDesign.Services
             return _webApi.DeleteItem(url, id.ToString());
         }
 
+        // SystemConstant BEGIN ********************
+        public SystemConstant GetSystemConstant(int id)
+        {
+            string url = string.Concat(_prefix, "extra/systemconstant");
+            return _webApi.GetItemById<SystemConstant>(url, id.ToString());
+        }
+
+        public SystemConstant CreateSystemConstant(SystemConstant sors)
+        {
+            string url = string.Concat(_prefix, "extra/systemconstant");
+            return _webApi.NewItemWithResult(url, sors);
+        }
+
+        public SystemConstant UpdateSystemConstant(SystemConstant sors)
+        {
+            string url = string.Concat(_prefix, "extra/systemconstant");
+            return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
+        }
+
+        public bool DeleteSystemConstant(int id)
+        {
+            string url = string.Concat(_prefix, "extra/systemconstant");
+            return _webApi.DeleteItem(url, id.ToString());
+        }
+
         // TypePlace BEGIN ********************
         public TypePlace GetTypePlace(int id)
         {

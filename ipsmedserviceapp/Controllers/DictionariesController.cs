@@ -1784,6 +1784,90 @@ namespace ipsmedserviceapp.Controllers
         }
         // KlR030 END **********************
 
+        // SystemConstant BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/systemconstant/{id}")]
+        public async Task<IActionResult> GetSystemConstant(int id)
+        {
+            var dest = await _dbContext.SystemConstant.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.SystemConstantTr)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+        // Create New  ****************************
+        [HttpPost("extra/systemconstant")]
+        public async Task<IActionResult> CreateSystemConstant([FromBody] SystemConstant sors)
+        {
+            var dest = new SystemConstant();
+            try
+            {
+                dest.SetFields(sors);
+                _dbContext.AppendList(sors.SystemConstantTr, dest.SystemConstantTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+                _dbContext.SystemConstant.Add(dest);
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+
+            }
+            //var dest = new CopyrightKind();
+            //dest.SetFields(sors, new[] { "CodeI" });
+            //_dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            //_dbContext.CopyrightKind.Add(dest);
+            //await _dbContext.SaveChangesAsync();
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/systemconstant/{id}")]
+        public async Task<IActionResult> UpdateSystemConstant(int id, [FromBody] SystemConstant sors)
+        {
+            var dest = await _dbContext.SystemConstant.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.SystemConstantTr)
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.SystemConstantTr, dest.SystemConstantTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/systemconstant/{id}")]
+        public async Task<IActionResult> DeleteSystemConstant(int id)
+        {
+            var delRow = await _dbContext.SystemConstant.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.SystemConstantTr)
+                                .FirstOrDefaultAsync();
+            if (delRow == null)
+                return NotFound();
+
+            try
+            {
+                _dbContext.SystemConstantTr.RemoveRange(delRow.SystemConstantTr);
+                _dbContext.SystemConstant.Remove(delRow);
+
+                await _dbContext.SaveChangesAsync();
+            }
+            catch (Exception e)
+            {
+
+            }
+            //_dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
+            //_dbContext.CopyrightKind.Remove( delRow );
+
+            //await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+        // SystemConstant END **********************
+
         // TypePlace BEGIN ********************
         // Get By Id   ****************************
         [HttpGet("extra/typeplace/{id}")]

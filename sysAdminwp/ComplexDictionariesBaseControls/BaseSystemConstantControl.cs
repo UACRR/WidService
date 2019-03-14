@@ -18,15 +18,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
     public partial class BaseSystemConstantControl : UserControl
     {
         //Uk data item
-        SystemConstantTr ukCopyrightKind;
+        SystemConstantTr ukSystemConstant;
         //Ru data item
-        SystemConstantTr ruCopyrightKind;
+        SystemConstantTr ruSystemConstant;
         //En data item
-        SystemConstantTr enCopyrightKind;
+        SystemConstantTr enSystemConstant;
         //data grid
-        List<SystemConstant> _copyrightKindList;
+        List<SystemConstant> _systemConstantList;
         //item data
-        SystemConstant copyrightKindData;
+        SystemConstant systemConstantData;
         //define connector
         private readonly ApiConnector _connector;
         //url for get data to grid
@@ -43,8 +43,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 controlEnabledActiveElements = value;
                 //'search' element
                 txtSearchSystemConstant.Enabled = value;
-                //filter for grid
-                ddlFilterCopyrightKind.Enabled = value;
                 //grid element
                 gridSystemConstantList.Enabled = value;
                 //'Add' button
@@ -64,10 +62,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             _connector = connector;
             //setup search posibility for textBox element
             txtSearchSystemConstant.SetUsageGrid(gridSystemConstantList);
-            //initialize data for drop down list - 'Спосіб використання'
-            ddlFilterCopyrightKind.DataSource = InitializeDataForFilter();
-            //initialize data for binding source of the Dictionaries 'dropDownList'
-            bsSimpleDictSystemConstant.DataSource = ddlFilterCopyrightKind.DataSource;
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
@@ -87,9 +81,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return dataGrid;
             //get data dictionaries -> for grid
-            _copyrightKindList = _connector.GetList<SystemConstant>(urlForGetDataDictionaries);
+            _systemConstantList = _connector.GetList<SystemConstant>(urlForGetDataDictionaries);
             //initialize grid data
-            foreach (var item in _copyrightKindList)
+            foreach (var item in _systemConstantList)
             {
                 dataGrid.Add(new ViewTable
                 {
@@ -100,19 +94,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 });
             }
             //show current count elements into grid
-            totalSystemConstant.Text = _copyrightKindList.Count.ToString();
+            totalSystemConstant.Text = _systemConstantList.Count.ToString();
             return dataGrid;
-        }
-
-        //handle data for drop down list - 'Спосіб використання'
-        private List<DictBaseTypeI> InitializeDataForFilter()
-        {
-            //define for result data
-            List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
-            //get data for drop down list
-            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
-            //check data
-            return dataDropDownList != null ? dataDropDownList : new List<DictBaseTypeI>();
         }
 
         //show data for bottom panel
@@ -137,71 +120,35 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
-            if (codeForRefresh == 0) codeForRefresh = _copyrightKindList[0].CodeI;
+            if (codeForRefresh == 0) codeForRefresh = _systemConstantList[0].CodeI;
             //get object by parameter 'code' from service
-            copyrightKindData = dictService.GetCopyrightKind(codeForRefresh);
+            systemConstantData = dictService.GetSystemConstant(codeForRefresh);
             //use data for binding source
-            bsSystemConstant.DataSource = copyrightKindData;
+            bsSystemConstant.DataSource = systemConstantData;
             //define binding for source of the 'Uk'
-            ukCopyrightKind = copyrightKindData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "Uk");
-            if (ukCopyrightKind == null)
+            ukSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            if (ukSystemConstant == null)
             {
-                ukCopyrightKind = new SystemConstantTr { Lang = "Uk" };
-                copyrightKindData.SystemConstantTr.Add(ukCopyrightKind);
+                ukSystemConstant = new SystemConstantTr { Lang = "Uk" };
+                systemConstantData.SystemConstantTr.Add(ukSystemConstant);
             }
-            bsUkLangSystemConstant.DataSource = ukCopyrightKind;
+            bsUkLangSystemConstant.DataSource = ukSystemConstant;
             //defined binding for source of the 'Ru'
-            ruCopyrightKind = copyrightKindData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "Ru");
-            if (ruCopyrightKind == null)
+            ruSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            if (ruSystemConstant == null)
             {
-                ruCopyrightKind = new SystemConstantTr { Lang = "Ru" };
-                copyrightKindData.SystemConstantTr.Add(ruCopyrightKind);
+                ruSystemConstant = new SystemConstantTr { Lang = "Ru" };
+                systemConstantData.SystemConstantTr.Add(ruSystemConstant);
             }
-            bsRuLangSystemConstant.DataSource = ruCopyrightKind;
+            bsRuLangSystemConstant.DataSource = ruSystemConstant;
             //define binding for source of the 'En'
-            enCopyrightKind = copyrightKindData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "En");
-            if (enCopyrightKind == null)
+            enSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "En");
+            if (enSystemConstant == null)
             {
-                enCopyrightKind = new SystemConstantTr { Lang = "En" };
-                copyrightKindData.SystemConstantTr.Add(enCopyrightKind);
+                enSystemConstant = new SystemConstantTr { Lang = "En" };
+                systemConstantData.SystemConstantTr.Add(enSystemConstant);
             }
-            bsEnLangSystemConstant.DataSource = enCopyrightKind;
-        }
-
-        //select item into drop down list for filtered data into grid
-        private void ddlCommonKeyData_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
-        {
-            //stop perform if position is not exist
-            if (e.Position == -1) return;
-            //get field 'value' of the current selected item
-            int selectedItemData = (int)ddlFilterCopyrightKind.Items[e.Position].Value;
-            //set filtered data to grid
-            gridSystemConstantList.DataSource = FilterDataIntoGrid(selectedItemData);
-        }
-
-        //filter data for grid
-        private List<ViewTable> FilterDataIntoGrid(int code)
-        {
-            //initialzie empty data for result
-            List<ViewTable> filteredData = new List<ViewTable>();
-            //get all data of the 'CopyrightKind'
-            _copyrightKindList = _connector.GetList<SystemConstant>(urlDataGrid);
-            //stop perform if data is not exist
-            if (_copyrightKindList == null) return new List<ViewTable>();
-            //initialize data for grid
-            foreach (var item in _copyrightKindList)
-            {
-                filteredData.Add(new ViewTable
-                {
-                    Code = item.CodeI.ToString(),
-                    NameUk = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                });
-            }
-            //show current count elements into grid
-            totalSystemConstant.Text = _copyrightKindList.Count.ToString();
-            return filteredData;
+            bsEnLangSystemConstant.DataSource = enSystemConstant;
         }
 
         //action 'Add' new object to grid
@@ -211,20 +158,20 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             btnSaveSystemConstant.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            copyrightKindData = new SystemConstant();
-            bsSystemConstant.DataSource = copyrightKindData;
+            systemConstantData = new SystemConstant();
+            bsSystemConstant.DataSource = systemConstantData;
             //refresh data for field 'Uk'
-            ukCopyrightKind = new SystemConstantTr();
-            copyrightKindData.SystemConstantTr.Add(ukCopyrightKind);
-            bsUkLangSystemConstant.DataSource = ukCopyrightKind;
+            ukSystemConstant = new SystemConstantTr();
+            systemConstantData.SystemConstantTr.Add(ukSystemConstant);
+            bsUkLangSystemConstant.DataSource = ukSystemConstant;
             //refresh data for field 'Ru'
-            ruCopyrightKind = new SystemConstantTr();
-            copyrightKindData.SystemConstantTr.Add(ruCopyrightKind);
-            bsRuLangSystemConstant.DataSource = ruCopyrightKind;
+            ruSystemConstant = new SystemConstantTr();
+            systemConstantData.SystemConstantTr.Add(ruSystemConstant);
+            bsRuLangSystemConstant.DataSource = ruSystemConstant;
             //refresh data for field 'Ru'
-            enCopyrightKind = new SystemConstantTr();
-            copyrightKindData.SystemConstantTr.Add(enCopyrightKind);
-            bsEnLangSystemConstant.DataSource = enCopyrightKind;
+            enSystemConstant = new SystemConstantTr();
+            systemConstantData.SystemConstantTr.Add(enSystemConstant);
+            bsEnLangSystemConstant.DataSource = enSystemConstant;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -249,13 +196,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveSystemConstant.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateCopyrightKind(copyrightKindData);
+                var result = dictService.CreateSystemConstant(systemConstantData);
                 //set default state for 'Text' of the btnSave
                 btnSaveSystemConstant.Text = "Зберегти";
             } else if (btnSaveSystemConstant.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCopyrightKind(copyrightKindData);
+                var result = dictService.UpdateSystemConstant(systemConstantData);
             }
             //update data for grid
             gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
