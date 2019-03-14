@@ -140,7 +140,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _countryList[0].ContinentCode ?? 1;
             //get object by parameter 'code' from service
-            countryData = dictService.GetCopyrightKind(codeForRefresh);
+            countryData = dictService.GetCountry(codeForRefresh);
             //use data for binding source
             bsCountry.DataSource = countryData;
             //define binding for source of the 'Uk'
@@ -253,13 +253,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveCountry.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateCopyrightKind(countryData);
+                var result = dictService.CreateCountry(countryData);
                 //set default state for 'Text' of the btnSave
                 btnSaveCountry.Text = "Зберегти";
             } else if (btnSaveCountry.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCopyrightKind(countryData);
+                var result = dictService.UpdateCountry(countryData);
             }
             //update data for grid
             gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);

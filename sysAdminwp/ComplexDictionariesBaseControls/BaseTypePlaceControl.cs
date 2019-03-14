@@ -140,7 +140,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _typePlaceList[0].CodeI;
             //get object by parameter 'code' from service
-            typePlaceData = dictService.GetCopyrightKind(codeForRefresh);
+            typePlaceData = dictService.GetTypePlace(codeForRefresh);
             //use data for binding source
             bsCopyrightKind.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
@@ -253,13 +253,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveTypePlace.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateCopyrightKind(typePlaceData);
+                var result = dictService.CreateTypePlace(typePlaceData);
                 //set default state for 'Text' of the btnSave
                 btnSaveTypePlace.Text = "Зберегти";
             } else if (btnSaveTypePlace.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCopyrightKind(typePlaceData);
+                var result = dictService.UpdateTypePlace(typePlaceData);
             }
             //update data for grid
             gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);

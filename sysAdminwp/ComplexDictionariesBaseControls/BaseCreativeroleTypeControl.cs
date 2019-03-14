@@ -140,7 +140,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _creativeroleTypeList[0].CodeI;
             //get object by parameter 'code' from service
-            creativeroleTypeData = dictService.GetCopyrightKind(codeForRefresh);
+            creativeroleTypeData = dictService.GetCreativeRoleType(codeForRefresh);
             //use data for binding source
             bsCopyrightKind.DataSource = creativeroleTypeData;
             //define binding for source of the 'Uk'
@@ -253,13 +253,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveCreativeroleType.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateCopyrightKind(creativeroleTypeData);
+                var result = dictService.CreateCreativeRoleType(creativeroleTypeData);
                 //set default state for 'Text' of the btnSave
                 btnSaveCreativeroleType.Text = "Зберегти";
             } else if (btnSaveCreativeroleType.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCopyrightKind(creativeroleTypeData);
+                var result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
             }
             //update data for grid
             gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);

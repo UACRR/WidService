@@ -140,7 +140,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _genreTypeList[0].CodeI;
             //get object by parameter 'code' from service
-            genreTypeData = dictService.GetCopyrightKind(codeForRefresh);
+            genreTypeData = dictService.GetGenreType(codeForRefresh);
             //use data for binding source
             bsCopyrightKind.DataSource = genreTypeData;
             //define binding for source of the 'Uk'
@@ -253,13 +253,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveGenreType.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateCopyrightKind(genreTypeData);
+                var result = dictService.CreateGenreType(genreTypeData);
                 //set default state for 'Text' of the btnSave
                 btnSaveGenreType.Text = "Зберегти";
             } else if (btnSaveGenreType.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCopyrightKind(genreTypeData);
+                var result = dictService.UpdateGenreType(genreTypeData);
             }
             //update data for grid
             gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);

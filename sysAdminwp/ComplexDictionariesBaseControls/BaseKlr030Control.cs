@@ -140,7 +140,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = int.TryParse(_klr030List[0].R030, out int code) ? code : 0;
             //get object by parameter 'code' from service
-            klr030Data = dictService.GetCopyrightKind(codeForRefresh);
+            klr030Data = dictService.GetKlR030(codeForRefresh);
             //use data for binding source
             bsCopyrightKind.DataSource = klr030Data;
             //define binding for source of the 'Uk'
@@ -253,13 +253,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveKlr030.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateCopyrightKind(klr030Data);
+                var result = dictService.CreateKlR030(klr030Data);
                 //set default state for 'Text' of the btnSave
                 btnSaveKlr030.Text = "Зберегти";
             } else if (btnSaveKlr030.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCopyrightKind(klr030Data);
+                var result = dictService.UpdateKlR030(klr030Data);
             }
             //update data for grid
             gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);

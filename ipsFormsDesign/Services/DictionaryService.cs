@@ -38,6 +38,31 @@ namespace ipsFormsDesign.Services
             return _webApi.DeleteItem(url, id.ToString());
         }
 
+        // Country BEGIN ********************
+        public Country GetCountry(int id)
+        {
+            string url = string.Concat(_prefix, "extra/country");
+            return _webApi.GetItemById<Country>(url, id.ToString());
+        }
+
+        public Country CreateCountry(Country sors)
+        {
+            string url = string.Concat(_prefix, "extra/country");
+            return _webApi.NewItemWithResult(url, sors);
+        }
+
+        public Country UpdateCountry(Country sors)
+        {
+            string url = string.Concat(_prefix, "extra/country");
+            return _webApi.UpdateItemWithResult(url, sors.CountryCode, sors);
+        }
+
+        public bool DeleteCountry(int id)
+        {
+            string url = string.Concat(_prefix, "extra/country");
+            return _webApi.DeleteItem(url, id.ToString());
+        }
+
         // CreativeRoleType BEGIN ********************
         public CreativeRoleType GetCreativeRoleType(int id)
         {
@@ -89,22 +114,22 @@ namespace ipsFormsDesign.Services
         }
 
         // KlR030 BEGIN ********************
-        public GenreType GetKlR030(int id)
+        public KlR030 GetKlR030(int id)
         {
             string url = string.Concat(_prefix, "extra/klr030");
-            return _webApi.GetItemById<GenreType>(url, id.ToString());
+            return _webApi.GetItemById<KlR030>(url, id.ToString());
         }
 
-        public GenreType CreateKlR030(GenreType sors)
+        public KlR030 CreateKlR030(KlR030 sors)
         {
             string url = string.Concat(_prefix, "extra/klr030");
             return _webApi.NewItemWithResult(url, sors);
         }
 
-        public GenreType UpdateKlR030(GenreType sors)
+        public KlR030 UpdateKlR030(KlR030 sors)
         {
             string url = string.Concat(_prefix, "extra/klr030");
-            return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
+            return _webApi.UpdateItemWithResult(url, sors.R030, sors);
         }
 
         public bool DeleteKlR030(int id)
@@ -116,25 +141,25 @@ namespace ipsFormsDesign.Services
         // TypePlace BEGIN ********************
         public TypePlace GetTypePlace(int id)
         {
-            string url = string.Concat(_prefix, "extra/klr030");
+            string url = string.Concat(_prefix, "extra/typeplace");
             return _webApi.GetItemById<TypePlace>(url, id.ToString());
         }
 
         public TypePlace CreateTypePlace(TypePlace sors)
         {
-            string url = string.Concat(_prefix, "extra/klr030");
+            string url = string.Concat(_prefix, "extra/typeplace");
             return _webApi.NewItemWithResult(url, sors);
         }
 
         public TypePlace UpdateTypePlace(TypePlace sors)
         {
-            string url = string.Concat(_prefix, "extra/klr030");
+            string url = string.Concat(_prefix, "extra/typeplace");
             return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
         }
 
         public bool DeleteTypePlace(int id)
         {
-            string url = string.Concat(_prefix, "extra/klr030");
+            string url = string.Concat(_prefix, "extra/typeplace");
             return _webApi.DeleteItem(url, id.ToString());
         }
     }
