@@ -373,6 +373,11 @@ namespace sysAdminwp.viewPageDictionaryControls
                     tableLayout_MarkupElement.Controls.Add(baseKlr030, 1, 0);
                     break;
                 case "systemconstant":
+                    //revome other controls
+                    tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
+                    //initialize base control 'GenreType'
+                    BaseSystemConstantControl baseSystemConstant = new BaseSystemConstantControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+                    tableLayout_MarkupElement.Controls.Add(baseSystemConstant, 1, 0);
                     break;
                 case "typeplace":
                     var baseDictsTypePlaceParam = _connector.GetList<DictBaseTypeI>("dictionary/base/typePlaceParam");
