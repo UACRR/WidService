@@ -200,7 +200,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                     NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                     NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    VariantUse = ddlFilterCreativeroleType.SelectedItem.Text,
+                    Category = ddlFilterCreativeroleType.SelectedItem.Text,
                 });
             }
             //show current count elements into grid

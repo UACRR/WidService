@@ -97,7 +97,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
                     NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
                     NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
-                    VariantUse = ddlFilterKlr030.Items.First(el => (int)el.Value == item.R031).Text,
+                    klrCountry = ddlFilterKlr030.Items.First(el => (int)el.Value == item.R031).Text,
                 });
             }
             //show current count elements into grid
@@ -200,7 +200,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
                     NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
                     NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
-                    VariantUse = ddlFilterKlr030.SelectedItem.Text,
+                    klrCountry = ddlFilterKlr030.SelectedItem.Text,
                 });
             }
             //show current count elements into grid

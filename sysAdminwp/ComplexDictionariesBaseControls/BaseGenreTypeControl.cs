@@ -97,7 +97,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                     NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                     NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    VariantUse = ddlFilterGenreType.Items.First(el => (int)el.Value == item.CategoryCode).Text,
+                    VariantObject = ddlFilterGenreType.Items.First(el => (int)el.Value == item.CategoryCode).Text,
                 });
             }
             //show current count elements into grid
@@ -200,7 +200,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                     NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                     NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    VariantUse = ddlFilterGenreType.SelectedItem.Text,
+                    VariantObject = ddlFilterGenreType.SelectedItem.Text,
                 });
             }
             //show current count elements into grid

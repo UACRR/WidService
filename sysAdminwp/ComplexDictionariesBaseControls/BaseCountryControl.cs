@@ -200,7 +200,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
                     NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
                     NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
-                    VariantUse = ddlFilterCountry.SelectedItem.Text,
+                    Continent = ddlFilterCountry.SelectedItem.Text,
                 });
             }
             //show current count elements into grid
