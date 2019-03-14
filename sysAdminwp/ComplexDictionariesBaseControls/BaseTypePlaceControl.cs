@@ -97,7 +97,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
                     NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
                     NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    Object = ddlFilterTypePlace.Items.First(el => (int)el.Value == item.ParamType).Text,
+                    Object = item.ParamType != null ? ddlFilterTypePlace.Items.First(el => (int)el.Value == item.ParamType).Text : "",
                 });
             }
             //show current count elements into grid

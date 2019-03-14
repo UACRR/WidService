@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalTypePlace = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalTypePlace = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterTypePlace = new Telerik.WinControls.UI.RadDropDownList();
@@ -200,7 +200,7 @@
             // 
             this.ddlEditKeyTypePlace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlEditKeyTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsTypePlace, "CrGroupCode", true));
+            this.ddlEditKeyTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsTypePlace, "ParamType", true));
             this.ddlEditKeyTypePlace.DataSource = this.bsSimpleDictTypePlace;
             this.ddlEditKeyTypePlace.DisplayMember = "Name";
             this.ddlEditKeyTypePlace.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -213,7 +213,7 @@
             // 
             // bsTypePlace
             // 
-            this.bsTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
+            this.bsTypePlace.DataSource = typeof(ipsFormsDesign.Model.TypePlace);
             this.bsTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtRuLangTypePlace
@@ -371,37 +371,37 @@
             this.gridTypePlaceList.MasterTemplate.AllowEditRow = false;
             this.gridTypePlaceList.MasterTemplate.AutoGenerateColumns = false;
             this.gridTypePlaceList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Code";
-            gridViewTextBoxColumn1.HeaderText = "Код";
-            gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 105;
-            gridViewTextBoxColumn2.FieldName = "NameUk";
-            gridViewTextBoxColumn2.HeaderText = "Назва";
-            gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 316;
-            gridViewTextBoxColumn3.FieldName = "NameRu";
-            gridViewTextBoxColumn3.HeaderText = "Название";
-            gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 316;
-            gridViewTextBoxColumn4.FieldName = "NameEn";
-            gridViewTextBoxColumn4.HeaderText = "Name";
-            gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 231;
-            gridViewTextBoxColumn5.FieldName = "Object";
-            gridViewTextBoxColumn5.HeaderText = "Об\'єкт";
-            gridViewTextBoxColumn5.MinWidth = 200;
-            gridViewTextBoxColumn5.Name = "Object";
-            gridViewTextBoxColumn5.Width = 202;
+            gridViewTextBoxColumn6.FieldName = "Code";
+            gridViewTextBoxColumn6.HeaderText = "Код";
+            gridViewTextBoxColumn6.Name = "Code";
+            gridViewTextBoxColumn6.Width = 105;
+            gridViewTextBoxColumn7.FieldName = "NameUk";
+            gridViewTextBoxColumn7.HeaderText = "Назва";
+            gridViewTextBoxColumn7.Name = "NameUk";
+            gridViewTextBoxColumn7.Width = 316;
+            gridViewTextBoxColumn8.FieldName = "NameRu";
+            gridViewTextBoxColumn8.HeaderText = "Название";
+            gridViewTextBoxColumn8.Name = "NameRu";
+            gridViewTextBoxColumn8.Width = 316;
+            gridViewTextBoxColumn9.FieldName = "NameEn";
+            gridViewTextBoxColumn9.HeaderText = "Name";
+            gridViewTextBoxColumn9.Name = "NameEn";
+            gridViewTextBoxColumn9.Width = 231;
+            gridViewTextBoxColumn10.FieldName = "Object";
+            gridViewTextBoxColumn10.HeaderText = "Об\'єкт";
+            gridViewTextBoxColumn10.MinWidth = 200;
+            gridViewTextBoxColumn10.Name = "Object";
+            gridViewTextBoxColumn10.Width = 202;
             this.gridTypePlaceList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10});
             this.gridTypePlaceList.MasterTemplate.EnableCustomFiltering = true;
             this.gridTypePlaceList.MasterTemplate.EnableFiltering = true;
             this.gridTypePlaceList.MasterTemplate.ShowFilteringRow = false;
-            this.gridTypePlaceList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridTypePlaceList.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gridTypePlaceList.Name = "gridTypePlaceList";
             this.gridTypePlaceList.ReadOnly = true;
             this.gridTypePlaceList.ShowGroupPanel = false;
