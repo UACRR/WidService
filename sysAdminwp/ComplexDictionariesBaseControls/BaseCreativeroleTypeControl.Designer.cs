@@ -29,28 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterCreativeroleType = new Telerik.WinControls.UI.RadDropDownList();
-            this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsSimpleDictCreativeRoleType = new System.Windows.Forms.BindingSource(this.components);
             this.lbFilterCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.lblSearchCreativeroleType = new System.Windows.Forms.Label();
             this.editPanelCreativeroleType = new Telerik.WinControls.UI.RadPanel();
             this.lbEditKeyCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.ddlEditKeyCreativeroleType = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
+            this.bsCreativeRoleType = new System.Windows.Forms.BindingSource(this.components);
             this.txtRuLangCreativeroleType = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceRu = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRuLangCreativeRoleType = new System.Windows.Forms.BindingSource(this.components);
             this.txtEnLangCreativeroleType = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceEn = new System.Windows.Forms.BindingSource(this.components);
+            this.bsEnLangCreativeRoleType = new System.Windows.Forms.BindingSource(this.components);
             this.txtUkLangCreativeroleType = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceUk = new System.Windows.Forms.BindingSource(this.components);
+            this.bsUkLangCreativeRoleType = new System.Windows.Forms.BindingSource(this.components);
             this.txtCodeCreativeroleType = new Telerik.WinControls.UI.RadTextBox();
             this.lblRuLangCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.lblEnLangCreativeroleType = new Telerik.WinControls.UI.RadLabel();
@@ -65,19 +65,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.totalCreativeroleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotalCreativeroleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterCreativeroleType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSimpleDictCreativeRoleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbFilterCreativeroleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanelCreativeroleType)).BeginInit();
             this.editPanelCreativeroleType.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyCreativeroleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCreativeroleType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRoleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuLangCreativeroleType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCreativeRoleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnLangCreativeroleType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCreativeRoleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUkLangCreativeroleType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCreativeRoleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeCreativeroleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangCreativeroleType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangCreativeroleType)).BeginInit();
@@ -114,7 +114,7 @@
             // ddlFilterCreativeroleType
             // 
             this.ddlFilterCreativeroleType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlFilterCreativeroleType.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlFilterCreativeroleType.DataSource = this.bsSimpleDictCreativeRoleType;
             this.ddlFilterCreativeroleType.DisplayMember = "Name";
             this.ddlFilterCreativeroleType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlFilterCreativeroleType.FormattingEnabled = false;
@@ -126,9 +126,9 @@
             this.ddlFilterCreativeroleType.ValueMember = "CodeI";
             this.ddlFilterCreativeroleType.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
             // 
-            // dictBaseTypeIBindingSource
+            // bsSimpleDictCreativeRoleType
             // 
-            this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
+            this.bsSimpleDictCreativeRoleType.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // lbFilterCreativeroleType
             // 
@@ -200,8 +200,8 @@
             // 
             this.ddlEditKeyCreativeroleType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlEditKeyCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
-            this.ddlEditKeyCreativeroleType.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlEditKeyCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCreativeRoleType, "CategoryCode", true));
+            this.ddlEditKeyCreativeroleType.DataSource = this.bsSimpleDictCreativeRoleType;
             this.ddlEditKeyCreativeroleType.DisplayMember = "Name";
             this.ddlEditKeyCreativeroleType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyCreativeroleType.Location = new System.Drawing.Point(783, 28);
@@ -211,56 +211,56 @@
             this.ddlEditKeyCreativeroleType.ThemeName = "Office2013Light";
             this.ddlEditKeyCreativeroleType.ValueMember = "CodeI";
             // 
-            // bsCopyrightKind
+            // bsCreativeRoleType
             // 
-            this.bsCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
-            this.bsCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
+            this.bsCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
+            this.bsCreativeRoleType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtRuLangCreativeroleType
             // 
-            this.txtRuLangCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRu, "Name", true));
+            this.txtRuLangCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangCreativeRoleType, "Name", true));
             this.txtRuLangCreativeroleType.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangCreativeroleType.MaxLength = 500;
             this.txtRuLangCreativeroleType.Name = "txtRuLangCreativeroleType";
             this.txtRuLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
             this.txtRuLangCreativeroleType.TabIndex = 9;
             // 
-            // bindingSourceRu
+            // bsRuLangCreativeRoleType
             // 
-            this.bindingSourceRu.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bindingSourceRu.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
+            this.bsRuLangCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsRuLangCreativeRoleType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
             // txtEnLangCreativeroleType
             // 
-            this.txtEnLangCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceEn, "Name", true));
+            this.txtEnLangCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCreativeRoleType, "Name", true));
             this.txtEnLangCreativeroleType.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangCreativeroleType.MaxLength = 500;
             this.txtEnLangCreativeroleType.Name = "txtEnLangCreativeroleType";
             this.txtEnLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
             this.txtEnLangCreativeroleType.TabIndex = 8;
             // 
-            // bindingSourceEn
+            // bsEnLangCreativeRoleType
             // 
-            this.bindingSourceEn.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bindingSourceEn.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
+            this.bsEnLangCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsEnLangCreativeRoleType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
             // txtUkLangCreativeroleType
             // 
-            this.txtUkLangCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUk, "Name", true));
+            this.txtUkLangCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCreativeRoleType, "Name", true));
             this.txtUkLangCreativeroleType.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangCreativeroleType.MaxLength = 500;
             this.txtUkLangCreativeroleType.Name = "txtUkLangCreativeroleType";
             this.txtUkLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
             this.txtUkLangCreativeroleType.TabIndex = 7;
             // 
-            // bindingSourceUk
+            // bsUkLangCreativeRoleType
             // 
-            this.bindingSourceUk.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bindingSourceUk.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
+            this.bsUkLangCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsUkLangCreativeRoleType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
             // txtCodeCreativeroleType
             // 
-            this.txtCodeCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
+            this.txtCodeCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCreativeRoleType, "CodeI", true));
             this.txtCodeCreativeroleType.Location = new System.Drawing.Point(162, 28);
             this.txtCodeCreativeroleType.MaxLength = 3;
             this.txtCodeCreativeroleType.Name = "txtCodeCreativeroleType";
@@ -371,37 +371,37 @@
             this.gridCreativeroleTypeList.MasterTemplate.AllowEditRow = false;
             this.gridCreativeroleTypeList.MasterTemplate.AutoGenerateColumns = false;
             this.gridCreativeroleTypeList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Code";
-            gridViewTextBoxColumn1.HeaderText = "Код";
-            gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 105;
-            gridViewTextBoxColumn2.FieldName = "NameUk";
-            gridViewTextBoxColumn2.HeaderText = "Назва";
-            gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 316;
-            gridViewTextBoxColumn3.FieldName = "NameRu";
-            gridViewTextBoxColumn3.HeaderText = "Название";
-            gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 316;
-            gridViewTextBoxColumn4.FieldName = "NameEn";
-            gridViewTextBoxColumn4.HeaderText = "Name";
-            gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 231;
-            gridViewTextBoxColumn5.FieldName = "Category";
-            gridViewTextBoxColumn5.HeaderText = "Категорія";
-            gridViewTextBoxColumn5.MinWidth = 200;
-            gridViewTextBoxColumn5.Name = "Category";
-            gridViewTextBoxColumn5.Width = 202;
+            gridViewTextBoxColumn11.FieldName = "Code";
+            gridViewTextBoxColumn11.HeaderText = "Код";
+            gridViewTextBoxColumn11.Name = "Code";
+            gridViewTextBoxColumn11.Width = 105;
+            gridViewTextBoxColumn12.FieldName = "NameUk";
+            gridViewTextBoxColumn12.HeaderText = "Назва";
+            gridViewTextBoxColumn12.Name = "NameUk";
+            gridViewTextBoxColumn12.Width = 316;
+            gridViewTextBoxColumn13.FieldName = "NameRu";
+            gridViewTextBoxColumn13.HeaderText = "Название";
+            gridViewTextBoxColumn13.Name = "NameRu";
+            gridViewTextBoxColumn13.Width = 316;
+            gridViewTextBoxColumn14.FieldName = "NameEn";
+            gridViewTextBoxColumn14.HeaderText = "Name";
+            gridViewTextBoxColumn14.Name = "NameEn";
+            gridViewTextBoxColumn14.Width = 231;
+            gridViewTextBoxColumn15.FieldName = "Category";
+            gridViewTextBoxColumn15.HeaderText = "Категорія";
+            gridViewTextBoxColumn15.MinWidth = 200;
+            gridViewTextBoxColumn15.Name = "Category";
+            gridViewTextBoxColumn15.Width = 202;
             this.gridCreativeroleTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15});
             this.gridCreativeroleTypeList.MasterTemplate.EnableCustomFiltering = true;
             this.gridCreativeroleTypeList.MasterTemplate.EnableFiltering = true;
             this.gridCreativeroleTypeList.MasterTemplate.ShowFilteringRow = false;
-            this.gridCreativeroleTypeList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCreativeroleTypeList.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gridCreativeroleTypeList.Name = "gridCreativeroleTypeList";
             this.gridCreativeroleTypeList.ReadOnly = true;
             this.gridCreativeroleTypeList.ShowGroupPanel = false;
@@ -440,20 +440,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.totalCreativeroleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotalCreativeroleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterCreativeroleType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSimpleDictCreativeRoleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbFilterCreativeroleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanelCreativeroleType)).EndInit();
             this.editPanelCreativeroleType.ResumeLayout(false);
             this.editPanelCreativeroleType.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyCreativeroleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCreativeroleType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCreativeRoleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuLangCreativeroleType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCreativeRoleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnLangCreativeroleType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCreativeRoleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUkLangCreativeroleType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCreativeRoleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeCreativeroleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangCreativeroleType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangCreativeroleType)).EndInit();
@@ -494,10 +494,10 @@
         private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchCreativeroleType;
         private Telerik.WinControls.UI.RadDropDownList ddlEditKeyCreativeroleType;
         private Telerik.WinControls.UI.RadLabel lbEditKeyCreativeroleType;
-        private System.Windows.Forms.BindingSource bsCopyrightKind;
-        private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
-        private System.Windows.Forms.BindingSource bindingSourceRu;
-        private System.Windows.Forms.BindingSource bindingSourceEn;
-        private System.Windows.Forms.BindingSource bindingSourceUk;
+        private System.Windows.Forms.BindingSource bsCreativeRoleType;
+        private System.Windows.Forms.BindingSource bsSimpleDictCreativeRoleType;
+        private System.Windows.Forms.BindingSource bsRuLangCreativeRoleType;
+        private System.Windows.Forms.BindingSource bsEnLangCreativeRoleType;
+        private System.Windows.Forms.BindingSource bsUkLangCreativeRoleType;
     }
 }

@@ -67,7 +67,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialize data for drop down list - 'Спосіб використання'
             ddlFilterTypePlace.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
-            dictBaseTypeIBindingSource.DataSource = ddlFilterTypePlace.DataSource;
+            bsSimpleDictTypePlace.DataSource = ddlFilterTypePlace.DataSource;
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
@@ -142,7 +142,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get object by parameter 'code' from service
             typePlaceData = dictService.GetTypePlace(codeForRefresh);
             //use data for binding source
-            bsCopyrightKind.DataSource = typePlaceData;
+            bsTypePlace.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
             ukTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "Uk");
             if (ukTypePlace == null)
@@ -150,7 +150,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ukTypePlace = new TypePlaceTr { Lang = "Uk" };
                 typePlaceData.TypePlaceTr.Add(ukTypePlace);
             }
-            bindingSourceUk.DataSource = ukTypePlace;
+            bsUkLangTypePlace.DataSource = ukTypePlace;
             //defined binding for source of the 'Ru'
             ruTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "Ru");
             if (ruTypePlace == null)
@@ -158,7 +158,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ruTypePlace = new TypePlaceTr { Lang = "Ru" };
                 typePlaceData.TypePlaceTr.Add(ruTypePlace);
             }
-            bindingSourceRu.DataSource = ruTypePlace;
+            bsRuLangTypePlace.DataSource = ruTypePlace;
             //define binding for source of the 'En'
             enTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "En");
             if (enTypePlace == null)
@@ -166,7 +166,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 enTypePlace = new TypePlaceTr { Lang = "En" };
                 typePlaceData.TypePlaceTr.Add(enTypePlace);
             }
-            bindingSourceEn.DataSource = enTypePlace;
+            bsEnLangTypePlace.DataSource = enTypePlace;
         }
 
         //select item into drop down list for filtered data into grid
@@ -216,19 +216,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //clear data into bottom panel
             //refresh data for field 'Code'
             typePlaceData = new TypePlace();
-            bsCopyrightKind.DataSource = typePlaceData;
+            bsTypePlace.DataSource = typePlaceData;
             //refresh data for field 'Uk'
             ukTypePlace = new TypePlaceTr();
             typePlaceData.TypePlaceTr.Add(ukTypePlace);
-            bindingSourceUk.DataSource = ukTypePlace;
+            bsUkLangTypePlace.DataSource = ukTypePlace;
             //refresh data for field 'Ru'
             ruTypePlace = new TypePlaceTr();
             typePlaceData.TypePlaceTr.Add(ruTypePlace);
-            bindingSourceRu.DataSource = ruTypePlace;
+            bsRuLangTypePlace.DataSource = ruTypePlace;
             //refresh data for field 'Ru'
             enTypePlace = new TypePlaceTr();
             typePlaceData.TypePlaceTr.Add(enTypePlace);
-            bindingSourceEn.DataSource = enTypePlace;
+            bsEnLangTypePlace.DataSource = enTypePlace;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements

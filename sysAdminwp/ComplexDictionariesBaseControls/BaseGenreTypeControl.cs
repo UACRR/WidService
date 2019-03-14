@@ -67,7 +67,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialize data for drop down list - 'Спосіб використання'
             ddlFilterGenreType.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
-            dictBaseTypeIBindingSource.DataSource = ddlFilterGenreType.DataSource;
+            bsSimpleDictGenreType.DataSource = ddlFilterGenreType.DataSource;
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
@@ -142,7 +142,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get object by parameter 'code' from service
             genreTypeData = dictService.GetGenreType(codeForRefresh);
             //use data for binding source
-            bsCopyrightKind.DataSource = genreTypeData;
+            bsGenreType.DataSource = genreTypeData;
             //define binding for source of the 'Uk'
             ukGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == "Uk");
             if (ukGenreType == null)
@@ -150,7 +150,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ukGenreType = new GenreTypeTr { Lang = "Uk" };
                 genreTypeData.GenreTypeTr.Add(ukGenreType);
             }
-            bindingSourceUk.DataSource = ukGenreType;
+            bsUkLangGenreType.DataSource = ukGenreType;
             //defined binding for source of the 'Ru'
             ruGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == "Ru");
             if (ruGenreType == null)
@@ -158,7 +158,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ruGenreType = new GenreTypeTr { Lang = "Ru" };
                 genreTypeData.GenreTypeTr.Add(ruGenreType);
             }
-            bindingSourceRu.DataSource = ruGenreType;
+            bsRuLangGenreType.DataSource = ruGenreType;
             //define binding for source of the 'En'
             enGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == "En");
             if (enGenreType == null)
@@ -166,7 +166,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 enGenreType = new GenreTypeTr { Lang = "En" };
                 genreTypeData.GenreTypeTr.Add(enGenreType);
             }
-            bindingSourceEn.DataSource = enGenreType;
+            bsEnLangGenreType.DataSource = enGenreType;
         }
 
         //select item into drop down list for filtered data into grid
@@ -216,19 +216,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //clear data into bottom panel
             //refresh data for field 'Code'
             genreTypeData = new GenreType();
-            bsCopyrightKind.DataSource = genreTypeData;
+            bsGenreType.DataSource = genreTypeData;
             //refresh data for field 'Uk'
             ukGenreType = new GenreTypeTr();
             genreTypeData.GenreTypeTr.Add(ukGenreType);
-            bindingSourceUk.DataSource = ukGenreType;
+            bsUkLangGenreType.DataSource = ukGenreType;
             //refresh data for field 'Ru'
             ruGenreType = new GenreTypeTr();
             genreTypeData.GenreTypeTr.Add(ruGenreType);
-            bindingSourceRu.DataSource = ruGenreType;
+            bsRuLangGenreType.DataSource = ruGenreType;
             //refresh data for field 'Ru'
             enGenreType = new GenreTypeTr();
             genreTypeData.GenreTypeTr.Add(enGenreType);
-            bindingSourceEn.DataSource = enGenreType;
+            bsEnLangGenreType.DataSource = enGenreType;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements

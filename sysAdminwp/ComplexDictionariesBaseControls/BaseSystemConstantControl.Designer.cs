@@ -39,7 +39,6 @@
             this.bsSimpleDictSystemConstant = new System.Windows.Forms.BindingSource(this.components);
             this.lblSearchSystemConstant = new System.Windows.Forms.Label();
             this.editPanelSystemConstant = new Telerik.WinControls.UI.RadPanel();
-            this.bsSystemConstant = new System.Windows.Forms.BindingSource(this.components);
             this.txtRuLangSystemConstant = new Telerik.WinControls.UI.RadTextBox();
             this.bsRuLangSystemConstant = new System.Windows.Forms.BindingSource(this.components);
             this.txtEnLangSystemConstant = new Telerik.WinControls.UI.RadTextBox();
@@ -47,6 +46,7 @@
             this.txtUkLangSystemConstant = new Telerik.WinControls.UI.RadTextBox();
             this.bsUkLangSystemConstant = new System.Windows.Forms.BindingSource(this.components);
             this.txtCodeSystemConstant = new Telerik.WinControls.UI.RadTextBox();
+            this.bsSystemConstant = new System.Windows.Forms.BindingSource(this.components);
             this.lblRuLangSystemConstant = new Telerik.WinControls.UI.RadLabel();
             this.lblEnLangSystemConstant = new Telerik.WinControls.UI.RadLabel();
             this.lblUkLangSystemConstant = new Telerik.WinControls.UI.RadLabel();
@@ -62,7 +62,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsSimpleDictSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanelSystemConstant)).BeginInit();
             this.editPanelSystemConstant.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuLangSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRuLangSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnLangSystemConstant)).BeginInit();
@@ -70,6 +69,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUkLangSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsUkLangSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeSystemConstant)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangSystemConstant)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUkLangSystemConstant)).BeginInit();
@@ -145,11 +145,6 @@
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelSystemConstant.GetChildAt(0).GetChildAt(2))).LineLimit = false;
             ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelSystemConstant.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // bsSystemConstant
-            // 
-            this.bsSystemConstant.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
-            this.bsSystemConstant.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
-            // 
             // txtRuLangSystemConstant
             // 
             this.txtRuLangSystemConstant.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangSystemConstant, "Name", true));
@@ -200,6 +195,11 @@
             this.txtCodeSystemConstant.Name = "txtCodeSystemConstant";
             this.txtCodeSystemConstant.Size = new System.Drawing.Size(1022, 20);
             this.txtCodeSystemConstant.TabIndex = 6;
+            // 
+            // bsSystemConstant
+            // 
+            this.bsSystemConstant.DataSource = typeof(ipsFormsDesign.Model.SystemConstant);
+            this.bsSystemConstant.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // lblRuLangSystemConstant
             // 
@@ -369,7 +369,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.editPanelSystemConstant)).EndInit();
             this.editPanelSystemConstant.ResumeLayout(false);
             this.editPanelSystemConstant.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsSystemConstant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuLangSystemConstant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRuLangSystemConstant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnLangSystemConstant)).EndInit();
@@ -377,6 +376,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUkLangSystemConstant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsUkLangSystemConstant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeSystemConstant)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSystemConstant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangSystemConstant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangSystemConstant)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUkLangSystemConstant)).EndInit();

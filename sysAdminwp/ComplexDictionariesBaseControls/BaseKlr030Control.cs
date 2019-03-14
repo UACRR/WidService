@@ -67,7 +67,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialize data for drop down list - 'Спосіб використання'
             ddlFilterKlr030.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
-            dictBaseTypeIBindingSource.DataSource = ddlFilterKlr030.DataSource;
+            bsSimpleDictKlr030.DataSource = ddlFilterKlr030.DataSource;
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
@@ -142,7 +142,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get object by parameter 'code' from service
             klr030Data = dictService.GetKlR030(codeForRefresh);
             //use data for binding source
-            bsCopyrightKind.DataSource = klr030Data;
+            bsKlr030.DataSource = klr030Data;
             //define binding for source of the 'Uk'
             ukKlr030 = klr030Data.KlR030tr.FirstOrDefault(rec => rec.Lang == "Uk");
             if (ukKlr030 == null)
@@ -150,7 +150,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ukKlr030 = new KlR030tr { Lang = "Uk" };
                 klr030Data.KlR030tr.Add(ukKlr030);
             }
-            bindingSourceUk.DataSource = ukKlr030;
+            bsUkLangKlr030.DataSource = ukKlr030;
             //defined binding for source of the 'Ru'
             ruKlr030 = klr030Data.KlR030tr.FirstOrDefault(rec => rec.Lang == "Ru");
             if (ruKlr030 == null)
@@ -158,7 +158,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ruKlr030 = new KlR030tr { Lang = "Ru" };
                 klr030Data.KlR030tr.Add(ruKlr030);
             }
-            bindingSourceRu.DataSource = ruKlr030;
+            bsRuLangKlr030.DataSource = ruKlr030;
             //define binding for source of the 'En'
             enKlr030 = klr030Data.KlR030tr.FirstOrDefault(rec => rec.Lang == "En");
             if (enKlr030 == null)
@@ -166,7 +166,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 enKlr030 = new KlR030tr { Lang = "En" };
                 klr030Data.KlR030tr.Add(enKlr030);
             }
-            bindingSourceEn.DataSource = enKlr030;
+            bsEnLangKlr030.DataSource = enKlr030;
         }
 
         //select item into drop down list for filtered data into grid
@@ -216,19 +216,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //clear data into bottom panel
             //refresh data for field 'Code'
             klr030Data = new KlR030();
-            bsCopyrightKind.DataSource = klr030Data;
+            bsKlr030.DataSource = klr030Data;
             //refresh data for field 'Uk'
             ukKlr030 = new KlR030tr();
             klr030Data.KlR030tr.Add(ukKlr030);
-            bindingSourceUk.DataSource = ukKlr030;
+            bsUkLangKlr030.DataSource = ukKlr030;
             //refresh data for field 'Ru'
             ruKlr030 = new KlR030tr();
             klr030Data.KlR030tr.Add(ruKlr030);
-            bindingSourceRu.DataSource = ruKlr030;
+            bsRuLangKlr030.DataSource = ruKlr030;
             //refresh data for field 'Ru'
             enKlr030 = new KlR030tr();
             klr030Data.KlR030tr.Add(enKlr030);
-            bindingSourceEn.DataSource = enKlr030;
+            bsEnLangKlr030.DataSource = enKlr030;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements

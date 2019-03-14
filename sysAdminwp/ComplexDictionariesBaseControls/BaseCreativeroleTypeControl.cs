@@ -67,7 +67,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialize data for drop down list - 'Спосіб використання'
             ddlFilterCreativeroleType.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
-            dictBaseTypeIBindingSource.DataSource = ddlFilterCreativeroleType.DataSource;
+            bsSimpleDictCreativeRoleType.DataSource = ddlFilterCreativeroleType.DataSource;
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
@@ -142,7 +142,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get object by parameter 'code' from service
             creativeroleTypeData = dictService.GetCreativeRoleType(codeForRefresh);
             //use data for binding source
-            bsCopyrightKind.DataSource = creativeroleTypeData;
+            bsCreativeRoleType.DataSource = creativeroleTypeData;
             //define binding for source of the 'Uk'
             ukCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "Uk");
             if (ukCreativeroleType == null)
@@ -150,7 +150,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ukCreativeroleType = new CreativeRoleTypeTr { Lang = "Uk" };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(ukCreativeroleType);
             }
-            bindingSourceUk.DataSource = ukCreativeroleType;
+            bsUkLangCreativeRoleType.DataSource = ukCreativeroleType;
             //defined binding for source of the 'Ru'
             ruCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "Ru");
             if (ruCreativeroleType == null)
@@ -158,7 +158,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ruCreativeroleType = new CreativeRoleTypeTr { Lang = "Ru" };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(ruCreativeroleType);
             }
-            bindingSourceRu.DataSource = ruCreativeroleType;
+            bsRuLangCreativeRoleType.DataSource = ruCreativeroleType;
             //define binding for source of the 'En'
             enCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "En");
             if (enCreativeroleType == null)
@@ -166,7 +166,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 enCreativeroleType = new CreativeRoleTypeTr { Lang = "En" };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(enCreativeroleType);
             }
-            bindingSourceEn.DataSource = enCreativeroleType;
+            bsEnLangCreativeRoleType.DataSource = enCreativeroleType;
         }
 
         //select item into drop down list for filtered data into grid
@@ -216,19 +216,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //clear data into bottom panel
             //refresh data for field 'Code'
             creativeroleTypeData = new CreativeRoleType();
-            bsCopyrightKind.DataSource = creativeroleTypeData;
+            bsCreativeRoleType.DataSource = creativeroleTypeData;
             //refresh data for field 'Uk'
             ukCreativeroleType = new CreativeRoleTypeTr();
             creativeroleTypeData.CreativeRoleTypeTr.Add(ukCreativeroleType);
-            bindingSourceUk.DataSource = ukCreativeroleType;
+            bsUkLangCreativeRoleType.DataSource = ukCreativeroleType;
             //refresh data for field 'Ru'
             ruCreativeroleType = new CreativeRoleTypeTr();
             creativeroleTypeData.CreativeRoleTypeTr.Add(ruCreativeroleType);
-            bindingSourceRu.DataSource = ruCreativeroleType;
+            bsRuLangCreativeRoleType.DataSource = ruCreativeroleType;
             //refresh data for field 'Ru'
             enCreativeroleType = new CreativeRoleTypeTr();
             creativeroleTypeData.CreativeRoleTypeTr.Add(enCreativeroleType);
-            bindingSourceEn.DataSource = enCreativeroleType;
+            bsEnLangCreativeRoleType.DataSource = enCreativeroleType;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements

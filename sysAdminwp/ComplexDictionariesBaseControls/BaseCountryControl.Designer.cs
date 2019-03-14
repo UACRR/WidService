@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalCountry = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalCountry = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterCountry = new Telerik.WinControls.UI.RadDropDownList();
@@ -200,7 +200,7 @@
             // 
             this.ddlEditKeyCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlEditKeyCountry.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "CrGroupCode", true));
+            this.ddlEditKeyCountry.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCountry, "ContinentCode", true));
             this.ddlEditKeyCountry.DataSource = this.bsSimpleDictCountry;
             this.ddlEditKeyCountry.DisplayMember = "Name";
             this.ddlEditKeyCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -213,7 +213,7 @@
             // 
             // bsCountry
             // 
-            this.bsCountry.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
+            this.bsCountry.DataSource = typeof(ipsFormsDesign.Model.Country);
             this.bsCountry.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtNameRuCountry
@@ -260,7 +260,7 @@
             // 
             // txtCodeCountry
             // 
-            this.txtCodeCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "CodeI", true));
+            this.txtCodeCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "CountryCode", true));
             this.txtCodeCountry.Location = new System.Drawing.Point(162, 28);
             this.txtCodeCountry.MaxLength = 3;
             this.txtCodeCountry.Name = "txtCodeCountry";
@@ -371,37 +371,37 @@
             this.gridCountryList.MasterTemplate.AllowEditRow = false;
             this.gridCountryList.MasterTemplate.AutoGenerateColumns = false;
             this.gridCountryList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Code";
-            gridViewTextBoxColumn1.HeaderText = "Код";
-            gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 105;
-            gridViewTextBoxColumn2.FieldName = "NameUk";
-            gridViewTextBoxColumn2.HeaderText = "Назва";
-            gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 316;
-            gridViewTextBoxColumn3.FieldName = "NameRu";
-            gridViewTextBoxColumn3.HeaderText = "Название";
-            gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 316;
-            gridViewTextBoxColumn4.FieldName = "NameEn";
-            gridViewTextBoxColumn4.HeaderText = "Name";
-            gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 231;
-            gridViewTextBoxColumn5.FieldName = "Continent";
-            gridViewTextBoxColumn5.HeaderText = "Континент";
-            gridViewTextBoxColumn5.MinWidth = 200;
-            gridViewTextBoxColumn5.Name = "Continent";
-            gridViewTextBoxColumn5.Width = 202;
+            gridViewTextBoxColumn11.FieldName = "Code";
+            gridViewTextBoxColumn11.HeaderText = "Код";
+            gridViewTextBoxColumn11.Name = "Code";
+            gridViewTextBoxColumn11.Width = 105;
+            gridViewTextBoxColumn12.FieldName = "NameUk";
+            gridViewTextBoxColumn12.HeaderText = "Назва";
+            gridViewTextBoxColumn12.Name = "NameUk";
+            gridViewTextBoxColumn12.Width = 316;
+            gridViewTextBoxColumn13.FieldName = "NameRu";
+            gridViewTextBoxColumn13.HeaderText = "Название";
+            gridViewTextBoxColumn13.Name = "NameRu";
+            gridViewTextBoxColumn13.Width = 316;
+            gridViewTextBoxColumn14.FieldName = "NameEn";
+            gridViewTextBoxColumn14.HeaderText = "Name";
+            gridViewTextBoxColumn14.Name = "NameEn";
+            gridViewTextBoxColumn14.Width = 231;
+            gridViewTextBoxColumn15.FieldName = "Continent";
+            gridViewTextBoxColumn15.HeaderText = "Континент";
+            gridViewTextBoxColumn15.MinWidth = 200;
+            gridViewTextBoxColumn15.Name = "Continent";
+            gridViewTextBoxColumn15.Width = 202;
             this.gridCountryList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15});
             this.gridCountryList.MasterTemplate.EnableCustomFiltering = true;
             this.gridCountryList.MasterTemplate.EnableFiltering = true;
             this.gridCountryList.MasterTemplate.ShowFilteringRow = false;
-            this.gridCountryList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCountryList.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gridCountryList.Name = "gridCountryList";
             this.gridCountryList.ReadOnly = true;
             this.gridCountryList.ShowGroupPanel = false;

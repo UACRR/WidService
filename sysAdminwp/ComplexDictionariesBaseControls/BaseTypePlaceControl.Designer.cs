@@ -38,19 +38,19 @@
             this.totalTypePlace = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalTypePlace = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterTypePlace = new Telerik.WinControls.UI.RadDropDownList();
-            this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsSimpleDictTypePlace = new System.Windows.Forms.BindingSource(this.components);
             this.lbFilterTypePlace = new Telerik.WinControls.UI.RadLabel();
             this.lblSearchTypePlace = new System.Windows.Forms.Label();
             this.editPanelTypePlace = new Telerik.WinControls.UI.RadPanel();
             this.lbEditKeyTypePlace = new Telerik.WinControls.UI.RadLabel();
             this.ddlEditKeyTypePlace = new Telerik.WinControls.UI.RadDropDownList();
-            this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
+            this.bsTypePlace = new System.Windows.Forms.BindingSource(this.components);
             this.txtRuLangTypePlace = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceRu = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRuLangTypePlace = new System.Windows.Forms.BindingSource(this.components);
             this.txtEnLangTypePlace = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceEn = new System.Windows.Forms.BindingSource(this.components);
+            this.bsEnLangTypePlace = new System.Windows.Forms.BindingSource(this.components);
             this.txtUkLangTypePlace = new Telerik.WinControls.UI.RadTextBox();
-            this.bindingSourceUk = new System.Windows.Forms.BindingSource(this.components);
+            this.bsUkLangTypePlace = new System.Windows.Forms.BindingSource(this.components);
             this.txtCodeTypePlace = new Telerik.WinControls.UI.RadTextBox();
             this.lblRuLangTypePlace = new Telerik.WinControls.UI.RadLabel();
             this.lblEnLangTypePlace = new Telerik.WinControls.UI.RadLabel();
@@ -65,19 +65,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.totalTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotalTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterTypePlace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSimpleDictTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbFilterTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanelTypePlace)).BeginInit();
             this.editPanelTypePlace.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyTypePlace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuLangTypePlace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnLangTypePlace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUkLangTypePlace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangTypePlace)).BeginInit();
@@ -114,7 +114,7 @@
             // ddlFilterTypePlace
             // 
             this.ddlFilterTypePlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlFilterTypePlace.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlFilterTypePlace.DataSource = this.bsSimpleDictTypePlace;
             this.ddlFilterTypePlace.DisplayMember = "Name";
             this.ddlFilterTypePlace.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlFilterTypePlace.FormattingEnabled = false;
@@ -126,9 +126,9 @@
             this.ddlFilterTypePlace.ValueMember = "CodeI";
             this.ddlFilterTypePlace.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
             // 
-            // dictBaseTypeIBindingSource
+            // bsSimpleDictTypePlace
             // 
-            this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
+            this.bsSimpleDictTypePlace.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // lbFilterTypePlace
             // 
@@ -200,8 +200,8 @@
             // 
             this.ddlEditKeyTypePlace.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlEditKeyTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
-            this.ddlEditKeyTypePlace.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlEditKeyTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsTypePlace, "CrGroupCode", true));
+            this.ddlEditKeyTypePlace.DataSource = this.bsSimpleDictTypePlace;
             this.ddlEditKeyTypePlace.DisplayMember = "Name";
             this.ddlEditKeyTypePlace.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyTypePlace.Location = new System.Drawing.Point(783, 28);
@@ -211,56 +211,56 @@
             this.ddlEditKeyTypePlace.ThemeName = "Office2013Light";
             this.ddlEditKeyTypePlace.ValueMember = "CodeI";
             // 
-            // bsCopyrightKind
+            // bsTypePlace
             // 
-            this.bsCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
-            this.bsCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
+            this.bsTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
+            this.bsTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtRuLangTypePlace
             // 
-            this.txtRuLangTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRu, "Name", true));
+            this.txtRuLangTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangTypePlace, "Name", true));
             this.txtRuLangTypePlace.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangTypePlace.MaxLength = 500;
             this.txtRuLangTypePlace.Name = "txtRuLangTypePlace";
             this.txtRuLangTypePlace.Size = new System.Drawing.Size(465, 20);
             this.txtRuLangTypePlace.TabIndex = 9;
             // 
-            // bindingSourceRu
+            // bsRuLangTypePlace
             // 
-            this.bindingSourceRu.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bindingSourceRu.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
+            this.bsRuLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsRuLangTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
             // txtEnLangTypePlace
             // 
-            this.txtEnLangTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceEn, "Name", true));
+            this.txtEnLangTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangTypePlace, "Name", true));
             this.txtEnLangTypePlace.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangTypePlace.MaxLength = 500;
             this.txtEnLangTypePlace.Name = "txtEnLangTypePlace";
             this.txtEnLangTypePlace.Size = new System.Drawing.Size(465, 20);
             this.txtEnLangTypePlace.TabIndex = 8;
             // 
-            // bindingSourceEn
+            // bsEnLangTypePlace
             // 
-            this.bindingSourceEn.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bindingSourceEn.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
+            this.bsEnLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsEnLangTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
             // txtUkLangTypePlace
             // 
-            this.txtUkLangTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUk, "Name", true));
+            this.txtUkLangTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangTypePlace, "Name", true));
             this.txtUkLangTypePlace.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangTypePlace.MaxLength = 500;
             this.txtUkLangTypePlace.Name = "txtUkLangTypePlace";
             this.txtUkLangTypePlace.Size = new System.Drawing.Size(465, 20);
             this.txtUkLangTypePlace.TabIndex = 7;
             // 
-            // bindingSourceUk
+            // bsUkLangTypePlace
             // 
-            this.bindingSourceUk.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bindingSourceUk.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
+            this.bsUkLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsUkLangTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
             // txtCodeTypePlace
             // 
-            this.txtCodeTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
+            this.txtCodeTypePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTypePlace, "CodeI", true));
             this.txtCodeTypePlace.Location = new System.Drawing.Point(162, 28);
             this.txtCodeTypePlace.MaxLength = 3;
             this.txtCodeTypePlace.Name = "txtCodeTypePlace";
@@ -440,20 +440,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.totalTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotalTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlFilterTypePlace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSimpleDictTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbFilterTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.editPanelTypePlace)).EndInit();
             this.editPanelTypePlace.ResumeLayout(false);
             this.editPanelTypePlace.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyTypePlace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuLangTypePlace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnLangTypePlace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUkLangTypePlace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangTypePlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangTypePlace)).EndInit();
@@ -494,10 +494,10 @@
         private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchTypePlace;
         private Telerik.WinControls.UI.RadDropDownList ddlEditKeyTypePlace;
         private Telerik.WinControls.UI.RadLabel lbEditKeyTypePlace;
-        private System.Windows.Forms.BindingSource bsCopyrightKind;
-        private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
-        private System.Windows.Forms.BindingSource bindingSourceRu;
-        private System.Windows.Forms.BindingSource bindingSourceEn;
-        private System.Windows.Forms.BindingSource bindingSourceUk;
+        private System.Windows.Forms.BindingSource bsTypePlace;
+        private System.Windows.Forms.BindingSource bsSimpleDictTypePlace;
+        private System.Windows.Forms.BindingSource bsRuLangTypePlace;
+        private System.Windows.Forms.BindingSource bsEnLangTypePlace;
+        private System.Windows.Forms.BindingSource bsUkLangTypePlace;
     }
 }
