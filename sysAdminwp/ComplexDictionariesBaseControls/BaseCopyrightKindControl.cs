@@ -72,6 +72,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
             gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
+            //set default data for bottom panel
+            DataUpdateForBottomPanel();
             //set 'Enabled' state by default
             ControlEnabledActiveElements = true;
             

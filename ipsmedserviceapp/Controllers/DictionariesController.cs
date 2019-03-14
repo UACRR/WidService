@@ -1469,10 +1469,21 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> CreateCopyRightKind([FromBody] CopyrightKind sors)
         {
             var dest = new CopyrightKind();
-            dest.SetFields(sors, new[] { "CodeI" });
-            _dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            _dbContext.CopyrightKind.Add(dest);
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                dest.SetFields(sors);
+                _dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+                _dbContext.CopyrightKind.Add(dest);
+                await _dbContext.SaveChangesAsync();
+            } catch (Exception e)
+            {
+
+            }
+            //var dest = new CopyrightKind();
+            //dest.SetFields(sors, new[] { "CodeI" });
+            //_dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            //_dbContext.CopyrightKind.Add(dest);
+            //await _dbContext.SaveChangesAsync();
             return Ok(dest);
         }
         // Update      ****************************
@@ -1502,10 +1513,20 @@ namespace ipsmedserviceapp.Controllers
             if (delRow == null)
                 return NotFound();
 
-            _dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-            _dbContext.CopyrightKind.Remove( delRow );
+            try
+            {
+                _dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
+                _dbContext.CopyrightKind.Remove(delRow);
 
-            await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync();
+            } catch (Exception e)
+            {
+
+            }
+            //_dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
+            //_dbContext.CopyrightKind.Remove( delRow );
+
+            //await _dbContext.SaveChangesAsync();
 
             return Ok();
         }
