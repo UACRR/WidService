@@ -540,10 +540,10 @@ namespace ipsFormsDesign.Services
                 eMail = anketaPerson.EMail;
                 createDate = anketaPerson.BirthDate;
                 Okpo = anketaPerson.Inn;
-                cstPerson = customerName;
+                //cstPerson = customerName;
                 cstContPerson = customerName;
                 cstContPersonPhone = phoneWork;
-                if (cust.CustType == 2)
+                if (cust.CustType < 3)
                 {
                     fop = " Фізична особа - підприємець ";
                 }
@@ -576,7 +576,10 @@ namespace ipsFormsDesign.Services
                 Okpo = anketaCompany.Okpo;
                 CstPersonReason = bossEmployee?.RelDocument;
                 cstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
-                cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
+                cstPerson = cstPerson + ",";
+
+
+                    cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
                 cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
                 vOsobi = " в особі ";
                 naPidstavi = "  що діє на підставі ";
@@ -640,12 +643,8 @@ namespace ipsFormsDesign.Services
                     case "naPidstavi":
                         item.Range.Text = naPidstavi;
                         break;
-
-
-
-
                     case "CstName":
-                        item.Range.Text = customerName;
+                           item.Range.Text = customerName;
                         break;
 
 
