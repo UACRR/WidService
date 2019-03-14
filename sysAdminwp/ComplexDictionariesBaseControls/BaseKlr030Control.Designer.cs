@@ -29,442 +29,442 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.total = new Telerik.WinControls.UI.RadLabel();
-            this.lbTotal = new Telerik.WinControls.UI.RadLabel();
-            this.ddlCommonKeyData = new Telerik.WinControls.UI.RadDropDownList();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.totalKlr030 = new Telerik.WinControls.UI.RadLabel();
+            this.lbTotalKlr030 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlFilterKlr030 = new Telerik.WinControls.UI.RadDropDownList();
             this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lbCommonNameKey = new Telerik.WinControls.UI.RadLabel();
-            this.radLblSearch = new System.Windows.Forms.Label();
-            this.editPanel = new Telerik.WinControls.UI.RadPanel();
-            this.lbEditKeyField = new Telerik.WinControls.UI.RadLabel();
-            this.ddlEditKeyField = new Telerik.WinControls.UI.RadDropDownList();
+            this.lbFilterKlr030 = new Telerik.WinControls.UI.RadLabel();
+            this.lblSearchKlr030 = new System.Windows.Forms.Label();
+            this.editPanelKlr030 = new Telerik.WinControls.UI.RadPanel();
+            this.lbEditKeyKlr030 = new Telerik.WinControls.UI.RadLabel();
+            this.ddlEditKeyKlr030 = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameRuComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtRuLangKlr030 = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSourceRu = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameEnComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtEnLangKlr030 = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSourceEn = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameUaComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtUkLangKlr030 = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSourceUk = new System.Windows.Forms.BindingSource(this.components);
-            this.txtCodeComplex = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.lblCode = new Telerik.WinControls.UI.RadLabel();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
-            this.btnAddComplex = new Telerik.WinControls.UI.RadButton();
-            this.gvCopyrightKindList = new Telerik.WinControls.UI.RadGridView();
-            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            ((System.ComponentModel.ISupportInitialize)(this.total)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).BeginInit();
+            this.txtCodeKlr030 = new Telerik.WinControls.UI.RadTextBox();
+            this.lblRuLangKlr030 = new Telerik.WinControls.UI.RadLabel();
+            this.lblEnLangKlr030 = new Telerik.WinControls.UI.RadLabel();
+            this.lblUkLangKlr030 = new Telerik.WinControls.UI.RadLabel();
+            this.lblCodeKlr030 = new Telerik.WinControls.UI.RadLabel();
+            this.btnCancelKlr030 = new Telerik.WinControls.UI.RadButton();
+            this.btnSaveKlr030 = new Telerik.WinControls.UI.RadButton();
+            this.btnDeleteKlr030 = new Telerik.WinControls.UI.RadButton();
+            this.btnAddKlr030 = new Telerik.WinControls.UI.RadButton();
+            this.gridKlr030List = new Telerik.WinControls.UI.RadGridView();
+            this.txtSearchKlr030 = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            ((System.ComponentModel.ISupportInitialize)(this.totalKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbTotalKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFilterKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.editPanel)).BeginInit();
-            this.editPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbFilterKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editPanelKlr030)).BeginInit();
+            this.editPanelKlr030.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEnLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUkLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteComplex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodeKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRuLangKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblEnLangKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUkLangKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCodeKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancelKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridKlr030List)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridKlr030List.MasterTemplate)).BeginInit();
             this.SuspendLayout();
             // 
-            // total
+            // totalKlr030
             // 
-            this.total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.total.Location = new System.Drawing.Point(1099, 346);
-            this.total.Name = "total";
-            this.total.Size = new System.Drawing.Size(29, 18);
-            this.total.TabIndex = 30;
-            this.total.Text = "dfgh";
+            this.totalKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalKlr030.Location = new System.Drawing.Point(1099, 346);
+            this.totalKlr030.Name = "totalKlr030";
+            this.totalKlr030.Size = new System.Drawing.Size(29, 18);
+            this.totalKlr030.TabIndex = 30;
+            this.totalKlr030.Text = "dfgh";
             // 
-            // lbTotal
+            // lbTotalKlr030
             // 
-            this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbTotal.AutoSize = false;
-            this.lbTotal.Location = new System.Drawing.Point(996, 346);
-            this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(97, 18);
-            this.lbTotal.TabIndex = 29;
-            this.lbTotal.Text = "Всього записів";
-            this.lbTotal.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbTotalKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTotalKlr030.AutoSize = false;
+            this.lbTotalKlr030.Location = new System.Drawing.Point(996, 346);
+            this.lbTotalKlr030.Name = "lbTotalKlr030";
+            this.lbTotalKlr030.Size = new System.Drawing.Size(97, 18);
+            this.lbTotalKlr030.TabIndex = 29;
+            this.lbTotalKlr030.Text = "Всього записів";
+            this.lbTotalKlr030.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ddlCommonKeyData
+            // ddlFilterKlr030
             // 
-            this.ddlCommonKeyData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlCommonKeyData.DataSource = this.dictBaseTypeIBindingSource;
-            this.ddlCommonKeyData.DisplayMember = "Name";
-            this.ddlCommonKeyData.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlCommonKeyData.FormattingEnabled = false;
-            this.ddlCommonKeyData.Location = new System.Drawing.Point(760, 2);
-            this.ddlCommonKeyData.Name = "ddlCommonKeyData";
-            this.ddlCommonKeyData.Size = new System.Drawing.Size(427, 20);
-            this.ddlCommonKeyData.TabIndex = 22;
-            this.ddlCommonKeyData.ThemeName = "Office2013Light";
-            this.ddlCommonKeyData.ValueMember = "CodeI";
-            this.ddlCommonKeyData.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
+            this.ddlFilterKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlFilterKlr030.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlFilterKlr030.DisplayMember = "Name";
+            this.ddlFilterKlr030.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlFilterKlr030.FormattingEnabled = false;
+            this.ddlFilterKlr030.Location = new System.Drawing.Point(760, 2);
+            this.ddlFilterKlr030.Name = "ddlFilterKlr030";
+            this.ddlFilterKlr030.Size = new System.Drawing.Size(427, 20);
+            this.ddlFilterKlr030.TabIndex = 22;
+            this.ddlFilterKlr030.ThemeName = "Office2013Light";
+            this.ddlFilterKlr030.ValueMember = "CodeI";
+            this.ddlFilterKlr030.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
             // 
             // dictBaseTypeIBindingSource
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
-            // lbCommonNameKey
+            // lbFilterKlr030
             // 
-            this.lbCommonNameKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbCommonNameKey.AutoSize = false;
-            this.lbCommonNameKey.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbCommonNameKey.Location = new System.Drawing.Point(627, 3);
-            this.lbCommonNameKey.Name = "lbCommonNameKey";
-            this.lbCommonNameKey.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbCommonNameKey.Size = new System.Drawing.Size(127, 18);
-            this.lbCommonNameKey.TabIndex = 21;
-            this.lbCommonNameKey.Text = "Спосіб використання";
-            this.lbCommonNameKey.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbCommonNameKey.ThemeName = "Office2013Light";
+            this.lbFilterKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbFilterKlr030.AutoSize = false;
+            this.lbFilterKlr030.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbFilterKlr030.Location = new System.Drawing.Point(627, 3);
+            this.lbFilterKlr030.Name = "lbFilterKlr030";
+            this.lbFilterKlr030.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbFilterKlr030.Size = new System.Drawing.Size(127, 18);
+            this.lbFilterKlr030.TabIndex = 21;
+            this.lbFilterKlr030.Text = "Спосіб використання";
+            this.lbFilterKlr030.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbFilterKlr030.ThemeName = "Office2013Light";
             // 
-            // radLblSearch
+            // lblSearchKlr030
             // 
-            this.radLblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblSearchKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLblSearch.AutoSize = true;
-            this.radLblSearch.Location = new System.Drawing.Point(3, 0);
-            this.radLblSearch.Name = "radLblSearch";
-            this.radLblSearch.Size = new System.Drawing.Size(43, 13);
-            this.radLblSearch.TabIndex = 23;
-            this.radLblSearch.Text = "Пошук:";
+            this.lblSearchKlr030.AutoSize = true;
+            this.lblSearchKlr030.Location = new System.Drawing.Point(3, 0);
+            this.lblSearchKlr030.Name = "lblSearchKlr030";
+            this.lblSearchKlr030.Size = new System.Drawing.Size(43, 13);
+            this.lblSearchKlr030.TabIndex = 23;
+            this.lblSearchKlr030.Text = "Пошук:";
             // 
-            // editPanel
+            // editPanelKlr030
             // 
-            this.editPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.editPanelKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.editPanel.Controls.Add(this.lbEditKeyField);
-            this.editPanel.Controls.Add(this.ddlEditKeyField);
-            this.editPanel.Controls.Add(this.txtNameRuComplex);
-            this.editPanel.Controls.Add(this.txtNameEnComplex);
-            this.editPanel.Controls.Add(this.txtNameUaComplex);
-            this.editPanel.Controls.Add(this.txtCodeComplex);
-            this.editPanel.Controls.Add(this.radLabel1);
-            this.editPanel.Controls.Add(this.radLabel2);
-            this.editPanel.Controls.Add(this.radLabel3);
-            this.editPanel.Controls.Add(this.lblCode);
-            this.editPanel.Controls.Add(this.btnCancel);
-            this.editPanel.Controls.Add(this.btnSave);
-            this.editPanel.Location = new System.Drawing.Point(0, 370);
-            this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(1187, 202);
-            this.editPanel.TabIndex = 28;
-            this.editPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.editPanel.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.editPanel.GetChildAt(0))).Text = "Дані довідника";
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.Azure;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).LineLimit = false;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.editPanelKlr030.Controls.Add(this.lbEditKeyKlr030);
+            this.editPanelKlr030.Controls.Add(this.ddlEditKeyKlr030);
+            this.editPanelKlr030.Controls.Add(this.txtRuLangKlr030);
+            this.editPanelKlr030.Controls.Add(this.txtEnLangKlr030);
+            this.editPanelKlr030.Controls.Add(this.txtUkLangKlr030);
+            this.editPanelKlr030.Controls.Add(this.txtCodeKlr030);
+            this.editPanelKlr030.Controls.Add(this.lblRuLangKlr030);
+            this.editPanelKlr030.Controls.Add(this.lblEnLangKlr030);
+            this.editPanelKlr030.Controls.Add(this.lblUkLangKlr030);
+            this.editPanelKlr030.Controls.Add(this.lblCodeKlr030);
+            this.editPanelKlr030.Controls.Add(this.btnCancelKlr030);
+            this.editPanelKlr030.Controls.Add(this.btnSaveKlr030);
+            this.editPanelKlr030.Location = new System.Drawing.Point(0, 370);
+            this.editPanelKlr030.Name = "editPanelKlr030";
+            this.editPanelKlr030.Size = new System.Drawing.Size(1187, 202);
+            this.editPanelKlr030.TabIndex = 28;
+            this.editPanelKlr030.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.editPanelKlr030.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.editPanelKlr030.GetChildAt(0))).Text = "Дані довідника";
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanelKlr030.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanelKlr030.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.Azure;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanelKlr030.GetChildAt(0).GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelKlr030.GetChildAt(0).GetChildAt(2))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelKlr030.GetChildAt(0).GetChildAt(2))).LineLimit = false;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelKlr030.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lbEditKeyField
+            // lbEditKeyKlr030
             // 
-            this.lbEditKeyField.AutoSize = false;
-            this.lbEditKeyField.Location = new System.Drawing.Point(633, 29);
-            this.lbEditKeyField.Name = "lbEditKeyField";
-            this.lbEditKeyField.Size = new System.Drawing.Size(144, 19);
-            this.lbEditKeyField.TabIndex = 12;
-            this.lbEditKeyField.Text = "Спосіб використання";
-            this.lbEditKeyField.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbEditKeyField.ThemeName = "Office2013Light";
+            this.lbEditKeyKlr030.AutoSize = false;
+            this.lbEditKeyKlr030.Location = new System.Drawing.Point(633, 29);
+            this.lbEditKeyKlr030.Name = "lbEditKeyKlr030";
+            this.lbEditKeyKlr030.Size = new System.Drawing.Size(144, 19);
+            this.lbEditKeyKlr030.TabIndex = 12;
+            this.lbEditKeyKlr030.Text = "Спосіб використання";
+            this.lbEditKeyKlr030.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbEditKeyKlr030.ThemeName = "Office2013Light";
             // 
-            // ddlEditKeyField
+            // ddlEditKeyKlr030
             // 
-            this.ddlEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ddlEditKeyKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlEditKeyField.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
-            this.ddlEditKeyField.DataSource = this.dictBaseTypeIBindingSource;
-            this.ddlEditKeyField.DisplayMember = "Name";
-            this.ddlEditKeyField.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlEditKeyField.Location = new System.Drawing.Point(783, 28);
-            this.ddlEditKeyField.Name = "ddlEditKeyField";
-            this.ddlEditKeyField.Size = new System.Drawing.Size(401, 20);
-            this.ddlEditKeyField.TabIndex = 13;
-            this.ddlEditKeyField.ThemeName = "Office2013Light";
-            this.ddlEditKeyField.ValueMember = "CodeI";
+            this.ddlEditKeyKlr030.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
+            this.ddlEditKeyKlr030.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlEditKeyKlr030.DisplayMember = "Name";
+            this.ddlEditKeyKlr030.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlEditKeyKlr030.Location = new System.Drawing.Point(783, 28);
+            this.ddlEditKeyKlr030.Name = "ddlEditKeyKlr030";
+            this.ddlEditKeyKlr030.Size = new System.Drawing.Size(401, 20);
+            this.ddlEditKeyKlr030.TabIndex = 13;
+            this.ddlEditKeyKlr030.ThemeName = "Office2013Light";
+            this.ddlEditKeyKlr030.ValueMember = "CodeI";
             // 
             // bsCopyrightKind
             // 
             this.bsCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
             this.bsCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
-            // txtNameRuComplex
+            // txtRuLangKlr030
             // 
-            this.txtNameRuComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRu, "Name", true));
-            this.txtNameRuComplex.Location = new System.Drawing.Point(162, 81);
-            this.txtNameRuComplex.MaxLength = 500;
-            this.txtNameRuComplex.Name = "txtNameRuComplex";
-            this.txtNameRuComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameRuComplex.TabIndex = 9;
+            this.txtRuLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRu, "Name", true));
+            this.txtRuLangKlr030.Location = new System.Drawing.Point(162, 81);
+            this.txtRuLangKlr030.MaxLength = 500;
+            this.txtRuLangKlr030.Name = "txtRuLangKlr030";
+            this.txtRuLangKlr030.Size = new System.Drawing.Size(465, 20);
+            this.txtRuLangKlr030.TabIndex = 9;
             // 
             // bindingSourceRu
             // 
             this.bindingSourceRu.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bindingSourceRu.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
-            // txtNameEnComplex
+            // txtEnLangKlr030
             // 
-            this.txtNameEnComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceEn, "Name", true));
-            this.txtNameEnComplex.Location = new System.Drawing.Point(162, 108);
-            this.txtNameEnComplex.MaxLength = 500;
-            this.txtNameEnComplex.Name = "txtNameEnComplex";
-            this.txtNameEnComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameEnComplex.TabIndex = 8;
+            this.txtEnLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceEn, "Name", true));
+            this.txtEnLangKlr030.Location = new System.Drawing.Point(162, 108);
+            this.txtEnLangKlr030.MaxLength = 500;
+            this.txtEnLangKlr030.Name = "txtEnLangKlr030";
+            this.txtEnLangKlr030.Size = new System.Drawing.Size(465, 20);
+            this.txtEnLangKlr030.TabIndex = 8;
             // 
             // bindingSourceEn
             // 
             this.bindingSourceEn.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bindingSourceEn.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
-            // txtNameUaComplex
+            // txtUkLangKlr030
             // 
-            this.txtNameUaComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUk, "Name", true));
-            this.txtNameUaComplex.Location = new System.Drawing.Point(162, 55);
-            this.txtNameUaComplex.MaxLength = 500;
-            this.txtNameUaComplex.Name = "txtNameUaComplex";
-            this.txtNameUaComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameUaComplex.TabIndex = 7;
+            this.txtUkLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUk, "Name", true));
+            this.txtUkLangKlr030.Location = new System.Drawing.Point(162, 55);
+            this.txtUkLangKlr030.MaxLength = 500;
+            this.txtUkLangKlr030.Name = "txtUkLangKlr030";
+            this.txtUkLangKlr030.Size = new System.Drawing.Size(465, 20);
+            this.txtUkLangKlr030.TabIndex = 7;
             // 
             // bindingSourceUk
             // 
             this.bindingSourceUk.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bindingSourceUk.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
-            // txtCodeComplex
+            // txtCodeKlr030
             // 
-            this.txtCodeComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
-            this.txtCodeComplex.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeComplex.MaxLength = 3;
-            this.txtCodeComplex.Name = "txtCodeComplex";
-            this.txtCodeComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtCodeComplex.TabIndex = 6;
+            this.txtCodeKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
+            this.txtCodeKlr030.Location = new System.Drawing.Point(162, 28);
+            this.txtCodeKlr030.MaxLength = 3;
+            this.txtCodeKlr030.Name = "txtCodeKlr030";
+            this.txtCodeKlr030.Size = new System.Drawing.Size(465, 20);
+            this.txtCodeKlr030.TabIndex = 6;
             // 
-            // radLabel1
+            // lblRuLangKlr030
             // 
-            this.radLabel1.AutoSize = false;
-            this.radLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel1.Location = new System.Drawing.Point(55, 82);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(90, 18);
-            this.radLabel1.TabIndex = 5;
-            this.radLabel1.Text = "Название (RU):";
-            this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblRuLangKlr030.AutoSize = false;
+            this.lblRuLangKlr030.BackColor = System.Drawing.Color.Transparent;
+            this.lblRuLangKlr030.Location = new System.Drawing.Point(55, 82);
+            this.lblRuLangKlr030.Name = "lblRuLangKlr030";
+            this.lblRuLangKlr030.Size = new System.Drawing.Size(90, 18);
+            this.lblRuLangKlr030.TabIndex = 5;
+            this.lblRuLangKlr030.Text = "Название (RU):";
+            this.lblRuLangKlr030.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // radLabel2
+            // lblEnLangKlr030
             // 
-            this.radLabel2.AutoSize = false;
-            this.radLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel2.Location = new System.Drawing.Point(55, 109);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(90, 18);
-            this.radLabel2.TabIndex = 4;
-            this.radLabel2.Text = "Name (EN):";
-            this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblEnLangKlr030.AutoSize = false;
+            this.lblEnLangKlr030.BackColor = System.Drawing.Color.Transparent;
+            this.lblEnLangKlr030.Location = new System.Drawing.Point(55, 109);
+            this.lblEnLangKlr030.Name = "lblEnLangKlr030";
+            this.lblEnLangKlr030.Size = new System.Drawing.Size(90, 18);
+            this.lblEnLangKlr030.TabIndex = 4;
+            this.lblEnLangKlr030.Text = "Name (EN):";
+            this.lblEnLangKlr030.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // radLabel3
+            // lblUkLangKlr030
             // 
-            this.radLabel3.AutoSize = false;
-            this.radLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel3.Location = new System.Drawing.Point(55, 55);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(90, 18);
-            this.radLabel3.TabIndex = 3;
-            this.radLabel3.Text = "Назва (UA):";
-            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblUkLangKlr030.AutoSize = false;
+            this.lblUkLangKlr030.BackColor = System.Drawing.Color.Transparent;
+            this.lblUkLangKlr030.Location = new System.Drawing.Point(55, 55);
+            this.lblUkLangKlr030.Name = "lblUkLangKlr030";
+            this.lblUkLangKlr030.Size = new System.Drawing.Size(90, 18);
+            this.lblUkLangKlr030.TabIndex = 3;
+            this.lblUkLangKlr030.Text = "Назва (UA):";
+            this.lblUkLangKlr030.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // lblCode
+            // lblCodeKlr030
             // 
-            this.lblCode.AutoSize = false;
-            this.lblCode.BackColor = System.Drawing.Color.Transparent;
-            this.lblCode.Location = new System.Drawing.Point(55, 28);
-            this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(90, 18);
-            this.lblCode.TabIndex = 2;
-            this.lblCode.Text = "Код:";
-            this.lblCode.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblCodeKlr030.AutoSize = false;
+            this.lblCodeKlr030.BackColor = System.Drawing.Color.Transparent;
+            this.lblCodeKlr030.Location = new System.Drawing.Point(55, 28);
+            this.lblCodeKlr030.Name = "lblCodeKlr030";
+            this.lblCodeKlr030.Size = new System.Drawing.Size(90, 18);
+            this.lblCodeKlr030.TabIndex = 2;
+            this.lblCodeKlr030.Text = "Код:";
+            this.lblCodeKlr030.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // btnCancel
+            // btnCancelKlr030
             // 
-            this.btnCancel.Location = new System.Drawing.Point(278, 135);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Відміна";
-            this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancelKlr030.Location = new System.Drawing.Point(278, 135);
+            this.btnCancelKlr030.Name = "btnCancelKlr030";
+            this.btnCancelKlr030.Size = new System.Drawing.Size(110, 24);
+            this.btnCancelKlr030.TabIndex = 1;
+            this.btnCancelKlr030.Text = "Відміна";
+            this.btnCancelKlr030.ThemeName = "Office2013Light";
+            this.btnCancelKlr030.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnSave
+            // btnSaveKlr030
             // 
-            this.btnSave.Location = new System.Drawing.Point(162, 135);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 24);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Зберегти";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSaveKlr030.Location = new System.Drawing.Point(162, 135);
+            this.btnSaveKlr030.Name = "btnSaveKlr030";
+            this.btnSaveKlr030.Size = new System.Drawing.Size(110, 24);
+            this.btnSaveKlr030.TabIndex = 0;
+            this.btnSaveKlr030.Text = "Зберегти";
+            this.btnSaveKlr030.ThemeName = "Office2013Light";
+            this.btnSaveKlr030.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnDeleteComplex
+            // btnDeleteKlr030
             // 
-            this.btnDeleteComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteComplex.Location = new System.Drawing.Point(116, 340);
-            this.btnDeleteComplex.Name = "btnDeleteComplex";
-            this.btnDeleteComplex.Size = new System.Drawing.Size(110, 24);
-            this.btnDeleteComplex.TabIndex = 27;
-            this.btnDeleteComplex.Text = "Видалити";
-            this.btnDeleteComplex.ThemeName = "Office2013Light";
-            this.btnDeleteComplex.Click += new System.EventHandler(this.btnDeleteComplex_Click);
+            this.btnDeleteKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteKlr030.Location = new System.Drawing.Point(116, 340);
+            this.btnDeleteKlr030.Name = "btnDeleteKlr030";
+            this.btnDeleteKlr030.Size = new System.Drawing.Size(110, 24);
+            this.btnDeleteKlr030.TabIndex = 27;
+            this.btnDeleteKlr030.Text = "Видалити";
+            this.btnDeleteKlr030.ThemeName = "Office2013Light";
+            this.btnDeleteKlr030.Click += new System.EventHandler(this.btnDeleteComplex_Click);
             // 
-            // btnAddComplex
+            // btnAddKlr030
             // 
-            this.btnAddComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddComplex.Location = new System.Drawing.Point(0, 340);
-            this.btnAddComplex.Name = "btnAddComplex";
-            this.btnAddComplex.Size = new System.Drawing.Size(110, 24);
-            this.btnAddComplex.TabIndex = 26;
-            this.btnAddComplex.Text = "Додати";
-            this.btnAddComplex.ThemeName = "Office2013Light";
-            this.btnAddComplex.Click += new System.EventHandler(this.btnAddComplex_Click);
+            this.btnAddKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddKlr030.Location = new System.Drawing.Point(0, 340);
+            this.btnAddKlr030.Name = "btnAddKlr030";
+            this.btnAddKlr030.Size = new System.Drawing.Size(110, 24);
+            this.btnAddKlr030.TabIndex = 26;
+            this.btnAddKlr030.Text = "Додати";
+            this.btnAddKlr030.ThemeName = "Office2013Light";
+            this.btnAddKlr030.Click += new System.EventHandler(this.btnAddComplex_Click);
             // 
-            // gvCopyrightKindList
+            // gridKlr030List
             // 
-            this.gvCopyrightKindList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridKlr030List.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvCopyrightKindList.EnableCustomFiltering = true;
-            this.gvCopyrightKindList.Location = new System.Drawing.Point(0, 27);
-            this.gvCopyrightKindList.Margin = new System.Windows.Forms.Padding(1);
+            this.gridKlr030List.EnableCustomFiltering = true;
+            this.gridKlr030List.Location = new System.Drawing.Point(0, 27);
+            this.gridKlr030List.Margin = new System.Windows.Forms.Padding(1);
             // 
             // 
             // 
-            this.gvCopyrightKindList.MasterTemplate.AllowAddNewRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowColumnReorder = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowDeleteRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowDragToGroup = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowEditRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
-            this.gvCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn6.FieldName = "Code";
-            gridViewTextBoxColumn6.HeaderText = "Код";
-            gridViewTextBoxColumn6.Name = "Code";
-            gridViewTextBoxColumn6.Width = 105;
-            gridViewTextBoxColumn7.FieldName = "NameUk";
-            gridViewTextBoxColumn7.HeaderText = "Назва";
-            gridViewTextBoxColumn7.Name = "NameUk";
-            gridViewTextBoxColumn7.Width = 316;
-            gridViewTextBoxColumn8.FieldName = "NameRu";
-            gridViewTextBoxColumn8.HeaderText = "Название";
-            gridViewTextBoxColumn8.Name = "NameRu";
-            gridViewTextBoxColumn8.Width = 316;
-            gridViewTextBoxColumn9.FieldName = "NameEn";
-            gridViewTextBoxColumn9.HeaderText = "Name";
-            gridViewTextBoxColumn9.Name = "NameEn";
-            gridViewTextBoxColumn9.Width = 231;
-            gridViewTextBoxColumn10.FieldName = "VariantUse";
-            gridViewTextBoxColumn10.HeaderText = "Спосіб використання";
-            gridViewTextBoxColumn10.MinWidth = 200;
-            gridViewTextBoxColumn10.Name = "VariantUse";
-            gridViewTextBoxColumn10.Width = 202;
-            this.gvCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10});
-            this.gvCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
-            this.gvCopyrightKindList.MasterTemplate.EnableFiltering = true;
-            this.gvCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
-            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.gvCopyrightKindList.Name = "gvCopyrightKindList";
-            this.gvCopyrightKindList.ReadOnly = true;
-            this.gvCopyrightKindList.ShowGroupPanel = false;
-            this.gvCopyrightKindList.Size = new System.Drawing.Size(1187, 309);
-            this.gvCopyrightKindList.TabIndex = 25;
-            this.gvCopyrightKindList.ThemeName = "Office2013Light";
-            this.gvCopyrightKindList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
+            this.gridKlr030List.MasterTemplate.AllowAddNewRow = false;
+            this.gridKlr030List.MasterTemplate.AllowColumnReorder = false;
+            this.gridKlr030List.MasterTemplate.AllowDeleteRow = false;
+            this.gridKlr030List.MasterTemplate.AllowDragToGroup = false;
+            this.gridKlr030List.MasterTemplate.AllowEditRow = false;
+            this.gridKlr030List.MasterTemplate.AutoGenerateColumns = false;
+            this.gridKlr030List.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 105;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 316;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 316;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 231;
+            gridViewTextBoxColumn5.FieldName = "klrCountry";
+            gridViewTextBoxColumn5.HeaderText = "Місто";
+            gridViewTextBoxColumn5.MinWidth = 200;
+            gridViewTextBoxColumn5.Name = "klrCountry";
+            gridViewTextBoxColumn5.Width = 202;
+            this.gridKlr030List.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5});
+            this.gridKlr030List.MasterTemplate.EnableCustomFiltering = true;
+            this.gridKlr030List.MasterTemplate.EnableFiltering = true;
+            this.gridKlr030List.MasterTemplate.ShowFilteringRow = false;
+            this.gridKlr030List.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridKlr030List.Name = "gridKlr030List";
+            this.gridKlr030List.ReadOnly = true;
+            this.gridKlr030List.ShowGroupPanel = false;
+            this.gridKlr030List.Size = new System.Drawing.Size(1187, 309);
+            this.gridKlr030List.TabIndex = 25;
+            this.gridKlr030List.ThemeName = "Office2013Light";
+            this.gridKlr030List.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
             // 
-            // txtSearchComplex
+            // txtSearchKlr030
             // 
-            this.txtSearchComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSearchKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearchComplex.Location = new System.Drawing.Point(53, 0);
-            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
-            this.txtSearchComplex.Name = "txtSearchComplex";
-            this.txtSearchComplex.Size = new System.Drawing.Size(568, 20);
-            this.txtSearchComplex.TabIndex = 24;
+            this.txtSearchKlr030.Location = new System.Drawing.Point(53, 0);
+            this.txtSearchKlr030.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.txtSearchKlr030.MinimumSize = new System.Drawing.Size(20, 20);
+            this.txtSearchKlr030.Name = "txtSearchKlr030";
+            this.txtSearchKlr030.Size = new System.Drawing.Size(568, 20);
+            this.txtSearchKlr030.TabIndex = 24;
             // 
-            // BaseCopyrightKindControl
+            // BaseKlr030Control
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.total);
-            this.Controls.Add(this.lbTotal);
-            this.Controls.Add(this.ddlCommonKeyData);
-            this.Controls.Add(this.lbCommonNameKey);
-            this.Controls.Add(this.radLblSearch);
-            this.Controls.Add(this.editPanel);
-            this.Controls.Add(this.btnDeleteComplex);
-            this.Controls.Add(this.btnAddComplex);
-            this.Controls.Add(this.gvCopyrightKindList);
-            this.Controls.Add(this.txtSearchComplex);
-            this.Name = "BaseCopyrightKindControl";
+            this.Controls.Add(this.totalKlr030);
+            this.Controls.Add(this.lbTotalKlr030);
+            this.Controls.Add(this.ddlFilterKlr030);
+            this.Controls.Add(this.lbFilterKlr030);
+            this.Controls.Add(this.lblSearchKlr030);
+            this.Controls.Add(this.editPanelKlr030);
+            this.Controls.Add(this.btnDeleteKlr030);
+            this.Controls.Add(this.btnAddKlr030);
+            this.Controls.Add(this.gridKlr030List);
+            this.Controls.Add(this.txtSearchKlr030);
+            this.Name = "BaseKlr030Control";
             this.Size = new System.Drawing.Size(1187, 572);
-            ((System.ComponentModel.ISupportInitialize)(this.total)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbTotalKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFilterKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.editPanel)).EndInit();
-            this.editPanel.ResumeLayout(false);
-            this.editPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbFilterKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editPanelKlr030)).EndInit();
+            this.editPanelKlr030.ResumeLayout(false);
+            this.editPanelKlr030.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEnLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUkLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteComplex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodeKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRuLangKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblEnLangKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUkLangKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCodeKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancelKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridKlr030List.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridKlr030List)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -472,28 +472,28 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadLabel total;
-        private Telerik.WinControls.UI.RadLabel lbTotal;
-        private Telerik.WinControls.UI.RadDropDownList ddlCommonKeyData;
-        private Telerik.WinControls.UI.RadLabel lbCommonNameKey;
-        private System.Windows.Forms.Label radLblSearch;
-        private Telerik.WinControls.UI.RadPanel editPanel;
-        private Telerik.WinControls.UI.RadTextBox txtNameRuComplex;
-        private Telerik.WinControls.UI.RadTextBox txtNameEnComplex;
-        private Telerik.WinControls.UI.RadTextBox txtNameUaComplex;
-        private Telerik.WinControls.UI.RadTextBox txtCodeComplex;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadLabel lblCode;
-        private Telerik.WinControls.UI.RadButton btnCancel;
-        private Telerik.WinControls.UI.RadButton btnSave;
-        private Telerik.WinControls.UI.RadButton btnDeleteComplex;
-        private Telerik.WinControls.UI.RadButton btnAddComplex;
-        private Telerik.WinControls.UI.RadGridView gvCopyrightKindList;
-        private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchComplex;
-        private Telerik.WinControls.UI.RadDropDownList ddlEditKeyField;
-        private Telerik.WinControls.UI.RadLabel lbEditKeyField;
+        private Telerik.WinControls.UI.RadLabel totalKlr030;
+        private Telerik.WinControls.UI.RadLabel lbTotalKlr030;
+        private Telerik.WinControls.UI.RadDropDownList ddlFilterKlr030;
+        private Telerik.WinControls.UI.RadLabel lbFilterKlr030;
+        private System.Windows.Forms.Label lblSearchKlr030;
+        private Telerik.WinControls.UI.RadPanel editPanelKlr030;
+        private Telerik.WinControls.UI.RadTextBox txtRuLangKlr030;
+        private Telerik.WinControls.UI.RadTextBox txtEnLangKlr030;
+        private Telerik.WinControls.UI.RadTextBox txtUkLangKlr030;
+        private Telerik.WinControls.UI.RadTextBox txtCodeKlr030;
+        private Telerik.WinControls.UI.RadLabel lblRuLangKlr030;
+        private Telerik.WinControls.UI.RadLabel lblEnLangKlr030;
+        private Telerik.WinControls.UI.RadLabel lblUkLangKlr030;
+        private Telerik.WinControls.UI.RadLabel lblCodeKlr030;
+        private Telerik.WinControls.UI.RadButton btnCancelKlr030;
+        private Telerik.WinControls.UI.RadButton btnSaveKlr030;
+        private Telerik.WinControls.UI.RadButton btnDeleteKlr030;
+        private Telerik.WinControls.UI.RadButton btnAddKlr030;
+        private Telerik.WinControls.UI.RadGridView gridKlr030List;
+        private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchKlr030;
+        private Telerik.WinControls.UI.RadDropDownList ddlEditKeyKlr030;
+        private Telerik.WinControls.UI.RadLabel lbEditKeyKlr030;
         private System.Windows.Forms.BindingSource bsCopyrightKind;
         private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
         private System.Windows.Forms.BindingSource bindingSourceRu;

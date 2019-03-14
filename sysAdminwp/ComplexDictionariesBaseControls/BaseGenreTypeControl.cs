@@ -18,15 +18,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
     public partial class BaseGenreTypeControl : UserControl
     {
         //Uk data item
-        CopyrightKindTr ukGenreType;
+        GenreTypeTr ukGenreType;
         //Ru data item
-        CopyrightKindTr ruGenreType;
+        GenreTypeTr ruGenreType;
         //En data item
-        CopyrightKindTr enGenreType;
+        GenreTypeTr enGenreType;
         //data grid
-        List<CopyrightKind> _genreTypeList;
+        List<GenreType> _genreTypeList;
         //item data
-        CopyrightKind genreTypeData;
+        GenreType genreTypeData;
         //define connector
         private readonly ApiConnector _connector;
         //url for get data to grid
@@ -42,19 +42,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 controlEnabledActiveElements = value;
                 //'search' element
-                txtSearchComplex.Enabled = value;
+                txtSearchGenreType.Enabled = value;
                 //filter for grid
-                ddlCommonKeyData.Enabled = value;
+                ddlFilterGenreType.Enabled = value;
                 //grid element
-                gvCopyrightKindList.Enabled = value;
+                gridGenreTypeList.Enabled = value;
                 //'Add' button
-                btnAddComplex.Enabled = value;
+                btnAddGenreType.Enabled = value;
                 //'Delete' button
-                btnDeleteComplex.Enabled = value;
+                btnDeleteGenreType.Enabled = value;
                 //'Save' button (bottom panel)
-                btnSave.Enabled = !value;
+                btnSaveGenreType.Enabled = !value;
                 //'Cancel' button (bottom panel)
-                btnCancel.Enabled = !value;
+                btnCancelGenreType.Enabled = !value;
             }
         }
         public BaseGenreTypeControl(ApiConnector connector, string urlForComplexDict)
@@ -63,15 +63,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialize connector
             _connector = connector;
             //setup search posibility for textBox element
-            txtSearchComplex.SetUsageGrid(gvCopyrightKindList);
+            txtSearchGenreType.SetUsageGrid(gridGenreTypeList);
             //initialize data for drop down list - 'Спосіб використання'
-            ddlCommonKeyData.DataSource = InitializeDataForFilter();
+            ddlFilterGenreType.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
-            dictBaseTypeIBindingSource.DataSource = ddlCommonKeyData.DataSource;
+            dictBaseTypeIBindingSource.DataSource = ddlFilterGenreType.DataSource;
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
+            gridGenreTypeList.DataSource = HandleDataForGrid(urlForComplexDict);
             //set default data for bottom panel
             DataUpdateForBottomPanel();
             //set 'Enabled' state by default
@@ -87,21 +87,21 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return dataGrid;
             //get data dictionaries -> for grid
-            _genreTypeList = _connector.GetList<CopyrightKind>(urlForGetDataDictionaries);
+            _genreTypeList = _connector.GetList<GenreType>(urlForGetDataDictionaries);
             //initialize grid data
             foreach (var item in _genreTypeList)
             {
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    VariantUse = ddlCommonKeyData.Items.First(el => (int)el.Value == item.CrGroupCode).Text,
+                    NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                    NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                    NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    VariantUse = ddlFilterGenreType.Items.First(el => (int)el.Value == item.CategoryCode).Text,
                 });
             }
             //show current count elements into grid
-            total.Text = _genreTypeList.Count.ToString();
+            totalGenreType.Text = _genreTypeList.Count.ToString();
             return dataGrid;
         }
 
@@ -111,7 +111,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //define for result data
             List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
             //get data for drop down list
-            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
             //check data
             return dataDropDownList != null ? dataDropDownList : new List<DictBaseTypeI>();
         }
@@ -120,7 +120,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
             //get id dictionary
-            GridViewRowInfo rowDetail = gvCopyrightKindList.CurrentRow;
+            GridViewRowInfo rowDetail = gridGenreTypeList.CurrentRow;
             //get data of the current row
             var @curRow = rowDetail.DataBoundItem as ViewTable;
             //stop perform if data is not exist
@@ -144,27 +144,27 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //use data for binding source
             bsCopyrightKind.DataSource = genreTypeData;
             //define binding for source of the 'Uk'
-            ukGenreType = genreTypeData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == "Uk");
             if (ukGenreType == null)
             {
-                ukGenreType = new CopyrightKindTr { Lang = "Uk" };
-                genreTypeData.CopyrightKindTr.Add(ukGenreType);
+                ukGenreType = new GenreTypeTr { Lang = "Uk" };
+                genreTypeData.GenreTypeTr.Add(ukGenreType);
             }
             bindingSourceUk.DataSource = ukGenreType;
             //defined binding for source of the 'Ru'
-            ruGenreType = genreTypeData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == "Ru");
             if (ruGenreType == null)
             {
-                ruGenreType = new CopyrightKindTr { Lang = "Ru" };
-                genreTypeData.CopyrightKindTr.Add(ruGenreType);
+                ruGenreType = new GenreTypeTr { Lang = "Ru" };
+                genreTypeData.GenreTypeTr.Add(ruGenreType);
             }
             bindingSourceRu.DataSource = ruGenreType;
             //define binding for source of the 'En'
-            enGenreType = genreTypeData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "En");
+            enGenreType = genreTypeData.GenreTypeTr.FirstOrDefault(rec => rec.Lang == "En");
             if (enGenreType == null)
             {
-                enGenreType = new CopyrightKindTr { Lang = "En" };
-                genreTypeData.CopyrightKindTr.Add(enGenreType);
+                enGenreType = new GenreTypeTr { Lang = "En" };
+                genreTypeData.GenreTypeTr.Add(enGenreType);
             }
             bindingSourceEn.DataSource = enGenreType;
         }
@@ -175,9 +175,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //stop perform if position is not exist
             if (e.Position == -1) return;
             //get field 'value' of the current selected item
-            int selectedItemData = (int)ddlCommonKeyData.Items[e.Position].Value;
+            int selectedItemData = (int)ddlFilterGenreType.Items[e.Position].Value;
             //set filtered data to grid
-            gvCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
+            gridGenreTypeList.DataSource = FilterDataIntoGrid(selectedItemData);
         }
 
         //filter data for grid
@@ -186,25 +186,25 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialzie empty data for result
             List<ViewTable> filteredData = new List<ViewTable>();
             //get all data of the 'CopyrightKind'
-            _genreTypeList = _connector.GetList<CopyrightKind>(urlDataGrid);
+            _genreTypeList = _connector.GetList<GenreType>(urlDataGrid);
             //stop perform if data is not exist
             if (_genreTypeList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            _genreTypeList = _genreTypeList.Where(item => item.CrGroupCode == code).ToList();
+            _genreTypeList = _genreTypeList.Where(item => item.CategoryCode == code).ToList();
             //initialize data for grid
             foreach (var item in _genreTypeList)
             {
                 filteredData.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    VariantUse = ddlCommonKeyData.SelectedItem.Text,
+                    NameUk = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                    NameRu = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                    NameEn = item.GenreTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    VariantUse = ddlFilterGenreType.SelectedItem.Text,
                 });
             }
             //show current count elements into grid
-            total.Text = _genreTypeList.Count.ToString();
+            totalGenreType.Text = _genreTypeList.Count.ToString();
             return filteredData;
         }
 
@@ -212,22 +212,22 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
             //change property 'Text' of the btnSave for 'Add' action
-            btnSave.Text = "Додати";
+            btnSaveGenreType.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            genreTypeData = new CopyrightKind();
+            genreTypeData = new GenreType();
             bsCopyrightKind.DataSource = genreTypeData;
             //refresh data for field 'Uk'
-            ukGenreType = new CopyrightKindTr();
-            genreTypeData.CopyrightKindTr.Add(ukGenreType);
+            ukGenreType = new GenreTypeTr();
+            genreTypeData.GenreTypeTr.Add(ukGenreType);
             bindingSourceUk.DataSource = ukGenreType;
             //refresh data for field 'Ru'
-            ruGenreType = new CopyrightKindTr();
-            genreTypeData.CopyrightKindTr.Add(ruGenreType);
+            ruGenreType = new GenreTypeTr();
+            genreTypeData.GenreTypeTr.Add(ruGenreType);
             bindingSourceRu.DataSource = ruGenreType;
             //refresh data for field 'Ru'
-            enGenreType = new CopyrightKindTr();
-            genreTypeData.CopyrightKindTr.Add(enGenreType);
+            enGenreType = new GenreTypeTr();
+            genreTypeData.GenreTypeTr.Add(enGenreType);
             bindingSourceEn.DataSource = enGenreType;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
@@ -242,7 +242,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //delete selected item of grid by field 'Code'
             dictService.DeleteCopyrightKind(codeForRefresh);
             //update data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
         }
 
@@ -250,19 +250,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void btnSave_Click(object sender, EventArgs e)
         {
             DictionaryService dictService = new DictionaryService();
-            if (btnSave.Text == "Додати")
+            if (btnSaveGenreType.Text == "Додати")
             {
                 //send created object
                 var result = dictService.CreateCopyrightKind(genreTypeData);
                 //set default state for 'Text' of the btnSave
-                btnSave.Text = "Зберегти";
-            } else if (btnSave.Text == "Зберегти")
+                btnSaveGenreType.Text = "Зберегти";
+            } else if (btnSaveGenreType.Text == "Зберегти")
             {
                 //save changes
                 var result = dictService.UpdateCopyrightKind(genreTypeData);
             }
             //update data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
@@ -286,10 +286,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                if (btnSave.Text != "Додати")
+                if (btnSaveGenreType.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSave.Text = "Зберегти";
+                    btnSaveGenreType.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -303,10 +303,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                if (btnSave.Text != "Додати")
+                if (btnSaveGenreType.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSave.Text = "Зберегти";
+                    btnSaveGenreType.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -320,10 +320,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                if (btnSave.Text != "Додати")
+                if (btnSaveGenreType.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSave.Text = "Зберегти";
+                    btnSaveGenreType.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -341,10 +341,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                if (btnSave.Text != "Додати")
+                if (btnSaveGenreType.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSave.Text = "Зберегти";
+                    btnSaveGenreType.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;

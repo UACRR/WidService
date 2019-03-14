@@ -60,7 +60,7 @@
             this.btnSaveCopyrightKind = new Telerik.WinControls.UI.RadButton();
             this.btnDeleteCopyrightKind = new Telerik.WinControls.UI.RadButton();
             this.btnAddCopyrightKind = new Telerik.WinControls.UI.RadButton();
-            this.gvCopyrightKindList = new Telerik.WinControls.UI.RadGridView();
+            this.gridCopyrightKindList = new Telerik.WinControls.UI.RadGridView();
             this.txtSearchCopyrightKind = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.totalCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotalCopyrightKind)).BeginInit();
@@ -87,8 +87,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCopyrightKindList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCopyrightKindList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // totalCopyrightKind
@@ -353,24 +353,24 @@
             this.btnAddCopyrightKind.ThemeName = "Office2013Light";
             this.btnAddCopyrightKind.Click += new System.EventHandler(this.btnAddComplex_Click);
             // 
-            // gvCopyrightKindList
+            // gridCopyrightKindList
             // 
-            this.gvCopyrightKindList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridCopyrightKindList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvCopyrightKindList.EnableCustomFiltering = true;
-            this.gvCopyrightKindList.Location = new System.Drawing.Point(0, 27);
-            this.gvCopyrightKindList.Margin = new System.Windows.Forms.Padding(1);
+            this.gridCopyrightKindList.EnableCustomFiltering = true;
+            this.gridCopyrightKindList.Location = new System.Drawing.Point(0, 27);
+            this.gridCopyrightKindList.Margin = new System.Windows.Forms.Padding(1);
             // 
             // 
             // 
-            this.gvCopyrightKindList.MasterTemplate.AllowAddNewRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowColumnReorder = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowDeleteRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowDragToGroup = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowEditRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
-            this.gvCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gridCopyrightKindList.MasterTemplate.AllowAddNewRow = false;
+            this.gridCopyrightKindList.MasterTemplate.AllowColumnReorder = false;
+            this.gridCopyrightKindList.MasterTemplate.AllowDeleteRow = false;
+            this.gridCopyrightKindList.MasterTemplate.AllowDragToGroup = false;
+            this.gridCopyrightKindList.MasterTemplate.AllowEditRow = false;
+            this.gridCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
+            this.gridCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.FieldName = "Code";
             gridViewTextBoxColumn1.HeaderText = "Код";
             gridViewTextBoxColumn1.Name = "Code";
@@ -392,23 +392,23 @@
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "VariantUse";
             gridViewTextBoxColumn5.Width = 202;
-            this.gvCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            this.gridCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5});
-            this.gvCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
-            this.gvCopyrightKindList.MasterTemplate.EnableFiltering = true;
-            this.gvCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
-            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.gvCopyrightKindList.Name = "gvCopyrightKindList";
-            this.gvCopyrightKindList.ReadOnly = true;
-            this.gvCopyrightKindList.ShowGroupPanel = false;
-            this.gvCopyrightKindList.Size = new System.Drawing.Size(1187, 309);
-            this.gvCopyrightKindList.TabIndex = 25;
-            this.gvCopyrightKindList.ThemeName = "Office2013Light";
-            this.gvCopyrightKindList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
+            this.gridCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
+            this.gridCopyrightKindList.MasterTemplate.EnableFiltering = true;
+            this.gridCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
+            this.gridCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCopyrightKindList.Name = "gridCopyrightKindList";
+            this.gridCopyrightKindList.ReadOnly = true;
+            this.gridCopyrightKindList.ShowGroupPanel = false;
+            this.gridCopyrightKindList.Size = new System.Drawing.Size(1187, 309);
+            this.gridCopyrightKindList.TabIndex = 25;
+            this.gridCopyrightKindList.ThemeName = "Office2013Light";
+            this.gridCopyrightKindList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
             // 
             // txtSearchCopyrightKind
             // 
@@ -433,7 +433,7 @@
             this.Controls.Add(this.editPanelCopyrightKind);
             this.Controls.Add(this.btnDeleteCopyrightKind);
             this.Controls.Add(this.btnAddCopyrightKind);
-            this.Controls.Add(this.gvCopyrightKindList);
+            this.Controls.Add(this.gridCopyrightKindList);
             this.Controls.Add(this.txtSearchCopyrightKind);
             this.Name = "BaseCopyrightKindControl";
             this.Size = new System.Drawing.Size(1187, 572);
@@ -463,8 +463,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCopyrightKindList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCopyrightKindList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,7 +490,7 @@
         private Telerik.WinControls.UI.RadButton btnSaveCopyrightKind;
         private Telerik.WinControls.UI.RadButton btnDeleteCopyrightKind;
         private Telerik.WinControls.UI.RadButton btnAddCopyrightKind;
-        private Telerik.WinControls.UI.RadGridView gvCopyrightKindList;
+        private Telerik.WinControls.UI.RadGridView gridCopyrightKindList;
         private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchCopyrightKind;
         private Telerik.WinControls.UI.RadDropDownList ddlEditKeyCopyrightKind;
         private Telerik.WinControls.UI.RadLabel lbEditKeyCopyrightKind;

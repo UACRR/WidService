@@ -46,7 +46,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //filter for grid
                 ddlFilterCopyrightKind.Enabled = value;
                 //grid element
-                gvCopyrightKindList.Enabled = value;
+                gridCopyrightKindList.Enabled = value;
                 //'Add' button
                 btnAddCopyrightKind.Enabled = value;
                 //'Delete' button
@@ -63,7 +63,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialize connector
             _connector = connector;
             //setup search posibility for textBox element
-            txtSearchCopyrightKind.SetUsageGrid(gvCopyrightKindList);
+            txtSearchCopyrightKind.SetUsageGrid(gridCopyrightKindList);
             //initialize data for drop down list - 'Спосіб використання'
             ddlFilterCopyrightKind.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
@@ -71,7 +71,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
+            gridCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
             //set default data for bottom panel
             DataUpdateForBottomPanel();
             //set 'Enabled' state by default
@@ -120,7 +120,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
             //get id dictionary
-            GridViewRowInfo rowDetail = gvCopyrightKindList.CurrentRow;
+            GridViewRowInfo rowDetail = gridCopyrightKindList.CurrentRow;
             //get data of the current row
             var @curRow = rowDetail.DataBoundItem as ViewTable;
             //stop perform if data is not exist
@@ -177,7 +177,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get field 'value' of the current selected item
             int selectedItemData = (int)ddlFilterCopyrightKind.Items[e.Position].Value;
             //set filtered data to grid
-            gvCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
+            gridCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
         }
 
         //filter data for grid
@@ -242,7 +242,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //delete selected item of grid by field 'Code'
             dictService.DeleteCopyrightKind(codeForRefresh);
             //update data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
         }
 
@@ -262,7 +262,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 var result = dictService.UpdateCopyrightKind(copyrightKindData);
             }
             //update data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;

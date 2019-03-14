@@ -18,15 +18,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
     public partial class BaseCountryControl : UserControl
     {
         //Uk data item
-        CopyrightKindTr ukCountry;
+        CountryTr ukCountry;
         //Ru data item
-        CopyrightKindTr ruCountry;
+        CountryTr ruCountry;
         //En data item
-        CopyrightKindTr enCountry;
+        CountryTr enCountry;
         //data grid
-        List<CopyrightKind> _countryList;
+        List<Country> _countryList;
         //item data
-        CopyrightKind countryData;
+        Country countryData;
         //define connector
         private readonly ApiConnector _connector;
         //url for get data to grid
@@ -46,7 +46,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //filter for grid
                 ddlFilterCountry.Enabled = value;
                 //grid element
-                gvCountryList.Enabled = value;
+                gridCountryList.Enabled = value;
                 //'Add' button
                 btnAddCountry.Enabled = value;
                 //'Delete' button
@@ -63,7 +63,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialize connector
             _connector = connector;
             //setup search posibility for textBox element
-            txtSearchCountry.SetUsageGrid(gvCountryList);
+            txtSearchCountry.SetUsageGrid(gridCountryList);
             //initialize data for drop down list - 'Спосіб використання'
             ddlFilterCountry.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
@@ -71,7 +71,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
-            gvCountryList.DataSource = HandleDataForGrid(urlForComplexDict);
+            gridCountryList.DataSource = HandleDataForGrid(urlForComplexDict);
             //set default data for bottom panel
             DataUpdateForBottomPanel();
             //set 'Enabled' state by default
@@ -87,17 +87,17 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return dataGrid;
             //get data dictionaries -> for grid
-            _countryList = _connector.GetList<CopyrightKind>(urlForGetDataDictionaries);
+            _countryList = _connector.GetList<Country>(urlForGetDataDictionaries);
             //initialize grid data
             foreach (var item in _countryList)
             {
                 dataGrid.Add(new ViewTable
                 {
-                    Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    VariantUse = ddlFilterCountry.Items.First(el => (int)el.Value == item.CrGroupCode).Text,
+                    Code = item.CountryCode,
+                    NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
+                    NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
+                    NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
+                    Continent = ddlFilterCountry.Items.First(el => (int)el.Value == item.ContinentCode).Text,
                 });
             }
             //show current count elements into grid
@@ -111,7 +111,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //define for result data
             List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
             //get data for drop down list
-            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
             //check data
             return dataDropDownList != null ? dataDropDownList : new List<DictBaseTypeI>();
         }
@@ -120,7 +120,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
             //get id dictionary
-            GridViewRowInfo rowDetail = gvCountryList.CurrentRow;
+            GridViewRowInfo rowDetail = gridCountryList.CurrentRow;
             //get data of the current row
             var @curRow = rowDetail.DataBoundItem as ViewTable;
             //stop perform if data is not exist
@@ -138,33 +138,33 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
-            if (codeForRefresh == 0) codeForRefresh = _countryList[0].CodeI;
+            if (codeForRefresh == 0) codeForRefresh = _countryList[0].ContinentCode ?? 1;
             //get object by parameter 'code' from service
             countryData = dictService.GetCopyrightKind(codeForRefresh);
             //use data for binding source
             bsCountry.DataSource = countryData;
             //define binding for source of the 'Uk'
-            ukCountry = countryData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == "Uk");
             if (ukCountry == null)
             {
-                ukCountry = new CopyrightKindTr { Lang = "Uk" };
-                countryData.CopyrightKindTr.Add(ukCountry);
+                ukCountry = new CountryTr { Lang = "Uk" };
+                countryData.CountryTr.Add(ukCountry);
             }
             bsUkLangCountry.DataSource = ukCountry;
             //defined binding for source of the 'Ru'
-            ruCountry = countryData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == "Ru");
             if (ruCountry == null)
             {
-                ruCountry = new CopyrightKindTr { Lang = "Ru" };
-                countryData.CopyrightKindTr.Add(ruCountry);
+                ruCountry = new CountryTr { Lang = "Ru" };
+                countryData.CountryTr.Add(ruCountry);
             }
             bsRuLangCountry.DataSource = ruCountry;
             //define binding for source of the 'En'
-            enCountry = countryData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "En");
+            enCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == "En");
             if (enCountry == null)
             {
-                enCountry = new CopyrightKindTr { Lang = "En" };
-                countryData.CopyrightKindTr.Add(enCountry);
+                enCountry = new CountryTr { Lang = "En" };
+                countryData.CountryTr.Add(enCountry);
             }
             bsEnLangCountry.DataSource = enCountry;
         }
@@ -177,7 +177,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get field 'value' of the current selected item
             int selectedItemData = (int)ddlFilterCountry.Items[e.Position].Value;
             //set filtered data to grid
-            gvCountryList.DataSource = FilterDataIntoGrid(selectedItemData);
+            gridCountryList.DataSource = FilterDataIntoGrid(selectedItemData);
         }
 
         //filter data for grid
@@ -186,20 +186,20 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialzie empty data for result
             List<ViewTable> filteredData = new List<ViewTable>();
             //get all data of the 'CopyrightKind'
-            _countryList = _connector.GetList<CopyrightKind>(urlDataGrid);
+            _countryList = _connector.GetList<Country>(urlDataGrid);
             //stop perform if data is not exist
             if (_countryList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            _countryList = _countryList.Where(item => item.CrGroupCode == code).ToList();
+            _countryList = _countryList.Where(item => item.ContinentCode == code).ToList();
             //initialize data for grid
             foreach (var item in _countryList)
             {
                 filteredData.Add(new ViewTable
                 {
-                    Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    Code = item.CountryCode,
+                    NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
+                    NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
+                    NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
                     VariantUse = ddlFilterCountry.SelectedItem.Text,
                 });
             }
@@ -215,19 +215,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             btnSaveCountry.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            countryData = new CopyrightKind();
+            countryData = new Country();
             bsCountry.DataSource = countryData;
             //refresh data for field 'Uk'
-            ukCountry = new CopyrightKindTr();
-            countryData.CopyrightKindTr.Add(ukCountry);
+            ukCountry = new CountryTr();
+            countryData.CountryTr.Add(ukCountry);
             bsUkLangCountry.DataSource = ukCountry;
             //refresh data for field 'Ru'
-            ruCountry = new CopyrightKindTr();
-            countryData.CopyrightKindTr.Add(ruCountry);
+            ruCountry = new CountryTr();
+            countryData.CountryTr.Add(ruCountry);
             bsRuLangCountry.DataSource = ruCountry;
             //refresh data for field 'Ru'
-            enCountry = new CopyrightKindTr();
-            countryData.CopyrightKindTr.Add(enCountry);
+            enCountry = new CountryTr();
+            countryData.CountryTr.Add(enCountry);
             bsEnLangCountry.DataSource = enCountry;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
@@ -242,7 +242,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //delete selected item of grid by field 'Code'
             dictService.DeleteCopyrightKind(codeForRefresh);
             //update data for grid
-            gvCountryList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
         }
 
@@ -262,7 +262,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 var result = dictService.UpdateCopyrightKind(countryData);
             }
             //update data for grid
-            gvCountryList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;

@@ -60,7 +60,7 @@
             this.btnSaveCountry = new Telerik.WinControls.UI.RadButton();
             this.btnDeleteCountry = new Telerik.WinControls.UI.RadButton();
             this.btnAddCountry = new Telerik.WinControls.UI.RadButton();
-            this.gvCountryList = new Telerik.WinControls.UI.RadGridView();
+            this.gridCountryList = new Telerik.WinControls.UI.RadGridView();
             this.txtSearchCountry = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.totalCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lbTotalCountry)).BeginInit();
@@ -87,8 +87,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCountryList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCountryList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCountryList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCountryList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
             // 
             // totalCountry
@@ -140,7 +140,7 @@
             this.lbFilterCountry.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lbFilterCountry.Size = new System.Drawing.Size(127, 18);
             this.lbFilterCountry.TabIndex = 21;
-            this.lbFilterCountry.Text = "Спосіб використання";
+            this.lbFilterCountry.Text = "Континент";
             this.lbFilterCountry.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lbFilterCountry.ThemeName = "Office2013Light";
             // 
@@ -192,7 +192,7 @@
             this.lbEditKeyCountry.Name = "lbEditKeyCountry";
             this.lbEditKeyCountry.Size = new System.Drawing.Size(144, 19);
             this.lbEditKeyCountry.TabIndex = 12;
-            this.lbEditKeyCountry.Text = "Спосіб використання";
+            this.lbEditKeyCountry.Text = "Континент";
             this.lbEditKeyCountry.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lbEditKeyCountry.ThemeName = "Office2013Light";
             // 
@@ -353,24 +353,24 @@
             this.btnAddCountry.ThemeName = "Office2013Light";
             this.btnAddCountry.Click += new System.EventHandler(this.btnAddComplex_Click);
             // 
-            // gvCountryList
+            // gridCountryList
             // 
-            this.gvCountryList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridCountryList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvCountryList.EnableCustomFiltering = true;
-            this.gvCountryList.Location = new System.Drawing.Point(0, 27);
-            this.gvCountryList.Margin = new System.Windows.Forms.Padding(1);
+            this.gridCountryList.EnableCustomFiltering = true;
+            this.gridCountryList.Location = new System.Drawing.Point(0, 27);
+            this.gridCountryList.Margin = new System.Windows.Forms.Padding(1);
             // 
             // 
             // 
-            this.gvCountryList.MasterTemplate.AllowAddNewRow = false;
-            this.gvCountryList.MasterTemplate.AllowColumnReorder = false;
-            this.gvCountryList.MasterTemplate.AllowDeleteRow = false;
-            this.gvCountryList.MasterTemplate.AllowDragToGroup = false;
-            this.gvCountryList.MasterTemplate.AllowEditRow = false;
-            this.gvCountryList.MasterTemplate.AutoGenerateColumns = false;
-            this.gvCountryList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gridCountryList.MasterTemplate.AllowAddNewRow = false;
+            this.gridCountryList.MasterTemplate.AllowColumnReorder = false;
+            this.gridCountryList.MasterTemplate.AllowDeleteRow = false;
+            this.gridCountryList.MasterTemplate.AllowDragToGroup = false;
+            this.gridCountryList.MasterTemplate.AllowEditRow = false;
+            this.gridCountryList.MasterTemplate.AutoGenerateColumns = false;
+            this.gridCountryList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.FieldName = "Code";
             gridViewTextBoxColumn1.HeaderText = "Код";
             gridViewTextBoxColumn1.Name = "Code";
@@ -387,28 +387,28 @@
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
             gridViewTextBoxColumn4.Width = 231;
-            gridViewTextBoxColumn5.FieldName = "VariantUse";
-            gridViewTextBoxColumn5.HeaderText = "Спосіб використання";
+            gridViewTextBoxColumn5.FieldName = "Continent";
+            gridViewTextBoxColumn5.HeaderText = "Континент";
             gridViewTextBoxColumn5.MinWidth = 200;
-            gridViewTextBoxColumn5.Name = "VariantUse";
+            gridViewTextBoxColumn5.Name = "Continent";
             gridViewTextBoxColumn5.Width = 202;
-            this.gvCountryList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            this.gridCountryList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5});
-            this.gvCountryList.MasterTemplate.EnableCustomFiltering = true;
-            this.gvCountryList.MasterTemplate.EnableFiltering = true;
-            this.gvCountryList.MasterTemplate.ShowFilteringRow = false;
-            this.gvCountryList.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.gvCountryList.Name = "gvCountryList";
-            this.gvCountryList.ReadOnly = true;
-            this.gvCountryList.ShowGroupPanel = false;
-            this.gvCountryList.Size = new System.Drawing.Size(1187, 309);
-            this.gvCountryList.TabIndex = 25;
-            this.gvCountryList.ThemeName = "Office2013Light";
-            this.gvCountryList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
+            this.gridCountryList.MasterTemplate.EnableCustomFiltering = true;
+            this.gridCountryList.MasterTemplate.EnableFiltering = true;
+            this.gridCountryList.MasterTemplate.ShowFilteringRow = false;
+            this.gridCountryList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCountryList.Name = "gridCountryList";
+            this.gridCountryList.ReadOnly = true;
+            this.gridCountryList.ShowGroupPanel = false;
+            this.gridCountryList.Size = new System.Drawing.Size(1187, 309);
+            this.gridCountryList.TabIndex = 25;
+            this.gridCountryList.ThemeName = "Office2013Light";
+            this.gridCountryList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
             // 
             // txtSearchCountry
             // 
@@ -433,7 +433,7 @@
             this.Controls.Add(this.editPanelCountry);
             this.Controls.Add(this.btnDeleteCountry);
             this.Controls.Add(this.btnAddCountry);
-            this.Controls.Add(this.gvCountryList);
+            this.Controls.Add(this.gridCountryList);
             this.Controls.Add(this.txtSearchCountry);
             this.Name = "BaseCountryControl";
             this.Size = new System.Drawing.Size(1187, 572);
@@ -463,8 +463,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCountryList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCountryList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCountryList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCountryList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -490,7 +490,7 @@
         private Telerik.WinControls.UI.RadButton btnSaveCountry;
         private Telerik.WinControls.UI.RadButton btnDeleteCountry;
         private Telerik.WinControls.UI.RadButton btnAddCountry;
-        private Telerik.WinControls.UI.RadGridView gvCountryList;
+        private Telerik.WinControls.UI.RadGridView gridCountryList;
         private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchCountry;
         private Telerik.WinControls.UI.RadDropDownList ddlEditKeyCountry;
         private Telerik.WinControls.UI.RadLabel lbEditKeyCountry;

@@ -29,442 +29,442 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.total = new Telerik.WinControls.UI.RadLabel();
-            this.lbTotal = new Telerik.WinControls.UI.RadLabel();
-            this.ddlCommonKeyData = new Telerik.WinControls.UI.RadDropDownList();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.totalGenreType = new Telerik.WinControls.UI.RadLabel();
+            this.lbTotalGenreType = new Telerik.WinControls.UI.RadLabel();
+            this.ddlFilterGenreType = new Telerik.WinControls.UI.RadDropDownList();
             this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lbCommonNameKey = new Telerik.WinControls.UI.RadLabel();
-            this.radLblSearch = new System.Windows.Forms.Label();
-            this.editPanel = new Telerik.WinControls.UI.RadPanel();
-            this.lbEditKeyField = new Telerik.WinControls.UI.RadLabel();
-            this.ddlEditKeyField = new Telerik.WinControls.UI.RadDropDownList();
+            this.lbFilterGenreType = new Telerik.WinControls.UI.RadLabel();
+            this.lblSearchGenreType = new System.Windows.Forms.Label();
+            this.editPanelGenreType = new Telerik.WinControls.UI.RadPanel();
+            this.lbEditKeyGenreType = new Telerik.WinControls.UI.RadLabel();
+            this.ddlEditKeyGenreType = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameRuComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtRuLangGenreType = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSourceRu = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameEnComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtEnLangGenreType = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSourceEn = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameUaComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtUkLangGenreType = new Telerik.WinControls.UI.RadTextBox();
             this.bindingSourceUk = new System.Windows.Forms.BindingSource(this.components);
-            this.txtCodeComplex = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.lblCode = new Telerik.WinControls.UI.RadLabel();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnDeleteComplex = new Telerik.WinControls.UI.RadButton();
-            this.btnAddComplex = new Telerik.WinControls.UI.RadButton();
-            this.gvCopyrightKindList = new Telerik.WinControls.UI.RadGridView();
-            this.txtSearchComplex = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            ((System.ComponentModel.ISupportInitialize)(this.total)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).BeginInit();
+            this.txtCodeGenreType = new Telerik.WinControls.UI.RadTextBox();
+            this.lblRuLangGenreType = new Telerik.WinControls.UI.RadLabel();
+            this.lblEnLangGenreType = new Telerik.WinControls.UI.RadLabel();
+            this.lblUkLangGenreType = new Telerik.WinControls.UI.RadLabel();
+            this.lblCodeGenreType = new Telerik.WinControls.UI.RadLabel();
+            this.btnCancelGenreType = new Telerik.WinControls.UI.RadButton();
+            this.btnSaveGenreType = new Telerik.WinControls.UI.RadButton();
+            this.btnDeleteGenreType = new Telerik.WinControls.UI.RadButton();
+            this.btnAddGenreType = new Telerik.WinControls.UI.RadButton();
+            this.gridGenreTypeList = new Telerik.WinControls.UI.RadGridView();
+            this.txtSearchGenreType = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            ((System.ComponentModel.ISupportInitialize)(this.totalGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbTotalGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFilterGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.editPanel)).BeginInit();
-            this.editPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbFilterGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editPanelGenreType)).BeginInit();
+            this.editPanelGenreType.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuLangGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEnLangGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUkLangGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteComplex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodeGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRuLangGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblEnLangGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUkLangGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCodeGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancelGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddGenreType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGenreTypeList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGenreTypeList.MasterTemplate)).BeginInit();
             this.SuspendLayout();
             // 
-            // total
+            // totalGenreType
             // 
-            this.total.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.total.Location = new System.Drawing.Point(1099, 346);
-            this.total.Name = "total";
-            this.total.Size = new System.Drawing.Size(29, 18);
-            this.total.TabIndex = 30;
-            this.total.Text = "dfgh";
+            this.totalGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalGenreType.Location = new System.Drawing.Point(1099, 346);
+            this.totalGenreType.Name = "totalGenreType";
+            this.totalGenreType.Size = new System.Drawing.Size(29, 18);
+            this.totalGenreType.TabIndex = 30;
+            this.totalGenreType.Text = "dfgh";
             // 
-            // lbTotal
+            // lbTotalGenreType
             // 
-            this.lbTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbTotal.AutoSize = false;
-            this.lbTotal.Location = new System.Drawing.Point(996, 346);
-            this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(97, 18);
-            this.lbTotal.TabIndex = 29;
-            this.lbTotal.Text = "Всього записів";
-            this.lbTotal.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbTotalGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbTotalGenreType.AutoSize = false;
+            this.lbTotalGenreType.Location = new System.Drawing.Point(996, 346);
+            this.lbTotalGenreType.Name = "lbTotalGenreType";
+            this.lbTotalGenreType.Size = new System.Drawing.Size(97, 18);
+            this.lbTotalGenreType.TabIndex = 29;
+            this.lbTotalGenreType.Text = "Всього записів";
+            this.lbTotalGenreType.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // ddlCommonKeyData
+            // ddlFilterGenreType
             // 
-            this.ddlCommonKeyData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlCommonKeyData.DataSource = this.dictBaseTypeIBindingSource;
-            this.ddlCommonKeyData.DisplayMember = "Name";
-            this.ddlCommonKeyData.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlCommonKeyData.FormattingEnabled = false;
-            this.ddlCommonKeyData.Location = new System.Drawing.Point(760, 2);
-            this.ddlCommonKeyData.Name = "ddlCommonKeyData";
-            this.ddlCommonKeyData.Size = new System.Drawing.Size(427, 20);
-            this.ddlCommonKeyData.TabIndex = 22;
-            this.ddlCommonKeyData.ThemeName = "Office2013Light";
-            this.ddlCommonKeyData.ValueMember = "CodeI";
-            this.ddlCommonKeyData.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
+            this.ddlFilterGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ddlFilterGenreType.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlFilterGenreType.DisplayMember = "Name";
+            this.ddlFilterGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlFilterGenreType.FormattingEnabled = false;
+            this.ddlFilterGenreType.Location = new System.Drawing.Point(760, 2);
+            this.ddlFilterGenreType.Name = "ddlFilterGenreType";
+            this.ddlFilterGenreType.Size = new System.Drawing.Size(427, 20);
+            this.ddlFilterGenreType.TabIndex = 22;
+            this.ddlFilterGenreType.ThemeName = "Office2013Light";
+            this.ddlFilterGenreType.ValueMember = "CodeI";
+            this.ddlFilterGenreType.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
             // 
             // dictBaseTypeIBindingSource
             // 
             this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
-            // lbCommonNameKey
+            // lbFilterGenreType
             // 
-            this.lbCommonNameKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbCommonNameKey.AutoSize = false;
-            this.lbCommonNameKey.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbCommonNameKey.Location = new System.Drawing.Point(627, 3);
-            this.lbCommonNameKey.Name = "lbCommonNameKey";
-            this.lbCommonNameKey.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lbCommonNameKey.Size = new System.Drawing.Size(127, 18);
-            this.lbCommonNameKey.TabIndex = 21;
-            this.lbCommonNameKey.Text = "Спосіб використання";
-            this.lbCommonNameKey.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbCommonNameKey.ThemeName = "Office2013Light";
+            this.lbFilterGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbFilterGenreType.AutoSize = false;
+            this.lbFilterGenreType.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbFilterGenreType.Location = new System.Drawing.Point(627, 3);
+            this.lbFilterGenreType.Name = "lbFilterGenreType";
+            this.lbFilterGenreType.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lbFilterGenreType.Size = new System.Drawing.Size(127, 18);
+            this.lbFilterGenreType.TabIndex = 21;
+            this.lbFilterGenreType.Text = "Спосіб використання";
+            this.lbFilterGenreType.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbFilterGenreType.ThemeName = "Office2013Light";
             // 
-            // radLblSearch
+            // lblSearchGenreType
             // 
-            this.radLblSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.lblSearchGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radLblSearch.AutoSize = true;
-            this.radLblSearch.Location = new System.Drawing.Point(3, 0);
-            this.radLblSearch.Name = "radLblSearch";
-            this.radLblSearch.Size = new System.Drawing.Size(43, 13);
-            this.radLblSearch.TabIndex = 23;
-            this.radLblSearch.Text = "Пошук:";
+            this.lblSearchGenreType.AutoSize = true;
+            this.lblSearchGenreType.Location = new System.Drawing.Point(3, 0);
+            this.lblSearchGenreType.Name = "lblSearchGenreType";
+            this.lblSearchGenreType.Size = new System.Drawing.Size(43, 13);
+            this.lblSearchGenreType.TabIndex = 23;
+            this.lblSearchGenreType.Text = "Пошук:";
             // 
-            // editPanel
+            // editPanelGenreType
             // 
-            this.editPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.editPanelGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.editPanel.Controls.Add(this.lbEditKeyField);
-            this.editPanel.Controls.Add(this.ddlEditKeyField);
-            this.editPanel.Controls.Add(this.txtNameRuComplex);
-            this.editPanel.Controls.Add(this.txtNameEnComplex);
-            this.editPanel.Controls.Add(this.txtNameUaComplex);
-            this.editPanel.Controls.Add(this.txtCodeComplex);
-            this.editPanel.Controls.Add(this.radLabel1);
-            this.editPanel.Controls.Add(this.radLabel2);
-            this.editPanel.Controls.Add(this.radLabel3);
-            this.editPanel.Controls.Add(this.lblCode);
-            this.editPanel.Controls.Add(this.btnCancel);
-            this.editPanel.Controls.Add(this.btnSave);
-            this.editPanel.Location = new System.Drawing.Point(0, 370);
-            this.editPanel.Name = "editPanel";
-            this.editPanel.Size = new System.Drawing.Size(1187, 202);
-            this.editPanel.TabIndex = 28;
-            this.editPanel.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            this.editPanel.ThemeName = "Office2013Light";
-            ((Telerik.WinControls.UI.RadPanelElement)(this.editPanel.GetChildAt(0))).Text = "Дані довідника";
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.Azure;
-            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).LineLimit = false;
-            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanel.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.editPanelGenreType.Controls.Add(this.lbEditKeyGenreType);
+            this.editPanelGenreType.Controls.Add(this.ddlEditKeyGenreType);
+            this.editPanelGenreType.Controls.Add(this.txtRuLangGenreType);
+            this.editPanelGenreType.Controls.Add(this.txtEnLangGenreType);
+            this.editPanelGenreType.Controls.Add(this.txtUkLangGenreType);
+            this.editPanelGenreType.Controls.Add(this.txtCodeGenreType);
+            this.editPanelGenreType.Controls.Add(this.lblRuLangGenreType);
+            this.editPanelGenreType.Controls.Add(this.lblEnLangGenreType);
+            this.editPanelGenreType.Controls.Add(this.lblUkLangGenreType);
+            this.editPanelGenreType.Controls.Add(this.lblCodeGenreType);
+            this.editPanelGenreType.Controls.Add(this.btnCancelGenreType);
+            this.editPanelGenreType.Controls.Add(this.btnSaveGenreType);
+            this.editPanelGenreType.Location = new System.Drawing.Point(0, 370);
+            this.editPanelGenreType.Name = "editPanelGenreType";
+            this.editPanelGenreType.Size = new System.Drawing.Size(1187, 202);
+            this.editPanelGenreType.TabIndex = 28;
+            this.editPanelGenreType.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.editPanelGenreType.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadPanelElement)(this.editPanelGenreType.GetChildAt(0))).Text = "Дані довідника";
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanelGenreType.GetChildAt(0).GetChildAt(0))).BackColor2 = System.Drawing.Color.Azure;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanelGenreType.GetChildAt(0).GetChildAt(0))).BackColor3 = System.Drawing.Color.Azure;
+            ((Telerik.WinControls.Primitives.FillPrimitive)(this.editPanelGenreType.GetChildAt(0).GetChildAt(0))).GradientStyle = Telerik.WinControls.GradientStyles.Linear;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelGenreType.GetChildAt(0).GetChildAt(2))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelGenreType.GetChildAt(0).GetChildAt(2))).LineLimit = false;
+            ((Telerik.WinControls.Primitives.TextPrimitive)(this.editPanelGenreType.GetChildAt(0).GetChildAt(2))).Alignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lbEditKeyField
+            // lbEditKeyGenreType
             // 
-            this.lbEditKeyField.AutoSize = false;
-            this.lbEditKeyField.Location = new System.Drawing.Point(633, 29);
-            this.lbEditKeyField.Name = "lbEditKeyField";
-            this.lbEditKeyField.Size = new System.Drawing.Size(144, 19);
-            this.lbEditKeyField.TabIndex = 12;
-            this.lbEditKeyField.Text = "Спосіб використання";
-            this.lbEditKeyField.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.lbEditKeyField.ThemeName = "Office2013Light";
+            this.lbEditKeyGenreType.AutoSize = false;
+            this.lbEditKeyGenreType.Location = new System.Drawing.Point(633, 29);
+            this.lbEditKeyGenreType.Name = "lbEditKeyGenreType";
+            this.lbEditKeyGenreType.Size = new System.Drawing.Size(144, 19);
+            this.lbEditKeyGenreType.TabIndex = 12;
+            this.lbEditKeyGenreType.Text = "Спосіб використання";
+            this.lbEditKeyGenreType.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbEditKeyGenreType.ThemeName = "Office2013Light";
             // 
-            // ddlEditKeyField
+            // ddlEditKeyGenreType
             // 
-            this.ddlEditKeyField.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ddlEditKeyGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlEditKeyField.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
-            this.ddlEditKeyField.DataSource = this.dictBaseTypeIBindingSource;
-            this.ddlEditKeyField.DisplayMember = "Name";
-            this.ddlEditKeyField.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlEditKeyField.Location = new System.Drawing.Point(783, 28);
-            this.ddlEditKeyField.Name = "ddlEditKeyField";
-            this.ddlEditKeyField.Size = new System.Drawing.Size(401, 20);
-            this.ddlEditKeyField.TabIndex = 13;
-            this.ddlEditKeyField.ThemeName = "Office2013Light";
-            this.ddlEditKeyField.ValueMember = "CodeI";
+            this.ddlEditKeyGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsCopyrightKind, "CrGroupCode", true));
+            this.ddlEditKeyGenreType.DataSource = this.dictBaseTypeIBindingSource;
+            this.ddlEditKeyGenreType.DisplayMember = "Name";
+            this.ddlEditKeyGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlEditKeyGenreType.Location = new System.Drawing.Point(783, 28);
+            this.ddlEditKeyGenreType.Name = "ddlEditKeyGenreType";
+            this.ddlEditKeyGenreType.Size = new System.Drawing.Size(401, 20);
+            this.ddlEditKeyGenreType.TabIndex = 13;
+            this.ddlEditKeyGenreType.ThemeName = "Office2013Light";
+            this.ddlEditKeyGenreType.ValueMember = "CodeI";
             // 
             // bsCopyrightKind
             // 
             this.bsCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
             this.bsCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
-            // txtNameRuComplex
+            // txtRuLangGenreType
             // 
-            this.txtNameRuComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRu, "Name", true));
-            this.txtNameRuComplex.Location = new System.Drawing.Point(162, 81);
-            this.txtNameRuComplex.MaxLength = 500;
-            this.txtNameRuComplex.Name = "txtNameRuComplex";
-            this.txtNameRuComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameRuComplex.TabIndex = 9;
+            this.txtRuLangGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceRu, "Name", true));
+            this.txtRuLangGenreType.Location = new System.Drawing.Point(162, 81);
+            this.txtRuLangGenreType.MaxLength = 500;
+            this.txtRuLangGenreType.Name = "txtRuLangGenreType";
+            this.txtRuLangGenreType.Size = new System.Drawing.Size(465, 20);
+            this.txtRuLangGenreType.TabIndex = 9;
             // 
             // bindingSourceRu
             // 
             this.bindingSourceRu.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bindingSourceRu.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
-            // txtNameEnComplex
+            // txtEnLangGenreType
             // 
-            this.txtNameEnComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceEn, "Name", true));
-            this.txtNameEnComplex.Location = new System.Drawing.Point(162, 108);
-            this.txtNameEnComplex.MaxLength = 500;
-            this.txtNameEnComplex.Name = "txtNameEnComplex";
-            this.txtNameEnComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameEnComplex.TabIndex = 8;
+            this.txtEnLangGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceEn, "Name", true));
+            this.txtEnLangGenreType.Location = new System.Drawing.Point(162, 108);
+            this.txtEnLangGenreType.MaxLength = 500;
+            this.txtEnLangGenreType.Name = "txtEnLangGenreType";
+            this.txtEnLangGenreType.Size = new System.Drawing.Size(465, 20);
+            this.txtEnLangGenreType.TabIndex = 8;
             // 
             // bindingSourceEn
             // 
             this.bindingSourceEn.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bindingSourceEn.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
-            // txtNameUaComplex
+            // txtUkLangGenreType
             // 
-            this.txtNameUaComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUk, "Name", true));
-            this.txtNameUaComplex.Location = new System.Drawing.Point(162, 55);
-            this.txtNameUaComplex.MaxLength = 500;
-            this.txtNameUaComplex.Name = "txtNameUaComplex";
-            this.txtNameUaComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameUaComplex.TabIndex = 7;
+            this.txtUkLangGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceUk, "Name", true));
+            this.txtUkLangGenreType.Location = new System.Drawing.Point(162, 55);
+            this.txtUkLangGenreType.MaxLength = 500;
+            this.txtUkLangGenreType.Name = "txtUkLangGenreType";
+            this.txtUkLangGenreType.Size = new System.Drawing.Size(465, 20);
+            this.txtUkLangGenreType.TabIndex = 7;
             // 
             // bindingSourceUk
             // 
             this.bindingSourceUk.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bindingSourceUk.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
-            // txtCodeComplex
+            // txtCodeGenreType
             // 
-            this.txtCodeComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
-            this.txtCodeComplex.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeComplex.MaxLength = 3;
-            this.txtCodeComplex.Name = "txtCodeComplex";
-            this.txtCodeComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtCodeComplex.TabIndex = 6;
+            this.txtCodeGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
+            this.txtCodeGenreType.Location = new System.Drawing.Point(162, 28);
+            this.txtCodeGenreType.MaxLength = 3;
+            this.txtCodeGenreType.Name = "txtCodeGenreType";
+            this.txtCodeGenreType.Size = new System.Drawing.Size(465, 20);
+            this.txtCodeGenreType.TabIndex = 6;
             // 
-            // radLabel1
+            // lblRuLangGenreType
             // 
-            this.radLabel1.AutoSize = false;
-            this.radLabel1.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel1.Location = new System.Drawing.Point(55, 82);
-            this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(90, 18);
-            this.radLabel1.TabIndex = 5;
-            this.radLabel1.Text = "Название (RU):";
-            this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblRuLangGenreType.AutoSize = false;
+            this.lblRuLangGenreType.BackColor = System.Drawing.Color.Transparent;
+            this.lblRuLangGenreType.Location = new System.Drawing.Point(55, 82);
+            this.lblRuLangGenreType.Name = "lblRuLangGenreType";
+            this.lblRuLangGenreType.Size = new System.Drawing.Size(90, 18);
+            this.lblRuLangGenreType.TabIndex = 5;
+            this.lblRuLangGenreType.Text = "Название (RU):";
+            this.lblRuLangGenreType.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // radLabel2
+            // lblEnLangGenreType
             // 
-            this.radLabel2.AutoSize = false;
-            this.radLabel2.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel2.Location = new System.Drawing.Point(55, 109);
-            this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(90, 18);
-            this.radLabel2.TabIndex = 4;
-            this.radLabel2.Text = "Name (EN):";
-            this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblEnLangGenreType.AutoSize = false;
+            this.lblEnLangGenreType.BackColor = System.Drawing.Color.Transparent;
+            this.lblEnLangGenreType.Location = new System.Drawing.Point(55, 109);
+            this.lblEnLangGenreType.Name = "lblEnLangGenreType";
+            this.lblEnLangGenreType.Size = new System.Drawing.Size(90, 18);
+            this.lblEnLangGenreType.TabIndex = 4;
+            this.lblEnLangGenreType.Text = "Name (EN):";
+            this.lblEnLangGenreType.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // radLabel3
+            // lblUkLangGenreType
             // 
-            this.radLabel3.AutoSize = false;
-            this.radLabel3.BackColor = System.Drawing.Color.Transparent;
-            this.radLabel3.Location = new System.Drawing.Point(55, 55);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(90, 18);
-            this.radLabel3.TabIndex = 3;
-            this.radLabel3.Text = "Назва (UA):";
-            this.radLabel3.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblUkLangGenreType.AutoSize = false;
+            this.lblUkLangGenreType.BackColor = System.Drawing.Color.Transparent;
+            this.lblUkLangGenreType.Location = new System.Drawing.Point(55, 55);
+            this.lblUkLangGenreType.Name = "lblUkLangGenreType";
+            this.lblUkLangGenreType.Size = new System.Drawing.Size(90, 18);
+            this.lblUkLangGenreType.TabIndex = 3;
+            this.lblUkLangGenreType.Text = "Назва (UA):";
+            this.lblUkLangGenreType.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // lblCode
+            // lblCodeGenreType
             // 
-            this.lblCode.AutoSize = false;
-            this.lblCode.BackColor = System.Drawing.Color.Transparent;
-            this.lblCode.Location = new System.Drawing.Point(55, 28);
-            this.lblCode.Name = "lblCode";
-            this.lblCode.Size = new System.Drawing.Size(90, 18);
-            this.lblCode.TabIndex = 2;
-            this.lblCode.Text = "Код:";
-            this.lblCode.TextAlignment = System.Drawing.ContentAlignment.TopRight;
+            this.lblCodeGenreType.AutoSize = false;
+            this.lblCodeGenreType.BackColor = System.Drawing.Color.Transparent;
+            this.lblCodeGenreType.Location = new System.Drawing.Point(55, 28);
+            this.lblCodeGenreType.Name = "lblCodeGenreType";
+            this.lblCodeGenreType.Size = new System.Drawing.Size(90, 18);
+            this.lblCodeGenreType.TabIndex = 2;
+            this.lblCodeGenreType.Text = "Код:";
+            this.lblCodeGenreType.TextAlignment = System.Drawing.ContentAlignment.TopRight;
             // 
-            // btnCancel
+            // btnCancelGenreType
             // 
-            this.btnCancel.Location = new System.Drawing.Point(278, 135);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 1;
-            this.btnCancel.Text = "Відміна";
-            this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancelGenreType.Location = new System.Drawing.Point(278, 135);
+            this.btnCancelGenreType.Name = "btnCancelGenreType";
+            this.btnCancelGenreType.Size = new System.Drawing.Size(110, 24);
+            this.btnCancelGenreType.TabIndex = 1;
+            this.btnCancelGenreType.Text = "Відміна";
+            this.btnCancelGenreType.ThemeName = "Office2013Light";
+            this.btnCancelGenreType.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnSave
+            // btnSaveGenreType
             // 
-            this.btnSave.Location = new System.Drawing.Point(162, 135);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 24);
-            this.btnSave.TabIndex = 0;
-            this.btnSave.Text = "Зберегти";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSaveGenreType.Location = new System.Drawing.Point(162, 135);
+            this.btnSaveGenreType.Name = "btnSaveGenreType";
+            this.btnSaveGenreType.Size = new System.Drawing.Size(110, 24);
+            this.btnSaveGenreType.TabIndex = 0;
+            this.btnSaveGenreType.Text = "Зберегти";
+            this.btnSaveGenreType.ThemeName = "Office2013Light";
+            this.btnSaveGenreType.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // btnDeleteComplex
+            // btnDeleteGenreType
             // 
-            this.btnDeleteComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDeleteComplex.Location = new System.Drawing.Point(116, 340);
-            this.btnDeleteComplex.Name = "btnDeleteComplex";
-            this.btnDeleteComplex.Size = new System.Drawing.Size(110, 24);
-            this.btnDeleteComplex.TabIndex = 27;
-            this.btnDeleteComplex.Text = "Видалити";
-            this.btnDeleteComplex.ThemeName = "Office2013Light";
-            this.btnDeleteComplex.Click += new System.EventHandler(this.btnDeleteComplex_Click);
+            this.btnDeleteGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnDeleteGenreType.Location = new System.Drawing.Point(116, 340);
+            this.btnDeleteGenreType.Name = "btnDeleteGenreType";
+            this.btnDeleteGenreType.Size = new System.Drawing.Size(110, 24);
+            this.btnDeleteGenreType.TabIndex = 27;
+            this.btnDeleteGenreType.Text = "Видалити";
+            this.btnDeleteGenreType.ThemeName = "Office2013Light";
+            this.btnDeleteGenreType.Click += new System.EventHandler(this.btnDeleteComplex_Click);
             // 
-            // btnAddComplex
+            // btnAddGenreType
             // 
-            this.btnAddComplex.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddComplex.Location = new System.Drawing.Point(0, 340);
-            this.btnAddComplex.Name = "btnAddComplex";
-            this.btnAddComplex.Size = new System.Drawing.Size(110, 24);
-            this.btnAddComplex.TabIndex = 26;
-            this.btnAddComplex.Text = "Додати";
-            this.btnAddComplex.ThemeName = "Office2013Light";
-            this.btnAddComplex.Click += new System.EventHandler(this.btnAddComplex_Click);
+            this.btnAddGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddGenreType.Location = new System.Drawing.Point(0, 340);
+            this.btnAddGenreType.Name = "btnAddGenreType";
+            this.btnAddGenreType.Size = new System.Drawing.Size(110, 24);
+            this.btnAddGenreType.TabIndex = 26;
+            this.btnAddGenreType.Text = "Додати";
+            this.btnAddGenreType.ThemeName = "Office2013Light";
+            this.btnAddGenreType.Click += new System.EventHandler(this.btnAddComplex_Click);
             // 
-            // gvCopyrightKindList
+            // gridGenreTypeList
             // 
-            this.gvCopyrightKindList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gridGenreTypeList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvCopyrightKindList.EnableCustomFiltering = true;
-            this.gvCopyrightKindList.Location = new System.Drawing.Point(0, 27);
-            this.gvCopyrightKindList.Margin = new System.Windows.Forms.Padding(1);
+            this.gridGenreTypeList.EnableCustomFiltering = true;
+            this.gridGenreTypeList.Location = new System.Drawing.Point(0, 27);
+            this.gridGenreTypeList.Margin = new System.Windows.Forms.Padding(1);
             // 
             // 
             // 
-            this.gvCopyrightKindList.MasterTemplate.AllowAddNewRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowColumnReorder = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowDeleteRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowDragToGroup = false;
-            this.gvCopyrightKindList.MasterTemplate.AllowEditRow = false;
-            this.gvCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
-            this.gvCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn6.FieldName = "Code";
-            gridViewTextBoxColumn6.HeaderText = "Код";
-            gridViewTextBoxColumn6.Name = "Code";
-            gridViewTextBoxColumn6.Width = 105;
-            gridViewTextBoxColumn7.FieldName = "NameUk";
-            gridViewTextBoxColumn7.HeaderText = "Назва";
-            gridViewTextBoxColumn7.Name = "NameUk";
-            gridViewTextBoxColumn7.Width = 316;
-            gridViewTextBoxColumn8.FieldName = "NameRu";
-            gridViewTextBoxColumn8.HeaderText = "Название";
-            gridViewTextBoxColumn8.Name = "NameRu";
-            gridViewTextBoxColumn8.Width = 316;
-            gridViewTextBoxColumn9.FieldName = "NameEn";
-            gridViewTextBoxColumn9.HeaderText = "Name";
-            gridViewTextBoxColumn9.Name = "NameEn";
-            gridViewTextBoxColumn9.Width = 231;
-            gridViewTextBoxColumn10.FieldName = "VariantUse";
-            gridViewTextBoxColumn10.HeaderText = "Спосіб використання";
-            gridViewTextBoxColumn10.MinWidth = 200;
-            gridViewTextBoxColumn10.Name = "VariantUse";
-            gridViewTextBoxColumn10.Width = 202;
-            this.gvCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn6,
-            gridViewTextBoxColumn7,
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10});
-            this.gvCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
-            this.gvCopyrightKindList.MasterTemplate.EnableFiltering = true;
-            this.gvCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
-            this.gvCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.gvCopyrightKindList.Name = "gvCopyrightKindList";
-            this.gvCopyrightKindList.ReadOnly = true;
-            this.gvCopyrightKindList.ShowGroupPanel = false;
-            this.gvCopyrightKindList.Size = new System.Drawing.Size(1187, 309);
-            this.gvCopyrightKindList.TabIndex = 25;
-            this.gvCopyrightKindList.ThemeName = "Office2013Light";
-            this.gvCopyrightKindList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
+            this.gridGenreTypeList.MasterTemplate.AllowAddNewRow = false;
+            this.gridGenreTypeList.MasterTemplate.AllowColumnReorder = false;
+            this.gridGenreTypeList.MasterTemplate.AllowDeleteRow = false;
+            this.gridGenreTypeList.MasterTemplate.AllowDragToGroup = false;
+            this.gridGenreTypeList.MasterTemplate.AllowEditRow = false;
+            this.gridGenreTypeList.MasterTemplate.AutoGenerateColumns = false;
+            this.gridGenreTypeList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 105;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 316;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 316;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 231;
+            gridViewTextBoxColumn5.FieldName = "VariantObject";
+            gridViewTextBoxColumn5.HeaderText = "Вид об\'єкта";
+            gridViewTextBoxColumn5.MinWidth = 200;
+            gridViewTextBoxColumn5.Name = "VariantObject";
+            gridViewTextBoxColumn5.Width = 202;
+            this.gridGenreTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5});
+            this.gridGenreTypeList.MasterTemplate.EnableCustomFiltering = true;
+            this.gridGenreTypeList.MasterTemplate.EnableFiltering = true;
+            this.gridGenreTypeList.MasterTemplate.ShowFilteringRow = false;
+            this.gridGenreTypeList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridGenreTypeList.Name = "gridGenreTypeList";
+            this.gridGenreTypeList.ReadOnly = true;
+            this.gridGenreTypeList.ShowGroupPanel = false;
+            this.gridGenreTypeList.Size = new System.Drawing.Size(1187, 309);
+            this.gridGenreTypeList.TabIndex = 25;
+            this.gridGenreTypeList.ThemeName = "Office2013Light";
+            this.gridGenreTypeList.CellClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCopyrightKindList_CellClick);
             // 
-            // txtSearchComplex
+            // txtSearchGenreType
             // 
-            this.txtSearchComplex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtSearchGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSearchComplex.Location = new System.Drawing.Point(53, 0);
-            this.txtSearchComplex.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.txtSearchComplex.MinimumSize = new System.Drawing.Size(20, 20);
-            this.txtSearchComplex.Name = "txtSearchComplex";
-            this.txtSearchComplex.Size = new System.Drawing.Size(568, 20);
-            this.txtSearchComplex.TabIndex = 24;
+            this.txtSearchGenreType.Location = new System.Drawing.Point(53, 0);
+            this.txtSearchGenreType.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.txtSearchGenreType.MinimumSize = new System.Drawing.Size(20, 20);
+            this.txtSearchGenreType.Name = "txtSearchGenreType";
+            this.txtSearchGenreType.Size = new System.Drawing.Size(568, 20);
+            this.txtSearchGenreType.TabIndex = 24;
             // 
-            // BaseCopyrightKindControl
+            // BaseGenreTypeControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.total);
-            this.Controls.Add(this.lbTotal);
-            this.Controls.Add(this.ddlCommonKeyData);
-            this.Controls.Add(this.lbCommonNameKey);
-            this.Controls.Add(this.radLblSearch);
-            this.Controls.Add(this.editPanel);
-            this.Controls.Add(this.btnDeleteComplex);
-            this.Controls.Add(this.btnAddComplex);
-            this.Controls.Add(this.gvCopyrightKindList);
-            this.Controls.Add(this.txtSearchComplex);
-            this.Name = "BaseCopyrightKindControl";
+            this.Controls.Add(this.totalGenreType);
+            this.Controls.Add(this.lbTotalGenreType);
+            this.Controls.Add(this.ddlFilterGenreType);
+            this.Controls.Add(this.lbFilterGenreType);
+            this.Controls.Add(this.lblSearchGenreType);
+            this.Controls.Add(this.editPanelGenreType);
+            this.Controls.Add(this.btnDeleteGenreType);
+            this.Controls.Add(this.btnAddGenreType);
+            this.Controls.Add(this.gridGenreTypeList);
+            this.Controls.Add(this.txtSearchGenreType);
+            this.Name = "BaseGenreTypeControl";
             this.Size = new System.Drawing.Size(1187, 572);
-            ((System.ComponentModel.ISupportInitialize)(this.total)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbTotal)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCommonKeyData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.totalGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbTotalGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlFilterGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lbCommonNameKey)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.editPanel)).EndInit();
-            this.editPanel.ResumeLayout(false);
-            this.editPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyField)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyField)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lbFilterGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.editPanelGenreType)).EndInit();
+            this.editPanelGenreType.ResumeLayout(false);
+            this.editPanelGenreType.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuLangGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceRu)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEnLangGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceEn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUkLangGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceUk)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lblCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteComplex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddComplex)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvCopyrightKindList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodeGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblRuLangGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblEnLangGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblUkLangGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lblCodeGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnCancelGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnSaveGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnDeleteGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnAddGenreType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGenreTypeList.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGenreTypeList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -472,28 +472,28 @@
 
         #endregion
 
-        private Telerik.WinControls.UI.RadLabel total;
-        private Telerik.WinControls.UI.RadLabel lbTotal;
-        private Telerik.WinControls.UI.RadDropDownList ddlCommonKeyData;
-        private Telerik.WinControls.UI.RadLabel lbCommonNameKey;
-        private System.Windows.Forms.Label radLblSearch;
-        private Telerik.WinControls.UI.RadPanel editPanel;
-        private Telerik.WinControls.UI.RadTextBox txtNameRuComplex;
-        private Telerik.WinControls.UI.RadTextBox txtNameEnComplex;
-        private Telerik.WinControls.UI.RadTextBox txtNameUaComplex;
-        private Telerik.WinControls.UI.RadTextBox txtCodeComplex;
-        private Telerik.WinControls.UI.RadLabel radLabel1;
-        private Telerik.WinControls.UI.RadLabel radLabel2;
-        private Telerik.WinControls.UI.RadLabel radLabel3;
-        private Telerik.WinControls.UI.RadLabel lblCode;
-        private Telerik.WinControls.UI.RadButton btnCancel;
-        private Telerik.WinControls.UI.RadButton btnSave;
-        private Telerik.WinControls.UI.RadButton btnDeleteComplex;
-        private Telerik.WinControls.UI.RadButton btnAddComplex;
-        private Telerik.WinControls.UI.RadGridView gvCopyrightKindList;
-        private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchComplex;
-        private Telerik.WinControls.UI.RadDropDownList ddlEditKeyField;
-        private Telerik.WinControls.UI.RadLabel lbEditKeyField;
+        private Telerik.WinControls.UI.RadLabel totalGenreType;
+        private Telerik.WinControls.UI.RadLabel lbTotalGenreType;
+        private Telerik.WinControls.UI.RadDropDownList ddlFilterGenreType;
+        private Telerik.WinControls.UI.RadLabel lbFilterGenreType;
+        private System.Windows.Forms.Label lblSearchGenreType;
+        private Telerik.WinControls.UI.RadPanel editPanelGenreType;
+        private Telerik.WinControls.UI.RadTextBox txtRuLangGenreType;
+        private Telerik.WinControls.UI.RadTextBox txtEnLangGenreType;
+        private Telerik.WinControls.UI.RadTextBox txtUkLangGenreType;
+        private Telerik.WinControls.UI.RadTextBox txtCodeGenreType;
+        private Telerik.WinControls.UI.RadLabel lblRuLangGenreType;
+        private Telerik.WinControls.UI.RadLabel lblEnLangGenreType;
+        private Telerik.WinControls.UI.RadLabel lblUkLangGenreType;
+        private Telerik.WinControls.UI.RadLabel lblCodeGenreType;
+        private Telerik.WinControls.UI.RadButton btnCancelGenreType;
+        private Telerik.WinControls.UI.RadButton btnSaveGenreType;
+        private Telerik.WinControls.UI.RadButton btnDeleteGenreType;
+        private Telerik.WinControls.UI.RadButton btnAddGenreType;
+        private Telerik.WinControls.UI.RadGridView gridGenreTypeList;
+        private IpsViewComponentLibrary.Common.SearchTextBoxControl txtSearchGenreType;
+        private Telerik.WinControls.UI.RadDropDownList ddlEditKeyGenreType;
+        private Telerik.WinControls.UI.RadLabel lbEditKeyGenreType;
         private System.Windows.Forms.BindingSource bsCopyrightKind;
         private System.Windows.Forms.BindingSource dictBaseTypeIBindingSource;
         private System.Windows.Forms.BindingSource bindingSourceRu;

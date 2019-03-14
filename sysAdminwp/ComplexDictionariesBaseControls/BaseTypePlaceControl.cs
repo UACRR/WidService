@@ -18,15 +18,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
     public partial class BaseTypePlaceControl : UserControl
     {
         //Uk data item
-        CopyrightKindTr ukTypePlace;
+        TypePlaceTr ukTypePlace;
         //Ru data item
-        CopyrightKindTr ruTypePlace;
+        TypePlaceTr ruTypePlace;
         //En data item
-        CopyrightKindTr enTypePlace;
+        TypePlaceTr enTypePlace;
         //data grid
-        List<CopyrightKind> _typePlaceList;
+        List<TypePlace> _typePlaceList;
         //item data
-        CopyrightKind typePlaceData;
+        TypePlace typePlaceData;
         //define connector
         private readonly ApiConnector _connector;
         //url for get data to grid
@@ -42,19 +42,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 controlEnabledActiveElements = value;
                 //'search' element
-                txtSearchComplex.Enabled = value;
+                txtSearchTypePlace.Enabled = value;
                 //filter for grid
-                ddlCommonKeyData.Enabled = value;
+                ddlFilterTypePlace.Enabled = value;
                 //grid element
-                gvCopyrightKindList.Enabled = value;
+                gridTypePlaceList.Enabled = value;
                 //'Add' button
-                btnAddComplex.Enabled = value;
+                btnAddTypePlace.Enabled = value;
                 //'Delete' button
-                btnDeleteComplex.Enabled = value;
+                btnDeleteTypePlace.Enabled = value;
                 //'Save' button (bottom panel)
-                btnSave.Enabled = !value;
+                btnSaveTypePlace.Enabled = !value;
                 //'Cancel' button (bottom panel)
-                btnCancel.Enabled = !value;
+                btnCancelTypePlace.Enabled = !value;
             }
         }
         public BaseTypePlaceControl(ApiConnector connector, string urlForComplexDict)
@@ -63,15 +63,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialize connector
             _connector = connector;
             //setup search posibility for textBox element
-            txtSearchComplex.SetUsageGrid(gvCopyrightKindList);
+            txtSearchTypePlace.SetUsageGrid(gridTypePlaceList);
             //initialize data for drop down list - 'Спосіб використання'
-            ddlCommonKeyData.DataSource = InitializeDataForFilter();
+            ddlFilterTypePlace.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
-            dictBaseTypeIBindingSource.DataSource = ddlCommonKeyData.DataSource;
+            dictBaseTypeIBindingSource.DataSource = ddlFilterTypePlace.DataSource;
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
+            gridTypePlaceList.DataSource = HandleDataForGrid(urlForComplexDict);
             //set default data for bottom panel
             DataUpdateForBottomPanel();
             //set 'Enabled' state by default
@@ -87,21 +87,21 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return dataGrid;
             //get data dictionaries -> for grid
-            _typePlaceList = _connector.GetList<CopyrightKind>(urlForGetDataDictionaries);
+            _typePlaceList = _connector.GetList<TypePlace>(urlForGetDataDictionaries);
             //initialize grid data
             foreach (var item in _typePlaceList)
             {
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    VariantUse = ddlCommonKeyData.Items.First(el => (int)el.Value == item.CrGroupCode).Text,
+                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    VariantUse = ddlFilterTypePlace.Items.First(el => (int)el.Value == item.ParamType).Text,
                 });
             }
             //show current count elements into grid
-            total.Text = _typePlaceList.Count.ToString();
+            totalTypePlace.Text = _typePlaceList.Count.ToString();
             return dataGrid;
         }
 
@@ -111,7 +111,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //define for result data
             List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
             //get data for drop down list
-            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/typePlaceParam");
             //check data
             return dataDropDownList != null ? dataDropDownList : new List<DictBaseTypeI>();
         }
@@ -120,7 +120,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
             //get id dictionary
-            GridViewRowInfo rowDetail = gvCopyrightKindList.CurrentRow;
+            GridViewRowInfo rowDetail = gridTypePlaceList.CurrentRow;
             //get data of the current row
             var @curRow = rowDetail.DataBoundItem as ViewTable;
             //stop perform if data is not exist
@@ -144,27 +144,27 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //use data for binding source
             bsCopyrightKind.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
-            ukTypePlace = typePlaceData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "Uk");
             if (ukTypePlace == null)
             {
-                ukTypePlace = new CopyrightKindTr { Lang = "Uk" };
-                typePlaceData.CopyrightKindTr.Add(ukTypePlace);
+                ukTypePlace = new TypePlaceTr { Lang = "Uk" };
+                typePlaceData.TypePlaceTr.Add(ukTypePlace);
             }
             bindingSourceUk.DataSource = ukTypePlace;
             //defined binding for source of the 'Ru'
-            ruTypePlace = typePlaceData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "Ru");
             if (ruTypePlace == null)
             {
-                ruTypePlace = new CopyrightKindTr { Lang = "Ru" };
-                typePlaceData.CopyrightKindTr.Add(ruTypePlace);
+                ruTypePlace = new TypePlaceTr { Lang = "Ru" };
+                typePlaceData.TypePlaceTr.Add(ruTypePlace);
             }
             bindingSourceRu.DataSource = ruTypePlace;
             //define binding for source of the 'En'
-            enTypePlace = typePlaceData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "En");
+            enTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "En");
             if (enTypePlace == null)
             {
-                enTypePlace = new CopyrightKindTr { Lang = "En" };
-                typePlaceData.CopyrightKindTr.Add(enTypePlace);
+                enTypePlace = new TypePlaceTr { Lang = "En" };
+                typePlaceData.TypePlaceTr.Add(enTypePlace);
             }
             bindingSourceEn.DataSource = enTypePlace;
         }
@@ -175,9 +175,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //stop perform if position is not exist
             if (e.Position == -1) return;
             //get field 'value' of the current selected item
-            int selectedItemData = (int)ddlCommonKeyData.Items[e.Position].Value;
+            int selectedItemData = (int)ddlFilterTypePlace.Items[e.Position].Value;
             //set filtered data to grid
-            gvCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
+            gridTypePlaceList.DataSource = FilterDataIntoGrid(selectedItemData);
         }
 
         //filter data for grid
@@ -186,25 +186,25 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //initialzie empty data for result
             List<ViewTable> filteredData = new List<ViewTable>();
             //get all data of the 'CopyrightKind'
-            _typePlaceList = _connector.GetList<CopyrightKind>(urlDataGrid);
+            _typePlaceList = _connector.GetList<TypePlace>(urlDataGrid);
             //stop perform if data is not exist
             if (_typePlaceList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            _typePlaceList = _typePlaceList.Where(item => item.CrGroupCode == code).ToList();
+            _typePlaceList = _typePlaceList.Where(item => item.ParamType == code).ToList();
             //initialize data for grid
             foreach (var item in _typePlaceList)
             {
                 filteredData.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
-                    VariantUse = ddlCommonKeyData.SelectedItem.Text,
+                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
+                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
+                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    VariantUse = ddlFilterTypePlace.SelectedItem.Text,
                 });
             }
             //show current count elements into grid
-            total.Text = _typePlaceList.Count.ToString();
+            totalTypePlace.Text = _typePlaceList.Count.ToString();
             return filteredData;
         }
 
@@ -212,22 +212,22 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
             //change property 'Text' of the btnSave for 'Add' action
-            btnSave.Text = "Додати";
+            btnSaveTypePlace.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            typePlaceData = new CopyrightKind();
+            typePlaceData = new TypePlace();
             bsCopyrightKind.DataSource = typePlaceData;
             //refresh data for field 'Uk'
-            ukTypePlace = new CopyrightKindTr();
-            typePlaceData.CopyrightKindTr.Add(ukTypePlace);
+            ukTypePlace = new TypePlaceTr();
+            typePlaceData.TypePlaceTr.Add(ukTypePlace);
             bindingSourceUk.DataSource = ukTypePlace;
             //refresh data for field 'Ru'
-            ruTypePlace = new CopyrightKindTr();
-            typePlaceData.CopyrightKindTr.Add(ruTypePlace);
+            ruTypePlace = new TypePlaceTr();
+            typePlaceData.TypePlaceTr.Add(ruTypePlace);
             bindingSourceRu.DataSource = ruTypePlace;
             //refresh data for field 'Ru'
-            enTypePlace = new CopyrightKindTr();
-            typePlaceData.CopyrightKindTr.Add(enTypePlace);
+            enTypePlace = new TypePlaceTr();
+            typePlaceData.TypePlaceTr.Add(enTypePlace);
             bindingSourceEn.DataSource = enTypePlace;
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
@@ -242,7 +242,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //delete selected item of grid by field 'Code'
             dictService.DeleteCopyrightKind(codeForRefresh);
             //update data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
         }
 
@@ -250,19 +250,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void btnSave_Click(object sender, EventArgs e)
         {
             DictionaryService dictService = new DictionaryService();
-            if (btnSave.Text == "Додати")
+            if (btnSaveTypePlace.Text == "Додати")
             {
                 //send created object
                 var result = dictService.CreateCopyrightKind(typePlaceData);
                 //set default state for 'Text' of the btnSave
-                btnSave.Text = "Зберегти";
-            } else if (btnSave.Text == "Зберегти")
+                btnSaveTypePlace.Text = "Зберегти";
+            } else if (btnSaveTypePlace.Text == "Зберегти")
             {
                 //save changes
                 var result = dictService.UpdateCopyrightKind(typePlaceData);
             }
             //update data for grid
-            gvCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+            gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
@@ -286,10 +286,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                if (btnSave.Text != "Додати")
+                if (btnSaveTypePlace.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSave.Text = "Зберегти";
+                    btnSaveTypePlace.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -303,10 +303,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                if (btnSave.Text != "Додати")
+                if (btnSaveTypePlace.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSave.Text = "Зберегти";
+                    btnSaveTypePlace.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -320,10 +320,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                if (btnSave.Text != "Додати")
+                if (btnSaveTypePlace.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSave.Text = "Зберегти";
+                    btnSaveTypePlace.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;
@@ -341,10 +341,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
             {
-                if (btnSave.Text != "Додати")
+                if (btnSaveTypePlace.Text != "Додати")
                 {
                     //change property 'Text' of the btnSave for 'Save' action
-                    btnSave.Text = "Зберегти";
+                    btnSaveTypePlace.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
                 if (!ControlEnabledActiveElements) return;

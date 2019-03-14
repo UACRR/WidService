@@ -318,6 +318,8 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsCopyRight;
                     lbEditKeyField.Text = "Спосіб використання";
                     ddlEditKeyField.DataSource = baseDictsCopyRight;
+                    //revome other controls
+                    tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
                     //initialize base control 'CopyrightKind'
                     BaseCopyrightKindControl baseCopyrightKind = new BaseCopyrightKindControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
                     tableLayout_MarkupElement.Controls.Add(baseCopyrightKind, 1, 0);
@@ -328,7 +330,11 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsContinent;
                     lbEditKeyField.Text = "Континент";
                     ddlEditKeyField.DataSource = baseDictsContinent;
-                    //initialize base control 'CopyrightKind'
+                    //revome other controls
+                    tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
+                    //initialize base control 'Country'
+                    BaseCountryControl baseCountry = new BaseCountryControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+                    tableLayout_MarkupElement.Controls.Add(baseCountry, 1, 0);
                     break;
                 case "creativeroletype":
                     var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
@@ -336,7 +342,11 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsCategory;
                     lbEditKeyField.Text = "Категорія";
                     ddlEditKeyField.DataSource = baseDictsCategory;
-                    //initialize base control 'CopyrightKind'
+                    //revome other controls
+                    tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
+                    //initialize base control 'Creativeroletype'
+                    BaseCreativeroleTypeControl baseCreativeroleType = new BaseCreativeroleTypeControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+                    tableLayout_MarkupElement.Controls.Add(baseCreativeroleType, 1, 0);
                     break;
                 case "genretype":
                     var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
@@ -344,7 +354,11 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsGenreType;
                     lbEditKeyField.Text = "Вид об'єкта";
                     ddlEditKeyField.DataSource = baseDictsGenreType;
-                    //initialize base control 'CopyrightKind'
+                    //revome other controls
+                    tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
+                    //initialize base control 'GenreType'
+                    BaseGenreTypeControl baseGenreType = new BaseGenreTypeControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+                    tableLayout_MarkupElement.Controls.Add(baseGenreType, 1, 0);
                     break;
                 case "klr030":
                     var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
@@ -352,6 +366,11 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = customDictCountry;
                     lbEditKeyField.Text = "Місто";
                     ddlEditKeyField.DataSource = customDictCountry;
+                    //revome other controls
+                    tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
+                    //initialize base control 'GenreType'
+                    BaseKlr030Control baseKlr030 = new BaseKlr030Control(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+                    tableLayout_MarkupElement.Controls.Add(baseKlr030, 1, 0);
                     break;
                 case "systemconstant":
                     break;
@@ -361,7 +380,11 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsTypePlaceParam;
                     lbEditKeyField.Text = "Об'єкт";
                     ddlEditKeyField.DataSource = baseDictsTypePlaceParam;
-                    //initialize base control 'CopyrightKind'
+                    //revome other controls
+                    tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
+                    //initialize base control 'TypePlace'
+                    BaseTypePlaceControl baseTypePlace = new BaseTypePlaceControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+                    tableLayout_MarkupElement.Controls.Add(baseTypePlace, 1, 0);
                     break;
             }
             //set data to grid of the current complex dictionary
