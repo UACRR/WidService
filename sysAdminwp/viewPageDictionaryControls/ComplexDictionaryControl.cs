@@ -328,6 +328,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsContinent;
                     lbEditKeyField.Text = "Континент";
                     ddlEditKeyField.DataSource = baseDictsContinent;
+                    //initialize base control 'CopyrightKind'
                     break;
                 case "creativeroletype":
                     var baseDictsCategory = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
@@ -335,6 +336,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsCategory;
                     lbEditKeyField.Text = "Категорія";
                     ddlEditKeyField.DataSource = baseDictsCategory;
+                    //initialize base control 'CopyrightKind'
                     break;
                 case "genretype":
                     var baseDictsGenreType = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
@@ -342,6 +344,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsGenreType;
                     lbEditKeyField.Text = "Вид об'єкта";
                     ddlEditKeyField.DataSource = baseDictsGenreType;
+                    //initialize base control 'CopyrightKind'
                     break;
                 case "klr030":
                     var customDictCountry = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
@@ -358,6 +361,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     ddlCommonKeyData.DataSource = baseDictsTypePlaceParam;
                     lbEditKeyField.Text = "Об'єкт";
                     ddlEditKeyField.DataSource = baseDictsTypePlaceParam;
+                    //initialize base control 'CopyrightKind'
                     break;
             }
             //set data to grid of the current complex dictionary

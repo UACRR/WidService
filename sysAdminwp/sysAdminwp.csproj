@@ -105,6 +105,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.Designer.cs">
+      <DependentUpon>BaseTypePlaceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseKlr030Control.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseKlr030Control.Designer.cs">
+      <DependentUpon>BaseKlr030Control.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.Designer.cs">
+      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.Designer.cs">
+      <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.Designer.cs">
+      <DependentUpon>BaseCountryControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -209,6 +239,21 @@
       <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewTable.cs" />
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.resx">
+      <DependentUpon>BaseTypePlaceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseKlr030Control.resx">
+      <DependentUpon>BaseKlr030Control.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.resx">
+      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.resx">
+      <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCountryControl.resx">
+      <DependentUpon>BaseCountryControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.resx">
       <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
     </EmbeddedResource>
