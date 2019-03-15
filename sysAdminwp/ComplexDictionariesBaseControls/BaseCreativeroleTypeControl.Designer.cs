@@ -96,9 +96,9 @@
             this.totalCreativeroleType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalCreativeroleType.Location = new System.Drawing.Point(1099, 346);
             this.totalCreativeroleType.Name = "totalCreativeroleType";
-            this.totalCreativeroleType.Size = new System.Drawing.Size(29, 18);
+            this.totalCreativeroleType.Size = new System.Drawing.Size(51, 18);
             this.totalCreativeroleType.TabIndex = 30;
-            this.totalCreativeroleType.Text = "dfgh";
+            this.totalCreativeroleType.Text = "Кількість";
             // 
             // lbTotalCreativeroleType
             // 
@@ -222,8 +222,9 @@
             this.txtRuLangCreativeroleType.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangCreativeroleType.MaxLength = 500;
             this.txtRuLangCreativeroleType.Name = "txtRuLangCreativeroleType";
-            this.txtRuLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
+            this.txtRuLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
             this.txtRuLangCreativeroleType.TabIndex = 9;
+            this.txtRuLangCreativeroleType.ThemeName = "Office2013Light";
             // 
             // bsRuLangCreativeRoleType
             // 
@@ -236,8 +237,9 @@
             this.txtEnLangCreativeroleType.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangCreativeroleType.MaxLength = 500;
             this.txtEnLangCreativeroleType.Name = "txtEnLangCreativeroleType";
-            this.txtEnLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
+            this.txtEnLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
             this.txtEnLangCreativeroleType.TabIndex = 8;
+            this.txtEnLangCreativeroleType.ThemeName = "Office2013Light";
             // 
             // bsEnLangCreativeRoleType
             // 
@@ -250,8 +252,9 @@
             this.txtUkLangCreativeroleType.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangCreativeroleType.MaxLength = 500;
             this.txtUkLangCreativeroleType.Name = "txtUkLangCreativeroleType";
-            this.txtUkLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
+            this.txtUkLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
             this.txtUkLangCreativeroleType.TabIndex = 7;
+            this.txtUkLangCreativeroleType.ThemeName = "Office2013Light";
             // 
             // bsUkLangCreativeRoleType
             // 
@@ -262,10 +265,11 @@
             // 
             this.txtCodeCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCreativeRoleType, "CodeI", true));
             this.txtCodeCreativeroleType.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeCreativeroleType.MaxLength = 3;
+            this.txtCodeCreativeroleType.MaxLength = 4;
             this.txtCodeCreativeroleType.Name = "txtCodeCreativeroleType";
-            this.txtCodeCreativeroleType.Size = new System.Drawing.Size(465, 20);
+            this.txtCodeCreativeroleType.Size = new System.Drawing.Size(465, 21);
             this.txtCodeCreativeroleType.TabIndex = 6;
+            this.txtCodeCreativeroleType.ThemeName = "Office2013Light";
             this.txtCodeCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeCreativeroleType_KeyPress);
             // 
             // lblRuLangCreativeroleType
@@ -379,20 +383,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 315;
+            gridViewTextBoxColumn2.Width = 285;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 315;
+            gridViewTextBoxColumn3.Width = 289;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 230;
+            gridViewTextBoxColumn4.Width = 265;
             gridViewTextBoxColumn5.FieldName = "Category";
             gridViewTextBoxColumn5.HeaderText = "Категорія";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "Category";
-            gridViewTextBoxColumn5.Width = 200;
+            gridViewTextBoxColumn5.Width = 221;
             this.gridCreativeroleTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

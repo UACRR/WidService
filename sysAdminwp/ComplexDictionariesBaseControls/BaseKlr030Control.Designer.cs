@@ -96,9 +96,9 @@
             this.totalKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalKlr030.Location = new System.Drawing.Point(1099, 346);
             this.totalKlr030.Name = "totalKlr030";
-            this.totalKlr030.Size = new System.Drawing.Size(29, 18);
+            this.totalKlr030.Size = new System.Drawing.Size(51, 18);
             this.totalKlr030.TabIndex = 30;
-            this.totalKlr030.Text = "dfgh";
+            this.totalKlr030.Text = "Кількість";
             // 
             // lbTotalKlr030
             // 
@@ -222,8 +222,9 @@
             this.txtRuLangKlr030.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangKlr030.MaxLength = 500;
             this.txtRuLangKlr030.Name = "txtRuLangKlr030";
-            this.txtRuLangKlr030.Size = new System.Drawing.Size(465, 20);
+            this.txtRuLangKlr030.Size = new System.Drawing.Size(465, 21);
             this.txtRuLangKlr030.TabIndex = 9;
+            this.txtRuLangKlr030.ThemeName = "Office2013Light";
             // 
             // bsRuLangKlr030
             // 
@@ -236,8 +237,9 @@
             this.txtEnLangKlr030.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangKlr030.MaxLength = 500;
             this.txtEnLangKlr030.Name = "txtEnLangKlr030";
-            this.txtEnLangKlr030.Size = new System.Drawing.Size(465, 20);
+            this.txtEnLangKlr030.Size = new System.Drawing.Size(465, 21);
             this.txtEnLangKlr030.TabIndex = 8;
+            this.txtEnLangKlr030.ThemeName = "Office2013Light";
             // 
             // bsEnLangKlr030
             // 
@@ -250,8 +252,9 @@
             this.txtUkLangKlr030.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangKlr030.MaxLength = 500;
             this.txtUkLangKlr030.Name = "txtUkLangKlr030";
-            this.txtUkLangKlr030.Size = new System.Drawing.Size(465, 20);
+            this.txtUkLangKlr030.Size = new System.Drawing.Size(465, 21);
             this.txtUkLangKlr030.TabIndex = 7;
+            this.txtUkLangKlr030.ThemeName = "Office2013Light";
             // 
             // bsUkLangKlr030
             // 
@@ -262,10 +265,11 @@
             // 
             this.txtCodeKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsKlr030, "R030", true));
             this.txtCodeKlr030.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeKlr030.MaxLength = 3;
+            this.txtCodeKlr030.MaxLength = 4;
             this.txtCodeKlr030.Name = "txtCodeKlr030";
-            this.txtCodeKlr030.Size = new System.Drawing.Size(465, 20);
+            this.txtCodeKlr030.Size = new System.Drawing.Size(465, 21);
             this.txtCodeKlr030.TabIndex = 6;
+            this.txtCodeKlr030.ThemeName = "Office2013Light";
             this.txtCodeKlr030.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeKlr030_KeyPress);
             // 
             // lblRuLangKlr030
@@ -379,20 +383,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 315;
+            gridViewTextBoxColumn2.Width = 285;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 315;
+            gridViewTextBoxColumn3.Width = 289;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 230;
+            gridViewTextBoxColumn4.Width = 265;
             gridViewTextBoxColumn5.FieldName = "klrCountry";
             gridViewTextBoxColumn5.HeaderText = "Місто";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "klrCountry";
-            gridViewTextBoxColumn5.Width = 200;
+            gridViewTextBoxColumn5.Width = 221;
             this.gridKlr030List.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

@@ -96,9 +96,9 @@
             this.totalGenreType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.totalGenreType.Location = new System.Drawing.Point(1099, 346);
             this.totalGenreType.Name = "totalGenreType";
-            this.totalGenreType.Size = new System.Drawing.Size(29, 18);
+            this.totalGenreType.Size = new System.Drawing.Size(51, 18);
             this.totalGenreType.TabIndex = 30;
-            this.totalGenreType.Text = "dfgh";
+            this.totalGenreType.Text = "Кількість";
             // 
             // lbTotalGenreType
             // 
@@ -222,8 +222,9 @@
             this.txtRuLangGenreType.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangGenreType.MaxLength = 500;
             this.txtRuLangGenreType.Name = "txtRuLangGenreType";
-            this.txtRuLangGenreType.Size = new System.Drawing.Size(465, 20);
+            this.txtRuLangGenreType.Size = new System.Drawing.Size(465, 21);
             this.txtRuLangGenreType.TabIndex = 9;
+            this.txtRuLangGenreType.ThemeName = "Office2013Light";
             // 
             // bsRuLangGenreType
             // 
@@ -236,8 +237,9 @@
             this.txtEnLangGenreType.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangGenreType.MaxLength = 500;
             this.txtEnLangGenreType.Name = "txtEnLangGenreType";
-            this.txtEnLangGenreType.Size = new System.Drawing.Size(465, 20);
+            this.txtEnLangGenreType.Size = new System.Drawing.Size(465, 21);
             this.txtEnLangGenreType.TabIndex = 8;
+            this.txtEnLangGenreType.ThemeName = "Office2013Light";
             // 
             // bsEnLangGenreType
             // 
@@ -250,8 +252,9 @@
             this.txtUkLangGenreType.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangGenreType.MaxLength = 500;
             this.txtUkLangGenreType.Name = "txtUkLangGenreType";
-            this.txtUkLangGenreType.Size = new System.Drawing.Size(465, 20);
+            this.txtUkLangGenreType.Size = new System.Drawing.Size(465, 21);
             this.txtUkLangGenreType.TabIndex = 7;
+            this.txtUkLangGenreType.ThemeName = "Office2013Light";
             // 
             // bsUkLangGenreType
             // 
@@ -262,10 +265,11 @@
             // 
             this.txtCodeGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsGenreType, "CodeI", true));
             this.txtCodeGenreType.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeGenreType.MaxLength = 3;
+            this.txtCodeGenreType.MaxLength = 4;
             this.txtCodeGenreType.Name = "txtCodeGenreType";
-            this.txtCodeGenreType.Size = new System.Drawing.Size(465, 20);
+            this.txtCodeGenreType.Size = new System.Drawing.Size(465, 21);
             this.txtCodeGenreType.TabIndex = 6;
+            this.txtCodeGenreType.ThemeName = "Office2013Light";
             this.txtCodeGenreType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeGenreType_KeyPress);
             // 
             // lblRuLangGenreType
@@ -379,20 +383,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 315;
+            gridViewTextBoxColumn2.Width = 285;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 315;
+            gridViewTextBoxColumn3.Width = 289;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 230;
+            gridViewTextBoxColumn4.Width = 265;
             gridViewTextBoxColumn5.FieldName = "VariantObject";
             gridViewTextBoxColumn5.HeaderText = "Вид об\'єкта";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "VariantObject";
-            gridViewTextBoxColumn5.Width = 200;
+            gridViewTextBoxColumn5.Width = 221;
             this.gridGenreTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
