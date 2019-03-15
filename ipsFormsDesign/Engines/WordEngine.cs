@@ -521,7 +521,7 @@ namespace ipsFormsDesign.Services
             string prcntIncText = String.Empty;
             string Pasport = string.Empty;
             string PasportIssued = string.Empty;
-
+            string cstPerson1 = string.Empty; 
 
 
             if (cust.CustType < 3) // фіз. особа
@@ -574,9 +574,9 @@ namespace ipsFormsDesign.Services
                 eMail = bossEmployee?.Empl.Email ?? string.Empty;
                 createDate = anketaCompany.RegistrDate;
                 Okpo = anketaCompany.Okpo;
-                CstPersonReason = bossEmployee?.RelDocument;
-                cstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
-                cstPerson = cstPerson + ",";
+                CstPersonReason = bossEmployee?.RelDocument + ",";
+                cstPerson1 = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
+                cstPerson = cstPerson1 + ",";
 
 
                     cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
@@ -650,6 +650,9 @@ namespace ipsFormsDesign.Services
 
                     case "CstPerson":
                         item.Range.Text = cstPerson;
+                        break;
+                    case "CstPerson1":
+                        item.Range.Text = cstPerson1;
                         break;
                     case "CstPersonReason":
                         item.Range.Text = CstPersonReason;
