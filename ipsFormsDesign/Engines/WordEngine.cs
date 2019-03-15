@@ -574,7 +574,7 @@ namespace ipsFormsDesign.Services
                 eMail = bossEmployee?.Empl.Email ?? string.Empty;
                 createDate = anketaCompany.RegistrDate;
                 Okpo = anketaCompany.Okpo;
-                CstPersonReason = bossEmployee?.RelDocument;
+                CstPersonReason = bossEmployee?.RelDocument + ",";
                 cstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
                 cstPerson = cstPerson + ",";
 
