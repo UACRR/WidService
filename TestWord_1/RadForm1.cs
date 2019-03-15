@@ -45,8 +45,9 @@ namespace TestWord_1
               //  Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
               //   Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
               //Filename = "F_3_МБВ.docx";
-                 Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
-            Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
+           //      Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+           // Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
+           
 
 
             base.OnLoad(e);
@@ -73,7 +74,7 @@ namespace TestWord_1
                     wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
                 case "F_ГО УААСП Автор.docx":
-                    cust = service1.GetData(196);
+                    cust = service1.GetData(222);
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;

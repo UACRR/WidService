@@ -182,7 +182,8 @@ namespace ipsFormsDesign.Services
                     fop = "Фізична особа-підприємець ";
                 vOsobi = " в особі ";
                 Pasport = $"{anketaPerson?.PUseries ?? string.Empty} {anketaPerson?.PUnumber ?? string.Empty}";
-                PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy ?? string.Empty}";
+                
+                PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy}";
                 if ((anketaPerson?.Citizenship ?? "804") != "804")
                     {
                     Pasport = $"{anketaPerson?.PFseries ?? string.Empty} {anketaPerson?.PFnumber ?? string.Empty}";
