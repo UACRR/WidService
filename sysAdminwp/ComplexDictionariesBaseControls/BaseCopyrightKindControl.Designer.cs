@@ -120,7 +120,7 @@
             this.ddlFilterCopyrightKind.FormattingEnabled = false;
             this.ddlFilterCopyrightKind.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterCopyrightKind.Name = "ddlFilterCopyrightKind";
-            this.ddlFilterCopyrightKind.Size = new System.Drawing.Size(427, 20);
+            this.ddlFilterCopyrightKind.Size = new System.Drawing.Size(427, 21);
             this.ddlFilterCopyrightKind.TabIndex = 22;
             this.ddlFilterCopyrightKind.ThemeName = "Office2013Light";
             this.ddlFilterCopyrightKind.ValueMember = "CodeI";
@@ -206,7 +206,7 @@
             this.ddlEditKeyCopyrightKind.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyCopyrightKind.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyCopyrightKind.Name = "ddlEditKeyCopyrightKind";
-            this.ddlEditKeyCopyrightKind.Size = new System.Drawing.Size(401, 20);
+            this.ddlEditKeyCopyrightKind.Size = new System.Drawing.Size(401, 21);
             this.ddlEditKeyCopyrightKind.TabIndex = 13;
             this.ddlEditKeyCopyrightKind.ThemeName = "Office2013Light";
             this.ddlEditKeyCopyrightKind.ValueMember = "CodeI";

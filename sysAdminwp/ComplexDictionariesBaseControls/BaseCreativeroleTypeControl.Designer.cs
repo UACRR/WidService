@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterCreativeroleType = new Telerik.WinControls.UI.RadDropDownList();
@@ -120,7 +120,7 @@
             this.ddlFilterCreativeroleType.FormattingEnabled = false;
             this.ddlFilterCreativeroleType.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterCreativeroleType.Name = "ddlFilterCreativeroleType";
-            this.ddlFilterCreativeroleType.Size = new System.Drawing.Size(427, 20);
+            this.ddlFilterCreativeroleType.Size = new System.Drawing.Size(427, 21);
             this.ddlFilterCreativeroleType.TabIndex = 22;
             this.ddlFilterCreativeroleType.ThemeName = "Office2013Light";
             this.ddlFilterCreativeroleType.ValueMember = "CodeI";
@@ -140,7 +140,7 @@
             this.lbFilterCreativeroleType.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.lbFilterCreativeroleType.Size = new System.Drawing.Size(127, 18);
             this.lbFilterCreativeroleType.TabIndex = 21;
-            this.lbFilterCreativeroleType.Text = "Спосіб використання";
+            this.lbFilterCreativeroleType.Text = "Категорія";
             this.lbFilterCreativeroleType.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lbFilterCreativeroleType.ThemeName = "Office2013Light";
             // 
@@ -206,7 +206,7 @@
             this.ddlEditKeyCreativeroleType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyCreativeroleType.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyCreativeroleType.Name = "ddlEditKeyCreativeroleType";
-            this.ddlEditKeyCreativeroleType.Size = new System.Drawing.Size(401, 20);
+            this.ddlEditKeyCreativeroleType.Size = new System.Drawing.Size(401, 21);
             this.ddlEditKeyCreativeroleType.TabIndex = 13;
             this.ddlEditKeyCreativeroleType.ThemeName = "Office2013Light";
             this.ddlEditKeyCreativeroleType.ValueMember = "CodeI";
@@ -371,37 +371,37 @@
             this.gridCreativeroleTypeList.MasterTemplate.AllowEditRow = false;
             this.gridCreativeroleTypeList.MasterTemplate.AutoGenerateColumns = false;
             this.gridCreativeroleTypeList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn11.FieldName = "Code";
-            gridViewTextBoxColumn11.HeaderText = "Код";
-            gridViewTextBoxColumn11.Name = "Code";
-            gridViewTextBoxColumn11.Width = 105;
-            gridViewTextBoxColumn12.FieldName = "NameUk";
-            gridViewTextBoxColumn12.HeaderText = "Назва";
-            gridViewTextBoxColumn12.Name = "NameUk";
-            gridViewTextBoxColumn12.Width = 316;
-            gridViewTextBoxColumn13.FieldName = "NameRu";
-            gridViewTextBoxColumn13.HeaderText = "Название";
-            gridViewTextBoxColumn13.Name = "NameRu";
-            gridViewTextBoxColumn13.Width = 316;
-            gridViewTextBoxColumn14.FieldName = "NameEn";
-            gridViewTextBoxColumn14.HeaderText = "Name";
-            gridViewTextBoxColumn14.Name = "NameEn";
-            gridViewTextBoxColumn14.Width = 231;
-            gridViewTextBoxColumn15.FieldName = "Category";
-            gridViewTextBoxColumn15.HeaderText = "Категорія";
-            gridViewTextBoxColumn15.MinWidth = 200;
-            gridViewTextBoxColumn15.Name = "Category";
-            gridViewTextBoxColumn15.Width = 202;
+            gridViewTextBoxColumn6.FieldName = "Code";
+            gridViewTextBoxColumn6.HeaderText = "Код";
+            gridViewTextBoxColumn6.Name = "Code";
+            gridViewTextBoxColumn6.Width = 105;
+            gridViewTextBoxColumn7.FieldName = "NameUk";
+            gridViewTextBoxColumn7.HeaderText = "Назва";
+            gridViewTextBoxColumn7.Name = "NameUk";
+            gridViewTextBoxColumn7.Width = 315;
+            gridViewTextBoxColumn8.FieldName = "NameRu";
+            gridViewTextBoxColumn8.HeaderText = "Название";
+            gridViewTextBoxColumn8.Name = "NameRu";
+            gridViewTextBoxColumn8.Width = 315;
+            gridViewTextBoxColumn9.FieldName = "NameEn";
+            gridViewTextBoxColumn9.HeaderText = "Name";
+            gridViewTextBoxColumn9.Name = "NameEn";
+            gridViewTextBoxColumn9.Width = 230;
+            gridViewTextBoxColumn10.FieldName = "Category";
+            gridViewTextBoxColumn10.HeaderText = "Категорія";
+            gridViewTextBoxColumn10.MinWidth = 200;
+            gridViewTextBoxColumn10.Name = "Category";
+            gridViewTextBoxColumn10.Width = 200;
             this.gridCreativeroleTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12,
-            gridViewTextBoxColumn13,
-            gridViewTextBoxColumn14,
-            gridViewTextBoxColumn15});
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10});
             this.gridCreativeroleTypeList.MasterTemplate.EnableCustomFiltering = true;
             this.gridCreativeroleTypeList.MasterTemplate.EnableFiltering = true;
             this.gridCreativeroleTypeList.MasterTemplate.ShowFilteringRow = false;
-            this.gridCreativeroleTypeList.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gridCreativeroleTypeList.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gridCreativeroleTypeList.Name = "gridCreativeroleTypeList";
             this.gridCreativeroleTypeList.ReadOnly = true;
             this.gridCreativeroleTypeList.ShowGroupPanel = false;
