@@ -195,6 +195,7 @@
             this.txtCodeSystemConstant.Name = "txtCodeSystemConstant";
             this.txtCodeSystemConstant.Size = new System.Drawing.Size(1022, 20);
             this.txtCodeSystemConstant.TabIndex = 6;
+            this.txtCodeSystemConstant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeSystemConstant_KeyPress);
             // 
             // bsSystemConstant
             // 
@@ -308,15 +309,15 @@
             gridViewTextBoxColumn1.FieldName = "Code";
             gridViewTextBoxColumn1.HeaderText = "Код";
             gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 127;
+            gridViewTextBoxColumn1.Width = 126;
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 382;
+            gridViewTextBoxColumn2.Width = 380;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 382;
+            gridViewTextBoxColumn3.Width = 380;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";

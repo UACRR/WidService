@@ -295,5 +295,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 ControlEnabledActiveElements = false;
             }
         }
+
+        //allow input only number data
+        private void txtCodeSystemConstant_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if it 'number' or 'Backspace' -> allow input
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            {
+                return;
+            }
+            else
+                //disallow input
+                e.Handled = true;
+        }
     }
 }

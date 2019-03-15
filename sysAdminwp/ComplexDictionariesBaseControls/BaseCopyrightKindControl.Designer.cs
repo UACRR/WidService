@@ -45,13 +45,13 @@
             this.lbEditKeyCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.ddlEditKeyCopyrightKind = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameRuComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtRuLangCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
             this.bsRuLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameEnComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtEnLangCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
             this.bsEnLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
-            this.txtNameUaComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtUaLangCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
             this.bsUkLangCopyrightKind = new System.Windows.Forms.BindingSource(this.components);
-            this.txtCodeComplex = new Telerik.WinControls.UI.RadTextBox();
+            this.txtCodeCopyrightKind = new Telerik.WinControls.UI.RadTextBox();
             this.lblRuLangCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.lblEnLangCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.lblUkLangCopyrightKind = new Telerik.WinControls.UI.RadLabel();
@@ -72,13 +72,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEnLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUaLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCopyrightKind)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodeCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangCopyrightKind)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUkLangCopyrightKind)).BeginInit();
@@ -161,10 +161,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.editPanelCopyrightKind.Controls.Add(this.lbEditKeyCopyrightKind);
             this.editPanelCopyrightKind.Controls.Add(this.ddlEditKeyCopyrightKind);
-            this.editPanelCopyrightKind.Controls.Add(this.txtNameRuComplex);
-            this.editPanelCopyrightKind.Controls.Add(this.txtNameEnComplex);
-            this.editPanelCopyrightKind.Controls.Add(this.txtNameUaComplex);
-            this.editPanelCopyrightKind.Controls.Add(this.txtCodeComplex);
+            this.editPanelCopyrightKind.Controls.Add(this.txtRuLangCopyrightKind);
+            this.editPanelCopyrightKind.Controls.Add(this.txtEnLangCopyrightKind);
+            this.editPanelCopyrightKind.Controls.Add(this.txtUaLangCopyrightKind);
+            this.editPanelCopyrightKind.Controls.Add(this.txtCodeCopyrightKind);
             this.editPanelCopyrightKind.Controls.Add(this.lblRuLangCopyrightKind);
             this.editPanelCopyrightKind.Controls.Add(this.lblEnLangCopyrightKind);
             this.editPanelCopyrightKind.Controls.Add(this.lblUkLangCopyrightKind);
@@ -216,56 +216,57 @@
             this.bsCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKind);
             this.bsCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
-            // txtNameRuComplex
+            // txtRuLangCopyrightKind
             // 
-            this.txtNameRuComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangCopyrightKind, "Name", true));
-            this.txtNameRuComplex.Location = new System.Drawing.Point(162, 81);
-            this.txtNameRuComplex.MaxLength = 500;
-            this.txtNameRuComplex.Name = "txtNameRuComplex";
-            this.txtNameRuComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameRuComplex.TabIndex = 9;
+            this.txtRuLangCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangCopyrightKind, "Name", true));
+            this.txtRuLangCopyrightKind.Location = new System.Drawing.Point(162, 81);
+            this.txtRuLangCopyrightKind.MaxLength = 500;
+            this.txtRuLangCopyrightKind.Name = "txtRuLangCopyrightKind";
+            this.txtRuLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
+            this.txtRuLangCopyrightKind.TabIndex = 9;
             // 
             // bsRuLangCopyrightKind
             // 
             this.bsRuLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bsRuLangCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
-            // txtNameEnComplex
+            // txtEnLangCopyrightKind
             // 
-            this.txtNameEnComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCopyrightKind, "Name", true));
-            this.txtNameEnComplex.Location = new System.Drawing.Point(162, 108);
-            this.txtNameEnComplex.MaxLength = 500;
-            this.txtNameEnComplex.Name = "txtNameEnComplex";
-            this.txtNameEnComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameEnComplex.TabIndex = 8;
+            this.txtEnLangCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCopyrightKind, "Name", true));
+            this.txtEnLangCopyrightKind.Location = new System.Drawing.Point(162, 108);
+            this.txtEnLangCopyrightKind.MaxLength = 500;
+            this.txtEnLangCopyrightKind.Name = "txtEnLangCopyrightKind";
+            this.txtEnLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
+            this.txtEnLangCopyrightKind.TabIndex = 8;
             // 
             // bsEnLangCopyrightKind
             // 
             this.bsEnLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bsEnLangCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
-            // txtNameUaComplex
+            // txtUaLangCopyrightKind
             // 
-            this.txtNameUaComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCopyrightKind, "Name", true));
-            this.txtNameUaComplex.Location = new System.Drawing.Point(162, 55);
-            this.txtNameUaComplex.MaxLength = 500;
-            this.txtNameUaComplex.Name = "txtNameUaComplex";
-            this.txtNameUaComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtNameUaComplex.TabIndex = 7;
+            this.txtUaLangCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCopyrightKind, "Name", true));
+            this.txtUaLangCopyrightKind.Location = new System.Drawing.Point(162, 55);
+            this.txtUaLangCopyrightKind.MaxLength = 500;
+            this.txtUaLangCopyrightKind.Name = "txtUaLangCopyrightKind";
+            this.txtUaLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
+            this.txtUaLangCopyrightKind.TabIndex = 7;
             // 
             // bsUkLangCopyrightKind
             // 
             this.bsUkLangCopyrightKind.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
             this.bsUkLangCopyrightKind.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
-            // txtCodeComplex
+            // txtCodeCopyrightKind
             // 
-            this.txtCodeComplex.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
-            this.txtCodeComplex.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeComplex.MaxLength = 3;
-            this.txtCodeComplex.Name = "txtCodeComplex";
-            this.txtCodeComplex.Size = new System.Drawing.Size(465, 20);
-            this.txtCodeComplex.TabIndex = 6;
+            this.txtCodeCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
+            this.txtCodeCopyrightKind.Location = new System.Drawing.Point(162, 28);
+            this.txtCodeCopyrightKind.MaxLength = 3;
+            this.txtCodeCopyrightKind.Name = "txtCodeCopyrightKind";
+            this.txtCodeCopyrightKind.Size = new System.Drawing.Size(465, 20);
+            this.txtCodeCopyrightKind.TabIndex = 6;
+            this.txtCodeCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeComplex_KeyPress);
             // 
             // lblRuLangCopyrightKind
             // 
@@ -378,20 +379,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 316;
+            gridViewTextBoxColumn2.Width = 315;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 316;
+            gridViewTextBoxColumn3.Width = 315;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 231;
+            gridViewTextBoxColumn4.Width = 230;
             gridViewTextBoxColumn5.FieldName = "VariantUse";
             gridViewTextBoxColumn5.HeaderText = "Спосіб використання";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "VariantUse";
-            gridViewTextBoxColumn5.Width = 202;
+            gridViewTextBoxColumn5.Width = 200;
             this.gridCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -448,13 +449,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameRuComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRuLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameEnComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtEnLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtNameUaComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUaLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCopyrightKind)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCodeComplex)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCodeCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangCopyrightKind)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUkLangCopyrightKind)).EndInit();
@@ -478,10 +479,10 @@
         private Telerik.WinControls.UI.RadLabel lbFilterCopyrightKind;
         private System.Windows.Forms.Label radLblSearchCopyrightKind;
         private Telerik.WinControls.UI.RadPanel editPanelCopyrightKind;
-        private Telerik.WinControls.UI.RadTextBox txtNameRuComplex;
-        private Telerik.WinControls.UI.RadTextBox txtNameEnComplex;
-        private Telerik.WinControls.UI.RadTextBox txtNameUaComplex;
-        private Telerik.WinControls.UI.RadTextBox txtCodeComplex;
+        private Telerik.WinControls.UI.RadTextBox txtRuLangCopyrightKind;
+        private Telerik.WinControls.UI.RadTextBox txtEnLangCopyrightKind;
+        private Telerik.WinControls.UI.RadTextBox txtUaLangCopyrightKind;
+        private Telerik.WinControls.UI.RadTextBox txtCodeCopyrightKind;
         private Telerik.WinControls.UI.RadLabel lblRuLangCopyrightKind;
         private Telerik.WinControls.UI.RadLabel lblEnLangCopyrightKind;
         private Telerik.WinControls.UI.RadLabel lblUkLangCopyrightKind;

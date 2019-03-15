@@ -266,6 +266,7 @@
             this.txtCodeCountry.Name = "txtCodeCountry";
             this.txtCodeCountry.Size = new System.Drawing.Size(465, 20);
             this.txtCodeCountry.TabIndex = 6;
+            this.txtCodeCountry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeCountry_KeyPress);
             // 
             // lblRuLangCountry
             // 
