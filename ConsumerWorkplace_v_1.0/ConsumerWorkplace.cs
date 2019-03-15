@@ -16,9 +16,10 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Presenters;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
-
+using Telerik.WinControls.UI.Localization;
 
 namespace ConsumerWorkplace_v_1._0
 {
@@ -43,6 +44,8 @@ namespace ConsumerWorkplace_v_1._0
             IpsGlobal.addInstance(typeof(IDBFPresenter), _dbfPresenter);
             InitializeComponent();
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
+            RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
+
 
             switch (rights)
             {
