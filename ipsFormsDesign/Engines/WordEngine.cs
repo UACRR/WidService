@@ -2204,9 +2204,8 @@ namespace ipsFormsDesign.Services
             else
                 foreach (var item in rightHolder.TerritoryInclude)
                 {
-
-                    curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
-
+                   //                    curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                    curRow = table.Rows.Add();
                     curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
 
                 }
