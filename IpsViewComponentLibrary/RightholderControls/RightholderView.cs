@@ -7,6 +7,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -16,6 +17,10 @@ namespace IpsViewComponentLibrary.RightholderControls
     public partial class RightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
     {
         private bool _isCompany;
+        private string _pdf;
+        private string _doc;
+        private string _custName;
+        private WordEngine wordEngine;
 
         private IRightholderPresenter _presenter;
         public IRightholderPresenter Presenter
@@ -76,10 +81,12 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         #endregion
 
+        
         public RightholderView()
         {
             InitializeComponent();
 
+            setupSaveAs();
             SetDictionaries();
 
             passportPageView.ViewElement.Visibility = ElementVisibility.Hidden;
@@ -87,6 +94,41 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
+        }
+
+        ~RightholderView()
+        {
+            wordEngine = null;
+        }
+
+        private void setupSaveAs()
+        {
+            var oldButton = radPdfViewerNavigator1.CommandBarElement.Rows[0].Strips[0].Items[3];
+            radPdfViewerNavigator1.CommandBarElement.Rows[0].Strips[0].Items.RemoveAt(3);
+            CommandBarButton btn = new CommandBarButton();
+            btn.Text = oldButton.Text;
+            btn.Image = oldButton.Image;
+            btn.Click += Btn_Click;
+            radPdfViewerNavigator1.CommandBarElement.Rows[0].Strips[0].Items.Insert(3, btn);
+
+        }
+
+        private void Btn_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.FileName = _custName;
+            if( saveFileDialog1.ShowDialog() == DialogResult.OK )
+            {
+                switch(saveFileDialog1.FilterIndex )
+                {
+                    case 1:
+                        File.Copy(_doc, saveFileDialog1.FileName);
+                        break;
+                    case 2:
+                        File.Copy(_pdf, saveFileDialog1.FileName);
+                        break;
+                }
+
+            }
         }
 
         public void Run()
@@ -170,6 +212,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+
         private void btnGenerateRightholderAgreement_Click(object sender, EventArgs e)
         {
             // TODO: move to presenter and show in the separate dialog
@@ -191,10 +234,17 @@ namespace IpsViewComponentLibrary.RightholderControls
             btnGenerateRightholderAgreement.Enabled = false;
             waitbarAgreement.StartWaiting();
 
-            var wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
+            if(wordEngine == null)
+                wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
             wordEngine.ProcessRightHolder(template, customer, customer.AgreementMaster.First());
 
             pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
+
+            _pdf = wordEngine.Pdf;
+            _doc = wordEngine.Docx;
+            _custName = CustomerUtility.CustomerName(customer);
+            radPdfViewerNavigator1.Enabled = true;
+
             waitbarAgreement.StopWaiting();
 
             btnGenerateRightholderAgreement.Enabled = true;
