@@ -1284,6 +1284,7 @@ namespace ipsFormsDesign.Services
             string numberVAT = string.Empty;
             string typeVat = string.Empty;
             string cstPerson = string.Empty;
+            string cstPerson1 = string.Empty;
             string cstContPerson = string.Empty;
             string cstContPersonPhone = string.Empty;
             string fop = String.Empty;
@@ -1326,7 +1327,7 @@ namespace ipsFormsDesign.Services
                 cstPerson = customerName;
                 cstContPerson = customerName;
                 cstContPersonPhone = phoneWork;
-                if (cust.CustType == 2)
+                if (cust.CustType < 3)
                 {
                     fop = " Фізична особа - підприємець ";
                 }
@@ -1348,12 +1349,16 @@ namespace ipsFormsDesign.Services
                 eMail = bossEmployee?.Empl.Email ?? string.Empty;
                 createDate = anketaCompany.RegistrDate;
                 Okpo = anketaCompany.Okpo;
-                CstPersonReason = bossEmployee?.RelDocument;
+          //      CstPersonReason = bossEmployee?.RelDocument;
                 cstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
                 cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
                 cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
                 vOsobi = " в особі ";
                 naPidstavi = "  що діє на підставі ";
+                CstPersonReason = bossEmployee?.RelDocument + ",";
+                cstPerson1 = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
+                cstPerson = cstPerson1 + ",";
+
             }
 
             GdocDateC = $"{agreementAddBr?.AgrDate:dd.MM.yyyy}";
@@ -1485,6 +1490,9 @@ namespace ipsFormsDesign.Services
                         break;
                     case "CstPerson":
                         item.Range.Text = cstPerson;
+                        break;
+                    case "CstPerson1":
+                        item.Range.Text = cstPerson1;
                         break;
                     case "naPidstavi":
                         item.Range.Text = naPidstavi;
