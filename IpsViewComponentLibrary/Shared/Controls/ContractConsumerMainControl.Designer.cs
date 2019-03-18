@@ -62,6 +62,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             // 
             // rdtPickerAgrDate
             // 
+            this.rdtPickerAgrDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdtPickerAgrDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerAgrDate.Location = new System.Drawing.Point(356, 1);
             this.rdtPickerAgrDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
@@ -80,6 +81,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             // 
             // lblContrFrom
             // 
+            this.lblContrFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblContrFrom.Location = new System.Drawing.Point(327, 3);
             this.lblContrFrom.Name = "lblContrFrom";
             this.lblContrFrom.Size = new System.Drawing.Size(23, 19);
@@ -89,6 +91,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             // 
             // rtxtBoxContrNumber
             // 
+            this.rtxtBoxContrNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rtxtBoxContrNumber.Location = new System.Drawing.Point(169, 2);
             this.rtxtBoxContrNumber.Name = "rtxtBoxContrNumber";
             this.rtxtBoxContrNumber.NullText = "Номер договору";
@@ -107,6 +110,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             // 
             // rdtPickerDateBegin
             // 
+            this.rdtPickerDateBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateBegin.Location = new System.Drawing.Point(169, 26);
             this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -123,6 +127,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             // 
             // rdtPickerDateEnd
             // 
+            this.rdtPickerDateEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.rdtPickerDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.rdtPickerDateEnd.Location = new System.Drawing.Point(356, 25);
             this.rdtPickerDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -137,6 +142,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             // 
             // lblContrDoFrom
             // 
+            this.lblContrDoFrom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblContrDoFrom.Location = new System.Drawing.Point(140, 28);
             this.lblContrDoFrom.Name = "lblContrDoFrom";
             this.lblContrDoFrom.Size = new System.Drawing.Size(23, 19);
@@ -146,6 +152,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             // 
             // lblContrDoTo
             // 
+            this.lblContrDoTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblContrDoTo.Location = new System.Drawing.Point(329, 27);
             this.lblContrDoTo.Name = "lblContrDoTo";
             this.lblContrDoTo.Size = new System.Drawing.Size(21, 19);
