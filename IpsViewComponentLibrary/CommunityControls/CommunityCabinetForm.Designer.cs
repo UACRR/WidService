@@ -75,7 +75,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlAgreement = new IpsViewComponentLibrary.CommunityControls.CommunityAgreementControl();
             this.pvAutorsData = new Telerik.WinControls.UI.RadPageViewPage();
-            this.btnAddCommunity = new Telerik.WinControls.UI.RadButton();
+            this.btnLimitationRight = new Telerik.WinControls.UI.RadButton();
             this.gvViewAutors = new Telerik.WinControls.UI.RadGridView();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.pvReportsData = new Telerik.WinControls.UI.RadPageViewPage();
@@ -106,7 +106,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             this.pvAutorsData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddCommunity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLimitationRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -477,7 +477,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // pvAutorsData
             // 
-            this.pvAutorsData.Controls.Add(this.btnAddCommunity);
+            this.pvAutorsData.Controls.Add(this.btnLimitationRight);
             this.pvAutorsData.Controls.Add(this.gvViewAutors);
             this.pvAutorsData.Controls.Add(this.ctrlSearch);
             this.pvAutorsData.ItemSize = new System.Drawing.SizeF(56F, 27F);
@@ -486,16 +486,16 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvAutorsData.Size = new System.Drawing.Size(966, 500);
             this.pvAutorsData.Text = "Автори";
             // 
-            // btnAddCommunity
+            // btnLimitationRight
             // 
-            this.btnAddCommunity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddCommunity.Location = new System.Drawing.Point(0, 476);
-            this.btnAddCommunity.Name = "btnAddCommunity";
-            this.btnAddCommunity.Size = new System.Drawing.Size(220, 24);
-            this.btnAddCommunity.TabIndex = 14;
-            this.btnAddCommunity.Text = "Обмеження прав правовласників";
-            this.btnAddCommunity.ThemeName = "Office2013Light";
-            this.btnAddCommunity.Click += new System.EventHandler(this.btnAddCommunity_Click);
+            this.btnLimitationRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLimitationRight.Location = new System.Drawing.Point(0, 476);
+            this.btnLimitationRight.Name = "btnLimitationRight";
+            this.btnLimitationRight.Size = new System.Drawing.Size(220, 24);
+            this.btnLimitationRight.TabIndex = 14;
+            this.btnLimitationRight.Text = "Обмеження прав правовласників";
+            this.btnLimitationRight.ThemeName = "Office2013Light";
+            this.btnLimitationRight.Click += new System.EventHandler(this.btnAddCommunity_Click);
             // 
             // gvViewAutors
             // 
@@ -589,6 +589,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.gvViewAutors.Size = new System.Drawing.Size(966, 440);
             this.gvViewAutors.TabIndex = 12;
             this.gvViewAutors.ThemeName = "Office2013Light";
+            this.gvViewAutors.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewAutors_CellDoubleClick);
             // 
             // ctrlSearch
             // 
@@ -660,7 +661,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             ((System.ComponentModel.ISupportInitialize)(this.lblStatusName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             this.pvAutorsData.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnAddCommunity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLimitationRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -700,7 +701,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         private TabNavigationControl ctrlTabNavigation;
         private Common.SearchTextBoxControl ctrlSearch;
         private Telerik.WinControls.UI.RadGridView gvViewAutors;
-        private Telerik.WinControls.UI.RadButton btnAddCommunity;
+        private Telerik.WinControls.UI.RadButton btnLimitationRight;
         private Telerik.WinControls.UI.RadLabel lblCommunityName;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private System.Windows.Forms.GroupBox groupBox1;

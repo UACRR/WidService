@@ -242,7 +242,6 @@
             this.gvRightLimitations.Size = new System.Drawing.Size(906, 239);
             this.gvRightLimitations.TabIndex = 15;
             this.gvRightLimitations.ThemeName = "Office2013Light";
-            this.gvRightLimitations.ValueChanged += new System.EventHandler(this.gvRightLimitations_ValueChanged);
             this.gvRightLimitations.ValueChanging += new Telerik.WinControls.UI.ValueChangingEventHandler(this.gvRightLimitations_ValueChanging);
             // 
             // radPanel1
