@@ -56,6 +56,7 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void BeginBindings()
         {
+            bsCommunity.DataSource = _customer.Community;
             //grid
             gvViewAutors.DataSource = _list;
 

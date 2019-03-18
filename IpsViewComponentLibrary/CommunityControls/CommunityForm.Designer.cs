@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.Common;
+﻿using System.Windows.Forms;
+using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.CommunityControls
@@ -31,9 +32,13 @@ namespace IpsViewComponentLibrary.CommunityControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvCommunityName = new Telerik.WinControls.UI.RadPageViewPage();
+            this.txtIpi = new Telerik.WinControls.UI.RadTextBox();
+            this.bsCommunity = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlContactPerson = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
             this.ctrlClientName = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyControl();
@@ -58,6 +63,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvCommunityName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIpi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             this.pvAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).BeginInit();
@@ -94,6 +102,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // pvCommunityName
             // 
+            this.pvCommunityName.Controls.Add(this.txtIpi);
+            this.pvCommunityName.Controls.Add(this.radLabel1);
             this.pvCommunityName.Controls.Add(this.radLabel6);
             this.pvCommunityName.Controls.Add(this.ctrlContactPerson);
             this.pvCommunityName.Controls.Add(this.ctrlClientName);
@@ -103,9 +113,31 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvCommunityName.Size = new System.Drawing.Size(872, 498);
             this.pvCommunityName.Text = "Товариство";
             // 
+            // txtIpi
+            // 
+            this.txtIpi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCommunity, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.txtIpi.Location = new System.Drawing.Point(231, 57);
+            this.txtIpi.Name = "txtIpi";
+            this.txtIpi.Size = new System.Drawing.Size(243, 21);
+            this.txtIpi.TabIndex = 5;
+            this.txtIpi.ThemeName = "Office2013Light";
+            // 
+            // bsCommunity
+            // 
+            this.bsCommunity.DataSource = typeof(ipsFormsDesign.Model.Community);
+            // 
+            // radLabel1
+            // 
+            this.radLabel1.Location = new System.Drawing.Point(22, 59);
+            this.radLabel1.Name = "radLabel1";
+            this.radLabel1.Size = new System.Drawing.Size(203, 19);
+            this.radLabel1.TabIndex = 4;
+            this.radLabel1.Text = "Міжнародний код товариства (IPI):";
+            this.radLabel1.ThemeName = "Office2013Light";
+            // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(24, 62);
+            this.radLabel6.Location = new System.Drawing.Point(22, 84);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(104, 19);
             this.radLabel6.TabIndex = 3;
@@ -115,7 +147,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // ctrlContactPerson
             // 
             this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlContactPerson.Location = new System.Drawing.Point(21, 87);
+            this.ctrlContactPerson.Location = new System.Drawing.Point(19, 109);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
             this.ctrlContactPerson.OutsidePhone = false;
             this.ctrlContactPerson.PhoneNullText = "+380## ### ## ##";
@@ -329,6 +361,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageView.ResumeLayout(false);
             this.pvCommunityName.ResumeLayout(false);
             this.pvCommunityName.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIpi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             this.pvAddress.ResumeLayout(false);
             this.pvAddress.PerformLayout();
@@ -374,5 +409,8 @@ namespace IpsViewComponentLibrary.CommunityControls
         private IpsBossNameContactsControl ctrlContactPerson;
         private IpsAnketaCompanyControl ctrlClientName;
         private CommunityAgreementControl ctrlAgreement;
+        private Telerik.WinControls.UI.RadTextBox txtIpi;
+        private Telerik.WinControls.UI.RadLabel radLabel1;
+        private System.Windows.Forms.BindingSource bsCommunity;
     }
 }
