@@ -35,8 +35,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvCommunityName = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlContactPerson = new IpsBossNameContactsControl();
-            this.ctrlClientName = new IpsAnketaCompanyControl();
+            this.ctrlContactPerson = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
+            this.ctrlClientName = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyControl();
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddressLe = new IpsViewComponentLibrary.CommunityControls.CommunityAddressLetterControl();
             this.btnCopyFromLiveToReg = new Telerik.WinControls.UI.RadButton();
@@ -51,10 +51,10 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlAddressFa = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.ctrlAddressJu = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.CommunityControls.CommunityAgreementControl();
-            this.ctrlTabNavigation = new TabNavigationControl();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvCommunityName.SuspendLayout();
@@ -101,7 +101,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvCommunityName.Location = new System.Drawing.Point(134, 5);
             this.pvCommunityName.Name = "pvCommunityName";
             this.pvCommunityName.Size = new System.Drawing.Size(872, 498);
-            this.pvCommunityName.Text = "Спільнота";
+            this.pvCommunityName.Text = "Товариство";
             // 
             // radLabel6
             // 
@@ -114,9 +114,11 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // ctrlContactPerson
             // 
+            this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Model.Employee);
             this.ctrlContactPerson.Location = new System.Drawing.Point(21, 87);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
             this.ctrlContactPerson.OutsidePhone = false;
+            this.ctrlContactPerson.PhoneNullText = "+380## ### ## ##";
             this.ctrlContactPerson.Size = new System.Drawing.Size(600, 56);
             this.ctrlContactPerson.TabIndex = 2;
             // 
@@ -321,7 +323,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Створити нову спільноту";
+            this.Text = "Створити нове товариство";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);

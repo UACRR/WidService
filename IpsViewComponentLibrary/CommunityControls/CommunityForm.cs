@@ -8,22 +8,23 @@ using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
-    public partial class CommunityForm : Telerik.WinControls.UI.RadForm
+    public partial class CommunityForm : RadForm
     {
         private Customer _customer;
 
         public CommunityForm(Customer customer)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             _customer = customer;
             DialogResult = DialogResult.None;
             ctrlTabNavigation.SetDefaultState(pageView, FLoadType.Create);
             ctrlContactPerson.UnsubscribePhoneVldt();
-            ctrlClientName.SetLabelName("Назва спільноти: ");
+            ctrlClientName.SetLabelName("Назва товариства: ");
             SetBindings();
         }
 

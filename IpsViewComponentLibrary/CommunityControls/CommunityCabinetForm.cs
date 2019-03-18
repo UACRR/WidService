@@ -17,9 +17,6 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityCabinetForm : Telerik.WinControls.UI.RadForm
     {
-        private const string SuccessMsg = "Внесені зміни збережено!";
-        private const string ErrorMsg = "Неможливо зберегти внесені зміни!";
-
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerByIdEventHandler UpdateCustomer;
@@ -27,12 +24,13 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event GetCommunityRightList GetCommunityRightList;
         public event SaveObjectListEventHandler<CustCmRight> SaveLimitRights; 
 
-
         private List<CommunityAutorsListView> _list;
         private Customer _customer;
+
         public CommunityCabinetForm(Customer customer, List<CommunityAutorsListView> list)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             _customer = customer;
             _list = list;
             ctrlTabNavigation.SetDefaultState(pageViewAnketa, FLoadType.Edit);
@@ -52,9 +50,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void CtrlTabNavigation_SaveClick(object sender, EventArgs e)
         {
             var result = SaveCustomer?.Invoke(_customer) ?? false;
-
-            if(result)
-                ExtensionUtils.ShowInfoMessage("Зміни збережено!", "Успішно", MessageBoxIcon.Information);
+            MessageShow.ShowInfoAfterChanges(result);
         }
 
         private void BeginBindings()
@@ -180,7 +176,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             if (addAutorForm.ShowDialog() == DialogResult.OK)
             {
                 var result = SaveLimitRights?.Invoke(_customer.CustId, addAutorForm.LimitRights) ?? false;
-                MessageShow.ShowInfoByResult(SuccessMsg, ErrorMsg, result);
+                MessageShow.ShowInfoAfterChanges(result);
                 if(result)
                 {
                     _customer = UpdateCustomer?.Invoke(_customer.CustId);

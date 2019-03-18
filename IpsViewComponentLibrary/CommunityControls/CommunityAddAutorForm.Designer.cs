@@ -198,7 +198,7 @@
             gridViewComboBoxColumn1.DataType = typeof(int);
             gridViewComboBoxColumn1.DisplayMember = "Name";
             gridViewComboBoxColumn1.FieldName = "CommunityName";
-            gridViewComboBoxColumn1.HeaderText = "Спільнота";
+            gridViewComboBoxColumn1.HeaderText = "Товариство";
             gridViewComboBoxColumn1.Name = "CommunityName";
             gridViewComboBoxColumn1.ReadOnly = true;
             gridViewComboBoxColumn1.ValueMember = "CustId";

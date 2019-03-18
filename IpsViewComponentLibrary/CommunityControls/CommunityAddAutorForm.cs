@@ -19,6 +19,9 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityAddAutorForm : RadForm
     {
+        private const string LimitationOfRightsQuestion = "Обмеження прав належить іншому товариству! Змінити обмеження?";
+        private const string ExceptionMsg = "Ідентифікатор 'CustId' не може бути NULL!";
+
         private readonly List<CopyrightKind> _copyrightKinds;
         private List<RightLimitationsView> _rightLimitationsViews;
         private readonly List<CommunityInfo> _communities;
@@ -102,10 +105,8 @@ namespace IpsViewComponentLibrary.CommunityControls
                 return;
             }
 
-            if (MessageBox.Show("Обмеження прав належить іншій спільноті! Змінити обмеження?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
+            if (MessageShow.ConfirmAction(LimitationOfRightsQuestion) == DialogResult.Yes)
                 ChangeRightLimitList((bool) e.NewValue);
-            }
             else
                 e.Cancel = true;
         }
@@ -119,21 +120,23 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void ChangeRightLimitList(bool action)
         {
-            var curRow = gvRightLimitations.CurrentRow.DataBoundItem as RightLimitationsView;
+            if (!(gvRightLimitations.CurrentRow.DataBoundItem is RightLimitationsView currentRow))
+                throw new ArgumentNullException(ExceptionMsg);
+
             if (action)
             {
                 LimitRights.Add(new CustCmRight
                 {
-                    CustId = curRow?.CustId ?? throw new ArgumentNullException("Ідентифікатор 'CustId' не може бути NULL!"),
-                    CRkindCode = curRow.KindCode,
-                    CmCustId = curRow?.CmCustId ?? 0,
-                    DateBegin = curRow.DateBegin ?? DateTime.Today,
-                    DateEnd = curRow.DateEnd ?? new DateTime(3000, 1, 1)
+                    CustId = currentRow.CustId,
+                    CRkindCode = currentRow.KindCode,
+                    CmCustId = currentRow.CmCustId ?? 0,
+                    DateBegin = currentRow.DateBegin ?? DateTime.Today,
+                    DateEnd = currentRow.DateEnd ?? new DateTime(3000, 1, 1)
                 });
             }
             else
             {
-                var item = LimitRights.SingleOrDefault(r => r.CustId == curRow.CustId && r.CRkindCode == curRow.KindCode);
+                var item = LimitRights.SingleOrDefault(r => r.CustId == currentRow.CustId && r.CRkindCode == currentRow.KindCode);
                 LimitRights.Remove(item);
             }
         }

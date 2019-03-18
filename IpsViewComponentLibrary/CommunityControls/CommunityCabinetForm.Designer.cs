@@ -46,8 +46,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageViewAnketa = new Telerik.WinControls.UI.RadPageView();
             this.pvCommunityName = new Telerik.WinControls.UI.RadPageViewPage();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlContactPerson = new IpsBossNameContactsControl();
-            this.ctrlClientName = new IpsAnketaCompanyControl();
+            this.ctrlContactPerson = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
+            this.ctrlClientName = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyControl();
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddressLe = new IpsViewComponentLibrary.CommunityControls.CommunityAddressLetterControl();
             this.btnCopyFromJuToFa = new Telerik.WinControls.UI.RadButton();
@@ -62,8 +62,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlAddressFa = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.ctrlAddressJu = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsBankAccountControl();
-            this.ctrlTabNavigation = new TabNavigationControl();
+            this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationControl();
             this.pvAgrData = new Telerik.WinControls.UI.RadPageViewPage();
             this.lblCommunityName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
@@ -165,7 +165,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvCommunityName.Location = new System.Drawing.Point(134, 5);
             this.pvCommunityName.Name = "pvCommunityName";
             this.pvCommunityName.Size = new System.Drawing.Size(827, 459);
-            this.pvCommunityName.Text = "Спільнота";
+            this.pvCommunityName.Text = "Товариство";
             // 
             // radLabel6
             // 
@@ -178,9 +178,11 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // ctrlContactPerson
             // 
+            this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Model.Employee);
             this.ctrlContactPerson.Location = new System.Drawing.Point(21, 87);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
             this.ctrlContactPerson.OutsidePhone = false;
+            this.ctrlContactPerson.PhoneNullText = "+380## ### ## ##";
             this.ctrlContactPerson.Size = new System.Drawing.Size(600, 56);
             this.ctrlContactPerson.TabIndex = 2;
             // 
@@ -383,9 +385,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.radLabel2.Location = new System.Drawing.Point(18, 4);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(202, 19);
+            this.radLabel2.Size = new System.Drawing.Size(207, 19);
             this.radLabel2.TabIndex = 5;
-            this.radLabel2.Text = "Тип договору: Угода зі спільнотою";
+            this.radLabel2.Text = "Тип договору: Угода з товариством";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
             // groupBox1
@@ -626,7 +628,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Кабінет спільноти";
+            this.Text = "Кабінет товариства";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.pageViewMain)).EndInit();
             this.pageViewMain.ResumeLayout(false);
