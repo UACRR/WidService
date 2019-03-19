@@ -374,7 +374,6 @@ namespace ipsFormsDesign.Services
 
 
         #region Payments
-#if DEBUG
         /// <summary>
         /// Отримати всі зовнішні платежі користувача 
         /// </summary>
@@ -432,7 +431,6 @@ namespace ipsFormsDesign.Services
         }
 
  
-#endif
         /// <summary>
         /// Отримати всю інормацію по поточним періодам оплати для інтерфейсу Розрахунки
         /// </summary>

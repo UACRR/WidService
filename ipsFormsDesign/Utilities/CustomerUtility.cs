@@ -12,10 +12,10 @@ namespace ipsFormsDesign.Utilities
         public static string CustomerName(Customer customer)
         {
             if (customer.CustType == 3) // Jur
-                return customer.Company.AnketaCompany.Where(rec => rec.Version == customer.AnkVersion).First().Name;
+                return customer.Company.AnketaCompany.Where(rec => rec.Version == customer.AnkVersion).FirstOrDefault()?.Name;
             else
             {
-                var anketa = customer.Person.AnketaPerson.Where(rec => rec.Version == customer.AnkVersion).First();
+                var anketa = customer.Person.AnketaPerson.Where(rec => rec.Version == customer.AnkVersion).FirstOrDefault();
                 return $"{anketa.FirstName} {anketa.SurName} {anketa.LastName}";
             }
         }
