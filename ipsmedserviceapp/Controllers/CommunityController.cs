@@ -269,6 +269,13 @@ namespace ipsmedserviceapp.Controllers
                         terms.OurService = false;
                 });
 
+                // check exist CustCmRight and delete
+                var crKindCode = addList.Select(rec => rec.CRkindCode).ToList();
+                var existCustCmRight = _dbContext.CustCmRight
+                    .Where(rec => rec.CustId == custId && rec.CmCustId != cmCustId && crKindCode.Contains(rec.CRkindCode)).ToList();
+                if (existCustCmRight.Any())
+                    _dbContext.CustCmRight.RemoveRange(existCustCmRight);
+
 
                 _dbContext.SaveChanges();
 
