@@ -1469,21 +1469,12 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> CreateCopyRightKind([FromBody] CopyrightKind sors)
         {
             var dest = new CopyrightKind();
-            try
-            {
-                dest.SetFields(sors);
-                _dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-                _dbContext.CopyrightKind.Add(dest);
-                await _dbContext.SaveChangesAsync();
-            } catch (Exception e)
-            {
-
-            }
-            //var dest = new CopyrightKind();
-            //dest.SetFields(sors, new[] { "CodeI" });
-            //_dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            //_dbContext.CopyrightKind.Add(dest);
-            //await _dbContext.SaveChangesAsync();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.CopyrightKind.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
             return Ok(dest);
         }
         // Update      ****************************
@@ -1512,22 +1503,12 @@ namespace ipsmedserviceapp.Controllers
                                 .FirstOrDefaultAsync();
             if (delRow == null)
                 return NotFound();
+            
+            _dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
+            _dbContext.CopyrightKind.Remove(delRow);
 
-            try
-            {
-                _dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-                _dbContext.CopyrightKind.Remove(delRow);
-
-                await _dbContext.SaveChangesAsync();
-            } catch (Exception e)
-            {
-
-            }
-            //_dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-            //_dbContext.CopyrightKind.Remove( delRow );
-
-            //await _dbContext.SaveChangesAsync();
-
+            await _dbContext.SaveChangesAsync();
+            
             return Ok();
         }
         // CopyRightKind END **********************
@@ -1551,22 +1532,12 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> CreateCreativeRoleType([FromBody] CreativeRoleType sors)
         {
             var dest = new CreativeRoleType();
-            try
-            {
-                dest.SetFields(sors);
-                _dbContext.AppendList(sors.CreativeRoleTypeTr, dest.CreativeRoleTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-                _dbContext.CreativeRoleType.Add(dest);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //var dest = new CopyrightKind();
-            //dest.SetFields(sors, new[] { "CodeI" });
-            //_dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            //_dbContext.CopyrightKind.Add(dest);
-            //await _dbContext.SaveChangesAsync();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.CreativeRoleTypeTr, dest.CreativeRoleTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.CreativeRoleType.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
             return Ok(dest);
         }
         // Update      ****************************
@@ -1595,23 +1566,12 @@ namespace ipsmedserviceapp.Controllers
                                 .FirstOrDefaultAsync();
             if (delRow == null)
                 return NotFound();
+            
+            _dbContext.CreativeRoleTypeTr.RemoveRange(delRow.CreativeRoleTypeTr);
+            _dbContext.CreativeRoleType.Remove(delRow);
 
-            try
-            {
-                _dbContext.CreativeRoleTypeTr.RemoveRange(delRow.CreativeRoleTypeTr);
-                _dbContext.CreativeRoleType.Remove(delRow);
-
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //_dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-            //_dbContext.CopyrightKind.Remove( delRow );
-
-            //await _dbContext.SaveChangesAsync();
-
+            await _dbContext.SaveChangesAsync();
+            
             return Ok();
         }
         // CreativeRoleType END **********************
@@ -1635,22 +1595,12 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> CreateGenreType([FromBody] GenreType sors)
         {
             var dest = new GenreType();
-            try
-            {
-                dest.SetFields(sors);
-                _dbContext.AppendList(sors.GenreTypeTr, dest.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-                _dbContext.GenreType.Add(dest);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //var dest = new CopyrightKind();
-            //dest.SetFields(sors, new[] { "CodeI" });
-            //_dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            //_dbContext.CopyrightKind.Add(dest);
-            //await _dbContext.SaveChangesAsync();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.GenreTypeTr, dest.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.GenreType.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
             return Ok(dest);
         }
         // Update      ****************************
@@ -1679,23 +1629,12 @@ namespace ipsmedserviceapp.Controllers
                                 .FirstOrDefaultAsync();
             if (delRow == null)
                 return NotFound();
+            
+            _dbContext.GenreTypeTr.RemoveRange(delRow.GenreTypeTr);
+            _dbContext.GenreType.Remove(delRow);
 
-            try
-            {
-                _dbContext.GenreTypeTr.RemoveRange(delRow.GenreTypeTr);
-                _dbContext.GenreType.Remove(delRow);
-
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //_dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-            //_dbContext.CopyrightKind.Remove( delRow );
-
-            //await _dbContext.SaveChangesAsync();
-
+            await _dbContext.SaveChangesAsync();
+            
             return Ok();
         }
         // GenreType END **********************
@@ -1719,22 +1658,12 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> CreateKlR030([FromBody] KlR030 sors)
         {
             var dest = new KlR030();
-            try
-            {
-                dest.SetFields(sors);
-                _dbContext.AppendList(sors.KlR030tr, dest.KlR030tr, i => { }, (l, r) => l.R030 == r.R030 && l.Lang == r.Lang);
-                _dbContext.KlR030.Add(dest);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //var dest = new CopyrightKind();
-            //dest.SetFields(sors, new[] { "CodeI" });
-            //_dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            //_dbContext.CopyrightKind.Add(dest);
-            //await _dbContext.SaveChangesAsync();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.KlR030tr, dest.KlR030tr, i => { }, (l, r) => l.R030 == r.R030 && l.Lang == r.Lang);
+            _dbContext.KlR030.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
             return Ok(dest);
         }
         // Update      ****************************
@@ -1763,23 +1692,12 @@ namespace ipsmedserviceapp.Controllers
                                 .FirstOrDefaultAsync();
             if (delRow == null)
                 return NotFound();
+            
+            _dbContext.KlR030tr.RemoveRange(delRow.KlR030tr);
+            _dbContext.KlR030.Remove(delRow);
 
-            try
-            {
-                _dbContext.KlR030tr.RemoveRange(delRow.KlR030tr);
-                _dbContext.KlR030.Remove(delRow);
-
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //_dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-            //_dbContext.CopyrightKind.Remove( delRow );
-
-            //await _dbContext.SaveChangesAsync();
-
+            await _dbContext.SaveChangesAsync();
+            
             return Ok();
         }
         // KlR030 END **********************
@@ -1803,22 +1721,12 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> CreateSystemConstant([FromBody] SystemConstant sors)
         {
             var dest = new SystemConstant();
-            try
-            {
-                dest.SetFields(sors);
-                _dbContext.AppendList(sors.SystemConstantTr, dest.SystemConstantTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-                _dbContext.SystemConstant.Add(dest);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //var dest = new CopyrightKind();
-            //dest.SetFields(sors, new[] { "CodeI" });
-            //_dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            //_dbContext.CopyrightKind.Add(dest);
-            //await _dbContext.SaveChangesAsync();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.SystemConstantTr, dest.SystemConstantTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.SystemConstant.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
             return Ok(dest);
         }
         // Update      ****************************
@@ -1847,23 +1755,12 @@ namespace ipsmedserviceapp.Controllers
                                 .FirstOrDefaultAsync();
             if (delRow == null)
                 return NotFound();
+            
+            _dbContext.SystemConstantTr.RemoveRange(delRow.SystemConstantTr);
+            _dbContext.SystemConstant.Remove(delRow);
 
-            try
-            {
-                _dbContext.SystemConstantTr.RemoveRange(delRow.SystemConstantTr);
-                _dbContext.SystemConstant.Remove(delRow);
-
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //_dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-            //_dbContext.CopyrightKind.Remove( delRow );
-
-            //await _dbContext.SaveChangesAsync();
-
+            await _dbContext.SaveChangesAsync();
+            
             return Ok();
         }
         // SystemConstant END **********************
@@ -1887,22 +1784,12 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> CreateTypePlace([FromBody] TypePlace sors)
         {
             var dest = new TypePlace();
-            try
-            {
-                dest.SetFields(sors);
-                _dbContext.AppendList(sors.TypePlaceTr, dest.TypePlaceTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-                _dbContext.TypePlace.Add(dest);
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //var dest = new CopyrightKind();
-            //dest.SetFields(sors, new[] { "CodeI" });
-            //_dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-            //_dbContext.CopyrightKind.Add(dest);
-            //await _dbContext.SaveChangesAsync();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.TypePlaceTr, dest.TypePlaceTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.TypePlace.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
             return Ok(dest);
         }
         // Update      ****************************
@@ -1931,23 +1818,12 @@ namespace ipsmedserviceapp.Controllers
                                 .FirstOrDefaultAsync();
             if (delRow == null)
                 return NotFound();
+            
+            _dbContext.TypePlaceTr.RemoveRange(delRow.TypePlaceTr);
+            _dbContext.TypePlace.Remove(delRow);
 
-            try
-            {
-                _dbContext.TypePlaceTr.RemoveRange(delRow.TypePlaceTr);
-                _dbContext.TypePlace.Remove(delRow);
-
-                await _dbContext.SaveChangesAsync();
-            }
-            catch (Exception e)
-            {
-
-            }
-            //_dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-            //_dbContext.CopyrightKind.Remove( delRow );
-
-            //await _dbContext.SaveChangesAsync();
-
+            await _dbContext.SaveChangesAsync();
+            
             return Ok();
         }
         // TypePlace END **********************
