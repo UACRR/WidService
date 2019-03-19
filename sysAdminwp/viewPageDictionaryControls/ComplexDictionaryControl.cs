@@ -6,11 +6,9 @@ using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using WebAPIConnector;
 using ipsFormsDesign.Dictionary;
-using sysAdminwp.ComplexDictionaryControls;
 using System.Drawing;
 using Telerik.WinControls.Primitives;
 using Telerik.WinControls.UI;
-using sysAdminwp.ComplexParamForms;
 using sysAdminwp.ComplexDictionariesBaseControls;
 
 namespace sysAdminwp.viewPageDictionaryControls
@@ -31,24 +29,6 @@ namespace sysAdminwp.viewPageDictionaryControls
         private List<KlR030> _klR030List;
         private List<SystemConstant> _systemConstantList;
         private List<TypePlace> _typePlaceList;
-
-        //unusable code
-        private CopyRightKindDictionaryControl _copyRightKindControl;
-        private CountryDictionaryControl _countryDictionaryControl;
-        private CreativeRoleTypeDictionaryControl _creativeRoleDictionaryControl;
-        private GenreTypeDictionaryControl _genreTypeDictionaryControl;
-        private Klr030DictionaryControl _klrDictionaryControl;
-        private SystemConstantDictionaryControl _systemConstantDictionaryControl;
-        private TypePlaceDictionaryControl _typePlaceDictionaryControl;
-
-        //forms for ComplexParamForms
-        CopyRightKindParamsForm copyRightKindParamsForm;
-        CountryParamsForm countryParamsForm;
-        CreativeRoleTypeParamsForm creativeRoleTypeParamsForm;
-        GenreTypeParamsForm genreTypeParamsForm;
-        KLR030ParamsForm klr030ParamsForm;
-        TypePlaceParamsForm typePlaceParamsForm;
-
 
         private CopyrightKind _copyrightKind;
         private Country _country;
