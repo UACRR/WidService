@@ -156,6 +156,9 @@ namespace ipsFormsDesign.Services
             string CstPersonReason = string.Empty;
             string Pasport = string.Empty;
             string PasportIssued = string.Empty;
+            string CstNikName = string.Empty;
+            string NikName = string.Empty;
+
 
             if (cust.CustType < 3) // фіз. особа
             {
@@ -228,7 +231,10 @@ namespace ipsFormsDesign.Services
 
             }
 
-
+            CstNikName = $"{anketaPerson?.NikName ?? string.Empty}";
+            if (CstNikName != string.Empty)
+                NikName = "псевдонім(и)";
+            CstNikName = CstNikName + ",";
             string prcntARlt = string.Empty;
             string prcntARltText = string.Empty;
 
@@ -290,11 +296,14 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = CstPersonReason;
                         break;
 
-
-
-                    case "CstNikName":
-                        item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
+                    case "СstNikName":
+                        item.Range.Text = CstNikName;
                         break;
+
+                    case "NikName":
+                        item.Range.Text = NikName;
+                        break;
+
                     case "TableKind":
                         FormTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
                         break;
