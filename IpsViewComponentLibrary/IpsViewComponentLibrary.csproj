@@ -155,6 +155,7 @@
     <Compile Include="Extensions\WindowsFormsVisible.cs" />
     <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
     <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
+    <Compile Include="Utilities\IpsUARadGridLocalizationProvider.cs" />
     <Compile Include="_UnusedControls\AddCompositionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1492,6 +1493,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Community.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Employee.datasource" />

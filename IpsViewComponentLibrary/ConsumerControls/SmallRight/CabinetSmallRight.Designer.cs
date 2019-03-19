@@ -62,7 +62,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.currentAgreementController1 = new IpsViewComponentLibrary.Utilities.CurrentAgreementController();
             this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlPartner = new PartnerOfConsumerControl();
+            this.ctrlPartner = new IpsViewComponentLibrary.ConsumerControls.PartnerOfConsumerControl();
             this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
@@ -90,7 +90,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             this.btnAddAgreement = new Telerik.WinControls.UI.RadButton();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
             this.anketaPanel = new Telerik.WinControls.UI.RadPanel();
-            this.ctrlTabNavigation = new TabNavigationControl();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationControl();
             this.pvMain = new Telerik.WinControls.UI.RadPageView();
             this.pvClosedAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlClosedAgreements = new IpsViewComponentLibrary.ConsumerControls.ClosedAgreementsControl();
@@ -691,7 +691,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             // 
             // 
             this.pvMain.RootElement.MinSize = new System.Drawing.Size(962, 456);
-            this.pvMain.SelectedPage = this.pvActiveAgr;
+            this.pvMain.SelectedPage = this.pvMoreAgreements;
             this.pvMain.Size = new System.Drawing.Size(962, 665);
             this.pvMain.TabIndex = 4;
             this.pvMain.ThemeName = "Office2013Light";

@@ -32,6 +32,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RightholderView));
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.anketaPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholderPersonPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -84,10 +85,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.territoryLimitationsPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlTerritoryIncludeExclude = new IpsViewComponentLibrary.RightholderControls.Anketa.TerritoryIncludeExcludeControl();
             this.agreementPrintPage = new Telerik.WinControls.UI.RadPageViewPage();
-            this.btnGenerateRightholderAgreement = new Telerik.WinControls.UI.RadButton();
+            this.radPdfViewerNavigator1 = new Telerik.WinControls.UI.RadPdfViewerNavigator();
             this.pdfvRightholderAgreement = new Telerik.WinControls.UI.RadPdfViewer();
             this.waitbarAgreement = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.btnGenerateRightholderAgreement = new Telerik.WinControls.UI.RadButton();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.sbSave = new Telerik.WinControls.UI.RadSplitButton();
             this.miSave = new Telerik.WinControls.UI.RadMenuItem();
@@ -113,6 +115,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.radPageViewPage4 = new Telerik.WinControls.UI.RadPageViewPage();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -155,10 +158,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.rigthLimitationsPage.SuspendLayout();
             this.territoryLimitationsPage.SuspendLayout();
             this.agreementPrintPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnGenerateRightholderAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfvRightholderAgreement)).BeginInit();
             this.pdfvRightholderAgreement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.waitbarAgreement)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGenerateRightholderAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sbSave)).BeginInit();
@@ -268,8 +272,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.contactsPersonPage.Controls.Add(this.radGroupBox3);
             this.contactsPersonPage.Controls.Add(this.radGroupBox2);
             this.contactsPersonPage.Controls.Add(this.ctrlContacts);
-            this.contactsPersonPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.contactsPersonPage.Location = new System.Drawing.Point(103, 5);
+            this.contactsPersonPage.ItemSize = new System.Drawing.SizeF(97F, 25F);
+            this.contactsPersonPage.Location = new System.Drawing.Point(101, 5);
             this.contactsPersonPage.Name = "contactsPersonPage";
             this.contactsPersonPage.Size = new System.Drawing.Size(898, 436);
             this.contactsPersonPage.Text = "Контакти";
@@ -400,8 +404,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             // contactsCompanyPage
             // 
             this.contactsCompanyPage.Controls.Add(this.ctrlMiddleControlAddress);
-            this.contactsCompanyPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.contactsCompanyPage.Location = new System.Drawing.Point(103, 5);
+            this.contactsCompanyPage.ItemSize = new System.Drawing.SizeF(97F, 25F);
+            this.contactsCompanyPage.Location = new System.Drawing.Point(101, 5);
             this.contactsCompanyPage.Name = "contactsCompanyPage";
             this.contactsCompanyPage.Size = new System.Drawing.Size(898, 436);
             this.contactsCompanyPage.Text = "Контакти";
@@ -418,8 +422,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             // passportPage
             // 
             this.passportPage.Controls.Add(this.passportPageView);
-            this.passportPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.passportPage.Location = new System.Drawing.Point(103, 5);
+            this.passportPage.ItemSize = new System.Drawing.SizeF(97F, 25F);
+            this.passportPage.Location = new System.Drawing.Point(101, 5);
             this.passportPage.Name = "passportPage";
             this.passportPage.Size = new System.Drawing.Size(898, 436);
             this.passportPage.Text = "Паспортні дані";
@@ -442,7 +446,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.createRightholderInternalPasportPage.Controls.Add(this.radLabel6);
             this.createRightholderInternalPasportPage.Controls.Add(this.ctrlInternalPassport);
-            this.createRightholderInternalPasportPage.ItemSize = new System.Drawing.SizeF(27F, 222F);
             this.createRightholderInternalPasportPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderInternalPasportPage.Name = "createRightholderInternalPasportPage";
             this.createRightholderInternalPasportPage.Size = new System.Drawing.Size(862, 426);
@@ -472,7 +475,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.createRightholderForeignPassportPage.Controls.Add(this.ctrlInternationalPassport);
             this.createRightholderForeignPassportPage.Controls.Add(this.radLabel7);
-            this.createRightholderForeignPassportPage.ItemSize = new System.Drawing.SizeF(27F, 227F);
             this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
             this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(813, 417);
@@ -500,8 +502,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             // managersPage
             // 
             this.managersPage.Controls.Add(this.ctrlMiddleControlManagers);
-            this.managersPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.managersPage.Location = new System.Drawing.Point(103, 5);
+            this.managersPage.ItemSize = new System.Drawing.SizeF(97F, 25F);
+            this.managersPage.Location = new System.Drawing.Point(101, 5);
             this.managersPage.Name = "managersPage";
             this.managersPage.Size = new System.Drawing.Size(898, 436);
             this.managersPage.Text = "Керівники";
@@ -689,6 +691,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // agreementPrintPage
             // 
+            this.agreementPrintPage.Controls.Add(this.radPdfViewerNavigator1);
             this.agreementPrintPage.Controls.Add(this.btnGenerateRightholderAgreement);
             this.agreementPrintPage.Controls.Add(this.pdfvRightholderAgreement);
             this.agreementPrintPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
@@ -697,15 +700,23 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPrintPage.Size = new System.Drawing.Size(863, 435);
             this.agreementPrintPage.Text = "Друк";
             // 
-            // btnGenerateRightholderAgreement
+            // radPdfViewerNavigator1
             // 
-            this.btnGenerateRightholderAgreement.Location = new System.Drawing.Point(4, 4);
-            this.btnGenerateRightholderAgreement.Name = "btnGenerateRightholderAgreement";
-            this.btnGenerateRightholderAgreement.Size = new System.Drawing.Size(110, 24);
-            this.btnGenerateRightholderAgreement.TabIndex = 1;
-            this.btnGenerateRightholderAgreement.Text = "Cформувати";
-            this.btnGenerateRightholderAgreement.ThemeName = "Office2013Light";
-            this.btnGenerateRightholderAgreement.Click += new System.EventHandler(this.btnGenerateRightholderAgreement_Click);
+            this.radPdfViewerNavigator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPdfViewerNavigator1.AssociatedViewer = this.pdfvRightholderAgreement;
+            this.radPdfViewerNavigator1.Enabled = false;
+            this.radPdfViewerNavigator1.Location = new System.Drawing.Point(119, 2);
+            this.radPdfViewerNavigator1.Name = "radPdfViewerNavigator1";
+            this.radPdfViewerNavigator1.Size = new System.Drawing.Size(741, 39);
+            this.radPdfViewerNavigator1.TabIndex = 10;
+            this.radPdfViewerNavigator1.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.CommandBarRowElement)(this.radPdfViewerNavigator1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).MinSize = new System.Drawing.Size(25, 25);
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator1.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).MinSize = new System.Drawing.Size(34, 34);
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator1.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Image = ((System.Drawing.Image)(resources.GetObject("resource.Image")));
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator1.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Text = "Open";
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator1.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).ToolTipText = "Open";
+            ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator1.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
             // pdfvRightholderAgreement
             // 
@@ -713,9 +724,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pdfvRightholderAgreement.Controls.Add(this.waitbarAgreement);
-            this.pdfvRightholderAgreement.Location = new System.Drawing.Point(3, 34);
+            this.pdfvRightholderAgreement.Location = new System.Drawing.Point(3, 49);
             this.pdfvRightholderAgreement.Name = "pdfvRightholderAgreement";
-            this.pdfvRightholderAgreement.Size = new System.Drawing.Size(857, 398);
+            this.pdfvRightholderAgreement.Size = new System.Drawing.Size(857, 383);
             this.pdfvRightholderAgreement.TabIndex = 0;
             this.pdfvRightholderAgreement.ThemeName = "Office2013Light";
             this.pdfvRightholderAgreement.ThumbnailsScaleFactor = 0.15F;
@@ -743,6 +754,16 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.lineRingWaitingBarIndicatorElement1.Radius = 20;
             this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
+            // 
+            // btnGenerateRightholderAgreement
+            // 
+            this.btnGenerateRightholderAgreement.Location = new System.Drawing.Point(3, 10);
+            this.btnGenerateRightholderAgreement.Name = "btnGenerateRightholderAgreement";
+            this.btnGenerateRightholderAgreement.Size = new System.Drawing.Size(110, 23);
+            this.btnGenerateRightholderAgreement.TabIndex = 1;
+            this.btnGenerateRightholderAgreement.Text = "Cформувати";
+            this.btnGenerateRightholderAgreement.ThemeName = "Office2013Light";
+            this.btnGenerateRightholderAgreement.Click += new System.EventHandler(this.btnGenerateRightholderAgreement_Click);
             // 
             // radPanel1
             // 
@@ -808,7 +829,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageViewMain.DefaultPage = this.radPageViewPage1;
             this.pageViewMain.Location = new System.Drawing.Point(0, 1);
             this.pageViewMain.Name = "pageViewMain";
-            this.pageViewMain.SelectedPage = this.radPageViewPage1;
+            this.pageViewMain.SelectedPage = this.radPageViewPage2;
             this.pageViewMain.Size = new System.Drawing.Size(1019, 481);
             this.pageViewMain.TabIndex = 20;
             this.pageViewMain.ThemeName = "Office2013Light";
@@ -846,7 +867,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPageView.DefaultPage = this.agreementPage;
             this.agreementPageView.Location = new System.Drawing.Point(1, 0);
             this.agreementPageView.Name = "agreementPageView";
-            this.agreementPageView.SelectedPage = this.agreementPage;
+            this.agreementPageView.SelectedPage = this.agreementPrintPage;
             this.agreementPageView.Size = new System.Drawing.Size(1009, 445);
             this.agreementPageView.TabIndex = 3;
             this.agreementPageView.ThemeName = "Office2013Light";
@@ -1024,14 +1045,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightholdersObjectsRight.Size = new System.Drawing.Size(1009, 415);
             this.ctrlRightholdersObjectsRight.TabIndex = 8;
             // 
-            // radPageViewPage4
-            // 
-            this.radPageViewPage4.ItemSize = new System.Drawing.SizeF(51F, 27F);
-            this.radPageViewPage4.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage4.Name = "radPageViewPage4";
-            this.radPageViewPage4.Size = new System.Drawing.Size(1009, 445);
-            this.radPageViewPage4.Text = "Файли";
-            // 
             // RightholderView
             // 
             this.AcceptButton = this.miSave;
@@ -1095,10 +1108,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.rigthLimitationsPage.ResumeLayout(false);
             this.territoryLimitationsPage.ResumeLayout(false);
             this.agreementPrintPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnGenerateRightholderAgreement)).EndInit();
+            this.agreementPrintPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radPdfViewerNavigator1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pdfvRightholderAgreement)).EndInit();
             this.pdfvRightholderAgreement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.waitbarAgreement)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGenerateRightholderAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sbSave)).EndInit();
@@ -1210,5 +1225,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadPageViewPage managersPage;
         private JuridicalManagersControl ctrlMiddleControlManagers;
         private Telerik.WinControls.UI.RadButton btnUploadFromExcel;
+        private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }

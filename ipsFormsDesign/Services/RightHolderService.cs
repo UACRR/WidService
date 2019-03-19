@@ -129,7 +129,6 @@ namespace ipsFormsDesign.Services
 
         #endregion
 
-#if DEBUG
         public class DebugInheritData
         {
             public DebugInheritData()
@@ -146,6 +145,5 @@ namespace ipsFormsDesign.Services
         {
             return _webApi.ApiFunc<RightHolder, DebugInheritData>("rh/inheritancedebug", checkCustId, inheritData);
         }
-#endif
     }
 }

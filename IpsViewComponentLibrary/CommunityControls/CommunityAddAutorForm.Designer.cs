@@ -198,7 +198,7 @@
             gridViewComboBoxColumn1.DataType = typeof(int);
             gridViewComboBoxColumn1.DisplayMember = "Name";
             gridViewComboBoxColumn1.FieldName = "CommunityName";
-            gridViewComboBoxColumn1.HeaderText = "Спільнота";
+            gridViewComboBoxColumn1.HeaderText = "Товариство";
             gridViewComboBoxColumn1.Name = "CommunityName";
             gridViewComboBoxColumn1.ReadOnly = true;
             gridViewComboBoxColumn1.ValueMember = "CustId";
@@ -242,7 +242,6 @@
             this.gvRightLimitations.Size = new System.Drawing.Size(906, 239);
             this.gvRightLimitations.TabIndex = 15;
             this.gvRightLimitations.ThemeName = "Office2013Light";
-            this.gvRightLimitations.ValueChanged += new System.EventHandler(this.gvRightLimitations_ValueChanged);
             this.gvRightLimitations.ValueChanging += new Telerik.WinControls.UI.ValueChangingEventHandler(this.gvRightLimitations_ValueChanging);
             // 
             // radPanel1

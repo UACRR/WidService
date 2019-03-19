@@ -266,7 +266,7 @@ namespace ipsmedserviceapp.Controllers
                 if (query.SearchText != null)
                 {
                     query.SearchText = query.SearchText.Replace("'", "_");
-                    conditions.Add($"name like '%{query.SearchText}%'");
+                    conditions.Add($"(name like '%{query.SearchText}%' or author like '%{query.SearchText}%' or performer like '%{query.SearchText}%')");
                 }
 
                 if (conditions.Any())

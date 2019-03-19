@@ -151,10 +151,14 @@ namespace ipsFormsDesign.Services
             string CstName = string.Empty;
             string vOsobi = string.Empty;
             string CstPerson = string.Empty;
+            string CstPerson1 = string.Empty;
             string naPidstavi = string.Empty;
             string CstPersonReason = string.Empty;
             string Pasport = string.Empty;
             string PasportIssued = string.Empty;
+            string CstNikName = string.Empty;
+            string NikName = string.Empty;
+
 
             if (cust.CustType < 3) // фіз. особа
             {
@@ -182,7 +186,8 @@ namespace ipsFormsDesign.Services
                     fop = "Фізична особа-підприємець ";
                 vOsobi = " в особі ";
                 Pasport = $"{anketaPerson?.PUseries ?? string.Empty} {anketaPerson?.PUnumber ?? string.Empty}";
-                PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy ?? string.Empty}";
+                
+                PasportIssued = $"{anketaPerson?.PUissuedWho ?? string.Empty} {anketaPerson?.PUissuedWhen:dd.MM.yyyy}";
                 if ((anketaPerson?.Citizenship ?? "804") != "804")
                     {
                     Pasport = $"{anketaPerson?.PFseries ?? string.Empty} {anketaPerson?.PFnumber ?? string.Empty}";
@@ -214,14 +219,22 @@ namespace ipsFormsDesign.Services
                 Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
                 Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
 
-                CstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
+//                CstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
                 naPidstavi = " ,що діє на підставі";
-                CstPersonReason = bossEmployee?.RelDocument;
+//                CstPersonReason = bossEmployee?.RelDocument;
+
+                CstPersonReason = bossEmployee?.RelDocument + ",";
+                CstPerson1 = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
+                CstPerson = CstPerson1 + ",";
+
 
 
             }
 
-
+            CstNikName = $"{anketaPerson?.NikName ?? string.Empty}";
+            if (CstNikName != string.Empty)
+                NikName = "псевдонім(и)";
+            CstNikName = CstNikName + ",";
             string prcntARlt = string.Empty;
             string prcntARltText = string.Empty;
 
@@ -269,6 +282,9 @@ namespace ipsFormsDesign.Services
                     case "CstPerson":
                         item.Range.Text = CstPerson;
                         break;
+                    case "CstPerson1":
+                        item.Range.Text = CstPerson1;
+                        break;
                     case "fop":
                         item.Range.Text = fop;
                         break;
@@ -280,11 +296,14 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = CstPersonReason;
                         break;
 
-
-
-                    case "CstNikName":
-                        item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
+                    case "СstNikName":
+                        item.Range.Text = CstNikName;
                         break;
+
+                    case "NikName":
+                        item.Range.Text = NikName;
+                        break;
+
                     case "TableKind":
                         FormTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
                         break;
@@ -521,7 +540,7 @@ namespace ipsFormsDesign.Services
             string prcntIncText = String.Empty;
             string Pasport = string.Empty;
             string PasportIssued = string.Empty;
-
+            string cstPerson1 = string.Empty; 
 
 
             if (cust.CustType < 3) // фіз. особа
@@ -540,10 +559,10 @@ namespace ipsFormsDesign.Services
                 eMail = anketaPerson.EMail;
                 createDate = anketaPerson.BirthDate;
                 Okpo = anketaPerson.Inn;
-                cstPerson = customerName;
+                //cstPerson = customerName;
                 cstContPerson = customerName;
                 cstContPersonPhone = phoneWork;
-                if (cust.CustType == 2)
+                if (cust.CustType < 3)
                 {
                     fop = " Фізична особа - підприємець ";
                 }
@@ -574,9 +593,12 @@ namespace ipsFormsDesign.Services
                 eMail = bossEmployee?.Empl.Email ?? string.Empty;
                 createDate = anketaCompany.RegistrDate;
                 Okpo = anketaCompany.Okpo;
-                CstPersonReason = bossEmployee?.RelDocument;
-                cstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
-                cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
+                CstPersonReason = bossEmployee?.RelDocument + ",";
+                cstPerson1 = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
+                cstPerson = cstPerson1 + ",";
+
+
+                    cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
                 cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
                 vOsobi = " в особі ";
                 naPidstavi = "  що діє на підставі ";
@@ -640,17 +662,16 @@ namespace ipsFormsDesign.Services
                     case "naPidstavi":
                         item.Range.Text = naPidstavi;
                         break;
-
-
-
-
                     case "CstName":
-                        item.Range.Text = customerName;
+                           item.Range.Text = customerName;
                         break;
 
 
                     case "CstPerson":
                         item.Range.Text = cstPerson;
+                        break;
+                    case "CstPerson1":
+                        item.Range.Text = cstPerson1;
                         break;
                     case "CstPersonReason":
                         item.Range.Text = CstPersonReason;
@@ -1238,6 +1259,32 @@ namespace ipsFormsDesign.Services
             var KL030 = (from kl in _dic.klR030
                          select new Currency { R030 = kl.R030, CountryCode = kl.CountryCode, A3 = kl.A3 }
             );
+            var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
+            AgreementAddBr agreementAddBr;
+            agreementAddBr = agr;
+            string ShowPLAdress = string.Empty;
+            string ShowPLName = clnBusinessPlaceTheater[0]?.PlaceName ?? string.Empty;
+            ShowPLName = '"' + ShowPLName + '"';
+            string countryCode = clnBusinessPlaceTheater[0]?.PlaceCountry ?? "804";
+            string Country =  countries[clnBusinessPlaceTheater[0]?.PlaceCountry ?? "804"].CountryName;
+            ShowPLAdress = Country;
+            string Region = string.Empty;
+
+            if
+             ((clnBusinessPlaceTheater[0]?.PlaceRegion ?? 0) != 0)
+                Region = regions[clnBusinessPlaceTheater[0].PlaceRegion ?? 0].Name;
+            else
+                Region = "";
+            if (Region != "")
+                ShowPLAdress = ShowPLAdress + "," + Region.Trim();
+            string City = string.Empty;
+            City = clnBusinessPlaceTheater[0]?.PlaceCity ?? "";
+            if (City != "")
+                ShowPLAdress = ShowPLAdress + "," + City.Trim();
+            string Adress = string.Empty;
+            Adress = clnBusinessPlaceTheater[0]?.PlaceAddress ?? "";
+            if (Adress != "")
+                ShowPLAdress = ShowPLAdress + "," + Adress.Trim();
 
             app = StartWordApp();
             innerDoc = app.Documents.Open(docFile);
@@ -1252,9 +1299,8 @@ namespace ipsFormsDesign.Services
             Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
             Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
 
-            var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
-            AgreementAddBr agreementAddBr;
-            agreementAddBr = agr;
+           
+
 
             string customerName = string.Empty;
             string leAddress = string.Empty;
@@ -1272,6 +1318,7 @@ namespace ipsFormsDesign.Services
             string numberVAT = string.Empty;
             string typeVat = string.Empty;
             string cstPerson = string.Empty;
+            string cstPerson1 = string.Empty;
             string cstContPerson = string.Empty;
             string cstContPersonPhone = string.Empty;
             string fop = String.Empty;
@@ -1293,6 +1340,7 @@ namespace ipsFormsDesign.Services
             string PayShowDataDo = string.Empty;
             string aPayShowGrnText = string.Empty;
             string aPayShowKop = string.Empty;
+            
 
 
             if (cust.CustType < 3) // фіз. особа
@@ -1314,7 +1362,7 @@ namespace ipsFormsDesign.Services
                 cstPerson = customerName;
                 cstContPerson = customerName;
                 cstContPersonPhone = phoneWork;
-                if (cust.CustType == 2)
+                if (cust.CustType < 3)
                 {
                     fop = " Фізична особа - підприємець ";
                 }
@@ -1336,12 +1384,16 @@ namespace ipsFormsDesign.Services
                 eMail = bossEmployee?.Empl.Email ?? string.Empty;
                 createDate = anketaCompany.RegistrDate;
                 Okpo = anketaCompany.Okpo;
-                CstPersonReason = bossEmployee?.RelDocument;
+          //      CstPersonReason = bossEmployee?.RelDocument;
                 cstPerson = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
                 cstContPerson = $"{EmployeeCont?.LastName ?? string.Empty} {EmployeeCont?.FirstName ?? string.Empty} {EmployeeCont?.SurName ?? string.Empty}";
                 cstContPersonPhone = $"{EmployeeCont?.PhoneNumber ?? string.Empty}";
                 vOsobi = " в особі ";
                 naPidstavi = "  що діє на підставі ";
+                CstPersonReason = bossEmployee?.RelDocument + ",";
+                cstPerson1 = $"{Employee?.LastName} {Employee?.FirstName} {Employee?.SurName ?? string.Empty}";
+                cstPerson = cstPerson1 + ",";
+
             }
 
             GdocDateC = $"{agreementAddBr?.AgrDate:dd.MM.yyyy}";
@@ -1459,6 +1511,12 @@ namespace ipsFormsDesign.Services
                     case "GdocNumberC":
                         item.Range.Text = GdocNumber;
                         break;
+                    case "ShowPLName":
+                        item.Range.Text = ShowPLName;
+                        break;
+                    case "ShowPLAdress":
+                        item.Range.Text = ShowPLAdress;
+                        break;
                     case "GdocDateC":
                         item.Range.Text = GdocDateC;
                         break;
@@ -1474,16 +1532,19 @@ namespace ipsFormsDesign.Services
                     case "CstPerson":
                         item.Range.Text = cstPerson;
                         break;
+                    case "CstPerson1":
+                        item.Range.Text = cstPerson1;
+                        break;
                     case "naPidstavi":
                         item.Range.Text = naPidstavi;
                         break;
                     case "CstPersonReason":
                         item.Range.Text = CstPersonReason;
                         break;
-                    case "TablePLk":
+/*                    case "TablePLk":
                         FormTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
                         break;
-                    case "TableAvtorPrc":
+*/                    case "TableAvtorPrc":
                         FormTableAvtorPrc(item.Range.Tables, TbAPrc);
                         break;
                     case "TableAvtorLmp":
@@ -1518,7 +1579,7 @@ namespace ipsFormsDesign.Services
                     case "CstBankName":
                         item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
                         break;
-                    case "CstBankMfo":
+                    case "CstBankMFO":
                         item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
                         break;
                     case "CstAcc":
@@ -2201,9 +2262,8 @@ namespace ipsFormsDesign.Services
             else
                 foreach (var item in rightHolder.TerritoryInclude)
                 {
-
-                    curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
-
+                   //                    curRow = curRow == null ? table.Rows[1] : table.Rows.Add();
+                    curRow = table.Rows.Add();
                     curRow.Cells[1].Range.Text = countries[item.CountryCode].CountryName;
 
                 }

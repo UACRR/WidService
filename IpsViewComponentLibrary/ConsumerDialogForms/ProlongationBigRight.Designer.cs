@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lblTitleClientName = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlAgrMain = new ContractConsumerMainControl();
+            this.ctrlAgrMain = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerMainControl();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).BeginInit();
@@ -58,7 +58,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(440, 116);
+            this.btnCancel.Location = new System.Drawing.Point(361, 116);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(84, 24);
             this.btnCancel.TabIndex = 2;
@@ -83,7 +83,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.lblTitleClientName.Location = new System.Drawing.Point(89, 12);
             this.lblTitleClientName.Name = "lblTitleClientName";
             this.lblTitleClientName.Padding = new System.Windows.Forms.Padding(0, 0, 60, 0);
-            this.lblTitleClientName.Size = new System.Drawing.Size(435, 22);
+            this.lblTitleClientName.Size = new System.Drawing.Size(356, 22);
             this.lblTitleClientName.TabIndex = 22;
             this.lblTitleClientName.Text = "Назва «Клієнта»";
             this.lblTitleClientName.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -91,14 +91,14 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // ctrlAgrMain
             // 
             this.ctrlAgrMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.BigRights;
-            this.ctrlAgrMain.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
-            this.ctrlAgrMain.DataSourceBr = typeof(ipsFormsDesign.Model.AgreementAddBr);
+            this.ctrlAgrMain.AgreementName = "";
             this.ctrlAgrMain.DateEndNullDate = new System.DateTime(((long)(0)));
-            this.ctrlAgrMain.DateTimeType = ConsumerAgreementInitType.None;
+            this.ctrlAgrMain.DateEndNullText = "";
+            this.ctrlAgrMain.DateTimeType = IpsViewComponentLibrary.Extensions.ConsumerAgreementInitType.None;
             this.ctrlAgrMain.Location = new System.Drawing.Point(12, 40);
             this.ctrlAgrMain.MaximumSize = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.Name = "ctrlAgrMain";
-            this.ctrlAgrMain.Size = new System.Drawing.Size(477, 49);
+            this.ctrlAgrMain.Size = new System.Drawing.Size(433, 49);
             this.ctrlAgrMain.TabIndex = 24;
             // 
             // ProlongationBigRight
@@ -106,22 +106,23 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(536, 152);
+            this.ClientSize = new System.Drawing.Size(457, 152);
             this.Controls.Add(this.ctrlAgrMain);
             this.Controls.Add(this.lblTitleClientName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
-            this.MinimumSize = new System.Drawing.Size(500, 183);
+            this.MaximumSize = new System.Drawing.Size(465, 183);
+            this.MinimumSize = new System.Drawing.Size(465, 183);
             this.Name = "ProlongationBigRight";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
+            this.RootElement.MaxSize = new System.Drawing.Size(465, 183);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Пролонгація";
             this.ThemeName = "Office2013Light";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProlongationBigRight_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblTitleClientName)).EndInit();

@@ -11,27 +11,33 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
-using IpsViewComponentLibrary.Utilities;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityAddAutorForm : RadForm
     {
+        private const string LimitationOfRightsQuestion = "Обмеження прав належить іншому товариству! Змінити обмеження?";
+        private const string ExceptionMsg = "Ідентифікатор 'CustId' не може бути NULL!";
+
         private readonly List<CopyrightKind> _copyrightKinds;
         private List<RightLimitationsView> _rightLimitationsViews;
         private readonly List<CommunityInfo> _communities;
         private readonly List<CommunityAutorsListView> _autorList;
         private readonly int _communityCustId;
 
-        public List<CustCmRight> LimitRights { get; private set; } = new List<CustCmRight>();
+        public List<CustCmRight> LimitRights { get; } = new List<CustCmRight>();
+        public CommunityAutorsListView CurrentRow { get; set; }
+        public int AuthorId { get; private set; }
 
         public event GetCommunityRightList GetCommunityRightList;
 
         public CommunityAddAutorForm(List<CommunityAutorsListView> autorList, int communityCustId)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+            btnSave.Enabled = false;
+
             if (IpsGlobal.AnketaDictionaties != null)
             {
                 _copyrightKinds = IpsGlobal.AnketaDictionaties.copyrightKind.ToList();
@@ -46,20 +52,38 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void CommunityAddAutorForm_Load(object sender, EventArgs e)
         {
             gvViewAutors.DataSource = _autorList;
+            if (CurrentRow == null)
+                return;
+            
+            var currentRow = gvViewAutors.Rows
+                .SingleOrDefault(rec => rec.DataBoundItem is CommunityAutorsListView item 
+                                        && item.CustId == CurrentRow.CustId
+                                        && item.CmCustId == CurrentRow.CmCustId);
+            if (currentRow != null)
+            {
+                gvViewAutors.CurrentRow = currentRow;
+                gvViewAutors.GridViewElement.TableElement.ScrollToRow(gvViewAutors.CurrentRow);
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            AuthorId = (gvViewAutors.CurrentRow.DataBoundItem as CommunityAutorsListView)?.CustId ?? 0;
             DialogResult = DialogResult.OK;
+        }
+
+        private void EnableEditMode()
+        {
+            btnSave.Enabled = true;
+            ctrlSearch.Enabled = false;
+            gvViewAutors.Enabled = false;
         }
 
         // зміна рядка автора
         private void gvViewAutors_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            if (e?.CurrentRow?.DataBoundItem is CommunityAutorsListView item)
-            {
+            if (e.CurrentRow?.DataBoundItem is CommunityAutorsListView item)
                 gvRightLimitations.DataSource = DataSource(item);
-            }
             else
                 gvRightLimitations.DataSource = null;
         }
@@ -96,44 +120,39 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void gvRightLimitations_ValueChanging(object sender, ValueChangingEventArgs e)
         {
-            if (!(gvRightLimitations.CurrentRow.DataBoundItem is RightLimitationsView row) ||string.IsNullOrEmpty(row.CommunityName) || row.Check || row.CmCustId == _communityCustId)
+            if (!(gvRightLimitations.CurrentRow.DataBoundItem is RightLimitationsView row) || string.IsNullOrEmpty(row.CommunityName) || row.Check || row.CmCustId == _communityCustId)
             {
-                ChangeRightLimitList((bool)e.NewValue);
+                ChangeRightLimitList((bool) e.NewValue);
                 return;
             }
 
-            if (MessageBox.Show("Обмеження прав належить іншій спільноті! Змінити обмеження?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-            {
+            if (MessageShow.ConfirmAction(LimitationOfRightsQuestion) == DialogResult.Yes)
                 ChangeRightLimitList((bool) e.NewValue);
-            }
             else
                 e.Cancel = true;
         }
 
-        private void gvRightLimitations_ValueChanged(object sender, EventArgs e)
-        {
-            var currentRow = gvRightLimitations.CurrentRow;
-            gvRightLimitations.MasterTemplate.Refresh();
-            gvRightLimitations.GridViewElement.TableElement.ScrollToRow(currentRow);
-        }
-
         private void ChangeRightLimitList(bool action)
         {
-            var curRow = gvRightLimitations.CurrentRow.DataBoundItem as RightLimitationsView;
+            if (!(gvRightLimitations.CurrentRow.DataBoundItem is RightLimitationsView currentRow))
+                throw new ArgumentNullException(ExceptionMsg);
+
+            EnableEditMode();
+
             if (action)
             {
                 LimitRights.Add(new CustCmRight
                 {
-                    CustId = curRow?.CustId ?? throw new ArgumentNullException("Ідентифікатор 'CustId' не може бути NULL!"),
-                    CRkindCode = curRow.KindCode,
-                    CmCustId = curRow?.CmCustId ?? 0,
-                    DateBegin = curRow.DateBegin ?? DateTime.Today,
-                    DateEnd = curRow.DateEnd ?? new DateTime(3000, 1, 1)
+                    CustId = currentRow.CustId,
+                    CRkindCode = currentRow.KindCode,
+                    CmCustId = currentRow.CmCustId ?? 0,
+                    DateBegin = currentRow.DateBegin ?? DateTime.Today,
+                    DateEnd = currentRow.DateEnd ?? new DateTime(3000, 1, 1)
                 });
             }
             else
             {
-                var item = LimitRights.SingleOrDefault(r => r.CustId == curRow.CustId && r.CRkindCode == curRow.KindCode);
+                var item = LimitRights.SingleOrDefault(r => r.CustId == currentRow.CustId && r.CRkindCode == currentRow.KindCode);
                 LimitRights.Remove(item);
             }
         }

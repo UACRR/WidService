@@ -37,10 +37,10 @@ namespace ConsumerWorkplace_v_1._0
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainGridBigRight = new ConsumersViewBigRightControl();
+            this.mainGridBigRight = new IpsViewComponentLibrary.ConsumerControls.ConsumersViewBigRightControl();
             this.treeViewBR = new Telerik.WinControls.UI.RadTreeView();
             this.pageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
-            this.mainGridSmallRight = new ConsumersViewSmallRightControl();
+            this.mainGridSmallRight = new IpsViewComponentLibrary.ConsumerControls.ConsumersViewSmallRightControl();
             this.treeViewSR = new Telerik.WinControls.UI.RadTreeView();
             this.iConsumerMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pageViewOwner = new Telerik.WinControls.UI.RadPageView();
@@ -261,11 +261,11 @@ namespace ConsumerWorkplace_v_1._0
             // pvCommunity
             // 
             this.pvCommunity.Controls.Add(this.ctrlCommunity);
-            this.pvCommunity.ItemSize = new System.Drawing.SizeF(72F, 27F);
+            this.pvCommunity.ItemSize = new System.Drawing.SizeF(79F, 27F);
             this.pvCommunity.Location = new System.Drawing.Point(5, 31);
             this.pvCommunity.Name = "pvCommunity";
             this.pvCommunity.Size = new System.Drawing.Size(1266, 601);
-            this.pvCommunity.Text = "Спільноти";
+            this.pvCommunity.Text = "Товариства";
             // 
             // ctrlCommunity
             // 
