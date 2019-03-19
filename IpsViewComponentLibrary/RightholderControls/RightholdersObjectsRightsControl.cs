@@ -14,6 +14,7 @@ using IpsViewComponentLibrary.Utilities;
 using System.Drawing;
 using IpsViewComponentLibrary.ObjectRightControls;
 using System.ComponentModel;
+using Telerik.WinControls.Primitives;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -100,7 +101,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         }
         public event EventHandler<RightholderMainView> ShowAnketaCommandExetuted;
         public event EventHandler MarkedObjectsRightsChanged;
-
+        //defined border element for settings
+        private BorderPrimitive border = null;
         public RightholdersObjectsRightsControl()
         {
             InitializeComponent();
@@ -111,6 +113,9 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             ctrlRightholderSelector.Visible = false;
             gvRightholdersObjectsRights.SetColumnVisibility("IsSelected", false);
+
+            //set settings for border panel
+            SettingsBorder();
         }
 
         public void UpdateList()
@@ -127,6 +132,8 @@ namespace IpsViewComponentLibrary.RightholderControls
                 var rightholdersObjectsRightsList = service.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
 
                 objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
+
+                lblCountObjectsRight.Text = rightholdersObjectsRightsList.Count().ToString();
 
                 //SelectedObject = currentObject;
             }
@@ -250,6 +257,17 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void HandleEvent(ObjectRightUpdatedEvent e)
         {
             UpdateList();
+        }
+
+        //settings for border -> 'panelRightsControl'
+        private void SettingsBorder()
+        {
+            //hide border panel -> 'panelRightsControl'
+            border = (BorderPrimitive)panelRightsControl.PanelElement.Children[1];
+            border.ForeColor = Color.Transparent;
+            border.ForeColor2 = Color.Transparent;
+            border.ForeColor3 = Color.Transparent;
+            border.ForeColor4 = Color.Transparent;
         }
     }
 }

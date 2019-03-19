@@ -9,6 +9,7 @@ using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
@@ -111,17 +112,27 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void Btn_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.FileName = _custName;
-            if (saveFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK )
+            saveFileDialog1.FileName = _custName.Trim();
+            saveFileDialog1.Filter = "docx files (*.docx)|*.docx|pdf files (*.pdf)|*.pdf";
+            saveFileDialog1.FilterIndex = 1;
+
+            if (saveFileDialog1.ShowDialog() ==  DialogResult.OK)
             {
+                var ext = saveFileDialog1.FilterIndex == 1 ? ".docx" : ".pdf";
+                var FileName = Path.GetFileNameWithoutExtension(saveFileDialog1.FileName) + ext;
+
+                if (File.Exists(FileName))
+                    File.Delete(FileName);
                 switch (saveFileDialog1.FilterIndex)
                 {
                     case 1:
-                        File.Copy(wordEngine.Docx, saveFileDialog1.FileName);
+                        File.Copy(wordEngine.Docx, FileName);
                         break;
                     case 2:
-                        File.Copy(wordEngine.Pdf, saveFileDialog1.FileName);
-                        break;
+                        {
+                            File.Copy(wordEngine.Pdf, FileName);
+                            break;
+                        }
                 }
 
             }

@@ -82,6 +82,7 @@
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.GridView.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls.RadDock, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.RichTextEditor, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.RichTextEditor.dll</HintPath>
       <Private>True</Private>
@@ -104,90 +105,47 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ComplexDictionaryControls\CountryDictionaryControl.cs">
+    <Compile Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\CountryDictionaryControl.Designer.cs">
-      <DependentUpon>CountryDictionaryControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.Designer.cs">
+      <DependentUpon>BaseSystemConstantControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.cs">
+    <Compile Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.Designer.cs">
-      <DependentUpon>CopyRightKindDictionaryControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.Designer.cs">
+      <DependentUpon>BaseTypePlaceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.cs">
+    <Compile Include="ComplexDictionariesBaseControls\BaseKlr030Control.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.Designer.cs">
-      <DependentUpon>CreativeRoleTypeDictionaryControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesBaseControls\BaseKlr030Control.Designer.cs">
+      <DependentUpon>BaseKlr030Control.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\GenreTypeDictionaryControl.cs">
+    <Compile Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\GenreTypeDictionaryControl.Designer.cs">
-      <DependentUpon>GenreTypeDictionaryControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.Designer.cs">
+      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\IComplexDictionary.cs" />
-    <Compile Include="ComplexDictionaryControls\Klr030DictionaryControl.cs">
+    <Compile Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\Klr030DictionaryControl.Designer.cs">
-      <DependentUpon>Klr030DictionaryControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.Designer.cs">
+      <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\SystemConstantDictionaryControl.cs">
+    <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\SystemConstantDictionaryControl.Designer.cs">
-      <DependentUpon>SystemConstantDictionaryControl.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCountryControl.Designer.cs">
+      <DependentUpon>BaseCountryControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\TypePlaceDictionaryControl.cs">
+    <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ComplexDictionaryControls\TypePlaceDictionaryControl.Designer.cs">
-      <DependentUpon>TypePlaceDictionaryControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComplexParamForms\CopyRightKindParamsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComplexParamForms\CopyRightKindParamsForm.Designer.cs">
-      <DependentUpon>CopyRightKindParamsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComplexParamForms\CountryParamsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComplexParamForms\CountryParamsForm.Designer.cs">
-      <DependentUpon>CountryParamsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComplexParamForms\CreativeRoleTypeParamsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComplexParamForms\CreativeRoleTypeParamsForm.Designer.cs">
-      <DependentUpon>CreativeRoleTypeParamsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComplexParamForms\GenreTypeParamsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComplexParamForms\GenreTypeParamsForm.Designer.cs">
-      <DependentUpon>GenreTypeParamsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComplexParamForms\KLR030ParamsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComplexParamForms\KLR030ParamsForm.Designer.cs">
-      <DependentUpon>KLR030ParamsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComplexParamForms\SystemConstantParamsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComplexParamForms\SystemConstantParamsForm.Designer.cs">
-      <DependentUpon>SystemConstantParamsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ComplexParamForms\TypePlaceParamsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ComplexParamForms\TypePlaceParamsForm.Designer.cs">
-      <DependentUpon>TypePlaceParamsForm.cs</DependentUpon>
+    <Compile Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.Designer.cs">
+      <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
     </Compile>
     <Compile Include="DictionaryForm.cs">
       <SubType>Form</SubType>
@@ -202,47 +160,26 @@
       <DependentUpon>ComplexDictionaryControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewTable.cs" />
-    <EmbeddedResource Include="ComplexDictionaryControls\CopyRightKindDictionaryControl.resx">
-      <DependentUpon>CopyRightKindDictionaryControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseSystemConstantControl.resx">
+      <DependentUpon>BaseSystemConstantControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionaryControls\CountryDictionaryControl.resx">
-      <DependentUpon>CountryDictionaryControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseTypePlaceControl.resx">
+      <DependentUpon>BaseTypePlaceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionaryControls\CreativeRoleTypeDictionaryControl.resx">
-      <DependentUpon>CreativeRoleTypeDictionaryControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseKlr030Control.resx">
+      <DependentUpon>BaseKlr030Control.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionaryControls\GenreTypeDictionaryControl.resx">
-      <DependentUpon>GenreTypeDictionaryControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseGenreTypeControl.resx">
+      <DependentUpon>BaseGenreTypeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionaryControls\Klr030DictionaryControl.resx">
-      <DependentUpon>Klr030DictionaryControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCreativeroleTypeControl.resx">
+      <DependentUpon>BaseCreativeroleTypeControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionaryControls\SystemConstantDictionaryControl.resx">
-      <DependentUpon>SystemConstantDictionaryControl.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCountryControl.resx">
+      <DependentUpon>BaseCountryControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ComplexDictionaryControls\TypePlaceDictionaryControl.resx">
-      <DependentUpon>TypePlaceDictionaryControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ComplexParamForms\CopyRightKindParamsForm.resx">
-      <DependentUpon>CopyRightKindParamsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ComplexParamForms\CountryParamsForm.resx">
-      <DependentUpon>CountryParamsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ComplexParamForms\CreativeRoleTypeParamsForm.resx">
-      <DependentUpon>CreativeRoleTypeParamsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ComplexParamForms\GenreTypeParamsForm.resx">
-      <DependentUpon>GenreTypeParamsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ComplexParamForms\KLR030ParamsForm.resx">
-      <DependentUpon>KLR030ParamsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ComplexParamForms\SystemConstantParamsForm.resx">
-      <DependentUpon>SystemConstantParamsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ComplexParamForms\TypePlaceParamsForm.resx">
-      <DependentUpon>TypePlaceParamsForm.cs</DependentUpon>
+    <EmbeddedResource Include="ComplexDictionariesBaseControls\BaseCopyrightKindControl.resx">
+      <DependentUpon>BaseCopyrightKindControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="DictionaryForm.resx">
@@ -268,6 +205,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Category.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Continent.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKind.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKindTr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Country.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />

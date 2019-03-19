@@ -38,5 +38,154 @@ namespace ipsFormsDesign.Services
             return _webApi.DeleteItem(url, id.ToString());
         }
 
+        // Country BEGIN ********************
+        public Country GetCountry(int id)
+        {
+            string url = string.Concat(_prefix, "extra/country");
+            return _webApi.GetItemById<Country>(url, id.ToString());
+        }
+
+        public Country CreateCountry(Country sors)
+        {
+            string url = string.Concat(_prefix, "extra/country");
+            return _webApi.NewItemWithResult(url, sors);
+        }
+
+        public Country UpdateCountry(Country sors)
+        {
+            string url = string.Concat(_prefix, "extra/country");
+            return _webApi.UpdateItemWithResult(url, sors.CountryCode, sors);
+        }
+
+        public bool DeleteCountry(int id)
+        {
+            string url = string.Concat(_prefix, "extra/country");
+            return _webApi.DeleteItem(url, id.ToString());
+        }
+
+        // CreativeRoleType BEGIN ********************
+        public CreativeRoleType GetCreativeRoleType(int id)
+        {
+            string url = string.Concat(_prefix, "extra/creativeroletype");
+            return _webApi.GetItemById<CreativeRoleType>(url, id.ToString());
+        }
+
+        public CreativeRoleType CreateCreativeRoleType(CreativeRoleType sors)
+        {
+            string url = string.Concat(_prefix, "extra/creativeroletype");
+            return _webApi.NewItemWithResult(url, sors);
+        }
+
+        public CreativeRoleType UpdateCreativeRoleType(CreativeRoleType sors)
+        {
+            string url = string.Concat(_prefix, "extra/creativeroletype");
+            return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
+        }
+
+        public bool DeleteCreativeRoleType(int id)
+        {
+            string url = string.Concat(_prefix, "extra/creativeroletype");
+            return _webApi.DeleteItem(url, id.ToString());
+        }
+
+        // GenreType BEGIN ********************
+        public GenreType GetGenreType(int id)
+        {
+            string url = string.Concat(_prefix, "extra/genretype");
+            return _webApi.GetItemById<GenreType>(url, id.ToString());
+        }
+
+        public GenreType CreateGenreType(GenreType sors)
+        {
+            string url = string.Concat(_prefix, "extra/genretype");
+            return _webApi.NewItemWithResult(url, sors);
+        }
+
+        public GenreType UpdateGenreType(GenreType sors)
+        {
+            string url = string.Concat(_prefix, "extra/genretype");
+            return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
+        }
+
+        public bool DeleteGenreType(int id)
+        {
+            string url = string.Concat(_prefix, "extra/genretype");
+            return _webApi.DeleteItem(url, id.ToString());
+        }
+
+        // KlR030 BEGIN ********************
+        public KlR030 GetKlR030(int id)
+        {
+            string url = string.Concat(_prefix, "extra/klr030");
+            return _webApi.GetItemById<KlR030>(url, id.ToString());
+        }
+
+        public KlR030 CreateKlR030(KlR030 sors)
+        {
+            string url = string.Concat(_prefix, "extra/klr030");
+            return _webApi.NewItemWithResult(url, sors);
+        }
+
+        public KlR030 UpdateKlR030(KlR030 sors)
+        {
+            string url = string.Concat(_prefix, "extra/klr030");
+            return _webApi.UpdateItemWithResult(url, sors.R030, sors);
+        }
+
+        public bool DeleteKlR030(int id)
+        {
+            string url = string.Concat(_prefix, "extra/klr030");
+            return _webApi.DeleteItem(url, id.ToString());
+        }
+
+        // SystemConstant BEGIN ********************
+        public SystemConstant GetSystemConstant(int id)
+        {
+            string url = string.Concat(_prefix, "extra/systemconstant");
+            return _webApi.GetItemById<SystemConstant>(url, id.ToString());
+        }
+
+        public SystemConstant CreateSystemConstant(SystemConstant sors)
+        {
+            string url = string.Concat(_prefix, "extra/systemconstant");
+            return _webApi.NewItemWithResult(url, sors);
+        }
+
+        public SystemConstant UpdateSystemConstant(SystemConstant sors)
+        {
+            string url = string.Concat(_prefix, "extra/systemconstant");
+            return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
+        }
+
+        public bool DeleteSystemConstant(int id)
+        {
+            string url = string.Concat(_prefix, "extra/systemconstant");
+            return _webApi.DeleteItem(url, id.ToString());
+        }
+
+        // TypePlace BEGIN ********************
+        public TypePlace GetTypePlace(int id)
+        {
+            string url = string.Concat(_prefix, "extra/typeplace");
+            return _webApi.GetItemById<TypePlace>(url, id.ToString());
+        }
+
+        public TypePlace CreateTypePlace(TypePlace sors)
+        {
+            string url = string.Concat(_prefix, "extra/typeplace");
+            return _webApi.NewItemWithResult(url, sors);
+        }
+
+        public TypePlace UpdateTypePlace(TypePlace sors)
+        {
+            string url = string.Concat(_prefix, "extra/typeplace");
+            return _webApi.UpdateItemWithResult(url, sors.CodeI.ToString(), sors);
+        }
+
+        public bool DeleteTypePlace(int id)
+        {
+            string url = string.Concat(_prefix, "extra/typeplace");
+            return _webApi.DeleteItem(url, id.ToString());
+        }
     }
 }

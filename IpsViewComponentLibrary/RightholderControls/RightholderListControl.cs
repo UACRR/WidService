@@ -153,7 +153,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             var list = await _rightholderService.GetRightholdersAsync(query);
 
             rightholderMainViewBindingSource.DataSource = list;
-            
+            lblCountRows.Text = list.Count().ToString();
             //SelectedRightholder = currentRightholder; // TODO: is it needed?
 
             waitingBar.StopWaiting();
