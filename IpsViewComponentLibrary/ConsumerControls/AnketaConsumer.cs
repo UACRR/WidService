@@ -18,6 +18,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class AnketaConsumer : UserControl
     {
+        private const string DefaultTemplateName = "F_Тестовий шаблон.docx";
+
         private bool isEdit = false;
 
         private AgreementWithPlacesControl _ctrlAgreementSmallRights;
@@ -226,14 +228,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
             var licenseAgreement = _customer?.Client?.LicenseAgreement?.FirstOrDefault();
             int version = licenseAgreement?.LicVersion ?? default(int);
-            string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? "F_Тестовий шаблон.docx";
+            string templateName = _anketaDictionaries?.agrLicenseType?.SingleOrDefault(rec => rec.CodeI == licenseAgreement?.LicCode)?.TemplateName ?? DefaultTemplateName;
             templateName = string.Concat(@"Templates\", templateName);
 
             return await Task.Run(() => {
                 wordEngine.ProcessConsumer(templateName, _customer, licenseAgreement, version);
                 return wordEngine;
             });
-
         }
 
         private void BtnLoadPdf_Click(object sender, EventArgs e)
@@ -255,7 +256,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private void RadWaitingBar1_WaitingStopped(object sender, EventArgs e)
         {
             radWaitingBar1.Visible = false;
-
         }
     }
 }
