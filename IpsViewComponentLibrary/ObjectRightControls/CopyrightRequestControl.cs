@@ -37,6 +37,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 if (rightolderBindingSource.DataSource != value)
                 {
                     rightolderBindingSource.DataSource = value;
+                    //show count rightholders into grid
+                    lblCountRightHolders.Text = rightolderBindingSource.Count.ToString();
                 }
             }
         }
@@ -51,6 +53,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 if (objectRightBindingSource.DataSource != value)
                 {
                     objectRightBindingSource.DataSource = value;
+                    //show count objectrights into grid
+                    lblCountObjectsRight.Text = objectRightBindingSource.Count.ToString();
                 }
             }
         }
