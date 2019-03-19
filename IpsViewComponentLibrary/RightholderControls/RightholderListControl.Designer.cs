@@ -25,18 +25,19 @@
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn2 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.rightholderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.tvFilters = new Telerik.WinControls.UI.RadTreeView();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.lblCountRows = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.btnRefresh = new Telerik.WinControls.UI.RadButton();
             this.gvRightholdersList = new Telerik.WinControls.UI.RadGridView();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).BeginInit();
+            this.rightholderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -49,11 +50,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // rightholderMainViewBindingSource
-            // 
-            this.rightholderMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.RightholderMainView);
             // 
             // radSplitContainer1
             // 
@@ -107,6 +105,8 @@
             // 
             // splitPanel2
             // 
+            this.splitPanel2.Controls.Add(this.lblCountRows);
+            this.splitPanel2.Controls.Add(this.label1);
             this.splitPanel2.Controls.Add(this.txtSearch);
             this.splitPanel2.Controls.Add(this.btnRefresh);
             this.splitPanel2.Controls.Add(this.gvRightholdersList);
@@ -123,6 +123,25 @@
             this.splitPanel2.TabStop = false;
             this.splitPanel2.Text = "splitPanel2";
             this.splitPanel2.ThemeName = "Office2013Light";
+            // 
+            // lblCountRows
+            // 
+            this.lblCountRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountRows.Location = new System.Drawing.Point(579, 380);
+            this.lblCountRows.Name = "lblCountRows";
+            this.lblCountRows.Size = new System.Drawing.Size(73, 13);
+            this.lblCountRows.TabIndex = 35;
+            this.lblCountRows.Text = "0";
+            this.lblCountRows.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(494, 380);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(79, 13);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "К-ть рядків";
             // 
             // txtSearch
             // 
@@ -232,6 +251,7 @@
             gridViewDateTimeColumn1,
             gridViewDecimalColumn1,
             gridViewDecimalColumn2,
+            gridViewTextBoxColumn5,
             gridViewCommandColumn1});
             this.gvRightholdersList.MasterTemplate.DataSource = this.rightholderMainViewBindingSource;
             this.gvRightholdersList.MasterTemplate.EnableCustomFiltering = true;
@@ -244,7 +264,7 @@
             this.gvRightholdersList.ReadOnly = true;
             this.gvRightholdersList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvRightholdersList.ShowGroupPanel = false;
-            this.gvRightholdersList.Size = new System.Drawing.Size(649, 369);
+            this.gvRightholdersList.Size = new System.Drawing.Size(649, 349);
             this.gvRightholdersList.TabIndex = 28;
             this.gvRightholdersList.ThemeName = "Office2013Light";
             this.gvRightholdersList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersList_CellDoubleClick);
@@ -264,10 +284,16 @@
             this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
             this.waitingBar.WaitingSpeed = 50;
             this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
             // 
             // lineRingWaitingBarIndicatorElement1
             // 
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            // 
+            // rightholderMainViewBindingSource
+            // 
+            this.rightholderMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.RightholderMainView);
             // 
             // RightholderListControl
             // 
@@ -277,7 +303,6 @@
             this.Name = "RightholderListControl";
             this.Size = new System.Drawing.Size(750, 400);
             this.Load += new System.EventHandler(this.RightholderListControl_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
@@ -290,6 +315,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -307,5 +333,7 @@
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCountRows;
     }
 }

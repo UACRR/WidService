@@ -157,47 +157,6 @@ namespace RightholderWorkplace
         private BindingList<ObjectRightForTransfering> _objects = new BindingList<ObjectRightForTransfering>();
         private BindingList<ObjectCopyright> _copyrights = new BindingList<ObjectCopyright>();
 
-        private void ctrlRightholdersObjectsForChange_RightholderChanging(object sender, CancelEventArgs e)
-        {
-            if (!ConfirmClear())
-            { 
-                e.Cancel = true;
-                return;
-            }
-        }
-
-        private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
-        {
-            bsObjectRightForTransfering.DataSource = _objects;
-            bsObjectCopyright.DataSource = _copyrights;
-
-            _objects.Clear();
-            _copyrights.Clear();
-
-            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance)
-            {
-                MoveAllObjectsToTransfer();
-            }
-        }
-
-        private void ctrlRightholdersObjectsForChange_MarkedObjectsRightsChanged(object sender, EventArgs e)
-        {
-            UpdateTransferButtonsEnabling();
-        }
-
-        private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
-        {
-            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer;
-            var isInheritance = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance;
-
-            lblChangeCopyrightDateTill.Visible = isTransfer;
-            dtChangeCopyrightDateTill.Visible = isTransfer;
-
-            ctrlRightholdersObjectsForChange.AllowMarkingRows = isTransfer;
-
-            UpdateTransferButtonsEnabling();
-        }
-
         private void btnAddNewRightholder_Click(object sender, EventArgs e)
         {
             if (ctrlRightholdersObjectsForChange.SelectedRightholder == null)
@@ -269,11 +228,37 @@ namespace RightholderWorkplace
             }
         }
 
+        private void gvObjectRightForTransfering_CellValueChanged(object sender, GridViewCellEventArgs e)
+        {
+            if (e.Column.Name == "ManualDistribution")
+                if (e.Row.DataBoundItem is ObjectRightForTransfering obj)
+                    if (!obj.ManualDistribution)
+                        DistributePersentForObject(obj);
+        }
+
         private void DistributePersentForObject(ObjectRightForTransfering obj)
         {
             var copyrightList = _copyrights.Where(cr => cr.ObjId == obj.ObjId);
 
             _persentDistributor.DistributeByEqualAmount(copyrightList, obj.RateRh, cr => cr.Rate);
+        }
+
+        private void ctrlRightholdersObjectsForChange_MarkedObjectsRightsChanged(object sender, EventArgs e)
+        {
+            UpdateTransferButtonsEnabling();
+        }
+
+        private void ctrlChangeRightholderOperation_SelectedValueChanged(object sender, EventArgs e)
+        {
+            var isTransfer = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Transfer;
+            var isInheritance = ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance;
+
+            lblChangeCopyrightDateTill.Visible = isTransfer;
+            dtChangeCopyrightDateTill.Visible = isTransfer;
+
+            ctrlRightholdersObjectsForChange.AllowMarkingRows = isTransfer;
+
+            UpdateTransferButtonsEnabling();
         }
 
         private void UpdateTransferButtonsEnabling()
@@ -284,9 +269,35 @@ namespace RightholderWorkplace
             btnTransferSelected.Enabled = isTransfer && ctrlRightholdersObjectsForChange.MarkedObjectsRights.Count != 0;
         }
 
+        private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
+        {
+            bsObjectRightForTransfering.DataSource = _objects;
+            bsObjectCopyright.DataSource = _copyrights;
+
+            _objects.Clear();
+            _copyrights.Clear();
+
+            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance)
+            {
+                MoveAllObjectsToTransfer();
+                //show count elements into grid
+                lblCount.Text = _objects.Count().ToString();
+            }
+        }
+
+        private void btnTransferAll_Click(object sender, EventArgs e)
+        {
+            MoveAllObjectsToTransfer();
+        }
+
         private void MoveAllObjectsToTransfer()
         {
             MoveObjectsListToTransfer(ctrlRightholdersObjectsForChange.ObjectsRightsList);
+        }
+
+        private void btnTransferSelected_Click(object sender, EventArgs e)
+        {
+            MoveSelectedObjectsToTransfer();
         }
 
         private void MoveSelectedObjectsToTransfer()
@@ -360,22 +371,31 @@ namespace RightholderWorkplace
             IpsViewComponentLibrary.Utilities.GridViewHelper.DisplayErrors(sender, e);
         }
 
-        private void gvObjectRightForTransfering_CellValueChanged(object sender, GridViewCellEventArgs e)
+        private void ctrlRightholdersObjectsForChange_RightholderChanging(object sender, CancelEventArgs e)
         {
-            if (e.Column.Name == "ManualDistribution")
-                if (e.Row.DataBoundItem is ObjectRightForTransfering obj)
-                    if (!obj.ManualDistribution)
-                        DistributePersentForObject(obj);
+            if (!ConfirmClear())
+            {
+                e.Cancel = true;
+                return;
+            }
         }
 
-        private void btnTransferAll_Click(object sender, EventArgs e)
+        private void btnClearNewCopyright_Click(object sender, EventArgs e)
         {
-            MoveAllObjectsToTransfer();
+            if (!ConfirmClear())
+                return;
+
+            ctrlRightholdersObjectsForChange.SelectedRightholder = null;
+            dtChangeCopyrightDateTill.Value = dtChangeCopyrightDateTill.NullDate;
         }
 
-        private void btnTransferSelected_Click(object sender, EventArgs e)
+        private bool ConfirmClear()
         {
-            MoveSelectedObjectsToTransfer();
+            if (_objects.Count != 0)
+                if (RadMessageBox.Show(this, "Зміни для обраних об'єктів не буде збережено. Продовжити?", "Питання", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.No)
+                    return false;
+
+            return true;
         }
 
         private void btnSaveNewCopyrights_Click(object sender, EventArgs e)
@@ -397,7 +417,7 @@ namespace RightholderWorkplace
             if (dtChangeCopyrightDateTill.Value == dtChangeCopyrightDateTill.NullDate)
                 dtChangeCopyrightDateTill.Value = new DateTime(3000, 1, 1);
 
-            if(ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance && !ValidateTransferedParamsForInheritance())
+            if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance && !ValidateTransferedParamsForInheritance())
             {
                 gvObjectRightForTransfering.TableElement.Update(GridUINotifyAction.Reset);
                 MessageBox.Show("Не корректно вказаний відсоток переданих прав. Відкорегуйте значення та повторіть збереження");
@@ -452,24 +472,6 @@ namespace RightholderWorkplace
             }
             else
                 MessageBox.Show("Не вдалося виконати передачу об'єктів.");
-        }
-
-        private void btnClearNewCopyright_Click(object sender, EventArgs e)
-        {
-            if (!ConfirmClear())
-                return;
-
-            ctrlRightholdersObjectsForChange.SelectedRightholder = null;
-            dtChangeCopyrightDateTill.Value = dtChangeCopyrightDateTill.NullDate;
-        }
-
-        private bool ConfirmClear()
-        {
-            if (_objects.Count != 0)
-                if (RadMessageBox.Show(this, "Зміни для обраних об'єктів не буде збережено. Продовжити?", "Питання", MessageBoxButtons.YesNo, RadMessageIcon.Question) == DialogResult.No)
-                    return false;
-
-            return true;
         }
 
         private bool ValidateTransferedParams()

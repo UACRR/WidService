@@ -87,6 +87,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             var list = _licenseDataService.GetLicenseAgreements(query);
             bsBigRightRequests.DataSource = list;
+            //show count Agreements into grid
+            lblCountAgreements.Text = list.Count.ToString();
 
             SelectedLicenseAgreement = currentRightholder;
         }
