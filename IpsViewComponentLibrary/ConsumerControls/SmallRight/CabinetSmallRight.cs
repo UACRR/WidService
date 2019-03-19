@@ -479,7 +479,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             SetAgrInfoData(curRow.LicId, GridCallMethod.NotActiveAgreementGrid);
         }
 
-        //зміна статусу договору
+        /// <summary>
+        /// Змінити статусу договору
+        /// </summary>
+        /// <param name="status"></param>
         private void ChangeStatusAgreement(int status)
         {
             if (gvMoreLicenseAgr.CurrentRow.DataBoundItem is GridLicenseAgreementView item)

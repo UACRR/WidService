@@ -11,18 +11,19 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
-    public partial class CommunityCabinetForm : Telerik.WinControls.UI.RadForm
+    public partial class CommunityCabinetForm : RadForm
     {
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerByIdEventHandler UpdateCustomer;
         public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
+        public event ReturnFullViewEventHandler<CommunityAutorsListView> UpdateAutorsList;
         public event GetCommunityRightList GetCommunityRightList;
-        public event SaveObjectListEventHandler<CustCmRight> SaveLimitRights; 
+        public event SaveLimitedRightEventHandler<CustCmRight> SaveLimitedRights; 
 
         private List<CommunityAutorsListView> _list;
         private Customer _customer;
@@ -55,6 +56,7 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void BeginBindings()
         {
+            bsCommunity.DataSource = _customer.Community;
             //grid
             gvViewAutors.DataSource = _list;
 
@@ -163,31 +165,40 @@ namespace IpsViewComponentLibrary.CommunityControls
             }
         }
 
+        private List<CustCmRight> AddAutorForm_GetCommunityRightList(int custId)
+        {
+            return GetCommunityRightList?.Invoke(custId);
+        }
+
         //додати автора
         private void btnAddCommunity_Click(object sender, EventArgs e)
         {
+            LimitationFormShow();
+        }
+
+        private void gvViewAutors_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            var row = e.Row.DataBoundItem as CommunityAutorsListView;
+            LimitationFormShow(row);
+        }
+
+        private void LimitationFormShow(CommunityAutorsListView currentRow = null)
+        {
             var autorsList = GetAutorsList?.Invoke().DistinctBy(rec => rec.CustId).ToList();
-            var addAutorForm = new CommunityAddAutorForm(autorsList, _customer.CustId)
-            {
-                StartPosition = FormStartPosition.CenterScreen,
-            };
+            var addAutorForm = new CommunityAddAutorForm(autorsList, _customer.CustId) {CurrentRow = currentRow};
             addAutorForm.GetCommunityRightList += AddAutorForm_GetCommunityRightList;
 
             if (addAutorForm.ShowDialog() == DialogResult.OK)
             {
-                var result = SaveLimitRights?.Invoke(_customer.CustId, addAutorForm.LimitRights) ?? false;
+                var result = SaveLimitedRights?.Invoke(_customer.CustId, addAutorForm.AuthorId, addAutorForm.LimitRights) ?? false;
                 MessageShow.ShowInfoAfterChanges(result);
-                if(result)
+                if (result)
                 {
                     _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                    _list = UpdateAutorsList?.Invoke();
                     BeginBindings();
                 }
             }
-        }
-
-        private List<CustCmRight> AddAutorForm_GetCommunityRightList(int custId)
-        {
-            return GetCommunityRightList?.Invoke(custId);
         }
     }
 }

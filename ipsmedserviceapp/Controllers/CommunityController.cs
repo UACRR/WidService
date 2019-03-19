@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -36,7 +37,7 @@ namespace ipsmedserviceapp.Controllers
 
         private readonly Dictionary<string, string> _columnNames = new Dictionary<string, string>
         {
-            {"cmCustId", "cmCustId"}// TODO: придумати ідентифікатор
+            {"cmCustId", "cmCustId"}
         };
 
         /// <summary>
@@ -202,52 +203,57 @@ namespace ipsmedserviceapp.Controllers
         /// Зберегти змінені обмеження прав
         /// </summary>
         /// <param name="cmCustId"></param>
+        /// <param name="custId"></param>
         /// <param name="sourceList"></param>
         /// <returns></returns>
-        [HttpPut("lrightsupd/{cmCustId}")]
-        public async Task<IActionResult> SaveLimitRights(int cmCustId, [FromBody] List<CustCmRight> sourceList)
+        [HttpPut("lrightsupd/{cmCustId}/{custId}")]
+        public async Task<IActionResult> SaveLimitRights(int cmCustId, int custId, [FromBody] List<CustCmRight> sourceList)
         {
-            int[] workedCustId = sourceList.Select(rec => rec.CustId).Distinct().ToArray();
+            //int[] workedCustId = sourceList.Select(rec => rec.CustId).Distinct().ToArray();
             int[] workedCRkindCode = sourceList.Select(rec => rec.CRkindCode).Distinct().ToArray();
 
-            var destinationList = await _dbContext.CustCmRight.Where(rec => rec.CmCustId == cmCustId && workedCustId.Contains( rec.CustId ) )
-                .Include( rec => rec.C )
+            Expression<Func<CustCmRight, bool>> predicate = rec => rec.CmCustId == cmCustId && rec.CustId == custId;
+            
+            var destinationList = await _dbContext.CustCmRight
+                .Where(predicate)
+                .Include(rec => rec.C)
                 .ToListAsync();
 
             var termOfService = await _dbContext.TermsOfService
-                            .Where(rec => workedCustId.Contains(rec.CustId) && workedCRkindCode.Contains(rec.CrkindCode))
-                            .ToArrayAsync();
+                .Where(rec => rec.CustId == custId && workedCRkindCode.Contains(rec.CrkindCode))
+                .ToArrayAsync();
 
             try
             {
                 // remove
-                var removeList = destinationList.Where(dest => !sourceList.Any(sors => sors.CmCustId == dest.CmCustId
-                                                                        && sors.CRkindCode == dest.CRkindCode &&
-                                                                            sors.CustId == dest.CustId )).ToList();
+                var removeList = destinationList
+                    .Where(dest => !sourceList.Any(sors => sors.CmCustId == dest.CmCustId 
+                                                        && sors.CRkindCode == dest.CRkindCode 
+                                                        && sors.CustId == dest.CustId)).ToList();
                 removeList.ForEach(item =>
                 {
                     item.C.OurService = true;
                     destinationList.Remove(item);
                     _dbContext.CustCmRight.Remove(item);
-
-                    //var terms = _dbContext.TermsOfService.SingleOrDefault(r => r.CustId == item.CustId && r.CrkindCode == item.CRkindCode);
-                    //if (terms != null)
-                    //    terms.OurService = true;
                 });
 
                 // update
-                var updList = destinationList.Where(dest => sourceList.Any(sors => sors.CmCustId == dest.CmCustId
-                                                                                && sors.CRkindCode == dest.CRkindCode 
-                                                                                && sors.CustId == dest.CustId)).ToList();
-                var sourceDict = sourceList.ToDictionary(rec => rec.CmCustId);
+                var updList = destinationList
+                    .Where(dest => sourceList.Any(sors => sors.CmCustId == dest.CmCustId
+                                                       && sors.CRkindCode == dest.CRkindCode 
+                                                       && sors.CustId == dest.CustId)).ToList();
+                var sourceDict = sourceList.Where(rec => rec.CmCustId != 0).ToDictionary(rec => rec.CRkindCode);
                 updList.ForEach(item =>
                 {
-                    var sourceItem = sourceDict[item.CmCustId];
+                    var sourceItem = sourceDict[item.CRkindCode];
                     item.SetFields(sourceItem);
                 });
 
                 // add new
-                var addList = sourceList.Where(sors => !destinationList.Any(dest => dest.CustId == sors.CustId && dest.CRkindCode == sors.CRkindCode && dest.CmCustId == sors.CmCustId )  ).ToList();
+                var addList = sourceList
+                    .Where(sors => !destinationList.Any(dest => dest.CustId == sors.CustId 
+                                                             && dest.CRkindCode == sors.CRkindCode 
+                                                             && dest.CmCustId == sors.CmCustId)).ToList();
                 addList.ForEach(item =>
                 {
                     var right = new CustCmRight

@@ -30,6 +30,8 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void SetBindings()
         {
+            bsCommunity.DataSource = _customer.Community;
+
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
 

@@ -50,6 +50,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // replace standart Save As button to custom
             var standardBtnSaveAs = radPdfViewerNavigator.CommandBarElement.Rows[0].Strips[0].Items[3];
             standardBtnSaveAs.Visibility = ElementVisibility.Collapsed;
+            radPdfViewerNavigator.CommandBarElement.Rows[0].Strips[0].Items.RemoveAt(3);
             var customBtnSaveAs = new CommandBarButton();
             radPdfViewerNavigator.CommandBarElement.Rows[0].Strips[0].Items.Insert(3, customBtnSaveAs);
             customBtnSaveAs.Text = standardBtnSaveAs.Text;

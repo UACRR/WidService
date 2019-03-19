@@ -29,7 +29,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event GetCustomerByIdEventHandler GetCommunity;
         public event SaveCustomerEventHandler SaveCommunity;
         public event GetCommunityRightList GetCommunityRightList;
-        public event SaveObjectListEventHandler<CustCmRight> SaveLimitRights;
+        public event SaveLimitedRightEventHandler<CustCmRight> SaveLimitRights;
 
         public CommunityControl()
         {
@@ -97,13 +97,21 @@ namespace IpsViewComponentLibrary.CommunityControls
             cabinetForm.ChangeStatusAgr += CabinetForm_ChangeStatusAgr;
             cabinetForm.GetAutorsList += CabinetForm_GetAutorsList;
             cabinetForm.GetCommunityRightList += CabinetForm_GetCommunityRightList;
-            cabinetForm.SaveLimitRights += CabinetForm_SaveLimitRights;
+            cabinetForm.SaveLimitedRights += CabinetFormSaveLimitedRights;
+            cabinetForm.UpdateAutorsList += CabinetForm_UpdateAutorsList;
             cabinetForm.Show();
         }
 
-        private bool CabinetForm_SaveLimitRights(int cmCustId, List<CustCmRight> listObj)
+        private List<CommunityAutorsListView> CabinetForm_UpdateAutorsList()
         {
-            return SaveLimitRights?.Invoke(cmCustId, listObj) ?? false;
+            if (gvViewPartners.CurrentRow.DataBoundItem is CommunityListView item)
+                return GetCommunityAutorsList?.Invoke(item.CustId);
+            return null;
+        }
+
+        private bool CabinetFormSaveLimitedRights(int cmCustId, int custId, List<CustCmRight> listObj)
+        {
+            return SaveLimitRights?.Invoke(cmCustId, custId, listObj) ?? false;
         }
 
         private List<CustCmRight> CabinetForm_GetCommunityRightList(int custId)

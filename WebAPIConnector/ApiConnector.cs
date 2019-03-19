@@ -296,11 +296,14 @@ namespace WebAPIConnector
                 return null;
         }
 
+
         /// <summary>
-        /// змінити об'єкт на сервері додатків
+        /// Змінити об'єкт на сервері додатків
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
+        /// <param name="id"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
         public bool UpdateItem<T>(string url, string id, T data)
         {

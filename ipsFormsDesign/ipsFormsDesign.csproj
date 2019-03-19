@@ -459,6 +459,7 @@
     <Compile Include="Engines\WordEngine.cs" />
     <Compile Include="Interfaces\ActiveAgreementData.cs" />
     <Compile Include="Utilities\AmountDistributor.cs" />
+    <Compile Include="Utilities\CustomerUtility.cs" />
     <Compile Include="Utilities\EnumUtility.cs" />
     <Compile Include="Utilities\FixationExtensions.cs" />
     <Compile Include="Utilities\ObjectRightExtensions.cs" />

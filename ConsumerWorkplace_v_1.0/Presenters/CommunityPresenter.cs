@@ -42,9 +42,9 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             return _service.ChangeStatusAgr(communityId, status);
         }
 
-        private bool SaveLimitRights(int cmCustId, List<CustCmRight> listObj)
+        private bool SaveLimitRights(int cmCustId, int custId, List<CustCmRight> listObj)
         {
-            return _service.SaveLimitRights(cmCustId, listObj);
+            return _service.SaveLimitRights(cmCustId, custId, listObj);
         }
 
         private List<CustCmRight> GetCommunityRightList(int custId)
