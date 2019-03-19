@@ -11,6 +11,8 @@
 /packages
 **/obj/
 **/bin/
+**/Debug/
+**/Release/
 /lib
 /ipsmedserviceapp/obj
 /ipsmedserviceapp/bin
