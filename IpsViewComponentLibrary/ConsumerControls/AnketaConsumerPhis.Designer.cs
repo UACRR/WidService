@@ -41,20 +41,20 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.btnCopyFromRegToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToReg = new Telerik.WinControls.UI.RadButton();
-            this.ctrlAddressLetter = new AddressLetter();
+            this.ctrlAddressLetter = new IpsViewComponentLibrary.Shared.Controls.AddressLetter();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlAddressRegister = new IpsAddressControl();
-            this.ctrlAddressLive = new IpsAddressControl();
-            this.ctrlContacts = new ContactsPersonControl();
+            this.ctrlAddressRegister = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
+            this.ctrlAddressLive = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
+            this.ctrlContacts = new IpsViewComponentLibrary.Shared.Controls.ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlConsumerPassport = new PassportControl();
+            this.ctrlConsumerPassport = new IpsViewComponentLibrary.Shared.Controls.PassportControl();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.AgreementWithPlacesControl();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
@@ -144,7 +144,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvClientName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.pvClientName.Size = new System.Drawing.Size(1038, 588);
             this.pvClientName.TabStop = true;
-            this.pvClientName.Text = "Споживач";
+            this.pvClientName.Text = "Користувач";
             // 
             // ctrlConsumerName
             // 
@@ -517,7 +517,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1032, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1032, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
