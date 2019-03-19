@@ -251,7 +251,7 @@
             gridViewDateTimeColumn1,
             gridViewDecimalColumn1,
             gridViewDecimalColumn2,
-            gridViewTextBoxColumn5,
+            // gridViewTextBoxColumn5,
             gridViewCommandColumn1});
             this.gvRightholdersList.MasterTemplate.DataSource = this.rightholderMainViewBindingSource;
             this.gvRightholdersList.MasterTemplate.EnableCustomFiltering = true;
