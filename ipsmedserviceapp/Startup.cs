@@ -86,11 +86,8 @@ namespace ipsmedserviceapp
 
               });
 
-#if DEBUG
             services.AddAuthentication(HttpSysDefaults.AuthenticationScheme);
-#else
-            services.AddAuthentication(IISDefaults.AuthenticationScheme);
-#endif
+//            services.AddAuthentication(IISDefaults.AuthenticationScheme);
             services.AddSingleton<IConfiguration>(Configuration);
 
             services.AddAutoMapper(cfg =>

@@ -117,7 +117,6 @@ namespace IpsViewComponentLibrary.Shared.Controls
 
         #region Edit controls
 
-#if DEBUG
 
         public RadDropDownList DdlCountry
         {
@@ -151,7 +150,6 @@ namespace IpsViewComponentLibrary.Shared.Controls
             }
         }
 
-#endif
 
         #endregion
 

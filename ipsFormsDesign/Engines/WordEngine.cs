@@ -156,6 +156,9 @@ namespace ipsFormsDesign.Services
             string CstPersonReason = string.Empty;
             string Pasport = string.Empty;
             string PasportIssued = string.Empty;
+            string CstNikName = string.Empty;
+            string NikName = string.Empty;
+
 
             if (cust.CustType < 3) // фіз. особа
             {
@@ -228,7 +231,10 @@ namespace ipsFormsDesign.Services
 
             }
 
-
+            CstNikName = $"{anketaPerson?.NikName ?? string.Empty}";
+            if (CstNikName != string.Empty)
+                NikName = "псевдонім(и)";
+            CstNikName = CstNikName + ",";
             string prcntARlt = string.Empty;
             string prcntARltText = string.Empty;
 
@@ -290,11 +296,14 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = CstPersonReason;
                         break;
 
-
-
-                    case "CstNikName":
-                        item.Range.Text = $"{anketaPerson?.NikName ?? string.Empty}";
+                    case "СstNikName":
+                        item.Range.Text = CstNikName;
                         break;
+
+                    case "NikName":
+                        item.Range.Text = NikName;
+                        break;
+
                     case "TableKind":
                         FormTermUse(item.Range.Tables, cust.RightHolder.TermsOfService);
                         break;
@@ -1250,6 +1259,32 @@ namespace ipsFormsDesign.Services
             var KL030 = (from kl in _dic.klR030
                          select new Currency { R030 = kl.R030, CountryCode = kl.CountryCode, A3 = kl.A3 }
             );
+            var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
+            AgreementAddBr agreementAddBr;
+            agreementAddBr = agr;
+            string ShowPLAdress = string.Empty;
+            string ShowPLName = clnBusinessPlaceTheater[0]?.PlaceName ?? string.Empty;
+            ShowPLName = '"' + ShowPLName + '"';
+            string countryCode = clnBusinessPlaceTheater[0]?.PlaceCountry ?? "804";
+            string Country =  countries[clnBusinessPlaceTheater[0]?.PlaceCountry ?? "804"].CountryName;
+            ShowPLAdress = Country;
+            string Region = string.Empty;
+
+            if
+             ((clnBusinessPlaceTheater[0]?.PlaceRegion ?? 0) != 0)
+                Region = regions[clnBusinessPlaceTheater[0].PlaceRegion ?? 0].Name;
+            else
+                Region = "";
+            if (Region != "")
+                ShowPLAdress = ShowPLAdress + "," + Region.Trim();
+            string City = string.Empty;
+            City = clnBusinessPlaceTheater[0]?.PlaceCity ?? "";
+            if (City != "")
+                ShowPLAdress = ShowPLAdress + "," + City.Trim();
+            string Adress = string.Empty;
+            Adress = clnBusinessPlaceTheater[0]?.PlaceAddress ?? "";
+            if (Adress != "")
+                ShowPLAdress = ShowPLAdress + "," + Adress.Trim();
 
             app = StartWordApp();
             innerDoc = app.Documents.Open(docFile);
@@ -1264,9 +1299,8 @@ namespace ipsFormsDesign.Services
             Employee Employee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault()?.Empl;
             Employee EmployeeCont = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 3).SingleOrDefault()?.Empl;
 
-            var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
-            AgreementAddBr agreementAddBr;
-            agreementAddBr = agr;
+           
+
 
             string customerName = string.Empty;
             string leAddress = string.Empty;
@@ -1306,6 +1340,7 @@ namespace ipsFormsDesign.Services
             string PayShowDataDo = string.Empty;
             string aPayShowGrnText = string.Empty;
             string aPayShowKop = string.Empty;
+            
 
 
             if (cust.CustType < 3) // фіз. особа
@@ -1476,6 +1511,12 @@ namespace ipsFormsDesign.Services
                     case "GdocNumberC":
                         item.Range.Text = GdocNumber;
                         break;
+                    case "ShowPLName":
+                        item.Range.Text = ShowPLName;
+                        break;
+                    case "ShowPLAdress":
+                        item.Range.Text = ShowPLAdress;
+                        break;
                     case "GdocDateC":
                         item.Range.Text = GdocDateC;
                         break;
@@ -1500,10 +1541,10 @@ namespace ipsFormsDesign.Services
                     case "CstPersonReason":
                         item.Range.Text = CstPersonReason;
                         break;
-                    case "TablePLk":
+/*                    case "TablePLk":
                         FormTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
                         break;
-                    case "TableAvtorPrc":
+*/                    case "TableAvtorPrc":
                         FormTableAvtorPrc(item.Range.Tables, TbAPrc);
                         break;
                     case "TableAvtorLmp":
@@ -1538,7 +1579,7 @@ namespace ipsFormsDesign.Services
                     case "CstBankName":
                         item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
                         break;
-                    case "CstBankMfo":
+                    case "CstBankMFO":
                         item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
                         break;
                     case "CstAcc":

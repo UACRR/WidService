@@ -44,10 +44,10 @@ namespace TestWord_1
               //          Filename = "F_Лицензионный договор на спектакль (БП).docx";
               //  Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
                  Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
-              //Filename = "F_3_МБВ.docx";
-           //      Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
-           // Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
-           
+            //Filename = "F_3_МБВ.docx";
+            //      Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
+            // Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
+            Filename = "F_dogovir_licenziya_teatr_go_uaasp.docx";
 
 
             base.OnLoad(e);
@@ -137,6 +137,17 @@ namespace TestWord_1
                     LicenseAgreement licA11 = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 3442 & rec.LicId == 1298)).Single();
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessConsumerBR(template, cust, agreementMaster11, licA11);
+                    break;
+
+
+                case "F_dogovir_licenziya_teatr_go_uaasp.docx":
+                    cust = service.GetData(3059);
+                    // для теста берем agrid=13;
+                    AgreementMaster agreementMaster111 = cust.AgreementMaster?.Where(rec => rec.AgrId == 4389).Single();
+                    // для теста берем agrid=13 и licid=3;
+                    LicenseAgreement licA111 = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 4389 & rec.LicId == 1496)).Single();
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.ProcessConsumerBR(template, cust, agreementMaster111, licA111);
                     break;
                 case "F_7_Г готелі.docx":
                     cust = service.GetData(226);
