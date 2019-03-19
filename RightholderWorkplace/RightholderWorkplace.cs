@@ -271,8 +271,6 @@ namespace RightholderWorkplace
         private void ctrlRightholdersObjectsForChange_RightholderChanged(object sender, RightholderMainView selectedRightholder)
         {
             bsObjectRightForTransfering.DataSource = _objects;
-            //show count elements into grid
-            lblCount.Text = _objects.Count().ToString();
             bsObjectCopyright.DataSource = _copyrights;
 
             _objects.Clear();
@@ -281,6 +279,8 @@ namespace RightholderWorkplace
             if (ctrlChangeRightholderOperation.SelectedValue == (int)LegalBasisType.Inheritance)
             {
                 MoveAllObjectsToTransfer();
+                //show count elements into grid
+                lblCount.Text = _objects.Count().ToString();
             }
         }
 
