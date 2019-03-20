@@ -16,9 +16,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places.Components
             get => bsClnPlaceHoll.DataSource;
             set
             {
-                if (!(value is ClnBusinessPlace clnBusinessPlace))
-                    return;
-                bsClnPlaceHoll.DataSource = clnBusinessPlace.ClnPlaceHoll.FirstOrDefault();
+                if (value is ClnBusinessPlace clnBusinessPlace)
+                    bsClnPlaceHoll.DataSource = clnBusinessPlace.ClnPlaceHoll.FirstOrDefault();
             }
         }
     }

@@ -3,36 +3,27 @@ using System.Drawing;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
-    public partial class PremisesActionsForm : Telerik.WinControls.UI.RadForm
+    public partial class PremisesDetailForm : RadForm
     {
         private const string FullCount = "К-сть місць";
         private const string FullArea = "Площа";
+        private const string Other = "Інше";
         private const string AddHoll = "Додати приміщення";
         private const string SaveHoll = "Зберегти";
         private const string TitleAdd = "Додати приміщення закладу";
         private const string TitleEdit = "Редагування приміщення закладу";
 
-        public PremisesActionsForm(ClnPlaceHoll clnPlaceHoll, MeasurementOfPlaces measurementPlaces, PremisesFormTypeInitialization premisesFormTypeFrom)
+        public PremisesDetailForm(ClnPlaceHoll clnPlaceHoll, MeasurementOfPlaces measurementPlaces, PremisesFormTypeInitialization premisesFormTypeFrom)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+
             // binding
             bsClnPlaceHoll.DataSource = clnPlaceHoll;
-
-            // назва кнопки та вікна
-            switch (premisesFormTypeFrom)
-            {
-                case PremisesFormTypeInitialization.Edit:
-                    btnSave.Text = SaveHoll;
-                    Text = TitleEdit;
-                    break;
-                case PremisesFormTypeInitialization.CreateNew:
-                    btnSave.Text = AddHoll;
-                    Text = TitleAdd;
-                    break;
-            }
 
             // назва поля
             switch (measurementPlaces)
@@ -43,6 +34,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 case MeasurementOfPlaces.Number:
                     lblTitlePlace.Text = FullCount;
                     break;
+                case MeasurementOfPlaces.Other:
+                    lblTitlePlace.Text = Other;
+                    break;
             }
         }
 
@@ -52,18 +46,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             set => base.Text = value;
         }
 
-        // Збереження
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (Validator())
-                DialogResult = DialogResult.OK;
-        }
-
         /// <summary>
         /// Перевірка правильності введення
         /// </summary>
         /// <returns></returns>
-        private bool Validator()
+        public bool Validator()
         {
             bool isNumber = true;
             bool isNotEmpty = true;

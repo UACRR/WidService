@@ -182,6 +182,12 @@
     <Compile Include="ConsumerControls\Places\PlaceDetailForm.Designer.cs">
       <DependentUpon>PlaceDetailForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\Places\PremisesAdditionalDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PremisesAdditionalDetailForm.Designer.cs">
+      <DependentUpon>PremisesAdditionalDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\WindowsFormsVisible.cs" />
     <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
     <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
@@ -216,23 +222,23 @@
     <Compile Include="ConsumerControls\ManagersControl.Designer.cs">
       <DependentUpon>ManagersControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\Places\PlacesInterface.cs" />
-    <Compile Include="ConsumerControls\Places\MultiplePlaceParameterControl.cs">
+    <Compile Include="_trash\PlacesInterface.cs" />
+    <Compile Include="_trash\MultiplePlaceParameterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\Places\MultiplePlaceParameterControl.Designer.cs">
+    <Compile Include="_trash\MultiplePlaceParameterControl.Designer.cs">
       <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\Places\RadioPlaceParameterControl.cs">
+    <Compile Include="_trash\RadioPlaceParameterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\Places\RadioPlaceParameterControl.Designer.cs">
+    <Compile Include="_trash\RadioPlaceParameterControl.Designer.cs">
       <DependentUpon>RadioPlaceParameterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\Places\SinglePlaceParameterControl.cs">
+    <Compile Include="_trash\SinglePlaceParameterControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\Places\SinglePlaceParameterControl.Designer.cs">
+    <Compile Include="_trash\SinglePlaceParameterControl.Designer.cs">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\AgreementPhis.cs">
@@ -254,11 +260,11 @@
     <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.Designer.cs">
       <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\Places\PremisesActionsForm.cs">
+    <Compile Include="ConsumerControls\Places\PremisesDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\Places\PremisesActionsForm.Designer.cs">
-      <DependentUpon>PremisesActionsForm.cs</DependentUpon>
+    <Compile Include="ConsumerControls\Places\PremisesDetailForm.Designer.cs">
+      <DependentUpon>PremisesDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Shared\Controls\AddressLetter.cs">
       <SubType>UserControl</SubType>
@@ -1077,6 +1083,9 @@
     <EmbeddedResource Include="ConsumerControls\Places\Components\CommonPlaceParametersControl.resx">
       <DependentUpon>CommonPlaceParametersControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\SingleAdditionalParameterControl.resx">
+      <DependentUpon>SingleAdditionalParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\Components\SingleParameterSquareControl.resx">
       <DependentUpon>SingleParameterSquareControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1085,6 +1094,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\Places\PlaceDetailForm.resx">
       <DependentUpon>PlaceDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\PremisesAdditionalDetailForm.resx">
+      <DependentUpon>PremisesAdditionalDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
@@ -1101,13 +1113,13 @@
     <EmbeddedResource Include="ConsumerControls\ManagersControl.resx">
       <DependentUpon>ManagersControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\Places\MultiplePlaceParameterControl.resx">
+    <EmbeddedResource Include="_trash\MultiplePlaceParameterControl.resx">
       <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\Places\RadioPlaceParameterControl.resx">
+    <EmbeddedResource Include="_trash\RadioPlaceParameterControl.resx">
       <DependentUpon>RadioPlaceParameterControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\Places\SinglePlaceParameterControl.resx">
+    <EmbeddedResource Include="_trash\SinglePlaceParameterControl.resx">
       <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\AgreementPhis.resx">
@@ -1119,8 +1131,8 @@
     <EmbeddedResource Include="ConsumerDialogForms\GeneralAgreementBrForm.resx">
       <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\Places\PremisesActionsForm.resx">
-      <DependentUpon>PremisesActionsForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\Places\PremisesDetailForm.resx">
+      <DependentUpon>PremisesDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\Controls\AddressLetter.resx">
       <DependentUpon>AddressLetter.cs</DependentUpon>

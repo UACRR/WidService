@@ -31,7 +31,7 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.internalPanel = new Telerik.WinControls.UI.RadPanel();
             this.ctrlPlaceParameters = new IpsViewComponentLibrary.ConsumerControls.Places.Components.CommonPlaceParametersControl();
-            this.saveCancelButtonsControl1 = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
+            this.ctrlSaveCancel = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this.internalPanel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
@@ -41,7 +41,7 @@
             this.internalPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.internalPanel.Location = new System.Drawing.Point(0, 137);
             this.internalPanel.Name = "internalPanel";
-            this.internalPanel.Size = new System.Drawing.Size(592, 37);
+            this.internalPanel.Size = new System.Drawing.Size(592, 51);
             this.internalPanel.TabIndex = 1;
             this.internalPanel.ThemeName = "Office2013Light";
             // 
@@ -56,24 +56,24 @@
             this.ctrlPlaceParameters.Size = new System.Drawing.Size(592, 137);
             this.ctrlPlaceParameters.TabIndex = 0;
             // 
-            // saveCancelButtonsControl1
+            // ctrlSaveCancel
             // 
-            this.saveCancelButtonsControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.saveCancelButtonsControl1.Location = new System.Drawing.Point(0, 174);
-            this.saveCancelButtonsControl1.MaximumSize = new System.Drawing.Size(3000, 31);
-            this.saveCancelButtonsControl1.MinimumSize = new System.Drawing.Size(300, 31);
-            this.saveCancelButtonsControl1.Name = "saveCancelButtonsControl1";
-            this.saveCancelButtonsControl1.Size = new System.Drawing.Size(592, 31);
-            this.saveCancelButtonsControl1.TabIndex = 0;
+            this.ctrlSaveCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancel.Location = new System.Drawing.Point(0, 188);
+            this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancel.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancel.Name = "ctrlSaveCancel";
+            this.ctrlSaveCancel.Size = new System.Drawing.Size(592, 31);
+            this.ctrlSaveCancel.TabIndex = 0;
             // 
             // PlaceDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 205);
+            this.ClientSize = new System.Drawing.Size(592, 219);
             this.Controls.Add(this.internalPanel);
             this.Controls.Add(this.ctrlPlaceParameters);
-            this.Controls.Add(this.saveCancelButtonsControl1);
+            this.Controls.Add(this.ctrlSaveCancel);
             this.Name = "PlaceDetailForm";
             // 
             // 
@@ -90,7 +90,7 @@
         #endregion
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private Common.SaveCancelButtonsControl saveCancelButtonsControl1;
+        private Common.SaveCancelButtonsControl ctrlSaveCancel;
         private Telerik.WinControls.UI.RadPanel internalPanel;
         private Components.CommonPlaceParametersControl ctrlPlaceParameters;
     }
