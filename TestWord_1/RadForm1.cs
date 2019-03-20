@@ -47,7 +47,7 @@ namespace TestWord_1
             //Filename = "F_3_МБВ.docx";
             //      Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
             // Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
-          //  Filename = "F_dogovir_licenziya_teatr_go_uaasp.docx";
+            Filename = "F_dogovir_licenziya_teatr_go_uaasp.docx";
 
 
             base.OnLoad(e);
