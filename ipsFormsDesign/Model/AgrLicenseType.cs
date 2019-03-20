@@ -23,6 +23,7 @@ namespace ipsFormsDesign.Model
         public int? SchemaId { get; set; }
         public int? AlgorithmId { get; set; }
         public string Series { get; set; }
+        public decimal? AuthRate { get; set; }
 
         public virtual AlgorithmType Algorithm { get; set; }
         public virtual CopyrightKind KindCodeNavigation { get; set; }

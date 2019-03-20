@@ -932,8 +932,8 @@ namespace ipsmedserviceapp.Controllers
 
         #endregion
 
-        [HttpGet("listAll/{filter}")]
-        public async Task<IActionResult> GetFilteredList(string filter)
+        [HttpGet("listAutoCompleted")]
+        public async Task<IActionResult> GetFilteredList([FromQuery]string filter)
         {
             string normalizeFilter = string.Concat(filter, "%");
             var list = await _dbContext.getViewData("select name, custid from vCustomer where custType = 3 and name like @filter", new[] { new SqlParameter("@filter", normalizeFilter) });

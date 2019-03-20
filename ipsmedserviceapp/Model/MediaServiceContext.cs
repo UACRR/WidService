@@ -323,8 +323,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-//                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -542,6 +542,10 @@ namespace ipsmedserviceapp.Model
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.AlgorithmId).HasColumnName("algorithmId");
+
+                entity.Property(e => e.AuthRate)
+                    .HasColumnName("authRate")
+                    .HasColumnType("numeric(10, 5)");
 
                 entity.Property(e => e.KindCode).HasColumnName("kindCode");
 
@@ -5010,8 +5014,7 @@ namespace ipsmedserviceapp.Model
 
             modelBuilder.Entity<License>(entity =>
             {
-                entity.HasKey(e => e.LId)
-                    .HasName("PK_LICENSE");
+                entity.HasKey(e => e.LId);
 
                 entity.Property(e => e.LId).HasColumnName("lId");
 
@@ -8904,6 +8907,11 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.InterCode)
                     .HasColumnName("interCode")
+                    .HasMaxLength(25)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Ipibase)
+                    .HasColumnName("IPIBase")
                     .HasMaxLength(25)
                     .IsUnicode(false);
 

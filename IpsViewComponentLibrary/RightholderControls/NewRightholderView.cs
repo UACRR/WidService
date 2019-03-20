@@ -91,6 +91,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ddlTypeMethodGet.SetDataSource(IpsGlobal.AnketaDictionaties.typeMethodGet);
 
             DisablePagesAndSaveButton();
+            setupSaveAs();
         }
 
         ~NewRightholderView()
@@ -118,8 +119,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             if (saveFileDialog1.ShowDialog() ==  DialogResult.OK)
             {
-                var ext = saveFileDialog1.FilterIndex == 1 ? ".docx" : ".pdf";
-                var FileName = Path.GetFileNameWithoutExtension(saveFileDialog1.FileName) + ext;
+                var FileName = saveFileDialog1.FileName;
 
                 if (File.Exists(FileName))
                     File.Delete(FileName);
