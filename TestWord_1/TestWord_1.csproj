@@ -163,6 +163,9 @@
     <None Include="F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="F_dogovir_licenziya_teatr_go_uaasp.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="F_Акт_публічне виконання.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -175,6 +178,9 @@
     <None Include="F_Акт_публічне сповіщення+використання Інтернет %28TV+радио%29.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="F_ГО УААСП Автор.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="F_ГО УААСП Правовласник-Видавництво.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -184,6 +190,7 @@
     <None Include="F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx" />
     <None Include="F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
