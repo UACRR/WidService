@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.Extensions;
+﻿using IpsViewComponentLibrary.ConsumerControls.Places.Components;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
@@ -49,7 +50,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.separatorButtons = new Telerik.WinControls.UI.RadSeparator();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.ctrlPremises = new IpsViewComponentLibrary.ConsumerControls.Places.PremisesControl();
+            this.ctrlPremises = new PremisesControl();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictTypePlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rLblTypeInst)).BeginInit();
@@ -257,7 +258,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.ctrlPremises.MinimumSize = new System.Drawing.Size(450, 200);
             this.ctrlPremises.Name = "ctrlPremises";
             this.ctrlPremises.PlaceHollDataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
-            this.ctrlPremises.PlaceType = MeasurementOfPlaces.Empty;
+            this.ctrlPremises.PlaceType = IpsViewComponentLibrary.Extensions.MeasurementOfPlaces.Empty;
             this.ctrlPremises.Size = new System.Drawing.Size(654, 200);
             this.ctrlPremises.TabIndex = 6;
             // 

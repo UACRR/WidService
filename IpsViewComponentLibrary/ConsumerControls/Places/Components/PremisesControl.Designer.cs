@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls.Places
+﻿namespace IpsViewComponentLibrary.ConsumerControls.Places.Components
 {
     partial class PremisesControl
     {
@@ -99,11 +99,11 @@
             gridViewTextBoxColumn4.FieldName = "HollName";
             gridViewTextBoxColumn4.HeaderText = "Тип приміщення";
             gridViewTextBoxColumn4.Name = "HollName";
-            gridViewTextBoxColumn4.Width = 425;
+            gridViewTextBoxColumn4.Width = 349;
             gridViewTextBoxColumn5.FieldName = "ValuePlace";
             gridViewTextBoxColumn5.HeaderText = "Місць";
             gridViewTextBoxColumn5.Name = "ValuePlace";
-            gridViewTextBoxColumn5.Width = 85;
+            gridViewTextBoxColumn5.Width = 70;
             this.gvPremises.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -116,7 +116,7 @@
             this.gvPremises.Name = "gvPremises";
             this.gvPremises.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPremises.ReadOnly = true;
-            this.gvPremises.Size = new System.Drawing.Size(535, 192);
+            this.gvPremises.Size = new System.Drawing.Size(444, 132);
             this.gvPremises.TabIndex = 0;
             this.gvPremises.ThemeName = "Office2013Light";
             this.gvPremises.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPremises_CurrentRowChanged);
@@ -128,7 +128,7 @@
             // rBtnAddPremises
             // 
             this.rBtnAddPremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.rBtnAddPremises.Location = new System.Drawing.Point(3, 233);
+            this.rBtnAddPremises.Location = new System.Drawing.Point(3, 173);
             this.rBtnAddPremises.Name = "rBtnAddPremises";
             this.rBtnAddPremises.Size = new System.Drawing.Size(138, 24);
             this.rBtnAddPremises.TabIndex = 1;
@@ -142,14 +142,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(214, 9);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(324, 20);
+            this.radSeparator1.Size = new System.Drawing.Size(233, 20);
             this.radSeparator1.TabIndex = 0;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // btnEditPremises
             // 
             this.btnEditPremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEditPremises.Location = new System.Drawing.Point(147, 233);
+            this.btnEditPremises.Location = new System.Drawing.Point(147, 173);
             this.btnEditPremises.Name = "btnEditPremises";
             this.btnEditPremises.Size = new System.Drawing.Size(144, 24);
             this.btnEditPremises.TabIndex = 2;
@@ -160,7 +160,7 @@
             // btnDeletePremises
             // 
             this.btnDeletePremises.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeletePremises.Location = new System.Drawing.Point(398, 233);
+            this.btnDeletePremises.Location = new System.Drawing.Point(307, 173);
             this.btnDeletePremises.Name = "btnDeletePremises";
             this.btnDeletePremises.Size = new System.Drawing.Size(140, 24);
             this.btnDeletePremises.TabIndex = 3;
@@ -178,9 +178,9 @@
             this.Controls.Add(this.rBtnAddPremises);
             this.Controls.Add(this.gvPremises);
             this.Controls.Add(this.rLblPremises);
-            this.MinimumSize = new System.Drawing.Size(450, 260);
+            this.MinimumSize = new System.Drawing.Size(450, 200);
             this.Name = "PremisesControl";
-            this.Size = new System.Drawing.Size(541, 260);
+            this.Size = new System.Drawing.Size(450, 200);
             ((System.ComponentModel.ISupportInitialize)(this.rLblPremises)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPremises.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPremises)).EndInit();

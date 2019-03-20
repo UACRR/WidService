@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
     public partial class ConsumerPlacesControl : UserControl
     {
         private const string AddFromFile = "Додати з файлу";
-        private const string DeletePlaceQuestion = "Ви дійсно хочете видалити обраний заклад?";
+        private const string DeletePlaceQuestion = "Ви дійсно хочете видалити обрану бізнес-точку?";
         private const string DeletePlaceQuestionTitle = "Підтвердження";
 
         private readonly AnketaDictionaties _dictionaties;
@@ -46,9 +46,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             {
                 _dictionaties = IpsGlobal.AnketaDictionaties;
             }
-
-            panelHeader.PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
-            panelParameter.PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
 
             // ініціалізація контрола з єдиним холом
             _singlePlaceParameterControl = new SinglePlaceParameterControl
@@ -157,32 +154,32 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
 
             if(existencePlaces != CurentType) // не перебудовувати якщо тип майданчика такий самий
             {
-                switch (existencePlaces)
-                {
-                    case ExistencePlaces.SinglePlace: // форма з єдиним холом
-                    {
-                        _placesControl = _singlePlaceParameterControl;
-                        if (panelParameter.Controls.Count != 0)
-                            panelParameter.Controls.Clear();
-                        panelParameter.Controls.Add(_singlePlaceParameterControl);
-                    }
-                        break;
+                //switch (existencePlaces)
+                //{
+                //    case ExistencePlaces.SinglePlace: // форма з єдиним холом
+                //    {
+                //        _placesControl = _singlePlaceParameterControl;
+                //        if (panelParameter.Controls.Count != 0)
+                //            panelParameter.Controls.Clear();
+                //        panelParameter.Controls.Add(_singlePlaceParameterControl);
+                //    }
+                //        break;
 
-                    case ExistencePlaces.ManyPlaces: // форма з декількома холами
-                    {
-                        _placesControl = _multiplePlaceParameterControl;
-                        if (panelParameter.Controls.Count != 0)
-                            panelParameter.Controls.Clear();
-                        panelParameter.Controls.Add(_multiplePlaceParameterControl);
-                    }
-                        break;
-                    case ExistencePlaces.Radio: // радіо
-                        _placesControl = _radioPlaceParameterControl;
-                        if (panelParameter.Controls.Count != 0)
-                            panelParameter.Controls.Clear();
-                        panelParameter.Controls.Add(_radioPlaceParameterControl);
-                        break;
-                }
+                //    case ExistencePlaces.ManyPlaces: // форма з декількома холами
+                //    {
+                //        _placesControl = _multiplePlaceParameterControl;
+                //        if (panelParameter.Controls.Count != 0)
+                //            panelParameter.Controls.Clear();
+                //        panelParameter.Controls.Add(_multiplePlaceParameterControl);
+                //    }
+                //        break;
+                //    case ExistencePlaces.Radio: // радіо
+                //        _placesControl = _radioPlaceParameterControl;
+                //        if (panelParameter.Controls.Count != 0)
+                //            panelParameter.Controls.Clear();
+                //        panelParameter.Controls.Add(_radioPlaceParameterControl);
+                //        break;
+                //}
 
                 CurentType = existencePlaces;
             }
@@ -218,10 +215,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         #region * * * ALL BUTTONS * * *
 
         // * * * РЕДАГУВАННЯ МАЙДАНЧИКА
-        private void BtnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
-            if(gvPlaces.RowCount == 0) return;
-            if (!(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace place)) return;
+            if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace place))
+                return;
+
+            PlaceDetailForm form = new PlaceDetailForm(place);
+            form.ShowDialog();
+
+            return;
 
             IsEditMode = !IsEditMode;
             ddBtnAddPlace.Enabled = !IsEditMode;
@@ -239,7 +241,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             else
             {
                 _placesControl.BusinessPlaceDataSource = null;
-                panelParameter.Controls.Clear();
                 CurentType = ExistencePlaces.None;
             }
         }
@@ -263,8 +264,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             _clnBusinessPlaces.Add(_tempPlace);
             _placesControl.BusinessPlaceDataSource = null;
             _placesControl = null;
-            if (panelParameter.Controls.Count != 0)
-                panelParameter.Controls.Clear();
 
             _tempPlace = null;
 
@@ -280,8 +279,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         {
             _placesControl.BusinessPlaceDataSource = null;
             _placesControl = null;
-            if (panelParameter.Controls.Count != 0)
-                panelParameter.Controls.Clear();
+
             _tempPlace = null;
 
             ddBtnAddPlace.Enabled = true;

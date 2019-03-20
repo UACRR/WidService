@@ -152,6 +152,36 @@
     <Compile Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.Designer.cs">
       <DependentUpon>MusicDesignHeaderInfoControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsumerControls\Places\Components\CommonPlaceParametersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\CommonPlaceParametersControl.Designer.cs">
+      <DependentUpon>CommonPlaceParametersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleAdditionalParameterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleAdditionalParameterControl.Designer.cs">
+      <DependentUpon>SingleAdditionalParameterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleParameterSquareControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleParameterSquareControl.Designer.cs">
+      <DependentUpon>SingleParameterSquareControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleParameterCountControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleParameterCountControl.Designer.cs">
+      <DependentUpon>SingleParameterCountControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PlaceDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PlaceDetailForm.Designer.cs">
+      <DependentUpon>PlaceDetailForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\WindowsFormsVisible.cs" />
     <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
     <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
@@ -770,10 +800,10 @@
     <Compile Include="Shared\Controls\IpsAddressControl.Designer.cs">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerControls\Places\PremisesControl.cs">
+    <Compile Include="ConsumerControls\Places\Components\PremisesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ConsumerControls\Places\PremisesControl.Designer.cs">
+    <Compile Include="ConsumerControls\Places\Components\PremisesControl.Designer.cs">
       <DependentUpon>PremisesControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Shared\Controls\IpsBankAccountControl.cs">
@@ -1043,6 +1073,18 @@
   <ItemGroup>
     <EmbeddedResource Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.resx">
       <DependentUpon>MusicDesignHeaderInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\CommonPlaceParametersControl.resx">
+      <DependentUpon>CommonPlaceParametersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\SingleParameterSquareControl.resx">
+      <DependentUpon>SingleParameterSquareControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\SingleParameterCountControl.resx">
+      <DependentUpon>SingleParameterCountControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\PlaceDetailForm.resx">
+      <DependentUpon>PlaceDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
@@ -1324,7 +1366,7 @@
     <EmbeddedResource Include="Shared\Controls\IpsAddressControl.resx">
       <DependentUpon>IpsAddressControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerControls\Places\PremisesControl.resx">
+    <EmbeddedResource Include="ConsumerControls\Places\Components\PremisesControl.resx">
       <DependentUpon>PremisesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\Controls\IpsBankAccountControl.resx">

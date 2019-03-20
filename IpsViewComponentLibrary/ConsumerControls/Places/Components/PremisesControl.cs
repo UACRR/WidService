@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
 
-namespace IpsViewComponentLibrary.ConsumerControls.Places
+namespace IpsViewComponentLibrary.ConsumerControls.Places.Components
 {
     public partial class PremisesControl : UserControl
     {

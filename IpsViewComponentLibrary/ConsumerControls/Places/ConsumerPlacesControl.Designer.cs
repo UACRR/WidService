@@ -49,22 +49,17 @@
             this.btnDelete = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnEdit = new Telerik.WinControls.UI.RadButton();
-            this.panelParameter = new Telerik.WinControls.UI.RadPanel();
-            this.panelHeader = new Telerik.WinControls.UI.RadPanel();
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnAddPlace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelParameter)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelHeader)).BeginInit();
-            this.panelHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // ddBtnAddPlace
             // 
             this.ddBtnAddPlace.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ddBtnAddPlace.Location = new System.Drawing.Point(3, 244);
+            this.ddBtnAddPlace.Location = new System.Drawing.Point(3, 275);
             this.ddBtnAddPlace.Name = "ddBtnAddPlace";
             this.ddBtnAddPlace.Size = new System.Drawing.Size(163, 24);
             this.ddBtnAddPlace.TabIndex = 7;
@@ -188,7 +183,7 @@
             this.gvPlaces.Name = "gvPlaces";
             this.gvPlaces.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvPlaces.ReadOnly = true;
-            this.gvPlaces.Size = new System.Drawing.Size(746, 235);
+            this.gvPlaces.Size = new System.Drawing.Size(746, 266);
             this.gvPlaces.TabIndex = 5;
             this.gvPlaces.ThemeName = "Office2013Light";
             this.gvPlaces.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.RGridViewInstitution_CurrentRowChanged);
@@ -196,7 +191,7 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(586, 244);
+            this.btnDelete.Location = new System.Drawing.Point(586, 275);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(163, 24);
             this.btnDelete.TabIndex = 9;
@@ -207,59 +202,33 @@
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnEdit.Image = global::IpsViewComponentLibrary.Properties.Resources.angle_double_down_solid;
-            this.btnEdit.ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEdit.Location = new System.Drawing.Point(172, 244);
+            this.btnEdit.Location = new System.Drawing.Point(172, 275);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
             this.btnEdit.Size = new System.Drawing.Size(163, 24);
             this.btnEdit.TabIndex = 8;
-            this.btnEdit.Text = "Редагування";
+            this.btnEdit.Text = "Редагувати бізнес-точку";
             this.btnEdit.ThemeName = "Office2013Light";
-            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
-            ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.angle_double_down_solid;
-            ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).Text = "Редагування";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).Text = "Редагувати бізнес-точку";
             ((Telerik.WinControls.UI.RadButtonElement)(this.btnEdit.GetChildAt(0))).Padding = new System.Windows.Forms.Padding(0, 0, 10, 0);
-            // 
-            // panelParameter
-            // 
-            this.panelParameter.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelParameter.Location = new System.Drawing.Point(0, 271);
-            this.panelParameter.Name = "panelParameter";
-            this.panelParameter.Size = new System.Drawing.Size(752, 185);
-            this.panelParameter.TabIndex = 10;
-            this.panelParameter.ThemeName = "Office2013Light";
-            // 
-            // panelHeader
-            // 
-            this.panelHeader.Controls.Add(this.btnDelete);
-            this.panelHeader.Controls.Add(this.ddBtnAddPlace);
-            this.panelHeader.Controls.Add(this.btnEdit);
-            this.panelHeader.Controls.Add(this.gvPlaces);
-            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 0);
-            this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(752, 271);
-            this.panelHeader.TabIndex = 11;
             // 
             // ConsumerPlacesControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panelParameter);
-            this.Controls.Add(this.panelHeader);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.ddBtnAddPlace);
+            this.Controls.Add(this.gvPlaces);
+            this.Controls.Add(this.btnEdit);
             this.DoubleBuffered = true;
             this.Name = "ConsumerPlacesControl";
-            this.Size = new System.Drawing.Size(752, 456);
+            this.Size = new System.Drawing.Size(752, 302);
             ((System.ComponentModel.ISupportInitialize)(this.ddBtnAddPlace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelParameter)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelHeader)).EndInit();
-            this.panelHeader.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -271,7 +240,5 @@
         private Telerik.WinControls.UI.RadGridView gvPlaces;
         private Telerik.WinControls.UI.RadButton btnDelete;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private Telerik.WinControls.UI.RadPanel panelParameter;
-        private Telerik.WinControls.UI.RadPanel panelHeader;
     }
 }
