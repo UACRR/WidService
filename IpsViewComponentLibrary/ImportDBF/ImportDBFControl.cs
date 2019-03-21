@@ -41,6 +41,8 @@ namespace IpsViewComponentLibrary.ImportDBF
         {
             if (_presenter == null) return;
             bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
+            //show count Pays
+            lblCountPays.Text = bindingExtrnPay.Count.ToString();
             if (_clientsList == null)
                 _clientsList = _presenter.GetConsumers();
         }
@@ -66,6 +68,8 @@ namespace IpsViewComponentLibrary.ImportDBF
                 // збереження таблиці в базі
                 _presenter.SaveInputFile(_inputFile);
                 bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
+                //show count Pays
+                lblCountPays.Text = bindingExtrnPay.Count.ToString();
             }
             else
             {
@@ -89,6 +93,8 @@ namespace IpsViewComponentLibrary.ImportDBF
             {
                 var result = _presenter.SaveLinkedPay(row);
                 bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
+                //show count Pays
+                lblCountPays.Text = bindingExtrnPay.Count.ToString();
                 _updateProviderSmallRight?.UpdateDataGrid();
                 _updateProviderBigRight?.UpdateDataGrid();
             }

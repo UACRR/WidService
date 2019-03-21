@@ -22,6 +22,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         }
 
         /// <summary>
+        /// <summary>
         /// Обрати рядок по ID
         /// </summary>
         /// <param name="custId"></param>
@@ -41,12 +42,16 @@ namespace IpsViewComponentLibrary.ConsumerControls
             {
                 _gridStateRecorder.RecordState();
                 gvViewConsumers.DataSource = source;
+                // show count Consumers
+                lblCountConsumers.Text = gvViewConsumers.RowCount.ToString();
                 _gridStateRecorder.RestoreState();
             }
             else
             {
                 _gridStateRecorder.ClearGridStates();
                 gvViewConsumers.DataSource = source;
+                // show count Consumers
+                lblCountConsumers.Text = gvViewConsumers.RowCount.ToString();
             }
         }
 

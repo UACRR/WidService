@@ -47,6 +47,8 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.lblTextCountConsumers = new System.Windows.Forms.Label();
+            this.lblCountConsumers = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
@@ -199,7 +201,7 @@
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
             this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewConsumers.Size = new System.Drawing.Size(1148, 556);
+            this.gvViewConsumers.Size = new System.Drawing.Size(1148, 541);
             this.gvViewConsumers.TabIndex = 6;
             this.gvViewConsumers.ThemeName = "Office2013Light";
             this.gvViewConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
@@ -224,10 +226,31 @@
             this.ctrlSearch.Size = new System.Drawing.Size(479, 20);
             this.ctrlSearch.TabIndex = 11;
             // 
+            // lblTextCountConsumers
+            // 
+            this.lblTextCountConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTextCountConsumers.Location = new System.Drawing.Point(1004, 573);
+            this.lblTextCountConsumers.Name = "lblTextCountConsumers";
+            this.lblTextCountConsumers.Size = new System.Drawing.Size(79, 14);
+            this.lblTextCountConsumers.TabIndex = 12;
+            this.lblTextCountConsumers.Text = "К-ть рядків";
+            // 
+            // lblCountConsumers
+            // 
+            this.lblCountConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountConsumers.Location = new System.Drawing.Point(1089, 573);
+            this.lblCountConsumers.Name = "lblCountConsumers";
+            this.lblCountConsumers.Size = new System.Drawing.Size(62, 14);
+            this.lblCountConsumers.TabIndex = 13;
+            this.lblCountConsumers.Text = "0";
+            this.lblCountConsumers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ConsumersViewBigRightControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCountConsumers);
+            this.Controls.Add(this.lblTextCountConsumers);
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.btnNewConsumer);
             this.Controls.Add(this.gvViewConsumers);
@@ -245,5 +268,7 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadButton btnNewConsumer;
         private Common.SearchTextBoxControl ctrlSearch;
+        private System.Windows.Forms.Label lblTextCountConsumers;
+        private System.Windows.Forms.Label lblCountConsumers;
     }
 }

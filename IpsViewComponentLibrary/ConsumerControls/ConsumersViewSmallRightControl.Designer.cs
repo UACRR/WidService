@@ -39,8 +39,10 @@
             this.ddbtnAddConsumer = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnAddJurConsumer = new Telerik.WinControls.UI.RadMenuItem();
             this.btnAddPhisConsumer = new Telerik.WinControls.UI.RadMenuItem();
-            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.lblTextConsumers = new System.Windows.Forms.Label();
+            this.lblCountConsumers = new System.Windows.Forms.Label();
+            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnAddConsumer)).BeginInit();
@@ -119,7 +121,7 @@
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
             this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewConsumers.Size = new System.Drawing.Size(1148, 555);
+            this.gvViewConsumers.Size = new System.Drawing.Size(1148, 536);
             this.gvViewConsumers.TabIndex = 3;
             this.gvViewConsumers.ThemeName = "Office2013Light";
             this.gvViewConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
@@ -149,6 +151,25 @@
             this.btnAddPhisConsumer.Text = "Фізична особа";
             this.btnAddPhisConsumer.Click += new System.EventHandler(this.btnAddPhisConsumer_Click);
             // 
+            // lblTextConsumers
+            // 
+            this.lblTextConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTextConsumers.Location = new System.Drawing.Point(1013, 569);
+            this.lblTextConsumers.Name = "lblTextConsumers";
+            this.lblTextConsumers.Size = new System.Drawing.Size(68, 13);
+            this.lblTextConsumers.TabIndex = 8;
+            this.lblTextConsumers.Text = "К-ть рядків";
+            // 
+            // lblCountConsumers
+            // 
+            this.lblCountConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountConsumers.Location = new System.Drawing.Point(1087, 569);
+            this.lblCountConsumers.Name = "lblCountConsumers";
+            this.lblCountConsumers.Size = new System.Drawing.Size(64, 16);
+            this.lblCountConsumers.TabIndex = 9;
+            this.lblCountConsumers.Text = "0";
+            this.lblCountConsumers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // ctrlSearch
             // 
             this.ctrlSearch.Location = new System.Drawing.Point(3, 3);
@@ -162,6 +183,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCountConsumers);
+            this.Controls.Add(this.lblTextConsumers);
             this.Controls.Add(this.ddbtnAddConsumer);
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.gvViewConsumers);
@@ -182,5 +205,7 @@
         private Telerik.WinControls.UI.RadMenuItem btnAddJurConsumer;
         private Telerik.WinControls.UI.RadMenuItem btnAddPhisConsumer;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private System.Windows.Forms.Label lblTextConsumers;
+        private System.Windows.Forms.Label lblCountConsumers;
     }
 }

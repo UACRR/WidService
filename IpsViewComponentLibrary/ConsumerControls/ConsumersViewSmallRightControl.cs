@@ -28,12 +28,16 @@ namespace IpsViewComponentLibrary.ConsumerControls
             {
                 _gridStateRecorder.RecordState();
                 gvViewConsumers.DataSource = source;
+                // show count consumers from grid
+                lblCountConsumers.Text = source.Count.ToString();
                 _gridStateRecorder.RestoreState();
             }
             else
             {
                 _gridStateRecorder.ClearGridStates();
                 gvViewConsumers.DataSource = source;
+                // show count consumers from grid
+                lblCountConsumers.Text = source.Count.ToString();
             }
         }
 
