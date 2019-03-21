@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
@@ -20,42 +22,60 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places.Components
         }
 
         /// <summary>
-        /// Тип приміщень (метраж / кількість місць) 
+        /// Встановити тип приміщень (метраж / кількість місць / Додатковий параметр) 
         /// </summary>
-        public MeasurementOfPlaces PlaceType
+        private void SetMeasurementOfPlaces(MeasurementOfPlaces measurementOfPlaces)
         {
-            get => _measurementOfPlaces;
-            set
+            _measurementOfPlaces = measurementOfPlaces;
+            switch (measurementOfPlaces)
             {
-                switch (value)
-                {
-                    case MeasurementOfPlaces.Number:
-                        gvPremises.Columns["ValuePlace"].HeaderText = FullCount;
-                        break;
+                case MeasurementOfPlaces.Area:
+                    gvPremises.Columns["ValuePlace"].HeaderText = FullArea;
+                    break;
 
-                    case MeasurementOfPlaces.Area:
-                        gvPremises.Columns["ValuePlace"].HeaderText = FullArea;
-                        break;
-                }
+                case MeasurementOfPlaces.Number:
+                    gvPremises.Columns["ValuePlace"].HeaderText = FullCount;
+                    break;
+
+                case MeasurementOfPlaces.Other:
+                    gvPremises.Columns["ValuePlace"].IsVisible = false;
+                    gvPremises.Columns["ValueAdd"].IsVisible = true;
+                    break;
             }
         }
 
-        public object PlaceHollDataSource
+        public object ClnBusinessPlaceDataSource
         {
             get => bsClnPlaceHoll.DataSource;
             set
             {
-                if (value == null)
+                if (!(value is ClnBusinessPlace clnBusinessPlace))
                 {
                     bsClnPlaceHoll.DataSource = typeof(ClnPlaceHoll);
                     return;
                 }
-                bsClnPlaceHoll.DataSource = value;
+
+                var typePlace = IpsGlobal.AnketaDictionaties.typePlace.SingleOrDefault(rec => rec.CodeI == clnBusinessPlace.PlCode);
+                SetMeasurementOfPlaces((MeasurementOfPlaces)(typePlace?.ParamType ?? 0));
+                bsClnPlaceHoll.DataSource = clnBusinessPlace.ClnPlaceHoll;
             }
         }
 
         // додати приміщення
         private void btnAddPremises_Click(object sender, EventArgs e)
+        {
+            if (_measurementOfPlaces == MeasurementOfPlaces.Area || _measurementOfPlaces == MeasurementOfPlaces.Number)
+                CreateDefaultPremises();
+            else if (_measurementOfPlaces == MeasurementOfPlaces.Other)
+                CreateAdditionalPremises();
+
+            bsClnPlaceHoll.ResetBindings(false);
+        }
+
+        /// <summary>
+        /// [Додати] приміщення з площею або кількістю місць
+        /// </summary>
+        private void CreateDefaultPremises()
         {
             var holl = new ClnPlaceHoll();
             var createPremisesForm = new PremisesDetailForm(holl, _measurementOfPlaces, PremisesFormTypeInitialization.CreateNew);
@@ -64,28 +84,74 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places.Components
             {
                 (bsClnPlaceHoll.DataSource as ObservableListSource<ClnPlaceHoll>)?.Add(holl);
             }
+        }
 
-            bsClnPlaceHoll.ResetBindings(false);
+        /// <summary>
+        /// [Додати] приміщення з додатковим параметром
+        /// </summary>
+        private void CreateAdditionalPremises()
+        {
+            var holl = new ClnPlaceHoll();
+            var createPremisesForm = new PremisesAdditionalDetailForm(holl, PremisesFormTypeInitialization.CreateNew);
+            if (createPremisesForm.ShowDialog() == DialogResult.OK)
+            {
+                (bsClnPlaceHoll.DataSource as ObservableListSource<ClnPlaceHoll>)?.Add(holl);
+            }
         }
 
         // редагувати приміщення
         private void btnEditPremises_Click(object sender, EventArgs e)
         {
-            if(gvPremises.Rows.Count == 0) return;
+            EditPremisesCall();
+        }
 
-            var editItem = gvPremises.CurrentRow.DataBoundItem as ClnPlaceHoll;
+        // редагувати приміщення
+        private void gvPremises_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            EditPremisesCall();
+        }
+
+        /// <summary>
+        /// Метод редагування приміщення
+        /// </summary>
+        private void EditPremisesCall()
+        {
+            if (!(gvPremises.CurrentRow.DataBoundItem is ClnPlaceHoll editItem))
+                return;
 
             var temp = new ClnPlaceHoll();
             temp.SetFields(editItem);
 
-            var editPremisesForm = new PremisesDetailForm(temp, _measurementOfPlaces, PremisesFormTypeInitialization.Edit);
-
-            if (editPremisesForm.ShowDialog() == DialogResult.OK)
-            {
-                editItem.SetFields(temp);
-            }
+            if (_measurementOfPlaces == MeasurementOfPlaces.Area || _measurementOfPlaces == MeasurementOfPlaces.Number)
+                EditDefaultPremises(editItem, temp);
+            else if (_measurementOfPlaces == MeasurementOfPlaces.Other)
+                EditAdditionalPremises(editItem, temp);
 
             bsClnPlaceHoll.ResetBindings(false);
+        }
+
+        /// <summary>
+        /// [Редагувати] приміщення з площею або кількістю місць
+        /// </summary>
+        private void EditDefaultPremises(ClnPlaceHoll editItem, ClnPlaceHoll tempItem)
+        {
+            var editPremisesForm = new PremisesDetailForm(tempItem, _measurementOfPlaces, PremisesFormTypeInitialization.Edit);
+            if (editPremisesForm.ShowDialog() == DialogResult.OK)
+            {
+                editItem.SetFields(tempItem);
+            }
+        }
+
+        /// <summary>
+        /// [Редагувати] приміщення з додатковим параметром
+        /// </summary>
+        private void EditAdditionalPremises(ClnPlaceHoll editItem, ClnPlaceHoll tempItem)
+        {
+            var editPremisesForm = new PremisesAdditionalDetailForm(tempItem, PremisesFormTypeInitialization.Edit);
+            if (editPremisesForm.ShowDialog() == DialogResult.OK)
+            {
+                editItem.SetFields(tempItem);
+            }
         }
 
         // видалити приміщення

@@ -11,13 +11,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
     {
         private const string FullCount = "К-сть місць";
         private const string FullArea = "Площа";
-        private const string Other = "Інше";
-        private const string AddHoll = "Додати приміщення";
-        private const string SaveHoll = "Зберегти";
-        private const string TitleAdd = "Додати приміщення закладу";
-        private const string TitleEdit = "Редагування приміщення закладу";
+        private const string TitleAdd = "Додати приміщення бізнес-точки";
+        private const string TitleEdit = "Редагування приміщення бізнес-точки";
 
-        public PremisesDetailForm(ClnPlaceHoll clnPlaceHoll, MeasurementOfPlaces measurementPlaces, PremisesFormTypeInitialization premisesFormTypeFrom)
+        public PremisesDetailForm(ClnPlaceHoll clnPlaceHoll, MeasurementOfPlaces measurementPlaces, PremisesFormTypeInitialization action)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
@@ -26,18 +23,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             bsClnPlaceHoll.DataSource = clnPlaceHoll;
 
             // назва поля
-            switch (measurementPlaces)
-            {
-                case MeasurementOfPlaces.Area:
-                    lblTitlePlace.Text = FullArea;
-                    break;
-                case MeasurementOfPlaces.Number:
-                    lblTitlePlace.Text = FullCount;
-                    break;
-                case MeasurementOfPlaces.Other:
-                    lblTitlePlace.Text = Other;
-                    break;
-            }
+            if (measurementPlaces == MeasurementOfPlaces.Area)
+                lblTitlePlace.Text = FullArea;
+            else if (measurementPlaces == MeasurementOfPlaces.Number)
+                lblTitlePlace.Text = FullCount;
+
+            if (action == PremisesFormTypeInitialization.CreateNew)
+                Text = TitleAdd;
+            else if (action == PremisesFormTypeInitialization.Edit)
+                Text = TitleEdit;
         }
 
         public sealed override string Text
@@ -72,7 +66,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 lblTitlePlace.ForeColor = Color.Black;
 
 
-            if (!Int32.TryParse(txtPlaceValue.Text, out var tryparse))
+            if (!int.TryParse(txtPlaceValue.Text, out int tryparse))
             {
                 lblTitlePlace.ForeColor = Color.Crimson;
                 isNumber = false;
@@ -80,15 +74,17 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             else
                 lblTitlePlace.ForeColor = Color.Black;
 
-            if (isNotEmpty&&isNumber)
+            if (isNotEmpty && isNumber)
                 return true;
-            else if(!isNotEmpty)
+
+            if (!isNotEmpty)
             {
                 MessageBox.Show("Деякі поля не можуть бути пустими!", "Заповніть всі поля!",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            else if(!isNumber)
+
+            if (!isNumber)
             {
                 MessageBox.Show("Деякі поля повинні бути числовими!", "Заповніть всі поля правильно!",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);

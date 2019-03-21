@@ -71,7 +71,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             _premisesControl = new PremisesControl
             {
                 Dock = DockStyle.Fill,
-                PlaceHollDataSource = _businessPlace.ClnPlaceHoll,
+                ClnBusinessPlaceDataSource = _businessPlace,
             };
             internalPanel.Controls.Add(_premisesControl);
 

@@ -257,8 +257,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             this.ctrlPremises.Location = new System.Drawing.Point(3, 137);
             this.ctrlPremises.MinimumSize = new System.Drawing.Size(450, 200);
             this.ctrlPremises.Name = "ctrlPremises";
-            this.ctrlPremises.PlaceHollDataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
-            this.ctrlPremises.PlaceType = IpsViewComponentLibrary.Extensions.MeasurementOfPlaces.Empty;
+            //this.ctrlPremises.ClnBusinessPlaceDataSource = typeof(ipsFormsDesign.Model.ClnPlaceHoll);
             this.ctrlPremises.Size = new System.Drawing.Size(654, 200);
             this.ctrlPremises.TabIndex = 6;
             // 

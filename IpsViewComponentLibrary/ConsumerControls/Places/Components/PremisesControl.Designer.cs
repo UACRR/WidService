@@ -91,19 +91,21 @@
             gridViewTextBoxColumn2.IsVisible = false;
             gridViewTextBoxColumn2.Name = "PlaceId";
             gridViewTextBoxColumn2.Width = 46;
-            gridViewTextBoxColumn3.FieldName = "ValueAdd";
-            gridViewTextBoxColumn3.HeaderText = "ValueAdd";
-            gridViewTextBoxColumn3.IsVisible = false;
-            gridViewTextBoxColumn3.Name = "ValueAdd";
-            gridViewTextBoxColumn3.Width = 45;
-            gridViewTextBoxColumn4.FieldName = "HollName";
-            gridViewTextBoxColumn4.HeaderText = "Тип приміщення";
-            gridViewTextBoxColumn4.Name = "HollName";
-            gridViewTextBoxColumn4.Width = 349;
+            gridViewTextBoxColumn3.FieldName = "HollName";
+            gridViewTextBoxColumn3.HeaderText = "Тип приміщення";
+            gridViewTextBoxColumn3.Name = "HollName";
+            gridViewTextBoxColumn3.Width = 319;
+            gridViewTextBoxColumn4.FieldName = "ValueAdd";
+            gridViewTextBoxColumn4.HeaderText = "Додатковий параметр";
+            gridViewTextBoxColumn4.IsVisible = false;
+            gridViewTextBoxColumn4.MinWidth = 200;
+            gridViewTextBoxColumn4.Name = "ValueAdd";
+            gridViewTextBoxColumn4.Width = 200;
             gridViewTextBoxColumn5.FieldName = "ValuePlace";
             gridViewTextBoxColumn5.HeaderText = "Місць";
+            gridViewTextBoxColumn5.MinWidth = 100;
             gridViewTextBoxColumn5.Name = "ValuePlace";
-            gridViewTextBoxColumn5.Width = 70;
+            gridViewTextBoxColumn5.Width = 100;
             this.gvPremises.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -120,6 +122,7 @@
             this.gvPremises.TabIndex = 0;
             this.gvPremises.ThemeName = "Office2013Light";
             this.gvPremises.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPremises_CurrentRowChanged);
+            this.gvPremises.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvPremises_CellDoubleClick);
             // 
             // bsClnPlaceHoll
             // 
