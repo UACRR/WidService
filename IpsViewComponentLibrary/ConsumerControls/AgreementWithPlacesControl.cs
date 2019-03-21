@@ -14,11 +14,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class AgreementWithPlacesControl : UserControl
     {
+        private LicenseAgreement _license;
         private LicenseAgrParam _licenseAgr;
         private ObservableListSource<ClnBusinessPlace> _tempPlaces;
         private List<GridViewRowInfo> _existLicenses;
         private readonly AnketaDictionaties _anketaDictionaties;
         private bool _selectFirstItemNeed;
+        private bool _firstSelectChanging = true;
         private static bool PlaceChooserPredicate(GridViewRowInfo row, LicenseForPlaces license) => row.DataBoundItem as ClnBusinessPlace == license.Place
                                                                          || (row.DataBoundItem as ClnBusinessPlace)?.PlaceId == license.PlaceId;
 
@@ -37,10 +39,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             _selectFirstItemNeed = agreementInitType == ConsumerAgreementInitType.AddNewAgreement;
             _tempPlaces = places;
             _licenseAgr = licenseAgr;
+            _license = license;
 
-            licenseAgreementBindingSource.DataSource = license;
+            _firstSelectChanging = true;
+            licenseAgreementBindingSource.DataSource = _license;
             bindingSourceAgr.DataSource = _licenseAgr;
-            
+
             ctrlAgrSecond.DataSourceBinding = _licenseAgr;
             ctrlAgrSecond.AutoprolongationDataSource = _licenseAgr;
             ctrlAgrSecond.MinPayment = "MinAmount";
@@ -93,7 +97,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             else
                 gvPlaces.Enabled = false;
         }
-        
+
         private void AgreementWithPlacesControl_Paint(object sender, PaintEventArgs e)
         {
             CheckPlaces();
@@ -168,7 +172,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 }
                 else
                 {
-                    var license = _licenseAgr.License.SingleOrDefault(rec => rec.Place == item || (rec.PlaceId == item.PlaceId && item.PlaceId != 0 ));
+                    var license = _licenseAgr.License.SingleOrDefault(rec => rec.Place == item || (rec.PlaceId == item.PlaceId && item.PlaceId != 0));
                     _licenseAgr.License.Remove(license);
                     item.License.Remove(license);
                 }
@@ -188,5 +192,25 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ddlLicType.SelectedIndex = 0;
             ctrlAgrSecond.SelectDefaultItem();
         }
+
+        private void ddlLicType_SelectedIndexChanging(object sender, Telerik.WinControls.UI.Data.PositionChangingCancelEventArgs e)
+        {
+            if(_firstSelectChanging )
+            {
+                _firstSelectChanging = false;
+                return;
+            }
+            var source = ddlLicType.DataSource as BindingSource;
+            var list = source.List;
+            // Отримати поточний тип ліцензії
+            var agrLicType = list[e.Position] as AgrLicenseType;
+            // Якщо встановлено % авторської винагороди то просавляємо в контракт
+            if (agrLicType != null && agrLicType.CodeI != _license.LicCode )
+            {
+                _licenseAgr.RateAmount = agrLicType.AuthRate;
+                ctrlAgrSecond.RefreshDataSourceBinding();
+            }
+        }
+
     }
 }
