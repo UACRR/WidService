@@ -287,8 +287,9 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public IList<AutoCompleteData> GetAutoCompleteList(string filter)
         {
-            string url = $"consumer/listAll/{filter}";
-            var list = _webApi.GetList<AutoCompleteData>(url);
+            string url = $"consumer/listAutoCompleted";
+            KeyValuePair<string, string> param = new KeyValuePair<string, string>("filter", filter);
+            var list = _webApi.GetList<AutoCompleteData>(url, param);
             return list;
         }
 

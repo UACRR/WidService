@@ -118,11 +118,10 @@ namespace IpsViewComponentLibrary.RightholderControls
             saveFileDialog1.FileName = _custName.Trim();
             saveFileDialog1.Filter = "docx files (*.docx)|*.docx|pdf files (*.pdf)|*.pdf";
             saveFileDialog1.FilterIndex = 1;
-
             if ( saveFileDialog1.ShowDialog() == DialogResult.OK )
             {
-                var ext = saveFileDialog1.FilterIndex == 1 ? ".docx" : ".pdf";
-                var FileName = Path.GetFileNameWithoutExtension(saveFileDialog1.FileName) + ext;
+                FileInfo fi = new FileInfo(saveFileDialog1.FileName);
+                var FileName = saveFileDialog1.FileName;
 
                 if (File.Exists(FileName))
                     File.Delete(FileName);

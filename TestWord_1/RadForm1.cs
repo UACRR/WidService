@@ -40,7 +40,7 @@ namespace TestWord_1
                       Filename = "F_Акт_публічне сповіщення TV+радио.docx";
                     Filename = "F_Акт_публічне сповіщення кTV.docx";
                         Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
-            Filename = "F_ГО УААСП Автор.docx";
+           Filename = "F_ГО УААСП Автор.docx";
               //          Filename = "F_Лицензионный договор на спектакль (БП).docx";
               //  Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
                  Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
@@ -74,7 +74,7 @@ namespace TestWord_1
                     wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
                 case "F_ГО УААСП Автор.docx":
-                    cust = service1.GetData(222);
+                    cust = service1.GetData(1394);
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;

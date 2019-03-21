@@ -45,8 +45,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.dtEndDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.dtBeginDate = new Telerik.WinControls.UI.RadDateTimePicker();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
-            this.txtCommunity = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.mtxtRate = new Telerik.WinControls.UI.RadMaskedEditBox();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.checkIsRightholder = new Telerik.WinControls.UI.RadCheckBox();
@@ -57,7 +55,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.pvpFolk = new Telerik.WinControls.UI.RadPageViewPage();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.rpanelFolkType = new RadioPanel();
+            this.rpanelFolkType = new IpsViewComponentLibrary.Common.RadioPanel();
             this.rdbFolk = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbNotProtected = new Telerik.WinControls.UI.RadRadioButton();
             this.rdbAuthorRightholder = new Telerik.WinControls.UI.RadRadioButton();
@@ -75,8 +73,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtBeginDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCommunity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtxtRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkIsRightholder)).BeginInit();
@@ -184,8 +180,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             this.panelRightholderInfo.Controls.Add(this.dtEndDate);
             this.panelRightholderInfo.Controls.Add(this.dtBeginDate);
             this.panelRightholderInfo.Controls.Add(this.radLabel4);
-            this.panelRightholderInfo.Controls.Add(this.txtCommunity);
-            this.panelRightholderInfo.Controls.Add(this.radLabel6);
             this.panelRightholderInfo.Controls.Add(this.mtxtRate);
             this.panelRightholderInfo.Controls.Add(this.radLabel3);
             this.panelRightholderInfo.Location = new System.Drawing.Point(-5, 54);
@@ -207,7 +201,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.dtEndDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.objectAuthorRightholderBindingSource, "EndDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.dtEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtEndDate.Location = new System.Drawing.Point(265, 67);
+            this.dtEndDate.Location = new System.Drawing.Point(265, 42);
             this.dtEndDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
             this.dtEndDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtEndDate.Name = "dtEndDate";
@@ -223,7 +217,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             this.dtBeginDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.objectAuthorRightholderBindingSource, "BeginDate", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, new System.DateTime(1900, 1, 1, 0, 0, 0, 0)));
             this.dtBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtBeginDate.Location = new System.Drawing.Point(120, 67);
+            this.dtBeginDate.Location = new System.Drawing.Point(120, 42);
             this.dtBeginDate.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
             this.dtBeginDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtBeginDate.Name = "dtBeginDate";
@@ -237,36 +231,17 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // radLabel4
             // 
-            this.radLabel4.Location = new System.Drawing.Point(9, 68);
+            this.radLabel4.Location = new System.Drawing.Point(9, 43);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(109, 19);
             this.radLabel4.TabIndex = 67;
             this.radLabel4.Text = "Термін володіння:";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
-            // txtCommunity
-            // 
-            this.txtCommunity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "CommunityName", true));
-            this.txtCommunity.Location = new System.Drawing.Point(120, 13);
-            this.txtCommunity.Name = "txtCommunity";
-            this.txtCommunity.ReadOnly = true;
-            this.txtCommunity.Size = new System.Drawing.Size(418, 21);
-            this.txtCommunity.TabIndex = 68;
-            this.txtCommunity.ThemeName = "Office2013Light";
-            // 
-            // radLabel6
-            // 
-            this.radLabel6.Location = new System.Drawing.Point(9, 14);
-            this.radLabel6.Name = "radLabel6";
-            this.radLabel6.Size = new System.Drawing.Size(65, 19);
-            this.radLabel6.TabIndex = 65;
-            this.radLabel6.Text = "Спільнота:";
-            this.radLabel6.ThemeName = "Office2013Light";
-            // 
             // mtxtRate
             // 
             this.mtxtRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.objectAuthorRightholderBindingSource, "Rate", true));
-            this.mtxtRate.Location = new System.Drawing.Point(120, 40);
+            this.mtxtRate.Location = new System.Drawing.Point(120, 15);
             this.mtxtRate.Mask = "N2";
             this.mtxtRate.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
             this.mtxtRate.Name = "mtxtRate";
@@ -280,7 +255,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(9, 41);
+            this.radLabel3.Location = new System.Drawing.Point(9, 16);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(80, 19);
             this.radLabel3.TabIndex = 64;
@@ -440,8 +415,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtBeginDate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCommunity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.mtxtRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkIsRightholder)).EndInit();
@@ -484,8 +457,6 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         private Telerik.WinControls.UI.RadDateTimePicker dtEndDate;
         private Telerik.WinControls.UI.RadDateTimePicker dtBeginDate;
         private Telerik.WinControls.UI.RadLabel radLabel4;
-        private Telerik.WinControls.UI.RadTextBox txtCommunity;
-        private Telerik.WinControls.UI.RadLabel radLabel6;
         private Telerik.WinControls.UI.RadMaskedEditBox mtxtRate;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private System.Windows.Forms.BindingSource objectAuthorRightholderBindingSource;
