@@ -344,7 +344,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // consumerMainViewBindingSource
             // 
-            this.consumerMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
+            this.consumerMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
             // 
             // licenseAgrParamBindingSource
             // 

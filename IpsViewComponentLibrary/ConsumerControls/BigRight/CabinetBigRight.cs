@@ -35,7 +35,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         //дані
         private Customer _customer;
-        private MainGridConsumerBigRightView _gridMainView;
+        //private ConsumerBigRightView _gridMainView;
         private IList<GeneralAgreementBigRightView> _generalAgreementView;
         private IList<LicenseAgreementBigRightView> _licenseAgreementView;
         private IList<RequestsOrReferenceBigRightView> _requestsLicenseView;
@@ -48,7 +48,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
 
         public event ReturnObjectEventHandler<Customer> GetCustomer;
-        public event ReturnObjectEventHandler<MainGridConsumerBigRightView> GetMainGridView;
         public event ReturnViewEventHandler<GeneralAgreementBigRightView> GetGeneralAgreementView;
         public event ReturnViewEventHandler<LicenseAgreementBigRightView> GetLicenseAgreementView;
         public event ReturnViewEventHandler<RequestsOrReferenceBigRightView> GetRequestsView;
@@ -227,8 +226,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         public void LoadData(int custId)
         {
-
-            _gridMainView = GetMainGridView?.Invoke(custId);
+            //_gridMainView = GetMainGridView?.Invoke(custId);
+            //_gridMainView = ViewsSingleton.ConsumerBigRightView;
             _customer = GetCustomer?.Invoke(custId);
             _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
             _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
@@ -240,17 +239,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
             ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
             ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
-            ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
-            ctrlLicense.SetDataSources(_gridMainView);
+            ctrlGeneralAgreement.SetAndUpdateData(_customer, _generalAgreementView);
             ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
-            ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
+            ctrlPayslips.SetAndUpdateData(_customer, _registerRatedListView, _rlSpectacleView);
             var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
             SetupRl(_customer, custRl);
             ctrlCalculation.Customer = _customer;
             ctrlPaysInfo.Customer = _customer;
-            ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
-            ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
-            ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
+            ctrlRequest.SetAndUpdateData(_customer, _requestsLicenseView, _authorsForLicenseView);
+            ctrlReference.SetAndUpdateData(_customer, _referenceLicenseView, _authorsForLicenseView);
+            ctrlContactHeader.SetControlTextInfoBigRight(_customer);
             ctrlFiles.SetAndUpdateData(_customer);
             ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
         }
@@ -268,7 +266,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             }
 
             _customer = GetCustomer?.Invoke(custId);
-            _gridMainView = GetMainGridView?.Invoke(custId);
             switch (tab)
             {
                 case CabinetTabType.None: break;
@@ -282,7 +279,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 case CabinetTabType.GeneralAgreement:
                     {
                         _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
-                        ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
+                        ctrlGeneralAgreement.SetAndUpdateData(_customer, _generalAgreementView);
                     }
                     break;
 
@@ -292,7 +289,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                     {
                         _registerRatedListView = GetRatedListMainView?.Invoke(custId);
                         _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
-                        ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
+                        ctrlPayslips.SetAndUpdateData(_customer, _registerRatedListView, _rlSpectacleView);
                         var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
                         SetupRl(_customer, custRl);
                         ctrlCalculation.Customer = _customer;
@@ -316,19 +313,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 case CabinetTabType.References:
                     {
                         _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
-                        ctrlLicense.SetDataSources(_gridMainView);
                         ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
                         _requestsLicenseView = GetRequestsView?.Invoke(custId);
                         _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
                         _referenceLicenseView = GetReferenceView?.Invoke(custId);
-                        ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
-                        ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
+                        ctrlRequest.SetAndUpdateData(_customer, _requestsLicenseView, _authorsForLicenseView);
+                        ctrlReference.SetAndUpdateData(_customer, _referenceLicenseView, _authorsForLicenseView);
                     }
                     break;
 
                 case CabinetTabType.Contacts:
                     {
-                        ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
+                        ctrlContactHeader.SetControlTextInfoBigRight(_customer);
                     }
                     break;
 

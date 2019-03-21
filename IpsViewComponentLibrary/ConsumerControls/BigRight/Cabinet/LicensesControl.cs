@@ -22,7 +22,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         private Customer _customer;
         public event LicenseStatusChangeEventHandler OnLicenseCloseAndDelete;
         public event SaveCustomerEventHandler OnSaveCustomer;
-        private MainGridConsumerBigRightView _gridMainView;
         public event EmptyEventHandler UpdateData;
 
         public LicensesControl()
@@ -39,19 +38,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 MessageShow.ShowInfo("Примітку збережено!");
         }
 
-        /// <summary>
-        /// Джерело даних шапки
-        /// </summary>
-        /// <param name="comsumerBigRightView"></param>
-        public void SetDataSources(MainGridConsumerBigRightView comsumerBigRightView)
-        {
-            _gridMainView = comsumerBigRightView;
-            ctrlAgrInfo.DataSource = _gridMainView;
-        }
-
         public void SetData(Customer customer, List<LicenseAgreementBigRightView> sourceGrid)
         {
             _customer = customer;
+            ctrlAgrInfo.DataSource = ViewsSingleton.ConsumerBigRightView;
             gvViewLicences.DataSource = sourceGrid;
         }
 
@@ -96,7 +86,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             switch (e.Column.FieldName)
             {
                 case "viewBtn":
-                    var viewLicenseForm = new RequestForm(_customer, _gridMainView, ScopeOfUseForm.View, item.LicId);
+                    var viewLicenseForm = new RequestForm(_customer, ViewsSingleton.ConsumerBigRightView, ScopeOfUseForm.View, item.LicId);
                     viewLicenseForm.ShowDialog();
                     break;
                 case "printBtn":

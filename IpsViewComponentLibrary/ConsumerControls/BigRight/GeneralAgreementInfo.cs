@@ -11,7 +11,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         }
 
         /// <summary>
-        /// Об'єкт MainGridConsumerBigRightView
+        /// Об'єкт ConsumerBigRightView
         /// </summary>
         [Category("Data")]
         [AttributeProvider(typeof(IListSource))]

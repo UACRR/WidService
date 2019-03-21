@@ -690,7 +690,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // bsConsumerBigRightView
             // 
-            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
+            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             // 
             // txtAgrDate
             // 

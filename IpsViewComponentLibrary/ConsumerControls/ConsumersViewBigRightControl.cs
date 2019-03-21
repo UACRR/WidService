@@ -9,50 +9,27 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class ConsumersViewBigRightControl : UserControl
     {
-        public MainGridConsumerBigRightView ViewRow => gvViewConsumers?.CurrentRow?.DataBoundItem as MainGridConsumerBigRightView;
-        public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
+        public event LoadCustomerCabinetBREventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
-        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public ConsumersViewBigRightControl()
         {
             InitializeComponent();
-            _gridStateRecorder.AddGrid(gvViewConsumers);
-            ctrlSearch.SetUsageGrid(gvViewConsumers);
+            ctrlSearch.SetUsageGrid(gvConsumers);
         }
 
-        /// <summary>
-        /// Обрати рядок по ID
-        /// </summary>
-        /// <param name="custId"></param>
-        public void SetSelectCustomer(int custId)
+        public object DataSource
         {
-            if (gvViewConsumers.Rows.Count != 0)
-                gvViewConsumers.CurrentRow = gvViewConsumers.Rows.SingleOrDefault(rec => (int)rec.Cells["CustId"].Value == custId);
-        }
-
-        /// <summary>
-        /// Джерело даних для грід
-        /// </summary>
-        /// <param name="source"></param>
-        public void SetGridDataSource(object source, bool withSaveRow = true)
-        {
-            if (withSaveRow)
-            {
-                _gridStateRecorder.RecordState();
-                gvViewConsumers.DataSource = source;
-                _gridStateRecorder.RestoreState();
-            }
-            else
-            {
-                _gridStateRecorder.ClearGridStates();
-                gvViewConsumers.DataSource = source;
-            }
+            get => bsConsumerBigRightView.DataSource;
+            set => bsConsumerBigRightView.DataSource = value;
         }
 
         private void gvViewConsumers_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as MainGridConsumerBigRightView).CustId);
+            if (!(e.Row.DataBoundItem is ConsumerBigRightView item))
+                return;
+
+            OnLoadCustomerCabinetNeed?.Invoke(item);
         }
 
         private void btnNewConsumer_Click(object sender, EventArgs e)
@@ -65,7 +42,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as MainGridConsumerBigRightView).CustId);
+            // ReSharper disable once PossibleNullReferenceException
+            OnLoadCustomerCabinetNeed?.Invoke(e.Row.DataBoundItem as ConsumerBigRightView);
         }
     }
 }

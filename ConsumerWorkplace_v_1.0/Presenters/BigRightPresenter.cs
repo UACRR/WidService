@@ -59,7 +59,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private void SubscribeBRCabinet()
         {
             _cabinetBigRightForm.cabinet.GetCustomer += DataNeed_GetCustomer;
-            _cabinetBigRightForm.cabinet.GetMainGridView += DataNeed_GetMainGridView;
             _cabinetBigRightForm.cabinet.GetGeneralAgreementView += DataNeed_GetGeneralAgreementView;
             _cabinetBigRightForm.cabinet.GetLicenseAgreementView += DataNeed_GetLicenseAgreementView;
             _cabinetBigRightForm.cabinet.GetAuthorsForLicenseView += DataNeed_GetAuthorsForLicenseView;
@@ -102,11 +101,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private Customer DataNeed_GetCustomer(int custId)
         {
             return _service.GetData(custId);
-        }
-
-        private MainGridConsumerBigRightView DataNeed_GetMainGridView(int custId)
-        {
-            return _mainGrid.ViewRow;
         }
 
         private List<GeneralAgreementBigRightView> DataNeed_GetGeneralAgreementView(int custId)
@@ -166,7 +160,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             }
             // _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            _mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue), false);
+            //_mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue), false);
+            _mainGrid.DataSource = _service.getMainViewBR(_currentNodeDocType, _currentNodeValue);
         }
 
         //створити нового користувача
@@ -196,16 +191,17 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         /// Відкрити кабінет користувача великих прав
         /// </summary>
         /// <param name="id"></param>
-        private void LoadCustomerCabinet(int id)
+        private void LoadCustomerCabinet(ConsumerBigRightView item)
         {
+            ViewsSingleton.SetConsumerBigRightView(item);
             if (!_cabinetBigRightForm.IsInit)
             {
                 SubscribeBRCabinet();
             }
 
             // завантаження даних
-            _cabinetBigRightForm.cabinet.LoadData(_mainGrid.ViewRow.CustId);
-            _cabinetBigRightForm.Title = _mainGrid.ViewRow.Name;
+            _cabinetBigRightForm.cabinet.LoadData(item.CustId);
+            _cabinetBigRightForm.Title = item.Name;
 
             WindowsFormsVisible.ShowHiddenWindow(_cabinetBigRightForm);
         }
@@ -368,12 +364,14 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         // TODO: перехід на точечне оновлення
         private void UpdateData(int id)
         {
-            _mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
+            //_mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
+            _mainGrid.DataSource = _service.getMainViewBR(_currentNodeDocType, _currentNodeValue);
         }
 
         public void UpdateDataGrid()
         {
-            _mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
+            //_mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
+            _mainGrid.DataSource = _service.getMainViewBR(_currentNodeDocType, _currentNodeValue);
         }
     }
 }

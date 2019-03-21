@@ -10,6 +10,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.Common.Form;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.Utilities;
@@ -51,7 +52,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
         }
 
         public RequestForm( Customer customer,
-                            MainGridConsumerBigRightView bigRightView,
+                            ConsumerBigRightView bigRightView,
                             ScopeOfUseForm scopeOfUseForm = ScopeOfUseForm.Create,
                             int? licId = null,
                             FormMode formMode = FormMode.ForBigRightAdmin,

@@ -34,10 +34,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView, IList<GeneralAgreementBigRightView> genAgrs)
+        public void SetAndUpdateData(Customer customer, IList<GeneralAgreementBigRightView> genAgrs)
         {
             _customer = customer;
-            ctrlGeneralAgrDetailInfoBr.DataSourceLicense = bigRightView;
+            //ctrlGeneralAgrDetailInfoBr.DataSourceLicense = bigRightView;
+            ctrlGeneralAgrDetailInfoBr.DataSourceLicense = ViewsSingleton.ConsumerBigRightView;
             gvGenAgrLicences.DataSource = genAgrs;
         }
 

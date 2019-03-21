@@ -59,14 +59,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             splitter.PrevNavigationButton.AngleTransform = 180f;
         }
 
-        public void SetAndUpdateData(Customer customer,
-            MainGridConsumerBigRightView bigRightView,
-            IList<RatedListMainBigRightView> registers, 
-            IList<RatedListSpectacleBigRightView> payslipsSpectacleViews)
+        public void SetAndUpdateData(Customer customer, IList<RatedListMainBigRightView> registers, IList<RatedListSpectacleBigRightView> payslipsSpectacleViews)
         {
             _customer = customer;
             _payslipsSpectacleViews = payslipsSpectacleViews;
-            ctrlHeaderInfo.DataSource = bigRightView;
+            ctrlHeaderInfo.DataSource = ViewsSingleton.ConsumerBigRightView;
             gvRegisterRatedListView.DataSource = registers;
             btnAcceptSpectacles.Enabled = registers.Any();
         }

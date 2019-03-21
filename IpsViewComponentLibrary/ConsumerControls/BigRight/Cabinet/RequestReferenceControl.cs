@@ -47,7 +47,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         private Customer _customer;
-        private MainGridConsumerBigRightView _bigRightView;
         private IList<AuthorsForLicenseBigRightView> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
         private BRLicenseButtonActionType _functionType = BRLicenseButtonActionType.None;
@@ -74,19 +73,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// Дані для контрола
         /// </summary>
         /// <param name="customer"></param>
-        /// <param name="bigRightView"></param>
         /// <param name="listRequests"></param>
         /// <param name="author"></param>
-        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView, IList<RequestsOrReferenceBigRightView> listRequests, IList<AuthorsForLicenseBigRightView> author)
+        public void SetAndUpdateData(Customer customer, IList<RequestsOrReferenceBigRightView> listRequests, IList<AuthorsForLicenseBigRightView> author)
         {
             _customer = customer;
             _authors = author;
-            _bigRightView = bigRightView;
 
-            ctrlAgrInfo.DataSource = _bigRightView;
+            ctrlAgrInfo.DataSource = ViewsSingleton.ConsumerBigRightView;
             gvViewRequests.DataSource = listRequests;
-
-            // gvCreativeRole.DataSource = author;
         }
 
         #region * * * PROPERTIES * * *
@@ -243,7 +238,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// <param name="item"></param>
         private void CallRequestForm(ScopeOfUseForm type, RequestsOrReferenceBigRightView item)
         {
-            var requestForm = new RequestForm(_customer, _bigRightView, type, item.LicId, windowType: _typeControl);
+            var requestForm = new RequestForm(_customer, ViewsSingleton.ConsumerBigRightView, type, item.LicId, windowType: _typeControl);
 
             if (requestForm.ShowDialog() == DialogResult.OK && type == ScopeOfUseForm.Edit)
             {
@@ -311,7 +306,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         {
             if (_typeControl == ControlRequestOrReferenceType.Request)
             {
-                var requestForm = new RequestForm(_customer, _bigRightView);
+                var requestForm = new RequestForm(_customer, ViewsSingleton.ConsumerBigRightView);
                 if (requestForm.ShowDialog() == DialogResult.OK)
                 {
                     var result = OnLicenseSaveNeed?.Invoke(_customer) ?? false;

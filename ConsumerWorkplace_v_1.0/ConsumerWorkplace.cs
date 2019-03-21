@@ -263,7 +263,7 @@ namespace ConsumerWorkplace_v_1._0
         }
 
 
-        public Func<IList<ConsumerMainView>> getMainViewData { get; set; }
+        public Func<IList<ConsumerSmallRightView>> getMainViewData { get; set; }
         public Func<int, Customer> NewCustomer { get; set; }
         public Func<int, Customer> GetCustomer { get; set; }
         public Func<Customer, bool> SaveCustomer { get; set; }
