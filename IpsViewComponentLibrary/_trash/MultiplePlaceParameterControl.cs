@@ -81,7 +81,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                     return;
                 }
                 bsClnBusinessPlace.DataSource = value;
-                ctrlPremises.PlaceHollDataSource = (value as ClnBusinessPlace)?.ClnPlaceHoll;
+                //ctrlPremises.ClnBusinessPlaceDataSource = (value as ClnBusinessPlace)?.ClnPlaceHoll;
                 txtPlaceType.Text = (bsDictTypePlace.DataSource as List<TypePlace>)?.SingleOrDefault(rec => rec.CodeI == (value as ClnBusinessPlace)?.PlCode)?.Name;
             }
         }
@@ -92,7 +92,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             set
             {
                 _placesType = value;
-                ctrlPremises.PlaceType = value;
+                //ctrlPremises.PlaceType = value;
             }
         }
 
