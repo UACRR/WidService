@@ -174,7 +174,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvCommunityName.Location = new System.Drawing.Point(134, 5);
             this.pvCommunityName.Name = "pvCommunityName";
             this.pvCommunityName.Size = new System.Drawing.Size(827, 459);
-            this.pvCommunityName.Text = "Товариство";
+            this.pvCommunityName.Text = "Спільнота";
             // 
             // radLabel6
             // 

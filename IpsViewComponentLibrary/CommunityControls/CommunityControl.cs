@@ -17,8 +17,8 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityControl : UserControl
     {
-        private const string ErrorMsg = "Неможливо додати нове товариство!";
-        private const string SeccessMsg = "Нове товариство додано!";
+        private const string ErrorMsg = "Неможливо додати нову Спільноту!";
+        private const string SeccessMsg = "Нова Спільнота додана!";
         private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
