@@ -57,14 +57,14 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.GetCustomer += DataNeed_GetCustomer;
             _cabinetBigRightForm.cabinet.UpdateAllViews += UpdateAllViews;
 
-            _cabinetBigRightForm.cabinet.GetGeneralAgreementView += DataNeed_GetGeneralAgreementView;
-            _cabinetBigRightForm.cabinet.GetLicenseAgreementView += DataNeed_GetLicenseAgreementView;
-            _cabinetBigRightForm.cabinet.GetAuthorsForLicenseView += DataNeed_GetAuthorsForLicenseView;
-            _cabinetBigRightForm.cabinet.GetRatedListMainView += DataNeed_GetRatedListMainView;
-            _cabinetBigRightForm.cabinet.GetRatedListSpectacleView += DataNeed_GetRatedListSpectacleView;
-            _cabinetBigRightForm.cabinet.GetReferenceView += DataNeed_GetReferenceView;
-            _cabinetBigRightForm.cabinet.GetRequestsView += DataNeed_GetRequestsView;
-            _cabinetBigRightForm.cabinet.GetMusicDesignView += DataNeed_GetMusicDesignView;
+            //_cabinetBigRightForm.cabinet.GetGeneralAgreementView += DataNeed_GetGeneralAgreementView;
+            //_cabinetBigRightForm.cabinet.GetLicenseAgreementView += DataNeed_GetLicenseAgreementView;
+            //_cabinetBigRightForm.cabinet.GetAuthorsForLicenseView += DataNeed_GetAuthorsForLicenseView;
+            //_cabinetBigRightForm.cabinet.GetRatedListMainView += DataNeed_GetRatedListMainView;
+            //_cabinetBigRightForm.cabinet.GetRatedListSpectacleView += DataNeed_GetRatedListSpectacleView;
+            //_cabinetBigRightForm.cabinet.GetReferenceView += DataNeed_GetReferenceView;
+            //_cabinetBigRightForm.cabinet.GetRequestsView += DataNeed_GetRequestsView;
+            //_cabinetBigRightForm.cabinet.GetMusicDesignView += DataNeed_GetMusicDesignView;
 
             _cabinetBigRightForm.cabinet.OnSaveCustomerNeed += SaveCustomer;
             _cabinetBigRightForm.cabinet.OnAddNewDocument += AddNewDocument;
@@ -96,7 +96,23 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             var licenseAgreementBigRightViews = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();
             ViewsSingleton.SetLicenseAgreementBigRightView(licenseAgreementBigRightViews);
 
-            var requestsOrReferenceBigRightViews =_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>();
+            var requestsBigRightViews =_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>();
+            ViewsSingleton.SetRequestsBigRightView(requestsBigRightViews);
+
+            var referenceBigRightViews = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>();
+            ViewsSingleton.SetReferenceBigRightView(referenceBigRightViews);
+
+            var ratedListBigRightViews = _service.getBRView(typeof(RatedListBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListBigRightView>();
+            ViewsSingleton.SetRatedListBigRightView(ratedListBigRightViews);
+
+            var spectacleBigRightViews = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
+            ViewsSingleton.SetRatedListSpectacleBigRightView(spectacleBigRightViews);
+
+            var authorsForLicenseBigRightViews = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>();
+            ViewsSingleton.SetAuthorsForLicenseBigRightView(authorsForLicenseBigRightViews);
+
+            var ratedListMusicDesignBigRightViews = _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();
+            ViewsSingleton.SetRatedListMusicDesignBigRightView(ratedListMusicDesignBigRightViews);
         }
 
         private bool FileDelete(int id)
@@ -126,30 +142,30 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         //    return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", custId).ToListOfType<RequestsOrReferenceBigRightView>();
         //}
 
-        private List<RequestsOrReferenceBigRightView> DataNeed_GetReferenceView(int custId)
-        {
-            return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", custId).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки   
-        }
+        //private List<RequestsOrReferenceBigRightView> DataNeed_GetReferenceView(int custId)
+        //{
+        //    return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", custId).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки   
+        //}
 
-        private List<RatedListMainBigRightView> DataNeed_GetRatedListMainView(int custId)
-        {
-            return _service.getBRView(typeof(RatedListMainBigRightView), "vTSK_1_BRRegister", custId).ToListOfType<RatedListMainBigRightView>();
-        }
+        //private List<RatedListBigRightView> DataNeed_GetRatedListMainView(int custId)
+        //{
+        //    return _service.getBRView(typeof(RatedListBigRightView), "vTSK_1_BRRegister", custId).ToListOfType<RatedListBigRightView>();
+        //}
 
-        private List<RatedListSpectacleBigRightView> DataNeed_GetRatedListSpectacleView(int custId)
-        {
-            return _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
-        }
+        //private List<RatedListSpectacleBigRightView> DataNeed_GetRatedListSpectacleView(int custId)
+        //{
+        //    return _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
+        //}
 
-        private List<AuthorsForLicenseBigRightView> DataNeed_GetAuthorsForLicenseView(int custId)
-        {
-            return _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", custId).ToListOfType<AuthorsForLicenseBigRightView>();
-        }
+        //private List<AuthorsForLicenseBigRightView> DataNeed_GetAuthorsForLicenseView(int custId)
+        //{
+        //    return _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", custId).ToListOfType<AuthorsForLicenseBigRightView>();
+        //}
 
-        private List<RatedListMusicDesignBigRightView> DataNeed_GetMusicDesignView(int custId)
-        {
-            return _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();
-        }
+        //private List<RatedListMusicDesignBigRightView> DataNeed_GetMusicDesignView(int custId)
+        //{
+        //    return _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();
+        //}
 
         #endregion
 
@@ -336,7 +352,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
 
         // отримати список вистав
-        private IList<BigRightSpectacleView> GetSpectacle(int custId)
+        private List<BigRightSpectacleView> GetSpectacle(int custId)
         {
             return _service.getBRView(typeof(BigRightSpectacleView), "vTSK_1_BRObjects", custId).Select(item => item as BigRightSpectacleView).ToList();
         }

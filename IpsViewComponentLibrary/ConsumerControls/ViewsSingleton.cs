@@ -27,6 +27,46 @@ namespace IpsViewComponentLibrary.ConsumerControls
             LicenseAgreementBigRightView = view;
         }
 
+        public static List<RequestsOrReferenceBigRightView> RequestsBigRightView { get; private set; }
 
+        public static void SetRequestsBigRightView(List<RequestsOrReferenceBigRightView> view)
+        {
+            RequestsBigRightView = view;
+        }
+
+        public static List<RequestsOrReferenceBigRightView> ReferenceBigRightView { get; private set; }
+
+        public static void SetReferenceBigRightView(List<RequestsOrReferenceBigRightView> view)
+        {
+            ReferenceBigRightView = view;
+        }
+
+        public static List<RatedListBigRightView> RatedListBigRightView { get; private set; }
+
+        public static void SetRatedListBigRightView(List<RatedListBigRightView> view)
+        {
+            RatedListBigRightView = view;
+        }
+
+        public static List<RatedListSpectacleBigRightView> RatedListSpectacleBigRightView { get; private set; }
+
+        public static void SetRatedListSpectacleBigRightView(List<RatedListSpectacleBigRightView> view)
+        {
+            RatedListSpectacleBigRightView = view;
+        }
+
+        public static List<AuthorsForLicenseBigRightView> AuthorsForLicenseBigRightView { get; private set; }
+
+        public static void SetAuthorsForLicenseBigRightView(List<AuthorsForLicenseBigRightView> view)
+        {
+            AuthorsForLicenseBigRightView = view;
+        }
+
+        public static List<RatedListMusicDesignBigRightView> RatedListMusicDesignBigRightView { get; private set; }
+
+        public static void SetRatedListMusicDesignBigRightView(List<RatedListMusicDesignBigRightView> view)
+        {
+            RatedListMusicDesignBigRightView = view;
+        }
     }
 }

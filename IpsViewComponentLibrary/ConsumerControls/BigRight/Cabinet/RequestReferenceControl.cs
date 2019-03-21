@@ -73,15 +73,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// Дані для контрола
         /// </summary>
         /// <param name="customer"></param>
-        /// <param name="listRequests"></param>
-        /// <param name="author"></param>
-        public void SetAndUpdateData(Customer customer, IList<RequestsOrReferenceBigRightView> listRequests, IList<AuthorsForLicenseBigRightView> author)
+        public void SetAndUpdateData(Customer customer)
         {
             _customer = customer;
-            _authors = author;
-
+            _authors = ViewsSingleton.AuthorsForLicenseBigRightView;
             ctrlAgrInfo.DataSource = ViewsSingleton.ConsumerBigRightView;
-            gvViewRequests.DataSource = listRequests;
+            if (_typeControl == ControlRequestOrReferenceType.Request)
+                gvViewRequests.DataSource = ViewsSingleton.RequestsBigRightView;
+            else if (_typeControl == ControlRequestOrReferenceType.Reference)
+                gvViewRequests.DataSource = ViewsSingleton.ReferenceBigRightView;
         }
 
         #region * * * PROPERTIES * * *

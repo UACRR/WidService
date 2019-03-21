@@ -34,12 +34,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             InitializeComponent();
         }
 
-        public void SetAndUpdateData(Customer customer, IList<GeneralAgreementBigRightView> genAgrs)
+        public void SetAndUpdateData(Customer customer)
         {
             _customer = customer;
             //ctrlGeneralAgrDetailInfoBr.DataSourceLicense = bigRightView;
             ctrlGeneralAgrDetailInfoBr.DataSourceLicense = ViewsSingleton.ConsumerBigRightView;
-            gvGenAgrLicences.DataSource = genAgrs;
+            gvGenAgrLicences.DataSource = ViewsSingleton.GeneralAgreementBigRightView;
         }
 
         private void gvGenAgrLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)

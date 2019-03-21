@@ -38,11 +38,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 MessageShow.ShowInfo("Примітку збережено!");
         }
 
-        public void SetData(Customer customer, List<LicenseAgreementBigRightView> sourceGrid)
+        public void SetData(Customer customer)
         {
             _customer = customer;
             ctrlAgrInfo.DataSource = ViewsSingleton.ConsumerBigRightView;
-            gvViewLicences.DataSource = sourceGrid;
+            gvViewLicences.DataSource = ViewsSingleton.LicenseAgreementBigRightView;
         }
 
         private void gvViewLicences_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)

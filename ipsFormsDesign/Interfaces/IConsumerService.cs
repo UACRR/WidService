@@ -315,7 +315,7 @@ namespace ipsFormsDesign.Interfaces
         public int LicType { get; set; }
     }
 
-    public class RatedListMainBigRightView
+    public class RatedListBigRightView
     {
         public DateTime? CreateDate { get; set; }
         public int? CustId { get; set; }
