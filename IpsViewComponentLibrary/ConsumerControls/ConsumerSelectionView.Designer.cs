@@ -101,7 +101,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Оберіть споживача";
+            this.Text = "Оберіть користувача";
             this.ThemeName = "Office2013Light";
             this.panelCommand.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();

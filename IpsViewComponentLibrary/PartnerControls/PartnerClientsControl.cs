@@ -16,6 +16,8 @@ namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class PartnerClientsControl : UserControl
     {
+        private const string DetachCustomerQuestion = "Відв'язати обраного користувача від представника?";
+
         public event SetPartnerEventHandler OnAddClientToPartner;
         public event SetPartnerEventHandler OnDetachClientInPartner;
         public event ReturnViewEventHandler<PartnerAllFreeClientsView> GetFreeClientList;
@@ -56,7 +58,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         private void btnAddClient_Click(object sender, EventArgs e)
         {
             var list = GetFreeClientList?.Invoke(-1);
-            SelectClient selectClient = new SelectClient(list);
+            var selectClient = new SelectClient(list);
             selectClient.OnAddSelectedClient += SelectClient_OnAddSelectedClient;
             if(selectClient.ShowDialog() == DialogResult.OK)
                 UpdateData?.Invoke(sender, e);
@@ -69,8 +71,10 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void btnDetach_Click(object sender, EventArgs e)
         {
-            if (!(gvViewClientsOfPartner.CurrentRow.DataBoundItem is PartnerClientListView item)) return;
-            if (MessageBox.Show("Відв'язати обраного клієнта від представника?","Підтвердження",MessageBoxButtons.YesNo,MessageBoxIcon.Question) == DialogResult.Yes)
+            if (!(gvViewClientsOfPartner.CurrentRow.DataBoundItem is PartnerClientListView item))
+                return;
+
+            if (MessageShow.ConfirmAction(DetachCustomerQuestion) == DialogResult.Yes)
             {
                 var result = OnDetachClientInPartner?.Invoke(item.ClCustId, _partnerId);
                 if (result ?? false)

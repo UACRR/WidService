@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsmedserviceapp.Model.SQLViewsData;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ImportDBF
 {
     public partial class PaymentsAttachForm : RadForm
     {
-        private const string CaptionMsg = "Підтвердження";
-        private ExternalPay _externalPay;
+        private readonly ExternalPay _externalPay;
 
         public PaymentsAttachForm(List<vCustomer> clintList, ExternalPay externalPay)
         {
@@ -32,11 +32,13 @@ namespace IpsViewComponentLibrary.ImportDBF
 
         private void AttachPay()
         {
-            var row = gvCustomers.CurrentRow.DataBoundItem as vCustomer;
-            string textMsg = $"Прив'язаи платіж до обраного клієнта \"{row.Name}\", ЄДРПОУ: {row.INNOKPO}?";
-            if (MessageBox.Show(textMsg, CaptionMsg, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (!(gvCustomers.CurrentRow.DataBoundItem is vCustomer item))
+                return;
+            
+            string textMsg = $"Прив'язаи платіж до обраного користувача \"{item.Name}\", ЄДРПОУ: {item.INNOKPO}?";
+            if (MessageShow.ConfirmAction(textMsg) == DialogResult.Yes)
             {
-                _externalPay.CustId = row.CustId;
+                _externalPay.CustId = item.CustId;
                 DialogResult = DialogResult.OK;
             }
         }

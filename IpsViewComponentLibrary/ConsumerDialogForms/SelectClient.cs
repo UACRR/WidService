@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         /// <summary>
         /// Для настройки виводу діалогу у різних випадках
         /// </summary>
-        private SuccessErrorMsg _msg = new SuccessErrorMsg("Нового клієнта додано!", "Неможливо додати клієнта!");
+        private SuccessErrorMsg _msg = new SuccessErrorMsg("Нового користувача додано!", "Неможливо додати користувача!");
 
         public SelectClient(List<PartnerAllFreeClientsView> clientsList, SuccessErrorMsg msg = null )
         {
