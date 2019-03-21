@@ -40,6 +40,8 @@
             this.gvViewPartners = new Telerik.WinControls.UI.RadGridView();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.btnAddCommunity = new Telerik.WinControls.UI.RadButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblCountPartners = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCommunity)).BeginInit();
@@ -85,7 +87,7 @@
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn3.Width = 95;
             gridViewTextBoxColumn4.FieldName = "Name";
-            gridViewTextBoxColumn4.HeaderText = "Товариство";
+            gridViewTextBoxColumn4.HeaderText = "Спільнота";
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Name = "Name";
             gridViewTextBoxColumn4.Width = 540;
@@ -157,14 +159,35 @@
             this.btnAddCommunity.Name = "btnAddCommunity";
             this.btnAddCommunity.Size = new System.Drawing.Size(220, 24);
             this.btnAddCommunity.TabIndex = 13;
-            this.btnAddCommunity.Text = "Додати нове товариство";
+            this.btnAddCommunity.Text = "Додати нову Спільноту";
             this.btnAddCommunity.ThemeName = "Office2013Light";
             this.btnAddCommunity.Click += new System.EventHandler(this.btnAddCommunity_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(800, 466);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 17);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "К-ть рядків";
+            // 
+            // lblCountPartners
+            // 
+            this.lblCountPartners.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountPartners.Location = new System.Drawing.Point(875, 466);
+            this.lblCountPartners.Name = "lblCountPartners";
+            this.lblCountPartners.Size = new System.Drawing.Size(54, 17);
+            this.lblCountPartners.TabIndex = 15;
+            this.lblCountPartners.Text = "0";
+            this.lblCountPartners.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // CommunityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCountPartners);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnAddCommunity);
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.gvViewPartners);
@@ -183,5 +206,7 @@
         private Telerik.WinControls.UI.RadGridView gvViewPartners;
         private Common.SearchTextBoxControl ctrlSearch;
         private Telerik.WinControls.UI.RadButton btnAddCommunity;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCountPartners;
     }
 }

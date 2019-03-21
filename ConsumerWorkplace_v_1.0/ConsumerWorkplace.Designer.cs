@@ -134,9 +134,9 @@ namespace ConsumerWorkplace_v_1._0
             this.pageBigRights.Controls.Add(this.mainGridBigRight);
             this.pageBigRights.Controls.Add(this.treeViewBR);
             this.pageBigRights.ItemSize = new System.Drawing.SizeF(88F, 27F);
-            this.pageBigRights.Location = new System.Drawing.Point(10, 32);
+            this.pageBigRights.Location = new System.Drawing.Point(10, 30);
             this.pageBigRights.Name = "pageBigRights";
-            this.pageBigRights.Size = new System.Drawing.Size(1250, 563);
+            this.pageBigRights.Size = new System.Drawing.Size(1250, 567);
             this.pageBigRights.Text = "Великі права";
             // 
             // mainGridBigRight
@@ -146,7 +146,7 @@ namespace ConsumerWorkplace_v_1._0
             this.mainGridBigRight.Margin = new System.Windows.Forms.Padding(4);
             this.mainGridBigRight.Name = "mainGridBigRight";
             this.mainGridBigRight.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.mainGridBigRight.Size = new System.Drawing.Size(1051, 563);
+            this.mainGridBigRight.Size = new System.Drawing.Size(1051, 567);
             this.mainGridBigRight.TabIndex = 3;
             // 
             // treeViewBR
@@ -156,7 +156,7 @@ namespace ConsumerWorkplace_v_1._0
             this.treeViewBR.LineStyle = Telerik.WinControls.UI.TreeLineStyle.Dash;
             this.treeViewBR.Location = new System.Drawing.Point(0, 0);
             this.treeViewBR.Name = "treeViewBR";
-            this.treeViewBR.Size = new System.Drawing.Size(199, 563);
+            this.treeViewBR.Size = new System.Drawing.Size(199, 567);
             this.treeViewBR.SpacingBetweenNodes = -1;
             this.treeViewBR.TabIndex = 2;
             // 
@@ -244,9 +244,9 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.pvPartners.Controls.Add(this.ctrlPartner);
             this.pvPartners.ItemSize = new System.Drawing.SizeF(95F, 27F);
-            this.pvPartners.Location = new System.Drawing.Point(5, 31);
+            this.pvPartners.Location = new System.Drawing.Point(5, 29);
             this.pvPartners.Name = "pvPartners";
-            this.pvPartners.Size = new System.Drawing.Size(1266, 601);
+            this.pvPartners.Size = new System.Drawing.Size(1266, 603);
             this.pvPartners.Text = "Представники";
             // 
             // ctrlPartner
@@ -255,16 +255,16 @@ namespace ConsumerWorkplace_v_1._0
             this.ctrlPartner.Location = new System.Drawing.Point(0, 0);
             this.ctrlPartner.Margin = new System.Windows.Forms.Padding(4);
             this.ctrlPartner.Name = "ctrlPartner";
-            this.ctrlPartner.Size = new System.Drawing.Size(1266, 601);
+            this.ctrlPartner.Size = new System.Drawing.Size(1266, 603);
             this.ctrlPartner.TabIndex = 0;
             // 
             // pvCommunity
             // 
             this.pvCommunity.Controls.Add(this.ctrlCommunity);
             this.pvCommunity.ItemSize = new System.Drawing.SizeF(79F, 27F);
-            this.pvCommunity.Location = new System.Drawing.Point(5, 31);
+            this.pvCommunity.Location = new System.Drawing.Point(5, 29);
             this.pvCommunity.Name = "pvCommunity";
-            this.pvCommunity.Size = new System.Drawing.Size(1266, 601);
+            this.pvCommunity.Size = new System.Drawing.Size(1266, 603);
             this.pvCommunity.Text = "Товариства";
             // 
             // ctrlCommunity
@@ -273,7 +273,7 @@ namespace ConsumerWorkplace_v_1._0
             this.ctrlCommunity.Location = new System.Drawing.Point(0, 0);
             this.ctrlCommunity.Margin = new System.Windows.Forms.Padding(4);
             this.ctrlCommunity.Name = "ctrlCommunity";
-            this.ctrlCommunity.Size = new System.Drawing.Size(1266, 601);
+            this.ctrlCommunity.Size = new System.Drawing.Size(1266, 603);
             this.ctrlCommunity.TabIndex = 0;
             // 
             // pvPaymentProcessing
