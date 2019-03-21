@@ -71,6 +71,8 @@ namespace IpsViewComponentLibrary.PartnerControls
                     gvViewPartners.DataSource = partnerList.Where(rec => rec.AgrStatus == 0);
                     break;
             }
+            //show count Partners
+            lblCountPartners.Text = gvViewPartners.RowCount.ToString();
         }
 
         private void InitTemplate()

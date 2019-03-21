@@ -49,6 +49,8 @@
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
             this.gvUndistribPays = new Telerik.WinControls.UI.RadGridView();
             this.bindingExtrnPay = new System.Windows.Forms.BindingSource(this.components);
+            this.lblCountPays = new System.Windows.Forms.Label();
+            this.lblTextCountPays = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
@@ -124,6 +126,8 @@
             this.radPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radPanel2.Controls.Add(this.lblTextCountPays);
+            this.radPanel2.Controls.Add(this.lblCountPays);
             this.radPanel2.Controls.Add(this.gvUndistribPays);
             this.radPanel2.Location = new System.Drawing.Point(3, 77);
             this.radPanel2.Name = "radPanel2";
@@ -255,7 +259,7 @@
             this.gvUndistribPays.Name = "gvUndistribPays";
             this.gvUndistribPays.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvUndistribPays.ReadOnly = true;
-            this.gvUndistribPays.Size = new System.Drawing.Size(888, 377);
+            this.gvUndistribPays.Size = new System.Drawing.Size(888, 357);
             this.gvUndistribPays.TabIndex = 7;
             this.gvUndistribPays.ThemeName = "Office2013Light";
             this.gvUndistribPays.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvUndistribPays_CellDoubleClick);
@@ -264,6 +268,25 @@
             // bindingExtrnPay
             // 
             this.bindingExtrnPay.DataSource = typeof(ipsFormsDesign.Model.ExternalPay);
+            // 
+            // lblCountPays
+            // 
+            this.lblCountPays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountPays.Location = new System.Drawing.Point(841, 376);
+            this.lblCountPays.Name = "lblCountPays";
+            this.lblCountPays.Size = new System.Drawing.Size(50, 13);
+            this.lblCountPays.TabIndex = 8;
+            this.lblCountPays.Text = "0";
+            this.lblCountPays.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblTextCountPays
+            // 
+            this.lblTextCountPays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTextCountPays.Location = new System.Drawing.Point(759, 376);
+            this.lblTextCountPays.Name = "lblTextCountPays";
+            this.lblTextCountPays.Size = new System.Drawing.Size(76, 13);
+            this.lblTextCountPays.TabIndex = 9;
+            this.lblTextCountPays.Text = "К-ть рядків";
             // 
             // ImportDBFControl
             // 
@@ -304,5 +327,7 @@
         private Telerik.WinControls.UI.RadPanel radPanel2;
         private Telerik.WinControls.UI.RadGridView gvUndistribPays;
         private System.Windows.Forms.BindingSource bindingExtrnPay;
+        private System.Windows.Forms.Label lblTextCountPays;
+        private System.Windows.Forms.Label lblCountPays;
     }
 }

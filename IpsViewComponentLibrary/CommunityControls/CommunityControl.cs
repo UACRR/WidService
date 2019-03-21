@@ -44,6 +44,8 @@ namespace IpsViewComponentLibrary.CommunityControls
         {
             _gridStateRecorder.RecordState();
             gvViewPartners.DataSource = SetCommunityList?.Invoke(-1);
+            //show count Partners
+            lblCountPartners.Text = gvViewPartners.RowCount.ToString();
             gvViewPartners.ResetBindings();
             _gridStateRecorder.RestoreState();
         }
@@ -51,6 +53,8 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void CommunityControlLoad(object sender, EventArgs e)
         {
             gvViewPartners.DataSource = SetCommunityList?.Invoke(-1);
+            //show count Partners
+            lblCountPartners.Text = gvViewPartners.RowCount.ToString();
         }
 
         private void btnAddCommunity_Click(object sender, EventArgs e)
