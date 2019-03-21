@@ -33,18 +33,14 @@ namespace ConsumerWorkplace_v_1._0.Presenters
 
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
-        private ConsumerWorkplace _parentForm = null;
 
-        public BigRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, ConsumersViewBigRightControl mainGrid, ConsumerWorkplace parentForm)
+        public BigRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, ConsumersViewBigRightControl mainGrid)
         {
-            _parentForm = parentForm;
             _service = service;
             _partnerService = partnerService;
             _mainGrid = mainGrid;
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             SubscribeEvents();
-
-            //new ReportsControlPresenter(_cabinetBigRightForm.cabinet..reportsControl, _service);
         }
 
         //всі підписки на події в контролах
@@ -59,6 +55,8 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private void SubscribeBRCabinet()
         {
             _cabinetBigRightForm.cabinet.GetCustomer += DataNeed_GetCustomer;
+            _cabinetBigRightForm.cabinet.UpdateAllViews += UpdateAllViews;
+
             _cabinetBigRightForm.cabinet.GetGeneralAgreementView += DataNeed_GetGeneralAgreementView;
             _cabinetBigRightForm.cabinet.GetLicenseAgreementView += DataNeed_GetLicenseAgreementView;
             _cabinetBigRightForm.cabinet.GetAuthorsForLicenseView += DataNeed_GetAuthorsForLicenseView;
@@ -67,6 +65,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.cabinet.GetReferenceView += DataNeed_GetReferenceView;
             _cabinetBigRightForm.cabinet.GetRequestsView += DataNeed_GetRequestsView;
             _cabinetBigRightForm.cabinet.GetMusicDesignView += DataNeed_GetMusicDesignView;
+
             _cabinetBigRightForm.cabinet.OnSaveCustomerNeed += SaveCustomer;
             _cabinetBigRightForm.cabinet.OnAddNewDocument += AddNewDocument;
             _cabinetBigRightForm.cabinet.OnViewDocumentNeed += ViewExistDocument;
@@ -89,12 +88,21 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetBigRightForm.IsInit = true;
         }
 
+        private void UpdateAllViews(int id)
+        {
+            var generalAgreementBigRightViews = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>();
+            ViewsSingleton.SetGeneralAgreementBigRightView(generalAgreementBigRightViews);
+
+            var licenseAgreementBigRightViews = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();
+            ViewsSingleton.SetLicenseAgreementBigRightView(licenseAgreementBigRightViews);
+
+            var requestsOrReferenceBigRightViews =_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>();
+        }
+
         private bool FileDelete(int id)
         {
             return _service.DeleteFileById(id);
         }
-
-        public CabinetBigRightForm Cabinet => _cabinetBigRightForm;
 
         #region * * * ОТРИМАННЯ ДАНИХ VIEW * * * 
 
@@ -103,20 +111,20 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             return _service.GetData(custId);
         }
 
-        private List<GeneralAgreementBigRightView> DataNeed_GetGeneralAgreementView(int custId)
-        {
-            return _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", custId).ToListOfType<GeneralAgreementBigRightView>();
-        }
+        //private List<GeneralAgreementBigRightView> DataNeed_GetGeneralAgreementView(int custId)
+        //{
+        //    return _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", custId).ToListOfType<GeneralAgreementBigRightView>();
+        //}
 
-        private List<LicenseAgreementBigRightView> DataNeed_GetLicenseAgreementView(int custId)
-        {
-            return _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", custId).ToListOfType<LicenseAgreementBigRightView>();
-        }
+        //private List<LicenseAgreementBigRightView> DataNeed_GetLicenseAgreementView(int custId)
+        //{
+        //    return _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", custId).ToListOfType<LicenseAgreementBigRightView>();
+        //}
 
-        private List<RequestsOrReferenceBigRightView> DataNeed_GetRequestsView(int custId)
-        {
-            return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", custId).ToListOfType<RequestsOrReferenceBigRightView>();
-        }
+        //private List<RequestsOrReferenceBigRightView> DataNeed_GetRequestsView(int custId)
+        //{
+        //    return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", custId).ToListOfType<RequestsOrReferenceBigRightView>();
+        //}
 
         private List<RequestsOrReferenceBigRightView> DataNeed_GetReferenceView(int custId)
         {
@@ -365,7 +373,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private void UpdateData(int id)
         {
             //_mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
-            _mainGrid.DataSource = _service.getMainViewBR(_currentNodeDocType, _currentNodeValue);
+            var viewList = _service.getMainViewBR(_currentNodeDocType, _currentNodeValue);
+            _mainGrid.DataSource = viewList;
+            var item = viewList.SingleOrDefault(rec => rec.CustId == ViewsSingleton.ConsumerBigRightView.CustId);
+            ViewsSingleton.SetConsumerBigRightView(item);
+            _cabinetBigRightForm.Title = item?.Name;
         }
 
         public void UpdateDataGrid()

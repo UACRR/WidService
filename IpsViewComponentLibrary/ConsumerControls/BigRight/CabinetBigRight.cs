@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
@@ -46,8 +47,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         #region events точечного отримання даних
 
+        public event ActionByIdEventHandler UpdateAllViews;
 
         public event ReturnObjectEventHandler<Customer> GetCustomer;
+
         public event ReturnViewEventHandler<GeneralAgreementBigRightView> GetGeneralAgreementView;
         public event ReturnViewEventHandler<LicenseAgreementBigRightView> GetLicenseAgreementView;
         public event ReturnViewEventHandler<RequestsOrReferenceBigRightView> GetRequestsView;
@@ -56,6 +59,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         public event ReturnViewEventHandler<RatedListMainBigRightView> GetRatedListMainView;
         public event ReturnViewEventHandler<RatedListSpectacleBigRightView> GetRatedListSpectacleView;
         public event ReturnViewEventHandler<RatedListMusicDesignBigRightView> GetMusicDesignView;
+
         public event GetPartnerList OnGetPartnerListNeed;
         public event ReturnObjectEventHandler<Customer> GetPartner;
 
@@ -224,11 +228,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             return OnSetPartner?.Invoke(clientId, partnerId) ?? false;
         }
 
-        public void LoadData(int custId)
+        public async void LoadData(int custId)
         {
             //_gridMainView = GetMainGridView?.Invoke(custId);
             //_gridMainView = ViewsSingleton.ConsumerBigRightView;
+            UpdateAllViews?.Invoke(custId);
             _customer = GetCustomer?.Invoke(custId);
+
             _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
             _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
             _registerRatedListView = GetRatedListMainView?.Invoke(custId);
@@ -256,7 +262,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         //оновлення даних обраної вкладки
         public void UpdateCurentTab(CabinetTabType tab)
         {
-            if (_customer == null) return;
+            if (_customer == null)
+                return;
+
             int custId = _customer.CustId;
 
             if (tab == CabinetTabType.All)
@@ -265,7 +273,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 return;
             }
 
+            UpdateAllViews?.Invoke(custId);
             _customer = GetCustomer?.Invoke(custId);
+
             switch (tab)
             {
                 case CabinetTabType.None: break;

@@ -10,15 +10,23 @@ namespace IpsViewComponentLibrary.ConsumerControls
     public class ViewsSingleton
     {
         public static ConsumerBigRightView ConsumerBigRightView { get; private set; }
-
-        public static ConsumerBigRightView GetConsumerBigRightView()
-        {
-            return ConsumerBigRightView;
-        }
-
         public static void SetConsumerBigRightView(ConsumerBigRightView view)
         {
             ConsumerBigRightView = view;
         }
+
+        public static List<GeneralAgreementBigRightView> GeneralAgreementBigRightView { get; private set; }
+        public static void SetGeneralAgreementBigRightView(List<GeneralAgreementBigRightView> view)
+        {
+            GeneralAgreementBigRightView = view;
+        }
+
+        public static List<LicenseAgreementBigRightView> LicenseAgreementBigRightView { get; private set; }
+        public static void SetLicenseAgreementBigRightView(List<LicenseAgreementBigRightView> view)
+        {
+            LicenseAgreementBigRightView = view;
+        }
+
+
     }
 }

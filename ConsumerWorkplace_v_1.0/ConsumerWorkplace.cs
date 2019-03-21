@@ -113,7 +113,7 @@ namespace ConsumerWorkplace_v_1._0
                     foreach (var item in list)
                         treeViewBR.Nodes.Add(item);
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight, this );
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight);
                     IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
                         // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
@@ -229,7 +229,7 @@ namespace ConsumerWorkplace_v_1._0
                     foreach (var item in list2)
                         treeViewBR.Nodes.Add(item);
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight, this );
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight);
                     IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
 
                     treeViewBR.SelectedNode = treeViewBR.Nodes[0];

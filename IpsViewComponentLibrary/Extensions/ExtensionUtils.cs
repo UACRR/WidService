@@ -29,6 +29,8 @@ namespace IpsViewComponentLibrary.Extensions
     public delegate List<CustCmRight> GetCommunityRightList(int custId);
 
     public delegate void EmptyEventHandler();
+    public delegate void ActionByIdEventHandler(int id);
+
 
     public delegate bool ActionWithTwoId(int custId, int id);
     public delegate bool ActionByIdDelegate(int id);
