@@ -338,13 +338,13 @@ namespace ipsFormsDesign.Services
                     case "prcntARltJText":
                         item.Range.Text = prcntARltJText;
                         break;
-                    case "СstLegalAddress":
+                    case "CstLegalAddress":
                         item.Range.Text = reAddress;
                         break;
-                    case "СstResidentialAddress":
+                    case "CstResidentialAddress":
                         item.Range.Text = faAddress;
                         break;
-                    case "СstCorrespAddress":
+                    case "CstCorrespAddress":
                         item.Range.Text = leAddress;
                         break;
                     case "CstBDate":
@@ -353,7 +353,7 @@ namespace ipsFormsDesign.Services
                     case "CstINN":
                         item.Range.Text = Okpo;
                         break;
-                    case "СstEDRPOU":
+                    case "CstEDRPOU":
                         item.Range.Text = Okpo;
                         break;
                     case "CstPasport":
@@ -362,10 +362,10 @@ namespace ipsFormsDesign.Services
                     case "CstPasportIssued":
                         item.Range.Text = PasportIssued;
                         break;
-                    case "СstBankName":
+                    case "CstBankName":
                         item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
                         break;
-                    case "СstBankMFO":
+                    case "CstBankMFO":
                         item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
                         break;
                     case "CstBankEDRPOU":
@@ -374,23 +374,23 @@ namespace ipsFormsDesign.Services
                     case "CstBankAcc":
                         item.Range.Text = $"{bankacc?.TransitNumber ?? string.Empty}";
                         break;
-                    case "СstAcc":
+                    case "CstAcc":
                         item.Range.Text = $"{bankacc?.AccountNumber ?? string.Empty}";
                         break;
                     case "CstPhoneHome":
                         item.Range.Text = phoneHome;
                         break;
-                    case "СstPhone":
+                    case "CstPhone":
                         item.Range.Text = phone;
                         break;
                     case "CstPhoneWork":
                         item.Range.Text = phoneWork;
                         break;
-                    case "СstEmail":
+                    case "CstEmail":
                         item.Range.Text = eMail;
                         break;
 
-                    case "СstRegNumber":
+                    case "CstRegNumber":
                         item.Range.Text = CstRegNumber;
                         break;
 
@@ -400,7 +400,7 @@ namespace ipsFormsDesign.Services
                     case "CstVAT":
                         item.Range.Text = CstVAT;
                         break;
-                    case "СstVATType":
+                    case "CstVATType":
                         item.Range.Text = CstVATType;
                         break;
 
@@ -645,6 +645,9 @@ namespace ipsFormsDesign.Services
                     case "docDate":
                         item.Range.Text = DocDate;
                         break;
+                    case "docDateC":
+                        item.Range.Text = DocDate;
+                        break;
                     case "docNumberYear":
                         item.Range.Text = $"{licenseAgrParam.LicDate:yy}";
                         break;
@@ -689,7 +692,7 @@ namespace ipsFormsDesign.Services
                         FormTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
                         break;
                     case "TablePLsm":
-                        FormTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
+ //                       FormTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
                         break;
                     case "TablePLfe":
                         FormTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
@@ -1332,7 +1335,7 @@ namespace ipsFormsDesign.Services
             string ShowAct = String.Empty;
             string docNumberC = String.Empty;
             string docDateC = String.Empty;
-            string docDateEndС = String.Empty;
+            string docDateEndC = String.Empty;
             string prcntShow = string.Empty;
             string prcntShowText = string.Empty;
             string pPayShowGrnText = string.Empty;
@@ -1471,7 +1474,7 @@ namespace ipsFormsDesign.Services
                     (rec.LicVersion == licA.LicVersion)).Single();
 
             docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
-            docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
+            docDateEndC = $"{licagr?.DateEnd:dd.MM.yyyy}";
             decimal prcntrate = Convert.ToDecimal(licenseBigR?.Rate);
             prcntShow = prcntrate.ToString("F");
             prcntShowText = Utils.PrcnPhrase(prcntrate);
@@ -1560,7 +1563,7 @@ namespace ipsFormsDesign.Services
                     case "CstPersonReason":
                         item.Range.Text = CstPersonReason;
                         break;
-                    case "СstNikName":
+                    case "CstNikName":
                         item.Range.Text = CstNikName;
                         break;
                     case "NikName":
@@ -1672,8 +1675,8 @@ namespace ipsFormsDesign.Services
                     case "PayShowDataDo":
                         item.Range.Text = PayShowDataDo;
                         break;
-                    case "docDateEndС":
-                        item.Range.Text = docDateEndС;
+                    case "docDateEndC":
+                        item.Range.Text = docDateEndC;
                         break;
                     case "TableAvtor":
                         //formTableAvtor(item.Range.Tables, array_licAuthorB);
@@ -2166,11 +2169,20 @@ namespace ipsFormsDesign.Services
         private void FormTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
-            if (tables.Count == 0) return;
-            Table table = tables[1];
+            int tblCount;
+            tblCount = tables.Count;
+       
+                Table table = tables[1];
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
+            if (tables.Count < 2)
+            {
+        //        curRow = table.Rows.Add();
+                return;
+            }
+
+
             foreach (var item in BuisnessPlace)
             {
                 places = item;
