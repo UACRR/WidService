@@ -78,7 +78,7 @@
             this.ctrlConsumerList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlConsumerList.ConsumerDataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
+            this.ctrlConsumerList.ConsumerDataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
             this.ctrlConsumerList.Location = new System.Drawing.Point(0, 2);
             this.ctrlConsumerList.Name = "ctrlConsumerList";
             this.ctrlConsumerList.SelectedConsumer = null;
@@ -101,7 +101,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Оберіть споживача";
+            this.Text = "Оберіть користувача";
             this.ThemeName = "Office2013Light";
             this.panelCommand.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();

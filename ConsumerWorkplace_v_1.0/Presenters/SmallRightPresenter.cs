@@ -43,7 +43,7 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
 
-            _cabinetSmallRightForm.OnUpdate += LoadCustomerCabinet;
+            _cabinetSmallRightForm.OnUpdate += SmallRightForm_OnUpdate; ;
             _cabinetSmallRightForm.cabinet.SaveCustomer += SaveCustomer;
             _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
             _cabinetSmallRightForm.cabinet.GetPartner += Cabinet_GetPartner;
@@ -155,7 +155,17 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         }
         
         //відкрити кабінет користувача
-        private void LoadCustomerCabinet(int custId)
+        private void LoadCustomerCabinet(ConsumerSmallRightView item)
+        {
+            UpdateData(item.CustId);
+        }
+
+        private void SmallRightForm_OnUpdate(int id)
+        {
+            UpdateData(id);
+        }
+
+        private void UpdateData(int custId)
         {
             Customer mainCust = null, regCust = null;
             Task[] getCustData = new Task[2];
@@ -172,8 +182,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             _cabinetSmallRightForm.Title = _mainGrid?.ViewRow?.Name;
 
             WindowsFormsVisible.ShowHiddenWindow(_cabinetSmallRightForm);
-
-            GC.Collect();
         }
 
         private static void CloneRegisterRL(Customer mainCust, Customer regCust)

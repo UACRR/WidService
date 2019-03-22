@@ -87,7 +87,7 @@
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn3.Width = 95;
             gridViewTextBoxColumn4.FieldName = "Name";
-            gridViewTextBoxColumn4.HeaderText = "Товариство";
+            gridViewTextBoxColumn4.HeaderText = "Спільнота";
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Name = "Name";
             gridViewTextBoxColumn4.Width = 540;
@@ -159,7 +159,7 @@
             this.btnAddCommunity.Name = "btnAddCommunity";
             this.btnAddCommunity.Size = new System.Drawing.Size(220, 24);
             this.btnAddCommunity.TabIndex = 13;
-            this.btnAddCommunity.Text = "Додати нове товариство";
+            this.btnAddCommunity.Text = "Додати нову Спільноту";
             this.btnAddCommunity.ThemeName = "Office2013Light";
             this.btnAddCommunity.Click += new System.EventHandler(this.btnAddCommunity_Click);
             // 

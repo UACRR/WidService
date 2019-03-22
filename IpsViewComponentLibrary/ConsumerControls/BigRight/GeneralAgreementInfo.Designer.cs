@@ -1,4 +1,6 @@
-﻿namespace IpsViewComponentLibrary.ConsumerControls.BigRight
+﻿using System.Windows.Forms;
+
+namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 {
     partial class GeneralAgreementInfo
     {
@@ -80,7 +82,7 @@
             // 
             // txtClient
             // 
-            this.txtClient.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "Name", true));
+            this.txtClient.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "Name", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtClient.Enabled = false;
             this.txtClient.Location = new System.Drawing.Point(82, 3);
             this.txtClient.Name = "txtClient";
@@ -91,11 +93,11 @@
             // 
             // bsAgreementAddBR
             // 
-            this.bsAgreementAddBR.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
+            this.bsAgreementAddBR.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             // 
             // txtAgrNumberBr
             // 
-            this.txtAgrNumberBr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "AgrNumber", true));
+            this.txtAgrNumberBr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "AgrNumber", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtAgrNumberBr.Enabled = false;
             this.txtAgrNumberBr.Location = new System.Drawing.Point(563, 3);
             this.txtAgrNumberBr.Name = "txtAgrNumberBr";
@@ -115,7 +117,7 @@
             // 
             // txtDateBegin
             // 
-            this.txtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateBegin", true));
+            this.txtDateBegin.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateBegin", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtDateBegin.Enabled = false;
             this.txtDateBegin.Location = new System.Drawing.Point(84, 29);
             this.txtDateBegin.Name = "txtDateBegin";
@@ -135,7 +137,7 @@
             // 
             // txtAvance
             // 
-            this.txtAvance.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "PrePayRest", true));
+            this.txtAvance.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "PrePayRest", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtAvance.Enabled = false;
             this.txtAvance.Location = new System.Drawing.Point(603, 29);
             this.txtAvance.Name = "txtAvance";
@@ -155,7 +157,7 @@
             // 
             // txtBorg
             // 
-            this.txtBorg.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "Borg", true));
+            this.txtBorg.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "Borg", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtBorg.Enabled = false;
             this.txtBorg.Location = new System.Drawing.Point(444, 29);
             this.txtBorg.Name = "txtBorg";
@@ -175,7 +177,7 @@
             // 
             // txtDateEnd
             // 
-            this.txtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateEnd", true));
+            this.txtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtDateEnd.Enabled = false;
             this.txtDateEnd.Location = new System.Drawing.Point(227, 29);
             this.txtDateEnd.Name = "txtDateEnd";
@@ -195,7 +197,7 @@
             // 
             // txtState
             // 
-            this.txtState.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "StatusName", true));
+            this.txtState.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "StatusName", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtState.Enabled = false;
             this.txtState.Location = new System.Drawing.Point(40, 55);
             this.txtState.Name = "txtState";
@@ -215,7 +217,7 @@
             // 
             // txtDateLastPay
             // 
-            this.txtDateLastPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DatePayLast", true));
+            this.txtDateLastPay.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "DatePayLast", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtDateLastPay.Enabled = false;
             this.txtDateLastPay.Location = new System.Drawing.Point(312, 55);
             this.txtDateLastPay.Name = "txtDateLastPay";
@@ -235,7 +237,7 @@
             // 
             // txtAgent
             // 
-            this.txtAgent.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "PartnerName", true));
+            this.txtAgent.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddBR, "PartnerName", true, DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtAgent.Enabled = false;
             this.txtAgent.Location = new System.Drawing.Point(467, 55);
             this.txtAgent.Name = "txtAgent";

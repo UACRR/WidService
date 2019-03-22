@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
@@ -35,28 +36,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         //дані
         private Customer _customer;
-        private MainGridConsumerBigRightView _gridMainView;
+        //private ConsumerBigRightView _gridMainView;
         private IList<GeneralAgreementBigRightView> _generalAgreementView;
         private IList<LicenseAgreementBigRightView> _licenseAgreementView;
         private IList<RequestsOrReferenceBigRightView> _requestsLicenseView;
         private IList<RequestsOrReferenceBigRightView> _referenceLicenseView;
         private IList<AuthorsForLicenseBigRightView> _authorsForLicenseView;
-        private IList<RatedListMainBigRightView> _registerRatedListView;
+        private IList<RatedListBigRightView> _registerRatedListView;
         private IList<RatedListSpectacleBigRightView> _rlSpectacleView;
 
         #region events точечного отримання даних
 
+        public event ActionByIdEventHandler UpdateAllViews;
 
         public event ReturnObjectEventHandler<Customer> GetCustomer;
-        public event ReturnObjectEventHandler<MainGridConsumerBigRightView> GetMainGridView;
-        public event ReturnViewEventHandler<GeneralAgreementBigRightView> GetGeneralAgreementView;
-        public event ReturnViewEventHandler<LicenseAgreementBigRightView> GetLicenseAgreementView;
-        public event ReturnViewEventHandler<RequestsOrReferenceBigRightView> GetRequestsView;
-        public event ReturnViewEventHandler<RequestsOrReferenceBigRightView> GetReferenceView;
-        public event ReturnViewEventHandler<AuthorsForLicenseBigRightView> GetAuthorsForLicenseView;
-        public event ReturnViewEventHandler<RatedListMainBigRightView> GetRatedListMainView;
-        public event ReturnViewEventHandler<RatedListSpectacleBigRightView> GetRatedListSpectacleView;
-        public event ReturnViewEventHandler<RatedListMusicDesignBigRightView> GetMusicDesignView;
+
         public event GetPartnerList OnGetPartnerListNeed;
         public event ReturnObjectEventHandler<Customer> GetPartner;
 
@@ -155,7 +149,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             ctrlPayslips.OnGetRegisterRatedList += CtrlPayslips_OnGetRegisterRatedList;
             ctrlPayslips.OnRegisterItemListNeed += CtrlPayslips_OnRegisterItemListNeed;
             ctrlPayslips.SavePariodCommandExecuted += CtrlPayslips_SavePariodCommandExecuted;
-            ctrlPayslips.GetMusicDesing += DataNeedRatedList_GetMusicDesing;
             // представник
             ctrlPartner.OnGetPartnerListNeed += CtrlPartner_OnGetPartnerListNeed;
             ctrlPartner.OnSetPartner += CtrlPartner_OnSetPartner;
@@ -227,30 +220,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         public void LoadData(int custId)
         {
-
-            _gridMainView = GetMainGridView?.Invoke(custId);
+            UpdateAllViews?.Invoke(custId);
             _customer = GetCustomer?.Invoke(custId);
-            _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
-            _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
-            _registerRatedListView = GetRatedListMainView?.Invoke(custId);
-            _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
-            _requestsLicenseView = GetRequestsView?.Invoke(custId);
-            _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
-            _referenceLicenseView = GetReferenceView?.Invoke(custId);
 
             ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
             ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
-            ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
-            ctrlLicense.SetDataSources(_gridMainView);
-            ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
-            ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
+            ctrlGeneralAgreement.SetAndUpdateData(_customer);
+            ctrlLicense.SetData(_customer);
+            ctrlPayslips.SetAndUpdateData(_customer);
             var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
             SetupRl(_customer, custRl);
             ctrlCalculation.Customer = _customer;
             ctrlPaysInfo.Customer = _customer;
-            ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
-            ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
-            ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
+            ctrlRequest.SetAndUpdateData(_customer);
+            ctrlReference.SetAndUpdateData(_customer);
+            ctrlContactHeader.SetControlTextInfoBigRight(_customer);
             ctrlFiles.SetAndUpdateData(_customer);
             ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
         }
@@ -258,7 +242,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         //оновлення даних обраної вкладки
         public void UpdateCurentTab(CabinetTabType tab)
         {
-            if (_customer == null) return;
+            if (_customer == null)
+                return;
+
             int custId = _customer.CustId;
 
             if (tab == CabinetTabType.All)
@@ -267,8 +253,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 return;
             }
 
+            UpdateAllViews?.Invoke(custId);
             _customer = GetCustomer?.Invoke(custId);
-            _gridMainView = GetMainGridView?.Invoke(custId);
+
             switch (tab)
             {
                 case CabinetTabType.None: break;
@@ -276,72 +263,45 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 case CabinetTabType.Anketa:
                     ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
                     ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
-
                     break;
 
                 case CabinetTabType.GeneralAgreement:
-                    {
-                        _generalAgreementView = GetGeneralAgreementView?.Invoke(custId);
-                        ctrlGeneralAgreement.SetAndUpdateData(_customer, _gridMainView, _generalAgreementView);
-                    }
+                    ctrlGeneralAgreement.SetAndUpdateData(_customer);
                     break;
-
 
                 case CabinetTabType.RegisterRatedList:
                 case CabinetTabType.Calculations:
-                    {
-                        _registerRatedListView = GetRatedListMainView?.Invoke(custId);
-                        _rlSpectacleView = GetRatedListSpectacleView?.Invoke(custId);
-                        ctrlPayslips.SetAndUpdateData(_customer, _gridMainView, _registerRatedListView, _rlSpectacleView);
-                        var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
-                        SetupRl(_customer, custRl);
-                        ctrlCalculation.Customer = _customer;
-                    }
+                    ctrlPayslips.SetAndUpdateData(_customer);
+                    var custRl = OnGetRegisterRatedList?.Invoke(_customer.CustId);
+                    SetupRl(_customer, custRl);
+                    ctrlCalculation.Customer = _customer;
                     break;
 
                 case CabinetTabType.PaysInfo:
-                    {
-                        ctrlPaysInfo.Customer = _customer;
-                    }
+                    ctrlPaysInfo.Customer = _customer;
                     break;
 
                 case CabinetTabType.Prepays:
-                    {
-
-                    }
                     break;
 
                 case CabinetTabType.Licenses:
                 case CabinetTabType.Requests:
                 case CabinetTabType.References:
-                    {
-                        _licenseAgreementView = GetLicenseAgreementView?.Invoke(custId);
-                        ctrlLicense.SetDataSources(_gridMainView);
-                        ctrlLicense.SetData(_customer, _licenseAgreementView?.ToList());
-                        _requestsLicenseView = GetRequestsView?.Invoke(custId);
-                        _authorsForLicenseView = GetAuthorsForLicenseView?.Invoke(custId);
-                        _referenceLicenseView = GetReferenceView?.Invoke(custId);
-                        ctrlRequest.SetAndUpdateData(_customer, _gridMainView, _requestsLicenseView, _authorsForLicenseView);
-                        ctrlReference.SetAndUpdateData(_customer, _gridMainView, _referenceLicenseView, _authorsForLicenseView);
-                    }
+                    ctrlLicense.SetData(_customer);
+                    ctrlRequest.SetAndUpdateData(_customer);
+                    ctrlReference.SetAndUpdateData(_customer);
                     break;
 
                 case CabinetTabType.Contacts:
-                    {
-                        ctrlContactHeader.SetControlTextInfoBigRight(_customer, _gridMainView);
-                    }
+                    ctrlContactHeader.SetControlTextInfoBigRight(_customer);
                     break;
 
                 case CabinetTabType.Files:
-                    {
-                        ctrlFiles.SetAndUpdateData(_customer);
-                    }
+                    ctrlFiles.SetAndUpdateData(_customer);
                     break;
 
                 case CabinetTabType.Agent:
-                    {
-                        ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
-                    }
+                    ctrlPartner.SetPartnerData(GetPartner?.Invoke(custId), custId);
                     break;
             }
         }
@@ -373,11 +333,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         private List<Customer> CtrlPartner_OnGetPartnerListNeed()
         {
             return OnGetPartnerListNeed?.Invoke();
-        }
-
-        private List<RatedListMusicDesignBigRightView> DataNeedRatedList_GetMusicDesing()
-        {
-            return GetMusicDesignView?.Invoke(0);
         }
 
         private List<PaidPeriod> CtrlPayslips_SavePariodCommandExecuted(int id, List<PaidPeriod> e)

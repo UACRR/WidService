@@ -23,10 +23,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
         /// Встановити інформацію про користувача Малих прав
         /// </summary>
         /// <param name="customer"></param>
-        /// <param name="rightView"></param>
         public void SetControlTextInfoSmallRight(Customer customer)
         {
-            var userInfo = customer?.Company?.AnketaCompany?.SingleOrDefault();
+            var userInfo = customer.Company?.AnketaCompany?.SingleOrDefault();
             var head = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1);
             var contactPerson = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3);
             txtConsumerName.Text = userInfo?.Name ?? string.Empty;
@@ -43,13 +42,14 @@ namespace IpsViewComponentLibrary.ConsumerControls
         /// Встановити інформацію про користувача Великих прав
         /// </summary>
         /// <param name="customer"></param>
-        /// <param name="rightView"></param>
-        public void SetControlTextInfoBigRight(Customer customer, MainGridConsumerBigRightView rightView)
+        public void SetControlTextInfoBigRight(Customer customer)
         {
             var head = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1);
             var contactPerson = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3);
-            txtConsumerName.Text = rightView?.Name ?? string.Empty;
-            txtConsumerInnokpo.Text = rightView?.Innokpo ?? string.Empty;
+            var view = ViewsSingleton.ConsumerBigRightView;
+
+            txtConsumerName.Text = view?.Name ?? string.Empty;
+            txtConsumerInnokpo.Text = view?.Innokpo ?? string.Empty;
             txtContactName.Text = contactPerson?.Empl?.FirstName + " " + contactPerson?.Empl?.LastName + " " + contactPerson?.Empl?.SurName;
             txtContactPhone.Text = contactPerson?.Empl?.PhoneNumber ?? string.Empty;
             txtContactEmail.Text = contactPerson?.Empl?.Email ?? string.Empty;

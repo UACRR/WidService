@@ -525,7 +525,7 @@
             // 
             // ctrlAgrInfo
             // 
-            this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
+            this.ctrlAgrInfo.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             this.ctrlAgrInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.ctrlAgrInfo.Location = new System.Drawing.Point(0, 0);
             this.ctrlAgrInfo.MaximumSize = new System.Drawing.Size(705, 79);

@@ -286,7 +286,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // checkIsTour
             // 
             this.checkIsTour.CheckAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            this.checkIsTour.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsLicenseBigR, "IsTour", true));
+            this.checkIsTour.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsLicenseBigR, "IsTour", true, DataSourceUpdateMode.OnPropertyChanged));
             this.checkIsTour.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.checkIsTour.ForeColor = System.Drawing.Color.Black;
             this.checkIsTour.Location = new System.Drawing.Point(12, 172);
@@ -312,7 +312,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtWhereTour
             // 
-            this.txtWhereTour.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "WhereTour", true));
+            this.txtWhereTour.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "WhereTour", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtWhereTour.Location = new System.Drawing.Point(154, 197);
             this.txtWhereTour.Name = "txtWhereTour";
             this.txtWhereTour.Size = new System.Drawing.Size(507, 21);
@@ -321,7 +321,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // ddlPlaceName
             // 
-            this.ddlPlaceName.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicense, "PlaceId", true));
+            this.ddlPlaceName.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicense, "PlaceId", true, DataSourceUpdateMode.OnPropertyChanged));
             this.ddlPlaceName.DataSource = this.bsClnBusinessPlace;
             this.ddlPlaceName.DisplayMember = "PlaceName";
             this.ddlPlaceName.Location = new System.Drawing.Point(61, 11);
@@ -351,7 +351,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtAddress
             // 
-            this.txtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceAddress", true));
+            this.txtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceAddress", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtAddress.Location = new System.Drawing.Point(61, 38);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(600, 21);
@@ -360,7 +360,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtLicTerm
             // 
-            this.txtLicTerm.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "LicTerm", true));
+            this.txtLicTerm.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "LicTerm", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtLicTerm.Location = new System.Drawing.Point(462, 131);
             this.txtLicTerm.Name = "txtLicTerm";
             this.txtLicTerm.Size = new System.Drawing.Size(49, 21);
@@ -396,7 +396,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtTicketPriceUsd
             // 
-            this.txtTicketPriceUsd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "TicketPriceUsd", true));
+            this.txtTicketPriceUsd.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "TicketPriceUsd", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtTicketPriceUsd.Location = new System.Drawing.Point(462, 105);
             this.txtTicketPriceUsd.Name = "txtTicketPriceUsd";
             this.txtTicketPriceUsd.Size = new System.Drawing.Size(49, 21);
@@ -405,7 +405,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtValuePlace
             // 
-            this.txtValuePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnPlaceHoll, "ValuePlace", true));
+            this.txtValuePlace.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnPlaceHoll, "ValuePlace", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtValuePlace.Location = new System.Drawing.Point(177, 78);
             this.txtValuePlace.Name = "txtValuePlace";
             this.txtValuePlace.ReadOnly = true;
@@ -437,7 +437,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtTicketPriceUah
             // 
-            this.txtTicketPriceUah.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "TicketPriceNc", true));
+            this.txtTicketPriceUah.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "TicketPriceNc", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtTicketPriceUah.Location = new System.Drawing.Point(462, 78);
             this.txtTicketPriceUah.Name = "txtTicketPriceUah";
             this.txtTicketPriceUah.Size = new System.Drawing.Size(49, 21);
@@ -446,7 +446,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtFillingRate
             // 
-            this.txtFillingRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "FillingRate", true));
+            this.txtFillingRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "FillingRate", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtFillingRate.Location = new System.Drawing.Point(177, 105);
             this.txtFillingRate.Name = "txtFillingRate";
             this.txtFillingRate.Size = new System.Drawing.Size(49, 21);
@@ -473,7 +473,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtPerformNumb
             // 
-            this.txtPerformNumb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "PerformNumb", true));
+            this.txtPerformNumb.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "PerformNumb", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtPerformNumb.Location = new System.Drawing.Point(177, 132);
             this.txtPerformNumb.Name = "txtPerformNumb";
             this.txtPerformNumb.Size = new System.Drawing.Size(49, 21);
@@ -516,7 +516,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtMusicRate
             // 
-            this.txtMusicRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "RateMusic", true));
+            this.txtMusicRate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "RateMusic", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtMusicRate.Location = new System.Drawing.Point(292, 3);
             this.txtMusicRate.MaxLength = 6;
             this.txtMusicRate.Name = "txtMusicRate";
@@ -599,7 +599,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // dtDate
             // 
             this.dtDate.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicAgrParam, "LicDate", true));
+            this.dtDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicAgrParam, "LicDate", true, DataSourceUpdateMode.OnPropertyChanged));
             this.dtDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtDate.Location = new System.Drawing.Point(359, 10);
             this.dtDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -626,7 +626,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtLicNum
             // 
-            this.txtLicNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicAgrParam, "LicNum", true));
+            this.txtLicNum.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicAgrParam, "LicNum", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtLicNum.Location = new System.Drawing.Point(119, 10);
             this.txtLicNum.Name = "txtLicNum";
             this.txtLicNum.Size = new System.Drawing.Size(206, 21);
@@ -680,7 +680,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtStatusName
             // 
-            this.txtStatusName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "StatusName", true));
+            this.txtStatusName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "StatusName", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtStatusName.Location = new System.Drawing.Point(148, 123);
             this.txtStatusName.Name = "txtStatusName";
             this.txtStatusName.ReadOnly = true;
@@ -690,11 +690,11 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // bsConsumerBigRightView
             // 
-            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.MainGridConsumerBigRightView);
+            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             // 
             // txtAgrDate
             // 
-            this.txtAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "AgrDate", true));
+            this.txtAgrDate.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "AgrDate", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtAgrDate.Location = new System.Drawing.Point(370, 95);
             this.txtAgrDate.Name = "txtAgrDate";
             this.txtAgrDate.ReadOnly = true;
@@ -704,7 +704,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtClientAddress
             // 
-            this.txtClientAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "JaAddress", true));
+            this.txtClientAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "JaAddress", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtClientAddress.Location = new System.Drawing.Point(148, 42);
             this.txtClientAddress.Name = "txtClientAddress";
             this.txtClientAddress.ReadOnly = true;
@@ -714,7 +714,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtAgrNumber
             // 
-            this.txtAgrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "AgrNumber", true));
+            this.txtAgrNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "AgrNumber", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtAgrNumber.Location = new System.Drawing.Point(148, 95);
             this.txtAgrNumber.Name = "txtAgrNumber";
             this.txtAgrNumber.ReadOnly = true;
@@ -724,7 +724,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtInnOkpo
             // 
-            this.txtInnOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "Innokpo", true));
+            this.txtInnOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "Innokpo", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtInnOkpo.Location = new System.Drawing.Point(148, 68);
             this.txtInnOkpo.Name = "txtInnOkpo";
             this.txtInnOkpo.ReadOnly = true;
@@ -734,7 +734,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtClientName
             // 
-            this.txtClientName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "Name", true));
+            this.txtClientName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsConsumerBigRightView, "Name", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtClientName.Location = new System.Drawing.Point(148, 15);
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.ReadOnly = true;
@@ -859,7 +859,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // ddlLang
             // 
-            this.ddlLang.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "LangCode", true));
+            this.ddlLang.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "LangCode", true, DataSourceUpdateMode.OnPropertyChanged));
             this.ddlLang.DataSource = this.bsDictLanguage;
             this.ddlLang.DisplayMember = "Name";
             this.ddlLang.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -887,7 +887,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtVinagoroda
             // 
-            this.txtVinagoroda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "Rate", true));
+            this.txtVinagoroda.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "Rate", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtVinagoroda.Location = new System.Drawing.Point(375, 123);
             this.txtVinagoroda.Name = "txtVinagoroda";
             this.txtVinagoroda.Size = new System.Drawing.Size(49, 21);
@@ -906,7 +906,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtActCode
             // 
-            this.txtActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "ActCode", true));
+            this.txtActCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "ActCode", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtActCode.Location = new System.Drawing.Point(114, 123);
             this.txtActCode.MaxLength = 1;
             this.txtActCode.Name = "txtActCode";
@@ -921,7 +921,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // ddlPerformType
             // 
-            this.ddlPerformType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "PerformType", true));
+            this.ddlPerformType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseBigR, "PerformType", true, DataSourceUpdateMode.OnPropertyChanged));
             this.ddlPerformType.DataSource = this.bsDictPerformType;
             this.ddlPerformType.DisplayMember = "Name";
             this.ddlPerformType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -949,7 +949,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // ddlGenreType
             // 
-            this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectRight, "GenreType", true));
+            this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsObjectRight, "GenreType", true, DataSourceUpdateMode.OnPropertyChanged));
             this.ddlGenreType.DataSource = this.bsDictGenreType;
             this.ddlGenreType.DisplayMember = "Name";
             this.ddlGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
@@ -968,7 +968,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // dtPremiereDate
             // 
             this.dtPremiereDate.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtPremiereDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicenseBigR, "DatePremiere", true));
+            this.dtPremiereDate.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicenseBigR, "DatePremiere", true, DataSourceUpdateMode.OnPropertyChanged));
             this.dtPremiereDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtPremiereDate.Location = new System.Drawing.Point(114, 42);
             this.dtPremiereDate.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -1002,7 +1002,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // txtName
             // 
-            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "Name", true));
+            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsObjectRight, "Name", true, DataSourceUpdateMode.OnPropertyChanged));
             this.txtName.Location = new System.Drawing.Point(114, 15);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(397, 21);
@@ -1066,7 +1066,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // ddlState
             // 
-            this.ddlState.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseAgreement, "LicType", true));
+            this.ddlState.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicenseAgreement, "LicType", true, DataSourceUpdateMode.OnPropertyChanged));
             this.ddlState.Location = new System.Drawing.Point(570, 9);
             this.ddlState.Name = "ddlState";
             this.ddlState.ReadOnly = true;
@@ -1080,7 +1080,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // ddlStatus
             // 
-            this.ddlStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicAgrParam, "LicStatus", true));
+            this.ddlStatus.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsLicAgrParam, "LicStatus", true, DataSourceUpdateMode.OnPropertyChanged));
             this.ddlStatus.Location = new System.Drawing.Point(783, 9);
             this.ddlStatus.Name = "ddlStatus";
             this.ddlStatus.ReadOnly = true;

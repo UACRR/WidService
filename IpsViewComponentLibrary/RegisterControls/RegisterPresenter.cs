@@ -24,7 +24,7 @@ namespace IpsViewComponentLibrary.RegisterControls
         private readonly ConsumerService _consumerService;
         private readonly DialogService _dialogService;
         private Register _register;
-        private ConsumerMainView _consumer;
+        private ConsumerSmallRightView _consumer;
         private bool _saved;
 
         public RegisterPresenter(RegisterView view, RegisterService registerService)

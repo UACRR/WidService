@@ -36,8 +36,8 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
-            this.txtInnOkpo = new Telerik.WinControls.UI.RadTextBox();
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
+            this.txtInnOkpo = new Telerik.WinControls.UI.RadTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -45,8 +45,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtInnOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInnOkpo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,6 +114,10 @@
             this.txtName.TabIndex = 23;
             this.txtName.ThemeName = "Office2013Light";
             // 
+            // bsAnketaExternal
+            // 
+            this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.AnketaExternal);
+            // 
             // txtInnOkpo
             // 
             this.txtInnOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaExternal, "InnOkpo", true));
@@ -122,10 +126,6 @@
             this.txtInnOkpo.Size = new System.Drawing.Size(273, 21);
             this.txtInnOkpo.TabIndex = 24;
             this.txtInnOkpo.ThemeName = "Office2013Light";
-            // 
-            // bsAnketaExternal
-            // 
-            this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.AnketaExternal);
             // 
             // ConsumerExternalView
             // 
@@ -142,7 +142,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Зовнішній споживач";
+            this.Text = "Зовнішній користувач";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
@@ -151,8 +151,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtInnOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtInnOkpo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

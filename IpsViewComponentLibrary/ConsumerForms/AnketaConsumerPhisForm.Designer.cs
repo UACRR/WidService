@@ -46,17 +46,17 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlAddressLetter = new AddressLetter();
-            this.ctrlAddressRegister = new IpsAddressControl();
-            this.ctrlAddressLive = new IpsAddressControl();
-            this.ctrlContacts = new ContactsPersonControl();
+            this.ctrlAddressLetter = new IpsViewComponentLibrary.Shared.Controls.AddressLetter();
+            this.ctrlAddressRegister = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
+            this.ctrlAddressLive = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
+            this.ctrlContacts = new IpsViewComponentLibrary.Shared.Controls.ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlConsumerPassport = new PassportControl();
+            this.ctrlConsumerPassport = new IpsViewComponentLibrary.Shared.Controls.PassportControl();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsBankAccountControl();
+            this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.AgreementWithPlacesControl();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
@@ -65,7 +65,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.radPdfViewer = new Telerik.WinControls.UI.RadPdfViewer();
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.ctrlTabNavigationExpanded = new TabNavigationExpandedControl();
+            this.ctrlTabNavigationExpanded = new IpsViewComponentLibrary.Common.TabNavigationExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
             this.pvClientName.SuspendLayout();
@@ -147,7 +147,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.pvClientName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
             this.pvClientName.Size = new System.Drawing.Size(1053, 661);
             this.pvClientName.TabStop = true;
-            this.pvClientName.Text = "Споживач";
+            this.pvClientName.Text = "Користувач";
             // 
             // ctrlConsumerName
             // 

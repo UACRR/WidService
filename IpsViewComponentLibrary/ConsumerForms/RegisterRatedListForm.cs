@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using ipsFormsDesign;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.InternalControlsModel;
 using Telerik.WinControls.UI;
@@ -111,6 +112,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 _source.Add(new RegisterRatedListGridDataSource
                 {
                     CustId = register.CustId,
+                    RegId = register.RegId,
                     AuthRate = register.AuthRate ?? 0m,
                     MusicRate = register.MusicRate ?? 0m,
                     AuthAmount = register.AuthAmount,
@@ -292,8 +294,10 @@ namespace IpsViewComponentLibrary.ConsumerForms
             if (pageView.SelectedPage == pvMusicDesign)
             {
                 ctrlMusicDesignHeaderInfo.DataSource = item;
-                var mus = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId)?.LicenseBigR?.MusicalDesign;
-                gvMusicDesignView.DataSource = mus;
+
+                var musicDesign = ViewsSingleton.RatedListMusicDesignBigRightView;
+                var dataSource = musicDesign?.Where(r => r.RegId == item.RegId).ToList();
+                gvMusicDesignView.DataSource = dataSource;
             }
         }
 
@@ -307,6 +311,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
     {
         public int CustId { get; set; }
         public int RmId { get; set; }
+        public int RegId { get; set; }
         public int? LicId { get; set; }
         public int? TempRegId { get; set; }
         public int? ObjId { get; set; }
