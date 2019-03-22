@@ -201,7 +201,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         //клік по кнопках на гріду
         private void gvViewRequests_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            if (!(e.Row.DataBoundItem is RequestsOrReferenceBigRightView item) || item.LicStatus == 4)
+            if (!(e.Row.DataBoundItem is RequestsOrReferenceBigRightView item) || item.LicStatus == 4 || item.LicStatus == 10)
                 return;
 
             switch (e.Column.FieldName)

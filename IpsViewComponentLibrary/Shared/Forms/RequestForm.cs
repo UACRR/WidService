@@ -367,7 +367,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
                             GenreType = 60001
                         },
                         MusicalDesign = new ObservableListSource<MusicalDesign>(),
-                        Rate = default(decimal)
+                        Rate = default(decimal),
+                        LangCode = "uk"
                     }
             };
             _customer.Client.LicenseAgreement.Add(_licenseAgreement);
@@ -449,19 +450,20 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private void UpdateGenrePersent()
         {
-            // Якщо винагороду встановлено
-            if (_licenseAgreement?.LicenseBigR?.Rate > 0)
-                return;
-
             if (int.TryParse(txtActCode.Text, out int actCode))
             {
                 var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
 
                 var rate = _dictionaties.relGenrePercent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
+                if (_licenseAgreement?.LicenseBigR?.Rate == rate)
+                    return;
 
-                txtVinagoroda.Text = rate.ToString();
+
+                //txtVinagoroda.Text = rate.ToString();
                 if(_licenseAgreement?.LicenseBigR != null)
                     _licenseAgreement.LicenseBigR.Rate = rate;
+
+                bsLicenseBigR.ResetBindings(false);
             }
         }
 
