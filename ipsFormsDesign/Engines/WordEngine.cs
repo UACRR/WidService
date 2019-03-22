@@ -338,13 +338,13 @@ namespace ipsFormsDesign.Services
                     case "prcntARltJText":
                         item.Range.Text = prcntARltJText;
                         break;
-                    case "СstLegalAddress":
+                    case "CstLegalAddress":
                         item.Range.Text = reAddress;
                         break;
-                    case "СstResidentialAddress":
+                    case "CstResidentialAddress":
                         item.Range.Text = faAddress;
                         break;
-                    case "СstCorrespAddress":
+                    case "CstCorrespAddress":
                         item.Range.Text = leAddress;
                         break;
                     case "CstBDate":
@@ -353,7 +353,7 @@ namespace ipsFormsDesign.Services
                     case "CstINN":
                         item.Range.Text = Okpo;
                         break;
-                    case "СstEDRPOU":
+                    case "CstEDRPOU":
                         item.Range.Text = Okpo;
                         break;
                     case "CstPasport":
@@ -362,10 +362,10 @@ namespace ipsFormsDesign.Services
                     case "CstPasportIssued":
                         item.Range.Text = PasportIssued;
                         break;
-                    case "СstBankName":
+                    case "CstBankName":
                         item.Range.Text = $"{bankacc?.MfoName ?? string.Empty}";
                         break;
-                    case "СstBankMFO":
+                    case "CstBankMFO":
                         item.Range.Text = $"{bankacc?.Mfo.ToString() ?? string.Empty}";
                         break;
                     case "CstBankEDRPOU":
@@ -374,23 +374,23 @@ namespace ipsFormsDesign.Services
                     case "CstBankAcc":
                         item.Range.Text = $"{bankacc?.TransitNumber ?? string.Empty}";
                         break;
-                    case "СstAcc":
+                    case "CstAcc":
                         item.Range.Text = $"{bankacc?.AccountNumber ?? string.Empty}";
                         break;
                     case "CstPhoneHome":
                         item.Range.Text = phoneHome;
                         break;
-                    case "СstPhone":
+                    case "CstPhone":
                         item.Range.Text = phone;
                         break;
                     case "CstPhoneWork":
                         item.Range.Text = phoneWork;
                         break;
-                    case "СstEmail":
+                    case "CstEmail":
                         item.Range.Text = eMail;
                         break;
 
-                    case "СstRegNumber":
+                    case "CstRegNumber":
                         item.Range.Text = CstRegNumber;
                         break;
 
@@ -400,7 +400,7 @@ namespace ipsFormsDesign.Services
                     case "CstVAT":
                         item.Range.Text = CstVAT;
                         break;
-                    case "СstVATType":
+                    case "CstVATType":
                         item.Range.Text = CstVATType;
                         break;
 
@@ -504,7 +504,7 @@ namespace ipsFormsDesign.Services
 
             var licPlaces = licenseAgrParam.License.Select(rec => (rec.PlaceId ?? 0)).ToArray();
             var clnBusinessPlaceLicense = cust.Client.ClnBusinessPlace.Where(rec => licPlaces.Contains(rec.PlaceId)).ToList();
-
+            
             string customerName = string.Empty;
             string leAddress = string.Empty;
             string reAddress = string.Empty;
@@ -645,6 +645,9 @@ namespace ipsFormsDesign.Services
                     case "docDate":
                         item.Range.Text = DocDate;
                         break;
+                    case "docDateC":
+                        item.Range.Text = DocDate;
+                        break;
                     case "docNumberYear":
                         item.Range.Text = $"{licenseAgrParam.LicDate:yy}";
                         break;
@@ -688,6 +691,24 @@ namespace ipsFormsDesign.Services
                     case "TablePLh":
                         FormTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
                         break;
+ //new tables
+                    case "TablePL1":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceLicense);
+                        break;
+
+                    case "TablePL2":
+                        FormTablePl2(item.Range.Tables, clnBusinessPlaceMarket);
+                        break;
+/*                    case "TablePL3":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceMarket);
+                        break;
+                    case "TablePL4":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceMarket);
+                        break;
+*/
+
+
+
                     case "TablePLsm":
                         FormTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
                         break;
@@ -1332,7 +1353,7 @@ namespace ipsFormsDesign.Services
             string ShowAct = String.Empty;
             string docNumberC = String.Empty;
             string docDateC = String.Empty;
-            string docDateEndС = String.Empty;
+            string docDateEndC = String.Empty;
             string prcntShow = string.Empty;
             string prcntShowText = string.Empty;
             string pPayShowGrnText = string.Empty;
@@ -1471,7 +1492,7 @@ namespace ipsFormsDesign.Services
                     (rec.LicVersion == licA.LicVersion)).Single();
 
             docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
-            docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
+            docDateEndC = $"{licagr?.DateEnd:dd.MM.yyyy}";
             decimal prcntrate = Convert.ToDecimal(licenseBigR?.Rate);
             prcntShow = prcntrate.ToString("F");
             prcntShowText = Utils.PrcnPhrase(prcntrate);
@@ -1560,7 +1581,7 @@ namespace ipsFormsDesign.Services
                     case "CstPersonReason":
                         item.Range.Text = CstPersonReason;
                         break;
-                    case "СstNikName":
+                    case "CstNikName":
                         item.Range.Text = CstNikName;
                         break;
                     case "NikName":
@@ -1672,8 +1693,8 @@ namespace ipsFormsDesign.Services
                     case "PayShowDataDo":
                         item.Range.Text = PayShowDataDo;
                         break;
-                    case "docDateEndС":
-                        item.Range.Text = docDateEndС;
+                    case "docDateEndC":
+                        item.Range.Text = docDateEndC;
                         break;
                     case "TableAvtor":
                         //formTableAvtor(item.Range.Tables, array_licAuthorB);
@@ -2136,6 +2157,74 @@ namespace ipsFormsDesign.Services
 
 
         }
+
+
+        private void FormTablePl1(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            int PlaceHollValue;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName;
+                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+                    + places.PlaceCity + "," + places.PlaceAddress;
+
+
+                PlaceHollValue = 0;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
+                    //curRow.Cells[5].Range.Text = place.HollNum.ToString();
+                }
+                curRow.Cells[4].Range.Text = PlaceHollValue.ToString();
+            }
+        }
+        private void FormTablePl2(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            var typePlace = _dic.typePlace.ToDictionary( rec => rec.CodeI);
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+
+            Row curRow = null;
+            int index = 1;
+            int PlaceHollValue;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName;
+                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
+                curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+           + places.PlaceCity + "," + places.PlaceAddress;
+                PlaceHollValue = 0;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
+            
+                }
+                curRow.Cells[5].Range.Text = PlaceHollValue.ToString();
+
+
+            }
+        }
+
         private void FormTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
@@ -2166,7 +2255,7 @@ namespace ipsFormsDesign.Services
         private void FormTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
-            if (tables.Count == 0) return;
+            if (tables.Count == 0) return;          
             Table table = tables[1];
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;

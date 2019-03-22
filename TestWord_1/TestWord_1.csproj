@@ -142,41 +142,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="F_1_БВ-НК-бари-дискотеки_.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_1_БВ-НК-бари-дискотеки_платний та безоплатний вхід_.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_3_МБВ.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_4_ТЦ магазини.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_6_МТЦ.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_7_Г готелі.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="F_dogovir_licenziya_teatr_go_uaasp.docx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="F_Акт_публічне виконання.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_Акт_публічне сповіщення TV+радио.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_Акт_публічне сповіщення кTV.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="F_Акт_публічне сповіщення+використання Інтернет %28TV+радио%29.docx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="F_ГО УААСП Автор.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -184,14 +151,68 @@
     <None Include="F_ГО УААСП Правовласник-Видавництво.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="F_Лицензионный договор на спектакль %28БП%29.docx">
+    <None Include="F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx">
+    <None Include="F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx" />
+    <None Include="F_ТИПОВИЙ ДОГОВІР КАБЕЛЬНА РЕТРАНСЛЯЦІЯ.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx" />
+    <None Include="F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР МУЗИЧНІ АВТОМАТИ  ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР НІЧНІ КЛУБИ ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ОГ ПЛАТНИЙ ВХІД ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ОГ ТУР ПЛАТНИЙ ВХІД ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ОГб безопл вхід ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ОНЛАЙН ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ПУБЛІЧНЕ СПОВІЩЕННЯ ПО КАБЕЛЮ.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР Р ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР Рі ІНТЕРНЕТ-РАДІО ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР СИСТЕМИ КАРАОКЕ ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ТЕ ЕФІРНЕ ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ТЕі ІНТЕРНЕТ-ТЕЛЕБАЧЕННЯ ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ТЦ  ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ФІЛАРМОНІЇ ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="F_ТИПОВИЙ ДОГОВІР ЦИРК ГО УААСП.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="Properties\Settings.settings">

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -43,35 +44,35 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.gvViewConsumers = new Telerik.WinControls.UI.RadGridView();
+            this.gvConsumers = new Telerik.WinControls.UI.RadGridView();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.lblTextCountConsumers = new System.Windows.Forms.Label();
-            this.lblCountConsumers = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
+            this.bsConsumerBigRightView = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.gvConsumers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).BeginInit();
             this.SuspendLayout();
             // 
-            // gvViewConsumers
+            // gvConsumers
             // 
-            this.gvViewConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.gvConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvViewConsumers.AutoScroll = true;
-            this.gvViewConsumers.AutoSizeRows = true;
-            this.gvViewConsumers.EnableCustomFiltering = true;
-            this.gvViewConsumers.Location = new System.Drawing.Point(3, 29);
+            this.gvConsumers.AutoScroll = true;
+            this.gvConsumers.AutoSizeRows = true;
+            this.gvConsumers.EnableCustomFiltering = true;
+            this.gvConsumers.Location = new System.Drawing.Point(3, 29);
             // 
             // 
             // 
-            this.gvViewConsumers.MasterTemplate.AllowAddNewRow = false;
-            this.gvViewConsumers.MasterTemplate.AllowDeleteRow = false;
-            this.gvViewConsumers.MasterTemplate.AllowDragToGroup = false;
-            this.gvViewConsumers.MasterTemplate.AllowEditRow = false;
-            this.gvViewConsumers.MasterTemplate.AutoGenerateColumns = false;
-            this.gvViewConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.gvConsumers.MasterTemplate.AllowAddNewRow = false;
+            this.gvConsumers.MasterTemplate.AllowDeleteRow = false;
+            this.gvConsumers.MasterTemplate.AllowDragToGroup = false;
+            this.gvConsumers.MasterTemplate.AllowEditRow = false;
+            this.gvConsumers.MasterTemplate.AutoGenerateColumns = false;
+            this.gvConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.FieldName = "CustId";
             gridViewTextBoxColumn1.HeaderText = "ID";
@@ -114,6 +115,7 @@
             gridViewTextBoxColumn6.Name = "StatusName";
             gridViewTextBoxColumn6.Width = 115;
             gridViewTextBoxColumn6.WrapText = true;
+            gridViewTextBoxColumn7.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn7.FieldName = "CountLic1Active";
             gridViewTextBoxColumn7.HeaderText = "К-сть ліцензій";
             gridViewTextBoxColumn7.MaxWidth = 55;
@@ -122,6 +124,7 @@
             gridViewTextBoxColumn7.Name = "CountLic1Active";
             gridViewTextBoxColumn7.Width = 55;
             gridViewTextBoxColumn7.WrapText = true;
+            gridViewTextBoxColumn8.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn8.FieldName = "CountLic2Active";
             gridViewTextBoxColumn8.HeaderText = "К-сть заявок";
             gridViewTextBoxColumn8.MaxWidth = 55;
@@ -130,6 +133,7 @@
             gridViewTextBoxColumn8.Name = "CountLic2Active";
             gridViewTextBoxColumn8.Width = 55;
             gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn9.FieldName = "CountLic3Active";
             gridViewTextBoxColumn9.HeaderText = "К-сть довідок";
             gridViewTextBoxColumn9.MaxWidth = 55;
@@ -147,6 +151,7 @@
             gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn10.Width = 105;
             gridViewTextBoxColumn10.WrapText = true;
+            gridViewTextBoxColumn11.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn11.FieldName = "UnattachAmount";
             gridViewTextBoxColumn11.HeaderText = "Незакріплені кошти";
             gridViewTextBoxColumn11.MinWidth = 100;
@@ -154,6 +159,7 @@
             gridViewTextBoxColumn11.Name = "UnattachAmount";
             gridViewTextBoxColumn11.Width = 105;
             gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn12.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn12.FieldName = "Borg";
             gridViewTextBoxColumn12.HeaderText = "Борг";
             gridViewTextBoxColumn12.MaxWidth = 100;
@@ -179,7 +185,7 @@
             gridViewCommandColumn1.Name = "btnsView";
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 35;
-            this.gvViewConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            this.gvConsumers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
             gridViewTextBoxColumn3,
@@ -194,18 +200,19 @@
             gridViewTextBoxColumn12,
             gridViewTextBoxColumn13,
             gridViewCommandColumn1});
-            this.gvViewConsumers.MasterTemplate.EnableCustomFiltering = true;
-            this.gvViewConsumers.MasterTemplate.EnableFiltering = true;
-            this.gvViewConsumers.MasterTemplate.EnableGrouping = false;
-            this.gvViewConsumers.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.gvViewConsumers.Name = "gvViewConsumers";
-            this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewConsumers.Size = new System.Drawing.Size(1148, 541);
-            this.gvViewConsumers.TabIndex = 6;
-            this.gvViewConsumers.ThemeName = "Office2013Light";
-            this.gvViewConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
-            this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewConsumers_CommandCellClick);
+            this.gvConsumers.MasterTemplate.DataSource = this.bsConsumerBigRightView;
+            this.gvConsumers.MasterTemplate.EnableCustomFiltering = true;
+            this.gvConsumers.MasterTemplate.EnableFiltering = true;
+            this.gvConsumers.MasterTemplate.EnableGrouping = false;
+            this.gvConsumers.MasterTemplate.ShowFilteringRow = false;
+            this.gvConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gvConsumers.Name = "gvConsumers";
+            this.gvConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvConsumers.Size = new System.Drawing.Size(1148, 556);
+            this.gvConsumers.TabIndex = 6;
+            this.gvConsumers.ThemeName = "Office2013Light";
+            this.gvConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
+            this.gvConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewConsumers_CommandCellClick);
             // 
             // btnNewConsumer
             // 
@@ -226,49 +233,32 @@
             this.ctrlSearch.Size = new System.Drawing.Size(479, 20);
             this.ctrlSearch.TabIndex = 11;
             // 
-            // lblTextCountConsumers
+            // bsConsumerBigRightView
             // 
-            this.lblTextCountConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTextCountConsumers.Location = new System.Drawing.Point(1004, 573);
-            this.lblTextCountConsumers.Name = "lblTextCountConsumers";
-            this.lblTextCountConsumers.Size = new System.Drawing.Size(79, 14);
-            this.lblTextCountConsumers.TabIndex = 12;
-            this.lblTextCountConsumers.Text = "К-ть рядків";
-            // 
-            // lblCountConsumers
-            // 
-            this.lblCountConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountConsumers.Location = new System.Drawing.Point(1089, 573);
-            this.lblCountConsumers.Name = "lblCountConsumers";
-            this.lblCountConsumers.Size = new System.Drawing.Size(62, 14);
-            this.lblCountConsumers.TabIndex = 13;
-            this.lblCountConsumers.Text = "0";
-            this.lblCountConsumers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             // 
             // ConsumersViewBigRightControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblCountConsumers);
-            this.Controls.Add(this.lblTextCountConsumers);
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.btnNewConsumer);
-            this.Controls.Add(this.gvViewConsumers);
+            this.Controls.Add(this.gvConsumers);
             this.Name = "ConsumersViewBigRightControl";
             this.Size = new System.Drawing.Size(1154, 588);
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvConsumers.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Telerik.WinControls.UI.RadGridView gvViewConsumers;
+        private Telerik.WinControls.UI.RadGridView gvConsumers;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadButton btnNewConsumer;
         private Common.SearchTextBoxControl ctrlSearch;
-        private System.Windows.Forms.Label lblTextCountConsumers;
-        private System.Windows.Forms.Label lblCountConsumers;
+        private System.Windows.Forms.BindingSource bsConsumerBigRightView;
     }
 }

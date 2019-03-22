@@ -212,7 +212,7 @@
             // 
             // bsConsumerMainView
             // 
-            this.bsConsumerMainView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
+            this.bsConsumerMainView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
             // 
             // ConsumerListControl
             // 

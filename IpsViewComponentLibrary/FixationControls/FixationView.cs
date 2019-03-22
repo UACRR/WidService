@@ -60,8 +60,8 @@ namespace IpsViewComponentLibrary.FixationControls
             }
         }
 
-        private ConsumerMainView _consumer;
-        public ConsumerMainView Consumer
+        private ConsumerSmallRightView _consumer;
+        public ConsumerSmallRightView Consumer
         {
             get { return _consumer; }
             set

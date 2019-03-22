@@ -10,9 +10,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class ConsumersViewSmallRightControl : UserControl
     {
-        public event LoadCustomerCabinetEventHandler OnLoadCustomerCabinetNeed;
+        public event LoadCustomerCabinetSREventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
-        public ConsumerMainView ViewRow => gvViewConsumers.CurrentRow?.DataBoundItem as ConsumerMainView;
+        public ConsumerSmallRightView ViewRow => gvViewConsumers.CurrentRow?.DataBoundItem as ConsumerSmallRightView;
         private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public ConsumersViewSmallRightControl()
@@ -22,7 +22,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlSearch.SetUsageGrid(gvViewConsumers);
         }
 
-        public void SetGridDataSource(IList<ConsumerMainView> source, bool withSaveRow = true)
+        public void SetGridDataSource(IList<ConsumerSmallRightView> source, bool withSaveRow = true)
         {
             if (withSaveRow)
             {
@@ -41,9 +41,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             }
         }
 
-        private void rGridViewConsumers_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void rGridViewConsumers_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as ConsumerMainView).CustId);
+            OnLoadCustomerCabinetNeed?.Invoke(e.Row.DataBoundItem as ConsumerSmallRightView);
         }
 
         // створити споживача юридичної особи
@@ -63,7 +63,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             if (e.Column is GridViewCommandColumn)
                 return;
 
-            OnLoadCustomerCabinetNeed?.Invoke((e.Row.DataBoundItem as ConsumerMainView).CustId);
+            OnLoadCustomerCabinetNeed?.Invoke(e.Row.DataBoundItem as ConsumerSmallRightView);
         }
     }
 }

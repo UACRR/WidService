@@ -15,7 +15,7 @@ namespace IpsViewComponentLibrary
     public partial class MiddleControlCabinetCalculation : UserControl
     {
         private Customer _customer;
-        private MainGridConsumerBigRightView _bigRightView;
+        private ConsumerBigRightView _bigRightView;
         
         private AnketaDictionaties _dictionaties;
 
@@ -29,7 +29,7 @@ namespace IpsViewComponentLibrary
             _dictionaties = dictionaties;
         }
 
-        public void SetAndUpdateData(Customer customer, MainGridConsumerBigRightView bigRightView, IList<GeneralAgreementBigRightView> genAgrs, IList<UnattachedMoneyView> undescribs)
+        public void SetAndUpdateData(Customer customer, ConsumerBigRightView bigRightView, IList<GeneralAgreementBigRightView> genAgrs, IList<UnattachedMoneyView> undescribs)
         {
             _customer = customer;
             _bigRightView = bigRightView;

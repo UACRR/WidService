@@ -47,10 +47,10 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
+            this.lblTextCountPays = new System.Windows.Forms.Label();
+            this.lblCountPays = new System.Windows.Forms.Label();
             this.gvUndistribPays = new Telerik.WinControls.UI.RadGridView();
             this.bindingExtrnPay = new System.Windows.Forms.BindingSource(this.components);
-            this.lblCountPays = new System.Windows.Forms.Label();
-            this.lblTextCountPays = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
@@ -135,6 +135,25 @@
             this.radPanel2.TabIndex = 2;
             this.radPanel2.ThemeName = "Office2013Light";
             // 
+            // lblTextCountPays
+            // 
+            this.lblTextCountPays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTextCountPays.Location = new System.Drawing.Point(759, 376);
+            this.lblTextCountPays.Name = "lblTextCountPays";
+            this.lblTextCountPays.Size = new System.Drawing.Size(76, 13);
+            this.lblTextCountPays.TabIndex = 9;
+            this.lblTextCountPays.Text = "К-ть рядків";
+            // 
+            // lblCountPays
+            // 
+            this.lblCountPays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountPays.Location = new System.Drawing.Point(841, 376);
+            this.lblCountPays.Name = "lblCountPays";
+            this.lblCountPays.Size = new System.Drawing.Size(50, 13);
+            this.lblCountPays.TabIndex = 8;
+            this.lblCountPays.Text = "0";
+            this.lblCountPays.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // gvUndistribPays
             // 
             this.gvUndistribPays.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -184,7 +203,7 @@
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn4.Width = 85;
             gridViewTextBoxColumn5.FieldName = "NameCorr";
-            gridViewTextBoxColumn5.HeaderText = "Назва Споживача";
+            gridViewTextBoxColumn5.HeaderText = "Назва користувача";
             gridViewTextBoxColumn5.MinWidth = 110;
             gridViewTextBoxColumn5.Name = "NameCorr";
             gridViewTextBoxColumn5.Width = 121;
@@ -268,25 +287,6 @@
             // bindingExtrnPay
             // 
             this.bindingExtrnPay.DataSource = typeof(ipsFormsDesign.Model.ExternalPay);
-            // 
-            // lblCountPays
-            // 
-            this.lblCountPays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountPays.Location = new System.Drawing.Point(841, 376);
-            this.lblCountPays.Name = "lblCountPays";
-            this.lblCountPays.Size = new System.Drawing.Size(50, 13);
-            this.lblCountPays.TabIndex = 8;
-            this.lblCountPays.Text = "0";
-            this.lblCountPays.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // lblTextCountPays
-            // 
-            this.lblTextCountPays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTextCountPays.Location = new System.Drawing.Point(759, 376);
-            this.lblTextCountPays.Name = "lblTextCountPays";
-            this.lblTextCountPays.Size = new System.Drawing.Size(76, 13);
-            this.lblTextCountPays.TabIndex = 9;
-            this.lblTextCountPays.Text = "К-ть рядків";
             // 
             // ImportDBFControl
             // 
