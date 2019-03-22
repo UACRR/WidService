@@ -45,6 +45,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepNew", "RepNew\RepNew.csp
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MediaService", "MediaService\MediaService.vdproj", "{A476FBCF-F6CA-408A-9F31-20C8BA755ABD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ipsCheckWordTemplate", "ipsCheckWordTemplate\ipsCheckWordTemplate.csproj", "{755BCA49-FE98-4FA0-9114-B0E3319A0991}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug HttpSys|Any CPU = Debug HttpSys|Any CPU
@@ -284,6 +286,24 @@ Global
 		{A476FBCF-F6CA-408A-9F31-20C8BA755ABD}.Release|Any CPU.ActiveCfg = Release
 		{A476FBCF-F6CA-408A-9F31-20C8BA755ABD}.Release|x64.ActiveCfg = Release
 		{A476FBCF-F6CA-408A-9F31-20C8BA755ABD}.Release|x86.ActiveCfg = Release
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug HttpSys|Any CPU.ActiveCfg = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug HttpSys|Any CPU.Build.0 = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug HttpSys|x64.ActiveCfg = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug HttpSys|x64.Build.0 = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug HttpSys|x86.ActiveCfg = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug HttpSys|x86.Build.0 = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug|x64.Build.0 = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Debug|x86.Build.0 = Debug|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Release|Any CPU.Build.0 = Release|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Release|x64.ActiveCfg = Release|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Release|x64.Build.0 = Release|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Release|x86.ActiveCfg = Release|Any CPU
+		{755BCA49-FE98-4FA0-9114-B0E3319A0991}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

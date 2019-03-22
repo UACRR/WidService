@@ -195,7 +195,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void ddlLicType_SelectedIndexChanging(object sender, Telerik.WinControls.UI.Data.PositionChangingCancelEventArgs e)
         {
-            if(_firstSelectChanging )
+            if(_firstSelectChanging || e.Position < 0 )
             {
                 _firstSelectChanging = false;
                 return;
