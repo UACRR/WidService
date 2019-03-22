@@ -695,11 +695,11 @@ namespace ipsFormsDesign.Services
                     case "TablePL1":
                         FormTablePl1(item.Range.Tables, clnBusinessPlaceLicense);
                         break;
-/*
+
                     case "TablePL2":
-                        FormTablePl1(item.Range.Tables, clnBusinessPlaceMarket);
+                        FormTablePl2(item.Range.Tables, clnBusinessPlaceMarket);
                         break;
-                    case "TablePL3":
+/*                    case "TablePL3":
                         FormTablePl1(item.Range.Tables, clnBusinessPlaceMarket);
                         break;
                     case "TablePL4":
@@ -2195,7 +2195,9 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            var typePlace = _dic.typePlace.ToDictionary( rec => rec.CodeI);
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+
             Row curRow = null;
             int index = 1;
             int PlaceHollValue;
@@ -2208,17 +2210,18 @@ namespace ipsFormsDesign.Services
                 index++;
 
                 curRow.Cells[2].Range.Text = places.PlaceName;
-                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
-                    + places.PlaceCity + "," + places.PlaceAddress;
-
-
+                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
+                curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+           + places.PlaceCity + "," + places.PlaceAddress;
                 PlaceHollValue = 0;
                 foreach (var place in item.ClnPlaceHoll)
                 {
                     PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
-                    //curRow.Cells[5].Range.Text = place.HollNum.ToString();
+            
                 }
-                curRow.Cells[4].Range.Text = PlaceHollValue.ToString();
+                curRow.Cells[5].Range.Text = PlaceHollValue.ToString();
+
+
             }
         }
 

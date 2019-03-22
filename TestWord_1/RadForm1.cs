@@ -46,7 +46,7 @@ namespace TestWord_1
                  
             //Filename = "F_3_МБВ.docx";
             //      Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
-            //        Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
+            
             //
             //Filename = "F_1_БВ-НК-бари-дискотеки_.docx";
 
@@ -58,8 +58,9 @@ namespace TestWord_1
             Filename = "F_dogovir_licenziya_teatr_go_uaasp.docx";
             Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
             Filename = "F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx";
-   //         Filename = "F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx";
+            //         Filename = "F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx";
 
+                    Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
 
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
@@ -176,7 +177,16 @@ namespace TestWord_1
                                      wordApp.ProcessConsumer(template, cust, AgrM, licAgr53);
                 
                     break;
+                        
 
+                case "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx":
+                    cust = service.GetData(134);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    LicenseAgreement licAgr63 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 1307 & rec.LicVersion == 1).First();
+                    AgreementMaster AgrM1 = cust.AgreementMaster.Where(rec => rec.AgrId == 3457).Single();
+                    wordApp.ProcessConsumer(template, cust, AgrM1, licAgr63);
+
+                    break;
 
 
                 case "F_4_ТЦ магазини.docx":
