@@ -106,6 +106,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             objectRightMainViewBindingSource.DataSource = result.List;
 
             navigatorPanel.TotalPages = (int) Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
+            //show count RightList into grid
+            lblCountRightList.Text = result.TotalItems.ToString();
 
             //SelectedObject = currentObject; // TODO: is it realy need?
 
