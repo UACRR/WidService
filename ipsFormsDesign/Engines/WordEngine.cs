@@ -504,7 +504,7 @@ namespace ipsFormsDesign.Services
 
             var licPlaces = licenseAgrParam.License.Select(rec => (rec.PlaceId ?? 0)).ToArray();
             var clnBusinessPlaceLicense = cust.Client.ClnBusinessPlace.Where(rec => licPlaces.Contains(rec.PlaceId)).ToList();
-
+            
             string customerName = string.Empty;
             string leAddress = string.Empty;
             string reAddress = string.Empty;
@@ -691,8 +691,26 @@ namespace ipsFormsDesign.Services
                     case "TablePLh":
                         FormTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
                         break;
+ //new tables
+                    case "TablePL1":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceLicense);
+                        break;
+/*
+                    case "TablePL2":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceMarket);
+                        break;
+                    case "TablePL3":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceMarket);
+                        break;
+                    case "TablePL4":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceMarket);
+                        break;
+*/
+
+
+
                     case "TablePLsm":
- //                       FormTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
+                        FormTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
                         break;
                     case "TablePLfe":
                         FormTableBarPlases(item.Range.Tables, clnBusinessPlaceBar);
@@ -2139,6 +2157,40 @@ namespace ipsFormsDesign.Services
 
 
         }
+
+        
+            private void FormTablePl1(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+                var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            int PlaceHollValue;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName;
+                curRow.Cells[3].Range.Text= $"{countries[places.PlaceCountry ?? "804"].CountryName}"+"," 
+                    + places.PlaceCity + "," + places.PlaceAddress;
+               
+
+                PlaceHollValue = 0;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0") ;
+                    //curRow.Cells[5].Range.Text = place.HollNum.ToString();
+                }
+                curRow.Cells[4].Range.Text = PlaceHollValue.ToString();
+            }
+        }
+
         private void FormTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
@@ -2169,20 +2221,11 @@ namespace ipsFormsDesign.Services
         private void FormTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
-            int tblCount;
-            tblCount = tables.Count;
-       
-                Table table = tables[1];
+            if (tables.Count == 0) return;          
+            Table table = tables[1];
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
-            if (tables.Count < 2)
-            {
-        //        curRow = table.Rows.Add();
-                return;
-            }
-
-
             foreach (var item in BuisnessPlace)
             {
                 places = item;
