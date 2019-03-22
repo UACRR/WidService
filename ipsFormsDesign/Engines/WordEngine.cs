@@ -2158,13 +2158,13 @@ namespace ipsFormsDesign.Services
 
         }
 
-        
-            private void FormTablePl1(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+
+        private void FormTablePl1(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
-                var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
             int PlaceHollValue;
@@ -2177,14 +2177,45 @@ namespace ipsFormsDesign.Services
                 index++;
 
                 curRow.Cells[2].Range.Text = places.PlaceName;
-                curRow.Cells[3].Range.Text= $"{countries[places.PlaceCountry ?? "804"].CountryName}"+"," 
+                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
                     + places.PlaceCity + "," + places.PlaceAddress;
-               
+
 
                 PlaceHollValue = 0;
                 foreach (var place in item.ClnPlaceHoll)
                 {
-                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0") ;
+                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
+                    //curRow.Cells[5].Range.Text = place.HollNum.ToString();
+                }
+                curRow.Cells[4].Range.Text = PlaceHollValue.ToString();
+            }
+        }
+        private void FormTablePl2(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            int PlaceHollValue;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName;
+                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+                    + places.PlaceCity + "," + places.PlaceAddress;
+
+
+                PlaceHollValue = 0;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
                     //curRow.Cells[5].Range.Text = place.HollNum.ToString();
                 }
                 curRow.Cells[4].Range.Text = PlaceHollValue.ToString();
