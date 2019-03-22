@@ -154,7 +154,9 @@
     <None Include="F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx" />
+    <None Include="F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="F_ТИПОВИЙ ДОГОВІР КАБЕЛЬНА РЕТРАНСЛЯЦІЯ.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
