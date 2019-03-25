@@ -5,7 +5,7 @@ using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.PartnerControls;
 
-namespace PartnersWorkplace
+namespace PartnersWorkplace.Presenters
 {
     class PartnerPresenter
     {

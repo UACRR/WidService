@@ -67,7 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PartnerPresenter.cs" />
+    <Compile Include="Presenters\PartnerPresenter.cs" />
     <Compile Include="PartnersWorkplace.cs">
       <SubType>Form</SubType>
     </Compile>
