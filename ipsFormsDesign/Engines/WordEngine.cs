@@ -2136,6 +2136,12 @@ namespace ipsFormsDesign.Services
             LicAuthorBr authorBr;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (alicAuthorB.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2164,6 +2170,12 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2195,6 +2207,11 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
             var typePlace = _dic.typePlace.ToDictionary(rec => rec.CodeI);
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
 
@@ -2224,11 +2241,20 @@ namespace ipsFormsDesign.Services
 
             }
         }
-        private void FormTablePl3(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+
+
+        
+    private void FormTablePl3(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
 
             Row curRow = null;
@@ -2261,6 +2287,12 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             var typePlace = _dic.typePlace.ToDictionary(rec => rec.CodeI);
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
 
@@ -2297,6 +2329,12 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2324,6 +2362,12 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;          
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2346,6 +2390,12 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2373,6 +2423,12 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+                        if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
