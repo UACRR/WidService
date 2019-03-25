@@ -60,13 +60,16 @@ namespace TestWord_1
             Filename = "F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx";
             //         Filename = "F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx";
 
-                    Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
+                    
             Filename = "F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx";
             Filename = "F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
             ProcessWord(template, Filename);
             //Task.Run(()=>ProcessWord(template, Filename)).GetAwaiter().GetResult();
+
 
         }
 
@@ -181,10 +184,10 @@ namespace TestWord_1
 
 
                 case "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx":
-                    cust = service.GetData(134);
+                    cust = service.GetData(3056);
                     wordApp = new WordEngine(service.GetDictionary());
-                    LicenseAgreement licAgr63 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 1307 & rec.LicVersion == 1).First();
-                    AgreementMaster AgrM1 = cust.AgreementMaster.Where(rec => rec.AgrId == 3457).Single();
+                    LicenseAgreement licAgr63 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 2936 & rec.LicVersion == 1).First();
+                    AgreementMaster AgrM1 = cust.AgreementMaster.Where(rec => rec.AgrId == 6053).Single();
                     wordApp.ProcessConsumer(template, cust, AgrM1, licAgr63);
 
                     break;
