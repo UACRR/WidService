@@ -192,6 +192,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //for save last index selected item
+            int current = 0;
+
             DictionaryService dictService = new DictionaryService();
             if (btnSaveSystemConstant.Text == "Додати")
             {
@@ -199,13 +202,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 var result = dictService.CreateSystemConstant(systemConstantData);
                 //set default state for 'Text' of the btnSave
                 btnSaveSystemConstant.Text = "Зберегти";
+                //save last selected item
+                current = gridSystemConstantList.CurrentRow.Index;
+                //update data for grid
+                gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridSystemConstantList.CurrentRow = result != null ? gridSystemConstantList.Rows[gridSystemConstantList.RowCount - 1]
+                                                                  : gridSystemConstantList.Rows[current];
             } else if (btnSaveSystemConstant.Text == "Зберегти")
             {
                 //save changes
                 var result = dictService.UpdateSystemConstant(systemConstantData);
+                //save last selected item
+                current = gridSystemConstantList.CurrentRow.Index;
+                //update data for grid
+                gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[current];
             }
-            //update data for grid
-            gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;

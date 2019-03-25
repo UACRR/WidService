@@ -152,7 +152,7 @@
             this.txtRuLangSystemConstant.MaxLength = 500;
             this.txtRuLangSystemConstant.Name = "txtRuLangSystemConstant";
             this.txtRuLangSystemConstant.Size = new System.Drawing.Size(988, 21);
-            this.txtRuLangSystemConstant.TabIndex = 9;
+            this.txtRuLangSystemConstant.TabIndex = 8;
             this.txtRuLangSystemConstant.ThemeName = "Office2013Light";
             // 
             // bsRuLangSystemConstant
@@ -167,7 +167,7 @@
             this.txtEnLangSystemConstant.MaxLength = 500;
             this.txtEnLangSystemConstant.Name = "txtEnLangSystemConstant";
             this.txtEnLangSystemConstant.Size = new System.Drawing.Size(988, 21);
-            this.txtEnLangSystemConstant.TabIndex = 8;
+            this.txtEnLangSystemConstant.TabIndex = 9;
             this.txtEnLangSystemConstant.ThemeName = "Office2013Light";
             // 
             // bsEnLangSystemConstant

@@ -249,6 +249,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //for save last index selected item
+            int current = 0;
+
             DictionaryService dictService = new DictionaryService();
             if (btnSaveGenreType.Text == "Додати")
             {
@@ -256,13 +259,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 var result = dictService.CreateGenreType(genreTypeData);
                 //set default state for 'Text' of the btnSave
                 btnSaveGenreType.Text = "Зберегти";
+                //save last selected item
+                current = gridGenreTypeList.CurrentRow.Index;
+                //update data for grid
+                gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridGenreTypeList.CurrentRow = result != null ? gridGenreTypeList.Rows[gridGenreTypeList.RowCount - 1]
+                                                                  : gridGenreTypeList.Rows[current];
             } else if (btnSaveGenreType.Text == "Зберегти")
             {
                 //save changes
                 var result = dictService.UpdateGenreType(genreTypeData);
+                //save last selected item
+                current = gridGenreTypeList.CurrentRow.Index;
+                //update data for grid
+                gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridGenreTypeList.CurrentRow = gridGenreTypeList.Rows[current];
             }
-            //update data for grid
-            gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;

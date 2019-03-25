@@ -223,7 +223,7 @@
             this.txtNameRuCountry.MaxLength = 500;
             this.txtNameRuCountry.Name = "txtNameRuCountry";
             this.txtNameRuCountry.Size = new System.Drawing.Size(465, 21);
-            this.txtNameRuCountry.TabIndex = 9;
+            this.txtNameRuCountry.TabIndex = 8;
             this.txtNameRuCountry.ThemeName = "Office2013Light";
             // 
             // bsRuLangCountry
@@ -238,7 +238,7 @@
             this.txtNameEnCountry.MaxLength = 500;
             this.txtNameEnCountry.Name = "txtNameEnCountry";
             this.txtNameEnCountry.Size = new System.Drawing.Size(465, 21);
-            this.txtNameEnCountry.TabIndex = 8;
+            this.txtNameEnCountry.TabIndex = 9;
             this.txtNameEnCountry.ThemeName = "Office2013Light";
             // 
             // bsEnLangCountry

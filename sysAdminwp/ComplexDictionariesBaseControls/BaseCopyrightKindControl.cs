@@ -249,6 +249,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //for save last index selected item
+            int current = 0;
+
             DictionaryService dictService = new DictionaryService();
             if (btnSaveCopyrightKind.Text == "Додати")
             {
@@ -256,13 +259,25 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 var result = dictService.CreateCopyrightKind(copyrightKindData);
                 //set default state for 'Text' of the btnSave
                 btnSaveCopyrightKind.Text = "Зберегти";
+                //save last selected item
+                current = gridCopyrightKindList.CurrentRow.Index;
+                //update data for grid
+                gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridCopyrightKindList.CurrentRow = result != null ? gridCopyrightKindList.Rows[gridCopyrightKindList.RowCount - 1]
+                                                                  : gridCopyrightKindList.Rows[current];
             } else if (btnSaveCopyrightKind.Text == "Зберегти")
             {
                 //save changes
                 var result = dictService.UpdateCopyrightKind(copyrightKindData);
+                //save last selected item
+                current = gridCopyrightKindList.CurrentRow.Index;
+                //update data for grid
+                gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridCopyrightKindList.CurrentRow = gridCopyrightKindList.Rows[current];
             }
-            //update data for grid
-            gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+            //update data for bottom panel
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;

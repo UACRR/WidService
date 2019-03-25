@@ -249,6 +249,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //for save last index selected item
+            int current = 0;
+
             DictionaryService dictService = new DictionaryService();
             if (btnSaveCreativeroleType.Text == "Додати")
             {
@@ -256,13 +259,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 var result = dictService.CreateCreativeRoleType(creativeroleTypeData);
                 //set default state for 'Text' of the btnSave
                 btnSaveCreativeroleType.Text = "Зберегти";
+                //save last selected item
+                current = gridCreativeroleTypeList.CurrentRow.Index;
+                //update data for grid
+                gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridCreativeroleTypeList.CurrentRow = result != null ? gridCreativeroleTypeList.Rows[gridCreativeroleTypeList.RowCount - 1]
+                                                                  : gridCreativeroleTypeList.Rows[current];
             } else if (btnSaveCreativeroleType.Text == "Зберегти")
             {
                 //save changes
                 var result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
+                //save last selected item
+                current = gridCreativeroleTypeList.CurrentRow.Index;
+                //update data for grid
+                gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[current];
             }
-            //update data for grid
-            gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
