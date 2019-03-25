@@ -41,6 +41,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.bindingSourceAgr = new System.Windows.Forms.BindingSource(this.components);
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
+            this.ctrlAgrSecond = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerDetailControl();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
@@ -51,7 +52,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtSeries = new Telerik.WinControls.UI.RadTextBox();
             this.ctrlAgrMain = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerMainControl();
-            this.ctrlAgrSecond = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerDetailControl();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
@@ -93,6 +93,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
             this.checkAttach.ThemeName = "Office2013Light";
             // 
+            // ctrlAgrSecond
+            // 
+            this.ctrlAgrSecond.AutoprolongationDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            this.ctrlAgrSecond.AutoprolongationPercent = null;
+            this.ctrlAgrSecond.DataSourceBinding = null;
+            this.ctrlAgrSecond.IsAutoprolongation = false;
+            this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
+            this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.MinPayment = null;
+            this.ctrlAgrSecond.Name = "ctrlAgrSecond";
+            this.ctrlAgrSecond.PercentPayment = null;
+            this.ctrlAgrSecond.PeriodPaymentDataMember = null;
+            this.ctrlAgrSecond.PeriodPaymentDataSource = null;
+            this.ctrlAgrSecond.PeriodPaymentDisplayMember = "";
+            this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
+            this.ctrlAgrSecond.PeriodPaymentValueMember = "";
+            this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.TabIndex = 0;
+            // 
             // radLabel3
             // 
             this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -133,7 +153,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             gridViewTextBoxColumn3.HeaderText = "Назва Закладу";
             gridViewTextBoxColumn3.Name = "PlaceName";
             gridViewTextBoxColumn3.ReadOnly = true;
-            gridViewTextBoxColumn3.Width = 258;
+            gridViewTextBoxColumn3.Width = 257;
             gridViewTextBoxColumn4.FieldName = "Amount";
             gridViewTextBoxColumn4.HeaderText = "Сума";
             gridViewTextBoxColumn4.IsVisible = false;
@@ -177,7 +197,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ddlLicType.TabIndex = 1;
             this.ddlLicType.ThemeName = "Office2013Light";
             this.ddlLicType.ValueMember = "CodeI";
-            this.ddlLicType.SelectedIndexChanging += new Telerik.WinControls.UI.Data.PositionChangingEventHandler(this.ddlLicType_SelectedIndexChanging);
+            this.ddlLicType.SelectedValueChanged += new System.EventHandler(this.ddlLicType_SelectedValueChanged);
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.StackLayoutElement)(this.ddlLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
             // 
@@ -188,6 +208,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // bindingSourceDictionary
             // 
             this.bindingSourceDictionary.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
+            this.bindingSourceDictionary.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceDictionary_BindingComplete);
             // 
             // radLabel2
             // 
@@ -231,26 +252,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlAgrMain.Name = "ctrlAgrMain";
             this.ctrlAgrMain.Size = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.TabIndex = 0;
-            // 
-            // ctrlAgrSecond
-            // 
-            this.ctrlAgrSecond.AutoprolongationDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
-            this.ctrlAgrSecond.AutoprolongationPercent = null;
-            this.ctrlAgrSecond.DataSourceBinding = null;
-            this.ctrlAgrSecond.IsAutoprolongation = false;
-            this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
-            this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.MinPayment = null;
-            this.ctrlAgrSecond.Name = "ctrlAgrSecond";
-            this.ctrlAgrSecond.PercentPayment = null;
-            this.ctrlAgrSecond.PeriodPaymentDataMember = null;
-            this.ctrlAgrSecond.PeriodPaymentDataSource = null;
-            this.ctrlAgrSecond.PeriodPaymentDisplayMember = "";
-            this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
-            this.ctrlAgrSecond.PeriodPaymentValueMember = "";
-            this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.TabIndex = 0;
             // 
             // AgreementWithPlacesControl
             // 

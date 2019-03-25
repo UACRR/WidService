@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private List<GridViewRowInfo> _existLicenses;
         private readonly AnketaDictionaties _anketaDictionaties;
         private bool _selectFirstItemNeed;
-        private bool _firstSelectChanging = true;
+        private bool _isInit = false;
         private static bool PlaceChooserPredicate(GridViewRowInfo row, LicenseForPlaces license) => row.DataBoundItem as ClnBusinessPlace == license.Place
                                                                          || (row.DataBoundItem as ClnBusinessPlace)?.PlaceId == license.PlaceId;
 
@@ -41,7 +41,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             _licenseAgr = licenseAgr;
             _license = license;
 
-            _firstSelectChanging = true;
             licenseAgreementBindingSource.DataSource = _license;
             bindingSourceAgr.DataSource = _licenseAgr;
 
@@ -78,6 +77,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 }
                 return true;
             });
+
+            _isInit = true;
         }
 
         public bool Validator()
@@ -193,24 +194,27 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlAgrSecond.SelectDefaultItem();
         }
 
-        private void ddlLicType_SelectedIndexChanging(object sender, Telerik.WinControls.UI.Data.PositionChangingCancelEventArgs e)
+        private void ddlLicType_SelectedValueChanged(object sender, EventArgs e)
         {
-            if(_firstSelectChanging || e.Position < 0 )
+            if (!_isInit)
+                return;
+
+            var source = ddlLicType.DataSource as BindingSource;
+            var newAgrLicType = source.Current as AgrLicenseType;
+            if (newAgrLicType == null) return;
+
+            if (newAgrLicType.CodeI == _license.LicCode )
             {
-                _firstSelectChanging = false;
                 return;
             }
-            var source = ddlLicType.DataSource as BindingSource;
-            var list = source.List;
-            // Отримати поточний тип ліцензії
-            var agrLicType = list[e.Position] as AgrLicenseType;
-            // Якщо встановлено % авторської винагороди то просавляємо в контракт
-            if (agrLicType != null && agrLicType.CodeI != _license.LicCode )
-            {
-                _licenseAgr.RateAmount = agrLicType.AuthRate;
-                ctrlAgrSecond.RefreshDataSourceBinding();
-            }
+
+            _licenseAgr.RateAmount = newAgrLicType.AuthRate;
+            ctrlAgrSecond.RefreshDataSourceBinding();
         }
 
+        private void bindingSourceDictionary_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+
+        }
     }
 }

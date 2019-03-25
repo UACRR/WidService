@@ -15,6 +15,7 @@ using System.Linq;
 using System.IO;
 using ipsFormsDesign.Data;
 using AutoMapper;
+using System.Dynamic;
 //using Autofac;
 
 
@@ -108,6 +109,16 @@ namespace UnitTestMediaPortal
             Assert.AreEqual(one.Id, 2);
             Assert.AreEqual(one.Id, one.Item.Id);
             Assert.AreEqual(result.ClsTwoName, one.Item.Name);
+        }
+
+        [TestMethod]
+        public void TestDynamic()
+        {
+            dynamic test = new ExpandoObject();
+            test.prop2 = "test";
+            test.prop1 = test.prop2;
+
+            Assert.AreEqual(test.prop1, test.prop2);
         }
 
     }
