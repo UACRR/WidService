@@ -15,16 +15,17 @@ namespace IpsViewComponentLibrary.PartnerControls
     public partial class PartnerCabinetAnketaJurControl : UserControl, IAnketaControls
     {
         public event EventHandler<bool> SaveClick;
+        public event EventHandler CancelClick;
 
         public PartnerCabinetAnketaJurControl()
         {
             InitializeComponent();
             ctrlSaveCancel.SaveClck += btnSave_Click;
+            ctrlSaveCancel.CancelClick += btnCancel_Click;
         }
 
         public void BeginBindings(Customer customer)
         {
-            var dictionaties = IpsGlobal.AnketaDictionaties;
             ctrlClientName.SetDataSources(customer);
             ctrlAddress.SetDataSources(customer);
             ctrlManagers.SetDataSources(customer);
@@ -33,7 +34,7 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // some code
+            CancelClick?.Invoke(sender, e);
         }
 
         private void btnSave_Click(object sender, EventArgs e)

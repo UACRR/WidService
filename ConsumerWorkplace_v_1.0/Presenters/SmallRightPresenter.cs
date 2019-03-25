@@ -34,11 +34,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         private readonly PartnerService _partnerService;
         private readonly ConsumersViewSmallRightControl _mainGrid;
 
-        public SmallRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, ConsumersViewSmallRightControl mainGrid)
+        public SmallRightPresenter(ConsumerService service, RadTreeView treeView, ConsumersViewSmallRightControl mainGrid)
         {
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             _service = service;
-            _partnerService = partnerService;
+            _partnerService = PartnerService.GetInstance();
             _mainGrid = mainGrid;
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;

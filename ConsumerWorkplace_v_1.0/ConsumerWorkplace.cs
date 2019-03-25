@@ -27,13 +27,10 @@ namespace ConsumerWorkplace_v_1._0
     {
         private SmallRightPresenter _smallRightPresenter;// main presenter for small right
         private BigRightPresenter _bigRightPresenter;    // main presenter for big right
-        //private PartnerPresenter _partnerPresenter;      // main presenter for partner
         private CommunityPresenter _communityPresenter;  // main presenter for community
         private DBFPresenter _dbfPresenter;              // main presenter for importDBF
         private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
         private readonly CommunityService _communityService = new CommunityService();
-        //private readonly PartnerService _partnerService = new PartnerService();
-        private readonly PartnerService _partnerService;
 
         public event Func<bool> Save;
 
@@ -114,7 +111,7 @@ namespace ConsumerWorkplace_v_1._0
                     foreach (var item in list)
                         treeViewBR.Nodes.Add(item);
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight);
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
                     IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
                         // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
@@ -140,7 +137,7 @@ namespace ConsumerWorkplace_v_1._0
                     }
 
                     _consumerMainService = new ConsumerService();
-                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, _partnerService, treeViewSR, mainGridSmallRight);
+                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
                     IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
 
                         treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
@@ -164,7 +161,7 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, _partnerService, treeViewSR, mainGridSmallRight);
+                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
                     IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
 
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
@@ -230,7 +227,7 @@ namespace ConsumerWorkplace_v_1._0
                     foreach (var item in list2)
                         treeViewBR.Nodes.Add(item);
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight);
+                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
                     IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
 
                     treeViewBR.SelectedNode = treeViewBR.Nodes[0];
@@ -239,7 +236,6 @@ namespace ConsumerWorkplace_v_1._0
                     break;
             }
 
-            //_partnerPresenter = new PartnerPresenter(_partnerService, ctrlPartner);
             _communityPresenter = new CommunityPresenter(_communityService, ctrlCommunity);
         }
         
@@ -276,14 +272,6 @@ namespace ConsumerWorkplace_v_1._0
             {
                 var list = getMainViewData();
                 consumerMainViewBindingSource.DataSource = list;
-            }
-        }
-
-        private void pageViewOwner_SelectedPageChanged(object sender, EventArgs e)
-        {
-            if (pageViewOwner.SelectedPage == pvPartners)
-            {
-                // TODO: maybe need update -> ctrlPartner.LoadData();
             }
         }
     }

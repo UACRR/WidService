@@ -7,10 +7,11 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.PartnerControls
 {
-    public partial class CabinetPartnerForm : Telerik.WinControls.UI.RadForm
+    public partial class CabinetPartnerForm : RadForm
     {
         private const string TitlePhis = "Кабінет представника (фізична особа)";
         private const string TitleJur = "Кабінет представника (юридична особа)";
@@ -55,6 +56,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             }
             _control.BeginBindings(_customer);
             _control.SaveClick += SaveClick;
+            _control.CancelClick += Anketa_CancelChangesClick;
             ctrlSaveCancelButtons.SaveClck += Save_Click;
             ctrlSaveCancelButtons.CancelClick += Cancel_Click;
             BeginBinding();
@@ -157,6 +159,13 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             _customer = UpdateCustomer?.Invoke(_customer.CustId);
             BeginBinding();
+        }
+
+        // скасувати зміни анкети
+        private void Anketa_CancelChangesClick(object sender, EventArgs e)
+        {
+            _customer = UpdateCustomer?.Invoke(_customer.CustId);
+            _control.BeginBindings(_customer);
         }
     }
 }

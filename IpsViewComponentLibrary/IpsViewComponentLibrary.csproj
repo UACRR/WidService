@@ -1579,6 +1579,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.SexType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypeVat.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />

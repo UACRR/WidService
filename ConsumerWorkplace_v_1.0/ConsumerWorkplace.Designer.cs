@@ -48,7 +48,6 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvPartners = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlPartner = new IpsViewComponentLibrary.PartnerControls.PartnerControl();
             this.pvCommunity = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCommunity = new IpsViewComponentLibrary.CommunityControls.CommunityControl();
             this.pvPaymentProcessing = new Telerik.WinControls.UI.RadPageViewPage();
@@ -81,7 +80,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).BeginInit();
             this.pageViewOwner.SuspendLayout();
             this.pvConsumers.SuspendLayout();
-            this.pvPartners.SuspendLayout();
             this.pvCommunity.SuspendLayout();
             this.pvPaymentProcessing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
@@ -209,7 +207,6 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.Size = new System.Drawing.Size(1276, 637);
             this.pageViewOwner.TabIndex = 1;
             this.pageViewOwner.ThemeName = "Office2013Light";
-            this.pageViewOwner.SelectedPageChanged += new System.EventHandler(this.pageViewOwner_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewOwner.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageViewOwner.GetChildAt(0))).ShowItemCloseButton = false;
             ((Telerik.WinControls.UI.StripViewItemLayout)(this.pageViewOwner.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
@@ -243,21 +240,12 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // pvPartners
             // 
-            this.pvPartners.Controls.Add(this.ctrlPartner);
+            this.pvPartners.Enabled = false;
             this.pvPartners.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvPartners.Location = new System.Drawing.Point(5, 31);
             this.pvPartners.Name = "pvPartners";
             this.pvPartners.Size = new System.Drawing.Size(1266, 601);
             this.pvPartners.Text = "Представники";
-            // 
-            // ctrlPartner
-            // 
-            this.ctrlPartner.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPartner.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPartner.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrlPartner.Name = "ctrlPartner";
-            this.ctrlPartner.Size = new System.Drawing.Size(1266, 601);
-            this.ctrlPartner.TabIndex = 0;
             // 
             // pvCommunity
             // 
@@ -389,7 +377,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).EndInit();
             this.pageViewOwner.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
-            this.pvPartners.ResumeLayout(false);
             this.pvCommunity.ResumeLayout(false);
             this.pvPaymentProcessing.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
@@ -446,7 +433,6 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadTreeView treeViewBR;
         private ConsumersViewSmallRightControl mainGridSmallRight;
         private ConsumersViewBigRightControl mainGridBigRight;
-        private IpsViewComponentLibrary.PartnerControls.PartnerControl ctrlPartner;
         private IpsViewComponentLibrary.CommunityControls.CommunityControl ctrlCommunity;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Telerik.WinControls.UI.RadPageViewPage pvPaymentProcessing;

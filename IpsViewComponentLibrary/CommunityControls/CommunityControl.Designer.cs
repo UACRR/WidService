@@ -87,7 +87,7 @@
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn3.Width = 95;
             gridViewTextBoxColumn4.FieldName = "Name";
-            gridViewTextBoxColumn4.HeaderText = "Спільнота";
+            gridViewTextBoxColumn4.HeaderText = "Назва товариства";
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Name = "Name";
             gridViewTextBoxColumn4.Width = 540;
@@ -149,17 +149,16 @@
             this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
             this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
             this.ctrlSearch.Name = "ctrlSearch";
-            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
+            this.ctrlSearch.Size = new System.Drawing.Size(479, 20);
             this.ctrlSearch.TabIndex = 12;
             // 
             // btnAddCommunity
             // 
-            this.btnAddCommunity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddCommunity.Location = new System.Drawing.Point(3, 469);
+            this.btnAddCommunity.Location = new System.Drawing.Point(488, 3);
             this.btnAddCommunity.Name = "btnAddCommunity";
-            this.btnAddCommunity.Size = new System.Drawing.Size(220, 24);
+            this.btnAddCommunity.Size = new System.Drawing.Size(164, 20);
             this.btnAddCommunity.TabIndex = 13;
-            this.btnAddCommunity.Text = "Додати нову Спільноту";
+            this.btnAddCommunity.Text = "Додати нове товариство";
             this.btnAddCommunity.ThemeName = "Office2013Light";
             this.btnAddCommunity.Click += new System.EventHandler(this.btnAddCommunity_Click);
             // 

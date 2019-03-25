@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Extensions;
-using IpsViewComponentLibrary.Utilities;
 
 namespace IpsViewComponentLibrary.PartnerControls
 {
@@ -17,25 +16,22 @@ namespace IpsViewComponentLibrary.PartnerControls
     {
         public delegate void NameChangeEventHandler(string lastName, string firstName, string surName);
         public event NameChangeEventHandler TextNameChanged;
-        private bool _birthDateSelected = false;
+        private bool _birthDateSelected;
+
         public PartnerNameControl()
         {
             InitializeComponent();
-            dtBirthDay.ValueChanged += dtBirthDay_ValueChanged;
+            if (IpsGlobal.AnketaDictionaties != null)
+                bsSexType.DataSource = IpsGlobal.AnketaDictionaties.sexType;
 
+            dtBirthDay.ValueChanged += dtBirthDay_ValueChanged;
             dtBirthDay.SetUserCalendarSettingsm();
         }
 
         public object DataSourceAnketa
         {
             get => bsAnketaPerson.DataSource;
-            set
-            {
-                if (bsAnketaPerson.DataSource != value)
-                {
-                    bsAnketaPerson.DataSource = value;
-                }
-            }
+            set => bsAnketaPerson.DataSource = value;
         }
         
 
@@ -85,12 +81,6 @@ namespace IpsViewComponentLibrary.PartnerControls
         private void dtBirthDay_ValueChanged(object sender, EventArgs e)
         {
             _birthDateSelected = true;
-        }
-
-        private void PartnerNameControl_Load(object sender, EventArgs e)
-        {
-            if (IpsGlobal.AnketaDictionaties?.sexType != null)
-                ddlSexType.SetDataSource(IpsGlobal.AnketaDictionaties.sexType);
         }
 
         private void Name_Leave(object sender, EventArgs e)
