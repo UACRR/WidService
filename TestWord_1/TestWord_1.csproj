@@ -217,6 +217,9 @@
     <None Include="F_ТИПОВИЙ ДОГОВІР ЦИРК ГО УААСП.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП %281%29.docx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

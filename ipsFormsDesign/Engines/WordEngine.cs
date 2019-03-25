@@ -402,9 +402,7 @@ namespace ipsFormsDesign.Services
                         break;
                     case "CstVATType":
                         item.Range.Text = CstVATType;
-                        break;
-
-
+                        break;                     
 
                     default:
                         item.Delete();
@@ -832,6 +830,7 @@ namespace ipsFormsDesign.Services
                     case "CstEmail":
                         item.Range.Text = eMail;
                         break;
+
                     default:
                         item.Delete();
                         break;
@@ -1361,8 +1360,8 @@ namespace ipsFormsDesign.Services
             string PayShowDataDo = string.Empty;
             string aPayShowGrnText = string.Empty;
             string aPayShowKop = string.Empty;
-            
-
+            string BRAdvText = string.Empty;
+            string BRLmpText = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
             {
@@ -1482,7 +1481,15 @@ namespace ipsFormsDesign.Services
                                PrepayDateDo = lab.PrepayDateDo
                            }).ToList();
             }
+            if (TbAvAdv.Count == 0)
+            { BRAdvText = "Виключено за домовленістю Сторін"; }
+            else
+            { BRAdvText = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок ДО УААСП авторську винагороду, що вважається як аванс роялті, визначеного в п. 2.4. цього Договору, а саме:"; };
 
+            if (TbAL.Count == 0)
+            { BRLmpText = "Виключено за домовленістю Сторін"; }
+            else
+            { BRLmpText = "одноразового (паушального) платежу, а саме:"; };
 
             ShowName = licenseBigR?.Obj?.Name?.ToString();
             ShowAct = licenseBigR?.Obj?.ActCode?.ToString();
@@ -1699,6 +1706,13 @@ namespace ipsFormsDesign.Services
                     case "TableAvtor":
                         //formTableAvtor(item.Range.Tables, array_licAuthorB);
                         break;
+                    case "BRLmpText":
+                        item.Range.Text = BRLmpText;
+                        break;
+                    case "BRAdvText":
+                        item.Range.Text = BRAdvText;
+                        break;
+                        
 
                     default:
 
@@ -2111,6 +2125,11 @@ namespace ipsFormsDesign.Services
             TbAuthorL tbAuthorL;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (list.Count == 0)
+            {
+                table.Rows.Delete();
+                return;
+            }
             Row curRow = null;
             int index = 1;
             foreach (var item in list)
