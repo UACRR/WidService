@@ -223,7 +223,7 @@
             this.txtRuLangGenreType.MaxLength = 500;
             this.txtRuLangGenreType.Name = "txtRuLangGenreType";
             this.txtRuLangGenreType.Size = new System.Drawing.Size(465, 21);
-            this.txtRuLangGenreType.TabIndex = 9;
+            this.txtRuLangGenreType.TabIndex = 8;
             this.txtRuLangGenreType.ThemeName = "Office2013Light";
             // 
             // bsRuLangGenreType
@@ -238,7 +238,7 @@
             this.txtEnLangGenreType.MaxLength = 500;
             this.txtEnLangGenreType.Name = "txtEnLangGenreType";
             this.txtEnLangGenreType.Size = new System.Drawing.Size(465, 21);
-            this.txtEnLangGenreType.TabIndex = 8;
+            this.txtEnLangGenreType.TabIndex = 9;
             this.txtEnLangGenreType.ThemeName = "Office2013Light";
             // 
             // bsEnLangGenreType

@@ -1,25 +1,15 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using Telerik.WinControls.UI;
 using System.IO;
-using System.Reflection;
 using ipsFormsDesign.Dictionary;
-using sysAdminwp.Properties;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Data;
-using ipsFormsDesign.Interfaces;
 using sysAdminwp.viewPageDictionaryControls;
 
 namespace sysAdminwp
@@ -510,7 +500,7 @@ namespace sysAdminwp
             }
 
             //set last row focus
-            SetPositionAfterAdded();
+            SetLstCurs();
         }
 
         //кнопка відміни внесених змін

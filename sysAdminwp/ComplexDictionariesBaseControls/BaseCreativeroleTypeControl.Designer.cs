@@ -223,7 +223,7 @@
             this.txtRuLangCreativeroleType.MaxLength = 500;
             this.txtRuLangCreativeroleType.Name = "txtRuLangCreativeroleType";
             this.txtRuLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
-            this.txtRuLangCreativeroleType.TabIndex = 9;
+            this.txtRuLangCreativeroleType.TabIndex = 8;
             this.txtRuLangCreativeroleType.ThemeName = "Office2013Light";
             // 
             // bsRuLangCreativeRoleType
@@ -238,7 +238,7 @@
             this.txtEnLangCreativeroleType.MaxLength = 500;
             this.txtEnLangCreativeroleType.Name = "txtEnLangCreativeroleType";
             this.txtEnLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
-            this.txtEnLangCreativeroleType.TabIndex = 8;
+            this.txtEnLangCreativeroleType.TabIndex = 9;
             this.txtEnLangCreativeroleType.ThemeName = "Office2013Light";
             // 
             // bsEnLangCreativeRoleType
