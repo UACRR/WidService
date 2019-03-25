@@ -249,6 +249,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //for save last index selected item
+            int current = 0;
+
             DictionaryService dictService = new DictionaryService();
             if (btnSaveKlr030.Text == "Додати")
             {
@@ -256,13 +259,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 var result = dictService.CreateKlR030(klr030Data);
                 //set default state for 'Text' of the btnSave
                 btnSaveKlr030.Text = "Зберегти";
+                //save last selected item
+                current = gridKlr030List.CurrentRow.Index;
+                //update data for grid
+                gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridKlr030List.CurrentRow = result != null ? gridKlr030List.Rows[gridKlr030List.RowCount - 1]
+                                                                  : gridKlr030List.Rows[current];
             } else if (btnSaveKlr030.Text == "Зберегти")
             {
                 //save changes
                 var result = dictService.UpdateKlR030(klr030Data);
+                //save last selected item
+                current = gridKlr030List.CurrentRow.Index;
+                //update data for grid
+                gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridKlr030List.CurrentRow = gridKlr030List.Rows[current];
             }
-            //update data for grid
-            gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;

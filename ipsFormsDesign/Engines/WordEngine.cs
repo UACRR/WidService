@@ -164,7 +164,7 @@ namespace ipsFormsDesign.Services
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
                     $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
@@ -198,7 +198,7 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
+                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
                     $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
@@ -402,9 +402,7 @@ namespace ipsFormsDesign.Services
                         break;
                     case "CstVATType":
                         item.Range.Text = CstVATType;
-                        break;
-
-
+                        break;                     
 
                     default:
                         item.Delete();
@@ -540,14 +538,14 @@ namespace ipsFormsDesign.Services
             string prcntIncText = String.Empty;
             string Pasport = string.Empty;
             string PasportIssued = string.Empty;
-            string cstPerson1 = string.Empty; 
-
+            string cstPerson1 = string.Empty;
+            string CstCorrespAddress = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
                     $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
@@ -580,7 +578,7 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
+                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
                     $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
@@ -832,6 +830,7 @@ namespace ipsFormsDesign.Services
                     case "CstEmail":
                         item.Range.Text = eMail;
                         break;
+
                     default:
                         item.Delete();
                         break;
@@ -1361,14 +1360,14 @@ namespace ipsFormsDesign.Services
             string PayShowDataDo = string.Empty;
             string aPayShowGrnText = string.Empty;
             string aPayShowKop = string.Empty;
-            
-
+            string BRAdvText = string.Empty;
+            string BRLmpText = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
                     $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
@@ -1393,7 +1392,7 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
+                        $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
                     $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
@@ -1482,7 +1481,15 @@ namespace ipsFormsDesign.Services
                                PrepayDateDo = lab.PrepayDateDo
                            }).ToList();
             }
+            if (TbAvAdv.Count == 0)
+            { BRAdvText = "Виключено за домовленістю Сторін"; }
+            else
+            { BRAdvText = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок ДО УААСП авторську винагороду, що вважається як аванс роялті, визначеного в п. 2.4. цього Договору, а саме:"; };
 
+            if (TbAL.Count == 0)
+            { BRLmpText = "Виключено за домовленістю Сторін"; }
+            else
+            { BRLmpText = "одноразового (паушального) платежу, а саме:"; };
 
             ShowName = licenseBigR?.Obj?.Name?.ToString();
             ShowAct = licenseBigR?.Obj?.ActCode?.ToString();
@@ -1699,6 +1706,13 @@ namespace ipsFormsDesign.Services
                     case "TableAvtor":
                         //formTableAvtor(item.Range.Tables, array_licAuthorB);
                         break;
+                    case "BRLmpText":
+                        item.Range.Text = BRLmpText;
+                        break;
+                    case "BRAdvText":
+                        item.Range.Text = BRAdvText;
+                        break;
+                        
 
                     default:
 
@@ -2023,7 +2037,7 @@ namespace ipsFormsDesign.Services
 
             CPaidAmountKopText = Utils.NumPhraseL(Convert.ToUInt32(((int)((period?.Amount ?? 0 - period?.Amount ?? 0) * 100))), false);
             CstCorrespAddress = anketaCompany.LeAddress != null ?
-                $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : CstCorrespAddress;
+                $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : CstCorrespAddress;
 
 
             foreach (ContentControl item in list)
@@ -2111,6 +2125,11 @@ namespace ipsFormsDesign.Services
             TbAuthorL tbAuthorL;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (list.Count == 0)
+            {
+                table.Rows.Delete();
+                return;
+            }
             Row curRow = null;
             int index = 1;
             foreach (var item in list)

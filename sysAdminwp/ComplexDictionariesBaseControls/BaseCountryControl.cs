@@ -249,6 +249,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
+            //for save last index selected item
+            int current = 0;
+
             DictionaryService dictService = new DictionaryService();
             if (btnSaveCountry.Text == "Додати")
             {
@@ -256,13 +259,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 var result = dictService.CreateCountry(countryData);
                 //set default state for 'Text' of the btnSave
                 btnSaveCountry.Text = "Зберегти";
+                //save last selected item
+                current = gridCountryList.CurrentRow.Index;
+                //update data for grid
+                gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridCountryList.CurrentRow = result != null ? gridCountryList.Rows[gridCountryList.RowCount - 1]
+                                                                  : gridCountryList.Rows[current];
             } else if (btnSaveCountry.Text == "Зберегти")
             {
                 //save changes
                 var result = dictService.UpdateCountry(countryData);
+                //save last selected item
+                current = gridCountryList.CurrentRow.Index;
+                //update data for grid
+                gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
+                //select certain item into grid
+                gridCountryList.CurrentRow = gridCountryList.Rows[current];
             }
-            //update data for grid
-            gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;

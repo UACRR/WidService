@@ -187,7 +187,7 @@ namespace sysAdminwp
             this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radPageView1.Location = new System.Drawing.Point(0, 39);
             this.radPageView1.Name = "radPageView1";
-            this.radPageView1.SelectedPage = this.radPageViewPage2;
+            this.radPageView1.SelectedPage = this.radPageViewPage1;
             this.radPageView1.Size = new System.Drawing.Size(985, 543);
             this.radPageView1.TabIndex = 1;
             this.radPageView1.ThemeName = "Office2013Light";
@@ -267,7 +267,7 @@ namespace sysAdminwp
             this.txtNameRu.Location = new System.Drawing.Point(162, 81);
             this.txtNameRu.Name = "txtNameRu";
             this.txtNameRu.Size = new System.Drawing.Size(539, 20);
-            this.txtNameRu.TabIndex = 9;
+            this.txtNameRu.TabIndex = 8;
             this.txtNameRu.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
             // txtNameEn
@@ -277,7 +277,7 @@ namespace sysAdminwp
             this.txtNameEn.Location = new System.Drawing.Point(162, 108);
             this.txtNameEn.Name = "txtNameEn";
             this.txtNameEn.Size = new System.Drawing.Size(539, 20);
-            this.txtNameEn.TabIndex = 8;
+            this.txtNameEn.TabIndex = 9;
             this.txtNameEn.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.TextBox_TextChanging);
             // 
             // txtNameUa

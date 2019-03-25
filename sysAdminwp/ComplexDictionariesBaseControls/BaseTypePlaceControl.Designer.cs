@@ -236,7 +236,7 @@
             this.txtRuLangTypePlace.MaxLength = 500;
             this.txtRuLangTypePlace.Name = "txtRuLangTypePlace";
             this.txtRuLangTypePlace.Size = new System.Drawing.Size(465, 21);
-            this.txtRuLangTypePlace.TabIndex = 9;
+            this.txtRuLangTypePlace.TabIndex = 8;
             this.txtRuLangTypePlace.ThemeName = "Office2013Light";
             // 
             // bsRuLangTypePlace
@@ -251,7 +251,7 @@
             this.txtEnLangTypePlace.MaxLength = 500;
             this.txtEnLangTypePlace.Name = "txtEnLangTypePlace";
             this.txtEnLangTypePlace.Size = new System.Drawing.Size(465, 21);
-            this.txtEnLangTypePlace.TabIndex = 8;
+            this.txtEnLangTypePlace.TabIndex = 9;
             this.txtEnLangTypePlace.ThemeName = "Office2013Light";
             // 
             // bsEnLangTypePlace

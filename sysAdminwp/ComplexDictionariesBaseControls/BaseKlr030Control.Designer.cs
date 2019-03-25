@@ -223,7 +223,7 @@
             this.txtRuLangKlr030.MaxLength = 500;
             this.txtRuLangKlr030.Name = "txtRuLangKlr030";
             this.txtRuLangKlr030.Size = new System.Drawing.Size(465, 21);
-            this.txtRuLangKlr030.TabIndex = 9;
+            this.txtRuLangKlr030.TabIndex = 8;
             this.txtRuLangKlr030.ThemeName = "Office2013Light";
             // 
             // bsRuLangKlr030
@@ -238,7 +238,7 @@
             this.txtEnLangKlr030.MaxLength = 500;
             this.txtEnLangKlr030.Name = "txtEnLangKlr030";
             this.txtEnLangKlr030.Size = new System.Drawing.Size(465, 21);
-            this.txtEnLangKlr030.TabIndex = 8;
+            this.txtEnLangKlr030.TabIndex = 9;
             this.txtEnLangKlr030.ThemeName = "Office2013Light";
             // 
             // bsEnLangKlr030
