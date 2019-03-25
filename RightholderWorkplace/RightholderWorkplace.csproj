@@ -169,6 +169,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunityPresenter.cs" />
     <Compile Include="Localisation\RadGridViewUkraineLocalizationProvider.cs" />
     <Compile Include="Localisation\RadMessageBoxUkraineLocalizationProvider.cs" />
     <Compile Include="RightholderWorkplace.cs">

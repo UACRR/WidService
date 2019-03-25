@@ -50,6 +50,10 @@
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.UI.dll</HintPath>
       <Private>True</Private>
@@ -60,14 +64,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="RadForm1.cs">
+    <Compile Include="FixationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadForm1.Designer.cs">
-      <DependentUpon>RadForm1.cs</DependentUpon>
+    <Compile Include="FixationForm.Designer.cs">
+      <DependentUpon>FixationForm.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="RadForm1.resx">
-      <DependentUpon>RadForm1.cs</DependentUpon>
+    <EmbeddedResource Include="FixationForm.resx">
+      <DependentUpon>FixationForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,6 +94,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="workplace.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -99,6 +106,10 @@
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
       <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
+      <Project>{C0C413B4-086C-422C-82D6-A02E6284ABDF}</Project>
+      <Name>IpsViewComponentLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -141,6 +141,7 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // mainGridBigRight
             // 
+            this.mainGridBigRight.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
             this.mainGridBigRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainGridBigRight.Location = new System.Drawing.Point(199, 0);
             this.mainGridBigRight.Margin = new System.Windows.Forms.Padding(4);
@@ -204,7 +205,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewOwner.Location = new System.Drawing.Point(0, 0);
             this.pageViewOwner.Name = "pageViewOwner";
-            this.pageViewOwner.SelectedPage = this.pvConsumers;
+            this.pageViewOwner.SelectedPage = this.pvCommunity;
             this.pageViewOwner.Size = new System.Drawing.Size(1276, 637);
             this.pageViewOwner.TabIndex = 1;
             this.pageViewOwner.ThemeName = "Office2013Light";
@@ -262,9 +263,9 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.pvCommunity.Controls.Add(this.ctrlCommunity);
             this.pvCommunity.ItemSize = new System.Drawing.SizeF(79F, 27F);
-            this.pvCommunity.Location = new System.Drawing.Point(5, 29);
+            this.pvCommunity.Location = new System.Drawing.Point(5, 31);
             this.pvCommunity.Name = "pvCommunity";
-            this.pvCommunity.Size = new System.Drawing.Size(1266, 603);
+            this.pvCommunity.Size = new System.Drawing.Size(1266, 601);
             this.pvCommunity.Text = "Товариства";
             // 
             // ctrlCommunity
@@ -273,7 +274,7 @@ namespace ConsumerWorkplace_v_1._0
             this.ctrlCommunity.Location = new System.Drawing.Point(0, 0);
             this.ctrlCommunity.Margin = new System.Windows.Forms.Padding(4);
             this.ctrlCommunity.Name = "ctrlCommunity";
-            this.ctrlCommunity.Size = new System.Drawing.Size(1266, 603);
+            this.ctrlCommunity.Size = new System.Drawing.Size(1266, 601);
             this.ctrlCommunity.TabIndex = 0;
             // 
             // pvPaymentProcessing
