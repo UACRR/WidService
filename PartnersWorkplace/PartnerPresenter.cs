@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using IpsViewComponentLibrary;
-using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.PartnerControls;
 
-namespace ConsumerWorkplace_v_1._0.Presenters
+namespace PartnersWorkplace
 {
     class PartnerPresenter
     {
         private readonly PartnerService _service;
         private readonly PartnerControl _partner;
-        public PartnerPresenter(PartnerService service, PartnerControl partner)
+        public PartnerPresenter(PartnerControl partnerControl)
         {
-            _service = service;
-            _partner = partner;
+            _service = PartnerService.GetInstance();
+            _partner = partnerControl;
             SubscribeEvents();
         }
 

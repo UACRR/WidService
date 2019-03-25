@@ -23,22 +23,23 @@ using Telerik.WinControls.UI.Localization;
 
 namespace ConsumerWorkplace_v_1._0
 {
-    public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
+    public partial class ConsumerWorkplace : RadForm, IConsumerForm
     {
         private SmallRightPresenter _smallRightPresenter;// main presenter for small right
         private BigRightPresenter _bigRightPresenter;    // main presenter for big right
-        private PartnerPresenter _partnerPresenter;      // main presenter for partner
+        //private PartnerPresenter _partnerPresenter;      // main presenter for partner
         private CommunityPresenter _communityPresenter;  // main presenter for community
         private DBFPresenter _dbfPresenter;              // main presenter for importDBF
         private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
         private readonly CommunityService _communityService = new CommunityService();
-        private readonly PartnerService _partnerService = new PartnerService();
+        //private readonly PartnerService _partnerService = new PartnerService();
+        private readonly PartnerService _partnerService;
 
         public event Func<bool> Save;
 
         public ConsumerWorkplace(TypeRights rights)
         {
-            IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
+            IpsGlobal.SetAnketaDictionaties(new ConsumerService().GetDictionary());
             _dbfPresenter = new DBFPresenter();
             IpsGlobal.addInstance(typeof(IUniqueChecker), new UniqueCheckerPresenter());
             IpsGlobal.addInstance(typeof(IDBFPresenter), _dbfPresenter);
@@ -51,7 +52,7 @@ namespace ConsumerWorkplace_v_1._0
             {
                 case TypeRights.BigRights:
                 {
-                    RadTreeNode[] list = new[]
+                    RadTreeNode[] list =
                     {
                         new RadTreeNode
                         {
@@ -238,7 +239,7 @@ namespace ConsumerWorkplace_v_1._0
                     break;
             }
 
-            _partnerPresenter = new PartnerPresenter(_partnerService, ctrlPartner);
+            //_partnerPresenter = new PartnerPresenter(_partnerService, ctrlPartner);
             _communityPresenter = new CommunityPresenter(_communityService, ctrlCommunity);
         }
         

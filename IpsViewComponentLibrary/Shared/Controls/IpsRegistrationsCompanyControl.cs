@@ -12,7 +12,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
+    [ComplexBindingProperties("DataSource")]
     public partial class IpsRegistrationsCompanyControl : UserControl
     {
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;

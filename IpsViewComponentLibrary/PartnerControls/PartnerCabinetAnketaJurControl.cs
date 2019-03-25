@@ -19,12 +19,13 @@ namespace IpsViewComponentLibrary.PartnerControls
         public PartnerCabinetAnketaJurControl()
         {
             InitializeComponent();
+            ctrlSaveCancel.SaveClck += btnSave_Click;
         }
 
         public void BeginBindings(Customer customer)
         {
-            var dict = IpsGlobal.AnketaDictionaties;
-            ctrlClientName.SetDataSources(customer, dict);
+            var dictionaties = IpsGlobal.AnketaDictionaties;
+            ctrlClientName.SetDataSources(customer);
             ctrlAddress.SetDataSources(customer);
             ctrlManagers.SetDataSources(customer);
             ctrlBankAccount.DataSource = customer.BankAccount;

@@ -25,9 +25,8 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         public void BeginBindings(Customer customer)
         {
-            var dict = IpsGlobal.AnketaDictionaties;
             // представник
-            ctrlClientName.SetDataSources(customer, dict);
+            ctrlClientName.SetDataSources(customer);
             // контакти
             ctrlAddress.SetDataSources(customer);
             // керівники

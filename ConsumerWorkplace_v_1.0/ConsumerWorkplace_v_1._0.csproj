@@ -190,7 +190,6 @@
   <ItemGroup>
     <Compile Include="Presenters\CommunityPresenter.cs" />
     <Compile Include="Presenters\DBFPresenter.cs" />
-    <Compile Include="Presenters\PartnerPresenter.cs" />
     <Compile Include="ConsumerList.cs">
       <SubType>UserControl</SubType>
     </Compile>
