@@ -27,6 +27,7 @@ namespace ConsumerWorkplace_v_1._0
     {
         private SmallRightPresenter _smallRightPresenter;// main presenter for small right
         private BigRightPresenter _bigRightPresenter;    // main presenter for big right
+        private PartnerPresenter _partnerPresenter;      // main presenter for partner
         private CommunityPresenter _communityPresenter;  // main presenter for community
         private DBFPresenter _dbfPresenter;              // main presenter for importDBF
         private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
