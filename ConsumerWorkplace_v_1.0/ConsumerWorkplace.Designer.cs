@@ -49,7 +49,6 @@ namespace ConsumerWorkplace_v_1._0
             this.radPageViewPage3 = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvPartners = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvCommunity = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlCommunity = new IpsViewComponentLibrary.CommunityControls.CommunityControl();
             this.pvPaymentProcessing = new Telerik.WinControls.UI.RadPageViewPage();
             this.importDBFControl1 = new IpsViewComponentLibrary.ImportDBF.ImportDBFControl();
             this.pvSystem = new Telerik.WinControls.UI.RadPageViewPage();
@@ -80,7 +79,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).BeginInit();
             this.pageViewOwner.SuspendLayout();
             this.pvConsumers.SuspendLayout();
-            this.pvCommunity.SuspendLayout();
             this.pvPaymentProcessing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
@@ -203,7 +201,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewOwner.Location = new System.Drawing.Point(0, 0);
             this.pageViewOwner.Name = "pageViewOwner";
-            this.pageViewOwner.SelectedPage = this.pvCommunity;
+            this.pageViewOwner.SelectedPage = this.pvConsumers;
             this.pageViewOwner.Size = new System.Drawing.Size(1276, 637);
             this.pageViewOwner.TabIndex = 1;
             this.pageViewOwner.ThemeName = "Office2013Light";
@@ -249,21 +247,12 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // pvCommunity
             // 
-            this.pvCommunity.Controls.Add(this.ctrlCommunity);
+            this.pvCommunity.Enabled = false;
             this.pvCommunity.ItemSize = new System.Drawing.SizeF(79F, 27F);
             this.pvCommunity.Location = new System.Drawing.Point(5, 31);
             this.pvCommunity.Name = "pvCommunity";
             this.pvCommunity.Size = new System.Drawing.Size(1266, 601);
             this.pvCommunity.Text = "Товариства";
-            // 
-            // ctrlCommunity
-            // 
-            this.ctrlCommunity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlCommunity.Location = new System.Drawing.Point(0, 0);
-            this.ctrlCommunity.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrlCommunity.Name = "ctrlCommunity";
-            this.ctrlCommunity.Size = new System.Drawing.Size(1266, 601);
-            this.ctrlCommunity.TabIndex = 0;
             // 
             // pvPaymentProcessing
             // 
@@ -377,7 +366,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).EndInit();
             this.pageViewOwner.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
-            this.pvCommunity.ResumeLayout(false);
             this.pvPaymentProcessing.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
@@ -433,7 +421,6 @@ namespace ConsumerWorkplace_v_1._0
         private Telerik.WinControls.UI.RadTreeView treeViewBR;
         private ConsumersViewSmallRightControl mainGridSmallRight;
         private ConsumersViewBigRightControl mainGridBigRight;
-        private IpsViewComponentLibrary.CommunityControls.CommunityControl ctrlCommunity;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private Telerik.WinControls.UI.RadPageViewPage pvPaymentProcessing;
         private IpsViewComponentLibrary.ImportDBF.ImportDBFControl importDBFControl1;
