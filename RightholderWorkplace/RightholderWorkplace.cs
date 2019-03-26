@@ -37,6 +37,14 @@ namespace RightholderWorkplace
 
         public RightholderWorkplace()
         {
+            var objectrightService = new ObjectRightService();
+            IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
+
+            var rightholderService = new RightholderService();
+            IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+
+            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName());
+
             InitializeComponent();
 
             IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwner()?.Name);

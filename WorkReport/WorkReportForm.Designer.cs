@@ -31,14 +31,12 @@
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             this.registerListControl1 = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
             this.licenseAgreementListControl1 = new IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
             this.radPageView1.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
             this.radPageViewPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +50,7 @@
             this.radPageView1.Location = new System.Drawing.Point(-1, 3);
             this.radPageView1.Name = "radPageView1";
             this.radPageView1.SelectedPage = this.radPageViewPage1;
-            this.radPageView1.Size = new System.Drawing.Size(1109, 554);
+            this.radPageView1.Size = new System.Drawing.Size(1109, 588);
             this.radPageView1.TabIndex = 0;
             this.radPageView1.ThemeName = "Office2013Light";
             // 
@@ -62,7 +60,7 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(64F, 25F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 29);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1099, 520);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1099, 554);
             this.radPageViewPage1.Text = "Звіти МП";
             // 
             // radPageViewPage2
@@ -74,23 +72,13 @@
             this.radPageViewPage2.Size = new System.Drawing.Size(1099, 557);
             this.radPageViewPage2.Text = "Заявки/Довідки ВП";
             // 
-            // radButton1
-            // 
-            this.radButton1.Location = new System.Drawing.Point(993, 563);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 24);
-            this.radButton1.TabIndex = 1;
-            this.radButton1.Text = "Вихід";
-            this.radButton1.ThemeName = "Office2013Light";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
-            // 
             // registerListControl1
             // 
             this.registerListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.registerListControl1.Location = new System.Drawing.Point(0, 0);
             this.registerListControl1.Name = "registerListControl1";
             this.registerListControl1.SelectedRegister = null;
-            this.registerListControl1.Size = new System.Drawing.Size(1099, 520);
+            this.registerListControl1.Size = new System.Drawing.Size(1099, 554);
             this.registerListControl1.TabIndex = 0;
             // 
             // licenseAgreementListControl1
@@ -107,7 +95,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1109, 593);
-            this.Controls.Add(this.radButton1);
             this.Controls.Add(this.radPageView1);
             this.Name = "WorkReportForm";
             // 
@@ -120,7 +107,6 @@
             this.radPageView1.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
             this.radPageViewPage2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -133,6 +119,5 @@
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage2;
         private IpsViewComponentLibrary.RegisterControls.RegisterListControl registerListControl1;
         private IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl licenseAgreementListControl1;
-        private Telerik.WinControls.UI.RadButton radButton1;
     }
 }
