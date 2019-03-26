@@ -8,7 +8,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using ConsumerWorkplace_v_1._0.Presenters;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -27,7 +26,7 @@ namespace ConsumerWorkplace_v_1._0
     public partial class ConsumerWorkplace : RadForm, IConsumerForm
     {
         //private SmallRightPresenter _smallRightPresenter;// main presenter for small right
-        private BigRightPresenter _bigRightPresenter;    // main presenter for big right
+        //private BigRightPresenter _bigRightPresenter;    // main presenter for big right
         private DBFPresenter _dbfPresenter;              // main presenter for importDBF
         private readonly ConsumerService _consumerMainService; // main service
 
@@ -110,8 +109,8 @@ namespace ConsumerWorkplace_v_1._0
                     foreach (var item in list)
                         treeViewBR.Nodes.Add(item);
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
-                    IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
+                    //_bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
+                    //IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
                         // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
 
@@ -228,8 +227,8 @@ namespace ConsumerWorkplace_v_1._0
 
                     _consumerMainService = new ConsumerService();
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
-                    IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
+                    //_bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
+                    //IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
 
                     treeViewBR.SelectedNode = treeViewBR.Nodes[0];
 

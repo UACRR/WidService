@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
@@ -30,10 +25,13 @@ namespace IpsViewComponentLibrary.ImportDBF
         private IUpdateProviderSmallRight _updateProviderSmallRight;
         private IUpdateProviderBigRight _updateProviderBigRight;
 
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+
         public ImportDBFControl()
         {
             InitializeComponent();
-            _presenter = new DBFPresenter();
+            if (!IsDesignMode)
+                _presenter = new DBFPresenter();
             Leave += Control_Leave;
             lblFileName.Text = DefaultFileName;
         }
@@ -43,7 +41,9 @@ namespace IpsViewComponentLibrary.ImportDBF
         // оновити дані
         private void Control_Paint(object sender, PaintEventArgs e)
         {
-            if (_presenter == null) return;
+            if (_presenter == null)
+                return;
+
             bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
             //show count Pays
             lblCountPays.Text = bindingExtrnPay.Count.ToString();
@@ -145,7 +145,7 @@ namespace IpsViewComponentLibrary.ImportDBF
             {
                 if (TypeRights == TypeRights.SmallRights)
                     _updateProviderSmallRight = IpsGlobal.Instances[typeof(IUpdateProviderSmallRight)] as IUpdateProviderSmallRight;
-                else if(TypeRights == TypeRights.BigRights)
+                else if (TypeRights == TypeRights.BigRights)
                     _updateProviderBigRight = IpsGlobal.Instances[typeof(IUpdateProviderBigRight)] as IUpdateProviderBigRight;
             }
         }

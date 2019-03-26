@@ -205,7 +205,6 @@
     </Compile>
     <Compile Include="FormPresenter.cs" />
     <Compile Include="PdfEngine.cs" />
-    <Compile Include="Presenters\BigRightPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ConsumerList.resx">

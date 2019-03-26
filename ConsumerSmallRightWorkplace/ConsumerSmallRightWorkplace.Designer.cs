@@ -110,6 +110,7 @@
             this.ctrlImportDBF.Name = "ctrlImportDBF";
             this.ctrlImportDBF.Size = new System.Drawing.Size(1231, 463);
             this.ctrlImportDBF.TabIndex = 0;
+            this.ctrlImportDBF.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             // 
             // ConsumerSmallRightWorkplace
             // 

@@ -12,7 +12,7 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
 
         public DBFPresenter()
         {
-            _service = new DbfService();
+            _service = DbfService.GetInstance();
         }
 
         /// <summary>
@@ -40,6 +40,7 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
 
             return newFile;
         }
+
         /// <summary>
         /// Збереження InputFile в БД
         /// </summary>
@@ -60,6 +61,7 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
         {
             return _service.SaveLinkedPay( pay );
         }
+
         /// <summary>
         /// Збереження списка прив'язаних до Споживачів платежів
         /// </summary>
@@ -69,6 +71,7 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
         {
             return _service.SaveListLinkedPays( list );
         }
+
         /// <summary>
         /// Видалення непідтвердженого файлу
         /// </summary>
@@ -78,6 +81,7 @@ namespace IpsViewComponentLibrary.ImportDBF.Presenters
         {
             return _service.DeleteInputFile(file);
         }
+
         /// <summary>
         /// Отримати список Споживачів у яких є договори
         /// </summary>

@@ -50,7 +50,6 @@ namespace ConsumerWorkplace_v_1._0
             this.pvPartners = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvCommunity = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvPaymentProcessing = new Telerik.WinControls.UI.RadPageViewPage();
-            this.importDBFControl1 = new IpsViewComponentLibrary.ImportDBF.ImportDBFControl();
             this.pvSystem = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -79,7 +78,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).BeginInit();
             this.pageViewOwner.SuspendLayout();
             this.pvConsumers.SuspendLayout();
-            this.pvPaymentProcessing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).BeginInit();
@@ -113,7 +111,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageParentConsumers.Location = new System.Drawing.Point(0, 0);
             this.pageParentConsumers.Margin = new System.Windows.Forms.Padding(0);
             this.pageParentConsumers.Name = "pageParentConsumers";
-            this.pageParentConsumers.SelectedPage = this.pageSmallRights;
+            this.pageParentConsumers.SelectedPage = this.pageBigRights;
             this.pageParentConsumers.Size = new System.Drawing.Size(1266, 601);
             this.pageParentConsumers.TabIndex = 0;
             this.pageParentConsumers.ThemeName = "Office2013Light";
@@ -202,7 +200,7 @@ namespace ConsumerWorkplace_v_1._0
             this.pageViewOwner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewOwner.Location = new System.Drawing.Point(0, 0);
             this.pageViewOwner.Name = "pageViewOwner";
-            this.pageViewOwner.SelectedPage = this.pvPaymentProcessing;
+            this.pageViewOwner.SelectedPage = this.pvConsumers;
             this.pageViewOwner.Size = new System.Drawing.Size(1276, 637);
             this.pageViewOwner.TabIndex = 1;
             this.pageViewOwner.ThemeName = "Office2013Light";
@@ -257,20 +255,11 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // pvPaymentProcessing
             // 
-            this.pvPaymentProcessing.Controls.Add(this.importDBFControl1);
             this.pvPaymentProcessing.ItemSize = new System.Drawing.SizeF(105F, 27F);
             this.pvPaymentProcessing.Location = new System.Drawing.Point(5, 31);
             this.pvPaymentProcessing.Name = "pvPaymentProcessing";
             this.pvPaymentProcessing.Size = new System.Drawing.Size(1266, 601);
             this.pvPaymentProcessing.Text = "Розбір платежів";
-            // 
-            // importDBFControl1
-            // 
-            this.importDBFControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.importDBFControl1.Location = new System.Drawing.Point(0, 0);
-            this.importDBFControl1.Name = "importDBFControl1";
-            this.importDBFControl1.Size = new System.Drawing.Size(1266, 601);
-            this.importDBFControl1.TabIndex = 0;
             // 
             // pvSystem
             // 
@@ -367,7 +356,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).EndInit();
             this.pageViewOwner.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
-            this.pvPaymentProcessing.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).EndInit();
