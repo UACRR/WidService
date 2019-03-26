@@ -74,7 +74,7 @@ namespace RightholderWorkplace
             this.objectRightMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.objectRightDictionariesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.mainPageRightsObjects = new Telerik.WinControls.UI.RadPageViewPage();
-            this.objectRightListControl1 = new IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl();
+            this.ctrlObjectRightList = new IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl();
             this.mainPageRightholders = new Telerik.WinControls.UI.RadPageViewPage();
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
@@ -388,7 +388,7 @@ namespace RightholderWorkplace
             // 
             // mainPageRightsObjects
             // 
-            this.mainPageRightsObjects.Controls.Add(this.objectRightListControl1);
+            this.mainPageRightsObjects.Controls.Add(this.ctrlObjectRightList);
             this.mainPageRightsObjects.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.mainPageRightsObjects.Location = new System.Drawing.Point(5, 31);
             this.mainPageRightsObjects.Name = "mainPageRightsObjects";
@@ -397,12 +397,15 @@ namespace RightholderWorkplace
             // 
             // objectRightListControl1
             // 
-            this.objectRightListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.objectRightListControl1.Location = new System.Drawing.Point(0, 0);
-            this.objectRightListControl1.Name = "objectRightListControl1";
-            this.objectRightListControl1.SelectedObject = null;
-            this.objectRightListControl1.Size = new System.Drawing.Size(1182, 632);
-            this.objectRightListControl1.TabIndex = 0;
+            this.ctrlObjectRightList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlObjectRightList.Location = new System.Drawing.Point(0, 0);
+            this.ctrlObjectRightList.Name = "objectRightListControl1";
+            this.ctrlObjectRightList.SelectedObject = null;
+            this.ctrlObjectRightList.Size = new System.Drawing.Size(1182, 632);
+            this.ctrlObjectRightList.TabIndex = 0;
+            this.ctrlObjectRightList.ObjectSelected += new System.EventHandler<ipsFormsDesign.Dictionary.ObjectRightMainView>(this.ctrlObjectRightList_ObjectSelected);
+            this.ctrlObjectRightList.EditCommandExecuted += new System.EventHandler<ipsFormsDesign.Dictionary.ObjectRightMainView>(this.ctrlObjectRightList_EditCommandExecuted);
+
             // 
             // mainPageRightholders
             // 
@@ -1021,7 +1024,7 @@ namespace RightholderWorkplace
         private Telerik.WinControls.UI.RadPageViewPage copyrightRequestsPage;
         private IpsViewComponentLibrary.ObjectRightControls.CopyrightRequestControl ctrlCopyrightRequests;
         private Telerik.WinControls.UI.RadPageView MainPageView;
-        private IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl objectRightListControl1;
+        private IpsViewComponentLibrary.ObjectRightControls.ObjectRightListControl ctrlObjectRightList;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage1;
         private IpsViewComponentLibrary.CommunityControls.CommunityControl ctrlCommunity;
     }
