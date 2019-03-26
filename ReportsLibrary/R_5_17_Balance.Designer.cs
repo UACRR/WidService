@@ -33,7 +33,6 @@ namespace ReportsLibrary
             Telerik.Reporting.TypeReportSource typeReportSource2 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter2 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter3 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule2 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule3 = new Telerik.Reporting.Drawing.StyleRule();
@@ -879,16 +878,8 @@ namespace ReportsLibrary
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "= Today()";
             reportParameter2.Visible = true;
-            reportParameter3.AllowNull = true;
-            reportParameter3.AutoRefresh = true;
-            reportParameter3.AvailableValues.DisplayMember = "= ReportItem.Culture";
-            reportParameter3.Name = "lang";
-            reportParameter3.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter3.Value = "= 6870";
-            reportParameter3.Visible = true;
             this.ReportParameters.Add(reportParameter1);
             this.ReportParameters.Add(reportParameter2);
-            this.ReportParameters.Add(reportParameter3);
             this.Style.BackgroundColor = System.Drawing.Color.Silver;
             this.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Justify;
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {

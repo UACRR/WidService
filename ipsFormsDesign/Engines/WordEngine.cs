@@ -695,13 +695,13 @@ namespace ipsFormsDesign.Services
                         break;
 
                     case "TablePL2":
-                        FormTablePl2(item.Range.Tables, clnBusinessPlaceMarket);
+                        FormTablePl2(item.Range.Tables, clnBusinessPlaceLicense);
                         break;
                    case "TablePL3":
-                        FormTablePl3(item.Range.Tables, clnBusinessPlaceMarket);
+                        FormTablePl3(item.Range.Tables, clnBusinessPlaceLicense);
                         break;
                    case "TablePL4":
-                        FormTablePl4(item.Range.Tables, clnBusinessPlaceMarket);
+                        FormTablePl4(item.Range.Tables, clnBusinessPlaceLicense);
                         break;
 
 
@@ -2113,6 +2113,7 @@ namespace ipsFormsDesign.Services
             {
                 tbAuthorPrc = item;
                 curRow = table.Rows.Add();
+
                 index++;
                 curRow.Cells[1].Range.Text = tbAuthorPrc.RoleName.ToString();
                 curRow.Cells[2].Range.Text = tbAuthorPrc.AuthorName.ToString();
@@ -2171,6 +2172,7 @@ namespace ipsFormsDesign.Services
                 index++;
                 //curRow.Cells[1].Range.Text = authorBr.RoleType.ToString();
                 //curRow.Cells[2].Range.Text = authorBr.NameAuthor;
+                
                 curRow.Cells[3].Range.Text = "Україна";
                 curRow.Cells[4].Range.Text = "";
                 curRow.Cells[5].Range.Text = authorBr.Rate.ToString();
@@ -2229,7 +2231,7 @@ namespace ipsFormsDesign.Services
             if (BuisnessPlace.Count == 0)
             {
                 table.Rows.Add();
-                return;
+             //   return;
             }
             var typePlace = _dic.typePlace.ToDictionary(rec => rec.CodeI);
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);

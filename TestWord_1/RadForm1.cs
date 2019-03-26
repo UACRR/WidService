@@ -65,7 +65,7 @@ namespace TestWord_1
             Filename = "F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx";
             Filename = "F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx";
             Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
-            Filename = "F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП (1).docx";
+   //         Filename = "F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП (1).docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
             ProcessWord(template, Filename);

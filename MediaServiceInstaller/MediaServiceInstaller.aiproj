@@ -1,0 +1,93 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">All</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>62ac620b-2abb-4c18-a00d-c910813b8b3b</ProjectGuid>
+    <OutputType>msi</OutputType>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>MediaServiceInstaller.aip</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <IsWindowsApplication>True</IsWindowsApplication>
+    <AssemblyName>MediaServiceInstaller</AssemblyName>
+    <Name>MediaServiceInstaller</Name>
+    <RootNamespace>MediaServiceInstaller</RootNamespace>
+    <LoadFromTemplate>
+    </LoadFromTemplate>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'DefaultBuild' " />
+  <ItemGroup>
+    <Compile Include="MediaServiceInstaller.aip">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ConsumerBigRightWorkplace\ConsumerBigRightWorkplace.csproj">
+      <Name>ConsumerBigRightWorkplace</Name>
+      <Project>{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsumerSmallRightWorkplace\ConsumerSmallRightWorkplace.csproj">
+      <Name>ConsumerSmallRightWorkplace</Name>
+      <Project>{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj">
+      <Name>ConsumerWorkplace_v_1._0</Name>
+      <Project>{588ce9ff-3c07-4e1b-b6f1-10aedaed0230}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\Fixation\Fixation.csproj">
+      <Name>Fixation</Name>
+      <Project>{e3dbf12c-7505-4e83-882d-0570f4cd1e32}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\PartnersWorkplace\PartnersWorkplace.csproj">
+      <Name>PartnersWorkplace</Name>
+      <Project>{c5c79d2e-f748-428f-965d-32bf69be33ea}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\RepNew\RepNew.csproj">
+      <Name>RepNew</Name>
+      <Project>{89315cb9-919f-494a-91eb-1047f92c0eeb}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\RightholderWorkplace\RightholderWorkplace.csproj">
+      <Name>RightholderWorkplace</Name>
+      <Project>{be2b9387-9119-454b-b94f-297dce752d8d}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\sysAdminwp\sysAdminwp.csproj">
+      <Name>sysAdminwp</Name>
+      <Project>{c08cd8f1-bc04-4eb9-99d1-be924649f23a}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+    <ProjectReference Include="..\WorkReport\WorkReport.csproj">
+      <Name>WorkReport</Name>
+      <Project>{ce1665e0-cc91-4d0b-8778-95d5556effae}</Project>
+      <Private>True</Private>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="Build">
+    <Error Text="This project requires Advanced Installer tool. Please download it from https://www.advancedinstaller.com/download.html" />
+  </Target>
+  <Target Name="Rebuild">
+    <Error Text="This project requires Advanced Installer tool. Please download it from https://www.advancedinstaller.com/download.html" />
+  </Target>
+  <Target Name="Clean">
+  </Target>
+  <Target Name="ResolveAssemblyReferences">
+  </Target>
+  <Import Condition="'$(AdvancedInstallerMSBuildTargets)' != ''" Project="$(AdvancedInstallerMSBuildTargets)\AdvInstExtTasks.Targets" />
+  <Import Condition="('$(AdvancedInstallerMSBuildTargets)' == '') And (Exists('$(MSBuildExtensionsPath32)\Caphyon\Advanced Installer\AdvInstExtTasks.Targets'))" Project="$(MSBuildExtensionsPath32)\Caphyon\Advanced Installer\AdvInstExtTasks.Targets" />
+</Project>
