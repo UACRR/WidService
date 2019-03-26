@@ -30,8 +30,8 @@
         {
             this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.registerListControl1 = new IpsViewComponentLibrary.RegisterControls.RegisterListControl();
+            this.radPageViewPage2 = new Telerik.WinControls.UI.RadPageViewPage();
             this.licenseAgreementListControl1 = new IpsViewComponentLibrary.RightholderControls.LicenseAgreementListControl();
             this.radButton1 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
@@ -65,15 +65,6 @@
             this.radPageViewPage1.Size = new System.Drawing.Size(1099, 518);
             this.radPageViewPage1.Text = "Звіти МП";
             // 
-            // radPageViewPage2
-            // 
-            this.radPageViewPage2.Controls.Add(this.licenseAgreementListControl1);
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(123F, 27F);
-            this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
-            this.radPageViewPage2.Name = "radPageViewPage2";
-            this.radPageViewPage2.Size = new System.Drawing.Size(1099, 557);
-            this.radPageViewPage2.Text = "Заявки/Довідки ВП";
-            // 
             // registerListControl1
             // 
             this.registerListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -82,6 +73,15 @@
             this.registerListControl1.SelectedRegister = null;
             this.registerListControl1.Size = new System.Drawing.Size(1099, 518);
             this.registerListControl1.TabIndex = 0;
+            // 
+            // radPageViewPage2
+            // 
+            this.radPageViewPage2.Controls.Add(this.licenseAgreementListControl1);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(123F, 27F);
+            this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
+            this.radPageViewPage2.Name = "radPageViewPage2";
+            this.radPageViewPage2.Size = new System.Drawing.Size(1099, 557);
+            this.radPageViewPage2.Text = "Заявки/Довідки ВП";
             // 
             // licenseAgreementListControl1
             // 
@@ -114,7 +114,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Звіти";
+            this.Text = "Управління розподілу АВ";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
             this.radPageView1.ResumeLayout(false);
