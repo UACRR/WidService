@@ -405,6 +405,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
                 {
                     _dialogService.ShowMessage(this, error);
                 }
+
             }
 
             _deleteLicense = false;
@@ -452,12 +453,17 @@ namespace IpsViewComponentLibrary.Shared.Forms
         {
             if (int.TryParse(txtActCode.Text, out int actCode))
             {
+                if (ddlGenreType.SelectedValue == null)
+                    return;
+
                 var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
 
                 var rate = _dictionaties.relGenrePercent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
                 if (_licenseAgreement?.LicenseBigR?.Rate == rate)
                     return;
 
+                if (genreType == _licenseAgreement?.LicenseBigR?.Obj?.GenreType)
+                    return;
 
                 //txtVinagoroda.Text = rate.ToString();
                 if(_licenseAgreement?.LicenseBigR != null)

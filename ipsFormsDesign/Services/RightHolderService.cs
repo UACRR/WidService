@@ -13,6 +13,14 @@ namespace ipsFormsDesign.Services
     {
         private ApiConnector _webApi = new ApiConnector();
 
+        /* Info */
+        public string GetOwnerName()
+        {
+            var retValue = _webApi.GetItemById<string>("info/name", null);
+            return retValue;
+        }
+
+        /* Get Data */
         public Customer GetData(int custId)
         {
             var anketaDic = _webApi.GetItemById<Customer>("rh/detail", custId.ToString() );
