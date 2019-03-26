@@ -12,7 +12,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
-    [ComplexBindingProperties("DataSource")]
+    [ComplexBindingProperties("DataSource", "DataMember")]
     public partial class IpsRegistrationsCompanyControl : UserControl
     {
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
@@ -34,11 +34,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         public object DataSource
         {
             get => bsAnketaCompany.DataSource;
-            set
-            {
-                if (bsAnketaCompany.DataSource != value)
-                    bsAnketaCompany.DataSource = value;
-            }
+            set => bsAnketaCompany.DataSource = value;
         }
 
         #region Edit controls

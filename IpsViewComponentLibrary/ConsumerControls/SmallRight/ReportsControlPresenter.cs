@@ -11,7 +11,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private readonly ReportsControl _control;
         private readonly ConsumerService _service;
 
-        public ReportsControlPresenter(ReportsControl control, ConsumerService service )
+        public ReportsControlPresenter(ReportsControl control, ConsumerService service)
         {
             _control = control;
             _service = service;

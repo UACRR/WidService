@@ -130,9 +130,9 @@ namespace ConsumerWorkplace_v_1._0
             this.pageBigRights.Controls.Add(this.mainGridBigRight);
             this.pageBigRights.Controls.Add(this.treeViewBR);
             this.pageBigRights.ItemSize = new System.Drawing.SizeF(88F, 27F);
-            this.pageBigRights.Location = new System.Drawing.Point(10, 30);
+            this.pageBigRights.Location = new System.Drawing.Point(10, 32);
             this.pageBigRights.Name = "pageBigRights";
-            this.pageBigRights.Size = new System.Drawing.Size(1250, 567);
+            this.pageBigRights.Size = new System.Drawing.Size(1250, 563);
             this.pageBigRights.Text = "Великі права";
             // 
             // mainGridBigRight
@@ -143,7 +143,7 @@ namespace ConsumerWorkplace_v_1._0
             this.mainGridBigRight.Margin = new System.Windows.Forms.Padding(4);
             this.mainGridBigRight.Name = "mainGridBigRight";
             this.mainGridBigRight.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.mainGridBigRight.Size = new System.Drawing.Size(1051, 567);
+            this.mainGridBigRight.Size = new System.Drawing.Size(1051, 563);
             this.mainGridBigRight.TabIndex = 3;
             // 
             // treeViewBR
@@ -153,7 +153,7 @@ namespace ConsumerWorkplace_v_1._0
             this.treeViewBR.LineStyle = Telerik.WinControls.UI.TreeLineStyle.Dash;
             this.treeViewBR.Location = new System.Drawing.Point(0, 0);
             this.treeViewBR.Name = "treeViewBR";
-            this.treeViewBR.Size = new System.Drawing.Size(199, 567);
+            this.treeViewBR.Size = new System.Drawing.Size(199, 563);
             this.treeViewBR.SpacingBetweenNodes = -1;
             this.treeViewBR.TabIndex = 2;
             // 
@@ -187,6 +187,7 @@ namespace ConsumerWorkplace_v_1._0
             this.treeViewSR.Size = new System.Drawing.Size(199, 563);
             this.treeViewSR.SpacingBetweenNodes = -1;
             this.treeViewSR.TabIndex = 0;
+            this.treeViewSR.ThemeName = "Office2013Light";
             // 
             // pageViewOwner
             // 

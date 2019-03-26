@@ -138,7 +138,7 @@
             // txtMfo
             // 
             this.txtMfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "Mfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.txtMfo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsBankAccount, "Mfo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, null, "N0"));
             this.txtMfo.Location = new System.Drawing.Point(168, 28);
             this.txtMfo.Mask = "000000";
             this.txtMfo.MaskType = Telerik.WinControls.UI.MaskType.Standard;

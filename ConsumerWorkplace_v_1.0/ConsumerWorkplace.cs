@@ -25,16 +25,16 @@ namespace ConsumerWorkplace_v_1._0
 {
     public partial class ConsumerWorkplace : RadForm, IConsumerForm
     {
-        private SmallRightPresenter _smallRightPresenter;// main presenter for small right
+        //private SmallRightPresenter _smallRightPresenter;// main presenter for small right
         private BigRightPresenter _bigRightPresenter;    // main presenter for big right
         private DBFPresenter _dbfPresenter;              // main presenter for importDBF
-        private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
+        private readonly ConsumerService _consumerMainService; // main service
 
         public event Func<bool> Save;
 
         public ConsumerWorkplace(TypeRights rights)
         {
-            IpsGlobal.SetAnketaDictionaties(new ConsumerService().GetDictionary());
+            //IpsGlobal.SetAnketaDictionaties(new ConsumerService().GetDictionary());
             _dbfPresenter = new DBFPresenter();
             IpsGlobal.addInstance(typeof(IUniqueChecker), new UniqueCheckerPresenter());
             IpsGlobal.addInstance(typeof(IDBFPresenter), _dbfPresenter);
@@ -134,9 +134,9 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _consumerMainService = new ConsumerService();
-                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
-                    IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
+                        //_consumerMainService = ConsumerService.GetInstance();
+                        //_smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
+                        //IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
 
                         treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
@@ -159,8 +159,8 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
-                    IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
+                    //_smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
+                    //IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
 
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
@@ -224,6 +224,8 @@ namespace ConsumerWorkplace_v_1._0
 
                     foreach (var item in list2)
                         treeViewBR.Nodes.Add(item);
+
+                    _consumerMainService = new ConsumerService();
                     
                     _bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
                     IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
@@ -17,33 +16,31 @@ using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace ConsumerWorkplace_v_1._0.Presenters
+namespace ConsumerSmallRightWorkplace.Presenters
 {
     class SmallRightPresenter: IUpdateProviderSmallRight
     {
         private const string ConsumerAdded = "Нового користувача додано!";
         private const string ConsumerNotAdded = "Не вдалося додати нового користувача!";
 
-        private readonly CabinetSmallRightForm _cabinetSmallRightForm = new CabinetSmallRightForm
-        {
-            StartPosition = FormStartPosition.CenterParent,
-            WindowState = FormWindowState.Maximized
-        };
+        private readonly CabinetSmallRightForm _cabinetSmallRightForm;
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
-        private readonly ConsumerService _service;
+        private readonly ConsumerSmallRightService _service;
         private readonly PartnerService _partnerService;
         private readonly ConsumersViewSmallRightControl _mainGrid;
 
-        public SmallRightPresenter(ConsumerService service, RadTreeView treeView, ConsumersViewSmallRightControl mainGrid)
+        public SmallRightPresenter(RadTreeView treeView, ConsumersViewSmallRightControl mainGrid)
         {
+            _service = ConsumerSmallRightService.GetInstance();
+            _cabinetSmallRightForm = new CabinetSmallRightForm();
+
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
-            _service = service;
             _partnerService = PartnerService.GetInstance();
             _mainGrid = mainGrid;
             _mainGrid.OnLoadCustomerCabinetNeed += LoadCustomerCabinet;
             _mainGrid.OnAddNewCustomer += CreateNewCustomerAnketa;
 
-            _cabinetSmallRightForm.OnUpdate += SmallRightForm_OnUpdate; ;
+            _cabinetSmallRightForm.OnUpdate += SmallRightForm_OnUpdate;
             _cabinetSmallRightForm.cabinet.SaveCustomer += SaveCustomer;
             _cabinetSmallRightForm.cabinet.OnChangeLicenseStatus += ChangeLicenseStatus;
             _cabinetSmallRightForm.cabinet.GetPartner += Cabinet_GetPartner;
