@@ -8,10 +8,6 @@
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_BouncyCastle.Crypto.dll" Value="..\packages\Portable.BouncyCastle.1.8.4\lib\net40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Common.Logging.Core.dll" Value="..\packages\Common.Logging.Core.3.4.1\lib\net40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Common.Logging.dll" Value="..\packages\Common.Logging.3.4.1\lib\net40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_ConsumerBigRightWorkplace.exe" Value="..\ConsumerBigRightWorkplace\bin\Debug"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_ConsumerBigRightWorkplace.exe.config" Value="..\ConsumerBigRightWorkplace\bin\Debug"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_ConsumerSmallRightWorkplace.exe" Value="..\ConsumerSmallRightWorkplace\bin\Debug"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_ConsumerSmallRightWorkplace.exe.config" Value="..\ConsumerSmallRightWorkplace\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_ConsumerWorkplace_v_1._0.exe" Value="..\ConsumerWorkplace_v_1.0\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_ConsumerWorkplace_v_1._0.exe.config" Value="..\ConsumerWorkplace_v_1.0\bin\Debug"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Fixation.exe" Value="..\Fixation\bin\Debug"/>
@@ -35,10 +31,8 @@
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.Reporting.dll_1" Value="C:\Program Files (x86)\Progress\Telerik Reporting R1 2019\Bin"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.ChartView.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.GridView.dll" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.GridView.dll_1" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.GridView.dll_2" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.PdfViewer.dll" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.PdfViewer.dll_1" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.PdfViewer.dll_2" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.PivotGrid.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.RadChart.dll" Value="..\lib\RCWF\2019.1.219.40"/>
@@ -56,23 +50,15 @@
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.FluentDark.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.HighContrastBlack.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_1" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_2" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_1" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_2" Value="C:\Program Files (x86)\Progress\Telerik UI for WinForms R1 2019\Bin40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Windows8.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.Design.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll" Value="..\lib\RCWF\2019.1.219.40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll_1" Value="..\lib\RCWF\2019.1.219.40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll_2" Value="..\lib\RCWF\2019.1.219.40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll_3" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll_4" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll" Value="..\lib\RCWF\2019.1.219.40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll_1" Value="..\lib\RCWF\2019.1.219.40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll_2" Value="..\lib\RCWF\2019.1.219.40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll_3" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll_4" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.Windows.Documents.Core.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.Windows.Documents.Core.dll_1" Value="..\lib\RCWF\2019.1.219.40"/>
@@ -85,8 +71,6 @@
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_Telerik.Windows.Zip.dll_1" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll_1" Value="..\lib\RCWF\2019.1.219.40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll_2" Value="..\lib\RCWF\2019.1.219.40"/>
-    <ROW Property="AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll_3" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll_4" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_TelerikData.dll" Value="..\lib\RCWF\2019.1.219.40"/>
     <ROW Property="AI_PROPPATH_DIR_PERBUILD_WebAPIConnector.dll" Value="..\WebAPIConnector\bin\Debug"/>
@@ -109,10 +93,6 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" Value="BouncyCastle.Crypto.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Common.Logging.Core.dll" Value="Common.Logging.Core.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Common.Logging.dll" Value="Common.Logging.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_ConsumerBigRightWorkplace.exe" Value="ConsumerBigRightWorkplace.exe"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_ConsumerBigRightWorkplace.exe.config" Value="ConsumerBigRightWorkplace.exe.config"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_ConsumerSmallRightWorkplace.exe" Value="ConsumerSmallRightWorkplace.exe"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_ConsumerSmallRightWorkplace.exe.config" Value="ConsumerSmallRightWorkplace.exe.config"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe" Value="ConsumerWorkplace_v_1._0.exe"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe.config" Value="ConsumerWorkplace_v_1._0.exe.config"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe" Value="Fixation.exe"/>
@@ -136,10 +116,8 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.Reporting.dll_1" Value="Telerik.Reporting.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.ChartView.dll" Value="Telerik.WinControls.ChartView.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll" Value="Telerik.WinControls.GridView.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll_1" Value="Telerik.WinControls.GridView.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll_2" Value="Telerik.WinControls.GridView.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll" Value="Telerik.WinControls.PdfViewer.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll_1" Value="Telerik.WinControls.PdfViewer.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll_2" Value="Telerik.WinControls.PdfViewer.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PivotGrid.dll" Value="Telerik.WinControls.PivotGrid.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.RadChart.dll" Value="Telerik.WinControls.RadChart.dll"/>
@@ -157,23 +135,15 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.FluentDark.dll" Value="Telerik.WinControls.Themes.FluentDark.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.HighContrastBlack.dll" Value="Telerik.WinControls.Themes.HighContrastBlack.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll" Value="Telerik.WinControls.Themes.Office2007Silver.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_1" Value="Telerik.WinControls.Themes.Office2007Silver.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_2" Value="Telerik.WinControls.Themes.Office2007Silver.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll" Value="Telerik.WinControls.Themes.Office2010Blue.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll" Value="Telerik.WinControls.Themes.Office2013Light.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_1" Value="Telerik.WinControls.Themes.Office2013Light.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_2" Value="Telerik.WinControls.Themes.Office2013Light.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Windows8.dll" Value="Telerik.WinControls.Themes.Windows8.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.Design.dll" Value="Telerik.WinControls.UI.Design.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll" Value="Telerik.WinControls.UI.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_1" Value="Telerik.WinControls.UI.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_2" Value="Telerik.WinControls.UI.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_3" Value="Telerik.WinControls.UI.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_4" Value="Telerik.WinControls.UI.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll" Value="Telerik.WinControls.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_1" Value="Telerik.WinControls.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_2" Value="Telerik.WinControls.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_3" Value="Telerik.WinControls.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_4" Value="Telerik.WinControls.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Documents.Core.dll" Value="Telerik.Windows.Documents.Core.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Documents.Core.dll_1" Value="Telerik.Windows.Documents.Core.dll"/>
@@ -186,8 +156,6 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Zip.dll_1" Value="Telerik.Windows.Zip.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll" Value="TelerikCommon.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_1" Value="TelerikCommon.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_2" Value="TelerikCommon.dll"/>
-    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_3" Value="TelerikCommon.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_4" Value="TelerikCommon.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_TelerikData.dll" Value="TelerikData.dll"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll" Value="WebAPIConnector.dll"/>
@@ -207,12 +175,13 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_sysAdminwp.exe.config" Value="sysAdminwp.exe.config"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_workReport.exe" Value="workReport.exe"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_workReport.exe.config" Value="workReport.exe.config"/>
+    <ROW Property="AI_RUN_AS_ADMIN" Value="0"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="Manufacturer" Value="IPS"/>
     <ROW Property="ProductCode" Value="1033:{DA2792FC-7917-4D83-99F2-4F0FDF502BBE} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Media"/>
+    <ROW Property="ProductName" Value="MediaService"/>
     <ROW Property="ProductVersion" Value="1.0.5" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{18A83C5B-B17D-45A2-A29C-0A1C640C4AF9}"/>
@@ -227,26 +196,18 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
-    <ROW Directory="ConsumerBigRightWorkplace_Dir" Directory_Parent="APPDIR" DefaultDir="CONSUM~1|ConsumerBigRightWorkplace"/>
-    <ROW Directory="ConsumerSmallRightWorkplace_Dir" Directory_Parent="APPDIR" DefaultDir="CONSUM~2|ConsumerSmallRightWorkplace"/>
-    <ROW Directory="Fixation_Dir" Directory_Parent="APPDIR" DefaultDir="Fixation"/>
-    <ROW Directory="PartnersWorkplace_Dir" Directory_Parent="APPDIR" DefaultDir="PARTNE~1|PartnersWorkplace"/>
-    <ROW Directory="RepNew_Dir" Directory_Parent="APPDIR" DefaultDir="RepNew"/>
-    <ROW Directory="RightholderWorkplace_Dir" Directory_Parent="APPDIR" DefaultDir="RIGHTH~1|RightholderWorkplace"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
-    <ROW Directory="WorkReport_Dir" Directory_Parent="APPDIR" DefaultDir="WORKRE~1|WorkReport"/>
-    <ROW Directory="sysAdminwp_Dir" Directory_Parent="APPDIR" DefaultDir="SYSADM~1|sysAdminwp"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" ComponentId="{E423E269-BC86-4212-BA12-F24ADC0E3F47}" Directory_="APPDIR" Attributes="0" KeyPath="BouncyCastle.Crypto.dll" Type="0"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe" ComponentId="{673CB500-8FB0-47A0-997A-FDFE345FA21A}" Directory_="APPDIR" Attributes="0" KeyPath="ConsumerWorkplace_v_1._0.exe"/>
+    <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe" ComponentId="{AEEFC3B1-D5E1-4DDB-B4AC-B632E8B72B15}" Directory_="APPDIR" Attributes="0" KeyPath="Fixation.exe"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_PartnersWorkplace.exe" ComponentId="{278EF49A-14B9-440D-AADA-035F1CA0724E}" Directory_="APPDIR" Attributes="0" KeyPath="PartnersWorkplace.exe"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_RepNew.exe" ComponentId="{3B53DAB5-BED9-48E3-A745-E2518E98F8D0}" Directory_="APPDIR" Attributes="0" KeyPath="RepNew.exe"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_RightholderWorkplace.exe" ComponentId="{61A58B8D-BA29-4884-BAC7-8374BFB807BD}" Directory_="APPDIR" Attributes="0" KeyPath="RightholderWorkplace.exe"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue." ComponentId="{EE83D60E-15F2-41DE-A6AB-3453038B0777}" Directory_="APPDIR" Attributes="0" KeyPath="Telerik.WinControls.Themes.Office2010Blue.dll"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_4" ComponentId="{DE6B8E8C-6C57-49C6-9377-E922DCE1D073}" Directory_="APPDIR" Attributes="0" KeyPath="TelerikCommon.dll_4"/>
-    <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1" ComponentId="{417728CD-6431-4862-B962-D62381D03EAD}" Directory_="APPDIR" Attributes="0" KeyPath="ipsFormsDesign.dll"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_itext.barcodes.dll" ComponentId="{B3635821-61FA-4FE8-8582-EFE1189BBB64}" Directory_="APPDIR" Attributes="0" KeyPath="itext.barcodes.dll"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_itext.forms.dll" ComponentId="{E4313890-4AF6-48F5-8017-465F11B0804E}" Directory_="APPDIR" Attributes="0" KeyPath="itext.forms.dll"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_itext.kernel.dll" ComponentId="{BB817D57-0885-45B0-893C-499256951896}" Directory_="APPDIR" Attributes="0" KeyPath="itext.kernel.dll"/>
@@ -256,37 +217,23 @@
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_itext.styledxmlparser.dll" ComponentId="{DB72D4BA-2EC8-4664-BBD4-8C0E75DDD174}" Directory_="APPDIR" Attributes="0" KeyPath="itext.styledxmlparser.dll"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_sysAdminwp.exe" ComponentId="{F963B7AD-0FF2-404E-9528-5C9B1637078F}" Directory_="APPDIR" Attributes="0" KeyPath="sysAdminwp.exe"/>
     <ROW Component="AI_PROPPATH_FILENAME_PERBUILD_workReport.exe" ComponentId="{78635B8E-B24E-4B67-BA7C-1A5AC539A482}" Directory_="APPDIR" Attributes="0" KeyPath="workReport.exe"/>
-    <ROW Component="ConsumerBigRightWorkplace_PrimaryOutput" ComponentId="{BCDBAD7B-B97A-47FC-A2F5-67B8DAC560A3}" Directory_="ConsumerBigRightWorkplace_Dir" Attributes="0" KeyPath="ConsumerBigRightWorkplace.exe"/>
-    <ROW Component="ConsumerBigRightWorkplace_References" ComponentId="{45638362-A043-422D-A446-9D3EE7933449}" Directory_="ConsumerBigRightWorkplace_Dir" Attributes="0" KeyPath="TelerikCommon.dll_1"/>
-    <ROW Component="ConsumerSmallRightWorkplace_PrimaryOutput" ComponentId="{B9F66431-693C-484A-8DAB-F0E328D17738}" Directory_="ConsumerSmallRightWorkplace_Dir" Attributes="0" KeyPath="ConsumerSmallRightWorkplace.exe"/>
-    <ROW Component="ConsumerSmallRightWorkplace_References" ComponentId="{7BF09A64-F40C-407D-9BFC-F3AD539429B9}" Directory_="ConsumerSmallRightWorkplace_Dir" Attributes="0" KeyPath="TelerikCommon.dll_2"/>
-    <ROW Component="Fixation_PrimaryOutput" ComponentId="{1C4A655F-CF2E-4A2B-B632-BC3125089A83}" Directory_="Fixation_Dir" Attributes="0" KeyPath="Fixation.exe"/>
-    <ROW Component="Fixation_References" ComponentId="{33ADC945-2884-45A0-882C-22B99D1CD25F}" Directory_="Fixation_Dir" Attributes="0" KeyPath="TelerikCommon.dll_3"/>
-    <ROW Component="PartnersWorkplace" ComponentId="{9B94FD55-D46D-4CB9-A46F-93EDA125FD36}" Directory_="PartnersWorkplace_Dir" Attributes="0"/>
+    <ROW Component="ConsumerSmallRightWorkplace_References" ComponentId="{417728CD-6431-4862-B962-D62381D03EAD}" Directory_="APPDIR" Attributes="0" KeyPath="ipsFormsDesign.dll"/>
     <ROW Component="ProductInformation" ComponentId="{1D21A72C-6729-477C-B8AB-F14CBAA60806}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="RepNew" ComponentId="{31A7BE1E-E8B1-4C21-BE1F-206C649912B8}" Directory_="RepNew_Dir" Attributes="0"/>
-    <ROW Component="RightholderWorkplace" ComponentId="{282BB655-BC50-471F-B3F8-0F0388E3B5C9}" Directory_="RightholderWorkplace_Dir" Attributes="0"/>
     <ROW Component="SHORTCUTDIR" ComponentId="{47A38DFB-320C-42D6-AA47-B8C6E019A3DF}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="WorkReport" ComponentId="{439489E4-7315-4FFC-A0EC-F0D612B4A794}" Directory_="WorkReport_Dir" Attributes="0"/>
     <ROW Component="WorkReport_References" ComponentId="{62A24D7F-6AC5-40D5-B4DC-B7089C9069AA}" Directory_="APPDIR" Attributes="0" KeyPath="WebAPIConnector.dll"/>
-    <ROW Component="sysAdminwp" ComponentId="{69578AB7-0C8B-4129-8F28-1C9BB4DE7154}" Directory_="sysAdminwp_Dir" Attributes="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe AI_PROPPATH_FILENAME_PERBUILD_PartnersWorkplace.exe AI_PROPPATH_FILENAME_PERBUILD_RepNew.exe AI_PROPPATH_FILENAME_PERBUILD_RightholderWorkplace.exe AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue. AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_4 AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1 AI_PROPPATH_FILENAME_PERBUILD_itext.barcodes.dll AI_PROPPATH_FILENAME_PERBUILD_itext.forms.dll AI_PROPPATH_FILENAME_PERBUILD_itext.kernel.dll AI_PROPPATH_FILENAME_PERBUILD_itext.layout.dll AI_PROPPATH_FILENAME_PERBUILD_itext.pdfa.dll AI_PROPPATH_FILENAME_PERBUILD_itext.sign.dll AI_PROPPATH_FILENAME_PERBUILD_itext.styledxmlparser.dll AI_PROPPATH_FILENAME_PERBUILD_sysAdminwp.exe AI_PROPPATH_FILENAME_PERBUILD_workReport.exe ConsumerBigRightWorkplace_PrimaryOutput ConsumerBigRightWorkplace_References ConsumerSmallRightWorkplace_PrimaryOutput ConsumerSmallRightWorkplace_References Fixation_PrimaryOutput Fixation_References PartnersWorkplace ProductInformation RepNew RightholderWorkplace SHORTCUTDIR WorkReport WorkReport_References sysAdminwp"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe AI_PROPPATH_FILENAME_PERBUILD_PartnersWorkplace.exe AI_PROPPATH_FILENAME_PERBUILD_RepNew.exe AI_PROPPATH_FILENAME_PERBUILD_RightholderWorkplace.exe AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue. AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_4 AI_PROPPATH_FILENAME_PERBUILD_itext.barcodes.dll AI_PROPPATH_FILENAME_PERBUILD_itext.forms.dll AI_PROPPATH_FILENAME_PERBUILD_itext.kernel.dll AI_PROPPATH_FILENAME_PERBUILD_itext.layout.dll AI_PROPPATH_FILENAME_PERBUILD_itext.pdfa.dll AI_PROPPATH_FILENAME_PERBUILD_itext.sign.dll AI_PROPPATH_FILENAME_PERBUILD_itext.styledxmlparser.dll AI_PROPPATH_FILENAME_PERBUILD_sysAdminwp.exe AI_PROPPATH_FILENAME_PERBUILD_workReport.exe ConsumerSmallRightWorkplace_References ProductInformation SHORTCUTDIR WorkReport_References"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
     <ROW File="BouncyCastle.Crypto.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="BOUNCY~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_BouncyCastle.Crypto.dll&gt;" SelfReg="false" NextFile="Common.Logging.Core.dll"/>
     <ROW File="Common.Logging.Core.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="COMMON~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Common.Logging.Core.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Common.Logging.Core.dll&gt;" SelfReg="false" NextFile="Common.Logging.dll"/>
     <ROW File="Common.Logging.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="COMMON~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Common.Logging.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Common.Logging.dll&gt;" SelfReg="false" NextFile="itext.barcodes.dll"/>
-    <ROW File="ConsumerBigRightWorkplace.exe" Component_="ConsumerBigRightWorkplace_PrimaryOutput" FileName="CONSUM~2.EXE|[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerBigRightWorkplace.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ConsumerBigRightWorkplace.exe&gt;" SelfReg="false" NextFile="ConsumerBigRightWorkplace.exe.config" DigSign="true"/>
-    <ROW File="ConsumerBigRightWorkplace.exe.config" Component_="ConsumerBigRightWorkplace_PrimaryOutput" FileName="CONSUM~2.CON|[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerBigRightWorkplace.exe.config]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ConsumerBigRightWorkplace.exe.config&gt;" SelfReg="false" NextFile="Telerik.WinControls.dll_1"/>
-    <ROW File="ConsumerSmallRightWorkplace.exe" Component_="ConsumerSmallRightWorkplace_PrimaryOutput" FileName="CONSUM~2.EXE|[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerSmallRightWorkplace.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ConsumerSmallRightWorkplace.exe&gt;" SelfReg="false" NextFile="ConsumerSmallRightWorkplace.exe.config" DigSign="true"/>
-    <ROW File="ConsumerSmallRightWorkplace.exe.config" Component_="ConsumerSmallRightWorkplace_PrimaryOutput" FileName="CONSUM~2.CON|[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerSmallRightWorkplace.exe.config]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ConsumerSmallRightWorkplace.exe.config&gt;" SelfReg="false" NextFile="Telerik.WinControls.dll_2"/>
     <ROW File="ConsumerWorkplace_v_1._0.exe" Component_="AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe" FileName="CONSUM~1.EXE|[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ConsumerWorkplace_v_1._0.exe&gt;" SelfReg="false" NextFile="ConsumerWorkplace_v_1._0.exe.config" DigSign="true"/>
     <ROW File="ConsumerWorkplace_v_1._0.exe.config" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="CONSUM~1.CON|[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe.config]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ConsumerWorkplace_v_1._0.exe.config&gt;" SelfReg="false" NextFile="Microsoft.AspNetCore.Mvc.Core.dll"/>
-    <ROW File="Fixation.exe" Component_="Fixation_PrimaryOutput" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Fixation.exe&gt;" SelfReg="false" NextFile="Fixation.exe.config" DigSign="true"/>
-    <ROW File="Fixation.exe.config" Component_="Fixation_PrimaryOutput" FileName="FIXATI~2.CON|[|AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe.config]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Fixation.exe.config&gt;" SelfReg="false" NextFile="Telerik.WinControls.dll_3"/>
+    <ROW File="Fixation.exe" Component_="AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe" FileName="[|AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Fixation.exe&gt;" SelfReg="false" NextFile="Fixation.exe.config" DigSign="true"/>
+    <ROW File="Fixation.exe.config" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="FIXATI~1.CON|[|AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe.config]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Fixation.exe.config&gt;" SelfReg="false" NextFile="PartnersWorkplace.exe"/>
     <ROW File="IpsViewComponentLibrary.dll" Component_="WorkReport_References" FileName="IPSVIE~2.DLL|IpsViewComponentLibrary.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_IpsViewComponentLibrary.dll&gt;" SelfReg="false" NextFile="ReportsLibrary.dll"/>
     <ROW File="IpsViewComponentLibrary.dll_1" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="IPSVIE~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_IpsViewComponentLibrary.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_IpsViewComponentLibrary.dll_1&gt;" SelfReg="false" NextFile="ReportsLibrary.dll_1"/>
     <ROW File="Microsoft.AspNetCore.Mvc.Core.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="MICROS~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Microsoft.AspNetCore.Mvc.Core.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Microsoft.AspNetCore.Mvc.Core.dll&gt;" SelfReg="false" NextFile="BouncyCastle.Crypto.dll"/>
@@ -305,11 +252,9 @@
     <ROW File="Telerik.Reporting.dll" Component_="WorkReport_References" FileName="TELER~34.DLL|Telerik.Reporting.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.Reporting.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.dll"/>
     <ROW File="Telerik.Reporting.dll_1" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELERI~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.Reporting.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.Reporting.dll_1&gt;" SelfReg="false" NextFile="Telerik.ReportViewer.WinForms.dll"/>
     <ROW File="Telerik.WinControls.ChartView.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~19.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.ChartView.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.ChartView.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.PivotGrid.dll"/>
-    <ROW File="Telerik.WinControls.GridView.dll" Component_="WorkReport_References" FileName="TELER~36.DLL|Telerik.WinControls.GridView.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.GridView.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.PdfViewer.dll"/>
-    <ROW File="Telerik.WinControls.GridView.dll_1" Component_="Fixation_References" FileName="TELERI~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.GridView.dll_1&gt;" SelfReg="false" NextFile="Telerik.WinControls.PdfViewer.dll_1"/>
+    <ROW File="Telerik.WinControls.GridView.dll" Component_="ConsumerSmallRightWorkplace_References" FileName="TELER~47.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.GridView.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.PdfViewer.dll"/>
     <ROW File="Telerik.WinControls.GridView.dll_2" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELERI~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.GridView.dll_2&gt;" SelfReg="false" NextFile="Telerik.WinControls.PdfViewer.dll_2"/>
-    <ROW File="Telerik.WinControls.PdfViewer.dll" Component_="WorkReport_References" FileName="TELER~37.DLL|Telerik.WinControls.PdfViewer.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.PdfViewer.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2007Silver.dll"/>
-    <ROW File="Telerik.WinControls.PdfViewer.dll_1" Component_="Fixation_References" FileName="TELERI~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.PdfViewer.dll_1&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2007Silver.dll_1"/>
+    <ROW File="Telerik.WinControls.PdfViewer.dll" Component_="ConsumerSmallRightWorkplace_References" FileName="TELER~36.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.PdfViewer.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2007Silver.dll"/>
     <ROW File="Telerik.WinControls.PdfViewer.dll_2" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELERI~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.PdfViewer.dll_2&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2007Silver.dll_2"/>
     <ROW File="Telerik.WinControls.PivotGrid.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~20.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PivotGrid.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.PivotGrid.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.RadChart.dll"/>
     <ROW File="Telerik.WinControls.RadChart.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~21.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.RadChart.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.RadChart.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.RadDiagram.dll"/>
@@ -320,30 +265,22 @@
     <ROW File="Telerik.WinControls.RadMarkupEditor.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~24.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.RadMarkupEditor.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.RadMarkupEditor.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.RadSpreadsheet.dll"/>
     <ROW File="Telerik.WinControls.RadSpreadsheet.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~25.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.RadSpreadsheet.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.RadSpreadsheet.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.RichTextEditor.dll"/>
     <ROW File="Telerik.WinControls.RichTextEditor.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~17.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.RichTextEditor.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.RichTextEditor.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Scheduler.dll"/>
-    <ROW File="Telerik.WinControls.RichTextEditor.dll_1" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~46.DLL|Telerik.WinControls.RichTextEditor.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.RichTextEditor.dll_1&gt;" SelfReg="false"/>
+    <ROW File="Telerik.WinControls.RichTextEditor.dll_1" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~46.DLL|Telerik.WinControls.RichTextEditor.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.RichTextEditor.dll_1&gt;" SelfReg="false" NextFile="TelerikCommon.dll_1"/>
     <ROW File="Telerik.WinControls.Scheduler.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~26.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Scheduler.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Scheduler.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.HighContrastBlack.dll"/>
     <ROW File="Telerik.WinControls.Themes.Aqua.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELERI~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Aqua.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Aqua.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Fluent.dll"/>
     <ROW File="Telerik.WinControls.Themes.Fluent.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELERI~5.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Fluent.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Fluent.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.FluentDark.dll"/>
     <ROW File="Telerik.WinControls.Themes.FluentDark.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELERI~6.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.FluentDark.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.FluentDark.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2010Blue.dll"/>
     <ROW File="Telerik.WinControls.Themes.HighContrastBlack.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~27.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.HighContrastBlack.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.HighContrastBlack.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.UI.Design.dll"/>
-    <ROW File="Telerik.WinControls.Themes.Office2007Silver.dll" Component_="WorkReport_References" FileName="TELER~38.DLL|Telerik.WinControls.Themes.Office2007Silver.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2013Light.dll"/>
-    <ROW File="Telerik.WinControls.Themes.Office2007Silver.dll_1" Component_="Fixation_References" FileName="TELERI~5.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_1&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2013Light.dll_1"/>
+    <ROW File="Telerik.WinControls.Themes.Office2007Silver.dll" Component_="ConsumerSmallRightWorkplace_References" FileName="TELER~38.DLL|Telerik.WinControls.Themes.Office2007Silver.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2013Light.dll"/>
     <ROW File="Telerik.WinControls.Themes.Office2007Silver.dll_2" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELERI~7.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_2&gt;" SelfReg="false" NextFile="Telerik.WinControls.Themes.Office2013Light.dll_2"/>
-    <ROW File="Telerik.WinControls.Themes.Office2010Blue.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue." FileName="TELERI~8.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll&gt;" SelfReg="false" NextFile="ConsumerBigRightWorkplace.exe"/>
-    <ROW File="Telerik.WinControls.Themes.Office2013Light.dll" Component_="WorkReport_References" FileName="TELER~39.DLL|Telerik.WinControls.Themes.Office2013Light.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.UI.dll"/>
-    <ROW File="Telerik.WinControls.Themes.Office2013Light.dll_1" Component_="Fixation_References" FileName="TELERI~6.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_1&gt;" SelfReg="false" NextFile="Telerik.WinControls.UI.dll_3"/>
+    <ROW File="Telerik.WinControls.Themes.Office2010Blue.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue." FileName="TELERI~8.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll&gt;" SelfReg="false" NextFile="Fixation.exe"/>
+    <ROW File="Telerik.WinControls.Themes.Office2013Light.dll" Component_="ConsumerSmallRightWorkplace_References" FileName="TELER~37.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.UI.dll"/>
     <ROW File="Telerik.WinControls.Themes.Office2013Light.dll_2" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELERI~9.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_2&gt;" SelfReg="false" NextFile="Telerik.WinControls.UI.dll_4"/>
     <ROW File="Telerik.WinControls.Themes.Windows8.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~18.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Windows8.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Windows8.dll&gt;" SelfReg="false" NextFile="workReport.exe"/>
     <ROW File="Telerik.WinControls.UI.Design.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~28.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.Design.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.UI.Design.dll&gt;" SelfReg="false" NextFile="Telerik.Windows.Documents.Core.dll_1"/>
-    <ROW File="Telerik.WinControls.UI.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1" FileName="TELER~40.DLL|Telerik.WinControls.UI.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll&gt;" SelfReg="false" NextFile="Telerik.Windows.Documents.Core.dll"/>
-    <ROW File="Telerik.WinControls.UI.dll_1" Component_="ConsumerBigRightWorkplace_References" FileName="TELERI~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll_1&gt;" SelfReg="false" NextFile="TelerikCommon.dll_1"/>
-    <ROW File="Telerik.WinControls.UI.dll_2" Component_="ConsumerSmallRightWorkplace_References" FileName="TELERI~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll_2&gt;" SelfReg="false" NextFile="TelerikCommon.dll_2"/>
-    <ROW File="Telerik.WinControls.UI.dll_3" Component_="Fixation_References" FileName="TELERI~7.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_3]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll_3&gt;" SelfReg="false" NextFile="TelerikCommon.dll_3"/>
+    <ROW File="Telerik.WinControls.UI.dll" Component_="ConsumerSmallRightWorkplace_References" FileName="TELER~40.DLL|Telerik.WinControls.UI.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll&gt;" SelfReg="false" NextFile="Telerik.Windows.Documents.Core.dll"/>
     <ROW File="Telerik.WinControls.UI.dll_4" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~10.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_4]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll_4&gt;" SelfReg="false" NextFile="TelerikCommon.dll_4"/>
-    <ROW File="Telerik.WinControls.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1" FileName="TELER~35.DLL|Telerik.WinControls.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.GridView.dll"/>
-    <ROW File="Telerik.WinControls.dll_1" Component_="ConsumerBigRightWorkplace_References" FileName="TELERI~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.dll_1&gt;" SelfReg="false" NextFile="Telerik.WinControls.UI.dll_1"/>
-    <ROW File="Telerik.WinControls.dll_2" Component_="ConsumerSmallRightWorkplace_References" FileName="TELERI~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.dll_2&gt;" SelfReg="false" NextFile="Telerik.WinControls.UI.dll_2"/>
-    <ROW File="Telerik.WinControls.dll_3" Component_="Fixation_References" FileName="TELERI~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_3]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.dll_3&gt;" SelfReg="false" NextFile="Telerik.WinControls.GridView.dll_1"/>
+    <ROW File="Telerik.WinControls.dll" Component_="ConsumerSmallRightWorkplace_References" FileName="TELER~35.DLL|Telerik.WinControls.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.GridView.dll"/>
     <ROW File="Telerik.WinControls.dll_4" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~11.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_4]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.WinControls.dll_4&gt;" SelfReg="false" NextFile="Telerik.WinControls.GridView.dll_2"/>
     <ROW File="Telerik.Windows.Documents.Core.dll" Component_="WorkReport_References" FileName="TELER~41.DLL|Telerik.Windows.Documents.Core.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.Windows.Documents.Core.dll&gt;" SelfReg="false" NextFile="Telerik.Windows.Documents.Fixed.dll"/>
     <ROW File="Telerik.Windows.Documents.Core.dll_1" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~12.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Documents.Core.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.Windows.Documents.Core.dll_1&gt;" SelfReg="false" NextFile="Telerik.Windows.Documents.Fixed.dll_1"/>
@@ -354,15 +291,13 @@
     <ROW File="Telerik.Windows.Documents.Spreadsheet.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~31.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Documents.Spreadsheet.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.Windows.Documents.Spreadsheet.dll&gt;" SelfReg="false" NextFile="Telerik.Windows.Documents.Spreadsheet.FormatProviders.OpenXml.dll"/>
     <ROW File="Telerik.Windows.Zip.dll" Component_="WorkReport_References" FileName="TELER~43.DLL|Telerik.Windows.Zip.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.Windows.Zip.dll&gt;" SelfReg="false" NextFile="TelerikCommon.dll"/>
     <ROW File="Telerik.Windows.Zip.dll_1" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~14.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Zip.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Telerik.Windows.Zip.dll_1&gt;" SelfReg="false" NextFile="TelerikData.dll"/>
-    <ROW File="TelerikCommon.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1" FileName="TELER~44.DLL|TelerikCommon.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_TelerikCommon.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.RadDock.dll_1"/>
-    <ROW File="TelerikCommon.dll_1" Component_="ConsumerBigRightWorkplace_References" FileName="TELERI~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_TelerikCommon.dll_1&gt;" SelfReg="false" NextFile="ConsumerSmallRightWorkplace.exe"/>
-    <ROW File="TelerikCommon.dll_2" Component_="ConsumerSmallRightWorkplace_References" FileName="TELERI~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_2]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_TelerikCommon.dll_2&gt;" SelfReg="false" NextFile="Fixation.exe"/>
-    <ROW File="TelerikCommon.dll_3" Component_="Fixation_References" FileName="TELERI~8.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_3]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_TelerikCommon.dll_3&gt;" SelfReg="false" NextFile="PartnersWorkplace.exe"/>
+    <ROW File="TelerikCommon.dll" Component_="ConsumerSmallRightWorkplace_References" FileName="TELER~39.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_TelerikCommon.dll&gt;" SelfReg="false" NextFile="Telerik.WinControls.RadDock.dll_1"/>
+    <ROW File="TelerikCommon.dll_1" Component_="ConsumerSmallRightWorkplace_References" FileName="TELER~44.DLL|TelerikCommon.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_TelerikCommon.dll_1&gt;" SelfReg="false"/>
     <ROW File="TelerikCommon.dll_4" Component_="AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_4" FileName="TELER~15.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_4]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_TelerikCommon.dll_4&gt;" SelfReg="false" NextFile="RightholderWorkplace.exe"/>
     <ROW File="TelerikData.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="TELER~32.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_TelerikData.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_TelerikData.dll&gt;" SelfReg="false" NextFile="sysAdminwp.exe"/>
     <ROW File="WebAPIConnector.dll" Component_="WorkReport_References" FileName="WEBAPI~2.DLL|WebAPIConnector.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_WebAPIConnector.dll&gt;" SelfReg="false" NextFile="IpsViewComponentLibrary.dll"/>
-    <ROW File="WebAPIConnector.dll_1" Component_="AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1" FileName="WEBAPI~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_WebAPIConnector.dll_1&gt;" SelfReg="false" NextFile="IpsViewComponentLibrary.dll_1"/>
-    <ROW File="ipsFormsDesign.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1" FileName="IPSFOR~2.DLL|ipsFormsDesign.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ipsFormsDesign.dll&gt;" SelfReg="false" NextFile="WebAPIConnector.dll"/>
+    <ROW File="WebAPIConnector.dll_1" Component_="ConsumerSmallRightWorkplace_References" FileName="WEBAPI~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_WebAPIConnector.dll_1&gt;" SelfReg="false" NextFile="IpsViewComponentLibrary.dll_1"/>
+    <ROW File="ipsFormsDesign.dll" Component_="ConsumerSmallRightWorkplace_References" FileName="IPSFOR~2.DLL|ipsFormsDesign.dll" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ipsFormsDesign.dll&gt;" SelfReg="false" NextFile="WebAPIConnector.dll"/>
     <ROW File="ipsFormsDesign.dll_1" Component_="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" FileName="IPSFOR~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_ipsFormsDesign.dll_1]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_ipsFormsDesign.dll_1&gt;" SelfReg="false" NextFile="Telerik.WinControls.dll_4"/>
     <ROW File="itext.barcodes.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_itext.barcodes.dll" FileName="ITEXTB~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_itext.barcodes.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_itext.barcodes.dll&gt;" SelfReg="false" NextFile="itext.forms.dll"/>
     <ROW File="itext.forms.dll" Component_="AI_PROPPATH_FILENAME_PERBUILD_itext.forms.dll" FileName="ITEXTF~1.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_itext.forms.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_itext.forms.dll&gt;" SelfReg="false" NextFile="itext.io.dll"/>
@@ -382,10 +317,6 @@
     <ROW Name="AI_APPPATH_PERBUILD_BouncyCastle.Crypto.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_BouncyCastle.Crypto.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Common.Logging.Core.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Common.Logging.Core.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Common.Logging.Core.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Common.Logging.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Common.Logging.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Common.Logging.dll]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_ConsumerBigRightWorkplace.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_ConsumerBigRightWorkplace.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerBigRightWorkplace.exe]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_ConsumerBigRightWorkplace.exe.config" Path="[|AI_PROPPATH_DIR_PERBUILD_ConsumerBigRightWorkplace.exe.config]\[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerBigRightWorkplace.exe.config]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_ConsumerSmallRightWorkplace.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_ConsumerSmallRightWorkplace.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerSmallRightWorkplace.exe]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_ConsumerSmallRightWorkplace.exe.config" Path="[|AI_PROPPATH_DIR_PERBUILD_ConsumerSmallRightWorkplace.exe.config]\[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerSmallRightWorkplace.exe.config]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_ConsumerWorkplace_v_1._0.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_ConsumerWorkplace_v_1._0.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_ConsumerWorkplace_v_1._0.exe.config" Path="[|AI_PROPPATH_DIR_PERBUILD_ConsumerWorkplace_v_1._0.exe.config]\[|AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe.config]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Fixation.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_Fixation.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe]" Type="2" Content="0"/>
@@ -409,10 +340,8 @@
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.Reporting.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.Reporting.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.Reporting.dll_1]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.ChartView.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.ChartView.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.ChartView.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.GridView.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.GridView.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.GridView.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.GridView.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll_1]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.GridView.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.GridView.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.GridView.dll_2]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.PdfViewer.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.PdfViewer.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.PdfViewer.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.PdfViewer.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll_1]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.PdfViewer.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.PdfViewer.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PdfViewer.dll_2]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.PivotGrid.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.PivotGrid.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.PivotGrid.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.RadChart.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.RadChart.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.RadChart.dll]" Type="2" Content="0"/>
@@ -430,23 +359,15 @@
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.FluentDark.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.FluentDark.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.FluentDark.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.HighContrastBlack.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.HighContrastBlack.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.HighContrastBlack.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_1]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2007Silver.dll_2]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2010Blue.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_1]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Office2013Light.dll_2]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.Themes.Windows8.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.Themes.Windows8.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.Themes.Windows8.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.UI.Design.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.Design.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.Design.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_1]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_2]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll_3" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll_3]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_3]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.UI.dll_4" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.UI.dll_4]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.UI.dll_4]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_1]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_2]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.dll_3" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll_3]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_3]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.WinControls.dll_4" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.WinControls.dll_4]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.WinControls.dll_4]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.Windows.Documents.Core.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.Windows.Documents.Core.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Documents.Core.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.Windows.Documents.Core.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.Windows.Documents.Core.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Documents.Core.dll_1]" Type="2" Content="0"/>
@@ -459,8 +380,6 @@
     <ROW Name="AI_APPPATH_PERBUILD_Telerik.Windows.Zip.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_Telerik.Windows.Zip.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_Telerik.Windows.Zip.dll_1]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_TelerikCommon.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_TelerikCommon.dll_1" Path="[|AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll_1]\[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_1]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_TelerikCommon.dll_2" Path="[|AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll_2]\[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_2]" Type="2" Content="0"/>
-    <ROW Name="AI_APPPATH_PERBUILD_TelerikCommon.dll_3" Path="[|AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll_3]\[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_3]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_TelerikCommon.dll_4" Path="[|AI_PROPPATH_DIR_PERBUILD_TelerikCommon.dll_4]\[|AI_PROPPATH_FILENAME_PERBUILD_TelerikCommon.dll_4]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_TelerikData.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_TelerikData.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_TelerikData.dll]" Type="2" Content="0"/>
     <ROW Name="AI_APPPATH_PERBUILD_WebAPIConnector.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_WebAPIConnector.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_WebAPIConnector.dll]" Type="2" Content="0"/>
@@ -534,11 +453,6 @@
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
-    <ROW Directory_="sysAdminwp_Dir" Component_="sysAdminwp" ManualDelete="false"/>
-    <ROW Directory_="WorkReport_Dir" Component_="WorkReport" ManualDelete="false"/>
-    <ROW Directory_="RightholderWorkplace_Dir" Component_="RightholderWorkplace" ManualDelete="false"/>
-    <ROW Directory_="RepNew_Dir" Component_="RepNew" ManualDelete="false"/>
-    <ROW Directory_="PartnersWorkplace_Dir" Component_="PartnersWorkplace" ManualDelete="false"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
     <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
@@ -579,10 +493,8 @@
     <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="ConsumerBigRightWorkplace" Directory_="SHORTCUTDIR" Name="CONSUM~1|ConsumerBigRightWorkplace" Component_="ConsumerBigRightWorkplace_PrimaryOutput" Target="[#ConsumerBigRightWorkplace.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
-    <ROW Shortcut="ConsumerSmallRightWorkplace" Directory_="SHORTCUTDIR" Name="CONSUM~2|ConsumerSmallRightWorkplace" Component_="ConsumerSmallRightWorkplace_PrimaryOutput" Target="[#ConsumerSmallRightWorkplace.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
     <ROW Shortcut="ConsumerWorkplace_v_1._0" Directory_="SHORTCUTDIR" Name="CONSUM~1._0|ConsumerWorkplace_v_1._0" Component_="AI_PROPPATH_FILENAME_PERBUILD_ConsumerWorkplace_v_1._0.exe" Target="[#ConsumerWorkplace_v_1._0.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
-    <ROW Shortcut="Fixation" Directory_="SHORTCUTDIR" Name="Fixation" Component_="Fixation_PrimaryOutput" Target="[#Fixation.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
+    <ROW Shortcut="Fixation" Directory_="SHORTCUTDIR" Name="Fixation" Component_="AI_PROPPATH_FILENAME_PERBUILD_Fixation.exe" Target="[#Fixation.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
     <ROW Shortcut="PartnersWorkplace" Directory_="SHORTCUTDIR" Name="PARTNE~1|PartnersWorkplace" Component_="AI_PROPPATH_FILENAME_PERBUILD_PartnersWorkplace.exe" Target="[#PartnersWorkplace.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
     <ROW Shortcut="RepNew" Directory_="SHORTCUTDIR" Name="RepNew" Component_="AI_PROPPATH_FILENAME_PERBUILD_RepNew.exe" Target="[#RepNew.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
     <ROW Shortcut="RightholderWorkplace" Directory_="SHORTCUTDIR" Name="RIGHTH~1|RightholderWorkplace" Component_="AI_PROPPATH_FILENAME_PERBUILD_RightholderWorkplace.exe" Target="[#RightholderWorkplace.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
@@ -616,25 +528,8 @@
     <ROW ProjectId="{588ce9ff-3c07-4e1b-b6f1-10aedaed0230}" ProjectName="ConsumerWorkplace_v_1._0" OutputGroup="References" OutputFile="Telerik.WinControls.Themes.Fluent.dll"/>
     <ROW ProjectId="{588ce9ff-3c07-4e1b-b6f1-10aedaed0230}" ProjectName="ConsumerWorkplace_v_1._0" OutputGroup="References" OutputFile="Telerik.WinControls.Themes.FluentDark.dll"/>
     <ROW ProjectId="{588ce9ff-3c07-4e1b-b6f1-10aedaed0230}" ProjectName="ConsumerWorkplace_v_1._0" OutputGroup="References" OutputFile="Telerik.WinControls.Themes.Office2010Blue.dll"/>
-    <ROW ProjectId="{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}" ProjectName="ConsumerBigRightWorkplace" OutputGroup="PrimaryOutput" OutputFile="ConsumerBigRightWorkplace.exe" OutputFileShortcut="ConsumerBigRightWorkplace"/>
-    <ROW ProjectId="{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}" ProjectName="ConsumerBigRightWorkplace" OutputGroup="PrimaryOutput" OutputFile="ConsumerBigRightWorkplace.exe.config"/>
-    <ROW ProjectId="{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}" ProjectName="ConsumerBigRightWorkplace" OutputGroup="References" OutputFile="Telerik.WinControls.dll_1"/>
-    <ROW ProjectId="{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}" ProjectName="ConsumerBigRightWorkplace" OutputGroup="References" OutputFile="Telerik.WinControls.UI.dll_1"/>
-    <ROW ProjectId="{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}" ProjectName="ConsumerBigRightWorkplace" OutputGroup="References" OutputFile="TelerikCommon.dll_1"/>
-    <ROW ProjectId="{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}" ProjectName="ConsumerSmallRightWorkplace" OutputGroup="PrimaryOutput" OutputFile="ConsumerSmallRightWorkplace.exe" OutputFileShortcut="ConsumerSmallRightWorkplace"/>
-    <ROW ProjectId="{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}" ProjectName="ConsumerSmallRightWorkplace" OutputGroup="PrimaryOutput" OutputFile="ConsumerSmallRightWorkplace.exe.config"/>
-    <ROW ProjectId="{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}" ProjectName="ConsumerSmallRightWorkplace" OutputGroup="References" OutputFile="Telerik.WinControls.dll_2"/>
-    <ROW ProjectId="{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}" ProjectName="ConsumerSmallRightWorkplace" OutputGroup="References" OutputFile="Telerik.WinControls.UI.dll_2"/>
-    <ROW ProjectId="{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}" ProjectName="ConsumerSmallRightWorkplace" OutputGroup="References" OutputFile="TelerikCommon.dll_2"/>
     <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="PrimaryOutput" OutputFile="Fixation.exe" OutputFileShortcut="Fixation"/>
     <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="PrimaryOutput" OutputFile="Fixation.exe.config"/>
-    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.dll_3"/>
-    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.GridView.dll_1"/>
-    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.PdfViewer.dll_1"/>
-    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.Themes.Office2007Silver.dll_1"/>
-    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.Themes.Office2013Light.dll_1"/>
-    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.UI.dll_3"/>
-    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="TelerikCommon.dll_3"/>
     <ROW ProjectId="{c5c79d2e-f748-428f-965d-32bf69be33ea}" ProjectName="PartnersWorkplace" OutputGroup="PrimaryOutput" OutputFile="PartnersWorkplace.exe" OutputFileShortcut="PartnersWorkplace"/>
     <ROW ProjectId="{c5c79d2e-f748-428f-965d-32bf69be33ea}" ProjectName="PartnersWorkplace" OutputGroup="PrimaryOutput" OutputFile="PartnersWorkplace.exe.config"/>
     <ROW ProjectId="{c5c79d2e-f748-428f-965d-32bf69be33ea}" ProjectName="PartnersWorkplace" OutputGroup="References" OutputFile="ipsFormsDesign.dll_1"/>
@@ -721,5 +616,18 @@
     <ROW ProjectId="{89315cb9-919f-494a-91eb-1047f92c0eeb}" ProjectName="RepNew" OutputGroup="References" OutputFile="Telerik.WinControls.dll"/>
     <ROW ProjectId="{89315cb9-919f-494a-91eb-1047f92c0eeb}" ProjectName="RepNew" OutputGroup="References" OutputFile="Telerik.WinControls.UI.dll"/>
     <ROW ProjectId="{89315cb9-919f-494a-91eb-1047f92c0eeb}" ProjectName="RepNew" OutputGroup="References" OutputFile="TelerikCommon.dll"/>
+    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.dll"/>
+    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.GridView.dll"/>
+    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.PdfViewer.dll"/>
+    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.Themes.Office2007Silver.dll"/>
+    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.Themes.Office2013Light.dll"/>
+    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="Telerik.WinControls.UI.dll"/>
+    <ROW ProjectId="{e3dbf12c-7505-4e83-882d-0570f4cd1e32}" ProjectName="Fixation" OutputGroup="References" OutputFile="TelerikCommon.dll"/>
+    <ROW ProjectId="{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}" ProjectName="ConsumerBigRightWorkplace" OutputGroup="References" OutputFile="Telerik.WinControls.dll"/>
+    <ROW ProjectId="{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}" ProjectName="ConsumerBigRightWorkplace" OutputGroup="References" OutputFile="Telerik.WinControls.UI.dll"/>
+    <ROW ProjectId="{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}" ProjectName="ConsumerBigRightWorkplace" OutputGroup="References" OutputFile="TelerikCommon.dll_1"/>
+    <ROW ProjectId="{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}" ProjectName="ConsumerSmallRightWorkplace" OutputGroup="References" OutputFile="Telerik.WinControls.dll"/>
+    <ROW ProjectId="{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}" ProjectName="ConsumerSmallRightWorkplace" OutputGroup="References" OutputFile="Telerik.WinControls.UI.dll"/>
+    <ROW ProjectId="{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}" ProjectName="ConsumerSmallRightWorkplace" OutputGroup="References" OutputFile="TelerikCommon.dll_1"/>
   </COMPONENT>
 </DOCUMENT>
