@@ -39,7 +39,6 @@ namespace RightholderWorkplace
             InitializeComponent();
 
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
-            //RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
             var _communityService = new CommunityService();

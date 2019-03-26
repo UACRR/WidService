@@ -169,14 +169,13 @@
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_sysAdminwp.exe.config" Value="sysAdminwp.exe.config"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_workReport.exe" Value="workReport.exe"/>
     <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_workReport.exe.config" Value="workReport.exe.config"/>
-    <ROW Property="AI_RUN_AS_ADMIN" Value="0"/>
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="Manufacturer" Value="IPS"/>
-    <ROW Property="ProductCode" Value="1033:{45B34CDF-25AA-4DAF-B571-22B18ABB3993} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{532F4A9B-2835-43D8-A762-96C4D52AB4EB} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="MediaService"/>
-    <ROW Property="ProductVersion" Value="1.0.5" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.7" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{BBB0AEFE-575D-466A-BB57-1DCB8C289ACB}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
