@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">All</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>62ac620b-2abb-4c18-a00d-c910813b8b3b</ProjectGuid>
+    <ProjectGuid>66e454a8-fb7f-4b8f-84cd-de9ef5e6ac86</ProjectGuid>
     <OutputType>msi</OutputType>
     <ProjectHome>.</ProjectHome>
     <StartupFile>MediaServiceInstaller.aip</StartupFile>
@@ -27,11 +27,11 @@
       <Name>ConsumerBigRightWorkplace</Name>
       <Project>{f5abe61b-3b1b-410e-9c0a-6a66f8931bcc}</Project>
       <Private>True</Private>
-      <OutputsToImport>PrimaryOutput</OutputsToImport>
+      <OutputsToImport>PrimaryOutput;References</OutputsToImport>
     </ProjectReference>
-    <ProjectReference Include="..\ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj">
-      <Name>ConsumerWorkplace_v_1._0</Name>
-      <Project>{588ce9ff-3c07-4e1b-b6f1-10aedaed0230}</Project>
+    <ProjectReference Include="..\ConsumerSmallRightWorkplace\ConsumerSmallRightWorkplace.csproj">
+      <Name>ConsumerSmallRightWorkplace</Name>
+      <Project>{5c8b785c-d8ba-429e-864f-2fc77ab3cc3c}</Project>
       <Private>True</Private>
       <OutputsToImport>PrimaryOutput;References</OutputsToImport>
     </ProjectReference>
