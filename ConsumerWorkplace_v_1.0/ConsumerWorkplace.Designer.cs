@@ -37,6 +37,7 @@ namespace ConsumerWorkplace_v_1._0
             this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pageBigRights = new Telerik.WinControls.UI.RadPageViewPage();
+            this.mainGridBigRight = new IpsViewComponentLibrary.ConsumerControls.ConsumersViewBigRightControl();
             this.treeViewBR = new Telerik.WinControls.UI.RadTreeView();
             this.pageSmallRights = new Telerik.WinControls.UI.RadPageViewPage();
             this.mainGridSmallRight = new IpsViewComponentLibrary.ConsumerControls.ConsumersViewSmallRightControl();
@@ -49,11 +50,9 @@ namespace ConsumerWorkplace_v_1._0
             this.pvPartners = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvCommunity = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvPaymentProcessing = new Telerik.WinControls.UI.RadPageViewPage();
-            this.importDBFControl1 = new IpsViewComponentLibrary.ImportDBF.ImportDBFControl();
             this.pvSystem = new Telerik.WinControls.UI.RadPageViewPage();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.mainGridBigRight = new IpsViewComponentLibrary.ConsumerControls.ConsumersViewBigRightControl();
             this.iAnketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iLicenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iAgrLicenseTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -79,7 +78,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).BeginInit();
             this.pageViewOwner.SuspendLayout();
             this.pvConsumers.SuspendLayout();
-            this.pvPaymentProcessing.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).BeginInit();
@@ -113,8 +111,8 @@ namespace ConsumerWorkplace_v_1._0
             this.pageParentConsumers.Location = new System.Drawing.Point(0, 0);
             this.pageParentConsumers.Margin = new System.Windows.Forms.Padding(0);
             this.pageParentConsumers.Name = "pageParentConsumers";
-            this.pageParentConsumers.SelectedPage = this.pageSmallRights;
-            this.pageParentConsumers.Size = new System.Drawing.Size(1266, 603);
+            this.pageParentConsumers.SelectedPage = this.pageBigRights;
+            this.pageParentConsumers.Size = new System.Drawing.Size(1266, 601);
             this.pageParentConsumers.TabIndex = 0;
             this.pageParentConsumers.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageParentConsumers.GetChildAt(0))).StripScrollingAnimation = Telerik.WinControls.RadEasingType.Linear;
@@ -129,11 +127,22 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.pageBigRights.Controls.Add(this.mainGridBigRight);
             this.pageBigRights.Controls.Add(this.treeViewBR);
-            this.pageBigRights.ItemSize = new System.Drawing.SizeF(86F, 25F);
+            this.pageBigRights.ItemSize = new System.Drawing.SizeF(88F, 27F);
             this.pageBigRights.Location = new System.Drawing.Point(10, 32);
             this.pageBigRights.Name = "pageBigRights";
             this.pageBigRights.Size = new System.Drawing.Size(1250, 563);
             this.pageBigRights.Text = "Великі права";
+            // 
+            // mainGridBigRight
+            // 
+            this.mainGridBigRight.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            this.mainGridBigRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mainGridBigRight.Location = new System.Drawing.Point(199, 0);
+            this.mainGridBigRight.Margin = new System.Windows.Forms.Padding(4);
+            this.mainGridBigRight.Name = "mainGridBigRight";
+            this.mainGridBigRight.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.mainGridBigRight.Size = new System.Drawing.Size(1051, 563);
+            this.mainGridBigRight.TabIndex = 3;
             // 
             // treeViewBR
             // 
@@ -150,10 +159,10 @@ namespace ConsumerWorkplace_v_1._0
             // 
             this.pageSmallRights.Controls.Add(this.mainGridSmallRight);
             this.pageSmallRights.Controls.Add(this.treeViewSR);
-            this.pageSmallRights.ItemSize = new System.Drawing.SizeF(76F, 25F);
-            this.pageSmallRights.Location = new System.Drawing.Point(10, 30);
+            this.pageSmallRights.ItemSize = new System.Drawing.SizeF(78F, 27F);
+            this.pageSmallRights.Location = new System.Drawing.Point(10, 32);
             this.pageSmallRights.Name = "pageSmallRights";
-            this.pageSmallRights.Size = new System.Drawing.Size(1250, 567);
+            this.pageSmallRights.Size = new System.Drawing.Size(1250, 563);
             this.pageSmallRights.Text = "Малі права";
             // 
             // mainGridSmallRight
@@ -163,7 +172,7 @@ namespace ConsumerWorkplace_v_1._0
             this.mainGridSmallRight.Margin = new System.Windows.Forms.Padding(4);
             this.mainGridSmallRight.Name = "mainGridSmallRight";
             this.mainGridSmallRight.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.mainGridSmallRight.Size = new System.Drawing.Size(1051, 567);
+            this.mainGridSmallRight.Size = new System.Drawing.Size(1051, 563);
             this.mainGridSmallRight.TabIndex = 1;
             // 
             // treeViewSR
@@ -173,9 +182,10 @@ namespace ConsumerWorkplace_v_1._0
             this.treeViewSR.HotTracking = false;
             this.treeViewSR.Location = new System.Drawing.Point(0, 0);
             this.treeViewSR.Name = "treeViewSR";
-            this.treeViewSR.Size = new System.Drawing.Size(199, 567);
+            this.treeViewSR.Size = new System.Drawing.Size(199, 563);
             this.treeViewSR.SpacingBetweenNodes = -1;
             this.treeViewSR.TabIndex = 0;
+            this.treeViewSR.ThemeName = "Office2013Light";
             // 
             // pageViewOwner
             // 
@@ -201,16 +211,16 @@ namespace ConsumerWorkplace_v_1._0
             // pvConsumers
             // 
             this.pvConsumers.Controls.Add(this.pageParentConsumers);
-            this.pvConsumers.ItemSize = new System.Drawing.SizeF(81F, 25F);
-            this.pvConsumers.Location = new System.Drawing.Point(5, 29);
+            this.pvConsumers.ItemSize = new System.Drawing.SizeF(83F, 27F);
+            this.pvConsumers.Location = new System.Drawing.Point(5, 31);
             this.pvConsumers.Name = "pvConsumers";
-            this.pvConsumers.Size = new System.Drawing.Size(1266, 603);
+            this.pvConsumers.Size = new System.Drawing.Size(1266, 601);
             this.pvConsumers.Text = "Користувачі";
             // 
             // radPageViewPage2
             // 
             this.radPageViewPage2.Enabled = false;
-            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(101F, 25F);
+            this.radPageViewPage2.ItemSize = new System.Drawing.SizeF(103F, 27F);
             this.radPageViewPage2.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(1266, 601);
@@ -219,7 +229,7 @@ namespace ConsumerWorkplace_v_1._0
             // radPageViewPage3
             // 
             this.radPageViewPage3.Enabled = false;
-            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(93F, 25F);
+            this.radPageViewPage3.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.radPageViewPage3.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage3.Name = "radPageViewPage3";
             this.radPageViewPage3.Size = new System.Drawing.Size(1266, 601);
@@ -228,7 +238,7 @@ namespace ConsumerWorkplace_v_1._0
             // pvPartners
             // 
             this.pvPartners.Enabled = false;
-            this.pvPartners.ItemSize = new System.Drawing.SizeF(93F, 25F);
+            this.pvPartners.ItemSize = new System.Drawing.SizeF(95F, 27F);
             this.pvPartners.Location = new System.Drawing.Point(5, 31);
             this.pvPartners.Name = "pvPartners";
             this.pvPartners.Size = new System.Drawing.Size(1266, 601);
@@ -237,7 +247,7 @@ namespace ConsumerWorkplace_v_1._0
             // pvCommunity
             // 
             this.pvCommunity.Enabled = false;
-            this.pvCommunity.ItemSize = new System.Drawing.SizeF(77F, 25F);
+            this.pvCommunity.ItemSize = new System.Drawing.SizeF(79F, 27F);
             this.pvCommunity.Location = new System.Drawing.Point(5, 31);
             this.pvCommunity.Name = "pvCommunity";
             this.pvCommunity.Size = new System.Drawing.Size(1266, 601);
@@ -245,40 +255,20 @@ namespace ConsumerWorkplace_v_1._0
             // 
             // pvPaymentProcessing
             // 
-            this.pvPaymentProcessing.Controls.Add(this.importDBFControl1);
-            this.pvPaymentProcessing.ItemSize = new System.Drawing.SizeF(103F, 25F);
+            this.pvPaymentProcessing.ItemSize = new System.Drawing.SizeF(105F, 27F);
             this.pvPaymentProcessing.Location = new System.Drawing.Point(5, 31);
             this.pvPaymentProcessing.Name = "pvPaymentProcessing";
             this.pvPaymentProcessing.Size = new System.Drawing.Size(1266, 601);
             this.pvPaymentProcessing.Text = "Розбір платежів";
             // 
-            // importDBFControl1
-            // 
-            this.importDBFControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.importDBFControl1.Location = new System.Drawing.Point(0, 0);
-            this.importDBFControl1.Name = "importDBFControl1";
-            this.importDBFControl1.Size = new System.Drawing.Size(1266, 601);
-            this.importDBFControl1.TabIndex = 0;
-            // 
             // pvSystem
             // 
             this.pvSystem.Enabled = false;
-            this.pvSystem.ItemSize = new System.Drawing.SizeF(60F, 25F);
+            this.pvSystem.ItemSize = new System.Drawing.SizeF(62F, 27F);
             this.pvSystem.Location = new System.Drawing.Point(5, 31);
             this.pvSystem.Name = "pvSystem";
             this.pvSystem.Size = new System.Drawing.Size(1266, 601);
             this.pvSystem.Text = "Система";
-            // 
-            // mainGridBigRight
-            // 
-            this.mainGridBigRight.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            this.mainGridBigRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainGridBigRight.Location = new System.Drawing.Point(199, 0);
-            this.mainGridBigRight.Margin = new System.Windows.Forms.Padding(4);
-            this.mainGridBigRight.Name = "mainGridBigRight";
-            this.mainGridBigRight.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.mainGridBigRight.Size = new System.Drawing.Size(1051, 563);
-            this.mainGridBigRight.TabIndex = 3;
             // 
             // iAnketaCompanyBindingSource
             // 
@@ -366,7 +356,6 @@ namespace ConsumerWorkplace_v_1._0
             ((System.ComponentModel.ISupportInitialize)(this.pageViewOwner)).EndInit();
             this.pageViewOwner.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
-            this.pvPaymentProcessing.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iAnketaCompanyBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iLicenseAgreementBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iAgrLicenseTypeBindingSource)).EndInit();

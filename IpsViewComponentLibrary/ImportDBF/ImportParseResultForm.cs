@@ -16,6 +16,7 @@ namespace IpsViewComponentLibrary.ImportDBF
         public ImportParseResultForm(string fileName)
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
             lblFileName.Text = fileName;
         }
 

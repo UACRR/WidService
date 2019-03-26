@@ -8,8 +8,23 @@ namespace ipsFormsDesign.Services
 {
     public class DbfService
     {
-        private readonly ApiConnector _webApi = new ApiConnector();
         private readonly string _prefix = "expay/";
+
+        private readonly ApiConnector _webApi;
+        private static DbfService _service;
+
+        private DbfService()
+        {
+            _webApi = new ApiConnector();
+        }
+
+        public static DbfService GetInstance()
+        {
+            if (_service == null)
+                _service = new DbfService();
+
+            return _service;
+        }
 
         public List<ExternalPay> GetUnlinkPays()
         {

@@ -1,42 +1,38 @@
-﻿using System;
+﻿using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace ConsumerWorkplace_v_1._0.Presenters
+namespace ConsumerBigRightWorkplace.Presenters
 {
     class BigRightPresenter : IUpdateProviderBigRight
     {
         private const string AddNewConsumerSuccess = "Нового користувача додано!";
         private const string AddNewConsumerError = "Не вдалося додати нового користувача!";
 
-        private CabinetBigRightForm _localcabinetBigRightForm = null;
+        private CabinetBigRightForm _localcabinetBigRightForm;
         private CabinetBigRightForm _cabinetBigRightForm => _localcabinetBigRightForm ?? ( _localcabinetBigRightForm = new CabinetBigRightForm());
 
-        private readonly ConsumerService _service;
+        private readonly ConsumerBigRightService _service;
         private readonly PartnerService _partnerService;
         private readonly ConsumersViewBigRightControl _mainGrid;
 
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
 
-        public BigRightPresenter(ConsumerService service, RadTreeView treeView, ConsumersViewBigRightControl mainGrid)
+        public BigRightPresenter(RadTreeView treeView, ConsumersViewBigRightControl mainGrid)
         {
-            _service = service;
+            _service = ConsumerBigRightService.GetInstance();
             _partnerService = PartnerService.GetInstance();
             _mainGrid = mainGrid;
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;

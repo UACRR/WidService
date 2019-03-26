@@ -8,6 +8,7 @@ using WebAPIConnector;
 using System.IO;
 using System.Dynamic;
 using System.Threading.Tasks;
+using ipsFormsDesign.Data;
 using ipsmedserviceapp.Model.SQLViewsData;
 // ReSharper disable All
 
@@ -15,9 +16,14 @@ namespace ipsFormsDesign.Services
 {
     public class ConsumerService : IConsumerService
     {
-        private ApiConnector _webApi = new ApiConnector();
+        protected readonly ApiConnector _webApi = new ApiConnector();
         private readonly string _prefix = "consumer/";
 
+        public AnketaDictionaties GetDictionary()
+        {
+            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
+            return anketaDic;
+        }
 
         public Customer GetData(int custId)
         {
@@ -31,15 +37,11 @@ namespace ipsFormsDesign.Services
             return consumerInfo;
         }
 
-        public AnketaDictionaties GetDictionary()
-        {
-            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
-            return anketaDic;
-        }
         public IList<ConsumerSmallRightView> GetMainView()
         {
             return getMainView(ConsumerFilterEnum.All);
         }
+
         public IList<ConsumerSmallRightView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listSR/{(int)what}";
