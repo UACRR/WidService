@@ -26,6 +26,7 @@ namespace ConsumerSmallRightWorkplace
             WindowState = FormWindowState.Maximized;
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
+            ctrlImportDBF.TypeRights = TypeRights.SmallRights;
             SetupTreeViewData();
         }
 
@@ -49,7 +50,6 @@ namespace ConsumerSmallRightWorkplace
             IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), smallRightPresenter);
 
             treeViewSmallRight.SelectedNode = treeViewSmallRight.Nodes["Всі"];
-
         }
     }
 }

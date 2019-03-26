@@ -30,14 +30,16 @@
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
-            this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvConsumers = new Telerik.WinControls.UI.RadPageViewPage();
-            this.treeViewSmallRight = new Telerik.WinControls.UI.RadTreeView();
             this.ctrlConsumersViewSmallRight = new IpsViewComponentLibrary.ConsumerControls.ConsumersViewSmallRightControl();
+            this.treeViewSmallRight = new Telerik.WinControls.UI.RadTreeView();
+            this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlImportDBF = new IpsViewComponentLibrary.ImportDBF.ImportDBFControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pvConsumers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewSmallRight)).BeginInit();
+            this.pvPays.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,14 +64,6 @@
             ((Telerik.WinControls.UI.StripViewButtonsPanel)(this.pageParentConsumers.GetChildAt(0).GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(2);
             ((Telerik.WinControls.UI.StripViewButtonsPanel)(this.pageParentConsumers.GetChildAt(0).GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             // 
-            // pvPays
-            // 
-            this.pvPays.ItemSize = new System.Drawing.SizeF(105F, 27F);
-            this.pvPays.Location = new System.Drawing.Point(10, 32);
-            this.pvPays.Name = "pvPays";
-            this.pvPays.Size = new System.Drawing.Size(1231, 463);
-            this.pvPays.Text = "Розбір платежів";
-            // 
             // pvConsumers
             // 
             this.pvConsumers.Controls.Add(this.ctrlConsumersViewSmallRight);
@@ -79,6 +73,14 @@
             this.pvConsumers.Name = "pvConsumers";
             this.pvConsumers.Size = new System.Drawing.Size(1231, 463);
             this.pvConsumers.Text = "Реєстр користувачів";
+            // 
+            // ctrlConsumersViewSmallRight
+            // 
+            this.ctrlConsumersViewSmallRight.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlConsumersViewSmallRight.Location = new System.Drawing.Point(199, 0);
+            this.ctrlConsumersViewSmallRight.Name = "ctrlConsumersViewSmallRight";
+            this.ctrlConsumersViewSmallRight.Size = new System.Drawing.Size(1032, 463);
+            this.ctrlConsumersViewSmallRight.TabIndex = 1;
             // 
             // treeViewSmallRight
             // 
@@ -92,13 +94,22 @@
             this.treeViewSmallRight.TabIndex = 0;
             this.treeViewSmallRight.ThemeName = "Office2013Light";
             // 
-            // ctrlConsumersViewSmallRight
+            // pvPays
             // 
-            this.ctrlConsumersViewSmallRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlConsumersViewSmallRight.Location = new System.Drawing.Point(199, 0);
-            this.ctrlConsumersViewSmallRight.Name = "ctrlConsumersViewSmallRight";
-            this.ctrlConsumersViewSmallRight.Size = new System.Drawing.Size(1032, 463);
-            this.ctrlConsumersViewSmallRight.TabIndex = 1;
+            this.pvPays.Controls.Add(this.ctrlImportDBF);
+            this.pvPays.ItemSize = new System.Drawing.SizeF(105F, 27F);
+            this.pvPays.Location = new System.Drawing.Point(10, 32);
+            this.pvPays.Name = "pvPays";
+            this.pvPays.Size = new System.Drawing.Size(1231, 463);
+            this.pvPays.Text = "Розбір платежів";
+            // 
+            // ctrlImportDBF
+            // 
+            this.ctrlImportDBF.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlImportDBF.Location = new System.Drawing.Point(0, 0);
+            this.ctrlImportDBF.Name = "ctrlImportDBF";
+            this.ctrlImportDBF.Size = new System.Drawing.Size(1231, 463);
+            this.ctrlImportDBF.TabIndex = 0;
             // 
             // ConsumerSmallRightWorkplace
             // 
@@ -117,6 +128,7 @@
             this.pageParentConsumers.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.treeViewSmallRight)).EndInit();
+            this.pvPays.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -130,5 +142,6 @@
         private Telerik.WinControls.UI.RadPageViewPage pvConsumers;
         private Telerik.WinControls.UI.RadTreeView treeViewSmallRight;
         private IpsViewComponentLibrary.ConsumerControls.ConsumersViewSmallRightControl ctrlConsumersViewSmallRight;
+        private IpsViewComponentLibrary.ImportDBF.ImportDBFControl ctrlImportDBF;
     }
 }

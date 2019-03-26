@@ -1,16 +1,10 @@
-﻿using ipsFormsDesign.Interfaces;
+﻿using System.Collections.Generic;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsmedserviceapp.Model.SQLViewsData;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IpsViewComponentLibrary;
-using Telerik.WinControls.UI;
 
-namespace ConsumerWorkplace_v_1._0.Presenters
+namespace IpsViewComponentLibrary.ImportDBF.Presenters
 {
     public class DBFPresenter : IDBFPresenter
     {

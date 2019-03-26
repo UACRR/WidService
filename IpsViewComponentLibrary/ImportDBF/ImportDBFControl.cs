@@ -13,7 +13,9 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsmedserviceapp.Model.SQLViewsData;
+using IpsViewComponentLibrary.ImportDBF.Presenters;
 
 namespace IpsViewComponentLibrary.ImportDBF
 {
@@ -24,17 +26,19 @@ namespace IpsViewComponentLibrary.ImportDBF
         private InputFile _inputFile;
         private List<vCustomer> _clientsList;
         private readonly DbfEngine _dbfEngine = new DbfEngine();
-        private IDBFPresenter _presenter;
+        private readonly DBFPresenter _presenter;
         private IUpdateProviderSmallRight _updateProviderSmallRight;
         private IUpdateProviderBigRight _updateProviderBigRight;
-
 
         public ImportDBFControl()
         {
             InitializeComponent();
+            _presenter = new DBFPresenter();
             Leave += Control_Leave;
             lblFileName.Text = DefaultFileName;
         }
+
+        public TypeRights TypeRights { get; set; }
 
         // оновити дані
         private void Control_Paint(object sender, PaintEventArgs e)
@@ -56,11 +60,8 @@ namespace IpsViewComponentLibrary.ImportDBF
                 _presenter.CheckInputFile(_inputFile);
 
             // форма результату для підтвердження або сказування збереження даних
-            var importParseResult = new ImportParseResultForm(lblFileName.Text)
-            {
-                StartPosition = FormStartPosition.CenterScreen,
-                WindowState = FormWindowState.Maximized
-            };
+            var importParseResult = new ImportParseResultForm(lblFileName.Text);
+
             importParseResult.SetParsedList(_inputFile.CheckParamPays.ToList());
 
             if (importParseResult.ShowDialog() == DialogResult.OK)
@@ -119,7 +120,7 @@ namespace IpsViewComponentLibrary.ImportDBF
         }
 
         // прив'язати платіж до клієнта (double click)
-        private void gvUndistribPays_CellDoubleClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvUndistribPays_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
             if (e.Column.FieldName == "btnAttach")
                 return;
@@ -127,7 +128,7 @@ namespace IpsViewComponentLibrary.ImportDBF
         }
 
         // прив'язати платіж до клієнта (cell click)
-        private void gvUndistribPays_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvUndistribPays_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             PaymentsAttach(e);
         }
@@ -140,9 +141,13 @@ namespace IpsViewComponentLibrary.ImportDBF
 
         private void ImportDBFControl_Load(object sender, EventArgs e)
         {
-            _presenter = IpsGlobal.Instances[typeof(IDBFPresenter)] as IDBFPresenter;
-            _updateProviderSmallRight = IpsGlobal.Instances[typeof(IUpdateProviderSmallRight)] as IUpdateProviderSmallRight;
-            _updateProviderBigRight = IpsGlobal.Instances[typeof(IUpdateProviderBigRight)] as IUpdateProviderBigRight;
+            if (IpsGlobal.Instances.Any())
+            {
+                if (TypeRights == TypeRights.SmallRights)
+                    _updateProviderSmallRight = IpsGlobal.Instances[typeof(IUpdateProviderSmallRight)] as IUpdateProviderSmallRight;
+                else if(TypeRights == TypeRights.BigRights)
+                    _updateProviderBigRight = IpsGlobal.Instances[typeof(IUpdateProviderBigRight)] as IUpdateProviderBigRight;
+            }
         }
     }
 }
