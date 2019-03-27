@@ -26,7 +26,7 @@ namespace ipsmedserviceapp.Controllers
             if (myAnketa == null)
                 return NotFound();
 
-            return Ok(myAnketa.name );
+            return Ok(myAnketa);
         }
     }
 }

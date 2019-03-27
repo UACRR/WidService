@@ -14,9 +14,9 @@ namespace ipsFormsDesign.Services
         private ApiConnector _webApi = new ApiConnector();
 
         /* Info */
-        public string GetOwnerName()
+        public vCustomer GetOwnerName()
         {
-            var retValue = _webApi.GetItemById<string>("info/name", null);
+            var retValue = _webApi.GetItemById<vCustomer>("info/name", null);
             return retValue;
         }
 

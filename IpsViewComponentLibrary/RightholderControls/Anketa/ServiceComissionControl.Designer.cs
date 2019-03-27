@@ -55,8 +55,7 @@
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(319, 34);
             this.radLabel1.TabIndex = 2;
-            this.radLabel1.Text = "збір за управління, необхідний для покриття витрат на забезпечення діяльності ГО " +
-    "УААСП";
+            this.radLabel1.Text = "збір за управління, необхідний для покриття витрат на забезпечення діяльності";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel2
@@ -111,7 +110,7 @@
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(287, 34);
             this.radLabel3.TabIndex = 3;
-            this.radLabel3.Text = "від сум, зібраних ГО УААСП для Правовласника";
+            this.radLabel3.Text = "від сум, зібраних для Правовласника";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
             // radLabel4

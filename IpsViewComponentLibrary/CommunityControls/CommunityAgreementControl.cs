@@ -21,6 +21,14 @@ namespace IpsViewComponentLibrary.CommunityControls
             txtDayForPay.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
         }
 
+        private void setupObjects()
+        {
+            var nameOwner = IpsGlobal.GetProperty("OwnerName");
+
+            var lbl7Text = $"від сум, отриманих {nameOwner ?? "Підприємством"} для Автора";
+
+            radLabel7.Text = lbl7Text;
+        }
         public object AgreementDataSource
         {
             get => bsAgreementAddCommunity.DataSource;

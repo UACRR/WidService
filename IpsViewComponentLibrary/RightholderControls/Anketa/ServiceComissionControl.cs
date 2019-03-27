@@ -8,14 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
+using ipsFormsDesign.Data;
 
 namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class ServiceComissionControl : UserControl
     {
+        private void setupObjects()
+        {
+            var nameOwner = IpsGlobal.GetProperty("OwnerName");
+
+            var lbl1Text =  $"збір за управління, необхідний для покриття витрат на забезпечення діяльності {nameOwner ?? "Підприємства"}";
+            var lbl3Text = $"від сум, зібраних {nameOwner ?? "Підприємством"} для Правовласника";
+
+            radLabel1.Text = lbl1Text;
+            radLabel3.Text = lbl3Text;
+        }
+
         public ServiceComissionControl()
         {
             InitializeComponent();
+            setupObjects();
         }
 
         [Category("Data")]

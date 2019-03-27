@@ -25,6 +25,13 @@ namespace ipsFormsDesign.Data
         public static Dictionary<string, object> Properties { get; private set; } = new Dictionary<string, object>();
 
 
+        public static object GetProperty( string name )
+        {
+            if (Properties.Keys.Contains(name))
+                return Properties[name];
+
+            return null;
+        }
         // Додати екземпляр до довідника типів
         public static void addInstance( Type id, object instance )
         {
