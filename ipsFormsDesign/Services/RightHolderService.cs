@@ -14,9 +14,9 @@ namespace ipsFormsDesign.Services
         private ApiConnector _webApi = new ApiConnector();
 
         /* Info */
-        public string GetOwnerName()
+        public vCustomer GetOwnerName()
         {
-            var retValue = _webApi.GetItemById<string>("info/name", null);
+            var retValue = _webApi.GetItemById<vCustomer>("info/name", null);
             return retValue;
         }
 
@@ -32,10 +32,7 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary","anketa");
             return anketaDic;
         }
-        public vCustomer GetOwner()
-        {
-            return _webApi.GetItemById<vCustomer>("info/owner", null);
-        }
+
         public IList<RightholderMainView> GetMainView()
         {
             return GetRightholdersList("rh/listrh");
