@@ -87,6 +87,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             var list = _licenseDataService.GetLicenseAgreements(query);
             bsBigRightRequests.DataSource = list;
+            //show count Agreements into grid
+            lblCountAgreements.Text = list.Count.ToString();
 
             SelectedLicenseAgreement = currentRightholder;
         }
@@ -147,7 +149,9 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             chddlState.ValueMember = "CodeI";
             chddlState.DisplayMember = "Name";
-            chddlState.DataSource = IpsGlobal.AnketaDictionaties.licenseType;
+
+            int[] validTypes = { 1,2,3 };
+            chddlState.DataSource = IpsGlobal.AnketaDictionaties.licenseType.Where(rec => validTypes.Contains( rec.CodeI ));
 
             foreach (var item in chddlState.Items)
             {

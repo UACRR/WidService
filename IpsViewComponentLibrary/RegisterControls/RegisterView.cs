@@ -47,7 +47,7 @@ namespace IpsViewComponentLibrary.RegisterControls
             }
         }
 
-        public ConsumerMainView ConsumerInfo
+        public ConsumerSmallRightView ConsumerInfo
         {
             set
             {

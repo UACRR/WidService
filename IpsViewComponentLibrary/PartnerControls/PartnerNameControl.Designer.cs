@@ -43,6 +43,7 @@
             this.txtLastName = new Telerik.WinControls.UI.RadTextBox();
             this.rtxtBoxIPN = new Telerik.WinControls.UI.RadTextBox();
             this.lblipn = new Telerik.WinControls.UI.RadLabel();
+            this.bsSexType = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ddlSexType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).BeginInit();
@@ -56,17 +57,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSexType)).BeginInit();
             this.SuspendLayout();
             // 
             // ddlSexType
             // 
-            this.ddlSexType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaPerson, "Sex", true));
+            this.ddlSexType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAnketaPerson, "Sex", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ddlSexType.DataSource = this.bsSexType;
+            this.ddlSexType.DisplayMember = "Name";
             this.ddlSexType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlSexType.Location = new System.Drawing.Point(313, 80);
             this.ddlSexType.Name = "ddlSexType";
             this.ddlSexType.Size = new System.Drawing.Size(125, 21);
             this.ddlSexType.TabIndex = 23;
             this.ddlSexType.ThemeName = "Office2013Light";
+            this.ddlSexType.ValueMember = "CodeI";
             // 
             // bsAnketaPerson
             // 
@@ -187,6 +192,10 @@
             this.lblipn.Text = "ІПН (якщо немає «0000000000»):";
             this.lblipn.ThemeName = "Office2013Light";
             // 
+            // bsSexType
+            // 
+            this.bsSexType.DataSource = typeof(ipsFormsDesign.Model.SexType);
+            // 
             // PartnerNameControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,7 +214,6 @@
             this.Controls.Add(this.txtLastName);
             this.Name = "PartnerNameControl";
             this.Size = new System.Drawing.Size(443, 131);
-            this.Load += new System.EventHandler(this.PartnerNameControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ddlSexType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblSex)).EndInit();
@@ -219,6 +227,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtLastName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxIPN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblipn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsSexType)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,5 +248,6 @@
         private Telerik.WinControls.UI.RadTextBox txtLastName;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxIPN;
         private Telerik.WinControls.UI.RadLabel lblipn;
+        private System.Windows.Forms.BindingSource bsSexType;
     }
 }

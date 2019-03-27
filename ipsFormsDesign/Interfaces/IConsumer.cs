@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Interfaces
     public interface IConsumerForm
     {
         event Func<bool> Save; 
-        Func<IList<ConsumerMainView>> getMainViewData { get; set; }
+        Func<IList<ConsumerSmallRightView>> getMainViewData { get; set; }
         Func<int, Customer> NewCustomer { get; set; }
         Func<int, Customer> GetCustomer { get; set; }
         Func<Customer, bool> SaveCustomer { get; set; }

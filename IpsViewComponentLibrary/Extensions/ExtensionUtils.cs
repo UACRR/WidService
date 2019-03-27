@@ -22,12 +22,15 @@ namespace IpsViewComponentLibrary.Extensions
     public delegate bool SetPartnerEventHandler(int clientId, int partnerId);
     public delegate bool ChangePartnerEventHandler(int clientId, int partnerId, int oldPartnerId);
 
-    public delegate void LoadCustomerCabinetEventHandler(int id);
+    public delegate void LoadCustomerCabinetBREventHandler(ConsumerBigRightView item);
+    public delegate void LoadCustomerCabinetSREventHandler(ConsumerSmallRightView item);
     public delegate void UpdateCustomerDataEventHandler(int id);
 
     public delegate List<CustCmRight> GetCommunityRightList(int custId);
 
     public delegate void EmptyEventHandler();
+    public delegate void ActionByIdEventHandler(int id);
+
 
     public delegate bool ActionWithTwoId(int custId, int id);
     public delegate bool ActionByIdDelegate(int id);

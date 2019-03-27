@@ -16,6 +16,8 @@ namespace IpsViewComponentLibrary.PartnerControls
     public partial class PartnerAnketaPhisControl : UserControl, IAnketaControls
     {
         public event EventHandler<bool> SaveClick;
+        public event EventHandler CancelClick;
+
         public PartnerAnketaPhisControl()
         {
             InitializeComponent();

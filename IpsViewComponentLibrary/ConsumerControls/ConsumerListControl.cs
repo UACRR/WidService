@@ -39,8 +39,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
             }
         }
 
-        private ConsumerMainView _selectedConsumer;
-        public ConsumerMainView SelectedConsumer
+        private ConsumerSmallRightView _selectedConsumer;
+        public ConsumerSmallRightView SelectedConsumer
         {
             get { return _selectedConsumer; }                
             set
@@ -132,7 +132,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             if (gvConsumerList.CurrentRow == null)
                 SelectedConsumer = null;
 
-            _selectedConsumer = gvConsumerList.CurrentRow.DataBoundItem as ConsumerMainView;
+            _selectedConsumer = gvConsumerList.CurrentRow.DataBoundItem as ConsumerSmallRightView;
             // fire OnSelectedEntityChanged ivent if it is neened
         }
 

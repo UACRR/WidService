@@ -36,12 +36,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         public event ActionWithTwoId DeleteRegisterRatedList;
         public event EmptyEventHandler UpdateData;
 
-        public delegate List<RatedListMusicDesignBigRightView> MusicDesingEventHandler();
-        /// <summary>
-        /// Виникає при потребі показати музичне оформлення
-        /// </summary>
-        public event MusicDesingEventHandler GetMusicDesing;
-
         public RegisterRatedListControl()
         {
             InitializeComponent();
@@ -59,16 +53,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             splitter.PrevNavigationButton.AngleTransform = 180f;
         }
 
-        public void SetAndUpdateData(Customer customer,
-            MainGridConsumerBigRightView bigRightView,
-            IList<RatedListMainBigRightView> registers, 
-            IList<RatedListSpectacleBigRightView> payslipsSpectacleViews)
+        public void SetAndUpdateData(Customer customer)
         {
             _customer = customer;
-            _payslipsSpectacleViews = payslipsSpectacleViews;
-            ctrlHeaderInfo.DataSource = bigRightView;
-            gvRegisterRatedListView.DataSource = registers;
-            btnAcceptSpectacles.Enabled = registers.Any();
+            _payslipsSpectacleViews = ViewsSingleton.RatedListSpectacleBigRightView;
+            ctrlHeaderInfo.DataSource = ViewsSingleton.ConsumerBigRightView;
+            gvRegisterRatedListView.DataSource = ViewsSingleton.RatedListBigRightView;
+            btnAcceptSpectacles.Enabled = ViewsSingleton.RatedListBigRightView.Any();
         }
 
         // додати новий розрахунковий лист
@@ -95,7 +86,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         //погодити перелік вистав
         private void btnConfirmSpectacles_Click(object sender, EventArgs e)
         {
-            if (!(gvRegisterRatedListView.CurrentRow?.DataBoundItem is RatedListMainBigRightView reg))
+            if (!(gvRegisterRatedListView.CurrentRow?.DataBoundItem is RatedListBigRightView reg))
                 return;
 
             var ratedlist = GetRatedList(reg);
@@ -118,7 +109,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         // кнопки грід
         private void gvRegisterRatedListView_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            if (!(e.Row?.DataBoundItem is RatedListMainBigRightView item))
+            if (!(e.Row?.DataBoundItem is RatedListBigRightView item))
                 return;
 
             switch (e.Column?.FieldName)
@@ -136,7 +127,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// Редагувати або переглянути розрахунковий лист
         /// </summary>
         /// <param name="item"></param>
-        private void EditOrViewButtonAction(RatedListMainBigRightView item)
+        private void EditOrViewButtonAction(RatedListBigRightView item)
         {
             var ratedList = GetRatedList(item);
             var spectacles = OnSpectacleViewNeed?.Invoke(_customer.CustId);
@@ -169,7 +160,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// Видалити розрахунковий лист
         /// </summary>
         /// <param name="item">Результат обробки видалення</param>
-        private void DeleteButtonAction(RatedListMainBigRightView item)
+        private void DeleteButtonAction(RatedListBigRightView item)
         {
             _gridStateRecorder.RecordState();
             // Status = 0 - дозвіл на видалення
@@ -183,7 +174,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             _gridStateRecorder.RestoreState();
         }
 
-        private RegisterRatedList GetRatedList(RatedListMainBigRightView reg)
+        private RegisterRatedList GetRatedList(RatedListBigRightView reg)
         {
             var customer = OnGetRegisterRatedList?.Invoke(_customer.CustId);
             var license = customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec?.LicClass == 1 && rec?.LicStatus == 2);
@@ -226,7 +217,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 return;
             }
 
-            if (e.CurrentRow?.DataBoundItem is RatedListMainBigRightView ratedListView)
+            if (e.CurrentRow?.DataBoundItem is RatedListBigRightView ratedListView)
             {
                 SetSpectacleViewGridDataSource(ratedListView.RmId);
                 btnAcceptSpectacles.Enabled = ratedListView.Status == 0;
@@ -281,25 +272,25 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             bsChildTemplate.DataSource = childList;
         }
 
-        private void UpdateMusicDesignData()
+
+
+        private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
             if (gvViewSpectacles?.CurrentRow?.DataBoundItem == null)
                 return;
 
-            if(!(gvViewSpectacles.CurrentRow.DataBoundItem is ParentTemplate source))
-                source = ((GridViewRowInfo)((GridViewHierarchyRowInfo)gvViewSpectacles.CurrentRow).Parent)?.DataBoundItem as ParentTemplate;
-
-            ctrlMusicDesignHeaderInfo.DataSource = source;
-
-            var musicDesign = GetMusicDesing?.Invoke();
-            var dataSource = musicDesign?.Where(r => r.RegId == source?.RegId).ToList();
-            gvMusicDesignView.DataSource = dataSource ;
-        }
-
-        private void pageView_SelectedPageChanged(object sender, EventArgs e)
-        {
             if (pageView.SelectedPage == pvMusicalDesign)
-                UpdateMusicDesignData();
+            {
+
+                if (!(gvViewSpectacles.CurrentRow.DataBoundItem is ParentTemplate source))
+                    source = ((GridViewRowInfo)((GridViewHierarchyRowInfo)gvViewSpectacles.CurrentRow).Parent)?.DataBoundItem as ParentTemplate;
+
+                ctrlMusicDesignHeaderInfo.DataSource = source;
+
+                var musicDesign = ViewsSingleton.RatedListMusicDesignBigRightView;
+                var dataSource = musicDesign?.Where(r => r.RegId == source?.RegId).ToList();
+                gvMusicDesignView.DataSource = dataSource;
+            }
         }
     }
 }

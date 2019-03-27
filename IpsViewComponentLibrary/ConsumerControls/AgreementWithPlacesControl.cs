@@ -14,11 +14,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class AgreementWithPlacesControl : UserControl
     {
+        private LicenseAgreement _license;
         private LicenseAgrParam _licenseAgr;
         private ObservableListSource<ClnBusinessPlace> _tempPlaces;
         private List<GridViewRowInfo> _existLicenses;
         private readonly AnketaDictionaties _anketaDictionaties;
         private bool _selectFirstItemNeed;
+        private bool _isInit = false;
         private static bool PlaceChooserPredicate(GridViewRowInfo row, LicenseForPlaces license) => row.DataBoundItem as ClnBusinessPlace == license.Place
                                                                          || (row.DataBoundItem as ClnBusinessPlace)?.PlaceId == license.PlaceId;
 
@@ -37,10 +39,11 @@ namespace IpsViewComponentLibrary.ConsumerControls
             _selectFirstItemNeed = agreementInitType == ConsumerAgreementInitType.AddNewAgreement;
             _tempPlaces = places;
             _licenseAgr = licenseAgr;
+            _license = license;
 
-            licenseAgreementBindingSource.DataSource = license;
+            licenseAgreementBindingSource.DataSource = _license;
             bindingSourceAgr.DataSource = _licenseAgr;
-            
+
             ctrlAgrSecond.DataSourceBinding = _licenseAgr;
             ctrlAgrSecond.AutoprolongationDataSource = _licenseAgr;
             ctrlAgrSecond.MinPayment = "MinAmount";
@@ -74,6 +77,8 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 }
                 return true;
             });
+
+            _isInit = true;
         }
 
         public bool Validator()
@@ -93,7 +98,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             else
                 gvPlaces.Enabled = false;
         }
-        
+
         private void AgreementWithPlacesControl_Paint(object sender, PaintEventArgs e)
         {
             CheckPlaces();
@@ -168,7 +173,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 }
                 else
                 {
-                    var license = _licenseAgr.License.SingleOrDefault(rec => rec.Place == item || (rec.PlaceId == item.PlaceId && item.PlaceId != 0 ));
+                    var license = _licenseAgr.License.SingleOrDefault(rec => rec.Place == item || (rec.PlaceId == item.PlaceId && item.PlaceId != 0));
                     _licenseAgr.License.Remove(license);
                     item.License.Remove(license);
                 }
@@ -187,6 +192,29 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 return;
             ddlLicType.SelectedIndex = 0;
             ctrlAgrSecond.SelectDefaultItem();
+        }
+
+        private void ddlLicType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (!_isInit)
+                return;
+
+            var source = ddlLicType.DataSource as BindingSource;
+            var newAgrLicType = source.Current as AgrLicenseType;
+            if (newAgrLicType == null) return;
+
+            if (newAgrLicType.CodeI == _license.LicCode )
+            {
+                return;
+            }
+
+            _licenseAgr.RateAmount = newAgrLicType.AuthRate;
+            ctrlAgrSecond.RefreshDataSourceBinding();
+        }
+
+        private void bindingSourceDictionary_BindingComplete(object sender, BindingCompleteEventArgs e)
+        {
+
         }
     }
 }

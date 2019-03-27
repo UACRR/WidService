@@ -6,7 +6,7 @@ using ipsFormsDesign.Model;
 
 namespace ipsFormsDesign.Interfaces
 {
-    public class ConsumerMainView
+    public class ConsumerSmallRightView
     {
         public int CustId { get; set; }
         public string Innokpo { get; set; }
@@ -19,7 +19,7 @@ namespace ipsFormsDesign.Interfaces
     /// <summary>
     /// Дані для GridView Для великих прав
     /// </summary>
-    public class MainGridConsumerBigRightView
+    public class ConsumerBigRightView
     {
         /// <summary>
         /// Тип Ген. угоди
@@ -150,7 +150,7 @@ namespace ipsFormsDesign.Interfaces
 
     public interface IConsumerService : IModel
     {
-        IList<ConsumerMainView> GetMainView();
+        IList<ConsumerSmallRightView> GetMainView();
         IList<AutoCompleteData> GetAutoCompleteList(string filter);
     }
 
@@ -315,7 +315,7 @@ namespace ipsFormsDesign.Interfaces
         public int LicType { get; set; }
     }
 
-    public class RatedListMainBigRightView
+    public class RatedListBigRightView
     {
         public DateTime? CreateDate { get; set; }
         public int? CustId { get; set; }

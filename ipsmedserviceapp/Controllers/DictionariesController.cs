@@ -1446,13 +1446,14 @@ namespace ipsmedserviceapp.Controllers
             transaction.Commit();
 
 
+
             return Ok();
         }
 
         // CopyRightKind BEGIN ********************
         // Get By Id   ****************************
         [HttpGet("extra/copyrightkind/{id}")]
-        public async Task<IActionResult> GetCopyRightKind(int id, [FromBody] CopyrightKind sors)
+        public async Task<IActionResult> GetCopyRightKind(int id)
         {
             var dest = await _dbContext.CopyrightKind.Where(rec => rec.CodeI == id)
                                 .Include(rec => rec.CopyrightKindTr)
@@ -1468,10 +1469,12 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> CreateCopyRightKind([FromBody] CopyrightKind sors)
         {
             var dest = new CopyrightKind();
-            dest.SetFields(sors, new[] { "CodeI" });
+            
+            dest.SetFields(sors);
             _dbContext.AppendList(sors.CopyrightKindTr, dest.CopyrightKindTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
-
+            _dbContext.CopyrightKind.Add(dest);
             await _dbContext.SaveChangesAsync();
+            
             return Ok(dest);
         }
         // Update      ****************************
@@ -1500,15 +1503,330 @@ namespace ipsmedserviceapp.Controllers
                                 .FirstOrDefaultAsync();
             if (delRow == null)
                 return NotFound();
-
+            
             _dbContext.CopyrightKindTr.RemoveRange(delRow.CopyrightKindTr);
-            _dbContext.CopyrightKind.Remove( delRow );
+            _dbContext.CopyrightKind.Remove(delRow);
 
             await _dbContext.SaveChangesAsync();
-
+            
             return Ok();
         }
         // CopyRightKind END **********************
+
+        // CreativeRoleType BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/creativeroletype/{id}")]
+        public async Task<IActionResult> GetCreativeRoleType(int id)
+        {
+            var dest = await _dbContext.CreativeRoleType.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.CreativeRoleTypeTr)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+        // Create New  ****************************
+        [HttpPost("extra/creativeroletype")]
+        public async Task<IActionResult> CreateCreativeRoleType([FromBody] CreativeRoleType sors)
+        {
+            var dest = new CreativeRoleType();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.CreativeRoleTypeTr, dest.CreativeRoleTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.CreativeRoleType.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/creativeroletype/{id}")]
+        public async Task<IActionResult> UpdateCreativeRoleType(int id, [FromBody] CreativeRoleType sors)
+        {
+            var dest = await _dbContext.CreativeRoleType.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.CreativeRoleTypeTr)
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.CreativeRoleTypeTr, dest.CreativeRoleTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/creativeroletype/{id}")]
+        public async Task<IActionResult> DeleteCreativeRoleType(int id)
+        {
+            var delRow = await _dbContext.CreativeRoleType.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.CreativeRoleTypeTr)
+                                .FirstOrDefaultAsync();
+            if (delRow == null)
+                return NotFound();
+            
+            _dbContext.CreativeRoleTypeTr.RemoveRange(delRow.CreativeRoleTypeTr);
+            _dbContext.CreativeRoleType.Remove(delRow);
+
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok();
+        }
+        // CreativeRoleType END **********************
+
+        // GenreType BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/genretype/{id}")]
+        public async Task<IActionResult> GetGenreType(int id)
+        {
+            var dest = await _dbContext.GenreType.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.GenreTypeTr)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+        // Create New  ****************************
+        [HttpPost("extra/genretype")]
+        public async Task<IActionResult> CreateGenreType([FromBody] GenreType sors)
+        {
+            var dest = new GenreType();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.GenreTypeTr, dest.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.GenreType.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/genretype/{id}")]
+        public async Task<IActionResult> UpdateGenreType(int id, [FromBody] GenreType sors)
+        {
+            var dest = await _dbContext.GenreType.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.GenreTypeTr)
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.GenreTypeTr, dest.GenreTypeTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/genretype/{id}")]
+        public async Task<IActionResult> DeleteGenreType(int id)
+        {
+            var delRow = await _dbContext.GenreType.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.GenreTypeTr)
+                                .FirstOrDefaultAsync();
+            if (delRow == null)
+                return NotFound();
+            
+            _dbContext.GenreTypeTr.RemoveRange(delRow.GenreTypeTr);
+            _dbContext.GenreType.Remove(delRow);
+
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok();
+        }
+        // GenreType END **********************
+
+        // KlR030 BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/klr030/{id}")]
+        public async Task<IActionResult> GetKlR030(int id)
+        {
+            var dest = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+                                .Include(rec => rec.KlR030tr)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+        // Create New  ****************************
+        [HttpPost("extra/klr030")]
+        public async Task<IActionResult> CreateKlR030([FromBody] KlR030 sors)
+        {
+            var dest = new KlR030();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.KlR030tr, dest.KlR030tr, i => { }, (l, r) => l.R030 == r.R030 && l.Lang == r.Lang);
+            _dbContext.KlR030.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/klr030/{id}")]
+        public async Task<IActionResult> UpdateKlR030(int id, [FromBody] KlR030 sors)
+        {
+            var dest = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+                                .Include(rec => rec.KlR030tr)
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.KlR030tr, dest.KlR030tr, i => { }, (l, r) => l.R030 == r.R030 && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/klr030/{id}")]
+        public async Task<IActionResult> DeleteKlR030(int id)
+        {
+            var delRow = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+                                .Include(rec => rec.KlR030tr)
+                                .FirstOrDefaultAsync();
+            if (delRow == null)
+                return NotFound();
+            
+            _dbContext.KlR030tr.RemoveRange(delRow.KlR030tr);
+            _dbContext.KlR030.Remove(delRow);
+
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok();
+        }
+        // KlR030 END **********************
+
+        // SystemConstant BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/systemconstant/{id}")]
+        public async Task<IActionResult> GetSystemConstant(int id)
+        {
+            var dest = await _dbContext.SystemConstant.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.SystemConstantTr)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+        // Create New  ****************************
+        [HttpPost("extra/systemconstant")]
+        public async Task<IActionResult> CreateSystemConstant([FromBody] SystemConstant sors)
+        {
+            var dest = new SystemConstant();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.SystemConstantTr, dest.SystemConstantTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.SystemConstant.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/systemconstant/{id}")]
+        public async Task<IActionResult> UpdateSystemConstant(int id, [FromBody] SystemConstant sors)
+        {
+            var dest = await _dbContext.SystemConstant.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.SystemConstantTr)
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.SystemConstantTr, dest.SystemConstantTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/systemconstant/{id}")]
+        public async Task<IActionResult> DeleteSystemConstant(int id)
+        {
+            var delRow = await _dbContext.SystemConstant.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.SystemConstantTr)
+                                .FirstOrDefaultAsync();
+            if (delRow == null)
+                return NotFound();
+            
+            _dbContext.SystemConstantTr.RemoveRange(delRow.SystemConstantTr);
+            _dbContext.SystemConstant.Remove(delRow);
+
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok();
+        }
+        // SystemConstant END **********************
+
+        // TypePlace BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/typeplace/{id}")]
+        public async Task<IActionResult> GetTypePlace(int id)
+        {
+            var dest = await _dbContext.TypePlace.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.TypePlaceTr)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+        // Create New  ****************************
+        [HttpPost("extra/typeplace")]
+        public async Task<IActionResult> CreateTypePlace([FromBody] TypePlace sors)
+        {
+            var dest = new TypePlace();
+            
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.TypePlaceTr, dest.TypePlaceTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            _dbContext.TypePlace.Add(dest);
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/typeplace/{id}")]
+        public async Task<IActionResult> UpdateTypePlace(int id, [FromBody] TypePlace sors)
+        {
+            var dest = await _dbContext.TypePlace.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.TypePlaceTr)
+                                .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.TypePlaceTr, dest.TypePlaceTr, i => { }, (l, r) => l.CodeI == r.CodeI && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/typeplace/{id}")]
+        public async Task<IActionResult> DeleteTypePlace(int id)
+        {
+            var delRow = await _dbContext.TypePlace.Where(rec => rec.CodeI == id)
+                                .Include(rec => rec.TypePlaceTr)
+                                .FirstOrDefaultAsync();
+            if (delRow == null)
+                return NotFound();
+            
+            _dbContext.TypePlaceTr.RemoveRange(delRow.TypePlaceTr);
+            _dbContext.TypePlace.Remove(delRow);
+
+            await _dbContext.SaveChangesAsync();
+            
+            return Ok();
+        }
+        // TypePlace END **********************
 
 
         #endregion

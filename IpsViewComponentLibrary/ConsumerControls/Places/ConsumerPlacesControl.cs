@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -16,85 +17,40 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
     public partial class ConsumerPlacesControl : UserControl
     {
         private const string AddFromFile = "Додати з файлу";
-        private const string DeletePlaceQuestion = "Ви дійсно хочете видалити обраний заклад?";
-        private const string DeletePlaceQuestionTitle = "Підтвердження";
+        private const string DeletePlaceQuestion = "Ви дійсно хочете видалити обрану бізнес-точку?";
 
         private readonly AnketaDictionaties _dictionaties;
-        private IPlacesControl _placesControl;
-        private readonly SinglePlaceParameterControl _singlePlaceParameterControl;
-        private readonly MultiplePlaceParameterControl _multiplePlaceParameterControl;
-        private readonly RadioPlaceParameterControl _radioPlaceParameterControl;
 
         private ObservableListSource<ClnBusinessPlace> _clnBusinessPlaces;
-        private ClnBusinessPlace _tempPlace;
         private int _placeIdNegativeCounter = default(int);
 
-        // ReSharper disable once InconsistentNaming
-        private int CurentCustomerId = default(int);
-        // ReSharper disable once InconsistentNaming
-        private ExistencePlaces CurentType = ExistencePlaces.None;
+        private int CustomerId = default(int);
 
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-        public bool IsEditMode { get; private set; } = false;
-        
         
         // конструктор
         public ConsumerPlacesControl()
         {
             InitializeComponent();
             if (!IsDesignMode)
-            {
                 _dictionaties = IpsGlobal.AnketaDictionaties;
-            }
 
-            panelHeader.PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
-            panelParameter.PanelElement.PanelBorder.Visibility = ElementVisibility.Collapsed;
+            InitializeDropDownButtons();
+        }
 
-            // ініціалізація контрола з єдиним холом
-            _singlePlaceParameterControl = new SinglePlaceParameterControl
-            {
-                Dock = DockStyle.Fill
-            };
-            if(_dictionaties != null)
-            {
-                _singlePlaceParameterControl.DictionaryRegion = _dictionaties.region;
-                _singlePlaceParameterControl.DictionaryTypePlace = _dictionaties.typePlace;
-            }
-            _singlePlaceParameterControl.SaveChanges += Save_Click;
-            _singlePlaceParameterControl.CancelChanges += Cancel_Click;
-
-            // ініціалізація контрола з декількома холами
-            _multiplePlaceParameterControl = new MultiplePlaceParameterControl
-            {
-                Dock = DockStyle.Fill
-            };
-            if (_dictionaties != null)
-            {
-                _multiplePlaceParameterControl.DictionaryRegion = _dictionaties.region;
-                _multiplePlaceParameterControl.DictionaryTypePlace = _dictionaties.typePlace;
-            }
-            _multiplePlaceParameterControl.SaveChanges += Save_Click;
-            _multiplePlaceParameterControl.CancelChanges += Cancel_Click;
-
-            _radioPlaceParameterControl = new RadioPlaceParameterControl
-            {
-                Dock = DockStyle.Fill
-            };
-            if (_dictionaties != null)
-            {
-                _radioPlaceParameterControl.DictionaryTypePlace = _dictionaties.typePlace;
-            }
-            _radioPlaceParameterControl.SaveChanges += Save_Click;
-            _radioPlaceParameterControl.CancelChanges += Cancel_Click;
-
+        /// <summary>
+        /// Створити список випадаючих кнопок з довідника для бізнес-точок
+        /// </summary>
+        private void InitializeDropDownButtons()
+        {
             ddBtnAddPlace.Items.Clear();
-            if(_dictionaties != null)
-            foreach (var typePlace in _dictionaties.typePlace)
-            {
-                var item = new RadMenuItem(typePlace.Name, typePlace);
-                item.Click += Item_Click;
-                ddBtnAddPlace.Items.Add(item);
-            }
+            if (_dictionaties != null)
+                foreach (var typePlace in _dictionaties.typePlace)
+                {
+                    var item = new RadMenuItem(typePlace.Name, typePlace);
+                    item.Click += Item_Click;
+                    ddBtnAddPlace.Items.Add(item);
+                }
             var fromFile = new RadMenuItem(AddFromFile, null);
             fromFile.Click += AddPlacesFromFile_Click; ;
             ddBtnAddPlace.Items.Add(fromFile);
@@ -109,8 +65,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         public void SetData(Customer customer)
         {
             _clnBusinessPlaces = customer.Client.ClnBusinessPlace;
-            gvPlaces.DataSource = _clnBusinessPlaces;
-            CurentCustomerId = customer.CustId;
+            bsPlacesList.DataSource = _clnBusinessPlaces;
+            CustomerId = customer.CustId;
         }
 
         // Додавання нового майданчика (click on drop down btn)
@@ -119,19 +75,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             var objTag = sender as RadMenuItem;
             if(!(objTag?.Tag is TypePlace typePlace)) return;
 
-            ddBtnAddPlace.Enabled = false;
-            gvPlaces.Enabled = false;
-            btnEdit.Enabled = false;
-            btnDelete.Enabled = false;
-
-
-            SetupParameterPanel(typePlace);
-
-            _tempPlace = new ClnBusinessPlace
+            var tempPlace = new ClnBusinessPlace
             {
                 // TODO: переробити костиль з ID
                 PlaceId = --_placeIdNegativeCounter,
-                CustId = CurentCustomerId,
+                CustId = CustomerId,
                 PlCode = typePlace.CodeI, //код типу закладу,
                 PlaceCountry = "804",
                 FreeEntry = typePlace.CodeI != 4, // безкоштовний/платний вхід
@@ -139,56 +87,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 ClnPlaceHoll = typePlace.IsHoll ?? false ? new ObservableListSource<ClnPlaceHoll>() : new ObservableListSource<ClnPlaceHoll> { new ClnPlaceHoll() }
             };
 
-            _placesControl.ButtonsVisible = true;
-            _placesControl.BusinessPlaceDataSource = _tempPlace;
+            OpenCreatePlaceDetailForm(tempPlace);
         }
 
-        // перемикання панелі параметрів майданчика
-        private void SetupParameterPanel(TypePlace typePlace)
+        /// <summary>
+        /// Відкрити форму [СТВОРЕННЯ] бізнес-точки
+        /// </summary>
+        /// <param name="businessPlace"></param>
+        private void OpenCreatePlaceDetailForm(ClnBusinessPlace businessPlace)
         {
-            // тип приміщення
-            var existencePlaces = ExistencePlaces.None;
-            if (typePlace.ParamType != 3)
-                existencePlaces = typePlace.IsHoll != null && (bool) typePlace.IsHoll
-                    ? ExistencePlaces.ManyPlaces
-                    : ExistencePlaces.SinglePlace;
-            else
-                existencePlaces = ExistencePlaces.Radio;
-
-            if(existencePlaces != CurentType) // не перебудовувати якщо тип майданчика такий самий
+            var placeDetailForm = new PlaceDetailForm(businessPlace);
+            if (placeDetailForm.ShowDialog() == DialogResult.OK)
             {
-                switch (existencePlaces)
-                {
-                    case ExistencePlaces.SinglePlace: // форма з єдиним холом
-                    {
-                        _placesControl = _singlePlaceParameterControl;
-                        if (panelParameter.Controls.Count != 0)
-                            panelParameter.Controls.Clear();
-                        panelParameter.Controls.Add(_singlePlaceParameterControl);
-                    }
-                        break;
-
-                    case ExistencePlaces.ManyPlaces: // форма з декількома холами
-                    {
-                        _placesControl = _multiplePlaceParameterControl;
-                        if (panelParameter.Controls.Count != 0)
-                            panelParameter.Controls.Clear();
-                        panelParameter.Controls.Add(_multiplePlaceParameterControl);
-                    }
-                        break;
-                    case ExistencePlaces.Radio: // радіо
-                        _placesControl = _radioPlaceParameterControl;
-                        if (panelParameter.Controls.Count != 0)
-                            panelParameter.Controls.Clear();
-                        panelParameter.Controls.Add(_radioPlaceParameterControl);
-                        break;
-                }
-
-                CurentType = existencePlaces;
+                _clnBusinessPlaces.Add(businessPlace);
+                bsPlacesList.ResetBindings(false);
             }
-
-            if (typePlace.ParamType != null)
-                _placesControl.PlaceType = (MeasurementOfPlaces)typePlace.ParamType;
         }
 
         // Додавання нового майданчика з файлу XLS, XLSX
@@ -197,102 +110,81 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             // TODO: реалізувати додавання майданчиків з файлу
         }
 
-        // при зміні рядка грід 
-        private void RGridViewInstitution_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        // * * * РЕДАГУВАННЯ бізнес-точки
+        private void btnEdit_Click(object sender, EventArgs e)
         {
-            var visible = gvPlaces.RowCount != 0;
-            btnEdit.Enabled = visible;
-            btnDelete.Enabled = !IsEditMode && visible;
+            OpenEditPlaceDetailForm();
+        }
 
-            // якщо вкл редагування 
-            if (IsEditMode)
+        // * * * РЕДАГУВАННЯ бізнес-точки
+        private void gvPlaces_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            OpenEditPlaceDetailForm();
+        }
+
+        /// <summary>
+        /// Відкрити форму [РЕДАГУВАННЯ] бізнес-точки
+        /// </summary>
+        private void OpenEditPlaceDetailForm()
+        {
+            if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace place))
+                return;
+
+            // створення допоміжного об'єкта (binding зберігає зміни в будь-якому випадку) б-т . . .
+            var tempPlace = new ClnBusinessPlace
             {
-                var item = e.CurrentRow.DataBoundItem as ClnBusinessPlace;
-                var typePlace = _dictionaties.typePlace.SingleOrDefault(rec => rec.CodeI == item.PlCode);
-                SetupParameterPanel(typePlace); // змінює тип форми за необхідністю
-                _placesControl.BusinessPlaceDataSource = item; // binding
+                ClnPlaceHoll = new ObservableListSource<ClnPlaceHoll>
+                {
+                    new ClnPlaceHoll()
+                }
+            };
+            // . . . та синхронізація
+            SyncClnBusinessPlace(tempPlace, place);
+
+            var placeDetailForm = new PlaceDetailForm(tempPlace);
+            if (placeDetailForm.ShowDialog() == DialogResult.OK)
+            {
+                SyncClnBusinessPlace(place, tempPlace);
+                bsPlacesList.ResetBindings(false);
             }
         }
 
-
-        #region * * * ALL BUTTONS * * *
-
-        // * * * РЕДАГУВАННЯ МАЙДАНЧИКА
-        private void BtnEdit_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Синхронізація об'єктів бізнес-точки з одним холом (приміщенням)
+        /// </summary>
+        /// <param name="destination"></param>
+        /// <param name="source"></param>
+        private void SyncClnBusinessPlace(ClnBusinessPlace destination, ClnBusinessPlace source)
         {
-            if(gvPlaces.RowCount == 0) return;
-            if (!(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace place)) return;
+            destination.SetFields(source);
+            var typePlace = _dictionaties.typePlace.SingleOrDefault(rec => rec.CodeI == source.PlCode);
 
-            IsEditMode = !IsEditMode;
-            ddBtnAddPlace.Enabled = !IsEditMode;
-            btnDelete.Enabled = !IsEditMode;
-
-            ((RadButtonElement)btnEdit.GetChildAt(0)).Image = IsEditMode ? Resources.angle_double_up_solid : Resources.angle_double_down_solid;
-
-            if (IsEditMode)
+            if (typePlace?.IsHoll ?? false)
             {
-                var typePlace = _dictionaties.typePlace.SingleOrDefault(rec => rec.CodeI == place.PlCode);
-                SetupParameterPanel(typePlace);
-                _placesControl.BusinessPlaceDataSource = place;
-                _placesControl.ButtonsVisible = false;
+                destination.ClnPlaceHoll.Clear();
+                foreach (var placeHoll in source.ClnPlaceHoll)
+                {
+                    var place = new ClnPlaceHoll();
+                    place.SetFields(placeHoll);
+                    destination.ClnPlaceHoll.Add(place);
+                }
             }
-            else
-            {
-                _placesControl.BusinessPlaceDataSource = null;
-                panelParameter.Controls.Clear();
-                CurentType = ExistencePlaces.None;
-            }
+            else if (destination.ClnPlaceHoll.Count == 1)
+                destination.ClnPlaceHoll.SingleOrDefault().SetFields(source.ClnPlaceHoll.SingleOrDefault());
         }
 
         //  * * * ВИДАЛЕННЯ МАЙДАНЧИКА
-        private void BtnDeletePlace_Click(object sender, EventArgs e)
+        private void btnDeletePlace_Click(object sender, EventArgs e)
         {
-            if(gvPlaces.Rows.Count == 0)
+            if (!(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace place))
                 return;
-            if (MessageBox.Show(DeletePlaceQuestion, DeletePlaceQuestionTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+
+            if (MessageShow.ConfirmAction(DeletePlaceQuestion) == DialogResult.Yes)
             {
-                var deleteItem = gvPlaces.CurrentRow.DataBoundItem as ClnBusinessPlace;
-                _clnBusinessPlaces.Remove(deleteItem);
+                _clnBusinessPlaces.Remove(place);
+                bsPlacesList.ResetBindings(false);
             }
         }
 
-        // * * * ЗБЕРЕЖЕННЯ НОВОГО
-        private void Save_Click(object sender, EventArgs e)
-        {
-
-            _clnBusinessPlaces.Add(_tempPlace);
-            _placesControl.BusinessPlaceDataSource = null;
-            _placesControl = null;
-            if (panelParameter.Controls.Count != 0)
-                panelParameter.Controls.Clear();
-
-            _tempPlace = null;
-
-            CurentType = ExistencePlaces.None;
-            ddBtnAddPlace.Enabled = true;
-            gvPlaces.Enabled = true;
-            btnEdit.Enabled = true;
-            btnDelete.Enabled = true;
-        }
-
-        // * * * СКАСУВАТИ СТВОРЕННЯ НОВОГО
-        private void Cancel_Click(object sender, EventArgs e)
-        {
-            _placesControl.BusinessPlaceDataSource = null;
-            _placesControl = null;
-            if (panelParameter.Controls.Count != 0)
-                panelParameter.Controls.Clear();
-            _tempPlace = null;
-
-            ddBtnAddPlace.Enabled = true;
-            gvPlaces.Enabled = true;
-            btnEdit.Enabled = true;
-            btnDelete.Enabled = true;
-
-            CurentType = ExistencePlaces.None;
-            // встановити режим перегляду
-        }
-        
-        #endregion
     }
 }

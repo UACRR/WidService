@@ -8,6 +8,7 @@ using WebAPIConnector;
 using System.IO;
 using System.Dynamic;
 using System.Threading.Tasks;
+using ipsFormsDesign.Data;
 using ipsmedserviceapp.Model.SQLViewsData;
 // ReSharper disable All
 
@@ -15,9 +16,14 @@ namespace ipsFormsDesign.Services
 {
     public class ConsumerService : IConsumerService
     {
-        private ApiConnector _webApi = new ApiConnector();
+        protected readonly ApiConnector _webApi = new ApiConnector();
         private readonly string _prefix = "consumer/";
 
+        public AnketaDictionaties GetDictionary()
+        {
+            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
+            return anketaDic;
+        }
 
         public Customer GetData(int custId)
         {
@@ -25,31 +31,27 @@ namespace ipsFormsDesign.Services
             return consumer;
         }
 
-        public ConsumerMainView GetShortInfoById(int custId)
+        public ConsumerSmallRightView GetShortInfoById(int custId)
         {
-            var consumerInfo = _webApi.GetItemById<ConsumerMainView>("consumer/info", custId.ToString());
+            var consumerInfo = _webApi.GetItemById<ConsumerSmallRightView>("consumer/info", custId.ToString());
             return consumerInfo;
         }
 
-        public AnketaDictionaties GetDictionary()
-        {
-            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
-            return anketaDic;
-        }
-        public IList<ConsumerMainView> GetMainView()
+        public IList<ConsumerSmallRightView> GetMainView()
         {
             return getMainView(ConsumerFilterEnum.All);
         }
-        public IList<ConsumerMainView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All)
+
+        public IList<ConsumerSmallRightView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listSR/{(int)what}";
-            var anketaDic = _webApi.GetList<ConsumerMainView>(url);
+            var anketaDic = _webApi.GetList<ConsumerSmallRightView>(url);
             return anketaDic;
         }
 
-        public IList<ConsumerMainView> GetListAll()
+        public IList<ConsumerSmallRightView> GetListAll()
         {
-            var list = _webApi.GetList<ConsumerMainView>("consumer/listall");
+            var list = _webApi.GetList<ConsumerSmallRightView>("consumer/listall");
             return list;
         }
 
@@ -70,14 +72,14 @@ namespace ipsFormsDesign.Services
         }
 
         #region BigRight
-        public IList<MainGridConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
+        public IList<ConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
         {
             string url = $"consumer/listBR";
             KeyValuePair<string, string>[] param = new[] {
                 new KeyValuePair<string, string>("whatId", ((int)what).ToString()),
                 new KeyValuePair<string, string>("typeDocId", ((int)typeDoc).ToString())
             };
-            var anketaDic = _webApi.GetList<MainGridConsumerBigRightView>(url, param);
+            var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param);
             return anketaDic;
         }
 
@@ -287,8 +289,9 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public IList<AutoCompleteData> GetAutoCompleteList(string filter)
         {
-            string url = $"consumer/listAll/{filter}";
-            var list = _webApi.GetList<AutoCompleteData>(url);
+            string url = $"consumer/listAutoCompleted";
+            KeyValuePair<string, string> param = new KeyValuePair<string, string>("filter", filter);
+            var list = _webApi.GetList<AutoCompleteData>(url, param);
             return list;
         }
 

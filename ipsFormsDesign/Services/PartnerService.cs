@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Dictionary;
@@ -13,9 +14,37 @@ namespace ipsFormsDesign.Services
     // * * * ПРЕДСТАВНИКИ
     public class PartnerService
     {
-        private readonly ApiConnector _webApi = new ApiConnector();
+        private readonly ApiConnector _webApi;
         private const string Prefix = "partner/";
-        
+
+        private static PartnerService _service;
+
+        private PartnerService()
+        {
+            _webApi = new ApiConnector();
+        }
+
+        /// <summary>
+        /// Екземпляр PartnerService
+        /// </summary>
+        /// <returns></returns>
+        public static PartnerService GetInstance()
+        {
+            if (_service == null)
+                _service = new PartnerService();
+
+            if(IpsGlobal.AnketaDictionaties == null)
+                IpsGlobal.SetAnketaDictionaties(_service.GetDictionary());
+
+            return _service;
+        }
+
+        private AnketaDictionaties GetDictionary()
+        {
+            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
+            return anketaDic;
+        }
+
         /// <summary>
         /// Отримати VIEW
         /// </summary>

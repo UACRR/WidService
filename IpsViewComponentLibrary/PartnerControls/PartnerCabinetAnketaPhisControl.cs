@@ -20,6 +20,8 @@ namespace IpsViewComponentLibrary.PartnerControls
         public PartnerCabinetAnketaPhisControl()
         {
             InitializeComponent();
+            ctrlSaveCancel.SaveClck += btnSave_Click;
+            ctrlSaveCancel.CancelClick += btnCancel_Click;
         }
 
         public void BeginBindings(Customer customer)

@@ -81,7 +81,7 @@
             gridViewTextBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn2.Width = 94;
             gridViewTextBoxColumn3.FieldName = "ClientName";
-            gridViewTextBoxColumn3.HeaderText = "Назва клієнта";
+            gridViewTextBoxColumn3.HeaderText = "Назва користувача";
             gridViewTextBoxColumn3.Multiline = true;
             gridViewTextBoxColumn3.Name = "ClientName";
             gridViewTextBoxColumn3.Width = 437;
@@ -181,7 +181,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Вибір клієнта";
+            this.Text = "Вибір користувача";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.gvViewFreeClientList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewFreeClientList)).EndInit();

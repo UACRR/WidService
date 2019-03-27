@@ -64,7 +64,7 @@ namespace ipsFormsDesign.Presenters
         }
         public bool CheckINNIsUnique(string okpo, int? custId )
         {
-            var normalOkpo = okpo == null ? string.Empty :okpo.Trim();
+            var normalOkpo = okpo == null ? string.Empty : okpo.Trim();
 
             if (normalOkpo == string.Empty)
                 return true;

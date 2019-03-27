@@ -115,17 +115,26 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void Btn_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.FileName = _custName;
-            if( saveFileDialog1.ShowDialog() == DialogResult.OK )
+            saveFileDialog1.FileName = _custName.Trim();
+            saveFileDialog1.Filter = "docx files (*.docx)|*.docx|pdf files (*.pdf)|*.pdf";
+            saveFileDialog1.FilterIndex = 1;
+            if ( saveFileDialog1.ShowDialog() == DialogResult.OK )
             {
+                FileInfo fi = new FileInfo(saveFileDialog1.FileName);
+                var FileName = saveFileDialog1.FileName;
+
+                if (File.Exists(FileName))
+                    File.Delete(FileName);
                 switch(saveFileDialog1.FilterIndex )
                 {
                     case 1:
-                        File.Copy(_doc, saveFileDialog1.FileName);
+                        File.Copy(_doc, FileName);
                         break;
                     case 2:
-                        File.Copy(_pdf, saveFileDialog1.FileName);
-                        break;
+                        {
+                            File.Copy(_pdf, FileName);
+                            break;
+                        }
                 }
 
             }
@@ -411,6 +420,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                 }
             }
         }
+
 
     }
 }

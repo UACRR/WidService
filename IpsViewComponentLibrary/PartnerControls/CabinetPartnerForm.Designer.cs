@@ -51,7 +51,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ctrlAgreement = new IpsViewComponentLibrary.PartnerControls.AgreementPartnerControl();
             this.pvAgrTerms = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConditions = new IpsViewComponentLibrary.PartnerControls.ConditionsControl();
-            this.ctrlSaveCancelButtons = new SaveCancelButtonsControl();
+            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
             this.pvClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
@@ -83,11 +83,11 @@ namespace IpsViewComponentLibrary.PartnerControls
             // pvClients
             // 
             this.pvClients.Controls.Add(this.ctrlPartnerClients);
-            this.pvClients.ItemSize = new System.Drawing.SizeF(138F, 27F);
+            this.pvClients.ItemSize = new System.Drawing.SizeF(83F, 27F);
             this.pvClients.Location = new System.Drawing.Point(5, 31);
             this.pvClients.Name = "pvClients";
             this.pvClients.Size = new System.Drawing.Size(1065, 510);
-            this.pvClients.Text = "Клієнти представника";
+            this.pvClients.Text = "Користувачі";
             // 
             // ctrlPartnerClients
             // 

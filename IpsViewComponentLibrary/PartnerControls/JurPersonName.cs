@@ -14,23 +14,19 @@ using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary
 {
-    public partial class JurPersonName : UserControl, IMiddleCtrlAnketaConsumer
+    public partial class JurPersonName : UserControl
     {
-        private AnketaDictionaties _dictionaties;
-
         public JurPersonName()
         {
             InitializeComponent();
             ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
         }
 
-        public void SetDataSources(Customer customer, AnketaDictionaties dictionaties )
+        public void SetDataSources(Customer customer)
         {
-            _dictionaties = dictionaties;
-            AnketaCompany anketa = customer?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == customer.AnkVersion);
+            var anketa = customer?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == customer.AnkVersion);
             
             ctrlAnketaCompany.DataSource = anketa;
-
             ctrlRegistrationsCompany.DataSource = anketa;   
         }
 

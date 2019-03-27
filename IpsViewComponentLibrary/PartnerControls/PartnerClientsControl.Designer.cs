@@ -63,9 +63,9 @@
             this.btnAddClient.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddClient.Location = new System.Drawing.Point(3, 537);
             this.btnAddClient.Name = "btnAddClient";
-            this.btnAddClient.Size = new System.Drawing.Size(110, 20);
+            this.btnAddClient.Size = new System.Drawing.Size(150, 20);
             this.btnAddClient.TabIndex = 2;
-            this.btnAddClient.Text = "Додати Клієнта";
+            this.btnAddClient.Text = "Додати користувача";
             this.btnAddClient.ThemeName = "Office2013Light";
             this.btnAddClient.Click += new System.EventHandler(this.btnAddClient_Click);
             // 
@@ -146,7 +146,7 @@
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn3.Width = 100;
             gridViewTextBoxColumn4.FieldName = "ClientName";
-            gridViewTextBoxColumn4.HeaderText = "Назва клієнта";
+            gridViewTextBoxColumn4.HeaderText = "Назва користувача";
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "ClientName";
             gridViewTextBoxColumn4.Width = 544;
@@ -187,11 +187,11 @@
             // btnDetach
             // 
             this.btnDetach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDetach.Location = new System.Drawing.Point(128, 537);
+            this.btnDetach.Location = new System.Drawing.Point(159, 537);
             this.btnDetach.Name = "btnDetach";
-            this.btnDetach.Size = new System.Drawing.Size(110, 20);
+            this.btnDetach.Size = new System.Drawing.Size(150, 20);
             this.btnDetach.TabIndex = 35;
-            this.btnDetach.Text = "Відв\'язати клієнта";
+            this.btnDetach.Text = "Відв\'язати користувача";
             this.btnDetach.ThemeName = "Office2013Light";
             this.btnDetach.Click += new System.EventHandler(this.btnDetach_Click);
             // 

@@ -7,10 +7,13 @@ using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.Utilities;
 using ipsFormsDesign.Data;
 using System.Linq;
+using ipsFormsDesign.EventAggregator;
+using ipsFormsDesign.Events;
+using IpsViewComponentLibrary.AppController;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
-    public partial class CopyrightRequestControl : UserControl
+    public partial class CopyrightRequestControl : UserControl, ISubscriber<RightholderUpdatedEvent>
     {
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
@@ -37,6 +40,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 if (rightolderBindingSource.DataSource != value)
                 {
                     rightolderBindingSource.DataSource = value;
+                    //show count rightholders into grid
+                    lblCountRightHolders.Text = rightolderBindingSource.Count.ToString();
                 }
             }
         }
@@ -51,6 +56,8 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 if (objectRightBindingSource.DataSource != value)
                 {
                     objectRightBindingSource.DataSource = value;
+                    //show count objectrights into grid
+                    lblCountObjectsRight.Text = objectRightBindingSource.Count.ToString();
                 }
             }
         }
@@ -83,7 +90,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         public CopyrightRequestControl()
         {
             InitializeComponent();
-
+            ApplicationController.Instance.EventAggregator.SubsribeEvent(this);
             gvRightholdersList.SetCommandColumnImageAlignment("PrintColumn", ContentAlignment.MiddleCenter);
         }
 
@@ -173,5 +180,19 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         }
 
         #endregion
+
+        private void radButton1_Click(object sender, EventArgs e)
+        {
+            _presenter.UpdateRightholderList();
+            _presenter.UpdateObjectsList();
+
+        }
+
+        public void HandleEvent(RightholderUpdatedEvent e)
+        {
+            _presenter.UpdateRightholderList();
+            _presenter.UpdateObjectsList();
+
+        }
     }
 }

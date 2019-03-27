@@ -192,13 +192,23 @@ namespace ipsmedserviceapp.Controllers
             return Ok(list);
         }
 
+        private string normalizeName( string Name )
+        {
+            var retName = Name.ToUpper();
+
+            retName = retName.Replace("'", "''");
+
+            return retName;
+
+        }
         [HttpPost("validate")]
         public async Task<IActionResult> ValidateObjectsRight([FromBody] List<ObjectRightValidateResource> objectRightList)
         {
             var objNames = objectRightList.Select(obj => obj.Name.ToUpper());
             var genres = objectRightList.Select(obj => obj.Genre.ToUpper()).Distinct();
             var roles = objectRightList.SelectMany(obj => obj.Rightholders).Select(r => r.CreativeRole.ToUpper()).Distinct();
-            var rightholders = objectRightList.SelectMany(obj => obj.Rightholders).Select(r => r.Name.ToUpper()).Distinct();
+            var rightholders = objectRightList.SelectMany(obj => obj.Rightholders).Select(r => normalizeName(r.Name)).Distinct();
+
 
             var foundedObjects = _dbContext.ObjectRight.Where(obj => objNames.Contains(obj.Name.ToUpper())).ToList();
             var foundedGenres = _dbContext.GenreType.Where(g => genres.Contains(g.Name.ToUpper())).ToList();

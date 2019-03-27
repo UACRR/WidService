@@ -164,7 +164,7 @@ namespace ipsFormsDesign.Services
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
                     $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
@@ -198,15 +198,15 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
+                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
                     $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
                     $"{countries[anketaCompany.FaCountry ?? "804"].CountryName} {anketaCompany.FaCity} {anketaCompany.FaAddress}" : faAddress;
                 CstRegNumber = $"{anketaCompany.RegistrNumber}";
-
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
                 phoneWork = bossEmployee?.Empl.PhoneNumber ?? string.Empty;
+                phone = phoneWork;
                 eMail = bossEmployee?.Empl.Email ?? string.Empty;
                 createDate = anketaCompany.RegistrDate;
                 Okpo = anketaCompany.Okpo;
@@ -295,8 +295,8 @@ namespace ipsFormsDesign.Services
                     case "CstPersonReason":
                         item.Range.Text = CstPersonReason;
                         break;
-
-                    case "СstNikName":
+                        
+                    case "CstNikName":
                         item.Range.Text = CstNikName;
                         break;
 
@@ -402,9 +402,7 @@ namespace ipsFormsDesign.Services
                         break;
                     case "CstVATType":
                         item.Range.Text = CstVATType;
-                        break;
-
-
+                        break;                     
 
                     default:
                         item.Delete();
@@ -504,7 +502,7 @@ namespace ipsFormsDesign.Services
 
             var licPlaces = licenseAgrParam.License.Select(rec => (rec.PlaceId ?? 0)).ToArray();
             var clnBusinessPlaceLicense = cust.Client.ClnBusinessPlace.Where(rec => licPlaces.Contains(rec.PlaceId)).ToList();
-
+            
             string customerName = string.Empty;
             string leAddress = string.Empty;
             string reAddress = string.Empty;
@@ -540,14 +538,14 @@ namespace ipsFormsDesign.Services
             string prcntIncText = String.Empty;
             string Pasport = string.Empty;
             string PasportIssued = string.Empty;
-            string cstPerson1 = string.Empty; 
-
+            string cstPerson1 = string.Empty;
+            string CstCorrespAddress = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
                     $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
@@ -580,7 +578,7 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
+                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
                     $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
@@ -645,6 +643,9 @@ namespace ipsFormsDesign.Services
                     case "docDate":
                         item.Range.Text = DocDate;
                         break;
+                    case "docDateC":
+                        item.Range.Text = DocDate;
+                        break;
                     case "docNumberYear":
                         item.Range.Text = $"{licenseAgrParam.LicDate:yy}";
                         break;
@@ -688,6 +689,24 @@ namespace ipsFormsDesign.Services
                     case "TablePLh":
                         FormTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
                         break;
+ //new tables
+                    case "TablePL1":
+                        FormTablePl1(item.Range.Tables, clnBusinessPlaceLicense);
+                        break;
+
+                    case "TablePL2":
+                        FormTablePl2(item.Range.Tables, clnBusinessPlaceLicense);
+                        break;
+                   case "TablePL3":
+                        FormTablePl3(item.Range.Tables, clnBusinessPlaceLicense);
+                        break;
+                   case "TablePL4":
+                        FormTablePl4(item.Range.Tables, clnBusinessPlaceLicense);
+                        break;
+
+
+
+
                     case "TablePLsm":
                         FormTableMarketPlases(item.Range.Tables, clnBusinessPlaceMarket);
                         break;
@@ -811,6 +830,7 @@ namespace ipsFormsDesign.Services
                     case "CstEmail":
                         item.Range.Text = eMail;
                         break;
+
                     default:
                         item.Delete();
                         break;
@@ -1276,15 +1296,15 @@ namespace ipsFormsDesign.Services
             else
                 Region = "";
             if (Region != "")
-                ShowPLAdress = ShowPLAdress + "," + Region.Trim();
+                ShowPLAdress = ShowPLAdress + ", " + Region.Trim();
             string City = string.Empty;
             City = clnBusinessPlaceTheater[0]?.PlaceCity ?? "";
             if (City != "")
-                ShowPLAdress = ShowPLAdress + "," + City.Trim();
+                ShowPLAdress = ShowPLAdress + ", " + City.Trim();
             string Adress = string.Empty;
             Adress = clnBusinessPlaceTheater[0]?.PlaceAddress ?? "";
             if (Adress != "")
-                ShowPLAdress = ShowPLAdress + "," + Adress.Trim();
+                ShowPLAdress = ShowPLAdress + ", " + Adress.Trim();
 
             app = StartWordApp();
             innerDoc = app.Documents.Open(docFile);
@@ -1332,7 +1352,7 @@ namespace ipsFormsDesign.Services
             string ShowAct = String.Empty;
             string docNumberC = String.Empty;
             string docDateC = String.Empty;
-            string docDateEndС = String.Empty;
+            string docDateEndC = String.Empty;
             string prcntShow = string.Empty;
             string prcntShowText = string.Empty;
             string pPayShowGrnText = string.Empty;
@@ -1340,14 +1360,14 @@ namespace ipsFormsDesign.Services
             string PayShowDataDo = string.Empty;
             string aPayShowGrnText = string.Empty;
             string aPayShowKop = string.Empty;
-            
-
+            string BRAdvText = string.Empty;
+            string BRLmpText = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} {anketaPerson.LeCity} {anketaPerson.LeAddress}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
                     $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
@@ -1372,7 +1392,7 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : leAddress;
+                        $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
                     $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
@@ -1461,7 +1481,15 @@ namespace ipsFormsDesign.Services
                                PrepayDateDo = lab.PrepayDateDo
                            }).ToList();
             }
+            if (TbAvAdv.Count == 0)
+            { BRAdvText = "Виключено за домовленістю Сторін"; }
+            else
+            { BRAdvText = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок Компанії авторську винагороду, що вважається як аванс роялті, визначеного в п. 2.4. цього Договору, а саме:"; };
 
+            if (TbAL.Count == 0)
+            { BRLmpText = "Виключено за домовленістю Сторін"; }
+            else
+            { BRLmpText = "одноразового (паушального) платежу, а саме:"; };
 
             ShowName = licenseBigR?.Obj?.Name?.ToString();
             ShowAct = licenseBigR?.Obj?.ActCode?.ToString();
@@ -1471,7 +1499,7 @@ namespace ipsFormsDesign.Services
                     (rec.LicVersion == licA.LicVersion)).Single();
 
             docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
-            docDateEndС = $"{licagr?.DateEnd:dd.MM.yyyy}";
+            docDateEndC = $"{licagr?.DateEnd:dd.MM.yyyy}";
             decimal prcntrate = Convert.ToDecimal(licenseBigR?.Rate);
             prcntShow = prcntrate.ToString("F");
             prcntShowText = Utils.PrcnPhrase(prcntrate);
@@ -1498,6 +1526,25 @@ namespace ipsFormsDesign.Services
             pPayShowKop = ((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)).ToString();
             aPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(aPayShowGrn)), false);
             aPayShowKop = ((int)((aPayShowGrn - (int)(aPayShowGrn)) * 100)).ToString();
+
+            string CstNikName = string.Empty;
+            string NikName = string.Empty;
+
+
+
+
+
+
+
+
+
+
+            CstNikName = $"{anketaPerson?.NikName ?? string.Empty}";
+            if (CstNikName != string.Empty)
+                NikName = "псевдонім(и)";
+            CstNikName = CstNikName + ",";
+
+
 
             foreach (ContentControl item in list)
             {
@@ -1541,10 +1588,18 @@ namespace ipsFormsDesign.Services
                     case "CstPersonReason":
                         item.Range.Text = CstPersonReason;
                         break;
-/*                    case "TablePLk":
-                        FormTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
+                    case "CstNikName":
+                        item.Range.Text = CstNikName;
                         break;
-*/                    case "TableAvtorPrc":
+                    case "NikName":
+                        item.Range.Text = NikName;
+                        break;
+
+/*                    case "TablePLk":
+                    FormTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
+                    break;
+*/
+                    case "TableAvtorPrc":
                         FormTableAvtorPrc(item.Range.Tables, TbAPrc);
                         break;
                     case "TableAvtorLmp":
@@ -1645,12 +1700,19 @@ namespace ipsFormsDesign.Services
                     case "PayShowDataDo":
                         item.Range.Text = PayShowDataDo;
                         break;
-                    case "docDateEndС":
-                        item.Range.Text = docDateEndС;
+                    case "docDateEndC":
+                        item.Range.Text = docDateEndC;
                         break;
                     case "TableAvtor":
                         //formTableAvtor(item.Range.Tables, array_licAuthorB);
                         break;
+                    case "BRLmpText":
+                        item.Range.Text = BRLmpText;
+                        break;
+                    case "BRAdvText":
+                        item.Range.Text = BRAdvText;
+                        break;
+                        
 
                     default:
 
@@ -1975,7 +2037,7 @@ namespace ipsFormsDesign.Services
 
             CPaidAmountKopText = Utils.NumPhraseL(Convert.ToUInt32(((int)((period?.Amount ?? 0 - period?.Amount ?? 0) * 100))), false);
             CstCorrespAddress = anketaCompany.LeAddress != null ?
-                $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} {anketaCompany.LeCity} {anketaCompany.LeAddress}" : CstCorrespAddress;
+                $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : CstCorrespAddress;
 
 
             foreach (ContentControl item in list)
@@ -2051,6 +2113,7 @@ namespace ipsFormsDesign.Services
             {
                 tbAuthorPrc = item;
                 curRow = table.Rows.Add();
+
                 index++;
                 curRow.Cells[1].Range.Text = tbAuthorPrc.RoleName.ToString();
                 curRow.Cells[2].Range.Text = tbAuthorPrc.AuthorName.ToString();
@@ -2063,6 +2126,11 @@ namespace ipsFormsDesign.Services
             TbAuthorL tbAuthorL;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (list.Count == 0)
+            {
+                table.Rows.Delete();
+                return;
+            }
             Row curRow = null;
             int index = 1;
             foreach (var item in list)
@@ -2088,6 +2156,12 @@ namespace ipsFormsDesign.Services
             LicAuthorBr authorBr;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (alicAuthorB.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2098,6 +2172,7 @@ namespace ipsFormsDesign.Services
                 index++;
                 //curRow.Cells[1].Range.Text = authorBr.RoleType.ToString();
                 //curRow.Cells[2].Range.Text = authorBr.NameAuthor;
+                
                 curRow.Cells[3].Range.Text = "Україна";
                 curRow.Cells[4].Range.Text = "";
                 curRow.Cells[5].Range.Text = authorBr.Rate.ToString();
@@ -2109,11 +2184,178 @@ namespace ipsFormsDesign.Services
 
 
         }
+
+
+        private void FormTablePl1(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            int PlaceHollValue;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName;
+                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+                    + places.PlaceCity + "," + places.PlaceAddress;
+
+
+                PlaceHollValue = 0;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
+                    //curRow.Cells[5].Range.Text = place.HollNum.ToString();
+                }
+                curRow.Cells[4].Range.Text = PlaceHollValue.ToString();
+            }
+        }
+        private void FormTablePl2(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+             //   return;
+            }
+            var typePlace = _dic.typePlace.ToDictionary(rec => rec.CodeI);
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+
+            Row curRow = null;
+            int index = 1;
+            int PlaceHollValue;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[3].Range.Text = places.PlaceName;
+                curRow.Cells[2].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
+                curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+           + places.PlaceCity + "," + places.PlaceAddress;
+                PlaceHollValue = 0;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
+
+                }
+                curRow.Cells[5].Range.Text = PlaceHollValue.ToString();
+
+
+            }
+        }
+
+
+        
+    private void FormTablePl3(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+           
+                curRow.Cells[2].Range.Text = places.PlaceName;
+//                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
+                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+           + places.PlaceCity + "," + places.PlaceAddress;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+                    curRow = table.Rows.Add();
+                    curRow.Cells[4].Range.Text = place.HollName;
+                                     
+                    curRow.Cells[5].Range.Text = (place?.ValueAdd ?? place?.ValuePlace ?? "0");
+
+                }               
+            }
+        }
+
+        private void FormTablePl4(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
+            var typePlace = _dic.typePlace.ToDictionary(rec => rec.CodeI);
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+                curRow.Cells[2].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
+                curRow.Cells[3].Range.Text = places.PlaceName;
+                //                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
+                curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+           + places.PlaceCity + "," + places.PlaceAddress;
+                foreach (var place in item.ClnPlaceHoll)
+                {
+
+                    curRow = table.Rows.Add();
+                    curRow.Cells[5].Range.Text = place.HollName;
+                    curRow.Cells[6].Range.Text = place?.ValueAdd ?? place?.ValuePlace ?? "0";
+
+                }
+            }
+        }
+
+
+
+
         private void FormTableBuisnessPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2139,8 +2381,14 @@ namespace ipsFormsDesign.Services
         private void FormTableMarketPlases(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
-            if (tables.Count == 0) return;
+            if (tables.Count == 0) return;          
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2163,6 +2411,12 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
@@ -2190,6 +2444,12 @@ namespace ipsFormsDesign.Services
             ClnBusinessPlace places;
             if (tables.Count == 0) return;
             Table table = tables[1];
+                        if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;

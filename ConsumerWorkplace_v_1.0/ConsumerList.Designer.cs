@@ -91,7 +91,7 @@
             // 
             // bindingSourceConsumerList
             // 
-            this.bindingSourceConsumerList.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerMainView);
+            this.bindingSourceConsumerList.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
             // 
             // custIdDataGridViewTextBoxColumn
             // 

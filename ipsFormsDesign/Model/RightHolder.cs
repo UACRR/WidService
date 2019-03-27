@@ -25,6 +25,7 @@ namespace ipsFormsDesign.Model
         public string InterCode { get; set; }
         public string InnerCode { get; set; }
         public int? RHolderType { get; set; }
+        public string Ipibase { get; set; }
 
         public virtual Customer Cust { get; set; }
         public virtual ObservableListSource<AgreementAddRh> AgreementAddRh { get; set; }

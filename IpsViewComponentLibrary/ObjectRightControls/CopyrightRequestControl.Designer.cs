@@ -58,15 +58,20 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radSplitContainer1 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
+            this.lblTxtCountRights = new System.Windows.Forms.Label();
+            this.lblCountRightHolders = new System.Windows.Forms.Label();
             this.txtSearchRightholder = new Telerik.WinControls.UI.RadTextBox();
             this.radLabel23 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.gvRightholdersList = new Telerik.WinControls.UI.RadGridView();
             this.rightolderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.lblCountObjects = new System.Windows.Forms.Label();
+            this.lblCountObjectsRight = new System.Windows.Forms.Label();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
             this.objectRightBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radButton1 = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -83,6 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -105,6 +111,9 @@
             // 
             // splitPanel1
             // 
+            this.splitPanel1.Controls.Add(this.radButton1);
+            this.splitPanel1.Controls.Add(this.lblTxtCountRights);
+            this.splitPanel1.Controls.Add(this.lblCountRightHolders);
             this.splitPanel1.Controls.Add(this.txtSearchRightholder);
             this.splitPanel1.Controls.Add(this.radLabel23);
             this.splitPanel1.Controls.Add(this.radLabel1);
@@ -123,12 +132,31 @@
             this.splitPanel1.Text = "splitPanel1";
             this.splitPanel1.ThemeName = "Office2013Light";
             // 
+            // lblTxtCountRights
+            // 
+            this.lblTxtCountRights.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTxtCountRights.Location = new System.Drawing.Point(639, 290);
+            this.lblTxtCountRights.Name = "lblTxtCountRights";
+            this.lblTxtCountRights.Size = new System.Drawing.Size(79, 13);
+            this.lblTxtCountRights.TabIndex = 33;
+            this.lblTxtCountRights.Text = "К-ть рядків";
+            // 
+            // lblCountRightHolders
+            // 
+            this.lblCountRightHolders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountRightHolders.Location = new System.Drawing.Point(724, 290);
+            this.lblCountRightHolders.Name = "lblCountRightHolders";
+            this.lblCountRightHolders.Size = new System.Drawing.Size(73, 13);
+            this.lblCountRightHolders.TabIndex = 32;
+            this.lblCountRightHolders.Text = "0";
+            this.lblCountRightHolders.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtSearchRightholder
             // 
             this.txtSearchRightholder.Location = new System.Drawing.Point(56, 28);
             this.txtSearchRightholder.Name = "txtSearchRightholder";
-            this.txtSearchRightholder.Size = new System.Drawing.Size(741, 21);
-            this.txtSearchRightholder.TabIndex = 31;
+            this.txtSearchRightholder.Size = new System.Drawing.Size(623, 21);
+            this.txtSearchRightholder.TabIndex = 0;
             this.txtSearchRightholder.ThemeName = "Office2013Light";
             this.txtSearchRightholder.TextChanged += new System.EventHandler(this.txtSearchRightholder_TextChanged);
             // 
@@ -162,7 +190,7 @@
             this.gvRightholdersList.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.gvRightholdersList.ForeColor = System.Drawing.SystemColors.ControlText;
             this.gvRightholdersList.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.gvRightholdersList.Location = new System.Drawing.Point(3, 53);
+            this.gvRightholdersList.Location = new System.Drawing.Point(3, 54);
             // 
             // 
             // 
@@ -265,8 +293,8 @@
             this.gvRightholdersList.ReadOnly = true;
             this.gvRightholdersList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvRightholdersList.ShowGroupPanel = false;
-            this.gvRightholdersList.Size = new System.Drawing.Size(794, 257);
-            this.gvRightholdersList.TabIndex = 28;
+            this.gvRightholdersList.Size = new System.Drawing.Size(794, 234);
+            this.gvRightholdersList.TabIndex = 2;
             this.gvRightholdersList.ThemeName = "Office2013Light";
             this.gvRightholdersList.SelectionChanged += new System.EventHandler(this.gvRightholdersList_SelectionChanged);
             this.gvRightholdersList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersList_CommandCellClick);
@@ -279,6 +307,8 @@
             // 
             // splitPanel2
             // 
+            this.splitPanel2.Controls.Add(this.lblCountObjects);
+            this.splitPanel2.Controls.Add(this.lblCountObjectsRight);
             this.splitPanel2.Controls.Add(this.btnSave);
             this.splitPanel2.Controls.Add(this.gvObjectsRightsList);
             this.splitPanel2.Location = new System.Drawing.Point(0, 318);
@@ -295,13 +325,32 @@
             this.splitPanel2.Text = "splitPanel2";
             this.splitPanel2.ThemeName = "Office2013Light";
             // 
+            // lblCountObjects
+            // 
+            this.lblCountObjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountObjects.Location = new System.Drawing.Point(639, 136);
+            this.lblCountObjects.Name = "lblCountObjects";
+            this.lblCountObjects.Size = new System.Drawing.Size(79, 13);
+            this.lblCountObjects.TabIndex = 34;
+            this.lblCountObjects.Text = "К-ть рядків";
+            // 
+            // lblCountObjectsRight
+            // 
+            this.lblCountObjectsRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountObjectsRight.Location = new System.Drawing.Point(724, 136);
+            this.lblCountObjectsRight.Name = "lblCountObjectsRight";
+            this.lblCountObjectsRight.Size = new System.Drawing.Size(73, 13);
+            this.lblCountObjectsRight.TabIndex = 25;
+            this.lblCountObjectsRight.Text = "0";
+            this.lblCountObjectsRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.Location = new System.Drawing.Point(622, 155);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(175, 24);
-            this.btnSave.TabIndex = 24;
+            this.btnSave.TabIndex = 1;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -457,13 +506,23 @@
             this.gvObjectsRightsList.Name = "gvObjectsRightsList";
             this.gvObjectsRightsList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvObjectsRightsList.ShowGroupPanel = false;
-            this.gvObjectsRightsList.Size = new System.Drawing.Size(794, 146);
-            this.gvObjectsRightsList.TabIndex = 23;
+            this.gvObjectsRightsList.Size = new System.Drawing.Size(794, 130);
+            this.gvObjectsRightsList.TabIndex = 0;
             this.gvObjectsRightsList.ThemeName = "Office2013Light";
             // 
             // objectRightBindingSource
             // 
             this.objectRightBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.ObjectRightNotAccepted);
+            // 
+            // radButton1
+            // 
+            this.radButton1.Location = new System.Drawing.Point(687, 28);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(94, 21);
+            this.radButton1.TabIndex = 1;
+            this.radButton1.Text = "Оновити";
+            this.radButton1.ThemeName = "Office2013Light";
+            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
             // 
             // CopyrightRequestControl
             // 
@@ -490,6 +549,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radButton1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -508,5 +568,10 @@
         private Telerik.WinControls.UI.RadTextBox txtSearchRightholder;
         private Telerik.WinControls.UI.RadLabel radLabel23;
         private System.Windows.Forms.BindingSource objectRightBindingSource;
+        private System.Windows.Forms.Label lblCountRightHolders;
+        private System.Windows.Forms.Label lblCountObjectsRight;
+        private System.Windows.Forms.Label lblTxtCountRights;
+        private System.Windows.Forms.Label lblCountObjects;
+        private Telerik.WinControls.UI.RadButton radButton1;
     }
 }

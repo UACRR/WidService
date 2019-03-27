@@ -98,6 +98,8 @@ namespace IpsViewComponentLibrary.RegisterControls
 
             var list = _registerService.GetListByFilter(filter);
             registerListViewModelBindingSource.DataSource = list;
+            //show count Register into grid
+            lblCountRegister.Text = list.Count().ToString();
 
             SelectedRegister = currentRegister;
         }

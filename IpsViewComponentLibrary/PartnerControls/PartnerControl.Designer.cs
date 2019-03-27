@@ -48,6 +48,8 @@
             this.btnNewPartnerJur = new Telerik.WinControls.UI.RadMenuItem();
             this.btnNewPartnerPhis = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.lblTextPartners = new System.Windows.Forms.Label();
+            this.lblCountPartners = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.treeView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners.MasterTemplate)).BeginInit();
@@ -115,12 +117,13 @@
             gridViewTextBoxColumn5.HeaderText = "Представник";
             gridViewTextBoxColumn5.MinWidth = 80;
             gridViewTextBoxColumn5.Name = "Name";
-            gridViewTextBoxColumn5.Width = 294;
+            gridViewTextBoxColumn5.Width = 245;
             gridViewTextBoxColumn6.FieldName = "AgrNumber";
             gridViewTextBoxColumn6.HeaderText = "№ договору";
             gridViewTextBoxColumn6.MaxWidth = 110;
+            gridViewTextBoxColumn6.MinWidth = 80;
             gridViewTextBoxColumn6.Name = "AgrNumber";
-            gridViewTextBoxColumn6.Width = 104;
+            gridViewTextBoxColumn6.Width = 80;
             gridViewTextBoxColumn7.FieldName = "AgrDate";
             gridViewTextBoxColumn7.FormatString = "{0:d}";
             gridViewTextBoxColumn7.HeaderText = "Дата договору";
@@ -132,10 +135,10 @@
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "JaCity";
             gridViewTextBoxColumn8.HeaderText = "Місто реєстрації";
-            gridViewTextBoxColumn8.MinWidth = 0;
+            gridViewTextBoxColumn8.MinWidth = 70;
             gridViewTextBoxColumn8.Multiline = true;
             gridViewTextBoxColumn8.Name = "JaCity";
-            gridViewTextBoxColumn8.Width = 37;
+            gridViewTextBoxColumn8.Width = 70;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.FieldName = "StatusName";
             gridViewTextBoxColumn9.HeaderText = "Статус договору";
@@ -146,21 +149,21 @@
             gridViewTextBoxColumn9.Width = 105;
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.FieldName = "AgrCount";
-            gridViewTextBoxColumn10.HeaderText = "К-сть договорів клієнтів";
-            gridViewTextBoxColumn10.MaxWidth = 60;
-            gridViewTextBoxColumn10.MinWidth = 60;
+            gridViewTextBoxColumn10.HeaderText = "К-сть договорів користувачів";
+            gridViewTextBoxColumn10.MaxWidth = 80;
+            gridViewTextBoxColumn10.MinWidth = 80;
             gridViewTextBoxColumn10.Multiline = true;
             gridViewTextBoxColumn10.Name = "AgrCount";
             gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn10.Width = 60;
+            gridViewTextBoxColumn10.Width = 80;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewHyperlinkColumn1.FieldName = "ClnCount";
-            gridViewHyperlinkColumn1.HeaderText = "К-сть клієнтів";
-            gridViewHyperlinkColumn1.MaxWidth = 60;
-            gridViewHyperlinkColumn1.MinWidth = 60;
+            gridViewHyperlinkColumn1.HeaderText = "К-сть користувачів";
+            gridViewHyperlinkColumn1.MaxWidth = 80;
+            gridViewHyperlinkColumn1.MinWidth = 80;
             gridViewHyperlinkColumn1.Name = "ClnCount";
             gridViewHyperlinkColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewHyperlinkColumn1.Width = 60;
+            gridViewHyperlinkColumn1.Width = 80;
             gridViewHyperlinkColumn1.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
@@ -236,10 +239,31 @@
             this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
             this.ctrlSearch.TabIndex = 13;
             // 
+            // lblTextPartners
+            // 
+            this.lblTextPartners.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTextPartners.Location = new System.Drawing.Point(1088, 548);
+            this.lblTextPartners.Name = "lblTextPartners";
+            this.lblTextPartners.Size = new System.Drawing.Size(68, 14);
+            this.lblTextPartners.TabIndex = 14;
+            this.lblTextPartners.Text = "К-ть рядків";
+            // 
+            // lblCountPartners
+            // 
+            this.lblCountPartners.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountPartners.Location = new System.Drawing.Point(1162, 548);
+            this.lblCountPartners.Name = "lblCountPartners";
+            this.lblCountPartners.Size = new System.Drawing.Size(64, 14);
+            this.lblCountPartners.TabIndex = 15;
+            this.lblCountPartners.Text = "0";
+            this.lblCountPartners.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // PartnerControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblCountPartners);
+            this.Controls.Add(this.lblTextPartners);
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.rddBtnNewPartner);
             this.Controls.Add(this.gvViewPartners);
@@ -263,5 +287,7 @@
         private Telerik.WinControls.UI.RadMenuItem btnNewPartnerJur;
         private Telerik.WinControls.UI.RadMenuItem btnNewPartnerPhis;
         private Common.SearchTextBoxControl ctrlSearch;
+        private System.Windows.Forms.Label lblTextPartners;
+        private System.Windows.Forms.Label lblCountPartners;
     }
 }

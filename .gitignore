@@ -11,8 +11,8 @@
 /packages
 **/obj/
 **/bin/
-**/Debug/
-**/Release/
+**/Debug
+**/Release
 /lib
 /ipsmedserviceapp/obj
 /ipsmedserviceapp/bin
@@ -43,6 +43,8 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+
+
 # misc
 /.sass-cache
 /connect.lock
@@ -65,3 +67,8 @@ Thumbs.db
 MediaServiceDb/MediaServiceDb.jfm
 MediaServiceDb/MediaServiceDb.dbmdl
 /ipsmedserviceapp/ClientApp/node_modules
+/MediaServiceInstaller
+!/MediaServiceInstaller/MediaServiceInstaller.aiproj
+!/MediaServiceInstaller/MediaServiceInstaller.aip
+
+

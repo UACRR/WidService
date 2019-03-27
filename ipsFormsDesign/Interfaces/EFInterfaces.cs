@@ -163,6 +163,7 @@ public interface IAgrLicenseType
          int? SchemaId { get; set; }
          int? AlgorithmId { get; set; }
          string Series { get; set; }
+         decimal? AuthRate { get; set; }
 }
 public interface IAgrLicenseTypeTr
     {
@@ -2150,6 +2151,7 @@ public interface IRightHolder
          string InterCode { get; set; }
          string InnerCode { get; set; }
          int? RHolderType { get; set; }
+         string Ipibase { get; set; }
 }
 public interface ISaldoDay
     {

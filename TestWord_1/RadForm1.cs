@@ -30,7 +30,7 @@ namespace TestWord_1
 
             string Filename = string.Empty;
 
-            Filename = "F_7_Г готелі.docx";
+         
                         Filename = "F_4_ТЦ магазини.docx";
                         Filename = "F_1_БВ-НК-бари-дискотеки_.docx";
                         
@@ -40,20 +40,38 @@ namespace TestWord_1
                       Filename = "F_Акт_публічне сповіщення TV+радио.docx";
                     Filename = "F_Акт_публічне сповіщення кTV.docx";
                         Filename = "F_DOGOVIR-NA-UPRAVLINNYA-PRAVAMI-Avtora-2018-1_.docx";
-            Filename = "F_ГО УААСП Автор.docx";
+           
               //          Filename = "F_Лицензионный договор на спектакль (БП).docx";
               //  Filename = "F_ТИПОВИЙ ДОГОВІР ПРЕДСТАВНИК ГО УААСП.docx";
-                 Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
+                 
             //Filename = "F_3_МБВ.docx";
             //      Filename = "F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx";
-            // Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
+            
+            //
+            //Filename = "F_1_БВ-НК-бари-дискотеки_.docx";
+
+            Filename = "F_3_МБВ.docx";
+            Filename = "F_7_Г готелі.docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР ТЕ ЕФІРНЕ ГО УААСП.docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР ОГб безопл вхід ГО УААСП.docx";
+            Filename = "F_ГО УААСП Автор.docx";
             Filename = "F_dogovir_licenziya_teatr_go_uaasp.docx";
+            Filename = "F_ГО УААСП Правовласник-Видавництво.docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx";
+            //         Filename = "F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx";
 
-
+                    
+            
+            Filename = "F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
+            //         Filename = "F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП (1).docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
             ProcessWord(template, Filename);
             //Task.Run(()=>ProcessWord(template, Filename)).GetAwaiter().GetResult();
+
 
         }
 
@@ -74,7 +92,7 @@ namespace TestWord_1
                     wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
                 case "F_ГО УААСП Автор.docx":
-                    cust = service1.GetData(222);
+                    cust = service1.GetData(1394);
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessRightHolder(template, cust, cust.AgreementMaster.First());
                     break;
@@ -138,6 +156,14 @@ namespace TestWord_1
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessConsumerBR(template, cust, agreementMaster11, licA11);
                     break;
+                case "F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП (1).docx":
+                    cust = service.GetData(3059);
+                    AgreementMaster agreementMaster21 = cust.AgreementMaster?.Where(rec => rec.AgrId == 4389).Single();
+                    LicenseAgreement licA21 = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 4389 & rec.LicId == 1501)).Single();
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.ProcessConsumerBR(template, cust, agreementMaster21, licA21);
+                    break;
+                   
 
 
                 case "F_dogovir_licenziya_teatr_go_uaasp.docx":
@@ -151,10 +177,49 @@ namespace TestWord_1
                     break;
                 case "F_7_Г готелі.docx":
                     cust = service.GetData(226);
-                    LicenseAgreement licAgr3 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 1).SingleOrDefault();
+                    LicenseAgreement licAgr3 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == 4).First();
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessConsumer(template, cust, cust.AgreementMaster.First(), licAgr3);
                     break;
+
+
+                case "F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx":
+                    cust = service.GetData(134);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    LicenseAgreement licAgr53 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 1307 & rec.LicVersion == 1).First();
+                    AgreementMaster AgrM = cust.AgreementMaster.Where(rec => rec.AgrId == 3457).Single();
+                                     wordApp.ProcessConsumer(template, cust, AgrM, licAgr53);
+                
+                    break;
+
+
+                case "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx":
+                    cust = service.GetData(3056);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    LicenseAgreement licAgr63 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 2936 & rec.LicVersion == 1).First();
+                    AgreementMaster AgrM1 = cust.AgreementMaster.Where(rec => rec.AgrId == 6053).Single();
+                    wordApp.ProcessConsumer(template, cust, AgrM1, licAgr63);
+
+                    break;
+                case "F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx":
+                    cust = service.GetData(3056);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    LicenseAgreement licAgr73 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 2939 & rec.LicVersion == 1).First();
+                    AgreementMaster AgrM2 = cust.AgreementMaster.Where(rec => rec.AgrId == 6056).Single();
+                    wordApp.ProcessConsumer(template, cust, AgrM2, licAgr73);
+
+                    break;
+                case "F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx":
+                    cust = service.GetData(134);
+                    wordApp = new WordEngine(service.GetDictionary());
+                    LicenseAgreement licAgr83 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 1307 & rec.LicVersion == 1).First();
+                    AgreementMaster AgrM3 = cust.AgreementMaster.Where(rec => rec.AgrId == 3457).First();
+                    wordApp.ProcessConsumer(template, cust, AgrM3, licAgr83);
+
+                    break;
+
+   
+
                 case "F_4_ТЦ магазини.docx":
                     cust = service.GetData(134);
 
@@ -190,7 +255,7 @@ namespace TestWord_1
                     wordApp.ProcessConsumer(template, cust, agrMaster3, licAgr7);
                     break;
 
-                case "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx":
+                case "F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx":
                     cust = service.GetData(1375);
                     AgreementMaster agrMaster5 = cust.AgreementMaster.First();
                     LicenseAgreement licAgr75 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == agrMaster5.Version
@@ -198,7 +263,25 @@ namespace TestWord_1
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessConsumer(template, cust, agrMaster5, licAgr75);
                     break;
-
+                    
+                case  "F_ТИПОВИЙ ДОГОВІР ОГб безопл вхід ГО УААСП.docx":
+                    cust = service.GetData(1375);
+                    AgreementMaster agrMaster35 = cust.AgreementMaster.First();
+                    LicenseAgreement licAgr375 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == agrMaster35.Version
+                  & rec.AgrId == agrMaster35.AgrId).SingleOrDefault();
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.ProcessConsumer(template, cust, agrMaster35, licAgr375);
+                    break;
+/*
+                case "F_ТИПОВИЙ ДОГОВІР ТЕ ЕФІРНЕ ГО УААСП.docx"
+                    cust = service.GetData(1375);
+                    AgreementMaster agrMaster35 = cust.AgreementMaster.First();
+                    LicenseAgreement licAgr375 = cust.Client.LicenseAgreement.Where(rec => rec.Agr.Version == agrMaster35.Version
+                  & rec.AgrId == agrMaster35.AgrId).SingleOrDefault();
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.ProcessConsumer(template, cust, agrMaster35, licAgr375);
+                    break;
+*/
                 default:
                     cust = service.GetData(134);                   
                     wordApp = new WordEngine(service.GetDictionary());

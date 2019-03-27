@@ -56,6 +56,10 @@ namespace IpsViewComponentLibrary.Shared.Controls
             set => _bindingSource.DataSource = value;
         }
 
+        public void RefreshDataSourceBinding()
+        {
+            _bindingSource.CurrencyManager.Refresh();
+        }
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string PercentPayment

@@ -7,13 +7,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class ConsumerSelectionView : Telerik.WinControls.UI.RadForm
     {
-        public ConsumerMainView SelectedConsumer
+        public ConsumerSmallRightView SelectedConsumer
         {
             get => ctrlConsumerList.SelectedConsumer;
             set => ctrlConsumerList.SelectedConsumer = value;
         }
 
-        public event EventHandler<ConsumerMainView> ConsumerSelected;
+        public event EventHandler<ConsumerSmallRightView> ConsumerSelected;
 
         public ConsumerSelectionView()
         {
@@ -44,7 +44,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             SelectAndClose();
         }
 
-        protected void OnConsumerSelected(ConsumerMainView item)
+        protected void OnConsumerSelected(ConsumerSmallRightView item)
         {
             ConsumerSelected?.Invoke(this, item);
         }

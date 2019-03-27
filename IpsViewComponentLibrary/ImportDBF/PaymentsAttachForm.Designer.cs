@@ -39,6 +39,7 @@
             this.headerPanel = new Telerik.WinControls.UI.RadPanel();
             this.txtDestinationPay = new Telerik.WinControls.UI.RadTextBoxControl();
             this.txtName = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.radSeparator1 = new Telerik.WinControls.UI.RadSeparator();
             this.txtIpnokpo = new Telerik.WinControls.UI.RadTextBoxControl();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
@@ -46,7 +47,6 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.fileNameTitle = new Telerik.WinControls.UI.RadLabel();
             this.gvCustomers = new Telerik.WinControls.UI.RadGridView();
-            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.footerPanel)).BeginInit();
             this.footerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
@@ -175,6 +175,15 @@
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderBottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderTopShadowColor = System.Drawing.Color.Transparent;
             // 
+            // ctrlSearch
+            // 
+            this.ctrlSearch.Location = new System.Drawing.Point(13, 123);
+            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
+            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
+            this.ctrlSearch.Name = "ctrlSearch";
+            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
+            this.ctrlSearch.TabIndex = 9;
+            // 
             // radSeparator1
             // 
             this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -226,9 +235,9 @@
             // 
             this.radLabel2.Location = new System.Drawing.Point(13, 56);
             this.radLabel2.Name = "radLabel2";
-            this.radLabel2.Size = new System.Drawing.Size(118, 19);
+            this.radLabel2.Size = new System.Drawing.Size(125, 19);
             this.radLabel2.TabIndex = 3;
-            this.radLabel2.Text = "– назва Споживача:";
+            this.radLabel2.Text = "– назва користувача:";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
             // radLabel1
@@ -282,10 +291,10 @@
             gridViewTextBoxColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn2.Width = 120;
             gridViewTextBoxColumn3.FieldName = "name";
-            gridViewTextBoxColumn3.HeaderText = "Назва Споживача";
+            gridViewTextBoxColumn3.HeaderText = "Назва користувача";
             gridViewTextBoxColumn3.MinWidth = 110;
             gridViewTextBoxColumn3.Name = "name";
-            gridViewTextBoxColumn3.Width = 528;
+            gridViewTextBoxColumn3.Width = 525;
             gridViewTextBoxColumn3.WrapText = true;
             this.gvCustomers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
@@ -306,15 +315,6 @@
             this.gvCustomers.ThemeName = "Office2013Light";
             this.gvCustomers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCustomers_CellDoubleClick);
             // 
-            // ctrlSearch
-            // 
-            this.ctrlSearch.Location = new System.Drawing.Point(13, 123);
-            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
-            this.ctrlSearch.Name = "ctrlSearch";
-            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
-            this.ctrlSearch.TabIndex = 9;
-            // 
             // PaymentsAttachForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,7 +330,7 @@
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Пошук і прив\'язка платежів до Споживача";
+            this.Text = "Пошук і прив\'язка платежів до користувача";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.footerPanel)).EndInit();
             this.footerPanel.ResumeLayout(false);

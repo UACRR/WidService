@@ -316,6 +316,7 @@ namespace IpsViewComponentLibrary
             var dialog = new OpenFileDialog { AddExtension = true, DefaultExt = "xlsx", Filter = "Excel Files(*.xlsx;*xls)|*.xls;*.xlsx" };
             if (dialog.ShowDialog() == DialogResult.OK)
             {
+                var licenseAgreement = _customer.Client.LicenseAgreement.FirstOrDefault(rec => rec.LicId == period.LicId);
                 radWaitingBar1.StartWaiting();
                 EnableButtons(false);
 
@@ -338,8 +339,8 @@ namespace IpsViewComponentLibrary
                         PeriodId = period.PeriodId,
                         Rm = RatedList,
                         LicId = period.LicId,
-                        SchemaId = 1,
-                        AlgorithmId = 1
+                        SchemaId = licenseAgreement?.LicCodeNavigation?.SchemaId ?? 1,
+                        AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ??  1
                     };
 
                     foreach (var item in list)

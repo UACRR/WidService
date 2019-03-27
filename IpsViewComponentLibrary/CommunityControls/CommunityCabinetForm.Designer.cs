@@ -32,20 +32,23 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewHyperlinkColumn gridViewHyperlinkColumn3 = new Telerik.WinControls.UI.GridViewHyperlinkColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewHyperlinkColumn gridViewHyperlinkColumn1 = new Telerik.WinControls.UI.GridViewHyperlinkColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageViewMain = new Telerik.WinControls.UI.RadPageView();
             this.pvAnketaData = new Telerik.WinControls.UI.RadPageViewPage();
             this.pageViewAnketa = new Telerik.WinControls.UI.RadPageView();
             this.pvCommunityName = new Telerik.WinControls.UI.RadPageViewPage();
+            this.txtIpi = new Telerik.WinControls.UI.RadTextBox();
+            this.bsCommunity = new System.Windows.Forms.BindingSource(this.components);
+            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlContactPerson = new IpsViewComponentLibrary.Shared.Controls.IpsBossNameContactsControl();
             this.ctrlClientName = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyControl();
@@ -81,15 +84,15 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.pvReportsData = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvFilesData = new Telerik.WinControls.UI.RadPageViewPage();
-            this.txtIpi = new Telerik.WinControls.UI.RadTextBox();
-            this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
-            this.bsCommunity = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pageViewMain)).BeginInit();
             this.pageViewMain.SuspendLayout();
             this.pvAnketaData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewAnketa)).BeginInit();
             this.pageViewAnketa.SuspendLayout();
             this.pvCommunityName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIpi)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).BeginInit();
             this.pvAddress.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromJuToFa)).BeginInit();
@@ -113,9 +116,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             ((System.ComponentModel.ISupportInitialize)(this.btnLimitationRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIpi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCommunity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -130,7 +130,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageViewMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pageViewMain.Location = new System.Drawing.Point(0, 0);
             this.pageViewMain.Name = "pageViewMain";
-            this.pageViewMain.SelectedPage = this.pvAnketaData;
+            this.pageViewMain.SelectedPage = this.pvAutorsData;
             this.pageViewMain.Size = new System.Drawing.Size(976, 536);
             this.pageViewMain.TabIndex = 0;
             this.pageViewMain.ThemeName = "Office2013Light";
@@ -175,6 +175,28 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvCommunityName.Name = "pvCommunityName";
             this.pvCommunityName.Size = new System.Drawing.Size(827, 459);
             this.pvCommunityName.Text = "Товариство";
+            // 
+            // txtIpi
+            // 
+            this.txtIpi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCommunity, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.txtIpi.Location = new System.Drawing.Point(231, 57);
+            this.txtIpi.Name = "txtIpi";
+            this.txtIpi.Size = new System.Drawing.Size(243, 21);
+            this.txtIpi.TabIndex = 7;
+            this.txtIpi.ThemeName = "Office2013Light";
+            // 
+            // bsCommunity
+            // 
+            this.bsCommunity.DataSource = typeof(ipsFormsDesign.Model.Community);
+            // 
+            // radLabel3
+            // 
+            this.radLabel3.Location = new System.Drawing.Point(22, 59);
+            this.radLabel3.Name = "radLabel3";
+            this.radLabel3.Size = new System.Drawing.Size(203, 19);
+            this.radLabel3.TabIndex = 6;
+            this.radLabel3.Text = "Міжнародний код товариства (IPI):";
+            this.radLabel3.ThemeName = "Office2013Light";
             // 
             // radLabel6
             // 
@@ -524,75 +546,75 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.gvViewAutors.MasterTemplate.AllowEditRow = false;
             this.gvViewAutors.MasterTemplate.AutoGenerateColumns = false;
             this.gvViewAutors.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn15.DataType = typeof(int);
-            gridViewTextBoxColumn15.FieldName = "CustId";
-            gridViewTextBoxColumn15.HeaderText = "ID";
-            gridViewTextBoxColumn15.IsVisible = false;
-            gridViewTextBoxColumn15.Name = "CustId";
-            gridViewTextBoxColumn16.FieldName = "CmCustId";
-            gridViewTextBoxColumn16.HeaderText = "cmID";
-            gridViewTextBoxColumn16.IsVisible = false;
-            gridViewTextBoxColumn16.Name = "CmCustId";
-            gridViewTextBoxColumn16.Width = 25;
-            gridViewTextBoxColumn17.FieldName = "InnerCode";
-            gridViewTextBoxColumn17.HeaderText = "Шифр";
-            gridViewTextBoxColumn17.MaxWidth = 95;
-            gridViewTextBoxColumn17.MinWidth = 95;
-            gridViewTextBoxColumn17.Multiline = true;
-            gridViewTextBoxColumn17.Name = "InnerCode";
-            gridViewTextBoxColumn17.Width = 95;
-            gridViewTextBoxColumn17.WrapText = true;
-            gridViewTextBoxColumn18.DataType = typeof(int);
-            gridViewTextBoxColumn18.FieldName = "InterCode";
-            gridViewTextBoxColumn18.HeaderText = "IPI";
-            gridViewTextBoxColumn18.MaxWidth = 95;
-            gridViewTextBoxColumn18.MinWidth = 95;
-            gridViewTextBoxColumn18.Name = "InterCode";
-            gridViewTextBoxColumn18.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn18.Width = 95;
-            gridViewTextBoxColumn19.FieldName = "Name";
-            gridViewTextBoxColumn19.HeaderText = "Правовласник";
-            gridViewTextBoxColumn19.MinWidth = 80;
-            gridViewTextBoxColumn19.Name = "Name";
-            gridViewTextBoxColumn19.Width = 485;
-            gridViewTextBoxColumn20.FieldName = "RegistrDate";
-            gridViewTextBoxColumn20.FormatString = "{0:d}";
-            gridViewTextBoxColumn20.HeaderText = "Дата народження/ Дата створення";
-            gridViewTextBoxColumn20.MaxWidth = 120;
-            gridViewTextBoxColumn20.MinWidth = 120;
-            gridViewTextBoxColumn20.Multiline = true;
-            gridViewTextBoxColumn20.Name = "RegistrDate";
-            gridViewTextBoxColumn20.Width = 120;
-            gridViewTextBoxColumn20.WrapText = true;
-            gridViewHyperlinkColumn3.FieldName = "CntObj";
-            gridViewHyperlinkColumn3.HeaderText = "К-сть об\'єктів";
-            gridViewHyperlinkColumn3.MaxWidth = 60;
-            gridViewHyperlinkColumn3.MinWidth = 60;
-            gridViewHyperlinkColumn3.Name = "CntObj";
-            gridViewHyperlinkColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewHyperlinkColumn3.Width = 60;
-            gridViewHyperlinkColumn3.WrapText = true;
-            gridViewTextBoxColumn21.FieldName = "YearProfit";
-            gridViewTextBoxColumn21.HeaderText = "Дохід з початку року";
-            gridViewTextBoxColumn21.MaxWidth = 90;
-            gridViewTextBoxColumn21.MinWidth = 90;
-            gridViewTextBoxColumn21.Name = "YearProfit";
-            gridViewTextBoxColumn21.Width = 90;
-            gridViewTextBoxColumn21.WrapText = true;
+            gridViewTextBoxColumn1.DataType = typeof(int);
+            gridViewTextBoxColumn1.FieldName = "CustId";
+            gridViewTextBoxColumn1.HeaderText = "ID";
+            gridViewTextBoxColumn1.IsVisible = false;
+            gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn2.FieldName = "CmCustId";
+            gridViewTextBoxColumn2.HeaderText = "cmID";
+            gridViewTextBoxColumn2.IsVisible = false;
+            gridViewTextBoxColumn2.Name = "CmCustId";
+            gridViewTextBoxColumn2.Width = 25;
+            gridViewTextBoxColumn3.FieldName = "InnerCode";
+            gridViewTextBoxColumn3.HeaderText = "Шифр";
+            gridViewTextBoxColumn3.MaxWidth = 95;
+            gridViewTextBoxColumn3.MinWidth = 95;
+            gridViewTextBoxColumn3.Multiline = true;
+            gridViewTextBoxColumn3.Name = "InnerCode";
+            gridViewTextBoxColumn3.Width = 95;
+            gridViewTextBoxColumn3.WrapText = true;
+            gridViewTextBoxColumn4.DataType = typeof(int);
+            gridViewTextBoxColumn4.FieldName = "InterCode";
+            gridViewTextBoxColumn4.HeaderText = "IPI";
+            gridViewTextBoxColumn4.MaxWidth = 95;
+            gridViewTextBoxColumn4.MinWidth = 95;
+            gridViewTextBoxColumn4.Name = "InterCode";
+            gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn4.Width = 95;
+            gridViewTextBoxColumn5.FieldName = "Name";
+            gridViewTextBoxColumn5.HeaderText = "Правовласник";
+            gridViewTextBoxColumn5.MinWidth = 80;
+            gridViewTextBoxColumn5.Name = "Name";
+            gridViewTextBoxColumn5.Width = 485;
+            gridViewTextBoxColumn6.FieldName = "RegistrDate";
+            gridViewTextBoxColumn6.FormatString = "{0:d}";
+            gridViewTextBoxColumn6.HeaderText = "Дата народження/ Дата створення";
+            gridViewTextBoxColumn6.MaxWidth = 120;
+            gridViewTextBoxColumn6.MinWidth = 120;
+            gridViewTextBoxColumn6.Multiline = true;
+            gridViewTextBoxColumn6.Name = "RegistrDate";
+            gridViewTextBoxColumn6.Width = 120;
+            gridViewTextBoxColumn6.WrapText = true;
+            gridViewHyperlinkColumn1.FieldName = "CntObj";
+            gridViewHyperlinkColumn1.HeaderText = "К-сть об\'єктів";
+            gridViewHyperlinkColumn1.MaxWidth = 60;
+            gridViewHyperlinkColumn1.MinWidth = 60;
+            gridViewHyperlinkColumn1.Name = "CntObj";
+            gridViewHyperlinkColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewHyperlinkColumn1.Width = 60;
+            gridViewHyperlinkColumn1.WrapText = true;
+            gridViewTextBoxColumn7.FieldName = "YearProfit";
+            gridViewTextBoxColumn7.HeaderText = "Дохід з початку року";
+            gridViewTextBoxColumn7.MaxWidth = 90;
+            gridViewTextBoxColumn7.MinWidth = 90;
+            gridViewTextBoxColumn7.Name = "YearProfit";
+            gridViewTextBoxColumn7.Width = 90;
+            gridViewTextBoxColumn7.WrapText = true;
             this.gvViewAutors.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn15,
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18,
-            gridViewTextBoxColumn19,
-            gridViewTextBoxColumn20,
-            gridViewHyperlinkColumn3,
-            gridViewTextBoxColumn21});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewHyperlinkColumn1,
+            gridViewTextBoxColumn7});
             this.gvViewAutors.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewAutors.MasterTemplate.EnableFiltering = true;
             this.gvViewAutors.MasterTemplate.EnableGrouping = false;
             this.gvViewAutors.MasterTemplate.ShowFilteringRow = false;
-            this.gvViewAutors.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gvViewAutors.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewAutors.Name = "gvViewAutors";
             this.gvViewAutors.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvViewAutors.Size = new System.Drawing.Size(966, 440);
@@ -627,28 +649,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvFilesData.Size = new System.Drawing.Size(966, 500);
             this.pvFilesData.Text = "Файли";
             // 
-            // txtIpi
-            // 
-            this.txtIpi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCommunity, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
-            this.txtIpi.Location = new System.Drawing.Point(231, 57);
-            this.txtIpi.Name = "txtIpi";
-            this.txtIpi.Size = new System.Drawing.Size(243, 21);
-            this.txtIpi.TabIndex = 7;
-            this.txtIpi.ThemeName = "Office2013Light";
-            // 
-            // radLabel3
-            // 
-            this.radLabel3.Location = new System.Drawing.Point(22, 59);
-            this.radLabel3.Name = "radLabel3";
-            this.radLabel3.Size = new System.Drawing.Size(203, 19);
-            this.radLabel3.TabIndex = 6;
-            this.radLabel3.Text = "Міжнародний код товариства (IPI):";
-            this.radLabel3.ThemeName = "Office2013Light";
-            // 
-            // bsCommunity
-            // 
-            this.bsCommunity.DataSource = typeof(ipsFormsDesign.Model.Community);
-            // 
             // CommunityCabinetForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -669,6 +669,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageViewAnketa.ResumeLayout(false);
             this.pvCommunityName.ResumeLayout(false);
             this.pvCommunityName.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIpi)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel6)).EndInit();
             this.pvAddress.ResumeLayout(false);
             this.pvAddress.PerformLayout();
@@ -695,9 +698,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             ((System.ComponentModel.ISupportInitialize)(this.btnLimitationRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIpi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCommunity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

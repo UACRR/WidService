@@ -24,7 +24,10 @@ namespace ipsFormsDesign.Services
             var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary","anketa");
             return anketaDic;
         }
-
+        public vCustomer GetOwner()
+        {
+            return _webApi.GetItemById<vCustomer>("info/owner", null);
+        }
         public IList<RightholderMainView> GetMainView()
         {
             return GetRightholdersList("rh/listrh");
