@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.Common
@@ -52,6 +53,16 @@ namespace IpsViewComponentLibrary.Common
             _pageSize = 20;
             UpdateCurrentPage();
             UpdatePageSize();
+        }
+        
+        /// <summary>
+        /// Зміна кількості елементів на сторінці закрита для редагування (тільки для читання)
+        /// </summary>
+        [Browsable(true)]
+        public bool ReadOnlyPageSize
+        {
+            get => !mebCountPerPage.Enabled;
+            set => mebCountPerPage.Enabled = !value;
         }
 
         private void btnMoveFirst_Click(object sender, EventArgs e)

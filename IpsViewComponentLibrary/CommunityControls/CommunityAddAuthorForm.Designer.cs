@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.CommunityControls
 {
-    partial class CommunityAddAutorForm
+    partial class CommunityAddAuthorForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -37,42 +38,42 @@
             Telerik.WinControls.UI.GridViewHyperlinkColumn gridViewHyperlinkColumn1 = new Telerik.WinControls.UI.GridViewHyperlinkColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewComboBoxColumn gridViewComboBoxColumn1 = new Telerik.WinControls.UI.GridViewComboBoxColumn();
-            Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn2 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.gvViewAutors = new Telerik.WinControls.UI.RadGridView();
-            this.gvRightLimitations = new Telerik.WinControls.UI.RadGridView();
+            this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
+            this.parentGridPanel = new Telerik.WinControls.UI.RadPanel();
+            this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.bsCommunityAuthorsView = new System.Windows.Forms.BindingSource(this.components);
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
-            this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.ctrlRightLimitation = new IpsViewComponentLibrary.CommunityControls.CommunityRightLimitationControl();
+            this.timerSearch = new System.Windows.Forms.Timer(this.components);
+            this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
+            this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRightLimitations)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRightLimitations.MasterTemplate)).BeginInit();
+            this.gvViewAutors.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.parentGridPanel)).BeginInit();
+            this.parentGridPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityAuthorsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
             // gvViewAutors
             // 
-            this.gvViewAutors.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvViewAutors.AutoScroll = true;
             this.gvViewAutors.AutoSizeRows = true;
+            this.gvViewAutors.Controls.Add(this.waitingBar);
+            this.gvViewAutors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvViewAutors.EnableCustomFiltering = true;
-            this.gvViewAutors.Location = new System.Drawing.Point(0, 38);
+            this.gvViewAutors.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
@@ -87,6 +88,7 @@
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn2.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn2.FieldName = "CmCustId";
             gridViewTextBoxColumn2.HeaderText = "cmID";
             gridViewTextBoxColumn2.IsVisible = false;
@@ -112,7 +114,8 @@
             gridViewTextBoxColumn5.HeaderText = "Правовласник";
             gridViewTextBoxColumn5.MinWidth = 80;
             gridViewTextBoxColumn5.Name = "Name";
-            gridViewTextBoxColumn5.Width = 425;
+            gridViewTextBoxColumn5.Width = 502;
+            gridViewTextBoxColumn6.DataType = typeof(System.DateTime);
             gridViewTextBoxColumn6.FieldName = "RegistrDate";
             gridViewTextBoxColumn6.FormatString = "{0:d}";
             gridViewTextBoxColumn6.HeaderText = "Дата народження/ Дата створення";
@@ -122,6 +125,7 @@
             gridViewTextBoxColumn6.Name = "RegistrDate";
             gridViewTextBoxColumn6.Width = 120;
             gridViewTextBoxColumn6.WrapText = true;
+            gridViewHyperlinkColumn1.DataType = typeof(int);
             gridViewHyperlinkColumn1.FieldName = "CntObj";
             gridViewHyperlinkColumn1.HeaderText = "К-сть об\'єктів";
             gridViewHyperlinkColumn1.MaxWidth = 60;
@@ -130,6 +134,7 @@
             gridViewHyperlinkColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewHyperlinkColumn1.Width = 60;
             gridViewHyperlinkColumn1.WrapText = true;
+            gridViewTextBoxColumn7.DataType = typeof(decimal);
             gridViewTextBoxColumn7.FieldName = "YearProfit";
             gridViewTextBoxColumn7.HeaderText = "Дохід з початку року";
             gridViewTextBoxColumn7.MaxWidth = 90;
@@ -146,6 +151,7 @@
             gridViewTextBoxColumn6,
             gridViewHyperlinkColumn1,
             gridViewTextBoxColumn7});
+            this.gvViewAutors.MasterTemplate.DataSource = this.bsCommunityAuthorsView;
             this.gvViewAutors.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewAutors.MasterTemplate.EnableFiltering = true;
             this.gvViewAutors.MasterTemplate.EnableGrouping = false;
@@ -153,96 +159,49 @@
             this.gvViewAutors.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewAutors.Name = "gvViewAutors";
             this.gvViewAutors.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewAutors.Size = new System.Drawing.Size(906, 235);
+            this.gvViewAutors.Size = new System.Drawing.Size(983, 213);
             this.gvViewAutors.TabIndex = 14;
             this.gvViewAutors.ThemeName = "Office2013Light";
             this.gvViewAutors.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewAutors_CurrentRowChanged);
             // 
-            // gvRightLimitations
+            // waitingBar
             // 
-            this.gvRightLimitations.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.waitingBar.AssociatedControl = this.parentGridPanel;
+            this.waitingBar.Location = new System.Drawing.Point(456, 71);
+            this.waitingBar.Name = "waitingBar";
+            this.waitingBar.Size = new System.Drawing.Size(70, 70);
+            this.waitingBar.TabIndex = 2;
+            this.waitingBar.Text = "radWaitingBar1";
+            this.waitingBar.ThemeName = "Office2013Light";
+            this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
+            this.waitingBar.WaitingSpeed = 50;
+            this.waitingBar.WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.RadWaitingBarElement)(this.waitingBar.GetChildAt(0))).WaitingSpeed = 50;
+            ((Telerik.WinControls.UI.WaitingBarContentElement)(this.waitingBar.GetChildAt(0).GetChildAt(0))).WaitingStyle = Telerik.WinControls.Enumerations.WaitingBarStyles.LineRing;
+            ((Telerik.WinControls.UI.WaitingBarSeparatorElement)(this.waitingBar.GetChildAt(0).GetChildAt(0).GetChildAt(0))).Dash = false;
+            // 
+            // parentGridPanel
+            // 
+            this.parentGridPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gvRightLimitations.Location = new System.Drawing.Point(0, 279);
+            this.parentGridPanel.Controls.Add(this.gvViewAutors);
+            this.parentGridPanel.Location = new System.Drawing.Point(0, 38);
+            this.parentGridPanel.Name = "parentGridPanel";
+            this.parentGridPanel.Size = new System.Drawing.Size(983, 213);
+            this.parentGridPanel.TabIndex = 35;
+            this.parentGridPanel.ThemeName = "Office2013Light";
             // 
+            // lineRingWaitingBarIndicatorElement1
             // 
+            this.lineRingWaitingBarIndicatorElement1.DisabledTextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
+            this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
+            this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
-            this.gvRightLimitations.MasterTemplate.AllowAddNewRow = false;
-            this.gvRightLimitations.MasterTemplate.AllowColumnReorder = false;
-            this.gvRightLimitations.MasterTemplate.AutoExpandGroups = true;
-            this.gvRightLimitations.MasterTemplate.AutoGenerateColumns = false;
-            this.gvRightLimitations.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn8.FieldName = "CustId";
-            gridViewTextBoxColumn8.HeaderText = "CustId";
-            gridViewTextBoxColumn8.IsVisible = false;
-            gridViewTextBoxColumn8.Name = "CustId";
-            gridViewTextBoxColumn8.ReadOnly = true;
-            gridViewTextBoxColumn8.Width = 47;
-            gridViewTextBoxColumn9.FieldName = "CmCustId";
-            gridViewTextBoxColumn9.HeaderText = "CmCustId";
-            gridViewTextBoxColumn9.IsVisible = false;
-            gridViewTextBoxColumn9.Name = "CmCustId";
-            gridViewTextBoxColumn9.ReadOnly = true;
-            gridViewTextBoxColumn9.Width = 48;
-            gridViewTextBoxColumn10.FieldName = "KindCode";
-            gridViewTextBoxColumn10.HeaderText = "KindCode";
-            gridViewTextBoxColumn10.IsVisible = false;
-            gridViewTextBoxColumn10.Name = "KindCode";
-            gridViewTextBoxColumn10.ReadOnly = true;
-            gridViewTextBoxColumn10.Width = 47;
-            gridViewTextBoxColumn11.FieldName = "KindName";
-            gridViewTextBoxColumn11.HeaderText = "Вид права";
-            gridViewTextBoxColumn11.IsAutoGenerated = true;
-            gridViewTextBoxColumn11.Name = "KindName";
-            gridViewTextBoxColumn11.ReadOnly = true;
-            gridViewTextBoxColumn11.Width = 449;
-            gridViewComboBoxColumn1.DataType = typeof(int);
-            gridViewComboBoxColumn1.DisplayMember = "Name";
-            gridViewComboBoxColumn1.FieldName = "CommunityName";
-            gridViewComboBoxColumn1.HeaderText = "Товариство";
-            gridViewComboBoxColumn1.Name = "CommunityName";
-            gridViewComboBoxColumn1.ReadOnly = true;
-            gridViewComboBoxColumn1.ValueMember = "CustId";
-            gridViewComboBoxColumn1.Width = 163;
-            gridViewCheckBoxColumn1.FieldName = "Check";
-            gridViewCheckBoxColumn1.HeaderText = "Відмітити";
-            gridViewCheckBoxColumn1.IsAutoGenerated = true;
-            gridViewCheckBoxColumn1.Name = "Check";
-            gridViewCheckBoxColumn1.Width = 96;
-            gridViewDateTimeColumn1.CustomFormat = "dd/MM/yyyy";
-            gridViewDateTimeColumn1.FieldName = "DateBegin";
-            gridViewDateTimeColumn1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            gridViewDateTimeColumn1.FormatString = "{0:dd/MM/yyyy}";
-            gridViewDateTimeColumn1.HeaderText = "Дата початку";
-            gridViewDateTimeColumn1.MinWidth = 100;
-            gridViewDateTimeColumn1.Name = "DateBegin";
-            gridViewDateTimeColumn1.Width = 101;
-            gridViewDateTimeColumn1.WrapText = true;
-            gridViewDateTimeColumn2.CustomFormat = "dd/MM/yyyy";
-            gridViewDateTimeColumn2.FieldName = "DateEnd";
-            gridViewDateTimeColumn2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            gridViewDateTimeColumn2.FormatString = "{0:dd/MM/yyyy}";
-            gridViewDateTimeColumn2.HeaderText = "Дата завершення";
-            gridViewDateTimeColumn2.MinWidth = 100;
-            gridViewDateTimeColumn2.Name = "DateEnd";
-            gridViewDateTimeColumn2.Width = 100;
-            gridViewDateTimeColumn2.WrapText = true;
-            this.gvRightLimitations.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewComboBoxColumn1,
-            gridViewCheckBoxColumn1,
-            gridViewDateTimeColumn1,
-            gridViewDateTimeColumn2});
-            this.gvRightLimitations.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvRightLimitations.MasterTemplate.ViewDefinition = tableViewDefinition2;
-            this.gvRightLimitations.Name = "gvRightLimitations";
-            this.gvRightLimitations.ShowGroupPanel = false;
-            this.gvRightLimitations.Size = new System.Drawing.Size(906, 239);
-            this.gvRightLimitations.TabIndex = 15;
-            this.gvRightLimitations.ThemeName = "Office2013Light";
-            this.gvRightLimitations.ValueChanging += new Telerik.WinControls.UI.ValueChangingEventHandler(this.gvRightLimitations_ValueChanging);
+            // bsCommunityAuthorsView
+            // 
+            this.bsCommunityAuthorsView.DataSource = typeof(ipsFormsDesign.Interfaces.CommunityAuthorsView);
             // 
             // radPanel1
             // 
@@ -251,10 +210,10 @@
             this.radPanel1.Controls.Add(this.btnCancel);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.radPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radPanel1.Location = new System.Drawing.Point(0, 524);
+            this.radPanel1.Location = new System.Drawing.Point(0, 536);
             this.radPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(906, 31);
+            this.radPanel1.Size = new System.Drawing.Size(983, 31);
             this.radPanel1.TabIndex = 22;
             this.radPanel1.ThemeName = "Office2013Light";
             // 
@@ -273,33 +232,69 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(782, 4);
+            this.btnCancel.Location = new System.Drawing.Point(859, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(121, 24);
             this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             // 
-            // ctrlSearch
+            // ctrlRightLimitation
             // 
-            this.ctrlSearch.Location = new System.Drawing.Point(0, 12);
-            this.ctrlSearch.MaximumSize = new System.Drawing.Size(2000, 20);
-            this.ctrlSearch.MinimumSize = new System.Drawing.Size(20, 20);
-            this.ctrlSearch.Name = "ctrlSearch";
-            this.ctrlSearch.Size = new System.Drawing.Size(548, 20);
-            this.ctrlSearch.TabIndex = 13;
+            this.ctrlRightLimitation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlRightLimitation.Location = new System.Drawing.Point(0, 291);
+            this.ctrlRightLimitation.Name = "ctrlRightLimitation";
+            this.ctrlRightLimitation.Size = new System.Drawing.Size(983, 242);
+            this.ctrlRightLimitation.TabIndex = 23;
             // 
-            // CommunityAddAutorForm
+            // timerSearch
+            // 
+            this.timerSearch.Interval = 300;
+            this.timerSearch.Tick += new System.EventHandler(this.timerSearch_Tick);
+            // 
+            // navigatorPanel
+            // 
+            this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.navigatorPanel.CurrentPage = 1;
+            this.navigatorPanel.Location = new System.Drawing.Point(0, 257);
+            this.navigatorPanel.Name = "navigatorPanel";
+            this.navigatorPanel.PageSize = 200;
+            this.navigatorPanel.ReadOnlyPageSize = true;
+            this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
+            this.navigatorPanel.TabIndex = 24;
+            this.navigatorPanel.TotalPages = 0;
+            this.navigatorPanel.CurrentPageChanged += new System.EventHandler(this.navigatorPanel_CurrentPageChanged);
+            this.navigatorPanel.PageSizeChanged += new System.EventHandler(this.navigatorPanel_PageSizeChanged);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(3, 12);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.NullText = "Пошук";
+            this.txtSearch.ShowClearButton = true;
+            this.txtSearch.Size = new System.Drawing.Size(515, 20);
+            this.txtSearch.TabIndex = 34;
+            this.txtSearch.ThemeName = "Office2013Light";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageLayout = System.Windows.Forms.ImageLayout.None;
+            ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).ImageAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
+            // 
+            // CommunityAddAuthorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(906, 555);
+            this.ClientSize = new System.Drawing.Size(983, 567);
+            this.Controls.Add(this.parentGridPanel);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.navigatorPanel);
+            this.Controls.Add(this.ctrlRightLimitation);
             this.Controls.Add(this.radPanel1);
-            this.Controls.Add(this.gvRightLimitations);
-            this.Controls.Add(this.gvViewAutors);
-            this.Controls.Add(this.ctrlSearch);
-            this.Name = "CommunityAddAutorForm";
+            this.Name = "CommunityAddAuthorForm";
             // 
             // 
             // 
@@ -308,12 +303,17 @@
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRightLimitations.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvRightLimitations)).EndInit();
+            this.gvViewAutors.ResumeLayout(false);
+            this.gvViewAutors.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.parentGridPanel)).EndInit();
+            this.parentGridPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityAuthorsView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -323,10 +323,16 @@
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadGridView gvViewAutors;
-        private Common.SearchTextBoxControl ctrlSearch;
-        private Telerik.WinControls.UI.RadGridView gvRightLimitations;
         private Telerik.WinControls.UI.RadPanel radPanel1;
         private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadButton btnCancel;
+        private CommunityRightLimitationControl ctrlRightLimitation;
+        private System.Windows.Forms.BindingSource bsCommunityAuthorsView;
+        private System.Windows.Forms.Timer timerSearch;
+        private Common.NavigatorPanelControl navigatorPanel;
+        private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
+        private Telerik.WinControls.UI.RadWaitingBar waitingBar;
+        private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
+        private Telerik.WinControls.UI.RadPanel parentGridPanel;
     }
 }

@@ -43,6 +43,8 @@ namespace IpsViewComponentLibrary.Extensions
     public delegate Customer GetCustomerByIdEventHandler(int custId);
     public delegate List<T> ReturnViewEventHandler<T>(int custId);
     public delegate List<T> ReturnFullViewEventHandler<T>();
+    public delegate List<T> ReturnFullViewByFilterEventHandler<T, F>(F filter);
+
 
     public delegate T ReturnObjectEventHandler<out T>(int custId);
 

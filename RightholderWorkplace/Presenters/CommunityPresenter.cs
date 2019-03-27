@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -31,7 +32,6 @@ namespace RightholderWorkplace.Presenters
             _community.SaveCommunity += SaveCommunity;
             _community.GetCommunity += GetCommunity;
             _community.GetCommunityAutorsList += GetCommunityAutorsView;
-            _community.GetAutorsList += GetAllAutorsView;
             _community.GetCommunityRightList += GetCommunityRightList;
             _community.SaveLimitRights += SaveLimitRights;
             _community.ChangeStatusAgr += ChangeStatusAgr;
@@ -78,14 +78,9 @@ namespace RightholderWorkplace.Presenters
             return _service.GetTemplateComunity();
         }
 
-        private List<CommunityAutorsListView> GetCommunityAutorsView(int cmId)
+        private List<CommunityAuthorsView> GetCommunityAutorsView(int cmId)
         {
-            return _service.GetView<CommunityAutorsListView>(typeof(CommunityAutorsListView), "vTsk_1_ListRHCommunity", cmId, "cmCustId");
-        }
-
-        private List<CommunityAutorsListView> GetAllAutorsView()
-        {
-            return _service.GetView<CommunityAutorsListView>(typeof(CommunityAutorsListView), "vTsk_1_ListRHCommunity");
+            return _service.GetView<CommunityAuthorsView>(typeof(CommunityAuthorsView), "vTsk_1_ListRHCommunity", cmId, "cmCustId");
         }
     }
 }

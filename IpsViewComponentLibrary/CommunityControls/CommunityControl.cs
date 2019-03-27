@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -22,8 +23,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
-        public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
-        public event ReturnViewEventHandler<CommunityAutorsListView> GetCommunityAutorsList;
+        public event ReturnViewEventHandler<CommunityAuthorsView> GetCommunityAutorsList;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerEventHandler GetTemplateCommunity;
         public event GetCustomerByIdEventHandler GetCommunity;
@@ -99,14 +99,13 @@ namespace IpsViewComponentLibrary.CommunityControls
             cabinetForm.SaveCustomer += CabinetForm_SaveCustomer;
             cabinetForm.UpdateCustomer += CabinetForm_UpdateCustomer;
             cabinetForm.ChangeStatusAgr += CabinetForm_ChangeStatusAgr;
-            cabinetForm.GetAutorsList += CabinetForm_GetAutorsList;
             cabinetForm.GetCommunityRightList += CabinetForm_GetCommunityRightList;
             cabinetForm.SaveLimitedRights += CabinetFormSaveLimitedRights;
             cabinetForm.UpdateAutorsList += CabinetForm_UpdateAutorsList;
             cabinetForm.Show();
         }
 
-        private List<CommunityAutorsListView> CabinetForm_UpdateAutorsList()
+        private List<CommunityAuthorsView> CabinetForm_UpdateAutorsList()
         {
             if (gvViewPartners.CurrentRow.DataBoundItem is CommunityListView item)
                 return GetCommunityAutorsList?.Invoke(item.CustId);
@@ -121,11 +120,6 @@ namespace IpsViewComponentLibrary.CommunityControls
         private List<CustCmRight> CabinetForm_GetCommunityRightList(int custId)
         {
             return GetCommunityRightList?.Invoke(custId);
-        }
-
-        private List<CommunityAutorsListView> CabinetForm_GetAutorsList()
-        {
-            return GetAutorsList?.Invoke();
         }
 
         private bool CabinetForm_ChangeStatusAgr(int communityId, CPartnerObjectStatus status)
