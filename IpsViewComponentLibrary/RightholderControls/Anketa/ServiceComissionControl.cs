@@ -43,6 +43,17 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             }
         }
 
+        private void setupObjects()
+        {
+            var ownerName = IpsGlobal.GetProperty("OwnerName");
+            radLabel1.Text = $"збір за управління, необхідний для покриття витрат на забезпечення діяльності {ownerName ?? "Компанії"}";
+            radLabel3.Text = $"від сум, зібраних {ownerName ?? "Компанією"} для Правовласника";
+
+            // this.radLabel7.Text = "від сум, отриманих  для Автора";
+            // radLabel7.Text = $"від сум, отриманих {ownerName ?? "Підприємством"} для Автора";
+        }
+
+
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
         public string DataMember

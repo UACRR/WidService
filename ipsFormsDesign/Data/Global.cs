@@ -24,7 +24,7 @@ namespace ipsFormsDesign.Data
         public static Dictionary<Type, object> Instances { get; private set; } = new Dictionary<Type, object>();
         public static Dictionary<string, object> Properties { get; private set; } = new Dictionary<string, object>();
 
-
+        
         public static object GetProperty( string name )
         {
             if (Properties.Keys.Contains(name))
