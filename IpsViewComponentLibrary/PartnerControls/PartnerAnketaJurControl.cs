@@ -16,6 +16,8 @@ namespace IpsViewComponentLibrary.PartnerControls
     public partial class PartnerAnketaJurControl : UserControl, IAnketaControls
     {
         public event EventHandler<bool> SaveClick;
+        public event EventHandler CancelClick;
+
         public PartnerAnketaJurControl()
         {
             InitializeComponent();
@@ -25,9 +27,8 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         public void BeginBindings(Customer customer)
         {
-            var dict = IpsGlobal.AnketaDictionaties;
             // представник
-            ctrlClientName.SetDataSources(customer, dict);
+            ctrlClientName.SetDataSources(customer);
             // контакти
             ctrlAddress.SetDataSources(customer);
             // керівники

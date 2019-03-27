@@ -34,11 +34,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         public object DataSource
         {
             get => bsAnketaCompany.DataSource;
-            set
-            {
-                if (bsAnketaCompany.DataSource != value)
-                    bsAnketaCompany.DataSource = value;
-            }
+            set => bsAnketaCompany.DataSource = value;
         }
 
         #region Edit controls

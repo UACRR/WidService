@@ -8,7 +8,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Windows.Forms;
-using ConsumerWorkplace_v_1._0.Presenters;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -16,6 +15,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Presenters;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
+using IpsViewComponentLibrary.ImportDBF.Presenters;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -23,22 +23,18 @@ using Telerik.WinControls.UI.Localization;
 
 namespace ConsumerWorkplace_v_1._0
 {
-    public partial class ConsumerWorkplace : Telerik.WinControls.UI.RadForm, IConsumerForm
+    public partial class ConsumerWorkplace : RadForm, IConsumerForm
     {
-        private SmallRightPresenter _smallRightPresenter;// main presenter for small right
-        private BigRightPresenter _bigRightPresenter;    // main presenter for big right
-        private PartnerPresenter _partnerPresenter;      // main presenter for partner
-        private CommunityPresenter _communityPresenter;  // main presenter for community
+        //private SmallRightPresenter _smallRightPresenter;// main presenter for small right
+        //private BigRightPresenter _bigRightPresenter;    // main presenter for big right
         private DBFPresenter _dbfPresenter;              // main presenter for importDBF
-        private readonly ConsumerService _consumerMainService = new ConsumerService(); // main service
-        private readonly CommunityService _communityService = new CommunityService();
-        private readonly PartnerService _partnerService = new PartnerService();
+        private readonly ConsumerService _consumerMainService; // main service
 
         public event Func<bool> Save;
 
         public ConsumerWorkplace(TypeRights rights)
         {
-            IpsGlobal.SetAnketaDictionaties((new ConsumerService()).GetDictionary());
+            //IpsGlobal.SetAnketaDictionaties(new ConsumerService().GetDictionary());
             _dbfPresenter = new DBFPresenter();
             IpsGlobal.addInstance(typeof(IUniqueChecker), new UniqueCheckerPresenter());
             IpsGlobal.addInstance(typeof(IDBFPresenter), _dbfPresenter);
@@ -51,7 +47,7 @@ namespace ConsumerWorkplace_v_1._0
             {
                 case TypeRights.BigRights:
                 {
-                    RadTreeNode[] list = new[]
+                    RadTreeNode[] list =
                     {
                         new RadTreeNode
                         {
@@ -113,8 +109,8 @@ namespace ConsumerWorkplace_v_1._0
                     foreach (var item in list)
                         treeViewBR.Nodes.Add(item);
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight);
-                    IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
+                    //_bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
+                    //IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
                         // treeViewBR.SelectedNode = treeViewBR.Nodes["Всі"];
 
 
@@ -138,9 +134,9 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _consumerMainService = new ConsumerService();
-                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, _partnerService, treeViewSR, mainGridSmallRight);
-                    IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
+                        //_consumerMainService = ConsumerService.GetInstance();
+                        //_smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
+                        //IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
 
                         treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
@@ -163,8 +159,8 @@ namespace ConsumerWorkplace_v_1._0
                         treeViewSR.Nodes.Add(item);
                     }
 
-                    _smallRightPresenter = new SmallRightPresenter(_consumerMainService, _partnerService, treeViewSR, mainGridSmallRight);
-                    IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
+                    //_smallRightPresenter = new SmallRightPresenter(_consumerMainService, treeViewSR, mainGridSmallRight);
+                    //IpsGlobal.addInstance(typeof(IUpdateProviderSmallRight), _smallRightPresenter);
 
                     treeViewSR.SelectedNode = treeViewSR.Nodes["Всі"];
 
@@ -228,18 +224,17 @@ namespace ConsumerWorkplace_v_1._0
 
                     foreach (var item in list2)
                         treeViewBR.Nodes.Add(item);
+
+                    _consumerMainService = new ConsumerService();
                     
-                    _bigRightPresenter = new BigRightPresenter(_consumerMainService, _partnerService, treeViewBR, mainGridBigRight);
-                    IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
+                    //_bigRightPresenter = new BigRightPresenter(_consumerMainService, treeViewBR, mainGridBigRight);
+                    //IpsGlobal.addInstance(typeof(IUpdateProviderBigRight), _bigRightPresenter);
 
                     treeViewBR.SelectedNode = treeViewBR.Nodes[0];
 
                     }
                     break;
             }
-
-            _partnerPresenter = new PartnerPresenter(_partnerService, ctrlPartner);
-            _communityPresenter = new CommunityPresenter(_communityService, ctrlCommunity);
         }
         
         Customer _cust = null;
@@ -275,14 +270,6 @@ namespace ConsumerWorkplace_v_1._0
             {
                 var list = getMainViewData();
                 consumerMainViewBindingSource.DataSource = list;
-            }
-        }
-
-        private void pageViewOwner_SelectedPageChanged(object sender, EventArgs e)
-        {
-            if (pageViewOwner.SelectedPage == pvPartners)
-            {
-                // TODO: maybe need update -> ctrlPartner.LoadData();
             }
         }
     }

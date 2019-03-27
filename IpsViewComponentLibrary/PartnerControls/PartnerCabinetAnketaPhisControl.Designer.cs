@@ -40,21 +40,19 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.btnCopyFromRegToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToLett = new Telerik.WinControls.UI.RadButton();
             this.btnCopyFromLiveToReg = new Telerik.WinControls.UI.RadButton();
-            this.ctrlAddressLetter = new AddressLetter();
+            this.ctrlAddressLetter = new IpsViewComponentLibrary.Shared.Controls.AddressLetter();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
-            this.ctrlAddressRegister = new IpsAddressControl();
-            this.ctrlAddressLive = new IpsAddressControl();
-            this.ctrlContacts = new ContactsPersonControl();
+            this.ctrlAddressRegister = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
+            this.ctrlAddressLive = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
+            this.ctrlContacts = new IpsViewComponentLibrary.Shared.Controls.ContactsPersonControl();
             this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
             this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlInternalPassport = new PassportControl();
+            this.ctrlInternalPassport = new IpsViewComponentLibrary.Shared.Controls.PassportControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsBankAccountControl();
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
+            this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
+            this.ctrlSaveCancel = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewAnketa)).BeginInit();
             this.pageViewAnketa.SuspendLayout();
             this.pvPartnerName.SuspendLayout();
@@ -77,10 +75,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
             this.radGroupBox3.SuspendLayout();
             this.pvBank.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-            this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             this.SuspendLayout();
             // 
             // pageViewAnketa
@@ -417,48 +411,22 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ctrlBankAccount.Size = new System.Drawing.Size(409, 127);
             this.ctrlBankAccount.TabIndex = 0;
             // 
-            // radPanel1
+            // ctrlSaveCancel
             // 
-            this.radPanel1.BackColor = System.Drawing.Color.Silver;
-            this.radPanel1.Controls.Add(this.btnSave);
-            this.radPanel1.Controls.Add(this.btnCancel);
-            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radPanel1.Location = new System.Drawing.Point(0, 463);
-            this.radPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(963, 31);
-            this.radPanel1.TabIndex = 23;
-            this.radPanel1.ThemeName = "Office2013Light";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(712, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(121, 24);
-            this.btnSave.TabIndex = 56;
-            this.btnSave.Text = "Зберегти зміни";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(839, 4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(121, 24);
-            this.btnCancel.TabIndex = 17;
-            this.btnCancel.Text = "Скасувати зміни";
-            this.btnCancel.ThemeName = "Office2013Light";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.ctrlSaveCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancel.Location = new System.Drawing.Point(0, 463);
+            this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancel.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancel.Name = "ctrlSaveCancel";
+            this.ctrlSaveCancel.Size = new System.Drawing.Size(963, 31);
+            this.ctrlSaveCancel.TabIndex = 13;
             // 
             // PartnerCabinetAnketaPhisControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pageViewAnketa);
-            this.Controls.Add(this.radPanel1);
+            this.Controls.Add(this.ctrlSaveCancel);
             this.Name = "PartnerCabinetAnketaPhisControl";
             this.Size = new System.Drawing.Size(963, 494);
             ((System.ComponentModel.ISupportInitialize)(this.pageViewAnketa)).EndInit();
@@ -484,10 +452,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
             this.radGroupBox3.ResumeLayout(false);
             this.pvBank.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-            this.radPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -516,8 +480,6 @@ namespace IpsViewComponentLibrary.PartnerControls
         private PassportControl ctrlInternalPassport;
         private Telerik.WinControls.UI.RadPageViewPage pvBank;
         private IpsBankAccountControl ctrlBankAccount;
-        private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadButton btnSave;
-        private Telerik.WinControls.UI.RadButton btnCancel;
+        private Common.SaveCancelButtonsControl ctrlSaveCancel;
     }
 }

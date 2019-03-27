@@ -34,7 +34,7 @@ namespace ConsumerWorkplace_v_1._0
             FormPresenter control = new FormPresenter(form, model);
             form.WindowState = FormWindowState.Maximized;
             form.AutoScaleMode = AutoScaleMode.Font;
-            Application.Run(form);
+            //Application.Run(form);
         }
 
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs exceptionEventArg)

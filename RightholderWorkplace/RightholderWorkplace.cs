@@ -12,6 +12,7 @@ using IpsViewComponentLibrary.ObjectRightControls;
 using IpsViewComponentLibrary.RightholderControls;
 using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
+using RightholderWorkplace.Presenters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,15 +31,18 @@ namespace RightholderWorkplace
         RightholderService _rightholderService = new RightholderService();
         ObjectRightService _objectRightService = new ObjectRightService();
         AmountDistributor _persentDistributor = new AmountDistributor();
+        private CommunityPresenter _communityPresenter;  // main presenter for community
+
 
         public RightholderWorkplace()
         {
             InitializeComponent();
 
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
-            //RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
+            var _communityService = new CommunityService();
+            _communityPresenter = new CommunityPresenter(_communityService, ctrlCommunity);
 
             var copyrightRequestPresenter = new CopyrightRequestPresenter(ctrlCopyrightRequests, _rightholderService);
         }

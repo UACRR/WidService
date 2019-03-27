@@ -190,6 +190,7 @@
     </Compile>
     <Compile Include="ConsumerControls\ViewsSingleton.cs" />
     <Compile Include="Extensions\WindowsFormsVisible.cs" />
+    <Compile Include="ImportDBF\Presenters\DBFPresenter.cs" />
     <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
     <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
     <Compile Include="Utilities\IpsUARadGridLocalizationProvider.cs" />
@@ -1579,6 +1580,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.SexType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypeVat.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />

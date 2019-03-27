@@ -22,6 +22,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public CabinetSmallRightForm()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
             cabinet.Rights = TypeRights.SmallRights;
             cabinet.UpdateData += UpdateData;
         }

@@ -11,7 +11,7 @@ using IpsViewComponentLibrary.CommunityControls;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.PartnerControls;
 
-namespace ConsumerWorkplace_v_1._0.Presenters
+namespace RightholderWorkplace.Presenters
 {
     public class CommunityPresenter
     {

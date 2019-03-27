@@ -36,14 +36,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
 
         //дані
         private Customer _customer;
-        //private ConsumerBigRightView _gridMainView;
-        private IList<GeneralAgreementBigRightView> _generalAgreementView;
-        private IList<LicenseAgreementBigRightView> _licenseAgreementView;
-        private IList<RequestsOrReferenceBigRightView> _requestsLicenseView;
-        private IList<RequestsOrReferenceBigRightView> _referenceLicenseView;
-        private IList<AuthorsForLicenseBigRightView> _authorsForLicenseView;
-        private IList<RatedListBigRightView> _registerRatedListView;
-        private IList<RatedListSpectacleBigRightView> _rlSpectacleView;
 
         #region events точечного отримання даних
 

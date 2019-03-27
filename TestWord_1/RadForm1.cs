@@ -61,10 +61,12 @@ namespace TestWord_1
             //         Filename = "F_ТИПОВИЙ ДОГОВІР МКБР ГО УААСП.docx";
 
                     
-            Filename = "F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx";
+            
             Filename = "F_ТИПОВИЙ ДОГОВІР МТЦ ГО УААСП.docx";
             Filename = "F_ТИПОВИЙ ДОГОВІР БУДИНКИ КУЛЬТУРИ ГО УААСП.docx";
             Filename = "F_ТИПОВИЙ ДОГОВІР КБР ГО УААСП.docx";
+            //         Filename = "F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП (1).docx";
+            Filename = "F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx";
             base.OnLoad(e);
             string template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Filename);
             ProcessWord(template, Filename);
@@ -154,6 +156,14 @@ namespace TestWord_1
                     wordApp = new WordEngine(service.GetDictionary());
                     wordApp.ProcessConsumerBR(template, cust, agreementMaster11, licA11);
                     break;
+                case "F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП (1).docx":
+                    cust = service.GetData(3059);
+                    AgreementMaster agreementMaster21 = cust.AgreementMaster?.Where(rec => rec.AgrId == 4389).Single();
+                    LicenseAgreement licA21 = cust.Client.LicenseAgreement?.Where(rec => (rec.AgrId == 4389 & rec.LicId == 1501)).Single();
+                    wordApp = new WordEngine(service.GetDictionary());
+                    wordApp.ProcessConsumerBR(template, cust, agreementMaster21, licA21);
+                    break;
+                   
 
 
                 case "F_dogovir_licenziya_teatr_go_uaasp.docx":
@@ -192,10 +202,10 @@ namespace TestWord_1
 
                     break;
                 case "F_ТИПОВИЙ ДОГОВІР ГОТЕЛІ ГО УААСП.docx":
-                    cust = service.GetData(134);
+                    cust = service.GetData(3056);
                     wordApp = new WordEngine(service.GetDictionary());
-                    LicenseAgreement licAgr73 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 1307 & rec.LicVersion == 1).First();
-                    AgreementMaster AgrM2 = cust.AgreementMaster.Where(rec => rec.AgrId == 3457).Single();
+                    LicenseAgreement licAgr73 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 2939 & rec.LicVersion == 1).First();
+                    AgreementMaster AgrM2 = cust.AgreementMaster.Where(rec => rec.AgrId == 6056).Single();
                     wordApp.ProcessConsumer(template, cust, AgrM2, licAgr73);
 
                     break;
@@ -203,7 +213,7 @@ namespace TestWord_1
                     cust = service.GetData(134);
                     wordApp = new WordEngine(service.GetDictionary());
                     LicenseAgreement licAgr83 = cust.Client.LicenseAgreement.Where(rec => rec.LicId == 1307 & rec.LicVersion == 1).First();
-                    AgreementMaster AgrM3 = cust.AgreementMaster.Where(rec => rec.AgrId == 3457).Single();
+                    AgreementMaster AgrM3 = cust.AgreementMaster.Where(rec => rec.AgrId == 3457).First();
                     wordApp.ProcessConsumer(template, cust, AgrM3, licAgr83);
 
                     break;

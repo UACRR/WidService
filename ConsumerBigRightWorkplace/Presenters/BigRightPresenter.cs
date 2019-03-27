@@ -1,43 +1,39 @@
-﻿using System;
+﻿using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
-using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-namespace ConsumerWorkplace_v_1._0.Presenters
+namespace ConsumerBigRightWorkplace.Presenters
 {
     class BigRightPresenter : IUpdateProviderBigRight
     {
         private const string AddNewConsumerSuccess = "Нового користувача додано!";
         private const string AddNewConsumerError = "Не вдалося додати нового користувача!";
 
-        private CabinetBigRightForm _localcabinetBigRightForm = null;
+        private CabinetBigRightForm _localcabinetBigRightForm;
         private CabinetBigRightForm _cabinetBigRightForm => _localcabinetBigRightForm ?? ( _localcabinetBigRightForm = new CabinetBigRightForm());
 
-        private readonly ConsumerService _service;
+        private readonly ConsumerBigRightService _service;
         private readonly PartnerService _partnerService;
         private readonly ConsumersViewBigRightControl _mainGrid;
 
         private ConsumerFilterEnum _currentNodeValue = ConsumerFilterEnum.None;
         private TypeBRDocument _currentNodeDocType = TypeBRDocument.None;
 
-        public BigRightPresenter(ConsumerService service, PartnerService partnerService, RadTreeView treeView, ConsumersViewBigRightControl mainGrid)
+        public BigRightPresenter(RadTreeView treeView, ConsumersViewBigRightControl mainGrid)
         {
-            _service = service;
-            _partnerService = partnerService;
+            _service = ConsumerBigRightService.GetInstance();
+            _partnerService = PartnerService.GetInstance();
             _mainGrid = mainGrid;
             treeView.SelectedNodeChanged += TreeView_SelectedNodeChanged;
             SubscribeEvents();
@@ -56,15 +52,6 @@ namespace ConsumerWorkplace_v_1._0.Presenters
         {
             _cabinetBigRightForm.cabinet.GetCustomer += DataNeed_GetCustomer;
             _cabinetBigRightForm.cabinet.UpdateAllViews += UpdateAllViews;
-
-            //_cabinetBigRightForm.cabinet.GetGeneralAgreementView += DataNeed_GetGeneralAgreementView;
-            //_cabinetBigRightForm.cabinet.GetLicenseAgreementView += DataNeed_GetLicenseAgreementView;
-            //_cabinetBigRightForm.cabinet.GetAuthorsForLicenseView += DataNeed_GetAuthorsForLicenseView;
-            //_cabinetBigRightForm.cabinet.GetRatedListMainView += DataNeed_GetRatedListMainView;
-            //_cabinetBigRightForm.cabinet.GetRatedListSpectacleView += DataNeed_GetRatedListSpectacleView;
-            //_cabinetBigRightForm.cabinet.GetReferenceView += DataNeed_GetReferenceView;
-            //_cabinetBigRightForm.cabinet.GetRequestsView += DataNeed_GetRequestsView;
-            //_cabinetBigRightForm.cabinet.GetMusicDesignView += DataNeed_GetMusicDesignView;
 
             _cabinetBigRightForm.cabinet.OnSaveCustomerNeed += SaveCustomer;
             _cabinetBigRightForm.cabinet.OnAddNewDocument += AddNewDocument;
@@ -120,54 +107,11 @@ namespace ConsumerWorkplace_v_1._0.Presenters
             return _service.DeleteFileById(id);
         }
 
-        #region * * * ОТРИМАННЯ ДАНИХ VIEW * * * 
 
         private Customer DataNeed_GetCustomer(int custId)
         {
             return _service.GetData(custId);
         }
-
-        //private List<GeneralAgreementBigRightView> DataNeed_GetGeneralAgreementView(int custId)
-        //{
-        //    return _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", custId).ToListOfType<GeneralAgreementBigRightView>();
-        //}
-
-        //private List<LicenseAgreementBigRightView> DataNeed_GetLicenseAgreementView(int custId)
-        //{
-        //    return _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", custId).ToListOfType<LicenseAgreementBigRightView>();
-        //}
-
-        //private List<RequestsOrReferenceBigRightView> DataNeed_GetRequestsView(int custId)
-        //{
-        //    return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", custId).ToListOfType<RequestsOrReferenceBigRightView>();
-        //}
-
-        //private List<RequestsOrReferenceBigRightView> DataNeed_GetReferenceView(int custId)
-        //{
-        //    return _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", custId).ToListOfType<RequestsOrReferenceBigRightView>(); // - - - довідки   
-        //}
-
-        //private List<RatedListBigRightView> DataNeed_GetRatedListMainView(int custId)
-        //{
-        //    return _service.getBRView(typeof(RatedListBigRightView), "vTSK_1_BRRegister", custId).ToListOfType<RatedListBigRightView>();
-        //}
-
-        //private List<RatedListSpectacleBigRightView> DataNeed_GetRatedListSpectacleView(int custId)
-        //{
-        //    return _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
-        //}
-
-        //private List<AuthorsForLicenseBigRightView> DataNeed_GetAuthorsForLicenseView(int custId)
-        //{
-        //    return _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", custId).ToListOfType<AuthorsForLicenseBigRightView>();
-        //}
-
-        //private List<RatedListMusicDesignBigRightView> DataNeed_GetMusicDesignView(int custId)
-        //{
-        //    return _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();
-        //}
-
-        #endregion
 
         //зміна даних по фільтру
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)

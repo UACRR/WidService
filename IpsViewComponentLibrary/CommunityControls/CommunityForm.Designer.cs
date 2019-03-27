@@ -111,7 +111,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvCommunityName.Location = new System.Drawing.Point(134, 5);
             this.pvCommunityName.Name = "pvCommunityName";
             this.pvCommunityName.Size = new System.Drawing.Size(872, 498);
-            this.pvCommunityName.Text = "Спільнота";
+            this.pvCommunityName.Text = "Товариство";
             // 
             // txtIpi
             // 
@@ -355,7 +355,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "Створити нову Спільноту";
+            this.Text = "Створити нове товариство";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
