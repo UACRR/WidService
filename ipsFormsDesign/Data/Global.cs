@@ -22,7 +22,16 @@ namespace ipsFormsDesign.Data
         public static AnketaDictionaties AnketaDictionaties { get; private set; }
         public static ObjectRightDictionaries ObjectRightDictionaries { get; private set; }
         public static Dictionary<Type, object> Instances { get; private set; } = new Dictionary<Type, object>();
+        public static Dictionary<string, object> Properties { get; private set; } = new Dictionary<string, object>();
 
+        
+        public static object GetProperty( string name )
+        {
+            if (Properties.Keys.Contains(name))
+                return Properties[name];
+
+            return null;
+        }
         // Додати екземпляр до довідника типів
         public static void addInstance( Type id, object instance )
         {
