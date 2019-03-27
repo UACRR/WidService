@@ -150,9 +150,9 @@ namespace sysAdminwp
                     view.Add(new ViewTable
                     {
                         Code = item.CodeI.ToString(),
-                        NameUk = item.DictTrI?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                        NameRu = item.DictTrI?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                        NameEn = item.DictTrI?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                        NameUk = item.DictTrI?.SingleOrDefault(i => i?.Lang.TrimEnd() == "Uk")?.Name ?? item.Name,
+                        NameRu = item.DictTrI?.SingleOrDefault(i => i?.Lang.TrimEnd() == "Ru")?.Name,
+                        NameEn = item.DictTrI?.SingleOrDefault(i => i?.Lang.TrimEnd() == "En")?.Name,
                     });
                 }
             }
