@@ -204,8 +204,12 @@ namespace sysAdminwp
                     bool result = _connector.NewItem(Url, dataI);
 
                     gvDictionariesList.DataSource = GetData();
+                    //select last item(new) into grid
+                    gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[gvDictionariesList.RowCount - 1] :
+                                                             gvDictionariesList.Rows[0];
                     UpdateEditPanel();
                     ChangeEnableElementsWhenAdd(true);
+                    
                 }
                 catch (Exception e)
                 {
@@ -279,9 +283,9 @@ namespace sysAdminwp
                 {
                     var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
                     txtCode.Text = item?.CodeI.ToString();
-                    txtNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                    txtNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                    txtNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                    txtNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "Uk")?.Name;
+                    txtNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "Ru")?.Name;
+                    txtNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "En")?.Name;
                 }
             }
             else
@@ -499,8 +503,8 @@ namespace sysAdminwp
                 }
             }
 
-            //set last row focus
-            SetLstCurs();
+            ////set last row focus
+            //SetLstCurs();
         }
 
         //кнопка відміни внесених змін

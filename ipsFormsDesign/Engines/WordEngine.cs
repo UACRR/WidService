@@ -2287,17 +2287,17 @@ namespace ipsFormsDesign.Services
                 curRow = table.Rows.Add();
                 curRow.Cells[1].Range.Text = index.ToString();
                 index++;
-
+           
                 curRow.Cells[2].Range.Text = places.PlaceName;
 //                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
                 curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
            + places.PlaceCity + "," + places.PlaceAddress;
                 foreach (var place in item.ClnPlaceHoll)
                 {
-
                     curRow = table.Rows.Add();
                     curRow.Cells[4].Range.Text = place.HollName;
-                    curRow.Cells[5].Range.Text =  Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0").ToString();
+                                     
+                    curRow.Cells[5].Range.Text = (place?.ValueAdd ?? place?.ValuePlace ?? "0");
 
                 }               
             }
@@ -2336,7 +2336,7 @@ namespace ipsFormsDesign.Services
 
                     curRow = table.Rows.Add();
                     curRow.Cells[5].Range.Text = place.HollName;
-                    curRow.Cells[6].Range.Text = Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0").ToString();
+                    curRow.Cells[6].Range.Text = place?.ValueAdd ?? place?.ValuePlace ?? "0";
 
                 }
             }
