@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -20,16 +22,20 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerByIdEventHandler UpdateCustomer;
-        public event ReturnFullViewEventHandler<CommunityAuthorsView> GetAutorsList;
         public event ReturnFullViewEventHandler<CommunityAuthorsView> UpdateAutorsList;
         public event GetCommunityRightList GetCommunityRightList;
         public event SaveLimitedRightEventHandler<CustCmRight> SaveLimitedRights; 
 
         private Customer _customer;
+        private readonly CommunityViewsPresenter _presenter;
+
+        protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public CommunityCabinetForm(Customer customer, List<CommunityAuthorsView> list)
         {
             InitializeComponent();
+            if (!IsDesignMode)
+                _presenter = new CommunityViewsPresenter();
             WindowState = FormWindowState.Maximized;
             _customer = customer;
             bsCommunityAuthorsView.DataSource = list;
@@ -168,12 +174,21 @@ namespace IpsViewComponentLibrary.CommunityControls
         }
 
         //додати автора
-        private void btnAddCommunity_Click(object sender, EventArgs e)
+        private async void btnAddCommunity_Click(object sender, EventArgs e)
         {
-            var autorsList = GetAutorsList?.Invoke().DistinctBy(rec => rec.CustId).ToList();
+            var query = new RightholdersQuery
+            {
+                SearchText = string.Empty,
+                Page = 1,
+                PageSize = 200,
+            };
+            waitingBar.StartWaiting();
+            var result = await _presenter.GetAllAutorsView(query);
+            var autorsList = result.List.DistinctBy(rec => rec.CustId).ToList();
             var addAuthorForm = new CommunityAddAuthorForm(autorsList, _customer.CustId);
+            addAuthorForm.UpdateTotalPages(result.TotalItems);
             addAuthorForm.GetCommunityRightList += AddAutorForm_GetCommunityRightList;
-
+            waitingBar.StopWaiting();
             if (addAuthorForm.ShowDialog() == DialogResult.OK)
             {
                 SaveChanges(addAuthorForm.AuthorId, addAuthorForm.LimitRights);

@@ -159,6 +159,7 @@
       <DependentUpon>CommunityRightLimitationControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CommunityControls\InternalModel\RightLimitationsView.cs" />
+    <Compile Include="CommunityControls\Presenters\CommunityViewsPresenter.cs" />
     <Compile Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

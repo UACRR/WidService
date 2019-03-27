@@ -15,16 +15,34 @@ namespace ipsFormsDesign.Services
 {
     public class CommunityService
     {
-        private readonly ApiConnector _webApi = new ApiConnector();
+        private readonly ApiConnector _webApi;
         private readonly string _prefix = "community/";
+
+        private static CommunityService _service;
+
+        private CommunityService()
+        {
+            _webApi = new ApiConnector();
+        }
+
+        public static CommunityService GetInstance()
+        {
+            if (_service == null)
+                _service = new CommunityService();
+            return _service;
+        }
 
         /// <summary>
         /// Отримати VIEW у вигляді списку елементів 
         /// </summary>
-        /// <typeparam name="T">Бажаний тип</typeparam>
-        /// <param name="nameView">назва View</param>
-        /// <returns>необхідна View</returns>
-        public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null, string columnName = null) where T:class
+        /// <typeparam name="T"></typeparam>
+        /// <param name="typeResult"></param>
+        /// <param name="viewName"></param>
+        /// <param name="paramId"></param>
+        /// <param name="columnName"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null, string columnName = null) where T : class
         {
             string url = _prefix + "list/view";
             List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>>
@@ -33,6 +51,7 @@ namespace ipsFormsDesign.Services
                 new KeyValuePair<string, string>("paramId", paramId.ToString()),
                 new KeyValuePair<string, string>("columnName", columnName),
             };
+
             //if (paramId != null)
             var list = _webApi.GetTypedList(typeResult, url, param.ToArray());
 
@@ -40,6 +59,21 @@ namespace ipsFormsDesign.Services
             foreach (var temp in list)
                 typeList.Add(temp as T);
             return typeList;
+        }
+
+        /// <summary>
+        /// Отримати VIEW списку правовласників 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="viewName"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        public T GetCommunityAuthorsView<T>(string viewName, RightholdersQuery query) where T : class
+        {
+            string url = string.Concat(_prefix, $"list/rhview/{viewName}");
+
+            var result = _webApi.GetItemByIdWithParam<T>(url, null, query.ToKeyValuePair());
+            return result;
         }
 
         /// <summary>
@@ -91,7 +125,5 @@ namespace ipsFormsDesign.Services
             var result = _webApi.UpdateItem<object>(url, null, null);
             return result;
         }
-
-
     }
 }

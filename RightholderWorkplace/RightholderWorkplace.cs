@@ -37,12 +37,12 @@ namespace RightholderWorkplace
         public RightholderWorkplace()
         {
             InitializeComponent();
-
+            WindowState = FormWindowState.Maximized;
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             //RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
-            var _communityService = new CommunityService();
+            var _communityService = CommunityService.GetInstance();
             _communityPresenter = new CommunityPresenter(_communityService, ctrlCommunity);
 
             var copyrightRequestPresenter = new CopyrightRequestPresenter(ctrlCopyrightRequests, _rightholderService);

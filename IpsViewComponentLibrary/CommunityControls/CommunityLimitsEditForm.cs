@@ -17,7 +17,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            panelHeader.PanelElement.PanelBorder.BottomColor = Color.Transparent;
+            panelHeader.PanelElement.PanelBorder.Width = 0f;
 
             bsHeaderCommunityAuthorsView.DataSource = view;
             ctrlRightLimitation.SetData(view, custCmRights, communityCustId);

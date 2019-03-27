@@ -11,6 +11,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.CommunityControls.InternalModel;
+using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -18,6 +19,7 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityAddAuthorForm : RadForm
     {
+        private readonly CommunityViewsPresenter _presenter;
         private readonly int _communityCustId;
 
         public List<CustCmRight> LimitRights => ctrlRightLimitation.LimitRights;
@@ -26,14 +28,18 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         public event GetCommunityRightList GetCommunityRightList;
 
+        protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+
         public CommunityAddAuthorForm(List<CommunityAuthorsView> autorList, int communityCustId)
         {
             InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen;
+            if (!IsDesignMode)
+                _presenter = new CommunityViewsPresenter();
+            WindowState = FormWindowState.Maximized;
+            parentGridPanel.PanelElement.PanelBorder.Width = 0f;
             btnSave.Enabled = false;
 
             ctrlRightLimitation.ValueEdit += CtrlRightLimitation_ValueEdit;
-            ctrlSearch.SetUsageGrid(gvViewAutors);
             _communityCustId = communityCustId;
             bsCommunityAuthorsView.DataSource = autorList;
         }
@@ -41,7 +47,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void CtrlRightLimitation_ValueEdit(object sender, EventArgs e)
         {
             btnSave.Enabled = true;
-            ctrlSearch.Enabled = false;
+            txtSearch.Enabled = false;
             gvViewAutors.Enabled = false;
         }
 
@@ -59,6 +65,54 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             var rightList = GetCommunityRightList?.Invoke(item.CustId);
             ctrlRightLimitation.SetData(item, rightList, _communityCustId);
+        }
+
+        private void timerSearch_Tick(object sender, EventArgs e)
+        {
+            timerSearch.Stop();
+            navigatorPanel.CurrentPage = 1;
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            timerSearch.Stop();
+            timerSearch.Start();
+        }
+
+        private void navigatorPanel_CurrentPageChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void navigatorPanel_PageSizeChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        public async void UpdateList()
+        {
+            waitingBar.StartWaiting();
+
+            var query = new RightholdersQuery();
+
+            query.Page = navigatorPanel.CurrentPage;
+            query.PageSize = navigatorPanel.PageSize;
+
+            if (!string.IsNullOrWhiteSpace(txtSearch.Text))
+                query.SearchText = txtSearch.Text;
+
+            //var result = await _presenter.GetAllAutorsView(query2);
+            var result = await _presenter.GetAllAutorsView(query);
+            bsCommunityAuthorsView.DataSource = result.List;
+
+            navigatorPanel.TotalPages = (int)Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
+
+            waitingBar.StopWaiting();
+        }
+
+        public void UpdateTotalPages(double totalItems)
+        {
+            navigatorPanel.TotalPages = (int)Math.Ceiling(totalItems / navigatorPanel.PageSize);
         }
     }
 }
