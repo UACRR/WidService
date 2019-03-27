@@ -204,8 +204,12 @@ namespace sysAdminwp
                     bool result = _connector.NewItem(Url, dataI);
 
                     gvDictionariesList.DataSource = GetData();
+                    //select last item(new) into grid
+                    gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[gvDictionariesList.RowCount - 1] :
+                                                             gvDictionariesList.Rows[0];
                     UpdateEditPanel();
                     ChangeEnableElementsWhenAdd(true);
+                    
                 }
                 catch (Exception e)
                 {
@@ -499,8 +503,8 @@ namespace sysAdminwp
                 }
             }
 
-            //set last row focus
-            SetLstCurs();
+            ////set last row focus
+            //SetLstCurs();
         }
 
         //кнопка відміни внесених змін
