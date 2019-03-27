@@ -334,5 +334,15 @@ namespace IpsViewComponentLibrary.RightholderControls
         }
 
         #endregion
+
+        private void navigatorPanelControl1_CurrentPageChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void navigatorPanelControl1_PageSizeChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
