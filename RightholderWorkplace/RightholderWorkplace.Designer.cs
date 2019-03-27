@@ -81,6 +81,9 @@ namespace RightholderWorkplace
             this.rightholdersPageView = new Telerik.WinControls.UI.RadPageView();
             this.rightholdersPage = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlRightholderList = new IpsViewComponentLibrary.RightholderControls.RightholderListControl();
+            this.ddbNewRightholder = new Telerik.WinControls.UI.RadDropDownButton();
+            this.miNewRightholderPerson = new Telerik.WinControls.UI.RadMenuItem();
+            this.miNewRigthholderCompany = new Telerik.WinControls.UI.RadMenuItem();
             this.rightholdersChangePage = new Telerik.WinControls.UI.RadPageViewPage();
             this.radSplitContainer3 = new Telerik.WinControls.UI.RadSplitContainer();
             this.splitPanel5 = new Telerik.WinControls.UI.SplitPanel();
@@ -108,9 +111,6 @@ namespace RightholderWorkplace
             this.MainPageView = new Telerik.WinControls.UI.RadPageView();
             this.radPageViewPage1 = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCommunity = new IpsViewComponentLibrary.CommunityControls.CommunityControl();
-            this.miNewRightholderPerson = new Telerik.WinControls.UI.RadMenuItem();
-            this.miNewRigthholderCompany = new Telerik.WinControls.UI.RadMenuItem();
-            this.ddbNewRightholder = new Telerik.WinControls.UI.RadDropDownButton();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectRightForTransfering)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvChangeCopyrightsTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsObjectCopyright)).BeginInit();
@@ -134,6 +134,7 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.rightholdersPageView)).BeginInit();
             this.rightholdersPageView.SuspendLayout();
             this.rightholdersPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ddbNewRightholder)).BeginInit();
             this.rightholdersChangePage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer3)).BeginInit();
             this.radSplitContainer3.SuspendLayout();
@@ -161,7 +162,6 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).BeginInit();
             this.MainPageView.SuspendLayout();
             this.radPageViewPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddbNewRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -401,6 +401,7 @@ namespace RightholderWorkplace
             // 
             // radDropDownButton1
             // 
+            this.radDropDownButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radDropDownButton1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItem3});
             this.radDropDownButton1.Location = new System.Drawing.Point(0, 601);
@@ -480,6 +481,34 @@ namespace RightholderWorkplace
             this.ctrlRightholderList.Size = new System.Drawing.Size(1173, 561);
             this.ctrlRightholderList.TabIndex = 5;
             this.ctrlRightholderList.RightholderSelected += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderList_RightholderSelected);
+            // 
+            // ddbNewRightholder
+            // 
+            this.ddbNewRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.ddbNewRightholder.Items.AddRange(new Telerik.WinControls.RadItem[] {
+            this.miNewRightholderPerson,
+            this.miNewRigthholderCompany});
+            this.ddbNewRightholder.Location = new System.Drawing.Point(1, 571);
+            this.ddbNewRightholder.Name = "ddbNewRightholder";
+            this.ddbNewRightholder.Size = new System.Drawing.Size(132, 24);
+            this.ddbNewRightholder.TabIndex = 4;
+            this.ddbNewRightholder.Text = "Додати";
+            this.ddbNewRightholder.ThemeName = "Office2013Light";
+            // 
+            // miNewRightholderPerson
+            // 
+            this.miNewRightholderPerson.Name = "miNewRightholderPerson";
+            this.miNewRightholderPerson.Text = "Фізична особа";
+            this.miNewRightholderPerson.UseCompatibleTextRendering = false;
+            this.miNewRightholderPerson.Click += new System.EventHandler(this.miNewRightholderPerson_Click);
+            // 
+            // miNewRigthholderCompany
+            // 
+            this.miNewRigthholderCompany.EnableBorderHighlight = false;
+            this.miNewRigthholderCompany.Name = "miNewRigthholderCompany";
+            this.miNewRigthholderCompany.Text = "Юридична особа";
+            this.miNewRigthholderCompany.UseCompatibleTextRendering = false;
+            this.miNewRigthholderCompany.Click += new System.EventHandler(this.miNewRigthholderCompany_Click);
             // 
             // rightholdersChangePage
             // 
@@ -886,34 +915,6 @@ namespace RightholderWorkplace
             this.ctrlCommunity.Size = new System.Drawing.Size(1182, 632);
             this.ctrlCommunity.TabIndex = 0;
             // 
-            // miNewRightholderPerson
-            // 
-            this.miNewRightholderPerson.Name = "miNewRightholderPerson";
-            this.miNewRightholderPerson.Text = "Фізична особа";
-            this.miNewRightholderPerson.UseCompatibleTextRendering = false;
-            this.miNewRightholderPerson.Click += new System.EventHandler(this.miNewRightholderPerson_Click);
-            // 
-            // miNewRigthholderCompany
-            // 
-            this.miNewRigthholderCompany.EnableBorderHighlight = false;
-            this.miNewRigthholderCompany.Name = "miNewRigthholderCompany";
-            this.miNewRigthholderCompany.Text = "Юридична особа";
-            this.miNewRigthholderCompany.UseCompatibleTextRendering = false;
-            this.miNewRigthholderCompany.Click += new System.EventHandler(this.miNewRigthholderCompany_Click);
-            // 
-            // ddbNewRightholder
-            // 
-            this.ddbNewRightholder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.ddbNewRightholder.Items.AddRange(new Telerik.WinControls.RadItem[] {
-            this.miNewRightholderPerson,
-            this.miNewRigthholderCompany});
-            this.ddbNewRightholder.Location = new System.Drawing.Point(1, 571);
-            this.ddbNewRightholder.Name = "ddbNewRightholder";
-            this.ddbNewRightholder.Size = new System.Drawing.Size(132, 24);
-            this.ddbNewRightholder.TabIndex = 4;
-            this.ddbNewRightholder.Text = "Додати";
-            this.ddbNewRightholder.ThemeName = "Office2013Light";
-            // 
             // RightholderWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -952,6 +953,7 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.rightholdersPageView)).EndInit();
             this.rightholdersPageView.ResumeLayout(false);
             this.rightholdersPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ddbNewRightholder)).EndInit();
             this.rightholdersChangePage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer3)).EndInit();
             this.radSplitContainer3.ResumeLayout(false);
@@ -982,7 +984,6 @@ namespace RightholderWorkplace
             ((System.ComponentModel.ISupportInitialize)(this.MainPageView)).EndInit();
             this.MainPageView.ResumeLayout(false);
             this.radPageViewPage1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ddbNewRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
