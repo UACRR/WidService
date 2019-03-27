@@ -2200,7 +2200,7 @@ namespace ipsFormsDesign.Services
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
             Row curRow = null;
             int index = 1;
-            int PlaceHollValue;
+            string PlaceHollValue;
             foreach (var item in BuisnessPlace)
             {
                 places = item;
@@ -2214,13 +2214,16 @@ namespace ipsFormsDesign.Services
                     + places.PlaceCity + "," + places.PlaceAddress;
 
 
-                PlaceHollValue = 0;
+                PlaceHollValue = string.Empty  ;
                 foreach (var place in item.ClnPlaceHoll)
                 {
-                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
-                    //curRow.Cells[5].Range.Text = place.HollNum.ToString();
+                    if (place.ValueAdd == null)
+                        PlaceHollValue = place?.ValuePlace ?? "";
+                    else
+                        PlaceHollValue = place.ValueAdd;
+                    
                 }
-                curRow.Cells[4].Range.Text = PlaceHollValue.ToString();
+                curRow.Cells[4].Range.Text = PlaceHollValue;
             }
         }
         private void FormTablePl2(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
@@ -2238,7 +2241,8 @@ namespace ipsFormsDesign.Services
 
             Row curRow = null;
             int index = 1;
-            int PlaceHollValue;
+            string PlaceHollValue;
+            PlaceHollValue = string.Empty;
             foreach (var item in BuisnessPlace)
             {
                 places = item;
@@ -2251,13 +2255,16 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[2].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
                 curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
            + places.PlaceCity + "," + places.PlaceAddress;
-                PlaceHollValue = 0;
+                PlaceHollValue = string.Empty;
                 foreach (var place in item.ClnPlaceHoll)
                 {
-                    PlaceHollValue = PlaceHollValue + Int32.Parse(place?.ValueAdd ?? place?.ValuePlace ?? "0");
+                    if (place.ValueAdd == null)
+                        PlaceHollValue = place?.ValuePlace ?? "";
+                    else
+                        PlaceHollValue = place.ValueAdd;
 
                 }
-                curRow.Cells[5].Range.Text = PlaceHollValue.ToString();
+                curRow.Cells[5].Range.Text = PlaceHollValue;
 
 
             }
@@ -2296,9 +2303,12 @@ namespace ipsFormsDesign.Services
                 {
                     curRow = table.Rows.Add();
                     curRow.Cells[4].Range.Text = place.HollName;
-                                     
-                    curRow.Cells[5].Range.Text = (place?.ValueAdd ?? place?.ValuePlace ?? "0");
 
+                    if (place.ValueAdd == null)
+                        curRow.Cells[5].Range.Text = place?.ValuePlace ?? "";
+                    else
+                        curRow.Cells[5].Range.Text = place.ValueAdd;
+                    
                 }               
             }
         }
@@ -2335,8 +2345,11 @@ namespace ipsFormsDesign.Services
                 {
 
                     curRow = table.Rows.Add();
-                    curRow.Cells[5].Range.Text = place.HollName;
-                    curRow.Cells[6].Range.Text = place?.ValueAdd ?? place?.ValuePlace ?? "0";
+                    curRow.Cells[5].Range.Text = place.HollName;                    
+                    if (place.ValueAdd == null)
+                        curRow.Cells[6].Range.Text = place?.ValuePlace ?? "";
+                    else
+                        curRow.Cells[6].Range.Text = place.ValueAdd;
 
                 }
             }
