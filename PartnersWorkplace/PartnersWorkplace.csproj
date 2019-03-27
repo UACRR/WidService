@@ -37,7 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ipsFormsDesign">
-      <HintPath>..\ipsFormsDesign\bin\Debug HttpSys\ipsFormsDesign.dll</HintPath>
+      <HintPath>..\ipsFormsDesign\bin\Debug\ipsFormsDesign.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
