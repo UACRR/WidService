@@ -328,7 +328,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(261, 35);
             this.radLabel7.TabIndex = 6;
-            this.radLabel7.Text = "від сум, отриманих ДО УААСП для Автора";
+            this.radLabel7.Text = "від сум, отриманих Підприємством для Автора";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
             // radLabel13

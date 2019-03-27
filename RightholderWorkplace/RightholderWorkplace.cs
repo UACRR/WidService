@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Dictionary;
+﻿using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
@@ -37,9 +38,11 @@ namespace RightholderWorkplace
         public RightholderWorkplace()
         {
             InitializeComponent();
+
+            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwner()?.Name);
+
             WindowState = FormWindowState.Maximized;
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
-            //RadGridLocalizationProvider.CurrentProvider = new RadGridViewUkraineLocalizationProvider();
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
             var _communityService = CommunityService.GetInstance();
