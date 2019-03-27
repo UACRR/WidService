@@ -22,8 +22,8 @@ namespace IpsViewComponentLibrary.CommunityControls
         private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
-        public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
-        public event ReturnViewEventHandler<CommunityAutorsListView> GetCommunityAutorsList;
+        public event ReturnFullViewEventHandler<CommunityAuthorsView> GetAutorsList;
+        public event ReturnViewEventHandler<CommunityAuthorsView> GetCommunityAutorsList;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerEventHandler GetTemplateCommunity;
         public event GetCustomerByIdEventHandler GetCommunity;
@@ -106,7 +106,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             cabinetForm.Show();
         }
 
-        private List<CommunityAutorsListView> CabinetForm_UpdateAutorsList()
+        private List<CommunityAuthorsView> CabinetForm_UpdateAutorsList()
         {
             if (gvViewPartners.CurrentRow.DataBoundItem is CommunityListView item)
                 return GetCommunityAutorsList?.Invoke(item.CustId);
@@ -123,7 +123,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             return GetCommunityRightList?.Invoke(custId);
         }
 
-        private List<CommunityAutorsListView> CabinetForm_GetAutorsList()
+        private List<CommunityAuthorsView> CabinetForm_GetAutorsList()
         {
             return GetAutorsList?.Invoke();
         }

@@ -41,6 +41,7 @@
             this.radLabel16 = new Telerik.WinControls.UI.RadLabel();
             this.gvViewClientsOfPartner = new Telerik.WinControls.UI.RadGridView();
             this.btnDetach = new Telerik.WinControls.UI.RadButton();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddClient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblPartnerName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel16)).BeginInit();
@@ -226,5 +227,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel16;
         private Telerik.WinControls.UI.RadGridView gvViewClientsOfPartner;
         private Telerik.WinControls.UI.RadButton btnDetach;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }

@@ -78,14 +78,14 @@ namespace RightholderWorkplace.Presenters
             return _service.GetTemplateComunity();
         }
 
-        private List<CommunityAutorsListView> GetCommunityAutorsView(int cmId)
+        private List<CommunityAuthorsView> GetCommunityAutorsView(int cmId)
         {
-            return _service.GetView<CommunityAutorsListView>(typeof(CommunityAutorsListView), "vTsk_1_ListRHCommunity", cmId, "cmCustId");
+            return _service.GetView<CommunityAuthorsView>(typeof(CommunityAuthorsView), "vTsk_1_ListRHCommunity", cmId, "cmCustId");
         }
 
-        private List<CommunityAutorsListView> GetAllAutorsView()
+        private List<CommunityAuthorsView> GetAllAutorsView()
         {
-            return _service.GetView<CommunityAutorsListView>(typeof(CommunityAutorsListView), "vTsk_1_ListRHCommunity");
+            return _service.GetView<CommunityAuthorsView>(typeof(CommunityAuthorsView), "vTsk_1_ListRHCommunity");
         }
     }
 }

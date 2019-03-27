@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.Common;
+﻿using System.Drawing;
+using IpsViewComponentLibrary.Common;
 using IpsViewComponentLibrary.Shared.Controls;
 
 namespace IpsViewComponentLibrary.CommunityControls
@@ -40,6 +41,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewHyperlinkColumn gridViewHyperlinkColumn1 = new Telerik.WinControls.UI.GridViewHyperlinkColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageViewMain = new Telerik.WinControls.UI.RadPageView();
@@ -81,6 +83,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvAutorsData = new Telerik.WinControls.UI.RadPageViewPage();
             this.btnLimitationRight = new Telerik.WinControls.UI.RadButton();
             this.gvViewAutors = new Telerik.WinControls.UI.RadGridView();
+            this.bsCommunityAuthorsView = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.pvReportsData = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvFilesData = new Telerik.WinControls.UI.RadPageViewPage();
@@ -116,6 +119,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             ((System.ComponentModel.ISupportInitialize)(this.btnLimitationRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityAuthorsView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -520,7 +524,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // btnLimitationRight
             // 
             this.btnLimitationRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLimitationRight.Location = new System.Drawing.Point(0, 476);
+            this.btnLimitationRight.Location = new System.Drawing.Point(0, 473);
             this.btnLimitationRight.Name = "btnLimitationRight";
             this.btnLimitationRight.Size = new System.Drawing.Size(220, 24);
             this.btnLimitationRight.TabIndex = 14;
@@ -551,6 +555,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             gridViewTextBoxColumn1.HeaderText = "ID";
             gridViewTextBoxColumn1.IsVisible = false;
             gridViewTextBoxColumn1.Name = "CustId";
+            gridViewTextBoxColumn2.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn2.FieldName = "CmCustId";
             gridViewTextBoxColumn2.HeaderText = "cmID";
             gridViewTextBoxColumn2.IsVisible = false;
@@ -576,7 +581,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             gridViewTextBoxColumn5.HeaderText = "Правовласник";
             gridViewTextBoxColumn5.MinWidth = 80;
             gridViewTextBoxColumn5.Name = "Name";
-            gridViewTextBoxColumn5.Width = 485;
+            gridViewTextBoxColumn5.Width = 456;
+            gridViewTextBoxColumn6.DataType = typeof(System.DateTime);
             gridViewTextBoxColumn6.FieldName = "RegistrDate";
             gridViewTextBoxColumn6.FormatString = "{0:d}";
             gridViewTextBoxColumn6.HeaderText = "Дата народження/ Дата створення";
@@ -586,6 +592,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             gridViewTextBoxColumn6.Name = "RegistrDate";
             gridViewTextBoxColumn6.Width = 120;
             gridViewTextBoxColumn6.WrapText = true;
+            gridViewHyperlinkColumn1.DataType = typeof(int);
             gridViewHyperlinkColumn1.FieldName = "CntObj";
             gridViewHyperlinkColumn1.HeaderText = "К-сть об\'єктів";
             gridViewHyperlinkColumn1.MaxWidth = 60;
@@ -594,6 +601,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             gridViewHyperlinkColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewHyperlinkColumn1.Width = 60;
             gridViewHyperlinkColumn1.WrapText = true;
+            gridViewTextBoxColumn7.DataType = typeof(decimal);
             gridViewTextBoxColumn7.FieldName = "YearProfit";
             gridViewTextBoxColumn7.HeaderText = "Дохід з початку року";
             gridViewTextBoxColumn7.MaxWidth = 90;
@@ -601,6 +609,15 @@ namespace IpsViewComponentLibrary.CommunityControls
             gridViewTextBoxColumn7.Name = "YearProfit";
             gridViewTextBoxColumn7.Width = 90;
             gridViewTextBoxColumn7.WrapText = true;
+            gridViewCommandColumn1.FieldName = "btnsEdit";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "btnsEdit";
+            gridViewCommandColumn1.Width = 30;
             this.gvViewAutors.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -609,7 +626,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             gridViewTextBoxColumn5,
             gridViewTextBoxColumn6,
             gridViewHyperlinkColumn1,
-            gridViewTextBoxColumn7});
+            gridViewTextBoxColumn7,
+            gridViewCommandColumn1});
+            this.gvViewAutors.MasterTemplate.DataSource = this.bsCommunityAuthorsView;
             this.gvViewAutors.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewAutors.MasterTemplate.EnableFiltering = true;
             this.gvViewAutors.MasterTemplate.EnableGrouping = false;
@@ -617,10 +636,15 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.gvViewAutors.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewAutors.Name = "gvViewAutors";
             this.gvViewAutors.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewAutors.Size = new System.Drawing.Size(966, 440);
+            this.gvViewAutors.Size = new System.Drawing.Size(966, 437);
             this.gvViewAutors.TabIndex = 12;
             this.gvViewAutors.ThemeName = "Office2013Light";
             this.gvViewAutors.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewAutors_CellDoubleClick);
+            this.gvViewAutors.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewAutors_CommandCellClick);
+            // 
+            // bsCommunityAuthorsView
+            // 
+            this.bsCommunityAuthorsView.DataSource = typeof(ipsFormsDesign.Interfaces.CommunityAuthorsView);
             // 
             // ctrlSearch
             // 
@@ -698,6 +722,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             ((System.ComponentModel.ISupportInitialize)(this.btnLimitationRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityAuthorsView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -748,5 +773,6 @@ namespace IpsViewComponentLibrary.CommunityControls
         private Telerik.WinControls.UI.RadTextBox txtIpi;
         private Telerik.WinControls.UI.RadLabel radLabel3;
         private System.Windows.Forms.BindingSource bsCommunity;
+        private System.Windows.Forms.BindingSource bsCommunityAuthorsView;
     }
 }

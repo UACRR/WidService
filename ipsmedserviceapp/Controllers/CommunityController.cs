@@ -58,7 +58,8 @@ namespace ipsmedserviceapp.Controllers
             if (paramId == null)
             {
                 var list = await _dbContext.getViewData(queryStr, null);
-                return Json(list);
+                var data = list.Take(1000);
+                return Json(data);
             }
             else
             {

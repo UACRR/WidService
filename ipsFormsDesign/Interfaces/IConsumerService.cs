@@ -430,7 +430,7 @@ namespace ipsFormsDesign.Interfaces
         public int? CountAuthors { get; set; }
     }
 
-    public class CommunityAutorsListView
+    public class CommunityAuthorsView
     {
         public DateTime RegistrDate { get; set; }
         public int CustId { get; set; }
