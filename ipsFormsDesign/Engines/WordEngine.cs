@@ -164,11 +164,11 @@ namespace ipsFormsDesign.Services
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName}, {anketaPerson.LeCity}, {anketaPerson.LeAddress}, {anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
-                    $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
+                    $"{countries[anketaPerson.ReCountry ?? "804"].CountryName}, {anketaPerson.ReCity}, {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
-                    $"{countries[anketaPerson.FaCountry ?? "804"].CountryName} {anketaPerson.FaCity} {anketaPerson.FaAddress}" : faAddress;
+                    $"{countries[anketaPerson.FaCountry ?? "804"].CountryName}, {anketaPerson.FaCity}, {anketaPerson.FaAddress}" : faAddress;
 
                 phoneHome = anketaPerson.PhoneHome;
                 phoneWork = anketaPerson.PhoneMobileExtra;
@@ -198,11 +198,11 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
+                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName}, {anketaCompany.LeCity}, {anketaCompany.LeAddress}, {anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
-                    $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
+                    $"{countries[anketaCompany.JaCountry ?? "804"].CountryName}, {anketaCompany.JaCity}, {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
-                    $"{countries[anketaCompany.FaCountry ?? "804"].CountryName} {anketaCompany.FaCity} {anketaCompany.FaAddress}" : faAddress;
+                    $"{countries[anketaCompany.FaCountry ?? "804"].CountryName}, {anketaCompany.FaCity}, {anketaCompany.FaAddress}" : faAddress;
                 CstRegNumber = $"{anketaCompany.RegistrNumber}";
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
                 phoneWork = bossEmployee?.Empl.PhoneNumber ?? string.Empty;
@@ -545,11 +545,11 @@ namespace ipsFormsDesign.Services
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName}, {anketaPerson.LeCity}, {anketaPerson.LeAddress}, {anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
-                    $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
+                    $"{countries[anketaPerson.ReCountry ?? "804"].CountryName}, {anketaPerson.ReCity}, {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
-                    $"{countries[anketaPerson.FaCountry ?? "804"].CountryName} {anketaPerson.FaCity} {anketaPerson.FaAddress}" : faAddress;
+                    $"{countries[anketaPerson.FaCountry ?? "804"].CountryName}, {anketaPerson.FaCity}, {anketaPerson.FaAddress}" : faAddress;
 
                 phoneHome = anketaPerson.PhoneHome;
                 phoneWork = anketaPerson.PhoneMobileExtra;
@@ -578,11 +578,11 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
+                    $"{countries[anketaCompany.LeCountry ?? "804"].CountryName}, {anketaCompany.LeCity}, {anketaCompany.LeAddress}, {anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
-                    $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
+                    $"{countries[anketaCompany.JaCountry ?? "804"].CountryName}, {anketaCompany.JaCity}, {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
-                    $"{countries[anketaCompany.FaCountry ?? "804"].CountryName} {anketaCompany.FaCity} {anketaCompany.FaAddress}" : faAddress;
+                    $"{countries[anketaCompany.FaCountry ?? "804"].CountryName}, {anketaCompany.FaCity}, {anketaCompany.FaAddress}" : faAddress;
 
 
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
@@ -1367,11 +1367,11 @@ namespace ipsFormsDesign.Services
             {
                 customerName = $"{anketaPerson.LastName} {anketaPerson.FirstName} {anketaPerson.SurName ?? string.Empty}";
                 leAddress = anketaPerson.LeAddress != null ?
-                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName} ,{anketaPerson.LeCity} ,{anketaPerson.LeAddress} ,{anketaPerson.LePostIndex}" : leAddress;
+                    $"{countries[anketaPerson.LeCountry ?? "804"].CountryName}, {anketaPerson.LeCity}, {anketaPerson.LeAddress}, {anketaPerson.LePostIndex}" : leAddress;
                 reAddress = anketaPerson.ReAddress != null ?
-                    $"{countries[anketaPerson.ReCountry ?? "804"].CountryName} {anketaPerson.ReCity} {anketaPerson.ReAddress}" : reAddress;
+                    $"{countries[anketaPerson.ReCountry ?? "804"].CountryName}, {anketaPerson.ReCity}, {anketaPerson.ReAddress}" : reAddress;
                 faAddress = anketaPerson.FaAddress != null ?
-                    $"{countries[anketaPerson.FaCountry ?? "804"].CountryName} {anketaPerson.FaCity} {anketaPerson.FaAddress}" : faAddress;
+                    $"{countries[anketaPerson.FaCountry ?? "804"].CountryName}, {anketaPerson.FaCity}, {anketaPerson.FaAddress}" : faAddress;
 
                 phoneHome = anketaPerson.PhoneHome;
                 phoneWork = anketaPerson.PhoneMobileExtra;
@@ -1392,11 +1392,11 @@ namespace ipsFormsDesign.Services
             {
                 customerName = anketaCompany.Name;
                 leAddress = anketaCompany.LeAddress != null ?
-                        $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : leAddress;
+                        $"{countries[anketaCompany.LeCountry ?? "804"].CountryName}, {anketaCompany.LeCity}, {anketaCompany.LeAddress}, {anketaCompany.LePostIndex}" : leAddress;
                 reAddress = anketaCompany.JaAddress != null ?
-                    $"{countries[anketaCompany.JaCountry ?? "804"].CountryName} {anketaCompany.JaCity} {anketaCompany.JaAddress}" : reAddress;
+                    $"{countries[anketaCompany.JaCountry ?? "804"].CountryName}, {anketaCompany.JaCity}, {anketaCompany.JaAddress}" : reAddress;
                 faAddress = anketaCompany.FaAddress != null ?
-                    $"{countries[anketaCompany.FaCountry ?? "804"].CountryName} {anketaCompany.FaCity} {anketaCompany.FaAddress}" : faAddress;
+                    $"{countries[anketaCompany.FaCountry ?? "804"].CountryName}, {anketaCompany.FaCity}, {anketaCompany.FaAddress}" : faAddress;
 
 
                 var bossEmployee = cust.Company.RelEmployee.Where(rec => rec.PositionCode == 1).SingleOrDefault();
@@ -2037,7 +2037,7 @@ namespace ipsFormsDesign.Services
 
             CPaidAmountKopText = Utils.NumPhraseL(Convert.ToUInt32(((int)((period?.Amount ?? 0 - period?.Amount ?? 0) * 100))), false);
             CstCorrespAddress = anketaCompany.LeAddress != null ?
-                $"{countries[anketaCompany.LeCountry ?? "804"].CountryName} ,{anketaCompany.LeCity} ,{anketaCompany.LeAddress} ,{anketaCompany.LePostIndex}" : CstCorrespAddress;
+                $"{countries[anketaCompany.LeCountry ?? "804"].CountryName}, {anketaCompany.LeCity}, {anketaCompany.LeAddress}, {anketaCompany.LePostIndex}" : CstCorrespAddress;
 
 
             foreach (ContentControl item in list)
