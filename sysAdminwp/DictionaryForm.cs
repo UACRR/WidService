@@ -279,9 +279,9 @@ namespace sysAdminwp
                 {
                     var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
                     txtCode.Text = item?.CodeI.ToString();
-                    txtNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                    txtNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                    txtNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang == "En")?.Name;
+                    txtNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "Uk")?.Name;
+                    txtNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "Ru")?.Name;
+                    txtNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "En")?.Name;
                 }
             }
             else
