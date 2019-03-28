@@ -136,6 +136,7 @@ namespace sysAdminwp
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gvDictionariesList.EnableCustomFiltering = true;
+            this.gvDictionariesList.Enabled = false;
             this.gvDictionariesList.Location = new System.Drawing.Point(253, 32);
             this.gvDictionariesList.Margin = new System.Windows.Forms.Padding(1);
             // 
@@ -179,6 +180,8 @@ namespace sysAdminwp
             this.gvDictionariesList.Size = new System.Drawing.Size(721, 232);
             this.gvDictionariesList.TabIndex = 0;
             this.gvDictionariesList.ThemeName = "Office2013Light";
+            this.gvDictionariesList.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.RadGridView1_CurrentRowChanged);
+            this.gvDictionariesList.CustomFiltering += new Telerik.WinControls.UI.GridViewCustomFilteringEventHandler(this.RadGridView1_CustomFiltering);
             // 
             // radPageView1
             // 
@@ -245,6 +248,7 @@ namespace sysAdminwp
             this.radPanelChange.Controls.Add(this.radLabelCode);
             this.radPanelChange.Controls.Add(this.btnCancel);
             this.radPanelChange.Controls.Add(this.btnSave);
+            this.radPanelChange.Enabled = false;
             this.radPanelChange.Location = new System.Drawing.Point(253, 298);
             this.radPanelChange.Name = "radPanelChange";
             this.radPanelChange.Size = new System.Drawing.Size(719, 206);
@@ -366,16 +370,19 @@ namespace sysAdminwp
             // 
             // txtSearchData
             // 
+            this.txtSearchData.Enabled = false;
             this.txtSearchData.Location = new System.Drawing.Point(300, 2);
             this.txtSearchData.Name = "txtSearchData";
             this.txtSearchData.Size = new System.Drawing.Size(580, 21);
             this.txtSearchData.TabIndex = 6;
             this.txtSearchData.TabStop = false;
             this.txtSearchData.ThemeName = "Office2013Light";
+            this.txtSearchData.TextChanged += new System.EventHandler(this.RadTxtBoxSearchData_TextChanged);
             // 
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnRemove.Enabled = false;
             this.btnRemove.Location = new System.Drawing.Point(383, 268);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(110, 24);
@@ -396,6 +403,7 @@ namespace sysAdminwp
             // btnAdd
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAdd.Enabled = false;
             this.btnAdd.Location = new System.Drawing.Point(253, 268);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(110, 24);
