@@ -141,7 +141,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void GetAuthors(string filter)
         {
-            var authors = _rightholderService.getAuthorsByFilter(filter).Select(a => a.AuthorName).ToArray();
+            var authors = _rightholderService.GetAuthorsByFilter(filter).Select(a => a.AuthorName).ToArray();
 
             txtAuthorName.AutoCompleteCustomSource.AddRange(authors);
         }

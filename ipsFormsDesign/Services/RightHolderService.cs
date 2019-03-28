@@ -3,7 +3,6 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Model.SQLViewsData;
 using ipsFormsDesign.ViewModels.Rightholders;
-using ipsFormsDesign.Model.SQLViewsData;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPIConnector;
@@ -106,7 +105,7 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem("rh/objects/transfer", null, transferParameters);
         }
 
-        public IList<Authors> getAuthorsByFilter(string filterString)
+        public IList<Authors> GetAuthorsByFilter(string filterString)
         {
             var url = string.Concat("rh/filters/authors/", filterString);
             var listOfAuthors = _webApi.GetList<Authors>(url);
@@ -152,13 +151,13 @@ namespace ipsFormsDesign.Services
         {
             public DebugInheritData()
             {
-                listCopyRight = new List<CopyRight>();
-                authtors = new List<Authors>();
-                inheriers = new List<CopyRight>();
+                ListCopyRight = new List<CopyRight>();
+                Authtors = new List<Authors>();
+                Inheriers = new List<CopyRight>();
             }
-            public List<CopyRight> listCopyRight { get; }
-            public List<Authors> authtors { get; }
-            public List<CopyRight> inheriers { get; }
+            public List<CopyRight> ListCopyRight { get; }
+            public List<Authors> Authtors { get; }
+            public List<CopyRight> Inheriers { get; }
         }
         public DebugInheritData InheritDebug(int checkCustId, List<RightHolder> inheritData)
         {

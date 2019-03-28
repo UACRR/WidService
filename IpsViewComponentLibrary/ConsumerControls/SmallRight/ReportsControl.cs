@@ -55,10 +55,10 @@ namespace IpsViewComponentLibrary
 
             if (IpsGlobal.AnketaDictionaties != null)
             {
-                subscribeDictionary(null, null);
+                SubscribeDictionary(null, null);
             }
             else
-                IpsGlobal.AnketaDictionatiesChanged += subscribeDictionary;
+                IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
         }
         public Customer Customer
         {
@@ -106,9 +106,9 @@ namespace IpsViewComponentLibrary
         }
 
         [EditorBrowsable]
-        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; reinitValidClass(); } }
+        public TypeRights TypeRights { get => _typeRights; set { _typeRights = value; ReinitValidClass(); } }
 
-        private void reinitValidClass()
+        private void ReinitValidClass()
         {
             validClass = new List<int>();
             if (TypeRights == TypeRights.SmallRights || TypeRights == TypeRights.All)
@@ -118,7 +118,7 @@ namespace IpsViewComponentLibrary
 
         }
 
-        private void subscribeDictionary(object sender, EventArgs args)
+        private void SubscribeDictionary(object sender, EventArgs args)
         {
             dicPeriodStatus = IpsGlobal.AnketaDictionaties.periodStatus.ToDictionary(rec => rec.CodeI);
             dicRegStatus = IpsGlobal.AnketaDictionaties.registerStatus.ToDictionary(rec => rec.CodeI);
@@ -128,14 +128,14 @@ namespace IpsViewComponentLibrary
 
         public void RefreshData()
         {
-            normalizeData(_customer);
+            NormalizeData(_customer);
             bindingReports.ResetBindings(false);
             gvPeriodReports.MasterTemplate.Refresh();
         }
 
         #region METHODS
 
-        private void normalizeData(Customer cust)
+        private void NormalizeData(Customer cust)
         {
             var dicType = IpsGlobal.AnketaDictionaties.agrLicenseType.ToDictionary(rec => rec.CodeI);
             var dicStatus = IpsGlobal.AnketaDictionaties.agreementStatus.ToDictionary(rec => rec.CodeI);
@@ -177,9 +177,9 @@ namespace IpsViewComponentLibrary
                 ClearBindings();
                 return;
             }
-            normalizeData(_customer);
+            NormalizeData(_customer);
             if (validClass == null)
-                reinitValidClass();
+                ReinitValidClass();
 
             var listAgreement = _customer.Client.LicenseAgreement.Where(rec => rec.LicStatus == 2 && rec.LicClass != 1 && validClass.Contains(rec.LicClass))
                             .Select(rec => ActiveAgreementDataFactory.CreateAgreementData(rec)).ToList();
@@ -212,7 +212,7 @@ namespace IpsViewComponentLibrary
         #region EVENTS
 
         // * * * [Активні договори]
-        private void gvLicenseAgr_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        private void GvLicenseAgr_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
 
             if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
@@ -250,7 +250,7 @@ namespace IpsViewComponentLibrary
         }
 
         // * * * [Періоди платежів]
-        private void gvPeriods_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        private void GvPeriods_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
             if (!(gvPeriods.CurrentRow?.DataBoundItem is PaidPeriod))
             {
@@ -286,7 +286,7 @@ namespace IpsViewComponentLibrary
 
         // * * *  * * *  КНОПКИ:
         // * * * НА ГРІД [Періоди платежів]
-        private void gvPeriods_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void GvPeriods_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             switch (e.Column.FieldName)
             {
@@ -308,7 +308,7 @@ namespace IpsViewComponentLibrary
         }
 
         // * * * [Додати звіт]
-        private void btnAddReport_Click(object sender, EventArgs e)
+        private void BtnAddReport_Click(object sender, EventArgs e)
         {
             if (!(gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period))
                 return;
@@ -368,7 +368,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnCreateReport_Click(object sender, EventArgs e)
+        private void BtnCreateReport_Click(object sender, EventArgs e)
         {
             if (gvPeriods?.CurrentRow?.DataBoundItem is PaidPeriod period)
             {
@@ -488,8 +488,7 @@ namespace IpsViewComponentLibrary
         {
             if (GetRegisterItems == null || gvPeriodReports.CurrentRow == null)
                 return;
-            var register = gvPeriodReports.CurrentRow.DataBoundItem as Register;
-            if (register == null)
+            if (!(gvPeriodReports.CurrentRow.DataBoundItem is Register register))
                 return;
             if (MessageBox.Show($"Видалити звіт {register.FileName}", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
@@ -510,7 +509,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void gvPeriodReports_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void GvPeriodReports_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var columnName = e.Column.Name;
 
@@ -524,14 +523,13 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void gvPeriodReports_CellFormatting(object sender, CellFormattingEventArgs e)
+        private void GvPeriodReports_CellFormatting(object sender, CellFormattingEventArgs e)
         {
             string Name = e.Column.Name;
             int[] EditingStatus = { 0, 5 };
             if (Name == "DeleteColumn" || Name == "EditColumn")
             {
-                var register = e.Row.DataBoundItem as Register;
-                if (register == null)
+                if (!(e.Row.DataBoundItem is Register register))
                 {
                     e.CellElement.Enabled = false;
                 }
@@ -545,7 +543,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void btnToAcception_Click(object sender, EventArgs e)
+        private void BtnToAcception_Click(object sender, EventArgs e)
         {
             if (bindingReports.DataSource is List<Register> list)
             {
@@ -569,7 +567,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAccept_Click(object sender, EventArgs e)
+        private void BtnAccept_Click(object sender, EventArgs e)
         {
             var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
             if (period.RegisterRatedList.Sum(rec => rec.Register.Count(item => item.RgStatus < 2)) > 0)
@@ -587,7 +585,7 @@ namespace IpsViewComponentLibrary
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAddRatedList_Click(object sender, EventArgs e)
+        private void BtnAddRatedList_Click(object sender, EventArgs e)
         {
             if (bindingRatedList.Count != 0)
                 return;
@@ -609,7 +607,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void gvRatedList_RowFormatting(object sender, RowFormattingEventArgs e)
+        private void GvRatedList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
             var row = e.RowElement.RowInfo;
             if (row == null || row.DataBoundItem == null || !(row.DataBoundItem is RegisterRatedList))
@@ -621,14 +619,16 @@ namespace IpsViewComponentLibrary
 
         }
 
-        private void gvRatedList_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void GvRatedList_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             if (e.Column.Name == "ViewColumn")
             {
                 var row = e.Row;
                 var modifyRatedList = row.DataBoundItem as RegisterRatedList;
-                CreateRatedList form = new CreateRatedList();
-                form.RatedList = modifyRatedList;
+                CreateRatedList form = new CreateRatedList
+                {
+                    RatedList = modifyRatedList
+                };
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -639,7 +639,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void btnAddPeriod_Click(object sender, EventArgs e)
+        private void BtnAddPeriod_Click(object sender, EventArgs e)
         {
             if (!(gvLicenseAgr.CurrentRow?.DataBoundItem is IAgreementData))
                 return;
@@ -654,7 +654,7 @@ namespace IpsViewComponentLibrary
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void BtnUpdate_Click(object sender, EventArgs e)
         {
             UpdateData?.Invoke(_customer.CustId);
             SetupBindings();
