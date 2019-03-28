@@ -9,7 +9,6 @@ using System.IO;
 using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Data;
 using sysAdminwp.viewPageDictionaryControls;
 
 namespace sysAdminwp
@@ -20,6 +19,36 @@ namespace sysAdminwp
         private List<DictBaseTypeI> _list;
         private List<DictCategory> _dictionaryCategories;
         private List<DicCategoryItems> _complexDictionary;
+        //current position of the grid
+        private int _currentPosition;
+        private List<ViewTable> _dataGrid;
+        //define new position for grid
+        private int _updatePosition;
+        //defined enable state for elements
+        private bool enableStateElements;
+        public bool EnableSateElements
+        {
+            get { return enableStateElements; }
+            set
+            {
+                //add new element button
+                btnAdd.Enabled = value;
+                //search field
+                txtSearchData.Enabled = value;
+                //left treeView element
+                treeViewList.Enabled = value;
+                //search field for treeView element
+                txtTreeFilter.Enabled = value;
+                //grid
+                gvDictionariesList.Enabled = value;
+                //delete buttom
+                btnRemove.Enabled = value;
+                //save button
+                btnSave.Enabled = !value;
+                //cancel button
+                btnCancel.Enabled = !value;
+            }
+        }
 
         /// <summary>
         /// URL словника
@@ -50,24 +79,13 @@ namespace sysAdminwp
             }
         }
 
-        // index selected row
-        private int _indexRow;
-
         public DictionaryForm()
         {
             InitializeComponent();
+            //fill data for treeView element
             SetTreeViewDataSource();
-            
+            //update bottom panel
             UpdateEditPanel();
-
-            txtSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
-            gvDictionariesList.CustomFiltering += RadGridView1_CustomFiltering;
-            gvDictionariesList.CurrentRowChanged += RadGridView1_CurrentRowChanged;
-            radPanelChange.Enabled = false;
-            txtSearchData.Enabled = false;
-            btnAdd.Enabled = false;
-            btnRemove.Enabled = false;
-
             //initialize object for complex dictionaries
             ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl(_connector, _complexDictionary)
             {
@@ -103,9 +121,9 @@ namespace sysAdminwp
                 foreach (var i in categoryItems)
                     category.DicCategoryItems.Add(i);
             }
-
+            //complex dictionaries for send to second control
             _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
-
+            //show simple dictionaries
             treeViewList.DataSource = _dictionaryCategories;
             treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             treeViewList.DisplayMember = "Name\\Name";
@@ -118,12 +136,10 @@ namespace sysAdminwp
         private List<ViewTable> GetData()
         {
             var view = new List<ViewTable>();
-            
             // прості словники
             {
                 var baseDicts = _connector.GetList<DictBaseTypeI>(Url);
                 _list = baseDicts;
-
                 foreach (var item in baseDicts)
                 {
                     view.Add(new ViewTable
@@ -164,18 +180,28 @@ namespace sysAdminwp
             DictBaseTypeI dataI = PackDataI();
             // TODO: use result
             bool result = _connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
-            //save last selected item of the grid
-            int current = gvDictionariesList.CurrentRow.Index;
-            var items = GetData();
-            //get data for grid
-            gvDictionariesList.DataSource = items;
-            //current changed element
-            string changedCodeI = dataI.CodeI.ToString();
-            int changedElementPosition = items.FindIndex(el => el.Code == changedCodeI);
-            //set select item with changes
-            gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[changedElementPosition]
-                                                   : gvDictionariesList.Rows[current];
+            //update current data and select for grid
+            ControlCurrentPosition(result, dataI);
+            //update bottom panel
             UpdateEditPanel();
+        }
+
+        //method for control current position into grid
+        private void ControlCurrentPosition(bool resultAction, DictBaseTypeI mutableItem)
+        {
+            //save current position into grid
+            _currentPosition = gvDictionariesList.CurrentRow.Index;
+            //get data for grid
+            _dataGrid = GetData();
+            //set data for grid
+            gvDictionariesList.DataSource = _dataGrid;
+            //get field 'CodeI' of the mutable item
+            string forSearchItem = mutableItem.CodeI.ToString();
+            //define new active position for grid
+            _updatePosition = _dataGrid.FindIndex(el => el.Code == forSearchItem);
+            //set select item for grid
+            gvDictionariesList.CurrentRow = resultAction ? gvDictionariesList.Rows[_updatePosition]
+                                                         : gvDictionariesList.Rows[_currentPosition];
         }
 
         public void SaveAddNewRow()
@@ -189,22 +215,12 @@ namespace sysAdminwp
                 try
                 {
                     DictBaseTypeI dataI = PackDataI();
+                    //result after add new item
                     bool result = _connector.NewItem(Url, dataI);
-                    //save current selected item of the grid
-                    int current = gvDictionariesList.CurrentRow.Index;
-                    var items = GetData();
-                    //get data for grid
-                    gvDictionariesList.DataSource = items;
-                    //'CodeI' of the new element
-                    string newCodeI = dataI.CodeI.ToString();
-                    //get index of the new element
-                    int newItem = items.FindIndex(el => el.Code == newCodeI);
-                    //select last item(new) into grid
-                    gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[newItem] :
-                                                             gvDictionariesList.Rows[current];
+                    //update current data and select for grid
+                    ControlCurrentPosition(result, dataI);
                     UpdateEditPanel();
-                    ChangeEnableElementsWhenAdd(true);
-                    
+                    EnableSateElements = true;
                 }
                 catch (Exception e)
                 {
@@ -252,33 +268,8 @@ namespace sysAdminwp
             // hide default string
             gvDictionariesList.TableElement.Text = "";
         }
-
-        /// <summary>
-        /// Метод зміни стану увімкненості компонентів
-        /// </summary>
-        /// <param name="isEnable">Якщо true - компонент активний</param>
-        private void ChangeEnableElementsWhenEdit(bool isEnable)
-        {
-            gvDictionariesList.Enabled = isEnable;
-            treeViewList.Enabled = isEnable;
-            btnAdd.Enabled = isEnable;
-            btnRemove.Enabled = isEnable;
-            txtSearchData.Enabled = isEnable;
-            txtTreeFilter.Enabled = isEnable;
-        }
-
-        private void ChangeEnableElementsWhenAdd(bool isEnable)
-        {
-            btnAdd.Enabled = isEnable;
-            txtSearchData.Enabled = isEnable;
-            treeViewList.Enabled = isEnable;
-            txtTreeFilter.Enabled = isEnable;
-            gvDictionariesList.Enabled = isEnable;
-            btnRemove.Enabled = isEnable;
-        }
-
+        
         #endregion
-
 
         //зміна даних в grid при написанні пошукового слова
         private void RadTxtBoxSearchData_TextChanged(object sender, EventArgs e)
@@ -328,58 +319,33 @@ namespace sysAdminwp
         //оновлення панелі редагування
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
+            EnableSateElements = true;
             UpdateEditPanel();
-        }
-        //method for save last position cursor
-        private void GetLstCurs()
-        {
-            //save position
-            _indexRow = gvDictionariesList.CurrentRow.Index;
-        }
-
-        //method for set saved position cursor
-        private void SetLstCurs()
-        {
-            //set position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[_indexRow];
-        }
-        //method for set position after delete
-        private void SetPositionAfterDelete()
-        {
-            //set last position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
-        }
-        //method for set position after added
-        private void SetPositionAfterAdded()
-        {
-            //set last position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
         }
 
         //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
-            //use last selected row
-            GetLstCurs();
             btnSave.Text = "Додати";
-            ChangeEnableElementsWhenAdd(false);
+            EnableSateElements = false;
             txtCode.Clear();
             txtNameEn.Clear();
             txtNameRu.Clear();
             txtNameUa.Clear();
-            radPanelChange.Enabled = true;
         }
         
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
             var row = gvDictionariesList.CurrentRow.DataBoundItem as ViewTable;
-            var result = _connector.DeleteItem(Url, row.Code);
-
+            bool result = _connector.DeleteItem(Url, row.Code);
+            //get last selected item
+            int currentPosition = gvDictionariesList.CurrentRow.Index;
+            //get data for grid
             gvDictionariesList.DataSource = GetData();
+            gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[currentPosition - 1]
+                                                   : gvDictionariesList.Rows[0];
             UpdateEditPanel();
-            //set last position for cursor
-            SetPositionAfterDelete();
         }
 
         //кнопка збереження
@@ -392,15 +358,15 @@ namespace sysAdminwp
             else
             {
                 SaveUpdate();
-                ChangeEnableElementsWhenEdit(true);
             }
+            EnableSateElements = true;
         }
 
         //кнопка відміни внесених змін
         private void radBtnCancel_Click(object sender, EventArgs e)
         {
             UpdateEditPanel();
-            ChangeEnableElementsWhenEdit(true);
+            EnableSateElements = true;
         }
 
         //фільтр елементів дерева
@@ -459,9 +425,7 @@ namespace sysAdminwp
         //подія при редагуванні даних в текстбоксах
         private void TextBox_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
-            //save last position
-            GetLstCurs();
-            ChangeEnableElementsWhenEdit(false);
+            EnableSateElements = false;
         }
 
         //збереження конфігурації

@@ -36,30 +36,30 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvAnketa = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvLicence = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvRequest = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvReference = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
-            this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAnketaConsumer = new IpsViewComponentLibrary.ConsumerControls.AnketaConsumer();
-            this.ctrlTabNavigation = new TabNavigationControl();
-            this.ctrlGeneralAgreement = new GeneralAgreementControl();
-            this.ctrlLicense = new LicensesControl();
-            this.ctrlRequest = new RequestReferenceControl();
-            this.ctrlReference = new RequestReferenceControl();
-            this.ctrlPayslips = new RegisterRatedListControl();
-            this.ctrlCalculation = new CalculationInfoControl();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationControl();
+            this.pvGeneralAgreement = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlGeneralAgreement = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.GeneralAgreementControl();
+            this.pvLicence = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlLicense = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.LicensesControl();
+            this.pvRequest = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlRequest = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.RequestReferenceControl();
+            this.pvReference = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlReference = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.RequestReferenceControl();
+            this.pvPayslips = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPayslips = new IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet.RegisterRatedListControl();
+            this.pvCalculation = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlCalculation = new IpsViewComponentLibrary.ConsumerControls.SmallRight.CalculationInfoControl();
+            this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPaysInfo = new IpsViewComponentLibrary.ConsumerControls.PaysInfo();
+            this.pvAvances = new Telerik.WinControls.UI.RadPageViewPage();
             this.middleControlCabinetAvances1 = new IpsViewComponentLibrary.MiddleControlCabinetAvances();
+            this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlContactHeader = new IpsViewComponentLibrary.ConsumerControls.ConsumerHeaderInfo();
+            this.pvFiles = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlFiles = new IpsViewComponentLibrary.MiddleControlCabinetFiles();
-            this.ctrlPartner = new PartnerOfConsumerControl();
+            this.pvAgent = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPartner = new IpsViewComponentLibrary.ConsumerControls.PartnerOfConsumerControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAnketa.SuspendLayout();
@@ -108,111 +108,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             // 
             this.pvAnketa.Controls.Add(this.ctrlAnketaConsumer);
             this.pvAnketa.Controls.Add(this.ctrlTabNavigation);
-            this.pvAnketa.ItemSize = new System.Drawing.SizeF(52F, 25F);
+            this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvAnketa.Location = new System.Drawing.Point(5, 31);
             this.pvAnketa.Name = "pvAnketa";
             this.pvAnketa.Size = new System.Drawing.Size(1136, 584);
             this.pvAnketa.Text = "Анкета";
-            // 
-            // pvGeneralAgreement
-            // 
-            this.pvGeneralAgreement.Controls.Add(this.ctrlGeneralAgreement);
-            this.pvGeneralAgreement.ItemSize = new System.Drawing.SizeF(57F, 25F);
-            this.pvGeneralAgreement.Location = new System.Drawing.Point(5, 29);
-            this.pvGeneralAgreement.Name = "pvGeneralAgreement";
-            this.pvGeneralAgreement.Size = new System.Drawing.Size(1136, 586);
-            this.pvGeneralAgreement.Text = "Договір";
-            // 
-            // pvLicence
-            // 
-            this.pvLicence.Controls.Add(this.ctrlLicense);
-            this.pvLicence.ItemSize = new System.Drawing.SizeF(56F, 25F);
-            this.pvLicence.Location = new System.Drawing.Point(5, 29);
-            this.pvLicence.Name = "pvLicence";
-            this.pvLicence.Size = new System.Drawing.Size(1136, 586);
-            this.pvLicence.Text = "Ліцензії";
-            // 
-            // pvRequest
-            // 
-            this.pvRequest.Controls.Add(this.ctrlRequest);
-            this.pvRequest.ItemSize = new System.Drawing.SizeF(52F, 25F);
-            this.pvRequest.Location = new System.Drawing.Point(5, 31);
-            this.pvRequest.Name = "pvRequest";
-            this.pvRequest.Size = new System.Drawing.Size(1136, 584);
-            this.pvRequest.Text = "Заявки";
-            // 
-            // pvReference
-            // 
-            this.pvReference.Controls.Add(this.ctrlReference);
-            this.pvReference.ItemSize = new System.Drawing.SizeF(58F, 25F);
-            this.pvReference.Location = new System.Drawing.Point(5, 31);
-            this.pvReference.Name = "pvReference";
-            this.pvReference.Size = new System.Drawing.Size(1136, 584);
-            this.pvReference.Text = "Довідки";
-            // 
-            // pvPayslips
-            // 
-            this.pvPayslips.Controls.Add(this.ctrlPayslips);
-            this.pvPayslips.ItemSize = new System.Drawing.SizeF(33F, 25F);
-            this.pvPayslips.Location = new System.Drawing.Point(5, 31);
-            this.pvPayslips.Name = "pvPayslips";
-            this.pvPayslips.Size = new System.Drawing.Size(1136, 584);
-            this.pvPayslips.Text = "Р/Л";
-            // 
-            // pvCalculation
-            // 
-            this.pvCalculation.AutoScroll = true;
-            this.pvCalculation.Controls.Add(this.ctrlCalculation);
-            this.pvCalculation.ItemSize = new System.Drawing.SizeF(78F, 25F);
-            this.pvCalculation.Location = new System.Drawing.Point(5, 31);
-            this.pvCalculation.Name = "pvCalculation";
-            this.pvCalculation.Size = new System.Drawing.Size(1136, 584);
-            this.pvCalculation.Text = "Розрахунки";
-            // 
-            // pvPays
-            // 
-            this.pvPays.Controls.Add(this.ctrlPaysInfo);
-            this.pvPays.ItemSize = new System.Drawing.SizeF(58F, 25F);
-            this.pvPays.Location = new System.Drawing.Point(5, 31);
-            this.pvPays.Name = "pvPays";
-            this.pvPays.Size = new System.Drawing.Size(1136, 584);
-            this.pvPays.Text = "Платежі";
-            // 
-            // pvAvances
-            // 
-            this.pvAvances.Controls.Add(this.middleControlCabinetAvances1);
-            this.pvAvances.ItemSize = new System.Drawing.SizeF(53F, 25F);
-            this.pvAvances.Location = new System.Drawing.Point(5, 31);
-            this.pvAvances.Name = "pvAvances";
-            this.pvAvances.Size = new System.Drawing.Size(1136, 584);
-            this.pvAvances.Text = "Аванси";
-            // 
-            // pvContacts
-            // 
-            this.pvContacts.Controls.Add(this.ctrlContactHeader);
-            this.pvContacts.ItemSize = new System.Drawing.SizeF(64F, 25F);
-            this.pvContacts.Location = new System.Drawing.Point(5, 31);
-            this.pvContacts.Name = "pvContacts";
-            this.pvContacts.Size = new System.Drawing.Size(1136, 584);
-            this.pvContacts.Text = "Контакти";
-            // 
-            // pvFiles
-            // 
-            this.pvFiles.Controls.Add(this.ctrlFiles);
-            this.pvFiles.ItemSize = new System.Drawing.SizeF(49F, 25F);
-            this.pvFiles.Location = new System.Drawing.Point(5, 31);
-            this.pvFiles.Name = "pvFiles";
-            this.pvFiles.Size = new System.Drawing.Size(1136, 584);
-            this.pvFiles.Text = "Файли";
-            // 
-            // pvAgent
-            // 
-            this.pvAgent.Controls.Add(this.ctrlPartner);
-            this.pvAgent.ItemSize = new System.Drawing.SizeF(86F, 25F);
-            this.pvAgent.Location = new System.Drawing.Point(5, 31);
-            this.pvAgent.Name = "pvAgent";
-            this.pvAgent.Size = new System.Drawing.Size(1136, 584);
-            this.pvAgent.Text = "Представник";
             // 
             // ctrlAnketaConsumer
             // 
@@ -233,14 +133,32 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlTabNavigation.Size = new System.Drawing.Size(1136, 31);
             this.ctrlTabNavigation.TabIndex = 15;
             // 
+            // pvGeneralAgreement
+            // 
+            this.pvGeneralAgreement.Controls.Add(this.ctrlGeneralAgreement);
+            this.pvGeneralAgreement.ItemSize = new System.Drawing.SizeF(59F, 27F);
+            this.pvGeneralAgreement.Location = new System.Drawing.Point(5, 31);
+            this.pvGeneralAgreement.Name = "pvGeneralAgreement";
+            this.pvGeneralAgreement.Size = new System.Drawing.Size(1136, 584);
+            this.pvGeneralAgreement.Text = "Договір";
+            // 
             // ctrlGeneralAgreement
             // 
             this.ctrlGeneralAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlGeneralAgreement.Location = new System.Drawing.Point(0, 0);
             this.ctrlGeneralAgreement.MinimumSize = new System.Drawing.Size(912, 300);
             this.ctrlGeneralAgreement.Name = "ctrlGeneralAgreement";
-            this.ctrlGeneralAgreement.Size = new System.Drawing.Size(1136, 586);
+            this.ctrlGeneralAgreement.Size = new System.Drawing.Size(1136, 584);
             this.ctrlGeneralAgreement.TabIndex = 0;
+            // 
+            // pvLicence
+            // 
+            this.pvLicence.Controls.Add(this.ctrlLicense);
+            this.pvLicence.ItemSize = new System.Drawing.SizeF(58F, 27F);
+            this.pvLicence.Location = new System.Drawing.Point(5, 29);
+            this.pvLicence.Name = "pvLicence";
+            this.pvLicence.Size = new System.Drawing.Size(1136, 586);
+            this.pvLicence.Text = "Ліцензії";
             // 
             // ctrlLicense
             // 
@@ -251,6 +169,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlLicense.Size = new System.Drawing.Size(1136, 586);
             this.ctrlLicense.TabIndex = 0;
             // 
+            // pvRequest
+            // 
+            this.pvRequest.Controls.Add(this.ctrlRequest);
+            this.pvRequest.ItemSize = new System.Drawing.SizeF(54F, 27F);
+            this.pvRequest.Location = new System.Drawing.Point(5, 31);
+            this.pvRequest.Name = "pvRequest";
+            this.pvRequest.Size = new System.Drawing.Size(1136, 584);
+            this.pvRequest.Text = "Заявки";
+            // 
             // ctrlRequest
             // 
             this.ctrlRequest.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -258,7 +185,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlRequest.Name = "ctrlRequest";
             this.ctrlRequest.Size = new System.Drawing.Size(1136, 584);
             this.ctrlRequest.TabIndex = 0;
-            this.ctrlRequest.TypeControl = ControlRequestOrReferenceType.None;
+            this.ctrlRequest.TypeControl = IpsViewComponentLibrary.Extensions.ControlRequestOrReferenceType.None;
+            // 
+            // pvReference
+            // 
+            this.pvReference.Controls.Add(this.ctrlReference);
+            this.pvReference.ItemSize = new System.Drawing.SizeF(60F, 27F);
+            this.pvReference.Location = new System.Drawing.Point(5, 31);
+            this.pvReference.Name = "pvReference";
+            this.pvReference.Size = new System.Drawing.Size(1136, 584);
+            this.pvReference.Text = "Довідки";
             // 
             // ctrlReference
             // 
@@ -267,7 +203,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlReference.Name = "ctrlReference";
             this.ctrlReference.Size = new System.Drawing.Size(1136, 584);
             this.ctrlReference.TabIndex = 0;
-            this.ctrlReference.TypeControl = ControlRequestOrReferenceType.None;
+            this.ctrlReference.TypeControl = IpsViewComponentLibrary.Extensions.ControlRequestOrReferenceType.None;
+            // 
+            // pvPayslips
+            // 
+            this.pvPayslips.Controls.Add(this.ctrlPayslips);
+            this.pvPayslips.ItemSize = new System.Drawing.SizeF(35F, 27F);
+            this.pvPayslips.Location = new System.Drawing.Point(5, 31);
+            this.pvPayslips.Name = "pvPayslips";
+            this.pvPayslips.Size = new System.Drawing.Size(1136, 584);
+            this.pvPayslips.Text = "Р/Л";
             // 
             // ctrlPayslips
             // 
@@ -276,6 +221,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlPayslips.Name = "ctrlPayslips";
             this.ctrlPayslips.Size = new System.Drawing.Size(1136, 584);
             this.ctrlPayslips.TabIndex = 0;
+            // 
+            // pvCalculation
+            // 
+            this.pvCalculation.AutoScroll = true;
+            this.pvCalculation.Controls.Add(this.ctrlCalculation);
+            this.pvCalculation.ItemSize = new System.Drawing.SizeF(80F, 27F);
+            this.pvCalculation.Location = new System.Drawing.Point(5, 31);
+            this.pvCalculation.Name = "pvCalculation";
+            this.pvCalculation.Size = new System.Drawing.Size(1136, 584);
+            this.pvCalculation.Text = "Розрахунки";
             // 
             // ctrlCalculation
             // 
@@ -290,6 +245,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlCalculation.TabIndex = 0;
             this.ctrlCalculation.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             // 
+            // pvPays
+            // 
+            this.pvPays.Controls.Add(this.ctrlPaysInfo);
+            this.pvPays.ItemSize = new System.Drawing.SizeF(60F, 27F);
+            this.pvPays.Location = new System.Drawing.Point(5, 31);
+            this.pvPays.Name = "pvPays";
+            this.pvPays.Size = new System.Drawing.Size(1136, 584);
+            this.pvPays.Text = "Платежі";
+            // 
             // ctrlPaysInfo
             // 
             this.ctrlPaysInfo.Customer = null;
@@ -300,6 +264,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlPaysInfo.Size = new System.Drawing.Size(1136, 584);
             this.ctrlPaysInfo.TabIndex = 0;
             // 
+            // pvAvances
+            // 
+            this.pvAvances.Controls.Add(this.middleControlCabinetAvances1);
+            this.pvAvances.ItemSize = new System.Drawing.SizeF(55F, 27F);
+            this.pvAvances.Location = new System.Drawing.Point(5, 31);
+            this.pvAvances.Name = "pvAvances";
+            this.pvAvances.Size = new System.Drawing.Size(1136, 584);
+            this.pvAvances.Text = "Аванси";
+            // 
             // middleControlCabinetAvances1
             // 
             this.middleControlCabinetAvances1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -307,6 +280,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.middleControlCabinetAvances1.Name = "middleControlCabinetAvances1";
             this.middleControlCabinetAvances1.Size = new System.Drawing.Size(1136, 584);
             this.middleControlCabinetAvances1.TabIndex = 0;
+            // 
+            // pvContacts
+            // 
+            this.pvContacts.Controls.Add(this.ctrlContactHeader);
+            this.pvContacts.ItemSize = new System.Drawing.SizeF(66F, 27F);
+            this.pvContacts.Location = new System.Drawing.Point(5, 31);
+            this.pvContacts.Name = "pvContacts";
+            this.pvContacts.Size = new System.Drawing.Size(1136, 584);
+            this.pvContacts.Text = "Контакти";
             // 
             // ctrlContactHeader
             // 
@@ -318,6 +300,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlContactHeader.Size = new System.Drawing.Size(836, 178);
             this.ctrlContactHeader.TabIndex = 6;
             // 
+            // pvFiles
+            // 
+            this.pvFiles.Controls.Add(this.ctrlFiles);
+            this.pvFiles.ItemSize = new System.Drawing.SizeF(51F, 27F);
+            this.pvFiles.Location = new System.Drawing.Point(5, 31);
+            this.pvFiles.Name = "pvFiles";
+            this.pvFiles.Size = new System.Drawing.Size(1136, 584);
+            this.pvFiles.Text = "Файли";
+            // 
             // ctrlFiles
             // 
             this.ctrlFiles.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -326,6 +317,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlFiles.Name = "ctrlFiles";
             this.ctrlFiles.Size = new System.Drawing.Size(1136, 584);
             this.ctrlFiles.TabIndex = 0;
+            // 
+            // pvAgent
+            // 
+            this.pvAgent.Controls.Add(this.ctrlPartner);
+            this.pvAgent.ItemSize = new System.Drawing.SizeF(88F, 27F);
+            this.pvAgent.Location = new System.Drawing.Point(5, 31);
+            this.pvAgent.Name = "pvAgent";
+            this.pvAgent.Size = new System.Drawing.Size(1136, 584);
+            this.pvAgent.Text = "Представник";
             // 
             // ctrlPartner
             // 
