@@ -14,16 +14,6 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class ServiceComissionControl : UserControl
     {
-        private void setupObjects()
-        {
-            var nameOwner = IpsGlobal.GetProperty("OwnerName");
-
-            var lbl1Text =  $"збір за управління, необхідний для покриття витрат на забезпечення діяльності {nameOwner ?? "Підприємства"}";
-            var lbl3Text = $"від сум, зібраних {nameOwner ?? "Підприємством"} для Правовласника";
-
-            radLabel1.Text = lbl1Text;
-            radLabel3.Text = lbl3Text;
-        }
 
         public ServiceComissionControl()
         {
@@ -43,15 +33,15 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
             }
         }
 
-        //private void setupObjects()
-        //{
-        //    var ownerName = IpsGlobal.GetProperty("OwnerName");
-        //    radLabel1.Text = $"збір за управління, необхідний для покриття витрат на забезпечення діяльності {ownerName ?? "Компанії"}";
-        //    radLabel3.Text = $"від сум, зібраних {ownerName ?? "Компанією"} для Правовласника";
+        private void setupObjects()
+        {
+            var ownerName = IpsGlobal.GetProperty("OwnerName");
+            radLabel1.Text = $"збір за управління, необхідний для покриття витрат на забезпечення діяльності {ownerName ?? "Компанії"}";
+            radLabel3.Text = $"від сум, зібраних {ownerName ?? "Компанією"} для Правовласника";
 
-        //    // this.radLabel7.Text = "від сум, отриманих  для Автора";
-        //    // radLabel7.Text = $"від сум, отриманих {ownerName ?? "Підприємством"} для Автора";
-        //}
+            // this.radLabel7.Text = "від сум, отриманих  для Автора";
+            // radLabel7.Text = $"від сум, отриманих {ownerName ?? "Підприємством"} для Автора";
+        }
 
 
         [Category("Data")]

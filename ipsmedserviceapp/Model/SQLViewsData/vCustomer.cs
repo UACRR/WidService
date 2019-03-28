@@ -14,5 +14,6 @@ namespace ipsmedserviceapp.Model.SQLViewsData
         public string INNOKPO { get; set; }
         public string IPI { get; set; }
         public int ankMy { get; set; }
+
     }
 }

@@ -13,20 +13,17 @@ namespace ipsmedserviceapp.Controllers
     [ApiController]
     public class InfoController : ControllerBase
     {
-        MediaServiceContext _dbContext;
+        private MediaServiceContext _dbContext;
         public InfoController(MediaServiceContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        [HttpGet("Name")]
-        public async Task<IActionResult> GetName()
+        [HttpGet("Owner")]
+        public async Task<IActionResult> GetOwner()
         {
-            var myAnketa = await _dbContext.vCustomer.Where(rec => rec.ankMy == 1).FirstOrDefaultAsync();
-            if (myAnketa == null)
-                return NotFound();
-
-            return Ok(myAnketa);
+            var owner = await _dbContext.vCustomer.Where(rec => rec.ankMy == 1).FirstOrDefaultAsync();
+            return Ok(owner);
         }
     }
 }

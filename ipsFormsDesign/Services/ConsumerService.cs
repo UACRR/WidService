@@ -9,7 +9,7 @@ using System.IO;
 using System.Dynamic;
 using System.Threading.Tasks;
 using ipsFormsDesign.Data;
-using ipsmedserviceapp.Model.SQLViewsData;
+using ipsFormsDesign.Model.SQLViewsData;
 // ReSharper disable All
 
 namespace ipsFormsDesign.Services
