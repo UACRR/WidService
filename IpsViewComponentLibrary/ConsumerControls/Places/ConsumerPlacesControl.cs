@@ -83,7 +83,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 CustId = CustomerId,
                 PlCode = typePlace.CodeI, //код типу закладу,
                 PlaceCountry = "804",
-                FreeEntry = typePlace.CodeI != 4, // безкоштовний/платний вхід
+                //FreeEntry = typePlace.CodeI != 4, // безкоштовний/платний вхід
+                FreeEntry = null,
                 PlCodeNavigation = typePlace, //тип закладу,
                 ClnPlaceHoll = typePlace.IsHoll ?? false ? new ObservableListSource<ClnPlaceHoll>() : new ObservableListSource<ClnPlaceHoll> { new ClnPlaceHoll() }
             };
