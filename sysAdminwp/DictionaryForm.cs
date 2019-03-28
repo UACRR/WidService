@@ -9,7 +9,6 @@ using System.IO;
 using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Data;
 using sysAdminwp.viewPageDictionaryControls;
 
 namespace sysAdminwp
@@ -20,6 +19,31 @@ namespace sysAdminwp
         private List<DictBaseTypeI> _list;
         private List<DictCategory> _dictionaryCategories;
         private List<DicCategoryItems> _complexDictionary;
+        //defined enable state for elements
+        private bool enableStateElements;
+        public bool EnableSateElements
+        {
+            get { return enableStateElements; }
+            set
+            {
+                //add new element button
+                btnAdd.Enabled = value;
+                //search field
+                txtSearchData.Enabled = value;
+                //left treeView element
+                treeViewList.Enabled = value;
+                //search field for treeView element
+                txtTreeFilter.Enabled = value;
+                //grid
+                gvDictionariesList.Enabled = value;
+                //delete buttom
+                btnRemove.Enabled = value;
+                //save button
+                btnSave.Enabled = !value;
+                //cancel button
+                btnCancel.Enabled = !value;
+            }
+        }
 
         /// <summary>
         /// URL словника
@@ -50,24 +74,13 @@ namespace sysAdminwp
             }
         }
 
-        // index selected row
-        private int _indexRow;
-
         public DictionaryForm()
         {
             InitializeComponent();
+            //fill data for treeView element
             SetTreeViewDataSource();
-            
+            //update bottom panel
             UpdateEditPanel();
-
-            txtSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
-            gvDictionariesList.CustomFiltering += RadGridView1_CustomFiltering;
-            gvDictionariesList.CurrentRowChanged += RadGridView1_CurrentRowChanged;
-            radPanelChange.Enabled = false;
-            txtSearchData.Enabled = false;
-            btnAdd.Enabled = false;
-            btnRemove.Enabled = false;
-
             //initialize object for complex dictionaries
             ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl(_connector, _complexDictionary)
             {
@@ -103,9 +116,9 @@ namespace sysAdminwp
                 foreach (var i in categoryItems)
                     category.DicCategoryItems.Add(i);
             }
-
+            //complex dictionaries for send to second control
             _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
-
+            //show simple dictionaries
             treeViewList.DataSource = _dictionaryCategories;
             treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             treeViewList.DisplayMember = "Name\\Name";
@@ -118,12 +131,10 @@ namespace sysAdminwp
         private List<ViewTable> GetData()
         {
             var view = new List<ViewTable>();
-            
             // прості словники
             {
                 var baseDicts = _connector.GetList<DictBaseTypeI>(Url);
                 _list = baseDicts;
-
                 foreach (var item in baseDicts)
                 {
                     view.Add(new ViewTable
@@ -175,6 +186,7 @@ namespace sysAdminwp
             //set select item with changes
             gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[changedElementPosition]
                                                    : gvDictionariesList.Rows[current];
+            //update bottom panel
             UpdateEditPanel();
         }
 
@@ -203,8 +215,9 @@ namespace sysAdminwp
                     gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[newItem] :
                                                              gvDictionariesList.Rows[current];
                     UpdateEditPanel();
-                    ChangeEnableElementsWhenAdd(true);
-                    
+                    EnableSateElements = true;
+
+
                 }
                 catch (Exception e)
                 {
@@ -252,33 +265,8 @@ namespace sysAdminwp
             // hide default string
             gvDictionariesList.TableElement.Text = "";
         }
-
-        /// <summary>
-        /// Метод зміни стану увімкненості компонентів
-        /// </summary>
-        /// <param name="isEnable">Якщо true - компонент активний</param>
-        private void ChangeEnableElementsWhenEdit(bool isEnable)
-        {
-            gvDictionariesList.Enabled = isEnable;
-            treeViewList.Enabled = isEnable;
-            btnAdd.Enabled = isEnable;
-            btnRemove.Enabled = isEnable;
-            txtSearchData.Enabled = isEnable;
-            txtTreeFilter.Enabled = isEnable;
-        }
-
-        private void ChangeEnableElementsWhenAdd(bool isEnable)
-        {
-            btnAdd.Enabled = isEnable;
-            txtSearchData.Enabled = isEnable;
-            treeViewList.Enabled = isEnable;
-            txtTreeFilter.Enabled = isEnable;
-            gvDictionariesList.Enabled = isEnable;
-            btnRemove.Enabled = isEnable;
-        }
-
+        
         #endregion
-
 
         //зміна даних в grid при написанні пошукового слова
         private void RadTxtBoxSearchData_TextChanged(object sender, EventArgs e)
@@ -328,46 +316,19 @@ namespace sysAdminwp
         //оновлення панелі редагування
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
+            EnableSateElements = true;
             UpdateEditPanel();
-        }
-        //method for save last position cursor
-        private void GetLstCurs()
-        {
-            //save position
-            _indexRow = gvDictionariesList.CurrentRow.Index;
-        }
-
-        //method for set saved position cursor
-        private void SetLstCurs()
-        {
-            //set position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[_indexRow];
-        }
-        //method for set position after delete
-        private void SetPositionAfterDelete()
-        {
-            //set last position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
-        }
-        //method for set position after added
-        private void SetPositionAfterAdded()
-        {
-            //set last position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
         }
 
         //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
-            //use last selected row
-            GetLstCurs();
             btnSave.Text = "Додати";
-            ChangeEnableElementsWhenAdd(false);
+            EnableSateElements = false;
             txtCode.Clear();
             txtNameEn.Clear();
             txtNameRu.Clear();
             txtNameUa.Clear();
-            radPanelChange.Enabled = true;
         }
         
         //кнопка видалення рядка в grid
@@ -394,15 +355,15 @@ namespace sysAdminwp
             else
             {
                 SaveUpdate();
-                ChangeEnableElementsWhenEdit(true);
             }
+            EnableSateElements = true;
         }
 
         //кнопка відміни внесених змін
         private void radBtnCancel_Click(object sender, EventArgs e)
         {
             UpdateEditPanel();
-            ChangeEnableElementsWhenEdit(true);
+            EnableSateElements = true;
         }
 
         //фільтр елементів дерева
@@ -461,9 +422,7 @@ namespace sysAdminwp
         //подія при редагуванні даних в текстбоксах
         private void TextBox_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
-            //save last position
-            GetLstCurs();
-            ChangeEnableElementsWhenEdit(false);
+            EnableSateElements = false;
         }
 
         //збереження конфігурації
