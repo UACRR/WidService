@@ -80,16 +80,7 @@
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(1099, 557);
             this.radPageViewPage2.Text = "Заявки/Довідки ВП";
-            // 
-            // radButton1
-            // 
-            this.radButton1.Location = new System.Drawing.Point(993, 563);
-            this.radButton1.Name = "radButton1";
-            this.radButton1.Size = new System.Drawing.Size(110, 24);
-            this.radButton1.TabIndex = 1;
-            this.radButton1.Text = "Вихід";
-            this.radButton1.ThemeName = "Office2013Light";
-            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+
             // 
             // registerListControl1
             // 
