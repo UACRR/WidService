@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -83,6 +84,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderListControl()
         {
             InitializeComponent();
+            //navigatorPanelControl1.PageSize = 20;
+            //navigatorPanelControl1.CurrentPage = 1;
 
             if (!IsDesignMode)
             {
@@ -141,23 +144,50 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void UpdateList()
         {
-            UpdateList(SelectedRightholder);
+            UpdateListWithPage(SelectedRightholder);
         }
 
-        public async void UpdateList(RightholderMainView currentRightholder)
+        //public async void UpdateList(RightholderMainView currentRightholder)
+        //{
+        //    waitingBar.StartWaiting();
+
+        //    var query = CreateRightholderQuery();
+
+        //    var list = await _rightholderService.GetRightholdersAsync(query);
+
+        //    rightholderMainViewBindingSource.DataSource = list;
+        //    lblCountRows.Text = list.Count().ToString();
+        //    //SelectedRightholder = currentRightholder; // TODO: is it needed?
+
+        //    waitingBar.StopWaiting();
+        //}
+
+        public async void UpdateListWithPage(RightholderMainView currentRightholder)
         {
+            if (_rightholderService == null)
+                return;
+
             waitingBar.StartWaiting();
 
             var query = CreateRightholderQuery();
 
-            var list = await _rightholderService.GetRightholdersAsync(query);
+            var rowsOnPage = navigatorPanelControl1.PageSize;
+            if( rowsOnPage == 0 )
+            {
+                rowsOnPage = 20;
+            }
 
-            rightholderMainViewBindingSource.DataSource = list;
-            lblCountRows.Text = list.Count().ToString();
+            var list = await _rightholderService.GetRightholdersPageAsync(query);
+
+            rightholderMainViewBindingSource.DataSource = list.list;
+            lblCountRows.Text = list.TotalPages.ToString();
+            navigatorPanelControl1.TotalPages = list.TotalPages / rowsOnPage + 1;
             //SelectedRightholder = currentRightholder; // TODO: is it needed?
 
             waitingBar.StopWaiting();
         }
+
+
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -178,7 +208,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             if (e.Column is GridViewCommandColumn)
                 return;
-
+            if(SelectedRightholder.CustType == 5)
+            {
+                MessageBox.Show("Для зовнішніх Правовласників кабінет тимчасово заблоковано", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             OnRightholderSelected(SelectedRightholder);
         }
 
@@ -189,6 +223,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
+            navigatorPanelControl1.CurrentPage = 1;
             UpdateList();
         }
 
@@ -280,6 +315,12 @@ namespace IpsViewComponentLibrary.RightholderControls
                 query.AgreementStatus = agreementStatus;
             }
 
+            query.PageNumber = navigatorPanelControl1.CurrentPage;
+            query.RowsPerPage = navigatorPanelControl1.PageSize;
+            var searchString = txtSearch.Text.Trim();
+            if (searchString.Length > 0)
+                query.SearchString = searchString;
+
             return query;
         }
 
@@ -334,5 +375,27 @@ namespace IpsViewComponentLibrary.RightholderControls
         }
 
         #endregion
+
+        private void navigatorPanelControl1_CurrentPageChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void navigatorPanelControl1_PageSizeChanged(object sender, EventArgs e)
+        {
+            UpdateList();
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            navigatorPanelControl1.CurrentPage = 1;
+            UpdateList();
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                UpdateList();
+        }
     }
 }

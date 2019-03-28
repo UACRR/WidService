@@ -14,6 +14,7 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
 {
     public partial class ServiceComissionControl : UserControl
     {
+
         public ServiceComissionControl()
         {
             InitializeComponent();

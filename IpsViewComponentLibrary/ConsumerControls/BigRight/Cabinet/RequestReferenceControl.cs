@@ -386,7 +386,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// <returns>Результат обробки запиту</returns>
         private bool? ChangeLicenseType(ConsumerService.LicType licenseType)
         {
-            if (!(gvViewRequests.CurrentRow.DataBoundItem is RequestsOrReferenceBigRightView item))
+            if (!(gvViewRequests.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item))
                 return null;
 
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);

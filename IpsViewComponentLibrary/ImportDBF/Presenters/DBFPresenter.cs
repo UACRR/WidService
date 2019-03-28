@@ -2,7 +2,7 @@
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using ipsmedserviceapp.Model.SQLViewsData;
+using ipsFormsDesign.Model.SQLViewsData;
 
 namespace IpsViewComponentLibrary.ImportDBF.Presenters
 {

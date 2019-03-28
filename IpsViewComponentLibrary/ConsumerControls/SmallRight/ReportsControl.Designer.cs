@@ -215,7 +215,7 @@
             this.gvLicenseAgr.Size = new System.Drawing.Size(1076, 99);
             this.gvLicenseAgr.TabIndex = 0;
             this.gvLicenseAgr.ThemeName = "Office2013Light";
-            this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvLicenseAgr_CurrentRowChanged);
+            this.gvLicenseAgr.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.GvLicenseAgr_CurrentRowChanged);
             // 
             // bindingAgreement
             // 
@@ -330,8 +330,8 @@
             this.gvPeriods.Size = new System.Drawing.Size(1076, 116);
             this.gvPeriods.TabIndex = 0;
             this.gvPeriods.ThemeName = "Office2013Light";
-            this.gvPeriods.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvPeriods_CurrentRowChanged);
-            this.gvPeriods.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvPeriods_CommandCellClick);
+            this.gvPeriods.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.GvPeriods_CurrentRowChanged);
+            this.gvPeriods.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.GvPeriods_CommandCellClick);
             // 
             // radWaitingBar1
             // 
@@ -467,8 +467,8 @@
             this.gvPeriodReports.Size = new System.Drawing.Size(1076, 129);
             this.gvPeriodReports.TabIndex = 0;
             this.gvPeriodReports.ThemeName = "Office2013Light";
-            this.gvPeriodReports.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.gvPeriodReports_CellFormatting);
-            this.gvPeriodReports.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvPeriodReports_CommandCellClick);
+            this.gvPeriodReports.CellFormatting += new Telerik.WinControls.UI.CellFormattingEventHandler(this.GvPeriodReports_CellFormatting);
+            this.gvPeriodReports.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.GvPeriodReports_CommandCellClick);
             // 
             // bindingReports
             // 
@@ -493,7 +493,7 @@
             this.btnAddReport.TabIndex = 1;
             this.btnAddReport.Text = "Додати звіт (обрати файл)";
             this.btnAddReport.ThemeName = "Office2013Light";
-            this.btnAddReport.Click += new System.EventHandler(this.btnAddReport_Click);
+            this.btnAddReport.Click += new System.EventHandler(this.BtnAddReport_Click);
             // 
             // radLabel4
             // 
@@ -514,7 +514,7 @@
             this.btnToAcception.TabIndex = 2;
             this.btnToAcception.Text = "Відправити на погодження";
             this.btnToAcception.ThemeName = "Office2013Light";
-            this.btnToAcception.Click += new System.EventHandler(this.btnToAcception_Click);
+            this.btnToAcception.Click += new System.EventHandler(this.BtnToAcception_Click);
             // 
             // btnAcceptType1
             // 
@@ -525,7 +525,7 @@
             this.btnAcceptType1.TabIndex = 3;
             this.btnAcceptType1.Text = "Зафіксувати перелік звітів";
             this.btnAcceptType1.ThemeName = "Office2013Light";
-            this.btnAcceptType1.Click += new System.EventHandler(this.btnAccept_Click);
+            this.btnAcceptType1.Click += new System.EventHandler(this.BtnAccept_Click);
             // 
             // radSplitContainer1
             // 
@@ -573,7 +573,7 @@
             this.btnUpdate.TabIndex = 21;
             this.btnUpdate.Text = "Оновити дані";
             this.btnUpdate.ThemeName = "Office2013Light";
-            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            this.btnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // splitPanelPeriod
             // 
@@ -603,7 +603,7 @@
             this.btnAddPeriod.TabIndex = 16;
             this.btnAddPeriod.Text = "Додати період";
             this.btnAddPeriod.ThemeName = "Office2013Light";
-            this.btnAddPeriod.Click += new System.EventHandler(this.btnAddPeriod_Click);
+            this.btnAddPeriod.Click += new System.EventHandler(this.BtnAddPeriod_Click);
             // 
             // splitPanelRatedList
             // 
@@ -633,7 +633,7 @@
             this.btnAcceptType2.TabIndex = 19;
             this.btnAcceptType2.Text = "Зафіксувати перелік звітів";
             this.btnAcceptType2.ThemeName = "Office2013Light";
-            this.btnAcceptType2.Click += new System.EventHandler(this.btnAccept_Click);
+            this.btnAcceptType2.Click += new System.EventHandler(this.BtnAccept_Click);
             // 
             // btnAddRatedList
             // 
@@ -644,7 +644,7 @@
             this.btnAddRatedList.TabIndex = 1;
             this.btnAddRatedList.Text = "Додати розрахунковий лист";
             this.btnAddRatedList.ThemeName = "Office2013Light";
-            this.btnAddRatedList.Click += new System.EventHandler(this.btnAddRatedList_Click);
+            this.btnAddRatedList.Click += new System.EventHandler(this.BtnAddRatedList_Click);
             // 
             // gvRatedList
             // 
@@ -730,8 +730,8 @@
             this.gvRatedList.Size = new System.Drawing.Size(1076, 68);
             this.gvRatedList.TabIndex = 0;
             this.gvRatedList.ThemeName = "Office2013Light";
-            this.gvRatedList.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.gvRatedList_RowFormatting);
-            this.gvRatedList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRatedList_CommandCellClick);
+            this.gvRatedList.RowFormatting += new Telerik.WinControls.UI.RowFormattingEventHandler(this.GvRatedList_RowFormatting);
+            this.gvRatedList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.GvRatedList_CommandCellClick);
             // 
             // bindingRatedList
             // 
@@ -776,7 +776,7 @@
             this.btnCreateReport.TabIndex = 18;
             this.btnCreateReport.Text = "Додати звіт (ручне введення)";
             this.btnCreateReport.ThemeName = "Office2013Light";
-            this.btnCreateReport.Click += new System.EventHandler(this.btnCreateReport_Click);
+            this.btnCreateReport.Click += new System.EventHandler(this.BtnCreateReport_Click);
             // 
             // radButton1
             // 

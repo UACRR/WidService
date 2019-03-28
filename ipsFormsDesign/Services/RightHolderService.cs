@@ -1,8 +1,8 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Model.SQLViewsData;
 using ipsFormsDesign.ViewModels.Rightholders;
-using ipsmedserviceapp.Model.SQLViewsData;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPIConnector;
@@ -13,21 +13,26 @@ namespace ipsFormsDesign.Services
     {
         private ApiConnector _webApi = new ApiConnector();
 
+        /* Info */
+        public vCustomer GetOwnerName()
+        {
+            var retValue = _webApi.GetItemById<vCustomer>("info/name", null);
+            return retValue;
+        }
+
+        /* Get Data */
         public Customer GetData(int custId)
         {
-            var anketaDic = _webApi.GetItemById<Customer>("rh/detail", custId.ToString() );
+            var anketaDic = _webApi.GetItemById<Customer>("rh/detail", custId.ToString());
             return anketaDic;
         }
 
         public AnketaDictionaties GetDictionary()
         {
-            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary","anketa");
+            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
             return anketaDic;
         }
-        public vCustomer GetOwner()
-        {
-            return _webApi.GetItemById<vCustomer>("info/owner", null);
-        }
+
         public IList<RightholderMainView> GetMainView()
         {
             return GetRightholdersList("rh/listrh");
@@ -47,10 +52,20 @@ namespace ipsFormsDesign.Services
 
             return list;
         }
+        public vTsk1ListRightHolder01Box GetRightholdersPage(RightholderListQuery query)
+        {
+            var list = _webApi.GetItemByIdWithParam<vTsk1ListRightHolder01Box>("rh/currentpage", null, query.ToKeyValuePair());
+
+            return list;
+        }
 
         public async Task<IList<RightholderMainView>> GetRightholdersAsync(RightholderListQuery query)
         {
             return await Task.Factory.StartNew(() => GetRightholders(query));
+        }
+        public async Task<vTsk1ListRightHolder01Box> GetRightholdersPageAsync(RightholderListQuery query)
+        {
+            return await Task.Factory.StartNew(() => GetRightholdersPage(query));
         }
 
         public Customer NewCustomer(int custType)
@@ -61,7 +76,7 @@ namespace ipsFormsDesign.Services
 
         public bool Save(Customer cust)
         {
-            if( cust.CustId == 0 ) // Новий споживач
+            if (cust.CustId == 0) // Новий споживач
             {
                 return _webApi.NewItem<Customer>("rh/newrightholder", cust);
             }
@@ -90,7 +105,7 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem("rh/objects/transfer", null, transferParameters);
         }
 
-        public IList<Authors> getAuthorsByFilter( string filterString )
+        public IList<Authors> GetAuthorsByFilter(string filterString)
         {
             var url = string.Concat("rh/filters/authors/", filterString);
             var listOfAuthors = _webApi.GetList<Authors>(url);
@@ -101,7 +116,7 @@ namespace ipsFormsDesign.Services
         {
             string url = $"rh/checkexists/okpo/{okpo}";
             var result = _webApi.GetList<vCustomer>(url);
-            return result ;
+            return result;
         }
         public List<vCustomer> CheckIpiExists(string ipi)
         {
@@ -136,13 +151,13 @@ namespace ipsFormsDesign.Services
         {
             public DebugInheritData()
             {
-                listCopyRight = new List<CopyRight>();
-                authtors = new List<Authors>();
-                inheriers = new List<CopyRight>();
+                ListCopyRight = new List<CopyRight>();
+                Authtors = new List<Authors>();
+                Inheriers = new List<CopyRight>();
             }
-            public List<CopyRight> listCopyRight { get; }
-            public List<Authors> authtors { get; }
-            public List<CopyRight> inheriers { get; }
+            public List<CopyRight> ListCopyRight { get; }
+            public List<Authors> Authtors { get; }
+            public List<CopyRight> Inheriers { get; }
         }
         public DebugInheritData InheritDebug(int checkCustId, List<RightHolder> inheritData)
         {

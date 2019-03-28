@@ -83,7 +83,7 @@
             gridViewComboBoxColumn1.DataType = typeof(int);
             gridViewComboBoxColumn1.DisplayMember = "Name";
             gridViewComboBoxColumn1.FieldName = "CommunityCustId";
-            gridViewComboBoxColumn1.HeaderText = "Спільнота";
+            gridViewComboBoxColumn1.HeaderText = "Товариство";
             gridViewComboBoxColumn1.Name = "CommunityCustId";
             gridViewComboBoxColumn1.ValueMember = "CustId";
             gridViewComboBoxColumn1.Width = 148;

@@ -1,5 +1,5 @@
 ﻿using ipsFormsDesign.Dictionary;
-using ipsmedserviceapp.Model.SQLViewsData;
+using ipsFormsDesign.Model.SQLViewsData;
 
 namespace ipsFormsDesign.Interfaces
 {

@@ -13,13 +13,10 @@ namespace ipsmedserviceapp.Model
 {
     public partial class MediaServiceContext : DbContext
     {
-        //public MediaServiceContext(DbContextOptions<MediaServiceContext> options) : base(options)
-        //{
-        //}
-
         // mapped to vTsk_1_ListRightHolder01
         public DbQuery<RightholderMainView> RightholderMainView { get; set; }
         public DbQuery<vCustomer> vCustomer { get; set; }
+        public DbQuery<vTsk1ListRightHolder01> vTsk_1_ListRightHolder01 { get; set; }
 
         public void UpdateList<T>(ICollection<T> sors, ICollection<T> dest, Action<T> maxId, Func<T, T, bool> compId, string[] excludeField = null) where T : class, new()
         {

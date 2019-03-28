@@ -9,7 +9,6 @@ using System.IO;
 using ipsFormsDesign.Dictionary;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Data;
 using sysAdminwp.viewPageDictionaryControls;
 
 namespace sysAdminwp
@@ -17,24 +16,39 @@ namespace sysAdminwp
     public partial class DictionaryForm : RadForm
     {
         private readonly ApiConnector _connector = new ApiConnector();
-        private readonly List<string> _complexDictionaryList = new List<string>
-        {
-            "copyrightkind",
-            "country",
-            "creativeroletype",
-            "genretype",
-            "klr030"
-        };
         private List<DictBaseTypeI> _list;
-        private List<CopyrightKind> _copyrightKindList;
-        private List<Country> _countryList;
-        private List<CreativeRoleType> _creativeRoleTypeList;
-        private List<GenreType> _genreTypeList;
-        private List<KlR030> _klR030List;
         private List<DictCategory> _dictionaryCategories;
         private List<DicCategoryItems> _complexDictionary;
-        //variable for detect started complex dictionary controls for next set clear
-        private static string StringTypeForInitializeControl = null;
+        //current position of the grid
+        private int _currentPosition;
+        private List<ViewTable> _dataGrid;
+        //define new position for grid
+        private int _updatePosition;
+        //defined enable state for elements
+        private bool enableStateElements;
+        public bool EnableSateElements
+        {
+            get { return enableStateElements; }
+            set
+            {
+                //add new element button
+                btnAdd.Enabled = value;
+                //search field
+                txtSearchData.Enabled = value;
+                //left treeView element
+                treeViewList.Enabled = value;
+                //search field for treeView element
+                txtTreeFilter.Enabled = value;
+                //grid
+                gvDictionariesList.Enabled = value;
+                //delete buttom
+                btnRemove.Enabled = value;
+                //save button
+                btnSave.Enabled = !value;
+                //cancel button
+                btnCancel.Enabled = !value;
+            }
+        }
 
         /// <summary>
         /// URL словника
@@ -65,28 +79,13 @@ namespace sysAdminwp
             }
         }
 
-        // index selected row
-        private int _indexRow;
-
         public DictionaryForm()
         {
             InitializeComponent();
+            //fill data for treeView element
             SetTreeViewDataSource();
-            
+            //update bottom panel
             UpdateEditPanel();
-
-            txtSearchData.TextChanged += RadTxtBoxSearchData_TextChanged;
-            gvDictionariesList.CustomFiltering += RadGridView1_CustomFiltering;
-            gvDictionariesList.CurrentRowChanged += RadGridView1_CurrentRowChanged;
-
-            //txtSearchData.SetUsageGrid(gvDictionariesList);
-
-
-            radPanelChange.Enabled = false;
-            txtSearchData.Enabled = false;
-            btnAdd.Enabled = false;
-            btnRemove.Enabled = false;
-
             //initialize object for complex dictionaries
             ComplexDictionaryControl complexDictionaryControl = new ComplexDictionaryControl(_connector, _complexDictionary)
             {
@@ -94,8 +93,6 @@ namespace sysAdminwp
             };
             //add new control for complex dictionaries
             radPageViewPage2.Controls.Add(complexDictionaryControl);
-
-
         }
 
         #region * * * Методи * * *
@@ -124,9 +121,9 @@ namespace sysAdminwp
                 foreach (var i in categoryItems)
                     category.DicCategoryItems.Add(i);
             }
-
+            //complex dictionaries for send to second control
             _complexDictionary = _complexDictionary.OrderBy(i => i.Name).ToList();
-
+            //show simple dictionaries
             treeViewList.DataSource = _dictionaryCategories;
             treeViewList.ChildMember = "DictCategory\\DicCategoryItems";
             treeViewList.DisplayMember = "Name\\Name";
@@ -139,20 +136,18 @@ namespace sysAdminwp
         private List<ViewTable> GetData()
         {
             var view = new List<ViewTable>();
-            
             // прості словники
             {
                 var baseDicts = _connector.GetList<DictBaseTypeI>(Url);
                 _list = baseDicts;
-
                 foreach (var item in baseDicts)
                 {
                     view.Add(new ViewTable
                     {
                         Code = item.CodeI.ToString(),
-                        NameUk = item.DictTrI?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                        NameRu = item.DictTrI?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                        NameEn = item.DictTrI?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                        NameUk = item.DictTrI?.SingleOrDefault(i => i?.Lang.TrimEnd() == "Uk")?.Name ?? item.Name,
+                        NameRu = item.DictTrI?.SingleOrDefault(i => i?.Lang.TrimEnd() == "Ru")?.Name,
+                        NameEn = item.DictTrI?.SingleOrDefault(i => i?.Lang.TrimEnd() == "En")?.Name,
                     });
                 }
             }
@@ -185,9 +180,28 @@ namespace sysAdminwp
             DictBaseTypeI dataI = PackDataI();
             // TODO: use result
             bool result = _connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
-
-            gvDictionariesList.DataSource = GetData();
+            //update current data and select for grid
+            ControlCurrentPosition(result, dataI);
+            //update bottom panel
             UpdateEditPanel();
+        }
+
+        //method for control current position into grid
+        private void ControlCurrentPosition(bool resultAction, DictBaseTypeI mutableItem)
+        {
+            //save current position into grid
+            _currentPosition = gvDictionariesList.CurrentRow.Index;
+            //get data for grid
+            _dataGrid = GetData();
+            //set data for grid
+            gvDictionariesList.DataSource = _dataGrid;
+            //get field 'CodeI' of the mutable item
+            string forSearchItem = mutableItem.CodeI.ToString();
+            //define new active position for grid
+            _updatePosition = _dataGrid.FindIndex(el => el.Code == forSearchItem);
+            //set select item for grid
+            gvDictionariesList.CurrentRow = resultAction ? gvDictionariesList.Rows[_updatePosition]
+                                                         : gvDictionariesList.Rows[_currentPosition];
         }
 
         public void SaveAddNewRow()
@@ -201,15 +215,12 @@ namespace sysAdminwp
                 try
                 {
                     DictBaseTypeI dataI = PackDataI();
+                    //result after add new item
                     bool result = _connector.NewItem(Url, dataI);
-
-                    gvDictionariesList.DataSource = GetData();
-                    //select last item(new) into grid
-                    gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[gvDictionariesList.RowCount - 1] :
-                                                             gvDictionariesList.Rows[0];
+                    //update current data and select for grid
+                    ControlCurrentPosition(result, dataI);
                     UpdateEditPanel();
-                    ChangeEnableElementsWhenAdd(true);
-                    
+                    EnableSateElements = true;
                 }
                 catch (Exception e)
                 {
@@ -236,57 +247,11 @@ namespace sysAdminwp
 
             if (gvDictionariesList.CurrentRow?.DataBoundItem is ViewTable items)
             {
-                if (_complexDictionaryList.Contains(DictionaryName.ToLower()))
-                {
-                    // TODO: для складних довідників підтягнути додаткові потрібні словники, сформувати інтерфейс
-                    // біндінг даних
-                    switch (DictionaryName.ToLower())
-                    {
-                        case "copyrightkind":
-                            var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                            txtCode.Text = copyrightKind?.CodeI.ToString();
-                            txtNameUa.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                            txtNameRu.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                            txtNameEn.Text = copyrightKind?.CopyrightKindTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
-                            break;
-                        case "country":
-                            var country = _countryList?.SingleOrDefault(rec => rec.CountryCode == items.Code);
-                            txtCode.Text = country?.CountryCode;
-                            txtNameUa.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Uk")?.CountryName;
-                            txtNameRu.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "Ru")?.CountryName;
-                            txtNameEn.Text = country?.CountryTr?.SingleOrDefault(i => i.Lang == "En")?.CountryName;
-                            break;
-                        case "creativeroletype":
-                            var creativeRoleType = _creativeRoleTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                            txtCode.Text = creativeRoleType?.CodeI.ToString();
-                            txtNameUa.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                            txtNameRu.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                            txtNameEn.Text = creativeRoleType?.CreativeRoleTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
-                            break;
-                        case "genretype":
-                            var genreType = _genreTypeList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                            txtCode.Text = genreType?.CodeI.ToString();
-                            txtNameUa.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Uk")?.Name;
-                            txtNameRu.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "Ru")?.Name;
-                            txtNameEn.Text = genreType?.GenreTypeTr?.SingleOrDefault(i => i.Lang == "En")?.Name;
-                            break;
-                        case "klr030":
-                            var klR030 = _klR030List?.SingleOrDefault(rec => rec.R030 == items.Code);
-                            txtCode.Text = klR030?.R030;
-                            txtNameUa.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Uk")?.R030Name;
-                            txtNameRu.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "Ru")?.R030Name;
-                            txtNameEn.Text = klR030?.KlR030tr?.SingleOrDefault(i => i.Lang == "En")?.R030Name;
-                            break;
-                    }
-                }
-                else
-                {
-                    var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
-                    txtCode.Text = item?.CodeI.ToString();
-                    txtNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "Uk")?.Name;
-                    txtNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "Ru")?.Name;
-                    txtNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "En")?.Name;
-                }
+                var item = _list?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(items.Code));
+                txtCode.Text = item?.CodeI.ToString();
+                txtNameUa.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "Uk")?.Name;
+                txtNameRu.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "Ru")?.Name;
+                txtNameEn.Text = item?.DictTrI?.SingleOrDefault(i => i.Lang.TrimEnd() == "En")?.Name;
             }
             else
             {
@@ -303,33 +268,8 @@ namespace sysAdminwp
             // hide default string
             gvDictionariesList.TableElement.Text = "";
         }
-
-        /// <summary>
-        /// Метод зміни стану увімкненості компонентів
-        /// </summary>
-        /// <param name="isEnable">Якщо true - компонент активний</param>
-        private void ChangeEnableElementsWhenEdit(bool isEnable)
-        {
-            gvDictionariesList.Enabled = isEnable;
-            treeViewList.Enabled = isEnable;
-            btnAdd.Enabled = isEnable;
-            btnRemove.Enabled = isEnable;
-            txtSearchData.Enabled = isEnable;
-            txtTreeFilter.Enabled = isEnable;
-        }
-
-        private void ChangeEnableElementsWhenAdd(bool isEnable)
-        {
-            btnAdd.Enabled = isEnable;
-            txtSearchData.Enabled = isEnable;
-            treeViewList.Enabled = isEnable;
-            txtTreeFilter.Enabled = isEnable;
-            gvDictionariesList.Enabled = isEnable;
-            btnRemove.Enabled = isEnable;
-        }
-
+        
         #endregion
-
 
         //зміна даних в grid при написанні пошукового слова
         private void RadTxtBoxSearchData_TextChanged(object sender, EventArgs e)
@@ -379,139 +319,54 @@ namespace sysAdminwp
         //оновлення панелі редагування
         private void RadGridView1_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
+            EnableSateElements = true;
             UpdateEditPanel();
-        }
-        //method for save last position cursor
-        private void GetLstCurs()
-        {
-            //save position
-            _indexRow = gvDictionariesList.CurrentRow.Index;
-        }
-
-        //method for set saved position cursor
-        private void SetLstCurs()
-        {
-            //set position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[_indexRow];
-        }
-        //method for set position after delete
-        private void SetPositionAfterDelete()
-        {
-            //set last position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
-        }
-        //method for set position after added
-        private void SetPositionAfterAdded()
-        {
-            //set last position
-            gvDictionariesList.CurrentRow = gvDictionariesList.Rows[gvDictionariesList.RowCount - 1];
         }
 
         //додавання нового рядка
         private void radBtnAdd_Click(object sender, EventArgs e)
         {
-            //use last selected row
-            GetLstCurs();
             btnSave.Text = "Додати";
-            ChangeEnableElementsWhenAdd(false);
+            EnableSateElements = false;
             txtCode.Clear();
             txtNameEn.Clear();
             txtNameRu.Clear();
             txtNameUa.Clear();
-            radPanelChange.Enabled = true;
         }
         
         //кнопка видалення рядка в grid
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
             var row = gvDictionariesList.CurrentRow.DataBoundItem as ViewTable;
-            var result = _connector.DeleteItem(Url, row.Code);
-
+            bool result = _connector.DeleteItem(Url, row.Code);
+            //get last selected item
+            int currentPosition = gvDictionariesList.CurrentRow.Index;
+            //get data for grid
             gvDictionariesList.DataSource = GetData();
+            gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[currentPosition - 1]
+                                                   : gvDictionariesList.Rows[0];
             UpdateEditPanel();
-            //set last position for cursor
-            SetPositionAfterDelete();
         }
 
         //кнопка збереження
         private void radBtnSave_Click(object sender, EventArgs e)
         {
-            if (_complexDictionaryList.Contains(DictionaryName.ToLower()))
+            if (btnSave.Text == "Додати")
             {
-                var row = gvDictionariesList.CurrentRow.DataBoundItem as ViewTable;
-
-                switch (DictionaryName.ToLower())
-                {
-                    case "copyrightkind":
-                        var copyrightKind = _copyrightKindList?.SingleOrDefault(rec => rec.CodeI == Convert.ToInt32(row.Code));
-                        // CrkindGroup
-                        var customDict = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.crkindGroup;
-                        //initialize object form with parameters
-                        //ComplexDictionaryParamForm formComplex = new ComplexDictionaryParamForm(copyrightKind, customDict);
-                        MessageBox.Show($"Before: {copyrightKind.CrGroupCode}");
-                        //open form with current data complexive dictionaries
-                        //if(formComplex.ShowDialog() == DialogResult.OK)
-                        //{
-                        //    MessageBox.Show($"After: {copyrightKind.CrGroupCode}");
-                        //}
-                        break;
-                    case "country":
-                        var country = _countryList?.SingleOrDefault(result => result.ContinentCode == Convert.ToInt32(row.Code));
-                        var customDictCountry = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.country;
-                        //initialize object form with parameters
-                        //ComplexDictionaryParamForm formComParam = new ComplexDictionaryParamForm(country: country, continent: customDictCountry);
-                        //open form with current data complexive dictionaries
-
-                        break;
-                    case "creativeroletype":
-                        var creativeroletype = _creativeRoleTypeList?.SingleOrDefault(obj => obj.CodeI == Convert.ToInt32(row.Code));
-                        var customDictCreateRoleType = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.creativeRoleType;
-
-                        //initialize object form with parameters
-                        //ComplexDictionaryParamForm formCoPar = new ComplexDictionaryParamForm(roleType: creativeroletype, listRoleType: customDictCreateRoleType);
-                        //open from with current data complexive dictionaries
-
-                        break;
-                    case "genretype":
-                        var genretype = _genreTypeList?.SingleOrDefault(res => res.CodeI == Convert.ToInt32(row.Code));
-                        var customDictGenreType = (List<DictBaseTypeI>)IpsGlobal.AnketaDictionaties.genreType;
-                        //initialize object form with parameters
-                        //ComplexDictionaryParamForm formCP = new ComplexDictionaryParamForm(genreType: genretype, listGenreType: customDictGenreType);
-                        //open from with current data complexive dictionaries
-
-                        break;
-                    case "klr030":
-                        var klr030 = _klR030List?.SingleOrDefault(getObj => getObj.NOmin == Convert.ToInt32(row.Code));
-                        var customDictKlr030 = (List<Country>)IpsGlobal.AnketaDictionaties.klR030;
-                        //initialize object form with parameters
-                        //ComplexDictionaryParamForm formCoParam = new ComplexDictionaryParamForm(klr030: klr030, klr030List: customDictKlr030);
-                        //open form with current data complexive dictionaries
-
-                        break;
-                }
+                SaveAddNewRow();
             }
             else
             {
-                if (btnSave.Text == "Додати")
-                {
-                    SaveAddNewRow();
-                }
-                else
-                {
-                    SaveUpdate();
-                    ChangeEnableElementsWhenEdit(true);
-                }
+                SaveUpdate();
             }
-
-            ////set last row focus
-            //SetLstCurs();
+            EnableSateElements = true;
         }
 
         //кнопка відміни внесених змін
         private void radBtnCancel_Click(object sender, EventArgs e)
         {
             UpdateEditPanel();
-            ChangeEnableElementsWhenEdit(true);
+            EnableSateElements = true;
         }
 
         //фільтр елементів дерева
@@ -570,9 +425,7 @@ namespace sysAdminwp
         //подія при редагуванні даних в текстбоксах
         private void TextBox_TextChanging(object sender, Telerik.WinControls.TextChangingEventArgs e)
         {
-            //save last position
-            GetLstCurs();
-            ChangeEnableElementsWhenEdit(false);
+            EnableSateElements = false;
         }
 
         //збереження конфігурації

@@ -37,11 +37,16 @@ namespace RightholderWorkplace
 
         public RightholderWorkplace()
         {
+            var objectrightService = new ObjectRightService();
+            IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
+
+            var rightholderService = new RightholderService();
+            IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+
+            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name );
+
             InitializeComponent();
 
-            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwner()?.Name);
-
-            WindowState = FormWindowState.Maximized;
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();

@@ -394,6 +394,7 @@
     <Compile Include="Model\SexTypeTr.cs" />
     <Compile Include="Model\SpecType.cs" />
     <Compile Include="Model\SpecTypeTr.cs" />
+    <Compile Include="Model\SqlViewData\Ft_Tsk_1_ListRightHolder01.cs" />
     <Compile Include="Model\SqlViewData\vCustomer.cs" />
     <Compile Include="Model\SystemConstant.cs" />
     <Compile Include="Model\SystemConstantTr.cs" />

@@ -36,9 +36,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ipsFormsDesign">
-      <HintPath>..\ipsFormsDesign\bin\Debug\ipsFormsDesign.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
@@ -114,6 +111,10 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
       <Project>{C0C413B4-086C-422C-82D6-A02E6284ABDF}</Project>
       <Name>IpsViewComponentLibrary</Name>

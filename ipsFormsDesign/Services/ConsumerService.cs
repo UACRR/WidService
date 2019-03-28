@@ -9,7 +9,7 @@ using System.IO;
 using System.Dynamic;
 using System.Threading.Tasks;
 using ipsFormsDesign.Data;
-using ipsmedserviceapp.Model.SQLViewsData;
+using ipsFormsDesign.Model.SQLViewsData;
 // ReSharper disable All
 
 namespace ipsFormsDesign.Services
@@ -23,6 +23,12 @@ namespace ipsFormsDesign.Services
         {
             var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
             return anketaDic;
+        }
+
+        public ObjectRightDictionaries GetObjectRightDictionaries()
+        {
+            var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
+            return dictionaries;
         }
 
         public Customer GetData(int custId)
