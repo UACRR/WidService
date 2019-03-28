@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -41,11 +42,12 @@ namespace ipsmedserviceapp.Controllers
         };
 
         /// <summary>
-        /// повернути дані обраної VIEW 
+        /// Повернути дані обраної VIEW 
         /// </summary>
         /// <param name="viewName"></param>
         /// <param name="paramId"></param>
         /// <param name="columnName"></param>
+        /// <param name="queryResource"></param>
         /// <returns></returns>
         [HttpGet("list/view")]
         public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId, [FromQuery] string columnName)
@@ -58,7 +60,8 @@ namespace ipsmedserviceapp.Controllers
             if (paramId == null)
             {
                 var list = await _dbContext.getViewData(queryStr, null);
-                return Json(list);
+                var data = list.Take(1000);
+                return Json(data);
             }
             else
             {
@@ -67,6 +70,53 @@ namespace ipsmedserviceapp.Controllers
                 var list = await _dbContext.getViewData(queryStr, new[] { new SqlParameter("@paramId", paramId) });
                 return Json(list);
             }
+        }
+
+        /// <summary>
+        /// Повернути дані обраної VIEW 
+        /// </summary>
+        /// <param name="viewName"></param>
+        /// <param name="queryResource"></param>
+        /// <returns></returns>
+        [HttpGet("list/rhview/{viewName}")]
+        public async Task<IActionResult> GetCommunityList(string viewName, [FromQuery] RightholdersQueryResource queryResource)
+        {
+            if (viewName == null || !_communityViewList.Keys.Contains(viewName))
+                return BadRequest();
+
+            string queryStr = string.Concat("select * from ", _communityViewList[viewName]);
+
+            // where conditions
+            if (!string.IsNullOrEmpty(queryResource.SearchText))
+            {
+                string normalizeText = queryResource.SearchText.Replace('\'', '_');
+                string where = $" where name like '%{normalizeText}%' or innerCode like '{normalizeText}%' or interCode like '{normalizeText}%'";
+                queryStr = string.Concat(queryStr, where);
+            }
+
+            var totalItems = (await _dbContext.getViewData(queryStr.Replace("*", "count(*)"), null)).FirstOrDefault()?.Values.FirstOrDefault();
+
+            int page = 1;
+            int pageSize = 200;
+
+            if (queryResource.Page.HasValue)
+                page = (int) queryResource.Page;
+
+            if (queryResource.PageSize.HasValue)
+                pageSize = (int) queryResource.PageSize;
+
+            // TODO: optimize query to DB
+            // paging conditions
+            string orderBy = $" ORDER BY custId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
+            queryStr = string.Concat(queryStr, orderBy);
+
+            var list = await _dbContext.getViewData(queryStr, null);
+            //var data = list.Skip((page - 1) * pageSize).Take(pageSize);
+            return Ok(new
+            {
+                List = list,
+                TotalItems = totalItems
+            });
         }
 
         /// <summary>

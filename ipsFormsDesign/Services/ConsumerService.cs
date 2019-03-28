@@ -25,6 +25,12 @@ namespace ipsFormsDesign.Services
             return anketaDic;
         }
 
+        public ObjectRightDictionaries GetObjectRightDictionaries()
+        {
+            var dictionaries = _webApi.GetItemById<ObjectRightDictionaries>("dictionary", "objectright");
+            return dictionaries;
+        }
+
         public Customer GetData(int custId)
         {
             var consumer = _webApi.GetItemById<Customer>("consumer/detail", custId.ToString());

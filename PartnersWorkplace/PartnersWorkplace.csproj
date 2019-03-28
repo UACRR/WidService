@@ -36,9 +36,6 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ipsFormsDesign">
-      <HintPath>..\ipsFormsDesign\bin\Debug\ipsFormsDesign.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -108,6 +105,10 @@
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
       <Project>{C0C413B4-086C-422C-82D6-A02E6284ABDF}</Project>
       <Name>IpsViewComponentLibrary</Name>

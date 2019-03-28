@@ -146,6 +146,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommunityControls\CommunityLimitsEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityLimitsEditForm.Designer.cs">
+      <DependentUpon>CommunityLimitsEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityRightLimitationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityRightLimitationControl.Designer.cs">
+      <DependentUpon>CommunityRightLimitationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\InternalModel\RightLimitationsView.cs" />
+    <Compile Include="CommunityControls\Presenters\CommunityViewsPresenter.cs" />
     <Compile Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -332,11 +346,11 @@
     <Compile Include="Common\UserSelectionView.Designer.cs">
       <DependentUpon>UserSelectionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommunityControls\CommunityAddAutorForm.cs">
+    <Compile Include="CommunityControls\CommunityAddAuthorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CommunityControls\CommunityAddAutorForm.Designer.cs">
-      <DependentUpon>CommunityAddAutorForm.cs</DependentUpon>
+    <Compile Include="CommunityControls\CommunityAddAuthorForm.Designer.cs">
+      <DependentUpon>CommunityAddAuthorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CommunityControls\CommunityAddressControl.cs">
       <SubType>UserControl</SubType>
@@ -1079,6 +1093,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CommunityControls\CommunityLimitsEditForm.resx">
+      <DependentUpon>CommunityLimitsEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityRightLimitationControl.resx">
+      <DependentUpon>CommunityRightLimitationControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.resx">
       <DependentUpon>MusicDesignHeaderInfoControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1160,8 +1180,8 @@
     <EmbeddedResource Include="Common\UserSelectionView.resx">
       <DependentUpon>UserSelectionView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CommunityControls\CommunityAddAutorForm.resx">
-      <DependentUpon>CommunityAddAutorForm.cs</DependentUpon>
+    <EmbeddedResource Include="CommunityControls\CommunityAddAuthorForm.resx">
+      <DependentUpon>CommunityAddAuthorForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityAddressControl.resx">
       <DependentUpon>CommunityAddressControl.cs</DependentUpon>
@@ -1529,6 +1549,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightRequests.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ChildTemplate.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.CommunityAuthorsView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
@@ -1589,6 +1610,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.FixationListViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.CommunityControls.InternalModel.RightLimitationsView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo.datasource" />

@@ -7,9 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -20,20 +22,23 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
         public event GetCustomerByIdEventHandler UpdateCustomer;
-        public event ReturnFullViewEventHandler<CommunityAutorsListView> GetAutorsList;
-        public event ReturnFullViewEventHandler<CommunityAutorsListView> UpdateAutorsList;
+        public event ReturnFullViewEventHandler<CommunityAuthorsView> UpdateAutorsList;
         public event GetCommunityRightList GetCommunityRightList;
         public event SaveLimitedRightEventHandler<CustCmRight> SaveLimitedRights; 
 
-        private List<CommunityAutorsListView> _list;
         private Customer _customer;
+        private readonly CommunityViewsPresenter _presenter;
 
-        public CommunityCabinetForm(Customer customer, List<CommunityAutorsListView> list)
+        protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+
+        public CommunityCabinetForm(Customer customer, List<CommunityAuthorsView> list)
         {
             InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen;
+            if (!IsDesignMode)
+                _presenter = new CommunityViewsPresenter();
+            WindowState = FormWindowState.Maximized;
             _customer = customer;
-            _list = list;
+            bsCommunityAuthorsView.DataSource = list;
             ctrlTabNavigation.SetDefaultState(pageViewAnketa, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
             ctrlTabNavigation.CancelClick += CtrlTabNavigation_CancelClick;
@@ -57,9 +62,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         private void BeginBindings()
         {
             bsCommunity.DataSource = _customer.Community;
-            //grid
-            gvViewAutors.DataSource = _list;
-
+            
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
 
@@ -110,7 +113,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             lblCommunityName.Text = anketaCompany?.Name;
         }
 
-        #region КОПІЮВАННЯ АДРЕС
+        #region * * * КОПІЮВАННЯ АДРЕС * * *
 
         private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)
         {
@@ -171,33 +174,64 @@ namespace IpsViewComponentLibrary.CommunityControls
         }
 
         //додати автора
-        private void btnAddCommunity_Click(object sender, EventArgs e)
+        private async void btnAddCommunity_Click(object sender, EventArgs e)
         {
-            LimitationFormShow();
+            var query = new RightholdersQuery
+            {
+                SearchText = string.Empty,
+                Page = 1,
+                PageSize = 200,
+            };
+            waitingBar.StartWaiting();
+            var result = await _presenter.GetAllAutorsView(query);
+            var autorsList = result.List.DistinctBy(rec => rec.CustId).ToList();
+            var addAuthorForm = new CommunityAddAuthorForm(autorsList, _customer.CustId);
+            addAuthorForm.UpdateTotalPages(result.TotalItems);
+            addAuthorForm.GetCommunityRightList += AddAutorForm_GetCommunityRightList;
+            waitingBar.StopWaiting();
+            if (addAuthorForm.ShowDialog() == DialogResult.OK)
+            {
+                SaveChanges(addAuthorForm.AuthorId, addAuthorForm.LimitRights);
+            }
         }
 
         private void gvViewAutors_CellDoubleClick(object sender, GridViewCellEventArgs e)
         {
-            var row = e.Row.DataBoundItem as CommunityAutorsListView;
-            LimitationFormShow(row);
+            if (e.Column.FieldName == "btnsEdit")
+                return;
+
+            var row = e.Row.DataBoundItem as CommunityAuthorsView;
+            LimitationEditFormShow(row);
         }
 
-        private void LimitationFormShow(CommunityAutorsListView currentRow = null)
+        private void gvViewAutors_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            var autorsList = GetAutorsList?.Invoke().DistinctBy(rec => rec.CustId).ToList();
-            var addAutorForm = new CommunityAddAutorForm(autorsList, _customer.CustId) {CurrentRow = currentRow};
-            addAutorForm.GetCommunityRightList += AddAutorForm_GetCommunityRightList;
+            var row = e.Row.DataBoundItem as CommunityAuthorsView;
+            LimitationEditFormShow(row);
+        }
 
-            if (addAutorForm.ShowDialog() == DialogResult.OK)
+
+        private void LimitationEditFormShow(CommunityAuthorsView item)
+        {
+            var rights = GetCommunityRightList?.Invoke(item.CustId);
+            var editAutorForm = new CommunityLimitsEditForm(item, rights, _customer.CustId);
+
+            if (editAutorForm.ShowDialog() == DialogResult.OK)
             {
-                var result = SaveLimitedRights?.Invoke(_customer.CustId, addAutorForm.AuthorId, addAutorForm.LimitRights) ?? false;
-                MessageShow.ShowInfoAfterChanges(result);
-                if (result)
-                {
-                    _customer = UpdateCustomer?.Invoke(_customer.CustId);
-                    _list = UpdateAutorsList?.Invoke();
-                    BeginBindings();
-                }
+                SaveChanges(item.CustId, editAutorForm.LimitRights);
+            }
+        }
+
+        private void SaveChanges(int authorId, List<CustCmRight> cmRights)
+        {
+            var result = SaveLimitedRights?.Invoke(_customer.CustId, authorId, cmRights) ?? false;
+            MessageShow.ShowInfoAfterChanges(result);
+            if (result)
+            {
+                _customer = UpdateCustomer?.Invoke(_customer.CustId);
+                bsCommunityAuthorsView.DataSource = UpdateAutorsList?.Invoke();
+                bsCommunityAuthorsView.ResetBindings(false);
+                BeginBindings();
             }
         }
     }

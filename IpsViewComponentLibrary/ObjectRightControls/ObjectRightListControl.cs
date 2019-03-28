@@ -19,22 +19,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
     {
         private readonly ObjectRightService _objectRightService;
 
-        protected bool IsDesignMode
-        {
-            get { return DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime; }
-        }
+        protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         private ObjectRightMainView _objectRight;
 
         public ObjectRightMainView SelectedObject
         {
-            get
-            {
-                if (gvObjectsRightsList.CurrentRow == null)
-                    return null;
-
-                return gvObjectsRightsList.CurrentRow.DataBoundItem as ObjectRightMainView;
-            }
+            get => gvObjectsRightsList.CurrentRow?.DataBoundItem as ObjectRightMainView;
             set
             {
                 if (_objectRight != value)

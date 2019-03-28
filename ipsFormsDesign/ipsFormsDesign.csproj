@@ -87,6 +87,8 @@
     <Compile Include="Dictionary\RegisterSearchObject.cs" />
     <Compile Include="Dictionary\RegisterStatusType.cs" />
     <Compile Include="Dictionary\RightholderListQuery.cs" />
+    <Compile Include="Dictionary\RightholdersQuery.cs" />
+    <Compile Include="Dictionary\RightholdersResponse.cs" />
     <Compile Include="Dictionary\RightholderStates.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />
     <Compile Include="Dictionary\TermsOfServiceWrapper.cs" />

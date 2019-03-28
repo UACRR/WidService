@@ -21,6 +21,9 @@ namespace ipsFormsDesign.Services
             if (IpsGlobal.AnketaDictionaties == null)
                 IpsGlobal.SetAnketaDictionaties(_service.GetDictionary());
 
+            if(IpsGlobal.ObjectRightDictionaries == null)
+                IpsGlobal.SetObjectRightDictionaries(_service.GetObjectRightDictionaries());
+
             return _service;
         }
     }
