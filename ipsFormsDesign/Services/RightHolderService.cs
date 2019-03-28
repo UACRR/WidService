@@ -53,9 +53,9 @@ namespace ipsFormsDesign.Services
 
             return list;
         }
-        public FtTsk1ListRightHolder01Box GetRightholdersPage(RightholderListQuery query)
+        public vTsk1ListRightHolder01Box GetRightholdersPage(RightholderListQuery query)
         {
-            var list = _webApi.GetItemByIdWithParam<FtTsk1ListRightHolder01Box>("rh/currentpage", null, query.ToKeyValuePair());
+            var list = _webApi.GetItemByIdWithParam<vTsk1ListRightHolder01Box>("rh/currentpage", null, query.ToKeyValuePair());
 
             return list;
         }
@@ -64,7 +64,7 @@ namespace ipsFormsDesign.Services
         {
             return await Task.Factory.StartNew(() => GetRightholders(query));
         }
-        public async Task<FtTsk1ListRightHolder01Box> GetRightholdersPageAsync(RightholderListQuery query)
+        public async Task<vTsk1ListRightHolder01Box> GetRightholdersPageAsync(RightholderListQuery query)
         {
             return await Task.Factory.StartNew(() => GetRightholdersPage(query));
         }

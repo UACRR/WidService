@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ipsmedserviceapp.Model.SQLViewsData
 {
-    [NotMapped]
-    public class FtTsk1ListRightHolder01
+    //[NotMapped]
+    public class vTsk1ListRightHolder01
     {
         public int CustId { get; set; }
         public int? CustStatus { get; set; }
@@ -23,9 +23,9 @@ namespace ipsmedserviceapp.Model.SQLViewsData
         public int? CustType { get; set; }
     }
 
-    public class FtTsk1ListRightHolder01Box
+    public class vTsk1ListRightHolder01Box
     {
         public int TotalPages { get; set; }
-        public IEnumerable<FtTsk1ListRightHolder01> list { get; set; }
+        public IEnumerable<vTsk1ListRightHolder01> list { get; set; }
     }
 }

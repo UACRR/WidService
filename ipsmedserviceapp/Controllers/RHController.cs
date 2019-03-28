@@ -201,10 +201,20 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             //}
 
             //var List = await _dbContext.getViewData(queryText, null);
-            FtTsk1ListRightHolder01Box retItem = new FtTsk1ListRightHolder01Box();
-            object searchText = new SqlParameter("@searchString", string.IsNullOrEmpty(query.SearchString) ? (object)DBNull.Value : query.SearchString );
+            vTsk1ListRightHolder01Box retItem = new vTsk1ListRightHolder01Box();
+            //object searchText = new SqlParameter("@searchString", string.IsNullOrEmpty(query.SearchString) ? (object)DBNull.Value : query.SearchString );
 
-            var qlist = _dbContext.FtTsk1ListRightHolder01.FromSql("select * from Ft_Tsk_1_ListRightHolder01(NULL,@searchString)", searchText);
+            //var qlist = _dbContext.vTsk1ListRightHolder01.FromSql("select * from Ft_Tsk_1_ListRightHolder01(NULL,@searchString)", searchText);
+            var qlist = _dbContext.vTsk_1_ListRightHolder01.AsQueryable();
+
+            
+            if( !string.IsNullOrEmpty(query.SearchString) )
+            {
+                var searchString = query.SearchString.Trim();
+                qlist = qlist.Where(rec => rec.Name.Contains(searchString) || rec.InnerCode.Contains(searchString) || rec.InterCode.Contains(searchString));
+
+            }
+
 
             if (query.AgreementStatus.HasValue)
                 qlist = qlist.Where(rec => rec.AgrStatus == query.AgreementStatus);
@@ -213,8 +223,8 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
 
             retItem.TotalPages = qlist.Count();
 
-            var skipRows = query.PageNumber * query.RowsPerPage;
-            retItem.list = await qlist.Skip((int)skipRows).Take((int)query.RowsPerPage).ToListAsync();
+            var skipRows = Math.Max((int)((query.PageNumber-1) * query.RowsPerPage),0);
+            retItem.list = await qlist.OrderBy(rec => rec.Name).Skip(skipRows).Take((int)query.RowsPerPage).ToListAsync();
 
 
             return Ok(retItem);

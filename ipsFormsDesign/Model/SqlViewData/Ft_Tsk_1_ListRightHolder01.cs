@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ipsFormsDesign.Model.SQLViewsData
 {
-    public class FtTsk1ListRightHolder01
+    public class vTsk1ListRightHolder01
     {
         public int CustId { get; set; }
         public int? @status { get; set; }
@@ -23,9 +23,9 @@ namespace ipsFormsDesign.Model.SQLViewsData
         public int? CustType { get; set; }
     }
 
-    public class FtTsk1ListRightHolder01Box
+    public class vTsk1ListRightHolder01Box
     {
         public int TotalPages { get; set; }
-        public IEnumerable<FtTsk1ListRightHolder01> list { get; set; }
+        public IEnumerable<vTsk1ListRightHolder01> list { get; set; }
     }
 }

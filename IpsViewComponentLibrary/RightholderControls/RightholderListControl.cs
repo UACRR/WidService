@@ -84,8 +84,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderListControl()
         {
             InitializeComponent();
-            navigatorPanelControl1.PageSize = 20;
-            navigatorPanelControl1.CurrentPage = 0;
+            //navigatorPanelControl1.PageSize = 20;
+            //navigatorPanelControl1.CurrentPage = 1;
 
             if (!IsDesignMode)
             {
@@ -144,36 +144,44 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public void UpdateList()
         {
-            UpdateList(SelectedRightholder);
+            UpdateListWithPage(SelectedRightholder);
         }
 
-        public async void UpdateList(RightholderMainView currentRightholder)
-        {
-            waitingBar.StartWaiting();
+        //public async void UpdateList(RightholderMainView currentRightholder)
+        //{
+        //    waitingBar.StartWaiting();
 
-            var query = CreateRightholderQuery();
+        //    var query = CreateRightholderQuery();
 
-            var list = await _rightholderService.GetRightholdersAsync(query);
+        //    var list = await _rightholderService.GetRightholdersAsync(query);
 
-            rightholderMainViewBindingSource.DataSource = list;
-            lblCountRows.Text = list.Count().ToString();
-            //SelectedRightholder = currentRightholder; // TODO: is it needed?
+        //    rightholderMainViewBindingSource.DataSource = list;
+        //    lblCountRows.Text = list.Count().ToString();
+        //    //SelectedRightholder = currentRightholder; // TODO: is it needed?
 
-            waitingBar.StopWaiting();
-        }
+        //    waitingBar.StopWaiting();
+        //}
 
         public async void UpdateListWithPage(RightholderMainView currentRightholder)
         {
+            if (_rightholderService == null)
+                return;
+
             waitingBar.StartWaiting();
 
             var query = CreateRightholderQuery();
 
+            var rowsOnPage = navigatorPanelControl1.PageSize;
+            if( rowsOnPage == 0 )
+            {
+                rowsOnPage = 20;
+            }
 
             var list = await _rightholderService.GetRightholdersPageAsync(query);
 
             rightholderMainViewBindingSource.DataSource = list.list;
             lblCountRows.Text = list.TotalPages.ToString();
-            navigatorPanelControl1.TotalPages = list.TotalPages;
+            navigatorPanelControl1.TotalPages = list.TotalPages / rowsOnPage + 1;
             //SelectedRightholder = currentRightholder; // TODO: is it needed?
 
             waitingBar.StopWaiting();
@@ -323,43 +331,43 @@ namespace IpsViewComponentLibrary.RightholderControls
             gvRightholdersList.MasterTemplate.Refresh();
         }
 
-        //private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
-        //{
-        //    if (string.IsNullOrEmpty(txtSearch.Text))
-        //    {
-        //        gvRightholdersList.BeginUpdate();
-        //        e.Visible = true;
-        //        for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-        //        {
-        //            e.Row.Cells[i].Style.Reset();
-        //        }
-        //        gvRightholdersList.EndUpdate(false);
-        //        return;
-        //    }
+        private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSearch.Text))
+            {
+                gvRightholdersList.BeginUpdate();
+                e.Visible = true;
+                for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                gvRightholdersList.EndUpdate(false);
+                return;
+            }
 
-        //    gvRightholdersList.BeginUpdate();
-        //    e.Visible = false;
-        //    for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-        //    {
-        //        //якщо поле пусте
-        //        if (e.Row.Cells[i].Value == null)
-        //            continue;
+            gvRightholdersList.BeginUpdate();
+            e.Visible = false;
+            for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
+            {
+                //якщо поле пусте
+                if (e.Row.Cells[i].Value == null)
+                    continue;
 
-        //        string text = e.Row.Cells[i].Value.ToString();
-        //        if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-        //        {
-        //            e.Visible = true;
-        //            e.Row.Cells[i].Style.CustomizeFill = true;
-        //            e.Row.Cells[i].Style.DrawFill = true;
-        //            e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-        //        }
-        //        else
-        //        {
-        //            e.Row.Cells[i].Style.Reset();
-        //        }
-        //        gvRightholdersList.EndUpdate(false);
-        //    }
-        //}
+                string text = e.Row.Cells[i].Value.ToString();
+                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+                {
+                    e.Visible = true;
+                    e.Row.Cells[i].Style.CustomizeFill = true;
+                    e.Row.Cells[i].Style.DrawFill = true;
+                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
+                }
+                else
+                {
+                    e.Row.Cells[i].Style.Reset();
+                }
+                gvRightholdersList.EndUpdate(false);
+            }
+        }
 
         #endregion
 
@@ -377,6 +385,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            navigatorPanelControl1.CurrentPage = 1;
             UpdateListWithPage(SelectedRightholder);
 
         }
