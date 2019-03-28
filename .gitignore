@@ -16,7 +16,7 @@
 /lib
 /ipsmedserviceapp/obj
 /ipsmedserviceapp/bin
-/ipsmedserviceapp/Properties
+#/ipsmedserviceapp/Properties
 **/with attributes
 
 
