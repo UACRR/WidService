@@ -1,5 +1,5 @@
 ﻿
-namespace ipsmedserviceapp.Model.SQLViewsData
+namespace ipsFormsDesign.Model.SQLViewsData
 {
     public class vCustomer
     {

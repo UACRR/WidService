@@ -30,6 +30,7 @@
             this.splitPanel1 = new Telerik.WinControls.UI.SplitPanel();
             this.tvFilters = new Telerik.WinControls.UI.RadTreeView();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
+            this.buttonSearch = new Telerik.WinControls.UI.RadButton();
             this.navigatorPanelControl1 = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             this.lblCountRows = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,7 +40,6 @@
             this.rightholderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
-            this.buttonSearch = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -47,13 +47,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).BeginInit();
             this.splitPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -129,6 +129,16 @@
             this.splitPanel2.Text = "splitPanel2";
             this.splitPanel2.ThemeName = "Office2013Light";
             // 
+            // buttonSearch
+            // 
+            this.buttonSearch.Location = new System.Drawing.Point(428, 3);
+            this.buttonSearch.Name = "buttonSearch";
+            this.buttonSearch.Size = new System.Drawing.Size(110, 20);
+            this.buttonSearch.TabIndex = 2;
+            this.buttonSearch.Text = "Пошук";
+            this.buttonSearch.ThemeName = "Office2013Light";
+            this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
+            // 
             // navigatorPanelControl1
             // 
             this.navigatorPanelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -136,8 +146,9 @@
             this.navigatorPanelControl1.Location = new System.Drawing.Point(130, 367);
             this.navigatorPanelControl1.Name = "navigatorPanelControl1";
             this.navigatorPanelControl1.PageSize = 20;
+            // this.navigatorPanelControl1.ReadOnlyPageSize = false;
             this.navigatorPanelControl1.Size = new System.Drawing.Size(350, 28);
-            this.navigatorPanelControl1.TabIndex = 36;
+            this.navigatorPanelControl1.TabIndex = 4;
             this.navigatorPanelControl1.TotalPages = 0;
             this.navigatorPanelControl1.CurrentPageChanged += new System.EventHandler(this.navigatorPanelControl1_CurrentPageChanged);
             this.navigatorPanelControl1.PageSizeChanged += new System.EventHandler(this.navigatorPanelControl1_PageSizeChanged);
@@ -148,7 +159,7 @@
             this.lblCountRows.Location = new System.Drawing.Point(591, 375);
             this.lblCountRows.Name = "lblCountRows";
             this.lblCountRows.Size = new System.Drawing.Size(55, 13);
-            this.lblCountRows.TabIndex = 35;
+            this.lblCountRows.TabIndex = 6;
             this.lblCountRows.Text = "0";
             this.lblCountRows.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
@@ -158,7 +169,7 @@
             this.label1.Location = new System.Drawing.Point(516, 375);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 34;
+            this.label1.TabIndex = 5;
             this.label1.Text = "К-ть рядків";
             // 
             // txtSearch
@@ -168,7 +179,7 @@
             this.txtSearch.NullText = "Пошук";
             this.txtSearch.ShowClearButton = true;
             this.txtSearch.Size = new System.Drawing.Size(300, 20);
-            this.txtSearch.TabIndex = 32;
+            this.txtSearch.TabIndex = 1;
             this.txtSearch.ThemeName = "Office2013Light";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtSearch.GetChildAt(0))).Image = global::IpsViewComponentLibrary.Properties.Resources.search;
@@ -182,7 +193,7 @@
             this.btnRefresh.Location = new System.Drawing.Point(3, 3);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(110, 21);
-            this.btnRefresh.TabIndex = 31;
+            this.btnRefresh.TabIndex = 0;
             this.btnRefresh.Text = "Оновити";
             this.btnRefresh.ThemeName = "Office2013Light";
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
@@ -282,7 +293,7 @@
             this.gvRightholdersList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvRightholdersList.ShowGroupPanel = false;
             this.gvRightholdersList.Size = new System.Drawing.Size(649, 332);
-            this.gvRightholdersList.TabIndex = 28;
+            this.gvRightholdersList.TabIndex = 3;
             this.gvRightholdersList.ThemeName = "Office2013Light";
             this.gvRightholdersList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersList_CellDoubleClick);
             this.gvRightholdersList.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRightholdersList_CommandCellClick);
@@ -312,15 +323,6 @@
             // 
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             // 
-            // buttonSearch
-            // 
-            this.buttonSearch.Location = new System.Drawing.Point(428, 3);
-            this.buttonSearch.Name = "buttonSearch";
-            this.buttonSearch.Size = new System.Drawing.Size(110, 20);
-            this.buttonSearch.TabIndex = 37;
-            this.buttonSearch.Text = "Пошук";
-            this.buttonSearch.ThemeName = "Office2013Light";
-            // 
             // RightholderListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,13 +338,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel2)).EndInit();
             this.splitPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.buttonSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRefresh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.buttonSearch)).EndInit();
             this.ResumeLayout(false);
 
         }

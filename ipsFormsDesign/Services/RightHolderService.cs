@@ -1,8 +1,9 @@
 ﻿using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Model.SQLViewsData;
 using ipsFormsDesign.ViewModels.Rightholders;
-using ipsmedserviceapp.Model.SQLViewsData;
+using ipsFormsDesign.Model.SQLViewsData;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebAPIConnector;
@@ -23,13 +24,13 @@ namespace ipsFormsDesign.Services
         /* Get Data */
         public Customer GetData(int custId)
         {
-            var anketaDic = _webApi.GetItemById<Customer>("rh/detail", custId.ToString() );
+            var anketaDic = _webApi.GetItemById<Customer>("rh/detail", custId.ToString());
             return anketaDic;
         }
 
         public AnketaDictionaties GetDictionary()
         {
-            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary","anketa");
+            var anketaDic = _webApi.GetItemById<AnketaDictionaties>("dictionary", "anketa");
             return anketaDic;
         }
         public vCustomer GetOwner()
@@ -55,10 +56,20 @@ namespace ipsFormsDesign.Services
 
             return list;
         }
+        public FtTsk1ListRightHolder01Box GetRightholdersPage(RightholderListQuery query)
+        {
+            var list = _webApi.GetItemByIdWithParam<FtTsk1ListRightHolder01Box>("rh/currentpage", null, query.ToKeyValuePair());
+
+            return list;
+        }
 
         public async Task<IList<RightholderMainView>> GetRightholdersAsync(RightholderListQuery query)
         {
             return await Task.Factory.StartNew(() => GetRightholders(query));
+        }
+        public async Task<FtTsk1ListRightHolder01Box> GetRightholdersPageAsync(RightholderListQuery query)
+        {
+            return await Task.Factory.StartNew(() => GetRightholdersPage(query));
         }
 
         public Customer NewCustomer(int custType)
@@ -69,7 +80,7 @@ namespace ipsFormsDesign.Services
 
         public bool Save(Customer cust)
         {
-            if( cust.CustId == 0 ) // Новий споживач
+            if (cust.CustId == 0) // Новий споживач
             {
                 return _webApi.NewItem<Customer>("rh/newrightholder", cust);
             }
@@ -98,7 +109,7 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem("rh/objects/transfer", null, transferParameters);
         }
 
-        public IList<Authors> getAuthorsByFilter( string filterString )
+        public IList<Authors> getAuthorsByFilter(string filterString)
         {
             var url = string.Concat("rh/filters/authors/", filterString);
             var listOfAuthors = _webApi.GetList<Authors>(url);
@@ -109,7 +120,7 @@ namespace ipsFormsDesign.Services
         {
             string url = $"rh/checkexists/okpo/{okpo}";
             var result = _webApi.GetList<vCustomer>(url);
-            return result ;
+            return result;
         }
         public List<vCustomer> CheckIpiExists(string ipi)
         {

@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 
@@ -83,6 +84,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderListControl()
         {
             InitializeComponent();
+            navigatorPanelControl1.PageSize = 20;
+            navigatorPanelControl1.CurrentPage = 0;
 
             if (!IsDesignMode)
             {
@@ -158,6 +161,25 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             waitingBar.StopWaiting();
         }
+
+        public async void UpdateListWithPage(RightholderMainView currentRightholder)
+        {
+            waitingBar.StartWaiting();
+
+            var query = CreateRightholderQuery();
+
+
+            var list = await _rightholderService.GetRightholdersPageAsync(query);
+
+            rightholderMainViewBindingSource.DataSource = list.list;
+            lblCountRows.Text = list.TotalPages.ToString();
+            navigatorPanelControl1.TotalPages = list.TotalPages;
+            //SelectedRightholder = currentRightholder; // TODO: is it needed?
+
+            waitingBar.StopWaiting();
+        }
+
+
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
@@ -280,6 +302,12 @@ namespace IpsViewComponentLibrary.RightholderControls
                 query.AgreementStatus = agreementStatus;
             }
 
+            query.PageNumber = navigatorPanelControl1.CurrentPage;
+            query.RowsPerPage = navigatorPanelControl1.PageSize;
+            var searchString = txtSearch.Text.Trim();
+            if (searchString.Length > 0)
+                query.SearchString = searchString;
+
             return query;
         }
 
@@ -295,53 +323,61 @@ namespace IpsViewComponentLibrary.RightholderControls
             gvRightholdersList.MasterTemplate.Refresh();
         }
 
-        private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
-        {
-            if (string.IsNullOrEmpty(txtSearch.Text))
-            {
-                gvRightholdersList.BeginUpdate();
-                e.Visible = true;
-                for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRightholdersList.EndUpdate(false);
-                return;
-            }
+        //private void gvRightholdersList_CustomFiltering(object sender, GridViewCustomFilteringEventArgs e)
+        //{
+        //    if (string.IsNullOrEmpty(txtSearch.Text))
+        //    {
+        //        gvRightholdersList.BeginUpdate();
+        //        e.Visible = true;
+        //        for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
+        //        {
+        //            e.Row.Cells[i].Style.Reset();
+        //        }
+        //        gvRightholdersList.EndUpdate(false);
+        //        return;
+        //    }
 
-            gvRightholdersList.BeginUpdate();
-            e.Visible = false;
-            for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
-            {
-                //якщо поле пусте
-                if (e.Row.Cells[i].Value == null)
-                    continue;
+        //    gvRightholdersList.BeginUpdate();
+        //    e.Visible = false;
+        //    for (int i = 0; i < gvRightholdersList.ColumnCount; i++)
+        //    {
+        //        //якщо поле пусте
+        //        if (e.Row.Cells[i].Value == null)
+        //            continue;
 
-                string text = e.Row.Cells[i].Value.ToString();
-                if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
-                {
-                    e.Visible = true;
-                    e.Row.Cells[i].Style.CustomizeFill = true;
-                    e.Row.Cells[i].Style.DrawFill = true;
-                    e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
-                }
-                else
-                {
-                    e.Row.Cells[i].Style.Reset();
-                }
-                gvRightholdersList.EndUpdate(false);
-            }
-        }
+        //        string text = e.Row.Cells[i].Value.ToString();
+        //        if (text.IndexOf(txtSearch.Text, 0, StringComparison.InvariantCultureIgnoreCase) >= 0)
+        //        {
+        //            e.Visible = true;
+        //            e.Row.Cells[i].Style.CustomizeFill = true;
+        //            e.Row.Cells[i].Style.DrawFill = true;
+        //            e.Row.Cells[i].Style.BackColor = Color.FromArgb(201, 252, 254);
+        //        }
+        //        else
+        //        {
+        //            e.Row.Cells[i].Style.Reset();
+        //        }
+        //        gvRightholdersList.EndUpdate(false);
+        //    }
+        //}
 
         #endregion
 
         private void navigatorPanelControl1_CurrentPageChanged(object sender, EventArgs e)
         {
+            UpdateListWithPage(SelectedRightholder);
 
         }
 
         private void navigatorPanelControl1_PageSizeChanged(object sender, EventArgs e)
         {
+            UpdateListWithPage(SelectedRightholder);
+
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            UpdateListWithPage(SelectedRightholder);
 
         }
     }
