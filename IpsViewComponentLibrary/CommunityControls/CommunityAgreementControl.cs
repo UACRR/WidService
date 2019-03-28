@@ -23,11 +23,11 @@ namespace IpsViewComponentLibrary.CommunityControls
         }
 
 
-        //private void setupObjects()
-        //{
-        //    var ownerName = IpsGlobal.GetProperty("OwnerName");
-        //    radLabel7.Text = $"від сум, отриманих {ownerName ?? "Компанією"} для Автора";
-        //}
+        private void setupObjects()
+        {
+            var ownerName = IpsGlobal.GetProperty("OwnerName");
+            radLabel7.Text = $"від сум, отриманих {ownerName ?? "Компанією"} для Автора";
+        }
 
         public object AgreementDataSource
         {
