@@ -40,6 +40,7 @@
             this.rightholderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
+            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
@@ -54,6 +55,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
+            this.radPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // radSplitContainer1
@@ -68,7 +71,7 @@
             // 
             // 
             this.radSplitContainer1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.radSplitContainer1.Size = new System.Drawing.Size(750, 400);
+            this.radSplitContainer1.Size = new System.Drawing.Size(750, 406);
             this.radSplitContainer1.SplitterWidth = 10;
             this.radSplitContainer1.TabIndex = 29;
             this.radSplitContainer1.TabStop = false;
@@ -84,7 +87,7 @@
             // 
             // 
             this.splitPanel1.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel1.Size = new System.Drawing.Size(85, 400);
+            this.splitPanel1.Size = new System.Drawing.Size(85, 406);
             this.splitPanel1.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(-0.3851351F, 0F);
             this.splitPanel1.SizeInfo.SplitterCorrection = new System.Drawing.Size(-240, 0);
             this.splitPanel1.TabIndex = 0;
@@ -98,7 +101,7 @@
             this.tvFilters.Location = new System.Drawing.Point(0, 0);
             this.tvFilters.Name = "tvFilters";
             this.tvFilters.ShowExpandCollapse = false;
-            this.tvFilters.Size = new System.Drawing.Size(85, 400);
+            this.tvFilters.Size = new System.Drawing.Size(85, 406);
             this.tvFilters.TabIndex = 0;
             this.tvFilters.ThemeName = "Office2013Light";
             this.tvFilters.ToggleMode = Telerik.WinControls.UI.ToggleMode.None;
@@ -109,9 +112,6 @@
             // splitPanel2
             // 
             this.splitPanel2.Controls.Add(this.buttonSearch);
-            this.splitPanel2.Controls.Add(this.navigatorPanelControl1);
-            this.splitPanel2.Controls.Add(this.lblCountRows);
-            this.splitPanel2.Controls.Add(this.label1);
             this.splitPanel2.Controls.Add(this.txtSearch);
             this.splitPanel2.Controls.Add(this.btnRefresh);
             this.splitPanel2.Controls.Add(this.gvRightholdersList);
@@ -121,7 +121,7 @@
             // 
             // 
             this.splitPanel2.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanel2.Size = new System.Drawing.Size(655, 400);
+            this.splitPanel2.Size = new System.Drawing.Size(655, 406);
             this.splitPanel2.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0.3851351F, 0F);
             this.splitPanel2.SizeInfo.SplitterCorrection = new System.Drawing.Size(240, 0);
             this.splitPanel2.TabIndex = 1;
@@ -143,7 +143,7 @@
             // 
             this.navigatorPanelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.navigatorPanelControl1.CurrentPage = 1;
-            this.navigatorPanelControl1.Location = new System.Drawing.Point(130, 367);
+            this.navigatorPanelControl1.Location = new System.Drawing.Point(220, 0);
             this.navigatorPanelControl1.Name = "navigatorPanelControl1";
             this.navigatorPanelControl1.PageSize = 20;
             this.navigatorPanelControl1.ReadOnlyPageSize = false;
@@ -156,7 +156,7 @@
             // lblCountRows
             // 
             this.lblCountRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountRows.Location = new System.Drawing.Point(591, 375);
+            this.lblCountRows.Location = new System.Drawing.Point(681, 8);
             this.lblCountRows.Name = "lblCountRows";
             this.lblCountRows.Size = new System.Drawing.Size(55, 13);
             this.lblCountRows.TabIndex = 6;
@@ -166,7 +166,7 @@
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(516, 375);
+            this.label1.Location = new System.Drawing.Point(606, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
             this.label1.TabIndex = 5;
@@ -292,7 +292,7 @@
             this.gvRightholdersList.ReadOnly = true;
             this.gvRightholdersList.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gvRightholdersList.ShowGroupPanel = false;
-            this.gvRightholdersList.Size = new System.Drawing.Size(649, 332);
+            this.gvRightholdersList.Size = new System.Drawing.Size(649, 375);
             this.gvRightholdersList.TabIndex = 3;
             this.gvRightholdersList.ThemeName = "Office2013Light";
             this.gvRightholdersList.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvRightholdersList_CellDoubleClick);
@@ -324,13 +324,26 @@
             // 
             this.lineRingWaitingBarIndicatorElement1.Name = "lineRingWaitingBarIndicatorElement1";
             // 
+            // radPanel1
+            // 
+            this.radPanel1.BackColor = System.Drawing.Color.Silver;
+            this.radPanel1.Controls.Add(this.navigatorPanelControl1);
+            this.radPanel1.Controls.Add(this.label1);
+            this.radPanel1.Controls.Add(this.lblCountRows);
+            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.radPanel1.Location = new System.Drawing.Point(0, 406);
+            this.radPanel1.Name = "radPanel1";
+            this.radPanel1.Size = new System.Drawing.Size(750, 30);
+            this.radPanel1.TabIndex = 30;
+            // 
             // RightholderListControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radSplitContainer1);
+            this.Controls.Add(this.radPanel1);
             this.Name = "RightholderListControl";
-            this.Size = new System.Drawing.Size(750, 400);
+            this.Size = new System.Drawing.Size(750, 436);
             this.Load += new System.EventHandler(this.RightholderListControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
@@ -346,6 +359,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvRightholdersList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rightholderMainViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.waitingBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
+            this.radPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -367,5 +382,6 @@
         private System.Windows.Forms.Label lblCountRows;
         private Common.NavigatorPanelControl navigatorPanelControl1;
         private Telerik.WinControls.UI.RadButton buttonSearch;
+        private Telerik.WinControls.UI.RadPanel radPanel1;
     }
 }
