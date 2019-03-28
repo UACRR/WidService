@@ -152,10 +152,10 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
         private void RequestForm_Load(object sender, EventArgs e)
         {
-            if (ddlPerformType.SelectedIndex < 0)
-                ddlPerformType.SelectedIndex = 0;
-            if (ddlLang.SelectedIndex < 0)
-                ddlLang.SelectedIndex = 0;
+            //if (ddlPerformType.SelectedIndex < 0)
+            //    ddlPerformType.SelectedIndex = 0;
+            //if (ddlLang.SelectedIndex < 0)
+            //    ddlLang.SelectedIndex = 0;
         }
 
         private void SetDictionaries()
@@ -364,11 +364,12 @@ namespace IpsViewComponentLibrary.Shared.Forms
                             CategoryCode = 6,
                             ActCode = 1,
                             SpecType = 1,
-                            GenreType = 60001
+                            GenreType = 60001,
                         },
                         MusicalDesign = new ObservableListSource<MusicalDesign>(),
                         Rate = default(decimal),
-                        LangCode = "uk"
+                        LangCode = "uk",
+                        PerformType = 1,
                     }
             };
             _customer.Client.LicenseAgreement.Add(_licenseAgreement);

@@ -180,9 +180,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
         {
             var result = OnSaveCustomerNeed?.Invoke(_customer) ?? false;
             if (result)
-                MessageBox.Show("Успішно збережено!", "Збережено", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("Не можливо зберегти!", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UpdateData();
+            MessageShow.ShowInfoAfterChanges(result);
         }
 
         private bool CtrlPayslips_DeleteRegisterRatedList(int custId, int id)

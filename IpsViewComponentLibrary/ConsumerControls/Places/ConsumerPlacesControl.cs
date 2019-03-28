@@ -66,6 +66,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         {
             _clnBusinessPlaces = customer.Client.ClnBusinessPlace;
             bsPlacesList.DataSource = _clnBusinessPlaces;
+            bsPlacesList.ResetBindings(false);
             CustomerId = customer.CustId;
         }
 
