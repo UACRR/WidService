@@ -208,7 +208,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             if (e.Column is GridViewCommandColumn)
                 return;
-
+            if(SelectedRightholder.CustType == 5)
+            {
+                MessageBox.Show("Для зовнішніх Правовласників кабінет тимчасово заблоковано", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             OnRightholderSelected(SelectedRightholder);
         }
 
@@ -219,6 +223,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
+            navigatorPanelControl1.CurrentPage = 1;
             UpdateList();
         }
 
@@ -373,21 +378,24 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void navigatorPanelControl1_CurrentPageChanged(object sender, EventArgs e)
         {
-            UpdateListWithPage(SelectedRightholder);
-
+            UpdateList();
         }
 
         private void navigatorPanelControl1_PageSizeChanged(object sender, EventArgs e)
         {
-            UpdateListWithPage(SelectedRightholder);
-
+            UpdateList();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             navigatorPanelControl1.CurrentPage = 1;
-            UpdateListWithPage(SelectedRightholder);
+            UpdateList();
+        }
 
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+                UpdateList();
         }
     }
 }

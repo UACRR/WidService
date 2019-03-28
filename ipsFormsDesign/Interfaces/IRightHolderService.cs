@@ -18,6 +18,7 @@ namespace ipsFormsDesign.Interfaces
         public decimal YearProfit { get; set; }
         public string Community_Name { get; set; }
         public string Country { get; set; }
+        public int? CustType { get; set; }
     }
 
     public class RightolderWithNotAcceptedCopyrightViewModel : INotifyPropertyChanged
