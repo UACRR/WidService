@@ -584,14 +584,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             //редагування зміненого
             if (listDopAgr.Any(rec => rec.LicVersion == curRow.LicVersion && rec.LicVersion != license.ProlongVersion))
             {
-                var licAgrParam = license.LicenseAgrParam.Where(rec => rec.LicVersion == license.LicVersion).SingleOrDefault(rec => rec.LicVersion != license.ProlongVersion);
+                var licAgrParam = license.LicenseAgrParam.Where(rec => rec.LicVersion > license.LicVersion).SingleOrDefault(rec => rec.LicVersion != license.ProlongVersion);
                 RunDialogForLicenseAgrParam(license, licAgrParam, DialogGoal.forChange);
                 return;
             }
             //редагування пролонгованого
             if (listDopAgr.Any(rec => rec.LicVersion == curRow.LicVersion && rec.LicVersion == license.ProlongVersion))
             {
-                var licAgrParam = license?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.ProlongVersion);
+                var licAgrParam = license.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == license.ProlongVersion);
                 RunDialogForLicenseAgrParam(license, licAgrParam, DialogGoal.forProlongation);
             }
         }
