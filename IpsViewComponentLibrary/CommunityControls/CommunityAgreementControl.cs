@@ -23,12 +23,20 @@ namespace IpsViewComponentLibrary.CommunityControls
         }
 
 
+        //private void setupObjects()
+        //{
+        //    var ownerName = IpsGlobal.GetProperty("OwnerName");
+        //    radLabel7.Text = $"від сум, отриманих {ownerName ?? "Компанією"} для Автора";
+        //}
+
         private void setupObjects()
         {
-            var ownerName = IpsGlobal.GetProperty("OwnerName");
-            radLabel7.Text = $"від сум, отриманих {ownerName ?? "Компанією"} для Автора";
-        }
+            var nameOwner = IpsGlobal.GetProperty("OwnerName");
 
+            var lbl7Text = $"від сум, отриманих {nameOwner ?? "Підприємством"} для Автора";
+
+            radLabel7.Text = lbl7Text;
+        }
         public object AgreementDataSource
         {
             get => bsAgreementAddCommunity.DataSource;

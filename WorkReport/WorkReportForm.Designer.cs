@@ -60,7 +60,7 @@
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(66F, 27F);
             this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1099, 552);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1099, 520);
             this.radPageViewPage1.Text = "Звіти МП";
             // 
             // registerListControl1
@@ -80,6 +80,25 @@
             this.radPageViewPage2.Name = "radPageViewPage2";
             this.radPageViewPage2.Size = new System.Drawing.Size(1099, 557);
             this.radPageViewPage2.Text = "Заявки/Довідки ВП";
+            // 
+            // radButton1
+            // 
+            this.radButton1.Location = new System.Drawing.Point(993, 563);
+            this.radButton1.Name = "radButton1";
+            this.radButton1.Size = new System.Drawing.Size(110, 24);
+            this.radButton1.TabIndex = 1;
+            this.radButton1.Text = "Вихід";
+            this.radButton1.ThemeName = "Office2013Light";
+            this.radButton1.Click += new System.EventHandler(this.radButton1_Click);
+            // 
+            // registerListControl1
+            // 
+            this.registerListControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.registerListControl1.Location = new System.Drawing.Point(0, 0);
+            this.registerListControl1.Name = "registerListControl1";
+            this.registerListControl1.SelectedRegister = null;
+            this.registerListControl1.Size = new System.Drawing.Size(1099, 520);
+            this.registerListControl1.TabIndex = 0;
             // 
             // licenseAgreementListControl1
             // 

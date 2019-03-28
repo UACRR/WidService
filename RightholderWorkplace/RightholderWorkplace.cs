@@ -37,9 +37,15 @@ namespace RightholderWorkplace
 
         public RightholderWorkplace()
         {
-            InitializeComponent();
+            var objectrightService = new ObjectRightService();
+            IpsGlobal.SetObjectRightDictionaries(objectrightService.GetDictionary());
 
-            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwner()?.Name);
+            var rightholderService = new RightholderService();
+            IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
+
+            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name );
+
+            InitializeComponent();
 
             WindowState = FormWindowState.Maximized;
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
