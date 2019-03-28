@@ -374,12 +374,14 @@ namespace sysAdminwp
         private void radBtnRemove_Click(object sender, EventArgs e)
         {
             var row = gvDictionariesList.CurrentRow.DataBoundItem as ViewTable;
-            var result = _connector.DeleteItem(Url, row.Code);
-
+            bool result = _connector.DeleteItem(Url, row.Code);
+            //get last selected item
+            int currentPosition = gvDictionariesList.CurrentRow.Index;
+            //get data for grid
             gvDictionariesList.DataSource = GetData();
+            gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[currentPosition - 1]
+                                                   : gvDictionariesList.Rows[0];
             UpdateEditPanel();
-            //set last position for cursor
-            SetPositionAfterDelete();
         }
 
         //кнопка збереження
