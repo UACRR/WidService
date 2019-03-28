@@ -19,6 +19,11 @@ namespace sysAdminwp
         private List<DictBaseTypeI> _list;
         private List<DictCategory> _dictionaryCategories;
         private List<DicCategoryItems> _complexDictionary;
+        //current position of the grid
+        private int _currentPosition;
+        private List<ViewTable> _dataGrid;
+        //define new position for grid
+        private int _updatePosition;
         //defined enable state for elements
         private bool enableStateElements;
         public bool EnableSateElements
@@ -175,19 +180,28 @@ namespace sysAdminwp
             DictBaseTypeI dataI = PackDataI();
             // TODO: use result
             bool result = _connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
-            //save last selected item of the grid
-            int current = gvDictionariesList.CurrentRow.Index;
-            var items = GetData();
-            //get data for grid
-            gvDictionariesList.DataSource = items;
-            //current changed element
-            string changedCodeI = dataI.CodeI.ToString();
-            int changedElementPosition = items.FindIndex(el => el.Code == changedCodeI);
-            //set select item with changes
-            gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[changedElementPosition]
-                                                   : gvDictionariesList.Rows[current];
+            //update current data and select for grid
+            ControlCurrentPosition(result, dataI);
             //update bottom panel
             UpdateEditPanel();
+        }
+
+        //method for control current position into grid
+        private void ControlCurrentPosition(bool resultAction, DictBaseTypeI mutableItem)
+        {
+            //save current position into grid
+            _currentPosition = gvDictionariesList.CurrentRow.Index;
+            //get data for grid
+            _dataGrid = GetData();
+            //set data for grid
+            gvDictionariesList.DataSource = _dataGrid;
+            //get field 'CodeI' of the mutable item
+            string forSearchItem = mutableItem.CodeI.ToString();
+            //define new active position for grid
+            _updatePosition = _dataGrid.FindIndex(el => el.Code == forSearchItem);
+            //set select item for grid
+            gvDictionariesList.CurrentRow = resultAction ? gvDictionariesList.Rows[_updatePosition]
+                                                         : gvDictionariesList.Rows[_currentPosition];
         }
 
         public void SaveAddNewRow()
@@ -201,23 +215,12 @@ namespace sysAdminwp
                 try
                 {
                     DictBaseTypeI dataI = PackDataI();
+                    //result after add new item
                     bool result = _connector.NewItem(Url, dataI);
-                    //save current selected item of the grid
-                    int current = gvDictionariesList.CurrentRow.Index;
-                    var items = GetData();
-                    //get data for grid
-                    gvDictionariesList.DataSource = items;
-                    //'CodeI' of the new element
-                    string newCodeI = dataI.CodeI.ToString();
-                    //get index of the new element
-                    int newItem = items.FindIndex(el => el.Code == newCodeI);
-                    //select last item(new) into grid
-                    gvDictionariesList.CurrentRow = result ? gvDictionariesList.Rows[newItem] :
-                                                             gvDictionariesList.Rows[current];
+                    //update current data and select for grid
+                    ControlCurrentPosition(result, dataI);
                     UpdateEditPanel();
                     EnableSateElements = true;
-
-
                 }
                 catch (Exception e)
                 {
