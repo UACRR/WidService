@@ -323,8 +323,8 @@ namespace ipsmedserviceapp.Model
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                //                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.UseSqlServer("Data Source=IPSDATA,60675;Initial Catalog=MediaService;Integrated Security=True");
             }
         }
 
@@ -856,6 +856,9 @@ namespace ipsmedserviceapp.Model
 
                 entity.ToTable("AgreementAddRH");
 
+                entity.HasIndex(e => e.AgrStatus)
+                    .HasName("iAgreementAddRhStatus");
+
                 entity.Property(e => e.AgrId).HasColumnName("agrId");
 
                 entity.Property(e => e.Version).HasColumnName("version");
@@ -946,6 +949,9 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.AgrId)
                     .HasName("PK_AGREEMENTMASTER");
+
+                entity.HasIndex(e => e.CustId)
+                    .HasName("iAgreementMaster");
 
                 entity.Property(e => e.AgrId).HasColumnName("agrId");
 
@@ -1415,11 +1421,6 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.InnOkpo)
                     .HasColumnName("innOkpo")
                     .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.InterCode)
-                    .HasColumnName("interCode")
-                    .HasMaxLength(25)
                     .IsUnicode(false);
 
                 entity.Property(e => e.Name)
@@ -2683,7 +2684,10 @@ namespace ipsmedserviceapp.Model
                     .HasName("PK_COPYRIGHT");
 
                 entity.HasIndex(e => e.CustId)
-                    .HasName("Association10_FK");
+                    .HasName("iCopyRightCustid");
+
+                entity.HasIndex(e => new { e.ObjId, e.CustId })
+                    .HasName("iCopyRightObjid");
 
                 entity.Property(e => e.CRightId).HasColumnName("cRightId");
 
@@ -3259,6 +3263,9 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.CustId)
                     .HasName("PK_CUSTOMER");
+
+                entity.HasIndex(e => e.AnkPublish)
+                    .HasName("idx_custPublish");
 
                 entity.Property(e => e.CustId).HasColumnName("custId");
 
@@ -5134,6 +5141,9 @@ namespace ipsmedserviceapp.Model
                 entity.HasKey(e => e.LicId)
                     .HasName("PK_LICENSEAGREEMENT");
 
+                entity.HasIndex(e => e.CustId)
+                    .HasName("iLicenseAgreementCustid");
+
                 entity.Property(e => e.LicId).HasColumnName("licId");
 
                 entity.Property(e => e.AgrId).HasColumnName("agrId");
@@ -6018,6 +6028,12 @@ namespace ipsmedserviceapp.Model
             {
                 entity.HasKey(e => e.ObjId)
                     .HasName("PK_OBJECTRIGHT");
+
+                entity.HasIndex(e => e.CreateDate)
+                    .HasName("iObjectRightCreateDate");
+
+                entity.HasIndex(e => e.Name)
+                    .HasName("iObjectRightName");
 
                 entity.HasIndex(e => e.ReqId)
                     .HasName("Relationship_13_FK");
