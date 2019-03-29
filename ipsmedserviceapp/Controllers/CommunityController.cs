@@ -370,7 +370,18 @@ namespace ipsmedserviceapp.Controllers
         }
 
         #region Винесені методи та додаткові методи синхронізацій
+        class EmplComparer : IEqualityComparer<Employee>
+        {
+            public bool Equals(Employee x, Employee y)
+            {
+                return x.Emplid == y.Emplid;
+            }
 
+            public int GetHashCode(Employee obj)
+            {
+                return obj.Emplid;
+            }
+        }
         /// <summary>
         /// Синхронізація даних для спільноти
         /// </summary>
@@ -408,12 +419,12 @@ namespace ipsmedserviceapp.Controllers
                 updItem.Empl.SetFields(sorsItem?.Empl);
             });
 
-            var relEmpl = source.Company.RelEmployee.Select(items => items.Empl).ToList();
+            var relEmpl = source.Company.RelEmployee.Select(items => items.Empl).Distinct( new EmplComparer()).ToList();
             listRel = destination.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
 
             listRel.ForEach(updEmpl =>
             {
-                var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
+                var sourceItem = relEmpl.FirstOrDefault(item => item.Emplid == updEmpl.Emplid);
                 updEmpl.SetFields(source.Company.RelEmployee.SingleOrDefault(item => item.Emplid == updEmpl.Emplid && item.PositionCode == updEmpl.PositionCode));
                 updEmpl.Empl.SetFields(sourceItem);
             });
