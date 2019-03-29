@@ -202,7 +202,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.anketaPageView.DefaultPage = this.rightholderPersonPage;
             this.anketaPageView.Location = new System.Drawing.Point(0, 0);
             this.anketaPageView.Name = "anketaPageView";
-            this.anketaPageView.SelectedPage = this.rightholderPersonPage;
+            this.anketaPageView.SelectedPage = this.managersPage;
             this.anketaPageView.Size = new System.Drawing.Size(1006, 446);
             this.anketaPageView.TabIndex = 2;
             this.anketaPageView.ThemeName = "Office2013Light";
@@ -273,7 +273,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.contactsPersonPage.Controls.Add(this.radGroupBox2);
             this.contactsPersonPage.Controls.Add(this.ctrlContacts);
             this.contactsPersonPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.contactsPersonPage.Location = new System.Drawing.Point(101, 5);
+            this.contactsPersonPage.Location = new System.Drawing.Point(103, 5);
             this.contactsPersonPage.Name = "contactsPersonPage";
             this.contactsPersonPage.Size = new System.Drawing.Size(898, 436);
             this.contactsPersonPage.Text = "Контакти";
@@ -405,7 +405,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.contactsCompanyPage.Controls.Add(this.ctrlMiddleControlAddress);
             this.contactsCompanyPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.contactsCompanyPage.Location = new System.Drawing.Point(101, 5);
+            this.contactsCompanyPage.Location = new System.Drawing.Point(103, 5);
             this.contactsCompanyPage.Name = "contactsCompanyPage";
             this.contactsCompanyPage.Size = new System.Drawing.Size(898, 436);
             this.contactsCompanyPage.Text = "Контакти";
@@ -423,7 +423,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.passportPage.Controls.Add(this.passportPageView);
             this.passportPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.passportPage.Location = new System.Drawing.Point(101, 5);
+            this.passportPage.Location = new System.Drawing.Point(103, 5);
             this.passportPage.Name = "passportPage";
             this.passportPage.Size = new System.Drawing.Size(898, 436);
             this.passportPage.Text = "Паспортні дані";
@@ -446,6 +446,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.createRightholderInternalPasportPage.Controls.Add(this.radLabel6);
             this.createRightholderInternalPasportPage.Controls.Add(this.ctrlInternalPassport);
+            this.createRightholderInternalPasportPage.ItemSize = new System.Drawing.SizeF(27F, 222F);
             this.createRightholderInternalPasportPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderInternalPasportPage.Name = "createRightholderInternalPasportPage";
             this.createRightholderInternalPasportPage.Size = new System.Drawing.Size(862, 426);
@@ -475,6 +476,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.createRightholderForeignPassportPage.Controls.Add(this.ctrlInternationalPassport);
             this.createRightholderForeignPassportPage.Controls.Add(this.radLabel7);
+            this.createRightholderForeignPassportPage.ItemSize = new System.Drawing.SizeF(27F, 227F);
             this.createRightholderForeignPassportPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderForeignPassportPage.Name = "createRightholderForeignPassportPage";
             this.createRightholderForeignPassportPage.Size = new System.Drawing.Size(813, 417);
@@ -503,7 +505,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.managersPage.Controls.Add(this.ctrlMiddleControlManagers);
             this.managersPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
-            this.managersPage.Location = new System.Drawing.Point(101, 5);
+            this.managersPage.Location = new System.Drawing.Point(103, 5);
             this.managersPage.Name = "managersPage";
             this.managersPage.Size = new System.Drawing.Size(898, 436);
             this.managersPage.Text = "Керівники";
@@ -524,7 +526,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.royaltyPage.Controls.Add(this.radLabel8);
             this.royaltyPage.Controls.Add(this.createRightholderRoyaltyPageView);
             this.royaltyPage.Controls.Add(this.ddlTypeMethodGet);
-            this.royaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.royaltyPage.Location = new System.Drawing.Point(141, 5);
             this.royaltyPage.Name = "royaltyPage";
             this.royaltyPage.Size = new System.Drawing.Size(863, 435);
@@ -654,7 +655,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // rigthLimitationsPage
             // 
             this.rigthLimitationsPage.Controls.Add(this.ctrlRightLimitations);
-            this.rigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.rigthLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.rigthLimitationsPage.Name = "rigthLimitationsPage";
             this.rigthLimitationsPage.Size = new System.Drawing.Size(908, 435);
@@ -675,7 +675,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // territoryLimitationsPage
             // 
             this.territoryLimitationsPage.Controls.Add(this.ctrlTerritoryIncludeExclude);
-            this.territoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.territoryLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.territoryLimitationsPage.Name = "territoryLimitationsPage";
             this.territoryLimitationsPage.Size = new System.Drawing.Size(908, 435);
@@ -694,7 +693,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPrintPage.Controls.Add(this.radPdfViewerNavigator1);
             this.agreementPrintPage.Controls.Add(this.btnGenerateRightholderAgreement);
             this.agreementPrintPage.Controls.Add(this.pdfvRightholderAgreement);
-            this.agreementPrintPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPrintPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPrintPage.Name = "agreementPrintPage";
             this.agreementPrintPage.Size = new System.Drawing.Size(863, 435);
@@ -882,7 +880,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
-            this.agreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPage.Name = "agreementPage";
             this.agreementPage.Size = new System.Drawing.Size(863, 435);
