@@ -146,10 +146,31 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             }
         }
+        //define active pages
+        private void ShowActivePages(Customer customer)
+        {
+            //check on exist state field 'CustType'
+            if (customer.CustType == null) { return; }
+            //detect current 'CustType'
+            if (customer.CustType == 5)
+                //get all pages
+                foreach (var external in pageViewMain.Pages)
+                    //hide current page if it's: Anketa, Contract
+                    if (external.Name == "Anketa" || external.Name == "Contract")
+                        external.Enabled = false;
+            else if (customer.CustType != 5)
+                //get all pages
+                foreach (var anketa in pageViewMain.Pages)
+                    //hide current page if it's: ExternalAnketa
+                    if (anketa.Name == "AnketaExternal")
+                        anketa.Enabled = false;
+        }
 
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
+            //set active pages on depends field 'CustType'
+            ShowActivePages(customer);
 
             _isCompany = customer.CustType == 3;
 
