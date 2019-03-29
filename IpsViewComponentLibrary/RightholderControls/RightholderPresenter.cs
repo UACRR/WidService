@@ -26,7 +26,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private AgreementAddRh _agreementAddRh;
         private AnketaPerson _anketaPerson;
         //define Anketa Exteral
-        private Customer _anketaExternal;
+        private AnketaExternal _anketaExternal;
         private AnketaCompany _anketaCompany;
         private bool _isCompany;
         private bool _canClose;
@@ -87,32 +87,23 @@ namespace IpsViewComponentLibrary.RightholderControls
             _view.TermsOfServiceDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
 
             //add condition for ignore External anketa
-            _isCompany = _customer.CustType == 3 && _customer.CustType != 5;
+            //_isCompany = _customer.CustType == 3 && _customer.CustType != 5;
 
-            if (_isCompany)
+            if (_customer.CustType == 3)
             {
                 _anketaCompany = _customer.Company.AnketaCompany.FirstOrDefault();
                 _view.AnketaCompanyDataSource = _anketaCompany;
+            } else if (_customer.CustType == 5)
+            {
+                //get data for Exteral Anketa
+                _anketaExternal = _customer.AnketaExternal;
+                //set data to data source
+                _view.AnketaExternalDataSource = _anketaExternal;
             }
             else
             {
                 _anketaPerson = _customer.Person.AnketaPerson.FirstOrDefault();
                 _view.AnketaPersonDataSource = _anketaPerson;
-            }
-        }
-
-        //define External Anketa
-        private void ViewAnketaExternal(Customer customer)
-        {
-            //check on exist state 'CustType'
-            if (customer.CustType == null) { return; }
-            //if it's External Anketa
-            if (customer.CustType == 5)
-            {
-                //get data for Exteral Anketa
-                _anketaExternal = customer.AnketaExternal.Cust;
-                //set data to data source
-                _view.AnketaExternalDataSource = _anketaExternal;
             }
         }
 
