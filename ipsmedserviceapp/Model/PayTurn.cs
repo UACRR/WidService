@@ -23,6 +23,7 @@ namespace ipsmedserviceapp.Model
         public int? DistId { get; set; }
         public int? CustIdRh { get; set; }
         public int? RegIitemId { get; set; }
+        public int? PayTurnType { get; set; }
 
         public virtual Account AccIdDebetNavigation { get; set; }
         public virtual PaymentStatus PayStatusNavigation { get; set; }

@@ -172,10 +172,10 @@
     <ROW Property="ALLUSERS" Value="1"/>
     <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
     <ROW Property="Manufacturer" Value="IPS"/>
-    <ROW Property="ProductCode" Value="1033:{699A3E56-8149-4836-9B3A-2FC9F95DBF73} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{B3DD2200-B706-4F43-AC5A-E5666A10FF4C} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="MediaService"/>
-    <ROW Property="ProductVersion" Value="1.0.14" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.0.15" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{BBB0AEFE-575D-466A-BB57-1DCB8C289ACB}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>

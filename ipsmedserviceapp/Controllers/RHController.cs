@@ -47,6 +47,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.AnketaCompany)
                         .Include(item => item.Person)
                         .Include(item => item.AnketaPerson)
+                        .Include(item => item.AnketaExternal )
                         .Include(item => item.Community)
                         .Include(item => item.BankAccount)
                         .Include(item => item.AnketaAddName)
@@ -456,7 +457,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                         sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid
                 );
             }
-            else
+            else if ( ( new int?[] {1, 2}).Contains( destCustomer.CustType )) // Person
             {
                 // Збереження Person
                 if (sorsCust.Person == null)
@@ -469,6 +470,10 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
 
                 _dbContext.UpdateList(sorsCust.Person.AnketaPerson, destCustomer.Person.AnketaPerson
                                                                 , rec => { }, (l, r) => l.Version == r.Version);
+            }
+            else
+            {
+                destCustomer.AnketaExternal.SetFields( sorsCust.AnketaExternal, new[] { "CustId"} );
             }
 
             // add or clear community depends on rightholder type
