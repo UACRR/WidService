@@ -68,9 +68,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             _customer = _rightholderService.GetData(custId);
             SetViewData();
 
-            if (_isCompany)
+            if (_customer.CustType == 3)
                 _view.SetHeader(_anketaCompany.Name);
-            else
+            else if (_customer.CustType == 5)
+            {
+                //set title name for Current Action
+                _view.SetHeader(_anketaExternal.Name);
+            } else
                 _view.SetHeader(String.Format("{0} {1} {2}", _anketaPerson.LastName, _anketaPerson.FirstName, _anketaPerson.SurName));
 
             _view.Run();
