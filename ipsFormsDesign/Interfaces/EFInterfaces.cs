@@ -241,7 +241,6 @@ public interface IAnketaExternal
     {
          int CustId { get; set; }
          string Name { get; set; }
-         string InterCode { get; set; }
          string CountryCode { get; set; }
          string InnOkpo { get; set; }
 }
@@ -1564,6 +1563,7 @@ public interface IPayTurn
          int? DistId { get; set; }
          int? CustIdRh { get; set; }
          int? RegIitemId { get; set; }
+         int? PayTurnType { get; set; }
 }
 public interface IPayTurnCm
     {

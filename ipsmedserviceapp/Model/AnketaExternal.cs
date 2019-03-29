@@ -7,7 +7,6 @@ namespace ipsmedserviceapp.Model
     {
         public int CustId { get; set; }
         public string Name { get; set; }
-        public string InterCode { get; set; }
         public string CountryCode { get; set; }
         public string InnOkpo { get; set; }
 
