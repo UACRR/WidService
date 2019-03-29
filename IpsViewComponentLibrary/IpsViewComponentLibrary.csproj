@@ -207,6 +207,12 @@
     <Compile Include="ImportDBF\Presenters\DBFPresenter.cs" />
     <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
     <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
+    <Compile Include="RightholderControls\Anketa\AnketaExternalRightholderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaExternalRightholderControl.Designer.cs">
+      <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\IpsUARadGridLocalizationProvider.cs" />
     <Compile Include="_UnusedControls\AddCompositionForm.cs">
       <SubType>Form</SubType>
@@ -1120,6 +1126,9 @@
     <EmbeddedResource Include="ConsumerControls\Places\PremisesAdditionalDetailForm.resx">
       <DependentUpon>PremisesAdditionalDetailForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaExternalRightholderControl.resx">
+      <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1571,6 +1580,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Community.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Country.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Employee.datasource" />
