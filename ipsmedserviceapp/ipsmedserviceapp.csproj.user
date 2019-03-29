@@ -14,7 +14,7 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_DependencyDialogWidth>600</WebStackScaffolding_DependencyDialogWidth>
-    <NameOfLastUsedPublishProfile>Default Settings</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>MediaService WebDeploy</NameOfLastUsedPublishProfile>
     <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
