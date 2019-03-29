@@ -1,9 +1,9 @@
 {
   "iisSettings": {
-    "windowsAuthentication": true,
-    "anonymousAuthentication": false,
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:54866/",
+      "applicationUrl": "http://localhost:62940/",
       "sslPort": 0
     }
   },
@@ -17,12 +17,11 @@
     },
     "ipsmedserviceapp": {
       "commandName": "Project",
-      "launchBrowser": false,
+      "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:54867/"
-
     }
   }
 }

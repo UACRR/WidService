@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,8 +9,6 @@ namespace ipsFormsDesign.Model.SQLViewsData
     public class vTsk1ListRightHolder01
     {
         public int CustId { get; set; }
-        public int? @status { get; set; }
-        public string @strSeek { get; set; }
         public int? CustStatus { get; set; }
         public int? AgrStatus { get; set; }
         public string InnerCode { get; set; }
@@ -26,6 +25,7 @@ namespace ipsFormsDesign.Model.SQLViewsData
     public class vTsk1ListRightHolder01Box
     {
         public int TotalPages { get; set; }
-        public IEnumerable<vTsk1ListRightHolder01> list { get; set; }
+        //public IEnumerable<vTsk1ListRightHolder01> list { get; set; }
+        public IEnumerable<RightholderMainView> list { get; set; }
     }
 }
