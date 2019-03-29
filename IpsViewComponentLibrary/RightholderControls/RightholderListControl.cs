@@ -210,10 +210,14 @@ namespace IpsViewComponentLibrary.RightholderControls
                 return;
             if(SelectedRightholder.CustType == 5)
             {
-                MessageBox.Show("Для зовнішніх Правовласників кабінет тимчасово заблоковано", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                OnRightholderSelected(SelectedRightholder);
+
+                //MessageBox.Show("Для зовнішніх Правовласників кабінет тимчасово заблоковано", "Попередження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //return;
+            } else
+            {
+                OnRightholderSelected(SelectedRightholder);
             }
-            OnRightholderSelected(SelectedRightholder);
         }
 
         private void gvRightholdersList_ToolTipTextNeeded(object sender, Telerik.WinControls.ToolTipTextNeededEventArgs e)

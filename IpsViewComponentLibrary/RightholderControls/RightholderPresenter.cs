@@ -25,6 +25,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         private AgreementMaster _agreementMaster;
         private AgreementAddRh _agreementAddRh;
         private AnketaPerson _anketaPerson;
+        //define Anketa Exteral
+        private Customer _anketaExternal;
         private AnketaCompany _anketaCompany;
         private bool _isCompany;
         private bool _canClose;
@@ -84,7 +86,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             _view.BankAccountDataSource = _customer.BankAccount;
             _view.TermsOfServiceDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
 
-            _isCompany = _customer.CustType == 3;
+            //add condition for ignore External anketa
+            _isCompany = _customer.CustType == 3 && _customer.CustType != 5;
 
             if (_isCompany)
             {
@@ -95,6 +98,21 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 _anketaPerson = _customer.Person.AnketaPerson.FirstOrDefault();
                 _view.AnketaPersonDataSource = _anketaPerson;
+            }
+        }
+
+        //define External Anketa
+        private void ViewAnketaExternal(Customer customer)
+        {
+            //check on exist state 'CustType'
+            if (customer.CustType == null) { return; }
+            //if it's External Anketa
+            if (customer.CustType == 5)
+            {
+                //get data for Exteral Anketa
+                _anketaExternal = customer.AnketaExternal.Cust;
+                //set data to data source
+                _view.AnketaExternalDataSource = _anketaExternal;
             }
         }
 
