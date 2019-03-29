@@ -52,6 +52,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => bsAnketaCompany.DataSource = value;
         }
 
+        //define Anketa External Data Source
+        public object AnketaExternalDataSource
+        {
+            get => bsAnketaExternal.DataSource;
+            set => bsAnketaExternal.DataSource = value;
+        }
+
         public object BankAccountDataSource
         {
             get => bsBankAccount.DataSource;

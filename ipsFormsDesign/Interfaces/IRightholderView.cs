@@ -5,6 +5,8 @@
         object AgreementAddRhDataSource { get; set; }
         object AnketaPersonDataSource { get; set; }
         object AnketaCompanyDataSource { get; set; }
+        //define Anketa External Data Source
+        object AnketaExternalDataSource { get; set; }
         object BankAccountDataSource { get; set; }
         object CustomerDataSource { get; set; }
         bool IsValid { get; }
