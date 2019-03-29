@@ -17,7 +17,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CommunityControls
 {
-    public partial class CommunityAddAuthorForm : RadForm
+    public partial class CommunityLimitsAddForm : RadForm
     {
         private readonly CommunityViewsPresenter _presenter;
         private readonly int _communityCustId;
@@ -30,15 +30,15 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         protected new bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
-        public CommunityAddAuthorForm(List<CommunityAuthorsView> autorList, int communityCustId)
+        public CommunityLimitsAddForm(List<CommunityAuthorsView> autorList, int communityCustId)
         {
             InitializeComponent();
             if (!IsDesignMode)
                 _presenter = new CommunityViewsPresenter();
             WindowState = FormWindowState.Maximized;
             parentGridPanel.PanelElement.PanelBorder.Width = 0f;
-            btnSave.Enabled = false;
-
+            ctrlSaveCancel.SaveButtonEnabled = false;
+            ctrlSaveCancel.SaveClck += Save_Click;
             ctrlRightLimitation.ValueEdit += CtrlRightLimitation_ValueEdit;
             _communityCustId = communityCustId;
             bsCommunityAuthorsView.DataSource = autorList;
@@ -46,15 +46,16 @@ namespace IpsViewComponentLibrary.CommunityControls
 
         private void CtrlRightLimitation_ValueEdit(object sender, EventArgs e)
         {
-            btnSave.Enabled = true;
+            ctrlSaveCancel.SaveButtonEnabled = true;
+            navigatorPanel.Enabled = false;
             txtSearch.Enabled = false;
             gvViewAutors.Enabled = false;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
             AuthorId = (gvViewAutors.CurrentRow.DataBoundItem as CommunityAuthorsView)?.CustId ?? 0;
-            DialogResult = DialogResult.OK;
+            //DialogResult = DialogResult.OK;
         }
 
         // зміна рядка автора

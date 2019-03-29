@@ -146,6 +146,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\GridRowCountControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\GridRowCountControl.Designer.cs">
+      <DependentUpon>GridRowCountControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="CommunityControls\CommunityLimitsEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -352,11 +358,11 @@
     <Compile Include="Common\UserSelectionView.Designer.cs">
       <DependentUpon>UserSelectionView.cs</DependentUpon>
     </Compile>
-    <Compile Include="CommunityControls\CommunityAddAuthorForm.cs">
+    <Compile Include="CommunityControls\CommunityLimitsAddForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CommunityControls\CommunityAddAuthorForm.Designer.cs">
-      <DependentUpon>CommunityAddAuthorForm.cs</DependentUpon>
+    <Compile Include="CommunityControls\CommunityLimitsAddForm.Designer.cs">
+      <DependentUpon>CommunityLimitsAddForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CommunityControls\CommunityAddressControl.cs">
       <SubType>UserControl</SubType>
@@ -1099,6 +1105,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Common\GridRowCountControl.resx">
+      <DependentUpon>GridRowCountControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityLimitsEditForm.resx">
       <DependentUpon>CommunityLimitsEditForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1189,8 +1198,8 @@
     <EmbeddedResource Include="Common\UserSelectionView.resx">
       <DependentUpon>UserSelectionView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CommunityControls\CommunityAddAuthorForm.resx">
-      <DependentUpon>CommunityAddAuthorForm.cs</DependentUpon>
+    <EmbeddedResource Include="CommunityControls\CommunityLimitsAddForm.resx">
+      <DependentUpon>CommunityLimitsAddForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CommunityControls\CommunityAddressControl.resx">
       <DependentUpon>CommunityAddressControl.cs</DependentUpon>
@@ -1559,6 +1568,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ChildTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.CommunityAuthorsView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.CommunityListView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />

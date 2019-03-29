@@ -14,6 +14,12 @@ namespace IpsViewComponentLibrary.Common
             btnCancel.DialogResult = DialogResult.Cancel;
         }
 
+        public bool SaveButtonEnabled
+        {
+            get => btnSave.Enabled;
+            set => btnSave.Enabled = value;
+        }
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveClck?.Invoke(sender, e);
