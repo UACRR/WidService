@@ -184,8 +184,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             };
             waitingBar.StartWaiting();
             var result = await _presenter.GetAllAutorsView(query);
-            var autorsList = result.List.DistinctBy(rec => rec.CustId).ToList();
-            var addAuthorForm = new CommunityAddAuthorForm(autorsList, _customer.CustId);
+            var autorsList = result.List;
+            var addAuthorForm = new CommunityLimitsAddForm(autorsList, _customer.CustId);
             addAuthorForm.UpdateTotalPages(result.TotalItems);
             addAuthorForm.GetCommunityRightList += AddAutorForm_GetCommunityRightList;
             waitingBar.StopWaiting();

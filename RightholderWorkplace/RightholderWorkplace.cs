@@ -46,6 +46,7 @@ namespace RightholderWorkplace
             IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name );
 
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
 
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();

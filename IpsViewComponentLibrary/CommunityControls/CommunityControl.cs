@@ -20,7 +20,6 @@ namespace IpsViewComponentLibrary.CommunityControls
     {
         private const string ErrorMsg = "Неможливо додати нову Спільноту!";
         private const string SeccessMsg = "Нова Спільнота додана!";
-        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
         public event ReturnViewEventHandler<CommunityAuthorsView> GetCommunityAutorsList;
@@ -34,27 +33,22 @@ namespace IpsViewComponentLibrary.CommunityControls
         public CommunityControl()
         {
             InitializeComponent();
-            _gridStateRecorder.AddGrid(gvViewPartners);
+            ctrlGridRowCount.RadGridViewDataSource = gvViewPartners;
+            panelBottom.PanelElement.PanelBorder.Width = 0f;
             ctrlSearch.SetUsageGrid(gvViewPartners);
             Load += CommunityControlLoad;
+        }
+
+        private void CommunityControlLoad(object sender, EventArgs e)
+        {
+            UpdateDataGrid();
         }
 
         // оновлення даних на грід зі збереженням обраного рядка
         private void UpdateDataGrid()
         {
-            _gridStateRecorder.RecordState();
-            gvViewPartners.DataSource = SetCommunityList?.Invoke(-1);
-            //show count Partners
-            lblCountPartners.Text = gvViewPartners.RowCount.ToString();
-            gvViewPartners.ResetBindings();
-            _gridStateRecorder.RestoreState();
-        }
-
-        private void CommunityControlLoad(object sender, EventArgs e)
-        {
-            gvViewPartners.DataSource = SetCommunityList?.Invoke(-1);
-            //show count Partners
-            lblCountPartners.Text = gvViewPartners.RowCount.ToString();
+            bsCommunityListView.DataSource = SetCommunityList?.Invoke(-1);
+            bsCommunityListView.ResetBindings(false);
         }
 
         private void btnAddCommunity_Click(object sender, EventArgs e)

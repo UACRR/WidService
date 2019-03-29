@@ -32,7 +32,7 @@ namespace ipsFormsDesign.Presenters
             var list = _rightholderService.CheckOkpoExists(okpo);
             // Для нового користувача повинен бути пустий масив
             if ((custId ?? 0) == 0)
-                return list.Count() == 0;
+                return (list?.Count ?? 0) == 0;
             // Для існуючого користувача немає заданого ОКПО для інших користувачів
             return list.Where( rec => rec.CustId != custId ).FirstOrDefault() == null;
         }
@@ -47,7 +47,7 @@ namespace ipsFormsDesign.Presenters
             var list = _rightholderService.CheckIpiExists(ipi);
 
             if ((custId ?? 0) == 0)
-                return list.Count() == 0;
+                return (list?.Count ?? 0) == 0;
             // Для існуючого користувача немає заданого IPI для інших користувачів
             return list.Where(rec => rec.CustId != custId).FirstOrDefault() == null;
         }
