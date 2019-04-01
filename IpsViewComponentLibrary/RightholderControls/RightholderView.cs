@@ -189,7 +189,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             {
                 //set default active page for External Anketa
                 pageViewMain.SelectedPage = AnketaExternal;
-            } else
+                //set data of the External Anketa
+                anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
+
+                //test
+
+                //---
+            }
+            else
             {
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
