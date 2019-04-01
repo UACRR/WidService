@@ -36,17 +36,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(gvViewFreeClientList.CurrentRow.DataBoundItem is PartnerAllFreeClientsView item)
-            {
-                var result = OnAddSelectedClient?.Invoke(item.ClCustId);
-                if (result ?? false)
-                {
-                    ExtensionUtils.ShowInfoMessage(_msg.Success, "Успішно", MessageBoxIcon.Information);
-                    DialogResult = DialogResult.OK;
-                }
-                else
-                    ExtensionUtils.ShowInfoMessage(_msg.Error, "Помилка", MessageBoxIcon.Error);
-            }
+            if (!(gvViewFreeClientList.CurrentRow.DataBoundItem is PartnerAllFreeClientsView item))
+                return;
+            
+            var result = OnAddSelectedClient?.Invoke(item.ClCustId) ?? false;
+            MessageShow.ShowInfoByResult(_msg.Success, _msg.Error, result);
+            if (result)
+                DialogResult = DialogResult.OK;
         }
     }
 }

@@ -83,33 +83,8 @@ namespace IpsViewComponentLibrary.Extensions
         private static void TodayButton_Click(object sender, EventArgs e)
         {
             // var container = (sender as RadControl).GetContainerControl();
-            var dtPicker = ((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl as RadDateTimePicker;
-            if (dtPicker != null)
+            if (((RadDateTimePickerDropDown)((RadElement)sender).ElementTree.Control.Parent).OwnerControl is RadDateTimePicker dtPicker)
                 dtPicker.Value = DateTime.Now;
-        }
-
-        public static void ShowInfoMessage(string msg, string title, MessageBoxIcon icon)
-        {
-            MessageBox.Show(msg, title, MessageBoxButtons.OK, icon);
-        }
-
-        public static ButtonFunctionAcceptLicType ButtonNameChange(this RadButton btn, int? status)
-        {
-            switch (status)
-            {
-                case 1:
-                {
-                    btn.Text = "Акцептувати договір";
-                    return ButtonFunctionAcceptLicType.Accept;
-                }
-                case 0:
-                {
-                    btn.Text = "Відправити на погодження";
-                    return ButtonFunctionAcceptLicType.Agree;
-                }
-            }
-
-            return ButtonFunctionAcceptLicType.None;
         }
 
         /// <summary>
@@ -212,24 +187,6 @@ namespace IpsViewComponentLibrary.Extensions
         
     }
 
-    public interface IMiddleCtrlAnketaConsumer
-    {
-        /// <summary>
-        /// Встановлення джерела даних для DataBinding
-        /// </summary>
-        /// <param name="customer">Дані споживача</param>
-        /// <param name="dictionaties">Словники</param>
-        /// <param name="anketeType">Тип анкети: редагування/створення нової</param>
-        void SetDataSources(Customer customer, AnketaDictionaties dictionaties);
-
-        /// <summary>
-        /// Перевірка на правильність введених даних
-        /// </summary>
-        bool Validator();
-    }
-
-
-
     #region МАЙДАНЧИКИ
 
     /// <summary>
@@ -265,44 +222,6 @@ namespace IpsViewComponentLibrary.Extensions
         /// </summary>
         Other = 3,
         Empty = 0
-    }
-
-    /// <summary>
-    /// Тип закладу що редагується
-    /// </summary>
-    public enum TypeInstitution
-    {
-        /// <summary>
-        /// Заклад додано, відображається на грід
-        /// </summary>
-        ExistingInstitution,
-        /// <summary>
-        /// Заклад було щойно створено
-        /// </summary>
-        NonExistentInstitution
-    }
-
-    /// <summary>
-    /// Типи майданчиків
-    /// </summary>
-    public enum ExistencePlaces
-    {
-        /// <summary>
-        /// Один майданчик
-        /// </summary>
-        SinglePlace,
-        /// <summary>
-        /// Багато майданчиків
-        /// </summary>
-        ManyPlaces,
-        /// <summary>
-        /// Радіо
-        /// </summary>
-        Radio,
-        /// <summary>
-        /// Empty
-        /// </summary>
-        None
     }
 
     /// <summary>
@@ -349,25 +268,6 @@ namespace IpsViewComponentLibrary.Extensions
         /// Зміна договору
         /// </summary>
         ChangeAgreement
-    }
-
-    /// <summary>
-    /// Для визначення видаляти чи додавати в мінімальну суму вартість майданчика
-    /// </summary>
-    public enum CalculationMinAmountType
-    {
-        /// <summary>
-        /// Empty
-        /// </summary>
-        None,
-        /// <summary>
-        /// Видалити вартість майданчика з мінімальної суми
-        /// </summary>
-        DeleteCalcValue,
-        /// <summary>
-        /// Додати вартість майданчика в мінімальну суму
-        /// </summary>
-        AddCalcValue,
     }
 
     #endregion
@@ -476,19 +376,4 @@ namespace IpsViewComponentLibrary.Extensions
         /// </summary>
         Edit,
     }
-
-    public enum ButtonFunctionAcceptLicType
-    {
-        None,
-        /// <summary>
-        /// Акцептувати
-        /// </summary>
-        Accept,
-        /// <summary>
-        /// На погодження
-        /// </summary>
-        Agree
-    }
-
-
 }
