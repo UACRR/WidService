@@ -80,6 +80,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => ctrlRightLimitations.DataSource = value;
         }
 
+        //TernsOfService control for External Anketa
+        public object TermsOfServiceExternalAnketaDataSource
+        {
+            get => rightLimitationsControl1_ExternalAnketa.DataSource;
+            set => rightLimitationsControl1_ExternalAnketa.DataSource = value;
+        }
+
         public object RightholderDataSource
         {
             get => bsRightHolder.DataSource;
@@ -192,9 +199,9 @@ namespace IpsViewComponentLibrary.RightholderControls
                 //set data of the External Anketa
                 anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
 
-                //test
+                //set data for 'Анкета' -> 'Обмеження прав'
 
-                //---
+                //set data for 'Обьект'
             }
             else
             {

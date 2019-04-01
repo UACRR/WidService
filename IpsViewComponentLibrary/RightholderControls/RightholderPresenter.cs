@@ -89,6 +89,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             _view.RightholderDataSource = _customer.RightHolder;
             _view.BankAccountDataSource = _customer.BankAccount;
             _view.TermsOfServiceDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
+            
 
             //add condition for ignore External anketa
             //_isCompany = _customer.CustType == 3 && _customer.CustType != 5;
@@ -103,6 +104,8 @@ namespace IpsViewComponentLibrary.RightholderControls
                 _anketaExternal = _customer.AnketaExternal;
                 //set data to data source
                 _view.AnketaExternalDataSource = _anketaExternal;
+                //set data for term of service of the external anketa
+                _view.TermsOfServiceExternalAnketaDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
             }
             else
             {
