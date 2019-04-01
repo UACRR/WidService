@@ -77,6 +77,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => ctrlRightLimitations.DataSource = value;
         }
 
+        //term of service for External Anketa
+        object test;
+        public object TermsOfServiceExternalAnketaDataSource
+        {
+            get => test;
+            set => test = value;
+        }
+
         public object RightholderDataSource
         {
             get => bsRightHolder.DataSource;

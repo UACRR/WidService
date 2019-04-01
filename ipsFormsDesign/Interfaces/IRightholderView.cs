@@ -13,6 +13,8 @@
         IRightholderPresenter Presenter { get; set; }
         object RightholderDataSource { get; set; }
         object TermsOfServiceDataSource { get; set; }
+        //term of service for External Anketa
+        object TermsOfServiceExternalAnketaDataSource { get; set; }
 
         void Run();
         void Hide();
