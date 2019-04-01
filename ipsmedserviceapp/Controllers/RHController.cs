@@ -640,8 +640,8 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         [HttpGet("checkexists/okpo/{okpo}")]
         public async Task<IActionResult> CheckExistsOkpo( string okpo )
         {
-            var vCust = await _dbContext.vCustomer
-                        .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where INNOKPO = @okpo", new SqlParameter("@okpo", okpo))
+            var vCust = await _dbContext.vCustomer.Where( rec => rec.INNOKPO == okpo )
+                        //.FromSql("select CustId, name, INNOKPO, IPI from vCustomer where INNOKPO = @okpo", new SqlParameter("@okpo", okpo))
                         .ToArrayAsync();
 
             return Ok(vCust);
@@ -650,8 +650,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         [HttpGet("checkexists/ipi/{ipi}")]
         public async Task<IActionResult> CheckExistsIpi(string ipi)
         {
-            var vCust = await _dbContext.vCustomer
-                        .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where IPI = @ipi", new SqlParameter("@ipi", ipi))
+            var vCust = await _dbContext.vCustomer.Where( rec => rec.IPI == ipi )
                         .ToArrayAsync();
 
             return Ok(vCust);
