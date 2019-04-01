@@ -187,7 +187,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
             else if (customer.CustType == 5)
             {
-                //pageViewMain.SelectedPage = 
+                //set default active page for External Anketa
+                pageViewMain.SelectedPage = AnketaExternal;
             } else
             {
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
