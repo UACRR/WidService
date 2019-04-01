@@ -151,19 +151,15 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             //check on exist state field 'CustType'
             if (customer.CustType == null) { return; }
-            //detect current 'CustType'
-            if (customer.CustType == 5)
-                //get all pages
-                foreach (var external in pageViewMain.Pages)
-                    //hide current page if it's: Anketa, Contract
-                    if (external.Name == "Anketa" || external.Name == "Contract")
-                        external.Enabled = false;
-            else if (customer.CustType != 5)
-                //get all pages
-                foreach (var anketa in pageViewMain.Pages)
-                    //hide current page if it's: ExternalAnketa
-                    if (anketa.Name == "AnketaExternal")
-                        anketa.Enabled = false;
+            //get all pages
+            foreach (var external in pageViewMain.Pages)
+                //hide current page if it's: Anketa, Contract
+                if (customer.CustType == 5 && (external.Name == "Anketa" || external.Name == "Contract"))
+                    external.Item.Visibility = ElementVisibility.Collapsed;
+                //hide current page if it's: ExternalAnketa
+                else if (customer.CustType != 5 && external.Name == "AnketaExternal")
+                    external.Item.Visibility = ElementVisibility.Collapsed;
+
         }
 
         public void Run()
@@ -172,9 +168,10 @@ namespace IpsViewComponentLibrary.RightholderControls
             //set active pages on depends field 'CustType'
             ShowActivePages(customer);
 
-            _isCompany = customer.CustType == 3;
+            //disable unusable code
+            //_isCompany = customer.CustType == 3;
 
-            if (_isCompany)
+            if (customer.CustType == 3)
             {
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
@@ -188,7 +185,10 @@ namespace IpsViewComponentLibrary.RightholderControls
                 passportPage.Item.Visibility = ElementVisibility.Collapsed;
                 ctrlMiddleControlManagers.SetDataSources(customer);
             }
-            else
+            else if (customer.CustType == 5)
+            {
+                //pageViewMain.SelectedPage = 
+            } else
             {
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
