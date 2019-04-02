@@ -667,7 +667,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // rigthLimitationsPage
             // 
             this.rigthLimitationsPage.Controls.Add(this.ctrlRightLimitations);
-            this.rigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.rigthLimitationsPage.Location = new System.Drawing.Point(141, 5);
             this.rigthLimitationsPage.Name = "rigthLimitationsPage";
             this.rigthLimitationsPage.Size = new System.Drawing.Size(863, 435);
@@ -878,7 +877,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPageView.DefaultPage = this.agreementPage;
             this.agreementPageView.Location = new System.Drawing.Point(1, 0);
             this.agreementPageView.Name = "agreementPageView";
-            this.agreementPageView.SelectedPage = this.rigthLimitationsPage;
+            this.agreementPageView.SelectedPage = this.agreementPage;
             this.agreementPageView.Size = new System.Drawing.Size(1009, 445);
             this.agreementPageView.TabIndex = 3;
             this.agreementPageView.ThemeName = "Office2013Light";
@@ -893,7 +892,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
-            this.agreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPage.Name = "agreementPage";
             this.agreementPage.Size = new System.Drawing.Size(863, 435);
@@ -1007,7 +1005,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.externalAnketaPage.DefaultPage = this.radPageViewPage5;
             this.externalAnketaPage.Location = new System.Drawing.Point(1, 0);
             this.externalAnketaPage.Name = "externalAnketaPage";
-            this.externalAnketaPage.SelectedPage = this.radPageViewPage12;
+            this.externalAnketaPage.SelectedPage = this.radPageViewPage5;
             this.externalAnketaPage.Size = new System.Drawing.Size(1006, 448);
             this.externalAnketaPage.TabIndex = 3;
             this.externalAnketaPage.ThemeName = "Office2013Light";
@@ -1018,7 +1016,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // radPageViewPage5
             // 
             this.radPageViewPage5.Controls.Add(this.anketaExternalRightholderControl1);
-            this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage5.Location = new System.Drawing.Point(117, 5);
             this.radPageViewPage5.Name = "radPageViewPage5";
             this.radPageViewPage5.Size = new System.Drawing.Size(884, 438);
@@ -1038,7 +1035,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // radPageViewPage12
             // 
             this.radPageViewPage12.Controls.Add(this.rightLimitationsControl1_ExternalAnketa);
-            this.radPageViewPage12.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage12.Location = new System.Drawing.Point(117, 5);
             this.radPageViewPage12.Name = "radPageViewPage12";
             this.radPageViewPage12.Size = new System.Drawing.Size(884, 438);
