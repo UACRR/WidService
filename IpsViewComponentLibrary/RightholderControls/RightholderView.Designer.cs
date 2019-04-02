@@ -1010,7 +1010,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.externalAnketaPage.DefaultPage = this.radPageViewPage5;
             this.externalAnketaPage.Location = new System.Drawing.Point(1, 0);
             this.externalAnketaPage.Name = "externalAnketaPage";
-            this.externalAnketaPage.SelectedPage = this.radPageViewPage5;
+            this.externalAnketaPage.SelectedPage = this.radPageViewPage12;
             this.externalAnketaPage.Size = new System.Drawing.Size(1006, 448);
             this.externalAnketaPage.TabIndex = 3;
             this.externalAnketaPage.ThemeName = "Office2013Light";
