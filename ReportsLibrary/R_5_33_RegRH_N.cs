@@ -8,11 +8,11 @@ namespace ReportsLibrary
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for R_5_33_RegRH.
+    /// Summary description for R_5_33_RegRH_N.
     /// </summary>
-    public partial class R_5_33_RegRH : Telerik.Reporting.Report
+    public partial class R_5_33_RegRH_N : Telerik.Reporting.Report
     {
-        public R_5_33_RegRH()
+        public R_5_33_RegRH_N()
         {
             //
             // Required for telerik Reporting designer support

@@ -43,9 +43,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlPlaceName = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.bsLicense = new System.Windows.Forms.BindingSource(this.components);
             this.bsClnBusinessPlace = new System.Windows.Forms.BindingSource(this.components);
-            this.label17 = new Telerik.WinControls.UI.RadLabel();
             this.txtAddress = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
-            this.txtLicTerm = new IpsViewComponentLibrary.Common.Editors.IpsTextBox();
             this.label14 = new Telerik.WinControls.UI.RadLabel();
             this.label16 = new Telerik.WinControls.UI.RadLabel();
             this.label12 = new Telerik.WinControls.UI.RadLabel();
@@ -119,6 +117,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.bsLicenseAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.dtDateEnd = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAuthors.SuspendLayout();
@@ -130,9 +130,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ((System.ComponentModel.ISupportInitialize)(this.ddlPlaceName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicense)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.label17)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLicTerm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.label14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.label16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.label12)).BeginInit();
@@ -208,6 +206,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDateEnd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -262,9 +262,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.pvConditions.Controls.Add(this.lblTour);
             this.pvConditions.Controls.Add(this.txtWhereTour);
             this.pvConditions.Controls.Add(this.ddlPlaceName);
-            this.pvConditions.Controls.Add(this.label17);
             this.pvConditions.Controls.Add(this.txtAddress);
-            this.pvConditions.Controls.Add(this.txtLicTerm);
             this.pvConditions.Controls.Add(this.label14);
             this.pvConditions.Controls.Add(this.label16);
             this.pvConditions.Controls.Add(this.label12);
@@ -289,7 +287,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.checkIsTour.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsLicenseBigR, "IsTour", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.checkIsTour.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.checkIsTour.ForeColor = System.Drawing.Color.Black;
-            this.checkIsTour.Location = new System.Drawing.Point(12, 172);
+            this.checkIsTour.Location = new System.Drawing.Point(9, 159);
             this.checkIsTour.Name = "checkIsTour";
             this.checkIsTour.Size = new System.Drawing.Size(158, 19);
             this.checkIsTour.TabIndex = 40;
@@ -303,7 +301,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // lblTour
             // 
-            this.lblTour.Location = new System.Drawing.Point(12, 199);
+            this.lblTour.Location = new System.Drawing.Point(11, 186);
             this.lblTour.Name = "lblTour";
             this.lblTour.Size = new System.Drawing.Size(140, 19);
             this.lblTour.TabIndex = 39;
@@ -313,7 +311,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // txtWhereTour
             // 
             this.txtWhereTour.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "WhereTour", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtWhereTour.Location = new System.Drawing.Point(154, 197);
+            this.txtWhereTour.Location = new System.Drawing.Point(154, 185);
             this.txtWhereTour.Name = "txtWhereTour";
             this.txtWhereTour.Size = new System.Drawing.Size(507, 21);
             this.txtWhereTour.TabIndex = 38;
@@ -341,15 +339,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             this.bsClnBusinessPlace.DataSource = typeof(ipsFormsDesign.Model.ClnBusinessPlace);
             // 
-            // label17
-            // 
-            this.label17.Location = new System.Drawing.Point(281, 133);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(141, 19);
-            this.label17.TabIndex = 34;
-            this.label17.Text = "Термін дозволу в роках";
-            this.label17.ThemeName = "Office2013Light";
-            // 
             // txtAddress
             // 
             this.txtAddress.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsClnBusinessPlace, "PlaceAddress", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -358,15 +347,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtAddress.Size = new System.Drawing.Size(600, 21);
             this.txtAddress.TabIndex = 16;
             this.txtAddress.ThemeName = "Office2013Light";
-            // 
-            // txtLicTerm
-            // 
-            this.txtLicTerm.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsLicenseBigR, "LicTerm", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtLicTerm.Location = new System.Drawing.Point(462, 131);
-            this.txtLicTerm.Name = "txtLicTerm";
-            this.txtLicTerm.Size = new System.Drawing.Size(49, 21);
-            this.txtLicTerm.TabIndex = 35;
-            this.txtLicTerm.ThemeName = "Office2013Light";
             // 
             // label14
             // 
@@ -808,6 +788,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // panelInfo
             // 
+            this.panelInfo.Controls.Add(this.dtDateEnd);
+            this.panelInfo.Controls.Add(this.radLabel10);
             this.panelInfo.Controls.Add(this.label18);
             this.panelInfo.Controls.Add(this.label8);
             this.panelInfo.Controls.Add(this.ddlLang);
@@ -1094,6 +1076,31 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
             // 
+            // dtDateEnd
+            // 
+            this.dtDateEnd.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicAgrParam, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged));
+            this.dtDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtDateEnd.Location = new System.Drawing.Point(280, 42);
+            this.dtDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
+            this.dtDateEnd.Name = "dtDateEnd";
+            this.dtDateEnd.NullText = "Оберіть дату";
+            this.dtDateEnd.Size = new System.Drawing.Size(118, 21);
+            this.dtDateEnd.TabIndex = 30;
+            this.dtDateEnd.TabStop = false;
+            this.dtDateEnd.ThemeName = "Office2013Light";
+            this.dtDateEnd.Value = new System.DateTime(((long)(0)));
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.radLabel10.Location = new System.Drawing.Point(238, 44);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(36, 18);
+            this.radLabel10.TabIndex = 29;
+            this.radLabel10.Text = "діє до";
+            this.radLabel10.ThemeName = "Office2013Light";
+            // 
             // RequestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1136,9 +1143,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ((System.ComponentModel.ISupportInitialize)(this.ddlPlaceName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLicense)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsClnBusinessPlace)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.label17)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLicTerm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.label14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.label16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.label12)).EndInit();
@@ -1217,6 +1222,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDateEnd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1253,8 +1260,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
         private IpsViewComponentLibrary.Common.Editors.IpsTextBox txtName;
         private Telerik.WinControls.UI.RadLabel lblTour;
         private IpsViewComponentLibrary.Common.Editors.IpsTextBox txtWhereTour;
-        private Telerik.WinControls.UI.RadLabel label17;
-        private IpsViewComponentLibrary.Common.Editors.IpsTextBox txtLicTerm;
         private Telerik.WinControls.UI.RadLabel label16;
         private IpsViewComponentLibrary.Common.Editors.IpsTextBox txtTicketPriceUsd;
         private Telerik.WinControls.UI.RadLabel label9;
@@ -1313,5 +1318,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
         private Common.Editors.IpsDropDownList ddlStatus;
         private BindingSource bsLicenseAgreement;
         private ErrorProvider errorProvider;
+        private Common.Editors.IpsDateTimePicker dtDateEnd;
+        private Telerik.WinControls.UI.RadLabel radLabel10;
     }
 }

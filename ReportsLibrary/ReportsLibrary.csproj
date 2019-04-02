@@ -288,11 +288,11 @@
     <Compile Include="R_5_32_RegRH.Designer.cs">
       <DependentUpon>R_5_32_RegRH.cs</DependentUpon>
     </Compile>
-    <Compile Include="R_5_33_RegRH.cs">
+    <Compile Include="R_5_33_RegRH_N.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="R_5_33_RegRH.Designer.cs">
-      <DependentUpon>R_5_33_RegRH.cs</DependentUpon>
+    <Compile Include="R_5_33_RegRH_N.Designer.cs">
+      <DependentUpon>R_5_33_RegRH_N.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_35_Start.cs">
       <SubType>Component</SubType>
@@ -457,8 +457,8 @@
     <EmbeddedResource Include="R_5_32_RegRH.resx">
       <DependentUpon>R_5_32_RegRH.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="R_5_33_RegRH.resx">
-      <DependentUpon>R_5_33_RegRH.cs</DependentUpon>
+    <EmbeddedResource Include="R_5_33_RegRH_N.resx">
+      <DependentUpon>R_5_33_RegRH_N.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_35_Start.resx">
       <DependentUpon>R_5_35_Start.cs</DependentUpon>

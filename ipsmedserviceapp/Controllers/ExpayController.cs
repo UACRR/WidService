@@ -15,7 +15,7 @@ namespace ipsmedserviceapp.Controllers
     [ApiController]
     public class ExpayController : ControllerBase
     {
-        private MediaServiceContext _dbContext;
+        private readonly MediaServiceContext _dbContext;
         public ExpayController(MediaServiceContext dbContext)
         {
             _dbContext = dbContext;
@@ -63,6 +63,7 @@ namespace ipsmedserviceapp.Controllers
                 throw ex;
             }
         }
+        
         /// <summary>
         /// Зберігти файл проводок
         /// </summary>
@@ -117,6 +118,7 @@ namespace ipsmedserviceapp.Controllers
 
             }
         }
+        
         // get unlink list Отримати список непривязаних проводок
         [HttpGet("unlink")]
         public async Task<IActionResult> GetUnlink()
@@ -142,6 +144,7 @@ namespace ipsmedserviceapp.Controllers
                     });
 
         }
+        
         // put unlink list Зберігти дані по списку непривязаних проводок
         [HttpPut("unlink")]
         public async Task<IActionResult> SaveUnlinkList([FromBody] List<ExternalPay> pays)
@@ -165,6 +168,7 @@ namespace ipsmedserviceapp.Controllers
             return Ok();
 
         }
+        
         // get unlink/id Отримати неприв'язану проводку по ІД
         [HttpGet("unlink/{payId}")]
         public async Task<IActionResult> GetUnlinkPay(int payId)
@@ -175,6 +179,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(exPay);
         }
+
         // put unlink/id Зберігти неприв'язану проводку по ІД
         [HttpPut("unlink/{payId}")]
         public async Task<IActionResult> SaveUnlinkPay(int payId, [FromBody] ExternalPay exPay)
@@ -196,6 +201,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(exPay);
         }
+
         /// <summary>
         /// Отримати список діючих Споживачів
         /// </summary>
@@ -203,14 +209,16 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("vCustomers")]
         public async Task<IActionResult> GetVCustomers()
         {
-            // Отримати список Споживачів у яких є договір
-            var list = await _dbContext.vCustomer.FromSql(
-@"select custId, name, INNOKPO, IPI from vCustomer where isClient = 1
-and custid in (select custid from LicenseAgreement where status between 1 and 3 )").AsNoTracking().ToListAsync();
-
-            return Ok(list);
+            string query = @"select custId, name, INNOKPO, IPI, ankMy from vCustomer where isClient = 1 and custid in (select custid from LicenseAgreement where status between 1 and 3)";
+            try
+            {
+                var list = await _dbContext.vCustomer.FromSql(query).AsNoTracking().ToListAsync();
+                return Ok(list);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception.Message);
+            }
         }
-
-
     }
 }

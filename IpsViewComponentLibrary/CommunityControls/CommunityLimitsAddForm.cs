@@ -104,7 +104,7 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             //var result = await _presenter.GetAllAutorsView(query2);
             var result = await _presenter.GetAllAutorsView(query);
-            bsCommunityAuthorsView.DataSource = result.List;
+            bsCommunityAuthorsView.DataSource = result.List.DistinctBy(rec => rec.CustId);
 
             navigatorPanel.TotalPages = (int)Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
 

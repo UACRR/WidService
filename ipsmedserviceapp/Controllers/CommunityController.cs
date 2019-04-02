@@ -105,13 +105,12 @@ namespace ipsmedserviceapp.Controllers
             if (queryResource.PageSize.HasValue)
                 pageSize = (int) queryResource.PageSize;
 
-            // TODO: optimize query to DB
             // paging conditions
             string orderBy = $" ORDER BY custId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
             queryStr = string.Concat(queryStr, orderBy);
 
             var list = await _dbContext.getViewData(queryStr, null);
-            //var data = list.Skip((page - 1) * pageSize).Take(pageSize);
+
             return Ok(new
             {
                 List = list,

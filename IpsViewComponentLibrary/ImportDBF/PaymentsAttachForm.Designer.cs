@@ -72,9 +72,9 @@
             this.footerPanel.Controls.Add(this.btnCancel);
             this.footerPanel.Controls.Add(this.btnAttach);
             this.footerPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.footerPanel.Location = new System.Drawing.Point(0, 384);
+            this.footerPanel.Location = new System.Drawing.Point(0, 481);
             this.footerPanel.Name = "footerPanel";
-            this.footerPanel.Size = new System.Drawing.Size(670, 30);
+            this.footerPanel.Size = new System.Drawing.Size(982, 30);
             this.footerPanel.TabIndex = 2;
             this.footerPanel.ThemeName = "Office2013Light";
             // 
@@ -82,7 +82,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(547, 3);
+            this.btnCancel.Location = new System.Drawing.Point(859, 3);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(120, 24);
             this.btnCancel.TabIndex = 4;
@@ -92,7 +92,7 @@
             // btnAttach
             // 
             this.btnAttach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAttach.Location = new System.Drawing.Point(409, 3);
+            this.btnAttach.Location = new System.Drawing.Point(721, 3);
             this.btnAttach.Name = "btnAttach";
             this.btnAttach.Size = new System.Drawing.Size(120, 24);
             this.btnAttach.TabIndex = 3;
@@ -114,7 +114,7 @@
             this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.headerPanel.Location = new System.Drawing.Point(0, 0);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(670, 151);
+            this.headerPanel.Size = new System.Drawing.Size(982, 151);
             this.headerPanel.TabIndex = 3;
             this.headerPanel.ThemeName = "Office2013Light";
             ((Telerik.WinControls.Primitives.BorderPrimitive)(this.headerPanel.GetChildAt(0).GetChildAt(1))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
@@ -132,7 +132,7 @@
             // 
             // 
             this.txtDestinationPay.RootElement.MinSize = new System.Drawing.Size(120, 19);
-            this.txtDestinationPay.Size = new System.Drawing.Size(502, 19);
+            this.txtDestinationPay.Size = new System.Drawing.Size(808, 19);
             this.txtDestinationPay.TabIndex = 11;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtDestinationPay.GetChildAt(0))).BorderWidth = 1F;
@@ -160,7 +160,7 @@
             // 
             // 
             this.txtName.RootElement.MinSize = new System.Drawing.Size(120, 19);
-            this.txtName.Size = new System.Drawing.Size(527, 19);
+            this.txtName.Size = new System.Drawing.Size(833, 19);
             this.txtName.TabIndex = 10;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtName.GetChildAt(0))).BorderWidth = 1F;
@@ -188,16 +188,14 @@
             // 
             this.radSeparator1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radSeparator1.Location = new System.Drawing.Point(12, 107);
+            this.radSeparator1.Location = new System.Drawing.Point(3, 107);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(646, 10);
+            this.radSeparator1.Size = new System.Drawing.Size(976, 10);
             this.radSeparator1.TabIndex = 8;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // txtIpnokpo
             // 
-            this.txtIpnokpo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtIpnokpo.IsReadOnly = true;
             this.txtIpnokpo.IsReadOnlyCaretVisible = true;
             this.txtIpnokpo.Location = new System.Drawing.Point(86, 31);
@@ -207,7 +205,7 @@
             // 
             // 
             this.txtIpnokpo.RootElement.MinSize = new System.Drawing.Size(120, 19);
-            this.txtIpnokpo.Size = new System.Drawing.Size(223, 19);
+            this.txtIpnokpo.Size = new System.Drawing.Size(181, 19);
             this.txtIpnokpo.TabIndex = 5;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderBoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
             ((Telerik.WinControls.UI.RadTextBoxControlElement)(this.txtIpnokpo.GetChildAt(0))).BorderWidth = 1F;
@@ -294,7 +292,7 @@
             gridViewTextBoxColumn3.HeaderText = "Назва користувача";
             gridViewTextBoxColumn3.MinWidth = 110;
             gridViewTextBoxColumn3.Name = "name";
-            gridViewTextBoxColumn3.Width = 525;
+            gridViewTextBoxColumn3.Width = 837;
             gridViewTextBoxColumn3.WrapText = true;
             this.gvCustomers.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
@@ -310,7 +308,7 @@
             this.gvCustomers.ReadOnly = true;
             this.gvCustomers.ShowGroupPanel = false;
             this.gvCustomers.ShowGroupPanelScrollbars = false;
-            this.gvCustomers.Size = new System.Drawing.Size(670, 233);
+            this.gvCustomers.Size = new System.Drawing.Size(982, 330);
             this.gvCustomers.TabIndex = 4;
             this.gvCustomers.ThemeName = "Office2013Light";
             this.gvCustomers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvCustomers_CellDoubleClick);
@@ -320,7 +318,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(670, 414);
+            this.ClientSize = new System.Drawing.Size(982, 511);
             this.Controls.Add(this.gvCustomers);
             this.Controls.Add(this.headerPanel);
             this.Controls.Add(this.footerPanel);

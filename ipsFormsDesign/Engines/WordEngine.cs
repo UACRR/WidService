@@ -1279,30 +1279,33 @@ namespace ipsFormsDesign.Services
             var KL030 = (from kl in _dic.klR030
                          select new Currency { R030 = kl.R030, CountryCode = kl.CountryCode, A3 = kl.A3 }
             );
-            var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
+            //var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
+
+            var places = licA.LicenseAgrParam.Where(rec => rec.AnkVersion == licA.LicVersion).FirstOrDefault().License?.Select(rec => rec.PlaceId ).ToArray();
+            var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where( rec => places.Contains( rec.PlaceId )).ToList();
             AgreementAddBr agreementAddBr;
             agreementAddBr = agr;
             string ShowPLAdress = string.Empty;
-            string ShowPLName = clnBusinessPlaceTheater[0]?.PlaceName ?? string.Empty;
+            string ShowPLName = clnBusinessPlaceTheater.FirstOrDefault()?.PlaceName ?? string.Empty;
             ShowPLName = '"' + ShowPLName + '"';
-            string countryCode = clnBusinessPlaceTheater[0]?.PlaceCountry ?? "804";
-            string Country =  countries[clnBusinessPlaceTheater[0]?.PlaceCountry ?? "804"].CountryName;
+            string countryCode = clnBusinessPlaceTheater?.FirstOrDefault().PlaceCountry ?? "804";
+            string Country =  countries[clnBusinessPlaceTheater.FirstOrDefault()?.PlaceCountry ?? "804"].CountryName;
             ShowPLAdress = Country;
             string Region = string.Empty;
 
             if
-             ((clnBusinessPlaceTheater[0]?.PlaceRegion ?? 0) != 0)
-                Region = regions[clnBusinessPlaceTheater[0].PlaceRegion ?? 0].Name;
+             ((clnBusinessPlaceTheater.FirstOrDefault()?.PlaceRegion ?? 0) != 0)
+                Region = regions[clnBusinessPlaceTheater.FirstOrDefault().PlaceRegion ?? 0].Name;
             else
                 Region = "";
             if (Region != "")
                 ShowPLAdress = ShowPLAdress + ", " + Region.Trim();
             string City = string.Empty;
-            City = clnBusinessPlaceTheater[0]?.PlaceCity ?? "";
+            City = clnBusinessPlaceTheater?.FirstOrDefault().PlaceCity ?? "";
             if (City != "")
                 ShowPLAdress = ShowPLAdress + ", " + City.Trim();
             string Adress = string.Empty;
-            Adress = clnBusinessPlaceTheater[0]?.PlaceAddress ?? "";
+            Adress = clnBusinessPlaceTheater?.FirstOrDefault().PlaceAddress ?? "";
             if (Adress != "")
                 ShowPLAdress = ShowPLAdress + ", " + Adress.Trim();
 
@@ -1529,16 +1532,6 @@ namespace ipsFormsDesign.Services
 
             string CstNikName = string.Empty;
             string NikName = string.Empty;
-
-
-
-
-
-
-
-
-
-
             CstNikName = $"{anketaPerson?.NikName ?? string.Empty}";
             if (CstNikName != string.Empty)
                 NikName = "псевдонім(и)";
