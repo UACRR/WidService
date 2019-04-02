@@ -198,6 +198,8 @@ namespace IpsViewComponentLibrary.RightholderControls
                 pageViewMain.SelectedPage = AnketaExternal;
                 //set data of the External Anketa
                 anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
+                anketaExternalRightholderControl1.DataSourceRightHolder = bsRightHolder;
+
             }
             else
             {
@@ -217,14 +219,18 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public bool IsValid
         {
+
             get
             {
+                var customer = (Customer)bsCustomer.Current;
                 var result = true;
 
-                if (!_isCompany)
+                if (customer.CustType == 3)
                 {
                     result = ctrlAnketaPersonRightholderPage.Validator();
                 }
+                else if (customer.CustType == 5)
+                    result = true;
                 else
                 {
                     result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
