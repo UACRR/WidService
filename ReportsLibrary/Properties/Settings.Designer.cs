@@ -26,8 +26,8 @@ namespace ReportsLibrary.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Password=rob" +
-            "ot11235813")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser;Passwor" +
+            "d=ReportUser")]
         public string Reports {
             get {
                 return ((string)(this["Reports"]));
@@ -37,34 +37,11 @@ namespace ReportsLibrary.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Password=rob" +
-            "ot11235813")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser;Passwor" +
+            "d=ReportUser")]
         public string MediaService {
             get {
                 return ((string)(this["MediaService"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=robot;Password=rob" +
-            "ot11235813")]
-        public string IPSDATA {
-            get {
-                return ((string)(this["IPSDATA"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Баланс {
-            get {
-                return ((string)(this["Баланс"]));
-            }
-            set {
-                this["Баланс"] = value;
             }
         }
     }
