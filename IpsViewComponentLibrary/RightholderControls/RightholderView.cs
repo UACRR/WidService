@@ -198,10 +198,6 @@ namespace IpsViewComponentLibrary.RightholderControls
                 pageViewMain.SelectedPage = AnketaExternal;
                 //set data of the External Anketa
                 anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
-
-                //set data for 'Анкета' -> 'Обмеження прав'
-
-                //set data for 'Обьект'
             }
             else
             {
