@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.CommunityControls
 {
-    partial class CommunityAddAuthorForm
+    partial class CommunityLimitsAddForm
     {
         /// <summary>
         /// Required designer variable.
@@ -44,13 +44,14 @@
             this.parentGridPanel = new Telerik.WinControls.UI.RadPanel();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.bsCommunityAuthorsView = new System.Windows.Forms.BindingSource(this.components);
-            this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.ctrlRightLimitation = new IpsViewComponentLibrary.CommunityControls.CommunityRightLimitationControl();
             this.timerSearch = new System.Windows.Forms.Timer(this.components);
             this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
+            this.ctrlSaveCancel = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
+            this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
+            this.splitPanelHeader = new Telerik.WinControls.UI.SplitPanel();
+            this.splitPanelBottom = new Telerik.WinControls.UI.SplitPanel();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewAutors.MasterTemplate)).BeginInit();
             this.gvViewAutors.SuspendLayout();
@@ -58,11 +59,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.parentGridPanel)).BeginInit();
             this.parentGridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsCommunityAuthorsView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
-            this.radPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelHeader)).BeginInit();
+            this.splitPanelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelBottom)).BeginInit();
+            this.splitPanelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,7 +117,7 @@
             gridViewTextBoxColumn5.HeaderText = "Правовласник";
             gridViewTextBoxColumn5.MinWidth = 80;
             gridViewTextBoxColumn5.Name = "Name";
-            gridViewTextBoxColumn5.Width = 502;
+            gridViewTextBoxColumn5.Width = 466;
             gridViewTextBoxColumn6.DataType = typeof(System.DateTime);
             gridViewTextBoxColumn6.FieldName = "RegistrDate";
             gridViewTextBoxColumn6.FormatString = "{0:d}";
@@ -159,7 +162,7 @@
             this.gvViewAutors.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewAutors.Name = "gvViewAutors";
             this.gvViewAutors.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewAutors.Size = new System.Drawing.Size(983, 213);
+            this.gvViewAutors.Size = new System.Drawing.Size(947, 215);
             this.gvViewAutors.TabIndex = 14;
             this.gvViewAutors.ThemeName = "Office2013Light";
             this.gvViewAutors.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewAutors_CurrentRowChanged);
@@ -167,10 +170,10 @@
             // waitingBar
             // 
             this.waitingBar.AssociatedControl = this.parentGridPanel;
-            this.waitingBar.Location = new System.Drawing.Point(456, 71);
+            this.waitingBar.Location = new System.Drawing.Point(453, 74);
             this.waitingBar.Name = "waitingBar";
             this.waitingBar.Size = new System.Drawing.Size(70, 70);
-            this.waitingBar.TabIndex = 2;
+            this.waitingBar.TabIndex = 3;
             this.waitingBar.Text = "radWaitingBar1";
             this.waitingBar.ThemeName = "Office2013Light";
             this.waitingBar.WaitingIndicators.Add(this.lineRingWaitingBarIndicatorElement1);
@@ -186,9 +189,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.parentGridPanel.Controls.Add(this.gvViewAutors);
-            this.parentGridPanel.Location = new System.Drawing.Point(0, 38);
+            this.parentGridPanel.Location = new System.Drawing.Point(3, 29);
             this.parentGridPanel.Name = "parentGridPanel";
-            this.parentGridPanel.Size = new System.Drawing.Size(983, 213);
+            this.parentGridPanel.Size = new System.Drawing.Size(947, 215);
             this.parentGridPanel.TabIndex = 35;
             this.parentGridPanel.ThemeName = "Office2013Light";
             // 
@@ -203,49 +206,12 @@
             // 
             this.bsCommunityAuthorsView.DataSource = typeof(ipsFormsDesign.Interfaces.CommunityAuthorsView);
             // 
-            // radPanel1
-            // 
-            this.radPanel1.BackColor = System.Drawing.Color.Silver;
-            this.radPanel1.Controls.Add(this.btnSave);
-            this.radPanel1.Controls.Add(this.btnCancel);
-            this.radPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.radPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.radPanel1.Location = new System.Drawing.Point(0, 536);
-            this.radPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(983, 31);
-            this.radPanel1.TabIndex = 22;
-            this.radPanel1.ThemeName = "Office2013Light";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(3, 4);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(121, 24);
-            this.btnSave.TabIndex = 56;
-            this.btnSave.Text = "Зберегти";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(859, 4);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(121, 24);
-            this.btnCancel.TabIndex = 17;
-            this.btnCancel.Text = "Скасувати";
-            this.btnCancel.ThemeName = "Office2013Light";
-            // 
             // ctrlRightLimitation
             // 
-            this.ctrlRightLimitation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRightLimitation.Location = new System.Drawing.Point(0, 291);
+            this.ctrlRightLimitation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRightLimitation.Location = new System.Drawing.Point(0, 0);
             this.ctrlRightLimitation.Name = "ctrlRightLimitation";
-            this.ctrlRightLimitation.Size = new System.Drawing.Size(983, 242);
+            this.ctrlRightLimitation.Size = new System.Drawing.Size(953, 242);
             this.ctrlRightLimitation.TabIndex = 23;
             // 
             // timerSearch
@@ -257,7 +223,7 @@
             // 
             this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.navigatorPanel.CurrentPage = 1;
-            this.navigatorPanel.Location = new System.Drawing.Point(0, 257);
+            this.navigatorPanel.Location = new System.Drawing.Point(3, 250);
             this.navigatorPanel.Name = "navigatorPanel";
             this.navigatorPanel.PageSize = 200;
             this.navigatorPanel.ReadOnlyPageSize = true;
@@ -269,7 +235,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(3, 12);
+            this.txtSearch.Location = new System.Drawing.Point(3, 3);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.NullText = "Пошук";
             this.txtSearch.ShowClearButton = true;
@@ -283,18 +249,79 @@
             ((Telerik.WinControls.UI.TextBoxViewElement)(this.txtSearch.GetChildAt(0).GetChildAt(0))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
             ((Telerik.WinControls.UI.TextBoxWrapPanel)(this.txtSearch.GetChildAt(0).GetChildAt(1))).Padding = new System.Windows.Forms.Padding(20, 2, 2, 2);
             // 
-            // CommunityAddAuthorForm
+            // ctrlSaveCancel
+            // 
+            this.ctrlSaveCancel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancel.Location = new System.Drawing.Point(0, 528);
+            this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancel.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancel.Name = "ctrlSaveCancel";
+            this.ctrlSaveCancel.SaveButtonEnabled = true;
+            this.ctrlSaveCancel.Size = new System.Drawing.Size(953, 31);
+            this.ctrlSaveCancel.TabIndex = 36;
+            // 
+            // splitContainer
+            // 
+            this.splitContainer.Controls.Add(this.splitPanelHeader);
+            this.splitContainer.Controls.Add(this.splitPanelBottom);
+            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Name = "splitContainer";
+            this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // 
+            // 
+            this.splitContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitContainer.Size = new System.Drawing.Size(953, 528);
+            this.splitContainer.SplitterWidth = 5;
+            this.splitContainer.TabIndex = 37;
+            this.splitContainer.TabStop = false;
+            this.splitContainer.ThemeName = "Office2013Light";
+            // 
+            // splitPanelHeader
+            // 
+            this.splitPanelHeader.Controls.Add(this.navigatorPanel);
+            this.splitPanelHeader.Controls.Add(this.txtSearch);
+            this.splitPanelHeader.Controls.Add(this.parentGridPanel);
+            this.splitPanelHeader.Location = new System.Drawing.Point(0, 0);
+            this.splitPanelHeader.Name = "splitPanelHeader";
+            // 
+            // 
+            // 
+            this.splitPanelHeader.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanelHeader.Size = new System.Drawing.Size(953, 281);
+            this.splitPanelHeader.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.03672316F);
+            this.splitPanelHeader.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 19);
+            this.splitPanelHeader.TabIndex = 0;
+            this.splitPanelHeader.TabStop = false;
+            this.splitPanelHeader.Text = "splitPanel1";
+            this.splitPanelHeader.ThemeName = "Office2013Light";
+            // 
+            // splitPanelBottom
+            // 
+            this.splitPanelBottom.Controls.Add(this.ctrlRightLimitation);
+            this.splitPanelBottom.Location = new System.Drawing.Point(0, 286);
+            this.splitPanelBottom.Name = "splitPanelBottom";
+            // 
+            // 
+            // 
+            this.splitPanelBottom.RootElement.MinSize = new System.Drawing.Size(25, 25);
+            this.splitPanelBottom.Size = new System.Drawing.Size(953, 242);
+            this.splitPanelBottom.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.03672316F);
+            this.splitPanelBottom.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -19);
+            this.splitPanelBottom.TabIndex = 1;
+            this.splitPanelBottom.TabStop = false;
+            this.splitPanelBottom.Text = "splitPanel2";
+            this.splitPanelBottom.ThemeName = "Office2013Light";
+            // 
+            // CommunityLimitsAddForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(983, 567);
-            this.Controls.Add(this.parentGridPanel);
-            this.Controls.Add(this.txtSearch);
-            this.Controls.Add(this.navigatorPanel);
-            this.Controls.Add(this.ctrlRightLimitation);
-            this.Controls.Add(this.radPanel1);
-            this.Name = "CommunityAddAuthorForm";
+            this.ClientSize = new System.Drawing.Size(953, 559);
+            this.Controls.Add(this.splitContainer);
+            this.Controls.Add(this.ctrlSaveCancel);
+            this.Name = "CommunityLimitsAddForm";
             // 
             // 
             // 
@@ -309,11 +336,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.parentGridPanel)).EndInit();
             this.parentGridPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bsCommunityAuthorsView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
-            this.radPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSearch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelHeader)).EndInit();
+            this.splitPanelHeader.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitPanelBottom)).EndInit();
+            this.splitPanelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -323,16 +352,17 @@
 
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadGridView gvViewAutors;
-        private Telerik.WinControls.UI.RadPanel radPanel1;
-        private Telerik.WinControls.UI.RadButton btnSave;
-        private Telerik.WinControls.UI.RadButton btnCancel;
         private CommunityRightLimitationControl ctrlRightLimitation;
         private System.Windows.Forms.BindingSource bsCommunityAuthorsView;
         private System.Windows.Forms.Timer timerSearch;
         private Common.NavigatorPanelControl navigatorPanel;
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
+        private Telerik.WinControls.UI.RadPanel parentGridPanel;
         private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
-        private Telerik.WinControls.UI.RadPanel parentGridPanel;
+        private Common.SaveCancelButtonsControl ctrlSaveCancel;
+        private Telerik.WinControls.UI.RadSplitContainer splitContainer;
+        private Telerik.WinControls.UI.SplitPanel splitPanelHeader;
+        private Telerik.WinControls.UI.SplitPanel splitPanelBottom;
     }
 }

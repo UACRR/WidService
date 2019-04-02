@@ -47,6 +47,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.AnketaCompany)
                         .Include(item => item.Person)
                         .Include(item => item.AnketaPerson)
+                        .Include(item => item.AnketaExternal )
                         .Include(item => item.Community)
                         .Include(item => item.BankAccount)
                         .Include(item => item.AnketaAddName)
@@ -456,7 +457,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                         sorsItem.PositionCode == destItem.PositionCode && sorsItem.Emplid == destItem.Emplid
                 );
             }
-            else
+            else if ( ( new int?[] {1, 2}).Contains( destCustomer.CustType )) // Person
             {
                 // Збереження Person
                 if (sorsCust.Person == null)
@@ -469,6 +470,10 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
 
                 _dbContext.UpdateList(sorsCust.Person.AnketaPerson, destCustomer.Person.AnketaPerson
                                                                 , rec => { }, (l, r) => l.Version == r.Version);
+            }
+            else
+            {
+                destCustomer.AnketaExternal.SetFields( sorsCust.AnketaExternal, new[] { "CustId"} );
             }
 
             // add or clear community depends on rightholder type
@@ -635,8 +640,8 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         [HttpGet("checkexists/okpo/{okpo}")]
         public async Task<IActionResult> CheckExistsOkpo( string okpo )
         {
-            var vCust = await _dbContext.vCustomer
-                        .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where INNOKPO = @okpo", new SqlParameter("@okpo", okpo))
+            var vCust = await _dbContext.vCustomer.Where( rec => rec.INNOKPO == okpo )
+                        //.FromSql("select CustId, name, INNOKPO, IPI from vCustomer where INNOKPO = @okpo", new SqlParameter("@okpo", okpo))
                         .ToArrayAsync();
 
             return Ok(vCust);
@@ -645,8 +650,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
         [HttpGet("checkexists/ipi/{ipi}")]
         public async Task<IActionResult> CheckExistsIpi(string ipi)
         {
-            var vCust = await _dbContext.vCustomer
-                        .FromSql("select CustId, name, INNOKPO, IPI from vCustomer where IPI = @ipi", new SqlParameter("@ipi", ipi))
+            var vCust = await _dbContext.vCustomer.Where( rec => rec.IPI == ipi )
                         .ToArrayAsync();
 
             return Ok(vCust);

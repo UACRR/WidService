@@ -26,6 +26,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
         private const string AgreementDataAuditWarning = "Неможливо змінити статус! Заповніть всі необхідні дані договору!";
 
+        private const string LicenseCloseSuccess = "Ліцензію закрито!";
+        private const string LicenseCloseError = "Неможливо закрити ліцензію!";
+        private const string LicenseCloseQuestion = "Ліцензійний договір буде закритий та автоматично видалений. Підтвердити дію?";
 
         private Customer _customer;
         private readonly AnketaDictionaties _dictionaties;
@@ -366,19 +369,20 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         // кнопка [Закрити договір]
         private void btnCloseAgr_Click(object sender, EventArgs e)
         {
-            if (!(gvLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgreementView curRow)) return;
-            var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
-            if (license == null) return;
+            if (!(gvLicenseAgr?.CurrentRow?.DataBoundItem is GridLicenseAgreementView curRow))
+                return;
 
-            if (MessageBox.Show("Ліцензійний договір буде закритий та автоматично видалений. Підтвердити дію?", "Підтвердження", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            var license = _customer?.Client?.LicenseAgreement?.SingleOrDefault(rec => rec.LicId == curRow.LicId);
+            if (license == null)
+                return;
+
+            if (MessageShow.ConfirmAction(LicenseCloseQuestion) == DialogResult.Yes)
             {
-                if (OnChangeLicenseStatus?.Invoke(license, license.LicVersion ?? default(int), 4, false) ?? false)
-                {
-                    ExtensionUtils.ShowInfoMessage("Ліцензію закрито!", "Успішно", MessageBoxIcon.Information);
+                var result = OnChangeLicenseStatus?.Invoke(license, license.LicVersion ?? default(int), 4, false) ?? false;
+                if (result)
                     UpdateCustomer();
-                }
-                else
-                    ExtensionUtils.ShowInfoMessage("Не можливо закрити ліцензію", "Помилка", MessageBoxIcon.Error);
+                
+                MessageShow.ShowInfoByResult(LicenseCloseSuccess, LicenseCloseError, result);
             }
         }
 

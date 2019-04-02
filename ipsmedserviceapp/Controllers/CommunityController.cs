@@ -105,13 +105,12 @@ namespace ipsmedserviceapp.Controllers
             if (queryResource.PageSize.HasValue)
                 pageSize = (int) queryResource.PageSize;
 
-            // TODO: optimize query to DB
             // paging conditions
             string orderBy = $" ORDER BY custId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
             queryStr = string.Concat(queryStr, orderBy);
 
             var list = await _dbContext.getViewData(queryStr, null);
-            //var data = list.Skip((page - 1) * pageSize).Take(pageSize);
+
             return Ok(new
             {
                 List = list,
@@ -370,7 +369,18 @@ namespace ipsmedserviceapp.Controllers
         }
 
         #region Винесені методи та додаткові методи синхронізацій
+        class EmplComparer : IEqualityComparer<Employee>
+        {
+            public bool Equals(Employee x, Employee y)
+            {
+                return x.Emplid == y.Emplid;
+            }
 
+            public int GetHashCode(Employee obj)
+            {
+                return obj.Emplid;
+            }
+        }
         /// <summary>
         /// Синхронізація даних для спільноти
         /// </summary>
@@ -408,12 +418,12 @@ namespace ipsmedserviceapp.Controllers
                 updItem.Empl.SetFields(sorsItem?.Empl);
             });
 
-            var relEmpl = source.Company.RelEmployee.Select(items => items.Empl).ToList();
+            var relEmpl = source.Company.RelEmployee.Select(items => items.Empl).Distinct( new EmplComparer()).ToList();
             listRel = destination.Company.RelEmployee.Where(rec => relEmployeeList.Any(item => item.Emplid == rec.Emplid && item.PositionCode == rec.PositionCode)).ToList();
 
             listRel.ForEach(updEmpl =>
             {
-                var sourceItem = relEmpl.SingleOrDefault(item => item.Emplid == updEmpl.Emplid);
+                var sourceItem = relEmpl.FirstOrDefault(item => item.Emplid == updEmpl.Emplid);
                 updEmpl.SetFields(source.Company.RelEmployee.SingleOrDefault(item => item.Emplid == updEmpl.Emplid && item.PositionCode == updEmpl.PositionCode));
                 updEmpl.Empl.SetFields(sourceItem);
             });

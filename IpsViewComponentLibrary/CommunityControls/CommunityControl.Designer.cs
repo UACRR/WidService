@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -40,11 +41,15 @@
             this.gvViewPartners = new Telerik.WinControls.UI.RadGridView();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.btnAddCommunity = new Telerik.WinControls.UI.RadButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblCountPartners = new System.Windows.Forms.Label();
+            this.panelBottom = new Telerik.WinControls.UI.RadPanel();
+            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
+            this.bsCommunityListView = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCommunity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelBottom)).BeginInit();
+            this.panelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityListView)).BeginInit();
             this.SuspendLayout();
             // 
             // gvViewPartners
@@ -91,6 +96,7 @@
             gridViewTextBoxColumn4.MinWidth = 80;
             gridViewTextBoxColumn4.Name = "Name";
             gridViewTextBoxColumn4.Width = 540;
+            gridViewTextBoxColumn5.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn5.FieldName = "RegistrDate";
             gridViewTextBoxColumn5.FormatString = "{0:d}";
             gridViewTextBoxColumn5.HeaderText = "Дата створення";
@@ -100,6 +106,7 @@
             gridViewTextBoxColumn5.Name = "RegistrDate";
             gridViewTextBoxColumn5.Width = 80;
             gridViewTextBoxColumn5.WrapText = true;
+            gridViewHyperlinkColumn1.DataType = typeof(System.Nullable<int>);
             gridViewHyperlinkColumn1.FieldName = "CountAuthors";
             gridViewHyperlinkColumn1.HeaderText = "К-сть авторів";
             gridViewHyperlinkColumn1.MaxWidth = 60;
@@ -130,6 +137,7 @@
             gridViewTextBoxColumn5,
             gridViewHyperlinkColumn1,
             gridViewCommandColumn1});
+            this.gvViewPartners.MasterTemplate.DataSource = this.bsCommunityListView;
             this.gvViewPartners.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewPartners.MasterTemplate.EnableFiltering = true;
             this.gvViewPartners.MasterTemplate.EnableGrouping = false;
@@ -137,7 +145,7 @@
             this.gvViewPartners.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewPartners.Name = "gvViewPartners";
             this.gvViewPartners.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewPartners.Size = new System.Drawing.Size(926, 434);
+            this.gvViewPartners.Size = new System.Drawing.Size(926, 437);
             this.gvViewPartners.TabIndex = 11;
             this.gvViewPartners.ThemeName = "Office2013Light";
             this.gvViewPartners.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewPartners_CellDoubleClick);
@@ -162,31 +170,37 @@
             this.btnAddCommunity.ThemeName = "Office2013Light";
             this.btnAddCommunity.Click += new System.EventHandler(this.btnAddCommunity_Click);
             // 
-            // label1
+            // panelBottom
             // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(800, 466);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(69, 17);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "К-ть рядків";
+            this.panelBottom.BackColor = System.Drawing.SystemColors.Control;
+            this.panelBottom.Controls.Add(this.ctrlGridRowCount);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(0, 467);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(932, 29);
+            this.panelBottom.TabIndex = 16;
+            this.panelBottom.ThemeName = "Office2013Light";
             // 
-            // lblCountPartners
+            // ctrlGridRowCount
             // 
-            this.lblCountPartners.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountPartners.Location = new System.Drawing.Point(875, 466);
-            this.lblCountPartners.Name = "lblCountPartners";
-            this.lblCountPartners.Size = new System.Drawing.Size(54, 17);
-            this.lblCountPartners.TabIndex = 15;
-            this.lblCountPartners.Text = "0";
-            this.lblCountPartners.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(774, 1);
+            this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
+            this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.Name = "ctrlGridRowCount";
+            this.ctrlGridRowCount.RadGridViewDataSource = null;
+            this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
+            this.ctrlGridRowCount.TabIndex = 0;
+            // 
+            // bsCommunityListView
+            // 
+            this.bsCommunityListView.DataSource = typeof(ipsFormsDesign.Interfaces.CommunityListView);
             // 
             // CommunityControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblCountPartners);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.btnAddCommunity);
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.gvViewPartners);
@@ -195,6 +209,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewPartners)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCommunity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelBottom)).EndInit();
+            this.panelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bsCommunityListView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -205,7 +222,8 @@
         private Telerik.WinControls.UI.RadGridView gvViewPartners;
         private Common.SearchTextBoxControl ctrlSearch;
         private Telerik.WinControls.UI.RadButton btnAddCommunity;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblCountPartners;
+        private Telerik.WinControls.UI.RadPanel panelBottom;
+        private Common.GridRowCountControl ctrlGridRowCount;
+        private System.Windows.Forms.BindingSource bsCommunityListView;
     }
 }

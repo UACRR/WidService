@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn29 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn36 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn37 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn38 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn30 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn39 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn31 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn40 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn32 = new Telerik.WinControls.UI.GridViewDecimalColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn8 = new Telerik.WinControls.UI.GridViewCommandColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn7 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn8 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ObjectRightListControl));
             this.gvObjectsRightsList = new Telerik.WinControls.UI.RadGridView();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
@@ -58,8 +58,7 @@
             this.commandBarStripElement2 = new Telerik.WinControls.UI.CommandBarStripElement();
             this.commandBarButton8 = new Telerik.WinControls.UI.CommandBarButton();
             this.commandPanel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.commandButtonPanel = new System.Windows.Forms.Panel();
+            this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
             this.commandBarButton1 = new Telerik.WinControls.UI.CommandBarButton();
             this.commandBarButton2 = new Telerik.WinControls.UI.CommandBarButton();
             this.commandBarButton4 = new Telerik.WinControls.UI.CommandBarButton();
@@ -69,7 +68,7 @@
             this.tvFilters = new Telerik.WinControls.UI.RadTreeView();
             this.lblTextRightList = new System.Windows.Forms.Label();
             this.lblCountRightList = new System.Windows.Forms.Label();
-            this.navigatorPanel = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
+            this.commandButtonPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvObjectsRightsList.MasterTemplate)).BeginInit();
             this.gvObjectsRightsList.SuspendLayout();
@@ -80,13 +79,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdateList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).BeginInit();
             this.commandPanel.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.commandButtonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).BeginInit();
             this.radSplitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).BeginInit();
             this.splitPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).BeginInit();
+            this.commandButtonPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // gvObjectsRightsList
@@ -104,80 +102,80 @@
             this.gvObjectsRightsList.MasterTemplate.AllowEditRow = false;
             this.gvObjectsRightsList.MasterTemplate.AutoGenerateColumns = false;
             this.gvObjectsRightsList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewDecimalColumn29.DataType = typeof(int);
-            gridViewDecimalColumn29.FieldName = "ObjId";
-            gridViewDecimalColumn29.HeaderText = "Шифр твору";
-            gridViewDecimalColumn29.IsAutoGenerated = true;
-            gridViewDecimalColumn29.Name = "ObjId";
-            gridViewDecimalColumn29.Width = 67;
-            gridViewTextBoxColumn36.FieldName = "Name";
-            gridViewTextBoxColumn36.HeaderText = "Назва твору";
-            gridViewTextBoxColumn36.IsAutoGenerated = true;
-            gridViewTextBoxColumn36.Name = "Name";
-            gridViewTextBoxColumn36.Width = 149;
-            gridViewTextBoxColumn37.FieldName = "Category";
-            gridViewTextBoxColumn37.HeaderText = "В/М";
-            gridViewTextBoxColumn37.IsAutoGenerated = true;
-            gridViewTextBoxColumn37.Name = "Category";
-            gridViewTextBoxColumn37.Width = 36;
-            gridViewTextBoxColumn38.FieldName = "GenreName";
-            gridViewTextBoxColumn38.HeaderText = "Жанр";
-            gridViewTextBoxColumn38.IsAutoGenerated = true;
-            gridViewTextBoxColumn38.Name = "GenreName";
-            gridViewTextBoxColumn38.Width = 75;
-            gridViewDecimalColumn30.DataType = typeof(System.Nullable<System.TimeSpan>);
-            gridViewDecimalColumn30.FieldName = "Duration";
-            gridViewDecimalColumn30.HeaderText = "Час";
-            gridViewDecimalColumn30.IsAutoGenerated = true;
-            gridViewDecimalColumn30.Name = "Duration";
-            gridViewDecimalColumn30.Width = 54;
-            gridViewTextBoxColumn39.FieldName = "SpecName";
-            gridViewTextBoxColumn39.HeaderText = "Переклад / обробка / оригінал";
-            gridViewTextBoxColumn39.IsAutoGenerated = true;
-            gridViewTextBoxColumn39.Name = "SpecName";
-            gridViewTextBoxColumn39.Width = 75;
-            gridViewDecimalColumn31.DataType = typeof(double);
-            gridViewDecimalColumn31.FieldName = "RateTotal";
-            gridViewDecimalColumn31.HeaderText = "Спільний % володіння";
-            gridViewDecimalColumn31.IsAutoGenerated = true;
-            gridViewDecimalColumn31.Name = "RateTotal";
-            gridViewDecimalColumn31.Width = 54;
-            gridViewTextBoxColumn40.FieldName = "Performer";
-            gridViewTextBoxColumn40.HeaderText = "Виконавець";
-            gridViewTextBoxColumn40.IsAutoGenerated = true;
-            gridViewTextBoxColumn40.Name = "Performer";
-            gridViewTextBoxColumn40.Width = 75;
-            gridViewDecimalColumn32.DataType = typeof(double);
-            gridViewDecimalColumn32.FieldName = "Profit";
-            gridViewDecimalColumn32.FormatString = "{0:N2}";
-            gridViewDecimalColumn32.HeaderText = "Дохід з початку року";
-            gridViewDecimalColumn32.IsAutoGenerated = true;
-            gridViewDecimalColumn32.Name = "Profit";
-            gridViewDecimalColumn32.Width = 70;
-            gridViewCommandColumn8.AllowResize = false;
-            gridViewCommandColumn8.DefaultText = "Редагувати";
-            gridViewCommandColumn8.HeaderText = "";
-            gridViewCommandColumn8.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn8.MaxWidth = 30;
-            gridViewCommandColumn8.MinWidth = 30;
-            gridViewCommandColumn8.Name = "EditColumn";
-            gridViewCommandColumn8.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewCommandColumn8.Width = 30;
+            gridViewDecimalColumn5.DataType = typeof(int);
+            gridViewDecimalColumn5.FieldName = "ObjId";
+            gridViewDecimalColumn5.HeaderText = "Шифр твору";
+            gridViewDecimalColumn5.IsAutoGenerated = true;
+            gridViewDecimalColumn5.Name = "ObjId";
+            gridViewDecimalColumn5.Width = 68;
+            gridViewTextBoxColumn6.FieldName = "Name";
+            gridViewTextBoxColumn6.HeaderText = "Назва твору";
+            gridViewTextBoxColumn6.IsAutoGenerated = true;
+            gridViewTextBoxColumn6.Name = "Name";
+            gridViewTextBoxColumn6.Width = 151;
+            gridViewTextBoxColumn7.FieldName = "Category";
+            gridViewTextBoxColumn7.HeaderText = "В/М";
+            gridViewTextBoxColumn7.IsAutoGenerated = true;
+            gridViewTextBoxColumn7.Name = "Category";
+            gridViewTextBoxColumn7.Width = 36;
+            gridViewTextBoxColumn8.FieldName = "GenreName";
+            gridViewTextBoxColumn8.HeaderText = "Жанр";
+            gridViewTextBoxColumn8.IsAutoGenerated = true;
+            gridViewTextBoxColumn8.Name = "GenreName";
+            gridViewTextBoxColumn8.Width = 76;
+            gridViewDecimalColumn6.DataType = typeof(System.Nullable<System.TimeSpan>);
+            gridViewDecimalColumn6.FieldName = "Duration";
+            gridViewDecimalColumn6.HeaderText = "Час";
+            gridViewDecimalColumn6.IsAutoGenerated = true;
+            gridViewDecimalColumn6.Name = "Duration";
+            gridViewDecimalColumn6.Width = 55;
+            gridViewTextBoxColumn9.FieldName = "SpecName";
+            gridViewTextBoxColumn9.HeaderText = "Переклад / обробка / оригінал";
+            gridViewTextBoxColumn9.IsAutoGenerated = true;
+            gridViewTextBoxColumn9.Name = "SpecName";
+            gridViewTextBoxColumn9.Width = 76;
+            gridViewDecimalColumn7.DataType = typeof(double);
+            gridViewDecimalColumn7.FieldName = "RateTotal";
+            gridViewDecimalColumn7.HeaderText = "Спільний % володіння";
+            gridViewDecimalColumn7.IsAutoGenerated = true;
+            gridViewDecimalColumn7.Name = "RateTotal";
+            gridViewDecimalColumn7.Width = 55;
+            gridViewTextBoxColumn10.FieldName = "Performer";
+            gridViewTextBoxColumn10.HeaderText = "Виконавець";
+            gridViewTextBoxColumn10.IsAutoGenerated = true;
+            gridViewTextBoxColumn10.Name = "Performer";
+            gridViewTextBoxColumn10.Width = 76;
+            gridViewDecimalColumn8.DataType = typeof(double);
+            gridViewDecimalColumn8.FieldName = "Profit";
+            gridViewDecimalColumn8.FormatString = "{0:N2}";
+            gridViewDecimalColumn8.HeaderText = "Дохід з початку року";
+            gridViewDecimalColumn8.IsAutoGenerated = true;
+            gridViewDecimalColumn8.Name = "Profit";
+            gridViewDecimalColumn8.Width = 71;
+            gridViewCommandColumn2.AllowResize = false;
+            gridViewCommandColumn2.DefaultText = "Редагувати";
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "EditColumn";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn2.Width = 30;
             this.gvObjectsRightsList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewDecimalColumn29,
-            gridViewTextBoxColumn36,
-            gridViewTextBoxColumn37,
-            gridViewTextBoxColumn38,
-            gridViewDecimalColumn30,
-            gridViewTextBoxColumn39,
-            gridViewDecimalColumn31,
-            gridViewTextBoxColumn40,
-            gridViewDecimalColumn32,
-            gridViewCommandColumn8});
+            gridViewDecimalColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewDecimalColumn6,
+            gridViewTextBoxColumn9,
+            gridViewDecimalColumn7,
+            gridViewTextBoxColumn10,
+            gridViewDecimalColumn8,
+            gridViewCommandColumn2});
             this.gvObjectsRightsList.MasterTemplate.DataSource = this.objectRightMainViewBindingSource;
             this.gvObjectsRightsList.MasterTemplate.ShowFilteringRow = false;
             this.gvObjectsRightsList.MasterTemplate.ShowRowHeaderColumn = false;
-            this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition8;
+            this.gvObjectsRightsList.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.gvObjectsRightsList.Name = "gvObjectsRightsList";
             this.gvObjectsRightsList.ShowGroupPanel = false;
             this.gvObjectsRightsList.Size = new System.Drawing.Size(687, 314);
@@ -330,37 +328,26 @@
             // 
             // commandPanel
             // 
-            this.commandPanel.Controls.Add(this.tableLayoutPanel1);
+            this.commandPanel.Controls.Add(this.commandButtonPanel);
             this.commandPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.commandPanel.Location = new System.Drawing.Point(0, 344);
             this.commandPanel.Name = "commandPanel";
             this.commandPanel.Size = new System.Drawing.Size(800, 36);
             this.commandPanel.TabIndex = 32;
             // 
-            // tableLayoutPanel1
+            // navigatorPanel
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.75F));
-            this.tableLayoutPanel1.Controls.Add(this.commandButtonPanel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.navigatorPanel, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 36);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // commandButtonPanel
-            // 
-            this.commandButtonPanel.Controls.Add(this.lblCountRightList);
-            this.commandButtonPanel.Controls.Add(this.lblTextRightList);
-            this.commandButtonPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.commandButtonPanel.Location = new System.Drawing.Point(3, 3);
-            this.commandButtonPanel.Name = "commandButtonPanel";
-            this.commandButtonPanel.Size = new System.Drawing.Size(436, 30);
-            this.commandButtonPanel.TabIndex = 0;
+            this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.navigatorPanel.CurrentPage = 1;
+            this.navigatorPanel.Location = new System.Drawing.Point(308, 1);
+            this.navigatorPanel.Name = "navigatorPanel";
+            this.navigatorPanel.PageSize = 20;
+            this.navigatorPanel.ReadOnlyPageSize = false;
+            this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
+            this.navigatorPanel.TabIndex = 1;
+            this.navigatorPanel.TotalPages = 0;
+            this.navigatorPanel.CurrentPageChanged += new System.EventHandler(this.navigatorPanel_CurrentPageChanged);
+            this.navigatorPanel.PageSizeChanged += new System.EventHandler(this.navigatorPanel_PageSizeChanged);
             // 
             // commandBarButton1
             // 
@@ -453,34 +440,35 @@
             // lblTextRightList
             // 
             this.lblTextRightList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTextRightList.Location = new System.Drawing.Point(277, 9);
+            this.lblTextRightList.BackColor = System.Drawing.Color.Transparent;
+            this.lblTextRightList.Location = new System.Drawing.Point(667, 7);
             this.lblTextRightList.Name = "lblTextRightList";
-            this.lblTextRightList.Size = new System.Drawing.Size(87, 14);
+            this.lblTextRightList.Size = new System.Drawing.Size(73, 16);
             this.lblTextRightList.TabIndex = 0;
             this.lblTextRightList.Text = "К-ть об\'єктів";
             // 
             // lblCountRightList
             // 
             this.lblCountRightList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountRightList.Location = new System.Drawing.Point(370, 9);
+            this.lblCountRightList.BackColor = System.Drawing.Color.Transparent;
+            this.lblCountRightList.Location = new System.Drawing.Point(747, 8);
             this.lblCountRightList.Name = "lblCountRightList";
-            this.lblCountRightList.Size = new System.Drawing.Size(63, 14);
+            this.lblCountRightList.Size = new System.Drawing.Size(50, 14);
             this.lblCountRightList.TabIndex = 1;
             this.lblCountRightList.Text = "0";
             this.lblCountRightList.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // navigatorPanel
+            // commandButtonPanel
             // 
-            this.navigatorPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.navigatorPanel.CurrentPage = 1;
-            this.navigatorPanel.Location = new System.Drawing.Point(447, 3);
-            this.navigatorPanel.Name = "navigatorPanel";
-            this.navigatorPanel.PageSize = 20;
-            this.navigatorPanel.Size = new System.Drawing.Size(350, 28);
-            this.navigatorPanel.TabIndex = 1;
-            this.navigatorPanel.TotalPages = 0;
-            this.navigatorPanel.CurrentPageChanged += new System.EventHandler(this.navigatorPanel_CurrentPageChanged);
-            this.navigatorPanel.PageSizeChanged += new System.EventHandler(this.navigatorPanel_PageSizeChanged);
+            this.commandButtonPanel.BackColor = System.Drawing.Color.Silver;
+            this.commandButtonPanel.Controls.Add(this.lblTextRightList);
+            this.commandButtonPanel.Controls.Add(this.navigatorPanel);
+            this.commandButtonPanel.Controls.Add(this.lblCountRightList);
+            this.commandButtonPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.commandButtonPanel.Location = new System.Drawing.Point(0, 6);
+            this.commandButtonPanel.Name = "commandButtonPanel";
+            this.commandButtonPanel.Size = new System.Drawing.Size(800, 30);
+            this.commandButtonPanel.TabIndex = 0;
             // 
             // ObjectRightListControl
             // 
@@ -502,13 +490,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdateList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectRightMainViewBindingSource)).EndInit();
             this.commandPanel.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.commandButtonPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radSplitContainer1)).EndInit();
             this.radSplitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitPanel1)).EndInit();
             this.splitPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tvFilters)).EndInit();
+            this.commandButtonPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -531,8 +518,6 @@
         private Telerik.WinControls.UI.CommandBarStripElement commandBarStripElement2;
         private Telerik.WinControls.UI.CommandBarButton commandBarButton3;
         private System.Windows.Forms.Panel commandPanel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Panel commandButtonPanel;
         private Common.NavigatorPanelControl navigatorPanel;
         private Telerik.WinControls.UI.RadSplitContainer radSplitContainer1;
         private Telerik.WinControls.UI.SplitPanel splitPanel1;
@@ -541,7 +526,8 @@
         private Telerik.WinControls.UI.RadTextBoxControl txtSearch;
         private Telerik.WinControls.UI.RadWaitingBar waitingBar;
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
-        private System.Windows.Forms.Label lblCountRightList;
+        private System.Windows.Forms.Panel commandButtonPanel;
         private System.Windows.Forms.Label lblTextRightList;
+        private System.Windows.Forms.Label lblCountRightList;
     }
 }

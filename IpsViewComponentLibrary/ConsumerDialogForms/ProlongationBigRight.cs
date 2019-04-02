@@ -32,10 +32,21 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             _licenseAgrParam = new LicenseAgrParam();
             _licenseAgrParam.SetFields(licenseAgrParam);
 
+            if (licenseAgrParam == null)
+            {
+                DialogResult = DialogResult.Cancel;
+                return;
+            }
+
             _licenseAgrParam.LicVersion++;
-            _licenseAgrParam.LicDate = licenseAgrParam.DateEnd.Value.AddDays(1);
-            _licenseAgrParam.DateBegin = licenseAgrParam.DateEnd.Value.AddDays(1);
-            _licenseAgrParam.DateEnd = _licenseAgrParam.DateBegin.Value.AddYears(1);
+            if (licenseAgrParam.DateEnd != null)
+                _licenseAgrParam.LicDate = licenseAgrParam.DateEnd.Value.AddDays(1);
+
+            if (licenseAgrParam.DateEnd != null)
+                _licenseAgrParam.DateBegin = licenseAgrParam.DateEnd.Value.AddDays(1);
+
+            if (_licenseAgrParam.DateBegin != null)
+                _licenseAgrParam.DateEnd = _licenseAgrParam.DateBegin.Value.AddYears(1);
 
             ctrlAgrMain.DataSource = _licenseAgrParam;
         }

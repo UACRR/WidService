@@ -86,10 +86,7 @@ namespace IpsViewComponentLibrary.ImportDBF
         private void PaymentsAttach(GridViewCellEventArgs gridViewCell)
         {
             var row = gridViewCell.Row.DataBoundItem as ExternalPay;
-            var paymentsAttach = new PaymentsAttachForm(_clientsList, row)
-            {
-                StartPosition = FormStartPosition.CenterScreen
-            };
+            var paymentsAttach = new PaymentsAttachForm(_clientsList, row);
             if (paymentsAttach.ShowDialog() == DialogResult.OK)
             {
                 var result = _presenter.SaveLinkedPay(row);
