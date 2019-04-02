@@ -100,6 +100,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlPageSelector = new IpsViewComponentLibrary.Common.PageSelectorControl();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.mainPageView)).BeginInit();
             this.mainPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -152,6 +153,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sbSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -721,7 +723,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radPdfViewerNavigator1.Enabled = false;
             this.radPdfViewerNavigator1.Location = new System.Drawing.Point(120, 0);
             this.radPdfViewerNavigator1.Name = "radPdfViewerNavigator1";
-            this.radPdfViewerNavigator1.Size = new System.Drawing.Size(729, 39);
+            this.radPdfViewerNavigator1.Size = new System.Drawing.Size(729, 0);
             this.radPdfViewerNavigator1.TabIndex = 10;
             this.radPdfViewerNavigator1.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.CommandBarRowElement)(this.radPdfViewerNavigator1.GetChildAt(0).GetChildAt(0).GetChildAt(0))).MinSize = new System.Drawing.Size(25, 25);
@@ -857,6 +859,10 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.saveFileDialog1.Filter = "\"docx files (*.docx)|*.docx|pdf files (*.pdf)|*.pdf\"";
             // 
+            // bsAnketaExternal
+            // 
+            this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.Customer);
+            // 
             // NewRightholderView
             // 
             this.AcceptButton = this.miSave;
@@ -931,6 +937,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.radPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sbSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -1005,5 +1012,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private JuridicalManagersControl ctrlMiddleControlManagers;
         private Telerik.WinControls.UI.RadPdfViewerNavigator radPdfViewerNavigator1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.BindingSource bsAnketaExternal;
     }
 }

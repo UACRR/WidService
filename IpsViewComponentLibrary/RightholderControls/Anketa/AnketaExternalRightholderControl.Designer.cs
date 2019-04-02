@@ -70,7 +70,7 @@
             // 
             this.rhName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rhName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaExternal, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.rhName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaExternal, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.rhName.Location = new System.Drawing.Point(192, 3);
             this.rhName.Name = "rhName";
             this.rhName.Size = new System.Drawing.Size(332, 21);
@@ -83,7 +83,7 @@
             // 
             // txtIPI
             // 
-            this.txtIPI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtIPI.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtIPI.Location = new System.Drawing.Point(192, 56);
             this.txtIPI.Name = "txtIPI";
             this.txtIPI.Size = new System.Drawing.Size(205, 21);
@@ -132,7 +132,7 @@
             // 
             // txtCustIdCode
             // 
-            this.txtCustIdCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaExternal, "CustId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtCustIdCode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaExternal, "CustId", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtCustIdCode.Enabled = false;
             this.txtCustIdCode.Location = new System.Drawing.Point(192, 29);
             this.txtCustIdCode.Name = "txtCustIdCode";
@@ -152,7 +152,7 @@
             // 
             // txtInnOkpo
             // 
-            this.txtInnOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaExternal, "InnOkpo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtInnOkpo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAnketaExternal, "InnOkpo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtInnOkpo.Location = new System.Drawing.Point(192, 83);
             this.txtInnOkpo.Name = "txtInnOkpo";
             this.txtInnOkpo.Size = new System.Drawing.Size(205, 21);
