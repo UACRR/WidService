@@ -105,6 +105,7 @@ namespace ReportsLibrary
             this.textBox29 = new Telerik.Reporting.TextBox();
             this.textBox30 = new Telerik.Reporting.TextBox();
             this.textBox31 = new Telerik.Reporting.TextBox();
+            this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // detailSection1
@@ -552,10 +553,8 @@ namespace ReportsLibrary
             // 
             // textBox23
             // 
-            typeReportSource23.Parameters.Add(new Telerik.Reporting.Parameter("cmFlag", "=0"));
-            typeReportSource23.Parameters.Add(new Telerik.Reporting.Parameter("categoryCode", "=5"));
-            typeReportSource23.TypeName = "ReportsLibrary.R_5_33_RegRH, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Pu" +
-    "blicKeyToken=null";
+            typeReportSource23.TypeName = "ReportsLibrary.R_5_33_RegRH_N, ReportsLibrary, Version=1.0.0.0, Culture=neutral, " +
+    "PublicKeyToken=null";
             navigateToReportAction23.ReportSource = typeReportSource23;
             this.textBox23.Action = navigateToReportAction23;
             this.textBox23.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(14.7D), Telerik.Reporting.Drawing.Unit.Cm(17.5D));
@@ -726,6 +725,10 @@ namespace ReportsLibrary
             this.textBox31.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox31.Value = "33.  Журнал системних робіт";
             // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            // 
             // ReportS
             // 
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
@@ -784,5 +787,6 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox29;
         private Telerik.Reporting.TextBox textBox30;
         private Telerik.Reporting.TextBox textBox31;
+        private Telerik.Reporting.SqlDataSource sqlDataSource1;
     }
 }

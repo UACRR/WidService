@@ -1,0 +1,1693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C0C413B4-086C-422C-82D6-A02E6284ABDF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IpsViewComponentLibrary</RootNamespace>
+    <AssemblyName>IpsViewComponentLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug IIS|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug IIS\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug HttpSys|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug HttpSys\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.4.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.BouncyCastle.1.8.4\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.3.4.1\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.barcodes, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.barcodes.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.forms, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.forms.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.io, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.io.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.kernel, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.kernel.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.layout, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.layout.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.pdfa, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.pdfa.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.sign, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.sign.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.styledxmlparser, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.styledxmlparser.dll</HintPath>
+    </Reference>
+    <Reference Include="itext.svg, Version=7.1.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itext7.7.1.4\lib\net40\itext.svg.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.GridView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.PdfViewer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2013Light.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Core, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Documents.Fixed, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Documents.Fixed.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Telerik.Windows.Zip, Version=2019.1.215.40, Culture=neutral, PublicKeyToken=5803cfa389c90ce7, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.Windows.Zip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <HintPath>..\lib\RCWF\2019.1.219.40\TelerikCommon.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommunityControls\CommunityLimitsEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityLimitsEditForm.Designer.cs">
+      <DependentUpon>CommunityLimitsEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityRightLimitationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityRightLimitationControl.Designer.cs">
+      <DependentUpon>CommunityRightLimitationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\InternalModel\RightLimitationsView.cs" />
+    <Compile Include="CommunityControls\Presenters\CommunityViewsPresenter.cs" />
+    <Compile Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.Designer.cs">
+      <DependentUpon>MusicDesignHeaderInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\CommonPlaceParametersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\CommonPlaceParametersControl.Designer.cs">
+      <DependentUpon>CommonPlaceParametersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleAdditionalParameterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleAdditionalParameterControl.Designer.cs">
+      <DependentUpon>SingleAdditionalParameterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleParameterSquareControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleParameterSquareControl.Designer.cs">
+      <DependentUpon>SingleParameterSquareControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleParameterCountControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\SingleParameterCountControl.Designer.cs">
+      <DependentUpon>SingleParameterCountControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PlaceDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PlaceDetailForm.Designer.cs">
+      <DependentUpon>PlaceDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PremisesAdditionalDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PremisesAdditionalDetailForm.Designer.cs">
+      <DependentUpon>PremisesAdditionalDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ViewsSingleton.cs" />
+    <Compile Include="Extensions\WindowsFormsVisible.cs" />
+    <Compile Include="ImportDBF\Presenters\DBFPresenter.cs" />
+    <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
+    <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
+    <Compile Include="Utilities\IpsUARadGridLocalizationProvider.cs" />
+    <Compile Include="_UnusedControls\AddCompositionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_UnusedControls\AddCompositionForm.Designer.cs">
+      <DependentUpon>AddCompositionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddFileDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFileDialogForm.Designer.cs">
+      <DependentUpon>AddFileDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\AnketaConsumerPhis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\AnketaConsumerPhis.Designer.cs">
+      <DependentUpon>AnketaConsumerPhis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ClosedAgreementsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ClosedAgreementsControl.Designer.cs">
+      <DependentUpon>ClosedAgreementsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ManagersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ManagersControl.Designer.cs">
+      <DependentUpon>ManagersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_trash\PlacesInterface.cs" />
+    <Compile Include="_trash\MultiplePlaceParameterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_trash\MultiplePlaceParameterControl.Designer.cs">
+      <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_trash\RadioPlaceParameterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_trash\RadioPlaceParameterControl.Designer.cs">
+      <DependentUpon>RadioPlaceParameterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_trash\SinglePlaceParameterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_trash\SinglePlaceParameterControl.Designer.cs">
+      <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\AgreementPhis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\AgreementPhis.Designer.cs">
+      <DependentUpon>AgreementPhis.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\GridLicenseAgreementView.cs" />
+    <Compile Include="ConsumerDialogForms\ContactPersonActionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\ContactPersonActionForm.Designer.cs">
+      <DependentUpon>ContactPersonActionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\GeneralAgreementBrForm.Designer.cs">
+      <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PremisesDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\PremisesDetailForm.Designer.cs">
+      <DependentUpon>PremisesDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\AddressLetter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\AddressLetter.Designer.cs">
+      <DependentUpon>AddressLetter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppController\ApplicationController.cs" />
+    <Compile Include="Common\ButtonGroupBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\ButtonGroupBoxControl.Designer.cs">
+      <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ConfirmationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\ConfirmationView.Designer.cs">
+      <DependentUpon>ConfirmationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\Editors\IpsDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Editors\IpsDropDownList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Editors\IpsMaskedEditBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Editors\IpsTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Common\Form\IpsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\NavigatorPanelControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\NavigatorPanelControl.Designer.cs">
+      <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\PageSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\PageSelectorControl.Designer.cs">
+      <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\SearchTextBoxControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\SearchTextBoxControl.Designer.cs">
+      <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\SideMenuControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\SideMenuControl.Designer.cs">
+      <DependentUpon>SideMenuControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\UserSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Common\UserSelectionView.Designer.cs">
+      <DependentUpon>UserSelectionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddAuthorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddAuthorForm.Designer.cs">
+      <DependentUpon>CommunityAddAuthorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressControl.Designer.cs">
+      <DependentUpon>CommunityAddressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressLetterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAddressLetterControl.Designer.cs">
+      <DependentUpon>CommunityAddressLetterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAgreementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityAgreementControl.Designer.cs">
+      <DependentUpon>CommunityAgreementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityCabinetForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityCabinetForm.Designer.cs">
+      <DependentUpon>CommunityCabinetForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityControl.Designer.cs">
+      <DependentUpon>CommunityControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CommunityControls\CommunityForm.Designer.cs">
+      <DependentUpon>CommunityForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgrDetailInfoBr.Designer.cs">
+      <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgreementBigRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\AgreementBigRight.Designer.cs">
+      <DependentUpon>AgreementBigRight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.Designer.cs">
+      <DependentUpon>GeneralAgrDetailInfoBr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerAgrDetailInfo.Designer.cs">
+      <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerHeaderInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerHeaderInfo.Designer.cs">
+      <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\CreateRatedList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\CreateRatedList.Designer.cs">
+      <DependentUpon>CreateRatedList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\TabNavigationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\TabNavigationControl.Designer.cs">
+      <DependentUpon>TabNavigationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.Designer.cs">
+      <DependentUpon>AddAuthRoleForMusDesingBr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\CreateProgReportBigRight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\CreateProgReportBigRight.Designer.cs">
+      <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\PaysInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\PaysInfo.Designer.cs">
+      <DependentUpon>PaysInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\ProlongationBigRight.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\ProlongationBigRight.Designer.cs">
+      <DependentUpon>ProlongationBigRight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControlPresenter.cs" />
+    <Compile Include="ConsumerControls\SmallRight\ReportsControlPresenter.cs" />
+    <Compile Include="Common\SaveCancelButtonsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\SaveCancelButtonsControl.Designer.cs">
+      <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\MessageShow.cs" />
+    <Compile Include="ImportDBF\ImportDBFControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ImportDBF\ImportDBFControl.Designer.cs">
+      <DependentUpon>ImportDBFControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDBF\ImportParseResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportDBF\ImportParseResultForm.Designer.cs">
+      <DependentUpon>ImportParseResultForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportDBF\PaymentsAttachForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImportDBF\PaymentsAttachForm.Designer.cs">
+      <DependentUpon>PaymentsAttachForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\GridStateRecorder.cs" />
+    <Compile Include="Utilities\MessageSuccessError.cs" />
+    <Compile Include="ConsumerForms\AnketaConsumerPhisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\AnketaConsumerPhisForm.Designer.cs">
+      <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\PrintService.cs" />
+    <Compile Include="ConsumerDialogForms\SelectClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\SelectClient.Designer.cs">
+      <DependentUpon>SelectClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\SelectPartner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerDialogForms\SelectPartner.Designer.cs">
+      <DependentUpon>SelectPartner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetBigRightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetBigRightForm.Designer.cs">
+      <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\Architector.cs" />
+    <Compile Include="Extensions\CustomerEnums.cs" />
+    <Compile Include="PartnerControls\CabinetPartnerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\CabinetPartnerForm.Designer.cs">
+      <DependentUpon>CabinetPartnerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetSmallRightForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\CabinetSmallRightForm.Designer.cs">
+      <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\ConsumerExternalPresenter.cs" />
+    <Compile Include="ConsumerForms\ConsumerExternalView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\ConsumerExternalView.Designer.cs">
+      <DependentUpon>ConsumerExternalView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\JurPersonName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\JurPersonName.Designer.cs">
+      <DependentUpon>JurPersonName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerAnketaJurControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerAnketaJurControl.Designer.cs">
+      <DependentUpon>PartnerAnketaJurControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerAnketaPhisControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerAnketaPhisControl.Designer.cs">
+      <DependentUpon>PartnerAnketaPhisControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerCabinetAnketaJurControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerCabinetAnketaJurControl.Designer.cs">
+      <DependentUpon>PartnerCabinetAnketaJurControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerCabinetAnketaPhisControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerCabinetAnketaPhisControl.Designer.cs">
+      <DependentUpon>PartnerCabinetAnketaPhisControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerInterfaces.cs" />
+    <Compile Include="Utilities\ObjectRightLoaderFacade.cs" />
+    <Compile Include="PartnerControls\CreatePartnerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\CreatePartnerForm.Designer.cs">
+      <DependentUpon>CreatePartnerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerListControl.Designer.cs">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FixationControls\FixationListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FixationControls\FixationListControl.Designer.cs">
+      <DependentUpon>FixationListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerListPresenter.cs" />
+    <Compile Include="FixationControls\FixationListPresenter.cs" />
+    <Compile Include="FixationControls\FixationPresenter.cs" />
+    <Compile Include="FixationControls\FixationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FixationControls\FixationView.Designer.cs">
+      <DependentUpon>FixationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\LicenseAgreementListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\LicenseAgreementListControl.Designer.cs">
+      <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\AgreementPartnerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\AgreementPartnerControl.Designer.cs">
+      <DependentUpon>AgreementPartnerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\ConditionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\ConditionsControl.Designer.cs">
+      <DependentUpon>ConditionsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerControl.Designer.cs">
+      <DependentUpon>PartnerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerNameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerNameControl.Designer.cs">
+      <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerClientsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PartnerControls\PartnerClientsControl.Designer.cs">
+      <DependentUpon>PartnerClientsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\TabNavigationExpandedControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Common\TabNavigationExpandedControl.Designer.cs">
+      <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterItemListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterItemListControl.Designer.cs">
+      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.Designer.cs">
+      <DependentUpon>AnketaCompanyRightholderPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightholderPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightholderPage.Designer.cs">
+      <DependentUpon>AnketaPersonRightholderPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderPresenter.cs" />
+    <Compile Include="RightholderControls\NewRightholderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\NewRightholderView.Designer.cs">
+      <DependentUpon>NewRightholderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumerSelectionView.Designer.cs">
+      <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderView.Designer.cs">
+      <DependentUpon>RightholderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\CurrentAgreementController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utilities\DialogService.cs" />
+    <Compile Include="MiddleControlCabinetAvances.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetAvances.Designer.cs">
+      <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderBrListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderBrListControl.Designer.cs">
+      <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderBrListMode.cs" />
+    <Compile Include="ObjectRightControls\CopyrightRequestControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\CopyrightRequestControl.Designer.cs">
+      <DependentUpon>CopyrightRequestControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\CopyrightRequestPresenter.cs" />
+    <Compile Include="ObjectRightControls\ObjectRightBrInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightBrInfoControl.Designer.cs">
+      <DependentUpon>ObjectRightBrInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightBrPresenter.cs" />
+    <Compile Include="ObjectRightControls\ObjectRightBrView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightBrView.Designer.cs">
+      <DependentUpon>ObjectRightBrView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\RegisterRatedListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\RegisterRatedListForm.Designer.cs">
+      <DependentUpon>RegisterRatedListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\CreatePeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\CreatePeriod.Designer.cs">
+      <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\CustomGridBehavior.cs" />
+    <Compile Include="RightholderControls\AnketaAddNamesView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\AnketaAddNamesView.Designer.cs">
+      <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\AnketaAddNickView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\AnketaAddNickView.Designer.cs">
+      <DependentUpon>AnketaAddNickView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\AnketaConsumerJurForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\AnketaConsumerJurForm.Designer.cs">
+      <DependentUpon>AnketaConsumerJurForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderItemView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\AuthorRightholderItemView.Designer.cs">
+      <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\CalculationInfoControl.Designer.cs">
+      <DependentUpon>CalculationInfoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\ConsumerPlacesControl.Designer.cs">
+      <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\ContractConsumerDetailControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\ContractConsumerDetailControl.Designer.cs">
+      <DependentUpon>ContractConsumerDetailControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\ContractConsumerMainControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\ContractConsumerMainControl.Designer.cs">
+      <DependentUpon>ContractConsumerMainControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\DistributionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\DistributionForm.Designer.cs">
+      <DependentUpon>DistributionForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\ExtensionUtils.cs" />
+    <Compile Include="ConsumerControls\BigRight\GeneralAgreementInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\GeneralAgreementInfo.Designer.cs">
+      <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\AnketaConsumer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\AnketaConsumer.Designer.cs">
+      <DependentUpon>AnketaConsumer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\FixationStageStatusMenuFactory.cs" />
+    <Compile Include="Utilities\TimeSpanToDateTimeConverter.cs" />
+    <Compile Include="ConsumerControls\ConsumersViewSmallRightControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumersViewSmallRightControl.Designer.cs">
+      <DependentUpon>ConsumersViewSmallRightControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumersViewBigRightControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\ConsumersViewBigRightControl.Designer.cs">
+      <DependentUpon>ConsumersViewBigRightControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsAnketaCompanyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsAnketaCompanyControl.Designer.cs">
+      <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.Designer.cs">
+      <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\ContactsPersonControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\ContactsPersonControl.Designer.cs">
+      <DependentUpon>ContactsPersonControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsAddressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsAddressControl.Designer.cs">
+      <DependentUpon>IpsAddressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\PremisesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\Places\Components\PremisesControl.Designer.cs">
+      <DependentUpon>PremisesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsBankAccountControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsBankAccountControl.Designer.cs">
+      <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsBossNameContactsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsBossNameContactsControl.Designer.cs">
+      <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\RightLimitationsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\RightLimitationsControl.Designer.cs">
+      <DependentUpon>RightLimitationsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_UnusedControls\MainViewSwitcher.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_UnusedControls\MainViewSwitcher.Designer.cs">
+      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\JuridicalAddressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\JuridicalAddressControl.Designer.cs">
+      <DependentUpon>JuridicalAddressControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlAgreementAnketaType.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
+      <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\AgreementWithPlacesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\AgreementWithPlacesControl.Designer.cs">
+      <DependentUpon>AgreementWithPlacesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\CabinetBigRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\CabinetBigRight.Designer.cs">
+      <DependentUpon>CabinetBigRight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\PartnerOfConsumerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\PartnerOfConsumerControl.Designer.cs">
+      <DependentUpon>PartnerOfConsumerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_UnusedControls\MiddleControlCabinetCalculation.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_UnusedControls\MiddleControlCabinetCalculation.Designer.cs">
+      <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlCabinetFiles.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlCabinetFiles.Designer.cs">
+      <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\GeneralAgreementControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\GeneralAgreementControl.Designer.cs">
+      <DependentUpon>GeneralAgreementControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\LicensesControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\LicensesControl.Designer.cs">
+      <DependentUpon>LicensesControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\RegisterRatedListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\RegisterRatedListControl.Designer.cs">
+      <DependentUpon>RegisterRatedListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.Designer.cs">
+      <DependentUpon>RequestReferenceControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MiddleControlClientName.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MiddleControlClientName.Designer.cs">
+      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.Designer.cs">
+      <DependentUpon>CabinetSmallRight.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\JuridicalManagersControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\JuridicalManagersControl.Designer.cs">
+      <DependentUpon>JuridicalManagersControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightSrPresenter.cs" />
+    <Compile Include="ObjectRightControls\ObjectRightSrView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightSrView.Designer.cs">
+      <DependentUpon>ObjectRightSrView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightListControl.Designer.cs">
+      <DependentUpon>ObjectRightListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjectRightControls\ObjectRightSelectionView.Designer.cs">
+      <DependentUpon>ObjectRightSelectionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\PassportControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\PassportControl.Designer.cs">
+      <DependentUpon>PassportControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsRegistrationsCompanyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsRegistrationsCompanyControl.Designer.cs">
+      <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\PassportInternationalControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\PassportInternationalControl.Designer.cs">
+      <DependentUpon>PassportInternationalControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\AgreementActionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\AgreementActionsForm.Designer.cs">
+      <DependentUpon>AgreementActionsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RightholderControls\Anketa\ServiceComissionControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\ServiceComissionControl.Designer.cs">
+      <DependentUpon>ServiceComissionControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Common\RadioPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterListControl.Designer.cs">
+      <DependentUpon>RegisterListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterPresenter.cs" />
+    <Compile Include="RegisterControls\RegisterView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterControls\RegisterView.Designer.cs">
+      <DependentUpon>RegisterView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\RegistrationPersonsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\RegistrationPersonsControl.Designer.cs">
+      <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerForms\ReportExcelViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\ReportExcelViewForm.Designer.cs">
+      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\ReportsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ConsumerControls\SmallRight\ReportsControl.Designer.cs">
+      <DependentUpon>ReportsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Forms\RequestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shared\Forms\RequestForm.Designer.cs">
+      <DependentUpon>RequestForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderListControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderListControl.Designer.cs">
+      <DependentUpon>RightholderListControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderSelectorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderSelectorControl.Designer.cs">
+      <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderSelectionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\RightholderSelectionView.Designer.cs">
+      <DependentUpon>RightholderSelectionView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\RightholdersObjectsRightsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\RightholdersObjectsRightsControl.Designer.cs">
+      <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterControls\SearchObjectPresenter.cs" />
+    <Compile Include="RegisterControls\SearchObjectView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterControls\SearchObjectView.Designer.cs">
+      <DependentUpon>SearchObjectView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_trash\SingleShowInformationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="_trash\SingleShowInformationControl.Designer.cs">
+      <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.Designer.cs">
+      <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\DropDownListHelper.cs" />
+    <Compile Include="Utilities\ExtendedBrowseEditor.cs" />
+    <Compile Include="Utilities\GridViewHelper.cs" />
+    <Compile Include="Utilities\RadTextBoxAuto.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\ViewAndPrintAgreementForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsumerForms\ViewAndPrintAgreementForm.Designer.cs">
+      <DependentUpon>ViewAndPrintAgreementForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CommunityControls\CommunityLimitsEditForm.resx">
+      <DependentUpon>CommunityLimitsEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityRightLimitationControl.resx">
+      <DependentUpon>CommunityRightLimitationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\MusicDesignHeaderInfoControl.resx">
+      <DependentUpon>MusicDesignHeaderInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\CommonPlaceParametersControl.resx">
+      <DependentUpon>CommonPlaceParametersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\SingleAdditionalParameterControl.resx">
+      <DependentUpon>SingleAdditionalParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\SingleParameterSquareControl.resx">
+      <DependentUpon>SingleParameterSquareControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\SingleParameterCountControl.resx">
+      <DependentUpon>SingleParameterCountControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\PlaceDetailForm.resx">
+      <DependentUpon>PlaceDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\PremisesAdditionalDetailForm.resx">
+      <DependentUpon>PremisesAdditionalDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
+      <DependentUpon>AddCompositionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddFileDialogForm.resx">
+      <DependentUpon>AddFileDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\AnketaConsumerPhis.resx">
+      <DependentUpon>AnketaConsumerPhis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ClosedAgreementsControl.resx">
+      <DependentUpon>ClosedAgreementsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ManagersControl.resx">
+      <DependentUpon>ManagersControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_trash\MultiplePlaceParameterControl.resx">
+      <DependentUpon>MultiplePlaceParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_trash\RadioPlaceParameterControl.resx">
+      <DependentUpon>RadioPlaceParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_trash\SinglePlaceParameterControl.resx">
+      <DependentUpon>SinglePlaceParameterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\AgreementPhis.resx">
+      <DependentUpon>AgreementPhis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\ContactPersonActionForm.resx">
+      <DependentUpon>ContactPersonActionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\GeneralAgreementBrForm.resx">
+      <DependentUpon>GeneralAgreementBrForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\PremisesDetailForm.resx">
+      <DependentUpon>PremisesDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\AddressLetter.resx">
+      <DependentUpon>AddressLetter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\ButtonGroupBoxControl.resx">
+      <DependentUpon>ButtonGroupBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\ConfirmationView.resx">
+      <DependentUpon>ConfirmationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\NavigatorPanelControl.resx">
+      <DependentUpon>NavigatorPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\PageSelectorControl.resx">
+      <DependentUpon>PageSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\SearchTextBoxControl.resx">
+      <DependentUpon>SearchTextBoxControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\SideMenuControl.resx">
+      <DependentUpon>SideMenuControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\UserSelectionView.resx">
+      <DependentUpon>UserSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAddAuthorForm.resx">
+      <DependentUpon>CommunityAddAuthorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAddressControl.resx">
+      <DependentUpon>CommunityAddressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAddressLetterControl.resx">
+      <DependentUpon>CommunityAddressLetterControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityAgreementControl.resx">
+      <DependentUpon>CommunityAgreementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityCabinetForm.resx">
+      <DependentUpon>CommunityCabinetForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityControl.resx">
+      <DependentUpon>CommunityControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CommunityControls\CommunityForm.resx">
+      <DependentUpon>CommunityForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\AgrDetailInfoBr.resx">
+      <DependentUpon>AgrDetailInfoBr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\AgreementBigRight.resx">
+      <DependentUpon>AgreementBigRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\GeneralAgrDetailInfoBr.resx">
+      <DependentUpon>GeneralAgrDetailInfoBr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerAgrDetailInfo.resx">
+      <DependentUpon>ConsumerAgrDetailInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerHeaderInfo.resx">
+      <DependentUpon>ConsumerHeaderInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\CreateRatedList.resx">
+      <DependentUpon>CreateRatedList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\TabNavigationControl.resx">
+      <DependentUpon>TabNavigationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx">
+      <DependentUpon>AddAuthRoleForMusDesingBr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\CreateProgReportBigRight.resx">
+      <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\PaysInfo.resx">
+      <DependentUpon>PaysInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\ProlongationBigRight.resx">
+      <DependentUpon>ProlongationBigRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\AnketaConsumerPhisForm.resx">
+      <DependentUpon>AnketaConsumerPhisForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\SaveCancelButtonsControl.resx">
+      <DependentUpon>SaveCancelButtonsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportDBF\ImportDBFControl.resx">
+      <DependentUpon>ImportDBFControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportDBF\ImportParseResultForm.resx">
+      <DependentUpon>ImportParseResultForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportDBF\PaymentsAttachForm.resx">
+      <DependentUpon>PaymentsAttachForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\SelectClient.resx">
+      <DependentUpon>SelectClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerDialogForms\SelectPartner.resx">
+      <DependentUpon>SelectPartner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\CabinetBigRightForm.resx">
+      <DependentUpon>CabinetBigRightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\CabinetPartnerForm.resx">
+      <DependentUpon>CabinetPartnerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\CabinetSmallRightForm.resx">
+      <DependentUpon>CabinetSmallRightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\ConsumerExternalView.resx">
+      <DependentUpon>ConsumerExternalView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\JurPersonName.resx">
+      <DependentUpon>JurPersonName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerAnketaJurControl.resx">
+      <DependentUpon>PartnerAnketaJurControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerAnketaPhisControl.resx">
+      <DependentUpon>PartnerAnketaPhisControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerCabinetAnketaJurControl.resx">
+      <DependentUpon>PartnerCabinetAnketaJurControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerCabinetAnketaPhisControl.resx">
+      <DependentUpon>PartnerCabinetAnketaPhisControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\CreatePartnerForm.resx">
+      <DependentUpon>CreatePartnerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerListControl.resx">
+      <DependentUpon>ConsumerListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FixationControls\FixationListControl.resx">
+      <DependentUpon>FixationListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FixationControls\FixationView.resx">
+      <DependentUpon>FixationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\LicenseAgreementListControl.resx">
+      <DependentUpon>LicenseAgreementListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetAvances.resx">
+      <DependentUpon>MiddleControlCabinetAvances.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\AuthorRightholderBrListControl.resx">
+      <DependentUpon>AuthorRightholderBrListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\CopyrightRequestControl.resx">
+      <DependentUpon>CopyrightRequestControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightBrInfoControl.resx">
+      <DependentUpon>ObjectRightBrInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightBrView.resx">
+      <DependentUpon>ObjectRightBrView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\AgreementPartnerControl.resx">
+      <DependentUpon>AgreementPartnerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\ConditionsControl.resx">
+      <DependentUpon>ConditionsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerClientsControl.resx">
+      <DependentUpon>PartnerClientsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
+      <DependentUpon>PartnerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartnerControls\PartnerNameControl.resx">
+      <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Common\TabNavigationExpandedControl.resx">
+      <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\RegisterRatedListForm.resx">
+      <DependentUpon>RegisterRatedListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\CreatePeriod.resx">
+      <DependentUpon>CreatePeriod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterControls\RegisterItemListControl.resx">
+      <DependentUpon>RegisterItemListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\AnketaAddNamesView.resx">
+      <DependentUpon>AnketaAddNamesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\AnketaAddNickView.resx">
+      <DependentUpon>AnketaAddNickView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\AnketaConsumerJurForm.resx">
+      <DependentUpon>AnketaConsumerJurForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaCompanyRightholderPage.resx">
+      <DependentUpon>AnketaCompanyRightholderPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightHolderControl.resx">
+      <DependentUpon>AnketaPersonRightHolderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\AuthorRightholderItemView.resx">
+      <DependentUpon>AuthorRightholderItemView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\CalculationInfoControl.resx">
+      <DependentUpon>CalculationInfoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\ConsumerPlacesControl.resx">
+      <DependentUpon>ConsumerPlacesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\ContactsPersonControl.resx">
+      <DependentUpon>ContactsPersonControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\ContractConsumerDetailControl.resx">
+      <DependentUpon>ContractConsumerDetailControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\ContractConsumerMainControl.resx">
+      <DependentUpon>ContractConsumerMainControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\DistributionForm.resx">
+      <DependentUpon>DistributionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\GeneralAgreementInfo.resx">
+      <DependentUpon>GeneralAgreementInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\AnketaConsumer.resx">
+      <DependentUpon>AnketaConsumer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumerSelectionView.resx">
+      <DependentUpon>ConsumerSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\AnketaPersonRightholderPage.resx">
+      <DependentUpon>AnketaPersonRightholderPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumersViewSmallRightControl.resx">
+      <DependentUpon>ConsumersViewSmallRightControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\ConsumersViewBigRightControl.resx">
+      <DependentUpon>ConsumersViewBigRightControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsAnketaCompanyControl.resx">
+      <DependentUpon>IpsAnketaCompanyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsAddressControl.resx">
+      <DependentUpon>IpsAddressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\Places\Components\PremisesControl.resx">
+      <DependentUpon>PremisesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsBankAccountControl.resx">
+      <DependentUpon>IpsBankAccountControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsBossNameContactsControl.resx">
+      <DependentUpon>IpsBossNameContactsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\RightLimitationsControl.resx">
+      <DependentUpon>RightLimitationsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_UnusedControls\MainViewSwitcher.resx">
+      <DependentUpon>MainViewSwitcher.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\JuridicalAddressControl.resx">
+      <DependentUpon>JuridicalAddressControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
+      <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\AgreementWithPlacesControl.resx">
+      <DependentUpon>AgreementWithPlacesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\CabinetBigRight.resx">
+      <DependentUpon>CabinetBigRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\PartnerOfConsumerControl.resx">
+      <DependentUpon>PartnerOfConsumerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_UnusedControls\MiddleControlCabinetCalculation.resx">
+      <DependentUpon>MiddleControlCabinetCalculation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlCabinetFiles.resx">
+      <DependentUpon>MiddleControlCabinetFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\GeneralAgreementControl.resx">
+      <DependentUpon>GeneralAgreementControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\LicensesControl.resx">
+      <DependentUpon>LicensesControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\RegisterRatedListControl.resx">
+      <DependentUpon>RegisterRatedListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.resx">
+      <DependentUpon>RequestReferenceControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MiddleControlClientName.resx">
+      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
+      <DependentUpon>CabinetSmallRight.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\JuridicalManagersControl.resx">
+      <DependentUpon>JuridicalManagersControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightSrView.resx">
+      <DependentUpon>ObjectRightSrView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightListControl.resx">
+      <DependentUpon>ObjectRightListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjectRightControls\ObjectRightSelectionView.resx">
+      <DependentUpon>ObjectRightSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\PassportControl.resx">
+      <DependentUpon>PassportControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsRegistrationsCompanyControl.resx">
+      <DependentUpon>IpsRegistrationsCompanyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\PassportInternationalControl.resx">
+      <DependentUpon>PassportInternationalControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\AgreementActionsForm.resx">
+      <DependentUpon>AgreementActionsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\ServiceComissionControl.resx">
+      <DependentUpon>ServiceComissionControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterControls\RegisterListControl.resx">
+      <DependentUpon>RegisterListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterControls\RegisterView.resx">
+      <DependentUpon>RegisterView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\RegistrationPersonsControl.resx">
+      <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\ReportExcelViewForm.resx">
+      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\ReportsControl.resx">
+      <DependentUpon>ReportsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Forms\RequestForm.resx">
+      <DependentUpon>RequestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\RightholderListControl.resx">
+      <DependentUpon>RightholderListControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\RightholderSelectorControl.resx">
+      <DependentUpon>RightholderSelectorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\RightholderSelectionView.resx">
+      <DependentUpon>RightholderSelectionView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\RightholdersObjectsRightsControl.resx">
+      <DependentUpon>RightholdersObjectsRightsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterControls\SearchObjectView.resx">
+      <DependentUpon>SearchObjectView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\NewRightholderView.resx">
+      <DependentUpon>NewRightholderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\RightholderView.resx">
+      <DependentUpon>RightholderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_trash\SingleShowInformationControl.resx">
+      <DependentUpon>SingleShowInformationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderControls\Anketa\TerritoryIncludeExcludeControl.resx">
+      <DependentUpon>TerritoryIncludeExcludeControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsumerForms\ViewAndPrintAgreementForm.resx">
+      <DependentUpon>ViewAndPrintAgreementForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.DictionaryBaseControl.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObbjectRightNotAccepted.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectAuthorRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.ObjectRightForRightholder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterItemViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterListViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.RegisterSearchObject.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightRequestBidAuthors.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightRequests.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.BigRightSpectacleView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ChildTemplate.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.CommunityAuthorsView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddCommunity.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddPartner.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddRh.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AgrLicenseType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaExternal.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaPerson.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.BankAccount.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.BrRegister.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CheckParamPays.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnPlaceHoll.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Community.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Customer.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Employee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ExternalPay.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.FileType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Fixation.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Language.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.License.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseBigR.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.LicenseType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyPeriodLink.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MoneyReceived.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.MusicalDesign.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjAct.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.ObjectRight.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.PaidPeriod.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Partner.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.PerformType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Region.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterCount.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.SexType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.TypeVat.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkRh.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.WorkType.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.AmountDistributionViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.FixationListViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Fixations.RegisterCountViewModel.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.CommunityControls.InternalModel.RightLimitationsView.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.RightholderControls.RightholderView.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\createAct.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.CommunityInfo.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Dictionary.TermsOfServiceWrapper.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.AnketaDictionaties.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementAddRh.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementMaster1.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaAddName.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaAddNick.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaCompany.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAuthors.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IBankAccount.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IClnBusinessPlace.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICountry.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ICustomer.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgreement.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ILicenseAgrParam.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IRightHolder.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightholderMainView.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
+      <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
+      <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAnketaPerson.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\viewAct.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\file.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\angle-double-left-solid.ico" />
+    <None Include="Resources\angle-double-right-solid.ico" />
+    <None Include="Resources\angle-left-solid.ico" />
+    <None Include="Resources\angle-right-solid.ico" />
+    <None Include="Resources\angle-double-down-solid.ico" />
+    <None Include="Resources\angle-double-up-solid.ico" />
+    <Content Include="Resources\link-solid.ico" />
+    <Content Include="Resources\plus-square-solid.ico" />
+    <None Include="Resources\print-solid.ico" />
+    <Content Include="Resources\status-change.ico" />
+    <Content Include="Resources\unlink-solid.ico" />
+    <Content Include="Resources\unlink-solid1.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

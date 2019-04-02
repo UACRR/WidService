@@ -21,6 +21,9 @@ namespace IpsViewComponentLibrary.ImportDBF
         public PaymentsAttachForm(List<vCustomer> clintList, ExternalPay externalPay)
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+            StartPosition = FormStartPosition.CenterScreen;
+
             ctrlSearch.SetUsageGrid(gvCustomers);
             _externalPay = externalPay;
             txtIpnokpo.Text = _externalPay.OkpoCorr;
