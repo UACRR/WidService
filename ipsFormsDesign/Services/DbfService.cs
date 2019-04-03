@@ -84,7 +84,6 @@ namespace ipsFormsDesign.Services
         {
             string url = string.Concat(_prefix, "vCustomers");
             return _webApi.GetList<vCustomer>(url);
-
         }
     }
 }
