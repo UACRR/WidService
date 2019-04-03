@@ -7,7 +7,13 @@ namespace ipsFormsDesign.Tests
     [TestClass]
     public class DbfServiceTest
     {
-        private readonly DbfService _dbfService = DbfService.GetInstance();
+        private DbfService _dbfService;
+
+        [TestInitialize]
+        public void TestInit()
+        {
+            _dbfService = DbfService.GetInstance();
+        }
 
         [TestMethod]
         public void GetListOfConsumers_test()
