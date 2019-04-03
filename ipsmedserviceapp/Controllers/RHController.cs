@@ -321,7 +321,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             var excludeFields = new string[] { "CustId", "UserId" };
             if (sorsCust == null)
                 throw new Exception("new rightholder is empty");
-            if (!(sorsCust.CustType > 0 && sorsCust.CustType < 4))
+            if (!(sorsCust.CustType > 0 && sorsCust.CustType < 6))
                 throw new Exception("Bad customer type for new rightholder");
 
             // Збереження Customer

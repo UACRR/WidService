@@ -132,10 +132,11 @@ namespace IpsViewComponentLibrary.RightholderControls
                 var rightholdersObjectsRightsList = service.GetRightholdersObjectsRights(ctrlRightholderSelector.Rightholder.CustId);
 
                 objectRightForRightholderBindingSource.DataSource = rightholdersObjectsRightsList;
-
-                lblCountObjectsRight.Text = rightholdersObjectsRightsList.Count().ToString();
-
-                //SelectedObject = currentObject;
+                //if 'rightholdersObjectsRightsList' have data then show count elements
+                lblCountObjectsRight.Text = rightholdersObjectsRightsList != null 
+                                                ? rightholdersObjectsRightsList.Count().ToString()
+                                                //else show count elements is '0'
+                                                : 0.ToString();
             }
             else
             {

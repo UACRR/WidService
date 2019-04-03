@@ -55,6 +55,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => bsAnketaCompany.DataSource = value;
         }
 
+        //define Anketa External data source
+        public object AnketaExternalDataSource
+        {
+            get => bsAnketaExternal.DataSource;
+            set => bsAnketaExternal.DataSource = value;
+        }
+
         public object BankAccountDataSource
         {
             get => bsBankAccount.DataSource;
@@ -71,6 +78,13 @@ namespace IpsViewComponentLibrary.RightholderControls
         {
             get => ctrlRightLimitations.DataSource;
             set => ctrlRightLimitations.DataSource = value;
+        }
+
+        //TernsOfService control for External Anketa
+        public object TermsOfServiceExternalAnketaDataSource
+        {
+            get => rightLimitationsControl1_ExternalAnketa.DataSource;
+            set => rightLimitationsControl1_ExternalAnketa.DataSource = value;
         }
 
         public object RightholderDataSource
@@ -139,14 +153,32 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             }
         }
+        //define active pages
+        private void ShowActivePages(Customer customer)
+        {
+            //check on exist state field 'CustType'
+            if (customer.CustType == null) { return; }
+            //get all pages
+            foreach (var external in pageViewMain.Pages)
+                //hide current page if it's: Anketa, Contract
+                if (customer.CustType == 5 && (external.Name == "Anketa" || external.Name == "Contract"))
+                    external.Item.Visibility = ElementVisibility.Collapsed;
+                //hide current page if it's: ExternalAnketa
+                else if (customer.CustType != 5 && external.Name == "AnketaExternal")
+                    external.Item.Visibility = ElementVisibility.Collapsed;
+
+        }
 
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
+            //set active pages on depends field 'CustType'
+            ShowActivePages(customer);
 
-            _isCompany = customer.CustType == 3;
+            //disable unusable code
+            //_isCompany = customer.CustType == 3;
 
-            if (_isCompany)
+            if (customer.CustType == 3)
             {
                 rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
                 rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
@@ -159,6 +191,15 @@ namespace IpsViewComponentLibrary.RightholderControls
                 managersPage.Item.Visibility = ElementVisibility.Visible;
                 passportPage.Item.Visibility = ElementVisibility.Collapsed;
                 ctrlMiddleControlManagers.SetDataSources(customer);
+            }
+            else if (customer.CustType == 5)
+            {
+                //set default active page for External Anketa
+                pageViewMain.SelectedPage = AnketaExternal;
+                //set data of the External Anketa
+                anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
+                anketaExternalRightholderControl1.DataSourceRightHolder = bsRightHolder;
+
             }
             else
             {
@@ -178,14 +219,18 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         public bool IsValid
         {
+
             get
             {
+                var customer = (Customer)bsCustomer.Current;
                 var result = true;
 
-                if (!_isCompany)
+                if (customer.CustType == 3)
                 {
                     result = ctrlAnketaPersonRightholderPage.Validator();
                 }
+                else if (customer.CustType == 5)
+                    result = true;
                 else
                 {
                     result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();

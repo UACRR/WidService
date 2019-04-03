@@ -25,6 +25,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         private AgreementMaster _agreementMaster;
         private AgreementAddRh _agreementAddRh;
         private AnketaPerson _anketaPerson;
+        //define Anketa Exteral
+        private AnketaExternal _anketaExternal;
         private AnketaCompany _anketaCompany;
         private bool _isCompany;
         private bool _canClose;
@@ -66,9 +68,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             _customer = _rightholderService.GetData(custId);
             SetViewData();
 
-            if (_isCompany)
+            if (_customer.CustType == 3)
                 _view.SetHeader(_anketaCompany.Name);
-            else
+            else if (_customer.CustType == 5)
+            {
+                //set title name for Current Action
+                _view.SetHeader(_anketaExternal.Name);
+            } else
                 _view.SetHeader(String.Format("{0} {1} {2}", _anketaPerson.LastName, _anketaPerson.FirstName, _anketaPerson.SurName));
 
             _view.Run();
@@ -83,13 +89,23 @@ namespace IpsViewComponentLibrary.RightholderControls
             _view.RightholderDataSource = _customer.RightHolder;
             _view.BankAccountDataSource = _customer.BankAccount;
             _view.TermsOfServiceDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
+            
 
-            _isCompany = _customer.CustType == 3;
+            //add condition for ignore External anketa
+            //_isCompany = _customer.CustType == 3 && _customer.CustType != 5;
 
-            if (_isCompany)
+            if (_customer.CustType == 3)
             {
                 _anketaCompany = _customer.Company.AnketaCompany.FirstOrDefault();
                 _view.AnketaCompanyDataSource = _anketaCompany;
+            } else if (_customer.CustType == 5)
+            {
+                //get data for Exteral Anketa
+                _anketaExternal = _customer.AnketaExternal;
+                //set data to data source
+                _view.AnketaExternalDataSource = _anketaExternal;
+                //set data for term of service of the external anketa
+                _view.TermsOfServiceExternalAnketaDataSource = _customer.RightHolder.TermsOfService.Select(rec => new TermsOfServiceWrapper(rec));
             }
             else
             {
