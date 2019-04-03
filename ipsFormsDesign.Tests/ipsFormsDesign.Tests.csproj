@@ -52,6 +52,8 @@
     <Compile Include="DbfServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommunityServiceTest.cs" />
+    <Compile Include="ConsumerBigRightServiceTest.cs" />
+    <Compile Include="ConsumerSmallRightServiceTest.cs" />
     <Compile Include="RightHolderServiceTest.cs" />
     <Compile Include="ObjectRightServiceTest.cs" />
   </ItemGroup>
