@@ -77,51 +77,6 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem("consumers/external", customer.CustId.ToString(), customer);
         }
 
-        #region BigRight
-        public IList<ConsumerBigRightView> getMainViewBR(TypeBRDocument typeDoc = TypeBRDocument.All, ConsumerFilterEnum what = ConsumerFilterEnum.All)
-        {
-            string url = $"consumer/listBR";
-            KeyValuePair<string, string>[] param = new[] {
-                new KeyValuePair<string, string>("whatId", ((int)what).ToString()),
-                new KeyValuePair<string, string>("typeDocId", ((int)typeDoc).ToString())
-            };
-            var anketaDic = _webApi.GetList<ConsumerBigRightView>(url, param);
-            return anketaDic;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="custId"></param>
-        /// <returns></returns>
-        public IList<LicenseAgreementBigRightView> GetAgreementsBigRight(string custId)
-        {
-            string url = $"consumer/viewBR/" + custId;
-
-            var agr = _webApi.GetListAgreement<LicenseAgreementBigRightView>(url);
-            return agr;
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="typeResult"></param>
-        /// <param name="viewName"></param>
-        /// <param name="custId"></param>
-        /// <returns></returns>
-        public IList<object> getBRView(Type typeResult, string viewName, int? custId)
-        {
-            string url = "consumer/BR/view/list";
-            List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>> { new KeyValuePair<string, string>("viewName", viewName) };
-            if (custId != null)
-                param.Add(new KeyValuePair<string, string>("custId", custId.ToString()));
-            var list = _webApi.GetTypedList(typeResult, url, param.ToArray());
-            return list;
-        }
-
-        #endregion
-
         #region Register Методи обробки 
 
         /// <summary>
@@ -237,16 +192,15 @@ namespace ipsFormsDesign.Services
             return null;
         }
 
-        /*
-         
-             codeI	name
-1	Прийом звітів
-2	Прийом коштів
-3	Борг
-4	Судова робота
-6	Кошти отримані
-7	Закритий
-             */
+        /// <summary> Стан періоду
+        /// codeI	name
+        ///   1     Прийом звітів
+        ///   2     Прийом коштів
+        ///   3     Борг
+        ///   4     Судова робота
+        ///   6     Кошти отримані
+        ///   7     Закритий
+        /// </summary>
         public enum PeriodState : int
         {
             /// <summary>

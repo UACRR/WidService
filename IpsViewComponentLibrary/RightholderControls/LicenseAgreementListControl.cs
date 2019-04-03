@@ -185,10 +185,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             if (!selectedLicenseAgreement.CustId.HasValue)
                 return;
 
-            var consumerService = new ConsumerService();
-
+            var consumerService = ConsumerBigRightService.GetInstance();
             var consumer = consumerService.GetData(selectedLicenseAgreement.CustId.Value);
-            var bigRightView = consumerService.getMainViewBR().FirstOrDefault(rec => rec.CustId == selectedLicenseAgreement.CustId.Value);
+            var bigRightView = consumerService.GetMainBigRightView().FirstOrDefault(rec => rec.CustId == selectedLicenseAgreement.CustId.Value);
 
             var view = new RequestForm(consumer, bigRightView, ScopeOfUseForm.Edit, selectedLicenseAgreement.LicId, RequestForm.FormMode.ForSmallRightAdmin);
 

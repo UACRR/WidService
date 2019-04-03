@@ -73,6 +73,10 @@
       <Project>{FA6CAA86-7F51-4EB9-948F-EE81D384ED56}</Project>
       <Name>WebAPIConnector</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IpsViewComponentLibrary\IpsViewComponentLibrary.csproj">
+      <Project>{c0c413b4-086c-422c-82d6-a02e6284abdf}</Project>
+      <Name>IpsViewComponentLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
