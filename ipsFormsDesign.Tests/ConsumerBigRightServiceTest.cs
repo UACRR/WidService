@@ -28,5 +28,11 @@ namespace ipsFormsDesign.Tests
             var result = _bigRightService.getMainViewBR();
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void test()
+        {
+            //var result = _bigRightService
+        }
     }
 }
