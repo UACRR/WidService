@@ -68,7 +68,7 @@ namespace ipsFormsDesign.Tests
 
         public void test()
         {
-            _bigRightService.GetMainView()
+            _bigRightService.GetMainView();
         }
     }
 }
