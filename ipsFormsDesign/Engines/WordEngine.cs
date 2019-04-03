@@ -1281,7 +1281,7 @@ namespace ipsFormsDesign.Services
             );
             //var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
 
-            var places = licA.LicenseAgrParam.Where(rec => rec.AnkVersion == licA.LicVersion).FirstOrDefault().License?.Select(rec => rec.PlaceId ).ToArray();
+            var places = licA.LicenseAgrParam.Where(rec => rec.LicVersion == licA.LicVersion).FirstOrDefault()?.License?.Select(rec => rec.PlaceId ).ToArray() ?? new int?[] { };
             var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where( rec => places.Contains( rec.PlaceId )).ToList();
             AgreementAddBr agreementAddBr;
             agreementAddBr = agr;

@@ -132,27 +132,27 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             {
                 if (filterType.ToLower() == "new")
                 {
-                    queryText = queryText + " where status = 0";
+                    queryText = queryText + " where custStatus = 0";
                 }
                 else if (filterType.ToLower() == "notaccepted")
                 {
-                    queryText = queryText + " where status = 1";
+                    queryText = queryText + " where custStatus = 1";
                 }
                 else if (filterType.ToLower() == "active")
                 {
-                    queryText = queryText + " where status = 2";
+                    queryText = queryText + " where custStatus = 2";
                 }
                 else if (filterType.ToLower() == "inheritance")
                 {
-                    queryText = queryText + " where status = 7";
+                    queryText = queryText + " where custStatus = 7";
                 }
                 else if (filterType.ToLower() == "blocked")
                 {
-                    queryText = queryText + " where status = 8";
+                    queryText = queryText + " where custStatus = 8";
                 }
                 else if (filterType.ToLower() == "closed")
                 {
-                    queryText = queryText + " where status = 9";
+                    queryText = queryText + " where custStatus = 9";
                 }
             }
 
@@ -268,6 +268,13 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                     LeRegion = 9,
                 });
             }
+            else if (custType == 5)
+            {
+                newCust.RightHolder.RHolderType = 1;
+                newCust.AnketaExternal = new AnketaExternal();
+            }
+            else
+                return BadRequest();
 
             var copyrightList = await _dbContext.CopyrightKind
                 .Include(rec => rec.CrGroupCodeNavigation)
