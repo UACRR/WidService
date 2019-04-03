@@ -28,5 +28,10 @@ namespace ipsFormsDesign.Tests
             var result = _smallRightService.GetListAll();
             Assert.IsNotNull(result);
         }
+
+        public void test()
+        {
+
+        }
     }
 }
