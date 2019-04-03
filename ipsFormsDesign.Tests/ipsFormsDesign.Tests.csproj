@@ -52,6 +52,7 @@
     <Compile Include="DbfServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommunityServiceTest.cs" />
+    <Compile Include="RightHolderServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
