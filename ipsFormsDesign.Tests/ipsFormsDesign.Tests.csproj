@@ -56,6 +56,7 @@
     <Compile Include="ConsumerSmallRightServiceTest.cs" />
     <Compile Include="RightHolderServiceTest.cs" />
     <Compile Include="ObjectRightServiceTest.cs" />
+    <Compile Include="ConsumerServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
