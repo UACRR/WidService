@@ -53,6 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommunityServiceTest.cs" />
     <Compile Include="RightHolderServiceTest.cs" />
+    <Compile Include="ObjectRightServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -64,6 +65,10 @@
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{21da4297-a0f3-4e44-bd98-caf3605b243a}</Project>
       <Name>ipsFormsDesign</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
+      <Project>{FA6CAA86-7F51-4EB9-948F-EE81D384ED56}</Project>
+      <Name>WebAPIConnector</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
