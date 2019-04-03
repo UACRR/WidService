@@ -1,20 +1,16 @@
-﻿using ipsFormsDesign.Interfaces;
-using ipsFormsDesign.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using ipsFormsDesign.Dictionary;
-using WebAPIConnector;
-using System.IO;
-using System.Dynamic;
+﻿using System.IO;
 using System.Threading.Tasks;
-using ipsFormsDesign.Data;
-using ipsFormsDesign.Model.SQLViewsData;
-// ReSharper disable All
+using System.Collections.Generic;
+using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
+using WebAPIConnector;
+
+using ipsFormsDesign.Enums;
 
 namespace ipsFormsDesign.Services
 {
-    public class ConsumerService : IConsumerService
+    public class ConsumerService// : IConsumerService
     {
         protected readonly ApiConnector _webApi = new ApiConnector();
         private readonly string _prefix = "consumer/";
@@ -43,24 +39,6 @@ namespace ipsFormsDesign.Services
             return consumerInfo;
         }
 
-        public IList<ConsumerSmallRightView> GetMainView()
-        {
-            return getMainView(ConsumerFilterEnum.All);
-        }
-
-        public IList<ConsumerSmallRightView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All)
-        {
-            string url = $"consumer/listSR/{(int)what}";
-            var anketaDic = _webApi.GetList<ConsumerSmallRightView>(url);
-            return anketaDic;
-        }
-
-        public IList<ConsumerSmallRightView> GetListAll()
-        {
-            var list = _webApi.GetList<ConsumerSmallRightView>("consumer/listall");
-            return list;
-        }
-
         public Customer GetExternalById(int custId)
         {
             var item = _webApi.GetItemById<Customer>("consumers/external", custId.ToString());
@@ -77,7 +55,7 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem("consumers/external", customer.CustId.ToString(), customer);
         }
 
-        #region Register Методи обробки 
+        #region * * * Register Методи обробки 
 
         /// <summary>
         /// Отримати дані звіту
@@ -159,21 +137,6 @@ namespace ipsFormsDesign.Services
             return _webApi.GetItemById<Register>(url, regId.ToString());
         }
 
-        public enum RegisterState : int
-        {
-            // Новий
-            newItem = 0,
-            // На погоджені
-            OnAccept = 1,
-            // Погоджений
-            Accepted = 2,
-            // До розподілу
-            OnRate = 3,
-            // Виконано
-            Worked = 4,
-            // Відхилено
-            Rejected = 5
-        }
         /// <summary>
         /// Зміна стану звітів
         /// </summary>
@@ -192,47 +155,12 @@ namespace ipsFormsDesign.Services
             return null;
         }
 
-        /// <summary> Стан періоду
-        /// codeI	name
-        ///   1     Прийом звітів
-        ///   2     Прийом коштів
-        ///   3     Борг
-        ///   4     Судова робота
-        ///   6     Кошти отримані
-        ///   7     Закритий
-        /// </summary>
-        public enum PeriodState : int
-        {
-            /// <summary>
-            /// Прийом звітів
-            /// </summary>
-            getReport = 1,
-            /// <summary>
-            /// Прийом коштів
-            /// </summary>
-            getPay = 2,
-            /// <summary>
-            /// Борг
-            /// </summary>
-            Debt = 3,
-            /// <summary>
-            /// Судова робота
-            /// </summary>
-            Court = 4,
-            /// <summary>
-            /// Кошти отримані
-            /// </summary>
-            Paid = 6,
-            /// <summary>
-            /// Закритий
-            /// </summary>
-            Close = 7
-        }
         /// <summary>
-        /// 
+        /// Встановити стан періоду
         /// </summary>
-        /// <param name="v"></param>
+        /// <param name="state"></param>
         /// <param name="period"></param>
+        /// <returns></returns>
         public bool SetPeriodState(PeriodState state, PaidPeriod period)
         {
             string url = _prefix + $"period/state/{period.PeriodId}/{(int)state}";
@@ -240,8 +168,6 @@ namespace ipsFormsDesign.Services
         }
 
         #endregion
-
-
 
         /// <summary>
         /// Получити дані для авто заповнення
@@ -374,13 +300,6 @@ namespace ipsFormsDesign.Services
             return ret;
         }
 
-        public enum LicType : int
-        {
-            License = 1,
-            Request = 2,
-            Reference = 3
-        }
-
         /// <summary>
         /// Перевод типу ліц. договору з Заявки в Довідку та ліц договір.
         /// </summary>
@@ -393,7 +312,6 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItem<LicenseAgreement>(url, null, null);
 
         }
-
  
         /// <summary>
         /// Отримати всю інормацію по поточним періодам оплати для інтерфейсу Розрахунки
@@ -442,22 +360,5 @@ namespace ipsFormsDesign.Services
         }
         #endregion
 
-    }
-    public enum CPartnerObjectStatus : int
-    {
-        /// <summary>
-        /// Empty
-        /// </summary>
-        None = -1,
-
-        /// <summary>
-        /// Активація
-        /// </summary>
-        Activate = 2,
-
-        /// <summary>
-        /// Закрити
-        /// </summary>
-        Close = 4,
     }
 }

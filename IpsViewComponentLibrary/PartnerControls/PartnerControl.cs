@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -214,29 +215,5 @@ namespace IpsViewComponentLibrary.PartnerControls
             SetDataOfFilter(treeView.SelectedNode);
             _gridStateRecorder.RestoreState();
         }
-    }
-
-    public enum PartnerFilter
-    {
-        /// <summary>
-        /// Empty
-        /// </summary>
-        None,
-        /// <summary>
-        /// Всі
-        /// </summary>
-        All,
-        /// <summary>
-        /// Активні
-        /// </summary>
-        Active,
-        /// <summary>
-        /// На акцепті
-        /// </summary>
-        OnAccept,
-        /// <summary>
-        /// Не підтверджені
-        /// </summary>
-        NotAccept
     }
 }

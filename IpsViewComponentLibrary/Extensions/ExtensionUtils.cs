@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -13,7 +14,7 @@ namespace IpsViewComponentLibrary.Extensions
 {
     public delegate bool LicenseStatusChangeEventHandler(LicenseAgreement agr, int version, int status, bool changeVersion);
     public delegate bool WorkRhSaveEventHandler(int licenseId, List<WorkRh> workRhList);
-    public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, ConsumerService.LicType licType);
+    public delegate bool ChangeLicenseTypeEventHandler(LicenseAgreement agreement, LicType licType);
     public delegate bool SaveRegisterRatedListEventHandler(RegisterRatedList list);
     public delegate Customer GetRegisterRatedList(int custId);
     public delegate List<RegisterItem> GetRegisterItemsEventHandler(int regId);

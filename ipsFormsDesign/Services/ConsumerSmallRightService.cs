@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Interfaces;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -23,6 +25,19 @@ namespace ipsFormsDesign.Services
                 IpsGlobal.SetAnketaDictionaties(_service.GetDictionary());
 
             return _service;
+        }
+
+        public IList<ConsumerSmallRightView> GetListAll()
+        {
+            var list = _webApi.GetList<ConsumerSmallRightView>("consumer/listall");
+            return list;
+        }
+
+        public IList<ConsumerSmallRightView> getMainView(ConsumerFilterEnum what = ConsumerFilterEnum.All)
+        {
+            string url = $"consumer/listSR/{(int)what}";
+            var anketaDic = _webApi.GetList<ConsumerSmallRightView>(url);
+            return anketaDic;
         }
     }
 }

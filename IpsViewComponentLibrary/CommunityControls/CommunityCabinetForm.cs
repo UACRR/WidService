@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
