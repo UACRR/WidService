@@ -91,7 +91,6 @@ namespace ipsFormsDesign.Tests
             // Зовнішній споживач
             newRH = _service.NewCustomer(6);
             Assert.IsNull(newRH, "Type 6");
-
         }
 
     }
