@@ -93,5 +93,45 @@ namespace ipsFormsDesign.Tests
             Assert.IsNull(newRH, "Type 6");
         }
 
+        [TestMethod]
+        public void MyTestMethod()
+        {
+
+        }
+
+        [TestMethod()]
+        public void GetDataTest()
+        {
+            var cust = _service.GetData(42349);
+            Assert.IsNotNull(cust);
+        }
+
+        [TestMethod()]
+        public void GetRightholdersTest()
+        {
+            RightholderListQuery query = new RightholderListQuery
+            {
+                SearchString = "UniTest",
+                RowsPerPage = 20,
+                PageNumber = 1
+            };
+
+            var list = _service.GetRightholders(query);
+            Assert.AreNotEqual(list.Count, 0);
+        }
+
+        [TestMethod()]
+        public void GetRightholdersPageTest()
+        {
+            RightholderListQuery query = new RightholderListQuery
+            {
+                SearchString = "UniTest",
+                RowsPerPage = 20,
+                PageNumber = 1
+            };
+
+            var list = _service.GetRightholdersPage(query);
+            Assert.AreNotEqual(list.list.Count(), 0);
+        }
     }
 }
