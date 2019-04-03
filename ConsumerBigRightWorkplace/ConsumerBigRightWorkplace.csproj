@@ -128,6 +128,7 @@
     <None Include="Templates\F_ТИПОВИЙ ГЕНЕРАЛЬНИЙ ДОГОВІР ТЕАТРИ.docx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Templates\F_ТИПОВИЙ ЛІЦЕНЗІЙНИЙ ДОГОВІР ТЕАТР ГО УААСП %281%29.docx" />
     <None Include="workplace.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

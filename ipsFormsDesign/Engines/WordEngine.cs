@@ -1281,14 +1281,14 @@ namespace ipsFormsDesign.Services
             );
             //var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where(rec => rec.PlCode == 6).ToList();
 
-            var places = licA.LicenseAgrParam.Where(rec => rec.AnkVersion == licA.LicVersion).FirstOrDefault().License?.Select(rec => rec.PlaceId ).ToArray();
+            var places = licA.LicenseAgrParam.Where(rec => rec.LicVersion == licA.LicVersion).FirstOrDefault().License?.Select(rec => rec.PlaceId ).ToArray();
             var clnBusinessPlaceTheater = cust.Client.ClnBusinessPlace.Where( rec => places.Contains( rec.PlaceId )).ToList();
             AgreementAddBr agreementAddBr;
             agreementAddBr = agr;
             string ShowPLAdress = string.Empty;
             string ShowPLName = clnBusinessPlaceTheater.FirstOrDefault()?.PlaceName ?? string.Empty;
             ShowPLName = '"' + ShowPLName + '"';
-            string countryCode = clnBusinessPlaceTheater?.FirstOrDefault().PlaceCountry ?? "804";
+            string countryCode = clnBusinessPlaceTheater?.FirstOrDefault()?.PlaceCountry ?? "804";
             string Country =  countries[clnBusinessPlaceTheater.FirstOrDefault()?.PlaceCountry ?? "804"].CountryName;
             ShowPLAdress = Country;
             string Region = string.Empty;
@@ -1301,11 +1301,11 @@ namespace ipsFormsDesign.Services
             if (Region != "")
                 ShowPLAdress = ShowPLAdress + ", " + Region.Trim();
             string City = string.Empty;
-            City = clnBusinessPlaceTheater?.FirstOrDefault().PlaceCity ?? "";
+            City = clnBusinessPlaceTheater?.FirstOrDefault()?.PlaceCity ?? "";
             if (City != "")
                 ShowPLAdress = ShowPLAdress + ", " + City.Trim();
             string Adress = string.Empty;
-            Adress = clnBusinessPlaceTheater?.FirstOrDefault().PlaceAddress ?? "";
+            Adress = clnBusinessPlaceTheater?.FirstOrDefault()?.PlaceAddress ?? "";
             if (Adress != "")
                 ShowPLAdress = ShowPLAdress + ", " + Adress.Trim();
 
