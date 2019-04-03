@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Services
         /* Info */
         public vCustomer GetOwnerName()
         {
-            var retValue = _webApi.GetItemById<vCustomer>("info/name", null);
+            var retValue = _webApi.GetItemById<vCustomer>("info/owner", null);
             return retValue;
         }
 
