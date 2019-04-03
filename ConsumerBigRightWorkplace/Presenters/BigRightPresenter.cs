@@ -77,28 +77,28 @@ namespace ConsumerBigRightWorkplace.Presenters
 
         private void UpdateAllViews(int id)
         {
-            var generalAgreementBigRightViews = _service.getBRView(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>();
+            var generalAgreementBigRightViews = _service.GetBigRightViewByName(typeof(GeneralAgreementBigRightView), "vTSK_1_BRMaster", id).ToListOfType<GeneralAgreementBigRightView>();
             ViewsSingleton.SetGeneralAgreementBigRightView(generalAgreementBigRightViews);
 
-            var licenseAgreementBigRightViews = _service.getBRView(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();
+            var licenseAgreementBigRightViews = _service.GetBigRightViewByName(typeof(LicenseAgreementBigRightView), "vTsk_vBRLicense", id).ToListOfType<LicenseAgreementBigRightView>();
             ViewsSingleton.SetLicenseAgreementBigRightView(licenseAgreementBigRightViews);
 
-            var requestsBigRightViews =_service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>();
+            var requestsBigRightViews =_service.GetBigRightViewByName(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRBid", id).ToListOfType<RequestsOrReferenceBigRightView>();
             ViewsSingleton.SetRequestsBigRightView(requestsBigRightViews);
 
-            var referenceBigRightViews = _service.getBRView(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>();
+            var referenceBigRightViews = _service.GetBigRightViewByName(typeof(RequestsOrReferenceBigRightView), "vTsk_1_BRNotice", id).ToListOfType<RequestsOrReferenceBigRightView>();
             ViewsSingleton.SetReferenceBigRightView(referenceBigRightViews);
 
-            var ratedListBigRightViews = _service.getBRView(typeof(RatedListBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListBigRightView>();
+            var ratedListBigRightViews = _service.GetBigRightViewByName(typeof(RatedListBigRightView), "vTSK_1_BRRegister", id).ToListOfType<RatedListBigRightView>();
             ViewsSingleton.SetRatedListBigRightView(ratedListBigRightViews);
 
-            var spectacleBigRightViews = _service.getBRView(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
+            var spectacleBigRightViews = _service.GetBigRightViewByName(typeof(RatedListSpectacleBigRightView), "vTsk_1_BRAuthorsDistributed", null).ToListOfType<RatedListSpectacleBigRightView>();
             ViewsSingleton.SetRatedListSpectacleBigRightView(spectacleBigRightViews);
 
-            var authorsForLicenseBigRightViews = _service.getBRView(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>();
+            var authorsForLicenseBigRightViews = _service.GetBigRightViewByName(typeof(AuthorsForLicenseBigRightView), "vTsk_1_BRBidAuthors", id).ToListOfType<AuthorsForLicenseBigRightView>();
             ViewsSingleton.SetAuthorsForLicenseBigRightView(authorsForLicenseBigRightViews);
 
-            var ratedListMusicDesignBigRightViews = _service.getBRView(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();
+            var ratedListMusicDesignBigRightViews = _service.GetBigRightViewByName(typeof(RatedListMusicDesignBigRightView), "vTsk_1_BRMusic", null).ToListOfType<RatedListMusicDesignBigRightView>();
             ViewsSingleton.SetRatedListMusicDesignBigRightView(ratedListMusicDesignBigRightViews);
         }
 
@@ -128,8 +128,8 @@ namespace ConsumerBigRightWorkplace.Presenters
             }
             // _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            //_mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue), false);
-            _mainGrid.DataSource = _service.getMainViewBR(_currentNodeDocType, _currentNodeValue);
+            //_mainGrid?.SetGridDataSource(_service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue), false);
+            _mainGrid.DataSource = _service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue);
         }
 
         //створити нового користувача
@@ -298,7 +298,7 @@ namespace ConsumerBigRightWorkplace.Presenters
         // отримати список вистав
         private List<BigRightSpectacleView> GetSpectacle(int custId)
         {
-            return _service.getBRView(typeof(BigRightSpectacleView), "vTSK_1_BRObjects", custId).Select(item => item as BigRightSpectacleView).ToList();
+            return _service.GetBigRightViewByName(typeof(BigRightSpectacleView), "vTSK_1_BRObjects", custId).Select(item => item as BigRightSpectacleView).ToList();
         }
 
         //отримати список партнерів
@@ -332,8 +332,8 @@ namespace ConsumerBigRightWorkplace.Presenters
         // TODO: перехід на точечне оновлення
         private void UpdateData(int id)
         {
-            //_mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
-            var viewList = _service.getMainViewBR(_currentNodeDocType, _currentNodeValue);
+            //_mainGrid?.SetGridDataSource(_service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue));
+            var viewList = _service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue);
             _mainGrid.DataSource = viewList;
             var item = viewList.SingleOrDefault(rec => rec.CustId == ViewsSingleton.ConsumerBigRightView.CustId);
             ViewsSingleton.SetConsumerBigRightView(item);
@@ -342,8 +342,8 @@ namespace ConsumerBigRightWorkplace.Presenters
 
         public void UpdateDataGrid()
         {
-            //_mainGrid?.SetGridDataSource(_service.getMainViewBR(_currentNodeDocType, _currentNodeValue));
-            _mainGrid.DataSource = _service.getMainViewBR(_currentNodeDocType, _currentNodeValue);
+            //_mainGrid?.SetGridDataSource(_service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue));
+            _mainGrid.DataSource = _service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue);
         }
     }
 }
