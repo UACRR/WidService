@@ -264,7 +264,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.rightholderCompanyPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
             this.rightholderCompanyPage.Location = new System.Drawing.Point(103, 5);
             this.rightholderCompanyPage.Name = "rightholderCompanyPage";
-            this.rightholderCompanyPage.Size = new System.Drawing.Size(898, 436);
+            this.rightholderCompanyPage.Size = new System.Drawing.Size(898, 446);
             this.rightholderCompanyPage.Text = "Правовласник";
             // 
             // ctrlAnketaCompanyRightholderPage
@@ -843,7 +843,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageViewMain.DefaultPage = this.Anketa;
             this.pageViewMain.Location = new System.Drawing.Point(0, 1);
             this.pageViewMain.Name = "pageViewMain";
-            this.pageViewMain.SelectedPage = this.AnketaExternal;
+            this.pageViewMain.SelectedPage = this.Anketa;
             this.pageViewMain.Size = new System.Drawing.Size(1019, 481);
             this.pageViewMain.TabIndex = 20;
             this.pageViewMain.ThemeName = "Office2013Light";
@@ -881,7 +881,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPageView.DefaultPage = this.agreementPage;
             this.agreementPageView.Location = new System.Drawing.Point(1, 0);
             this.agreementPageView.Name = "agreementPageView";
-            this.agreementPageView.SelectedPage = this.rigthLimitationsPage;
+            this.agreementPageView.SelectedPage = this.agreementPage;
             this.agreementPageView.Size = new System.Drawing.Size(1009, 445);
             this.agreementPageView.TabIndex = 3;
             this.agreementPageView.ThemeName = "Office2013Light";
@@ -1010,7 +1010,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.externalAnketaPage.DefaultPage = this.radPageViewPage5;
             this.externalAnketaPage.Location = new System.Drawing.Point(1, 0);
             this.externalAnketaPage.Name = "externalAnketaPage";
-            this.externalAnketaPage.SelectedPage = this.radPageViewPage12;
+            this.externalAnketaPage.SelectedPage = this.radPageViewPage5;
             this.externalAnketaPage.Size = new System.Drawing.Size(1006, 448);
             this.externalAnketaPage.TabIndex = 3;
             this.externalAnketaPage.ThemeName = "Office2013Light";
