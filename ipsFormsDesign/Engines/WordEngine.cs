@@ -689,9 +689,12 @@ namespace ipsFormsDesign.Services
                     case "TablePLh":
                         FormTableBuisnessPlases(item.Range.Tables, clnBusinessPlaceHotel);
                         break;
- //new tables
+                    //new tables
                     case "TablePL1":
                         FormTablePl1(item.Range.Tables, clnBusinessPlaceLicense);
+                        break;
+                    case "TablePL0":
+                        FormTablePl0(item.Range.Tables, clnBusinessPlaceLicense);
                         break;
 
                     case "TablePL2":
@@ -2183,6 +2186,35 @@ namespace ipsFormsDesign.Services
         }
 
 
+        private void FormTablePl0(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
+        {
+            ClnBusinessPlace places;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            if (BuisnessPlace.Count == 0)
+            {
+                table.Rows.Add();
+                return;
+            }
+
+            var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            Row curRow = null;
+            int index = 1;
+            foreach (var item in BuisnessPlace)
+            {
+                places = item;
+
+                curRow = table.Rows.Add();
+                curRow.Cells[1].Range.Text = index.ToString();
+                index++;
+
+                curRow.Cells[2].Range.Text = places.PlaceName;
+                curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+                    + places.PlaceCity + "," + places.PlaceAddress;
+
+            }
+        }
+
         private void FormTablePl1(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
@@ -2211,18 +2243,22 @@ namespace ipsFormsDesign.Services
                     + places.PlaceCity + "," + places.PlaceAddress;
 
 
-                PlaceHollValue = string.Empty  ;
+                PlaceHollValue = string.Empty;
                 foreach (var place in item.ClnPlaceHoll)
                 {
                     if (place.ValueAdd == null)
                         PlaceHollValue = place?.ValuePlace ?? "";
                     else
                         PlaceHollValue = place.ValueAdd;
-                    
+
                 }
                 curRow.Cells[4].Range.Text = PlaceHollValue;
             }
         }
+
+
+
+
         private void FormTablePl2(Tables tables, ICollection<ClnBusinessPlace> BuisnessPlace)
         {
             ClnBusinessPlace places;
