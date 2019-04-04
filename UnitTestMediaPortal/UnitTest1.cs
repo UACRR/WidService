@@ -53,7 +53,7 @@ namespace UnitTestMediaPortal
         public void CheckDbfLoad()
         {
             DbfEngine eng = new DbfEngine();
-            var items = eng.ReadDbfFile(@"G:\MediaService\Import\DBF\181023e.DBF");
+            var items = eng.ReadDbfFile(@"G:\SO_WORK\IMPORT\DBF\181023e.dbf");
         }
 
         [TestMethod]

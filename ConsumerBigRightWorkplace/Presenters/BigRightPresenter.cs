@@ -5,10 +5,12 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary;
 using IpsViewComponentLibrary.ConsumerControls;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -251,7 +253,7 @@ namespace ConsumerBigRightWorkplace.Presenters
         }
 
         // змінити тип ліцензії (заявка, довідка, ліцензія)
-        private bool ChangeLicenseType(LicenseAgreement agreement, ConsumerService.LicType licType)
+        private bool ChangeLicenseType(LicenseAgreement agreement, LicType licType)
         {
             if (_service.SetLicenseType(agreement, licType))
             {

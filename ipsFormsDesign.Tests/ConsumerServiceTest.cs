@@ -150,26 +150,26 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result.RegisterStatuses.Count != 0, "RegisterStatuses is empty");
         }
 
-        [TestMethod]
-        public void TestGetMainView()
-        {
-            //save returned data 'objectright/view/list_01'
-            IList<ConsumerSmallRightView> result = _consumerService.GetMainView();
-            //check result on null state
-            Assert.IsNotNull(result, "result data is null");
-            //check collection on amount elements
-            Assert.IsTrue(result.Count != 0, "collection is empty");
-        }
+        //[TestMethod]
+        //public void TestGetMainView()
+        //{
+        //    //save returned data 'objectright/view/list_01'
+        //    IList<ConsumerSmallRightView> result = _consumerService.GetMainView();
+        //    //check result on null state
+        //    Assert.IsNotNull(result, "result data is null");
+        //    //check collection on amount elements
+        //    Assert.IsTrue(result.Count != 0, "collection is empty");
+        //}
 
-        [TestMethod]
-        public void TestGetListAll()
-        {
-            //save returned collection
-            IList<ConsumerSmallRightView> result = _consumerService.GetListAll();
-            //check result on null state
-            Assert.IsNotNull(result, "IList<ConsumerSmallRightView> result is null ");
-            //check collection on amount elements
-            Assert.IsTrue(result.Count != 0, "collection is empty");
-        }
+        //[TestMethod]
+        //public void TestGetListAll()
+        //{
+        //    //save returned collection
+        //    IList<ConsumerSmallRightView> result = _consumerService.GetListAll();
+        //    //check result on null state
+        //    Assert.IsNotNull(result, "IList<ConsumerSmallRightView> result is null ");
+        //    //check collection on amount elements
+        //    Assert.IsTrue(result.Count != 0, "collection is empty");
+        //}
     }
 }

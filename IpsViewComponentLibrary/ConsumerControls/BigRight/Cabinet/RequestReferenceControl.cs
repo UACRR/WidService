@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -364,7 +365,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         // [перевести в довідку]
         private void btnChangeToReference_Click(object sender, EventArgs e)
         {
-            if (!(ChangeLicenseType(ConsumerService.LicType.Reference) is bool result))
+            if (!(ChangeLicenseType(LicType.Reference) is bool result))
                 return;
 
             MessageShow.ShowInfoByResult(ChangeToReferenceSuccess, ChangeToReferenceError, result);
@@ -373,7 +374,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         // [перевести в ліцензію]
         private void btnChangeToLicense_Click(object sender, EventArgs e)
         {
-            if (!(ChangeLicenseType(ConsumerService.LicType.License) is bool result))
+            if (!(ChangeLicenseType(LicType.License) is bool result))
                 return;
 
             MessageShow.ShowInfoByResult(ChangeToLicenseSuccess, ChangeToLicenseError, result);
@@ -384,7 +385,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// </summary>
         /// <param name="licenseType">Тип ліцензії на який потрібно змінити</param>
         /// <returns>Результат обробки запиту</returns>
-        private bool? ChangeLicenseType(ConsumerService.LicType licenseType)
+        private bool? ChangeLicenseType(LicType licenseType)
         {
             if (!(gvViewRequests.CurrentRow?.DataBoundItem is RequestsOrReferenceBigRightView item))
                 return null;

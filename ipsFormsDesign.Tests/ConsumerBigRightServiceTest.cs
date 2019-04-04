@@ -65,10 +65,5 @@ namespace ipsFormsDesign.Tests
             var resultCustType_3 = _bigRightService.NewCustomer(3);
             Assert.IsNotNull(resultCustType_3);
         }
-
-        public void test()
-        {
-            _bigRightService.GetMainView();
-        }
     }
 }

@@ -1,20 +1,18 @@
-﻿using ipsFormsDesign;
+﻿using System.Collections.Generic;
+using System.Linq;
+using ipsFormsDesign;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public class CalculationInfoControlPresenter
     {
-        private ConsumerService _service;
-        CalculationInfoControl _control;
-        public CalculationInfoControlPresenter( CalculationInfoControl control, ConsumerService service)
+        private readonly ConsumerService _service;
+        readonly CalculationInfoControl _control;
+
+        public CalculationInfoControlPresenter(CalculationInfoControl control, ConsumerService service)
         {
             _service = service;
             _control = control;
@@ -25,7 +23,7 @@ namespace IpsViewComponentLibrary
 
         private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)
         {
-            _service.SetPeriodState( (ConsumerService.PeriodState)e.Status, e ) ;
+            _service.SetPeriodState((PeriodState) e.Status, e);
         }
 
         private void SaveLinkCommandExecuted(object sender, List<MoneyPeriodLink> e)
