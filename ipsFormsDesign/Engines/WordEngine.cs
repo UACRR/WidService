@@ -1288,24 +1288,24 @@ namespace ipsFormsDesign.Services
             string ShowPLAdress = string.Empty;
             string ShowPLName = clnBusinessPlaceTheater.FirstOrDefault()?.PlaceName ?? string.Empty;
             ShowPLName = '"' + ShowPLName + '"';
-            string countryCode = clnBusinessPlaceTheater?.FirstOrDefault().PlaceCountry ?? "804";
+            string countryCode = clnBusinessPlaceTheater?.FirstOrDefault()?.PlaceCountry ?? "804";
             string Country =  countries[clnBusinessPlaceTheater.FirstOrDefault()?.PlaceCountry ?? "804"].CountryName;
             ShowPLAdress = Country;
             string Region = string.Empty;
 
             if
              ((clnBusinessPlaceTheater.FirstOrDefault()?.PlaceRegion ?? 0) != 0)
-                Region = regions[clnBusinessPlaceTheater.FirstOrDefault().PlaceRegion ?? 0].Name;
+                Region = regions[clnBusinessPlaceTheater.FirstOrDefault()?.PlaceRegion ?? 0].Name;
             else
                 Region = "";
             if (Region != "")
                 ShowPLAdress = ShowPLAdress + ", " + Region.Trim();
             string City = string.Empty;
-            City = clnBusinessPlaceTheater?.FirstOrDefault().PlaceCity ?? "";
+            City = clnBusinessPlaceTheater?.FirstOrDefault()?.PlaceCity ?? "";
             if (City != "")
                 ShowPLAdress = ShowPLAdress + ", " + City.Trim();
             string Adress = string.Empty;
-            Adress = clnBusinessPlaceTheater?.FirstOrDefault().PlaceAddress ?? "";
+            Adress = clnBusinessPlaceTheater?.FirstOrDefault()?.PlaceAddress ?? "";
             if (Adress != "")
                 ShowPLAdress = ShowPLAdress + ", " + Adress.Trim();
 
@@ -1430,9 +1430,10 @@ namespace ipsFormsDesign.Services
             typeVat = $"{typeVAT[anketaCompany?.TypeVat ?? 2].Name}";
 
             LicenseBigR licenseBigR = licA?.LicenseBigR;
-            var creativeRole = _dic.creativeRoleType;
+            var creativeRoleType = _dic.creativeRoleType;
             var authors = licenseBigR?.Obj.Authors?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
             var copyright = licenseBigR?.Obj.CopyRight?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
+//            var licauthorbr = licenseBigR?.Obj.CopyRight.Where(rec=>rec.LicAuthorBr != null ).Select(rec => rec.LicAuthorBr   ).ToList();
             var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
 
             var TbAPrc = new List<TbAuthorPrc>();
@@ -1440,46 +1441,49 @@ namespace ipsFormsDesign.Services
 
             {
                 TbAPrc = (from aut in authors
-                          join crt in creativeRole on aut.RoleCode equals crt.CodeI
+                          join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
                           join cpr in copyright on aut.CustId equals cpr.CustId
                           select new TbAuthorPrc
                           { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
             }
 
-            var TbAL = new List<TbAuthorL>();
-            if (authors != null)
-            {
-                TbAL = (from aut in authors
-                        join crt in creativeRole on aut.RoleCode equals crt.CodeI
-                        join cpr in copyright on aut.CustId equals cpr.CustId
-                        join lab in licauthorbr on cpr.CRightId equals lab.CRightId
-                        where lab.PrepayType == 1
-                        select new TbAuthorL
-                        {
-                            RoleName = crt.Name,
-                            AuthorName = aut.AuthorName,
-                            CountryName = null,
-                            PrepaySum = lab.PrepaySum ?? 0,
-                            Currency = lab.R030 ?? "980"
-                            ,
-                            PrepayDateDo = lab.PrepayDateDo
-                        }).ToList();
-            }
+                var TbAL = new List<TbAuthorL>();
+                       if (authors != null)
+                            {
+                                TbAL = (from aut in authors
+                                        join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
+                                        join cpr in copyright on aut.CustId equals cpr.CustId 
+                                        join lab in licauthorbr on cpr.CRightId equals lab?.CRightId into tempp
+                                        from lab in tempp.DefaultIfEmpty()                  
+                                       where lab?.PrepayType == 1
+                                        select new TbAuthorL
+                                        {
+                                            RoleName = crt.Name,
+                                            AuthorName = aut.AuthorName,
+                                            CountryName = null,
+                                            PrepaySum = lab?.PrepaySum ?? 0,
+                                            Currency = lab.R030 ?? "980"
+                                            ,
+                                            PrepayDateDo = lab?.PrepayDateDo 
+                                        }).ToList();
+                            }
+
             var TbAvAdv = new List<TbAuthorL>();
             if (authors != null)
             {
                 TbAvAdv = (from aut in authors
-                           join crt in creativeRole on aut.RoleCode equals crt.CodeI
+                           join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
                            join cpr in copyright on aut.CustId equals cpr.CustId
-                           join lab in licauthorbr on cpr.CRightId equals lab.CRightId
-                           where lab.PrepayType == 2
+                           join lab in licauthorbr on cpr.CRightId equals lab?.CRightId into temp1
+                           from lab in temp1.DefaultIfEmpty()
+                           where lab?.PrepayType == 2
                            select new TbAuthorL
                            {
                                RoleName = crt.Name,
                                AuthorName = aut.AuthorName,
                                CountryName = null,
-                               PrepaySum = lab.PrepaySum ?? 0,
-                               Currency = lab.R030 ?? "980"
+                               PrepaySum = lab?.PrepaySum ?? 0,
+                               Currency = lab?.R030 ?? "980"
                                ,
                                PrepayDateDo = lab.PrepayDateDo
                            }).ToList();
