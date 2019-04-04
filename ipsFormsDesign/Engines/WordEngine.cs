@@ -1438,6 +1438,7 @@ namespace ipsFormsDesign.Services
             var copyright = licenseBigR?.Obj.CopyRight?.Where(rec => rec.ObjId == licenseBigR.ObjId).ToList();
 //            var licauthorbr = licenseBigR?.Obj.CopyRight.Where(rec=>rec.LicAuthorBr != null ).Select(rec => rec.LicAuthorBr   ).ToList();
             var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
+           string ObjName = licenseBigR?.Obj?.Name;
 
             var TbAPrc = new List<TbAuthorPrc>();
             if (authors != null)
@@ -1600,13 +1601,13 @@ namespace ipsFormsDesign.Services
                     break;
 */
                     case "TableAvtorPrc":
-                        FormTableAvtorPrc(item.Range.Tables, TbAPrc);
+                        FormTableAvtorPrc(item.Range.Tables, TbAPrc, ObjName);
                         break;
                     case "TableAvtorLmp":
-                        FormTableAvtorLmp(item.Range.Tables, TbAL);
+                        FormTableAvtorLmp(item.Range.Tables, TbAL,ObjName);
                         break;
                     case "TableAvtorAdv":
-                        FormTableAvtorLmp(item.Range.Tables, TbAvAdv);
+                        FormTableAvtorLmp(item.Range.Tables, TbAvAdv, ObjName);
                         break;
 
 
@@ -2102,7 +2103,7 @@ namespace ipsFormsDesign.Services
 
         }
 
-        private void FormTableAvtorPrc(Tables tables, List<TbAuthorPrc> list)
+        private void FormTableAvtorPrc(Tables tables, List<TbAuthorPrc> list, string objname)
         {
             TbAuthorPrc tbAuthorPrc;
             if (tables.Count == 0) return;
@@ -2115,13 +2116,14 @@ namespace ipsFormsDesign.Services
                 curRow = table.Rows.Add();
 
                 index++;
-                curRow.Cells[1].Range.Text = tbAuthorPrc.RoleName.ToString();
-                curRow.Cells[2].Range.Text = tbAuthorPrc.AuthorName.ToString();
-                curRow.Cells[3].Range.Text = "Україна";
-                curRow.Cells[4].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
+                curRow.Cells[1].Range.Text = objname;
+                curRow.Cells[2].Range.Text = tbAuthorPrc.RoleName.ToString();
+                curRow.Cells[3].Range.Text = tbAuthorPrc.AuthorName.ToString();
+                curRow.Cells[4].Range.Text = "Україна";
+                curRow.Cells[5].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
             }
         }
-        private void FormTableAvtorLmp(Tables tables, List<TbAuthorL> list)
+        private void FormTableAvtorLmp(Tables tables, List<TbAuthorL> list, string objname)
         {
             TbAuthorL tbAuthorL;
             if (tables.Count == 0) return;
@@ -2138,12 +2140,13 @@ namespace ipsFormsDesign.Services
                 tbAuthorL = item;
                 curRow = table.Rows.Add();
                 index++;
-                curRow.Cells[1].Range.Text = tbAuthorL.RoleName.ToString();
-                curRow.Cells[2].Range.Text = tbAuthorL.AuthorName.ToString();
-                curRow.Cells[3].Range.Text = "Україна";
-                curRow.Cells[4].Range.Text = (Convert.ToDecimal(tbAuthorL.PrepaySum)).ToString("F");
-                curRow.Cells[5].Range.Text = tbAuthorL.Currency.ToString();
-                curRow.Cells[6].Range.Text = $"{tbAuthorL.PrepayDateDo:dd.MM.yyyy}";
+                curRow.Cells[1].Range.Text = objname;
+                curRow.Cells[2].Range.Text = tbAuthorL.RoleName.ToString();
+                curRow.Cells[3].Range.Text = tbAuthorL.AuthorName.ToString();
+                curRow.Cells[4].Range.Text = "Україна";
+                curRow.Cells[5].Range.Text = (Convert.ToDecimal(tbAuthorL.PrepaySum)).ToString("F");
+                curRow.Cells[6].Range.Text = tbAuthorL.Currency.ToString();
+                curRow.Cells[7].Range.Text = $"{tbAuthorL.PrepayDateDo:dd.MM.yyyy}";
             }
         }
 
