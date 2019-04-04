@@ -282,7 +282,7 @@ namespace ipsFormsDesign.Services
         /// <param name="worrh"></param>
         /// <returns></returns>
         public bool SaveBRWorkRH(int licId, List<WorkRh> worrh)
-        {
+        { 
             string url = string.Concat(_prefix, "BR/WorkRH");
             return _webApi.UpdateItem<List<WorkRh>>(url, licId.ToString(), worrh);
         }
