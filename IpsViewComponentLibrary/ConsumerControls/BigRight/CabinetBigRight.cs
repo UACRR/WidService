@@ -253,6 +253,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 case CabinetTabType.None: break;
 
                 case CabinetTabType.Anketa:
+                    ctrlContactHeader.SetControlTextInfoBigRight(_customer);
                     ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
                     ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
                     break;

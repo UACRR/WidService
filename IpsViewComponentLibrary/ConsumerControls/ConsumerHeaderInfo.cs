@@ -26,16 +26,18 @@ namespace IpsViewComponentLibrary.ConsumerControls
         public void SetControlTextInfoSmallRight(Customer customer)
         {
             var userInfo = customer.Company?.AnketaCompany?.SingleOrDefault();
-            var head = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1);
-            var contactPerson = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3);
             txtConsumerName.Text = userInfo?.Name ?? string.Empty;
             txtConsumerInnokpo.Text = userInfo?.Okpo ?? string.Empty;
-            txtContactName.Text = contactPerson?.Empl?.FirstName + " " + contactPerson?.Empl?.LastName + " " + contactPerson?.Empl?.SurName;
-            txtContactPhone.Text = contactPerson?.Empl?.PhoneNumber ?? string.Empty;
-            txtContactEmail.Text = contactPerson?.Empl?.Email ?? string.Empty;
-            txtHeadName.Text = head?.Empl?.FirstName + " " + head?.Empl?.LastName + " " + head?.Empl?.SurName;
+
+            var head = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1);
+            txtHeadName.Text = $"{head?.Empl?.LastName} {head?.Empl?.FirstName} {head?.Empl?.SurName}";
             txtHeadPhone.Text = head?.Empl?.PhoneNumber ?? string.Empty;
             txtHeadEmail.Text = head?.Empl?.Email ?? string.Empty;
+
+            var contactPerson = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3);
+            txtContactName.Text = $"{contactPerson?.Empl?.LastName} {contactPerson?.Empl?.FirstName} {contactPerson?.Empl?.SurName}";
+            txtContactPhone.Text = contactPerson?.Empl?.PhoneNumber ?? string.Empty;
+            txtContactEmail.Text = contactPerson?.Empl?.Email ?? string.Empty;
         }
 
         /// <summary>
@@ -44,18 +46,25 @@ namespace IpsViewComponentLibrary.ConsumerControls
         /// <param name="customer"></param>
         public void SetControlTextInfoBigRight(Customer customer)
         {
-            var head = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1);
-            var contactPerson = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3);
             var view = ViewsSingleton.ConsumerBigRightView;
-
             txtConsumerName.Text = view?.Name ?? string.Empty;
             txtConsumerInnokpo.Text = view?.Innokpo ?? string.Empty;
-            txtContactName.Text = contactPerson?.Empl?.FirstName + " " + contactPerson?.Empl?.LastName + " " + contactPerson?.Empl?.SurName;
-            txtContactPhone.Text = contactPerson?.Empl?.PhoneNumber ?? string.Empty;
-            txtContactEmail.Text = contactPerson?.Empl?.Email ?? string.Empty;
-            txtHeadName.Text = head?.Empl?.FirstName + " " + head?.Empl?.LastName + " " + head?.Empl?.SurName;
-            txtHeadPhone.Text = head?.Empl?.PhoneNumber ?? string.Empty;
-            txtHeadEmail.Text = head?.Empl?.Email ?? string.Empty;
+
+            var headEmployee = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 1)?.Empl;
+            if (headEmployee != null)
+            {
+                txtHeadName.Text = $"{headEmployee.LastName} {headEmployee.FirstName} {headEmployee.SurName}";
+                txtHeadPhone.Text = headEmployee.PhoneNumber ?? string.Empty;
+                txtHeadEmail.Text = headEmployee.Email ?? string.Empty;
+            }
+
+            var contactPersonEmployee = customer.Company?.RelEmployee?.SingleOrDefault(cId => cId.PositionCode == 3)?.Empl;
+            if (contactPersonEmployee != null)
+            {
+                txtContactName.Text = $"{contactPersonEmployee.LastName} {contactPersonEmployee.FirstName} {contactPersonEmployee.SurName}";
+                txtContactPhone.Text = contactPersonEmployee.PhoneNumber ?? string.Empty;
+                txtContactEmail.Text = contactPersonEmployee.Email ?? string.Empty;
+            }
         }
     }
 }

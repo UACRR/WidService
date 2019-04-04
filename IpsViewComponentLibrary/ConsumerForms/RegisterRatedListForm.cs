@@ -288,7 +288,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         // при переході на вкладку музичного супроводу
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {
-            if(!(gvRegisterView.CurrentRow.DataBoundItem is RegisterRatedListGridDataSource item))
+            if(!(gvRegisterView.CurrentRow?.DataBoundItem is RegisterRatedListGridDataSource item))
                 return;
 
             if (pageView.SelectedPage == pvMusicDesign)
