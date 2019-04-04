@@ -227,13 +227,13 @@ namespace IpsViewComponentLibrary.RightholderControls
 
                 if (customer.CustType == 3)
                 {
-                    result = ctrlAnketaPersonRightholderPage.Validator();
+                    result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
                 }
                 else if (customer.CustType == 5)
                     result = true;
                 else
                 {
-                    result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
+                    result = ctrlAnketaPersonRightholderPage.Validator();
                 }
 
                 return result & ctrlServiceComissionControl.ValidateChildren(); // & ctrlContacts.Validator();

@@ -222,6 +222,7 @@ namespace ipsFormsDesign.Tests
         [TestMethod()]
         public void TestGetNotAcceptedObjectsByRightholder()
         {
+            // var api = _service._webApi;
             var list = _service.GetNotAcceptedObjectsByRightholder(42349);
             Assert.IsNotNull(list);
         }

@@ -4,8 +4,11 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Model.SQLViewsData;
 using ipsFormsDesign.ViewModels.Rightholders;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using WebAPIConnector;
+
+[assembly: InternalsVisibleTo("ipsFormsDesign.Tests")]
 
 namespace ipsFormsDesign.Services
 {

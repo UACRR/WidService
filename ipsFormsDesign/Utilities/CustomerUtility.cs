@@ -13,6 +13,8 @@ namespace ipsFormsDesign.Utilities
         {
             if (customer.CustType == 3) // Jur
                 return customer.Company.AnketaCompany.Where(rec => rec.Version == customer.AnkVersion).FirstOrDefault()?.Name;
+            else if (customer.CustType == 5)
+                return customer.AnketaExternal.Name;
             else
             {
                 var anketa = customer.Person.AnketaPerson.Where(rec => rec.Version == customer.AnkVersion).FirstOrDefault();
