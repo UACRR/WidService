@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ipsmedserviceapp", "ipsmeds
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpsViewComponentLibrary", "IpsViewComponentLibrary\IpsViewComponentLibrary.csproj", "{C0C413B4-086C-422C-82D6-A02E6284ABDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsumerWorkplace_v_1._0", "ConsumerWorkplace_v_1.0\ConsumerWorkplace_v_1._0.csproj", "{588CE9FF-3C07-4E1B-B6F1-10AEDAED0230}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9A0A5CF1-DA6E-4E1A-AF64-FFAC4E027068}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
