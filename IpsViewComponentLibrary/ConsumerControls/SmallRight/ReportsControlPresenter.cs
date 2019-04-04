@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ipsFormsDesign;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 
@@ -70,14 +71,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private void _control_SetPeriodStateExecuted(object sender, PaidPeriod e)
         {
             if( e == null ) return;
-            _service.SetPeriodState((ConsumerService.PeriodState)e.Status, e);
+            _service.SetPeriodState((PeriodState) e.Status, e);
         }
 
         private void _control_SetRegisterStateExecuted(object sender, List<Register> e)
         {
             Register first = e.First();
             int state = first.RgStatus ?? 0;
-            var retList = _service.SetRegisterState((ConsumerService.RegisterState)state, e);
+            var retList = _service.SetRegisterState((RegisterState)state, e);
             if (state == 3)
             {
                 first.Rm.Status = 1;

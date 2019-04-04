@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet;
@@ -252,6 +253,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
                 case CabinetTabType.None: break;
 
                 case CabinetTabType.Anketa:
+                    ctrlContactHeader.SetControlTextInfoBigRight(_customer);
                     ctrlAnketaConsumer.SetDataAndDictionaries(_customer);
                     ctrlAnketaConsumer.InitializeControl(null, null, ConsumerAnketeType.EditAnketa);
                     break;
@@ -352,7 +354,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             return OnSaveCustomerNeed?.Invoke(customer) ?? false;
         }
 
-        private bool CtrlRequest_OnLicenseTypeChange(LicenseAgreement agreement, ipsFormsDesign.Services.ConsumerService.LicType licType)
+        private bool CtrlRequest_OnLicenseTypeChange(LicenseAgreement agreement, LicType licType)
         {
             return OnChangeLicenseType?.Invoke(agreement, licType) ?? false;
         }

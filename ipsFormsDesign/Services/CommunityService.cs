@@ -9,6 +9,7 @@ using System.Reflection;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Enums;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services

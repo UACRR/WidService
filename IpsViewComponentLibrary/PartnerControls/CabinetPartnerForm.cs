@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
