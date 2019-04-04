@@ -67,6 +67,7 @@ Thumbs.db
 MediaServiceDb/MediaServiceDb.jfm
 MediaServiceDb/MediaServiceDb.dbmdl
 /ipsmedserviceapp/ClientApp/node_modules
+#MediaServiceInstaller
 /MediaServiceInstaller
 !/MediaServiceInstaller/MediaServiceInstaller.aiproj
 !/MediaServiceInstaller/MediaServiceInstaller.aip
