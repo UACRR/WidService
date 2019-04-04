@@ -732,7 +732,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPageView.Location = new System.Drawing.Point(1, 0);
             this.agreementPageView.Name = "agreementPageView";
             this.agreementPageView.SelectedPage = this.agreementPage;
-            this.agreementPageView.Size = new System.Drawing.Size(1009, 447);
+            this.agreementPageView.Size = new System.Drawing.Size(1009, 445);
             this.agreementPageView.TabIndex = 3;
             this.agreementPageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.agreementPageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
