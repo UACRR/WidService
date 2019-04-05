@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -64,6 +66,72 @@ namespace ipsFormsDesign.Tests
 
             var resultCustType_3 = _bigRightService.NewCustomer(3);
             Assert.IsNotNull(resultCustType_3);
+        }
+
+        [TestMethod]
+        public void SaveCustomer_test()
+        {
+            var customer = GetTemplate(3);
+            //var result = _bigRightService.Save(customer);
+            //var data = _bigRightService.GetData();
+        }
+
+        private Customer GetTemplate(int custType)
+        {
+            var customer = new Customer
+            {
+                CustType = custType,
+                AnkVersion = 1,
+                Status = 2,
+                Client = new Client()
+            };
+            var agreementMaster = new AgreementMaster
+            {
+                AgrStatus = 0,
+                AgrType = 2,
+                Version = 1
+            };
+            var licenseAgreement = new LicenseAgreement
+            {
+                LicStatus = 0,
+                Agr = agreementMaster,
+                LicVersion = 1
+            };
+
+            licenseAgreement.LicenseAgrParam.Add(new LicenseAgrParam
+            {
+                LicVersion = 1,
+                LicStatus = 0,
+            });
+
+            agreementMaster.LicenseAgreement.Add(licenseAgreement);
+            customer.AgreementMaster.Add(agreementMaster);
+
+            customer.Client.LicenseAgreement.Add(licenseAgreement);
+
+            // юр особа
+            if (customer.CustType == 3)
+            {
+                customer.Company = new Company();
+                customer.Company.AnketaCompany.Add(new AnketaCompany
+                {
+                    Version = 1,
+                    Status = 2,
+                    TypeVat = 1
+                });
+            }
+            // Фіз. особа
+            else
+            {
+                customer.Person = new Person();
+                customer.Person.AnketaPerson.Add(new AnketaPerson
+                {
+                    Version = 1,
+                    Status = 2
+                });
+            }
+
+            return customer;
         }
     }
 }

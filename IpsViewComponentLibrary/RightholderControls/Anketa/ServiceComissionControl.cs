@@ -44,13 +44,13 @@ namespace IpsViewComponentLibrary.RightholderControls.Anketa
         }
 
 
-        [Category("Data")]
-        [Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
-        public string DataMember
-        {
-            get { return agreementAddRhBindingSource.DataMember; }
-            set { agreementAddRhBindingSource.DataMember = value; }
-        }
+        //[Category("Data")]
+        //[Editor("System.Windows.Forms.Design.DataMemberFieldEditor, System.Design", "System.Drawing.Design.UITypeEditor, System.Drawing")]
+        //public string DataMember
+        //{
+        //    get { return agreementAddRhBindingSource.DataMember; }
+        //    set { agreementAddRhBindingSource.DataMember = value; }
+        //}
 
         #region Edit controls
 

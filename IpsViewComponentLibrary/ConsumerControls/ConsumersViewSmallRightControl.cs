@@ -37,7 +37,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 _gridStateRecorder.ClearGridStates();
                 gvViewConsumers.DataSource = source;
                 // show count consumers from grid
-                lblCountConsumers.Text = source.Count.ToString();
+                lblCountConsumers.Text = (source?.Count)?.ToString();
             }
         }
 

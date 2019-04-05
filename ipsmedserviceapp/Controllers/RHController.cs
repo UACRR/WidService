@@ -97,15 +97,14 @@ left outer join TermsOfService t2 on  custid = @custid and t2.CRKindCode = t1.co
                 }
             }
 
+            int?[] validAgrTypes = { 1, 5 };
             await _dbContext.Entry(cust).Collection(rec => rec.AgreementMaster)
                 .Query()
-                .Where(item => item.AgrStatus != 4 && item.AgrType == 1)
+                .Where(item=>validAgrTypes.Contains( item.AgrType ))
                 .LoadAsync();
 
             // load only one active agreement with AgreementAddRh for customer
             await _dbContext.Entry(cust.RightHolder).Collection(rec => rec.AgreementAddRh)
-                .Query()
-                .Where(item => item.AgrStatus != 4)
                 .LoadAsync();
 
 

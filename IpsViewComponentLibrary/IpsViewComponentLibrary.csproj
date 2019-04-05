@@ -212,6 +212,7 @@
     <Compile Include="Extensions\WindowsFormsVisible.cs" />
     <Compile Include="ImportDBF\Presenters\DBFPresenter.cs" />
     <Compile Include="InternalControlsModel\MusicDesignHeaderInfo.cs" />
+    <Compile Include="InternalControlsModel\PlacesForAgreement.cs" />
     <Compile Include="InternalControlsModel\RegisterRatedListHierarchy.cs" />
     <Compile Include="PartnerControls\PartnerFilter.cs" />
     <Compile Include="RightholderControls\Anketa\AnketaExternalRightholderControl.cs">
@@ -1635,6 +1636,7 @@
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.PlacesForAgreement.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.RightholderControls.RightholderView.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

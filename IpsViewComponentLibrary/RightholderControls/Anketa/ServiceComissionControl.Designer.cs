@@ -55,7 +55,8 @@
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(319, 34);
             this.radLabel1.TabIndex = 2;
-            this.radLabel1.Text = "збір за управління, необхідний для покриття витрат на забезпечення діяльності Підприємства";
+            this.radLabel1.Text = "збір за управління, необхідний для покриття витрат на забезпечення діяльності Під" +
+    "приємства";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // radLabel2
@@ -71,7 +72,7 @@
             // 
             // mtxtRateCommission
             // 
-            this.mtxtRateCommission.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.agreementAddRhBindingSource, "RateCommiss", true));
+            this.mtxtRateCommission.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.agreementAddRhBindingSource, "RateCommiss", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.mtxtRateCommission.Location = new System.Drawing.Point(329, 11);
             this.mtxtRateCommission.Mask = "N0";
             this.mtxtRateCommission.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
@@ -90,7 +91,7 @@
             // 
             // mtxtRateCourt
             // 
-            this.mtxtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.agreementAddRhBindingSource, "RateCourt", true));
+            this.mtxtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.agreementAddRhBindingSource, "RateCourt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.mtxtRateCourt.Location = new System.Drawing.Point(329, 53);
             this.mtxtRateCourt.Mask = "N0";
             this.mtxtRateCourt.MaskType = Telerik.WinControls.UI.MaskType.Numeric;
