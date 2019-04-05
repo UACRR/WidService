@@ -5,6 +5,7 @@ using IpsViewComponentLibrary.Utilities;
 using System;
 using System.Collections.Generic;
 using IpsViewComponentLibrary.ConsumerForms;
+using System.Windows.Forms;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -31,7 +32,9 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void UpdateObjectsList()
         {
-            var objectRightList = _rightholderService.GetNotAcceptedObjectsByRightholder(_view.SelectedRightholder.CustId);
+            IList<ObjectRightNotAccepted> objectRightList = _view.SelectedRightholder != null ?
+                        _rightholderService.GetNotAcceptedObjectsByRightholder(_view.SelectedRightholder.CustId) :
+                        new List<ObjectRightNotAccepted>();
             _view.ObjectRightListDataSource = objectRightList;
         }
 
@@ -74,6 +77,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         public void Print()
         {
+            if(_view.SelectedRightholder == null )
+            {
+                MessageBox.Show("Не встановлено поточного запису", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var objectRightList = (ICollection<ObjectRightNotAccepted>)_view.ObjectRightListDataSource;
 
             var printView = new ViewAndPrintAgreementForm();
@@ -85,6 +93,11 @@ namespace IpsViewComponentLibrary.ObjectRightControls
 
         private void UpdateStatusAndDate(ICollection<ObjectRightNotAccepted> objectRightList)
         {
+            if (_view.SelectedRightholder == null)
+            {
+                MessageBox.Show("Не встановлено поточного запису", "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             _view.SelectedRightholder.WorkDateRH = DateTime.Now;
 
             foreach (var obj in objectRightList)
