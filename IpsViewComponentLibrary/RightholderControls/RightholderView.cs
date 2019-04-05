@@ -236,7 +236,7 @@ namespace IpsViewComponentLibrary.RightholderControls
                     result = ctrlAnketaPersonRightholderPage.Validator();
                 }
 
-                return result & ctrlServiceComissionControl.ValidateChildren(); // & ctrlContacts.Validator();
+                return result & ctrlServiceComissionControl.ValidateChildren(); 
             }
         }
 
