@@ -8,6 +8,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.RightholderControls.Anketa;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -172,47 +173,53 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
+
             //set active pages on depends field 'CustType'
-            ShowActivePages(customer);
+            //ShowActivePages(customer);
 
             //disable unusable code
             //_isCompany = customer.CustType == 3;
 
-            if (customer.CustType == 3)
-            {
-                rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
-                rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
-                anketaPageView.SelectedPage = rightholderCompanyPage;
 
-                contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
-                contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
-                ctrlMiddleControlAddress.SetDataSources(customer);
+            //test model
+            DirectorCustType _director = new DirectorCustType(this, customer);
+            _director.CurrentTypeCustomer.ShowPages();
+            _director.CurrentTypeCustomer.RunSetings();
+            //if (customer.CustType == 3)
+            //{
+            //    rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
+            //    rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+            //    anketaPageView.SelectedPage = rightholderCompanyPage;
 
-                managersPage.Item.Visibility = ElementVisibility.Visible;
-                passportPage.Item.Visibility = ElementVisibility.Collapsed;
-                ctrlMiddleControlManagers.SetDataSources(customer);
-            }
-            else if (customer.CustType == 5)
-            {
-                //set default active page for External Anketa
-                pageViewMain.SelectedPage = AnketaExternal;
-                //set data of the External Anketa
-                anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
-                anketaExternalRightholderControl1.DataSourceRightHolder = bsRightHolder;
+            //    contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
+            //    contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+            //    ctrlMiddleControlAddress.SetDataSources(customer);
 
-            }
-            else
-            {
-                rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
-                rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
-                anketaPageView.SelectedPage = rightholderPersonPage;
+            //    managersPage.Item.Visibility = ElementVisibility.Visible;
+            //    passportPage.Item.Visibility = ElementVisibility.Collapsed;
+            //    ctrlMiddleControlManagers.SetDataSources(customer);
+            //}
+            //else if (customer.CustType == 5)
+            //{
+            //    //set default active page for External Anketa
+            //    pageViewMain.SelectedPage = AnketaExternal;
+            //    //set data of the External Anketa
+            //    anketaExternalRightholderControl1.DataSourceAnketaExternal = bsAnketaExternal;
+            //    anketaExternalRightholderControl1.DataSourceRightHolder = bsRightHolder;
 
-                contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
-                contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
+            //}
+            //else
+            //{
+            //    rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+            //    rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
+            //    anketaPageView.SelectedPage = rightholderPersonPage;
 
-                managersPage.Item.Visibility = ElementVisibility.Collapsed;
-                passportPage.Item.Visibility = ElementVisibility.Visible;
-            }
+            //    contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+            //    contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
+
+            //    managersPage.Item.Visibility = ElementVisibility.Collapsed;
+            //    passportPage.Item.Visibility = ElementVisibility.Visible;
+            //}
 
             ShowDialog();
         }
@@ -223,20 +230,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             get
             {
                 var customer = (Customer)bsCustomer.Current;
-                var result = true;
+                DirectorCustType director = new DirectorCustType(this, customer);
+                return director.CurrentTypeCustomer.IsValidData();
+                //var result = true;
 
-                if (customer.CustType == 3)
-                {
-                    result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
-                }
-                else if (customer.CustType == 5)
-                    result = true;
-                else
-                {
-                    result = ctrlAnketaPersonRightholderPage.Validator();
-                }
+                //if (customer.CustType == 3)
+                //{
+                //    result = ctrlAnketaCompanyRightholderPage.Validator() & ctrlMiddleControlManagers.Validator();
+                //}
+                //else if (customer.CustType == 5)
+                //    result = true;
+                //else
+                //{
+                //    result = ctrlAnketaPersonRightholderPage.Validator();
+                //}
 
-                return result & ctrlServiceComissionControl.ValidateChildren(); 
+                //return result & ctrlServiceComissionControl.ValidateChildren(); // & ctrlContacts.Validator();
             }
         }
 
@@ -466,6 +475,189 @@ namespace IpsViewComponentLibrary.RightholderControls
             }
         }
 
+        
+        /// <summary>
+        /// define common class for all Types
+        /// </summary>
+        class DirectorCustType
+        {
+            //define current Customer type
+            private ICustTypeCustomer _currentTypeCustomer;
+            public ICustTypeCustomer CurrentTypeCustomer
+            {
+                get { return _currentTypeCustomer; }
+            }
 
+            //define necessary customer Type
+            public DirectorCustType(RightholderView view, Customer customer)
+            {
+                //initialize customer type
+                switch (customer.CustType)
+                {
+                    case 3:
+                        _currentTypeCustomer = new JurFactoryCustomer(view, customer);
+                        break;
+                    case 5:
+                        _currentTypeCustomer = new ExternalAnketaCustomer(view, customer);
+                        break;
+                    default:
+                        _currentTypeCustomer = new DefaultCustomer(view, customer);
+                        break;
+                }
+            }
+        }
+        
+        /// <summary>
+        /// define posibilities for Types of the customer
+        /// </summary>
+        public interface ICustTypeCustomer
+        {
+            //define first settings: set data source,
+            //                       show certain pages
+            void RunSetings();
+            //check on valid state input data
+            bool IsValidData();
+            //show pages
+            void ShowPages();
+        }
+        
+        /// <summary>
+        /// define class for CustType - 3
+        /// </summary>
+        class JurFactoryCustomer : ICustTypeCustomer
+        {
+            private RightholderView _rightholderView;
+            //current customer
+            private Customer _customer;
+            public JurFactoryCustomer(RightholderView rightholderView, Customer customer)
+            {
+                _rightholderView = rightholderView;
+                _customer = customer;
+            }
+
+            //define first settings: set data source,
+            //                       show certain pages
+            public void RunSetings()
+            {
+                _rightholderView.rightholderCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                _rightholderView.rightholderPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                _rightholderView.anketaPageView.SelectedPage = _rightholderView.rightholderCompanyPage;
+
+                _rightholderView.contactsCompanyPage.Item.Visibility = ElementVisibility.Visible;
+                _rightholderView.contactsPersonPage.Item.Visibility = ElementVisibility.Collapsed;
+                _rightholderView.ctrlMiddleControlAddress.SetDataSources(_customer);
+
+                _rightholderView.managersPage.Item.Visibility = ElementVisibility.Visible;
+                _rightholderView.passportPage.Item.Visibility = ElementVisibility.Collapsed;
+                _rightholderView.ctrlMiddleControlManagers.SetDataSources(_customer);
+            }
+
+            //check on valid state input data
+            public bool IsValidData()
+            {
+                bool result = _rightholderView.ctrlAnketaCompanyRightholderPage.Validator() & _rightholderView.ctrlMiddleControlManagers.Validator();
+                return result & _rightholderView.ctrlServiceComissionControl.ValidateChildren();
+            }
+
+            //show pages
+            public void ShowPages()
+            {
+                //get all pages
+                foreach (var page in _rightholderView.pageViewMain.Pages)
+                    //hide current page if it's: ExternalAnketa
+                    if (_customer.CustType != 5 && page.Name == "AnketaExternal")
+                        page.Item.Visibility = ElementVisibility.Collapsed;
+            }
+        }
+        
+        /// <summary>
+        /// define class for CustType - 5
+        /// </summary>
+        class ExternalAnketaCustomer : ICustTypeCustomer
+        {
+            private RightholderView _rightholderView;
+            //define customer
+            private Customer _customer;
+            public ExternalAnketaCustomer(RightholderView rightholderView, Customer customer)
+            {
+                _rightholderView = rightholderView;
+                _customer = customer;
+            }
+
+            //define first settings: set data source,
+            //                       show certain pages
+            public void RunSetings()
+            {
+                //set default active page for External Anketa
+                _rightholderView.pageViewMain.SelectedPage = _rightholderView.AnketaExternal;
+                //set data of the External Anketa
+                _rightholderView.anketaExternalRightholderControl1.DataSourceAnketaExternal = _rightholderView.bsAnketaExternal;
+                _rightholderView.anketaExternalRightholderControl1.DataSourceRightHolder = _rightholderView.bsRightHolder;
+            }
+            
+            //check on valid state input data
+            public bool IsValidData()
+            {
+                bool result = true;
+                return result & _rightholderView.ctrlServiceComissionControl.ValidateChildren();
+            }
+
+            //show necessary pages
+            public void ShowPages()
+            {
+                foreach (var page in _rightholderView.pageViewMain.Pages)
+                {
+                    if (page.Name == "Anketa" || page.Name == "Contract")
+                        page.Item.Visibility = ElementVisibility.Collapsed;
+                }
+            }
+        }
+
+        /// <summary>
+        /// define class for other CustType
+        /// </summary>
+        class DefaultCustomer : ICustTypeCustomer
+        {
+            private RightholderView _rightholderView;
+            //define current Customer
+            private Customer _customer;
+            public DefaultCustomer(RightholderView rightholderView, Customer customer)
+            {
+                _rightholderView = rightholderView;
+                _customer = customer;
+            }
+
+            //define first settings: set data source,
+            //                       show certain pages
+            public void RunSetings()
+            {
+                _rightholderView.rightholderCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                _rightholderView.rightholderPersonPage.Item.Visibility = ElementVisibility.Visible;
+                _rightholderView.anketaPageView.SelectedPage = _rightholderView.rightholderPersonPage;
+
+                _rightholderView.contactsCompanyPage.Item.Visibility = ElementVisibility.Collapsed;
+                _rightholderView.contactsPersonPage.Item.Visibility = ElementVisibility.Visible;
+
+                _rightholderView.managersPage.Item.Visibility = ElementVisibility.Collapsed;
+                _rightholderView.passportPage.Item.Visibility = ElementVisibility.Visible;
+            }
+
+            //check on valid state input data
+            public bool IsValidData()
+            {
+                bool result = _rightholderView.ctrlAnketaPersonRightholderPage.Validator();
+                return result & _rightholderView.ctrlServiceComissionControl.ValidateChildren();
+            }
+
+            //show necessary pages
+            public void ShowPages()
+            {
+                //get all pages
+                foreach (var page in _rightholderView.pageViewMain.Pages)
+                    //hide current page if it's: ExternalAnketa
+                    if (_customer.CustType != 5 && page.Name == "AnketaExternal")
+                        page.Item.Visibility = ElementVisibility.Collapsed;
+            }
+        }
     }
 }
