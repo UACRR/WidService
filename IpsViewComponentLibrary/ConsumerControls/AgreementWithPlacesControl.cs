@@ -7,6 +7,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.InternalControlsModel;
 using Telerik.WinControls.UI;
 using LicenseForPlaces = ipsFormsDesign.Model.License;
 
@@ -37,6 +38,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         public void InitializeObjects(ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
         {
             _selectFirstItemNeed = agreementInitType == ConsumerAgreementInitType.AddNewAgreement;
+            bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(places);
             _tempPlaces = places;
             _licenseAgr = licenseAgr;
             _license = license;
@@ -92,7 +94,18 @@ namespace IpsViewComponentLibrary.ConsumerControls
         {
             if (_tempPlaces != null && _tempPlaces.Any())
             {
-                SetChoosePlaces();
+                //gvPlaces.DataSource = _tempPlaces;
+                //початковий вибір чекбокс майданчиків що в ліцензії
+                foreach (var item in _licenseAgr.License)
+                {
+                    var gvPlacesRow = gvPlaces.Rows.SingleOrDefault(row => PlaceChooserPredicate(row, item));
+                    if (gvPlacesRow != null)
+                    {
+                        gvPlacesRow.Cells["CheckIn"].Value = true;
+                        if (!_existLicenses.Contains(gvPlacesRow))
+                            _existLicenses.Add(gvPlacesRow);
+                    }
+                }
                 gvPlaces.Enabled = true;
             }
             else
@@ -120,23 +133,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             {
                 ddlLicType.Enabled = value;
                 txtSeries.Enabled = value;
-            }
-        }
-
-        //початковий вибір чекбокс майданчиків що в ліцензії
-        private void SetChoosePlaces()
-        {
-            gvPlaces.DataSource = _tempPlaces;
-
-            foreach (var item in _licenseAgr.License)
-            {
-                var gvPlacesRow = gvPlaces.Rows.SingleOrDefault(row => PlaceChooserPredicate(row, item));
-                if (gvPlacesRow != null)
-                {
-                    gvPlacesRow.Cells["CheckIn"].Value = true;
-                    if (!_existLicenses.Contains(gvPlacesRow))
-                        _existLicenses.Add(gvPlacesRow);
-                }
             }
         }
 
