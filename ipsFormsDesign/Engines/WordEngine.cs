@@ -11,7 +11,7 @@ using ipsFormsDesign.Dictionary;
 using System.Runtime.InteropServices;
 using ipsFormsDesign.Utilities;
 using ipsFormsDesign.ViewModels.Fixations;
-
+using System.Globalization;
 namespace ipsFormsDesign.Services
 {
     public class WordEngine
@@ -1237,7 +1237,7 @@ namespace ipsFormsDesign.Services
         }
 
         #endregion
-
+        
         class TbAuthorPrc
         {
             public string RoleName { get; set; }
@@ -1439,7 +1439,15 @@ namespace ipsFormsDesign.Services
 //            var licauthorbr = licenseBigR?.Obj.CopyRight.Where(rec=>rec.LicAuthorBr != null ).Select(rec => rec.LicAuthorBr   ).ToList();
             var licauthorbr = licenseBigR?.Obj.CopyRight.Select(rec => rec.LicAuthorBr).ToList();
            string ObjName = licenseBigR?.Obj?.Name;
+            LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
+                         (rec.LicVersion == licA.LicVersion)).Single();
 
+            docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
+            DateTime datedoc;
+            CultureInfo provider = CultureInfo.InvariantCulture;
+
+            datedoc = DateTime.ParseExact(docDateC, "dd.MM.yyyy",provider);
+            docDateEndC = $"{licagr?.DateEnd:dd.MM.yyyy}";
             var TbAPrc = new List<TbAuthorPrc>();
             if (authors != null)
 
@@ -1447,6 +1455,9 @@ namespace ipsFormsDesign.Services
                 TbAPrc = (from aut in authors
                           join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
                           join cpr in copyright on aut.CustId equals cpr.CustId
+                          where datedoc >= cpr.BeginDate &
+                                datedoc <= cpr.EndDate
+                    
                           select new TbAuthorPrc
                           { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
             }
@@ -1506,11 +1517,7 @@ namespace ipsFormsDesign.Services
             ShowAct = licenseBigR?.Obj?.ActCode?.ToString();
 
             docNumberC = licA?.LicenseAgrParam?.Where(rec => rec.LicVersion == licA.LicVersion).Single().LicNum;
-            LicenseAgrParam licagr = licA?.LicenseAgrParam?.Where(rec => (rec.LicId == licA.LicId) &
-                    (rec.LicVersion == licA.LicVersion)).Single();
-
-            docDateC = $"{licagr?.LicDate:dd.MM.yyyy}";
-            docDateEndC = $"{licagr?.DateEnd:dd.MM.yyyy}";
+       
             decimal prcntrate = Convert.ToDecimal(licenseBigR?.Rate);
             prcntShow = prcntrate.ToString("F");
             prcntShowText = Utils.PrcnPhrase(prcntrate);
@@ -2103,6 +2110,8 @@ namespace ipsFormsDesign.Services
 
         }
 
+        public WdRowAlignment wdAlignRowLeft { get; private set; }
+
         private void FormTableAvtorPrc(Tables tables, List<TbAuthorPrc> list, string objname)
         {
             TbAuthorPrc tbAuthorPrc;
@@ -2110,15 +2119,18 @@ namespace ipsFormsDesign.Services
             Table table = tables[1];
             Row curRow = null;
             int index = 1;
+  
             foreach (var item in list)
             {
                 tbAuthorPrc = item;
                 curRow = table.Rows.Add();
-
                 index++;
                 curRow.Cells[1].Range.Text = objname;
                 curRow.Cells[2].Range.Text = tbAuthorPrc.RoleName.ToString();
+
+                curRow.Cells[3].Row.Alignment = wdAlignRowLeft;
                 curRow.Cells[3].Range.Text = tbAuthorPrc.AuthorName.ToString();
+                curRow.Cells[3].Row.Alignment = wdAlignRowLeft;
                 curRow.Cells[4].Range.Text = "Україна";
                 curRow.Cells[5].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
             }
