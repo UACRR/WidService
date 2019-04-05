@@ -522,7 +522,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // ctrlServiceComissionControl
             // 
             this.ctrlServiceComissionControl.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ctrlServiceComissionControl.DataMember = "";
             this.ctrlServiceComissionControl.DataSource = this.bsAgreementAddRh;
             this.ctrlServiceComissionControl.Location = new System.Drawing.Point(111, 82);
             this.ctrlServiceComissionControl.Name = "ctrlServiceComissionControl";
