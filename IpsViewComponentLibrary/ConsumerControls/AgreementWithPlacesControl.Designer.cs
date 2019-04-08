@@ -38,21 +38,21 @@ namespace IpsViewComponentLibrary.ConsumerControls
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCheckBoxColumn gridViewCheckBoxColumn1 = new Telerik.WinControls.UI.GridViewCheckBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.bindingSourceAgr = new System.Windows.Forms.BindingSource(this.components);
             this.panel = new Telerik.WinControls.UI.RadPanel();
             this.checkAttach = new Telerik.WinControls.UI.RadCheckBox();
-            this.ctrlAgrSecond = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerDetailControl();
             this.radLabel3 = new Telerik.WinControls.UI.RadLabel();
             this.gvPlaces = new Telerik.WinControls.UI.RadGridView();
             this.ddlLicType = new Telerik.WinControls.UI.RadDropDownList();
-            this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.radLabel4 = new Telerik.WinControls.UI.RadLabel();
             this.txtSeries = new Telerik.WinControls.UI.RadTextBox();
+            this.bindingSourceDictionary = new System.Windows.Forms.BindingSource(this.components);
+            this.licenseAgreementBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceAgr = new System.Windows.Forms.BindingSource(this.components);
+            this.bsPlacesForAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.ctrlAgrMain = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerMainControl();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).BeginInit();
+            this.ctrlAgrSecond = new IpsViewComponentLibrary.Shared.Controls.ContractConsumerDetailControl();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).BeginInit();
             this.panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).BeginInit();
@@ -60,16 +60,14 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeries)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPlacesForAgreement)).BeginInit();
             this.SuspendLayout();
-            // 
-            // bindingSourceAgr
-            // 
-            this.bindingSourceAgr.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // panel
             // 
@@ -92,26 +90,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.checkAttach.TabIndex = 1;
             this.checkAttach.Text = "Закріпляти, навіть якщо прострочений";
             this.checkAttach.ThemeName = "Office2013Light";
-            // 
-            // ctrlAgrSecond
-            // 
-            this.ctrlAgrSecond.AutoprolongationDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
-            this.ctrlAgrSecond.AutoprolongationPercent = null;
-            this.ctrlAgrSecond.DataSourceBinding = null;
-            this.ctrlAgrSecond.IsAutoprolongation = false;
-            this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
-            this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.MinPayment = null;
-            this.ctrlAgrSecond.Name = "ctrlAgrSecond";
-            this.ctrlAgrSecond.PercentPayment = null;
-            this.ctrlAgrSecond.PeriodPaymentDataMember = null;
-            this.ctrlAgrSecond.PeriodPaymentDataSource = null;
-            this.ctrlAgrSecond.PeriodPaymentDisplayMember = "";
-            this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
-            this.ctrlAgrSecond.PeriodPaymentValueMember = "";
-            this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
-            this.ctrlAgrSecond.TabIndex = 0;
             // 
             // radLabel3
             // 
@@ -137,6 +115,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.gvPlaces.MasterTemplate.AllowDragToGroup = false;
             this.gvPlaces.MasterTemplate.AutoGenerateColumns = false;
             this.gvPlaces.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.FieldName = "PlaceId";
             gridViewTextBoxColumn1.HeaderText = "n/n";
             gridViewTextBoxColumn1.MaxWidth = 70;
@@ -144,16 +123,18 @@ namespace IpsViewComponentLibrary.ConsumerControls
             gridViewTextBoxColumn1.Name = "PlaceId";
             gridViewTextBoxColumn1.ReadOnly = true;
             gridViewTextBoxColumn1.Width = 70;
-            gridViewTextBoxColumn2.FieldName = "PlaceAddress";
+            gridViewTextBoxColumn2.FieldName = "FullAddressPlace";
             gridViewTextBoxColumn2.HeaderText = "Фактична адреса закладу";
-            gridViewTextBoxColumn2.Name = "PlaceAddress";
+            gridViewTextBoxColumn2.Name = "FullAddressPlace";
             gridViewTextBoxColumn2.ReadOnly = true;
-            gridViewTextBoxColumn2.Width = 299;
+            gridViewTextBoxColumn2.Width = 355;
+            gridViewTextBoxColumn3.EnableExpressionEditor = false;
+            gridViewTextBoxColumn3.Expression = "";
             gridViewTextBoxColumn3.FieldName = "PlaceName";
             gridViewTextBoxColumn3.HeaderText = "Назва Закладу";
             gridViewTextBoxColumn3.Name = "PlaceName";
             gridViewTextBoxColumn3.ReadOnly = true;
-            gridViewTextBoxColumn3.Width = 257;
+            gridViewTextBoxColumn3.Width = 202;
             gridViewTextBoxColumn4.FieldName = "Amount";
             gridViewTextBoxColumn4.HeaderText = "Сума";
             gridViewTextBoxColumn4.IsVisible = false;
@@ -175,6 +156,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             gridViewTextBoxColumn3,
             gridViewTextBoxColumn4,
             gridViewCheckBoxColumn1});
+            this.gvPlaces.MasterTemplate.DataSource = this.bsPlacesForAgreement;
             this.gvPlaces.MasterTemplate.EnableGrouping = false;
             this.gvPlaces.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvPlaces.Name = "gvPlaces";
@@ -200,15 +182,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ddlLicType.SelectedValueChanged += new System.EventHandler(this.ddlLicType_SelectedValueChanged);
             ((Telerik.WinControls.UI.RadDropDownListElement)(this.ddlLicType.GetChildAt(0))).DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             ((Telerik.WinControls.UI.StackLayoutElement)(this.ddlLicType.GetChildAt(0).GetChildAt(2))).TextWrap = true;
-            // 
-            // licenseAgreementBindingSource
-            // 
-            this.licenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
-            // 
-            // bindingSourceDictionary
-            // 
-            this.bindingSourceDictionary.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
-            this.bindingSourceDictionary.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceDictionary_BindingComplete);
             // 
             // radLabel2
             // 
@@ -240,6 +213,23 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.txtSeries.TabIndex = 2;
             this.txtSeries.ThemeName = "Office2013Light";
             // 
+            // bindingSourceDictionary
+            // 
+            this.bindingSourceDictionary.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
+            this.bindingSourceDictionary.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceDictionary_BindingComplete);
+            // 
+            // licenseAgreementBindingSource
+            // 
+            this.licenseAgreementBindingSource.DataSource = typeof(ipsFormsDesign.Model.LicenseAgreement);
+            // 
+            // bindingSourceAgr
+            // 
+            this.bindingSourceAgr.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            // 
+            // bsPlacesForAgreement
+            // 
+            this.bsPlacesForAgreement.DataSource = typeof(IpsViewComponentLibrary.InternalControlsModel.PlacesForAgreement);
+            // 
             // ctrlAgrMain
             // 
             this.ctrlAgrMain.AgreementLabelType = ipsFormsDesign.Dictionary.TypeRights.SmallRights;
@@ -252,6 +242,26 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlAgrMain.Name = "ctrlAgrMain";
             this.ctrlAgrMain.Size = new System.Drawing.Size(477, 49);
             this.ctrlAgrMain.TabIndex = 0;
+            // 
+            // ctrlAgrSecond
+            // 
+            this.ctrlAgrSecond.AutoprolongationDataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            this.ctrlAgrSecond.AutoprolongationPercent = null;
+            this.ctrlAgrSecond.DataSourceBinding = null;
+            this.ctrlAgrSecond.IsAutoprolongation = false;
+            this.ctrlAgrSecond.Location = new System.Drawing.Point(3, 14);
+            this.ctrlAgrSecond.MaximumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.MinimumSize = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.MinPayment = null;
+            this.ctrlAgrSecond.Name = "ctrlAgrSecond";
+            this.ctrlAgrSecond.PercentPayment = null;
+            this.ctrlAgrSecond.PeriodPaymentDataMember = null;
+            this.ctrlAgrSecond.PeriodPaymentDataSource = null;
+            this.ctrlAgrSecond.PeriodPaymentDisplayMember = "";
+            this.ctrlAgrSecond.PeriodPaymentSelectedValue = null;
+            this.ctrlAgrSecond.PeriodPaymentValueMember = "";
+            this.ctrlAgrSecond.Size = new System.Drawing.Size(480, 105);
+            this.ctrlAgrSecond.TabIndex = 0;
             // 
             // AgreementWithPlacesControl
             // 
@@ -270,7 +280,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.Size = new System.Drawing.Size(690, 390);
             this.Load += new System.EventHandler(this.AgreementWithPlacesControl_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.AgreementWithPlacesControl_Paint);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panel)).EndInit();
             this.panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkAttach)).EndInit();
@@ -278,11 +287,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvPlaces)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLicType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSeries)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceDictionary)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.licenseAgreementBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAgr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPlacesForAgreement)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,5 +316,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.RadCheckBox checkAttach;
         private Telerik.WinControls.UI.RadLabel radLabel4;
         private Telerik.WinControls.UI.RadTextBox txtSeries;
+        private System.Windows.Forms.BindingSource bsPlacesForAgreement;
     }
 }
