@@ -1603,12 +1603,15 @@ namespace ipsFormsDesign.Services
                         item.Range.Text = NikName;
                         break;
 
-/*                    case "TablePLk":
-                    FormTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
-                    break;
-*/
+                    /*                    case "TablePLk":
+                                        FormTableTheaterPlases(item.Range.Tables, clnBusinessPlaceTheater);
+                                        break;
+                    */
                     case "TableAvtorPrc":
                         FormTableAvtorPrc(item.Range.Tables, TbAPrc, ObjName);
+                        break;
+                    case "TableAvtorPrc1":
+                        FormTableAvtorPrc1(item.Range.Tables, TbAPrc, ObjName);
                         break;
                     case "TableAvtorLmp":
                         FormTableAvtorLmp(item.Range.Tables, TbAL,ObjName);
@@ -2110,20 +2113,22 @@ namespace ipsFormsDesign.Services
 
         }
 
-        public WdRowAlignment wdAlignRowLeft { get; private set; }
+        public WdRowAlignment wdAlignRowLeft { get;  set; }
 
         private void FormTableAvtorPrc(Tables tables, List<TbAuthorPrc> list, string objname)
         {
             TbAuthorPrc tbAuthorPrc;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            table.Rows.Alignment = wdAlignRowLeft;
             Row curRow = null;
             int index = 1;
-  
+
             foreach (var item in list)
             {
                 tbAuthorPrc = item;
                 curRow = table.Rows.Add();
+
                 index++;
                 curRow.Cells[1].Range.Text = objname;
                 curRow.Cells[2].Range.Text = tbAuthorPrc.RoleName.ToString();
@@ -2133,6 +2138,30 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[3].Row.Alignment = wdAlignRowLeft;
                 curRow.Cells[4].Range.Text = "Україна";
                 curRow.Cells[5].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
+            }
+        }
+        private void FormTableAvtorPrc1(Tables tables, List<TbAuthorPrc> list, string objname)
+        {
+            TbAuthorPrc tbAuthorPrc;
+            if (tables.Count == 0) return;
+            Table table = tables[1];
+            table.Rows.Alignment = wdAlignRowLeft;
+            Row curRow = null;
+            int index = 1;
+
+            foreach (var item in list)
+            {
+                tbAuthorPrc = item;
+                curRow = table.Rows.Add();
+
+                index++;
+                curRow.Cells[1].Range.Text = objname;
+                curRow.Cells[3].Range.Text = tbAuthorPrc.RoleName.ToString();
+
+                curRow.Cells[2].Row.Alignment = wdAlignRowLeft;
+                curRow.Cells[2].Range.Text = tbAuthorPrc.AuthorName.ToString();
+                curRow.Cells[3].Row.Alignment = wdAlignRowLeft;
+                curRow.Cells[4].Range.Text = tbAuthorPrc.RoleRate.ToString("F");
             }
         }
         private void FormTableAvtorLmp(Tables tables, List<TbAuthorL> list, string objname)
