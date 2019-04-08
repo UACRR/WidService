@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Services.ObjectUploading;
+using ipsFormsDesign.ViewModels.ObjectsRight;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ipsFormsDesign.Tests
@@ -66,6 +69,105 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result data is null");
             //check collection on amount elements
             Assert.IsTrue(result.Count != 0, "collection is empty");
+        }
+
+        [TestMethod]
+        public void TestGetObjectRights()
+        {
+            //create ObjectRightQuery instance for test
+            ObjectRightQuery detail = new ObjectRightQuery();
+            //default string search
+            detail.SearchText = "a";
+            //get searched data
+            ObjectRightListResponse result = _objectRightService.GetObjectRights(detail);
+            //check on null state
+            Assert.IsNotNull(result, "ObjectRightQuery is null");
+            //check on amount elements of the result
+            Assert.IsTrue(result.List.Count != 0, "collecion List is empty");
+            //check Property on valid value
+            Assert.IsTrue(result.TotalItems != 0, "Property 'TotalItems' is 0");
+        }
+
+        [TestMethod]
+        public async Task TestGetObjectRightsAsync()
+        {
+            //create ObjectRightQuery instance for test
+            ObjectRightQuery detail = new ObjectRightQuery();
+            //default string search
+            detail.SearchText = "a";
+            //get searcged data
+            var result = await _objectRightService.GetObjectRightsAsync(detail);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements of the result
+            Assert.IsTrue(result.List.Count != 0, "collections is empty");
+            //check Property on valid value
+            Assert.IsTrue(result.TotalItems != 0, "Property 'TotalItems' is 0");
+        }
+
+        [TestMethod]
+        public void TestGetObjectsByFilter()
+        {
+            //default string fo search
+            string defaultStr = "a";
+            //get filtered data
+            List<ObjectRightMainView> result = _objectRightService.GetObjectsByFilter(defaultStr);
+            //check on null state result data
+            Assert.IsNotNull(result, "result is null");
+            //check on amoun elements of result data
+            Assert.IsTrue(result.Count != 0, "collection is empty");
+        }
+
+        [TestMethod]
+        public void TestGetRightholdersObjectsRights()
+        {
+            //define custId
+            int custId = 14325;
+            //get data by custId
+            IList<ObjectRightForRightholder> result = _objectRightService.GetRightholdersObjectsRights(custId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements of result
+            Assert.IsTrue(result.Count != 0, "collection is empty");
+        }
+
+        [TestMethod]
+        public void TestGetObjectById()
+        {
+            //default objId
+            int objId = 2;
+            //get result data by objId
+            ContainerForObjectRihgt result = _objectRightService.GetObjectById(objId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements
+            Assert.IsTrue(result.rhList.Count != 0, "collection is empty");
+        }
+
+        [TestMethod]
+        public void TestGetObjectRightholders()
+        {
+            //default objId
+            int objId = 2;
+            //get data by objId
+            List<ObjectRightholderViewModel> result = _objectRightService.GetObjectRightholders(objId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements
+            Assert.IsTrue(result.Count != 0, "collection is empty");
+        }
+
+        [TestMethod]
+        public void TestGetDataBr()
+        {
+            //default objId
+            int objId = 2;
+            //get result data by objId
+            ContainerForObjectRihgt result = _objectRightService.GetDataBr(objId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements
+            Assert.IsTrue(result.rhList.Count != 0, "collection is empty");
         }
     }
 }
