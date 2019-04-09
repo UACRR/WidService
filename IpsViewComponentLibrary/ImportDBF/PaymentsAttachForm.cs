@@ -30,7 +30,7 @@ namespace IpsViewComponentLibrary.ImportDBF
             txtName.Text = _externalPay.NameCorr;
             txtDestinationPay.Text = _externalPay.Nplat;
             gvCustomers.DataSource = clintList;
-            btnAttach.Enabled = clintList.Any();
+            btnAttach.Enabled = clintList?.Any() ?? false;
         }
 
         private void AttachPay()

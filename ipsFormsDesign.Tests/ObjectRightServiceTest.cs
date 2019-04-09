@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Services.ObjectUploading;
+using ipsFormsDesign.ViewModels.ObjectsRight;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ipsFormsDesign.Tests
@@ -20,7 +24,7 @@ namespace ipsFormsDesign.Tests
         }
 
         //check return data of Dictionaries
-        [TestMethod]
+        [TestMethod()]
         public void TestGetDictionary()
         {
             //get save return data
@@ -57,15 +61,83 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result.RegisterStatuses.Count != 0, "RegisterStatuses is empty");
         }
 
-        [TestMethod]
+        [TestMethod()]
         public void TestGetMainView()
         {
             //save returned data 'objectright/view/list_01'
-            IList<ObjectRightMainView> result = _objectRightService.GetMainView();
+            var result = _objectRightService.GetMainView();
             //check result on null state
             Assert.IsNotNull(result, "result data is null");
             //check collection on amount elements
             Assert.IsTrue(result.Count != 0, "collection is empty");
+        }
+
+        [TestMethod()]
+        public void TestGetDictionary1()
+        {
+            var list = _objectRightService.GetDictionary();
+            Assert.IsNotNull(list, "Is Not NULL");
+            Assert.AreNotEqual(list.copyrightType.Count, 0, "copyrightType.Count");
+        }
+
+        [TestMethod()]
+        public void TestGetObjectRights()
+        {
+            ObjectRightQuery query = new ObjectRightQuery { PageSize = 20, Page = 1 };
+            var list = _objectRightService.GetObjectRights(query);
+            Assert.IsNotNull(list, "IsNotNull");
+            Assert.AreNotEqual(list.List.Count, 0, "Count != 0");
+        }
+
+        [TestMethod()]
+        public async Task TestGetObjectRightsAsync()
+        {
+            ObjectRightQuery query = new ObjectRightQuery { PageSize = 20, Page = 1 };
+            var list = await _objectRightService.GetObjectRightsAsync(query);
+            Assert.IsNotNull(list, "IsNotNull");
+            Assert.AreNotEqual(list.List.Count, 0, "Count != 0");
+        }
+
+        [TestMethod()]
+        public void TestNew()
+        {
+            var newItem = _objectRightService.New(6);
+            Assert.IsNotNull(newItem);
+        }
+
+        [TestMethod()]
+        public void TestGetObjectsByFilter()
+        {
+            var list = _objectRightService.GetObjectsByFilter("obj");
+            Assert.AreNotEqual(list.Count, 0, "Count != 0");
+        }
+
+        [TestMethod()]
+        public void TestGetRightholdersObjectsRights()
+        {
+            var list = _objectRightService.GetRightholdersObjectsRights(1835);
+            Assert.IsNotNull(list);
+        }
+
+        [TestMethod()]
+        public void TestGetObjectById()
+        {
+            var objrht = _objectRightService.GetObjectById(5842);
+            Assert.IsNotNull(objrht, "IsNotNull");
+        }
+
+        [TestMethod()]
+        public void TestGetObjectRightholders()
+        {
+            var list = _objectRightService.GetObjectRightholders(5842);
+            Assert.AreNotEqual(list.Count, 0, "Count != 0");
+        }
+
+        [TestMethod()]
+        public void TestGetDataBr()
+        {
+            var objBox = _objectRightService.GetDataBr(7111);
+            Assert.IsNotNull(objBox);
         }
     }
 }

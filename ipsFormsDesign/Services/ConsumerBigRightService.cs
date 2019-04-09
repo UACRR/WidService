@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 
 namespace ipsFormsDesign.Services
 {
@@ -61,6 +62,12 @@ namespace ipsFormsDesign.Services
                 param.Add(new KeyValuePair<string, string>("custId", custId.ToString()));
             var list = _webApi.GetTypedList(typeResult, url, param.ToArray());
             return list;
+        }
+
+        public Customer SaveNewConsumer(Customer customer)
+        {
+            var result = _webApi.NewItemWithReturn<Customer>("consumer/newconsumer", customer);
+            return result;
         }
         
     }

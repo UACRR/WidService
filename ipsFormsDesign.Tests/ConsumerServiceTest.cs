@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -170,6 +173,355 @@ namespace ipsFormsDesign.Tests
         //    Assert.IsNotNull(result, "IList<ConsumerSmallRightView> result is null ");
         //    //check collection on amount elements
         //    Assert.IsTrue(result.Count != 0, "collection is empty");
+        //}
+
+        [TestMethod]
+        public void TestGetData()
+        {
+            //default custId
+            int custId = 6;
+            //get result customer by objId
+            Customer result = _consumerService.GetData(custId);
+            //check on exist data
+            Assert.IsNotNull(result, "result is null");
+        }
+
+        [TestMethod]
+        public void TestGetShortInfoById()
+        {
+            //default custId
+            int custId = 6;
+            //get result data
+            ConsumerSmallRightView result = _consumerService.GetShortInfoById(custId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
+
+        [TestMethod]
+        public void TestGetExternalById()
+        {
+            //default custId
+            int custId = 6;
+            //get result data
+            Customer result = _consumerService.GetExternalById(custId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
+
+        [TestMethod]
+        public void TestSaveExternal()
+        {
+            //default customer data
+            Customer customer = new Customer { CustId = 666,
+                                               Status = 2,
+                                               UserId = "testUserId"};
+            //save customer
+            bool result = _consumerService.SaveExternal(customer);
+            //check on success save
+            Assert.IsTrue(result, "customer not saved");
+        }
+
+        [TestMethod]
+        public void TestGetRegisterItems()
+        {
+            //default regId
+            int regId = 1221;
+            //get data by regId
+            List<RegisterItem> result = _consumerService.GetRegisterItems(regId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements
+            Assert.IsTrue(result.Count != 0, "collection is empty");
+        }
+
+        [TestMethod]
+        public void TestGetRatedListForCust()
+        {
+            //default custId
+            int custId = 6;
+            //get data by custId
+            Customer result = _consumerService.GetRatedListForCust(custId);
+            //check on null state
+            Assert.IsNotNull(result, "customer is null");
+        }
+
+        [TestMethod]
+        public void TestGetRatedList()
+        {
+            //default custId
+            int rmId = 140;
+            //get data by rmId
+            RegisterRatedList result = _consumerService.GetRatedList(rmId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
+
+        /// <summary>
+        /// InnerException = {System.Data.SqlClient.SqlException (0x80131904): Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_REGRATEDLIST_REF_PAIDPER". Конфликт произошел в базе данных "MediaServiceTest", таблица "dbo.PaidPeriod", column 'periodId'.
+        ///Выполнение данной инстр...
+        /// </summary>
+        //[TestMethod]
+        //public void TestSaveRegisterRatedList()
+        //{
+        //    //RegisterRatedList define for parameter 'regRatedList'
+        //    RegisterRatedList regRatedList = new RegisterRatedList
+        //    {
+        //        RmId = 216
+        //    };
+        //    //RegisterRatedList define for parameter 'retObject'
+        //    RegisterRatedList retObject = new RegisterRatedList
+        //    {
+        //        PeriodId = 666,
+        //        RmId = 666,
+        //        UserId = "testUserId2"
+        //    };
+        //    //save data
+        //    bool result = _consumerService.SaveRegisterRatedList(regRatedList, out retObject);
+        //    //check on access action
+        //    Assert.IsTrue(result, "data is not saved");
+        //}
+
+        ///InnerException = {System.Data.SqlClient.SqlException(0x80131904): Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_REG_REF_CLIENT". Конфликт произошел в базе данных "MediaServiceTest", таблица "dbo.Client", column 'custId'.
+        ///Конфликт инструкции INSERT с ограничени...
+        //[TestMethod]
+        //public void TestSaveRegister()
+        //{
+        //    //default Register instance
+        //    Register register = new Register { RegId = 1330,
+        //                                       Number = "testNumber"};
+        //    register.RegisterItem.Add(new RegisterItem { });
+        //    //save data
+        //    bool result = _consumerService.SaveRegister(register);
+        //    //check on success action
+        //    Assert.IsTrue(result, "Register not saved");
+        //}
+
+        //[TestMethod]
+        //public void TestDeleteRegister()
+        //{
+        //    //default Register instance
+        //    Register register = new Register
+        //    {
+        //        RegId = 1329,
+        //        Number = "testNumber"
+        //    };
+        //    register.RegisterItem.Add(new RegisterItem { });
+        //    //delete data
+        //    bool result = _consumerService.DeleteRegister(register);
+        //    //check on success action
+        //    Assert.IsTrue(result, "Register not deleted");
+        //}
+
+        //[TestMethod]
+        //public void TestGetRegister()
+        //{
+        //    //default regId
+        //    int regId = 1271;
+        //    //get data
+        //    Register result = _consumerService.GetRegister(regId);
+        //    //check on null state
+        //    Assert.IsNotNull(result, "result is null");
+        //}
+
+
+        /// <summary>
+        /// RequestMessage = {Method: POST, RequestUri: 'http://localhost:54867/api/consumer/period/register/state', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
+        ///{
+        ///  Accept: application/json
+        ///  Content-Type: application/json; charset=utf-8
+        ///  Content-Length: 487
+        ///}
+        ///}
+        /// </summary>
+        //[TestMethod]
+        //public void TestSetRegisterState()
+        //{
+        //    //default RegisterState
+        //    RegisterState state = new RegisterState();
+        //    //newItem
+        //    state = 0;
+        //    //default list
+        //    List<Register> list = new List<Register>() { new Register {
+        //        RegId = 1268,
+        //        Number = "testNumber" }
+        //    };
+        //    //set data
+        //    List<Register> result = _consumerService.SetRegisterState(state, list);
+        //    //check on null state
+        //    Assert.IsNotNull(result, "result is null");
+        //}
+
+        //can't wait result data
+        //[TestMethod]
+        //public void TestSetPeriodState()
+        //{
+        //    //default RegisterState
+        //    PeriodState state = new PeriodState();
+        //    state = 0;
+        //    //default PaidPeriod
+        //    PaidPeriod period = new PaidPeriod { PeriodId = 1561 };
+        //    //set data
+        //    var result = _consumerService.SetPeriodState(state, period);
+        //    //check on success action
+        //    Assert.IsTrue(result, "data is not set");
+        //}
+
+        [TestMethod]
+        public void TestGetAutoCompleteList()
+        {
+            //default string
+            string defaultStr = "a";
+            //get result data
+            IList<AutoCompleteData> result = _consumerService.GetAutoCompleteList(defaultStr);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements
+            Assert.IsTrue(result.Count != 0, "collection is empty");
+        }
+
+        [TestMethod]
+        public void TestNewCustomer()
+        {
+            //default custType
+            int custType = 1;
+            //get result data
+            Customer result = _consumerService.NewCustomer(custType);
+            //check on null state
+            Assert.IsNotNull(result, "Customer is not created");
+        }
+
+        //[TestMethod]
+        //public void TestSave()
+        //{
+        //    //default customer for save
+        //    Customer customer = new Customer { CustId = 130, Status = 2, UserId = null };
+        //    //save customer
+        //    bool result = _consumerService.Save(customer);
+        //    //check on success action
+        //    Assert.IsTrue(result, "customer is not saved");
+        //}
+
+        //[TestMethod]
+        //public void TestSaveAgreementAddBrById()
+        //{
+        //    //default agrId
+        //    int agrId = 101;
+        //    //default agreement
+        //    LicenseAgreement agreement = new LicenseAgreement();
+        //    //save data to LicenseAgreement
+        //    bool result = _consumerService.SaveAgreementAddBrById(agrId, agreement);
+        //    //check on success action
+        //    Assert.IsTrue(result, "LicenseAgreement is not saved");
+        //}
+
+        //[TestMethod]
+        //public void TestuploadDocument()
+        //{
+        //    //default custId
+        //    //default typeDocument
+        //    //default comment
+        //    //default Document
+        //    //add element to the server
+        //    //check on null state
+        //}
+
+        //[TestMethod]
+        //public void TestdownloadDocument()
+        //{
+        //    //default custId
+        //    //default typeDocument
+        //    //default fileName
+        //    //get document from server
+        //    //check on null state
+        //}
+
+        //[TestMethod]
+        //public void TestDeleteFileById()
+        //{
+        //    //default fileId
+        //    //delete element
+        //    //check on success action
+        //}
+
+        //[TestMethod]
+        //public void TestGetCustomerPays()
+        //{
+        //    //default custId
+        //    int custId = 1345;
+        //    //get external objects
+        //    List<ExternalPay> result = _consumerService.GetCustomerPays(custId);
+        //    //check on null state
+        //    Assert.IsNotNull(result, "result is null");
+        //    //check on amount elements
+        //    Assert.IsTrue(result.Count != 0, "ExternalPay collection is empty");
+        //}
+
+        //[TestMethod]
+        //public void TestSaveBRWorkRH()
+        //{
+        //    //default licId
+        //    //default List<WorkRh>
+        //    //save data
+        //    //check on success action
+        //}
+
+        //[TestMethod]
+        //public void TestSaveNewPayments()
+        //{
+        //    //default custId
+        //    //default List<ExternalPay>
+        //    //save External Pay list
+        //    //check on success action
+        //}
+
+        //[TestMethod]
+        //public void TestSetLicenseType()
+        //{
+        //    //default LicenseAgreement
+        //    //default LicType
+        //    //change type
+        //    //check on success action
+        //}
+
+        [TestMethod]
+        public void TestgetPaidInfo()
+        {
+            //default custId
+            int custId = 138;
+            //get detail data
+            Customer result = _consumerService.getPaidInfo(custId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
+
+        //[TestMethod]
+        //public void TestSavePeriods()
+        //{
+        //    //default custId
+        //    //defualt List<PaidPeriod>
+        //    //save data
+        //    //check on null sate
+        //    //check on amount elements
+        //}
+
+        //[TestMethod]
+        //public void TestSetLicAgreementStatus()
+        //{
+        //    //default LicenseAgreement
+        //    //default version
+        //    //default status
+        //    //set data
+        //    //check on success action
+        //}
+
+        //[TestMethod]
+        //public void TestSaveLink()
+        //{
+        //    //default custId
+        //    //default List<MoneyPeriodLink>
+        //    //save data
+        //    //check on null state
+        //    //check on amount elements
         //}
     }
 }

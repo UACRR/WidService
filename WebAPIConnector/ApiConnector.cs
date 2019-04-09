@@ -259,6 +259,14 @@ namespace WebAPIConnector
             return result.IsSuccessStatusCode;
         }
 
+        public T NewItemWithReturn<T>(string url, T data)
+        {
+            StringContent content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+            var result = client.PostAsync(url, content).GetAwaiter().GetResult();
+
+            return result.Content.ReadAs<T>();
+        }
+
         public T NewItemWithResult<T>(string url, T data) where T : class
         {
             var result = client.PostAsJson(url, data);

@@ -92,7 +92,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.txtAgrNumber.Name = "txtAgrNumber";
             this.txtAgrNumber.NullText = "Номер договору";
             this.txtAgrNumber.Size = new System.Drawing.Size(152, 21);
-            this.txtAgrNumber.TabIndex = 59;
+            this.txtAgrNumber.TabIndex = 1;
             this.txtAgrNumber.ThemeName = "Office2013Light";
             // 
             // bsAgreementAddCommunity
@@ -104,7 +104,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel2.Location = new System.Drawing.Point(6, 19);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(155, 19);
-            this.radLabel2.TabIndex = 45;
+            this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "Останній день розрахунку";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
@@ -114,7 +114,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.txtDayForPay.Location = new System.Drawing.Point(167, 19);
             this.txtDayForPay.Name = "txtDayForPay";
             this.txtDayForPay.Size = new System.Drawing.Size(48, 21);
-            this.txtDayForPay.TabIndex = 46;
+            this.txtDayForPay.TabIndex = 1;
             this.txtDayForPay.ThemeName = "Office2013Light";
             this.txtDayForPay.TextChanged += new System.EventHandler(this.txtDayForPay_TextChanged);
             // 
@@ -123,7 +123,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel4.Location = new System.Drawing.Point(6, 46);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(155, 19);
-            this.radLabel4.TabIndex = 44;
+            this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "Періодичність розрахунку";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
@@ -136,7 +136,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ddlPeriodPayment.Location = new System.Drawing.Point(167, 46);
             this.ddlPeriodPayment.Name = "ddlPeriodPayment";
             this.ddlPeriodPayment.Size = new System.Drawing.Size(194, 21);
-            this.ddlPeriodPayment.TabIndex = 43;
+            this.ddlPeriodPayment.TabIndex = 2;
             this.ddlPeriodPayment.ThemeName = "Office2013Light";
             this.ddlPeriodPayment.ValueMember = "CodeI";
             // 
@@ -149,7 +149,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.checkForever.Location = new System.Drawing.Point(397, 28);
             this.checkForever.Name = "checkForever";
             this.checkForever.Size = new System.Drawing.Size(80, 19);
-            this.checkForever.TabIndex = 67;
+            this.checkForever.TabIndex = 5;
             this.checkForever.Text = "Назавжди";
             this.checkForever.ThemeName = "Office2013Light";
             this.checkForever.CheckStateChanged += new System.EventHandler(this.checkForever_CheckStateChanged);
@@ -159,7 +159,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.lblContrDo.Location = new System.Drawing.Point(12, 28);
             this.lblContrDo.Name = "lblContrDo";
             this.lblContrDo.Size = new System.Drawing.Size(100, 19);
-            this.lblContrDo.TabIndex = 63;
+            this.lblContrDo.TabIndex = 0;
             this.lblContrDo.Text = "Дія договору від";
             this.lblContrDo.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lblContrDo.ThemeName = "Office2013Light";
@@ -174,7 +174,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.dtDateEnd.Name = "dtDateEnd";
             this.dtDateEnd.NullText = "Оберіть дату";
             this.dtDateEnd.Size = new System.Drawing.Size(118, 21);
-            this.dtDateEnd.TabIndex = 65;
+            this.dtDateEnd.TabIndex = 4;
             this.dtDateEnd.TabStop = false;
             this.dtDateEnd.ThemeName = "Office2013Light";
             this.dtDateEnd.Value = new System.DateTime(((long)(0)));
@@ -184,7 +184,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.lblContrDoTo.Location = new System.Drawing.Point(246, 28);
             this.lblContrDoTo.Name = "lblContrDoTo";
             this.lblContrDoTo.Size = new System.Drawing.Size(21, 19);
-            this.lblContrDoTo.TabIndex = 66;
+            this.lblContrDoTo.TabIndex = 0;
             this.lblContrDoTo.Text = "до";
             this.lblContrDoTo.ThemeName = "Office2013Light";
             // 
@@ -198,7 +198,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.dtDateBegin.Name = "dtDateBegin";
             this.dtDateBegin.NullText = "Оберіть дату";
             this.dtDateBegin.Size = new System.Drawing.Size(120, 21);
-            this.dtDateBegin.TabIndex = 64;
+            this.dtDateBegin.TabIndex = 3;
             this.dtDateBegin.TabStop = false;
             this.dtDateBegin.ThemeName = "Office2013Light";
             this.dtDateBegin.Value = new System.DateTime(((long)(0)));
@@ -215,7 +215,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.dtAgrDate.Name = "dtAgrDate";
             this.dtAgrDate.NullText = "Оберіть дату";
             this.dtAgrDate.Size = new System.Drawing.Size(118, 21);
-            this.dtAgrDate.TabIndex = 61;
+            this.dtAgrDate.TabIndex = 2;
             this.dtAgrDate.TabStop = false;
             this.dtAgrDate.ThemeName = "Office2013Light";
             this.dtAgrDate.Value = new System.DateTime(((long)(0)));
@@ -225,7 +225,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.lblContrFrom.Location = new System.Drawing.Point(244, 3);
             this.lblContrFrom.Name = "lblContrFrom";
             this.lblContrFrom.Size = new System.Drawing.Size(23, 19);
-            this.lblContrFrom.TabIndex = 62;
+            this.lblContrFrom.TabIndex = 0;
             this.lblContrFrom.Text = "від";
             this.lblContrFrom.ThemeName = "Office2013Light";
             // 
@@ -234,7 +234,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.lblContrNumb.Location = new System.Drawing.Point(12, 3);
             this.lblContrNumb.Name = "lblContrNumb";
             this.lblContrNumb.Size = new System.Drawing.Size(68, 19);
-            this.lblContrNumb.TabIndex = 60;
+            this.lblContrNumb.TabIndex = 0;
             this.lblContrNumb.Text = "Договір №";
             this.lblContrNumb.ThemeName = "Office2013Light";
             // 
@@ -247,7 +247,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.groupBox.Location = new System.Drawing.Point(3, 54);
             this.groupBox.Name = "groupBox";
             this.groupBox.Size = new System.Drawing.Size(367, 75);
-            this.groupBox.TabIndex = 58;
+            this.groupBox.TabIndex = 6;
             this.groupBox.TabStop = false;
             this.groupBox.Text = "Параметри договору";
             // 
@@ -258,7 +258,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel1.Location = new System.Drawing.Point(199, 135);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(217, 30);
-            this.radLabel1.TabIndex = 68;
+            this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Комісії обслуговування";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
@@ -275,7 +275,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.groupBox3.Location = new System.Drawing.Point(3, 145);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(632, 109);
-            this.groupBox3.TabIndex = 69;
+            this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
             // 
             // radLabel3
@@ -285,7 +285,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel3.Location = new System.Drawing.Point(366, 68);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(260, 35);
-            this.radLabel3.TabIndex = 10;
+            this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "від суми авторської винагороди, зібраної за таке використання";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
@@ -295,17 +295,17 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel5.Location = new System.Drawing.Point(345, 78);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(15, 18);
-            this.radLabel5.TabIndex = 9;
+            this.radLabel5.TabIndex = 0;
             this.radLabel5.Text = "%";
             // 
             // txtRateCommis
             // 
             this.txtRateCommis.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtRateCommis.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCommiss", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtRateCommis.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCommiss", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtRateCommis.Location = new System.Drawing.Point(285, 76);
             this.txtRateCommis.Name = "txtRateCommis";
             this.txtRateCommis.Size = new System.Drawing.Size(54, 21);
-            this.txtRateCommis.TabIndex = 8;
+            this.txtRateCommis.TabIndex = 2;
             this.txtRateCommis.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRateCommis.ThemeName = "Office2013Light";
             // 
@@ -316,7 +316,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel6.Location = new System.Drawing.Point(6, 68);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(273, 35);
-            this.radLabel6.TabIndex = 7;
+            this.radLabel6.TabIndex = 0;
             this.radLabel6.Text = "Використання творів у порядку судового провадження становить";
             this.radLabel6.ThemeName = "Office2013Light";
             // 
@@ -327,7 +327,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel7.Location = new System.Drawing.Point(365, 27);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(261, 35);
-            this.radLabel7.TabIndex = 6;
+            this.radLabel7.TabIndex = 0;
             this.radLabel7.Text = "від сум, отриманих Підприємством для Автора";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
@@ -337,17 +337,17 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel13.Location = new System.Drawing.Point(344, 37);
             this.radLabel13.Name = "radLabel13";
             this.radLabel13.Size = new System.Drawing.Size(15, 18);
-            this.radLabel13.TabIndex = 5;
+            this.radLabel13.TabIndex = 0;
             this.radLabel13.Text = "%";
             // 
             // txtRateCourt
             // 
             this.txtRateCourt.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCourt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtRateCourt.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAgreementAddCommunity, "RateCourt", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtRateCourt.Location = new System.Drawing.Point(284, 35);
             this.txtRateCourt.Name = "txtRateCourt";
             this.txtRateCourt.Size = new System.Drawing.Size(54, 21);
-            this.txtRateCourt.TabIndex = 3;
+            this.txtRateCourt.TabIndex = 1;
             this.txtRateCourt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtRateCourt.ThemeName = "Office2013Light";
             // 
@@ -358,7 +358,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.radLabel12.Location = new System.Drawing.Point(5, 27);
             this.radLabel12.Name = "radLabel12";
             this.radLabel12.Size = new System.Drawing.Size(273, 35);
-            this.radLabel12.TabIndex = 2;
+            this.radLabel12.TabIndex = 0;
             this.radLabel12.Text = "Відрахування пов\'язані зі збором, розподілом та виплатою винагороди у розмірі";
             this.radLabel12.ThemeName = "Office2013Light";
             // 
