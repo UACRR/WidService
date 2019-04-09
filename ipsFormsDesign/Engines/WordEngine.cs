@@ -1367,6 +1367,8 @@ namespace ipsFormsDesign.Services
             string aPayShowGrnText = string.Empty;
             string aPayShowKop = string.Empty;
             string BRAdvText = string.Empty;
+            string BRAdvText1 = string.Empty;
+            string BRAdvText2 = string.Empty;
             string BRLmpText = string.Empty;
 
             if (cust.CustType < 3) // фіз. особа
@@ -1504,12 +1506,14 @@ namespace ipsFormsDesign.Services
                            }).ToList();
             }
             if (TbAvAdv.Count == 0)
-            { BRAdvText = "Виключено за домовленістю Сторін"; }
+            { BRAdvText1 = "Виключено за домовленістю Сторін."; }
             else
-            { BRAdvText = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок Компанії авторську винагороду, що вважається як аванс роялті, визначеного в п. 2.4. цього Договору, а саме:"; };
+            { BRAdvText1 = "Користувач після підписання цього Договору зобов’язаний перерахувати на рахунок ГО УААСП протягом 14 робочих днів авторську винагороду в сумі ";
+              BRAdvText2 = ", що вважається як аванс роялті, визначеного в п. 2.4.цього Договору.";
+            };
 
             if (TbAL.Count == 0)
-            { BRLmpText = "Виключено за домовленістю Сторін"; }
+            { BRLmpText = "Виключено за домовленістю Сторін."; }
             else
             { BRLmpText = "одноразового (паушального) платежу, а саме:"; };
 
@@ -1524,28 +1528,51 @@ namespace ipsFormsDesign.Services
             //PayShowDataDo = $"{licA?.LicenseBigR?.PrepayDateDo:dd.MM.yyyy}";
             decimal pPayShowGrn = 0;
             decimal aPayShowGrn = 0;
-            //var array_licAuthorB = licA?.LicenseBigR?.LicAuthorBr?.ToList();
-            //if (array_licAuthorB != null)
-            //{
-            //    foreach (LicAuthorBr item in array_licAuthorB)
-            //    {
-            //        if (item.PrepayType == 1)
-            //        {
-            //            pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
-            //        }
-            //        if (item.PrepayType == 2)
-            //        {
-            //            aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
-            //        }
 
-            //    }
-            //}
+          //  var array_licAuthorB = licA?.LicenseBigR?.LicAuthorBr?.ToList();
+            if (licauthorbr != null)
+            {
+                foreach (LicAuthorBr item in licauthorbr)
+                {
+                    if ((item?.PrepayType ?? 0)  == 1)
+                    {
+                        pPayShowGrn = pPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                    }
+                    if ((item?.PrepayType ?? 0) == 2)
+                    {
+                        aPayShowGrn = aPayShowGrn + Convert.ToDecimal(item.PrepaySum);
+                    }
+
+                }
+            }
             pPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(pPayShowGrn)), false);
             pPayShowKop = ((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)).ToString();
             aPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(aPayShowGrn)), false);
             aPayShowKop = ((int)((aPayShowGrn - (int)(aPayShowGrn)) * 100)).ToString();
+            string SumLmpGrnText = String.Empty;
+            string SumLmpKop = String.Empty;
+
+            string SumAdvGrnText = String.Empty;
+            string SumAdvKop = String.Empty;
+            string SumAdvGrn = String.Empty;
+            string SumLmpGrn = String.Empty;
+
+            if (TbAL.Count != 0)
+            { SumLmpGrnText = "( " + pPayShowGrnText + " ) грн.";
+              SumLmpKop = pPayShowKop + " коп.";
+              SumLmpGrn = ((int)(pPayShowGrn)).ToString();
+            }
+
+                if (TbAvAdv.Count != 0)
+            {
+                SumAdvGrnText = "( " + aPayShowGrnText + " ) грн.";
+                SumAdvKop = aPayShowKop + " коп.";
+                SumAdvGrn = aPayShowGrn.ToString();
+            }
 
             string CstNikName = string.Empty;
+
+
             string NikName = string.Empty;
             CstNikName = $"{anketaPerson?.NikName ?? string.Empty}";
             if (CstNikName != string.Empty)
@@ -1699,6 +1726,30 @@ namespace ipsFormsDesign.Services
                     case "pPayShowKop":
                         item.Range.Text = pPayShowKop;
                         break;
+
+                    case "SumLmpGrn":
+                        item.Range.Text = SumLmpGrn;
+                        break;
+                    case "SumLmpGrnText":
+                        item.Range.Text = SumLmpGrnText;
+                        break;
+                    case "SumLmpKop":
+                        item.Range.Text = SumLmpKop;
+                        break;
+
+
+
+                    case "SumAdvGrn":
+                        item.Range.Text = SumAdvGrn;
+                        break;
+                    case "SumAdvGrnText":
+                        item.Range.Text = SumAdvGrnText;
+                        break;
+                    case "SumAdvKop":
+                        item.Range.Text = SumAdvKop;
+                        break;
+
+
                     case "aPayShowGrn":
                         item.Range.Text = ((int)(aPayShowGrn)).ToString();
                         break;
@@ -1708,6 +1759,9 @@ namespace ipsFormsDesign.Services
                     case "aPayShowKop":
                         item.Range.Text = aPayShowKop;
                         break;
+
+
+
                     case "PayShowDataDo":
                         item.Range.Text = PayShowDataDo;
                         break;
@@ -1720,10 +1774,13 @@ namespace ipsFormsDesign.Services
                     case "BRLmpText":
                         item.Range.Text = BRLmpText;
                         break;
-                    case "BRAdvText":
-                        item.Range.Text = BRAdvText;
+                    case "BRAdvText1":
+                        item.Range.Text = BRAdvText1;
                         break;
-                        
+                    case "BRAdvText2":
+                        item.Range.Text = BRAdvText2;
+                        break;
+
 
                     default:
 
@@ -2145,6 +2202,8 @@ namespace ipsFormsDesign.Services
             TbAuthorPrc tbAuthorPrc;
             if (tables.Count == 0) return;
             Table table = tables[1];
+            WdRowAlignment AlignRow;
+            AlignRow = table.Rows.Alignment;
             table.Rows.Alignment = wdAlignRowLeft;
             Row curRow = null;
             int index = 1;

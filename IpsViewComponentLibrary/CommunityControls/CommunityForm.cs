@@ -37,8 +37,28 @@ namespace IpsViewComponentLibrary.CommunityControls
 
             //спільнота
             ctrlClientName.DataSource = anketaCompany;
-            var empl = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3)?.Empl;
-            ctrlContactPerson.DataSource = empl;
+
+            // контактна особа
+            var relEmployeeContact = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
+            if (relEmployeeContact == null)
+                _customer.Company.RelEmployee.Add(new RelEmployee { PositionCode = 3, Empl = new Employee() });
+
+            var employeeContact = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
+
+            var relEmployeeHead = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
+            if (relEmployeeHead == null)
+                _customer.Company.RelEmployee.Add(new RelEmployee { PositionCode = 1, Empl = new Employee() });
+
+            var employeeHead = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
+
+            ctrlContactPerson.DataSource = employeeContact.Empl;
+            ctrlContactPerson.OutsidePhone = true;
+            ctrlContactPerson.PhoneNullText = string.Empty;
+
+            bsRelEmployee.DataSource = employeeHead;
+            ctrlHeadBoss.DataSource = employeeHead.Empl;
+            ctrlHeadBoss.OutsidePhone = true;
+            ctrlHeadBoss.PhoneNullText = string.Empty;
 
             // - - адреса
             // юридична

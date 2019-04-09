@@ -16,16 +16,23 @@ namespace ipsFormsDesign.Tests
         private const string StringTextTest = "_test";
         private const int IntTextTest = 3;
         private const decimal DecimalTextTest = 1.75m;
+        private readonly string[] exFields = { "CustId" };
 
         private const int Id = 1345;
         private Customer _customer;
 
+        /// <summary>
+        /// Singletone test
+        /// </summary>
         [TestInitialize]
         public void TestInit()
         {
             _bigRightService = ConsumerBigRightService.GetInstance();
         }
 
+        /// <summary>
+        /// Отримати дані customer по CustId
+        /// </summary>
         [TestMethod]
         public void GetData_test()
         {
@@ -33,6 +40,9 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(_customer);
         }
 
+        /// <summary>
+        /// VIEWs test
+        /// </summary>
         [TestMethod]
         public void getBRView_all_views_test()
         {
@@ -90,29 +100,7 @@ namespace ipsFormsDesign.Tests
 
             var customer = _bigRightService.GetData(Id);
 
-            var anketaCompany = customer.Company.AnketaCompany.FirstOrDefault();
-            var anketaCompanyTemp = _customer.Company.AnketaCompany.FirstOrDefault();
-            if (anketaCompany == null || anketaCompanyTemp == null)
-                return;
-
-            var anketaCompanyResult = anketaCompany.ObjectEquals(anketaCompanyTemp);
-            Assert.IsTrue(anketaCompanyResult, "Some values of Anketa not changed!");
-
-            var rempl_1 = customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
-            var rempl_1_temp = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
-            var rempl_1_result = rempl_1.ObjectEquals(rempl_1_temp);
-            Assert.IsTrue(rempl_1_result, "RelEmployee PositionCode 1");
-
-            var rempl_2 = customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 2);
-            var rempl_2_temp = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 2);
-            var rempl_2_result = rempl_2.ObjectEquals(rempl_2_temp);
-            Assert.IsTrue(rempl_2_result, "RelEmployee PositionCode 2");
-
-            var rempl_3 = customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
-            var rempl_3_temp = _customer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
-            var rempl_3_result = rempl_3.ObjectEquals(rempl_3_temp);
-            Assert.IsTrue(rempl_3_result, "RelEmployee PositionCode 3");
-
+            Company_ObjectEquals(customer, _customer);
         }
 
         private void ChangeCustomerForTest()
@@ -152,6 +140,27 @@ namespace ipsFormsDesign.Tests
                 rempl_3.Empl.LastName += StringTextTest;
             }
         }
+
+
+        /// <summary>
+        /// Створити нового та зберегти
+        /// </summary>
+        //[TestMethod]
+        public void CreateCustomer_JUR_test()
+        {
+            var templateCustomer = GetTemplate(3);
+
+            var savedCustomer = _bigRightService.SaveNewConsumer(templateCustomer);
+            Assert.IsNotNull(savedCustomer);
+        }
+
+        [TestMethod]
+        public void CreateCustomer_PHIS_test()
+        {
+            var templateCustomer = GetTemplate(1);
+
+        }
+
 
         private Customer GetTemplate(int custType)
         {
@@ -234,5 +243,50 @@ namespace ipsFormsDesign.Tests
             var result = _bigRightService.GetRegisterItems(2347);
             Assert.IsNotNull(result);
         }
+
+
+        #region * * * ПЕРЕВІРКА ЗБЕРЕЖЕННЯ ПОЛІВ * * * 
+
+        private void Company_ObjectEquals(Customer dbCustomer, Customer localCustomer)
+        {
+            var anketaCompany = dbCustomer.Company.AnketaCompany.FirstOrDefault();
+            var anketaCompanyTemp = localCustomer.Company.AnketaCompany.FirstOrDefault();
+            if (anketaCompany == null || anketaCompanyTemp == null)
+                return;
+
+            var anketaCompanyResult = anketaCompany.ObjectEquals(anketaCompanyTemp);
+            Assert.IsTrue(anketaCompanyResult, "Some values of Anketa not changed!");
+
+            var rempl_1 = dbCustomer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
+            var rempl_1_temp = localCustomer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 1);
+            var rempl_1_result = rempl_1.ObjectEquals(rempl_1_temp);
+            Assert.IsTrue(rempl_1_result, "RelEmployee PositionCode 1");
+
+            var rempl_2 = dbCustomer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 2);
+            var rempl_2_temp = localCustomer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 2);
+            var rempl_2_result = rempl_2.ObjectEquals(rempl_2_temp);
+            Assert.IsTrue(rempl_2_result, "RelEmployee PositionCode 2");
+
+            var rempl_3 = dbCustomer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
+            var rempl_3_temp = localCustomer.Company.RelEmployee.SingleOrDefault(rec => rec.PositionCode == 3);
+            var rempl_3_result = rempl_3.ObjectEquals(rempl_3_temp);
+            Assert.IsTrue(rempl_3_result, "RelEmployee PositionCode 3");
+        }
+
+        private void Client_ObjectEquals(Customer dbCustomer, Customer localCustomer)
+        {
+
+        }
+
+        private void BankAccount_ObjectEquals(Customer dbCustomer, Customer localCustomer)
+        {
+            var bank = dbCustomer.BankAccount.SingleOrDefault();
+            var bank_temp = localCustomer.BankAccount.SingleOrDefault();
+            var bankSaveAuditResult = bank.ObjectEquals(bank_temp, exFields);
+            Assert.IsTrue(bankSaveAuditResult);
+        }
+
+
+        #endregion
     }
 }

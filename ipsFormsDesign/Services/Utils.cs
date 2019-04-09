@@ -183,7 +183,8 @@ namespace ipsFormsDesign
         {
             bool In234 = ((Dek >= 2) && (Dek <= 4));
             bool More4 = ((Dek > 4) || (Dek == 0));
-            if (((ThNum > 2) && In234) || ((ThNum == 2) && (Dek == 1))) return "и";
+            if ((ThNum > 2) && In234)  return  "и";
+            if ((ThNum == 2) && (Dek == 1)) return "а";
             else if ((ThNum > 2) && More4) return "ів";
             else if ((ThNum == 2) && In234) return "і";
             else return "";
