@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Services;
+using ipsFormsDesign.Services.ObjectUploading;
+using ipsFormsDesign.ViewModels.ObjectsRight;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ipsFormsDesign.Tests
