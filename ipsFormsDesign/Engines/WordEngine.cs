@@ -1456,9 +1456,10 @@ namespace ipsFormsDesign.Services
             {
                 TbAPrc = (from aut in authors
                           join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
-                          join cpr in copyright on aut.CustId equals cpr.CustId
-                          where datedoc >= cpr.BeginDate &
-                                datedoc <= cpr.EndDate
+                          join cpr in copyright on aut.CustId equals cpr?.CustId into tempp
+                          from cpr in tempp.DefaultIfEmpty()
+                          where datedoc >= cpr?.BeginDate &
+                                datedoc <= cpr?.EndDate
                     
                           select new TbAuthorPrc
                           { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
@@ -1547,8 +1548,11 @@ namespace ipsFormsDesign.Services
             }
             pPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(pPayShowGrn)), false);
             pPayShowKop = ((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)).ToString();
+
             aPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(aPayShowGrn)), false);
             aPayShowKop = ((int)((aPayShowGrn - (int)(aPayShowGrn)) * 100)).ToString();
+
+
             string SumLmpGrnText = String.Empty;
             string SumLmpKop = String.Empty;
 
@@ -1560,13 +1564,23 @@ namespace ipsFormsDesign.Services
             if (TbAL.Count != 0)
             { SumLmpGrnText = "( " + pPayShowGrnText + " ) грн.";
               SumLmpKop = pPayShowKop + " коп.";
-              SumLmpGrn = ((int)(pPayShowGrn)).ToString();
+                if (((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)) < 10)
+                {
+                    SumLmpKop = "0" + SumLmpKop;
+                }
+
+                SumLmpGrn = ((int)(pPayShowGrn)).ToString();
             }
 
                 if (TbAvAdv.Count != 0)
             {
                 SumAdvGrnText = "( " + aPayShowGrnText + " ) грн.";
                 SumAdvKop = aPayShowKop + " коп.";
+                if (((int)((aPayShowGrn - (int)(aPayShowGrn)) * 100)) < 10)
+                {
+                    SumAdvKop = "0" + SumAdvKop;
+                }
+
                 SumAdvGrn = aPayShowGrn.ToString();
             }
 
