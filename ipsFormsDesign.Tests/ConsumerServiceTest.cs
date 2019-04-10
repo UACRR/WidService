@@ -443,23 +443,39 @@ namespace ipsFormsDesign.Tests
         //    Assert.IsTrue(result, "customer is not saved");
         //}
 
-        //[TestMethod]
-        //public void TestSaveAgreementAddBrById()
-        //{
-        //    //default agrId
-        //    int agrId = 101;
-        //    //default agreement
-        //    LicenseAgreement agreement = new LicenseAgreement {
-        //        LicId = 23,
-        //        LicCode = 23,
-        //        LicClass = 23,
-        //        AgrId = 3
-        //    };
-        //    //save data to LicenseAgreement
-        //    bool result = _consumerService.SaveAgreementAddBrById(agrId, agreement);
-        //    //check on success action
-        //    Assert.IsTrue(result, "LicenseAgreement is not saved");
-        //}
+        [TestMethod]
+        public void TestSaveAgreementAddBrById()
+        {
+            //default agrId
+            int agrId = 2286;
+            //default agreement
+            LicenseAgreement agreement = new LicenseAgreement {
+                LicId = 23,
+                LicCode = 23,
+                LicClass = 23,
+                AgrId = 3
+            };
+            agreement.Agr = new AgreementMaster
+            {
+                AgrId = 2286,
+                CustId = 226,
+                ModifyLogin = null
+            };
+            agreement.Agr.AgreementAddBr = new ObservableListSource<AgreementAddBr>
+            {
+                new AgreementAddBr
+                {
+                    AgrId = 2286,
+                    Version = 1,
+                    AgrNumber = "БП_2/2018",
+                    ModifyLogin = null
+                }
+            };
+            //save data to LicenseAgreement
+            bool result = _consumerService.SaveAgreementAddBrById(agrId, agreement);
+            //check on success action
+            Assert.IsTrue(result, "LicenseAgreement is not saved");
+        }
 
         //[TestMethod]
         //public void TestuploadDocument()
