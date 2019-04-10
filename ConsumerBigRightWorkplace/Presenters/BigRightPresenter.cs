@@ -154,13 +154,13 @@ namespace ConsumerBigRightWorkplace.Presenters
                 form = null;
                 GC.Collect();
             }
-            UpdateData(customer.CustId);
+            UpdateDataGrid();
         }
 
         /// <summary>
         /// Відкрити кабінет користувача великих прав
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="item"></param>
         private void LoadCustomerCabinet(ConsumerBigRightView item)
         {
             ViewsSingleton.SetConsumerBigRightView(item);
@@ -180,7 +180,7 @@ namespace ConsumerBigRightWorkplace.Presenters
         private bool SaveCustomer(Customer customer)
         {
             var relust = _service.Save(customer);
-            UpdateData(customer.CustId);
+            UpdateDataGrid();
             return relust;
         }
 
@@ -244,23 +244,21 @@ namespace ConsumerBigRightWorkplace.Presenters
         //змінити статус ліцензії
         private bool ChangeLicenseStatus(LicenseAgreement agr, int version, int status, bool changeVer)
         {
-            if (_service.SetLicAgreementStatus(agr, version, status, changeVer))
-            {
-                UpdateData((int)agr.CustId);
-                return true;
-            }
-            return false;
+            var result = _service.SetLicAgreementStatus(agr, version, status, changeVer);
+            if (result)
+                UpdateDataGrid();
+            
+            return result;
         }
 
         // змінити тип ліцензії (заявка, довідка, ліцензія)
         private bool ChangeLicenseType(LicenseAgreement agreement, LicType licType)
         {
-            if (_service.SetLicenseType(agreement, licType))
-            {
-                UpdateData(agreement?.CustId ?? default(int));
-                return true;
-            }
-            return false;
+            var result = _service.SetLicenseType(agreement, licType);
+            if (result)
+                UpdateDataGrid();
+            
+            return result;
         }
 
         //розрахунковий лист в customer об'єкті
@@ -278,8 +276,8 @@ namespace ConsumerBigRightWorkplace.Presenters
         private bool SaveRegisterRatedLists(RegisterRatedList list)
         {
             var result = _service.SaveRegisterRatedList(list, out RegisterRatedList outlist);
-            if (outlist?.Register?.FirstOrDefault()?.CustId is int id)
-                UpdateData(id);
+            if (result)
+                UpdateDataGrid();
             return result;
         }
 
@@ -287,7 +285,8 @@ namespace ConsumerBigRightWorkplace.Presenters
         private bool DeleteRegisterRatedLists(int custId, int rmId)
         {
             var result = _service.DeleteRatedList(rmId);
-            UpdateData(custId);
+            if (result)
+                UpdateDataGrid();
             return result;
         }
 
@@ -331,21 +330,17 @@ namespace ConsumerBigRightWorkplace.Presenters
             return _partnerService.RemovePartnerForCustomer(clientId, partnerId);
         }
 
-        // TODO: перехід на точечне оновлення
-        private void UpdateData(int id)
+        public void UpdateDataGrid()
         {
-            //_mainGrid?.SetGridDataSource(_service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue));
             var viewList = _service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue);
             _mainGrid.DataSource = viewList;
+
+            if (viewList == null || ViewsSingleton.ConsumerBigRightView == null)
+                return;
+
             var item = viewList.SingleOrDefault(rec => rec.CustId == ViewsSingleton.ConsumerBigRightView.CustId);
             ViewsSingleton.SetConsumerBigRightView(item);
             _cabinetBigRightForm.Title = item?.Name;
-        }
-
-        public void UpdateDataGrid()
-        {
-            //_mainGrid?.SetGridDataSource(_service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue));
-            _mainGrid.DataSource = _service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue);
         }
     }
 }
