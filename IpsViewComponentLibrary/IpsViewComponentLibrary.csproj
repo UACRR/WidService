@@ -872,10 +872,10 @@
     <Compile Include="Shared\Controls\JuridicalAddressControl.Designer.cs">
       <DependentUpon>JuridicalAddressControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlAgreementAnketaType.cs">
+    <Compile Include="_UnusedControls\MiddleControlAgreementAnketaType.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlAgreementAnketaType.Designer.cs">
+    <Compile Include="_UnusedControls\MiddleControlAgreementAnketaType.Designer.cs">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\AgreementWithPlacesControl.cs">
@@ -1438,7 +1438,7 @@
     <EmbeddedResource Include="Shared\Controls\JuridicalAddressControl.resx">
       <DependentUpon>JuridicalAddressControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlAgreementAnketaType.resx">
+    <EmbeddedResource Include="_UnusedControls\MiddleControlAgreementAnketaType.resx">
       <DependentUpon>MiddleControlAgreementAnketaType.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\AgreementWithPlacesControl.resx">
