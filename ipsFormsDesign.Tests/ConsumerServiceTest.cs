@@ -295,7 +295,7 @@ namespace ipsFormsDesign.Tests
         //    };
         //    register.RegisterItem.Add(new RegisterItem
         //    {
-        //        RegId = 1221,
+        //        RegId = 1330,
         //        RegIitemId = 1,
         //        CodeItem = 1,
         //        ItemName = "TestName",
@@ -306,26 +306,26 @@ namespace ipsFormsDesign.Tests
         //        Ticks = 10,
         //        IsAuto = false
         //    });
-        //    register.User = new AspNetUsers
-        //    {
-        //        Id = "TestId",
-        //        AccessFailedCount = 1,
-        //        ConcurrencyStamp = "TestStamp",
-        //        Email = "testStrEmail",
-        //        EmailConfirmed = false,
-        //        FirstName = "TestFirstName",
-        //        LastName = "TestLastName",
-        //        LockoutEnabled = false,
-        //        NormalizedEmail = "TestNormalizedEmail",
-        //        NormalizedUserName = "TestNormalizedUserName",
-        //        PasswordHash = "TestPasswordHash",
-        //        PhoneNumber = "TestPhoneNumber",
-        //        PhoneNumberConfirmed = false,
-        //        SecurityStamp = "TestSecurityStamp",
-        //        SurName = "TestSurName",
-        //        TwoFactorEnabled = false,
-        //        UserName = "TestUserName"
-        //    };
+        //    //register.User = new AspNetUsers
+        //    //{
+        //    //    Id = "TestId",
+        //    //    AccessFailedCount = 1,
+        //    //    ConcurrencyStamp = "TestStamp",
+        //    //    Email = "testStrEmail",
+        //    //    EmailConfirmed = false,
+        //    //    FirstName = "TestFirstName",
+        //    //    LastName = "TestLastName",
+        //    //    LockoutEnabled = false,
+        //    //    NormalizedEmail = "TestNormalizedEmail",
+        //    //    NormalizedUserName = "TestNormalizedUserName",
+        //    //    PasswordHash = "TestPasswordHash",
+        //    //    PhoneNumber = "TestPhoneNumber",
+        //    //    PhoneNumberConfirmed = false,
+        //    //    SecurityStamp = "TestSecurityStamp",
+        //    //    SurName = "TestSurName",
+        //    //    TwoFactorEnabled = false,
+        //    //    UserName = "TestUserName"
+        //    //};
         //    //save data
         //    bool result = _consumerService.SaveRegister(register);
         //    //check on success action
@@ -359,13 +359,7 @@ namespace ipsFormsDesign.Tests
         }
 
         /// <summary>
-        /// RequestMessage = {Method: POST, RequestUri: 'http://localhost:54867/api/consumer/period/register/state', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
-        ///{
-        ///  Accept: application/json
-        ///  Content-Type: application/json; charset=utf-8
-        ///  Content-Length: 487
-        ///}
-        ///}
+        /// ApiConnector - 397 - Post Request is not found, -> Post Method is not exist into ConsumerController
         /// </summary>
         //[TestMethod]
         //public void TestSetRegisterState()
@@ -376,7 +370,13 @@ namespace ipsFormsDesign.Tests
         //    state = 0;
         //    //default list
         //    List<Register> list = new List<Register>() { new Register {
-        //        RegId = 1268}
+        //        RegId = 1319,
+        //        Number = "testNumber",
+        //        CountRows = 3,
+        //        CustId = 1375,
+        //        Durationticks = 3,
+        //        FileName = "TestName",
+        //        UserId = "TestId"}
         //    };
         //    //set data
         //    List<Register> result = _consumerService.SetRegisterState(state, list);
@@ -384,7 +384,7 @@ namespace ipsFormsDesign.Tests
         //    Assert.IsNotNull(result, "result is null");
         //}
 
-        //can't wait result data
+        ///Message = "Конфликт инструкции UPDATE с ограничением FOREIGN KEY \"FK_PAIDPERI_REFERENCE_PERIODST\". Конфликт произошел в базе данных \"MediaServiceTest\", таблица \"dbo.PeriodStatus\", column 'codeI'.\r\nВыполнение данной инструкции было прервано."
         //[TestMethod]
         //public void TestSetPeriodState()
         //{
@@ -392,7 +392,10 @@ namespace ipsFormsDesign.Tests
         //    PeriodState state = new PeriodState();
         //    state = 0;
         //    //default PaidPeriod
-        //    PaidPeriod period = new PaidPeriod { PeriodId = 1561 };
+        //    PaidPeriod period = new PaidPeriod
+        //    {
+        //        PeriodId = 1196
+        //    };
         //    //set data
         //    var result = _consumerService.SetPeriodState(state, period);
         //    //check on success action
@@ -423,11 +426,17 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "Customer is not created");
         }
 
+        /// <summary>
+        /// can't save data because 'dest' is null -> method SetFields() is return, data is not saved
+        /// </summary>
         //[TestMethod]
         //public void TestSave()
         //{
         //    //default customer for save
-        //    Customer customer = new Customer { CustId = 130, Status = 2, UserId = null };
+        //    Customer customer = new Customer {
+        //        CustId = 130,
+        //        Status = 1,
+        //        UserId = "testUserId" };
         //    //save customer
         //    bool result = _consumerService.Save(customer);
         //    //check on success action
@@ -440,7 +449,12 @@ namespace ipsFormsDesign.Tests
         //    //default agrId
         //    int agrId = 101;
         //    //default agreement
-        //    LicenseAgreement agreement = new LicenseAgreement();
+        //    LicenseAgreement agreement = new LicenseAgreement {
+        //        LicId = 23,
+        //        LicCode = 23,
+        //        LicClass = 23,
+        //        AgrId = 3
+        //    };
         //    //save data to LicenseAgreement
         //    bool result = _consumerService.SaveAgreementAddBrById(agrId, agreement);
         //    //check on success action
