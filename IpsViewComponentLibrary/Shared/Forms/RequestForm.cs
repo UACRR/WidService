@@ -126,10 +126,10 @@ namespace IpsViewComponentLibrary.Shared.Forms
                 bsLicense.DataSource = _licenseAgreement?.LicenseAgrParam.SingleOrDefault(rec => rec.LicVersion == _licenseAgreement.LicVersion)?.License;
 
                 SetMusicalDesignData(_licenseAgreement);
-                ctrlMusicalDesignList.DataSource = _musicalDesignList;
                 if (_licenseAgreement.LicStatus != 3)
                     panelStatusees.Enabled = false;
             }
+            ctrlMusicalDesignList.DataSource = _musicalDesignList;
 
             bsLicAgrParam.DataSource = _licenseAgreement?.LicenseAgrParam;
             bsLicenseBigR.DataSource = _licenseAgreement?.LicenseBigR;
@@ -148,14 +148,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             if (GetReadOnly()) // TODO: read only must be a enum
                 ReadOnly = true;
             SetControlsVisibility();
-        }
-
-        private void RequestForm_Load(object sender, EventArgs e)
-        {
-            //if (ddlPerformType.SelectedIndex < 0)
-            //    ddlPerformType.SelectedIndex = 0;
-            //if (ddlLang.SelectedIndex < 0)
-            //    ddlLang.SelectedIndex = 0;
         }
 
         private void SetDictionaries()
@@ -413,13 +405,12 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ParseAuthors();
             ParseMusicalDisign();
             int?[] checkInt =  { 4, 5, 7 };
-            var GenLic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && !checkInt.Contains( rec.LicStatus ));
+            var GenLic = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicClass == 1 && !checkInt.Contains(rec.LicStatus));
             if(GenLic != null && _licenseAgreement.AgrId != GenLic.AgrId )
             {
                 _licenseAgreement.AgrId = GenLic.AgrId;// прив'язка  до ген. угоди
             }
             DialogResult = DialogResult.OK;
-            //Close();
         }
 
         private void DdlPlaceName_SelectedValueChanged(object sender, EventArgs e)
@@ -442,9 +433,15 @@ namespace IpsViewComponentLibrary.Shared.Forms
                 _objectRight.ActCode = 3;
                 bsObjectRight.ResetBindings(false);
             }
+            if (val <= 0)
+            {
+                _objectRight.ActCode = 1;
+                bsObjectRight.ResetBindings(false);
+            }
 
             UpdateGenrePersent();
         }
+
         private void GenrePersent_UpdateNeed(object sender, EventArgs e)
         {
             UpdateGenrePersent();
@@ -463,10 +460,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
                 if (_licenseAgreement?.LicenseBigR?.Rate == rate)
                     return;
 
-                if (genreType == _licenseAgreement?.LicenseBigR?.Obj?.GenreType)
-                    return;
-
-                //txtVinagoroda.Text = rate.ToString();
                 if(_licenseAgreement?.LicenseBigR != null)
                     _licenseAgreement.LicenseBigR.Rate = rate;
 
@@ -553,7 +546,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
                 _licenseAgreement.LicenseBigR.RateMusic = 100m;
                 bsLicenseBigR.ResetBindings(false);
             }
-
         }
 
         private void CtrlAuthorRightholderList_CurrentAuthorRightholderChanged(object sender, EventArgs e)

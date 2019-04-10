@@ -19,8 +19,8 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityControl : UserControl
     {
-        private const string ErrorMsg = "Неможливо додати нову Спільноту!";
-        private const string SeccessMsg = "Нова Спільнота додана!";
+        private const string ErrorMsg = "Неможливо додати нове товариство!";
+        private const string SeccessMsg = "Нове товариство додано!";
 
         public event ReturnViewEventHandler<CommunityListView> SetCommunityList;
         public event ReturnViewEventHandler<CommunityAuthorsView> GetCommunityAutorsList;

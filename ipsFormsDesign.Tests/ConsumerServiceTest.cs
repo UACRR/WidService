@@ -255,41 +255,77 @@ namespace ipsFormsDesign.Tests
             //check on null state
             Assert.IsNotNull(result, "result is null");
         }
+        
+        [TestMethod]
+        public void TestSaveRegisterRatedList()
+        {
+            //RegisterRatedList define for parameter 'regRatedList'
+            RegisterRatedList regRatedList = new RegisterRatedList
+            {
+                PeriodId = 1560,
+                RmId = 216
+            };
+            //RegisterRatedList define for parameter 'retObject'
+            RegisterRatedList retObject = new RegisterRatedList
+            {
+                PeriodId = 666,
+                RmId = 666,
+                UserId = "testUserId2"
+            };
+            //save data
+            bool result = _consumerService.SaveRegisterRatedList(regRatedList, out retObject);
+            //check on access action
+            Assert.IsTrue(result, "data is not saved");
+        }
 
-        /// <summary>
-        /// InnerException = {System.Data.SqlClient.SqlException (0x80131904): Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_REGRATEDLIST_REF_PAIDPER". Конфликт произошел в базе данных "MediaServiceTest", таблица "dbo.PaidPeriod", column 'periodId'.
-        ///Выполнение данной инстр...
-        /// </summary>
-        //[TestMethod]
-        //public void TestSaveRegisterRatedList()
-        //{
-        //    //RegisterRatedList define for parameter 'regRatedList'
-        //    RegisterRatedList regRatedList = new RegisterRatedList
-        //    {
-        //        RmId = 216
-        //    };
-        //    //RegisterRatedList define for parameter 'retObject'
-        //    RegisterRatedList retObject = new RegisterRatedList
-        //    {
-        //        PeriodId = 666,
-        //        RmId = 666,
-        //        UserId = "testUserId2"
-        //    };
-        //    //save data
-        //    bool result = _consumerService.SaveRegisterRatedList(regRatedList, out retObject);
-        //    //check on access action
-        //    Assert.IsTrue(result, "data is not saved");
-        //}
-
-        ///InnerException = {System.Data.SqlClient.SqlException(0x80131904): Конфликт инструкции UPDATE с ограничением FOREIGN KEY "FK_REG_REF_CLIENT". Конфликт произошел в базе данных "MediaServiceTest", таблица "dbo.Client", column 'custId'.
-        ///Конфликт инструкции INSERT с ограничени...
+        ///Message = "Конфликт инструкции UPDATE с ограничением FOREIGN KEY \"FK_REGISTER_REFERENCE_ASPNETUS\". Конфликт произошел в базе данных \"MediaServiceTest\", таблица \"dbo.AspNetUsers\", column 'id'.\r\nВыполнение данной инструкции было прервано."
         //[TestMethod]
         //public void TestSaveRegister()
         //{
         //    //default Register instance
-        //    Register register = new Register { RegId = 1330,
-        //                                       Number = "testNumber"};
-        //    register.RegisterItem.Add(new RegisterItem { });
+        //    Register register = new Register
+        //    {
+        //        RegId = 1330,
+        //        Number = "testNumber",
+        //        CountRows = 3,
+        //        CustId = 1375,
+        //        Durationticks = 3,
+        //        FileName = "TestName",
+        //        UserId = "TestId"
+        //    };
+        //    register.RegisterItem.Add(new RegisterItem
+        //    {
+        //        RegId = 1330,
+        //        RegIitemId = 1,
+        //        CodeItem = 1,
+        //        ItemName = "TestName",
+        //        Performer = "TestPerformer",
+        //        AuthorMusic = "TestAuthor",
+        //        AuthorText = "TestTextAuthor",
+        //        ModifyLogin = "TestModify",
+        //        Ticks = 10,
+        //        IsAuto = false
+        //    });
+        //    //register.User = new AspNetUsers
+        //    //{
+        //    //    Id = "TestId",
+        //    //    AccessFailedCount = 1,
+        //    //    ConcurrencyStamp = "TestStamp",
+        //    //    Email = "testStrEmail",
+        //    //    EmailConfirmed = false,
+        //    //    FirstName = "TestFirstName",
+        //    //    LastName = "TestLastName",
+        //    //    LockoutEnabled = false,
+        //    //    NormalizedEmail = "TestNormalizedEmail",
+        //    //    NormalizedUserName = "TestNormalizedUserName",
+        //    //    PasswordHash = "TestPasswordHash",
+        //    //    PhoneNumber = "TestPhoneNumber",
+        //    //    PhoneNumberConfirmed = false,
+        //    //    SecurityStamp = "TestSecurityStamp",
+        //    //    SurName = "TestSurName",
+        //    //    TwoFactorEnabled = false,
+        //    //    UserName = "TestUserName"
+        //    //};
         //    //save data
         //    bool result = _consumerService.SaveRegister(register);
         //    //check on success action
@@ -302,8 +338,7 @@ namespace ipsFormsDesign.Tests
         //    //default Register instance
         //    Register register = new Register
         //    {
-        //        RegId = 1329,
-        //        Number = "testNumber"
+        //        RegId = 1319
         //    };
         //    register.RegisterItem.Add(new RegisterItem { });
         //    //delete data
@@ -312,26 +347,19 @@ namespace ipsFormsDesign.Tests
         //    Assert.IsTrue(result, "Register not deleted");
         //}
 
-        //[TestMethod]
-        //public void TestGetRegister()
-        //{
-        //    //default regId
-        //    int regId = 1271;
-        //    //get data
-        //    Register result = _consumerService.GetRegister(regId);
-        //    //check on null state
-        //    Assert.IsNotNull(result, "result is null");
-        //}
-
+        [TestMethod]
+        public void TestGetRegister()
+        {
+            //default regId
+            int regId = 1271;
+            //get data
+            Register result = _consumerService.GetRegister(regId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
 
         /// <summary>
-        /// RequestMessage = {Method: POST, RequestUri: 'http://localhost:54867/api/consumer/period/register/state', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
-        ///{
-        ///  Accept: application/json
-        ///  Content-Type: application/json; charset=utf-8
-        ///  Content-Length: 487
-        ///}
-        ///}
+        /// ApiConnector - 397 - Post Request is not found, -> Post Method is not exist into ConsumerController
         /// </summary>
         //[TestMethod]
         //public void TestSetRegisterState()
@@ -342,8 +370,13 @@ namespace ipsFormsDesign.Tests
         //    state = 0;
         //    //default list
         //    List<Register> list = new List<Register>() { new Register {
-        //        RegId = 1268,
-        //        Number = "testNumber" }
+        //        RegId = 1319,
+        //        Number = "testNumber",
+        //        CountRows = 3,
+        //        CustId = 1375,
+        //        Durationticks = 3,
+        //        FileName = "TestName",
+        //        UserId = "TestId"}
         //    };
         //    //set data
         //    List<Register> result = _consumerService.SetRegisterState(state, list);
@@ -351,7 +384,7 @@ namespace ipsFormsDesign.Tests
         //    Assert.IsNotNull(result, "result is null");
         //}
 
-        //can't wait result data
+        ///Message = "Конфликт инструкции UPDATE с ограничением FOREIGN KEY \"FK_PAIDPERI_REFERENCE_PERIODST\". Конфликт произошел в базе данных \"MediaServiceTest\", таблица \"dbo.PeriodStatus\", column 'codeI'.\r\nВыполнение данной инструкции было прервано."
         //[TestMethod]
         //public void TestSetPeriodState()
         //{
@@ -359,7 +392,10 @@ namespace ipsFormsDesign.Tests
         //    PeriodState state = new PeriodState();
         //    state = 0;
         //    //default PaidPeriod
-        //    PaidPeriod period = new PaidPeriod { PeriodId = 1561 };
+        //    PaidPeriod period = new PaidPeriod
+        //    {
+        //        PeriodId = 1196
+        //    };
         //    //set data
         //    var result = _consumerService.SetPeriodState(state, period);
         //    //check on success action
@@ -390,29 +426,56 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "Customer is not created");
         }
 
+        /// <summary>
+        /// can't save data because 'dest' is null -> method SetFields() is return, data is not saved
+        /// </summary>
         //[TestMethod]
         //public void TestSave()
         //{
         //    //default customer for save
-        //    Customer customer = new Customer { CustId = 130, Status = 2, UserId = null };
+        //    Customer customer = new Customer {
+        //        CustId = 130,
+        //        Status = 1,
+        //        UserId = "testUserId" };
         //    //save customer
         //    bool result = _consumerService.Save(customer);
         //    //check on success action
         //    Assert.IsTrue(result, "customer is not saved");
         //}
 
-        //[TestMethod]
-        //public void TestSaveAgreementAddBrById()
-        //{
-        //    //default agrId
-        //    int agrId = 101;
-        //    //default agreement
-        //    LicenseAgreement agreement = new LicenseAgreement();
-        //    //save data to LicenseAgreement
-        //    bool result = _consumerService.SaveAgreementAddBrById(agrId, agreement);
-        //    //check on success action
-        //    Assert.IsTrue(result, "LicenseAgreement is not saved");
-        //}
+        [TestMethod]
+        public void TestSaveAgreementAddBrById()
+        {
+            //default agrId
+            int agrId = 2286;
+            //default agreement
+            LicenseAgreement agreement = new LicenseAgreement {
+                LicId = 23,
+                LicCode = 23,
+                LicClass = 23,
+                AgrId = 3
+            };
+            agreement.Agr = new AgreementMaster
+            {
+                AgrId = 2286,
+                CustId = 226,
+                ModifyLogin = null
+            };
+            agreement.Agr.AgreementAddBr = new ObservableListSource<AgreementAddBr>
+            {
+                new AgreementAddBr
+                {
+                    AgrId = 2286,
+                    Version = 1,
+                    AgrNumber = "БП_2/2018",
+                    ModifyLogin = null
+                }
+            };
+            //save data to LicenseAgreement
+            bool result = _consumerService.SaveAgreementAddBrById(agrId, agreement);
+            //check on success action
+            Assert.IsTrue(result, "LicenseAgreement is not saved");
+        }
 
         //[TestMethod]
         //public void TestuploadDocument()

@@ -90,6 +90,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel6 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.panelInfo = new Telerik.WinControls.UI.RadPanel();
+            this.dtDateEnd = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
+            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.label18 = new Telerik.WinControls.UI.RadLabel();
             this.label8 = new Telerik.WinControls.UI.RadLabel();
             this.ddlLang = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
@@ -117,8 +119,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.bsLicenseAgreement = new System.Windows.Forms.BindingSource(this.components);
             this.ddlStatus = new IpsViewComponentLibrary.Common.Editors.IpsDropDownList();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.dtDateEnd = new IpsViewComponentLibrary.Common.Editors.IpsDateTimePicker();
-            this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvAuthors.SuspendLayout();
@@ -178,6 +178,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelInfo)).BeginInit();
             this.panelInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDateEnd)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.label18)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.label8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLang)).BeginInit();
@@ -206,8 +208,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgreement)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDateEnd)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -224,7 +224,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvAuthors;
             this.pageView.Size = new System.Drawing.Size(1077, 414);
-            this.pageView.TabIndex = 0;
+            this.pageView.TabIndex = 4;
             this.pageView.ThemeName = "Office2013Light";
             this.pageView.SelectedPageChanged += new System.EventHandler(this.PageView_SelectedPageChanged);
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -253,7 +253,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ctrlAuthorRightholderList.RoleRateErrorText = "";
             this.ctrlAuthorRightholderList.SelectedAuthorRightholder = null;
             this.ctrlAuthorRightholderList.Size = new System.Drawing.Size(1069, 363);
-            this.ctrlAuthorRightholderList.TabIndex = 2;
+            this.ctrlAuthorRightholderList.TabIndex = 0;
             this.ctrlAuthorRightholderList.CurrentAuthorRightholderChanged += new System.EventHandler(this.CtrlAuthorRightholderList_CurrentAuthorRightholderChanged);
             // 
             // pvConditions
@@ -290,7 +290,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.checkIsTour.Location = new System.Drawing.Point(9, 159);
             this.checkIsTour.Name = "checkIsTour";
             this.checkIsTour.Size = new System.Drawing.Size(158, 19);
-            this.checkIsTour.TabIndex = 40;
+            this.checkIsTour.TabIndex = 8;
             this.checkIsTour.Text = "Чи плануються гастролі";
             this.checkIsTour.ThemeName = "Office2013Light";
             this.checkIsTour.CheckStateChanged += new System.EventHandler(this.CheckIsTour_CheckStateChanged);
@@ -304,7 +304,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.lblTour.Location = new System.Drawing.Point(11, 186);
             this.lblTour.Name = "lblTour";
             this.lblTour.Size = new System.Drawing.Size(140, 19);
-            this.lblTour.TabIndex = 39;
+            this.lblTour.TabIndex = 0;
             this.lblTour.Text = "Де плануються гастролі";
             this.lblTour.ThemeName = "Office2013Light";
             // 
@@ -314,7 +314,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtWhereTour.Location = new System.Drawing.Point(154, 185);
             this.txtWhereTour.Name = "txtWhereTour";
             this.txtWhereTour.Size = new System.Drawing.Size(507, 21);
-            this.txtWhereTour.TabIndex = 38;
+            this.txtWhereTour.TabIndex = 9;
             this.txtWhereTour.ThemeName = "Office2013Light";
             // 
             // ddlPlaceName
@@ -326,7 +326,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlPlaceName.Location = new System.Drawing.Point(61, 11);
             this.ddlPlaceName.Name = "ddlPlaceName";
             this.ddlPlaceName.Size = new System.Drawing.Size(600, 21);
-            this.ddlPlaceName.TabIndex = 19;
+            this.ddlPlaceName.TabIndex = 1;
             this.ddlPlaceName.ThemeName = "Office2013Light";
             this.ddlPlaceName.ValueMember = "PlaceId";
             this.ddlPlaceName.SelectedValueChanged += new System.EventHandler(this.DdlPlaceName_SelectedValueChanged);
@@ -345,7 +345,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtAddress.Location = new System.Drawing.Point(61, 38);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(600, 21);
-            this.txtAddress.TabIndex = 16;
+            this.txtAddress.TabIndex = 2;
             this.txtAddress.ThemeName = "Office2013Light";
             // 
             // label14
@@ -353,7 +353,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label14.Location = new System.Drawing.Point(9, 12);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(40, 19);
-            this.label14.TabIndex = 15;
+            this.label14.TabIndex = 0;
             this.label14.Text = "Назва";
             this.label14.ThemeName = "Office2013Light";
             // 
@@ -362,7 +362,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label16.Location = new System.Drawing.Point(281, 107);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(178, 19);
-            this.label16.TabIndex = 32;
+            this.label16.TabIndex = 0;
             this.label16.Text = "Середня вартість квитка (USD)";
             this.label16.ThemeName = "Office2013Light";
             // 
@@ -371,7 +371,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label12.Location = new System.Drawing.Point(9, 40);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(47, 19);
-            this.label12.TabIndex = 20;
+            this.label12.TabIndex = 0;
             this.label12.Text = "Адреса";
             this.label12.ThemeName = "Office2013Light";
             // 
@@ -381,7 +381,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtTicketPriceUsd.Location = new System.Drawing.Point(462, 105);
             this.txtTicketPriceUsd.Name = "txtTicketPriceUsd";
             this.txtTicketPriceUsd.Size = new System.Drawing.Size(49, 21);
-            this.txtTicketPriceUsd.TabIndex = 33;
+            this.txtTicketPriceUsd.TabIndex = 7;
             this.txtTicketPriceUsd.ThemeName = "Office2013Light";
             // 
             // txtValuePlace
@@ -391,7 +391,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtValuePlace.Name = "txtValuePlace";
             this.txtValuePlace.ReadOnly = true;
             this.txtValuePlace.Size = new System.Drawing.Size(49, 21);
-            this.txtValuePlace.TabIndex = 23;
+            this.txtValuePlace.TabIndex = 3;
             this.txtValuePlace.ThemeName = "Office2013Light";
             // 
             // bsClnPlaceHoll
@@ -403,7 +403,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label9.Location = new System.Drawing.Point(280, 80);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(180, 19);
-            this.label9.TabIndex = 30;
+            this.label9.TabIndex = 0;
             this.label9.Text = "Середня вартість квитка (UAH)";
             this.label9.ThemeName = "Office2013Light";
             // 
@@ -412,7 +412,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label11.Location = new System.Drawing.Point(9, 80);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(124, 19);
-            this.label11.TabIndex = 22;
+            this.label11.TabIndex = 0;
             this.label11.Text = "Кількість місць у залі";
             this.label11.ThemeName = "Office2013Light";
             // 
@@ -422,7 +422,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtTicketPriceUah.Location = new System.Drawing.Point(462, 78);
             this.txtTicketPriceUah.Name = "txtTicketPriceUah";
             this.txtTicketPriceUah.Size = new System.Drawing.Size(49, 21);
-            this.txtTicketPriceUah.TabIndex = 31;
+            this.txtTicketPriceUah.TabIndex = 6;
             this.txtTicketPriceUah.ThemeName = "Office2013Light";
             // 
             // txtFillingRate
@@ -431,7 +431,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtFillingRate.Location = new System.Drawing.Point(177, 105);
             this.txtFillingRate.Name = "txtFillingRate";
             this.txtFillingRate.Size = new System.Drawing.Size(49, 21);
-            this.txtFillingRate.TabIndex = 25;
+            this.txtFillingRate.TabIndex = 4;
             this.txtFillingRate.ThemeName = "Office2013Light";
             // 
             // label15
@@ -439,7 +439,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label15.Location = new System.Drawing.Point(9, 134);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(162, 19);
-            this.label15.TabIndex = 28;
+            this.label15.TabIndex = 0;
             this.label15.Text = "К-сть постановок на місяць";
             this.label15.ThemeName = "Office2013Light";
             // 
@@ -448,7 +448,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label10.Location = new System.Drawing.Point(9, 107);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(146, 19);
-            this.label10.TabIndex = 24;
+            this.label10.TabIndex = 0;
             this.label10.Text = "Заповнюваність залу (%)";
             this.label10.ThemeName = "Office2013Light";
             // 
@@ -458,7 +458,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtPerformNumb.Location = new System.Drawing.Point(177, 132);
             this.txtPerformNumb.Name = "txtPerformNumb";
             this.txtPerformNumb.Size = new System.Drawing.Size(49, 21);
-            this.txtPerformNumb.TabIndex = 29;
+            this.txtPerformNumb.TabIndex = 5;
             this.txtPerformNumb.ThemeName = "Office2013Light";
             // 
             // pvMusicalArrangement
@@ -478,7 +478,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radSeparator1.Location = new System.Drawing.Point(18, 30);
             this.radSeparator1.Name = "radSeparator1";
             this.radSeparator1.Size = new System.Drawing.Size(318, 10);
-            this.radSeparator1.TabIndex = 33;
+            this.radSeparator1.TabIndex = 0;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
             // label13
@@ -491,7 +491,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             this.label13.RootElement.ControlBounds = new System.Drawing.Rectangle(12, 5, 100, 18);
             this.label13.Size = new System.Drawing.Size(234, 19);
-            this.label13.TabIndex = 31;
+            this.label13.TabIndex = 0;
             this.label13.Text = "Ставка винагороди (%) за збірну музику";
             this.label13.ThemeName = "Office2013Light";
             // 
@@ -502,7 +502,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtMusicRate.MaxLength = 6;
             this.txtMusicRate.Name = "txtMusicRate";
             this.txtMusicRate.Size = new System.Drawing.Size(50, 21);
-            this.txtMusicRate.TabIndex = 32;
+            this.txtMusicRate.TabIndex = 1;
             this.txtMusicRate.ThemeName = "Office2013Light";
             this.txtMusicRate.TextChanged += new System.EventHandler(this.TxtMusicRate_TextChanged);
             // 
@@ -533,7 +533,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ctrlMusicalDesignList.ShowObjectInfo = true;
             this.ctrlMusicalDesignList.ShowTimeStartEnd = false;
             this.ctrlMusicalDesignList.Size = new System.Drawing.Size(1067, 298);
-            this.ctrlMusicalDesignList.TabIndex = 30;
+            this.ctrlMusicalDesignList.TabIndex = 2;
             // 
             // bsWorkRh
             // 
@@ -544,13 +544,14 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.panelStatusees.BackColor = System.Drawing.Color.Transparent;
             this.panelStatusees.Controls.Add(this.btnSetCenceledStatus);
             this.panelStatusees.Controls.Add(this.btnSetActiveStatus);
-            this.panelStatusees.Location = new System.Drawing.Point(3, 3);
+            this.panelStatusees.Location = new System.Drawing.Point(3, 2);
             this.panelStatusees.Name = "panelStatusees";
             this.panelStatusees.Size = new System.Drawing.Size(289, 26);
-            this.panelStatusees.TabIndex = 35;
+            this.panelStatusees.TabIndex = 2;
             // 
             // btnSetCenceledStatus
             // 
+            this.btnSetCenceledStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetCenceledStatus.Location = new System.Drawing.Point(171, 1);
             this.btnSetCenceledStatus.Name = "btnSetCenceledStatus";
             this.btnSetCenceledStatus.Size = new System.Drawing.Size(110, 24);
@@ -561,6 +562,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             // btnSetActiveStatus
             // 
+            this.btnSetActiveStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSetActiveStatus.Location = new System.Drawing.Point(4, 1);
             this.btnSetActiveStatus.Name = "btnSetActiveStatus";
             this.btnSetActiveStatus.Size = new System.Drawing.Size(161, 24);
@@ -587,7 +589,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.dtDate.Name = "dtDate";
             this.dtDate.NullText = "Оберіть дату";
             this.dtDate.Size = new System.Drawing.Size(118, 21);
-            this.dtDate.TabIndex = 16;
+            this.dtDate.TabIndex = 2;
             this.dtDate.TabStop = false;
             this.dtDate.ThemeName = "Office2013Light";
             this.dtDate.Value = new System.DateTime(((long)(0)));
@@ -602,7 +604,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label2.Location = new System.Drawing.Point(331, 12);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(21, 18);
-            this.label2.TabIndex = 15;
+            this.label2.TabIndex = 0;
             this.label2.Text = "від";
             // 
             // txtLicNum
@@ -611,7 +613,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtLicNum.Location = new System.Drawing.Point(119, 10);
             this.txtLicNum.Name = "txtLicNum";
             this.txtLicNum.Size = new System.Drawing.Size(206, 21);
-            this.txtLicNum.TabIndex = 14;
+            this.txtLicNum.TabIndex = 1;
             this.txtLicNum.ThemeName = "Office2013Light";
             // 
             // label1
@@ -620,7 +622,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label1.Location = new System.Drawing.Point(54, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 18);
-            this.label1.TabIndex = 13;
+            this.label1.TabIndex = 0;
             this.label1.Text = "Заявка №";
             this.label1.ThemeName = "Office2013Light";
             // 
@@ -629,7 +631,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.lblClientTitle.Location = new System.Drawing.Point(546, 37);
             this.lblClientTitle.Name = "lblClientTitle";
             this.lblClientTitle.Size = new System.Drawing.Size(41, 19);
-            this.lblClientTitle.TabIndex = 12;
+            this.lblClientTitle.TabIndex = 0;
             this.lblClientTitle.Text = "Клієнт";
             this.lblClientTitle.ThemeName = "Office2013Light";
             // 
@@ -656,7 +658,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.panelClient.RootElement.MaxSize = new System.Drawing.Size(0, 0);
             this.panelClient.RootElement.MinSize = new System.Drawing.Size(540, 105);
             this.panelClient.Size = new System.Drawing.Size(546, 151);
-            this.panelClient.TabIndex = 11;
+            this.panelClient.TabIndex = 0;
             this.panelClient.ThemeName = "Office2013Light";
             // 
             // txtStatusName
@@ -666,7 +668,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtStatusName.Name = "txtStatusName";
             this.txtStatusName.ReadOnly = true;
             this.txtStatusName.Size = new System.Drawing.Size(189, 21);
-            this.txtStatusName.TabIndex = 103;
+            this.txtStatusName.TabIndex = 0;
             this.txtStatusName.ThemeName = "Office2013Light";
             // 
             // bsConsumerBigRightView
@@ -680,7 +682,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtAgrDate.Name = "txtAgrDate";
             this.txtAgrDate.ReadOnly = true;
             this.txtAgrDate.Size = new System.Drawing.Size(167, 21);
-            this.txtAgrDate.TabIndex = 102;
+            this.txtAgrDate.TabIndex = 0;
             this.txtAgrDate.ThemeName = "Office2013Light";
             // 
             // txtClientAddress
@@ -690,7 +692,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtClientAddress.Name = "txtClientAddress";
             this.txtClientAddress.ReadOnly = true;
             this.txtClientAddress.Size = new System.Drawing.Size(389, 21);
-            this.txtClientAddress.TabIndex = 101;
+            this.txtClientAddress.TabIndex = 0;
             this.txtClientAddress.ThemeName = "Office2013Light";
             // 
             // txtAgrNumber
@@ -700,7 +702,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtAgrNumber.Name = "txtAgrNumber";
             this.txtAgrNumber.ReadOnly = true;
             this.txtAgrNumber.Size = new System.Drawing.Size(189, 21);
-            this.txtAgrNumber.TabIndex = 100;
+            this.txtAgrNumber.TabIndex = 0;
             this.txtAgrNumber.ThemeName = "Office2013Light";
             // 
             // txtInnOkpo
@@ -710,7 +712,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtInnOkpo.Name = "txtInnOkpo";
             this.txtInnOkpo.ReadOnly = true;
             this.txtInnOkpo.Size = new System.Drawing.Size(189, 21);
-            this.txtInnOkpo.TabIndex = 99;
+            this.txtInnOkpo.TabIndex = 0;
             this.txtInnOkpo.ThemeName = "Office2013Light";
             // 
             // txtClientName
@@ -720,7 +722,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtClientName.Name = "txtClientName";
             this.txtClientName.ReadOnly = true;
             this.txtClientName.Size = new System.Drawing.Size(389, 21);
-            this.txtClientName.TabIndex = 98;
+            this.txtClientName.TabIndex = 0;
             this.txtClientName.ThemeName = "Office2013Light";
             // 
             // radLabel3
@@ -728,7 +730,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel3.Location = new System.Drawing.Point(8, 17);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(134, 19);
-            this.radLabel3.TabIndex = 92;
+            this.radLabel3.TabIndex = 0;
             this.radLabel3.Text = "Найменування клієнта";
             this.radLabel3.ThemeName = "Office2013Light";
             // 
@@ -737,7 +739,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel8.Location = new System.Drawing.Point(8, 125);
             this.radLabel8.Name = "radLabel8";
             this.radLabel8.Size = new System.Drawing.Size(33, 19);
-            this.radLabel8.TabIndex = 97;
+            this.radLabel8.TabIndex = 0;
             this.radLabel8.Text = "Стан";
             this.radLabel8.ThemeName = "Office2013Light";
             // 
@@ -746,7 +748,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel4.Location = new System.Drawing.Point(8, 70);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(55, 19);
-            this.radLabel4.TabIndex = 93;
+            this.radLabel4.TabIndex = 0;
             this.radLabel4.Text = "ЄДРПОУ";
             this.radLabel4.ThemeName = "Office2013Light";
             // 
@@ -755,7 +757,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel5.Location = new System.Drawing.Point(8, 44);
             this.radLabel5.Name = "radLabel5";
             this.radLabel5.Size = new System.Drawing.Size(47, 19);
-            this.radLabel5.TabIndex = 94;
+            this.radLabel5.TabIndex = 0;
             this.radLabel5.Text = "Адреса";
             this.radLabel5.ThemeName = "Office2013Light";
             // 
@@ -764,7 +766,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel7.Location = new System.Drawing.Point(343, 97);
             this.radLabel7.Name = "radLabel7";
             this.radLabel7.Size = new System.Drawing.Size(23, 19);
-            this.radLabel7.TabIndex = 96;
+            this.radLabel7.TabIndex = 0;
             this.radLabel7.Text = "від";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
@@ -773,7 +775,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel6.Location = new System.Drawing.Point(8, 97);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(80, 19);
-            this.radLabel6.TabIndex = 95;
+            this.radLabel6.TabIndex = 0;
             this.radLabel6.Text = "Ген. угода №";
             this.radLabel6.ThemeName = "Office2013Light";
             // 
@@ -782,7 +784,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel1.Location = new System.Drawing.Point(17, 37);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(125, 19);
-            this.radLabel1.TabIndex = 18;
+            this.radLabel1.TabIndex = 0;
             this.radLabel1.Text = "Загальна інформація";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
@@ -812,8 +814,33 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.panelInfo.RootElement.MaxSize = new System.Drawing.Size(0, 0);
             this.panelInfo.RootElement.MinSize = new System.Drawing.Size(0, 0);
             this.panelInfo.Size = new System.Drawing.Size(520, 151);
-            this.panelInfo.TabIndex = 17;
+            this.panelInfo.TabIndex = 3;
             this.panelInfo.ThemeName = "Office2013Light";
+            // 
+            // dtDateEnd
+            // 
+            this.dtDateEnd.CalendarSize = new System.Drawing.Size(220, 180);
+            this.dtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicAgrParam, "DateEnd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.dtDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtDateEnd.Location = new System.Drawing.Point(280, 42);
+            this.dtDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
+            this.dtDateEnd.Name = "dtDateEnd";
+            this.dtDateEnd.NullText = "Оберіть дату";
+            this.dtDateEnd.Size = new System.Drawing.Size(118, 21);
+            this.dtDateEnd.TabIndex = 3;
+            this.dtDateEnd.TabStop = false;
+            this.dtDateEnd.ThemeName = "Office2013Light";
+            this.dtDateEnd.Value = new System.DateTime(((long)(0)));
+            // 
+            // radLabel10
+            // 
+            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.radLabel10.Location = new System.Drawing.Point(238, 44);
+            this.radLabel10.Name = "radLabel10";
+            this.radLabel10.Size = new System.Drawing.Size(36, 18);
+            this.radLabel10.TabIndex = 0;
+            this.radLabel10.Text = "діє до";
+            this.radLabel10.ThemeName = "Office2013Light";
             // 
             // label18
             // 
@@ -826,7 +853,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             // 
             this.label18.RootElement.ControlBounds = new System.Drawing.Rectangle(280, 97, 100, 18);
             this.label18.Size = new System.Drawing.Size(84, 18);
-            this.label18.TabIndex = 28;
+            this.label18.TabIndex = 0;
             this.label18.Text = "Вид виконання";
             this.label18.ThemeName = "Office2013Light";
             // 
@@ -836,7 +863,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label8.Location = new System.Drawing.Point(9, 97);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(94, 18);
-            this.label8.TabIndex = 27;
+            this.label8.TabIndex = 3;
             this.label8.Text = "Мова виконання";
             this.label8.ThemeName = "Office2013Light";
             // 
@@ -849,10 +876,9 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlLang.Location = new System.Drawing.Point(114, 96);
             this.ddlLang.Name = "ddlLang";
             this.ddlLang.Size = new System.Drawing.Size(138, 21);
-            this.ddlLang.TabIndex = 26;
+            this.ddlLang.TabIndex = 5;
             this.ddlLang.ThemeName = "Office2013Light";
             this.ddlLang.ValueMember = "CodeS";
-            this.ddlLang.Leave += new System.EventHandler(this.GenrePersent_UpdateNeed);
             // 
             // bsDictLanguage
             // 
@@ -864,7 +890,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label7.Location = new System.Drawing.Point(170, 125);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(186, 18);
-            this.label7.TabIndex = 24;
+            this.label7.TabIndex = 0;
             this.label7.Text = "Мінімальна ставка винагороди (%)";
             this.label7.ThemeName = "Office2013Light";
             // 
@@ -874,7 +900,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtVinagoroda.Location = new System.Drawing.Point(375, 123);
             this.txtVinagoroda.Name = "txtVinagoroda";
             this.txtVinagoroda.Size = new System.Drawing.Size(49, 21);
-            this.txtVinagoroda.TabIndex = 25;
+            this.txtVinagoroda.TabIndex = 8;
             this.txtVinagoroda.ThemeName = "Office2013Light";
             // 
             // label6
@@ -883,7 +909,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label6.Location = new System.Drawing.Point(9, 125);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 18);
-            this.label6.TabIndex = 22;
+            this.label6.TabIndex = 4;
             this.label6.Text = "Кількість актів";
             this.label6.ThemeName = "Office2013Light";
             // 
@@ -894,7 +920,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtActCode.MaxLength = 1;
             this.txtActCode.Name = "txtActCode";
             this.txtActCode.Size = new System.Drawing.Size(49, 21);
-            this.txtActCode.TabIndex = 23;
+            this.txtActCode.TabIndex = 7;
             this.txtActCode.ThemeName = "Office2013Light";
             this.txtActCode.TextChanged += new System.EventHandler(this.TxtActCode_TextChanged);
             // 
@@ -911,10 +937,9 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlPerformType.Location = new System.Drawing.Point(375, 96);
             this.ddlPerformType.Name = "ddlPerformType";
             this.ddlPerformType.Size = new System.Drawing.Size(136, 21);
-            this.ddlPerformType.TabIndex = 21;
+            this.ddlPerformType.TabIndex = 6;
             this.ddlPerformType.ThemeName = "Office2013Light";
             this.ddlPerformType.ValueMember = "CodeI";
-            this.ddlPerformType.Leave += new System.EventHandler(this.GenrePersent_UpdateNeed);
             // 
             // bsDictPerformType
             // 
@@ -926,7 +951,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label5.Location = new System.Drawing.Point(9, 70);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 18);
-            this.label5.TabIndex = 20;
+            this.label5.TabIndex = 2;
             this.label5.Text = "Вид твору";
             this.label5.ThemeName = "Office2013Light";
             // 
@@ -939,7 +964,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlGenreType.Location = new System.Drawing.Point(114, 69);
             this.ddlGenreType.Name = "ddlGenreType";
             this.ddlGenreType.Size = new System.Drawing.Size(397, 21);
-            this.ddlGenreType.TabIndex = 19;
+            this.ddlGenreType.TabIndex = 4;
             this.ddlGenreType.ThemeName = "Office2013Light";
             this.ddlGenreType.ValueMember = "CodeI";
             this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.GenrePersent_UpdateNeed);
@@ -958,7 +983,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.dtPremiereDate.Name = "dtPremiereDate";
             this.dtPremiereDate.NullText = "Оберіть дату";
             this.dtPremiereDate.Size = new System.Drawing.Size(118, 21);
-            this.dtPremiereDate.TabIndex = 18;
+            this.dtPremiereDate.TabIndex = 2;
             this.dtPremiereDate.TabStop = false;
             this.dtPremiereDate.ThemeName = "Office2013Light";
             this.dtPremiereDate.Value = new System.DateTime(((long)(0)));
@@ -969,7 +994,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label4.Location = new System.Drawing.Point(9, 44);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 18);
-            this.label4.TabIndex = 17;
+            this.label4.TabIndex = 0;
             this.label4.Text = "Дата прем\'єри";
             this.label4.ThemeName = "Office2013Light";
             // 
@@ -979,7 +1004,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.label3.Location = new System.Drawing.Point(9, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 18);
-            this.label3.TabIndex = 15;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Назва вистави";
             this.label3.ThemeName = "Office2013Light";
             // 
@@ -989,7 +1014,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.txtName.Location = new System.Drawing.Point(114, 15);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(397, 21);
-            this.txtName.TabIndex = 16;
+            this.txtName.TabIndex = 1;
             this.txtName.ThemeName = "Office2013Light";
             // 
             // radPanel2
@@ -1004,7 +1029,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.radPanel2.Name = "radPanel2";
             this.radPanel2.Size = new System.Drawing.Size(1082, 31);
-            this.radPanel2.TabIndex = 91;
+            this.radPanel2.TabIndex = 5;
             this.radPanel2.ThemeName = "Office2013Light";
             // 
             // btnCancel
@@ -1014,7 +1039,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.btnCancel.Location = new System.Drawing.Point(904, 4);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(175, 24);
-            this.btnCancel.TabIndex = 15;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Скасувати";
             this.btnCancel.ThemeName = "Office2013Light";
             // 
@@ -1024,7 +1049,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.btnSave.Location = new System.Drawing.Point(723, 4);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(175, 24);
-            this.btnSave.TabIndex = 14;
+            this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
@@ -1034,7 +1059,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel2.Location = new System.Drawing.Point(531, 11);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(33, 19);
-            this.radLabel2.TabIndex = 98;
+            this.radLabel2.TabIndex = 0;
             this.radLabel2.Text = "Стан";
             this.radLabel2.ThemeName = "Office2013Light";
             // 
@@ -1043,7 +1068,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.radLabel9.Location = new System.Drawing.Point(735, 11);
             this.radLabel9.Name = "radLabel9";
             this.radLabel9.Size = new System.Drawing.Size(42, 19);
-            this.radLabel9.TabIndex = 99;
+            this.radLabel9.TabIndex = 0;
             this.radLabel9.Text = "Статус";
             this.radLabel9.ThemeName = "Office2013Light";
             // 
@@ -1054,7 +1079,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlState.Name = "ddlState";
             this.ddlState.ReadOnly = true;
             this.ddlState.Size = new System.Drawing.Size(147, 21);
-            this.ddlState.TabIndex = 100;
+            this.ddlState.TabIndex = 0;
             this.ddlState.ThemeName = "Office2013Light";
             // 
             // bsLicenseAgreement
@@ -1068,38 +1093,13 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.ddlStatus.Name = "ddlStatus";
             this.ddlStatus.ReadOnly = true;
             this.ddlStatus.Size = new System.Drawing.Size(147, 21);
-            this.ddlStatus.TabIndex = 101;
+            this.ddlStatus.TabIndex = 0;
             this.ddlStatus.ThemeName = "Office2013Light";
             // 
             // errorProvider
             // 
             this.errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errorProvider.ContainerControl = this;
-            // 
-            // dtDateEnd
-            // 
-            this.dtDateEnd.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtDateEnd.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsLicAgrParam, "DateEnd", true, DataSourceUpdateMode.OnPropertyChanged));
-            this.dtDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDateEnd.Location = new System.Drawing.Point(280, 42);
-            this.dtDateEnd.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
-            this.dtDateEnd.Name = "dtDateEnd";
-            this.dtDateEnd.NullText = "Оберіть дату";
-            this.dtDateEnd.Size = new System.Drawing.Size(118, 21);
-            this.dtDateEnd.TabIndex = 30;
-            this.dtDateEnd.TabStop = false;
-            this.dtDateEnd.ThemeName = "Office2013Light";
-            this.dtDateEnd.Value = new System.DateTime(((long)(0)));
-            // 
-            // radLabel10
-            // 
-            this.radLabel10.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.radLabel10.Location = new System.Drawing.Point(238, 44);
-            this.radLabel10.Name = "radLabel10";
-            this.radLabel10.Size = new System.Drawing.Size(36, 18);
-            this.radLabel10.TabIndex = 29;
-            this.radLabel10.Text = "діє до";
-            this.radLabel10.ThemeName = "Office2013Light";
             // 
             // RequestForm
             // 
@@ -1130,7 +1130,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             this.Text = "Main";
             this.ThemeName = "Office2013Light";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RequestForm_FormClosing);
-            this.Load += new System.EventHandler(this.RequestForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvAuthors.ResumeLayout(false);
@@ -1194,6 +1193,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ((System.ComponentModel.ISupportInitialize)(this.panelInfo)).EndInit();
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDateEnd)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.label18)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.label8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlLang)).EndInit();
@@ -1222,8 +1223,6 @@ namespace IpsViewComponentLibrary.Shared.Forms
             ((System.ComponentModel.ISupportInitialize)(this.bsLicenseAgreement)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlStatus)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtDateEnd)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
