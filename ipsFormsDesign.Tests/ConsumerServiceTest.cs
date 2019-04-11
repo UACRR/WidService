@@ -477,14 +477,22 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result, "LicenseAgreement is not saved");
         }
 
+        /// <summary>
+        /// work with test file
+        /// </summary>
         //[TestMethod]
         //public void TestuploadDocument()
         //{
         //    //default custId
+        //    int custId = 226;
         //    //default typeDocument
+        //    int typeDocument = 1;
         //    //default comment
+        //    string comment = "testcomment";
         //    //default Document
+        //    string Document = "testDocument";
         //    //add element to the server
+        //    _consumerService.uploadDocument(custId, typeDocument, comment, Document);
         //    //check on null state
         //}
 
@@ -492,10 +500,15 @@ namespace ipsFormsDesign.Tests
         //public void TestdownloadDocument()
         //{
         //    //default custId
+        //    int custId = 142;
         //    //default typeDocument
+        //    int typeDocument = 5;
         //    //default fileName
+        //    string fileName = "Жанры произведений МП.xlsx";
         //    //get document from server
+        //    var result = _consumerService.downloadDocument(custId, typeDocument, fileName);
         //    //check on null state
+        //    Assert.IsNotNull(result, "result is null");
         //}
 
         //[TestMethod]
@@ -506,11 +519,12 @@ namespace ipsFormsDesign.Tests
         //    //check on success action
         //}
 
+        //returned objects have custId = null
         //[TestMethod]
         //public void TestGetCustomerPays()
         //{
         //    //default custId
-        //    int custId = 1345;
+        //    int custId = 1839;
         //    //get external objects
         //    List<ExternalPay> result = _consumerService.GetCustomerPays(custId);
         //    //check on null state
@@ -523,19 +537,38 @@ namespace ipsFormsDesign.Tests
         //public void TestSaveBRWorkRH()
         //{
         //    //default licId
+        //    int licId = 2711;
         //    //default List<WorkRh>
+        //    List<WorkRh> worrh = new List<WorkRh>();
         //    //save data
+        //    bool result = _consumerService.SaveBRWorkRH(licId, worrh);
         //    //check on success action
+        //    Assert.IsTrue(result, "action 'save' failed");
         //}
 
-        //[TestMethod]
-        //public void TestSaveNewPayments()
-        //{
-        //    //default custId
-        //    //default List<ExternalPay>
-        //    //save External Pay list
-        //    //check on success action
-        //}
+        [TestMethod]
+        public void TestSaveNewPayments()
+        {
+            //default custId
+            int custId = 1345;
+            //default List<ExternalPay>
+            List<ExternalPay> pays = new List<ExternalPay> {
+                new ExternalPay {
+                    PaidId = 355,
+                    Mfo = "sd",
+                    Okpol = "sd",
+                    Account = "sd",
+                    R030 = "d",
+                    CodeOper = "sd",
+                    MfoCorr = "d",
+                    NameMfoCorr = "d"
+                }
+            };
+            //save External Pay list
+            bool result = _consumerService.SaveNewPayments(custId, pays);
+            //check on success action
+            Assert.IsTrue(result, "payments is not saved");
+        }
 
         //[TestMethod]
         //public void TestSetLicenseType()
