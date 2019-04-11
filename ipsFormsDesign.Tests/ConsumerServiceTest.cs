@@ -570,14 +570,25 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result, "payments is not saved");
         }
 
-        //[TestMethod]
-        //public void TestSetLicenseType()
-        //{
-        //    //default LicenseAgreement
-        //    //default LicType
-        //    //change type
-        //    //check on success action
-        //}
+        [TestMethod]
+        public void TestSetLicenseType()
+        {
+            //default LicenseAgreement
+            LicenseAgreement lic = new LicenseAgreement
+            {
+                LicId = 1236,
+                LicCode = 10,
+                LicClass = 2,
+                AgrId = 2370
+            };
+            //default LicType
+            LicType typeId = new LicType();
+            typeId = (LicType)1;
+            //change type
+            bool result = _consumerService.SetLicenseType(lic, typeId);
+            //check on success action
+            Assert.IsTrue(result, "License type is not set");
+        }
 
         [TestMethod]
         public void TestgetPaidInfo()
