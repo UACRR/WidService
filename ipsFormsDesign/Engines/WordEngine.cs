@@ -1456,9 +1456,10 @@ namespace ipsFormsDesign.Services
             {
                 TbAPrc = (from aut in authors
                           join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
-                          join cpr in copyright on aut.CustId equals cpr.CustId
-                          where datedoc >= cpr.BeginDate &
-                                datedoc <= cpr.EndDate
+                          join cpr in copyright on aut.CustId equals cpr?.CustId into tempp
+                          from cpr in tempp.DefaultIfEmpty()
+                          where datedoc >= cpr?.BeginDate &
+                                datedoc <= cpr?.EndDate
                     
                           select new TbAuthorPrc
                           { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
@@ -1547,8 +1548,11 @@ namespace ipsFormsDesign.Services
             }
             pPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(pPayShowGrn)), false);
             pPayShowKop = ((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)).ToString();
+
             aPayShowGrnText = Utils.NumPhrase(Convert.ToUInt32((int)(aPayShowGrn)), false);
             aPayShowKop = ((int)((aPayShowGrn - (int)(aPayShowGrn)) * 100)).ToString();
+
+
             string SumLmpGrnText = String.Empty;
             string SumLmpKop = String.Empty;
 
@@ -1560,13 +1564,23 @@ namespace ipsFormsDesign.Services
             if (TbAL.Count != 0)
             { SumLmpGrnText = "( " + pPayShowGrnText + " ) грн.";
               SumLmpKop = pPayShowKop + " коп.";
-              SumLmpGrn = ((int)(pPayShowGrn)).ToString();
+                if (((int)((pPayShowGrn - (int)(pPayShowGrn)) * 100)) < 10)
+                {
+                    SumLmpKop = "0" + SumLmpKop;
+                }
+
+                SumLmpGrn = ((int)(pPayShowGrn)).ToString();
             }
 
                 if (TbAvAdv.Count != 0)
             {
                 SumAdvGrnText = "( " + aPayShowGrnText + " ) грн.";
                 SumAdvKop = aPayShowKop + " коп.";
+                if (((int)((aPayShowGrn - (int)(aPayShowGrn)) * 100)) < 10)
+                {
+                    SumAdvKop = "0" + SumAdvKop;
+                }
+
                 SumAdvGrn = aPayShowGrn.ToString();
             }
 
@@ -2301,6 +2315,7 @@ namespace ipsFormsDesign.Services
             }
 
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            var regions = _dic.region.ToDictionary(rec => rec.CodeI);
             Row curRow = null;
             int index = 1;
             foreach (var item in BuisnessPlace)
@@ -2313,6 +2328,7 @@ namespace ipsFormsDesign.Services
 
                 curRow.Cells[2].Range.Text = places.PlaceName;
                 curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+                    + $"{regions[places?.PlaceRegion ?? 0].Name}" + ","
                     + places.PlaceCity + "," + places.PlaceAddress;
 
             }
@@ -2330,6 +2346,7 @@ namespace ipsFormsDesign.Services
             }
 
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            var regions = _dic.region.ToDictionary(rec => rec.CodeI);
             Row curRow = null;
             int index = 1;
             string PlaceHollValue;
@@ -2343,6 +2360,7 @@ namespace ipsFormsDesign.Services
 
                 curRow.Cells[2].Range.Text = places.PlaceName;
                 curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+                +   $"{regions[places?.PlaceRegion ?? 0].Name}"+ ","
                     + places.PlaceCity + "," + places.PlaceAddress;
 
 
@@ -2374,6 +2392,7 @@ namespace ipsFormsDesign.Services
             }
             var typePlace = _dic.typePlace.ToDictionary(rec => rec.CodeI);
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            var regions = _dic.region.ToDictionary(rec => rec.CodeI);
 
             Row curRow = null;
             int index = 1;
@@ -2390,6 +2409,7 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[3].Range.Text = places.PlaceName;
                 curRow.Cells[2].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
                 curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
+                    + $"{regions[places?.PlaceRegion ?? 0].Name}" + ","
            + places.PlaceCity + "," + places.PlaceAddress;
                 PlaceHollValue = string.Empty;
                 foreach (var place in item.ClnPlaceHoll)
@@ -2420,7 +2440,7 @@ namespace ipsFormsDesign.Services
             }
 
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-
+            var regions = _dic.region.ToDictionary(rec => rec.CodeI);
             Row curRow = null;
             int index = 1;
             foreach (var item in BuisnessPlace)
@@ -2434,7 +2454,8 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[2].Range.Text = places.PlaceName;
 //                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
                 curRow.Cells[3].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
-           + places.PlaceCity + "," + places.PlaceAddress;
+                                        + $"{regions[places?.PlaceRegion ?? 0].Name}" + ","
+                                        + places.PlaceCity + "," + places.PlaceAddress;
                 foreach (var place in item.ClnPlaceHoll)
                 {
                     curRow = table.Rows.Add();
@@ -2462,7 +2483,7 @@ namespace ipsFormsDesign.Services
 
             var typePlace = _dic.typePlace.ToDictionary(rec => rec.CodeI);
             var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
-
+            var regions = _dic.region.ToDictionary(rec => rec.CodeI);
             Row curRow = null;
             int index = 1;
             foreach (var item in BuisnessPlace)
@@ -2476,7 +2497,8 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[3].Range.Text = places.PlaceName;
                 //                curRow.Cells[3].Range.Text = $"{typePlace[places.PlCode ?? 1].Name}";
                 curRow.Cells[4].Range.Text = $"{countries[places.PlaceCountry ?? "804"].CountryName}" + ","
-           + places.PlaceCity + "," + places.PlaceAddress;
+                                            + $"{regions[places?.PlaceRegion ?? 0].Name}" + ","
+                                            + places.PlaceCity + "," + places.PlaceAddress;
                 foreach (var place in item.ClnPlaceHoll)
                 {
 
@@ -2506,6 +2528,7 @@ namespace ipsFormsDesign.Services
             }
 
             //    var countries = _dic.country.ToDictionary(rec => rec.CountryCode);
+            var regions = _dic.region.ToDictionary(rec => rec.CodeI);
             Row curRow = null;
             int index = 1;
             foreach (var item in BuisnessPlace)
@@ -2516,7 +2539,9 @@ namespace ipsFormsDesign.Services
                 curRow.Cells[1].Range.Text = index.ToString();
                 index++;
 
-                curRow.Cells[2].Range.Text = places.PlaceName + "," + places.PlaceCity + "," + places.PlaceAddress;
+                curRow.Cells[2].Range.Text = places.PlaceName + ","
+                    + $"{regions[places?.PlaceRegion ?? 0].Name}" + ","
+                    + places.PlaceCity + "," + places.PlaceAddress;
                 foreach (var place in item.ClnPlaceHoll)
                 {
                     curRow = table.Rows.Add();
