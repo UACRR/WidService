@@ -361,28 +361,28 @@ namespace ipsFormsDesign.Tests
         /// <summary>
         /// ApiConnector - 397 - Post Request is not found, -> Post Method is not exist into ConsumerController
         /// </summary>
-        //[TestMethod]
-        //public void TestSetRegisterState()
-        //{
-        //    //default RegisterState
-        //    RegisterState state = new RegisterState();
-        //    //newItem
-        //    state = 0;
-        //    //default list
-        //    List<Register> list = new List<Register>() { new Register {
-        //        RegId = 1319,
-        //        Number = "testNumber",
-        //        CountRows = 3,
-        //        CustId = 1375,
-        //        Durationticks = 3,
-        //        FileName = "TestName",
-        //        UserId = "TestId"}
-        //    };
-        //    //set data
-        //    List<Register> result = _consumerService.SetRegisterState(state, list);
-        //    //check on null state
-        //    Assert.IsNotNull(result, "result is null");
-        //}
+        [TestMethod]
+        public void TestSetRegisterState()
+        {
+            //default RegisterState
+            RegisterState state = new RegisterState();
+            //newItem
+            state = (RegisterState)1;
+            //default list
+            List<Register> list = new List<Register>() { new Register {
+                RegId = 1319,
+                Number = "testNumber",
+                CountRows = 3,
+                CustId = 1375,
+                Durationticks = 3,
+                FileName = "TestName",
+                UserId = "TestId"}
+            };
+            //set data
+            List<Register> result = _consumerService.SetRegisterState(state, list);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
 
         ///Message = "Конфликт инструкции UPDATE с ограничением FOREIGN KEY \"FK_PAIDPERI_REFERENCE_PERIODST\". Конфликт произошел в базе данных \"MediaServiceTest\", таблица \"dbo.PeriodStatus\", column 'codeI'.\r\nВыполнение данной инструкции было прервано."
         //[TestMethod]
@@ -519,7 +519,7 @@ namespace ipsFormsDesign.Tests
         //    //check on success action
         //}
 
-        //returned objects have custId = null
+        //table ExternalPay have field custId = null
         //[TestMethod]
         //public void TestGetCustomerPays()
         //{
@@ -532,9 +532,7 @@ namespace ipsFormsDesign.Tests
         //    //check on amount elements
         //    Assert.IsTrue(result.Count != 0, "ExternalPay collection is empty");
         //}
-
         
-
 
         [TestMethod]
         public void TestSaveBRWorkRH()
