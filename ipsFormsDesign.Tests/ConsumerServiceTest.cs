@@ -648,14 +648,31 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result, "status is not saved");
         }
 
+        /// <summary>
+        /// Message = "Было вызвано сообщение об ошибке 14001, серьезность -1, состояние 1, но сообщение с таким номером ошибки не было найдено в таблице sys.messages. 
+        /// Если номер ошибки превышает 50000, убедитесь, что определяемое пользователем сообщение добавлено при помощи про...
+        /// </summary>
         //[TestMethod]
         //public void TestSaveLink()
         //{
         //    //default custId
+        //    int custId = 135;
         //    //default List<MoneyPeriodLink>
+        //    List<MoneyPeriodLink> listLinks = new List<MoneyPeriodLink>
+        //    {
+        //        new MoneyPeriodLink
+        //        {
+        //            PeriodId = 1497,
+        //            PaidId = 4,
+        //            LicId = 1
+        //        }
+        //    };
         //    //save data
+        //    List<MoneyPeriodLink> result = _consumerService.SaveLink(custId, listLinks);
         //    //check on null state
+        //    Assert.IsNotNull(result, "result is null");
         //    //check on amount elements
+        //    Assert.IsTrue(result.Count != 0, "collection is empty");
         //}
     }
 }
