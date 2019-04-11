@@ -627,15 +627,26 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result.Count != 0, "collection in empty");
         }
 
-        //[TestMethod]
-        //public void TestSetLicAgreementStatus()
-        //{
-        //    //default LicenseAgreement
-        //    //default version
-        //    //default status
-        //    //set data
-        //    //check on success action
-        //}
+        [TestMethod]
+        public void TestSetLicAgreementStatus()
+        {
+            //default LicenseAgreement
+            LicenseAgreement agr = new LicenseAgreement
+            {
+                LicId = 1236,
+                LicCode = 10,
+                LicClass = 2,
+                AgrId = 2370
+            };
+            //default version
+            int version = 3;
+            //default status
+            int status = 1;
+            //set data
+            bool result = _consumerService.SetLicAgreementStatus(agr, version, status);
+            //check on success action
+            Assert.IsTrue(result, "status is not saved");
+        }
 
         //[TestMethod]
         //public void TestSaveLink()
