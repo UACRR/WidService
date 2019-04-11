@@ -52,6 +52,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             List<PaidPeriod> retList = _service.SavePeriods((int)custId, e);
             if (retList != null)
             {
+                // TODO: MED-662
                 var dic = retList.ToDictionary(di => di.PeriodName);
                 foreach (var item in e)
                 {

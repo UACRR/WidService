@@ -8,6 +8,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Properties;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -65,8 +66,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         public void SetData(Customer customer)
         {
             _clnBusinessPlaces = customer.Client.ClnBusinessPlace;
-            bsPlacesList.DataSource = _clnBusinessPlaces;
-            bsPlacesList.ResetBindings(false);
+            bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
+            bsPlacesForAgreement.ResetBindings(false);
             CustomerId = customer.CustId;
         }
 
@@ -102,7 +103,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (placeDetailForm.ShowDialog() == DialogResult.OK)
             {
                 _clnBusinessPlaces.Add(businessPlace);
-                bsPlacesList.ResetBindings(false);
+                bsPlacesForAgreement.ResetBindings(false);
             }
         }
 
@@ -147,7 +148,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (placeDetailForm.ShowDialog() == DialogResult.OK)
             {
                 SyncClnBusinessPlace(place, tempPlace);
-                bsPlacesList.ResetBindings(false);
+                bsPlacesForAgreement.ResetBindings(false);
             }
         }
 
@@ -184,7 +185,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (MessageShow.ConfirmAction(DeletePlaceQuestion) == DialogResult.Yes)
             {
                 _clnBusinessPlaces.Remove(place);
-                bsPlacesList.ResetBindings(false);
+                bsPlacesForAgreement.ResetBindings(false);
             }
         }
 
