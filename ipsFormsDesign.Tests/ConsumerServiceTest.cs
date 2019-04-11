@@ -295,7 +295,7 @@ namespace ipsFormsDesign.Tests
         //    };
         //    register.RegisterItem.Add(new RegisterItem
         //    {
-        //        RegId = 1221,
+        //        RegId = 1330,
         //        RegIitemId = 1,
         //        CodeItem = 1,
         //        ItemName = "TestName",
@@ -306,26 +306,26 @@ namespace ipsFormsDesign.Tests
         //        Ticks = 10,
         //        IsAuto = false
         //    });
-        //    register.User = new AspNetUsers
-        //    {
-        //        Id = "TestId",
-        //        AccessFailedCount = 1,
-        //        ConcurrencyStamp = "TestStamp",
-        //        Email = "testStrEmail",
-        //        EmailConfirmed = false,
-        //        FirstName = "TestFirstName",
-        //        LastName = "TestLastName",
-        //        LockoutEnabled = false,
-        //        NormalizedEmail = "TestNormalizedEmail",
-        //        NormalizedUserName = "TestNormalizedUserName",
-        //        PasswordHash = "TestPasswordHash",
-        //        PhoneNumber = "TestPhoneNumber",
-        //        PhoneNumberConfirmed = false,
-        //        SecurityStamp = "TestSecurityStamp",
-        //        SurName = "TestSurName",
-        //        TwoFactorEnabled = false,
-        //        UserName = "TestUserName"
-        //    };
+        //    //register.User = new AspNetUsers
+        //    //{
+        //    //    Id = "TestId",
+        //    //    AccessFailedCount = 1,
+        //    //    ConcurrencyStamp = "TestStamp",
+        //    //    Email = "testStrEmail",
+        //    //    EmailConfirmed = false,
+        //    //    FirstName = "TestFirstName",
+        //    //    LastName = "TestLastName",
+        //    //    LockoutEnabled = false,
+        //    //    NormalizedEmail = "TestNormalizedEmail",
+        //    //    NormalizedUserName = "TestNormalizedUserName",
+        //    //    PasswordHash = "TestPasswordHash",
+        //    //    PhoneNumber = "TestPhoneNumber",
+        //    //    PhoneNumberConfirmed = false,
+        //    //    SecurityStamp = "TestSecurityStamp",
+        //    //    SurName = "TestSurName",
+        //    //    TwoFactorEnabled = false,
+        //    //    UserName = "TestUserName"
+        //    //};
         //    //save data
         //    bool result = _consumerService.SaveRegister(register);
         //    //check on success action
@@ -359,13 +359,7 @@ namespace ipsFormsDesign.Tests
         }
 
         /// <summary>
-        /// RequestMessage = {Method: POST, RequestUri: 'http://localhost:54867/api/consumer/period/register/state', Version: 1.1, Content: System.Net.Http.StringContent, Headers:
-        ///{
-        ///  Accept: application/json
-        ///  Content-Type: application/json; charset=utf-8
-        ///  Content-Length: 487
-        ///}
-        ///}
+        /// ApiConnector - 397 - Post Request is not found, -> Post Method is not exist into ConsumerController
         /// </summary>
         //[TestMethod]
         //public void TestSetRegisterState()
@@ -376,7 +370,13 @@ namespace ipsFormsDesign.Tests
         //    state = 0;
         //    //default list
         //    List<Register> list = new List<Register>() { new Register {
-        //        RegId = 1268}
+        //        RegId = 1319,
+        //        Number = "testNumber",
+        //        CountRows = 3,
+        //        CustId = 1375,
+        //        Durationticks = 3,
+        //        FileName = "TestName",
+        //        UserId = "TestId"}
         //    };
         //    //set data
         //    List<Register> result = _consumerService.SetRegisterState(state, list);
@@ -384,7 +384,7 @@ namespace ipsFormsDesign.Tests
         //    Assert.IsNotNull(result, "result is null");
         //}
 
-        //can't wait result data
+        ///Message = "Конфликт инструкции UPDATE с ограничением FOREIGN KEY \"FK_PAIDPERI_REFERENCE_PERIODST\". Конфликт произошел в базе данных \"MediaServiceTest\", таблица \"dbo.PeriodStatus\", column 'codeI'.\r\nВыполнение данной инструкции было прервано."
         //[TestMethod]
         //public void TestSetPeriodState()
         //{
@@ -392,7 +392,10 @@ namespace ipsFormsDesign.Tests
         //    PeriodState state = new PeriodState();
         //    state = 0;
         //    //default PaidPeriod
-        //    PaidPeriod period = new PaidPeriod { PeriodId = 1561 };
+        //    PaidPeriod period = new PaidPeriod
+        //    {
+        //        PeriodId = 1196
+        //    };
         //    //set data
         //    var result = _consumerService.SetPeriodState(state, period);
         //    //check on success action
@@ -423,38 +426,73 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "Customer is not created");
         }
 
+        /// <summary>
+        /// can't save data because 'dest' is null -> method SetFields() is return, data is not saved
+        /// </summary>
         //[TestMethod]
         //public void TestSave()
         //{
         //    //default customer for save
-        //    Customer customer = new Customer { CustId = 130, Status = 2, UserId = null };
+        //    Customer customer = new Customer {
+        //        CustId = 130,
+        //        Status = 1,
+        //        UserId = "testUserId" };
         //    //save customer
         //    bool result = _consumerService.Save(customer);
         //    //check on success action
         //    Assert.IsTrue(result, "customer is not saved");
         //}
 
-        //[TestMethod]
-        //public void TestSaveAgreementAddBrById()
-        //{
-        //    //default agrId
-        //    int agrId = 101;
-        //    //default agreement
-        //    LicenseAgreement agreement = new LicenseAgreement();
-        //    //save data to LicenseAgreement
-        //    bool result = _consumerService.SaveAgreementAddBrById(agrId, agreement);
-        //    //check on success action
-        //    Assert.IsTrue(result, "LicenseAgreement is not saved");
-        //}
+        [TestMethod]
+        public void TestSaveAgreementAddBrById()
+        {
+            //default agrId
+            int agrId = 2286;
+            //default agreement
+            LicenseAgreement agreement = new LicenseAgreement {
+                LicId = 23,
+                LicCode = 23,
+                LicClass = 23,
+                AgrId = 3
+            };
+            agreement.Agr = new AgreementMaster
+            {
+                AgrId = 2286,
+                CustId = 226,
+                ModifyLogin = null
+            };
+            agreement.Agr.AgreementAddBr = new ObservableListSource<AgreementAddBr>
+            {
+                new AgreementAddBr
+                {
+                    AgrId = 2286,
+                    Version = 1,
+                    AgrNumber = "БП_2/2018",
+                    ModifyLogin = null
+                }
+            };
+            //save data to LicenseAgreement
+            bool result = _consumerService.SaveAgreementAddBrById(agrId, agreement);
+            //check on success action
+            Assert.IsTrue(result, "LicenseAgreement is not saved");
+        }
 
+        /// <summary>
+        /// work with test file
+        /// </summary>
         //[TestMethod]
         //public void TestuploadDocument()
         //{
         //    //default custId
+        //    int custId = 226;
         //    //default typeDocument
+        //    int typeDocument = 1;
         //    //default comment
+        //    string comment = "testcomment";
         //    //default Document
+        //    string Document = "testDocument";
         //    //add element to the server
+        //    _consumerService.uploadDocument(custId, typeDocument, comment, Document);
         //    //check on null state
         //}
 
@@ -462,10 +500,15 @@ namespace ipsFormsDesign.Tests
         //public void TestdownloadDocument()
         //{
         //    //default custId
+        //    int custId = 142;
         //    //default typeDocument
+        //    int typeDocument = 5;
         //    //default fileName
+        //    string fileName = "Жанры произведений МП.xlsx";
         //    //get document from server
+        //    var result = _consumerService.downloadDocument(custId, typeDocument, fileName);
         //    //check on null state
+        //    Assert.IsNotNull(result, "result is null");
         //}
 
         //[TestMethod]
@@ -476,11 +519,12 @@ namespace ipsFormsDesign.Tests
         //    //check on success action
         //}
 
+        //returned objects have custId = null
         //[TestMethod]
         //public void TestGetCustomerPays()
         //{
         //    //default custId
-        //    int custId = 1345;
+        //    int custId = 1839;
         //    //get external objects
         //    List<ExternalPay> result = _consumerService.GetCustomerPays(custId);
         //    //check on null state
@@ -493,28 +537,58 @@ namespace ipsFormsDesign.Tests
         //public void TestSaveBRWorkRH()
         //{
         //    //default licId
+        //    int licId = 2711;
         //    //default List<WorkRh>
+        //    List<WorkRh> worrh = new List<WorkRh>();
         //    //save data
+        //    bool result = _consumerService.SaveBRWorkRH(licId, worrh);
         //    //check on success action
+        //    Assert.IsTrue(result, "action 'save' failed");
         //}
 
-        //[TestMethod]
-        //public void TestSaveNewPayments()
-        //{
-        //    //default custId
-        //    //default List<ExternalPay>
-        //    //save External Pay list
-        //    //check on success action
-        //}
+        [TestMethod]
+        public void TestSaveNewPayments()
+        {
+            //default custId
+            int custId = 1345;
+            //default List<ExternalPay>
+            List<ExternalPay> pays = new List<ExternalPay> {
+                new ExternalPay {
+                    PaidId = 355,
+                    Mfo = "sd",
+                    Okpol = "sd",
+                    Account = "sd",
+                    R030 = "d",
+                    CodeOper = "sd",
+                    MfoCorr = "d",
+                    NameMfoCorr = "d"
+                }
+            };
+            //save External Pay list
+            bool result = _consumerService.SaveNewPayments(custId, pays);
+            //check on success action
+            Assert.IsTrue(result, "payments is not saved");
+        }
 
-        //[TestMethod]
-        //public void TestSetLicenseType()
-        //{
-        //    //default LicenseAgreement
-        //    //default LicType
-        //    //change type
-        //    //check on success action
-        //}
+        [TestMethod]
+        public void TestSetLicenseType()
+        {
+            //default LicenseAgreement
+            LicenseAgreement lic = new LicenseAgreement
+            {
+                LicId = 1236,
+                LicCode = 10,
+                LicClass = 2,
+                AgrId = 2370
+            };
+            //default LicType
+            LicType typeId = new LicType();
+            typeId = (LicType)1;
+            //change type
+            bool result = _consumerService.SetLicenseType(lic, typeId);
+            //check on success action
+            Assert.IsTrue(result, "License type is not set");
+        }
 
         [TestMethod]
         public void TestgetPaidInfo()
@@ -527,34 +601,78 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
         }
 
-        //[TestMethod]
-        //public void TestSavePeriods()
-        //{
-        //    //default custId
-        //    //defualt List<PaidPeriod>
-        //    //save data
-        //    //check on null sate
-        //    //check on amount elements
-        //}
+        [TestMethod]
+        public void TestSavePeriods()
+        {
+            //default custId
+            int custId = 135;
+            //defualt List<PaidPeriod>
+            List<PaidPeriod> periods = new List<PaidPeriod>
+            {
+                new PaidPeriod
+                {
+                    PeriodId = 1497,
+                    CustId = 135,
+                    PeriodType = 3,
+                    LicId = 1,
+                    Status = 1,
+                    PeriodName = "testPeriodName"
+                }
+            };
+            //save data
+            List<PaidPeriod> result = _consumerService.SavePeriods(custId, periods);
+            //check on null sate
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements
+            Assert.IsTrue(result.Count != 0, "collection in empty");
+        }
 
-        //[TestMethod]
-        //public void TestSetLicAgreementStatus()
-        //{
-        //    //default LicenseAgreement
-        //    //default version
-        //    //default status
-        //    //set data
-        //    //check on success action
-        //}
+        [TestMethod]
+        public void TestSetLicAgreementStatus()
+        {
+            //default LicenseAgreement
+            LicenseAgreement agr = new LicenseAgreement
+            {
+                LicId = 1236,
+                LicCode = 10,
+                LicClass = 2,
+                AgrId = 2370
+            };
+            //default version
+            int version = 3;
+            //default status
+            int status = 1;
+            //set data
+            bool result = _consumerService.SetLicAgreementStatus(agr, version, status);
+            //check on success action
+            Assert.IsTrue(result, "status is not saved");
+        }
 
+        /// <summary>
+        /// Message = "Было вызвано сообщение об ошибке 14001, серьезность -1, состояние 1, но сообщение с таким номером ошибки не было найдено в таблице sys.messages. 
+        /// Если номер ошибки превышает 50000, убедитесь, что определяемое пользователем сообщение добавлено при помощи про...
+        /// </summary>
         //[TestMethod]
         //public void TestSaveLink()
         //{
         //    //default custId
+        //    int custId = 135;
         //    //default List<MoneyPeriodLink>
+        //    List<MoneyPeriodLink> listLinks = new List<MoneyPeriodLink>
+        //    {
+        //        new MoneyPeriodLink
+        //        {
+        //            PeriodId = 1497,
+        //            PaidId = 4,
+        //            LicId = 1
+        //        }
+        //    };
         //    //save data
+        //    List<MoneyPeriodLink> result = _consumerService.SaveLink(custId, listLinks);
         //    //check on null state
+        //    Assert.IsNotNull(result, "result is null");
         //    //check on amount elements
+        //    Assert.IsTrue(result.Count != 0, "collection is empty");
         //}
     }
 }
