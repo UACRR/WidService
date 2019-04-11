@@ -601,15 +601,31 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
         }
 
-        //[TestMethod]
-        //public void TestSavePeriods()
-        //{
-        //    //default custId
-        //    //defualt List<PaidPeriod>
-        //    //save data
-        //    //check on null sate
-        //    //check on amount elements
-        //}
+        [TestMethod]
+        public void TestSavePeriods()
+        {
+            //default custId
+            int custId = 135;
+            //defualt List<PaidPeriod>
+            List<PaidPeriod> periods = new List<PaidPeriod>
+            {
+                new PaidPeriod
+                {
+                    PeriodId = 1497,
+                    CustId = 135,
+                    PeriodType = 3,
+                    LicId = 1,
+                    Status = 1,
+                    PeriodName = "testPeriodName"
+                }
+            };
+            //save data
+            List<PaidPeriod> result = _consumerService.SavePeriods(custId, periods);
+            //check on null sate
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements
+            Assert.IsTrue(result.Count != 0, "collection in empty");
+        }
 
         //[TestMethod]
         //public void TestSetLicAgreementStatus()
