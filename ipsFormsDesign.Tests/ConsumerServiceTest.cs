@@ -153,6 +153,9 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result.RegisterStatuses.Count != 0, "RegisterStatuses is empty");
         }
 
+        /// <summary>
+        /// unusable code
+        /// </summary>
         //[TestMethod]
         //public void TestGetMainView()
         //{
@@ -164,6 +167,9 @@ namespace ipsFormsDesign.Tests
         //    Assert.IsTrue(result.Count != 0, "collection is empty");
         //}
 
+        /// <summary>
+        /// unusable code
+        /// </summary>
         //[TestMethod]
         //public void TestGetListAll()
         //{
@@ -381,7 +387,6 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
         }
 
-        ///Message = "Конфликт инструкции UPDATE с ограничением FOREIGN KEY \"FK_PAIDPERI_REFERENCE_PERIODST\". Конфликт произошел в базе данных \"MediaServiceTest\", таблица \"dbo.PeriodStatus\", column 'codeI'.\r\nВыполнение данной инструкции было прервано."
         [TestMethod]
         public void TestSetPeriodState()
         {
@@ -668,9 +673,9 @@ namespace ipsFormsDesign.Tests
         //    {
         //        new MoneyPeriodLink
         //        {
-        //            PeriodId = 1496,
+        //            PeriodId = 1,
         //            PaidId = 3,
-        //            LicId = 2
+        //            LicId = 1158
         //        }
         //    };
         //    //save data
