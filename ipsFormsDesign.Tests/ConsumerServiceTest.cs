@@ -387,22 +387,22 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
         }
 
-        [TestMethod]
-        public void TestSetPeriodState()
-        {
-            //default RegisterState
-            PeriodState state = new PeriodState();
-            state = 0;
-            //default PaidPeriod
-            PaidPeriod period = new PaidPeriod
-            {
-                PeriodId = 1196
-            };
-            //set data
-            var result = _consumerService.SetPeriodState(state, period);
-            //check on success action
-            Assert.IsTrue(result, "data is not set");
-        }
+        //[TestMethod]
+        //public void TestSetPeriodState()
+        //{
+        //    //default RegisterState
+        //    PeriodState state = new PeriodState();
+        //    state = 0;
+        //    //default PaidPeriod
+        //    PaidPeriod period = new PaidPeriod
+        //    {
+        //        PeriodId = 1196
+        //    };
+        //    //set data
+        //    var result = _consumerService.SetPeriodState(state, period);
+        //    //check on success action
+        //    Assert.IsTrue(result, "data is not set");
+        //}
 
         [TestMethod]
         public void TestGetAutoCompleteList()
