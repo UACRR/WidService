@@ -358,9 +358,6 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
         }
 
-        /// <summary>
-        /// ApiConnector - 397 - Post Request is not found, -> Post Method is not exist into ConsumerController
-        /// </summary>
         [TestMethod]
         public void TestSetRegisterState()
         {
@@ -385,22 +382,22 @@ namespace ipsFormsDesign.Tests
         }
 
         ///Message = "Конфликт инструкции UPDATE с ограничением FOREIGN KEY \"FK_PAIDPERI_REFERENCE_PERIODST\". Конфликт произошел в базе данных \"MediaServiceTest\", таблица \"dbo.PeriodStatus\", column 'codeI'.\r\nВыполнение данной инструкции было прервано."
-        //[TestMethod]
-        //public void TestSetPeriodState()
-        //{
-        //    //default RegisterState
-        //    PeriodState state = new PeriodState();
-        //    state = 0;
-        //    //default PaidPeriod
-        //    PaidPeriod period = new PaidPeriod
-        //    {
-        //        PeriodId = 1196
-        //    };
-        //    //set data
-        //    var result = _consumerService.SetPeriodState(state, period);
-        //    //check on success action
-        //    Assert.IsTrue(result, "data is not set");
-        //}
+        [TestMethod]
+        public void TestSetPeriodState()
+        {
+            //default RegisterState
+            PeriodState state = new PeriodState();
+            state = 0;
+            //default PaidPeriod
+            PaidPeriod period = new PaidPeriod
+            {
+                PeriodId = 1196
+            };
+            //set data
+            var result = _consumerService.SetPeriodState(state, period);
+            //check on success action
+            Assert.IsTrue(result, "data is not set");
+        }
 
         [TestMethod]
         public void TestGetAutoCompleteList()
@@ -433,10 +430,12 @@ namespace ipsFormsDesign.Tests
         //public void TestSave()
         //{
         //    //default customer for save
-        //    Customer customer = new Customer {
-        //        CustId = 130,
+        //    Customer customer = new Customer
+        //    {
+        //        CustId = 138,
         //        Status = 1,
-        //        UserId = "testUserId" };
+        //        UserId = "testUserId"
+        //    };
         //    //save customer
         //    bool result = _consumerService.Save(customer);
         //    //check on success action
