@@ -291,27 +291,21 @@ namespace ipsFormsDesign.Tests
         //    //default Register instance
         //    Register register = new Register
         //    {
-        //        RegId = 1330,
-        //        Number = "testNumber",
-        //        CountRows = 3,
-        //        CustId = 1375,
-        //        Durationticks = 3,
-        //        FileName = "TestName",
-        //        UserId = "TestId"
+        //        RegId = 1330
         //    };
-        //    register.RegisterItem.Add(new RegisterItem
-        //    {
-        //        RegId = 1330,
-        //        RegIitemId = 1,
-        //        CodeItem = 1,
-        //        ItemName = "TestName",
-        //        Performer = "TestPerformer",
-        //        AuthorMusic = "TestAuthor",
-        //        AuthorText = "TestTextAuthor",
-        //        ModifyLogin = "TestModify",
-        //        Ticks = 10,
-        //        IsAuto = false
-        //    });
+        //    //register.RegisterItem.Add(new RegisterItem
+        //    //{
+        //    //    RegId = 1330,
+        //    //    RegIitemId = 1,
+        //    //    CodeItem = 1,
+        //    //    ItemName = "TestName",
+        //    //    Performer = "TestPerformer",
+        //    //    AuthorMusic = "TestAuthor",
+        //    //    AuthorText = "TestTextAuthor",
+        //    //    ModifyLogin = "TestModify",
+        //    //    Ticks = 10,
+        //    //    IsAuto = false
+        //    //});
         //    //register.User = new AspNetUsers
         //    //{
         //    //    Id = "TestId",
@@ -387,6 +381,9 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
         }
 
+        /// <summary>
+        /// can't call method into ConsumerController
+        /// </summary>
         //[TestMethod]
         //public void TestSetPeriodState()
         //{
