@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
@@ -47,6 +48,21 @@ namespace ipsFormsDesign.Tests
                 var result = _communityService.GetCommunityRightList(id);
                 Assert.IsNotNull(result);
             }
+        }
+
+        [TestMethod]
+        public void TestGetView()
+        {
+            //default typeResult
+            Type typeResult = typeof(object);
+            //default viewName
+            string viewName = "vTsk_1_ListCommunity";
+            //get data
+            List<object> result = _communityService.GetView<object>(typeResult: typeResult, viewName: viewName, paramId: null, columnName: null);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+            //check on amount elements
+            Assert.IsTrue(result.Count != 0, "collection is empty");
         }
     }
 }
