@@ -103,6 +103,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (placeDetailForm.ShowDialog() == DialogResult.OK)
             {
                 _clnBusinessPlaces.Add(businessPlace);
+                bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
                 bsPlacesForAgreement.ResetBindings(false);
             }
         }
@@ -130,9 +131,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         /// </summary>
         private void OpenEditPlaceDetailForm()
         {
-            if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace place))
+            if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace row))
                 return;
-
+            var place = _clnBusinessPlaces.SingleOrDefault(rec => rec.PlaceId == row.PlaceId);
             // створення допоміжного об'єкта (binding зберігає зміни в будь-якому випадку) б-т . . .
             var tempPlace = new ClnBusinessPlace
             {
@@ -148,6 +149,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (placeDetailForm.ShowDialog() == DialogResult.OK)
             {
                 SyncClnBusinessPlace(place, tempPlace);
+                bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
                 bsPlacesForAgreement.ResetBindings(false);
             }
         }
@@ -179,12 +181,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         //  * * * ВИДАЛЕННЯ МАЙДАНЧИКА
         private void btnDeletePlace_Click(object sender, EventArgs e)
         {
-            if (!(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace place))
+            if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace row))
                 return;
 
             if (MessageShow.ConfirmAction(DeletePlaceQuestion) == DialogResult.Yes)
             {
-                _clnBusinessPlaces.Remove(place);
+                var removePlace = _clnBusinessPlaces.SingleOrDefault(rec => rec.PlaceId == row.PlaceId);
+                _clnBusinessPlaces.Remove(removePlace);
+                bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
                 bsPlacesForAgreement.ResetBindings(false);
             }
         }

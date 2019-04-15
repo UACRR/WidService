@@ -68,7 +68,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             var anketaCompany = _customer.Company.AnketaCompany.SingleOrDefault();
             var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
 
-            //спільнота
+            // спільнота
             ctrlClientName.DataSource = anketaCompany;
 
             // контактна особа
@@ -124,6 +124,8 @@ namespace IpsViewComponentLibrary.CommunityControls
             // договір
             ctrlAgreement.AgreementDataSource = agreement;
             var statusid = agreement.AgrStatus;
+            btnAcceptAgr.Enabled = statusid != 2;
+            btnCloseAgr.Enabled = statusid == 2;
             lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
             lblCommunityName.Text = anketaCompany?.Name;
         }
