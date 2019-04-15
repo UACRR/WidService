@@ -118,5 +118,22 @@ namespace ipsFormsDesign.Tests
             //checks for result
             Assert.IsNotNull(result, "dictionary(CraetiveRoleType) is not created");
         }
+
+        [TestMethod]
+        public void TestUpdateCreativeRoleType()
+        {
+            //define CreativeRoleType for update
+            CreativeRoleType creativeRole = new CreativeRoleType
+            {
+                CodeI = 1,
+                Name = "TestCreativeRoleType",
+                CategoryCode = 5,
+                Crtype = 1
+            };
+            //get updated dictionary
+            CreativeRoleType result = _dictionary.UpdateCreativeRoleType(creativeRole);
+            //checks for result data
+            Assert.IsNotNull(result, "dictionary(CreativeRoleType) is not updated");
+        }
     }
 }
