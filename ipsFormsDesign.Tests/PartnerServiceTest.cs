@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ipsFormsDesign.Interfaces;
+using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -48,6 +49,29 @@ namespace ipsFormsDesign.Tests
                 Assert.IsNotNull(result, $"{brView} result is null");
                 Assert.IsTrue(result.Count != 0, $"{brView} collection is empty");
             }
+        }
+
+        [TestMethod]
+        public void TestGetPartnerTemplate()
+        {
+            //default arguments
+            List<int> custType = new List<int> { 3, 1 };
+            //get data
+            foreach(int cust in custType)
+            {
+                Customer result = _partnerService.GetPartnerTemplate(cust);
+                Assert.IsNotNull(result, "Customer is not exist");
+            }
+        }
+
+        [TestMethod]
+        public void TestGetPartnerList()
+        {
+            //get data
+            List<Customer> result = _partnerService.GetPartnerList();
+            //checks for result data
+            Assert.IsNotNull(result, "result is null");
+            Assert.IsTrue(result.Count != 0, "collection is empty");
         }
     }
 }
