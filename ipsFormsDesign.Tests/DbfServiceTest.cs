@@ -85,19 +85,21 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
         }
 
-        //[TestMethod]
-        //public void TestSaveInputFile()
-        //{
-        //    //default InputFile
-        //    InputFile file = new InputFile
-        //    {
-        //        FileId = 8
-        //    };
-        //    //get data
-        //    InputFile result = _dbfService.SaveInputFile(file);
-        //    //check on null state
-        //    Assert.IsNotNull(result, "result is null");
-        //}
+        [TestMethod]
+        public void TestSaveInputFile()
+        {
+            //default InputFile
+            InputFile file = new InputFile
+            {
+                FileId = 37,
+                FileName = "testFileName2",
+                InputTime = new DateTime(2018, 01, 14, 16, 01, 47, 892)
+            };
+            //get data
+            InputFile result = _dbfService.SaveInputFile(file);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
 
         [TestMethod]
         public void TestDeleteInputFile()
