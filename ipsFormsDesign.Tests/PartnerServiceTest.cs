@@ -120,5 +120,60 @@ namespace ipsFormsDesign.Tests
             //checks for result data
             Assert.IsTrue(result, "Customer is not saved");
         }
+
+        [TestMethod]
+        public void TestUpdateAgreement()
+        {
+            //default 'AgreementAddPartner'
+            AgreementAddPartner agreement = new AgreementAddPartner {
+                AgrId = 2315,
+                CustId = 300,
+                Version = 1,
+                AnkVersion = 1
+            };
+            //get result data
+            bool result = _partnerService.UpdateAgreement(agreement);
+            //checks for result data
+            Assert.IsTrue(result, "AgreementAddPartner is not saved");
+        }
+
+        [TestMethod]
+        public void TestSetPartnerForCustomer()
+        {
+            //default arguments
+            _partnerService.RemovePartnerForCustomer(1373, 300);
+            int clientId = 1373;
+            int partnerId = 300;
+            //set data
+            bool result = _partnerService.SetPartnerForCustomer(clientId, partnerId);
+            _partnerService.RemovePartnerForCustomer(1373, 300);
+            //checks for result data
+            Assert.IsTrue(result, "Partnert is not seted");
+        }
+
+        [TestMethod]
+        public void TestChangePartnerForCustomer()
+        {
+            //default argument
+            int clientId = 134;
+            int partnerId = 130;
+            int oldClientId = 302;
+            //change data
+            bool result = _partnerService.ChangePartnerForCustomer(clientId, partnerId, oldClientId);
+            _partnerService.ChangePartnerForCustomer(clientId, oldClientId, partnerId);
+            //checks result data
+            Assert.IsTrue(result, "data is not changed");
+        }
+
+        [TestMethod]
+        public void TestRemovePartnerForCustomer()
+        {
+            //default argument
+            _partnerService.SetPartnerForCustomer(1373, 300);
+            int clientId = 1373;
+            int partnerId = 300;
+            bool result = _partnerService.RemovePartnerForCustomer(clientId, partnerId);
+            Assert.IsTrue(result, "Parent is not removed");
+        }
     }
 }
