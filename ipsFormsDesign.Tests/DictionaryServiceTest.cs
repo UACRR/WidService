@@ -38,5 +38,85 @@ namespace ipsFormsDesign.Tests
             //checks for result data
             Assert.IsNotNull(result, "copyrightKind is not created");
         }
+
+        [TestMethod]
+        public void TestUpdateCopyrightKind()
+        {
+            //define copyrightKind instance
+            CopyrightKind copyrightKind = new CopyrightKind {
+                CodeI = 666,
+                Name = "TestCopyrightKindUpdated",
+                CrGroupCode = 1
+            };
+            //get updated dictionary
+            CopyrightKind result = _dictionary.UpdateCopyrightKind(copyrightKind);
+            //checks for result data
+            Assert.IsNotNull(result, "dictionary is not updated");
+        }
+
+        [TestMethod]
+        public void TestDeleteCopyrightKind()
+        {
+            //define CodeI -> delete only created instances
+            Random random = new Random();
+            int codeI = random.Next(666, 999);
+            //delete CopyrightKind instance
+            bool result = _dictionary.DeleteCopyrightKind(codeI);
+            //checks for result
+            Assert.IsTrue(result, "copyrightKind is not deleted");
+        }
+
+        //[TestMethod]
+        //public void TestGetCountry()
+        //{
+
+        //}
+
+        //[TestMethod]
+        //public void TestCreateCountry()
+        //{
+            
+        //}
+
+        //[TestMethod]
+        //public void TestUpdateCountry()
+        //{
+
+        //}
+
+        //[TestMethod]
+        //public void TestDeleteCountry()
+        //{
+
+        //}
+
+        [TestMethod]
+        public void TestGetCreativeRoleType()
+        {
+            //define codeI
+            int codeI = 1;
+            //get result data
+            CreativeRoleType result = _dictionary.GetCreativeRoleType(codeI);
+            //check on success action
+            Assert.IsNotNull(result, "dictionary(CreativeRoleType) is not exist");
+        }
+
+        [TestMethod]
+        public void TestCreateCreativeRoleType()
+        {
+            //create CreativeRoleType instance
+            Random random = new Random();
+            int codeI = random.Next(16, 60000);
+            CreativeRoleType creativeRole = new CreativeRoleType {
+                CodeI = codeI,
+                Name = "TestCreativeRoleType",
+                CategoryCode = 5,
+                Crtype = 1
+            };
+            //get result data
+            CreativeRoleType result = _dictionary.CreateCreativeRoleType(creativeRole);
+            //checks for result
+            Assert.IsNotNull(result, "dictionary(CraetiveRoleType) is not created");
+        }
     }
 }
