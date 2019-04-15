@@ -135,5 +135,73 @@ namespace ipsFormsDesign.Tests
             //checks for result data
             Assert.IsNotNull(result, "dictionary(CreativeRoleType) is not updated");
         }
+
+        [TestMethod]
+        public void TestDeleteCreativeRoleType()
+        {
+            //define CreativeRoleType for delete
+            Random random = new Random();
+            int codeI = random.Next(16, 60000);
+            //get result data
+            bool result = _dictionary.DeleteCreativeRoleType(codeI);
+            //checks for result data
+            Assert.IsTrue(result, "dictionary(CreativeRoleType) is not delete");
+        }
+
+        [TestMethod]
+        public void TestGetGenreType()
+        {
+            //define codeI for get dictionary
+            int codeI = 1;
+            //get result data
+            GenreType result = _dictionary.GetGenreType(codeI);
+            //checks for result data
+            Assert.IsNotNull(result, "dictionary(GenreType) is not exist");
+        }
+
+        [TestMethod]
+        public void TestCreateGenreType()
+        {
+            //define GenreType instance for add
+            Random random = new Random();
+            int codeI = random.Next(199, 60000);
+            GenreType genreType = new GenreType {
+                CodeI = codeI,
+                CategoryCode = 5,
+                Name = "TestGenreType"
+            };
+            //get added dictionary
+            GenreType result = _dictionary.CreateGenreType(genreType);
+            //checks for result data
+            Assert.IsNotNull(result, "genreType is not created");
+        }
+
+        [TestMethod]
+        public void TestUpdateGenreType()
+        {
+            //define GenreType for update
+            GenreType genreType = new GenreType
+            {
+                CodeI = 43752,
+                CategoryCode = 5,
+                Name = "TestGenreTypeUpdated"
+            };
+            //get result data
+            GenreType result = _dictionary.UpdateGenreType(genreType);
+            //checks for result data
+            Assert.IsNotNull(result, "genreType is not updated");
+        }
+
+        [TestMethod]
+        public void TestDeleteGenreType()
+        {
+            //define codeI for delete GenreType
+            Random random = new Random();
+            int codeI = random.Next(199, 60000);
+            //get result data
+            bool result = _dictionary.DeleteGenreType(codeI);
+            //checks for result data
+            Assert.IsTrue(result, "GenreType is not deleted");
+        }
     }
 }
