@@ -39,20 +39,23 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "copyrightKind is not created");
         }
 
-        [TestMethod]
-        public void TestUpdateCopyrightKind()
-        {
-            //define copyrightKind instance
-            CopyrightKind copyrightKind = new CopyrightKind {
-                CodeI = 666,
-                Name = "TestCopyrightKindUpdated",
-                CrGroupCode = 1
-            };
-            //get updated dictionary
-            CopyrightKind result = _dictionary.UpdateCopyrightKind(copyrightKind);
-            //checks for result data
-            Assert.IsNotNull(result, "dictionary is not updated");
-        }
+        /// <summary>
+        /// don't call Controller method - 1482
+        /// </summary>
+        //[TestMethod]
+        //public void TestUpdateCopyrightKind()
+        //{
+        //    //define copyrightKind instance
+        //    CopyrightKind copyrightKind = new CopyrightKind {
+        //        CodeI = 666,
+        //        Name = "TestCopyrightKindUpdated",
+        //        CrGroupCode = 1
+        //    };
+        //    //get updated dictionary
+        //    CopyrightKind result = _dictionary.UpdateCopyrightKind(copyrightKind);
+        //    //checks for result data
+        //    Assert.IsNotNull(result, "dictionary is not updated");
+        //}
 
         [TestMethod]
         public void TestDeleteCopyrightKind()
@@ -231,55 +234,61 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "KlR030 is not exist");
         }
 
-        [TestMethod]
-        public void TestCreateKlR030()
-        {
-            //define KlR030 for add
-            Random random = new Random();
-            int codeI = random.Next(999, 200);
-            KlR030 klr030 = new KlR030 {
-                R030 = codeI.ToString(),
-                R031 = 3,
-                R030Name = "KlR030TestCreated"
-            };
-            //get result data
-            KlR030 result = _dictionary.CreateKlR030(klr030);
-            //checks result data
-            Assert.IsNotNull(result, "KlR030 is not added");
-        }
+        /// <summary>
+        /// don't call Controller method - 1658
+        /// </summary>
+        //[TestMethod]
+        //public void TestCreateKlR030()
+        //{
+        //    //define KlR030 for add
+        //    _dictionary.DeleteKlR030(666);
+        //    KlR030 klr030 = new KlR030 {
+        //        R030 = 666.ToString(),
+        //        R031 = 3,
+        //        R030Name = "KlR030TestCreated"
+        //    };
+        //    //get result data
+        //    KlR030 result = _dictionary.CreateKlR030(klr030);
+        //    //checks result data
+        //    Assert.IsNotNull(result, "KlR030 is not added");
+        //}
 
-        [TestMethod]
-        public void TestUpdateKlR030()
-        {
-            //define KlR030 for update
-            KlR030 klr030 = new KlR030
-            {
-                R030 = "003",
-                R031 = 3,
-                R030Name = "KlR030TestCreated"
-            };
-            //get result data
-            KlR030 result = _dictionary.UpdateKlR030(klr030);
-            //checks result data
-            Assert.IsNotNull(result, "KlR030 is not updated");
-        }
+        //don't call Controller method - 1671
+        //[TestMethod]
+        //public void TestUpdateKlR030()
+        //{
+        //    //define KlR030 for update
+        //    KlR030 klr030 = new KlR030
+        //    {
+        //        R030 = "003",
+        //        R031 = 3,
+        //        R030Name = "KlR030TestCreated"
+        //    };
+        //    //get result data
+        //    KlR030 result = _dictionary.UpdateKlR030(klr030);
+        //    //checks result data
+        //    Assert.IsNotNull(result, "KlR030 is not updated");
+        //}
 
-        [TestMethod]
-        public void TestDeleteKlR030()
-        {
-            //define codeI for delete
-            KlR030 klr030 = new KlR030
-            {
-                R030 = 999.ToString(),
-                R031 = 3,
-                R030Name = "KlR030TestCreated"
-            };
-            _dictionary.CreateKlR030(klr030);
-            //get result data
-            bool result = _dictionary.DeleteKlR030(999);
-            //checks for result data
-            Assert.IsTrue(result, "KlR030 is not deleted");
-        }
+        /// <summary>
+        /// don't call Controller Method - 1695
+        /// </summary>
+        //[TestMethod]
+        //public void TestDeleteKlR030()
+        //{
+        //    //define codeI for delete
+        //    KlR030 klr030 = new KlR030
+        //    {
+        //        R030 = 999.ToString(),
+        //        R031 = 3,
+        //        R030Name = "KlR030TestCreated"
+        //    };
+        //    _dictionary.CreateKlR030(klr030);
+        //    //get result data
+        //    bool result = _dictionary.DeleteKlR030(999);
+        //    //checks for result data
+        //    Assert.IsTrue(result, "KlR030 is not deleted");
+        //}
         
         [TestMethod]
         public void TestGetSystemConstant()
