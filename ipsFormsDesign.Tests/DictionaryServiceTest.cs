@@ -25,16 +25,16 @@ namespace ipsFormsDesign.Tests
         public void TestCreateCopyrightKind()
         {
             //define different value for CodeI
-            Random random = new Random();
-            int codeI = random.Next(667, 999);
+            _dictionary.DeleteCopyrightKind(666);
             //default CopyrightKind dictionary
             CopyrightKind copyrightKind = new CopyrightKind {
-                CodeI = codeI,
+                CodeI = 666,
                 Name = "TestCopyrightKind",
                 CrGroupCode = 1
             };
             //get created dictionary
             CopyrightKind result = _dictionary.CreateCopyrightKind(copyrightKind);
+            _dictionary.DeleteCopyrightKind(666);
             //checks for result data
             Assert.IsNotNull(result, "copyrightKind is not created");
         }
@@ -113,16 +113,16 @@ namespace ipsFormsDesign.Tests
         public void TestCreateCreativeRoleType()
         {
             //create CreativeRoleType instance
-            Random random = new Random();
-            int codeI = random.Next(16, 60000);
+            _dictionary.DeleteCreativeRoleType(666);
             CreativeRoleType creativeRole = new CreativeRoleType {
-                CodeI = codeI,
+                CodeI = 666,
                 Name = "TestCreativeRoleType",
                 CategoryCode = 5,
                 Crtype = 1
             };
             //get result data
             CreativeRoleType result = _dictionary.CreateCreativeRoleType(creativeRole);
+            _dictionary.DeleteCreativeRoleType(666);
             //checks for result
             Assert.IsNotNull(result, "dictionary(CraetiveRoleType) is not created");
         }
@@ -177,15 +177,15 @@ namespace ipsFormsDesign.Tests
         public void TestCreateGenreType()
         {
             //define GenreType instance for add
-            Random random = new Random();
-            int codeI = random.Next(199, 60000);
+            _dictionary.DeleteGenreType(666);
             GenreType genreType = new GenreType {
-                CodeI = codeI,
+                CodeI = 666,
                 CategoryCode = 5,
                 Name = "TestGenreType"
             };
             //get added dictionary
             GenreType result = _dictionary.CreateGenreType(genreType);
+            _dictionary.DeleteGenreType(666);
             //checks for result data
             Assert.IsNotNull(result, "genreType is not created");
         }
@@ -305,14 +305,14 @@ namespace ipsFormsDesign.Tests
         public void TestCreateSystemConstant()
         {
             //define SystemConstant for add
-            Random random = new Random();
-            int codeI = random.Next(10, 200);
+            _dictionary.DeleteSystemConstant(666);
             SystemConstant systemConstant = new SystemConstant {
-                CodeI = codeI,
+                CodeI = 666,
                 Name = "testSystemConstant"
             };
             //get result data
             SystemConstant result = _dictionary.CreateSystemConstant(systemConstant);
+            _dictionary.DeleteSystemConstant(666);
             //checks for result data
             Assert.IsNotNull(result, "SystemConstant is not created");
         }
@@ -362,14 +362,14 @@ namespace ipsFormsDesign.Tests
         public void TestCreateTypePlace()
         {
             //define TypePlace for add
-            Random random = new Random();
-            int codeI = random.Next(10, 200);
+            _dictionary.DeleteTypePlace(666);
             TypePlace typePlace = new TypePlace {
-                CodeI = codeI,
+                CodeI = 666,
                 Name = "CraetedTypePlace"
             };
             //get result data
             TypePlace result = _dictionary.CreateTypePlace(typePlace);
+            _dictionary.DeleteTypePlace(666);
             //checks for result data
             Assert.IsNotNull(result, "TypePlace is not added");
         }
