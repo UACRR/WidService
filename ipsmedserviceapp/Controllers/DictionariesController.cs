@@ -1679,7 +1679,15 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.UpdateList(sors.KlR030tr, dest.KlR030tr, i => { }, (l, r) => l.R030 == r.R030 && l.Lang == r.Lang);
             dest.SetFields(sors);
 
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
+
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            } catch (Exception e)
+            {
+
+            }
 
             return Ok(dest);
         }

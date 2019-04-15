@@ -203,5 +203,62 @@ namespace ipsFormsDesign.Tests
             //checks for result data
             Assert.IsTrue(result, "GenreType is not deleted");
         }
+
+        [TestMethod]
+        public void TestGetKlR030()
+        {
+            //define codeI for get KlR030
+            int codeI = 3;
+            //get result data
+            KlR030 result = _dictionary.GetKlR030(codeI);
+            //checks for result data
+            Assert.IsNotNull(result, "KlR030 is not exist");
+        }
+
+        [TestMethod]
+        public void TestCreateKlR030()
+        {
+            //define KlR030 for add
+            Random random = new Random();
+            int codeI = random.Next(1, 200);
+            KlR030 klr030 = new KlR030 {
+                R030 = codeI.ToString(),
+                R031 = 3,
+                R030Name = "KlR030TestCreated"
+            };
+            //get result data
+            KlR030 result = _dictionary.CreateKlR030(klr030);
+            //checks result data
+            Assert.IsNotNull(result, "KlR030 is not added");
+        }
+
+        [TestMethod]
+        public void TestUpdateKlR030()
+        {
+            //define KlR030 for update
+            KlR030 klr030 = new KlR030
+            {
+                R030 = "003",
+                R031 = 3,
+                R030Name = "KlR030TestCreated"
+            };
+            //get result data
+            KlR030 result = _dictionary.UpdateKlR030(klr030);
+            //checks result data
+            Assert.IsNotNull(result, "KlR030 is not updated");
+        }
+
+        [TestMethod]
+        public void TestDeleteKlR030()
+        {
+            //define codeI for delete
+            Random random = new Random();
+            int codeI = random.Next(1, 200);
+            //get result data
+            bool result = _dictionary.DeleteKlR030(codeI);
+            //checks for result data
+            Assert.IsTrue(result, "KlR030 is not deleted");
+        }
+        
     }
 }
