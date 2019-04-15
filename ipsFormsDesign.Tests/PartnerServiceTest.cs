@@ -73,5 +73,52 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
             Assert.IsTrue(result.Count != 0, "collection is empty");
         }
+
+        [TestMethod]
+        public void TestGetPartnerAnketa()
+        {
+            //default arguments
+            int clientId = 134;
+            //get data
+            Customer result = _partnerService.GetPartnerAnketa(clientId);
+            //checks for result data
+            Assert.IsNotNull(result, "Customer not found");
+        }
+
+        [TestMethod]
+        public void TestGetPartner()
+        {
+            //default arguments
+            int custId = 130;
+            //get result data
+            Customer result = _partnerService.GetPartner(custId);
+            //checks for result data
+            Assert.IsNotNull(result, "Customer not found");
+        }
+
+        [TestMethod]
+        public void TestSavePartner()
+        {
+            //default Customer
+            Customer customer = new Customer
+            {
+                CustId = 130,
+                Status = 2,
+                CustType = 1
+            };
+            customer.Person = new Person {
+                CustId = 130,
+                Version = 1
+            };
+            customer.Person.AnketaPerson = new ObservableListSource<AnketaPerson> {
+                new AnketaPerson {  CustId = 130,
+                                    Version = 1,
+                                    Status = 0 }
+            };
+            //save customer
+            bool result = _partnerService.SavePartner(customer);
+            //checks for result data
+            Assert.IsTrue(result, "Customer is not saved");
+        }
     }
 }
