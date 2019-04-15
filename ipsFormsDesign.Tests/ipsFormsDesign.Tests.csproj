@@ -59,6 +59,7 @@
     <Compile Include="ObjectRightServiceTest.cs" />
     <Compile Include="ConsumerServiceTest.cs" />
     <Compile Include="TestExtensions.cs" />
+    <Compile Include="DictionaryServiceTest.cs" />
     <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
