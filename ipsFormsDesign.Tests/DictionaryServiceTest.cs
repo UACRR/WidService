@@ -260,5 +260,46 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result, "KlR030 is not deleted");
         }
         
+        [TestMethod]
+        public void TestGetSystemConstant()
+        {
+            //define SystemConstant id
+            int codeI = 1;
+            //get result data
+            SystemConstant result = _dictionary.GetSystemConstant(codeI);
+            //checks for result
+            Assert.IsNotNull(result, "SystemConstant is not exist");
+        }
+
+        [TestMethod]
+        public void TestCreateSystemConstant()
+        {
+            //define SystemConstant for add
+            Random random = new Random();
+            int codeI = random.Next(10, 200);
+            SystemConstant systemConstant = new SystemConstant {
+                CodeI = codeI,
+                Name = "testSystemConstant"
+            };
+            //get result data
+            SystemConstant result = _dictionary.CreateSystemConstant(systemConstant);
+            //checks for result data
+            Assert.IsNotNull(result, "SystemConstant is not created");
+        }
+
+        [TestMethod]
+        public void TestUpdateSystemConstant()
+        {
+            //define SystemConstant instance for update
+            SystemConstant systemConstant = new SystemConstant {
+                CodeI = 37,
+                Name = "testSystemConstantUpdate"
+            };
+            //get result data
+            SystemConstant result = _dictionary.UpdateSystemConstant(systemConstant);
+            //checks for result data
+            Assert.IsNotNull(result, "SystemConstant is not updated");
+        }
+
     }
 }
