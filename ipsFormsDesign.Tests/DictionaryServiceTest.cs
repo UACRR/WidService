@@ -301,5 +301,69 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "SystemConstant is not updated");
         }
 
+        [TestMethod]
+        public void TestDeleteSystemConstant()
+        {
+            //define codeI for delete
+            Random random = new Random();
+            int codeI = random.Next(10, 200);
+            //get result data
+            bool result = _dictionary.DeleteSystemConstant(codeI);
+            //checks for result data
+            Assert.IsTrue(result, "SystemConstant dictionary is not exist");
+        }
+
+        [TestMethod]
+        public void TestGetTypePlace()
+        {
+            //define TypePlace
+            int codeI = 1;
+            //get result data
+            TypePlace result = _dictionary.GetTypePlace(codeI);
+            //checks for result data
+            Assert.IsNotNull(result, "TypePlace is not exist");
+        }
+
+        [TestMethod]
+        public void TestCreateTypePlace()
+        {
+            //define TypePlace for add
+            Random random = new Random();
+            int codeI = random.Next(10, 200);
+            TypePlace typePlace = new TypePlace {
+                CodeI = codeI,
+                Name = "CraetedTypePlace"
+            };
+            //get result data
+            TypePlace result = _dictionary.CreateTypePlace(typePlace);
+            //checks for result data
+            Assert.IsNotNull(result, "TypePlace is not added");
+        }
+
+        [TestMethod]
+        public void TestUpdateTypePlace()
+        {
+            //define TypePlace for update
+            TypePlace typePlace = new TypePlace {
+                CodeI = 37,
+                Name = "TypePlaceUpdated"
+            };
+            //get result data
+            TypePlace result = _dictionary.UpdateTypePlace(typePlace);
+            //checks for result data
+            Assert.IsNotNull(result, "typePlace is not updated");
+        }
+
+        [TestMethod]
+        public void TestDeleteTypePlace()
+        {
+            //define codeI for delete
+            Random random = new Random();
+            int codeI = random.Next(10, 200);
+            //get result data
+            bool result = _dictionary.DeleteTypePlace(codeI);
+            //checks for result data
+            Assert.IsTrue(result, "TypePlace is not deleted");
+        }
     }
 }
