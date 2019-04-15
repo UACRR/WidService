@@ -14,7 +14,7 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityForm : RadForm
     {
-        private Customer _customer;
+        private readonly Customer _customer;
 
         public CommunityForm(Customer customer)
         {

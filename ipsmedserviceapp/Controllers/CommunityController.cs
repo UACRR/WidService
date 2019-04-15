@@ -349,7 +349,7 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 var agrMaster = await _dbContext.AgreementMaster.SingleOrDefaultAsync(rec => rec.CustId == communityId);
-                var agrAdd = await _dbContext.AgreementAddCommunity.SingleOrDefaultAsync(rec=>rec.CustId == communityId);
+                var agrAdd = await _dbContext.AgreementAddCommunity.SingleOrDefaultAsync(rec => rec.CustId == communityId);
 
                 agrMaster.AgrStatus = status;
                 agrAdd.AgrStatus = status;
@@ -369,6 +369,7 @@ namespace ipsmedserviceapp.Controllers
         }
 
         #region Винесені методи та додаткові методи синхронізацій
+
         class EmplComparer : IEqualityComparer<Employee>
         {
             public bool Equals(Employee x, Employee y)
@@ -381,6 +382,7 @@ namespace ipsmedserviceapp.Controllers
                 return obj.Emplid;
             }
         }
+
         /// <summary>
         /// Синхронізація даних для спільноти
         /// </summary>
@@ -523,7 +525,7 @@ namespace ipsmedserviceapp.Controllers
                 {
                     new AgreementMaster
                     {
-                        AgrStatus = 2,
+                        AgrStatus = 0,
                         AgrType = 4,
                         Version = 1,
                     },
@@ -534,7 +536,7 @@ namespace ipsmedserviceapp.Controllers
                     {
                         new AgreementAddCommunity
                         {
-                            AgrStatus = 2,
+                            AgrStatus = 0,
                             AnkVersion = 1,
                             Version = 1,
                         }
