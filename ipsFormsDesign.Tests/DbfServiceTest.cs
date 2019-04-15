@@ -36,13 +36,17 @@ namespace ipsFormsDesign.Tests
             Assert.IsTrue(result.Count != 0, "collection is empty");
         }
 
+        /// <summary>
+        /// method wait put request(ExpayController -> 149 row) 
+        /// but make post request(ApiConnector -> 397 row)
+        /// </summary>
         //[TestMethod]
         //public void TestSaveListLinkedPays()
         //{
         //    //default list External Pay
         //    List<ExternalPay> list = new List<ExternalPay> {
         //        new ExternalPay {
-        //            PaidId = 353
+        //            PaidId = 352
         //        }
         //    };
         //    //get data
@@ -66,18 +70,20 @@ namespace ipsFormsDesign.Tests
             Assert.IsNotNull(result, "result is null");
         }
 
-        //[TestMethod]
-        //public void TestCheckInputFile()
-        //{
-        //    //default InputFile
-        //    InputFile file = new InputFile {
-        //        FileId = 8
-        //    };
-        //    //get data
-        //    InputFile result = _dbfService.CheckInputFile(file);
-        //    //check on null state
-        //    Assert.IsNotNull(result, "result is null");
-        //}
+        [TestMethod]
+        public void TestCheckInputFile()
+        {
+            //default InputFile
+            InputFile file = new InputFile
+            {
+                FileName = "testFileName",
+                InputTime = new DateTime(2019, 01, 15, 17, 02, 48, 893)
+            };
+            //get data
+            InputFile result = _dbfService.CheckInputFile(file);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
 
         //[TestMethod]
         //public void TestSaveInputFile()
