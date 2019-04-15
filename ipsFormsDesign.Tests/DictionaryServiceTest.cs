@@ -58,10 +58,15 @@ namespace ipsFormsDesign.Tests
         public void TestDeleteCopyrightKind()
         {
             //define CodeI -> delete only created instances
-            Random random = new Random();
-            int codeI = random.Next(666, 999);
+            CopyrightKind copyrightKind = new CopyrightKind
+            {
+                CodeI = 666,
+                Name = "TestCopyrightKind",
+                CrGroupCode = 1
+            };
+            _dictionary.CreateCopyrightKind(copyrightKind);
             //delete CopyrightKind instance
-            bool result = _dictionary.DeleteCopyrightKind(codeI);
+            bool result = _dictionary.DeleteCopyrightKind(666);
             //checks for result
             Assert.IsTrue(result, "copyrightKind is not deleted");
         }
@@ -140,10 +145,16 @@ namespace ipsFormsDesign.Tests
         public void TestDeleteCreativeRoleType()
         {
             //define CreativeRoleType for delete
-            Random random = new Random();
-            int codeI = random.Next(16, 60000);
+            CreativeRoleType creativeRole = new CreativeRoleType
+            {
+                CodeI = 666,
+                Name = "TestCreativeRoleType",
+                CategoryCode = 5,
+                Crtype = 1
+            };
+            _dictionary.CreateCreativeRoleType(creativeRole);
             //get result data
-            bool result = _dictionary.DeleteCreativeRoleType(codeI);
+            bool result = _dictionary.DeleteCreativeRoleType(666);
             //checks for result data
             Assert.IsTrue(result, "dictionary(CreativeRoleType) is not delete");
         }
@@ -196,10 +207,15 @@ namespace ipsFormsDesign.Tests
         public void TestDeleteGenreType()
         {
             //define codeI for delete GenreType
-            Random random = new Random();
-            int codeI = random.Next(199, 60000);
+            GenreType genreType = new GenreType
+            {
+                CodeI = 666,
+                CategoryCode = 5,
+                Name = "TestGenreType"
+            };
+            _dictionary.CreateGenreType(genreType);
             //get result data
-            bool result = _dictionary.DeleteGenreType(codeI);
+            bool result = _dictionary.DeleteGenreType(666);
             //checks for result data
             Assert.IsTrue(result, "GenreType is not deleted");
         }
@@ -220,7 +236,7 @@ namespace ipsFormsDesign.Tests
         {
             //define KlR030 for add
             Random random = new Random();
-            int codeI = random.Next(1, 200);
+            int codeI = random.Next(999, 200);
             KlR030 klr030 = new KlR030 {
                 R030 = codeI.ToString(),
                 R031 = 3,
@@ -252,10 +268,15 @@ namespace ipsFormsDesign.Tests
         public void TestDeleteKlR030()
         {
             //define codeI for delete
-            Random random = new Random();
-            int codeI = random.Next(1, 200);
+            KlR030 klr030 = new KlR030
+            {
+                R030 = 999.ToString(),
+                R031 = 3,
+                R030Name = "KlR030TestCreated"
+            };
+            _dictionary.CreateKlR030(klr030);
             //get result data
-            bool result = _dictionary.DeleteKlR030(codeI);
+            bool result = _dictionary.DeleteKlR030(999);
             //checks for result data
             Assert.IsTrue(result, "KlR030 is not deleted");
         }
@@ -305,10 +326,14 @@ namespace ipsFormsDesign.Tests
         public void TestDeleteSystemConstant()
         {
             //define codeI for delete
-            Random random = new Random();
-            int codeI = random.Next(10, 200);
+            SystemConstant systemConstant = new SystemConstant
+            {
+                CodeI = 666,
+                Name = "testSystemConstant"
+            };
+            _dictionary.CreateSystemConstant(systemConstant);
             //get result data
-            bool result = _dictionary.DeleteSystemConstant(codeI);
+            bool result = _dictionary.DeleteSystemConstant(666);
             //checks for result data
             Assert.IsTrue(result, "SystemConstant dictionary is not exist");
         }
@@ -358,10 +383,14 @@ namespace ipsFormsDesign.Tests
         public void TestDeleteTypePlace()
         {
             //define codeI for delete
-            Random random = new Random();
-            int codeI = random.Next(10, 200);
+            TypePlace typePlace = new TypePlace
+            {
+                CodeI = 666,
+                Name = "CraetedTypePlace"
+            };
+            _dictionary.CreateTypePlace(typePlace);
             //get result data
-            bool result = _dictionary.DeleteTypePlace(codeI);
+            bool result = _dictionary.DeleteTypePlace(666);
             //checks for result data
             Assert.IsTrue(result, "TypePlace is not deleted");
         }
