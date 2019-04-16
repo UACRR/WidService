@@ -26,22 +26,11 @@ namespace RepNew.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser" +
-            ";Password=ReportUser")]
-        public string IPSDATA {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPS,60675;Initial Catalog=PO_UCARR;User ID=robot;Password=rob" +
+            "ot11235813")]
+        public string PO_UCAAR {
             get {
-                return ((string)(this["IPSDATA"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser" +
-            ";Password=ReportUser")]
-        public string MediaService {
-            get {
-                return ((string)(this["MediaService"]));
+                return ((string)(this["PO_UCAAR"]));
             }
         }
     }

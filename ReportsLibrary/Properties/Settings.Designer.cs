@@ -26,11 +26,11 @@ namespace ReportsLibrary.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser;Passwor" +
-            "d=ReportUser")]
-        public string Reports {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPS,60675;Initial Catalog=PO_UCARR;User ID=robot;Password=rob" +
+            "ot11235813")]
+        public string PO_UCAAR {
             get {
-                return ((string)(this["Reports"]));
+                return ((string)(this["PO_UCAAR"]));
             }
         }
         
@@ -42,6 +42,27 @@ namespace ReportsLibrary.Properties {
         public string MediaService {
             get {
                 return ((string)(this["MediaService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser;Passwor" +
+            "d=ReportUser")]
+        public string Reports {
+            get {
+                return ((string)(this["Reports"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA\\IPS,60675;Initial Catalog=SO_UCARR;Integrated Security=True")]
+        public string SO_UCARR {
+            get {
+                return ((string)(this["SO_UCARR"]));
             }
         }
     }

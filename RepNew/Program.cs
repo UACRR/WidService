@@ -16,7 +16,7 @@ namespace RepNew
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Звіти());
+            Application.Run(new Аналітика());
         }
     }
 }
