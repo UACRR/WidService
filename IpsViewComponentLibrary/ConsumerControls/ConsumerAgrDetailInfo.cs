@@ -15,7 +15,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 {
     public partial class ConsumerAgrDetailInfo : UserControl
     {
-        private AnketaDictionaties _dictionaties = null;
+        private readonly AnketaDictionaties _dictionaties;
         public event EventHandler OnSaveCommentNeed;
         public ConsumerAgrDetailInfo()
         {
