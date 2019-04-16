@@ -184,8 +184,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            var item = _systemConstantList[codeForRefresh];
-            dictService.DeleteCopyrightKind(item.CodeI);
+            SystemConstant item = _systemConstantList[codeForRefresh];
+            dictService.DeleteSystemConstant(item.CodeI);
             //update data for grid
             gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
@@ -202,20 +202,20 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveSystemConstant.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateSystemConstant(systemConstantData);
+                SystemConstant result = dictService.CreateSystemConstant(systemConstantData);
                 //set default state for 'Text' of the btnSave
                 btnSaveSystemConstant.Text = "Зберегти";
                 //save last selected item
-                current = gridSystemConstantList.CurrentRow.Index;
+                //current = gridSystemConstantList.CurrentRow.Index;
                 //update data for grid
                 gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
-                var newPosition = _systemConstantList.FindIndex(el => el.CodeI == result.CodeI);
+                int newPosition = _systemConstantList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
                 gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[newPosition];
             } else if (btnSaveSystemConstant.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateSystemConstant(systemConstantData);
+                SystemConstant result = dictService.UpdateSystemConstant(systemConstantData);
                 //save last selected item
                 current = gridSystemConstantList.CurrentRow.Index;
                 //update data for grid
