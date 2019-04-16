@@ -120,7 +120,7 @@
             this.ddlFilterCountry.FormattingEnabled = false;
             this.ddlFilterCountry.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterCountry.Name = "ddlFilterCountry";
-            this.ddlFilterCountry.Size = new System.Drawing.Size(427, 21);
+            this.ddlFilterCountry.Size = new System.Drawing.Size(427, 20);
             this.ddlFilterCountry.TabIndex = 22;
             this.ddlFilterCountry.ThemeName = "Office2013Light";
             this.ddlFilterCountry.ValueMember = "CodeI";
@@ -206,10 +206,11 @@
             this.ddlEditKeyCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyCountry.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyCountry.Name = "ddlEditKeyCountry";
-            this.ddlEditKeyCountry.Size = new System.Drawing.Size(401, 21);
+            this.ddlEditKeyCountry.Size = new System.Drawing.Size(401, 20);
             this.ddlEditKeyCountry.TabIndex = 13;
             this.ddlEditKeyCountry.ThemeName = "Office2013Light";
             this.ddlEditKeyCountry.ValueMember = "CodeI";
+            this.ddlEditKeyCountry.Click += new System.EventHandler(this.ddlEditKeyCountry_Click);
             // 
             // bsCountry
             // 
@@ -222,9 +223,10 @@
             this.txtNameRuCountry.Location = new System.Drawing.Point(162, 81);
             this.txtNameRuCountry.MaxLength = 500;
             this.txtNameRuCountry.Name = "txtNameRuCountry";
-            this.txtNameRuCountry.Size = new System.Drawing.Size(465, 21);
+            this.txtNameRuCountry.Size = new System.Drawing.Size(465, 20);
             this.txtNameRuCountry.TabIndex = 8;
             this.txtNameRuCountry.ThemeName = "Office2013Light";
+            this.txtNameRuCountry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNameRuCountry_KeyPress);
             // 
             // bsRuLangCountry
             // 
@@ -237,9 +239,10 @@
             this.txtNameEnCountry.Location = new System.Drawing.Point(162, 108);
             this.txtNameEnCountry.MaxLength = 500;
             this.txtNameEnCountry.Name = "txtNameEnCountry";
-            this.txtNameEnCountry.Size = new System.Drawing.Size(465, 21);
+            this.txtNameEnCountry.Size = new System.Drawing.Size(465, 20);
             this.txtNameEnCountry.TabIndex = 9;
             this.txtNameEnCountry.ThemeName = "Office2013Light";
+            this.txtNameEnCountry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNameEnCountry_KeyPress);
             // 
             // bsEnLangCountry
             // 
@@ -252,9 +255,10 @@
             this.txtNameUaCountry.Location = new System.Drawing.Point(162, 55);
             this.txtNameUaCountry.MaxLength = 500;
             this.txtNameUaCountry.Name = "txtNameUaCountry";
-            this.txtNameUaCountry.Size = new System.Drawing.Size(465, 21);
+            this.txtNameUaCountry.Size = new System.Drawing.Size(465, 20);
             this.txtNameUaCountry.TabIndex = 7;
             this.txtNameUaCountry.ThemeName = "Office2013Light";
+            this.txtNameUaCountry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNameUaCountry_KeyPress);
             // 
             // bsUkLangCountry
             // 
@@ -265,9 +269,9 @@
             // 
             this.txtCodeCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCountry, "CountryCode", true));
             this.txtCodeCountry.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeCountry.MaxLength = 4;
+            this.txtCodeCountry.MaxLength = 5;
             this.txtCodeCountry.Name = "txtCodeCountry";
-            this.txtCodeCountry.Size = new System.Drawing.Size(465, 21);
+            this.txtCodeCountry.Size = new System.Drawing.Size(465, 20);
             this.txtCodeCountry.TabIndex = 6;
             this.txtCodeCountry.ThemeName = "Office2013Light";
             this.txtCodeCountry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeCountry_KeyPress);
@@ -383,20 +387,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 285;
+            gridViewTextBoxColumn2.Width = 286;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 289;
+            gridViewTextBoxColumn3.Width = 290;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 265;
+            gridViewTextBoxColumn4.Width = 266;
             gridViewTextBoxColumn5.FieldName = "Continent";
             gridViewTextBoxColumn5.HeaderText = "Континент";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "Continent";
-            gridViewTextBoxColumn5.Width = 221;
+            gridViewTextBoxColumn5.Width = 223;
             this.gridCountryList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

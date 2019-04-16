@@ -151,9 +151,10 @@
             this.txtRuLangSystemConstant.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangSystemConstant.MaxLength = 500;
             this.txtRuLangSystemConstant.Name = "txtRuLangSystemConstant";
-            this.txtRuLangSystemConstant.Size = new System.Drawing.Size(988, 21);
+            this.txtRuLangSystemConstant.Size = new System.Drawing.Size(988, 20);
             this.txtRuLangSystemConstant.TabIndex = 8;
             this.txtRuLangSystemConstant.ThemeName = "Office2013Light";
+            this.txtRuLangSystemConstant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangSystemConstant_KeyPress);
             // 
             // bsRuLangSystemConstant
             // 
@@ -166,9 +167,10 @@
             this.txtEnLangSystemConstant.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangSystemConstant.MaxLength = 500;
             this.txtEnLangSystemConstant.Name = "txtEnLangSystemConstant";
-            this.txtEnLangSystemConstant.Size = new System.Drawing.Size(988, 21);
+            this.txtEnLangSystemConstant.Size = new System.Drawing.Size(988, 20);
             this.txtEnLangSystemConstant.TabIndex = 9;
             this.txtEnLangSystemConstant.ThemeName = "Office2013Light";
+            this.txtEnLangSystemConstant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangSystemConstant_KeyPress);
             // 
             // bsEnLangSystemConstant
             // 
@@ -181,9 +183,10 @@
             this.txtUkLangSystemConstant.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangSystemConstant.MaxLength = 500;
             this.txtUkLangSystemConstant.Name = "txtUkLangSystemConstant";
-            this.txtUkLangSystemConstant.Size = new System.Drawing.Size(988, 21);
+            this.txtUkLangSystemConstant.Size = new System.Drawing.Size(988, 20);
             this.txtUkLangSystemConstant.TabIndex = 7;
             this.txtUkLangSystemConstant.ThemeName = "Office2013Light";
+            this.txtUkLangSystemConstant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUkLangSystemConstant_KeyPress);
             // 
             // bsUkLangSystemConstant
             // 
@@ -194,9 +197,9 @@
             // 
             this.txtCodeSystemConstant.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSystemConstant, "CodeI", true));
             this.txtCodeSystemConstant.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeSystemConstant.MaxLength = 4;
+            this.txtCodeSystemConstant.MaxLength = 5;
             this.txtCodeSystemConstant.Name = "txtCodeSystemConstant";
-            this.txtCodeSystemConstant.Size = new System.Drawing.Size(988, 21);
+            this.txtCodeSystemConstant.Size = new System.Drawing.Size(988, 20);
             this.txtCodeSystemConstant.TabIndex = 6;
             this.txtCodeSystemConstant.ThemeName = "Office2013Light";
             this.txtCodeSystemConstant.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeSystemConstant_KeyPress);
@@ -313,19 +316,19 @@
             gridViewTextBoxColumn1.FieldName = "Code";
             gridViewTextBoxColumn1.HeaderText = "Код";
             gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 160;
+            gridViewTextBoxColumn1.Width = 161;
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 307;
+            gridViewTextBoxColumn2.Width = 308;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 331;
+            gridViewTextBoxColumn3.Width = 332;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 366;
+            gridViewTextBoxColumn4.Width = 368;
             this.gridSystemConstantList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

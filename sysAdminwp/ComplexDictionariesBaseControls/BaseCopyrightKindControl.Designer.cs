@@ -120,7 +120,7 @@
             this.ddlFilterCopyrightKind.FormattingEnabled = false;
             this.ddlFilterCopyrightKind.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterCopyrightKind.Name = "ddlFilterCopyrightKind";
-            this.ddlFilterCopyrightKind.Size = new System.Drawing.Size(427, 21);
+            this.ddlFilterCopyrightKind.Size = new System.Drawing.Size(427, 20);
             this.ddlFilterCopyrightKind.TabIndex = 22;
             this.ddlFilterCopyrightKind.ThemeName = "Office2013Light";
             this.ddlFilterCopyrightKind.ValueMember = "CodeI";
@@ -206,10 +206,11 @@
             this.ddlEditKeyCopyrightKind.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyCopyrightKind.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyCopyrightKind.Name = "ddlEditKeyCopyrightKind";
-            this.ddlEditKeyCopyrightKind.Size = new System.Drawing.Size(401, 21);
+            this.ddlEditKeyCopyrightKind.Size = new System.Drawing.Size(401, 20);
             this.ddlEditKeyCopyrightKind.TabIndex = 13;
             this.ddlEditKeyCopyrightKind.ThemeName = "Office2013Light";
             this.ddlEditKeyCopyrightKind.ValueMember = "CodeI";
+            this.ddlEditKeyCopyrightKind.Click += new System.EventHandler(this.ddlEditKeyCopyrightKind_Click);
             // 
             // bsCopyrightKind
             // 
@@ -222,9 +223,10 @@
             this.txtRuLangCopyrightKind.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangCopyrightKind.MaxLength = 500;
             this.txtRuLangCopyrightKind.Name = "txtRuLangCopyrightKind";
-            this.txtRuLangCopyrightKind.Size = new System.Drawing.Size(465, 21);
+            this.txtRuLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtRuLangCopyrightKind.TabIndex = 8;
             this.txtRuLangCopyrightKind.ThemeName = "Office2013Light";
+            this.txtRuLangCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangCopyrightKind_KeyPress);
             // 
             // bsRuLangCopyrightKind
             // 
@@ -237,9 +239,10 @@
             this.txtEnLangCopyrightKind.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangCopyrightKind.MaxLength = 500;
             this.txtEnLangCopyrightKind.Name = "txtEnLangCopyrightKind";
-            this.txtEnLangCopyrightKind.Size = new System.Drawing.Size(465, 21);
+            this.txtEnLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtEnLangCopyrightKind.TabIndex = 9;
             this.txtEnLangCopyrightKind.ThemeName = "Office2013Light";
+            this.txtEnLangCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangCopyrightKind_KeyPress);
             // 
             // bsEnLangCopyrightKind
             // 
@@ -252,9 +255,10 @@
             this.txtUaLangCopyrightKind.Location = new System.Drawing.Point(162, 55);
             this.txtUaLangCopyrightKind.MaxLength = 500;
             this.txtUaLangCopyrightKind.Name = "txtUaLangCopyrightKind";
-            this.txtUaLangCopyrightKind.Size = new System.Drawing.Size(465, 21);
+            this.txtUaLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtUaLangCopyrightKind.TabIndex = 7;
             this.txtUaLangCopyrightKind.ThemeName = "Office2013Light";
+            this.txtUaLangCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUaLangCopyrightKind_KeyPress);
             // 
             // bsUkLangCopyrightKind
             // 
@@ -265,9 +269,9 @@
             // 
             this.txtCodeCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
             this.txtCodeCopyrightKind.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeCopyrightKind.MaxLength = 4;
+            this.txtCodeCopyrightKind.MaxLength = 5;
             this.txtCodeCopyrightKind.Name = "txtCodeCopyrightKind";
-            this.txtCodeCopyrightKind.Size = new System.Drawing.Size(465, 21);
+            this.txtCodeCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtCodeCopyrightKind.TabIndex = 6;
             this.txtCodeCopyrightKind.ThemeName = "Office2013Light";
             this.txtCodeCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeComplex_KeyPress);
@@ -383,20 +387,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 285;
+            gridViewTextBoxColumn2.Width = 286;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 289;
+            gridViewTextBoxColumn3.Width = 290;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 265;
+            gridViewTextBoxColumn4.Width = 266;
             gridViewTextBoxColumn5.FieldName = "VariantUse";
             gridViewTextBoxColumn5.HeaderText = "Спосіб використання";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "VariantUse";
-            gridViewTextBoxColumn5.Width = 221;
+            gridViewTextBoxColumn5.Width = 223;
             this.gridCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

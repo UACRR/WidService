@@ -120,7 +120,7 @@
             this.ddlFilterGenreType.FormattingEnabled = false;
             this.ddlFilterGenreType.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterGenreType.Name = "ddlFilterGenreType";
-            this.ddlFilterGenreType.Size = new System.Drawing.Size(427, 21);
+            this.ddlFilterGenreType.Size = new System.Drawing.Size(427, 20);
             this.ddlFilterGenreType.TabIndex = 22;
             this.ddlFilterGenreType.ThemeName = "Office2013Light";
             this.ddlFilterGenreType.ValueMember = "CodeI";
@@ -206,10 +206,11 @@
             this.ddlEditKeyGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyGenreType.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyGenreType.Name = "ddlEditKeyGenreType";
-            this.ddlEditKeyGenreType.Size = new System.Drawing.Size(401, 21);
+            this.ddlEditKeyGenreType.Size = new System.Drawing.Size(401, 20);
             this.ddlEditKeyGenreType.TabIndex = 13;
             this.ddlEditKeyGenreType.ThemeName = "Office2013Light";
             this.ddlEditKeyGenreType.ValueMember = "CodeI";
+            this.ddlEditKeyGenreType.Click += new System.EventHandler(this.ddlEditKeyGenreType_Click);
             // 
             // bsGenreType
             // 
@@ -222,9 +223,10 @@
             this.txtRuLangGenreType.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangGenreType.MaxLength = 500;
             this.txtRuLangGenreType.Name = "txtRuLangGenreType";
-            this.txtRuLangGenreType.Size = new System.Drawing.Size(465, 21);
+            this.txtRuLangGenreType.Size = new System.Drawing.Size(465, 20);
             this.txtRuLangGenreType.TabIndex = 8;
             this.txtRuLangGenreType.ThemeName = "Office2013Light";
+            this.txtRuLangGenreType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangGenreType_KeyPress);
             // 
             // bsRuLangGenreType
             // 
@@ -237,9 +239,10 @@
             this.txtEnLangGenreType.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangGenreType.MaxLength = 500;
             this.txtEnLangGenreType.Name = "txtEnLangGenreType";
-            this.txtEnLangGenreType.Size = new System.Drawing.Size(465, 21);
+            this.txtEnLangGenreType.Size = new System.Drawing.Size(465, 20);
             this.txtEnLangGenreType.TabIndex = 9;
             this.txtEnLangGenreType.ThemeName = "Office2013Light";
+            this.txtEnLangGenreType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangGenreType_KeyPress);
             // 
             // bsEnLangGenreType
             // 
@@ -252,9 +255,10 @@
             this.txtUkLangGenreType.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangGenreType.MaxLength = 500;
             this.txtUkLangGenreType.Name = "txtUkLangGenreType";
-            this.txtUkLangGenreType.Size = new System.Drawing.Size(465, 21);
+            this.txtUkLangGenreType.Size = new System.Drawing.Size(465, 20);
             this.txtUkLangGenreType.TabIndex = 7;
             this.txtUkLangGenreType.ThemeName = "Office2013Light";
+            this.txtUkLangGenreType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUkLangGenreType_KeyPress);
             // 
             // bsUkLangGenreType
             // 
@@ -265,9 +269,9 @@
             // 
             this.txtCodeGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsGenreType, "CodeI", true));
             this.txtCodeGenreType.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeGenreType.MaxLength = 4;
+            this.txtCodeGenreType.MaxLength = 5;
             this.txtCodeGenreType.Name = "txtCodeGenreType";
-            this.txtCodeGenreType.Size = new System.Drawing.Size(465, 21);
+            this.txtCodeGenreType.Size = new System.Drawing.Size(465, 20);
             this.txtCodeGenreType.TabIndex = 6;
             this.txtCodeGenreType.ThemeName = "Office2013Light";
             this.txtCodeGenreType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeGenreType_KeyPress);
@@ -383,20 +387,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 285;
+            gridViewTextBoxColumn2.Width = 286;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 289;
+            gridViewTextBoxColumn3.Width = 290;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 265;
+            gridViewTextBoxColumn4.Width = 266;
             gridViewTextBoxColumn5.FieldName = "VariantObject";
             gridViewTextBoxColumn5.HeaderText = "Вид об\'єкта";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "VariantObject";
-            gridViewTextBoxColumn5.Width = 221;
+            gridViewTextBoxColumn5.Width = 223;
             this.gridGenreTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

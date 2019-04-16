@@ -1232,7 +1232,15 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
                 }
             }
 
-            await _dbContext.SaveChangesAsync();
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            } catch(Exception e)
+            {
+
+            }
+
+            //await _dbContext.SaveChangesAsync();
             return Ok(body);
         }
 

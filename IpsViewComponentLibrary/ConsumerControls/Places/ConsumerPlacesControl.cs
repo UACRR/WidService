@@ -8,6 +8,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Properties;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
@@ -65,8 +66,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         public void SetData(Customer customer)
         {
             _clnBusinessPlaces = customer.Client.ClnBusinessPlace;
-            bsPlacesList.DataSource = _clnBusinessPlaces;
-            bsPlacesList.ResetBindings(false);
+            bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
+            bsPlacesForAgreement.ResetBindings(false);
             CustomerId = customer.CustId;
         }
 
@@ -102,7 +103,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (placeDetailForm.ShowDialog() == DialogResult.OK)
             {
                 _clnBusinessPlaces.Add(businessPlace);
-                bsPlacesList.ResetBindings(false);
+                bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
+                bsPlacesForAgreement.ResetBindings(false);
             }
         }
 
@@ -129,9 +131,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         /// </summary>
         private void OpenEditPlaceDetailForm()
         {
-            if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace place))
+            if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace row))
                 return;
-
+            var place = _clnBusinessPlaces.SingleOrDefault(rec => rec.PlaceId == row.PlaceId);
             // створення допоміжного об'єкта (binding зберігає зміни в будь-якому випадку) б-т . . .
             var tempPlace = new ClnBusinessPlace
             {
@@ -147,7 +149,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (placeDetailForm.ShowDialog() == DialogResult.OK)
             {
                 SyncClnBusinessPlace(place, tempPlace);
-                bsPlacesList.ResetBindings(false);
+                bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
+                bsPlacesForAgreement.ResetBindings(false);
             }
         }
 
@@ -178,13 +181,15 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         //  * * * ВИДАЛЕННЯ МАЙДАНЧИКА
         private void btnDeletePlace_Click(object sender, EventArgs e)
         {
-            if (!(gvPlaces.CurrentRow.DataBoundItem is ClnBusinessPlace place))
+            if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace row))
                 return;
 
             if (MessageShow.ConfirmAction(DeletePlaceQuestion) == DialogResult.Yes)
             {
-                _clnBusinessPlaces.Remove(place);
-                bsPlacesList.ResetBindings(false);
+                var removePlace = _clnBusinessPlaces.SingleOrDefault(rec => rec.PlaceId == row.PlaceId);
+                _clnBusinessPlaces.Remove(removePlace);
+                bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
+                bsPlacesForAgreement.ResetBindings(false);
             }
         }
 

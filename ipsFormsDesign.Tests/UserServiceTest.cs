@@ -39,5 +39,16 @@ namespace ipsFormsDesign.Tests
             //check on null state
             Assert.IsNotNull(result, "result Task<List<UserViewModel>> is null");
         }
+
+        [TestMethod]
+        public void TestGetById()
+        {
+            //default userId
+            string userId = "8f1f2428-48b4-4209-a577-1fab339c0d82";
+            //get data
+            UserViewModel result = _userService.GetById(userId);
+            //check on null state
+            Assert.IsNotNull(result, "result is null");
+        }
     }
 }

@@ -76,7 +76,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel();
             //set 'Enabled' state by default
             ControlEnabledActiveElements = true;
-            
         }
         
         //handle data for grid
@@ -128,7 +127,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = code;
+            codeForRefresh = _creativeroleTypeList.FindIndex(el => el.CodeI == code);
             //update data for bottom panel
             DataUpdateForBottomPanel();
         }
@@ -139,8 +138,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _creativeroleTypeList[0].CodeI;
+            CreativeRoleType item = _creativeroleTypeList[codeForRefresh];
             //get object by parameter 'code' from service
-            creativeroleTypeData = dictService.GetCreativeRoleType(codeForRefresh);
+            creativeroleTypeData = dictService.GetCreativeRoleType(item.CodeI);
             //use data for binding source
             bsCreativeRoleType.DataSource = creativeroleTypeData;
             //define binding for source of the 'Uk'
@@ -215,18 +215,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             btnSaveCreativeroleType.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            creativeroleTypeData = new CreativeRoleType();
+            creativeroleTypeData = new CreativeRoleType { Crtype = 1, CategoryCode = 1 };
             bsCreativeRoleType.DataSource = creativeroleTypeData;
             //refresh data for field 'Uk'
-            ukCreativeroleType = new CreativeRoleTypeTr();
+            ukCreativeroleType = new CreativeRoleTypeTr { Lang = "Uk" };
             creativeroleTypeData.CreativeRoleTypeTr.Add(ukCreativeroleType);
             bsUkLangCreativeRoleType.DataSource = ukCreativeroleType;
             //refresh data for field 'Ru'
-            ruCreativeroleType = new CreativeRoleTypeTr();
+            ruCreativeroleType = new CreativeRoleTypeTr { Lang = "Ru" };
             creativeroleTypeData.CreativeRoleTypeTr.Add(ruCreativeroleType);
             bsRuLangCreativeRoleType.DataSource = ruCreativeroleType;
             //refresh data for field 'Ru'
-            enCreativeroleType = new CreativeRoleTypeTr();
+            enCreativeroleType = new CreativeRoleTypeTr { Lang = "En" };
             creativeroleTypeData.CreativeRoleTypeTr.Add(enCreativeroleType);
             bsEnLangCreativeRoleType.DataSource = enCreativeroleType;
             //stop perform if elements have 'Enabled' -> false
@@ -240,10 +240,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            dictService.DeleteCopyrightKind(codeForRefresh);
+            CreativeRoleType item = _creativeroleTypeList[codeForRefresh];
+            bool result = dictService.DeleteCreativeRoleType(item.CodeI);
             //update data for grid
             gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
+            gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[codeForRefresh];
         }
 
         //action 'Save' object to grid
@@ -255,21 +257,22 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             if (btnSaveCreativeroleType.Text == "Додати")
             {
+                
                 //send created object
-                var result = dictService.CreateCreativeRoleType(creativeroleTypeData);
+                CreativeRoleType result = dictService.CreateCreativeRoleType(creativeroleTypeData);
                 //set default state for 'Text' of the btnSave
                 btnSaveCreativeroleType.Text = "Зберегти";
                 //save last selected item
-                current = gridCreativeroleTypeList.CurrentRow.Index;
+                //current = gridCreativeroleTypeList.CurrentRow.Index;
                 //update data for grid
                 gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+                int newPosition = _creativeroleTypeList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
-                gridCreativeroleTypeList.CurrentRow = result != null ? gridCreativeroleTypeList.Rows[gridCreativeroleTypeList.RowCount - 1]
-                                                                  : gridCreativeroleTypeList.Rows[current];
+                gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[newPosition];
             } else if (btnSaveCreativeroleType.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
+                CreativeRoleType result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
                 //save last selected item
                 current = gridCreativeroleTypeList.CurrentRow.Index;
                 //update data for grid
@@ -298,52 +301,96 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //changed data of the field 'Uk'
         private void bindingSourceUk_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //{
+            //    if (btnSaveCreativeroleType.Text != "Додати")
+            //    {
+            //        //change property 'Text' of the btnSave for 'Save' action
+            //        btnSaveCreativeroleType.Text = "Зберегти";
+            //    }
+            //    //stop perform if elements have 'Enabled' -> false
+            //    if (!ControlEnabledActiveElements) return;
+            //    //change 'Enabled' state for elements
+            //    ControlEnabledActiveElements = false;
+            //}
+        }
+
+        /// <summary>
+        /// changed data of the field 'Uk'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txtUkLangCreativeroleType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (btnSaveCreativeroleType.Text != "Додати")
             {
-                if (btnSaveCreativeroleType.Text != "Додати")
-                {
-                    //change property 'Text' of the btnSave for 'Save' action
-                    btnSaveCreativeroleType.Text = "Зберегти";
-                }
-                //stop perform if elements have 'Enabled' -> false
-                if (!ControlEnabledActiveElements) return;
-                //change 'Enabled' state for elements
-                ControlEnabledActiveElements = false;
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSaveCreativeroleType.Text = "Зберегти";
             }
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
         }
 
         //changed data of the field 'Ru'
         private void bindingSourceRu_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //{
+            //    if (btnSaveCreativeroleType.Text != "Додати")
+            //    {
+            //        //change property 'Text' of the btnSave for 'Save' action
+            //        btnSaveCreativeroleType.Text = "Зберегти";
+            //    }
+            //    //stop perform if elements have 'Enabled' -> false
+            //    if (!ControlEnabledActiveElements) return;
+            //    //change 'Enabled' state for elements
+            //    ControlEnabledActiveElements = false;
+            //}
+        }
+
+        private void txtRuLangCreativeroleType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (btnSaveCreativeroleType.Text != "Додати")
             {
-                if (btnSaveCreativeroleType.Text != "Додати")
-                {
-                    //change property 'Text' of the btnSave for 'Save' action
-                    btnSaveCreativeroleType.Text = "Зберегти";
-                }
-                //stop perform if elements have 'Enabled' -> false
-                if (!ControlEnabledActiveElements) return;
-                //change 'Enabled' state for elements
-                ControlEnabledActiveElements = false;
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSaveCreativeroleType.Text = "Зберегти";
             }
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
         }
 
         //changed data of the field 'En'
         private void bindingSourceEn_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //{
+            //    if (btnSaveCreativeroleType.Text != "Додати")
+            //    {
+            //        //change property 'Text' of the btnSave for 'Save' action
+            //        btnSaveCreativeroleType.Text = "Зберегти";
+            //    }
+            //    //stop perform if elements have 'Enabled' -> false
+            //    if (!ControlEnabledActiveElements) return;
+            //    //change 'Enabled' state for elements
+            //    ControlEnabledActiveElements = false;
+            //}
+        }
+
+        private void txtEnLangCreativeroleType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (btnSaveCreativeroleType.Text != "Додати")
             {
-                if (btnSaveCreativeroleType.Text != "Додати")
-                {
-                    //change property 'Text' of the btnSave for 'Save' action
-                    btnSaveCreativeroleType.Text = "Зберегти";
-                }
-                //stop perform if elements have 'Enabled' -> false
-                if (!ControlEnabledActiveElements) return;
-                //change 'Enabled' state for elements
-                ControlEnabledActiveElements = false;
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSaveCreativeroleType.Text = "Зберегти";
             }
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
         }
 
         /// <summary>
@@ -353,7 +400,51 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <param name="e"></param>
         private void dsCopyrightKind_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //{
+            //    if (btnSaveCreativeroleType.Text != "Додати")
+            //    {
+            //        //change property 'Text' of the btnSave for 'Save' action
+            //        btnSaveCreativeroleType.Text = "Зберегти";
+            //    }
+            //    //stop perform if elements have 'Enabled' -> false
+            //    if (!ControlEnabledActiveElements) return;
+            //    //change 'Enabled' state for elements
+            //    ControlEnabledActiveElements = false;
+            //}
+        }
+
+        private void ddlEditKeyCreativeroleType_SelectedIndexChanging(object sender, Telerik.WinControls.UI.Data.PositionChangingCancelEventArgs e)
+        {
+            //if (btnSaveCreativeroleType.Text != "Додати")
+            //{
+            //    //change property 'Text' of the btnSave for 'Save' action
+            //    btnSaveCreativeroleType.Text = "Зберегти";
+            //}
+            ////stop perform if elements have 'Enabled' -> false
+            //if (!ControlEnabledActiveElements) return;
+            ////change 'Enabled' state for elements
+            //ControlEnabledActiveElements = false;
+        }
+
+        private void ddlEditKeyCreativeroleType_Click(object sender, EventArgs e)
+        {
+            if (btnSaveCreativeroleType.Text != "Додати")
+            {
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSaveCreativeroleType.Text = "Зберегти";
+            }
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
+        }
+
+        //allow input only number data
+        private void txtCodeCreativeroleType_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if it 'number' or 'Backspace' -> allow input
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
             {
                 if (btnSaveCreativeroleType.Text != "Додати")
                 {
@@ -364,20 +455,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 if (!ControlEnabledActiveElements) return;
                 //change 'Enabled' state for elements
                 ControlEnabledActiveElements = false;
-            }
-        }
-
-        //allow input only number data
-        private void txtCodeCreativeroleType_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if it 'number' or 'Backspace' -> allow input
-            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
-            {
                 return;
             }
             else
                 //disallow input
                 e.Handled = true;
         }
+
+        
     }
 }
