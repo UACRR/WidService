@@ -509,20 +509,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         }
     }
 
-    public class GridLicAgr
-    {
-        public int Id { get; set; }
-        public int LicenseId { get; set; }
-        public string License { get; set; }
-        public string Series { get; set; }
-        public string AgrNumber { get; set; }
-        public string DateBegin { get; set; }
-        public string DateEnd { get; set; }
-        public decimal Amount { get; set; }
-        public string State { get; set; }
-        public string PeriodPayment { get; set; }
-        public decimal Debt { get; set; }
-    }
     public class GridPeriods
     {
         //public int LicId { get; set; }
@@ -538,16 +524,5 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         public decimal Arrears { get; set; }
         public bool AutoSet { get; set; }
         public decimal? MaxSum { get; set; }
-    }
-
-    public class GridPayments
-    {
-        public int PaidId { get; set; }
-        public string SelectPeriod { get; set; }
-        public string DateInvoice { get; set; }
-        public string NumberInvoice { get; set; }
-        public string GoalInvoice { get; set; }
-        public decimal Amount { get; set; }
-        public decimal DestribAmount { get; set; }
     }
 }
