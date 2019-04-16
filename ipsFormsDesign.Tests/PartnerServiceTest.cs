@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
@@ -174,6 +175,18 @@ namespace ipsFormsDesign.Tests
             int partnerId = 300;
             bool result = _partnerService.RemovePartnerForCustomer(clientId, partnerId);
             Assert.IsTrue(result, "Parent is not removed");
+        }
+
+        [TestMethod]
+        public void TestAgreementPartnerStatusChange()
+        {
+            //default argument
+            int partnerId = 179;
+            CPartnerObjectStatus status = CPartnerObjectStatus.Activate;
+            //result data
+            bool result = _partnerService.AgreementPartnerStatusChange(partnerId, status);
+            //checks for result data
+            Assert.IsTrue(result, "status is not changed");
         }
     }
 }
