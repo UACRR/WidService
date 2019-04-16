@@ -139,7 +139,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _genreTypeList[0].CodeI;
-            GenreType genreType = _genreTypeList[codeForRefresh];
+            GenreType genreType = _genreTypeList[--codeForRefresh];
             //get object by parameter 'code' from service
             genreTypeData = dictService.GetGenreType(genreType.CodeI);
             //use data for binding source

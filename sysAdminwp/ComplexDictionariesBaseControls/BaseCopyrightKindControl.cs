@@ -139,7 +139,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _copyrightKindList[0].CodeI;
-            CopyrightKind item = _copyrightKindList[codeForRefresh];
+            CopyrightKind item = _copyrightKindList[--codeForRefresh];
             //get object by parameter 'code' from service
             copyrightKindData = dictService.GetCopyrightKind(item.CodeI);
             //use data for binding source

@@ -121,7 +121,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _systemConstantList[0].CodeI;
-            SystemConstant item = _systemConstantList[codeForRefresh];
+            SystemConstant item = _systemConstantList[--codeForRefresh];
             //get object by parameter 'code' from service
             systemConstantData = dictService.GetSystemConstant(item.CodeI);
             //use data for binding source
