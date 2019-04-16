@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalSystemConstant = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalSystemConstant = new Telerik.WinControls.UI.RadLabel();
             this.bsSimpleDictSystemConstant = new System.Windows.Forms.BindingSource(this.components);
@@ -197,7 +197,7 @@
             // 
             this.txtCodeSystemConstant.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsSystemConstant, "CodeI", true));
             this.txtCodeSystemConstant.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeSystemConstant.MaxLength = 4;
+            this.txtCodeSystemConstant.MaxLength = 5;
             this.txtCodeSystemConstant.Name = "txtCodeSystemConstant";
             this.txtCodeSystemConstant.Size = new System.Drawing.Size(988, 20);
             this.txtCodeSystemConstant.TabIndex = 6;
@@ -313,31 +313,31 @@
             this.gridSystemConstantList.MasterTemplate.AllowEditRow = false;
             this.gridSystemConstantList.MasterTemplate.AutoGenerateColumns = false;
             this.gridSystemConstantList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn9.FieldName = "Code";
-            gridViewTextBoxColumn9.HeaderText = "Код";
-            gridViewTextBoxColumn9.Name = "Code";
-            gridViewTextBoxColumn9.Width = 161;
-            gridViewTextBoxColumn10.FieldName = "NameUk";
-            gridViewTextBoxColumn10.HeaderText = "Назва";
-            gridViewTextBoxColumn10.Name = "NameUk";
-            gridViewTextBoxColumn10.Width = 308;
-            gridViewTextBoxColumn11.FieldName = "NameRu";
-            gridViewTextBoxColumn11.HeaderText = "Название";
-            gridViewTextBoxColumn11.Name = "NameRu";
-            gridViewTextBoxColumn11.Width = 332;
-            gridViewTextBoxColumn12.FieldName = "NameEn";
-            gridViewTextBoxColumn12.HeaderText = "Name";
-            gridViewTextBoxColumn12.Name = "NameEn";
-            gridViewTextBoxColumn12.Width = 368;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 161;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 308;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 332;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 368;
             this.gridSystemConstantList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn9,
-            gridViewTextBoxColumn10,
-            gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4});
             this.gridSystemConstantList.MasterTemplate.EnableCustomFiltering = true;
             this.gridSystemConstantList.MasterTemplate.EnableFiltering = true;
             this.gridSystemConstantList.MasterTemplate.ShowFilteringRow = false;
-            this.gridSystemConstantList.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.gridSystemConstantList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gridSystemConstantList.Name = "gridSystemConstantList";
             this.gridSystemConstantList.ReadOnly = true;
             this.gridSystemConstantList.ShowGroupPanel = false;

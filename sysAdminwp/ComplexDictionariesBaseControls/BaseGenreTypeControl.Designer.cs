@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalGenreType = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalGenreType = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterGenreType = new Telerik.WinControls.UI.RadDropDownList();
@@ -269,7 +269,7 @@
             // 
             this.txtCodeGenreType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsGenreType, "CodeI", true));
             this.txtCodeGenreType.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeGenreType.MaxLength = 4;
+            this.txtCodeGenreType.MaxLength = 5;
             this.txtCodeGenreType.Name = "txtCodeGenreType";
             this.txtCodeGenreType.Size = new System.Drawing.Size(465, 20);
             this.txtCodeGenreType.TabIndex = 6;
@@ -380,37 +380,37 @@
             this.gridGenreTypeList.MasterTemplate.AllowEditRow = false;
             this.gridGenreTypeList.MasterTemplate.AutoGenerateColumns = false;
             this.gridGenreTypeList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn16.FieldName = "Code";
-            gridViewTextBoxColumn16.HeaderText = "Код";
-            gridViewTextBoxColumn16.Name = "Code";
-            gridViewTextBoxColumn16.Width = 105;
-            gridViewTextBoxColumn17.FieldName = "NameUk";
-            gridViewTextBoxColumn17.HeaderText = "Назва";
-            gridViewTextBoxColumn17.Name = "NameUk";
-            gridViewTextBoxColumn17.Width = 286;
-            gridViewTextBoxColumn18.FieldName = "NameRu";
-            gridViewTextBoxColumn18.HeaderText = "Название";
-            gridViewTextBoxColumn18.Name = "NameRu";
-            gridViewTextBoxColumn18.Width = 290;
-            gridViewTextBoxColumn19.FieldName = "NameEn";
-            gridViewTextBoxColumn19.HeaderText = "Name";
-            gridViewTextBoxColumn19.Name = "NameEn";
-            gridViewTextBoxColumn19.Width = 266;
-            gridViewTextBoxColumn20.FieldName = "VariantObject";
-            gridViewTextBoxColumn20.HeaderText = "Вид об\'єкта";
-            gridViewTextBoxColumn20.MinWidth = 200;
-            gridViewTextBoxColumn20.Name = "VariantObject";
-            gridViewTextBoxColumn20.Width = 223;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 105;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 286;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 290;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 266;
+            gridViewTextBoxColumn5.FieldName = "VariantObject";
+            gridViewTextBoxColumn5.HeaderText = "Вид об\'єкта";
+            gridViewTextBoxColumn5.MinWidth = 200;
+            gridViewTextBoxColumn5.Name = "VariantObject";
+            gridViewTextBoxColumn5.Width = 223;
             this.gridGenreTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn16,
-            gridViewTextBoxColumn17,
-            gridViewTextBoxColumn18,
-            gridViewTextBoxColumn19,
-            gridViewTextBoxColumn20});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5});
             this.gridGenreTypeList.MasterTemplate.EnableCustomFiltering = true;
             this.gridGenreTypeList.MasterTemplate.EnableFiltering = true;
             this.gridGenreTypeList.MasterTemplate.ShowFilteringRow = false;
-            this.gridGenreTypeList.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.gridGenreTypeList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gridGenreTypeList.Name = "gridGenreTypeList";
             this.gridGenreTypeList.ReadOnly = true;
             this.gridGenreTypeList.ShowGroupPanel = false;

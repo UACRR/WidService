@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterCreativeroleType = new Telerik.WinControls.UI.RadDropDownList();
@@ -270,7 +270,7 @@
             // 
             this.txtCodeCreativeroleType.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCreativeRoleType, "CodeI", true));
             this.txtCodeCreativeroleType.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeCreativeroleType.MaxLength = 4;
+            this.txtCodeCreativeroleType.MaxLength = 5;
             this.txtCodeCreativeroleType.Name = "txtCodeCreativeroleType";
             this.txtCodeCreativeroleType.Size = new System.Drawing.Size(465, 20);
             this.txtCodeCreativeroleType.TabIndex = 6;
@@ -381,37 +381,37 @@
             this.gridCreativeroleTypeList.MasterTemplate.AllowEditRow = false;
             this.gridCreativeroleTypeList.MasterTemplate.AutoGenerateColumns = false;
             this.gridCreativeroleTypeList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn21.FieldName = "Code";
-            gridViewTextBoxColumn21.HeaderText = "Код";
-            gridViewTextBoxColumn21.Name = "Code";
-            gridViewTextBoxColumn21.Width = 105;
-            gridViewTextBoxColumn22.FieldName = "NameUk";
-            gridViewTextBoxColumn22.HeaderText = "Назва";
-            gridViewTextBoxColumn22.Name = "NameUk";
-            gridViewTextBoxColumn22.Width = 286;
-            gridViewTextBoxColumn23.FieldName = "NameRu";
-            gridViewTextBoxColumn23.HeaderText = "Название";
-            gridViewTextBoxColumn23.Name = "NameRu";
-            gridViewTextBoxColumn23.Width = 290;
-            gridViewTextBoxColumn24.FieldName = "NameEn";
-            gridViewTextBoxColumn24.HeaderText = "Name";
-            gridViewTextBoxColumn24.Name = "NameEn";
-            gridViewTextBoxColumn24.Width = 266;
-            gridViewTextBoxColumn25.FieldName = "Category";
-            gridViewTextBoxColumn25.HeaderText = "Категорія";
-            gridViewTextBoxColumn25.MinWidth = 200;
-            gridViewTextBoxColumn25.Name = "Category";
-            gridViewTextBoxColumn25.Width = 223;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 105;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 286;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 290;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 266;
+            gridViewTextBoxColumn5.FieldName = "Category";
+            gridViewTextBoxColumn5.HeaderText = "Категорія";
+            gridViewTextBoxColumn5.MinWidth = 200;
+            gridViewTextBoxColumn5.Name = "Category";
+            gridViewTextBoxColumn5.Width = 223;
             this.gridCreativeroleTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn21,
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewTextBoxColumn24,
-            gridViewTextBoxColumn25});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5});
             this.gridCreativeroleTypeList.MasterTemplate.EnableCustomFiltering = true;
             this.gridCreativeroleTypeList.MasterTemplate.EnableFiltering = true;
             this.gridCreativeroleTypeList.MasterTemplate.ShowFilteringRow = false;
-            this.gridCreativeroleTypeList.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gridCreativeroleTypeList.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gridCreativeroleTypeList.Name = "gridCreativeroleTypeList";
             this.gridCreativeroleTypeList.ReadOnly = true;
             this.gridCreativeroleTypeList.ShowGroupPanel = false;

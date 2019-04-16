@@ -269,7 +269,7 @@
             // 
             this.txtCodeCopyrightKind.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCopyrightKind, "CodeI", true));
             this.txtCodeCopyrightKind.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeCopyrightKind.MaxLength = 4;
+            this.txtCodeCopyrightKind.MaxLength = 5;
             this.txtCodeCopyrightKind.Name = "txtCodeCopyrightKind";
             this.txtCodeCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtCodeCopyrightKind.TabIndex = 6;
