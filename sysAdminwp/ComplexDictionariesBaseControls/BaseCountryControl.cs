@@ -298,52 +298,91 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //changed data of the field 'Uk'
         private void bindingSourceUk_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //{
+            //    if (btnSaveCountry.Text != "Додати")
+            //    {
+            //        //change property 'Text' of the btnSave for 'Save' action
+            //        btnSaveCountry.Text = "Зберегти";
+            //    }
+            //    //stop perform if elements have 'Enabled' -> false
+            //    if (!ControlEnabledActiveElements) return;
+            //    //change 'Enabled' state for elements
+            //    ControlEnabledActiveElements = false;
+            //}
+        }
+
+        private void txtNameUaCountry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (btnSaveCountry.Text != "Додати")
             {
-                if (btnSaveCountry.Text != "Додати")
-                {
-                    //change property 'Text' of the btnSave for 'Save' action
-                    btnSaveCountry.Text = "Зберегти";
-                }
-                //stop perform if elements have 'Enabled' -> false
-                if (!ControlEnabledActiveElements) return;
-                //change 'Enabled' state for elements
-                ControlEnabledActiveElements = false;
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSaveCountry.Text = "Зберегти";
             }
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
         }
 
         //changed data of the field 'Ru'
         private void bindingSourceRu_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //{
+            //    if (btnSaveCountry.Text != "Додати")
+            //    {
+            //        //change property 'Text' of the btnSave for 'Save' action
+            //        btnSaveCountry.Text = "Зберегти";
+            //    }
+            //    //stop perform if elements have 'Enabled' -> false
+            //    if (!ControlEnabledActiveElements) return;
+            //    //change 'Enabled' state for elements
+            //    ControlEnabledActiveElements = false;
+            //}
+        }
+
+        private void txtNameRuCountry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (btnSaveCountry.Text != "Додати")
             {
-                if (btnSaveCountry.Text != "Додати")
-                {
-                    //change property 'Text' of the btnSave for 'Save' action
-                    btnSaveCountry.Text = "Зберегти";
-                }
-                //stop perform if elements have 'Enabled' -> false
-                if (!ControlEnabledActiveElements) return;
-                //change 'Enabled' state for elements
-                ControlEnabledActiveElements = false;
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSaveCountry.Text = "Зберегти";
             }
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
         }
 
         //changed data of the field 'En'
         private void bindingSourceEn_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //{
+            //    if (btnSaveCountry.Text != "Додати")
+            //    {
+            //        //change property 'Text' of the btnSave for 'Save' action
+            //        btnSaveCountry.Text = "Зберегти";
+            //    }
+            //    //stop perform if elements have 'Enabled' -> false
+            //    if (!ControlEnabledActiveElements) return;
+            //    //change 'Enabled' state for elements
+            //    ControlEnabledActiveElements = false;
+            //}
+        }
+
+        private void txtNameEnCountry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (btnSaveCountry.Text != "Додати")
             {
-                if (btnSaveCountry.Text != "Додати")
-                {
-                    //change property 'Text' of the btnSave for 'Save' action
-                    btnSaveCountry.Text = "Зберегти";
-                }
-                //stop perform if elements have 'Enabled' -> false
-                if (!ControlEnabledActiveElements) return;
-                //change 'Enabled' state for elements
-                ControlEnabledActiveElements = false;
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSaveCountry.Text = "Зберегти";
             }
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
         }
 
         /// <summary>
@@ -353,7 +392,38 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <param name="e"></param>
         private void dsCopyrightKind_BindingComplete(object sender, BindingCompleteEventArgs e)
         {
-            if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
+            //{
+            //    if (btnSaveCountry.Text != "Додати")
+            //    {
+            //        //change property 'Text' of the btnSave for 'Save' action
+            //        btnSaveCountry.Text = "Зберегти";
+            //    }
+            //    //stop perform if elements have 'Enabled' -> false
+            //    if (!ControlEnabledActiveElements) return;
+            //    //change 'Enabled' state for elements
+            //    ControlEnabledActiveElements = false;
+            //}
+        }
+
+        private void ddlEditKeyCountry_Click(object sender, EventArgs e)
+        {
+            if (btnSaveCountry.Text != "Додати")
+            {
+                //change property 'Text' of the btnSave for 'Save' action
+                btnSaveCountry.Text = "Зберегти";
+            }
+            //stop perform if elements have 'Enabled' -> false
+            if (!ControlEnabledActiveElements) return;
+            //change 'Enabled' state for elements
+            ControlEnabledActiveElements = false;
+        }
+
+        //allow input only number data
+        private void txtCodeCountry_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if it 'number' or 'Backspace' -> allow input
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
             {
                 if (btnSaveCountry.Text != "Додати")
                 {
@@ -364,19 +434,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 if (!ControlEnabledActiveElements) return;
                 //change 'Enabled' state for elements
                 ControlEnabledActiveElements = false;
-            }
-        }
-        //allow input only number data
-        private void txtCodeCountry_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //if it 'number' or 'Backspace' -> allow input
-            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
-            {
                 return;
             }
             else
                 //disallow input
                 e.Handled = true;
         }
+
+        
     }
 }

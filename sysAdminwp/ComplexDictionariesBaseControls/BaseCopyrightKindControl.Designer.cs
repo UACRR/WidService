@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn20 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalCopyrightKind = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterCopyrightKind = new Telerik.WinControls.UI.RadDropDownList();
@@ -120,7 +120,7 @@
             this.ddlFilterCopyrightKind.FormattingEnabled = false;
             this.ddlFilterCopyrightKind.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterCopyrightKind.Name = "ddlFilterCopyrightKind";
-            this.ddlFilterCopyrightKind.Size = new System.Drawing.Size(427, 21);
+            this.ddlFilterCopyrightKind.Size = new System.Drawing.Size(427, 20);
             this.ddlFilterCopyrightKind.TabIndex = 22;
             this.ddlFilterCopyrightKind.ThemeName = "Office2013Light";
             this.ddlFilterCopyrightKind.ValueMember = "CodeI";
@@ -206,10 +206,11 @@
             this.ddlEditKeyCopyrightKind.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyCopyrightKind.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyCopyrightKind.Name = "ddlEditKeyCopyrightKind";
-            this.ddlEditKeyCopyrightKind.Size = new System.Drawing.Size(401, 21);
+            this.ddlEditKeyCopyrightKind.Size = new System.Drawing.Size(401, 20);
             this.ddlEditKeyCopyrightKind.TabIndex = 13;
             this.ddlEditKeyCopyrightKind.ThemeName = "Office2013Light";
             this.ddlEditKeyCopyrightKind.ValueMember = "CodeI";
+            this.ddlEditKeyCopyrightKind.Click += new System.EventHandler(this.ddlEditKeyCopyrightKind_Click);
             // 
             // bsCopyrightKind
             // 
@@ -222,9 +223,10 @@
             this.txtRuLangCopyrightKind.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangCopyrightKind.MaxLength = 500;
             this.txtRuLangCopyrightKind.Name = "txtRuLangCopyrightKind";
-            this.txtRuLangCopyrightKind.Size = new System.Drawing.Size(465, 21);
+            this.txtRuLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtRuLangCopyrightKind.TabIndex = 8;
             this.txtRuLangCopyrightKind.ThemeName = "Office2013Light";
+            this.txtRuLangCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangCopyrightKind_KeyPress);
             // 
             // bsRuLangCopyrightKind
             // 
@@ -237,9 +239,10 @@
             this.txtEnLangCopyrightKind.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangCopyrightKind.MaxLength = 500;
             this.txtEnLangCopyrightKind.Name = "txtEnLangCopyrightKind";
-            this.txtEnLangCopyrightKind.Size = new System.Drawing.Size(465, 21);
+            this.txtEnLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtEnLangCopyrightKind.TabIndex = 9;
             this.txtEnLangCopyrightKind.ThemeName = "Office2013Light";
+            this.txtEnLangCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangCopyrightKind_KeyPress);
             // 
             // bsEnLangCopyrightKind
             // 
@@ -252,9 +255,10 @@
             this.txtUaLangCopyrightKind.Location = new System.Drawing.Point(162, 55);
             this.txtUaLangCopyrightKind.MaxLength = 500;
             this.txtUaLangCopyrightKind.Name = "txtUaLangCopyrightKind";
-            this.txtUaLangCopyrightKind.Size = new System.Drawing.Size(465, 21);
+            this.txtUaLangCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtUaLangCopyrightKind.TabIndex = 7;
             this.txtUaLangCopyrightKind.ThemeName = "Office2013Light";
+            this.txtUaLangCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUaLangCopyrightKind_KeyPress);
             // 
             // bsUkLangCopyrightKind
             // 
@@ -267,7 +271,7 @@
             this.txtCodeCopyrightKind.Location = new System.Drawing.Point(162, 28);
             this.txtCodeCopyrightKind.MaxLength = 4;
             this.txtCodeCopyrightKind.Name = "txtCodeCopyrightKind";
-            this.txtCodeCopyrightKind.Size = new System.Drawing.Size(465, 21);
+            this.txtCodeCopyrightKind.Size = new System.Drawing.Size(465, 20);
             this.txtCodeCopyrightKind.TabIndex = 6;
             this.txtCodeCopyrightKind.ThemeName = "Office2013Light";
             this.txtCodeCopyrightKind.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeComplex_KeyPress);
@@ -376,37 +380,37 @@
             this.gridCopyrightKindList.MasterTemplate.AllowEditRow = false;
             this.gridCopyrightKindList.MasterTemplate.AutoGenerateColumns = false;
             this.gridCopyrightKindList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Code";
-            gridViewTextBoxColumn1.HeaderText = "Код";
-            gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 105;
-            gridViewTextBoxColumn2.FieldName = "NameUk";
-            gridViewTextBoxColumn2.HeaderText = "Назва";
-            gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 285;
-            gridViewTextBoxColumn3.FieldName = "NameRu";
-            gridViewTextBoxColumn3.HeaderText = "Название";
-            gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 289;
-            gridViewTextBoxColumn4.FieldName = "NameEn";
-            gridViewTextBoxColumn4.HeaderText = "Name";
-            gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 265;
-            gridViewTextBoxColumn5.FieldName = "VariantUse";
-            gridViewTextBoxColumn5.HeaderText = "Спосіб використання";
-            gridViewTextBoxColumn5.MinWidth = 200;
-            gridViewTextBoxColumn5.Name = "VariantUse";
-            gridViewTextBoxColumn5.Width = 221;
+            gridViewTextBoxColumn16.FieldName = "Code";
+            gridViewTextBoxColumn16.HeaderText = "Код";
+            gridViewTextBoxColumn16.Name = "Code";
+            gridViewTextBoxColumn16.Width = 105;
+            gridViewTextBoxColumn17.FieldName = "NameUk";
+            gridViewTextBoxColumn17.HeaderText = "Назва";
+            gridViewTextBoxColumn17.Name = "NameUk";
+            gridViewTextBoxColumn17.Width = 286;
+            gridViewTextBoxColumn18.FieldName = "NameRu";
+            gridViewTextBoxColumn18.HeaderText = "Название";
+            gridViewTextBoxColumn18.Name = "NameRu";
+            gridViewTextBoxColumn18.Width = 290;
+            gridViewTextBoxColumn19.FieldName = "NameEn";
+            gridViewTextBoxColumn19.HeaderText = "Name";
+            gridViewTextBoxColumn19.Name = "NameEn";
+            gridViewTextBoxColumn19.Width = 266;
+            gridViewTextBoxColumn20.FieldName = "VariantUse";
+            gridViewTextBoxColumn20.HeaderText = "Спосіб використання";
+            gridViewTextBoxColumn20.MinWidth = 200;
+            gridViewTextBoxColumn20.Name = "VariantUse";
+            gridViewTextBoxColumn20.Width = 223;
             this.gridCopyrightKindList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18,
+            gridViewTextBoxColumn19,
+            gridViewTextBoxColumn20});
             this.gridCopyrightKindList.MasterTemplate.EnableCustomFiltering = true;
             this.gridCopyrightKindList.MasterTemplate.EnableFiltering = true;
             this.gridCopyrightKindList.MasterTemplate.ShowFilteringRow = false;
-            this.gridCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCopyrightKindList.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.gridCopyrightKindList.Name = "gridCopyrightKindList";
             this.gridCopyrightKindList.ReadOnly = true;
             this.gridCopyrightKindList.ShowGroupPanel = false;

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalCreativeroleType = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterCreativeroleType = new Telerik.WinControls.UI.RadDropDownList();
@@ -120,7 +120,7 @@
             this.ddlFilterCreativeroleType.FormattingEnabled = false;
             this.ddlFilterCreativeroleType.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterCreativeroleType.Name = "ddlFilterCreativeroleType";
-            this.ddlFilterCreativeroleType.Size = new System.Drawing.Size(427, 21);
+            this.ddlFilterCreativeroleType.Size = new System.Drawing.Size(427, 20);
             this.ddlFilterCreativeroleType.TabIndex = 22;
             this.ddlFilterCreativeroleType.ThemeName = "Office2013Light";
             this.ddlFilterCreativeroleType.ValueMember = "CodeI";
@@ -206,10 +206,12 @@
             this.ddlEditKeyCreativeroleType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyCreativeroleType.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyCreativeroleType.Name = "ddlEditKeyCreativeroleType";
-            this.ddlEditKeyCreativeroleType.Size = new System.Drawing.Size(401, 21);
+            this.ddlEditKeyCreativeroleType.Size = new System.Drawing.Size(401, 20);
             this.ddlEditKeyCreativeroleType.TabIndex = 13;
             this.ddlEditKeyCreativeroleType.ThemeName = "Office2013Light";
             this.ddlEditKeyCreativeroleType.ValueMember = "CodeI";
+            this.ddlEditKeyCreativeroleType.SelectedIndexChanging += new Telerik.WinControls.UI.Data.PositionChangingEventHandler(this.ddlEditKeyCreativeroleType_SelectedIndexChanging);
+            this.ddlEditKeyCreativeroleType.Click += new System.EventHandler(this.ddlEditKeyCreativeroleType_Click);
             // 
             // bsCreativeRoleType
             // 
@@ -222,9 +224,10 @@
             this.txtRuLangCreativeroleType.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangCreativeroleType.MaxLength = 500;
             this.txtRuLangCreativeroleType.Name = "txtRuLangCreativeroleType";
-            this.txtRuLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
+            this.txtRuLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
             this.txtRuLangCreativeroleType.TabIndex = 8;
             this.txtRuLangCreativeroleType.ThemeName = "Office2013Light";
+            this.txtRuLangCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangCreativeroleType_KeyPress);
             // 
             // bsRuLangCreativeRoleType
             // 
@@ -237,9 +240,10 @@
             this.txtEnLangCreativeroleType.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangCreativeroleType.MaxLength = 500;
             this.txtEnLangCreativeroleType.Name = "txtEnLangCreativeroleType";
-            this.txtEnLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
+            this.txtEnLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
             this.txtEnLangCreativeroleType.TabIndex = 9;
             this.txtEnLangCreativeroleType.ThemeName = "Office2013Light";
+            this.txtEnLangCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangCreativeroleType_KeyPress);
             // 
             // bsEnLangCreativeRoleType
             // 
@@ -252,9 +256,10 @@
             this.txtUkLangCreativeroleType.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangCreativeroleType.MaxLength = 500;
             this.txtUkLangCreativeroleType.Name = "txtUkLangCreativeroleType";
-            this.txtUkLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
+            this.txtUkLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
             this.txtUkLangCreativeroleType.TabIndex = 7;
             this.txtUkLangCreativeroleType.ThemeName = "Office2013Light";
+            this.txtUkLangCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUkLangCreativeroleType_KeyPress);
             // 
             // bsUkLangCreativeRoleType
             // 
@@ -267,7 +272,7 @@
             this.txtCodeCreativeroleType.Location = new System.Drawing.Point(162, 28);
             this.txtCodeCreativeroleType.MaxLength = 4;
             this.txtCodeCreativeroleType.Name = "txtCodeCreativeroleType";
-            this.txtCodeCreativeroleType.Size = new System.Drawing.Size(465, 21);
+            this.txtCodeCreativeroleType.Size = new System.Drawing.Size(465, 20);
             this.txtCodeCreativeroleType.TabIndex = 6;
             this.txtCodeCreativeroleType.ThemeName = "Office2013Light";
             this.txtCodeCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeCreativeroleType_KeyPress);
@@ -376,37 +381,37 @@
             this.gridCreativeroleTypeList.MasterTemplate.AllowEditRow = false;
             this.gridCreativeroleTypeList.MasterTemplate.AutoGenerateColumns = false;
             this.gridCreativeroleTypeList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Code";
-            gridViewTextBoxColumn1.HeaderText = "Код";
-            gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 105;
-            gridViewTextBoxColumn2.FieldName = "NameUk";
-            gridViewTextBoxColumn2.HeaderText = "Назва";
-            gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 285;
-            gridViewTextBoxColumn3.FieldName = "NameRu";
-            gridViewTextBoxColumn3.HeaderText = "Название";
-            gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 289;
-            gridViewTextBoxColumn4.FieldName = "NameEn";
-            gridViewTextBoxColumn4.HeaderText = "Name";
-            gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 265;
-            gridViewTextBoxColumn5.FieldName = "Category";
-            gridViewTextBoxColumn5.HeaderText = "Категорія";
-            gridViewTextBoxColumn5.MinWidth = 200;
-            gridViewTextBoxColumn5.Name = "Category";
-            gridViewTextBoxColumn5.Width = 221;
+            gridViewTextBoxColumn21.FieldName = "Code";
+            gridViewTextBoxColumn21.HeaderText = "Код";
+            gridViewTextBoxColumn21.Name = "Code";
+            gridViewTextBoxColumn21.Width = 105;
+            gridViewTextBoxColumn22.FieldName = "NameUk";
+            gridViewTextBoxColumn22.HeaderText = "Назва";
+            gridViewTextBoxColumn22.Name = "NameUk";
+            gridViewTextBoxColumn22.Width = 286;
+            gridViewTextBoxColumn23.FieldName = "NameRu";
+            gridViewTextBoxColumn23.HeaderText = "Название";
+            gridViewTextBoxColumn23.Name = "NameRu";
+            gridViewTextBoxColumn23.Width = 290;
+            gridViewTextBoxColumn24.FieldName = "NameEn";
+            gridViewTextBoxColumn24.HeaderText = "Name";
+            gridViewTextBoxColumn24.Name = "NameEn";
+            gridViewTextBoxColumn24.Width = 266;
+            gridViewTextBoxColumn25.FieldName = "Category";
+            gridViewTextBoxColumn25.HeaderText = "Категорія";
+            gridViewTextBoxColumn25.MinWidth = 200;
+            gridViewTextBoxColumn25.Name = "Category";
+            gridViewTextBoxColumn25.Width = 223;
             this.gridCreativeroleTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn21,
+            gridViewTextBoxColumn22,
+            gridViewTextBoxColumn23,
+            gridViewTextBoxColumn24,
+            gridViewTextBoxColumn25});
             this.gridCreativeroleTypeList.MasterTemplate.EnableCustomFiltering = true;
             this.gridCreativeroleTypeList.MasterTemplate.EnableFiltering = true;
             this.gridCreativeroleTypeList.MasterTemplate.ShowFilteringRow = false;
-            this.gridCreativeroleTypeList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCreativeroleTypeList.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.gridCreativeroleTypeList.Name = "gridCreativeroleTypeList";
             this.gridCreativeroleTypeList.ReadOnly = true;
             this.gridCreativeroleTypeList.ShowGroupPanel = false;
