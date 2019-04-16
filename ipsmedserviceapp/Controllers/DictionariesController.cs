@@ -1570,8 +1570,17 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.CreativeRoleTypeTr.RemoveRange(delRow.CreativeRoleTypeTr);
             _dbContext.CreativeRoleType.Remove(delRow);
 
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
             
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            }
+            catch(Exception e)
+            {
+
+            }
+
             return Ok();
         }
         // CreativeRoleType END **********************

@@ -128,7 +128,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = code;
+            codeForRefresh = _klr030List.FindIndex(el => el.R030 == code.ToString());
             //update data for bottom panel
             DataUpdateForBottomPanel();
         }
@@ -139,6 +139,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = int.TryParse(_klr030List[0].R030, out int code) ? code : 0;
+            KlR030 item = _klr030List[codeForRefresh];
             //get object by parameter 'code' from service
             klr030Data = dictService.GetKlR030(codeForRefresh);
             //use data for binding source
@@ -218,17 +219,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             klr030Data = new KlR030();
             bsKlr030.DataSource = klr030Data;
             //refresh data for field 'Uk'
-            ukKlr030 = new KlR030tr();
+            ukKlr030 = new KlR030tr { Lang = "Uk" };
             klr030Data.KlR030tr.Add(ukKlr030);
             bsUkLangKlr030.DataSource = ukKlr030;
             //refresh data for field 'Ru'
-            ruKlr030 = new KlR030tr();
+            ruKlr030 = new KlR030tr { Lang = "Ru" };
             klr030Data.KlR030tr.Add(ruKlr030);
             bsRuLangKlr030.DataSource = ruKlr030;
             //refresh data for field 'Ru'
-            enKlr030 = new KlR030tr();
+            enKlr030 = new KlR030tr { Lang = "En" };
             klr030Data.KlR030tr.Add(enKlr030);
             bsEnLangKlr030.DataSource = enKlr030;
+            ddlEditKeyKlr030.SelectedItem = ddlEditKeyKlr030.Items[0];
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -240,10 +242,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
+            var item = _klr030List[codeForRefresh];
             dictService.DeleteCopyrightKind(codeForRefresh);
             //update data for grid
             gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
+            gridKlr030List.CurrentRow = gridKlr030List.Rows[codeForRefresh];
         }
 
         //action 'Save' object to grid
@@ -263,6 +267,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 current = gridKlr030List.CurrentRow.Index;
                 //update data for grid
                 gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
+                //var newPosition = _klr030List.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
                 gridKlr030List.CurrentRow = result != null ? gridKlr030List.Rows[gridKlr030List.RowCount - 1]
                                                                   : gridKlr030List.Rows[current];

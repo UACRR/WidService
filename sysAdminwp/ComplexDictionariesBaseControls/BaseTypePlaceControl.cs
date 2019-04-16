@@ -128,7 +128,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = code;
+            codeForRefresh = _typePlaceList.FindIndex(el => el.CodeI == code);
             //update data for bottom panel
             DataUpdateForBottomPanel();
         }
@@ -139,8 +139,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _typePlaceList[0].CodeI;
+            TypePlace item = _typePlaceList[codeForRefresh];
             //get object by parameter 'code' from service
-            typePlaceData = dictService.GetTypePlace(codeForRefresh);
+            typePlaceData = dictService.GetTypePlace(item.CodeI);
             //use data for binding source
             bsTypePlace.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
@@ -218,17 +219,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             typePlaceData = new TypePlace();
             bsTypePlace.DataSource = typePlaceData;
             //refresh data for field 'Uk'
-            ukTypePlace = new TypePlaceTr();
+            ukTypePlace = new TypePlaceTr { Lang = "Uk" };
             typePlaceData.TypePlaceTr.Add(ukTypePlace);
             bsUkLangTypePlace.DataSource = ukTypePlace;
             //refresh data for field 'Ru'
-            ruTypePlace = new TypePlaceTr();
+            ruTypePlace = new TypePlaceTr { Lang = "Ru" };
             typePlaceData.TypePlaceTr.Add(ruTypePlace);
             bsRuLangTypePlace.DataSource = ruTypePlace;
             //refresh data for field 'Ru'
-            enTypePlace = new TypePlaceTr();
+            enTypePlace = new TypePlaceTr { Lang = "En" };
             typePlaceData.TypePlaceTr.Add(enTypePlace);
             bsEnLangTypePlace.DataSource = enTypePlace;
+            ddlEditKeyTypePlace.SelectedItem = ddlEditKeyTypePlace.Items[0];
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -240,10 +242,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            dictService.DeleteCopyrightKind(codeForRefresh);
+            var item = _typePlaceList[codeForRefresh];
+            dictService.DeleteCopyrightKind(item.CodeI);
             //update data for grid
             gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
+            gridTypePlaceList.CurrentRow = gridTypePlaceList.Rows[codeForRefresh];
         }
 
         //action 'Save' object to grid
@@ -263,9 +267,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 current = gridTypePlaceList.CurrentRow.Index;
                 //update data for grid
                 gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);
+                var newPosition = _typePlaceList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
-                gridTypePlaceList.CurrentRow = result != null ? gridTypePlaceList.Rows[gridTypePlaceList.RowCount - 1]
-                                                                  : gridTypePlaceList.Rows[current];
+                gridTypePlaceList.CurrentRow = gridTypePlaceList.Rows[newPosition];
             } else if (btnSaveTypePlace.Text == "Зберегти")
             {
                 //save changes

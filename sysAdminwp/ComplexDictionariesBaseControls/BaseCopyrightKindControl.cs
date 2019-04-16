@@ -128,7 +128,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = code;
+            codeForRefresh = _copyrightKindList.FindIndex(el => el.CodeI == code);
             //update data for bottom panel
             DataUpdateForBottomPanel();
         }
@@ -139,8 +139,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _copyrightKindList[0].CodeI;
+            CopyrightKind item = _copyrightKindList[codeForRefresh];
             //get object by parameter 'code' from service
-            copyrightKindData = dictService.GetCopyrightKind(codeForRefresh);
+            copyrightKindData = dictService.GetCopyrightKind(item.CodeI);
             //use data for binding source
             bsCopyrightKind.DataSource = copyrightKindData;
             //define binding for source of the 'Uk'
@@ -215,18 +216,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             btnSaveCopyrightKind.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            copyrightKindData = new CopyrightKind();
+            copyrightKindData = new CopyrightKind { CrGroupCode = 1 };
             bsCopyrightKind.DataSource = copyrightKindData;
             //refresh data for field 'Uk'
-            ukCopyrightKind = new CopyrightKindTr();
+            ukCopyrightKind = new CopyrightKindTr { Lang = "Uk" };
             copyrightKindData.CopyrightKindTr.Add(ukCopyrightKind);
             bsUkLangCopyrightKind.DataSource = ukCopyrightKind;
             //refresh data for field 'Ru'
-            ruCopyrightKind = new CopyrightKindTr();
+            ruCopyrightKind = new CopyrightKindTr { Lang = "Ru" };
             copyrightKindData.CopyrightKindTr.Add(ruCopyrightKind);
             bsRuLangCopyrightKind.DataSource = ruCopyrightKind;
             //refresh data for field 'Ru'
-            enCopyrightKind = new CopyrightKindTr();
+            enCopyrightKind = new CopyrightKindTr { Lang = "En" };
             copyrightKindData.CopyrightKindTr.Add(enCopyrightKind);
             bsEnLangCopyrightKind.DataSource = enCopyrightKind;
             //stop perform if elements have 'Enabled' -> false
@@ -240,10 +241,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            dictService.DeleteCopyrightKind(codeForRefresh);
+            CopyrightKind item = _copyrightKindList[codeForRefresh];
+            dictService.DeleteCopyrightKind(item.CodeI);
             //update data for grid
             gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
+            gridCopyrightKindList.CurrentRow = gridCopyrightKindList.Rows[codeForRefresh];
         }
 
         //action 'Save' object to grid
@@ -260,16 +263,16 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //set default state for 'Text' of the btnSave
                 btnSaveCopyrightKind.Text = "Зберегти";
                 //save last selected item
-                current = gridCopyrightKindList.CurrentRow.Index;
+                //current = gridCopyrightKindList.CurrentRow.Index;
                 //update data for grid
                 gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+                int newPosition = _copyrightKindList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
-                gridCopyrightKindList.CurrentRow = result != null ? gridCopyrightKindList.Rows[gridCopyrightKindList.RowCount - 1]
-                                                                  : gridCopyrightKindList.Rows[current];
+                gridCopyrightKindList.CurrentRow = gridCopyrightKindList.Rows[newPosition];
             } else if (btnSaveCopyrightKind.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCopyrightKind(copyrightKindData);
+                CopyrightKind result = dictService.UpdateCopyrightKind(copyrightKindData);
                 //save last selected item
                 current = gridCopyrightKindList.CurrentRow.Index;
                 //update data for grid

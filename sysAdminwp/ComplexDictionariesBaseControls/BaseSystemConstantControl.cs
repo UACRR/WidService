@@ -110,7 +110,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = code;
+            codeForRefresh = _systemConstantList.FindIndex(el => el.CodeI == code);
             //update data for bottom panel
             DataUpdateForBottomPanel();
         }
@@ -121,8 +121,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _systemConstantList[0].CodeI;
+            SystemConstant item = _systemConstantList[codeForRefresh];
             //get object by parameter 'code' from service
-            systemConstantData = dictService.GetSystemConstant(codeForRefresh);
+            systemConstantData = dictService.GetSystemConstant(item.CodeI);
             //use data for binding source
             bsSystemConstant.DataSource = systemConstantData;
             //define binding for source of the 'Uk'
@@ -161,15 +162,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             systemConstantData = new SystemConstant();
             bsSystemConstant.DataSource = systemConstantData;
             //refresh data for field 'Uk'
-            ukSystemConstant = new SystemConstantTr();
+            ukSystemConstant = new SystemConstantTr { Lang = "Uk" };
             systemConstantData.SystemConstantTr.Add(ukSystemConstant);
             bsUkLangSystemConstant.DataSource = ukSystemConstant;
             //refresh data for field 'Ru'
-            ruSystemConstant = new SystemConstantTr();
+            ruSystemConstant = new SystemConstantTr { Lang = "Ru" };
             systemConstantData.SystemConstantTr.Add(ruSystemConstant);
             bsRuLangSystemConstant.DataSource = ruSystemConstant;
             //refresh data for field 'Ru'
-            enSystemConstant = new SystemConstantTr();
+            enSystemConstant = new SystemConstantTr { Lang = "En" };
             systemConstantData.SystemConstantTr.Add(enSystemConstant);
             bsEnLangSystemConstant.DataSource = enSystemConstant;
             //stop perform if elements have 'Enabled' -> false
@@ -183,10 +184,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            dictService.DeleteCopyrightKind(codeForRefresh);
+            var item = _systemConstantList[codeForRefresh];
+            dictService.DeleteCopyrightKind(item.CodeI);
             //update data for grid
             gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
+            gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[codeForRefresh];
         }
 
         //action 'Save' object to grid
@@ -206,9 +209,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 current = gridSystemConstantList.CurrentRow.Index;
                 //update data for grid
                 gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
+                var newPosition = _systemConstantList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
-                gridSystemConstantList.CurrentRow = result != null ? gridSystemConstantList.Rows[gridSystemConstantList.RowCount - 1]
-                                                                  : gridSystemConstantList.Rows[current];
+                gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[newPosition];
             } else if (btnSaveSystemConstant.Text == "Зберегти")
             {
                 //save changes

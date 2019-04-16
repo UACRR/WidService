@@ -128,7 +128,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = code;
+            codeForRefresh = _genreTypeList.FindIndex(el => el.CodeI == code);
             //update data for bottom panel
             DataUpdateForBottomPanel();
         }
@@ -139,8 +139,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _genreTypeList[0].CodeI;
+            GenreType genreType = _genreTypeList[codeForRefresh];
             //get object by parameter 'code' from service
-            genreTypeData = dictService.GetGenreType(codeForRefresh);
+            genreTypeData = dictService.GetGenreType(genreType.CodeI);
             //use data for binding source
             bsGenreType.DataSource = genreTypeData;
             //define binding for source of the 'Uk'
@@ -218,17 +219,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             genreTypeData = new GenreType();
             bsGenreType.DataSource = genreTypeData;
             //refresh data for field 'Uk'
-            ukGenreType = new GenreTypeTr();
+            ukGenreType = new GenreTypeTr { Lang = "Uk" };
             genreTypeData.GenreTypeTr.Add(ukGenreType);
             bsUkLangGenreType.DataSource = ukGenreType;
             //refresh data for field 'Ru'
-            ruGenreType = new GenreTypeTr();
+            ruGenreType = new GenreTypeTr { Lang = "Ru" };
             genreTypeData.GenreTypeTr.Add(ruGenreType);
             bsRuLangGenreType.DataSource = ruGenreType;
             //refresh data for field 'Ru'
-            enGenreType = new GenreTypeTr();
+            enGenreType = new GenreTypeTr { Lang = "En" };
             genreTypeData.GenreTypeTr.Add(enGenreType);
             bsEnLangGenreType.DataSource = enGenreType;
+            ddlEditKeyGenreType.SelectedItem = ddlEditKeyGenreType.Items[0];
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -240,10 +242,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            dictService.DeleteCopyrightKind(codeForRefresh);
+            var item = _genreTypeList[codeForRefresh];
+            dictService.DeleteCopyrightKind(item.CodeI);
             //update data for grid
             gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
+            gridGenreTypeList.CurrentRow = gridGenreTypeList.Rows[codeForRefresh];
         }
 
         //action 'Save' object to grid
@@ -263,9 +267,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 current = gridGenreTypeList.CurrentRow.Index;
                 //update data for grid
                 gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+                var newPosition = _genreTypeList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
-                gridGenreTypeList.CurrentRow = result != null ? gridGenreTypeList.Rows[gridGenreTypeList.RowCount - 1]
-                                                                  : gridGenreTypeList.Rows[current];
+                gridGenreTypeList.CurrentRow = gridGenreTypeList.Rows[newPosition];
             } else if (btnSaveGenreType.Text == "Зберегти")
             {
                 //save changes
