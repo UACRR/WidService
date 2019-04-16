@@ -379,7 +379,7 @@ namespace ipsFormsDesign.Tests
         {
             //define TypePlace for update
             TypePlace typePlace = new TypePlace {
-                CodeI = 37,
+                CodeI = 25,
                 Name = "TypePlaceUpdated"
             };
             //get result data
