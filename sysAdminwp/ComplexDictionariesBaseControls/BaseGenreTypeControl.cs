@@ -216,7 +216,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             btnSaveGenreType.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            genreTypeData = new GenreType();
+            genreTypeData = new GenreType { CategoryCode = 1 };
             bsGenreType.DataSource = genreTypeData;
             //refresh data for field 'Uk'
             ukGenreType = new GenreTypeTr { Lang = "Uk" };
@@ -230,7 +230,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             enGenreType = new GenreTypeTr { Lang = "En" };
             genreTypeData.GenreTypeTr.Add(enGenreType);
             bsEnLangGenreType.DataSource = enGenreType;
-            ddlEditKeyGenreType.SelectedItem = ddlEditKeyGenreType.Items[0];
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -242,8 +241,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            var item = _genreTypeList[codeForRefresh];
-            dictService.DeleteCopyrightKind(item.CodeI);
+            GenreType item = _genreTypeList[codeForRefresh];
+            bool result = dictService.DeleteGenreType(item.CodeI);
             //update data for grid
             gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
@@ -264,16 +263,16 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //set default state for 'Text' of the btnSave
                 btnSaveGenreType.Text = "Зберегти";
                 //save last selected item
-                current = gridGenreTypeList.CurrentRow.Index;
+                //current = gridGenreTypeList.CurrentRow.Index;
                 //update data for grid
                 gridGenreTypeList.DataSource = HandleDataForGrid(urlDataGrid);
-                var newPosition = _genreTypeList.FindIndex(el => el.CodeI == result.CodeI);
+                int newPosition = _genreTypeList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
                 gridGenreTypeList.CurrentRow = gridGenreTypeList.Rows[newPosition];
             } else if (btnSaveGenreType.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateGenreType(genreTypeData);
+                GenreType result = dictService.UpdateGenreType(genreTypeData);
                 //save last selected item
                 current = gridGenreTypeList.CurrentRow.Index;
                 //update data for grid

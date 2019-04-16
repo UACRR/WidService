@@ -128,7 +128,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = code;
+            var strCode = code.ToString();
+            codeForRefresh = _countryList.FindIndex(el => el.CountryCode == strCode);
             //update data for bottom panel
             DataUpdateForBottomPanel();
         }
@@ -215,18 +216,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             btnSaveCountry.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            countryData = new Country();
+            countryData = new Country { ContinentCode = 1 };
             bsCountry.DataSource = countryData;
             //refresh data for field 'Uk'
-            ukCountry = new CountryTr();
+            ukCountry = new CountryTr { Lang = "Uk" };
             countryData.CountryTr.Add(ukCountry);
             bsUkLangCountry.DataSource = ukCountry;
             //refresh data for field 'Ru'
-            ruCountry = new CountryTr();
+            ruCountry = new CountryTr { Lang = "Ru" };
             countryData.CountryTr.Add(ruCountry);
             bsRuLangCountry.DataSource = ruCountry;
             //refresh data for field 'Ru'
-            enCountry = new CountryTr();
+            enCountry = new CountryTr { Lang = "En" };
             countryData.CountryTr.Add(enCountry);
             bsEnLangCountry.DataSource = enCountry;
             //stop perform if elements have 'Enabled' -> false
@@ -240,7 +241,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            dictService.DeleteCopyrightKind(codeForRefresh);
+            Country item = _countryList[codeForRefresh];
+            //bool result = dictService.DeleteCountry();
             //update data for grid
             gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
