@@ -139,7 +139,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _typePlaceList[0].CodeI;
-            TypePlace item = _typePlaceList[--codeForRefresh];
+            TypePlace item = _typePlaceList[codeForRefresh];
             //get object by parameter 'code' from service
             typePlaceData = dictService.GetTypePlace(item.CodeI);
             //use data for binding source

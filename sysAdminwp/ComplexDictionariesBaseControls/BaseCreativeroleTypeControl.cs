@@ -138,7 +138,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _creativeroleTypeList[0].CodeI;
-            CreativeRoleType item = _creativeroleTypeList[--codeForRefresh];
+            CreativeRoleType item = _creativeroleTypeList[codeForRefresh];
             //get object by parameter 'code' from service
             creativeroleTypeData = dictService.GetCreativeRoleType(item.CodeI);
             //use data for binding source

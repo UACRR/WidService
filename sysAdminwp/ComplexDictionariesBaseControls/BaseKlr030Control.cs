@@ -140,7 +140,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = int.TryParse(_klr030List[0].R030, out int code) ? code : 0;
-            KlR030 item = _klr030List[--codeForRefresh];
+            KlR030 item = _klr030List[codeForRefresh];
             //get object by parameter 'code' from service
             klr030Data = dictService.GetKlR030((int)item.R031);
             //use data for binding source
