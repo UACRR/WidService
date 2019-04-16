@@ -259,7 +259,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 
                 //send created object
-                var result = dictService.CreateCreativeRoleType(creativeroleTypeData);
+                CreativeRoleType result = dictService.CreateCreativeRoleType(creativeroleTypeData);
                 //set default state for 'Text' of the btnSave
                 btnSaveCreativeroleType.Text = "Зберегти";
                 //save last selected item

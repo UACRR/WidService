@@ -128,7 +128,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = _klr030List.FindIndex(el => el.R030 == code.ToString());
+            var strCode = code.ToString();
+            codeForRefresh = _klr030List.FindIndex(el => el.R030 == strCode);
             //update data for bottom panel
             DataUpdateForBottomPanel();
         }
@@ -141,7 +142,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (codeForRefresh == 0) codeForRefresh = int.TryParse(_klr030List[0].R030, out int code) ? code : 0;
             KlR030 item = _klr030List[codeForRefresh];
             //get object by parameter 'code' from service
-            klr030Data = dictService.GetKlR030(codeForRefresh);
+            klr030Data = dictService.GetKlR030((int)item.R031);
             //use data for binding source
             bsKlr030.DataSource = klr030Data;
             //define binding for source of the 'Uk'
@@ -216,7 +217,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             btnSaveKlr030.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            klr030Data = new KlR030();
+            klr030Data = new KlR030 { R031 = 1 };
             bsKlr030.DataSource = klr030Data;
             //refresh data for field 'Uk'
             ukKlr030 = new KlR030tr { Lang = "Uk" };
@@ -230,7 +231,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             enKlr030 = new KlR030tr { Lang = "En" };
             klr030Data.KlR030tr.Add(enKlr030);
             bsEnLangKlr030.DataSource = enKlr030;
-            ddlEditKeyKlr030.SelectedItem = ddlEditKeyKlr030.Items[0];
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -242,8 +242,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            var item = _klr030List[codeForRefresh];
-            dictService.DeleteCopyrightKind(codeForRefresh);
+            KlR030 item = _klr030List[codeForRefresh];
+            bool result = dictService.DeleteKlR030((int)item.R031);
             //update data for grid
             gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
@@ -260,21 +260,20 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveKlr030.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateKlR030(klr030Data);
+                KlR030 result = dictService.CreateKlR030(klr030Data);
                 //set default state for 'Text' of the btnSave
                 btnSaveKlr030.Text = "Зберегти";
                 //save last selected item
-                current = gridKlr030List.CurrentRow.Index;
+                //current = gridKlr030List.CurrentRow.Index;
                 //update data for grid
                 gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
-                //var newPosition = _klr030List.FindIndex(el => el.CodeI == result.CodeI);
+                int newPosition = _klr030List.FindIndex(el => el.R031 == result.R031);
                 //select certain item into grid
-                gridKlr030List.CurrentRow = result != null ? gridKlr030List.Rows[gridKlr030List.RowCount - 1]
-                                                                  : gridKlr030List.Rows[current];
+                gridKlr030List.CurrentRow = gridKlr030List.Rows[newPosition];
             } else if (btnSaveKlr030.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateKlR030(klr030Data);
+                KlR030 result = dictService.UpdateKlR030(klr030Data);
                 //save last selected item
                 current = gridKlr030List.CurrentRow.Index;
                 //update data for grid
