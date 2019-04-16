@@ -216,7 +216,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             btnSaveTypePlace.Text = "Додати";
             //clear data into bottom panel
             //refresh data for field 'Code'
-            typePlaceData = new TypePlace();
+            typePlaceData = new TypePlace { ParamType = 1 };
             bsTypePlace.DataSource = typePlaceData;
             //refresh data for field 'Uk'
             ukTypePlace = new TypePlaceTr { Lang = "Uk" };
@@ -230,7 +230,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             enTypePlace = new TypePlaceTr { Lang = "En" };
             typePlaceData.TypePlaceTr.Add(enTypePlace);
             bsEnLangTypePlace.DataSource = enTypePlace;
-            ddlEditKeyTypePlace.SelectedItem = ddlEditKeyTypePlace.Items[0];
             //stop perform if elements have 'Enabled' -> false
             if (!ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
@@ -242,8 +241,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            var item = _typePlaceList[codeForRefresh];
-            dictService.DeleteCopyrightKind(item.CodeI);
+            TypePlace item = _typePlaceList[codeForRefresh];
+            bool result = dictService.DeleteTypePlace(item.CodeI);
             //update data for grid
             gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);
             DataUpdateForBottomPanel();
@@ -260,20 +259,20 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (btnSaveTypePlace.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateTypePlace(typePlaceData);
+                TypePlace result = dictService.CreateTypePlace(typePlaceData);
                 //set default state for 'Text' of the btnSave
                 btnSaveTypePlace.Text = "Зберегти";
                 //save last selected item
-                current = gridTypePlaceList.CurrentRow.Index;
+                //current = gridTypePlaceList.CurrentRow.Index;
                 //update data for grid
                 gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);
-                var newPosition = _typePlaceList.FindIndex(el => el.CodeI == result.CodeI);
+                int newPosition = _typePlaceList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
                 gridTypePlaceList.CurrentRow = gridTypePlaceList.Rows[newPosition];
             } else if (btnSaveTypePlace.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateTypePlace(typePlaceData);
+                TypePlace result = dictService.UpdateTypePlace(typePlaceData);
                 //save last selected item
                 current = gridTypePlaceList.CurrentRow.Index;
                 //update data for grid
