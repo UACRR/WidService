@@ -31,13 +31,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             int? custId = _control?.Customer?.CustId;
             if (custId == null)
                 return;
+
             List<MoneyPeriodLink> retList = _service.SaveLink((int)custId, e);
             if (retList != null)
             {
-                var dic = retList.ToDictionary(rec => new { rec.PeriodId, rec.PaidId });
+                var dic = retList.ToDictionary(rec => new {rec.PeriodId, rec.PaidId});
                 e.ForEach(dest =>
                 {
-                    var sors = dic[new { dest.PeriodId, dest.PaidId }];
+                    var sors = dic[new {dest.PeriodId, dest.PaidId}];
                     dest.SetFields(sors);
                     dest.Paid.SetFields(sors.Paid);
                 });
@@ -49,14 +50,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             int? custId = _control?.Customer?.CustId;
             if (custId == null)
                 return;
-            List<PaidPeriod> retList = _service.SavePeriods((int)custId, e);
-            if (retList != null)
+
+            List<PaidPeriod> returnedList = _service.SavePeriods((int)custId, e);
+            if (returnedList != null)
             {
-                // TODO: MED-662
-                var dic = retList.ToDictionary(di => di.PeriodName);
+                var dictionary = returnedList.ToDictionary(rec => new {rec.LicId, rec.PeriodName});
                 foreach (var item in e)
                 {
-                    var period = dic[item.PeriodName];
+                    var period = dictionary[new {item.LicId, item.PeriodName}];
                     if (item.PeriodId != period.PeriodId)
                         item.PeriodId = period.PeriodId;
                 }

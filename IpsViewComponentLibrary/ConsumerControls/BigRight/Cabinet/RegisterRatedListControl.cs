@@ -181,7 +181,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             var paidPeriod = license?.PaidPeriod?.SingleOrDefault(rec => rec?.PeriodId == reg?.PeriodId);
             var payslip = paidPeriod?.RegisterRatedList?.SingleOrDefault(rec => rec?.RmId == reg?.RmId);
 
-            if (payslip == null) return payslip;
+            if (payslip == null)
+                return null;
+
             foreach (var register in payslip.Register)
             {
                 if (register?.RegId is int item)
