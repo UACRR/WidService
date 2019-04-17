@@ -202,7 +202,6 @@
             // bsTypePlace
             // 
             this.bsTypePlace.DataSource = typeof(ipsFormsDesign.Model.TypePlace);
-            this.bsTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // lbEditKeyTypePlace
             // 
@@ -245,7 +244,6 @@
             // bsRuLangTypePlace
             // 
             this.bsRuLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsRuLangTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
             // txtEnLangTypePlace
             // 
@@ -261,7 +259,6 @@
             // bsEnLangTypePlace
             // 
             this.bsEnLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsEnLangTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
             // txtUkLangTypePlace
             // 
@@ -277,7 +274,6 @@
             // bsUkLangTypePlace
             // 
             this.bsUkLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsUkLangTypePlace.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
             // txtCodeTypePlace
             // 

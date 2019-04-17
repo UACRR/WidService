@@ -215,7 +215,6 @@
             // bsGenreType
             // 
             this.bsGenreType.DataSource = typeof(ipsFormsDesign.Model.GenreType);
-            this.bsGenreType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtRuLangGenreType
             // 
@@ -231,7 +230,6 @@
             // bsRuLangGenreType
             // 
             this.bsRuLangGenreType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsRuLangGenreType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
             // txtEnLangGenreType
             // 
@@ -247,7 +245,6 @@
             // bsEnLangGenreType
             // 
             this.bsEnLangGenreType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsEnLangGenreType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
             // txtUkLangGenreType
             // 
@@ -263,7 +260,6 @@
             // bsUkLangGenreType
             // 
             this.bsUkLangGenreType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsUkLangGenreType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
             // txtCodeGenreType
             // 

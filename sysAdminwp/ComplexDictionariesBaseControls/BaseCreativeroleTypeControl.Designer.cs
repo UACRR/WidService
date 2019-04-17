@@ -210,13 +210,11 @@
             this.ddlEditKeyCreativeroleType.TabIndex = 13;
             this.ddlEditKeyCreativeroleType.ThemeName = "Office2013Light";
             this.ddlEditKeyCreativeroleType.ValueMember = "CodeI";
-            this.ddlEditKeyCreativeroleType.SelectedIndexChanging += new Telerik.WinControls.UI.Data.PositionChangingEventHandler(this.ddlEditKeyCreativeroleType_SelectedIndexChanging);
             this.ddlEditKeyCreativeroleType.Click += new System.EventHandler(this.ddlEditKeyCreativeroleType_Click);
             // 
             // bsCreativeRoleType
             // 
             this.bsCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CreativeRoleType);
-            this.bsCreativeRoleType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtRuLangCreativeroleType
             // 
@@ -232,7 +230,6 @@
             // bsRuLangCreativeRoleType
             // 
             this.bsRuLangCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsRuLangCreativeRoleType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
             // txtEnLangCreativeroleType
             // 
@@ -248,7 +245,6 @@
             // bsEnLangCreativeRoleType
             // 
             this.bsEnLangCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsEnLangCreativeRoleType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
             // txtUkLangCreativeroleType
             // 
@@ -264,7 +260,6 @@
             // bsUkLangCreativeRoleType
             // 
             this.bsUkLangCreativeRoleType.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsUkLangCreativeRoleType.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
             // txtCodeCreativeroleType
             // 

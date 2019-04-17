@@ -1221,14 +1221,12 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
             // При переході періоду зі статусу Прийом звітів на Прийом коштів
             // Розрахункові листи переходять в статус Погоджені
-            if (oldStatus == 1 && stateid == 2)
+            // 17-04-2019 Патлякевич Ворона Добавлено Ограничение только для Малых прав
+            if (oldStatus == 1 && stateid == 2 && period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType != 1)
             {
-                var rgStatus = period.Lic.LicCodeNavigation.UsesKindNavigation.UsesType == 1 ? 3 : 2; // Для ВП 3
                 foreach (var rrl in period.RegisterRatedList)
                 {
                     rrl.Status = 1;
-                    foreach (var reg in rrl.Register)
-                        reg.RgStatus = rgStatus;
                 }
             }
 
