@@ -28,6 +28,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         public event GetCustomerEventHandler GetTemplateCommunity;
         public event GetCustomerByIdEventHandler GetCommunity;
         public event SaveCustomerEventHandler SaveCommunity;
+        public event Func<AgreementAddCommunity, bool> SaveAgreementChanges;
         public event GetCommunityRightList GetCommunityRightList;
         public event SaveLimitedRightEventHandler<CustCmRight> SaveLimitRights;
 
@@ -92,6 +93,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             var autors = GetCommunityAutorsList?.Invoke(item.CustId);
             var cabinetForm = new CommunityCabinetForm(customer, autors);
             cabinetForm.SaveCustomer += CabinetForm_SaveCustomer;
+            cabinetForm.SaveAgreementChanges += CabinetForm_SaveAgreementChanges;
             cabinetForm.UpdateCustomer += CabinetForm_UpdateCustomer;
             cabinetForm.ChangeStatusAgr += CabinetForm_ChangeStatusAgr;
             cabinetForm.GetCommunityRightList += CabinetForm_GetCommunityRightList;
@@ -130,6 +132,14 @@ namespace IpsViewComponentLibrary.CommunityControls
         private bool CabinetForm_SaveCustomer(Customer customer)
         {
             var result = SaveCommunity?.Invoke(customer) ?? false;
+            if (result)
+                UpdateDataGrid();
+            return result;
+        }
+
+        private bool CabinetForm_SaveAgreementChanges(AgreementAddCommunity arg)
+        {
+            var result = SaveAgreementChanges?.Invoke(arg) ?? false;
             if (result)
                 UpdateDataGrid();
             return result;

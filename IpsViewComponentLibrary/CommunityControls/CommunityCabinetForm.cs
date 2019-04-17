@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.CommunityControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -22,6 +18,7 @@ namespace IpsViewComponentLibrary.CommunityControls
     {
         public event SaveCustomerEventHandler SaveCustomer;
         public event AgreementStatusChangeEventHandler ChangeStatusAgr;
+        public event Func<AgreementAddCommunity, bool> SaveAgreementChanges;
         public event GetCustomerByIdEventHandler UpdateCustomer;
         public event ReturnFullViewEventHandler<CommunityAuthorsView> UpdateAutorsList;
         public event GetCommunityRightList GetCommunityRightList;
@@ -44,9 +41,17 @@ namespace IpsViewComponentLibrary.CommunityControls
             ctrlTabNavigation.SetDefaultState(pageViewAnketa, FLoadType.Edit);
             ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
             ctrlTabNavigation.CancelClick += CtrlTabNavigation_CancelClick;
+            ctrlSaveCancelButtons.SaveClck += CtrlSaveCancelButtons_SaveClck;
+            ctrlSaveCancelButtons.CancelClick += CancelClick;
             ctrlSearch.SetUsageGrid(gvViewAutors);
 
             BeginBindings();
+        }
+
+        // agreement cancel
+        private void CancelClick(object sender, EventArgs e)
+        {
+            CtrlTabNavigation_CancelClick();
         }
 
         private void CtrlTabNavigation_CancelClick()
@@ -55,6 +60,16 @@ namespace IpsViewComponentLibrary.CommunityControls
             BeginBindings();
         }
 
+        // agreement save
+        private void CtrlSaveCancelButtons_SaveClck(object sender, EventArgs e)
+        {
+            var ageement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
+            var result = SaveAgreementChanges?.Invoke(ageement) ?? false;
+            //var result = SaveCustomer?.Invoke(_customer) ?? false;
+            MessageShow.ShowInfoAfterChanges(result);
+        }
+
+        // anketa save
         private void CtrlTabNavigation_SaveClick(object sender, EventArgs e)
         {
             var result = SaveCustomer?.Invoke(_customer) ?? false;
@@ -124,6 +139,10 @@ namespace IpsViewComponentLibrary.CommunityControls
             // договір
             ctrlAgreement.AgreementDataSource = agreement;
             var statusid = agreement.AgrStatus;
+
+            ctrlAgreement.IsReadOnly = statusid == 2;
+            ctrlSaveCancelButtons.Enabled = statusid != 2;
+
             btnAcceptAgr.Enabled = statusid != 2;
             btnCloseAgr.Enabled = statusid == 2;
             lblStatusName.Text = IpsGlobal.AnketaDictionaties.agreementStatus.SingleOrDefault(rec => rec.CodeI == statusid)?.Name;
@@ -226,7 +245,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             var row = e.Row.DataBoundItem as CommunityAuthorsView;
             LimitationEditFormShow(row);
         }
-
 
         private void LimitationEditFormShow(CommunityAuthorsView item)
         {

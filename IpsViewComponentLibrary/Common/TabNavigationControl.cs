@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using IpsViewComponentLibrary.Common.Enums;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -113,11 +114,5 @@ namespace IpsViewComponentLibrary.Common
             else
                 _buttonClick = false;
         }
-    }
-
-    public enum NavigateType
-    {
-        Next,
-        Previous
     }
 }

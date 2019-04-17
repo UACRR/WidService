@@ -66,7 +66,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreement = new IpsViewComponentLibrary.CommunityControls.CommunityAgreementControl();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationControl();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationExpandedControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).BeginInit();
             this.pageView.SuspendLayout();
             this.pvCommunityName.SuspendLayout();
@@ -106,7 +106,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvCommunityName;
-            this.pageView.Size = new System.Drawing.Size(1011, 539);
+            this.pageView.Size = new System.Drawing.Size(1011, 508);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageView.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -129,7 +129,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvCommunityName.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvCommunityName.Location = new System.Drawing.Point(134, 5);
             this.pvCommunityName.Name = "pvCommunityName";
-            this.pvCommunityName.Size = new System.Drawing.Size(872, 529);
+            this.pvCommunityName.Size = new System.Drawing.Size(872, 498);
             this.pvCommunityName.Text = "Товариство";
             // 
             // radSeparator4
@@ -421,15 +421,15 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlTabNavigation.Name = "ctrlTabNavigation";
             this.ctrlTabNavigation.Size = new System.Drawing.Size(1011, 31);
-            this.ctrlTabNavigation.TabIndex = 1;
+            this.ctrlTabNavigation.TabIndex = 2;
             // 
             // CommunityForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1011, 539);
-            this.Controls.Add(this.ctrlTabNavigation);
             this.Controls.Add(this.pageView);
+            this.Controls.Add(this.ctrlTabNavigation);
             this.Name = "CommunityForm";
             // 
             // 
@@ -478,7 +478,6 @@ namespace IpsViewComponentLibrary.CommunityControls
         private Telerik.WinControls.UI.RadPageViewPage pvBank;
         private IpsBankAccountControl ctrlBankAccount;
         private Telerik.WinControls.UI.RadPageViewPage pvAgreement;
-        private TabNavigationControl ctrlTabNavigation;
         private CommunityAddressControl ctrlAddressFa;
         private CommunityAddressControl ctrlAddressJu;
         private Telerik.WinControls.UI.RadLabel radLabel7;
@@ -505,5 +504,6 @@ namespace IpsViewComponentLibrary.CommunityControls
         private IpsBossNameContactsControl ctrlHeadBoss;
         private Telerik.WinControls.UI.RadSeparator radSeparator4;
         private BindingSource bsRelEmployee;
+        private TabNavigationExpandedControl ctrlTabNavigation;
     }
 }
