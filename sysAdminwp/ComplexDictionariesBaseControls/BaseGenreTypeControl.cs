@@ -312,6 +312,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 //save changes
                 GenreType result = CheckAfterUpdate(genreTypeData);
+                codeIAfter = result.CodeI;
                 //save last selected item
                 indexSelectedElem = gridGenreTypeList.CurrentRow.Index;
                 //update data for grid
