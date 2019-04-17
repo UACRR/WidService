@@ -131,11 +131,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         }
 
         //refresh changed data for bottom panel
-        private void DataUpdateForBottomPanel(int code)
+        private void DataUpdateForBottomPanel(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
-            creativeroleTypeData = CheckAfterGetQuery(code);
+            creativeroleTypeData = CheckAfterGetQuery(codeI);
             //use data for binding source
             bsCreativeRoleType.DataSource = creativeroleTypeData;
             //define binding for source of the 'Uk'
