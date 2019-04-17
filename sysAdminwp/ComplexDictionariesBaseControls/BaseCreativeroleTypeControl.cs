@@ -19,28 +19,36 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private CreativeRoleTypeTr enCreativeroleType;
         //define grid data
         private List<CreativeRoleType> _creativeroleTypeList;
-        public List<CreativeRoleType> CreativeroleTypeList {
-            get { return _creativeroleTypeList; }
-            set { if (value != null)
+        public List<CreativeRoleType> CreativeroleTypeList
+        {
+            get => _creativeroleTypeList;
+            set
+            {
+                if (value != null)
                 {
                     _creativeroleTypeList = value;
                     //show current count elements into grid
                     totalCreativeroleType.Text = _creativeroleTypeList.Count.ToString();
-                } }
+                }
+            }
         }
         //item data
         private CreativeRoleType creativeroleTypeData;
+
         //define 'Delete', 'Create', 'Update'
         private readonly ApiConnector _connector;
+
         //url for get data to grid
         private readonly string urlDataGrid;
+
         //for control current select of grid
         private int indexSelectedElem;
+
         //control 'Enabled' state for elements
         private bool controlEnabledActiveElements = false;
         public bool ControlEnabledActiveElements
         {
-            get { return controlEnabledActiveElements; }
+            get => controlEnabledActiveElements;
             set
             {
                 controlEnabledActiveElements = value;
@@ -60,6 +68,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 btnCancelCreativeroleType.Enabled = !value;
             }
         }
+
         public BaseCreativeroleTypeControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
@@ -106,26 +115,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //handle data for drop down list - 'Спосіб використання'
         private List<DictBaseTypeI> InitializeDataForFilter()
         {
-            List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
             //get data for drop down list
-            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
-            //check data
-            return dataDropDownList != null ? dataDropDownList : new List<DictBaseTypeI>();
+            var dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
+            return dataDropDownList ?? new List<DictBaseTypeI>();
         }
 
         //show data for bottom panel
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
-            //get id dictionary
-            GridViewRowInfo rowDetail = gridCreativeroleTypeList.CurrentRow;
-            //get data of the current row
-            ViewTable @curRow = rowDetail.DataBoundItem as ViewTable;
-            //stop perform if data is not exist
-            if (@curRow == null) return;
+            if (!(gridCreativeroleTypeList.CurrentRow?.DataBoundItem is ViewTable currentRow))
+                return;
+            
             //check field 'Code' on correct type 'int'
-            if (!int.TryParse(@curRow.Code, out int code)) return;
+            if (!int.TryParse(currentRow.Code, out int code))
+                return;
+
             //get 'CodeI' of current element
             indexSelectedElem = CreativeroleTypeList.FindIndex(item => item.CodeI == code);
+
             //update data for bottom panel
             DataUpdateForBottomPanel(code);
         }
@@ -176,7 +183,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             try
             {
                 result = dictService.GetCreativeRoleType(codeI);
-            } catch (Exception exp)
+            }
+            catch (Exception exp)
             {
                 MessageBox.Show("об'єкт не знайдено");
                 //set select first element of grid

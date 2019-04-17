@@ -192,7 +192,7 @@ namespace WebAPIConnector
 
             try
             {
-                HttpResponseMessage response = client.GetAsync(idUrl).GetAwaiter().GetResult(); ;
+                HttpResponseMessage response = client.GetAsync(idUrl).GetAwaiter().GetResult();
                 if (response.IsSuccessStatusCode)
                 {
                     string retApiString = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
@@ -212,9 +212,10 @@ namespace WebAPIConnector
                 else 
                     return default(T);
             }
-            catch ( HttpRequestException ex )
+            catch
             {
-                throw ex;
+                // some code
+                throw;
             }
         }
 
