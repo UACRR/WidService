@@ -1,6 +1,6 @@
 namespace ReportsLibrary
 {
-    partial class R_5_22_2_SR
+    partial class R_5_22_2_SRcm
     {
         #region Component Designer generated code
         /// <summary>
@@ -16,18 +16,20 @@ namespace ReportsLibrary
             Telerik.Reporting.TableGroup tableGroup5 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup6 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup7 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.NavigateToReportAction navigateToReportAction1 = new Telerik.Reporting.NavigateToReportAction();
+            Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.SortingAction sortingAction1 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction2 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction3 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction4 = new Telerik.Reporting.SortingAction();
-            Telerik.Reporting.NavigateToReportAction navigateToReportAction1 = new Telerik.Reporting.NavigateToReportAction();
-            Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
+            Telerik.Reporting.NavigateToReportAction navigateToReportAction2 = new Telerik.Reporting.NavigateToReportAction();
+            Telerik.Reporting.TypeReportSource typeReportSource2 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter2 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter3 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter4 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter5 = new Telerik.Reporting.ReportParameter();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(R_5_22_2_SR));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(R_5_22_2_SRcm));
             Telerik.Reporting.ReportParameter reportParameter6 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter7 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter8 = new Telerik.Reporting.ReportParameter();
@@ -145,7 +147,13 @@ namespace ReportsLibrary
             // 
             // textBox16
             // 
-            this.textBox16.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateBegin", null));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateEnd", null));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("cmCustId", null));
+            typeReportSource1.TypeName = "ReportsLibrary.R_5_22_2_SRcm, ReportsLibrary, Version=1.0.0.0, Culture=neutral, P" +
+    "ublicKeyToken=null";
+            navigateToReportAction1.ReportSource = typeReportSource1;
+            this.textBox16.Action = navigateToReportAction1;
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.391D), Telerik.Reporting.Drawing.Unit.Cm(0.844D));
             this.textBox16.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
@@ -155,6 +163,7 @@ namespace ReportsLibrary
             // 
             // textBox17
             // 
+            this.textBox17.Action = navigateToReportAction1;
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(10.943D), Telerik.Reporting.Drawing.Unit.Cm(0.844D));
             this.textBox17.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -163,7 +172,7 @@ namespace ReportsLibrary
             // 
             // textBox18
             // 
-            this.textBox18.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.textBox18.Action = navigateToReportAction1;
             this.textBox18.Name = "textBox18";
             this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.344D), Telerik.Reporting.Drawing.Unit.Cm(0.844D));
             this.textBox18.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -172,8 +181,8 @@ namespace ReportsLibrary
             // 
             // textBox20
             // 
+            this.textBox20.Action = navigateToReportAction1;
             this.textBox20.Format = "{0:N2}";
-            this.textBox20.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.textBox20.Name = "textBox20";
             this.textBox20.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3.032D), Telerik.Reporting.Drawing.Unit.Cm(0.844D));
             this.textBox20.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Right;
@@ -183,7 +192,7 @@ namespace ReportsLibrary
             // 
             // textBox24
             // 
-            this.textBox24.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.textBox24.Action = navigateToReportAction1;
             this.textBox24.Name = "textBox24";
             this.textBox24.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(0.844D));
             this.textBox24.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -193,7 +202,7 @@ namespace ReportsLibrary
             // 
             // textBox25
             // 
-            this.textBox25.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
+            this.textBox25.Action = navigateToReportAction1;
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(0.844D));
             this.textBox25.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
@@ -459,10 +468,10 @@ namespace ReportsLibrary
             // 
             // textBox27
             // 
-            typeReportSource1.TypeName = "ReportsLibrary.ReportS, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
+            typeReportSource2.TypeName = "ReportsLibrary.ReportS, ReportsLibrary, Version=1.0.0.0, Culture=neutral, PublicK" +
     "eyToken=null";
-            navigateToReportAction1.ReportSource = typeReportSource1;
-            this.textBox27.Action = navigateToReportAction1;
+            navigateToReportAction2.ReportSource = typeReportSource2;
+            this.textBox27.Action = navigateToReportAction2;
             this.textBox27.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.textBox27.Name = "textBox27";
             this.textBox27.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.7D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
@@ -492,13 +501,13 @@ namespace ReportsLibrary
             this.pageFooterSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2D);
             this.pageFooterSection1.Name = "pageFooterSection1";
             // 
-            // R_5_22_2_SR
+            // R_5_22_2_SRcm
             // 
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.pageHeaderSection1,
             this.detailSection1,
             this.pageFooterSection1});
-            this.Name = "R_5_22_2_SR";
+            this.Name = "R_5_22_2_SRcm";
             this.PageSettings.Landscape = false;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D));
             this.PageSettings.PaperKind = System.Drawing.Printing.PaperKind.A4;
@@ -553,11 +562,13 @@ namespace ReportsLibrary
             reportParameter13.AvailableValues.ValueMember = "= Fields.jaCity";
             reportParameter13.Name = "ñity";
             reportParameter13.Value = "= Fields.jaCity";
+            reportParameter14.AllowNull = true;
             reportParameter14.Name = "cmCustId";
             reportParameter14.Type = Telerik.Reporting.ReportParameterType.Integer;
             reportParameter14.Value = "0";
             reportParameter15.Name = "clName";
             reportParameter15.Value = "=\'\'";
+            reportParameter16.AllowNull = true;
             reportParameter16.Name = "prcnt";
             reportParameter16.Type = Telerik.Reporting.ReportParameterType.Float;
             reportParameter16.Value = "0.0";
