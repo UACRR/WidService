@@ -159,7 +159,6 @@
             // bsRuLangSystemConstant
             // 
             this.bsRuLangSystemConstant.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsRuLangSystemConstant.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
             // txtEnLangSystemConstant
             // 
@@ -175,7 +174,6 @@
             // bsEnLangSystemConstant
             // 
             this.bsEnLangSystemConstant.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsEnLangSystemConstant.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
             // txtUkLangSystemConstant
             // 
@@ -191,7 +189,6 @@
             // bsUkLangSystemConstant
             // 
             this.bsUkLangSystemConstant.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsUkLangSystemConstant.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
             // txtCodeSystemConstant
             // 
