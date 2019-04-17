@@ -8,11 +8,11 @@ namespace ReportsLibrary
     using Telerik.Reporting.Drawing;
 
     /// <summary>
-    /// Summary description for R_5_15_RegisterSR.
+    /// Summary description for R_5_18_1_ObjUnattached.
     /// </summary>
-    public partial class R_5_15_RegisterSR : Telerik.Reporting.Report
+    public partial class R_5_18_1_ObjUnattached : Telerik.Reporting.Report
     {
-        public R_5_15_RegisterSR()
+        public R_5_18_1_ObjUnattached()
         {
             //
             // Required for telerik Reporting designer support

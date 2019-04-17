@@ -336,6 +336,35 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPut("updateagreement/{agrId}")]
+        public async Task<IActionResult> SaveAgreement(int agrId, [FromBody] AgreementAddCommunity sourceAgreement)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                if (sourceAgreement == null)
+                    return BadRequest("Input agreement is NULL!");
+
+                var destination = await _dbContext.AgreementAddCommunity.SingleOrDefaultAsync(rec => rec.AgrId == agrId);
+
+                if (destination == null)
+                    return NotFound($"Agreement with ID:{agrId} not found!");
+
+                destination.SetFields(sourceAgreement, new []{ "CustId", "AgrId" });
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                transaction = null;
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                transaction?.Rollback();
+                return BadRequest(e);
+            }
+        }
+
         /// <summary>
         /// Зміна статусу договору спільноти
         /// </summary>

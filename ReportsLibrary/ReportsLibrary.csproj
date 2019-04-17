@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IpsReportGlobal.cs" />
     <Compile Include="LIcAgr.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -114,11 +115,11 @@
     <Compile Include="R_5_15_RegisterBRSum.Designer.cs">
       <DependentUpon>R_5_15_RegisterBRSum.cs</DependentUpon>
     </Compile>
-    <Compile Include="R_5_15_RegisterSR.cs">
+    <Compile Include="R_5_15_RegisterBR.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="R_5_15_RegisterSR.Designer.cs">
-      <DependentUpon>R_5_15_RegisterSR.cs</DependentUpon>
+    <Compile Include="R_5_15_RegisterBR.Designer.cs">
+      <DependentUpon>R_5_15_RegisterBR.cs</DependentUpon>
     </Compile>
     <Compile Include="R_5_16_AuthorSR.cs">
       <SubType>Component</SubType>
@@ -370,8 +371,8 @@
     <EmbeddedResource Include="R_5_15_RegisterBRSum.resx">
       <DependentUpon>R_5_15_RegisterBRSum.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="R_5_15_RegisterSR.resx">
-      <DependentUpon>R_5_15_RegisterSR.cs</DependentUpon>
+    <EmbeddedResource Include="R_5_15_RegisterBR.resx">
+      <DependentUpon>R_5_15_RegisterBR.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_16_AuthorSR.resx">
       <DependentUpon>R_5_16_AuthorSR.cs</DependentUpon>

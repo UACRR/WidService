@@ -9,7 +9,6 @@ namespace ReportsLibrary
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.Reporting.SortingAction sortingAction1 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.TableGroup tableGroup1 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup2 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup3 = new Telerik.Reporting.TableGroup();
@@ -21,6 +20,7 @@ namespace ReportsLibrary
             Telerik.Reporting.TableGroup tableGroup9 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup10 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup11 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.SortingAction sortingAction1 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction2 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction3 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction4 = new Telerik.Reporting.SortingAction();
@@ -55,7 +55,6 @@ namespace ReportsLibrary
             Telerik.Reporting.Drawing.DescendantSelector descendantSelector3 = new Telerik.Reporting.Drawing.DescendantSelector();
             Telerik.Reporting.Drawing.StyleRule styleRule8 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.DescendantSelector descendantSelector4 = new Telerik.Reporting.Drawing.DescendantSelector();
-            this.textBox4 = new Telerik.Reporting.TextBox();
             this.table1 = new Telerik.Reporting.Table();
             this.textBox17 = new Telerik.Reporting.TextBox();
             this.textBox18 = new Telerik.Reporting.TextBox();
@@ -68,6 +67,7 @@ namespace ReportsLibrary
             this.textBox37 = new Telerik.Reporting.TextBox();
             this.textBox38 = new Telerik.Reporting.TextBox();
             this.textBox31 = new Telerik.Reporting.TextBox();
+            this.textBox4 = new Telerik.Reporting.TextBox();
             this.textBox6 = new Telerik.Reporting.TextBox();
             this.textBox7 = new Telerik.Reporting.TextBox();
             this.textBox8 = new Telerik.Reporting.TextBox();
@@ -96,19 +96,6 @@ namespace ReportsLibrary
             this.detailSection1 = new Telerik.Reporting.DetailSection();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
-            // textBox4
-            // 
-            sortingAction1.SortingExpression = "= Fields.rownum";
-            sortingAction1.Targets.AddRange(new Telerik.Reporting.IActionTarget[] {
-            this.table1});
-            this.textBox4.Action = sortingAction1;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.788D), Telerik.Reporting.Drawing.Unit.Cm(1.188D));
-            this.textBox4.Style.Font.Bold = true;
-            this.textBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox4.StyleName = "BlueOpal.TableHeader";
-            this.textBox4.Value = "№п/п";
             // 
             // table1
             // 
@@ -170,14 +157,14 @@ namespace ReportsLibrary
             this.textBox26,
             this.textBox27,
             this.textBox28,
+            this.textBox4,
             this.textBox6,
             this.textBox7,
             this.textBox8,
             this.textBox9,
             this.textBox10,
             this.textBox11,
-            this.textBox16,
-            this.textBox4});
+            this.textBox16});
             this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0.4D));
             this.table1.Name = "table1";
             tableGroup10.Name = "group";
@@ -190,7 +177,7 @@ namespace ReportsLibrary
             tableGroup9.Name = "clCustid1";
             tableGroup9.Sortings.Add(new Telerik.Reporting.Sorting("= Fields.clCustid", Telerik.Reporting.SortDirection.Asc));
             this.table1.RowGroups.Add(tableGroup9);
-            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(26.98D), Telerik.Reporting.Drawing.Unit.Cm(2.438D));
+            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(26.981D), Telerik.Reporting.Drawing.Unit.Cm(2.438D));
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox17
@@ -297,6 +284,19 @@ namespace ReportsLibrary
             this.textBox31.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox31.StyleName = "BlueOpal.TableBody";
             this.textBox31.Value = "=\'          Всього -    \'+ Fields.clName";
+            // 
+            // textBox4
+            // 
+            sortingAction1.SortingExpression = "= Fields.rownum";
+            sortingAction1.Targets.AddRange(new Telerik.Reporting.IActionTarget[] {
+            this.table1});
+            this.textBox4.Action = sortingAction1;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.788D), Telerik.Reporting.Drawing.Unit.Cm(1.188D));
+            this.textBox4.Style.Font.Bold = true;
+            this.textBox4.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
+            this.textBox4.StyleName = "BlueOpal.TableHeader";
+            this.textBox4.Value = "№п/п";
             // 
             // textBox6
             // 
@@ -428,7 +428,7 @@ namespace ReportsLibrary
             this.textBox1.Style.Font.Bold = true;
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox1.Value = "ВІДОМІСТЬ \n\"Розподіл авторської винагороди  з \"великих прав\"";
+            this.textBox1.Value = "28. Відомість \n\"Розподіл авторської винагороди  з \"великих прав\"";
             // 
             // textBox2
             // 

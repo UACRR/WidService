@@ -286,6 +286,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
             this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
+            this.ctrlSaveCancelButtons.SaveButtonEnabled = true;
             this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(1065, 31);
             this.ctrlSaveCancelButtons.TabIndex = 2;
             // 

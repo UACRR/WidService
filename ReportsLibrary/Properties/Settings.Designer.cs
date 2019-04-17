@@ -28,17 +28,6 @@ namespace ReportsLibrary.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser;Passwor" +
             "d=ReportUser")]
-        public string Reports {
-            get {
-                return ((string)(this["Reports"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=IPSDATA,60675;Initial Catalog=MediaService;User ID=ReportUser;Passwor" +
-            "d=ReportUser")]
         public string MediaService {
             get {
                 return ((string)(this["MediaService"]));

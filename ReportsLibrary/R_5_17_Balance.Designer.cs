@@ -401,7 +401,7 @@ namespace ReportsLibrary
             this.textBox17.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(13D);
             this.textBox17.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox17.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox17.Value = "Баланс";
+            this.textBox17.Value = "1. Баланс";
             // 
             // textBox34
             // 

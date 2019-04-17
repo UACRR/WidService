@@ -14,18 +14,54 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityForm : RadForm
     {
+        private const string LabelName = "Назва товариства: ";
+
         private readonly Customer _customer;
 
         public CommunityForm(Customer customer)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            _customer = customer;
             DialogResult = DialogResult.None;
+
+            _customer = customer;
             ctrlTabNavigation.SetDefaultState(pageView, FLoadType.Create);
+            ctrlTabNavigation.SaveClick += CtrlTabNavigation_SaveClick;
             ctrlContactPerson.UnsubscribePhoneVldt();
-            ctrlClientName.SetLabelName("Назва товариства: ");
+            ctrlClientName.SetLabelName(LabelName);
             SetBindings();
+        }
+
+        private void CtrlTabNavigation_SaveClick(object sender, bool e)
+        {
+            if (e)
+            {
+                var agreement = _customer.Community.AgreementAddCommunity.SingleOrDefault();
+                if (!AuditAgreement(agreement))
+                {
+                    MessageShow.ShowWarning("Не всі дані договору заповнені!");
+                    DialogResult = DialogResult.None;
+                    return;
+                }
+
+                agreement.AgrStatus = 2;
+                var agreementMaster = _customer.AgreementMaster.SingleOrDefault();
+                agreementMaster.AgrStatus = 2;
+            }
+            DialogResult = DialogResult.OK;
+        }
+
+        private bool AuditAgreement(AgreementAddCommunity agreement)
+        {
+            var isValid = agreement?.AgrNumber == null
+                          || agreement.AgrDate == null
+                          || agreement.DateBegin == null
+                          || agreement.DateEnd == null
+                          || agreement.DayForPay == null
+                          || agreement.PeriodCode == null
+                          || agreement.RateCommiss == null
+                          || agreement.RateCourt == null;
+            return !isValid;
         }
 
         private void SetBindings()
