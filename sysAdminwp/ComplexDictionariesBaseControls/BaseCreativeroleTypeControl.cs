@@ -19,6 +19,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private CreativeRoleTypeTr enCreativeroleType;
         //define grid data
         private List<CreativeRoleType> _creativeroleTypeList;
+        public List<CreativeRoleType> CreativeroleTypeList {
+            get { return _creativeroleTypeList; }
+            set { if (value != null)
+                {
+                    _creativeroleTypeList = value;
+                    //show current count elements into grid
+                    totalCreativeroleType.Text = _creativeroleTypeList.Count.ToString();
+                } }
+        }
         //item data
         private CreativeRoleType creativeroleTypeData;
         //define 'Delete', 'Create', 'Update'
@@ -64,7 +73,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             urlDataGrid = urlForComplexDict;
             //set data to grid
             gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlForComplexDict);
-            int codeIDefault = _creativeroleTypeList[0].CodeI;
+            int codeIDefault = CreativeroleTypeList[0].CodeI;
             //set default data for bottom panel
             DataUpdateForBottomPanel(codeIDefault);
             //set 'Enabled' state by default
@@ -78,9 +87,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return dataGrid;
             //get data dictionaries -> for grid
-            _creativeroleTypeList = _connector.GetList<CreativeRoleType>(urlForGetDataDictionaries);
+            CreativeroleTypeList = _connector.GetList<CreativeRoleType>(urlForGetDataDictionaries);
             //initialize grid data
-            foreach (var item in _creativeroleTypeList)
+            foreach (var item in CreativeroleTypeList)
             {
                 dataGrid.Add(new ViewTable
                 {
@@ -91,8 +100,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     Category = ddlFilterCreativeroleType.Items.First(el => (int)el.Value == item.CategoryCode).Text,
                 });
             }
-            //show current count elements into grid
-            totalCreativeroleType.Text = _creativeroleTypeList.Count.ToString();
             return dataGrid;
         }
 
@@ -118,7 +125,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //get 'CodeI' of current element
-            indexSelectedElem = _creativeroleTypeList.FindIndex(item => item.CodeI == code);
+            indexSelectedElem = CreativeroleTypeList.FindIndex(item => item.CodeI == code);
             //update data for bottom panel
             DataUpdateForBottomPanel(code);
         }
@@ -173,13 +180,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             List<ViewTable> filteredData = new List<ViewTable>();
             //get all data of the 'CopyrightKind'
-            _creativeroleTypeList = _connector.GetList<CreativeRoleType>(urlDataGrid);
+            CreativeroleTypeList = _connector.GetList<CreativeRoleType>(urlDataGrid);
             //stop perform if data is not exist
-            if (_creativeroleTypeList == null) return new List<ViewTable>();
+            if (CreativeroleTypeList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            _creativeroleTypeList = _creativeroleTypeList.Where(item => item.CategoryCode == code).ToList();
+            CreativeroleTypeList = CreativeroleTypeList.Where(item => item.CategoryCode == code).ToList();
             //initialize data for grid
-            foreach (var item in _creativeroleTypeList)
+            foreach (var item in CreativeroleTypeList)
             {
                 filteredData.Add(new ViewTable
                 {
@@ -190,8 +197,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     Category = ddlFilterCreativeroleType.SelectedItem.Text,
                 });
             }
-            //show current count elements into grid
-            totalCreativeroleType.Text = _creativeroleTypeList.Count.ToString();
             return filteredData;
         }
 
@@ -226,16 +231,16 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            CreativeRoleType item = _creativeroleTypeList[indexSelectedElem];
+            CreativeRoleType item = CreativeroleTypeList[indexSelectedElem];
             bool result = dictService.DeleteCreativeRoleType(item.CodeI);
             //update data for grid
             gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             //step up in grid position
-            --indexSelectedElem;
+            if (result) --indexSelectedElem;
             if (indexSelectedElem < 0) indexSelectedElem = 0;
             gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[indexSelectedElem];
             //define new currentRow
-            int codeNew = _creativeroleTypeList[indexSelectedElem].CodeI;
+            int codeNew = CreativeroleTypeList[indexSelectedElem].CodeI;
             DataUpdateForBottomPanel(codeNew);
         }
 
@@ -255,7 +260,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 btnSaveCreativeroleType.Text = "Зберегти";
                 //update data for grid
                 gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
-                indexSelectedElem = _creativeroleTypeList.FindIndex(el => el.CodeI == result.CodeI);
+                indexSelectedElem = CreativeroleTypeList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
                 gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[indexSelectedElem];
             } else if (btnSaveCreativeroleType.Text == "Зберегти")
@@ -280,7 +285,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Cancel' reset changed data for selected item
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            int codeICurrent = _creativeroleTypeList[indexSelectedElem].CodeI;
+            int codeICurrent = CreativeroleTypeList[indexSelectedElem].CodeI;
             //reset changed data
             DataUpdateForBottomPanel(codeICurrent);
             //stop perform if elements have 'Enabled' -> true
