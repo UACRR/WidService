@@ -140,7 +140,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
-            typePlaceData = dictService.GetTypePlace(item.CodeI);
+            typePlaceData = dictService.GetTypePlace(codeI);
             //use data for binding source
             bsTypePlace.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
