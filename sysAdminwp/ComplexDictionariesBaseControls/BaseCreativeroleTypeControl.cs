@@ -239,6 +239,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             //step up in grid position
             --indexSelectedElem;
+            if (indexSelectedElem < 0) indexSelectedElem = 0;
             gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[indexSelectedElem];
             //define new currentRow
             int codeNew = _creativeroleTypeList[indexSelectedElem].CodeI;
