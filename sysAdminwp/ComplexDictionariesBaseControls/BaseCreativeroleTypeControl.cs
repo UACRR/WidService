@@ -268,10 +268,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 //send created object
                 CreativeRoleType result = CheckAfterCreate(creativeroleTypeData);
-                indexSelectedElem = CreativeroleTypeList.FindIndex(el => el.CodeI == result.CodeI);
                 codeIAfter = result.CodeI;
                 //update data for grid
                 gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
+                indexSelectedElem = CreativeroleTypeList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
                 gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[indexSelectedElem];
                 //set default state for 'Text' of the btnSave
@@ -313,6 +313,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //select first element of grid by default
                 result = CreativeroleTypeList[0];
             }
+            if (result == null)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = CreativeroleTypeList[0];
+            }
             return result;
         }
 
@@ -329,6 +335,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             {
                 result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
             } catch (Exception exp)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = CreativeroleTypeList[0];
+            }
+            if (result == null)
             {
                 MessageBox.Show("Помилка формату");
                 //select first element of grid by default
