@@ -181,17 +181,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             KlR030 result = new KlR030();
-            try
-            {
-                if (int.TryParse(codeI, out int code)) 
-                    result = dictService.GetKlR030(code);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("об'єкт не знайдено");
-                //set select first element of grid
-                result = Klr030List[0];
-            }
+            if (int.TryParse(codeI, out int code))
+                result = dictService.GetKlR030(code);
             if (result == null)
             {
                 MessageBox.Show("об'єкт не знайдено");
@@ -291,12 +282,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private bool CheckAfterDelete(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            bool result;
-            try
-            {
-                result = dictService.DeleteKlR030(codeI);
-            }
-            catch (Exception exp)
+            bool result = dictService.DeleteKlR030(codeI);
+            if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");
                 result = false;
@@ -350,17 +337,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private KlR030 CheckAfterCreate(KlR030 createItem)
         {
             DictionaryService dictService = new DictionaryService();
-            KlR030 result = new KlR030();
-            try
-            {
-                result = dictService.CreateKlR030(createItem);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = Klr030List[0];
-            }
+            KlR030 result = dictService.CreateKlR030(createItem);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
@@ -378,17 +355,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private KlR030 CheckAfterUpdate(KlR030 updateItem)
         {
             DictionaryService dictService = new DictionaryService();
-            KlR030 result = new KlR030();
-            try
-            {
-                result = dictService.UpdateKlR030(klr030Data);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = Klr030List[0];
-            }
+            KlR030 result = dictService.UpdateKlR030(klr030Data);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");

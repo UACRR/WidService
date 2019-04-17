@@ -172,17 +172,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private TypePlace CheckAfterGetQuery(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            TypePlace result = new TypePlace();
-            try
-            {
-                result = dictService.GetTypePlace(codeI);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("об'єкт не знайдено");
-                //set select first element of grid
-                result = TypePlaceList[0];
-            }
+            TypePlace result = dictService.GetTypePlace(codeI);
             if (result == null)
             {
                 MessageBox.Show("об'єкт не знайдено");
@@ -281,12 +271,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private bool CheckAfterDelete(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            bool result;
-            try
-            {
-                result = dictService.DeleteTypePlace(codeI);
-            }
-            catch (Exception exp)
+            bool result = dictService.DeleteTypePlace(codeI);
+            if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");
                 result = false;
@@ -338,17 +324,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private TypePlace CheckAfterCreate(TypePlace createItem)
         {
             DictionaryService dictService = new DictionaryService();
-            TypePlace result = new TypePlace();
-            try
-            {
-                result = dictService.CreateTypePlace(createItem);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = TypePlaceList[0];
-            }
+            TypePlace result = dictService.CreateTypePlace(createItem);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
@@ -366,17 +342,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private TypePlace CheckAfterUpdate(TypePlace updateItem)
         {
             DictionaryService dictService = new DictionaryService();
-            TypePlace result = new TypePlace();
-            try
-            {
-                result = dictService.UpdateTypePlace(typePlaceData);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = TypePlaceList[0];
-            }
+            TypePlace result = dictService.UpdateTypePlace(typePlaceData);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");

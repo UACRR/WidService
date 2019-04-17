@@ -171,16 +171,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private CopyrightKind CheckAfterGetQuery(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            CopyrightKind result = new CopyrightKind();
-            try
-            {
-                result = dictService.GetCopyrightKind(codeI);
-            } catch (Exception exp)
-            {
-                MessageBox.Show("об'єкт не знайдено");
-                //set select first element of grid
-                result = CopyrightKindList[0];
-            }
+            CopyrightKind result = dictService.GetCopyrightKind(codeI);
             if (result == null)
             {
                 MessageBox.Show("об'єкт не знайдено");
@@ -280,11 +271,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private bool CheckAfterDelete(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            bool result;
-            try
-            {
-                result = dictService.DeleteCopyrightKind(codeI);
-            } catch (Exception exp)
+            bool result = dictService.DeleteCopyrightKind(codeI);
+            if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");
                 result = false;
@@ -333,16 +321,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             CopyrightKind result = new CopyrightKind();
-            try
-            {
-                result = dictService.CreateCopyrightKind(createItem);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = CopyrightKindList[0];
-            }
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
@@ -361,16 +339,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             CopyrightKind result = new CopyrightKind();
-            try
-            {
-                result = dictService.UpdateCopyrightKind(copyrightKindData);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = CopyrightKindList[0];
-            }
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");

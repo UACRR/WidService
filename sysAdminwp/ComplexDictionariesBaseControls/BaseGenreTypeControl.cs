@@ -172,16 +172,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private GenreType CheckAfterGetQuery(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            GenreType result = new GenreType();
-            try
-            {
-                result = dictService.GetGenreType(codeI);
-            } catch (Exception exp)
-            {
-                MessageBox.Show("об'єкт не знайдено");
-                //set select first element of grid
-                result = GenreTypeList[0];
-            }
+            GenreType result = dictService.GetGenreType(codeI);
             if (result == null)
             {
                 MessageBox.Show("об'єкт не знайдено");
@@ -279,11 +270,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private bool CheckAfterDelete(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            bool result;
-            try
-            {
-                result = dictService.DeleteGenreType(codeI);
-            } catch (Exception exp)
+            bool result = dictService.DeleteGenreType(codeI);
+            if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");
                 result = false;
@@ -335,17 +323,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private GenreType CheckAfterCreate(GenreType createItem)
         {
             DictionaryService dictService = new DictionaryService();
-            GenreType result = new GenreType();
-            try
-            {
-                result = dictService.CreateGenreType(createItem);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = GenreTypeList[0];
-            }
+            GenreType result = dictService.CreateGenreType(createItem);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
@@ -363,16 +341,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private GenreType CheckAfterUpdate(GenreType updateItem)
         {
             DictionaryService dictService = new DictionaryService();
-            GenreType result = new GenreType();
-            try
-            {
-                result = dictService.UpdateGenreType(genreTypeData);
-            } catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = GenreTypeList[0];
-            }
+            GenreType result = dictService.UpdateGenreType(genreTypeData);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");

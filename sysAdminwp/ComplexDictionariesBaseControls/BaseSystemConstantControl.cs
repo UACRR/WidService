@@ -157,17 +157,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private SystemConstant CheckAfterGetQuery(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            SystemConstant result = new SystemConstant();
-            try
-            {
-                result = dictService.GetSystemConstant(codeI);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("об'єкт не знайдено");
-                //set select first element of grid
-                result = SystemConstantList[0];
-            }
+            SystemConstant result = dictService.GetSystemConstant(codeI);
             if (result == null)
             {
                 MessageBox.Show("об'єкт не знайдено");
@@ -228,12 +218,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private bool CheckAfterDelete(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            bool result;
-            try
-            {
-                result = dictService.DeleteCreativeRoleType(codeI);
-            }
-            catch (Exception exp)
+            bool result = dictService.DeleteCreativeRoleType(codeI);
+            if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");
                 result = false;
@@ -284,17 +270,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private SystemConstant CheckAfterCreate(SystemConstant createItem)
         {
             DictionaryService dictService = new DictionaryService();
-            SystemConstant result = new SystemConstant();
-            try
-            {
-                result = dictService.CreateSystemConstant(createItem);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = SystemConstantList[0];
-            }
+            SystemConstant result = dictService.CreateSystemConstant(createItem);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
@@ -312,17 +288,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private SystemConstant CheckAfterUpdate(SystemConstant updateItem)
         {
             DictionaryService dictService = new DictionaryService();
-            SystemConstant result = new SystemConstant();
-            try
-            {
-                result = dictService.UpdateSystemConstant(systemConstantData);
-            }
-            catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = SystemConstantList[0];
-            }
+            SystemConstant result = dictService.UpdateSystemConstant(systemConstantData);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");

@@ -173,15 +173,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             CreativeRoleType result = new CreativeRoleType();
-            try
-            {
-                result = dictService.GetCreativeRoleType(codeI);
-            } catch (Exception exp)
-            {
-                MessageBox.Show("об'єкт не знайдено");
-                //set select first element of grid
-                result = CreativeroleTypeList[0];
-            }
             if (result == null)
             {
                 MessageBox.Show("об'єкт не знайдено");
@@ -279,11 +270,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private bool CheckAfterDelete(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            bool result;
-            try
-            {
-                result = dictService.DeleteCreativeRoleType(codeI);
-            } catch (Exception exp)
+            bool result = dictService.DeleteCreativeRoleType(codeI);
+            if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");
                 result = false;
@@ -335,16 +323,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private CreativeRoleType CheckAfterCreate(CreativeRoleType createItem)
         {
             DictionaryService dictService = new DictionaryService();
-            CreativeRoleType result = new CreativeRoleType();
-            try
-            {
-                result = dictService.CreateCreativeRoleType(createItem);
-            } catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = CreativeroleTypeList[0];
-            }
+            CreativeRoleType result = dictService.CreateCreativeRoleType(createItem);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
@@ -362,16 +341,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private CreativeRoleType CheckAfterUpdate(CreativeRoleType updateItem)
         {
             DictionaryService dictService = new DictionaryService();
-            CreativeRoleType result = new CreativeRoleType();
-            try
-            {
-                result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
-            } catch (Exception exp)
-            {
-                MessageBox.Show("Помилка формату");
-                //select first element of grid by default
-                result = CreativeroleTypeList[0];
-            }
+            CreativeRoleType result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
