@@ -252,7 +252,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             if (btnSaveCreativeroleType.Text == "Додати")
             {
-                
                 //send created object
                 CreativeRoleType result = dictService.CreateCreativeRoleType(creativeroleTypeData);
                 codeIAfter = result.CodeI;

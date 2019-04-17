@@ -440,7 +440,5 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //disallow input
                 e.Handled = true;
         }
-
-        
     }
 }
