@@ -25,8 +25,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private readonly ApiConnector _connector;
         //url for get data to grid
         private readonly string urlDataGrid;
-        //value 'code' for refresh data when 'Cancel' action
-        //private int codeForRefresh;
         //for control current select of grid
         private int indexSelectedElem;
         //control 'Enabled' state for elements
@@ -119,8 +117,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (@curRow == null) return;
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
-            //save value 'code' -> fr refresh data when 'Cancel' action
-            //codeForRefresh = _creativeroleTypeList.FindIndex(el => el.CodeI == code);
             //get 'CodeI' of current element
             indexSelectedElem = _creativeroleTypeList.FindIndex(item => item.CodeI == code);
             //update data for bottom panel
@@ -131,9 +127,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private void DataUpdateForBottomPanel(int code)
         {
             DictionaryService dictService = new DictionaryService();
-            //set default first item of the grid
-            //if (codeForRefresh == 0) codeForRefresh = _creativeroleTypeList[0].CodeI;
-            //CreativeRoleType item = _creativeroleTypeList[codeForRefresh];
             //get object by parameter 'code' from service
             creativeroleTypeData = dictService.GetCreativeRoleType(code);
             //use data for binding source
@@ -260,8 +253,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 codeIAfter = result.CodeI;
                 //set default state for 'Text' of the btnSave
                 btnSaveCreativeroleType.Text = "Зберегти";
-                //save last selected item
-                //current = gridCreativeroleTypeList.CurrentRow.Index;
                 //update data for grid
                 gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
                 indexSelectedElem = _creativeroleTypeList.FindIndex(el => el.CodeI == result.CodeI);
@@ -395,7 +386,5 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //disallow input
                 e.Handled = true;
         }
-
-        
     }
 }
