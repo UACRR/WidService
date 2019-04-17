@@ -226,7 +226,7 @@ namespace ReportsLibrary
             this.textBox1.Style.Font.Bold = true;
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox1.Value = "Роялті до розподілу\r\nвід користувачів з \"малих прав\" за видами договорів";
+            this.textBox1.Value = "30. Роялті до розподілу\r\nвід користувачів з \"малих прав\" за видами договорів";
             // 
             // textBox12
             // 
