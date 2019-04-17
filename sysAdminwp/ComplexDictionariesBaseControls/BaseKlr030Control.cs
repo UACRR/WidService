@@ -132,11 +132,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             var strCode = code.ToString();
             indexSelectedElem = _klr030List.FindIndex(el => el.R030 == strCode);
             //update data for bottom panel
-            DataUpdateForBottomPanel(code);
+            DataUpdateForBottomPanel(code.ToString());
         }
 
         //refresh changed data for bottom panel
-        private void DataUpdateForBottomPanel(int codeI)
+        private void DataUpdateForBottomPanel(string codeI)
         {
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
@@ -177,13 +177,14 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// </summary>
         /// <param name="codeI"></param>
         /// <returns></returns>
-        private KlR030 CheckAfterGetQuery(int codeI)
+        private KlR030 CheckAfterGetQuery(string codeI)
         {
             DictionaryService dictService = new DictionaryService();
             KlR030 result = new KlR030();
             try
             {
-                result = dictService.GetKlR030(codeI);
+                if (int.TryParse(codeI, out int code)) 
+                    result = dictService.GetKlR030(code);
             }
             catch (Exception exp)
             {
