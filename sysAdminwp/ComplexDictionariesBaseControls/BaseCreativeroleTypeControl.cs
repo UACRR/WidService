@@ -135,7 +135,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
-            creativeroleTypeData = dictService.GetCreativeRoleType(code);
+            creativeroleTypeData = CheckAfterGetQuery(code);
             //use data for binding source
             bsCreativeRoleType.DataSource = creativeroleTypeData;
             //define binding for source of the 'Uk'
@@ -162,6 +162,28 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 creativeroleTypeData.CreativeRoleTypeTr.Add(enCreativeroleType);
             }
             bsEnLangCreativeRoleType.DataSource = enCreativeroleType;
+        }
+
+        private CreativeRoleType CheckAfterGetQuery(int codeI)
+        {
+            DictionaryService dictService = new DictionaryService();
+            CreativeRoleType result = new CreativeRoleType();
+            try
+            {
+                result = dictService.GetCreativeRoleType(codeI);
+            } catch (Exception exp)
+            {
+                MessageBox.Show("об'єкт не знайдено");
+                //set select first element of grid
+                result = CreativeroleTypeList[0];
+            }
+            if (result == null)
+            {
+                MessageBox.Show("об'єкт не знайдено");
+                //set select first element of grid
+                result = CreativeroleTypeList[0];
+            }
+            return result;
         }
 
         //select item into drop down list for filtered data into grid
