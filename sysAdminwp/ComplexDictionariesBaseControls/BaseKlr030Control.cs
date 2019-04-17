@@ -76,9 +76,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
             gridKlr030List.DataSource = HandleDataForGrid(urlForComplexDict);
-            int codeIDefault = Klr030List[0].R030;
+            string codeIDefault = Klr030List[0].R030;
             //set default data for bottom panel
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(codeIDefault);
             //set 'Enabled' state by default
             ControlEnabledActiveElements = true;
             
@@ -87,14 +87,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
-            //result data for initialize to grid
-            List<ViewTable> dataGrid = new List<ViewTable>();
             //check on valid state parameter
-            if (urlForGetDataDictionaries == null) return dataGrid;
+            if (urlForGetDataDictionaries == null) return new List<ViewTable>();
+            List<ViewTable> dataGrid = new List<ViewTable>();
             //get data dictionaries -> for grid
-            _klr030List = _connector.GetList<KlR030>(urlForGetDataDictionaries);
+            Klr030List = _connector.GetList<KlR030>(urlForGetDataDictionaries);
             //initialize grid data
-            foreach (var item in _klr030List)
+            foreach (var item in Klr030List)
             {
                 dataGrid.Add(new ViewTable
                 {
@@ -105,15 +104,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     klrCountry = ddlFilterKlr030.Items.First(el => (int)el.Value == item.R031).Text,
                 });
             }
-            //show current count elements into grid
-            totalKlr030.Text = _klr030List.Count.ToString();
             return dataGrid;
         }
 
         //handle data for drop down list - 'Спосіб використання'
         private List<DictBaseTypeI> InitializeDataForFilter()
         {
-            //define for result data
             List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
             //get data for drop down list
             dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/Country");
@@ -127,27 +123,27 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get id dictionary
             GridViewRowInfo rowDetail = gridKlr030List.CurrentRow;
             //get data of the current row
-            var @curRow = rowDetail.DataBoundItem as ViewTable;
+            ViewTable @curRow = rowDetail.DataBoundItem as ViewTable;
             //stop perform if data is not exist
             if (@curRow == null) return;
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
             var strCode = code.ToString();
-            codeForRefresh = _klr030List.FindIndex(el => el.R030 == strCode);
+            indexSelectedElem = _klr030List.FindIndex(el => el.R030 == strCode);
             //update data for bottom panel
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(code);
         }
 
         //refresh changed data for bottom panel
-        private void DataUpdateForBottomPanel()
+        private void DataUpdateForBottomPanel(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
-            if (codeForRefresh == 0) codeForRefresh = int.TryParse(_klr030List[0].R030, out int code) ? code : 0;
-            KlR030 item = _klr030List[codeForRefresh];
+            //if (codeForRefresh == 0) codeForRefresh = int.TryParse(_klr030List[0].R030, out int code) ? code : 0;
+            //KlR030 item = _klr030List[codeForRefresh];
             //get object by parameter 'code' from service
-            klr030Data = dictService.GetKlR030((int)item.R031);
+            klr030Data = CheckAfterGetQuery(codeI);
             //use data for binding source
             bsKlr030.DataSource = klr030Data;
             //define binding for source of the 'Uk'
@@ -176,6 +172,36 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             bsEnLangKlr030.DataSource = enKlr030;
         }
 
+        /// <summary>
+        /// //check after 'Get' query
+        /// </summary>
+        /// <param name="codeI"></param>
+        /// <returns></returns>
+        private KlR030 CheckAfterGetQuery(int codeI)
+        {
+            DictionaryService dictService = new DictionaryService();
+            KlR030 result = new KlR030();
+            try
+            {
+                result = dictService.GetKlR030(codeI);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("об'єкт не знайдено");
+                //set select first element of grid
+                result = Klr030List[0];
+            }
+            if (result == null)
+            {
+                MessageBox.Show("об'єкт не знайдено");
+                //set select first element of grid
+                result = Klr030List[0];
+            }
+            return result;
+        }
+
+
+
         //select item into drop down list for filtered data into grid
         private void ddlCommonKeyData_SelectedIndexChanged(object sender, Telerik.WinControls.UI.Data.PositionChangedEventArgs e)
         {
@@ -190,16 +216,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //filter data for grid
         private List<ViewTable> FilterDataIntoGrid(int code)
         {
-            //initialzie empty data for result
             List<ViewTable> filteredData = new List<ViewTable>();
             //get all data of the 'CopyrightKind'
-            _klr030List = _connector.GetList<KlR030>(urlDataGrid);
+            Klr030List = _connector.GetList<KlR030>(urlDataGrid);
             //stop perform if data is not exist
-            if (_klr030List == null) return new List<ViewTable>();
+            if (Klr030List == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            _klr030List = _klr030List.Where(item => item.R031 == code).ToList();
+            Klr030List = Klr030List.Where(item => item.R031 == code).ToList();
             //initialize data for grid
-            foreach (var item in _klr030List)
+            foreach (var item in Klr030List)
             {
                 filteredData.Add(new ViewTable
                 {
@@ -210,8 +235,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     klrCountry = ddlFilterKlr030.SelectedItem.Text,
                 });
             }
-            //show current count elements into grid
-            totalKlr030.Text = _klr030List.Count.ToString();
             return filteredData;
         }
 
@@ -220,7 +243,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //change property 'Text' of the btnSave for 'Add' action
             btnSaveKlr030.Text = "Додати";
-            //clear data into bottom panel
             //refresh data for field 'Code'
             klr030Data = new KlR030 { R031 = 1 };
             bsKlr030.DataSource = klr030Data;
@@ -247,57 +269,140 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            KlR030 item = _klr030List[codeForRefresh];
-            bool result = dictService.DeleteKlR030((int)item.R031);
+            KlR030 item = Klr030List[indexSelectedElem];
+            bool result = CheckAfterDelete((int)item.R031);
             //update data for grid
             gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
-            DataUpdateForBottomPanel();
-            gridKlr030List.CurrentRow = gridKlr030List.Rows[codeForRefresh];
+            //step up in grid position
+            if (result) --indexSelectedElem;
+            if (indexSelectedElem < 0) indexSelectedElem = 0;
+            gridKlr030List.CurrentRow = gridKlr030List.Rows[indexSelectedElem];
+            //define new currentRow
+            string codeNew = Klr030List[indexSelectedElem].R030;
+            DataUpdateForBottomPanel(codeNew);
+        }
+
+        /// <summary>
+        /// control delete state
+        /// </summary>
+        /// <param name="codeI"></param>
+        /// <returns></returns>
+        private bool CheckAfterDelete(int codeI)
+        {
+            DictionaryService dictService = new DictionaryService();
+            bool result;
+            try
+            {
+                result = dictService.DeleteKlR030(codeI);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("об'єкт не видалений");
+                result = false;
+            }
+            return result;
         }
 
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //for save last index selected item
-            int current = 0;
-
-            DictionaryService dictService = new DictionaryService();
+            string codeIAfter = string.Empty;
             if (btnSaveKlr030.Text == "Додати")
             {
                 //send created object
-                KlR030 result = dictService.CreateKlR030(klr030Data);
+                KlR030 result = CheckAfterCreate(klr030Data);
+                codeIAfter = result.R030;
                 //set default state for 'Text' of the btnSave
-                btnSaveKlr030.Text = "Зберегти";
+                //btnSaveKlr030.Text = "Зберегти";
                 //save last selected item
                 //current = gridKlr030List.CurrentRow.Index;
                 //update data for grid
                 gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
-                int newPosition = _klr030List.FindIndex(el => el.R031 == result.R031);
+                indexSelectedElem = Klr030List.FindIndex(el => el.R031 == result.R031);
                 //select certain item into grid
-                gridKlr030List.CurrentRow = gridKlr030List.Rows[newPosition];
+                gridKlr030List.CurrentRow = gridKlr030List.Rows[indexSelectedElem];
+                btnSaveKlr030.Text = "Зберегти";
             } else if (btnSaveKlr030.Text == "Зберегти")
             {
                 //save changes
-                KlR030 result = dictService.UpdateKlR030(klr030Data);
+                KlR030 result = CheckAfterUpdate(klr030Data);
+                codeIAfter = result.R030;
                 //save last selected item
-                current = gridKlr030List.CurrentRow.Index;
+                indexSelectedElem = gridKlr030List.CurrentRow.Index;
                 //update data for grid
                 gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
                 //select certain item into grid
-                gridKlr030List.CurrentRow = gridKlr030List.Rows[current];
+                gridKlr030List.CurrentRow = gridKlr030List.Rows[indexSelectedElem];
             }
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(codeIAfter);
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
             ControlEnabledActiveElements = true;
         }
 
+        /// <summary>
+        /// check result data after 'Create'
+        /// </summary>
+        /// <param name="createItem"></param>
+        /// <returns></returns>
+        private KlR030 CheckAfterCreate(KlR030 createItem)
+        {
+            DictionaryService dictService = new DictionaryService();
+            KlR030 result = new KlR030();
+            try
+            {
+                result = dictService.CreateKlR030(createItem);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = Klr030List[0];
+            }
+            if (result == null)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = Klr030List[0];
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// check result data after 'Update'
+        /// </summary>
+        /// <param name="updateItem"></param>
+        /// <returns></returns>
+        private KlR030 CheckAfterUpdate(KlR030 updateItem)
+        {
+            DictionaryService dictService = new DictionaryService();
+            KlR030 result = new KlR030();
+            try
+            {
+                result = dictService.UpdateKlR030(klr030Data);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = Klr030List[0];
+            }
+            if (result == null)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = Klr030List[0];
+            }
+            return result;
+        }
+
         //action 'Cancel' reset changed data for selected item
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            string codeICurrent = Klr030List[indexSelectedElem].R030;
             //reset changed data
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(codeICurrent);
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
