@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 
@@ -17,22 +11,32 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseSystemConstantControl : UserControl
     {
-        //Uk data item
-        SystemConstantTr ukSystemConstant;
-        //Ru data item
-        SystemConstantTr ruSystemConstant;
-        //En data item
-        SystemConstantTr enSystemConstant;
-        //data grid
-        List<SystemConstant> _systemConstantList;
+        //define data for different languages
+        private SystemConstantTr ukSystemConstant;
+        private SystemConstantTr ruSystemConstant;
+        private SystemConstantTr enSystemConstant;
+        //define grid data
+        private List<SystemConstant> _systemConstantList;
+        public List<SystemConstant> SystemConstantList
+        {
+            get { return _systemConstantList; }
+            set
+            {
+                if (value != null)
+                {
+                    _systemConstantList = value;
+                    totalSystemConstant.Text = _systemConstantList.Count.ToString();
+                }
+            }
+        }
         //item data
-        SystemConstant systemConstantData;
+        private SystemConstant systemConstantData;
         //define connector
         private readonly ApiConnector _connector;
         //url for get data to grid
         private readonly string urlDataGrid;
-        //value 'code' for refresh data when 'Cancel' action
-        private int codeForRefresh;
+        //for control current select of grid
+        private int indexSelectedElem;
         //control 'Enabled' state for elements
         private bool controlEnabledActiveElements = false;
         public bool ControlEnabledActiveElements
@@ -58,32 +62,30 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseSystemConstantControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
-            //initialize connector
             _connector = connector;
             //setup search posibility for textBox element
             txtSearchSystemConstant.SetUsageGrid(gridSystemConstantList);
             //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
-            //initialize data for grid
+            //set data to grid
             gridSystemConstantList.DataSource = HandleDataForGrid(urlForComplexDict);
+            int codeIDefault = SystemConstantList[0].CodeI;
             //set default data for bottom panel
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(codeIDefault);
             //set 'Enabled' state by default
             ControlEnabledActiveElements = true;
-            
         }
         
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
-            //result data for initialize to grid
-            List<ViewTable> dataGrid = new List<ViewTable>();
             //check on valid state parameter
-            if (urlForGetDataDictionaries == null) return dataGrid;
+            if (urlForGetDataDictionaries == null) return new List<ViewTable>();
+            List<ViewTable> dataGrid = new List<ViewTable>();
             //get data dictionaries -> for grid
-            _systemConstantList = _connector.GetList<SystemConstant>(urlForGetDataDictionaries);
+            SystemConstantList = _connector.GetList<SystemConstant>(urlForGetDataDictionaries);
             //initialize grid data
-            foreach (var item in _systemConstantList)
+            foreach (var item in SystemConstantList)
             {
                 dataGrid.Add(new ViewTable
                 {
@@ -93,8 +95,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameEn = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
                 });
             }
-            //show current count elements into grid
-            totalSystemConstant.Text = _systemConstantList.Count.ToString();
             return dataGrid;
         }
 
@@ -104,26 +104,23 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get id dictionary
             GridViewRowInfo rowDetail = gridSystemConstantList.CurrentRow;
             //get data of the current row
-            var @curRow = rowDetail.DataBoundItem as ViewTable;
+            ViewTable @curRow = rowDetail.DataBoundItem as ViewTable;
             //stop perform if data is not exist
             if (@curRow == null) return;
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(@curRow.Code, out int code)) return;
             //save value 'code' -> fr refresh data when 'Cancel' action
-            codeForRefresh = _systemConstantList.FindIndex(el => el.CodeI == code);
+            indexSelectedElem = SystemConstantList.FindIndex(el => el.CodeI == code);
             //update data for bottom panel
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(code);
         }
 
         //refresh changed data for bottom panel
-        private void DataUpdateForBottomPanel()
+        private void DataUpdateForBottomPanel(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
-            //set default first item of the grid
-            if (codeForRefresh == 0) codeForRefresh = _systemConstantList[0].CodeI;
-            SystemConstant item = _systemConstantList[codeForRefresh];
             //get object by parameter 'code' from service
-            systemConstantData = dictService.GetSystemConstant(item.CodeI);
+            systemConstantData = dictService.GetSystemConstant(codeI);
             //use data for binding source
             bsSystemConstant.DataSource = systemConstantData;
             //define binding for source of the 'Uk'
@@ -152,12 +149,39 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             bsEnLangSystemConstant.DataSource = enSystemConstant;
         }
 
+        /// <summary>
+        /// check after 'Get' query
+        /// </summary>
+        /// <param name="codeI"></param>
+        /// <returns></returns>
+        private SystemConstant CheckAfterGetQuery(int codeI)
+        {
+            DictionaryService dictService = new DictionaryService();
+            SystemConstant result = new SystemConstant();
+            try
+            {
+                result = dictService.GetSystemConstant(codeI);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("об'єкт не знайдено");
+                //set select first element of grid
+                result = SystemConstantList[0];
+            }
+            if (result == null)
+            {
+                MessageBox.Show("об'єкт не знайдено");
+                //set select first element of grid
+                result = SystemConstantList[0];
+            }
+            return result;
+        }
+
         //action 'Add' new object to grid
         private void btnAddComplex_Click(object sender, EventArgs e)
         {
             //change property 'Text' of the btnSave for 'Add' action
             btnSaveSystemConstant.Text = "Додати";
-            //clear data into bottom panel
             //refresh data for field 'Code'
             systemConstantData = new SystemConstant();
             bsSystemConstant.DataSource = systemConstantData;
@@ -184,80 +208,147 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
-            SystemConstant item = _systemConstantList[codeForRefresh];
-            dictService.DeleteSystemConstant(item.CodeI);
+            SystemConstant item = _systemConstantList[indexSelectedElem];
+            bool result = CheckAfterDelete(item.CodeI);
             //update data for grid
             gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
-            DataUpdateForBottomPanel();
-            gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[codeForRefresh];
+            //step up in grid position
+            if (result) --indexSelectedElem;
+            if (indexSelectedElem < 0) indexSelectedElem = 0;
+            gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[indexSelectedElem];
+            int codeNew = SystemConstantList[indexSelectedElem].CodeI;
+            DataUpdateForBottomPanel(codeNew);
+        }
+
+        /// <summary>
+        /// control delete state
+        /// </summary>
+        /// <param name="codeI"></param>
+        /// <returns></returns>
+        private bool CheckAfterDelete(int codeI)
+        {
+            DictionaryService dictService = new DictionaryService();
+            bool result;
+            try
+            {
+                result = dictService.DeleteCreativeRoleType(codeI);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("об'єкт не видалений");
+                result = false;
+            }
+            return result;
         }
 
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //for save last index selected item
-            int current = 0;
-
-            DictionaryService dictService = new DictionaryService();
+            //refresh bottom panel
+            int codeIAfter = 0;
             if (btnSaveSystemConstant.Text == "Додати")
             {
                 //send created object
-                SystemConstant result = dictService.CreateSystemConstant(systemConstantData);
-                //set default state for 'Text' of the btnSave
-                btnSaveSystemConstant.Text = "Зберегти";
-                //save last selected item
-                //current = gridSystemConstantList.CurrentRow.Index;
+                SystemConstant result = CheckAfterCreate(systemConstantData);
+                codeIAfter = result.CodeI;
                 //update data for grid
                 gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
-                int newPosition = _systemConstantList.FindIndex(el => el.CodeI == result.CodeI);
+                indexSelectedElem = _systemConstantList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
-                gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[newPosition];
+                gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[indexSelectedElem];
+                btnSaveSystemConstant.Text = "Зберегти";
             } else if (btnSaveSystemConstant.Text == "Зберегти")
             {
                 //save changes
-                SystemConstant result = dictService.UpdateSystemConstant(systemConstantData);
+                SystemConstant result = CheckAfterUpdate(systemConstantData);
+                codeIAfter = result.CodeI;
                 //save last selected item
-                current = gridSystemConstantList.CurrentRow.Index;
+                indexSelectedElem = gridSystemConstantList.CurrentRow.Index;
                 //update data for grid
                 gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
                 //select certain item into grid
-                gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[current];
+                gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[indexSelectedElem];
             }
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(codeIAfter);
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
             ControlEnabledActiveElements = true;
+        }
+
+        /// <summary>
+        /// check result data after 'Craete'
+        /// </summary>
+        /// <param name="createItem"></param>
+        /// <returns></returns>
+        private SystemConstant CheckAfterCreate(SystemConstant createItem)
+        {
+            DictionaryService dictService = new DictionaryService();
+            SystemConstant result = new SystemConstant();
+            try
+            {
+                result = dictService.CreateSystemConstant(createItem);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = SystemConstantList[0];
+            }
+            if (result == null)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = SystemConstantList[0];
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// check result data after 'Update'
+        /// </summary>
+        /// <param name="updateItem"></param>
+        /// <returns></returns>
+        private SystemConstant CheckAfterUpdate(SystemConstant updateItem)
+        {
+            DictionaryService dictService = new DictionaryService();
+            SystemConstant result = new SystemConstant();
+            try
+            {
+                result = dictService.UpdateSystemConstant(systemConstantData);
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = SystemConstantList[0];
+            }
+            if (result == null)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = SystemConstantList[0];
+            }
+            return result;
         }
 
         //action 'Cancel' reset changed data for selected item
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            int codeICurrent = SystemConstantList[indexSelectedElem].CodeI;
             //reset changed data
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(codeICurrent);
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
             ControlEnabledActiveElements = true;
         }
 
-        //changed data of the field 'Uk'
-        private void bindingSourceUk_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
-            //{
-            //    if (btnSaveSystemConstant.Text != "Додати")
-            //    {
-            //        //change property 'Text' of the btnSave for 'Save' action
-            //        btnSaveSystemConstant.Text = "Зберегти";
-            //    }
-            //    //stop perform if elements have 'Enabled' -> false
-            //    if (!ControlEnabledActiveElements) return;
-            //    //change 'Enabled' state for elements
-            //    ControlEnabledActiveElements = false;
-            //}
-        }
-
+        /// <summary>
+        /// changed data of the field 'Uk'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtUkLangSystemConstant_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (btnSaveSystemConstant.Text != "Додати")
@@ -271,23 +362,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ControlEnabledActiveElements = false;
         }
 
-        //changed data of the field 'Ru'
-        private void bindingSourceRu_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
-            //{
-            //    if (btnSaveSystemConstant.Text != "Додати")
-            //    {
-            //        //change property 'Text' of the btnSave for 'Save' action
-            //        btnSaveSystemConstant.Text = "Зберегти";
-            //    }
-            //    //stop perform if elements have 'Enabled' -> false
-            //    if (!ControlEnabledActiveElements) return;
-            //    //change 'Enabled' state for elements
-            //    ControlEnabledActiveElements = false;
-            //}
-        }
-
+        /// <summary>
+        /// changed data of the field 'Ru'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtRuLangSystemConstant_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (btnSaveSystemConstant.Text != "Додати")
@@ -301,23 +380,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ControlEnabledActiveElements = false;
         }
 
-        //changed data of the field 'En'
-        private void bindingSourceEn_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
-            //{
-            //    if (btnSaveSystemConstant.Text != "Додати")
-            //    {
-            //        //change property 'Text' of the btnSave for 'Save' action
-            //        btnSaveSystemConstant.Text = "Зберегти";
-            //    }
-            //    //stop perform if elements have 'Enabled' -> false
-            //    if (!ControlEnabledActiveElements) return;
-            //    //change 'Enabled' state for elements
-            //    ControlEnabledActiveElements = false;
-            //}
-        }
-
+        /// <summary>
+        /// changed data of the field 'En'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtEnLangSystemConstant_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (btnSaveSystemConstant.Text != "Додати")
@@ -373,7 +440,5 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 //disallow input
                 e.Handled = true;
         }
-
-        
     }
 }

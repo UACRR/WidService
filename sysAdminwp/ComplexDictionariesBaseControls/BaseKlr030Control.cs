@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
@@ -17,22 +13,32 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseKlr030Control : UserControl
     {
-        //Uk data item
-        KlR030tr ukKlr030;
-        //Ru data item
-        KlR030tr ruKlr030;
-        //En data item
-        KlR030tr enKlr030;
-        //data grid
-        List<KlR030> _klr030List;
+        //define data for different languages
+        private KlR030tr ukKlr030;
+        private KlR030tr ruKlr030;
+        private KlR030tr enKlr030;
+        //define grid data
+        private List<KlR030> _klr030List;
+        public List<KlR030> Klr030List
+        {
+            get { return _klr030List; }
+            set
+            {
+                if (value != null)
+                {
+                    _klr030List = value;
+                    totalKlr030.Text = _klr030List.Count.ToString();
+                }
+            }
+        }
         //item data
-        KlR030 klr030Data;
+        private KlR030 klr030Data;
         //define connector
         private readonly ApiConnector _connector;
         //url for get data to grid
         private readonly string urlDataGrid;
-        //value 'code' for refresh data when 'Cancel' action
-        private int codeForRefresh;
+        //for control current select of grid
+        private int indexSelectedElem;
         //control 'Enabled' state for elements
         private bool controlEnabledActiveElements = false;
         public bool ControlEnabledActiveElements
@@ -60,7 +66,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseKlr030Control(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
-            //initialize connector
             _connector = connector;
             //setup search posibility for textBox element
             txtSearchKlr030.SetUsageGrid(gridKlr030List);
@@ -68,10 +73,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ddlFilterKlr030.DataSource = InitializeDataForFilter();
             //initialize data for binding source of the Dictionaries 'dropDownList'
             bsSimpleDictKlr030.DataSource = ddlFilterKlr030.DataSource;
-            //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
             gridKlr030List.DataSource = HandleDataForGrid(urlForComplexDict);
+            int codeIDefault = Klr030List[0].R030;
             //set default data for bottom panel
             DataUpdateForBottomPanel();
             //set 'Enabled' state by default
