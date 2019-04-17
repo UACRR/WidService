@@ -29,6 +29,7 @@ namespace RightholderWorkplace.Presenters
             _community.SetCommunityList += SetCommunityList;
             _community.GetTemplateCommunity += CreateNewCommunity;
             _community.SaveCommunity += SaveCommunity;
+            _community.SaveAgreementChanges += SaveAgreementChanges;
             _community.GetCommunity += GetCommunity;
             _community.GetCommunityAutorsList += GetCommunityAutorsView;
             _community.GetCommunityRightList += GetCommunityRightList;
@@ -57,13 +58,23 @@ namespace RightholderWorkplace.Presenters
         }
 
         /// <summary>
-        /// збереження спільноти
+        /// Збереження товариства
         /// </summary>
         /// <param name="customer"></param>
         /// <returns></returns>
         private bool SaveCommunity(Customer customer)
         {
             return _service.SaveCommunity(customer);
+        }
+
+        /// <summary>
+        /// Збереження договору товариства
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <returns></returns>
+        private bool SaveAgreementChanges(AgreementAddCommunity arg)
+        {
+            return _service.SaveAgreement(arg);
         }
 
         // завантажити список спільнот на грід

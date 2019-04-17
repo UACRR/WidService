@@ -15,15 +15,32 @@ namespace IpsViewComponentLibrary.CommunityControls
 {
     public partial class CommunityAgreementControl : UserControl
     {
+        private bool _isReadOnlyMode;
         public CommunityAgreementControl()
         {
             InitializeComponent();
             txtDayForPay.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
-            setupObjects();
+            SetupObjects();
         }
 
+        public bool IsReadOnly
+        {
+            get => _isReadOnlyMode;
+            set
+            {
+                _isReadOnlyMode = value;
+                txtAgrNumber.ReadOnly = value;
+                txtDayForPay.ReadOnly = value;
+                txtRateCommis.ReadOnly = value;
+                txtRateCourt.ReadOnly = value;
+                dtAgrDate.ReadOnly = value;
+                dtDateBegin.ReadOnly = value;
+                dtDateEnd.ReadOnly = value;
+                ddlPeriodPayment.ReadOnly = value;
+            }
+        }
 
-        private void setupObjects()
+        private void SetupObjects()
         {
             var ownerName = IpsGlobal.GetProperty("OwnerName");
             radLabel7.Text = $"від сум, отриманих {ownerName ?? "Компанією"} для Автора";

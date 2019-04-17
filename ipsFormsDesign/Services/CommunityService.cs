@@ -99,6 +99,16 @@ namespace ipsFormsDesign.Services
                 _webApi.UpdateItem<Customer>(_prefix + "updatecommunity", customer.CustId.ToString(), customer);
         }
 
+        /// <summary>
+        /// Збереження змін договору спільноти
+        /// </summary>
+        /// <param name="agreement"></param>
+        /// <returns></returns>
+        public bool SaveAgreement(AgreementAddCommunity agreement)
+        {
+            return _webApi.UpdateItem($"{_prefix}updateagreement", agreement.AgrId.ToString(), agreement);
+        }
+
         public bool SaveLimitRights(int cmCustId, int custId, List<CustCmRight> listObj)
         {
             var url = $"lrightsupd/{cmCustId}/{custId}";
