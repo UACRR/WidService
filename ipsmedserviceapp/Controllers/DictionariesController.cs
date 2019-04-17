@@ -505,7 +505,7 @@ namespace ipsmedserviceapp.Controllers
 
             foreach (var item in list)
                 await _dbContext.Entry(item).Collection(rec => rec.DicCategoryItems).Query()
-                        .Where(rec => rec.DicType == "i").LoadAsync();
+                        .Where(rec => rec.DicType == "i" || rec.DicLevel == 2).LoadAsync();
 
             var listOut = list.Where(rec => rec.DicCategoryItems.Count > 0).ToList();
             return Json(listOut);
@@ -520,15 +520,14 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> GetBaseDictionaryList(string dictionay)
         {
             string normalizeName = dictionay.ToLower();
-            if (!baseEng.Keys.Contains(normalizeName))
-                return NotFound();
+            if (!_complexDictionaryList.Contains(normalizeName) && baseEng.Keys.Contains(normalizeName))
+               return await GetBaseDictionary(normalizeName);
             
-
             // складний довіденик
             if (_complexDictionaryList.Contains(normalizeName))
                 return await GetComplexDictionary(normalizeName);
 
-            return await GetBaseDictionary(normalizeName);
+            return NotFound();
         }
 
         /// <summary>
