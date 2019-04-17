@@ -118,17 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="ReportNameTextBox.Value" xml:space="preserve">
-    <value>= IIf((Parameters.categoryCode.Value =5 And Parameters.cmFlag.Value = 0),"ВІДОМІСТЬ 'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА АВТОРІВ ДО УААСП З 'МАЛИХ ПРАВ' '",
-(IIF((Parameters.categoryCode.Value =5 And Parameters.cmFlag.Value = 1), "ВІДОМІСТЬ 'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА АВТОРІВ ДО УААСП З 'ВЕЛИКИХ ПРАВ' '",
-IIF((Parameters.categoryCode.Value =6 And Parameters.cmFlag.Value = 0),"ВІДОМІСТЬ 'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА  ПРАВОВЛАСНИКІВ З 'ВЕЛИКИХ ПРАВ' '",
-"ВІДОМІСТЬ'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА ПРАВОВЛАСНИКІВ З 'ВЕЛИКИХ ПРАВ' '" ))))</value>
+    <value>= IIf((Parameters.categoryCode.Value =5 And Parameters.cmFlag.Value = 0),"11. ВІДОМІСТЬ 'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА АВТОРІВ ДО УААСП З 'МАЛИХ ПРАВ' '",
+(IIF((Parameters.categoryCode.Value =5 And Parameters.cmFlag.Value = 1), "12. ВІДОМІСТЬ 'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА АВТОРІВ ДО УААСП З 'ВЕЛИКИХ ПРАВ' '",
+IIF((Parameters.categoryCode.Value =6 And Parameters.cmFlag.Value = 0),"12. ВІДОМІСТЬ 'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА  ПРАВОВЛАСНИКІВ З 'ВЕЛИКИХ ПРАВ' '",
+"13. ВІДОМІСТЬ'РОЗПОДІЛ АВТОРСЬКОЇ ВИНАГОРОДИ НА ПРАВОВЛАСНИКІВ З 'ВЕЛИКИХ ПРАВ' - ІНШІ ТОВАРИСТВА '" ))))</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
-  <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
-    <value>0.1cm</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ShowSnapGrid" type="System.Boolean, mscorlib">
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </data>
+  </metadata>
+  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+    <value>0.1cm</value>
+  </metadata>
 </root>

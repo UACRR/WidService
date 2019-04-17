@@ -201,7 +201,7 @@ namespace ReportsLibrary
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("interCode", "= Fields.interCode"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("rhName", "= Fields.rhName"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("Community", "= Parameters.Community.Value"));
-            typeReportSource1.TypeName = "ReportsLibrary.R_5_19_2_SR, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Pub" +
+            typeReportSource1.TypeName = "ReportsLibrary.R_5_19_1_BR, ReportsLibrary, Version=1.0.0.0, Culture=neutral, Pub" +
     "licKeyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox11.Action = navigateToReportAction1;
@@ -401,7 +401,6 @@ namespace ReportsLibrary
             // 
             // textBox7
             // 
-            this.textBox7.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.55D), Telerik.Reporting.Drawing.Unit.Cm(2.114D));
             this.textBox7.Style.Font.Bold = true;
@@ -484,7 +483,7 @@ namespace ReportsLibrary
             this.textBox21.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(6D), Telerik.Reporting.Drawing.Unit.Cm(1D));
             this.textBox21.Name = "textBox21";
             this.textBox21.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(11D), Telerik.Reporting.Drawing.Unit.Cm(0.7D));
-            this.textBox21.Value = "Великі права. Звіт про авторську винагороду по Автору  ";
+            this.textBox21.Value = "20. Великі права. Звіт про авторську винагороду по Автору  ";
             // 
             // textBox22
             // 

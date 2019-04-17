@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="sqlDataSource1.ParameterValues" xml:space="preserve">
+    <value>{"@rateCommiss":"-1"}</value>
+  </metadata>
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+    <value>0.1cm</value>
+  </metadata>
   <data name="reportParameter5.Value" xml:space="preserve">
     <value>= IIf(Parameters.month.Value=1,'січень', (IIf(Parameters.month.Value=2,'лютий',(IIf(Parameters.month.Value=3, 'березень',(IIf(Parameters.month.Value=4,'квітень',
 (IIf(Parameters.month.Value=5,'травень', (IIf(Parameters.month.Value=6,'червень', (IIf(Parameters.month.Value=7,'липень', (IIf(Parameters.month.Value=8,
@@ -124,22 +133,11 @@
 (IIf(Parameters.month.Value=11,'листопад', 'грудень'
 )))))))))))))))))))))</value>
   </data>
-  <assembly alias="Telerik.Reporting" name="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
-  <data name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting">
-    <value>0.1cm</value>
-  </data>
   <data name="reportParameter7.Value" xml:space="preserve">
     <value>= IIf(Parameters.month.Value=1,'січеня', (IIf(Parameters.month.Value=2,'лютого',(IIf(Parameters.month.Value=3, 'березеня',(IIf(Parameters.month.Value=4,'квітня',
 (IIf(Parameters.month.Value=5,'травня', (IIf(Parameters.month.Value=6,'червеня', (IIf(Parameters.month.Value=7,'липня', (IIf(Parameters.month.Value=8,
 'серпня',(IIf(Parameters.month.Value=9,'вересня', (IIf(Parameters.month.Value=10,'жовтня', 
 (IIf(Parameters.month.Value=11,'листопада', 'грудня'
 )))))))))))))))))))))</value>
-  </data>
-  <data name="sqlDataSource1.ParameterValues" xml:space="preserve">
-    <value>{"@rateCommiss":"-1"}</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ShowSnapGrid" type="System.Boolean, mscorlib">
-    <value>True</value>
   </data>
 </root>
