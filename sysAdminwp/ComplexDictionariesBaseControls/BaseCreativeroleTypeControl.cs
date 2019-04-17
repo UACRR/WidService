@@ -13,7 +13,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCreativeroleTypeControl : UserControl
     {
-        //define data for deifferenet languages
+        //define data for differenet languages
         private CreativeRoleTypeTr ukCreativeroleType;
         private CreativeRoleTypeTr ruCreativeroleType;
         private CreativeRoleTypeTr enCreativeroleType;
@@ -164,6 +164,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             bsEnLangCreativeRoleType.DataSource = enCreativeroleType;
         }
 
+        /// <summary>
+        /// //check after 'Get' query
+        /// </summary>
+        /// <param name="codeI"></param>
+        /// <returns></returns>
         private CreativeRoleType CheckAfterGetQuery(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
@@ -266,6 +271,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(codeNew);
         }
 
+        /// <summary>
+        /// control delete state
+        /// </summary>
+        /// <param name="codeI"></param>
+        /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
             DictionaryService dictService = new DictionaryService();
