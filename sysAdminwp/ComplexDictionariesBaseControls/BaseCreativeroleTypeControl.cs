@@ -14,13 +14,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
     public partial class BaseCreativeroleTypeControl : UserControl
     {
         //define data for deifferenet languages
-        CreativeRoleTypeTr ukCreativeroleType;
-        CreativeRoleTypeTr ruCreativeroleType;
-        CreativeRoleTypeTr enCreativeroleType;
+        private CreativeRoleTypeTr ukCreativeroleType;
+        private CreativeRoleTypeTr ruCreativeroleType;
+        private CreativeRoleTypeTr enCreativeroleType;
         //define grid data
-        List<CreativeRoleType> _creativeroleTypeList;
+        private List<CreativeRoleType> _creativeroleTypeList;
         //item data
-        CreativeRoleType creativeroleTypeData;
+        private CreativeRoleType creativeroleTypeData;
         //define 'Delete', 'Create', 'Update'
         private readonly ApiConnector _connector;
         //url for get data to grid
