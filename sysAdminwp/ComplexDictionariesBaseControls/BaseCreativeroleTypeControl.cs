@@ -83,9 +83,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
-            List<ViewTable> dataGrid = new List<ViewTable>();
             //check on valid state parameter
-            if (urlForGetDataDictionaries == null) return dataGrid;
+            if (urlForGetDataDictionaries == null) return new List<ViewTable>();
+            List<ViewTable> dataGrid = new List<ViewTable>();
             //get data dictionaries -> for grid
             CreativeroleTypeList = _connector.GetList<CreativeRoleType>(urlForGetDataDictionaries);
             //initialize grid data
@@ -232,7 +232,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
             CreativeRoleType item = CreativeroleTypeList[indexSelectedElem];
-            bool result = dictService.DeleteCreativeRoleType(item.CodeI);
+            bool result = CheckAfterDelete(item.CodeI);
             //update data for grid
             gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
             //step up in grid position
@@ -244,28 +244,42 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(codeNew);
         }
 
+        private bool CheckAfterDelete(int codeI)
+        {
+            DictionaryService dictService = new DictionaryService();
+            bool result;
+            try
+            {
+                result = dictService.DeleteCreativeRoleType(codeI);
+            } catch (Exception exp)
+            {
+                MessageBox.Show("об'єкт не видалений");
+                result = false;
+            }
+            return result;
+        }
+
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
             //refresh bottom panel
             int codeIAfter = 0;
-            DictionaryService dictService = new DictionaryService();
             if (btnSaveCreativeroleType.Text == "Додати")
             {
                 //send created object
-                CreativeRoleType result = dictService.CreateCreativeRoleType(creativeroleTypeData);
+                CreativeRoleType result = CheckAfterCreate(creativeroleTypeData);
+                indexSelectedElem = CreativeroleTypeList.FindIndex(el => el.CodeI == result.CodeI);
                 codeIAfter = result.CodeI;
-                //set default state for 'Text' of the btnSave
-                btnSaveCreativeroleType.Text = "Зберегти";
                 //update data for grid
                 gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlDataGrid);
-                indexSelectedElem = CreativeroleTypeList.FindIndex(el => el.CodeI == result.CodeI);
                 //select certain item into grid
                 gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[indexSelectedElem];
+                //set default state for 'Text' of the btnSave
+                btnSaveCreativeroleType.Text = "Зберегти";
             } else if (btnSaveCreativeroleType.Text == "Зберегти")
             {
                 //save changes
-                CreativeRoleType result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
+                CreativeRoleType result = CheckAfterUpdate(creativeroleTypeData);
                 codeIAfter = result.CodeI;
                 //save last selected item
                 indexSelectedElem = gridCreativeroleTypeList.CurrentRow.Index;
@@ -279,6 +293,48 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
             ControlEnabledActiveElements = true;
+        }
+
+        /// <summary>
+        /// check result data after 'Create'
+        /// </summary>
+        /// <param name="createItem"></param>
+        /// <returns></returns>
+        private CreativeRoleType CheckAfterCreate(CreativeRoleType createItem)
+        {
+            DictionaryService dictService = new DictionaryService();
+            CreativeRoleType result = new CreativeRoleType();
+            try
+            {
+                result = dictService.CreateCreativeRoleType(createItem);
+            } catch (Exception exp)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = CreativeroleTypeList[0];
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// check result data after 'Update'
+        /// </summary>
+        /// <param name="updateItem"></param>
+        /// <returns></returns>
+        private CreativeRoleType CheckAfterUpdate(CreativeRoleType updateItem)
+        {
+            DictionaryService dictService = new DictionaryService();
+            CreativeRoleType result = new CreativeRoleType();
+            try
+            {
+                result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
+            } catch (Exception exp)
+            {
+                MessageBox.Show("Помилка формату");
+                //select first element of grid by default
+                result = CreativeroleTypeList[0];
+            }
+            return result;
         }
 
         //action 'Cancel' reset changed data for selected item
