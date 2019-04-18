@@ -13,6 +13,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCopyrightKindControl : UserControl
     {
+        private DictionaryService _dictService;
         //define data for different languages
         private CopyrightKindTr ukCopyrightKind;
         private CopyrightKindTr ruCopyrightKind;
@@ -82,6 +83,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ControlEnabledActiveElements = true;
             
         }
+
+        private DictionaryService GetInstance()
+        {
+            if (_dictService == null)
+            {
+                _dictService = new DictionaryService();
+            }
+            return _dictService;
+        }
         
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
@@ -136,7 +146,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //get object by parameter 'code' from service
             copyrightKindData = dictService.GetCopyrightKind(codeI);
             //use data for binding source
@@ -170,7 +180,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //check after 'Get' query
         private CopyrightKind CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             CopyrightKind result = dictService.GetCopyrightKind(codeI);
             if (result == null)
             {
@@ -247,7 +257,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //delete selected item of grid by field 'Code'
             CopyrightKind item = CopyrightKindList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
@@ -270,7 +280,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             bool result = dictService.DeleteCopyrightKind(codeI);
             if (!result)
             {
@@ -319,7 +329,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private CopyrightKind CheckAfterCreate(CopyrightKind createItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             CopyrightKind result = new CopyrightKind();
             if (result == null)
             {
@@ -337,7 +347,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CopyrightKind CheckAfterUpdate(CopyrightKind updateItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             CopyrightKind result = new CopyrightKind();
             if (result == null)
             {

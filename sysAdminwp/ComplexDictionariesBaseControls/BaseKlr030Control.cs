@@ -13,6 +13,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseKlr030Control : UserControl
     {
+        private DictionaryService _dictService;
         //define data for different languages
         private KlR030tr ukKlr030;
         private KlR030tr ruKlr030;
@@ -83,7 +84,16 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ControlEnabledActiveElements = true;
             
         }
-        
+
+        private DictionaryService GetInstance()
+        {
+            if (_dictService == null)
+            {
+                _dictService = new DictionaryService();
+            }
+            return _dictService;
+        }
+
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
@@ -138,7 +148,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(string codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //set default first item of the grid
             //if (codeForRefresh == 0) codeForRefresh = int.TryParse(_klr030List[0].R030, out int code) ? code : 0;
             //KlR030 item = _klr030List[codeForRefresh];
@@ -179,7 +189,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private KlR030 CheckAfterGetQuery(string codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             KlR030 result = new KlR030();
             if (int.TryParse(codeI, out int code))
                 result = dictService.GetKlR030(code);
@@ -259,7 +269,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //delete selected item of grid by field 'Code'
             KlR030 item = Klr030List[indexSelectedElem];
             bool result = CheckAfterDelete((int)item.R031);
@@ -281,7 +291,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             bool result = dictService.DeleteKlR030(codeI);
             if (!result)
             {
@@ -336,7 +346,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private KlR030 CheckAfterCreate(KlR030 createItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             KlR030 result = dictService.CreateKlR030(createItem);
             if (result == null)
             {
@@ -354,7 +364,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private KlR030 CheckAfterUpdate(KlR030 updateItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             KlR030 result = dictService.UpdateKlR030(klr030Data);
             if (result == null)
             {

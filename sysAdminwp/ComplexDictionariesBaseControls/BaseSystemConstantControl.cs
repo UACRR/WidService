@@ -11,6 +11,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseSystemConstantControl : UserControl
     {
+        private DictionaryService _dictService;
         //define data for different languages
         private SystemConstantTr ukSystemConstant;
         private SystemConstantTr ruSystemConstant;
@@ -75,6 +76,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set 'Enabled' state by default
             ControlEnabledActiveElements = true;
         }
+
+        private DictionaryService GetInstance()
+        {
+            if (_dictService == null)
+            {
+                _dictService = new DictionaryService();
+            }
+            return _dictService;
+        }
         
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
@@ -118,7 +128,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //get object by parameter 'code' from service
             systemConstantData = dictService.GetSystemConstant(codeI);
             //use data for binding source
@@ -156,7 +166,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             SystemConstant result = dictService.GetSystemConstant(codeI);
             if (result == null)
             {
@@ -196,7 +206,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //delete selected item of grid by field 'Code'
             SystemConstant item = _systemConstantList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
@@ -217,7 +227,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             bool result = dictService.DeleteCreativeRoleType(codeI);
             if (!result)
             {
@@ -269,7 +279,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterCreate(SystemConstant createItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             SystemConstant result = dictService.CreateSystemConstant(createItem);
             if (result == null)
             {
@@ -287,7 +297,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterUpdate(SystemConstant updateItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             SystemConstant result = dictService.UpdateSystemConstant(systemConstantData);
             if (result == null)
             {
