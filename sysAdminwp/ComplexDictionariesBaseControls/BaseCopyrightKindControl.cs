@@ -181,7 +181,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             CopyrightKind result = _service.GetCopyrightKind(codeI);
             if (result == null)
             {
-                MessageBox.Show("об'єкт не знайдено");
+                MessageBox.Show(GetMess);
                 //set select first element of grid
                 result = CopyrightKindList[0];
             }
