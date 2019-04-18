@@ -215,7 +215,6 @@
             // bsKlr030
             // 
             this.bsKlr030.DataSource = typeof(ipsFormsDesign.Model.KlR030);
-            this.bsKlr030.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtRuLangKlr030
             // 
@@ -231,7 +230,6 @@
             // bsRuLangKlr030
             // 
             this.bsRuLangKlr030.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsRuLangKlr030.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
             // 
             // txtEnLangKlr030
             // 
@@ -247,7 +245,6 @@
             // bsEnLangKlr030
             // 
             this.bsEnLangKlr030.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsEnLangKlr030.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
             // 
             // txtUkLangKlr030
             // 
@@ -263,7 +260,6 @@
             // bsUkLangKlr030
             // 
             this.bsUkLangKlr030.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsUkLangKlr030.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
             // txtCodeKlr030
             // 
