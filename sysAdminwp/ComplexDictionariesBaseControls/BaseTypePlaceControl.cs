@@ -13,7 +13,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseTypePlaceControl : UserControl
     {
-        private DictionaryService _dictionaryService;
+        private DictionaryService _dictionaryService = DictionaryService.GetInstance();
         //define data for different languages
         private TypePlaceTr ukTypePlace;
         private TypePlaceTr ruTypePlace;
@@ -84,13 +84,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ControlEnabledActiveElements = true;
             
         }
-        
-        private DictionaryService GetInstance()
-        {
-            if (_dictionaryService == null)
-                _dictionaryService = new DictionaryService();
-            return _dictionaryService;
-        }
 
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
@@ -146,9 +139,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
-            typePlaceData = dictService.GetTypePlace(codeI);
+            //typePlaceData = dictService.GetTypePlace(codeI);
             //use data for binding source
             bsTypePlace.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
@@ -179,8 +172,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private TypePlace CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = GetInstance();
-            TypePlace result = dictService.GetTypePlace(codeI);
+            TypePlace result = _dictionaryService.GetTypePlace(codeI);
             if (result == null)
             {
                 MessageBox.Show("об'єкт не знайдено");
@@ -256,10 +248,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = GetInstance();
             //delete selected item of grid by field 'Code'
             TypePlace item = _typePlaceList[indexSelectedElem];
-            bool result = dictService.DeleteTypePlace(item.CodeI);
+            bool result = _dictionaryService.DeleteTypePlace(item.CodeI);
             //update data for grid
             gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);
             //step up in grid position
@@ -278,8 +269,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = GetInstance();
-            bool result = dictService.DeleteTypePlace(codeI);
+            bool result = _dictionaryService.DeleteTypePlace(codeI);
             if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");
@@ -331,8 +321,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private TypePlace CheckAfterCreate(TypePlace createItem)
         {
-            DictionaryService dictService = new DictionaryService();
-            TypePlace result = dictService.CreateTypePlace(createItem);
+            //DictionaryService dictService = new DictionaryService();
+            TypePlace result = _dictionaryService.CreateTypePlace(createItem);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
@@ -349,8 +339,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private TypePlace CheckAfterUpdate(TypePlace updateItem)
         {
-            DictionaryService dictService = new DictionaryService();
-            TypePlace result = dictService.UpdateTypePlace(typePlaceData);
+            //DictionaryService dictService = new DictionaryService();
+            TypePlace result = _dictionaryService.UpdateTypePlace(typePlaceData);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");

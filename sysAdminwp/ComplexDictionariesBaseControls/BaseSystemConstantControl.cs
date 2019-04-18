@@ -81,7 +81,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (_dictService == null)
             {
-                _dictService = new DictionaryService();
+                //_dictService = new DictionaryService();
             }
             return _dictService;
         }

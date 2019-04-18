@@ -13,7 +13,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCreativeroleTypeControl : UserControl
     {
-        private DictionaryService _dictService;
+        private readonly DictionaryService _dictService = DictionaryService.GetInstance();
         //define data for differenet languages
         private CreativeRoleTypeTr ukCreativeroleType;
         private CreativeRoleTypeTr ruCreativeroleType;
@@ -94,7 +94,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (_dictService == null)
             {
-                _dictService = new DictionaryService();
+                //_dictService = new DictionaryService();
             }
             return _dictService;
         }
@@ -188,7 +188,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             CreativeRoleType result = new CreativeRoleType();
             if (result == null)
             {
@@ -264,7 +264,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
             CreativeRoleType item = CreativeroleTypeList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
@@ -286,8 +286,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
-            bool result = dictService.DeleteCreativeRoleType(codeI);
+            //DictionaryService dictService = new DictionaryService();
+            bool result = _dictService.DeleteCreativeRoleType(codeI);
             if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");
@@ -339,8 +339,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterCreate(CreativeRoleType createItem)
         {
-            DictionaryService dictService = new DictionaryService();
-            CreativeRoleType result = dictService.CreateCreativeRoleType(createItem);
+            //DictionaryService dictService = new DictionaryService();
+            CreativeRoleType result = _dictService.CreateCreativeRoleType(createItem);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");
@@ -357,8 +357,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterUpdate(CreativeRoleType updateItem)
         {
-            DictionaryService dictService = new DictionaryService();
-            CreativeRoleType result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
+            //DictionaryService dictService = new DictionaryService();
+            CreativeRoleType result = _dictService.UpdateCreativeRoleType(creativeroleTypeData);
             if (result == null)
             {
                 MessageBox.Show("Помилка формату");

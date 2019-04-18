@@ -13,7 +13,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseGenreTypeControl : UserControl
     {
-        private DictionaryService _dictService;
+        private readonly DictionaryService _dictService = DictionaryService.GetInstance();
         //define data for different languages
         private GenreTypeTr ukGenreType;
         private GenreTypeTr ruGenreType;
@@ -90,7 +90,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             if (_dictService == null)
             {
-                _dictService = new DictionaryService();
+                //_dictService = new DictionaryService();
             }
             return _dictService;
         }
@@ -279,8 +279,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = GetInstace();
-            bool result = dictService.DeleteGenreType(codeI);
+            bool result = _dictService.DeleteGenreType(codeI);
             if (!result)
             {
                 MessageBox.Show("об'єкт не видалений");

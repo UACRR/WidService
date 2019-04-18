@@ -17,16 +17,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCountryControl : UserControl
     {
-        //Uk data item
-        CountryTr ukCountry;
-        //Ru data item
-        CountryTr ruCountry;
-        //En data item
-        CountryTr enCountry;
-        //data grid
-        List<Country> _countryList;
+        private readonly List<string> Langs = new List<string>
+        {
+            "Uk", "Ru", "En"
+        };
+        private readonly DictionaryService _dictionaryService = DictionaryService.GetInstance();
+        //define data for different languages
+        private CountryTr ukCountry;
+        private CountryTr ruCountry;
+        private CountryTr enCountry;
+        //define grid data
+        private List<Country> _countryList;
+        public List<Country> CountryList
+        {
+            get => _countryList;
+            set { }
+        }
         //item data
-        Country countryData;
+        private Country countryData;
         //define connector
         private readonly ApiConnector _connector;
         //url for get data to grid
@@ -137,11 +145,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel()
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _countryList[0].ContinentCode ?? 1;
             //get object by parameter 'code' from service
-            countryData = dictService.GetCountry(codeForRefresh);
+            countryData = _dictionaryService.GetCountry(codeForRefresh);
             //use data for binding source
             bsCountry.DataSource = countryData;
             //define binding for source of the 'Uk'
@@ -254,11 +262,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //for save last index selected item
             int current = 0;
 
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             if (btnSaveCountry.Text == "Додати")
             {
                 //send created object
-                var result = dictService.CreateCountry(countryData);
+                var result = _dictionaryService.CreateCountry(countryData);
                 //set default state for 'Text' of the btnSave
                 btnSaveCountry.Text = "Зберегти";
                 //save last selected item
@@ -271,7 +279,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             } else if (btnSaveCountry.Text == "Зберегти")
             {
                 //save changes
-                var result = dictService.UpdateCountry(countryData);
+                var result = _dictionaryService.UpdateCountry(countryData);
                 //save last selected item
                 current = gridCountryList.CurrentRow.Index;
                 //update data for grid
