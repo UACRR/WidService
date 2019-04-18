@@ -13,6 +13,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseGenreTypeControl : UserControl
     {
+        private DictionaryService _dictService;
         //define data for different languages
         private GenreTypeTr ukGenreType;
         private GenreTypeTr ruGenreType;
@@ -85,6 +86,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             
         }
         
+        private DictionaryService GetInstance()
+        {
+            if (_dictService == null)
+            {
+                _dictService = new DictionaryService();
+            }
+            return _dictService;
+        }
+
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
@@ -138,7 +148,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //get object by parameter 'code' from service
             genreTypeData = dictService.GetGenreType(codeI);
             //use data for binding source
@@ -171,7 +181,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private GenreType CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             GenreType result = dictService.GetGenreType(codeI);
             if (result == null)
             {
@@ -247,7 +257,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //delete selected item of grid by field 'Code'
             GenreType item = GenreTypeList[indexSelectedElem];
             bool result = dictService.DeleteGenreType(item.CodeI);
@@ -269,7 +279,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstace();
             bool result = dictService.DeleteGenreType(codeI);
             if (!result)
             {
@@ -322,7 +332,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private GenreType CheckAfterCreate(GenreType createItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             GenreType result = dictService.CreateGenreType(createItem);
             if (result == null)
             {
@@ -340,7 +350,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private GenreType CheckAfterUpdate(GenreType updateItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             GenreType result = dictService.UpdateGenreType(genreTypeData);
             if (result == null)
             {

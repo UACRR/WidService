@@ -13,6 +13,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseTypePlaceControl : UserControl
     {
+        private DictionaryService _dictionaryService;
         //define data for different languages
         private TypePlaceTr ukTypePlace;
         private TypePlaceTr ruTypePlace;
@@ -84,6 +85,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             
         }
         
+        private DictionaryService GetInstance()
+        {
+            if (_dictionaryService == null)
+                _dictionaryService = new DictionaryService();
+            return _dictionaryService;
+        }
+
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
@@ -171,7 +179,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private TypePlace CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             TypePlace result = dictService.GetTypePlace(codeI);
             if (result == null)
             {
@@ -248,7 +256,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             //delete selected item of grid by field 'Code'
             TypePlace item = _typePlaceList[indexSelectedElem];
             bool result = dictService.DeleteTypePlace(item.CodeI);
@@ -270,7 +278,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = GetInstance();
             bool result = dictService.DeleteTypePlace(codeI);
             if (!result)
             {
