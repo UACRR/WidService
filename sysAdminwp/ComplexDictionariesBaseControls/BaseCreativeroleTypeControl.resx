@@ -124,12 +124,12 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="bsRuLangCreativeRoleType.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>653, 17</value>
+    <value>812, 21</value>
   </metadata>
   <metadata name="bsEnLangCreativeRoleType.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>364, 17</value>
   </metadata>
   <metadata name="bsUkLangCreativeRoleType.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>508, 17</value>
+    <value>582, 14</value>
   </metadata>
 </root>

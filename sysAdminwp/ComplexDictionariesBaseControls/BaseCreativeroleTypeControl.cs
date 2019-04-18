@@ -140,7 +140,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
             creativeroleTypeData = CheckAfterGetQuery(codeI);
             //use data for binding source
@@ -178,7 +178,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             CreativeRoleType result = new CreativeRoleType();
             if (result == null)
             {
@@ -254,7 +254,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
             CreativeRoleType item = CreativeroleTypeList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
@@ -276,7 +276,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = DictionaryService.GetInstance();
             bool result = dictService.DeleteCreativeRoleType(codeI);
             if (!result)
             {
@@ -329,7 +330,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterCreate(CreativeRoleType createItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = DictionaryService.GetInstance();
             CreativeRoleType result = dictService.CreateCreativeRoleType(createItem);
             if (result == null)
             {
@@ -347,7 +349,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterUpdate(CreativeRoleType updateItem)
         {
-            DictionaryService dictService = new DictionaryService();
+            DictionaryService dictService = DictionaryService.GetInstance();
             CreativeRoleType result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
             if (result == null)
             {
