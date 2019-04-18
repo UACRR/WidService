@@ -95,9 +95,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtSearchCreativeroleType.SetUsageGrid(gridCreativeroleTypeList);
             
             //set default data for bottom panel
-            DataUpdateForBottomPanel(
-                CreativeroleTypeList[0].CodeI
-                );
+            if (CreativeroleTypeList.Count != 0)
+                DataUpdateForBottomPanel(
+                    CreativeroleTypeList[0].CodeI
+                    );
             ControlEnabledActiveElements = true;
         }
 
@@ -108,6 +109,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
             //get data dictionaries -> for grid
             CreativeroleTypeList = _connector.GetList<CreativeRoleType>(urlForGetDataDictionaries);
+            //return if data is not exist
+            if (CreativeroleTypeList == null) return new List<ViewTable>();
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in CreativeroleTypeList)
@@ -291,7 +294,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (!result)
             {
                 MessageShow.ShowError(DelMess);
-                result = false;
             }
             return result;
         }

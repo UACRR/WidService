@@ -91,9 +91,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtSearchGenreType.SetUsageGrid(gridGenreTypeList);
             
             //set default data for bottom panel
-            DataUpdateForBottomPanel(
-                GenreTypeList[0].CodeI
-                );
+            if (GenreTypeList.Count != 0)
+                DataUpdateForBottomPanel(
+                    GenreTypeList[0].CodeI
+                    );
             ControlEnabledActiveElements = true;
         }
 
@@ -104,6 +105,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
             //get data dictionaries -> for grid
             GenreTypeList = _connector.GetList<GenreType>(urlForGetDataDictionaries);
+            //data is not exist
+            if (GenreTypeList == null) return new List<ViewTable>();
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in GenreTypeList)

@@ -90,9 +90,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtSearchCopyrightKind.SetUsageGrid(gridCopyrightKindList);
             
             //set default data for bottom panel
-            DataUpdateForBottomPanel(
-                CopyrightKindList[0].CodeI
-                );
+            if (CopyrightKindList.Count != 0)
+                DataUpdateForBottomPanel(
+                    CopyrightKindList[0].CodeI
+                    );
 
             ControlEnabledActiveElements = true;
         }
@@ -104,6 +105,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
             //get data dictionaries -> for grid
             CopyrightKindList = _connector.GetList<CopyrightKind>(urlForGetDataDictionaries);
+            //return if data is not exist
+            if (CopyrightKindList == null) return new List<ViewTable>();
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in CopyrightKindList)

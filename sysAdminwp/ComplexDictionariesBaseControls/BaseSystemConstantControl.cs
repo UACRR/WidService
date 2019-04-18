@@ -82,9 +82,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //setup search posibility for textBox element
             txtSearchSystemConstant.SetUsageGrid(gridSystemConstantList);
             //set default data for bottom panel
-            DataUpdateForBottomPanel(
-                SystemConstantList[0].CodeI
-                );
+            if (SystemConstantList.Count != 0)
+                DataUpdateForBottomPanel(
+                    SystemConstantList[0].CodeI
+                    );
             ControlEnabledActiveElements = true;
         }
         
@@ -95,6 +96,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
             //get data dictionaries -> for grid
             SystemConstantList = _connector.GetList<SystemConstant>(urlForGetDataDictionaries);
+            if (SystemConstantList == null) return new List<ViewTable>();
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in SystemConstantList)

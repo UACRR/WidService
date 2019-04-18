@@ -89,9 +89,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtSearchKlr030.SetUsageGrid(gridKlr030List);
             
             //set default data for bottom panel
-            DataUpdateForBottomPanel(
-                Klr030List[0].R030
-                );
+            if (Klr030List.Count != 0)
+                DataUpdateForBottomPanel(
+                    Klr030List[0].R030
+                    );
             ControlEnabledActiveElements = true;
         }
 
@@ -102,6 +103,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
             //get data dictionaries -> for grid
             Klr030List = _connector.GetList<KlR030>(urlForGetDataDictionaries);
+            //return data is not exist
+            if (Klr030List == null) return new List<ViewTable>();
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in Klr030List)

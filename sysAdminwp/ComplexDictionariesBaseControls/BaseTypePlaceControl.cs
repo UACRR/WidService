@@ -90,9 +90,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtSearchTypePlace.SetUsageGrid(gridTypePlaceList);
             
             //set default data for bottom panel
-            DataUpdateForBottomPanel(
-                TypePlaceList[0].CodeI
-                );
+            if (TypePlaceList.Count != 0)
+                DataUpdateForBottomPanel(
+                    TypePlaceList[0].CodeI
+                    );
             ControlEnabledActiveElements = true;
         }
 
@@ -103,6 +104,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
             //get data dictionaries -> for grid
             TypePlaceList = _connector.GetList<TypePlace>(urlForGetDataDictionaries);
+            //data is not exist
+            if (TypePlaceList == null) return new List<ViewTable>();
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in TypePlaceList)
