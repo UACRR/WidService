@@ -10,8 +10,20 @@ namespace ipsFormsDesign.Services
 {
     public class DictionaryService
     {
-        private ApiConnector _webApi = new ApiConnector();
+        private readonly ApiConnector _webApi = new ApiConnector();
         private readonly string _prefix = "dictionary/";
+        private static DictionaryService _service;
+
+        private DictionaryService() { }
+
+        public static DictionaryService GetInstance()
+        {
+            if (_service == null)
+                _service = new DictionaryService();
+
+            return _service;
+        }
+
 
         // CopyRightKind BEGIN ********************
         public CopyrightKind GetCopyrightKind( int id )
