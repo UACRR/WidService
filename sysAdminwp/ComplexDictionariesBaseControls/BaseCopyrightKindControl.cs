@@ -82,12 +82,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             InitializeComponent();
             _connector = connector;
             urlDataGrid = urlForComplexDict;
+            //initialize data for drop down lists
+            ddlFilterCopyrightKind.DataSource = bsSimpleDictCopyrightKind.DataSource = InitializeDataForFilter();
             //initialize data for grid
             gridCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
             txtSearchCopyrightKind.SetUsageGrid(gridCopyrightKindList);
-            //initialize data for drop down lists
-            ddlFilterCopyrightKind.DataSource = bsSimpleDictCopyrightKind.DataSource = InitializeDataForFilter();
+            
             //set default data for bottom panel
             DataUpdateForBottomPanel(
                 CopyrightKindList[0].CodeI

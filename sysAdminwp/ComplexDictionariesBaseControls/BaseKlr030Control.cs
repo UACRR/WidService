@@ -77,32 +77,16 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         }
         public BaseKlr030Control(ApiConnector connector, string urlForComplexDict)
         {
-            //InitializeComponent();
-            //_connector = connector;
-            ////setup search posibility for textBox element
-            //txtSearchKlr030.SetUsageGrid(gridKlr030List);
-            ////initialize data for drop down list - 'Спосіб використання'
-            //ddlFilterKlr030.DataSource = InitializeDataForFilter();
-            ////initialize data for binding source of the Dictionaries 'dropDownList'
-            //bsSimpleDictKlr030.DataSource = ddlFilterKlr030.DataSource;
-            //urlDataGrid = urlForComplexDict;
-            ////initialize data for grid
-            //gridKlr030List.DataSource = HandleDataForGrid(urlForComplexDict);
-            //string codeIDefault = Klr030List[0].R030;
-            ////set default data for bottom panel
-            //DataUpdateForBottomPanel(codeIDefault);
-            ////set 'Enabled' state by default
-            //ControlEnabledActiveElements = true;
-
             InitializeComponent();
             _connector = connector;
             urlDataGrid = urlForComplexDict;
+            //initialize data for drop down lists
+            ddlFilterKlr030.DataSource = bsSimpleDictKlr030.DataSource = InitializeDataForFilter();
             //initialize data for grid
             gridKlr030List.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
             txtSearchKlr030.SetUsageGrid(gridKlr030List);
-            //initialize data for drop down lists
-            ddlFilterKlr030.DataSource = bsSimpleDictKlr030.DataSource = InitializeDataForFilter();
+            
             //set default data for bottom panel
             DataUpdateForBottomPanel(
                 Klr030List[0].R030

@@ -86,12 +86,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             InitializeComponent();
             _connector = connector;
             urlDataGrid = urlForComplexDict;
+            //initialize data for drop down lists
+            ddlFilterCreativeroleType.DataSource = bsSimpleDictCreativeRoleType.DataSource = InitializeDataForFilter();
             //initialize data for grid
             gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
             txtSearchCreativeroleType.SetUsageGrid(gridCreativeroleTypeList);
-            //initialize data for drop down lists
-            ddlFilterCreativeroleType.DataSource = bsSimpleDictCreativeRoleType.DataSource = InitializeDataForFilter();
+            
             //set default data for bottom panel
             DataUpdateForBottomPanel(
                 CreativeroleTypeList[0].CodeI

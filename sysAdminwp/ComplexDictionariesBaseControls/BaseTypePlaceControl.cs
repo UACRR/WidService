@@ -81,12 +81,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             InitializeComponent();
             _connector = connector;
             urlDataGrid = urlForComplexDict;
+            //initialize data for drop down lists
+            ddlFilterTypePlace.DataSource = bsSimpleDictTypePlace.DataSource = InitializeDataForFilter();
             //initialize data for grid
             gridTypePlaceList.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
             txtSearchTypePlace.SetUsageGrid(gridTypePlaceList);
-            //initialize data for drop down lists
-            ddlFilterTypePlace.DataSource = bsSimpleDictTypePlace.DataSource = InitializeDataForFilter();
+            
             //set default data for bottom panel
             DataUpdateForBottomPanel(
                 TypePlaceList[0].CodeI
