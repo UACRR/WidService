@@ -8,12 +8,15 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCopyrightKindControl : UserControl
     {
-        private DictionaryService _dictService;
+        private readonly DictionaryService _service;
+        private readonly ApiConnector _connector;
+
         //define data for different languages
         private CopyrightKindTr ukCopyrightKind;
         private CopyrightKindTr ruCopyrightKind;
@@ -21,20 +24,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //define grid data
         private List<CopyrightKind> _copyrightKindList;
         public List<CopyrightKind> CopyrightKindList {
-            get { return _copyrightKindList; }
+            get => _copyrightKindList;
             set
             {
-                if(value != null)
+                if (value != null)
                 {
                     _copyrightKindList = value;
                     totalCopyrightKind.Text = _copyrightKindList.Count.ToString();
+                    ukCopyrightKind = null;
                 }
             }
         }
         //item data
         private CopyrightKind copyrightKindData;
-        //define 'Delete', 'Create', 'Update'
-        private readonly ApiConnector _connector;
         //url for get data to grid
         private readonly string urlDataGrid;
         //for control current select of grid
@@ -63,10 +65,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 btnCancelCopyrightKind.Enabled = !value;
             }
         }
+
         public BaseCopyrightKindControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
             _connector = connector;
+            _service = DictionaryService.GetInstance();
+
             //setup search posibility for textBox element
             txtSearchCopyrightKind.SetUsageGrid(gridCopyrightKindList);
             //initialize data for drop down list - 'Спосіб використання'
@@ -81,7 +86,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(codeDefault);
             //set 'Enabled' state by default
             ControlEnabledActiveElements = true;
-            
         }
 
         private DictionaryService GetInstance()
@@ -119,36 +123,30 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //handle data for drop down list - 'Спосіб використання'
         private List<DictBaseTypeI> InitializeDataForFilter()
         {
-            List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
             //get data for drop down list
-            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
+            var dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
             //check data
-            return dataDropDownList != null ? dataDropDownList : new List<DictBaseTypeI>();
+            return dataDropDownList ?? new List<DictBaseTypeI>();
         }
 
         //show data for bottom panel
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
-            //get id dictionary
-            GridViewRowInfo rowDetail = gridCopyrightKindList.CurrentRow;
-            //get data of the current row
-            ViewTable @curRow = rowDetail.DataBoundItem as ViewTable;
-            //stop perform if data is not exist
-            if (@curRow == null) return;
-            //check field 'Code' on correct type 'int'
-            if (!int.TryParse(@curRow.Code, out int code)) return;
-            //save value 'code' -> fr refresh data when 'Cancel' action
+            if (!(gridCopyrightKindList.CurrentRow.DataBoundItem is ViewTable currentRow))
+                return;
+
+            if (!int.TryParse(currentRow.Code, out int code))
+                return;
             indexSelectedElem = CopyrightKindList.FindIndex(el => el.CodeI == code);
-            //update data for bottom panel
             DataUpdateForBottomPanel(code);
         }
 
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            DictionaryService dictService = GetInstance();
+            DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
-            copyrightKindData = dictService.GetCopyrightKind(codeI);
+            copyrightKindData = _service.GetCopyrightKind(codeI);
             //use data for binding source
             bsCopyrightKind.DataSource = copyrightKindData;
             //define binding for source of the 'Uk'
@@ -180,7 +178,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //check after 'Get' query
         private CopyrightKind CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = GetInstance();
+            DictionaryService dictService = new DictionaryService();
             CopyrightKind result = dictService.GetCopyrightKind(codeI);
             if (result == null)
             {
@@ -257,12 +255,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = GetInstance();
+            DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
             CopyrightKind item = CopyrightKindList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
             //update data for grid
             gridCopyrightKindList.DataSource = HandleDataForGrid(urlDataGrid);
+
+            // TODO: DataSource гріда через BindingSource
+            //BindingSource bs = new BindingSource();
+            //bs.DataSource = HandleDataForGrid(urlDataGrid);
+            //bs.ResetBindings(false);
+
             //step up in grid position
             if (result) --indexSelectedElem;
             if (indexSelectedElem < 0) indexSelectedElem = 0;
@@ -280,12 +284,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = GetInstance();
+            DictionaryService dictService = new DictionaryService();
             bool result = dictService.DeleteCopyrightKind(codeI);
             if (!result)
             {
-                MessageBox.Show("об'єкт не видалений");
-                result = false;
+                //MessageBox.Show("об'єкт не видалений");
+                //MessageShow.ShowInfoByResult("", "", result);
+                MessageShow.ShowError("Об'єкт не видалений!");
             }
             return result;
         }
@@ -329,7 +334,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private CopyrightKind CheckAfterCreate(CopyrightKind createItem)
         {
-            DictionaryService dictService = GetInstance();
+            DictionaryService dictService = new DictionaryService();
             CopyrightKind result = new CopyrightKind();
             if (result == null)
             {
@@ -347,7 +352,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CopyrightKind CheckAfterUpdate(CopyrightKind updateItem)
         {
-            DictionaryService dictService = GetInstance();
+            DictionaryService dictService = new DictionaryService();
             CopyrightKind result = new CopyrightKind();
             if (result == null)
             {
@@ -458,14 +463,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     btnSaveCopyrightKind.Text = "Зберегти";
                 }
                 //stop perform if elements have 'Enabled' -> false
-                if (!ControlEnabledActiveElements) return;
+                if (!ControlEnabledActiveElements)
+                    return;
                 //change 'Enabled' state for elements
                 ControlEnabledActiveElements = false;
-                return;
             }
             else
-                //disallow input
+            {
                 e.Handled = true;
+            }
         }
     }
 }

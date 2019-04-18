@@ -120,7 +120,7 @@
             this.ddlFilterCreativeroleType.FormattingEnabled = false;
             this.ddlFilterCreativeroleType.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterCreativeroleType.Name = "ddlFilterCreativeroleType";
-            this.ddlFilterCreativeroleType.Size = new System.Drawing.Size(427, 20);
+            this.ddlFilterCreativeroleType.Size = new System.Drawing.Size(427, 21);
             this.ddlFilterCreativeroleType.TabIndex = 22;
             this.ddlFilterCreativeroleType.ThemeName = "Office2013Light";
             this.ddlFilterCreativeroleType.ValueMember = "CodeI";
@@ -206,7 +206,7 @@
             this.ddlEditKeyCreativeroleType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyCreativeroleType.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyCreativeroleType.Name = "ddlEditKeyCreativeroleType";
-            this.ddlEditKeyCreativeroleType.Size = new System.Drawing.Size(401, 20);
+            this.ddlEditKeyCreativeroleType.Size = new System.Drawing.Size(401, 21);
             this.ddlEditKeyCreativeroleType.TabIndex = 13;
             this.ddlEditKeyCreativeroleType.ThemeName = "Office2013Light";
             this.ddlEditKeyCreativeroleType.ValueMember = "CodeI";
@@ -222,7 +222,7 @@
             this.txtRuLangCreativeroleType.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangCreativeroleType.MaxLength = 500;
             this.txtRuLangCreativeroleType.Name = "txtRuLangCreativeroleType";
-            this.txtRuLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
+            this.txtRuLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
             this.txtRuLangCreativeroleType.TabIndex = 8;
             this.txtRuLangCreativeroleType.ThemeName = "Office2013Light";
             this.txtRuLangCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangCreativeroleType_KeyPress);
@@ -237,7 +237,7 @@
             this.txtEnLangCreativeroleType.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangCreativeroleType.MaxLength = 500;
             this.txtEnLangCreativeroleType.Name = "txtEnLangCreativeroleType";
-            this.txtEnLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
+            this.txtEnLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
             this.txtEnLangCreativeroleType.TabIndex = 9;
             this.txtEnLangCreativeroleType.ThemeName = "Office2013Light";
             this.txtEnLangCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangCreativeroleType_KeyPress);
@@ -252,7 +252,7 @@
             this.txtUkLangCreativeroleType.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangCreativeroleType.MaxLength = 500;
             this.txtUkLangCreativeroleType.Name = "txtUkLangCreativeroleType";
-            this.txtUkLangCreativeroleType.Size = new System.Drawing.Size(465, 20);
+            this.txtUkLangCreativeroleType.Size = new System.Drawing.Size(465, 21);
             this.txtUkLangCreativeroleType.TabIndex = 7;
             this.txtUkLangCreativeroleType.ThemeName = "Office2013Light";
             this.txtUkLangCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUkLangCreativeroleType_KeyPress);
@@ -267,7 +267,7 @@
             this.txtCodeCreativeroleType.Location = new System.Drawing.Point(162, 28);
             this.txtCodeCreativeroleType.MaxLength = 5;
             this.txtCodeCreativeroleType.Name = "txtCodeCreativeroleType";
-            this.txtCodeCreativeroleType.Size = new System.Drawing.Size(465, 20);
+            this.txtCodeCreativeroleType.Size = new System.Drawing.Size(465, 21);
             this.txtCodeCreativeroleType.TabIndex = 6;
             this.txtCodeCreativeroleType.ThemeName = "Office2013Light";
             this.txtCodeCreativeroleType.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeCreativeroleType_KeyPress);
@@ -383,20 +383,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 286;
+            gridViewTextBoxColumn2.Width = 285;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 290;
+            gridViewTextBoxColumn3.Width = 289;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 266;
+            gridViewTextBoxColumn4.Width = 265;
             gridViewTextBoxColumn5.FieldName = "Category";
             gridViewTextBoxColumn5.HeaderText = "Категорія";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "Category";
-            gridViewTextBoxColumn5.Width = 223;
+            gridViewTextBoxColumn5.Width = 221;
             this.gridCreativeroleTypeList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

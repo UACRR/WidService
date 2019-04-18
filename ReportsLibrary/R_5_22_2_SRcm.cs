@@ -10,9 +10,9 @@ namespace ReportsLibrary
     /// <summary>
     /// Summary description for R_5_22_2_SRcm.
     /// </summary>
-    public partial class R_5_22_2_SR : Telerik.Reporting.Report
+    public partial class R_5_22_2_SRcm : Telerik.Reporting.Report
     {
-        public R_5_22_2_SR()
+        public R_5_22_2_SRcm()
         {
             //
             // Required for telerik Reporting designer support

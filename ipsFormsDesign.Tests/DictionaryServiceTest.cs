@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Tests
     [TestClass]
     public class DictionaryServiceTest
     {
-        private DictionaryService _dictionary = new DictionaryService();
+        private DictionaryService _dictionary = DictionaryService.GetInstance();
 
         [TestMethod]
         public void TestGetCopyrightKind()

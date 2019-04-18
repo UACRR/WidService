@@ -239,7 +239,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            //DictionaryService dictService = new DictionaryService();
             //delete selected item of grid by field 'Code'
             Country item = _countryList[codeForRefresh];
             //bool result = dictService.DeleteCountry();
