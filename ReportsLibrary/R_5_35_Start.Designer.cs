@@ -130,7 +130,7 @@ namespace ReportsLibrary
             this.textBox13.Style.Font.Bold = true;
             this.textBox13.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox13.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox13.Value = " 35. Журнал системних робіт";
+            this.textBox13.Value = " 33. Журнал системних робіт";
             // 
             // textBox14
             // 

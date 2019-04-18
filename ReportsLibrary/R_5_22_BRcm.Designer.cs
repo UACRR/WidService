@@ -155,7 +155,8 @@ namespace ReportsLibrary
             this.textBox1.Style.Font.Bold = true;
             this.textBox1.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(11D);
             this.textBox1.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
-            this.textBox1.Value = "ВІДОМІСТЬ \n\"Розподіл авторської винагороди на правовласників з \"великих прав\"";
+            this.textBox1.Value = "26. Відомість \n\"Розподіл авторської винагороди на правовласників з \"великих прав\"" +
+    "";
             // 
             // textBox2
             // 
