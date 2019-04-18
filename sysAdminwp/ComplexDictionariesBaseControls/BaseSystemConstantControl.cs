@@ -6,16 +6,30 @@ using WebAPIConnector;
 using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseSystemConstantControl : UserControl
     {
-        private DictionaryService _dictService;
+        private readonly List<string> Langs = new List<string>
+        {
+            "Uk", "Ru", "En"
+        };
+
+        private const string DelMess = "Об'єкт не видалений!";
+        private const string GetMess = "об'єкт не знайдено";
+        private const string CreateMess = "Помилка формату";
+        private const string UpdateMess = "Помилка формату";
+
+        private readonly DictionaryService _dictService = DictionaryService.GetInstance();
+        private readonly ApiConnector _connector;
+
         //define data for different languages
         private SystemConstantTr ukSystemConstant;
         private SystemConstantTr ruSystemConstant;
         private SystemConstantTr enSystemConstant;
+
         //define grid data
         private List<SystemConstant> _systemConstantList;
         public List<SystemConstant> SystemConstantList
@@ -32,14 +46,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         }
         //item data
         private SystemConstant systemConstantData;
-        //define connector
-        private readonly ApiConnector _connector;
         //url for get data to grid
         private readonly string urlDataGrid;
         //for control current select of grid
         private int indexSelectedElem;
         //control 'Enabled' state for elements
-        private bool controlEnabledActiveElements = false;
+        private bool controlEnabledActiveElements = true;
         public bool ControlEnabledActiveElements
         {
             get { return controlEnabledActiveElements; }
@@ -64,26 +76,17 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             InitializeComponent();
             _connector = connector;
+            urlDataGrid = urlForComplexDict;
+            //initialize data for grid
+            gridSystemConstantList.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
             txtSearchSystemConstant.SetUsageGrid(gridSystemConstantList);
-            //save url for filter data into grid
-            urlDataGrid = urlForComplexDict;
-            //set data to grid
-            gridSystemConstantList.DataSource = HandleDataForGrid(urlForComplexDict);
-            int codeIDefault = SystemConstantList[0].CodeI;
             //set default data for bottom panel
-            DataUpdateForBottomPanel(codeIDefault);
-            //set 'Enabled' state by default
+            if (SystemConstantList.Count != 0)
+                DataUpdateForBottomPanel(
+                    SystemConstantList[0].CodeI
+                    );
             ControlEnabledActiveElements = true;
-        }
-
-        private DictionaryService GetInstance()
-        {
-            if (_dictService == null)
-            {
-                //_dictService = new DictionaryService();
-            }
-            return _dictService;
         }
         
         //handle data for grid
@@ -91,18 +94,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
-            List<ViewTable> dataGrid = new List<ViewTable>();
             //get data dictionaries -> for grid
             SystemConstantList = _connector.GetList<SystemConstant>(urlForGetDataDictionaries);
+            if (SystemConstantList == null)
+            {
+                SystemConstantList = new List<SystemConstant>();
+                return new List<ViewTable>();
+            }
+
+            List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in SystemConstantList)
             {
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    NameUk = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.SystemConstantTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                 });
             }
             return dataGrid;
@@ -111,49 +120,43 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //show data for bottom panel
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
-            //get id dictionary
-            GridViewRowInfo rowDetail = gridSystemConstantList.CurrentRow;
-            //get data of the current row
-            ViewTable @curRow = rowDetail.DataBoundItem as ViewTable;
-            //stop perform if data is not exist
-            if (@curRow == null) return;
-            //check field 'Code' on correct type 'int'
-            if (!int.TryParse(@curRow.Code, out int code)) return;
-            //save value 'code' -> fr refresh data when 'Cancel' action
+            if (!(gridSystemConstantList.CurrentRow.DataBoundItem is ViewTable currentRow))
+                return;
+
+            if (!int.TryParse(currentRow.Code, out int code))
+                return;
             indexSelectedElem = SystemConstantList.FindIndex(el => el.CodeI == code);
-            //update data for bottom panel
             DataUpdateForBottomPanel(code);
         }
 
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            DictionaryService dictService = GetInstance();
             //get object by parameter 'code' from service
-            systemConstantData = dictService.GetSystemConstant(codeI);
+            systemConstantData = CheckAfterGetQuery(codeI);
             //use data for binding source
             bsSystemConstant.DataSource = systemConstantData;
             //define binding for source of the 'Uk'
-            ukSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
             if (ukSystemConstant == null)
             {
-                ukSystemConstant = new SystemConstantTr { Lang = "Uk" };
+                ukSystemConstant = new SystemConstantTr { Lang = Langs[0] };
                 systemConstantData.SystemConstantTr.Add(ukSystemConstant);
             }
             bsUkLangSystemConstant.DataSource = ukSystemConstant;
             //defined binding for source of the 'Ru'
-            ruSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
             if (ruSystemConstant == null)
             {
-                ruSystemConstant = new SystemConstantTr { Lang = "Ru" };
+                ruSystemConstant = new SystemConstantTr { Lang = Langs[1] };
                 systemConstantData.SystemConstantTr.Add(ruSystemConstant);
             }
             bsRuLangSystemConstant.DataSource = ruSystemConstant;
             //define binding for source of the 'En'
-            enSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == "En");
+            enSystemConstant = systemConstantData.SystemConstantTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
             if (enSystemConstant == null)
             {
-                enSystemConstant = new SystemConstantTr { Lang = "En" };
+                enSystemConstant = new SystemConstantTr { Lang = Langs[2] };
                 systemConstantData.SystemConstantTr.Add(enSystemConstant);
             }
             bsEnLangSystemConstant.DataSource = enSystemConstant;
@@ -166,11 +169,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = GetInstance();
-            SystemConstant result = dictService.GetSystemConstant(codeI);
+            SystemConstant result = _dictService.GetSystemConstant(codeI);
             if (result == null)
             {
-                MessageBox.Show("об'єкт не знайдено");
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = SystemConstantList[0];
             }
@@ -186,15 +188,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             systemConstantData = new SystemConstant();
             bsSystemConstant.DataSource = systemConstantData;
             //refresh data for field 'Uk'
-            ukSystemConstant = new SystemConstantTr { Lang = "Uk" };
+            ukSystemConstant = new SystemConstantTr { Lang = Langs[0] };
             systemConstantData.SystemConstantTr.Add(ukSystemConstant);
             bsUkLangSystemConstant.DataSource = ukSystemConstant;
             //refresh data for field 'Ru'
-            ruSystemConstant = new SystemConstantTr { Lang = "Ru" };
+            ruSystemConstant = new SystemConstantTr { Lang = Langs[1] };
             systemConstantData.SystemConstantTr.Add(ruSystemConstant);
             bsRuLangSystemConstant.DataSource = ruSystemConstant;
             //refresh data for field 'Ru'
-            enSystemConstant = new SystemConstantTr { Lang = "En" };
+            enSystemConstant = new SystemConstantTr { Lang = Langs[2] };
             systemConstantData.SystemConstantTr.Add(enSystemConstant);
             bsEnLangSystemConstant.DataSource = enSystemConstant;
             //stop perform if elements have 'Enabled' -> false
@@ -206,9 +208,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = GetInstance();
+            //return if element by index is not exist
+            if (!(SystemConstantList.Count > indexSelectedElem))
+                return;
             //delete selected item of grid by field 'Code'
-            SystemConstant item = _systemConstantList[indexSelectedElem];
+            SystemConstant item = SystemConstantList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
             //update data for grid
             gridSystemConstantList.DataSource = HandleDataForGrid(urlDataGrid);
@@ -216,8 +220,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (result) --indexSelectedElem;
             if (indexSelectedElem < 0) indexSelectedElem = 0;
             gridSystemConstantList.CurrentRow = gridSystemConstantList.Rows[indexSelectedElem];
-            int codeNew = SystemConstantList[indexSelectedElem].CodeI;
-            DataUpdateForBottomPanel(codeNew);
+            //define new currentRow
+            DataUpdateForBottomPanel(
+                SystemConstantList[indexSelectedElem].CodeI
+                );
         }
 
         /// <summary>
@@ -227,12 +233,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = GetInstance();
-            bool result = dictService.DeleteCreativeRoleType(codeI);
+            bool result = _dictService.DeleteCreativeRoleType(codeI);
             if (!result)
             {
-                MessageBox.Show("об'єкт не видалений");
-                result = false;
+                MessageShow.ShowError(DelMess);
             }
             return result;
         }
@@ -279,11 +283,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterCreate(SystemConstant createItem)
         {
-            DictionaryService dictService = GetInstance();
-            SystemConstant result = dictService.CreateSystemConstant(createItem);
+            SystemConstant result = _dictService.CreateSystemConstant(createItem);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = SystemConstantList[0];
             }
@@ -297,11 +300,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterUpdate(SystemConstant updateItem)
         {
-            DictionaryService dictService = GetInstance();
-            SystemConstant result = dictService.UpdateSystemConstant(systemConstantData);
+            SystemConstant result = _dictService.UpdateSystemConstant(systemConstantData);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageBox.Show(UpdateMess);
                 //select first element of grid by default
                 result = SystemConstantList[0];
             }

@@ -145,7 +145,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel()
         {
-            //DictionaryService dictService = new DictionaryService();
             //set default first item of the grid
             if (codeForRefresh == 0) codeForRefresh = _countryList[0].ContinentCode ?? 1;
             //get object by parameter 'code' from service
