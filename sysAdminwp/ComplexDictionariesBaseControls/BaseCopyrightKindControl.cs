@@ -32,6 +32,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private CopyrightKindTr ukCopyrightKind;
         private CopyrightKindTr ruCopyrightKind;
         private CopyrightKindTr enCopyrightKind;
+
         //define grid data
         private List<CopyrightKind> _copyrightKindList;
         public List<CopyrightKind> CopyrightKindList {
