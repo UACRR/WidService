@@ -104,7 +104,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get data dictionaries -> for grid
             Klr030List = _connector.GetList<KlR030>(urlForGetDataDictionaries);
             //return data is not exist
-            if (Klr030List == null) return new List<ViewTable>();
+            if (Klr030List == null)
+            {
+                Klr030List = new List<KlR030>();
+                return new List<ViewTable>();
+            }
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in Klr030List)

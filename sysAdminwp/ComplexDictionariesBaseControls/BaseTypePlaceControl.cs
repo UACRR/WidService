@@ -105,7 +105,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get data dictionaries -> for grid
             TypePlaceList = _connector.GetList<TypePlace>(urlForGetDataDictionaries);
             //data is not exist
-            if (TypePlaceList == null) return new List<ViewTable>();
+            if (TypePlaceList == null)
+            {
+                TypePlaceList = new List<TypePlace>();
+                return new List<ViewTable>();
+            }
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in TypePlaceList)

@@ -96,7 +96,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
             //get data dictionaries -> for grid
             SystemConstantList = _connector.GetList<SystemConstant>(urlForGetDataDictionaries);
-            if (SystemConstantList == null) return new List<ViewTable>();
+            if (SystemConstantList == null)
+            {
+                SystemConstantList = new List<SystemConstant>();
+                return new List<ViewTable>();
+            }
+
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in SystemConstantList)

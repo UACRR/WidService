@@ -217,7 +217,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get all data of the 'CopyrightKind'
             CreativeroleTypeList = _connector.GetList<CreativeRoleType>(urlDataGrid);
             //stop perform if data is not exist
-            if (CreativeroleTypeList == null) return new List<ViewTable>();
+            if (CreativeroleTypeList == null)
+            {
+                CreativeroleTypeList = new List<CreativeRoleType>();
+                return new List<ViewTable>();
+            }
             //filter data by parameter 'code'
             CreativeroleTypeList = CreativeroleTypeList.Where(item => item.CategoryCode == code).ToList();
             List<ViewTable> filteredData = new List<ViewTable>();

@@ -106,7 +106,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //get data dictionaries -> for grid
             CopyrightKindList = _connector.GetList<CopyrightKind>(urlForGetDataDictionaries);
             //return if data is not exist
-            if (CopyrightKindList == null) return new List<ViewTable>();
+            if (CopyrightKindList == null)
+            {
+                CopyrightKindList = new List<CopyrightKind>();
+                return new List<ViewTable>();
+            }
             List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in CopyrightKindList)
