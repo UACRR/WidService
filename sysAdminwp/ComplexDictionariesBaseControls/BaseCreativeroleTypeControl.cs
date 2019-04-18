@@ -8,6 +8,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
@@ -97,6 +98,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(
                 CreativeroleTypeList[0].CodeI
                 );
+            ControlEnabledActiveElements = true;
         }
 
         //handle data for grid
@@ -113,9 +115,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                     Category = ddlFilterCreativeroleType.Items.First(el => (int)el.Value == item.CategoryCode).Text,
                 });
             }
@@ -182,10 +184,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterGetQuery(int codeI)
         {
-            CreativeRoleType result = new CreativeRoleType();
+            CreativeRoleType result = _dictService.GetCreativeRoleType(codeI);
             if (result == null)
             {
-                MessageBox.Show(GetMess);
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = CreativeroleTypeList[0];
             }
@@ -214,8 +216,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //stop perform if data is not exist
             if (CreativeroleTypeList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            if (CreativeroleTypeList.Count == 0)
-                CreativeroleTypeList = CreativeroleTypeList.Where(item => item.CategoryCode == code).ToList();
+            CreativeroleTypeList = CreativeroleTypeList.Where(item => item.CategoryCode == code).ToList();
             List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
             foreach (var item in CreativeroleTypeList)
@@ -289,7 +290,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             bool result = _dictService.DeleteCreativeRoleType(codeI);
             if (!result)
             {
-                MessageBox.Show("об'єкт не видалений");
+                MessageShow.ShowError(DelMess);
                 result = false;
             }
             return result;
@@ -341,7 +342,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             CreativeRoleType result = _dictService.CreateCreativeRoleType(createItem);
             if (result == null)
             {
-                MessageBox.Show(CreateMess);
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = CreativeroleTypeList[0];
             }
@@ -359,7 +360,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             CreativeRoleType result = _dictService.UpdateCreativeRoleType(creativeroleTypeData);
             if (result == null)
             {
-                MessageBox.Show(UpdateMess);
+                MessageShow.ShowError(UpdateMess);
                 //select first element of grid by default
                 result = CreativeroleTypeList[0];
             }

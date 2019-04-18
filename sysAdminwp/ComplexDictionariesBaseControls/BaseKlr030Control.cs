@@ -8,6 +8,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
@@ -91,6 +92,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(
                 Klr030List[0].R030
                 );
+            ControlEnabledActiveElements = true;
         }
 
         //handle data for grid
@@ -126,20 +128,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //show data for bottom panel
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
-            ////get id dictionary
-            //GridViewRowInfo rowDetail = gridKlr030List.CurrentRow;
-            ////get data of the current row
-            //ViewTable @curRow = rowDetail.DataBoundItem as ViewTable;
-            ////stop perform if data is not exist
-            //if (@curRow == null) return;
-            ////check field 'Code' on correct type 'int'
-            //if (!int.TryParse(@curRow.Code, out int code)) return;
-            ////save value 'code' -> fr refresh data when 'Cancel' action
-            //var strCode = code.ToString();
-            //indexSelectedElem = _klr030List.FindIndex(el => el.R030 == strCode);
-            ////update data for bottom panel
-            //DataUpdateForBottomPanel(code.ToString());
-
             if (!(gridKlr030List.CurrentRow.DataBoundItem is ViewTable currentRow))
                 return;
 
@@ -153,9 +141,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(string codeI)
         {
-            //set default first item of the grid
-            //if (codeForRefresh == 0) codeForRefresh = int.TryParse(_klr030List[0].R030, out int code) ? code : 0;
-            //KlR030 item = _klr030List[codeForRefresh];
             //get object by parameter 'code' from service
             klr030Data = CheckAfterGetQuery(codeI);
             //use data for binding source
@@ -198,7 +183,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 result = _dictService.GetKlR030(code);
             if (result == null)
             {
-                MessageBox.Show(GetMess);
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = Klr030List[0];
             }
@@ -227,8 +212,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //stop perform if data is not exist
             if (Klr030List == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            if (Klr030List.Count == 0)
-                Klr030List = Klr030List.Where(item => item.R031 == code).ToList();
+            Klr030List = Klr030List.Where(item => item.R031 == code).ToList();
             List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
             foreach (var item in Klr030List)
@@ -302,7 +286,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             bool result = _dictService.DeleteKlR030(codeI);
             if (!result)
             {
-                MessageBox.Show(DelMess);
+                MessageShow.ShowError(DelMess);
             }
             return result;
         }
@@ -351,7 +335,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             KlR030 result = _dictService.CreateKlR030(createItem);
             if (result == null)
             {
-                MessageBox.Show(CreateMess);
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = Klr030List[0];
             }
@@ -368,7 +352,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             KlR030 result = _dictService.UpdateKlR030(klr030Data);
             if (result == null)
             {
-                MessageBox.Show(UpdateMess);
+                MessageShow.ShowError(UpdateMess);
                 //select first element of grid by default
                 result = Klr030List[0];
             }

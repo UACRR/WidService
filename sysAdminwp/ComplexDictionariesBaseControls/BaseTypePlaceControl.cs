@@ -8,6 +8,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
@@ -92,6 +93,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(
                 TypePlaceList[0].CodeI
                 );
+            ControlEnabledActiveElements = true;
         }
 
         //handle data for grid
@@ -139,7 +141,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            //DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
             typePlaceData = CheckAfterGetQuery(codeI);
             //use data for binding source
@@ -175,7 +176,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             TypePlace result = _dictionaryService.GetTypePlace(codeI);
             if (result == null)
             {
-                MessageBox.Show(GetMess);
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = TypePlaceList[0];
             }
@@ -203,8 +204,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //stop perform if data is not exist
             if (TypePlaceList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            if (TypePlaceList.Count == 0)
-                TypePlaceList = TypePlaceList.Where(item => item.ParamType == code).ToList();
+            TypePlaceList = TypePlaceList.Where(item => item.ParamType == code).ToList();
             List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
             foreach (var item in _typePlaceList)
@@ -278,7 +278,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             bool result = _dictionaryService.DeleteTypePlace(codeI);
             if (!result)
             {
-                MessageBox.Show(DelMess);
+                MessageShow.ShowError(DelMess);
             }
             return result;
         }
@@ -330,7 +330,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             TypePlace result = _dictionaryService.CreateTypePlace(createItem);
             if (result == null)
             {
-                MessageBox.Show(CreateMess);
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = TypePlaceList[0];
             }
@@ -348,7 +348,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             TypePlace result = _dictionaryService.UpdateTypePlace(typePlaceData);
             if (result == null)
             {
-                MessageBox.Show(UpdateMess);
+                MessageShow.ShowError(UpdateMess);
                 //select first element of grid by default
                 result = TypePlaceList[0];
             }

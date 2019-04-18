@@ -93,6 +93,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(
                 CopyrightKindList[0].CodeI
                 );
+
+            ControlEnabledActiveElements = true;
         }
         
         //handle data for grid
@@ -183,7 +185,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             CopyrightKind result = _service.GetCopyrightKind(codeI);
             if (result == null)
             {
-                MessageBox.Show(GetMess);
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = CopyrightKindList[0];
             }
@@ -211,8 +213,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //stop perform if data is not exist
             if (CopyrightKindList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
-            if (CopyrightKindList.Count == 0)
-                CopyrightKindList = CopyrightKindList.Where(item => item.CrGroupCode == code).ToList();
+            CopyrightKindList = CopyrightKindList.Where(item => item.CrGroupCode == code).ToList();
             //initialzie empty data for result
             List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
@@ -340,7 +341,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             CopyrightKind result = _service.CreateCopyrightKind(createItem);
             if (result == null)
             {
-                MessageBox.Show(CreateMess);
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = CopyrightKindList[0];
             }
@@ -357,7 +358,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             CopyrightKind result = _service.UpdateCopyrightKind(updateItem);
             if (result == null)
             {
-                MessageBox.Show(UpdateMess);
+                MessageShow.ShowError(UpdateMess);
                 //select first element of grid by default
                 result = CopyrightKindList[0];
             }

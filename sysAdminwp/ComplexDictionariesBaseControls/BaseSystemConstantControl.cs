@@ -6,6 +6,7 @@ using WebAPIConnector;
 using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
@@ -84,6 +85,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(
                 SystemConstantList[0].CodeI
                 );
+            ControlEnabledActiveElements = true;
         }
         
         //handle data for grid
@@ -163,7 +165,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             SystemConstant result = _dictService.GetSystemConstant(codeI);
             if (result == null)
             {
-                MessageBox.Show(GetMess);
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = SystemConstantList[0];
             }
@@ -227,7 +229,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             bool result = _dictService.DeleteCreativeRoleType(codeI);
             if (!result)
             {
-                MessageBox.Show(DelMess);
+                MessageShow.ShowError(DelMess);
             }
             return result;
         }
@@ -277,7 +279,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             SystemConstant result = _dictService.CreateSystemConstant(createItem);
             if (result == null)
             {
-                MessageBox.Show(CreateMess);
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = SystemConstantList[0];
             }
@@ -294,7 +296,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             SystemConstant result = _dictService.UpdateSystemConstant(systemConstantData);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageBox.Show(UpdateMess);
                 //select first element of grid by default
                 result = SystemConstantList[0];
             }

@@ -94,6 +94,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(
                 GenreTypeList[0].CodeI
                 );
+            ControlEnabledActiveElements = true;
         }
 
         //handle data for grid
@@ -176,7 +177,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             GenreType result = _dictService.GetGenreType(codeI);
             if (result == null)
             {
-                MessageBox.Show(GetMess);
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = GenreTypeList[0];
             }
@@ -328,7 +329,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             GenreType result = _dictService.CreateGenreType(createItem);
             if (result == null)
             {
-                MessageBox.Show(CreateMess);
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = GenreTypeList[0];
             }
@@ -345,7 +346,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             GenreType result = _dictService.UpdateGenreType(genreTypeData);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageShow.ShowError(UpdateMess);
                 //select first element of grid by default
                 result = GenreTypeList[0];
             }
