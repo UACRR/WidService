@@ -116,10 +116,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.R030,
-                    NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Uk")?.R030Name ?? item.R030Name,
-                    NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "Ru")?.R030Name,
-                    NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == "En")?.R030Name,
-                    klrCountry = ddlFilterKlr030.Items.First(el => (int)el.Value == item.R031).Text,
+                    NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[0])?.R030Name ?? item.R030Name,
+                    NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[1])?.R030Name,
+                    NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[2])?.R030Name,
+                    klrCountry = item.R031 != null ? ddlFilterKlr030.Items.FirstOrDefault(el => (int)el.Value == item.R031).Text : "",
                 });
             }
             return dataGrid;

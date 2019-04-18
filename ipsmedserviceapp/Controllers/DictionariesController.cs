@@ -136,7 +136,7 @@ namespace ipsmedserviceapp.Controllers
             "country",
             "creativeroletype",
             "genretype",
-            "klr030",
+            "kl_r030",
             "systemconstant",
             "typeplace"
         };
@@ -570,7 +570,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.GenreTypeTr)
                         .ToListAsync();
                     return Json(genretype);
-                case "klr030":
+                case "kl_r030":
                     var klr030 = await _dbContext.KlR030
                         .Include(item => item.KlR030tr)
                         .ToListAsync();

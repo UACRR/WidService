@@ -55,7 +55,7 @@ namespace sysAdminwp.viewPageDictionaryControls
             "country",
             "creativeroletype",
             "genretype",
-            "klr030",
+            "kl_r030",
             "systemconstant",
             "typeplace"
         };
