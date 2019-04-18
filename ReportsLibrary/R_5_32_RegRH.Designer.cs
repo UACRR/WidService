@@ -32,6 +32,7 @@ namespace ReportsLibrary
             Telerik.Reporting.SortingAction sortingAction9 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction10 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction11 = new Telerik.Reporting.SortingAction();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(R_5_32_RegRH));
             Telerik.Reporting.NavigateToReportAction navigateToReportAction1 = new Telerik.Reporting.NavigateToReportAction();
             Telerik.Reporting.TypeReportSource typeReportSource1 = new Telerik.Reporting.TypeReportSource();
             Telerik.Reporting.ReportParameter reportParameter1 = new Telerik.Reporting.ReportParameter();
@@ -428,11 +429,10 @@ namespace ReportsLibrary
             this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.DateTime, "= Parameters.dateBegin.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.DateTime, null),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.DateTime, null),
             new Telerik.Reporting.SqlDataSourceParameter("@custId", System.Data.DbType.Int32, "= Parameters.custId.Value")});
-            this.sqlDataSource1.SelectCommand = "select rowNum, objid, iswc, objName, rate, roleName,  categoryName, author, durat" +
-    "ion, genreName, statusName, rhCustId, rhName, ipi  from ft_Tsk_5_32_RegRH (@date" +
-    "Begin, @custId) order by rowNum\r\n\r\n";
+            this.sqlDataSource1.SelectCommand = resources.GetString("sqlDataSource1.SelectCommand");
             // 
             // sqlDataSource2
             // 

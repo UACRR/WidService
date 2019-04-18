@@ -482,7 +482,7 @@ namespace ReportsLibrary
             // textBox12
             // 
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.953D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.952D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox12.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox12.Style.Visible = false;
             this.textBox12.StyleName = "BlueOpal.TableBody";
@@ -518,7 +518,7 @@ namespace ReportsLibrary
             // textBox29
             // 
             this.textBox29.Name = "textBox29";
-            this.textBox29.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.953D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox29.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.952D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox29.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox29.Style.Visible = false;
             this.textBox29.StyleName = "BlueOpal.TableBody";
@@ -546,7 +546,7 @@ namespace ReportsLibrary
             // textBox18
             // 
             this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.953D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox18.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.952D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox18.Style.Font.Bold = true;
             this.textBox18.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox18.Style.Visible = false;
