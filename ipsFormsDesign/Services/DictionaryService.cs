@@ -14,6 +14,12 @@ namespace ipsFormsDesign.Services
         private readonly string _prefix = "dictionary/";
         private static DictionaryService _service;
 
+        private readonly Dictionary<Type, string> _urls = new Dictionary<Type, string>
+        {
+            {typeof(CopyrightKind), "" },
+
+        };
+
         private DictionaryService() { }
 
         public static DictionaryService GetInstance()
@@ -24,6 +30,22 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
+        public T GetObj<T>(int id)
+        {
+            string url = string.Concat(_prefix, "extra/copyrightkind");
+            url = $"{_prefix}extra/{_urls[typeof(T)]}";
+            return _webApi.GetItemById<T>(url, id.ToString());
+        }
+
+        public T UpdateObj<T>(T sors, int codeI) where T:class
+        {
+            if (!_urls.ContainsKey(typeof(T)))
+                throw new ArgumentException("");
+
+            string url = string.Concat(_prefix, "extra/copyrightkind");
+            url = $"{_prefix}extra/{_urls[typeof(T)]}";
+            return _webApi.UpdateItemWithResult(url, codeI.ToString(), sors);
+        }
 
         // CopyRightKind BEGIN ********************
         public CopyrightKind GetCopyrightKind( int id )

@@ -8,15 +8,31 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCreativeroleTypeControl : UserControl
     {
+        private readonly List<string> Langs = new List<string>
+        {
+            "Uk", "Ru", "En"
+        };
+
+        private const string DelMess = "Об'єкт не видалений!";
+        private const string GetMess = "об'єкт не знайдено";
+        private const string CreateMess = "Помилка формату";
+        private const string UpdateMess = "Помилка формату";
+        private const string UrlBaseDict = "dictionary/base/Category";
+
+        private readonly DictionaryService _dictService = DictionaryService.GetInstance();
+        private readonly ApiConnector _connector;
+
         //define data for differenet languages
         private CreativeRoleTypeTr ukCreativeroleType;
         private CreativeRoleTypeTr ruCreativeroleType;
         private CreativeRoleTypeTr enCreativeroleType;
+        
         //define grid data
         private List<CreativeRoleType> _creativeroleTypeList;
         public List<CreativeRoleType> CreativeroleTypeList
@@ -34,9 +50,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         }
         //item data
         private CreativeRoleType creativeroleTypeData;
-
-        //define 'Delete', 'Create', 'Update'
-        private readonly ApiConnector _connector;
 
         //url for get data to grid
         private readonly string urlDataGrid;
@@ -73,39 +86,41 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             InitializeComponent();
             _connector = connector;
+            urlDataGrid = urlForComplexDict;
+            //initialize data for drop down lists
+            ddlFilterCreativeroleType.DataSource = bsSimpleDictCreativeRoleType.DataSource = InitializeDataForFilter();
+            //initialize data for grid
+            gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
             txtSearchCreativeroleType.SetUsageGrid(gridCreativeroleTypeList);
-            //initialize data for drop down list - 'Спосіб використання'
-            ddlFilterCreativeroleType.DataSource = InitializeDataForFilter();
-            //set data Dictionaries into Edit Panel
-            bsSimpleDictCreativeRoleType.DataSource = ddlFilterCreativeroleType.DataSource;
-            urlDataGrid = urlForComplexDict;
-            //set data to grid
-            gridCreativeroleTypeList.DataSource = HandleDataForGrid(urlForComplexDict);
-            int codeIDefault = CreativeroleTypeList[0].CodeI;
+            
             //set default data for bottom panel
-            DataUpdateForBottomPanel(codeIDefault);
-            //set 'Enabled' state by default
+            if (CreativeroleTypeList.Count != 0)
+                DataUpdateForBottomPanel(
+                    CreativeroleTypeList[0].CodeI
+                    );
             ControlEnabledActiveElements = true;
         }
-        
+
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
-            List<ViewTable> dataGrid = new List<ViewTable>();
             //get data dictionaries -> for grid
             CreativeroleTypeList = _connector.GetList<CreativeRoleType>(urlForGetDataDictionaries);
+            //return if data is not exist
+            if (CreativeroleTypeList == null) return new List<ViewTable>();
+            List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in CreativeroleTypeList)
             {
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                     Category = ddlFilterCreativeroleType.Items.First(el => (int)el.Value == item.CategoryCode).Text,
                 });
             }
@@ -116,8 +131,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private List<DictBaseTypeI> InitializeDataForFilter()
         {
             //get data for drop down list
-            var dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/Category");
-            return dataDropDownList ?? new List<DictBaseTypeI>();
+            return _connector.GetList<DictBaseTypeI>(UrlBaseDict) ?? new List<DictBaseTypeI>();
         }
 
         //show data for bottom panel
@@ -129,18 +143,13 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //check field 'Code' on correct type 'int'
             if (!int.TryParse(currentRow.Code, out int code))
                 return;
-
-            //get 'CodeI' of current element
             indexSelectedElem = CreativeroleTypeList.FindIndex(item => item.CodeI == code);
-
-            //update data for bottom panel
             DataUpdateForBottomPanel(code);
         }
 
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            //DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
             creativeroleTypeData = CheckAfterGetQuery(codeI);
             //use data for binding source
@@ -178,11 +187,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterGetQuery(int codeI)
         {
-            //DictionaryService dictService = new DictionaryService();
-            CreativeRoleType result = new CreativeRoleType();
+            CreativeRoleType result = _dictService.GetCreativeRoleType(codeI);
             if (result == null)
             {
-                MessageBox.Show("об'єкт не знайдено");
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = CreativeroleTypeList[0];
             }
@@ -194,31 +202,38 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //stop perform if position is not exist
             if (e.Position == -1) return;
-            //get field 'value' of the current selected item
-            int selectedItemData = (int)ddlFilterCreativeroleType.Items[e.Position].Value;
-            //set filtered data to grid
-            gridCreativeroleTypeList.DataSource = FilterDataIntoGrid(selectedItemData);
+            //get index current data
+            string valueDropList = ddlFilterCreativeroleType.Items[e.Position].Value.ToString();
+            if (int.TryParse(valueDropList, out int selectedItemData))
+                gridCreativeroleTypeList.DataSource = FilterDataIntoGrid(selectedItemData);
+            else
+                return;
         }
 
         //filter data for grid
         private List<ViewTable> FilterDataIntoGrid(int code)
         {
-            List<ViewTable> filteredData = new List<ViewTable>();
+            
             //get all data of the 'CopyrightKind'
             CreativeroleTypeList = _connector.GetList<CreativeRoleType>(urlDataGrid);
             //stop perform if data is not exist
-            if (CreativeroleTypeList == null) return new List<ViewTable>();
+            if (CreativeroleTypeList == null)
+            {
+                CreativeroleTypeList = new List<CreativeRoleType>();
+                return new List<ViewTable>();
+            }
             //filter data by parameter 'code'
             CreativeroleTypeList = CreativeroleTypeList.Where(item => item.CategoryCode == code).ToList();
+            List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
             foreach (var item in CreativeroleTypeList)
             {
                 filteredData.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    NameUk = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.CreativeRoleTypeTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                     Category = ddlFilterCreativeroleType.SelectedItem.Text,
                 });
             }
@@ -234,15 +249,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             creativeroleTypeData = new CreativeRoleType { Crtype = 1, CategoryCode = 1 };
             bsCreativeRoleType.DataSource = creativeroleTypeData;
             //refresh data for field 'Uk'
-            ukCreativeroleType = new CreativeRoleTypeTr { Lang = "Uk" };
+            ukCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[0] };
             creativeroleTypeData.CreativeRoleTypeTr.Add(ukCreativeroleType);
             bsUkLangCreativeRoleType.DataSource = ukCreativeroleType;
             //refresh data for field 'Ru'
-            ruCreativeroleType = new CreativeRoleTypeTr { Lang = "Ru" };
+            ruCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[1] };
             creativeroleTypeData.CreativeRoleTypeTr.Add(ruCreativeroleType);
             bsRuLangCreativeRoleType.DataSource = ruCreativeroleType;
             //refresh data for field 'Ru'
-            enCreativeroleType = new CreativeRoleTypeTr { Lang = "En" };
+            enCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[2] };
             creativeroleTypeData.CreativeRoleTypeTr.Add(enCreativeroleType);
             bsEnLangCreativeRoleType.DataSource = enCreativeroleType;
             //stop perform if elements have 'Enabled' -> false
@@ -254,7 +269,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            //DictionaryService dictService = new DictionaryService();
+            //return if element by index is not exist
+            if (!(CreativeroleTypeList.Count > indexSelectedElem))
+                return;
             //delete selected item of grid by field 'Code'
             CreativeRoleType item = CreativeroleTypeList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
@@ -265,8 +282,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (indexSelectedElem < 0) indexSelectedElem = 0;
             gridCreativeroleTypeList.CurrentRow = gridCreativeroleTypeList.Rows[indexSelectedElem];
             //define new currentRow
-            int codeNew = CreativeroleTypeList[indexSelectedElem].CodeI;
-            DataUpdateForBottomPanel(codeNew);
+            DataUpdateForBottomPanel(
+                CreativeroleTypeList[indexSelectedElem].CodeI
+                );
         }
 
         /// <summary>
@@ -276,13 +294,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            //DictionaryService dictService = new DictionaryService();
-            DictionaryService dictService = DictionaryService.GetInstance();
-            bool result = dictService.DeleteCreativeRoleType(codeI);
+            bool result = _dictService.DeleteCreativeRoleType(codeI);
             if (!result)
             {
-                MessageBox.Show("об'єкт не видалений");
-                result = false;
+                MessageShow.ShowError(DelMess);
             }
             return result;
         }
@@ -330,12 +345,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterCreate(CreativeRoleType createItem)
         {
-            //DictionaryService dictService = new DictionaryService();
-            DictionaryService dictService = DictionaryService.GetInstance();
-            CreativeRoleType result = dictService.CreateCreativeRoleType(createItem);
+            CreativeRoleType result = _dictService.CreateCreativeRoleType(createItem);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = CreativeroleTypeList[0];
             }
@@ -349,11 +362,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterUpdate(CreativeRoleType updateItem)
         {
-            DictionaryService dictService = DictionaryService.GetInstance();
-            CreativeRoleType result = dictService.UpdateCreativeRoleType(creativeroleTypeData);
+            //DictionaryService dictService = new DictionaryService();
+            CreativeRoleType result = _dictService.UpdateCreativeRoleType(creativeroleTypeData);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageShow.ShowError(UpdateMess);
                 //select first element of grid by default
                 result = CreativeroleTypeList[0];
             }

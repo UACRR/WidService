@@ -14,13 +14,25 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCopyrightKindControl : UserControl
     {
-        private readonly DictionaryService _service;
+        private readonly List<string> Langs = new List<string>
+        {
+            "Uk", "Ru", "En"
+        };
+
+        private const string DelMess = "Об'єкт не видалений!";
+        private const string GetMess = "об'єкт не знайдено";
+        private const string CreateMess = "Помилка формату";
+        private const string UpdateMess = "Помилка формату";
+        private const string UrlBaseDict = "dictionary/base/CrkindGroup";
+
+        private readonly DictionaryService _service = DictionaryService.GetInstance();
         private readonly ApiConnector _connector;
 
         //define data for different languages
         private CopyrightKindTr ukCopyrightKind;
         private CopyrightKindTr ruCopyrightKind;
         private CopyrightKindTr enCopyrightKind;
+
         //define grid data
         private List<CopyrightKind> _copyrightKindList;
         public List<CopyrightKind> CopyrightKindList {
@@ -31,7 +43,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 {
                     _copyrightKindList = value;
                     totalCopyrightKind.Text = _copyrightKindList.Count.ToString();
-                    ukCopyrightKind = null;
                 }
             }
         }
@@ -42,7 +53,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //for control current select of grid
         private int indexSelectedElem;
         //control 'Enabled' state for elements
-        private bool controlEnabledActiveElements = false;
+        private bool controlEnabledActiveElements = true;
         public bool ControlEnabledActiveElements
         {
             get { return controlEnabledActiveElements; }
@@ -70,21 +81,20 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             InitializeComponent();
             _connector = connector;
-            _service = DictionaryService.GetInstance();
-
-            //setup search posibility for textBox element
-            txtSearchCopyrightKind.SetUsageGrid(gridCopyrightKindList);
-            //initialize data for drop down list - 'Спосіб використання'
-            ddlFilterCopyrightKind.DataSource = InitializeDataForFilter();
-            //initialize data for binding source of the Dictionaries 'dropDownList'
-            bsSimpleDictCopyrightKind.DataSource = ddlFilterCopyrightKind.DataSource;
             urlDataGrid = urlForComplexDict;
+            //initialize data for drop down lists
+            ddlFilterCopyrightKind.DataSource = bsSimpleDictCopyrightKind.DataSource = InitializeDataForFilter();
             //initialize data for grid
             gridCopyrightKindList.DataSource = HandleDataForGrid(urlForComplexDict);
-            int codeDefault = CopyrightKindList[0].CodeI;
+            //setup search posibility for textBox element
+            txtSearchCopyrightKind.SetUsageGrid(gridCopyrightKindList);
+            
             //set default data for bottom panel
-            DataUpdateForBottomPanel(codeDefault);
-            //set 'Enabled' state by default
+            if (CopyrightKindList.Count != 0)
+                DataUpdateForBottomPanel(
+                    CopyrightKindList[0].CodeI
+                    );
+
             ControlEnabledActiveElements = true;
         }
         
@@ -93,18 +103,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
-            List<ViewTable> dataGrid = new List<ViewTable>();
             //get data dictionaries -> for grid
             CopyrightKindList = _connector.GetList<CopyrightKind>(urlForGetDataDictionaries);
+            //return if data is not exist
+            if (CopyrightKindList == null)
+            {
+                CopyrightKindList = new List<CopyrightKind>();
+                return new List<ViewTable>();
+            }
+            List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in CopyrightKindList)
             {
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                     VariantUse = ddlFilterCopyrightKind.Items.First(el => (int)el.Value == item.CrGroupCode).Text,
                 });
             }
@@ -115,12 +131,14 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private List<DictBaseTypeI> InitializeDataForFilter()
         {
             //get data for drop down list
-            var dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/CrkindGroup");
-            //check data
-            return dataDropDownList ?? new List<DictBaseTypeI>();
+            return _connector.GetList<DictBaseTypeI>(UrlBaseDict) ?? new List<DictBaseTypeI>();
         }
 
-        //show data for bottom panel
+        /// <summary>
+        /// show data for bottom panel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
             if (!(gridCopyrightKindList.CurrentRow.DataBoundItem is ViewTable currentRow))
@@ -132,35 +150,37 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             DataUpdateForBottomPanel(code);
         }
 
-        //refresh changed data for bottom panel
+        /// <summary>
+        /// refresh changed data for bottom panel
+        /// </summary>
+        /// <param name="codeI"></param>
         private void DataUpdateForBottomPanel(int codeI)
         {
-            //DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
-            copyrightKindData = _service.GetCopyrightKind(codeI);
+            copyrightKindData = CheckAfterGetQuery(codeI);
             //use data for binding source
             bsCopyrightKind.DataSource = copyrightKindData;
             //define binding for source of the 'Uk'
-            ukCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
             if (ukCopyrightKind == null)
             {
-                ukCopyrightKind = new CopyrightKindTr { Lang = "Uk" };
+                ukCopyrightKind = new CopyrightKindTr { Lang = Langs[0] };
                 copyrightKindData.CopyrightKindTr.Add(ukCopyrightKind);
             }
             bsUkLangCopyrightKind.DataSource = ukCopyrightKind;
             //defined binding for source of the 'Ru'
-            ruCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
             if (ruCopyrightKind == null)
             {
-                ruCopyrightKind = new CopyrightKindTr { Lang = "Ru" };
+                ruCopyrightKind = new CopyrightKindTr { Lang = Langs[1] };
                 copyrightKindData.CopyrightKindTr.Add(ruCopyrightKind);
             }
             bsRuLangCopyrightKind.DataSource = ruCopyrightKind;
             //define binding for source of the 'En'
-            enCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == "En");
+            enCopyrightKind = copyrightKindData.CopyrightKindTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
             if (enCopyrightKind == null)
             {
-                enCopyrightKind = new CopyrightKindTr { Lang = "En" };
+                enCopyrightKind = new CopyrightKindTr { Lang = Langs[2] };
                 copyrightKindData.CopyrightKindTr.Add(enCopyrightKind);
             }
             bsEnLangCopyrightKind.DataSource = enCopyrightKind;
@@ -169,11 +189,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //check after 'Get' query
         private CopyrightKind CheckAfterGetQuery(int codeI)
         {
-            //DictionaryService dictService = new DictionaryService();
             CopyrightKind result = _service.GetCopyrightKind(codeI);
             if (result == null)
             {
-                MessageBox.Show("об'єкт не знайдено");
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = CopyrightKindList[0];
             }
@@ -185,32 +204,34 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //stop perform if position is not exist
             if (e.Position == -1) return;
-            //get field 'value' of the current selected item
-            int selectedItemData = (int)ddlFilterCopyrightKind.Items[e.Position].Value;
-            //set filtered data to grid
-            gridCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
+            //get index current data
+            string valueDropList = ddlFilterCopyrightKind.Items[e.Position].Value.ToString();
+            if (int.TryParse(valueDropList, out int selectedItemData))
+                gridCopyrightKindList.DataSource = FilterDataIntoGrid(selectedItemData);
+            else
+                return;
         }
 
         //filter data for grid
         private List<ViewTable> FilterDataIntoGrid(int code)
         {
-            //initialzie empty data for result
-            List<ViewTable> filteredData = new List<ViewTable>();
             //get all data of the 'CopyrightKind'
             CopyrightKindList = _connector.GetList<CopyrightKind>(urlDataGrid);
             //stop perform if data is not exist
             if (CopyrightKindList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
             CopyrightKindList = CopyrightKindList.Where(item => item.CrGroupCode == code).ToList();
+            //initialzie empty data for result
+            List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
             foreach (var item in CopyrightKindList)
             {
                 filteredData.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    NameUk = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.CopyrightKindTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                     VariantUse = ddlFilterCopyrightKind.SelectedItem.Text,
                 });
             }
@@ -226,15 +247,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             copyrightKindData = new CopyrightKind { CrGroupCode = 1 };
             bsCopyrightKind.DataSource = copyrightKindData;
             //refresh data for field 'Uk'
-            ukCopyrightKind = new CopyrightKindTr { Lang = "Uk" };
+            ukCopyrightKind = new CopyrightKindTr { Lang = Langs[0] };
             copyrightKindData.CopyrightKindTr.Add(ukCopyrightKind);
             bsUkLangCopyrightKind.DataSource = ukCopyrightKind;
             //refresh data for field 'Ru'
-            ruCopyrightKind = new CopyrightKindTr { Lang = "Ru" };
+            ruCopyrightKind = new CopyrightKindTr { Lang = Langs[1] };
             copyrightKindData.CopyrightKindTr.Add(ruCopyrightKind);
             bsRuLangCopyrightKind.DataSource = ruCopyrightKind;
             //refresh data for field 'Ru'
-            enCopyrightKind = new CopyrightKindTr { Lang = "En" };
+            enCopyrightKind = new CopyrightKindTr { Lang = Langs[2] };
             copyrightKindData.CopyrightKindTr.Add(enCopyrightKind);
             bsEnLangCopyrightKind.DataSource = enCopyrightKind;
             //stop perform if elements have 'Enabled' -> false
@@ -246,7 +267,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            //DictionaryService dictService = new DictionaryService();
+            //return if element by index is not exist
+            if (!(CopyrightKindList.Count > indexSelectedElem))
+                return;
             //delete selected item of grid by field 'Code'
             CopyrightKind item = CopyrightKindList[indexSelectedElem];
             bool result = CheckAfterDelete(item.CodeI);
@@ -263,9 +286,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (indexSelectedElem < 0) indexSelectedElem = 0;
             gridCopyrightKindList.CurrentRow = gridCopyrightKindList.Rows[indexSelectedElem];
             //define new currentRow
-            int codeNew = CopyrightKindList[indexSelectedElem].CodeI;
-            DataUpdateForBottomPanel(codeNew);
-            
+            DataUpdateForBottomPanel(
+                CopyrightKindList[indexSelectedElem].CodeI
+                );
         }
 
         /// <summary>
@@ -275,21 +298,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            //DictionaryService dictService = new DictionaryService();
             bool result = _service.DeleteCopyrightKind(codeI);
             if (!result)
             {
                 //MessageBox.Show("об'єкт не видалений");
                 //MessageShow.ShowInfoByResult("", "", result);
-                MessageShow.ShowError("Об'єкт не видалений!");
+                MessageShow.ShowError(DelMess);
             }
             return result;
         }
-
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //refresh bottom panel
             int codeIAfter = 0;
             if (btnSaveCopyrightKind.Text == "Додати")
             {
@@ -325,11 +345,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private CopyrightKind CheckAfterCreate(CopyrightKind createItem)
         {
-            //DictionaryService dictService = new DictionaryService();
-            CopyrightKind result = new CopyrightKind();
+            CopyrightKind result = _service.CreateCopyrightKind(createItem);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = CopyrightKindList[0];
             }
@@ -343,11 +362,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CopyrightKind CheckAfterUpdate(CopyrightKind updateItem)
         {
-            //DictionaryService dictService = new DictionaryService();
-            CopyrightKind result = new CopyrightKind();
+            CopyrightKind result = _service.UpdateCopyrightKind(updateItem);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageShow.ShowError(UpdateMess);
                 //select first element of grid by default
                 result = CopyrightKindList[0];
             }
@@ -357,9 +375,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Cancel' reset changed data for selected item
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            int codeICurrent = CopyrightKindList[indexSelectedElem].CodeI;
             //reset changed data
-            DataUpdateForBottomPanel(codeICurrent);
+            DataUpdateForBottomPanel(
+                CopyrightKindList[indexSelectedElem].CodeI
+                );
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements

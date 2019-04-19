@@ -136,7 +136,7 @@ namespace sysAdminwp.viewPageDictionaryControls
                     BaseGenreTypeControl baseGenreType = new BaseGenreTypeControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
                     tableLayout_MarkupElement.Controls.Add(baseGenreType, 1, 0);
                     break;
-                case "klr030":
+                case "kl_r030":
                     //revome other controls
                     tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
                     //initialize base control 'GenreType'

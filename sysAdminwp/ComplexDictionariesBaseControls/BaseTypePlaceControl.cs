@@ -8,15 +8,31 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseTypePlaceControl : UserControl
     {
+        private readonly List<string> Langs = new List<string>
+        {
+            "Uk", "Ru", "En"
+        };
+
+        private const string DelMess = "Об'єкт не видалений!";
+        private const string GetMess = "об'єкт не знайдено";
+        private const string CreateMess = "Помилка формату";
+        private const string UpdateMess = "Помилка формату";
+        private const string UrlBaseDict = "dictionary/base/typePlaceParam";
+
+        private readonly DictionaryService _dictionaryService = DictionaryService.GetInstance();
+        private readonly ApiConnector _connector;
+
         //define data for different languages
         private TypePlaceTr ukTypePlace;
         private TypePlaceTr ruTypePlace;
         private TypePlaceTr enTypePlace;
+
         //define grid data
         private List<TypePlace> _typePlaceList;
         public List<TypePlace> TypePlaceList
@@ -33,14 +49,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         }
         //item data
         private TypePlace typePlaceData;
-        //define connector
-        private readonly ApiConnector _connector;
         //url for get data to grid
         private readonly string urlDataGrid;
         //for control current select of grid
         private int indexSelectedElem;
         //control 'Enabled' state for elements
-        private bool controlEnabledActiveElements = false;
+        private bool controlEnabledActiveElements = true;
         public bool ControlEnabledActiveElements
         {
             get { return controlEnabledActiveElements; }
@@ -67,40 +81,45 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             InitializeComponent();
             _connector = connector;
-            //setup search posibility for textBox element
-            txtSearchTypePlace.SetUsageGrid(gridTypePlaceList);
-            //initialize data for drop down list - 'Спосіб використання'
-            ddlFilterTypePlace.DataSource = InitializeDataForFilter();
-            //initialize data for binding source of the Dictionaries 'dropDownList'
-            bsSimpleDictTypePlace.DataSource = ddlFilterTypePlace.DataSource;
             urlDataGrid = urlForComplexDict;
+            //initialize data for drop down lists
+            ddlFilterTypePlace.DataSource = bsSimpleDictTypePlace.DataSource = InitializeDataForFilter();
             //initialize data for grid
             gridTypePlaceList.DataSource = HandleDataForGrid(urlForComplexDict);
-            int codeIDefault = TypePlaceList[0].CodeI;
-            //set default data for bottom panel
-            DataUpdateForBottomPanel(codeIDefault);
-            //set 'Enabled' state by default
-            ControlEnabledActiveElements = true;
+            //setup search posibility for textBox element
+            txtSearchTypePlace.SetUsageGrid(gridTypePlaceList);
             
+            //set default data for bottom panel
+            if (TypePlaceList.Count != 0)
+                DataUpdateForBottomPanel(
+                    TypePlaceList[0].CodeI
+                    );
+            ControlEnabledActiveElements = true;
         }
-        
+
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
             //check on valid state parameter
             if (urlForGetDataDictionaries == null) return new List<ViewTable>();
-            List<ViewTable> dataGrid = new List<ViewTable>();
             //get data dictionaries -> for grid
             TypePlaceList = _connector.GetList<TypePlace>(urlForGetDataDictionaries);
+            //data is not exist
+            if (TypePlaceList == null)
+            {
+                TypePlaceList = new List<TypePlace>();
+                return new List<ViewTable>();
+            }
+            List<ViewTable> dataGrid = new List<ViewTable>();
             //initialize grid data
             foreach (var item in TypePlaceList)
             {
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                     Object = item.ParamType != null ? ddlFilterTypePlace.Items.First(el => (int)el.Value == item.ParamType).Text : "",
                 });
             }
@@ -110,60 +129,50 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //handle data for drop down list - 'Спосіб використання'
         private List<DictBaseTypeI> InitializeDataForFilter()
         {
-            //define for result data
-            List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
             //get data for drop down list
-            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/typePlaceParam");
-            //check data
-            return dataDropDownList != null ? dataDropDownList : new List<DictBaseTypeI>();
+            return _connector.GetList<DictBaseTypeI>(UrlBaseDict) ?? new List<DictBaseTypeI>();
         }
 
         //show data for bottom panel
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
-            //get id dictionary
-            GridViewRowInfo rowDetail = gridTypePlaceList.CurrentRow;
-            //get data of the current row
-            ViewTable @curRow = rowDetail.DataBoundItem as ViewTable;
-            //stop perform if data is not exist
-            if (@curRow == null) return;
-            //check field 'Code' on correct type 'int'
-            if (!int.TryParse(@curRow.Code, out int code)) return;
-            //save value 'code' -> fr refresh data when 'Cancel' action
+            if (!(gridTypePlaceList.CurrentRow.DataBoundItem is ViewTable currentRow))
+                return;
+
+            if (!int.TryParse(currentRow.Code, out int code))
+                return;
             indexSelectedElem = TypePlaceList.FindIndex(el => el.CodeI == code);
-            //update data for bottom panel
             DataUpdateForBottomPanel(code);
         }
 
         //refresh changed data for bottom panel
         private void DataUpdateForBottomPanel(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
             //get object by parameter 'code' from service
-            typePlaceData = dictService.GetTypePlace(codeI);
+            typePlaceData = CheckAfterGetQuery(codeI);
             //use data for binding source
             bsTypePlace.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
-            ukTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
             if (ukTypePlace == null)
             {
-                ukTypePlace = new TypePlaceTr { Lang = "Uk" };
+                ukTypePlace = new TypePlaceTr { Lang = Langs[0] };
                 typePlaceData.TypePlaceTr.Add(ukTypePlace);
             }
             bsUkLangTypePlace.DataSource = ukTypePlace;
             //defined binding for source of the 'Ru'
-            ruTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
             if (ruTypePlace == null)
             {
-                ruTypePlace = new TypePlaceTr { Lang = "Ru" };
+                ruTypePlace = new TypePlaceTr { Lang = Langs[1] };
                 typePlaceData.TypePlaceTr.Add(ruTypePlace);
             }
             bsRuLangTypePlace.DataSource = ruTypePlace;
             //define binding for source of the 'En'
-            enTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == "En");
+            enTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
             if (enTypePlace == null)
             {
-                enTypePlace = new TypePlaceTr { Lang = "En" };
+                enTypePlace = new TypePlaceTr { Lang = Langs[2] };
                 typePlaceData.TypePlaceTr.Add(enTypePlace);
             }
             bsEnLangTypePlace.DataSource = enTypePlace;
@@ -171,11 +180,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private TypePlace CheckAfterGetQuery(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
-            TypePlace result = dictService.GetTypePlace(codeI);
+            TypePlace result = _dictionaryService.GetTypePlace(codeI);
             if (result == null)
             {
-                MessageBox.Show("об'єкт не знайдено");
+                MessageShow.ShowError(GetMess);
                 //set select first element of grid
                 result = TypePlaceList[0];
             }
@@ -187,32 +195,33 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //stop perform if position is not exist
             if (e.Position == -1) return;
-            //get field 'value' of the current selected item
-            int selectedItemData = (int)ddlFilterTypePlace.Items[e.Position].Value;
-            //set filtered data to grid
-            gridTypePlaceList.DataSource = FilterDataIntoGrid(selectedItemData);
+            //get index current data
+            string valueDropList = ddlFilterTypePlace.Items[e.Position].Value.ToString();
+            if (int.TryParse(valueDropList, out int selectedItemData))
+                gridTypePlaceList.DataSource = FilterDataIntoGrid(selectedItemData);
+            else
+                return;
         }
 
         //filter data for grid
         private List<ViewTable> FilterDataIntoGrid(int code)
         {
-            //initialzie empty data for result
-            List<ViewTable> filteredData = new List<ViewTable>();
             //get all data of the 'CopyrightKind'
             TypePlaceList = _connector.GetList<TypePlace>(urlDataGrid);
             //stop perform if data is not exist
             if (TypePlaceList == null) return new List<ViewTable>();
             //filter data by parameter 'code'
             TypePlaceList = TypePlaceList.Where(item => item.ParamType == code).ToList();
+            List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
             foreach (var item in _typePlaceList)
             {
                 filteredData.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Uk")?.Name ?? item.Name,
-                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "Ru")?.Name,
-                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == "En")?.Name,
+                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
+                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
                     Object = ddlFilterTypePlace.SelectedItem.Text,
                 });
             }
@@ -228,15 +237,15 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             typePlaceData = new TypePlace { ParamType = 1 };
             bsTypePlace.DataSource = typePlaceData;
             //refresh data for field 'Uk'
-            ukTypePlace = new TypePlaceTr { Lang = "Uk" };
+            ukTypePlace = new TypePlaceTr { Lang = Langs[0] };
             typePlaceData.TypePlaceTr.Add(ukTypePlace);
             bsUkLangTypePlace.DataSource = ukTypePlace;
             //refresh data for field 'Ru'
-            ruTypePlace = new TypePlaceTr { Lang = "Ru" };
+            ruTypePlace = new TypePlaceTr { Lang = Langs[1] };
             typePlaceData.TypePlaceTr.Add(ruTypePlace);
             bsRuLangTypePlace.DataSource = ruTypePlace;
             //refresh data for field 'Ru'
-            enTypePlace = new TypePlaceTr { Lang = "En" };
+            enTypePlace = new TypePlaceTr { Lang = Langs[2] };
             typePlaceData.TypePlaceTr.Add(enTypePlace);
             bsEnLangTypePlace.DataSource = enTypePlace;
             //stop perform if elements have 'Enabled' -> false
@@ -248,10 +257,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            DictionaryService dictService = new DictionaryService();
+            //return if element by index is not exist
+            if (!(TypePlaceList.Count > indexSelectedElem))
+                return;
             //delete selected item of grid by field 'Code'
-            TypePlace item = _typePlaceList[indexSelectedElem];
-            bool result = dictService.DeleteTypePlace(item.CodeI);
+            TypePlace item = TypePlaceList[indexSelectedElem];
+            bool result = CheckAfterDelete(item.CodeI);
             //update data for grid
             gridTypePlaceList.DataSource = HandleDataForGrid(urlDataGrid);
             //step up in grid position
@@ -259,8 +270,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             if (indexSelectedElem < 0) indexSelectedElem = 0;
             gridTypePlaceList.CurrentRow = gridTypePlaceList.Rows[indexSelectedElem];
             //define new currentRow
-            int codeNew = TypePlaceList[indexSelectedElem].CodeI;
-            DataUpdateForBottomPanel(codeNew);
+            DataUpdateForBottomPanel(
+                TypePlaceList[indexSelectedElem].CodeI
+                );
         }
 
         /// <summary>
@@ -270,12 +282,10 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            DictionaryService dictService = new DictionaryService();
-            bool result = dictService.DeleteTypePlace(codeI);
+            bool result = _dictionaryService.DeleteTypePlace(codeI);
             if (!result)
             {
-                MessageBox.Show("об'єкт не видалений");
-                result = false;
+                MessageShow.ShowError(DelMess);
             }
             return result;
         }
@@ -323,11 +333,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private TypePlace CheckAfterCreate(TypePlace createItem)
         {
-            DictionaryService dictService = new DictionaryService();
-            TypePlace result = dictService.CreateTypePlace(createItem);
+            //DictionaryService dictService = new DictionaryService();
+            TypePlace result = _dictionaryService.CreateTypePlace(createItem);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageShow.ShowError(CreateMess);
                 //select first element of grid by default
                 result = TypePlaceList[0];
             }
@@ -341,11 +351,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private TypePlace CheckAfterUpdate(TypePlace updateItem)
         {
-            DictionaryService dictService = new DictionaryService();
-            TypePlace result = dictService.UpdateTypePlace(typePlaceData);
+            //DictionaryService dictService = new DictionaryService();
+            TypePlace result = _dictionaryService.UpdateTypePlace(typePlaceData);
             if (result == null)
             {
-                MessageBox.Show("Помилка формату");
+                MessageShow.ShowError(UpdateMess);
                 //select first element of grid by default
                 result = TypePlaceList[0];
             }
