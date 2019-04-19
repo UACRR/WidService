@@ -159,8 +159,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         /// <param name="e"></param>
         private void Svc_PreviewDragStart(object sender, PreviewDragStartEventArgs e)
         {
+
             RadItem target = e.DragInstance as RadItem;
             var row = target as GridDataRowElement;
+            if (row == null)
+                return;
+
 
             dragRow = row;
             dropRow = null;
