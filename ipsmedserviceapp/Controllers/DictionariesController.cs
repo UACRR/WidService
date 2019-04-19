@@ -1512,6 +1512,73 @@ namespace ipsmedserviceapp.Controllers
         }
         // CopyRightKind END **********************
 
+        // Country BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/country/{countryCode}")]
+        public async Task<IActionResult> GetCountry(string countryCode)
+        {
+            Country dest = await _dbContext.Country.Where(item => item.CountryCode == countryCode)
+                                    .Include(rec => rec.CountryTr)
+                                    .AsNoTracking()
+                                    .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+
+        // Create New  ****************************
+        [HttpPost("extra/country")]
+        public async Task<IActionResult> CreateCountry([FromBody] Country sors)
+        {
+            Country dest = new Country();
+
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.CountryTr, dest.CountryTr, i => { }, (l, r) => l.CountryCode == r.CountryCode && l.Lang == r.Lang);
+            _dbContext.Country.Add(dest);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/country/{countryCode}")]
+        public async Task<IActionResult> UpdateCountry(string countryCode, [FromBody] Country sors)
+        {
+            Country dest = await _dbContext.Country.Where(rec => rec.CountryCode == countryCode)
+                                    .Include(rec => rec.CountryTr)
+                                    .FirstOrDefaultAsync();
+
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.CountryTr, dest.CountryTr, i => { }, (l, r) => l.CountryCode == r.CountryCode && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/country/{countryCode}")]
+        public async Task<IActionResult> DeleteCountry(string countryCode)
+        {
+            Country delRow = await _dbContext.Country.Where(rec => rec.CountryCode == countryCode)
+                                        .Include(rec => rec.CountryTr)
+                                        .FirstOrDefaultAsync();
+
+            if (delRow == null)
+                return NotFound();
+
+            _dbContext.CountryTr.RemoveRange(delRow.CountryTr);
+            _dbContext.Country.Remove(delRow);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+        // Country END **********************
+
+
         // CreativeRoleType BEGIN ********************
         // Get By Id   ****************************
         [HttpGet("extra/creativeroletype/{id}")]
@@ -1650,9 +1717,9 @@ namespace ipsmedserviceapp.Controllers
         // KlR030 BEGIN ********************
         // Get By Id   ****************************
         [HttpGet("extra/klr030/{id}")]
-        public async Task<IActionResult> GetKlR030(int id)
+        public async Task<IActionResult> GetKlR030(string id)
         {
-            var dest = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+            var dest = await _dbContext.KlR030.Where(rec => rec.R030 == id)
                                 .Include(rec => rec.KlR030tr)
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync();

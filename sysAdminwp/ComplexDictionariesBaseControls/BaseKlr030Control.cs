@@ -119,17 +119,18 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[0])?.R030Name ?? item.R030Name,
                     NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[1])?.R030Name,
                     NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[2])?.R030Name,
-                    klrCountry = item.R031 != null ? ddlFilterKlr030.Items.FirstOrDefault(el => (int)el.Value == item.R031).Text : "",
+                    klrCountry = item.CountryCode != null ? ddlFilterKlr030.Items.FirstOrDefault(el => el.Value.ToString() == item.CountryCode).Text : "",
                 });
             }
             return dataGrid;
         }
 
         //handle data for drop down list - 'Спосіб використання'
-        private List<DictBaseTypeI> InitializeDataForFilter()
+        private List<Country> InitializeDataForFilter()
         {
             //get data for drop down list
-            return _connector.GetList<DictBaseTypeI>(UrlBaseDict) ?? new List<DictBaseTypeI>();
+            var file = _connector.GetList<Country>(UrlBaseDict) ?? new List<Country>();
+            return file;
         }
 
         //show data for bottom panel
@@ -186,8 +187,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private KlR030 CheckAfterGetQuery(string codeI)
         {
             KlR030 result = new KlR030();
-            if (int.TryParse(codeI, out int code))
-                result = _dictService.GetKlR030(code);
+            //if (int.TryParse(codeI, out int code))
+                result = _dictService.GetKlR030(codeI);
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);

@@ -212,6 +212,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CrkindGroup.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.KlR030tr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.SystemConstant.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.TypePlace.datasource" />
     <None Include="Properties\Settings.settings">

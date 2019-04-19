@@ -155,26 +155,26 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //use data for binding source
             bsCreativeRoleType.DataSource = creativeroleTypeData;
             //define binding for source of the 'Uk'
-            ukCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
             if (ukCreativeroleType == null)
             {
-                ukCreativeroleType = new CreativeRoleTypeTr { Lang = "Uk" };
+                ukCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[0] };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(ukCreativeroleType);
             }
             bsUkLangCreativeRoleType.DataSource = ukCreativeroleType;
             //defined binding for source of the 'Ru'
-            ruCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
             if (ruCreativeroleType == null)
             {
-                ruCreativeroleType = new CreativeRoleTypeTr { Lang = "Ru" };
+                ruCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[1] };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(ruCreativeroleType);
             }
             bsRuLangCreativeRoleType.DataSource = ruCreativeroleType;
             //define binding for source of the 'En'
-            enCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "En");
+            enCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
             if (enCreativeroleType == null)
             {
-                enCreativeroleType = new CreativeRoleTypeTr { Lang = "En" };
+                enCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[2] };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(enCreativeroleType);
             }
             bsEnLangCreativeRoleType.DataSource = enCreativeroleType;
