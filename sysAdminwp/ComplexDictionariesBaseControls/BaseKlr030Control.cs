@@ -79,15 +79,16 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseKlr030Control(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            txtSearchKlr030.SetUsageGrid(gridKlr030List);
+
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists
             ddlFilterKlr030.DataSource = bsSimpleDictKlr030.DataSource = InitializeDataForFilter();
             //initialize data for grid
-            gridKlr030List.DataSource = HandleDataForGrid(urlForComplexDict);
+            //gridKlr030List.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
-            txtSearchKlr030.SetUsageGrid(gridKlr030List);
-            
+
             //set default data for bottom panel
             if (Klr030List.Count != 0)
                 DataUpdateForBottomPanel(

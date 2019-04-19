@@ -114,8 +114,6 @@
             // ddlFilterKlr030
             // 
             this.ddlFilterKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlFilterKlr030.DataSource = this.bsSimpleDictKlr030;
-            this.ddlFilterKlr030.DisplayMember = "CountryName";
             this.ddlFilterKlr030.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlFilterKlr030.FormattingEnabled = false;
             this.ddlFilterKlr030.Location = new System.Drawing.Point(760, 2);
@@ -123,7 +121,6 @@
             this.ddlFilterKlr030.Size = new System.Drawing.Size(427, 21);
             this.ddlFilterKlr030.TabIndex = 22;
             this.ddlFilterKlr030.ThemeName = "Office2013Light";
-            this.ddlFilterKlr030.ValueMember = "CountryCode";
             this.ddlFilterKlr030.SelectedIndexChanged += new Telerik.WinControls.UI.Data.PositionChangedEventHandler(this.ddlCommonKeyData_SelectedIndexChanged);
             // 
             // bsSimpleDictKlr030
@@ -200,16 +197,12 @@
             // 
             this.ddlEditKeyKlr030.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlEditKeyKlr030.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsKlr030, "R031", true));
-            this.ddlEditKeyKlr030.DataSource = this.bsSimpleDictKlr030;
-            this.ddlEditKeyKlr030.DisplayMember = "CountryName";
             this.ddlEditKeyKlr030.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyKlr030.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyKlr030.Name = "ddlEditKeyKlr030";
             this.ddlEditKeyKlr030.Size = new System.Drawing.Size(401, 21);
             this.ddlEditKeyKlr030.TabIndex = 13;
             this.ddlEditKeyKlr030.ThemeName = "Office2013Light";
-            this.ddlEditKeyKlr030.ValueMember = "CountryCode";
             this.ddlEditKeyKlr030.Click += new System.EventHandler(this.ddlEditKeyKlr030_Click);
             // 
             // bsKlr030
@@ -218,7 +211,7 @@
             // 
             // txtRuLangKlr030
             // 
-            this.txtRuLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangKlr030, "Name", true));
+            this.txtRuLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangKlr030, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtRuLangKlr030.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangKlr030.MaxLength = 500;
             this.txtRuLangKlr030.Name = "txtRuLangKlr030";
@@ -233,7 +226,7 @@
             // 
             // txtEnLangKlr030
             // 
-            this.txtEnLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangKlr030, "Name", true));
+            this.txtEnLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangKlr030, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtEnLangKlr030.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangKlr030.MaxLength = 500;
             this.txtEnLangKlr030.Name = "txtEnLangKlr030";
@@ -248,7 +241,7 @@
             // 
             // txtUkLangKlr030
             // 
-            this.txtUkLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangKlr030, "Name", true));
+            this.txtUkLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangKlr030, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtUkLangKlr030.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangKlr030.MaxLength = 500;
             this.txtUkLangKlr030.Name = "txtUkLangKlr030";
@@ -263,7 +256,7 @@
             // 
             // txtCodeKlr030
             // 
-            this.txtCodeKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsKlr030, "R030", true));
+            this.txtCodeKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsKlr030, "R030", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtCodeKlr030.Location = new System.Drawing.Point(162, 28);
             this.txtCodeKlr030.MaxLength = 5;
             this.txtCodeKlr030.Name = "txtCodeKlr030";

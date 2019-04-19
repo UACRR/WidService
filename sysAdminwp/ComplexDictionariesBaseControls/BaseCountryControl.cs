@@ -82,6 +82,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseCountryControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists

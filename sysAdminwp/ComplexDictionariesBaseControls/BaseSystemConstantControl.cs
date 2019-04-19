@@ -83,9 +83,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtSearchSystemConstant.SetUsageGrid(gridSystemConstantList);
             //set default data for bottom panel
             if (SystemConstantList.Count != 0)
-                DataUpdateForBottomPanel(
-                    SystemConstantList[0].CodeI
-                    );
+                DataUpdateForBottomPanel(SystemConstantList[0].CodeI);
             ControlEnabledActiveElements = true;
         }
         
