@@ -416,7 +416,7 @@ namespace ReportsLibrary
             tableGroup7.Groupings.Add(new Telerik.Reporting.Grouping(null));
             tableGroup7.Name = "detail";
             this.table1.RowGroups.Add(tableGroup7);
-            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(22.716D), Telerik.Reporting.Drawing.Unit.Cm(1.979D));
+            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(22.715D), Telerik.Reporting.Drawing.Unit.Cm(1.979D));
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox16
@@ -504,7 +504,7 @@ namespace ReportsLibrary
             reportParameter3.Name = "dateBegin";
             reportParameter3.Text = "За період з ";
             reportParameter3.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter3.Value = "=Date( CInt( Substr( CStr(Now()),6,4)),1,1)";
+            reportParameter3.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter3.Visible = true;
             reportParameter4.AutoRefresh = true;
             reportParameter4.Name = "dateEnd";

@@ -264,7 +264,7 @@ namespace ReportsLibrary
             this.textBox7.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox7.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox7.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox7.Style.Visible = false;
+            this.textBox7.Style.Visible = true;
             this.textBox7.Value = "9. Розподіл авторскої ";
             // 
             // textBox8
@@ -288,8 +288,8 @@ namespace ReportsLibrary
             // 
             typeReportSource9.Parameters.Add(new Telerik.Reporting.Parameter("cmFlag", "=0"));
             typeReportSource9.Parameters.Add(new Telerik.Reporting.Parameter("categoryCode", "=5"));
-            typeReportSource9.TypeName = "ReportsLibrary.R_5_8_DistribMain, ReportsLibrary, Version=1.0.0.0, Culture=neutra" +
-    "l, PublicKeyToken=null";
+            typeReportSource9.TypeName = "ReportsLibrary.R_5_8_DistribMain_SR, ReportsLibrary, Version=1.0.0.0, Culture=neu" +
+    "tral, PublicKeyToken=null";
             navigateToReportAction9.ReportSource = typeReportSource9;
             this.textBox9.Action = navigateToReportAction9;
             this.textBox9.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(1.11D));
