@@ -405,7 +405,7 @@ namespace ReportsLibrary
             reportParameter3.Name = "dateBegin";
             reportParameter3.Text = "За період з ";
             reportParameter3.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter3.Value = "=Date( CInt( Substr( CStr(Now()),6,4)),1,1)";
+            reportParameter3.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter3.Visible = true;
             reportParameter4.AutoRefresh = true;
             reportParameter4.Name = "dateEnd";

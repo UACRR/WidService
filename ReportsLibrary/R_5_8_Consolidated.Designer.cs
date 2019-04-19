@@ -239,8 +239,8 @@ namespace ReportsLibrary
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateEnd", "= Parameters.endDate.Value"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("cmFlag", "= Fields.cmFlag"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("categoryCode", "= Fields.categoryCode"));
-            typeReportSource1.TypeName = "ReportsLibrary.R_5_8_DistribMain, ReportsLibrary, Version=1.0.0.0, Culture=neutra" +
-    "l, PublicKeyToken=null";
+            typeReportSource1.TypeName = "ReportsLibrary.R_5_8_ConsolidDetail, ReportsLibrary, Version=1.0.0.0, Culture=neu" +
+    "tral, PublicKeyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox10.Action = navigateToReportAction1;
             this.textBox10.Name = "textBox10";
@@ -531,7 +531,7 @@ namespace ReportsLibrary
             reportParameter1.Name = "beginDate";
             reportParameter1.Text = "            ç";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter1.Value = "=Date( CInt( Substr( CStr(Now()),6,4)),1,1)";
+            reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "endDate";
