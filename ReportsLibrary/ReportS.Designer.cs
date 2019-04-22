@@ -301,7 +301,7 @@ namespace ReportsLibrary
             this.textBox9.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox9.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox9.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox9.Style.Visible = false;
+            this.textBox9.Style.Visible = true;
             this.textBox9.Value = "11. Відомість \'Розподіл авторської \r\n    винагороди на Авторів  з \'малих \r\n    пр" +
     "ав\'\'";
             // 
@@ -322,7 +322,7 @@ namespace ReportsLibrary
             this.textBox10.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox10.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox10.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox10.Style.Visible = false;
+            this.textBox10.Style.Visible = true;
             this.textBox10.Value = "12. Відомість \'Розподіл авторської \r\n    винагороди на Авторів  з \'великих \r\n    " +
     "прав\'\'";
             // 
@@ -343,7 +343,7 @@ namespace ReportsLibrary
             this.textBox11.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox11.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox11.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox11.Style.Visible = false;
+            this.textBox11.Style.Visible = true;
             this.textBox11.Value = "13. Відомість \'Розподіл авторської \r\n    винагороди на правовласників з \r\n    \'ве" +
     "ликих прав\' - інші товариства\'";
             // 
