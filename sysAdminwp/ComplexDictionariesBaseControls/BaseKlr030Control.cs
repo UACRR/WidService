@@ -9,11 +9,18 @@ using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
+using System.Collections;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseKlr030Control : UserControl
     {
+        Klr030Layer _layer = new Klr030Layer();
+        public delegate KlR030 GetDictionaryLayer(int id);
+        public delegate KlR030 CreateLayer(KlR030 sors);
+        public delegate KlR030 UpdateLayer(KlR030 sors);
+        public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
@@ -79,20 +86,21 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseKlr030Control(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             txtSearchKlr030.SetUsageGrid(gridKlr030List);
 
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists
-            ddlFilterKlr030.DataSource = bsSimpleDictKlr030.DataSource = InitializeDataForFilter();
+            countryBindingSource.DataSource = bsSimpleDictKlr030.DataSource = InitializeDataForFilter();
             //initialize data for grid
-            //gridKlr030List.DataSource = HandleDataForGrid(urlForComplexDict);
+            gridKlr030List.DataSource = HandleDataForGrid(urlForComplexDict);
             //setup search posibility for textBox element
 
             //set default data for bottom panel
             if (Klr030List.Count != 0)
                 DataUpdateForBottomPanel(
-                    Klr030List[0].R030
+                    Klr030List[13].R030
                     );
             ControlEnabledActiveElements = true;
         }
@@ -111,6 +119,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 return new List<ViewTable>();
             }
             List<ViewTable> dataGrid = new List<ViewTable>();
+            List<Country> list = (List<Country>)countryBindingSource.List;
             //initialize grid data
             foreach (var item in Klr030List)
             {
@@ -120,7 +129,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                     NameUk = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[0])?.R030Name ?? item.R030Name,
                     NameRu = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[1])?.R030Name,
                     NameEn = item.KlR030tr?.SingleOrDefault(i => i?.Lang == Langs[2])?.R030Name,
-                    klrCountry = item.CountryCode != null ? ddlFilterKlr030.Items.FirstOrDefault(el => el.Value.ToString() == item.CountryCode).Text : "",
+                    klrCountry = item.CountryCode != null ? list.Find(el => el.CountryCode == item.CountryCode).CountryName : "",
                 });
             }
             return dataGrid;
@@ -130,8 +139,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private List<Country> InitializeDataForFilter()
         {
             //get data for drop down list
-            var file = _connector.GetList<Country>(UrlBaseDict) ?? new List<Country>();
-            return file;
+            return _connector.GetList<Country>(UrlBaseDict) ?? new List<Country>();
         }
 
         //show data for bottom panel
@@ -185,11 +193,14 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// </summary>
         /// <param name="codeI"></param>
         /// <returns></returns>
-        private KlR030 CheckAfterGetQuery(string codeI)
+        private KlR030 CheckAfterGetQuery(string code)
         {
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
             KlR030 result = new KlR030();
-            //if (int.TryParse(codeI, out int code))
-                result = _dictService.GetKlR030(codeI);
+            if (int.TryParse(code, out int codeInt))
+                result = dictDelegat(codeInt);
+            else
+                result = null;
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
@@ -292,7 +303,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            bool result = _dictService.DeleteKlR030(codeI);
+            DeleteLayer dictDelegat = new DeleteLayer(_layer.Delete);
+            bool result = dictDelegat(codeI);
             if (!result)
             {
                 MessageShow.ShowError(DelMess);
@@ -341,7 +353,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private KlR030 CheckAfterCreate(KlR030 createItem)
         {
-            KlR030 result = _dictService.CreateKlR030(createItem);
+            CreateLayer dictDelegat = new CreateLayer(_layer.Create);
+            KlR030 result = dictDelegat(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
@@ -358,7 +371,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private KlR030 CheckAfterUpdate(KlR030 updateItem)
         {
-            KlR030 result = _dictService.UpdateKlR030(klr030Data);
+            UpdateLayer dictDelegat = new UpdateLayer(_layer.Update);
+            KlR030 result = dictDelegat(klr030Data);
             if (result == null)
             {
                 MessageShow.ShowError(UpdateMess);

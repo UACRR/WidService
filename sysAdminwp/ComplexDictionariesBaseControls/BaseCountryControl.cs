@@ -9,11 +9,17 @@ using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCountryControl : UserControl
     {
+        CountryLayer _layer = new CountryLayer();
+        public delegate Country GetDictionaryLayer(int id);
+        public delegate Country CreateLayer(Country sors);
+        public delegate Country UpdateLayer(Country sors);
+        public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
@@ -95,7 +101,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set default data for bottom panel
             if (CountryList.Count != 0)
                 DataUpdateForBottomPanel(
-                    CountryList[0].CountryCode
+                    CountryList[35].CountryCode
                     );
             ControlEnabledActiveElements = true;
         }
@@ -182,7 +188,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private Country CheckAfterGetQuery(string code)
         {
-            Country result = _dictionaryService.GetCountry(code);
+            Country result = new Country();
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
+            if (int.TryParse(code, out int codeInt))
+                result = dictDelegat(codeInt);
+            else
+                result = null;
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
@@ -285,7 +296,12 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(string code)
         {
-            bool result = _dictionaryService.DeleteCountry(code);
+            bool result = false;
+            DeleteLayer dictDelegat = new DeleteLayer(_layer.Delete);
+            if (int.TryParse(code, out int codeInt))
+                result = dictDelegat(codeInt);
+            else
+                result = false;
             if (!result)
                 MessageShow.ShowError(DelMess);
             return result;
@@ -332,7 +348,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private Country CheckAfterCreate(Country createItem)
         {
-            Country result = _dictionaryService.CreateCountry(createItem);
+            CreateLayer dictDelegate = new CreateLayer(_layer.Create);
+            Country result = dictDelegate(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
@@ -348,7 +365,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private Country CheckAfterUpdate(Country updateItem)
         {
-            Country result = _dictionaryService.UpdateCountry(updateItem);
+            UpdateLayer dictDelegat = new UpdateLayer(_layer.Update);
+            Country result = dictDelegat(updateItem);
             if (result == null)
             {
                 MessageShow.ShowError(UpdateMess);

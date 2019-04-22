@@ -9,11 +9,18 @@ using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCopyrightKindControl : UserControl
     {
+        CopyrightKindLayer _layer = new CopyrightKindLayer();
+        public delegate CopyrightKind GetDictionaryLayer(int id);
+        public delegate CopyrightKind CreateLayer(CopyrightKind sors);
+        public delegate CopyrightKind UpdateLayer(CopyrightKind sors);
+        public delegate bool DeleteLayer(int id);
+
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
@@ -80,6 +87,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseCopyrightKindControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists
@@ -189,7 +197,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //check after 'Get' query
         private CopyrightKind CheckAfterGetQuery(int codeI)
         {
-            CopyrightKind result = _service.GetCopyrightKind(codeI);
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
+            CopyrightKind result = dictDelegat(codeI);
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
@@ -298,7 +307,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            bool result = _service.DeleteCopyrightKind(codeI);
+            DeleteLayer dictDelegat = new DeleteLayer(_layer.Delete);
+            bool result = dictDelegat(codeI);
             if (!result)
             {
                 //MessageBox.Show("об'єкт не видалений");
@@ -345,7 +355,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private CopyrightKind CheckAfterCreate(CopyrightKind createItem)
         {
-            CopyrightKind result = _service.CreateCopyrightKind(createItem);
+            CreateLayer dictDelegat = new CreateLayer(_layer.Create);
+            CopyrightKind result = dictDelegat(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
@@ -362,7 +373,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CopyrightKind CheckAfterUpdate(CopyrightKind updateItem)
         {
-            CopyrightKind result = _service.UpdateCopyrightKind(updateItem);
+            UpdateLayer dictDelegat = new UpdateLayer(_layer.Update);
+            CopyrightKind result = dictDelegat(updateItem);
             if (result == null)
             {
                 MessageShow.ShowError(UpdateMess);

@@ -1,23 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Forms;
+using WebAPIConnector;
 
 namespace sysAdminwp.PresenterComplexDictionaries
 {
-    interface IDictionaryActions<T> where T : class
+    /// <summary>
+    /// define actions for complex dictionaries
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    interface IDictionaryActions<T>
     {
-        //get dictionary by id
+        /// <summary>
+        /// get dictionary by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         T GetDictionary(int id);
-
-        //create dictionary
+        
+        /// <summary>
+        /// create dictionary
+        /// </summary>
+        /// <param name="sors"></param>
+        /// <returns></returns>
         T Create(T sors);
-
-        //update dictionary
+        
+        /// <summary>
+        /// update dictionary
+        /// </summary>
+        /// <param name="sors"></param>
+        /// <returns></returns>
         T Update(T sors);
-
-        //delete dictionary
+        
+        /// <summary>
+        /// delete dictionary
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         bool Delete(int code);
+
+        /// <summary>
+        /// initialize control
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        UserControl InitControl(ApiConnector connector, string url);
     }
 }

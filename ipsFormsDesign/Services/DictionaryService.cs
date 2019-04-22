@@ -73,10 +73,10 @@ namespace ipsFormsDesign.Services
         }
 
         // Country BEGIN ********************
-        public Country GetCountry(string id)
+        public Country GetCountry(int id)
         {
             string url = string.Concat(_prefix, "extra/country");
-            return _webApi.GetItemById<Country>(url, id);
+            return _webApi.GetItemById<Country>(url, id.ToString());
         }
 
         public Country CreateCountry(Country sors)
@@ -91,10 +91,10 @@ namespace ipsFormsDesign.Services
             return _webApi.UpdateItemWithResult(url, sors.CountryCode, sors);
         }
 
-        public bool DeleteCountry(string id)
+        public bool DeleteCountry(int id)
         {
             string url = string.Concat(_prefix, "extra/country");
-            return _webApi.DeleteItem(url, id);
+            return _webApi.DeleteItem(url, id.ToString());
         }
 
         // CreativeRoleType BEGIN ********************
@@ -148,10 +148,10 @@ namespace ipsFormsDesign.Services
         }
 
         // KlR030 BEGIN ********************
-        public KlR030 GetKlR030(string id)
+        public KlR030 GetKlR030(int id)
         {
             string url = string.Concat(_prefix, "extra/klr030");
-            return _webApi.GetItemById<KlR030>(url, id);
+            return _webApi.GetItemById<KlR030>(url, id.ToString());
         }
 
         public KlR030 CreateKlR030(KlR030 sors)

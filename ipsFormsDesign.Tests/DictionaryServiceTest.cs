@@ -227,7 +227,7 @@ namespace ipsFormsDesign.Tests
         public void TestGetKlR030()
         {
             //define codeI for get KlR030
-            string codeI = "008";
+            int codeI = 8;
             //get result data
             KlR030 result = _dictionary.GetKlR030(codeI);
             //checks for result data

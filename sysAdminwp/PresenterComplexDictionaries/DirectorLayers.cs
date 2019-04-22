@@ -1,31 +1,40 @@
-﻿using sysAdminwp.ComplexDictionariesBaseControls;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ipsFormsDesign.Model;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 using System.Windows.Forms;
 using WebAPIConnector;
 
 namespace sysAdminwp.PresenterComplexDictionaries
 {
-    class DirectorLayers<T> where T : class
+    /// <summary>
+    /// initialize current control
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    class DirectorLayers<T>
     {
-        private IDictionaryActions<T> _activeDictionary;
-        public DirectorLayers(IDictionaryActions<T> activeDictionary)
-        {
-            _activeDictionary = activeDictionary;
-        }
-
-        private UserControl InitControl(ApiConnector connector, string url)
+        /// <summary>
+        /// define current type and initialize appropriate control
+        /// </summary>
+        /// <param name="connector"></param>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        public UserControl InitCommon(ApiConnector connector, string url)
         {
             UserControl control = new UserControl();
-            switch(url)
-            {
-                case "creativeroletype":
-                    control = new BaseCreativeroleTypeControl(connector, url);
-                    break;
-            }
+            if (typeof(T) == typeof(CopyrightKind))
+                control = new CopyrightKindLayer().InitControl(connector, url);
+            else if (typeof(T) == typeof(Country))
+                control = new CountryLayer().InitControl(connector, url);
+            else if (typeof(T) == typeof(CreativeRoleType))
+                control = new CreativeroleTypeLayer().InitControl(connector, url);
+            else if (typeof(T) == typeof(GenreType))
+                control = new GenreTypeLayer().InitControl(connector, url);
+            else if (typeof(T) == typeof(KlR030))
+                control = new Klr030Layer().InitControl(connector, url);
+            else if (typeof(T) == typeof(SystemConstant))
+                control = new SystemConstantLayer().InitControl(connector, url);
+            else if (typeof(T) == typeof(TypePlace))
+                control = new TypePlaceLayer().InitControl(connector, url);
+            
             return control;
         }
     }

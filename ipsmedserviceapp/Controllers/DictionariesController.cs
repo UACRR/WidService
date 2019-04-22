@@ -1717,9 +1717,9 @@ namespace ipsmedserviceapp.Controllers
         // KlR030 BEGIN ********************
         // Get By Id   ****************************
         [HttpGet("extra/klr030/{id}")]
-        public async Task<IActionResult> GetKlR030(string id)
+        public async Task<IActionResult> GetKlR030(int id)
         {
-            var dest = await _dbContext.KlR030.Where(rec => rec.R030 == id)
+            var dest = await _dbContext.KlR030.Where(rec => rec.R030 == id.ToString() || rec.R030.Contains(id.ToString()))
                                 .Include(rec => rec.KlR030tr)
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync();

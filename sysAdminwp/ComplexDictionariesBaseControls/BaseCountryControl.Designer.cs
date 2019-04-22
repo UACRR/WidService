@@ -218,7 +218,6 @@
             // 
             // txtNameRuCountry
             // 
-            this.txtNameRuCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangCountry, "Name", true));
             this.txtNameRuCountry.Location = new System.Drawing.Point(162, 81);
             this.txtNameRuCountry.MaxLength = 500;
             this.txtNameRuCountry.Name = "txtNameRuCountry";
@@ -233,7 +232,6 @@
             // 
             // txtNameEnCountry
             // 
-            this.txtNameEnCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCountry, "Name", true));
             this.txtNameEnCountry.Location = new System.Drawing.Point(162, 108);
             this.txtNameEnCountry.MaxLength = 500;
             this.txtNameEnCountry.Name = "txtNameEnCountry";
@@ -248,7 +246,6 @@
             // 
             // txtNameUaCountry
             // 
-            this.txtNameUaCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCountry, "Name", true));
             this.txtNameUaCountry.Location = new System.Drawing.Point(162, 55);
             this.txtNameUaCountry.MaxLength = 500;
             this.txtNameUaCountry.Name = "txtNameUaCountry";

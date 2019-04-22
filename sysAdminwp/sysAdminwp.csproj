@@ -153,7 +153,13 @@
     <Compile Include="DictionaryForm.Designer.cs">
       <DependentUpon>DictionaryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CopyrightKindLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CountryLayer.cs" />
     <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CreativeroleTypeLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\GenreTypeLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\Klr030Layer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\SystemConstantLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\TypePlaceLayer.cs" />
     <Compile Include="PresenterComplexDictionaries\DirectorLayers.cs" />
     <Compile Include="PresenterComplexDictionaries\IDictionaryActions.cs" />
     <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.cs">
