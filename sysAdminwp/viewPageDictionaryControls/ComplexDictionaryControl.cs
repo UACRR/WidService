@@ -4,6 +4,7 @@ using ipsFormsDesign.Model;
 using WebAPIConnector;
 using sysAdminwp.ComplexDictionariesBaseControls;
 using System;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.viewPageDictionaryControls
 {
@@ -127,7 +128,8 @@ namespace sysAdminwp.viewPageDictionaryControls
                     //revome other controls
                     tableLayout_MarkupElement.Controls.Remove(tableLayout_MarkupElement.GetControlFromPosition(1, 0));
                     //initialize base control 'Creativeroletype'
-                    BaseCreativeroleTypeControl baseCreativeroleType = new BaseCreativeroleTypeControl(_connector, UrlForComplexDictionaries) { Dock = DockStyle.Fill };
+                    CreativeroleTypeLayer layerCreative = new CreativeroleTypeLayer();
+                    BaseCreativeroleTypeControl baseCreativeroleType = layerCreative.InitControl(_connector, UrlForComplexDictionaries);
                     tableLayout_MarkupElement.Controls.Add(baseCreativeroleType, 1, 0);
                     break;
                 case "genretype":

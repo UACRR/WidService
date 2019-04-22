@@ -153,6 +153,9 @@
     <Compile Include="DictionaryForm.Designer.cs">
       <DependentUpon>DictionaryForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PresenterComplexDictionaries\DefineComplexLayers\CreativeroleTypeLayer.cs" />
+    <Compile Include="PresenterComplexDictionaries\DirectorLayers.cs" />
+    <Compile Include="PresenterComplexDictionaries\IDictionaryActions.cs" />
     <Compile Include="viewPageDictionaryControls\ComplexDictionaryControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

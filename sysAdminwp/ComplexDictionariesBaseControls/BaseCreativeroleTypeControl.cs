@@ -9,11 +9,18 @@ using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
+using sysAdminwp.PresenterComplexDictionaries;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCreativeroleTypeControl : UserControl
     {
+        CreativeroleTypeLayer _layer = new CreativeroleTypeLayer();
+        public delegate CreativeRoleType GetDictionaryLayer(int id);
+        public delegate CreativeRoleType CreateLayer(CreativeRoleType sors);
+        public delegate CreativeRoleType UpdateLayer(CreativeRoleType sors);
+        public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
@@ -85,6 +92,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseCreativeroleTypeControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists
@@ -187,7 +195,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterGetQuery(int codeI)
         {
-            CreativeRoleType result = _dictService.GetCreativeRoleType(codeI);
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
+            CreativeRoleType result = dictDelegat(codeI);
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
@@ -294,7 +303,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            bool result = _dictService.DeleteCreativeRoleType(codeI);
+            DeleteLayer delLayer = new DeleteLayer(_layer.Delete);
+            bool result = delLayer(codeI);
             if (!result)
             {
                 MessageShow.ShowError(DelMess);
@@ -345,7 +355,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterCreate(CreativeRoleType createItem)
         {
-            CreativeRoleType result = _dictService.CreateCreativeRoleType(createItem);
+            CreateLayer createLayer = new CreateLayer(_layer.Create);
+            CreativeRoleType result = createLayer(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
@@ -363,7 +374,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private CreativeRoleType CheckAfterUpdate(CreativeRoleType updateItem)
         {
             //DictionaryService dictService = new DictionaryService();
-            CreativeRoleType result = _dictService.UpdateCreativeRoleType(creativeroleTypeData);
+            UpdateLayer updateLayer = new UpdateLayer(_layer.Update);
+            CreativeRoleType result = updateLayer(creativeroleTypeData);
             if (result == null)
             {
                 MessageShow.ShowError(UpdateMess);
