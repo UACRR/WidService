@@ -349,6 +349,12 @@
     <Compile Include="R_5_8_DistribMain.Designer.cs">
       <DependentUpon>R_5_8_DistribMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_8_DistribMain_other.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_8_DistribMain_other.Designer.cs">
+      <DependentUpon>R_5_8_DistribMain_other.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_8_DistribMain_SR.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -499,6 +505,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_8_DistribMain.resx">
       <DependentUpon>R_5_8_DistribMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="R_5_8_DistribMain_other.resx">
+      <DependentUpon>R_5_8_DistribMain_other.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="R_5_8_DistribMain_SR.resx">
       <DependentUpon>R_5_8_DistribMain_SR.cs</DependentUpon>
