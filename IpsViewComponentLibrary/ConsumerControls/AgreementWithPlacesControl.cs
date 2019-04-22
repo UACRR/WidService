@@ -38,7 +38,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         public void InitializeObjects(ObservableListSource<ClnBusinessPlace> places, LicenseAgreement license, LicenseAgrParam licenseAgr, ConsumerAgreementInitType agreementInitType)
         {
             _selectFirstItemNeed = agreementInitType == ConsumerAgreementInitType.AddNewAgreement;
-            bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(places);
             _tempPlaces = places;
             _licenseAgr = licenseAgr;
             _license = license;
@@ -92,8 +91,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         private void CheckPlaces()
         {
-            if (_tempPlaces != null && _tempPlaces.Any())
+            if (_tempPlaces?.Any() ?? false)
             {
+                bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_tempPlaces);
+
                 //gvPlaces.DataSource = _tempPlaces;
                 //початковий вибір чекбокс майданчиків що в ліцензії
                 foreach (var item in _licenseAgr.License)
