@@ -139,6 +139,8 @@ namespace sysAdminwp
             // прості словники
             {
                 var baseDicts = _connector.GetList<DictBaseTypeI>(Url);
+                if (baseDicts == null)
+                    baseDicts = new List<DictBaseTypeI> { };
                 _list = baseDicts;
                 foreach (var item in baseDicts)
                 {
@@ -407,6 +409,7 @@ namespace sysAdminwp
             radPanelChange.Enabled = returnedList != null;
             txtSearchData.Enabled = returnedList != null;
             btnRemove.Enabled = returnedList != null;
+            gvDictionariesList.Enabled = returnedList != null;
             
             if (returnedList != null)
             {
