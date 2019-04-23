@@ -301,13 +301,15 @@ namespace IpsViewComponentLibrary.RightholderControls
                 wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
             wordEngine.ProcessRightHolder(template, customer, customer.AgreementMaster.First());
 
-            pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
+            if (wordEngine.ValidTemplate)
+            {
+                pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
 
-            _pdf = wordEngine.Pdf;
-            _doc = wordEngine.Docx;
-            _custName = CustomerUtility.CustomerName(customer);
-            radPdfViewerNavigator1.Enabled = true;
-
+                _pdf = wordEngine.Pdf;
+                _doc = wordEngine.Docx;
+                _custName = CustomerUtility.CustomerName(customer);
+                radPdfViewerNavigator1.Enabled = true;
+            }
             waitbarAgreement.StopWaiting();
 
             btnGenerateRightholderAgreement.Enabled = true;
