@@ -150,10 +150,22 @@ namespace IpsViewComponentLibrary.ConsumerForms
             lblRoyalty.Text = amount.ToString(MoneyStringFormat);
             lblAmount.Text = royalty.ToString(MoneyStringFormat);
 
-            decimal.TryParse(txtAmount.Text, out decimal amnt);
-            decimal.TryParse(txtRoyalty.Text, out decimal rlt );
-            lblAmount.ForeColor = Math.Round(rlt, 2) == Math.Round(royalty, 2) ? DefaultForeColor : Color.Red;
-            lblRoyalty.ForeColor = Math.Round(amnt,2) == Math.Round(amount, 2) ? DefaultForeColor : Color.Red;
+
+            decimal.TryParse(txtRoyalty.Text, out decimal royaltyValue);
+            decimal.TryParse(txtAmount.Text, out decimal amountValue);
+
+            decimal royaltyValueRounded = Math.Round(royaltyValue, 2);
+            decimal amountValueRounded = Math.Round(amountValue, 2);
+
+            if (bsRegisterRatedList.DataSource is RegisterRatedList registerRatedList)
+            {
+                registerRatedList.Royalty = royaltyValueRounded;
+                registerRatedList.Amount = amountValueRounded;
+                bsRegisterRatedList.ResetBindings(false);
+            }
+
+            lblAmount.ForeColor = royaltyValueRounded == Math.Round(royalty, 2) ? DefaultForeColor : Color.Red;
+            lblRoyalty.ForeColor = amountValueRounded == Math.Round(amount, 2) ? DefaultForeColor : Color.Red;
         }
 
         // при зміні обраного періоду
@@ -301,7 +313,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             }
         }
 
-        private void txtRoyalty_Leave(object sender, EventArgs e)
+        private void txtAmountOrRoyalty_Leave(object sender, EventArgs e)
         {
             UpdateFullSum();
         }
