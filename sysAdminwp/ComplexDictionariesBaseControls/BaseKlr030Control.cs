@@ -255,7 +255,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //change property 'Text' of the btnSave for 'Add' action
             btnSaveKlr030.Text = "Додати";
             //refresh data for field 'Code'
-            klr030Data = new KlR030 { R031 = 1 };
+            klr030Data = new KlR030 { R031 = 1, CountryCode = ddlFilterKlr030.Items.First.Value.ToString() };
             bsKlr030.DataSource = klr030Data;
             //refresh data for field 'Uk'
             ukKlr030 = new KlR030tr { Lang = Langs[0] };
