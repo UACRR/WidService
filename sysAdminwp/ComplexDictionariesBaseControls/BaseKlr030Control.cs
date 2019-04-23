@@ -100,7 +100,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set default data for bottom panel
             if (Klr030List.Count != 0)
                 DataUpdateForBottomPanel(
-                    Klr030List[13].R030
+                    Klr030List[0].R030
                     );
             ControlEnabledActiveElements = true;
         }

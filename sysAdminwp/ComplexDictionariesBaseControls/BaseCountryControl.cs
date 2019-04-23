@@ -101,7 +101,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //set default data for bottom panel
             if (CountryList.Count != 0)
                 DataUpdateForBottomPanel(
-                    CountryList[35].CountryCode
+                    CountryList[0].CountryCode
                     );
             ControlEnabledActiveElements = true;
         }
