@@ -1515,9 +1515,9 @@ namespace ipsmedserviceapp.Controllers
         // Country BEGIN ********************
         // Get By Id   ****************************
         [HttpGet("extra/country/{countryCode}")]
-        public async Task<IActionResult> GetCountry(string countryCode)
+        public async Task<IActionResult> GetCountry(int countryCode)
         {
-            Country dest = await _dbContext.Country.Where(item => item.CountryCode == countryCode)
+            Country dest = await _dbContext.Country.Where(item => Convert.ToInt32(item.CountryCode) == countryCode)
                                     .Include(rec => rec.CountryTr)
                                     .AsNoTracking()
                                     .FirstOrDefaultAsync();
@@ -1719,7 +1719,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("extra/klr030/{id}")]
         public async Task<IActionResult> GetKlR030(int id)
         {
-            var dest = await _dbContext.KlR030.Where(rec => rec.R030 == id.ToString() || rec.R030.Contains(id.ToString()))
+            var dest = await _dbContext.KlR030.Where(rec => Convert.ToInt32(rec.R030) == id)
                                 .Include(rec => rec.KlR030tr)
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync();

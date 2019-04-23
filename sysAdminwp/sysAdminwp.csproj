@@ -217,6 +217,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightKindTr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CopyrightType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Country.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CountryTr.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CreativeRoleType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CrkindGroup.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.GenreType.datasource" />

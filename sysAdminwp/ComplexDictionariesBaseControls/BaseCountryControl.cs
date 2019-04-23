@@ -224,7 +224,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 return new List<ViewTable>();
             }
             //filter data by parameter 'code'
-            CountryList = CountryList.Where(item => item.ContinentCode.ToString() == code).ToList();
+            CountryList = CountryList.Where(item => item.ContinentCode == Convert.ToInt32(code)).ToList();
             List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
             foreach (var item in CountryList)
