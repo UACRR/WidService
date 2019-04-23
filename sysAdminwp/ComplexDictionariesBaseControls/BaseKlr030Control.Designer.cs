@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn21 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn22 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn23 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn24 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn25 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalKlr030 = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalKlr030 = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterKlr030 = new Telerik.WinControls.UI.RadDropDownList();
@@ -45,6 +45,7 @@
             this.editPanelKlr030 = new Telerik.WinControls.UI.RadPanel();
             this.lbEditKeyKlr030 = new Telerik.WinControls.UI.RadLabel();
             this.ddlEditKeyKlr030 = new Telerik.WinControls.UI.RadDropDownList();
+            this.bsKlr030 = new System.Windows.Forms.BindingSource(this.components);
             this.txtRuLangKlr030 = new Telerik.WinControls.UI.RadTextBox();
             this.bsRuLangKlr030 = new System.Windows.Forms.BindingSource(this.components);
             this.txtEnLangKlr030 = new Telerik.WinControls.UI.RadTextBox();
@@ -52,7 +53,6 @@
             this.txtUkLangKlr030 = new Telerik.WinControls.UI.RadTextBox();
             this.bsUkLangKlr030 = new System.Windows.Forms.BindingSource(this.components);
             this.txtCodeKlr030 = new Telerik.WinControls.UI.RadTextBox();
-            this.bsKlr030 = new System.Windows.Forms.BindingSource(this.components);
             this.lblRuLangKlr030 = new Telerik.WinControls.UI.RadLabel();
             this.lblEnLangKlr030 = new Telerik.WinControls.UI.RadLabel();
             this.lblUkLangKlr030 = new Telerik.WinControls.UI.RadLabel();
@@ -73,6 +73,7 @@
             this.editPanelKlr030.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyKlr030)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRuLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnLangKlr030)).BeginInit();
@@ -80,7 +81,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUkLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsUkLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeKlr030)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangKlr030)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUkLangKlr030)).BeginInit();
@@ -218,6 +218,10 @@
             this.ddlEditKeyKlr030.ValueMember = "CountryCode";
             this.ddlEditKeyKlr030.Click += new System.EventHandler(this.ddlEditKeyKlr030_Click);
             // 
+            // bsKlr030
+            // 
+            this.bsKlr030.DataSource = typeof(ipsFormsDesign.Model.KlR030);
+            // 
             // txtRuLangKlr030
             // 
             this.txtRuLangKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangKlr030, "R030Name", true));
@@ -267,16 +271,12 @@
             // 
             this.txtCodeKlr030.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsKlr030, "R030", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtCodeKlr030.Location = new System.Drawing.Point(162, 28);
-            this.txtCodeKlr030.MaxLength = 5;
+            this.txtCodeKlr030.MaxLength = 3;
             this.txtCodeKlr030.Name = "txtCodeKlr030";
             this.txtCodeKlr030.Size = new System.Drawing.Size(465, 20);
             this.txtCodeKlr030.TabIndex = 6;
             this.txtCodeKlr030.ThemeName = "Office2013Light";
             this.txtCodeKlr030.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeKlr030_KeyPress);
-            // 
-            // bsKlr030
-            // 
-            this.bsKlr030.DataSource = typeof(ipsFormsDesign.Model.KlR030);
             // 
             // lblRuLangKlr030
             // 
@@ -382,37 +382,37 @@
             this.gridKlr030List.MasterTemplate.AllowEditRow = false;
             this.gridKlr030List.MasterTemplate.AutoGenerateColumns = false;
             this.gridKlr030List.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn21.FieldName = "Code";
-            gridViewTextBoxColumn21.HeaderText = "Код";
-            gridViewTextBoxColumn21.Name = "Code";
-            gridViewTextBoxColumn21.Width = 105;
-            gridViewTextBoxColumn22.FieldName = "NameUk";
-            gridViewTextBoxColumn22.HeaderText = "Назва";
-            gridViewTextBoxColumn22.Name = "NameUk";
-            gridViewTextBoxColumn22.Width = 286;
-            gridViewTextBoxColumn23.FieldName = "NameRu";
-            gridViewTextBoxColumn23.HeaderText = "Название";
-            gridViewTextBoxColumn23.Name = "NameRu";
-            gridViewTextBoxColumn23.Width = 290;
-            gridViewTextBoxColumn24.FieldName = "NameEn";
-            gridViewTextBoxColumn24.HeaderText = "Name";
-            gridViewTextBoxColumn24.Name = "NameEn";
-            gridViewTextBoxColumn24.Width = 266;
-            gridViewTextBoxColumn25.FieldName = "klrCountry";
-            gridViewTextBoxColumn25.HeaderText = "Місто";
-            gridViewTextBoxColumn25.MinWidth = 200;
-            gridViewTextBoxColumn25.Name = "klrCountry";
-            gridViewTextBoxColumn25.Width = 223;
+            gridViewTextBoxColumn1.FieldName = "Code";
+            gridViewTextBoxColumn1.HeaderText = "Код";
+            gridViewTextBoxColumn1.Name = "Code";
+            gridViewTextBoxColumn1.Width = 105;
+            gridViewTextBoxColumn2.FieldName = "NameUk";
+            gridViewTextBoxColumn2.HeaderText = "Назва";
+            gridViewTextBoxColumn2.Name = "NameUk";
+            gridViewTextBoxColumn2.Width = 286;
+            gridViewTextBoxColumn3.FieldName = "NameRu";
+            gridViewTextBoxColumn3.HeaderText = "Название";
+            gridViewTextBoxColumn3.Name = "NameRu";
+            gridViewTextBoxColumn3.Width = 290;
+            gridViewTextBoxColumn4.FieldName = "NameEn";
+            gridViewTextBoxColumn4.HeaderText = "Name";
+            gridViewTextBoxColumn4.Name = "NameEn";
+            gridViewTextBoxColumn4.Width = 266;
+            gridViewTextBoxColumn5.FieldName = "klrCountry";
+            gridViewTextBoxColumn5.HeaderText = "Місто";
+            gridViewTextBoxColumn5.MinWidth = 200;
+            gridViewTextBoxColumn5.Name = "klrCountry";
+            gridViewTextBoxColumn5.Width = 223;
             this.gridKlr030List.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn21,
-            gridViewTextBoxColumn22,
-            gridViewTextBoxColumn23,
-            gridViewTextBoxColumn24,
-            gridViewTextBoxColumn25});
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5});
             this.gridKlr030List.MasterTemplate.EnableCustomFiltering = true;
             this.gridKlr030List.MasterTemplate.EnableFiltering = true;
             this.gridKlr030List.MasterTemplate.ShowFilteringRow = false;
-            this.gridKlr030List.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.gridKlr030List.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gridKlr030List.Name = "gridKlr030List";
             this.gridKlr030List.ReadOnly = true;
             this.gridKlr030List.ShowGroupPanel = false;
@@ -459,6 +459,7 @@
             this.editPanelKlr030.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lbEditKeyKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyKlr030)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRuLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRuLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtEnLangKlr030)).EndInit();
@@ -466,7 +467,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtUkLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsUkLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeKlr030)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangKlr030)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblUkLangKlr030)).EndInit();

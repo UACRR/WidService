@@ -1737,15 +1737,23 @@ namespace ipsmedserviceapp.Controllers
             dest.SetFields(sors);
             _dbContext.AppendList(sors.KlR030tr, dest.KlR030tr, i => { }, (l, r) => l.R030 == r.R030 && l.Lang == r.Lang);
             _dbContext.KlR030.Add(dest);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
             
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            } catch (Exception e)
+            {
+
+            }
+
             return Ok(dest);
         }
         // Update      ****************************
         [HttpPut("extra/klr030/{id}")]
         public async Task<IActionResult> UpdateKlR030(int id, [FromBody] KlR030 sors)
         {
-            var dest = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+            var dest = await _dbContext.KlR030.Where(rec => Convert.ToInt32(rec.R030) == id)
                                 .Include(rec => rec.KlR030tr)
                                 .FirstOrDefaultAsync();
             if (dest == null)
@@ -1770,7 +1778,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpDelete("extra/klr030/{id}")]
         public async Task<IActionResult> DeleteKlR030(int id)
         {
-            var delRow = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+            var delRow = await _dbContext.KlR030.Where(rec => Convert.ToInt32(rec.R030) == id)
                                 .Include(rec => rec.KlR030tr)
                                 .FirstOrDefaultAsync();
             if (delRow == null)

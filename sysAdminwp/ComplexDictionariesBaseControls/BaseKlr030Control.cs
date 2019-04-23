@@ -283,7 +283,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 return;
             //delete selected item of grid by field 'Code'
             KlR030 item = Klr030List[indexSelectedElem];
-            bool result = CheckAfterDelete((int)item.R031);
+            bool result = CheckAfterDelete(Convert.ToInt32(item.R030));
             //update data for grid
             gridKlr030List.DataSource = HandleDataForGrid(urlDataGrid);
             //step up in grid position
