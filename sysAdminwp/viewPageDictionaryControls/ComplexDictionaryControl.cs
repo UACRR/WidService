@@ -3,8 +3,6 @@ using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using WebAPIConnector;
 using sysAdminwp.ComplexDictionariesBaseControls;
-using System;
-using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 using sysAdminwp.PresenterComplexDictionaries;
 
 namespace sysAdminwp.viewPageDictionaryControls
