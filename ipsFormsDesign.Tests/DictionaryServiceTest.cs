@@ -227,7 +227,7 @@ namespace ipsFormsDesign.Tests
         public void TestGetKlR030()
         {
             //define codeI for get KlR030
-            int codeI = 8;
+            int codeI = 108;
             //get result data
             KlR030 result = _dictionary.GetKlR030(codeI);
             //checks for result data
@@ -379,7 +379,7 @@ namespace ipsFormsDesign.Tests
         {
             //define TypePlace for update
             TypePlace typePlace = new TypePlace {
-                CodeI = 25,
+                CodeI = 18,
                 Name = "TypePlaceUpdated"
             };
             //get result data

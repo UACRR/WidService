@@ -17,24 +17,6 @@ namespace sysAdminwp.viewPageDictionaryControls
         private const string PrefixCreate = "dictionary/complex/addnew/";
         private const string PrefixDelete = "dictionary/complex/delete/";
 
-        private List<DictCategory> _dictionaryCategories;
-        private List<CopyrightKind> _copyrightKindList;
-        private List<Country> _countryList;
-        private List<CreativeRoleType> _creativeRoleTypeList;
-        private List<GenreType> _genreTypeList;
-        private List<KlR030> _klR030List;
-        private List<SystemConstant> _systemConstantList;
-        private List<TypePlace> _typePlaceList;
-
-        private CopyrightKind _copyrightKind;
-        private Country _country;
-        private CreativeRoleType _creativeRoleType;
-        private GenreType _genreType;
-        private KlR030 _klR030;
-        private SystemConstant _systemConstant;
-        private TypePlace _typePlace;
-        private int SaveNode;
-
         //for saved complex dictionaries from DictionaryForm and use for
         //- UrlForComplexDictionaries
         //- ComplexDictionaryName
@@ -62,7 +44,6 @@ namespace sysAdminwp.viewPageDictionaryControls
             "systemconstant",
             "typeplace"
         };
-        private static int indexValueGrid = 0;
 
         public string UrlForComplexDictionaries
         {
