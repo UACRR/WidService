@@ -1560,9 +1560,9 @@ namespace ipsmedserviceapp.Controllers
         }
         // Delete      ****************************
         [HttpDelete("extra/country/{countryCode}")]
-        public async Task<IActionResult> DeleteCountry(string countryCode)
+        public async Task<IActionResult> DeleteCountry(int countryCode)
         {
-            Country delRow = await _dbContext.Country.Where(rec => rec.CountryCode == countryCode)
+            Country delRow = await _dbContext.Country.Where(rec => Convert.ToInt32(rec.CountryCode) == countryCode)
                                         .Include(rec => rec.CountryTr)
                                         .FirstOrDefaultAsync();
 

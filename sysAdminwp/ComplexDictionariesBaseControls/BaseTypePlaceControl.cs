@@ -124,9 +124,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
-                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
-                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
+                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[1])?.Name,
+                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[2])?.Name,
                     Object = item.ParamType != null ? ddlFilterTypePlace.Items.First(el => (int)el.Value == item.ParamType).Text : "",
                 });
             }
@@ -160,7 +160,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //use data for binding source
             bsTypePlace.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
-            ukTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
+            ukTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang.TrimEnd() == Langs[0]);
             if (ukTypePlace == null)
             {
                 ukTypePlace = new TypePlaceTr { Lang = Langs[0] };
@@ -168,7 +168,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
             bsUkLangTypePlace.DataSource = ukTypePlace;
             //defined binding for source of the 'Ru'
-            ruTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
+            ruTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang.TrimEnd() == Langs[1]);
             if (ruTypePlace == null)
             {
                 ruTypePlace = new TypePlaceTr { Lang = Langs[1] };
@@ -176,7 +176,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
             bsRuLangTypePlace.DataSource = ruTypePlace;
             //define binding for source of the 'En'
-            enTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
+            enTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang.TrimEnd() == Langs[2]);
             if (enTypePlace == null)
             {
                 enTypePlace = new TypePlaceTr { Lang = Langs[2] };
@@ -227,9 +227,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 filteredData.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
-                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
-                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
+                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[1])?.Name,
+                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[2])?.Name,
                     Object = ddlFilterTypePlace.SelectedItem.Text,
                 });
             }
