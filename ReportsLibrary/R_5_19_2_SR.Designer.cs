@@ -9,7 +9,6 @@ namespace ReportsLibrary
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.Reporting.SortingAction sortingAction1 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.TableGroup tableGroup1 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup2 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup3 = new Telerik.Reporting.TableGroup();
@@ -29,6 +28,7 @@ namespace ReportsLibrary
             Telerik.Reporting.TableGroup tableGroup17 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup18 = new Telerik.Reporting.TableGroup();
             Telerik.Reporting.TableGroup tableGroup19 = new Telerik.Reporting.TableGroup();
+            Telerik.Reporting.SortingAction sortingAction1 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction2 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction3 = new Telerik.Reporting.SortingAction();
             Telerik.Reporting.SortingAction sortingAction4 = new Telerik.Reporting.SortingAction();
@@ -67,7 +67,6 @@ namespace ReportsLibrary
             Telerik.Reporting.Drawing.DescendantSelector descendantSelector3 = new Telerik.Reporting.Drawing.DescendantSelector();
             Telerik.Reporting.Drawing.StyleRule styleRule8 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.DescendantSelector descendantSelector4 = new Telerik.Reporting.Drawing.DescendantSelector();
-            this.textBox1 = new Telerik.Reporting.TextBox();
             this.table1 = new Telerik.Reporting.Table();
             this.textBox19 = new Telerik.Reporting.TextBox();
             this.textBox20 = new Telerik.Reporting.TextBox();
@@ -91,6 +90,7 @@ namespace ReportsLibrary
             this.textBox68 = new Telerik.Reporting.TextBox();
             this.textBox62 = new Telerik.Reporting.TextBox();
             this.textBox55 = new Telerik.Reporting.TextBox();
+            this.textBox1 = new Telerik.Reporting.TextBox();
             this.textBox3 = new Telerik.Reporting.TextBox();
             this.textBox4 = new Telerik.Reporting.TextBox();
             this.textBox5 = new Telerik.Reporting.TextBox();
@@ -131,18 +131,6 @@ namespace ReportsLibrary
             this.detailSection1 = new Telerik.Reporting.DetailSection();
             this.pageFooterSection1 = new Telerik.Reporting.PageFooterSection();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
-            // textBox1
-            // 
-            sortingAction1.SortingExpression = "= Fields.id";
-            sortingAction1.Targets.AddRange(new Telerik.Reporting.IActionTarget[] {
-            this.table1});
-            this.textBox1.Action = sortingAction1;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.021D), Telerik.Reporting.Drawing.Unit.Cm(2.934D));
-            this.textBox1.Style.Font.Bold = true;
-            this.textBox1.StyleName = "BlueOpal.TableHeader";
-            this.textBox1.Value = "¹ï/ï";
             // 
             // table1
             // 
@@ -262,6 +250,7 @@ namespace ReportsLibrary
             this.textBox42,
             this.textBox34,
             this.textBox35,
+            this.textBox1,
             this.textBox3,
             this.textBox4,
             this.textBox5,
@@ -277,8 +266,7 @@ namespace ReportsLibrary
             this.textBox15,
             this.textBox41,
             this.textBox16,
-            this.textBox17,
-            this.textBox1});
+            this.textBox17});
             this.table1.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(1.5D), Telerik.Reporting.Drawing.Unit.Cm(0.1D));
             this.table1.Name = "table1";
             tableGroup18.Name = "group1";
@@ -495,6 +483,18 @@ namespace ReportsLibrary
             this.textBox55.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
             this.textBox55.StyleName = "BlueOpal.TableBody";
             this.textBox55.Value = "= Sum(Fields.objAmount)";
+            // 
+            // textBox1
+            // 
+            sortingAction1.SortingExpression = "= Fields.id";
+            sortingAction1.Targets.AddRange(new Telerik.Reporting.IActionTarget[] {
+            this.table1});
+            this.textBox1.Action = sortingAction1;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.021D), Telerik.Reporting.Drawing.Unit.Cm(2.934D));
+            this.textBox1.Style.Font.Bold = true;
+            this.textBox1.StyleName = "BlueOpal.TableHeader";
+            this.textBox1.Value = "¹ï/ï";
             // 
             // textBox3
             // 
@@ -934,7 +934,7 @@ namespace ReportsLibrary
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "               ç";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter1.Value = "=Date( CInt( Substr( CStr(Now()),6,4)),1,1)";
+            reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";

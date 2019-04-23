@@ -94,7 +94,7 @@ namespace ReportsLibrary
             this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(5.592D)));
             this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(1.57D)));
             this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(2.258D)));
-            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(1.809D)));
+            this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(2.867D)));
             this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(1.809D)));
             this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(1.967D)));
             this.table1.Body.Columns.Add(new Telerik.Reporting.TableBodyColumn(Telerik.Reporting.Drawing.Unit.Cm(2.629D)));
@@ -180,7 +180,7 @@ namespace ReportsLibrary
             tableGroup13.Groupings.Add(new Telerik.Reporting.Grouping(null));
             tableGroup13.Name = "detail";
             this.table1.RowGroups.Add(tableGroup13);
-            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(28.449D), Telerik.Reporting.Drawing.Unit.Cm(1.767D));
+            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(29.507D), Telerik.Reporting.Drawing.Unit.Cm(1.767D));
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox18
@@ -245,7 +245,7 @@ namespace ReportsLibrary
             this.textBox28.Action = navigateToReportAction1;
             this.textBox28.Format = "{0:d}";
             this.textBox28.Name = "textBox28";
-            this.textBox28.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.809D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
+            this.textBox28.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.867D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox28.StyleName = "BlueOpal.TableBody";
             this.textBox28.Value = "= Fields.agrDate";
             // 
@@ -371,7 +371,7 @@ namespace ReportsLibrary
             this.table1});
             this.textBox12.Action = sortingAction7;
             this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.809D), Telerik.Reporting.Drawing.Unit.Cm(1.267D));
+            this.textBox12.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(2.867D), Telerik.Reporting.Drawing.Unit.Cm(1.267D));
             this.textBox12.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Center;
             this.textBox12.StyleName = "BlueOpal.TableHeader";
             this.textBox12.Value = "Дата дог.";
@@ -433,8 +433,8 @@ namespace ReportsLibrary
             this.sqlDataSource1.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource1.Name = "sqlDataSource1";
             this.sqlDataSource1.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.DateTime, "= Parameters.dateBegin.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.String, "= Parameters.dateEnd.Value")});
+            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.Date, "= Parameters.dateBegin.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.Date, "= Parameters.dateEnd.Value")});
             this.sqlDataSource1.SelectCommand = "select rowNum, innerCode, IPI, rhName, cntObj, agrNumber, agrDate, dateBegin, dat" +
     "eEnd, country,\r\n agrStatusName, rHolderTypeName,custId \n from ft_Tsk_5_33_RegRH " +
     "(@dateBegin, @dateEnd) order by rowNum ";
@@ -530,7 +530,7 @@ namespace ReportsLibrary
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "За період з ";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter1.Value = "=Date( CInt( Substr( CStr(Now()),6,4)),1,1)";
+            reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AllowBlank = false;
             reportParameter2.AutoRefresh = true;
@@ -621,7 +621,7 @@ namespace ReportsLibrary
             styleRule6,
             styleRule7,
             styleRule8});
-            this.Width = Telerik.Reporting.Drawing.Unit.Cm(31.322D);
+            this.Width = Telerik.Reporting.Drawing.Unit.Cm(31.607D);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

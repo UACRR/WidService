@@ -29,15 +29,9 @@ namespace ReportsLibrary
             Telerik.Reporting.ReportParameter reportParameter3 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter4 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter5 = new Telerik.Reporting.ReportParameter();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(R_5_21_BRcomm));
             Telerik.Reporting.ReportParameter reportParameter6 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter7 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.ReportParameter reportParameter8 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter9 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter10 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter11 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter12 = new Telerik.Reporting.ReportParameter();
-            Telerik.Reporting.ReportParameter reportParameter13 = new Telerik.Reporting.ReportParameter();
             Telerik.Reporting.Drawing.StyleRule styleRule1 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule2 = new Telerik.Reporting.Drawing.StyleRule();
             Telerik.Reporting.Drawing.StyleRule styleRule3 = new Telerik.Reporting.Drawing.StyleRule();
@@ -63,7 +57,6 @@ namespace ReportsLibrary
             this.textBox20 = new Telerik.Reporting.TextBox();
             this.textBox48 = new Telerik.Reporting.TextBox();
             this.textBox30 = new Telerik.Reporting.TextBox();
-            this.textBox26 = new Telerik.Reporting.TextBox();
             this.textBox23 = new Telerik.Reporting.TextBox();
             this.textBox22 = new Telerik.Reporting.TextBox();
             this.textBox21 = new Telerik.Reporting.TextBox();
@@ -190,7 +183,6 @@ namespace ReportsLibrary
             this.textBox20,
             this.textBox48,
             this.textBox30,
-            this.textBox26,
             this.textBox23,
             this.textBox22,
             this.textBox21,
@@ -263,13 +255,6 @@ namespace ReportsLibrary
             this.textBox30.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(0.468D));
             this.textBox30.Style.TextAlign = Telerik.Reporting.Drawing.HorizontalAlign.Left;
             this.textBox30.Value = "ÇÀÒÂÅÐÄÆÓÞ ";
-            // 
-            // textBox26
-            // 
-            this.textBox26.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(15.9D), Telerik.Reporting.Drawing.Unit.Cm(3.025D));
-            this.textBox26.Name = "textBox26";
-            this.textBox26.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(3D), Telerik.Reporting.Drawing.Unit.Cm(0.6D));
-            this.textBox26.Value = "= Parameters.lastday.Value";
             // 
             // textBox23
             // 
@@ -598,7 +583,7 @@ namespace ReportsLibrary
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "Çà ïåð³îä ç ";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter1.Value = "=Date( CInt( Substr( CStr(Now()),6,4)),1,1)";
+            reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
@@ -606,49 +591,37 @@ namespace ReportsLibrary
             reportParameter2.Type = Telerik.Reporting.ReportParameterType.DateTime;
             reportParameter2.Value = "= Today()";
             reportParameter2.Visible = true;
-            reportParameter3.Name = "month";
-            reportParameter3.Value = "= CInt(Substr(CStr(Parameters.dateEnd.Value),3,2))";
-            reportParameter4.Name = "year";
-            reportParameter4.Type = Telerik.Reporting.ReportParameterType.Integer;
-            reportParameter4.Value = "= CInt(Substr(CStr(Parameters.dateEnd.Value),6,4))";
-            reportParameter5.Name = "month_text";
-            reportParameter5.Value = resources.GetString("reportParameter5.Value");
-            reportParameter6.Name = "lastday";
-            reportParameter6.Value = "=\'\"\'+Substr(CStr(Parameters.dateEnd.Value),0,2)+\'\" \'+ Parameters.month_text_rv.Va" +
-    "lue+\' \'+ Parameters.year.Value";
-            reportParameter7.Name = "month_text_rv";
-            reportParameter7.Value = resources.GetString("reportParameter7.Value");
-            reportParameter8.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter8.AvailableValues.ValueMember = "= Fields.positionNmae";
-            reportParameter8.Name = "positionNmae";
-            reportParameter8.Value = "= Fields.positionNmae";
-            reportParameter9.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter9.AvailableValues.ValueMember = "= Fields.bossShortName";
-            reportParameter9.Name = "bossShortName";
-            reportParameter9.Value = "= Fields.bossShortName";
-            reportParameter10.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter10.AvailableValues.ValueMember = "= Fields.name";
-            reportParameter10.Name = "name";
-            reportParameter10.Value = "= Fields.name";
-            reportParameter11.AvailableValues.DataSource = this.sqlDataSource2;
-            reportParameter11.AvailableValues.ValueMember = "= Fields.jaCity";
-            reportParameter11.Name = "city";
-            reportParameter11.Value = "= Fields.jaCity";
-            reportParameter12.AutoRefresh = true;
-            reportParameter12.AvailableValues.DataSource = this.sqlDataSource3;
-            reportParameter12.AvailableValues.DisplayMember = "= Fields.prcnt";
-            reportParameter12.AvailableValues.ValueMember = "= Fields.id";
-            reportParameter12.Name = "prcnt";
-            reportParameter12.Text = "Ðåã³ñòð îáë³êó (%)";
-            reportParameter12.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter12.Value = "= Fields.id";
-            reportParameter12.Visible = true;
-            reportParameter13.AllowNull = true;
-            reportParameter13.AvailableValues.DataSource = this.sqlDataSource1;
-            reportParameter13.AvailableValues.ValueMember = "= Sum(Fields.amount)";
-            reportParameter13.Name = "all_amount";
-            reportParameter13.Type = Telerik.Reporting.ReportParameterType.Float;
-            reportParameter13.Value = "= IsNull(Sum(IsNull(Fields.amount,0)),0)";
+            reportParameter3.AvailableValues.DataSource = this.sqlDataSource2;
+            reportParameter3.AvailableValues.ValueMember = "= Fields.positionNmae";
+            reportParameter3.Name = "positionNmae";
+            reportParameter3.Value = "= Fields.positionNmae";
+            reportParameter4.AvailableValues.DataSource = this.sqlDataSource2;
+            reportParameter4.AvailableValues.ValueMember = "= Fields.bossShortName";
+            reportParameter4.Name = "bossShortName";
+            reportParameter4.Value = "= Fields.bossShortName";
+            reportParameter5.AvailableValues.DataSource = this.sqlDataSource2;
+            reportParameter5.AvailableValues.ValueMember = "= Fields.name";
+            reportParameter5.Name = "name";
+            reportParameter5.Value = "= Fields.name";
+            reportParameter6.AvailableValues.DataSource = this.sqlDataSource2;
+            reportParameter6.AvailableValues.ValueMember = "= Fields.jaCity";
+            reportParameter6.Name = "city";
+            reportParameter6.Value = "= Fields.jaCity";
+            reportParameter7.AutoRefresh = true;
+            reportParameter7.AvailableValues.DataSource = this.sqlDataSource3;
+            reportParameter7.AvailableValues.DisplayMember = "= Fields.prcnt";
+            reportParameter7.AvailableValues.ValueMember = "= Fields.id";
+            reportParameter7.Name = "prcnt";
+            reportParameter7.Text = "Ðåã³ñòð îáë³êó (%)";
+            reportParameter7.Type = Telerik.Reporting.ReportParameterType.Float;
+            reportParameter7.Value = "= Fields.id";
+            reportParameter7.Visible = true;
+            reportParameter8.AllowNull = true;
+            reportParameter8.AvailableValues.DataSource = this.sqlDataSource1;
+            reportParameter8.AvailableValues.ValueMember = "= Sum(Fields.amount)";
+            reportParameter8.Name = "all_amount";
+            reportParameter8.Type = Telerik.Reporting.ReportParameterType.Float;
+            reportParameter8.Value = "= IsNull(Sum(IsNull(Fields.amount,0)),0)";
             this.ReportParameters.Add(reportParameter1);
             this.ReportParameters.Add(reportParameter2);
             this.ReportParameters.Add(reportParameter3);
@@ -657,11 +630,6 @@ namespace ReportsLibrary
             this.ReportParameters.Add(reportParameter6);
             this.ReportParameters.Add(reportParameter7);
             this.ReportParameters.Add(reportParameter8);
-            this.ReportParameters.Add(reportParameter9);
-            this.ReportParameters.Add(reportParameter10);
-            this.ReportParameters.Add(reportParameter11);
-            this.ReportParameters.Add(reportParameter12);
-            this.ReportParameters.Add(reportParameter13);
             styleRule1.Selectors.AddRange(new Telerik.Reporting.Drawing.ISelector[] {
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.TextItemBase)),
             new Telerik.Reporting.Drawing.TypeSelector(typeof(Telerik.Reporting.HtmlTextBox))});
@@ -726,7 +694,6 @@ namespace ReportsLibrary
         private Telerik.Reporting.TextBox textBox20;
         private Telerik.Reporting.TextBox textBox48;
         private Telerik.Reporting.TextBox textBox30;
-        private Telerik.Reporting.TextBox textBox26;
         private Telerik.Reporting.TextBox textBox23;
         private Telerik.Reporting.TextBox textBox22;
         private Telerik.Reporting.TextBox textBox21;

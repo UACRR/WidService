@@ -59,7 +59,6 @@ namespace ReportsLibrary
             this.textBox28 = new Telerik.Reporting.TextBox();
             this.textBox24 = new Telerik.Reporting.TextBox();
             this.sqlDataSource1 = new Telerik.Reporting.SqlDataSource();
-            this.detailSection1 = new Telerik.Reporting.DetailSection();
             this.pageHeaderSection1 = new Telerik.Reporting.PageHeaderSection();
             this.ReportNameTextBox = new Telerik.Reporting.TextBox();
             this.textBox1 = new Telerik.Reporting.TextBox();
@@ -235,12 +234,12 @@ namespace ReportsLibrary
             // 
             // textBox10
             // 
-            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateBegin", "= Parameters.beginDate.Value"));
-            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("dateEnd", "= Parameters.endDate.Value"));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("beginDate", "= Parameters.beginDate.Value"));
+            typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("endDate", "= Parameters.endDate.Value"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("cmFlag", "= Fields.cmFlag"));
             typeReportSource1.Parameters.Add(new Telerik.Reporting.Parameter("categoryCode", "= Fields.categoryCode"));
-            typeReportSource1.TypeName = "ReportsLibrary.R_5_8_DistribMain, ReportsLibrary, Version=1.0.0.0, Culture=neutra" +
-    "l, PublicKeyToken=null";
+            typeReportSource1.TypeName = "ReportsLibrary.R_5_8_ConsolidDetail, ReportsLibrary, Version=1.0.0.0, Culture=neu" +
+    "tral, PublicKeyToken=null";
             navigateToReportAction1.ReportSource = typeReportSource1;
             this.textBox10.Action = navigateToReportAction1;
             this.textBox10.Name = "textBox10";
@@ -417,11 +416,6 @@ namespace ReportsLibrary
             this.sqlDataSource1.SelectCommand = "pTsk_5_8_Consolidated";
             this.sqlDataSource1.SelectCommandType = Telerik.Reporting.SqlDataSourceCommandType.StoredProcedure;
             // 
-            // detailSection1
-            // 
-            this.detailSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(4.3D);
-            this.detailSection1.Name = "detailSection1";
-            // 
             // pageHeaderSection1
             // 
             this.pageHeaderSection1.Height = Telerik.Reporting.Drawing.Unit.Cm(2.214D);
@@ -521,7 +515,6 @@ namespace ReportsLibrary
             this.Items.AddRange(new Telerik.Reporting.ReportItemBase[] {
             this.groupHeaderSection,
             this.groupFooterSection,
-            this.detailSection1,
             this.pageHeaderSection1});
             this.Name = "R_5_8_Consolidated";
             this.PageSettings.Landscape = false;
@@ -531,8 +524,9 @@ namespace ReportsLibrary
             reportParameter1.Name = "beginDate";
             reportParameter1.Text = "            з";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter1.Value = "=Date( CInt( Substr( CStr(Now()),6,4)),1,1)";
+            reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
+            reportParameter2.AllowBlank = false;
             reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "endDate";
             reportParameter2.Text = "по";
@@ -593,7 +587,6 @@ namespace ReportsLibrary
         #endregion
 
         private Telerik.Reporting.SqlDataSource sqlDataSource1;
-        private Telerik.Reporting.DetailSection detailSection1;
         private Telerik.Reporting.Table table1;
         private Telerik.Reporting.TextBox textBox10;
         private Telerik.Reporting.TextBox textBox11;

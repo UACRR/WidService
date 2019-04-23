@@ -264,7 +264,7 @@ namespace ReportsLibrary
             this.textBox7.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox7.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox7.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox7.Style.Visible = false;
+            this.textBox7.Style.Visible = true;
             this.textBox7.Value = "9. Розподіл авторскої ";
             // 
             // textBox8
@@ -288,8 +288,8 @@ namespace ReportsLibrary
             // 
             typeReportSource9.Parameters.Add(new Telerik.Reporting.Parameter("cmFlag", "=0"));
             typeReportSource9.Parameters.Add(new Telerik.Reporting.Parameter("categoryCode", "=5"));
-            typeReportSource9.TypeName = "ReportsLibrary.R_5_8_DistribMain, ReportsLibrary, Version=1.0.0.0, Culture=neutra" +
-    "l, PublicKeyToken=null";
+            typeReportSource9.TypeName = "ReportsLibrary.R_5_8_DistribMain_SR, ReportsLibrary, Version=1.0.0.0, Culture=neu" +
+    "tral, PublicKeyToken=null";
             navigateToReportAction9.ReportSource = typeReportSource9;
             this.textBox9.Action = navigateToReportAction9;
             this.textBox9.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(7.5D), Telerik.Reporting.Drawing.Unit.Cm(1.11D));
@@ -301,7 +301,7 @@ namespace ReportsLibrary
             this.textBox9.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox9.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox9.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox9.Style.Visible = false;
+            this.textBox9.Style.Visible = true;
             this.textBox9.Value = "11. Відомість \'Розподіл авторської \r\n    винагороди на Авторів  з \'малих \r\n    пр" +
     "ав\'\'";
             // 
@@ -322,7 +322,7 @@ namespace ReportsLibrary
             this.textBox10.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox10.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox10.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox10.Style.Visible = false;
+            this.textBox10.Style.Visible = true;
             this.textBox10.Value = "12. Відомість \'Розподіл авторської \r\n    винагороди на Авторів  з \'великих \r\n    " +
     "прав\'\'";
             // 
@@ -343,7 +343,7 @@ namespace ReportsLibrary
             this.textBox11.Style.BorderStyle.Right = Telerik.Reporting.Drawing.BorderType.Solid;
             this.textBox11.Style.BorderWidth.Default = Telerik.Reporting.Drawing.Unit.Point(2D);
             this.textBox11.Style.VerticalAlign = Telerik.Reporting.Drawing.VerticalAlign.Middle;
-            this.textBox11.Style.Visible = false;
+            this.textBox11.Style.Visible = true;
             this.textBox11.Value = "13. Відомість \'Розподіл авторської \r\n    винагороди на правовласників з \r\n    \'ве" +
     "ликих прав\' - інші товариства\'";
             // 

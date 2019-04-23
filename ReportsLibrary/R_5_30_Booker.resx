@@ -131,18 +131,4 @@ order by rateCommiss,rownum</value>
   <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
     <value>0.1cm</value>
   </metadata>
-  <data name="reportParameter5.Value" xml:space="preserve">
-    <value>= IIf(Parameters.month.Value=1,'січень', (IIf(Parameters.month.Value=2,'лютий',(IIf(Parameters.month.Value=3, 'березень',(IIf(Parameters.month.Value=4,'квітень',
-(IIf(Parameters.month.Value=5,'травень', (IIf(Parameters.month.Value=6,'червень', (IIf(Parameters.month.Value=7,'липень', (IIf(Parameters.month.Value=8,
-'серпень',(IIf(Parameters.month.Value=9,'вересень', (IIf(Parameters.month.Value=10,'жовтень', 
-(IIf(Parameters.month.Value=11,'листопад', 'грудень'
-)))))))))))))))))))))</value>
-  </data>
-  <data name="reportParameter7.Value" xml:space="preserve">
-    <value>= IIf(Parameters.month.Value=1,'січеня', (IIf(Parameters.month.Value=2,'лютого',(IIf(Parameters.month.Value=3, 'березеня',(IIf(Parameters.month.Value=4,'квітня',
-(IIf(Parameters.month.Value=5,'травня', (IIf(Parameters.month.Value=6,'червеня', (IIf(Parameters.month.Value=7,'липня', (IIf(Parameters.month.Value=8,
-'серпня',(IIf(Parameters.month.Value=9,'вересня', (IIf(Parameters.month.Value=10,'жовтня', 
-(IIf(Parameters.month.Value=11,'листопада', 'грудня'
-)))))))))))))))))))))</value>
-  </data>
 </root>

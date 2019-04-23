@@ -127,7 +127,7 @@
             this.lblStreet.Name = "lblStreet";
             this.lblStreet.Size = new System.Drawing.Size(60, 17);
             this.lblStreet.TabIndex = 0;
-            this.lblStreet.Text = "Вулиця";
+            this.lblStreet.Text = "Адреса";
             this.lblStreet.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
             this.lblStreet.ThemeName = "Office2013Light";
             // 

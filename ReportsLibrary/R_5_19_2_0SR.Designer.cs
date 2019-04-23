@@ -445,8 +445,8 @@ namespace ReportsLibrary
             this.sqlDataSource2.ConnectionString = "ReportsLibrary.Properties.Settings.MediaService";
             this.sqlDataSource2.Name = "sqlDataSource2";
             this.sqlDataSource2.Parameters.AddRange(new Telerik.Reporting.SqlDataSourceParameter[] {
-            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.String, "= Parameters.dateBegin.Value"),
-            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.String, "= Parameters.dateEnd.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateBegin", System.Data.DbType.Date, "= Parameters.dateBegin.Value"),
+            new Telerik.Reporting.SqlDataSourceParameter("@dateEnd", System.Data.DbType.Date, "= Parameters.dateEnd.Value"),
             new Telerik.Reporting.SqlDataSourceParameter("@cmCustId", System.Data.DbType.Int32, "= Parameters.Community.Value")});
             this.sqlDataSource2.SelectCommand = "select  id, rhcustId, interCode, rhName, cntObjid, amount, commRate, cmCustIdName" +
     ", countryName, rhTypeName  \r\nfrom ft_Tsk_5_19_2_0SR (@dateBegin, @dateEnd, @cmCu" +
@@ -563,7 +563,7 @@ namespace ReportsLibrary
             reportParameter1.Name = "dateBegin";
             reportParameter1.Text = "               ç";
             reportParameter1.Type = Telerik.Reporting.ReportParameterType.DateTime;
-            reportParameter1.Value = "=Date( CInt( Substr( CStr(Now()),6,4)),1,1)";
+            reportParameter1.Value = "=Date(Today().Year,Today().Month,1)";
             reportParameter1.Visible = true;
             reportParameter2.AutoRefresh = true;
             reportParameter2.Name = "dateEnd";
