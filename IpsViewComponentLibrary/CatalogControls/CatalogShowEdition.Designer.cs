@@ -86,28 +86,28 @@
             gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             gridViewTextBoxColumn1.Name = "number";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 80;
+            gridViewTextBoxColumn1.Width = 62;
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.Name = "fileName";
-            gridViewTextBoxColumn2.Width = 213;
+            gridViewTextBoxColumn2.Width = 166;
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
             gridViewTextBoxColumn3.Name = "dateDownload";
-            gridViewTextBoxColumn3.Width = 213;
+            gridViewTextBoxColumn3.Width = 166;
             gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
             gridViewTextBoxColumn4.Name = "countFiles";
-            gridViewTextBoxColumn4.Width = 69;
+            gridViewTextBoxColumn4.Width = 54;
             gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
             gridViewTextBoxColumn5.Name = "countLeaveFiles";
-            gridViewTextBoxColumn5.Width = 69;
+            gridViewTextBoxColumn5.Width = 54;
             gridViewTextBoxColumn6.HeaderText = "Статус файлу";
             gridViewTextBoxColumn6.Name = "statusFile";
-            gridViewTextBoxColumn6.Width = 69;
+            gridViewTextBoxColumn6.Width = 54;
             gridViewTextBoxColumn7.HeaderText = "Коментар";
             gridViewTextBoxColumn7.Name = "comment";
-            gridViewTextBoxColumn7.Width = 69;
+            gridViewTextBoxColumn7.Width = 54;
             gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
             gridViewTextBoxColumn8.Name = "downloadFace";
-            gridViewTextBoxColumn8.Width = 145;
+            gridViewTextBoxColumn8.Width = 91;
             gridViewCommandColumn1.FieldName = "viewBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.HeaderText = "";
@@ -151,13 +151,14 @@
             this.gridCatalogFiles.Name = "gridCatalogFiles";
             this.gridCatalogFiles.ReadOnly = true;
             this.gridCatalogFiles.ShowGroupPanel = false;
-            this.gridCatalogFiles.Size = new System.Drawing.Size(1028, 170);
+            this.gridCatalogFiles.Size = new System.Drawing.Size(802, 170);
             this.gridCatalogFiles.TabIndex = 2;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             // 
             // gridDetailInfo
             // 
-            this.gridDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gridDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDetailInfo.EnableCustomFiltering = true;
             this.gridDetailInfo.Location = new System.Drawing.Point(3, 179);
@@ -175,37 +176,37 @@
             gridViewTextBoxColumn9.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             gridViewTextBoxColumn9.Name = "code";
             gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn9.Width = 80;
+            gridViewTextBoxColumn9.Width = 62;
             gridViewTextBoxColumn10.HeaderText = "ISWC";
             gridViewTextBoxColumn10.Name = "iswc";
-            gridViewTextBoxColumn10.Width = 40;
+            gridViewTextBoxColumn10.Width = 31;
             gridViewTextBoxColumn11.HeaderText = "Назва товару";
             gridViewTextBoxColumn11.Name = "nameProduct";
-            gridViewTextBoxColumn11.Width = 201;
+            gridViewTextBoxColumn11.Width = 156;
             gridViewTextBoxColumn12.HeaderText = "Жанр твору";
             gridViewTextBoxColumn12.Name = "genre";
-            gridViewTextBoxColumn12.Width = 70;
+            gridViewTextBoxColumn12.Width = 54;
             gridViewTextBoxColumn13.HeaderText = "Виконавець";
             gridViewTextBoxColumn13.Name = "executor";
-            gridViewTextBoxColumn13.Width = 70;
+            gridViewTextBoxColumn13.Width = 54;
             gridViewTextBoxColumn14.HeaderText = "Композитор(и)";
             gridViewTextBoxColumn14.Name = "composer";
-            gridViewTextBoxColumn14.Width = 85;
+            gridViewTextBoxColumn14.Width = 66;
             gridViewTextBoxColumn15.HeaderText = "Автор(и) тексту";
             gridViewTextBoxColumn15.Name = "authors";
-            gridViewTextBoxColumn15.Width = 88;
+            gridViewTextBoxColumn15.Width = 68;
             gridViewTextBoxColumn16.HeaderText = "Творча роль правовласника";
             gridViewTextBoxColumn16.Name = "role";
-            gridViewTextBoxColumn16.Width = 157;
+            gridViewTextBoxColumn16.Width = 122;
             gridViewTextBoxColumn17.HeaderText = "%";
             gridViewTextBoxColumn17.Name = "percent";
-            gridViewTextBoxColumn17.Width = 40;
+            gridViewTextBoxColumn17.Width = 31;
             gridViewTextBoxColumn18.HeaderText = "Помилка";
             gridViewTextBoxColumn18.Name = "error";
-            gridViewTextBoxColumn18.Width = 68;
+            gridViewTextBoxColumn18.Width = 53;
             gridViewTextBoxColumn19.HeaderText = "Статус";
             gridViewTextBoxColumn19.Name = "status";
-            gridViewTextBoxColumn19.Width = 118;
+            gridViewTextBoxColumn19.Width = 94;
             this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
@@ -225,14 +226,14 @@
             this.gridDetailInfo.Name = "gridDetailInfo";
             this.gridDetailInfo.ReadOnly = true;
             this.gridDetailInfo.ShowGroupPanel = false;
-            this.gridDetailInfo.Size = new System.Drawing.Size(1028, 293);
+            this.gridDetailInfo.Size = new System.Drawing.Size(802, 340);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
             // 
             // btnControl
             // 
             this.btnControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnControl.Location = new System.Drawing.Point(3, 478);
+            this.btnControl.Location = new System.Drawing.Point(3, 525);
             this.btnControl.Name = "btnControl";
             this.btnControl.Size = new System.Drawing.Size(114, 24);
             this.btnControl.TabIndex = 4;
@@ -242,7 +243,7 @@
             // btnGetExcel
             // 
             this.btnGetExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGetExcel.Location = new System.Drawing.Point(123, 478);
+            this.btnGetExcel.Location = new System.Drawing.Point(123, 525);
             this.btnGetExcel.Name = "btnGetExcel";
             this.btnGetExcel.Size = new System.Drawing.Size(151, 24);
             this.btnGetExcel.TabIndex = 3;
@@ -253,7 +254,7 @@
             // 
             this.btnPerform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPerform.Enabled = false;
-            this.btnPerform.Location = new System.Drawing.Point(280, 478);
+            this.btnPerform.Location = new System.Drawing.Point(280, 525);
             this.btnPerform.Name = "btnPerform";
             this.btnPerform.Size = new System.Drawing.Size(131, 24);
             this.btnPerform.TabIndex = 3;
@@ -270,7 +271,7 @@
             this.Controls.Add(this.gridDetailInfo);
             this.Controls.Add(this.gridCatalogFiles);
             this.Name = "CatalogShowEdition";
-            this.Size = new System.Drawing.Size(1034, 505);
+            this.Size = new System.Drawing.Size(808, 552);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
