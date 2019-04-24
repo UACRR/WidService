@@ -249,6 +249,7 @@
             this.btnGetExcel.TabIndex = 3;
             this.btnGetExcel.Text = "Вивантажити в Excel";
             this.btnGetExcel.ThemeName = "Office2013Light";
+            this.btnGetExcel.Click += new System.EventHandler(this.btnGetExcel_Click);
             // 
             // btnPerform
             // 
