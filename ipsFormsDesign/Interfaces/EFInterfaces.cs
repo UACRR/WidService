@@ -429,6 +429,9 @@ public interface ICatalogFile
          int? Status { get; set; }
          int? RhType { get; set; }
          string Comment { get; set; }
+         int? CountZap { get; set; }
+         int? CountOk { get; set; }
+         int? CountErr { get; set; }
 }
 public interface ICatalogStatus
     {    int CodeI { get; set; }
