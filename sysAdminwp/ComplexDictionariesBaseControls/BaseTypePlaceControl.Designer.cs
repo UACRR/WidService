@@ -122,7 +122,7 @@
             this.ddlFilterTypePlace.FormattingEnabled = false;
             this.ddlFilterTypePlace.Location = new System.Drawing.Point(760, 2);
             this.ddlFilterTypePlace.Name = "ddlFilterTypePlace";
-            this.ddlFilterTypePlace.Size = new System.Drawing.Size(427, 20);
+            this.ddlFilterTypePlace.Size = new System.Drawing.Size(427, 21);
             this.ddlFilterTypePlace.TabIndex = 22;
             this.ddlFilterTypePlace.ThemeName = "Office2013Light";
             this.ddlFilterTypePlace.ValueMember = "CodeI";
@@ -193,7 +193,7 @@
             this.checkBox_isHoll.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bsTypePlace, "IsHoll", true));
             this.checkBox_isHoll.Location = new System.Drawing.Point(783, 57);
             this.checkBox_isHoll.Name = "checkBox_isHoll";
-            this.checkBox_isHoll.Size = new System.Drawing.Size(193, 18);
+            this.checkBox_isHoll.Size = new System.Drawing.Size(212, 19);
             this.checkBox_isHoll.TabIndex = 14;
             this.checkBox_isHoll.Text = "Вказувати данні про приміщення";
             this.checkBox_isHoll.ThemeName = "Office2013Light";
@@ -224,7 +224,7 @@
             this.ddlEditKeyTypePlace.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
             this.ddlEditKeyTypePlace.Location = new System.Drawing.Point(783, 28);
             this.ddlEditKeyTypePlace.Name = "ddlEditKeyTypePlace";
-            this.ddlEditKeyTypePlace.Size = new System.Drawing.Size(401, 20);
+            this.ddlEditKeyTypePlace.Size = new System.Drawing.Size(401, 21);
             this.ddlEditKeyTypePlace.TabIndex = 13;
             this.ddlEditKeyTypePlace.ThemeName = "Office2013Light";
             this.ddlEditKeyTypePlace.ValueMember = "CodeI";
@@ -236,14 +236,14 @@
             this.txtRuLangTypePlace.Location = new System.Drawing.Point(162, 81);
             this.txtRuLangTypePlace.MaxLength = 500;
             this.txtRuLangTypePlace.Name = "txtRuLangTypePlace";
-            this.txtRuLangTypePlace.Size = new System.Drawing.Size(465, 20);
+            this.txtRuLangTypePlace.Size = new System.Drawing.Size(465, 21);
             this.txtRuLangTypePlace.TabIndex = 8;
             this.txtRuLangTypePlace.ThemeName = "Office2013Light";
             this.txtRuLangTypePlace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRuLangTypePlace_KeyPress);
             // 
             // bsRuLangTypePlace
             // 
-            this.bsRuLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsRuLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.TypePlaceTr);
             // 
             // txtEnLangTypePlace
             // 
@@ -251,14 +251,14 @@
             this.txtEnLangTypePlace.Location = new System.Drawing.Point(162, 108);
             this.txtEnLangTypePlace.MaxLength = 500;
             this.txtEnLangTypePlace.Name = "txtEnLangTypePlace";
-            this.txtEnLangTypePlace.Size = new System.Drawing.Size(465, 20);
+            this.txtEnLangTypePlace.Size = new System.Drawing.Size(465, 21);
             this.txtEnLangTypePlace.TabIndex = 9;
             this.txtEnLangTypePlace.ThemeName = "Office2013Light";
             this.txtEnLangTypePlace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEnLangTypePlace_KeyPress);
             // 
             // bsEnLangTypePlace
             // 
-            this.bsEnLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsEnLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.TypePlaceTr);
             // 
             // txtUkLangTypePlace
             // 
@@ -266,14 +266,14 @@
             this.txtUkLangTypePlace.Location = new System.Drawing.Point(162, 55);
             this.txtUkLangTypePlace.MaxLength = 500;
             this.txtUkLangTypePlace.Name = "txtUkLangTypePlace";
-            this.txtUkLangTypePlace.Size = new System.Drawing.Size(465, 20);
+            this.txtUkLangTypePlace.Size = new System.Drawing.Size(465, 21);
             this.txtUkLangTypePlace.TabIndex = 7;
             this.txtUkLangTypePlace.ThemeName = "Office2013Light";
             this.txtUkLangTypePlace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUkLangTypePlace_KeyPress);
             // 
             // bsUkLangTypePlace
             // 
-            this.bsUkLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
+            this.bsUkLangTypePlace.DataSource = typeof(ipsFormsDesign.Model.TypePlaceTr);
             // 
             // txtCodeTypePlace
             // 
@@ -281,7 +281,7 @@
             this.txtCodeTypePlace.Location = new System.Drawing.Point(162, 28);
             this.txtCodeTypePlace.MaxLength = 5;
             this.txtCodeTypePlace.Name = "txtCodeTypePlace";
-            this.txtCodeTypePlace.Size = new System.Drawing.Size(465, 20);
+            this.txtCodeTypePlace.Size = new System.Drawing.Size(465, 21);
             this.txtCodeTypePlace.TabIndex = 6;
             this.txtCodeTypePlace.ThemeName = "Office2013Light";
             this.txtCodeTypePlace.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodeTypePlace_KeyPress);
@@ -397,20 +397,20 @@
             gridViewTextBoxColumn2.FieldName = "NameUk";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 286;
+            gridViewTextBoxColumn2.Width = 285;
             gridViewTextBoxColumn3.FieldName = "NameRu";
             gridViewTextBoxColumn3.HeaderText = "Название";
             gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 290;
+            gridViewTextBoxColumn3.Width = 289;
             gridViewTextBoxColumn4.FieldName = "NameEn";
             gridViewTextBoxColumn4.HeaderText = "Name";
             gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 266;
+            gridViewTextBoxColumn4.Width = 265;
             gridViewTextBoxColumn5.FieldName = "Object";
             gridViewTextBoxColumn5.HeaderText = "Об\'єкт";
             gridViewTextBoxColumn5.MinWidth = 200;
             gridViewTextBoxColumn5.Name = "Object";
-            gridViewTextBoxColumn5.Width = 223;
+            gridViewTextBoxColumn5.Width = 221;
             this.gridTypePlaceList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,

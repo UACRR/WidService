@@ -29,23 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dictBaseEditPanel = new System.Windows.Forms.BindingSource(this.components);
-            this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.complexTreeView = new Telerik.WinControls.UI.RadTreeView();
             this.tableLayout_MarkupElement = new System.Windows.Forms.TableLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
+            this.dictBaseEditPanel = new System.Windows.Forms.BindingSource(this.components);
+            this.dictBaseTypeIBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).BeginInit();
             this.tableLayout_MarkupElement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dictBaseEditPanel
-            // 
-            this.dictBaseEditPanel.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
-            // 
-            // dictBaseTypeIBindingSource
-            // 
-            this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
             // 
             // complexTreeView
             // 
@@ -72,6 +64,14 @@
             this.tableLayout_MarkupElement.Size = new System.Drawing.Size(1432, 566);
             this.tableLayout_MarkupElement.TabIndex = 1;
             // 
+            // dictBaseEditPanel
+            // 
+            this.dictBaseEditPanel.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
+            // 
+            // dictBaseTypeIBindingSource
+            // 
+            this.dictBaseTypeIBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.DictBaseTypeI);
+            // 
             // ComplexDictionaryControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -79,10 +79,10 @@
             this.Controls.Add(this.tableLayout_MarkupElement);
             this.Name = "ComplexDictionaryControl";
             this.Size = new System.Drawing.Size(1432, 566);
-            ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.complexTreeView)).EndInit();
             this.tableLayout_MarkupElement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dictBaseEditPanel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dictBaseTypeIBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

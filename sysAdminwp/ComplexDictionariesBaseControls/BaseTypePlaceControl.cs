@@ -9,11 +9,17 @@ using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseTypePlaceControl : UserControl
     {
+        TypePlaceLayer _layer = new TypePlaceLayer();
+        public delegate TypePlace GetDictionaryLayer(int id);
+        public delegate TypePlace CreateLayer(TypePlace sors);
+        public delegate TypePlace UpdateLayer(TypePlace sors);
+        public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
@@ -80,6 +86,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseTypePlaceControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists
@@ -117,9 +124,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
-                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
-                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
+                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[1])?.Name,
+                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[2])?.Name,
                     Object = item.ParamType != null ? ddlFilterTypePlace.Items.First(el => (int)el.Value == item.ParamType).Text : "",
                 });
             }
@@ -153,7 +160,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //use data for binding source
             bsTypePlace.DataSource = typePlaceData;
             //define binding for source of the 'Uk'
-            ukTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
+            ukTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang.TrimEnd() == Langs[0]);
             if (ukTypePlace == null)
             {
                 ukTypePlace = new TypePlaceTr { Lang = Langs[0] };
@@ -161,7 +168,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
             bsUkLangTypePlace.DataSource = ukTypePlace;
             //defined binding for source of the 'Ru'
-            ruTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
+            ruTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang.TrimEnd() == Langs[1]);
             if (ruTypePlace == null)
             {
                 ruTypePlace = new TypePlaceTr { Lang = Langs[1] };
@@ -169,7 +176,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             }
             bsRuLangTypePlace.DataSource = ruTypePlace;
             //define binding for source of the 'En'
-            enTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
+            enTypePlace = typePlaceData.TypePlaceTr.FirstOrDefault(rec => rec.Lang.TrimEnd() == Langs[2]);
             if (enTypePlace == null)
             {
                 enTypePlace = new TypePlaceTr { Lang = Langs[2] };
@@ -180,7 +187,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private TypePlace CheckAfterGetQuery(int codeI)
         {
-            TypePlace result = _dictionaryService.GetTypePlace(codeI);
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
+            TypePlace result = dictDelegat(codeI);
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
@@ -219,9 +227,9 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
                 filteredData.Add(new ViewTable
                 {
                     Code = item.CodeI.ToString(),
-                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.Name ?? item.Name,
-                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.Name,
-                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.Name,
+                    NameUk = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[0])?.Name ?? item.Name,
+                    NameRu = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[1])?.Name,
+                    NameEn = item.TypePlaceTr?.SingleOrDefault(i => i?.Lang.TrimEnd() == Langs[2])?.Name,
                     Object = ddlFilterTypePlace.SelectedItem.Text,
                 });
             }
@@ -282,7 +290,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            bool result = _dictionaryService.DeleteTypePlace(codeI);
+            DeleteLayer dictDelegat = new DeleteLayer(_layer.Delete);
+            bool result = dictDelegat(codeI);
             if (!result)
             {
                 MessageShow.ShowError(DelMess);
@@ -333,8 +342,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private TypePlace CheckAfterCreate(TypePlace createItem)
         {
-            //DictionaryService dictService = new DictionaryService();
-            TypePlace result = _dictionaryService.CreateTypePlace(createItem);
+            CreateLayer dictDelegat = new CreateLayer(_layer.Create);
+            TypePlace result = dictDelegat(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
@@ -351,8 +360,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private TypePlace CheckAfterUpdate(TypePlace updateItem)
         {
-            //DictionaryService dictService = new DictionaryService();
-            TypePlace result = _dictionaryService.UpdateTypePlace(typePlaceData);
+            UpdateLayer dictDelegat = new UpdateLayer(_layer.Update);
+            TypePlace result = dictDelegat(typePlaceData);
             if (result == null)
             {
                 MessageShow.ShowError(UpdateMess);
