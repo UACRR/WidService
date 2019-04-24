@@ -325,8 +325,10 @@ namespace ipsFormsDesign.Tests
                 CodeI = 37,
                 Name = "testSystemConstantUpdate"
             };
+            _dictionary.CreateSystemConstant(systemConstant);
             //get result data
             SystemConstant result = _dictionary.UpdateSystemConstant(systemConstant);
+            _dictionary.DeleteSystemConstant(systemConstant.CodeI);
             //checks for result data
             Assert.IsNotNull(result, "SystemConstant is not updated");
         }
