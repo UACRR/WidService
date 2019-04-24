@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -39,10 +40,12 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
-            this.btnLoadExl = new Telerik.WinControls.UI.RadButton();
+            this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
+            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadExl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -100,6 +103,7 @@
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9});
+            this.gridCatalogFiles.MasterTemplate.DataSource = this.bsGridData;
             this.gridCatalogFiles.MasterTemplate.EnableCustomFiltering = true;
             this.gridCatalogFiles.MasterTemplate.EnableFiltering = true;
             this.gridCatalogFiles.MasterTemplate.ShowFilteringRow = false;
@@ -111,34 +115,36 @@
             this.gridCatalogFiles.TabIndex = 1;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             // 
-            // btnLoadExl
+            // btnLoadFile
             // 
-            this.btnLoadExl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLoadExl.Location = new System.Drawing.Point(3, 462);
-            this.btnLoadExl.Name = "btnLoadExl";
-            this.btnLoadExl.Size = new System.Drawing.Size(219, 24);
-            this.btnLoadExl.TabIndex = 2;
-            this.btnLoadExl.Text = "Завантажити каталог";
-            this.btnLoadExl.ThemeName = "Office2013Light";
-            this.btnLoadExl.Click += new System.EventHandler(this.btnLoadExl_Click);
+            this.btnLoadFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLoadFile.Location = new System.Drawing.Point(3, 462);
+            this.btnLoadFile.Name = "btnLoadFile";
+            this.btnLoadFile.Size = new System.Drawing.Size(219, 24);
+            this.btnLoadFile.TabIndex = 2;
+            this.btnLoadFile.Text = "Завантажити каталог";
+            this.btnLoadFile.ThemeName = "Office2013Light";
+            this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
             // CatalogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnLoadExl);
+            this.Controls.Add(this.btnLoadFile);
             this.Controls.Add(this.gridCatalogFiles);
             this.Name = "CatalogControl";
             this.Size = new System.Drawing.Size(760, 489);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadExl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private Telerik.WinControls.UI.RadGridView gridCatalogFiles;
-        private Telerik.WinControls.UI.RadButton btnLoadExl;
+        private Telerik.WinControls.UI.RadButton btnLoadFile;
+        private System.Windows.Forms.BindingSource bsGridData;
     }
 }

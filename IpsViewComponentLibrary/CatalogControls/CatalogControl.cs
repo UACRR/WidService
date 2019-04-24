@@ -32,7 +32,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnLoadExl_Click(object sender, EventArgs e)
+        private void btnLoadFile_Click(object sender, EventArgs e)
         {
             using (OpenFileDialog fileExel = new OpenFileDialog())
             {
