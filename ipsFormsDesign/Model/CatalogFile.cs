@@ -22,6 +22,9 @@ namespace ipsFormsDesign.Model
         public int? Status { get; set; }
         public int? RhType { get; set; }
         public string Comment { get; set; }
+        public int? CountZap { get; set; }
+        public int? CountOk { get; set; }
+        public int? CountErr { get; set; }
 
         public virtual RightHolder Cust { get; set; }
         public virtual RholderType RhTypeNavigation { get; set; }

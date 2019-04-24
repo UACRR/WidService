@@ -2236,6 +2236,12 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(1024)
                     .IsUnicode(false);
 
+                entity.Property(e => e.CountErr).HasColumnName("countErr");
+
+                entity.Property(e => e.CountOk).HasColumnName("countOk");
+
+                entity.Property(e => e.CountZap).HasColumnName("countZap");
+
                 entity.Property(e => e.CreateDate)
                     .HasColumnName("createDate")
                     .HasColumnType("datetime");
