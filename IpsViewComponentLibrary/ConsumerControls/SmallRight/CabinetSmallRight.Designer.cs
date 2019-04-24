@@ -1,4 +1,5 @@
-﻿using IpsViewComponentLibrary.Common;
+﻿using System.Drawing;
+using IpsViewComponentLibrary.Common;
 
 namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
@@ -590,6 +591,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             gridViewCommandColumn4.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
             gridViewCommandColumn4.HeaderText = "";
             gridViewCommandColumn4.Image = global::IpsViewComponentLibrary.Properties.Resources.print_solid;
+            gridViewCommandColumn4.ImageAlignment = ContentAlignment.MiddleCenter;
             gridViewCommandColumn4.MaxWidth = 30;
             gridViewCommandColumn4.MinWidth = 30;
             gridViewCommandColumn4.Name = "printBtn";

@@ -60,10 +60,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         //змінити представника
         private void btnChangePartner_Click(object sender, EventArgs e)
         {
-            var selectPartner = new SelectPartner(_customer?.CustId)
-            {
-                StartPosition = FormStartPosition.CenterParent
-            };
+            var selectPartner = new SelectPartner(_customer?.CustId);
             selectPartner.SetPartnerList(OnGetPartnerListNeed?.Invoke());
             
             if (selectPartner.ShowDialog() == DialogResult.Yes)
