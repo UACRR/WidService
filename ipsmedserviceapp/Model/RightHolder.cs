@@ -11,9 +11,12 @@ namespace ipsmedserviceapp.Model
             AgreementAddRh = new HashSet<AgreementAddRh>();
             AnketaAddNick = new HashSet<AnketaAddNick>();
             Authors = new HashSet<Authors>();
+            CatalogFile = new HashSet<CatalogFile>();
             CopyRight = new HashSet<CopyRight>();
+            PubÑatalogItem = new HashSet<PubÑatalogItem>();
             RegisterCount = new HashSet<RegisterCount>();
             ReqAgreement = new HashSet<ReqAgreement>();
+            RhñatalogItem = new HashSet<RhñatalogItem>();
             TermsOfService = new HashSet<TermsOfService>();
             TerritoryExclude = new HashSet<TerritoryExclude>();
             TerritoryInclude = new HashSet<TerritoryInclude>();
@@ -26,6 +29,7 @@ namespace ipsmedserviceapp.Model
         public string InnerCode { get; set; }
         public int? RHolderType { get; set; }
         public string Ipibase { get; set; }
+        public string Comment { get; set; }
 
         public virtual Customer Cust { get; set; }
         [JsonIgnore]
@@ -33,11 +37,17 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<AnketaAddNick> AnketaAddNick { get; set; }
         [JsonIgnore]
         public virtual ICollection<Authors> Authors { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<CatalogFile> CatalogFile { get; set; }
         public virtual ICollection<CopyRight> CopyRight { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<PubÑatalogItem> PubÑatalogItem { get; set; }
         [JsonIgnore]
         public virtual ICollection<RegisterCount> RegisterCount { get; set; }
         [JsonIgnore]
         public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<RhñatalogItem> RhñatalogItem { get; set; }
         public virtual ICollection<TermsOfService> TermsOfService { get; set; }
         public virtual ICollection<TerritoryExclude> TerritoryExclude { get; set; }
         public virtual ICollection<TerritoryInclude> TerritoryInclude { get; set; }
