@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 
@@ -23,6 +17,14 @@ namespace IpsViewComponentLibrary.CatalogControls
             if (!IsDesignMode)
                 _catalogPresenter =new CatalogPresenter();
 
+        }
+
+        /// <summary>
+        /// show files into grid
+        /// </summary>
+        private void DataGrid()
+        {
+            //download data
         }
 
         /// <summary>

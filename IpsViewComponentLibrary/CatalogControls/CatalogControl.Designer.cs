@@ -28,88 +28,88 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn64 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn65 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn66 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn67 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn68 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn69 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn70 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn71 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn72 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
-            this.radGridView1 = new Telerik.WinControls.UI.RadGridView();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
             this.btnLoadExl = new Telerik.WinControls.UI.RadButton();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadExl)).BeginInit();
             this.SuspendLayout();
             // 
-            // radGridView1
+            // gridCatalogFiles
             // 
-            this.radGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.gridCatalogFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radGridView1.EnableCustomFiltering = true;
-            this.radGridView1.Location = new System.Drawing.Point(0, 0);
+            this.gridCatalogFiles.EnableCustomFiltering = true;
+            this.gridCatalogFiles.Location = new System.Drawing.Point(0, 0);
             // 
             // 
             // 
-            this.radGridView1.MasterTemplate.AllowAddNewRow = false;
-            this.radGridView1.MasterTemplate.AllowColumnReorder = false;
-            this.radGridView1.MasterTemplate.AllowDeleteRow = false;
-            this.radGridView1.MasterTemplate.AllowDragToGroup = false;
-            this.radGridView1.MasterTemplate.AllowEditRow = false;
-            this.radGridView1.MasterTemplate.AutoGenerateColumns = false;
-            this.radGridView1.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn64.HeaderText = "№п/п";
-            gridViewTextBoxColumn64.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            gridViewTextBoxColumn64.Name = "number";
-            gridViewTextBoxColumn64.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn64.Width = 55;
-            gridViewTextBoxColumn65.HeaderText = "Назва файлу";
-            gridViewTextBoxColumn65.Name = "fileName";
-            gridViewTextBoxColumn65.Width = 148;
-            gridViewTextBoxColumn66.HeaderText = "Дата завантаження";
-            gridViewTextBoxColumn66.Name = "dateDownload";
-            gridViewTextBoxColumn66.Width = 148;
-            gridViewTextBoxColumn67.HeaderText = "К-ть записів всього";
-            gridViewTextBoxColumn67.Name = "countFiles";
-            gridViewTextBoxColumn67.Width = 49;
-            gridViewTextBoxColumn68.HeaderText = "К-ть відкинутих записів";
-            gridViewTextBoxColumn68.Name = "countLeaveFiles";
-            gridViewTextBoxColumn68.Width = 49;
-            gridViewTextBoxColumn69.HeaderText = "Статус файлу";
-            gridViewTextBoxColumn69.Name = "statusFile";
-            gridViewTextBoxColumn69.Width = 49;
-            gridViewTextBoxColumn70.HeaderText = "Коментар";
-            gridViewTextBoxColumn70.Name = "comment";
-            gridViewTextBoxColumn70.Width = 49;
-            gridViewTextBoxColumn71.HeaderText = "Хто завантажив";
-            gridViewTextBoxColumn71.Name = "downloadFace";
-            gridViewTextBoxColumn71.Width = 49;
-            gridViewTextBoxColumn72.HeaderText = "Дія(Перегляд Вилучити\\Ред.коментар)";
-            gridViewTextBoxColumn72.Name = "actionFile";
-            gridViewTextBoxColumn72.Width = 146;
-            this.radGridView1.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn64,
-            gridViewTextBoxColumn65,
-            gridViewTextBoxColumn66,
-            gridViewTextBoxColumn67,
-            gridViewTextBoxColumn68,
-            gridViewTextBoxColumn69,
-            gridViewTextBoxColumn70,
-            gridViewTextBoxColumn71,
-            gridViewTextBoxColumn72});
-            this.radGridView1.MasterTemplate.EnableCustomFiltering = true;
-            this.radGridView1.MasterTemplate.EnableFiltering = true;
-            this.radGridView1.MasterTemplate.ShowFilteringRow = false;
-            this.radGridView1.MasterTemplate.ViewDefinition = tableViewDefinition8;
-            this.radGridView1.Name = "radGridView1";
-            this.radGridView1.ReadOnly = true;
-            this.radGridView1.ShowGroupPanel = false;
-            this.radGridView1.Size = new System.Drawing.Size(760, 231);
-            this.radGridView1.TabIndex = 1;
-            this.radGridView1.ThemeName = "Office2013Light";
+            this.gridCatalogFiles.MasterTemplate.AllowAddNewRow = false;
+            this.gridCatalogFiles.MasterTemplate.AllowColumnReorder = false;
+            this.gridCatalogFiles.MasterTemplate.AllowDeleteRow = false;
+            this.gridCatalogFiles.MasterTemplate.AllowDragToGroup = false;
+            this.gridCatalogFiles.MasterTemplate.AllowEditRow = false;
+            this.gridCatalogFiles.MasterTemplate.AutoGenerateColumns = false;
+            this.gridCatalogFiles.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.HeaderText = "№п/п";
+            gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            gridViewTextBoxColumn1.Name = "number";
+            gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn1.Width = 55;
+            gridViewTextBoxColumn2.HeaderText = "Назва файлу";
+            gridViewTextBoxColumn2.Name = "fileName";
+            gridViewTextBoxColumn2.Width = 148;
+            gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
+            gridViewTextBoxColumn3.Name = "dateDownload";
+            gridViewTextBoxColumn3.Width = 148;
+            gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
+            gridViewTextBoxColumn4.Name = "countFiles";
+            gridViewTextBoxColumn4.Width = 49;
+            gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
+            gridViewTextBoxColumn5.Name = "countLeaveFiles";
+            gridViewTextBoxColumn5.Width = 49;
+            gridViewTextBoxColumn6.HeaderText = "Статус файлу";
+            gridViewTextBoxColumn6.Name = "statusFile";
+            gridViewTextBoxColumn6.Width = 49;
+            gridViewTextBoxColumn7.HeaderText = "Коментар";
+            gridViewTextBoxColumn7.Name = "comment";
+            gridViewTextBoxColumn7.Width = 49;
+            gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
+            gridViewTextBoxColumn8.Name = "downloadFace";
+            gridViewTextBoxColumn8.Width = 49;
+            gridViewTextBoxColumn9.HeaderText = "Дія(Перегляд Вилучити\\Ред.коментар)";
+            gridViewTextBoxColumn9.Name = "actionFile";
+            gridViewTextBoxColumn9.Width = 146;
+            this.gridCatalogFiles.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9});
+            this.gridCatalogFiles.MasterTemplate.EnableCustomFiltering = true;
+            this.gridCatalogFiles.MasterTemplate.EnableFiltering = true;
+            this.gridCatalogFiles.MasterTemplate.ShowFilteringRow = false;
+            this.gridCatalogFiles.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCatalogFiles.Name = "gridCatalogFiles";
+            this.gridCatalogFiles.ReadOnly = true;
+            this.gridCatalogFiles.ShowGroupPanel = false;
+            this.gridCatalogFiles.Size = new System.Drawing.Size(760, 231);
+            this.gridCatalogFiles.TabIndex = 1;
+            this.gridCatalogFiles.ThemeName = "Office2013Light";
             // 
             // btnLoadExl
             // 
@@ -127,18 +127,18 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnLoadExl);
-            this.Controls.Add(this.radGridView1);
+            this.Controls.Add(this.gridCatalogFiles);
             this.Name = "CatalogControl";
             this.Size = new System.Drawing.Size(760, 489);
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadExl)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Telerik.WinControls.UI.RadGridView radGridView1;
+        private Telerik.WinControls.UI.RadGridView gridCatalogFiles;
         private Telerik.WinControls.UI.RadButton btnLoadExl;
     }
 }
