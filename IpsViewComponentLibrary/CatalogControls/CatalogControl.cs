@@ -40,7 +40,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             {
                 //open dialog
                 fileExel.InitialDirectory = @"C:\";
-                fileExel.Filter = "Exсel files (.xlsx)|*.xlsx";
+                fileExel.Filter = "Excel files (.xlsx)|*.xlsx";
                 fileExel.RestoreDirectory = true;
 
                 //show file into grid

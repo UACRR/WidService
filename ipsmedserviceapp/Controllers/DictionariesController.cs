@@ -252,14 +252,14 @@ namespace ipsmedserviceapp.Controllers
                             (sors, dest) => ((CustomerTypeTr)sors).CodeI == ((CustomerTypeTr)dest).CodeI && ((CustomerTypeTr)sors).Lang == ((CustomerTypeTr)dest).Lang,
                             rec => rec.CustomerTypeTr)
                         );
-            baseEng.Add("documentkind".ToLower(),
-                            new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
-                            sors => (DictBaseTypeI)sors,
-                            sors => (DocumentKind)sors,
-                            sors => sors.DocumentKindTr.ToList(),
-                            (sors, dest) => ((DocumentKindTr)sors).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)sors).Lang == ((DocumentKindTr)dest).Lang,
-                            rec => rec.DocumentKindTr)
-                        );
+            //baseEng.Add("documentkind".ToLower(),
+            //                new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+            //                sors => (DictBaseTypeI)sors,
+            //                sors => (DocumentKind)sors,
+            //                sors => sors.DocumentKindTr.ToList(),
+            //                (sors, dest) => ((DocumentKindTr)sors).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)sors).Lang == ((DocumentKindTr)dest).Lang,
+            //                rec => rec.DocumentKindTr)
+            //            );
             baseEng.Add("popgenre".ToLower(),
                             new BaseDictionaryEng<PopGenre, PopGenreTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.Id == int.Parse(id),
                             sors => sors,
