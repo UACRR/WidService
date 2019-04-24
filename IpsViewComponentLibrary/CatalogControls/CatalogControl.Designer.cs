@@ -37,7 +37,9 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
             this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
@@ -68,31 +70,52 @@
             gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             gridViewTextBoxColumn1.Name = "number";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 55;
+            gridViewTextBoxColumn1.Width = 59;
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.Name = "fileName";
-            gridViewTextBoxColumn2.Width = 148;
+            gridViewTextBoxColumn2.Width = 156;
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
             gridViewTextBoxColumn3.Name = "dateDownload";
-            gridViewTextBoxColumn3.Width = 148;
+            gridViewTextBoxColumn3.Width = 156;
             gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
             gridViewTextBoxColumn4.Name = "countFiles";
-            gridViewTextBoxColumn4.Width = 49;
+            gridViewTextBoxColumn4.Width = 51;
             gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
             gridViewTextBoxColumn5.Name = "countLeaveFiles";
-            gridViewTextBoxColumn5.Width = 49;
+            gridViewTextBoxColumn5.Width = 51;
             gridViewTextBoxColumn6.HeaderText = "Статус файлу";
             gridViewTextBoxColumn6.Name = "statusFile";
-            gridViewTextBoxColumn6.Width = 49;
+            gridViewTextBoxColumn6.Width = 51;
             gridViewTextBoxColumn7.HeaderText = "Коментар";
             gridViewTextBoxColumn7.Name = "comment";
-            gridViewTextBoxColumn7.Width = 49;
+            gridViewTextBoxColumn7.Width = 51;
             gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
             gridViewTextBoxColumn8.Name = "downloadFace";
-            gridViewTextBoxColumn8.Width = 49;
-            gridViewTextBoxColumn9.HeaderText = "Дія(Перегляд Вилучити\\Ред.коментар)";
-            gridViewTextBoxColumn9.Name = "actionFile";
-            gridViewTextBoxColumn9.Width = 146;
+            gridViewTextBoxColumn8.Width = 79;
+            gridViewCommandColumn1.FieldName = "viewBtn";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "viewBtn";
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn2.FieldName = "editBtn";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "editBtn";
+            gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn3.FieldName = "deleteBtn";
+            gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn3.MaxWidth = 30;
+            gridViewCommandColumn3.MinWidth = 30;
+            gridViewCommandColumn3.Name = "deleteBtn";
+            gridViewCommandColumn3.Width = 30;
             this.gridCatalogFiles.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -102,7 +125,9 @@
             gridViewTextBoxColumn6,
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
-            gridViewTextBoxColumn9});
+            gridViewCommandColumn1,
+            gridViewCommandColumn2,
+            gridViewCommandColumn3});
             this.gridCatalogFiles.MasterTemplate.DataSource = this.bsGridData;
             this.gridCatalogFiles.MasterTemplate.EnableCustomFiltering = true;
             this.gridCatalogFiles.MasterTemplate.EnableFiltering = true;

@@ -17,6 +17,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             if (!IsDesignMode)
                 _catalogPresenter =new CatalogPresenter();
 
+
         }
 
         /// <summary>
@@ -24,6 +25,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         /// </summary>
         private void DataGrid()
         {
+            //bsGridData.DataSource = _catalogPresenter.GetFileList<string>();
             //download data
         }
 
