@@ -126,18 +126,6 @@
   <metadata name="radContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>558, 95</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="gridViewCommandColumn1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAYAAAAmlE46AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wwAADsMBx2+oZAAAARhJREFUOE/tkz2OgkAcxSdSY28AKUg4hPEkFl6AhBMQEOIFMN7Aq8gtKAhYYK0F
-        jXnmNxWuyRZb7z95mTfvAyZhMJrN4/HQbreTMeYDaHjz+SheLhctl0vt93sdj0cLOBrefMzpdFJRFMqy
-        THEcy3VdpWmqqqos4Gh4ZMjSMWEYynEca67Xa7H3fV+e51nA0fDIkGVvrterVquVffIwDOr7XrfbTV3X
-        WcDR8MiQpWPatlUQBMrz3J69aRqdz2c9n08LOBpDhiydryIrR+QtAD73/ot/KdZ1rc1mo3EcLeBozK9F
-        vt39ftfr9bKAozEfRW5HFEXabrcqy9LexcPhYNc5xyNDlo6ZpklJkmixWHz9Tj9Bhuw0TXoDH5xEY73w
-        4qAAAAAASUVORK5CYII=
-</value>
-  </data>
   <metadata name="bsObjectRightForTransfering.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>171, 17</value>
   </metadata>

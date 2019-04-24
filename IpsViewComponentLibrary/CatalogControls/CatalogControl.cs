@@ -24,5 +24,27 @@ namespace IpsViewComponentLibrary.CatalogControls
                 _catalogPresenter =new CatalogPresenter();
 
         }
+
+        /// <summary>
+        /// choise exel file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnLoadExl_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog fileExel = new OpenFileDialog())
+            {
+                //open dialog
+                fileExel.InitialDirectory = @"C:\";
+                fileExel.Filter = "Exсel files (.xlsx)|*.xlsx";
+                fileExel.RestoreDirectory = true;
+
+                //show file into grid
+                if (fileExel.ShowDialog() == DialogResult.OK)
+                {
+
+                }
+            }
+        }
     }
 }
