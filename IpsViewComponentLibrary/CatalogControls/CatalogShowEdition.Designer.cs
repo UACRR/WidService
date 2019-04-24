@@ -57,13 +57,16 @@
             this.btnControl = new Telerik.WinControls.UI.RadButton();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
+            this.gridDetail = new Telerik.WinControls.UI.RadPivotGrid();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
+            this.gridDetailInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -160,6 +163,7 @@
             this.gridDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridDetailInfo.Controls.Add(this.gridDetail);
             this.gridDetailInfo.EnableCustomFiltering = true;
             this.gridDetailInfo.Location = new System.Drawing.Point(3, 179);
             // 
@@ -262,6 +266,13 @@
             this.btnPerform.Text = "Виконати";
             this.btnPerform.ThemeName = "Office2013Light";
             // 
+            // gridDetail
+            // 
+            this.gridDetail.Location = new System.Drawing.Point(244, 75);
+            this.gridDetail.Name = "gridDetail";
+            this.gridDetail.Size = new System.Drawing.Size(500, 500);
+            this.gridDetail.TabIndex = 1;
+            // 
             // CatalogShowEdition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -277,9 +288,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
+            this.gridDetailInfo.ResumeLayout(false);
+            this.gridDetailInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -291,5 +305,6 @@
         private Telerik.WinControls.UI.RadButton btnControl;
         private Telerik.WinControls.UI.RadButton btnGetExcel;
         private Telerik.WinControls.UI.RadButton btnPerform;
+        private Telerik.WinControls.UI.RadPivotGrid gridDetail;
     }
 }
