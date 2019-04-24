@@ -10,6 +10,9 @@ namespace IpsViewComponentLibrary.Shared.Controls
 {
     public partial class ContractConsumerMainControl : UserControl
     {
+        private const string MaxDateBeginWarning = "Перевищено максимальне значення дати \"від\"!";
+        private readonly DateTime MaxBeginDateTime = new DateTime(2999, 12, 31);
+
         private string _dateEndDataMember = "";
         private string _agreemnentName = "";
         private DateTime _dateEndNullDate = new DateTime(1,1,1);
@@ -38,7 +41,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         {
             InitializeComponent();
             rdtPickerAgrDate.SetUserCalendarSettingsm();
-            rdtPickerDateBegin.SetUserCalendarSettingsm();
+            dtDateBegin.SetUserCalendarSettingsm();
             rdtPickerDateEnd.SetUserCalendarSettingsm();
         }
 
@@ -54,7 +57,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
                 {
                     rtxtBoxContrNumber.DataBindings.Clear();
                     rdtPickerAgrDate.DataBindings.Clear();
-                    rdtPickerDateBegin.DataBindings.Clear();
+                    dtDateBegin.DataBindings.Clear();
                     rdtPickerDateEnd.DataBindings.Clear();
 
                     bsLicenseAgrParam.DataSource = value;
@@ -63,7 +66,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
                         DataSourceUpdateMode.OnPropertyChanged, string.Empty));
                     rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "LicDate", true,
                         DataSourceUpdateMode.OnPropertyChanged));
-                    rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "DateBegin", true,
+                    dtDateBegin.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "DateBegin", true,
                         DataSourceUpdateMode.OnPropertyChanged));
                     rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsLicenseAgrParam, "DateEnd", true,
                         DataSourceUpdateMode.OnPropertyChanged));
@@ -81,7 +84,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             {
                 rtxtBoxContrNumber.DataBindings.Clear();
                 rdtPickerAgrDate.DataBindings.Clear();
-                rdtPickerDateBegin.DataBindings.Clear();
+                dtDateBegin.DataBindings.Clear();
                 rdtPickerDateEnd.DataBindings.Clear();
 
                 bsAgreementAddRh.DataSource = value;
@@ -90,7 +93,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
                     DataSourceUpdateMode.OnPropertyChanged, string.Empty));
                 rdtPickerAgrDate.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "AgrDate", true,
                     DataSourceUpdateMode.OnPropertyChanged));
-                rdtPickerDateBegin.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "DateBegin", true,
+                dtDateBegin.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "DateBegin", true,
                     DataSourceUpdateMode.OnPropertyChanged));
                 rdtPickerDateEnd.DataBindings.Add(new Binding("Value", bsAgreementAddRh, "DateEnd", true,
                     DataSourceUpdateMode.OnPropertyChanged));
@@ -161,9 +164,9 @@ namespace IpsViewComponentLibrary.Shared.Controls
                         break;
                     case ConsumerAgreementInitType.Prolongation:
                     {
-                        rdtPickerDateBegin.ReadOnly = true;
+                        dtDateBegin.ReadOnly = true;
                         rdtPickerDateEnd.ReadOnly = true;
-                        rdtPickerDateBegin.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
+                        dtDateBegin.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
                         rdtPickerDateEnd.DateTimePickerElement.Calendar.TodayButton.Enabled = false;
                     }
                         break;
@@ -186,10 +189,16 @@ namespace IpsViewComponentLibrary.Shared.Controls
             return isValid;
         }
 
-        private void rdtPickerDateBegin_ValueChanged(object sender, EventArgs e)
+        private void dtDateBegin_ValueChanged(object sender, EventArgs e)
         {
-            if(rdtPickerDateBegin.Value.AddDays(1) is DateTime newDate)
-                rdtPickerDateEnd.MinDate =  new DateTime(newDate.Year, newDate.Month, newDate.Day);
+            if (dtDateBegin.Value >= MaxBeginDateTime)
+            {
+                MessageShow.ShowWarning(MaxDateBeginWarning);
+                dtDateBegin.Value = DateTime.Today;
+            }
+
+            if(dtDateBegin.Value.AddDays(1) is DateTime newDate)
+                rdtPickerDateEnd.MinDate = new DateTime(newDate.Year, newDate.Month, newDate.Day);
         }
     }
 }
