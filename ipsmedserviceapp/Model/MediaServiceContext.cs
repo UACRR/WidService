@@ -54,6 +54,8 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<BankAccount> BankAccount { get; set; }
         public virtual DbSet<BrRegItem> BrRegItem { get; set; }
         public virtual DbSet<BrRegister> BrRegister { get; set; }
+        public virtual DbSet<CatalogFile> CatalogFile { get; set; }
+        public virtual DbSet<CatalogStatus> CatalogStatus { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryStatusType> CategoryStatusType { get; set; }
         public virtual DbSet<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
@@ -214,6 +216,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<PositionTypeTr> PositionTypeTr { get; set; }
         public virtual DbSet<PrePayType> PrePayType { get; set; }
         public virtual DbSet<PrePayTypeTr> PrePayTypeTr { get; set; }
+        public virtual DbSet<PubСatalogItem> PubСatalogItem { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<RegionTr> RegionTr { get; set; }
         public virtual DbSet<Register> Register { get; set; }
@@ -272,6 +275,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<ResidentTypeTr> ResidentTypeTr { get; set; }
         public virtual DbSet<RholderType> RholderType { get; set; }
         public virtual DbSet<RholderTypeTr> RholderTypeTr { get; set; }
+        public virtual DbSet<RhсatalogItem> RhсatalogItem { get; set; }
         public virtual DbSet<RightHolder> RightHolder { get; set; }
         public virtual DbSet<SaldoDay> SaldoDay { get; set; }
         public virtual DbSet<SeekObject> SeekObject { get; set; }
@@ -2218,6 +2222,78 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.BrRegister)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_BRREGIST_REF_ASPNETUS");
+            });
+
+            modelBuilder.Entity<CatalogFile>(entity =>
+            {
+                entity.HasKey(e => e.FileId)
+                    .HasName("PK_CATALOGFILE");
+
+                entity.Property(e => e.FileId).HasColumnName("fileId");
+
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CreateDate)
+                    .HasColumnName("createDate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.CustName)
+                    .HasColumnName("custName")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FileName)
+                    .HasColumnName("fileName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifyDate)
+                    .HasColumnName("modifyDate")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.RhType).HasColumnName("rhType");
+
+                entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.Property(e => e.UserId)
+                    .IsRequired()
+                    .HasColumnName("userId")
+                    .HasMaxLength(48);
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.CatalogFile)
+                    .HasForeignKey(d => d.CustId)
+                    .HasConstraintName("FK_CATALOGF_REFERENCE_RIGHTHOL");
+
+                entity.HasOne(d => d.RhTypeNavigation)
+                    .WithMany(p => p.CatalogFile)
+                    .HasForeignKey(d => d.RhType)
+                    .HasConstraintName("FK_CATALOGF_REFERENCE_RHOLDERT");
+
+                entity.HasOne(d => d.StatusNavigation)
+                    .WithMany(p => p.CatalogFile)
+                    .HasForeignKey(d => d.Status)
+                    .HasConstraintName("FK_CATALOGF_REFERENCE_CATALOGS");
+            });
+
+            modelBuilder.Entity<CatalogStatus>(entity =>
+            {
+                entity.HasKey(e => e.CodeI)
+                    .HasName("PK_CATALOGSTATUS");
+
+                entity.Property(e => e.CodeI)
+                    .HasColumnName("codeI")
+                    .ValueGeneratedNever();
+
+                entity.Property(e => e.Name)
+                    .HasColumnName("name")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -6008,9 +6084,8 @@ namespace ipsmedserviceapp.Model
 
                 entity.Property(e => e.Lang)
                     .HasColumnName("lang")
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .IsFixedLength();
+                    .HasMaxLength(2)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Name)
                     .HasColumnName("name")
@@ -6494,7 +6569,7 @@ namespace ipsmedserviceapp.Model
             modelBuilder.Entity<PayTurnRed>(entity =>
             {
                 entity.HasKey(e => e.RedId)
-                    .HasName("PK__PayTurnR__1905756764D309CC");
+                    .HasName("PK__PayTurnR__1905756753C4789C");
 
                 entity.Property(e => e.RedId).HasColumnName("redId");
 
@@ -6505,6 +6580,10 @@ namespace ipsmedserviceapp.Model
                     .HasColumnType("money");
 
                 entity.Property(e => e.AmountRest).HasColumnType("money");
+
+                entity.Property(e => e.DateCreate)
+                    .HasColumnName("dateCreate")
+                    .HasColumnType("datetime");
 
                 entity.Property(e => e.DateWork)
                     .HasColumnName("dateWork")
@@ -7047,6 +7126,111 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.CodeI)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_PREPAYTY_REFERENCE_PREPAYTY");
+            });
+
+            modelBuilder.Entity<PubСatalogItem>(entity =>
+            {
+                entity.HasKey(e => e.ItemId)
+                    .HasName("PK_PUBСATALOGITEM");
+
+                entity.Property(e => e.ItemId).HasColumnName("itemId");
+
+                entity.Property(e => e.AuthorMusic)
+                    .HasColumnName("authorMusic")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.AuthorText)
+                    .HasColumnName("authorText")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CRightId).HasColumnName("cRightId");
+
+                entity.Property(e => e.CmCustId).HasColumnName("cmCustId");
+
+                entity.Property(e => e.CmName)
+                    .HasColumnName("cmName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
+
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.ErrComment)
+                    .HasColumnName("errComment")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FileId).HasColumnName("fileId");
+
+                entity.Property(e => e.GenreCode).HasColumnName("genreCode");
+
+                entity.Property(e => e.GenreName)
+                    .HasColumnName("genreName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Iswc)
+                    .HasColumnName("iswc")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ItemCode)
+                    .HasColumnName("itemCode")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ObjId).HasColumnName("objId");
+
+                entity.Property(e => e.ObjName)
+                    .HasColumnName("objName")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Performer)
+                    .HasColumnName("performer")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rate)
+                    .HasColumnName("rate")
+                    .HasColumnType("numeric(10, 5)");
+
+                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
+
+                entity.Property(e => e.RoleName)
+                    .HasColumnName("roleName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.HasOne(d => d.CRight)
+                    .WithMany(p => p.PubСatalogItem)
+                    .HasForeignKey(d => d.CRightId)
+                    .HasConstraintName("FK_PUBСATAL_REFERENCE_COPYRIGH");
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.PubСatalogItem)
+                    .HasForeignKey(d => d.CodeI)
+                    .HasConstraintName("FK_PUBСATAL_REFERENCE_CATALOGS");
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.PubСatalogItem)
+                    .HasForeignKey(d => d.CustId)
+                    .HasConstraintName("FK_PUBСATAL_REFERENCE_RIGHTHOL");
+
+                entity.HasOne(d => d.File)
+                    .WithMany(p => p.PubСatalogItem)
+                    .HasForeignKey(d => d.FileId)
+                    .HasConstraintName("FK_PUBСATAL_REFERENCE_CATALOGF");
             });
 
             modelBuilder.Entity<Region>(entity =>
@@ -8905,6 +9089,101 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_RHOLDERT_REFERENCE_RHOLDERT");
             });
 
+            modelBuilder.Entity<RhсatalogItem>(entity =>
+            {
+                entity.HasKey(e => e.ItemId)
+                    .HasName("PK_RHСATALOGITEM");
+
+                entity.ToTable("RHСatalogItem");
+
+                entity.Property(e => e.ItemId).HasColumnName("itemId");
+
+                entity.Property(e => e.AuthorName)
+                    .HasColumnName("authorName")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CRightId).HasColumnName("cRightId");
+
+                entity.Property(e => e.CmCustId).HasColumnName("cmCustId");
+
+                entity.Property(e => e.CmName)
+                    .HasColumnName("cmName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CustId).HasColumnName("custId");
+
+                entity.Property(e => e.ErrComment)
+                    .HasColumnName("errComment")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FileId).HasColumnName("fileId");
+
+                entity.Property(e => e.GenreCode).HasColumnName("genreCode");
+
+                entity.Property(e => e.GenreName)
+                    .HasColumnName("genreName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Iswc)
+                    .HasColumnName("iswc")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ItemCode)
+                    .HasColumnName("itemCode")
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ObjId).HasColumnName("objId");
+
+                entity.Property(e => e.ObjName)
+                    .HasColumnName("objName")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Rate)
+                    .HasColumnName("rate")
+                    .HasColumnType("numeric(10, 5)");
+
+                entity.Property(e => e.RoleCode).HasColumnName("roleCode");
+
+                entity.Property(e => e.RoleName)
+                    .HasColumnName("roleName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Status).HasColumnName("status");
+
+                entity.HasOne(d => d.CRight)
+                    .WithMany(p => p.RhсatalogItem)
+                    .HasForeignKey(d => d.CRightId)
+                    .HasConstraintName("FK_RHСATALO_REFERENCE_COPYRIGH");
+
+                entity.HasOne(d => d.Cust)
+                    .WithMany(p => p.RhсatalogItem)
+                    .HasForeignKey(d => d.CustId)
+                    .HasConstraintName("FK_RHСATALO_REFERENCE_RIGHTHOL");
+
+                entity.HasOne(d => d.File)
+                    .WithMany(p => p.RhсatalogItem)
+                    .HasForeignKey(d => d.FileId)
+                    .HasConstraintName("FK_RHСATALO_REFERENCE_CATALOGF");
+
+                entity.HasOne(d => d.StatusNavigation)
+                    .WithMany(p => p.RhсatalogItem)
+                    .HasForeignKey(d => d.Status)
+                    .HasConstraintName("FK_RHСATALO_REFERENCE_CATALOGS");
+            });
+
             modelBuilder.Entity<RightHolder>(entity =>
             {
                 entity.HasKey(e => e.CustId)
@@ -8915,6 +9194,11 @@ namespace ipsmedserviceapp.Model
                     .ValueGeneratedNever();
 
                 entity.Property(e => e.AroundWord).HasColumnName("aroundWord");
+
+                entity.Property(e => e.Comment)
+                    .HasColumnName("comment")
+                    .HasMaxLength(1024)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.InnerCode)
                     .HasColumnName("innerCode")

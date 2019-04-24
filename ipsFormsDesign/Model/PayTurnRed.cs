@@ -15,6 +15,7 @@ namespace ipsFormsDesign.Model
         public decimal? AmountRest { get; set; }
         public int? AccId { get; set; }
         public int? RedType { get; set; }
+        public DateTime? DateCreate { get; set; }
     }
 }
 

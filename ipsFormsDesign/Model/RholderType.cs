@@ -8,12 +8,14 @@ namespace ipsFormsDesign.Model
     {
         public RholderType()
         {
+            CatalogFile = new ObservableListSource<CatalogFile>();
             RholderTypeTr = new ObservableListSource<RholderTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        public virtual ObservableListSource<CatalogFile> CatalogFile { get; set; }
         public virtual ObservableListSource<RholderTypeTr> RholderTypeTr { get; set; }
     }
 }
