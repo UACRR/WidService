@@ -146,6 +146,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogControls\CatalogControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CatalogControls\CatalogControl.Designer.cs">
+      <DependentUpon>CatalogControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
     <Compile Include="Common\Enums\NavigateType.cs" />
     <Compile Include="Common\GridRowCountControl.cs">
       <SubType>UserControl</SubType>
@@ -1108,6 +1115,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CatalogControls\CatalogControl.resx">
+      <DependentUpon>CatalogControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\GridRowCountControl.resx">
       <DependentUpon>GridRowCountControl.cs</DependentUpon>
     </EmbeddedResource>
