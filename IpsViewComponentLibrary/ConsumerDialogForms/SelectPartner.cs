@@ -8,11 +8,11 @@ using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
-using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
-    public partial class SelectPartner : Telerik.WinControls.UI.RadForm
+    public partial class SelectPartner : RadForm
     {
         private List<PartnerList> _partnerList = new List<PartnerList>();
         private List<Customer> _customers;
@@ -20,6 +20,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         public SelectPartner(int? partnerId)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             DialogResult = DialogResult.None;
             PartnerId = partnerId;
             ctrlSearch.SetUsageGrid(gvPartnerList);
