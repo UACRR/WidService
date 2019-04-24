@@ -57,16 +57,13 @@
             this.btnControl = new Telerik.WinControls.UI.RadButton();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
-            this.gridDetail = new Telerik.WinControls.UI.RadPivotGrid();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
-            this.gridDetailInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -92,10 +89,10 @@
             gridViewTextBoxColumn1.Width = 62;
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.Name = "fileName";
-            gridViewTextBoxColumn2.Width = 166;
+            gridViewTextBoxColumn2.Width = 165;
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
             gridViewTextBoxColumn3.Name = "dateDownload";
-            gridViewTextBoxColumn3.Width = 166;
+            gridViewTextBoxColumn3.Width = 165;
             gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
             gridViewTextBoxColumn4.Name = "countFiles";
             gridViewTextBoxColumn4.Width = 54;
@@ -110,7 +107,7 @@
             gridViewTextBoxColumn7.Width = 54;
             gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
             gridViewTextBoxColumn8.Name = "downloadFace";
-            gridViewTextBoxColumn8.Width = 91;
+            gridViewTextBoxColumn8.Width = 88;
             gridViewCommandColumn1.FieldName = "viewBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.HeaderText = "";
@@ -163,7 +160,6 @@
             this.gridDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridDetailInfo.Controls.Add(this.gridDetail);
             this.gridDetailInfo.EnableCustomFiltering = true;
             this.gridDetailInfo.Location = new System.Drawing.Point(3, 179);
             // 
@@ -186,7 +182,7 @@
             gridViewTextBoxColumn10.Width = 31;
             gridViewTextBoxColumn11.HeaderText = "Назва товару";
             gridViewTextBoxColumn11.Name = "nameProduct";
-            gridViewTextBoxColumn11.Width = 156;
+            gridViewTextBoxColumn11.Width = 155;
             gridViewTextBoxColumn12.HeaderText = "Жанр твору";
             gridViewTextBoxColumn12.Name = "genre";
             gridViewTextBoxColumn12.Width = 54;
@@ -201,7 +197,7 @@
             gridViewTextBoxColumn15.Width = 68;
             gridViewTextBoxColumn16.HeaderText = "Творча роль правовласника";
             gridViewTextBoxColumn16.Name = "role";
-            gridViewTextBoxColumn16.Width = 122;
+            gridViewTextBoxColumn16.Width = 121;
             gridViewTextBoxColumn17.HeaderText = "%";
             gridViewTextBoxColumn17.Name = "percent";
             gridViewTextBoxColumn17.Width = 31;
@@ -210,7 +206,7 @@
             gridViewTextBoxColumn18.Width = 53;
             gridViewTextBoxColumn19.HeaderText = "Статус";
             gridViewTextBoxColumn19.Name = "status";
-            gridViewTextBoxColumn19.Width = 94;
+            gridViewTextBoxColumn19.Width = 91;
             this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
@@ -266,13 +262,6 @@
             this.btnPerform.Text = "Виконати";
             this.btnPerform.ThemeName = "Office2013Light";
             // 
-            // gridDetail
-            // 
-            this.gridDetail.Location = new System.Drawing.Point(244, 75);
-            this.gridDetail.Name = "gridDetail";
-            this.gridDetail.Size = new System.Drawing.Size(500, 500);
-            this.gridDetail.TabIndex = 1;
-            // 
             // CatalogShowEdition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,12 +277,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
-            this.gridDetailInfo.ResumeLayout(false);
-            this.gridDetailInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -305,6 +291,5 @@
         private Telerik.WinControls.UI.RadButton btnControl;
         private Telerik.WinControls.UI.RadButton btnGetExcel;
         private Telerik.WinControls.UI.RadButton btnPerform;
-        private Telerik.WinControls.UI.RadPivotGrid gridDetail;
     }
 }
