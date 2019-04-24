@@ -1,0 +1,247 @@
+﻿namespace IpsViewComponentLibrary.CatalogControls
+{
+    partial class CatalogShowEdition
+    {
+        /// <summary> 
+        /// Обязательная переменная конструктора.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary> 
+        /// Освободить все используемые ресурсы.
+        /// </summary>
+        /// <param name="disposing">истинно, если управляемый ресурс должен быть удален; иначе ложно.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Код, автоматически созданный конструктором компонентов
+
+        /// <summary> 
+        /// Требуемый метод для поддержки конструктора — не изменяйте 
+        /// содержимое этого метода с помощью редактора кода.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn17 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn18 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
+            this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // gridCatalogFiles
+            // 
+            this.gridCatalogFiles.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridCatalogFiles.EnableCustomFiltering = true;
+            this.gridCatalogFiles.Location = new System.Drawing.Point(3, 3);
+            // 
+            // 
+            // 
+            this.gridCatalogFiles.MasterTemplate.AllowAddNewRow = false;
+            this.gridCatalogFiles.MasterTemplate.AllowColumnReorder = false;
+            this.gridCatalogFiles.MasterTemplate.AllowDeleteRow = false;
+            this.gridCatalogFiles.MasterTemplate.AllowDragToGroup = false;
+            this.gridCatalogFiles.MasterTemplate.AllowEditRow = false;
+            this.gridCatalogFiles.MasterTemplate.AutoGenerateColumns = false;
+            this.gridCatalogFiles.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.HeaderText = "№п/п";
+            gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            gridViewTextBoxColumn1.Name = "number";
+            gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn1.Width = 80;
+            gridViewTextBoxColumn2.HeaderText = "Назва файлу";
+            gridViewTextBoxColumn2.Name = "fileName";
+            gridViewTextBoxColumn2.Width = 213;
+            gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
+            gridViewTextBoxColumn3.Name = "dateDownload";
+            gridViewTextBoxColumn3.Width = 213;
+            gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
+            gridViewTextBoxColumn4.Name = "countFiles";
+            gridViewTextBoxColumn4.Width = 69;
+            gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
+            gridViewTextBoxColumn5.Name = "countLeaveFiles";
+            gridViewTextBoxColumn5.Width = 69;
+            gridViewTextBoxColumn6.HeaderText = "Статус файлу";
+            gridViewTextBoxColumn6.Name = "statusFile";
+            gridViewTextBoxColumn6.Width = 69;
+            gridViewTextBoxColumn7.HeaderText = "Коментар";
+            gridViewTextBoxColumn7.Name = "comment";
+            gridViewTextBoxColumn7.Width = 69;
+            gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
+            gridViewTextBoxColumn8.Name = "downloadFace";
+            gridViewTextBoxColumn8.Width = 145;
+            gridViewCommandColumn1.FieldName = "viewBtn";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewCommandColumn1.HeaderText = "";
+            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewCommandColumn1.MaxWidth = 30;
+            gridViewCommandColumn1.MinWidth = 30;
+            gridViewCommandColumn1.Name = "viewBtn";
+            gridViewCommandColumn1.Width = 30;
+            gridViewCommandColumn2.FieldName = "editBtn";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn2.HeaderText = "";
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewCommandColumn2.MaxWidth = 30;
+            gridViewCommandColumn2.MinWidth = 30;
+            gridViewCommandColumn2.Name = "editBtn";
+            gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn3.FieldName = "deleteBtn";
+            gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn3.MaxWidth = 30;
+            gridViewCommandColumn3.MinWidth = 30;
+            gridViewCommandColumn3.Name = "deleteBtn";
+            gridViewCommandColumn3.Width = 30;
+            this.gridCatalogFiles.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn1,
+            gridViewTextBoxColumn2,
+            gridViewTextBoxColumn3,
+            gridViewTextBoxColumn4,
+            gridViewTextBoxColumn5,
+            gridViewTextBoxColumn6,
+            gridViewTextBoxColumn7,
+            gridViewTextBoxColumn8,
+            gridViewCommandColumn1,
+            gridViewCommandColumn2,
+            gridViewCommandColumn3});
+            this.gridCatalogFiles.MasterTemplate.EnableCustomFiltering = true;
+            this.gridCatalogFiles.MasterTemplate.EnableFiltering = true;
+            this.gridCatalogFiles.MasterTemplate.ShowFilteringRow = false;
+            this.gridCatalogFiles.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCatalogFiles.Name = "gridCatalogFiles";
+            this.gridCatalogFiles.ReadOnly = true;
+            this.gridCatalogFiles.ShowGroupPanel = false;
+            this.gridCatalogFiles.Size = new System.Drawing.Size(1028, 157);
+            this.gridCatalogFiles.TabIndex = 2;
+            this.gridCatalogFiles.ThemeName = "Office2013Light";
+            // 
+            // gridDetailInfo
+            // 
+            this.gridDetailInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridDetailInfo.EnableCustomFiltering = true;
+            this.gridDetailInfo.Location = new System.Drawing.Point(3, 179);
+            // 
+            // 
+            // 
+            this.gridDetailInfo.MasterTemplate.AllowAddNewRow = false;
+            this.gridDetailInfo.MasterTemplate.AllowColumnReorder = false;
+            this.gridDetailInfo.MasterTemplate.AllowDeleteRow = false;
+            this.gridDetailInfo.MasterTemplate.AllowDragToGroup = false;
+            this.gridDetailInfo.MasterTemplate.AllowEditRow = false;
+            this.gridDetailInfo.MasterTemplate.AutoGenerateColumns = false;
+            this.gridDetailInfo.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn9.HeaderText = "Шифр товару";
+            gridViewTextBoxColumn9.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            gridViewTextBoxColumn9.Name = "code";
+            gridViewTextBoxColumn9.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewTextBoxColumn9.Width = 80;
+            gridViewTextBoxColumn10.HeaderText = "ISWC";
+            gridViewTextBoxColumn10.Name = "iswc";
+            gridViewTextBoxColumn10.Width = 40;
+            gridViewTextBoxColumn11.HeaderText = "Назва товару";
+            gridViewTextBoxColumn11.Name = "nameProduct";
+            gridViewTextBoxColumn11.Width = 201;
+            gridViewTextBoxColumn12.HeaderText = "Жанр твору";
+            gridViewTextBoxColumn12.Name = "genre";
+            gridViewTextBoxColumn12.Width = 70;
+            gridViewTextBoxColumn13.HeaderText = "Виконавець";
+            gridViewTextBoxColumn13.Name = "executor";
+            gridViewTextBoxColumn13.Width = 70;
+            gridViewTextBoxColumn14.HeaderText = "Композитор(и)";
+            gridViewTextBoxColumn14.Name = "composer";
+            gridViewTextBoxColumn14.Width = 85;
+            gridViewTextBoxColumn15.HeaderText = "Автор(и) тексту";
+            gridViewTextBoxColumn15.Name = "authors";
+            gridViewTextBoxColumn15.Width = 88;
+            gridViewTextBoxColumn16.HeaderText = "Творча роль правовласника";
+            gridViewTextBoxColumn16.Name = "role";
+            gridViewTextBoxColumn16.Width = 157;
+            gridViewTextBoxColumn17.HeaderText = "%";
+            gridViewTextBoxColumn17.Name = "percent";
+            gridViewTextBoxColumn17.Width = 40;
+            gridViewTextBoxColumn18.HeaderText = "Помилка";
+            gridViewTextBoxColumn18.Name = "error";
+            gridViewTextBoxColumn18.Width = 68;
+            gridViewTextBoxColumn19.HeaderText = "Статус";
+            gridViewTextBoxColumn19.Name = "status";
+            gridViewTextBoxColumn19.Width = 118;
+            this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
+            gridViewTextBoxColumn9,
+            gridViewTextBoxColumn10,
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15,
+            gridViewTextBoxColumn16,
+            gridViewTextBoxColumn17,
+            gridViewTextBoxColumn18,
+            gridViewTextBoxColumn19});
+            this.gridDetailInfo.MasterTemplate.EnableCustomFiltering = true;
+            this.gridDetailInfo.MasterTemplate.EnableFiltering = true;
+            this.gridDetailInfo.MasterTemplate.ShowFilteringRow = false;
+            this.gridDetailInfo.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.gridDetailInfo.Name = "gridDetailInfo";
+            this.gridDetailInfo.ReadOnly = true;
+            this.gridDetailInfo.ShowGroupPanel = false;
+            this.gridDetailInfo.Size = new System.Drawing.Size(1028, 231);
+            this.gridDetailInfo.TabIndex = 3;
+            this.gridDetailInfo.ThemeName = "Office2013Light";
+            // 
+            // CatalogShowEdition
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gridDetailInfo);
+            this.Controls.Add(this.gridCatalogFiles);
+            this.Name = "CatalogShowEdition";
+            this.Size = new System.Drawing.Size(1034, 505);
+            ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private Telerik.WinControls.UI.RadGridView gridCatalogFiles;
+        private Telerik.WinControls.UI.RadGridView gridDetailInfo;
+    }
+}
