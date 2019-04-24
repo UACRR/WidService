@@ -44,6 +44,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
         private bool _deleteLicense = true;
         private int? _licId = null;
         private string _validateString = string.Empty;
+        private bool isInit = false;
 
         public sealed override string Text
         {
@@ -148,6 +149,8 @@ namespace IpsViewComponentLibrary.Shared.Forms
             if (GetReadOnly()) // TODO: read only must be a enum
                 ReadOnly = true;
             SetControlsVisibility();
+
+            isInit = true;
         }
 
         private void SetDictionaries()
@@ -397,6 +400,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
                 else
                 {
                     _dialogService.ShowMessage(this, error);
+                    return;
                 }
 
             }
@@ -439,22 +443,27 @@ namespace IpsViewComponentLibrary.Shared.Forms
                 bsObjectRight.ResetBindings(false);
             }
 
-            UpdateGenrePersent();
+            UpdateGenrePersent(true);
         }
 
         private void GenrePersent_UpdateNeed(object sender, EventArgs e)
         {
-            UpdateGenrePersent();
+            UpdateGenrePersent(false);
         }
 
-        private void UpdateGenrePersent()
+        private void UpdateGenrePersent( bool isTxtActCodeChanged )
         {
-            if (int.TryParse(txtActCode.Text, out int actCode))
+
+            if (isInit && int.TryParse(txtActCode.Text, out int actCode))
             {
                 if (ddlGenreType.SelectedValue == null)
                     return;
 
                 var genreType = Convert.ToInt32(ddlGenreType.SelectedValue);
+
+                if (genreType == _licenseAgreement.LicenseBigR.Obj.GenreType && !isTxtActCodeChanged)
+                    return;
+
 
                 var rate = _dictionaties.relGenrePercent.Where(rec => rec.ActCode == actCode).SingleOrDefault(rec => rec.GenreType == genreType)?.Rate;
                 if (_licenseAgreement?.LicenseBigR?.Rate == rate)

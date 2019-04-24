@@ -7,12 +7,14 @@ namespace ipsmedserviceapp.Model
     {
         public RholderType()
         {
+            CatalogFile = new HashSet<CatalogFile>();
             RholderTypeTr = new HashSet<RholderTypeTr>();
         }
 
         public int CodeI { get; set; }
         public string Name { get; set; }
 
+        public virtual ICollection<CatalogFile> CatalogFile { get; set; }
         public virtual ICollection<RholderTypeTr> RholderTypeTr { get; set; }
     }
 }
