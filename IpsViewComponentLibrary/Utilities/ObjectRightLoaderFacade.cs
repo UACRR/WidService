@@ -20,7 +20,7 @@ namespace IpsViewComponentLibrary.Utilities
 
         public ObjectRightLoaderFacade()
         {
-            _excelEngine = new ExcelEngine();
+            _excelEngine = ExcelEngine.GetInstance();
             _parser = new ObjectRightDataParser();
             _validator = new ObjectRightDataValidator();
             _objectRightService = new ObjectRightService();
