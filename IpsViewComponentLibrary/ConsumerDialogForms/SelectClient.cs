@@ -22,9 +22,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         /// </summary>
         private SuccessErrorMsg _msg = new SuccessErrorMsg("Нового користувача додано!", "Неможливо додати користувача!");
 
-        public SelectClient(List<PartnerAllFreeClientsView> clientsList, SuccessErrorMsg msg = null )
+        public SelectClient(List<PartnerAllFreeClientsView> clientsList, SuccessErrorMsg msg = null)
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
 
             if (msg != null)
                 _msg = msg;

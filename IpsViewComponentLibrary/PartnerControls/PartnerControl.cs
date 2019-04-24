@@ -142,11 +142,9 @@ namespace IpsViewComponentLibrary.PartnerControls
         private void OpenPartnerCabinet(GridViewCellEventArgs cell)
         {
             var row = cell.Row.DataBoundItem as PartnerView;
-            var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Не можливо отримати представника по ідентифікатору!"));
-            var cabinetPartner = new CabinetPartnerForm(customer)
-            {
-                StartPosition = FormStartPosition.CenterScreen,
-            };
+            var customer = GetPartnerById?.Invoke(row?.CustId ?? throw new ArgumentException("Неможливо отримати представника по ідентифікатору!"));
+            var cabinetPartner = new CabinetPartnerForm(customer);
+
             cabinetPartner.OnSaveCustomer += SaveAnketaPartner;
             cabinetPartner.GetPartnerClientList += CabinetPartner_GetPartnerClientList;
             cabinetPartner.GetFreeClientList += CabinetPartner_GetFreeClientList;
