@@ -54,10 +54,16 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
+            this.btnControl = new Telerik.WinControls.UI.RadButton();
+            this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
+            this.btnPerform = new Telerik.WinControls.UI.RadButton();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -145,7 +151,7 @@
             this.gridCatalogFiles.Name = "gridCatalogFiles";
             this.gridCatalogFiles.ReadOnly = true;
             this.gridCatalogFiles.ShowGroupPanel = false;
-            this.gridCatalogFiles.Size = new System.Drawing.Size(1028, 157);
+            this.gridCatalogFiles.Size = new System.Drawing.Size(1028, 170);
             this.gridCatalogFiles.TabIndex = 2;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             // 
@@ -219,14 +225,48 @@
             this.gridDetailInfo.Name = "gridDetailInfo";
             this.gridDetailInfo.ReadOnly = true;
             this.gridDetailInfo.ShowGroupPanel = false;
-            this.gridDetailInfo.Size = new System.Drawing.Size(1028, 231);
+            this.gridDetailInfo.Size = new System.Drawing.Size(1028, 293);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
+            // 
+            // btnControl
+            // 
+            this.btnControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnControl.Location = new System.Drawing.Point(3, 478);
+            this.btnControl.Name = "btnControl";
+            this.btnControl.Size = new System.Drawing.Size(114, 24);
+            this.btnControl.TabIndex = 4;
+            this.btnControl.Text = "Контроль";
+            this.btnControl.ThemeName = "Office2013Light";
+            // 
+            // btnGetExcel
+            // 
+            this.btnGetExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGetExcel.Location = new System.Drawing.Point(123, 478);
+            this.btnGetExcel.Name = "btnGetExcel";
+            this.btnGetExcel.Size = new System.Drawing.Size(151, 24);
+            this.btnGetExcel.TabIndex = 3;
+            this.btnGetExcel.Text = "Вивантажити в Excel";
+            this.btnGetExcel.ThemeName = "Office2013Light";
+            // 
+            // btnPerform
+            // 
+            this.btnPerform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPerform.Enabled = false;
+            this.btnPerform.Location = new System.Drawing.Point(280, 478);
+            this.btnPerform.Name = "btnPerform";
+            this.btnPerform.Size = new System.Drawing.Size(131, 24);
+            this.btnPerform.TabIndex = 3;
+            this.btnPerform.Text = "Виконати";
+            this.btnPerform.ThemeName = "Office2013Light";
             // 
             // CatalogShowEdition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnGetExcel);
+            this.Controls.Add(this.btnPerform);
+            this.Controls.Add(this.btnControl);
             this.Controls.Add(this.gridDetailInfo);
             this.Controls.Add(this.gridCatalogFiles);
             this.Name = "CatalogShowEdition";
@@ -235,6 +275,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -243,5 +286,8 @@
 
         private Telerik.WinControls.UI.RadGridView gridCatalogFiles;
         private Telerik.WinControls.UI.RadGridView gridDetailInfo;
+        private Telerik.WinControls.UI.RadButton btnControl;
+        private Telerik.WinControls.UI.RadButton btnGetExcel;
+        private Telerik.WinControls.UI.RadButton btnPerform;
     }
 }
