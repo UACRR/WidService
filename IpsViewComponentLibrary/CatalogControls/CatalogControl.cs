@@ -10,6 +10,8 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogControl : UserControl
     {
+        private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
+
         public EventHandler command;
         private CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
@@ -101,7 +103,5 @@ namespace IpsViewComponentLibrary.CatalogControls
                     break;
             }
         }
-
-        private const string ConfirmDeleteCatalogFile = "";
     }
 }
