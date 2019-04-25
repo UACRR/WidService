@@ -14,9 +14,9 @@ namespace IpsViewComponentLibrary.CatalogControls
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-            spreadExporter = new GridViewSpreadExport(gridDetailInfo);
-            catalogFileBindingSource.DataSource = FillFileData();
-            PubCatalogItemBindingSource.DataSource = FillGridDetail();
+            spreadExporter = new GridViewSpreadExport(gridDetail);
+            //catalogFileBindingSource.DataSource = FillFileData();
+            bsPubCatalog.DataSource = FillGridDetail();
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)

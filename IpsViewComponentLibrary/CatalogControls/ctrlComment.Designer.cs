@@ -50,6 +50,9 @@
             // 
             // radTextBox1
             // 
+            this.radTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radTextBox1.Location = new System.Drawing.Point(0, 25);
             this.radTextBox1.MaxLength = 1024;
             this.radTextBox1.Multiline = true;
@@ -58,14 +61,14 @@
             // 
             // 
             this.radTextBox1.RootElement.StretchVertically = true;
-            this.radTextBox1.Size = new System.Drawing.Size(581, 256);
+            this.radTextBox1.Size = new System.Drawing.Size(622, 306);
             this.radTextBox1.TabIndex = 1;
             this.radTextBox1.ThemeName = "Office2013Light";
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(355, 287);
+            this.btnCancel.Location = new System.Drawing.Point(399, 337);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(110, 24);
             this.btnCancel.TabIndex = 2;
@@ -75,7 +78,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(471, 287);
+            this.btnSave.Location = new System.Drawing.Point(515, 337);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 24);
             this.btnSave.TabIndex = 3;
@@ -91,7 +94,7 @@
             this.Controls.Add(this.radTextBox1);
             this.Controls.Add(this.txtComm);
             this.Name = "ctrlComment";
-            this.Size = new System.Drawing.Size(581, 311);
+            this.Size = new System.Drawing.Size(625, 361);
             ((System.ComponentModel.ISupportInitialize)(this.txtComm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
