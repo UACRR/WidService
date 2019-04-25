@@ -17,20 +17,23 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             _exelEngine = ExcelEngine.GetInstance();
         }
 
+        public List<T> GetFileList<T>() where T : class
+        {
+            return new List<T>();
+        }
+
         public void UploadCatalogFile(CatalogFile catalogFile, string path, string fileName)
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
 
-            catalogFile.PubСatalogItem = new ObservableListSource<PubСatalogItem>(GetPubСatalog(string.Concat(path, fileName)));
+            var pubСatalogItemList = GetPubСatalog(string.Concat(path, fileName));
+            catalogFile.PubСatalogItem = new ObservableListSource<PubСatalogItem>(pubСatalogItemList);
+
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
         }
-
-        public List<T> GetFileList<T>() where T : class
-        {
-            return new List<T>();
-        }
+        
 
         /// <summary>
         /// Конвертація Xls файлу в список PubСatalogItem
@@ -65,20 +68,22 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         private PubСatalogItem PubСatalogItemFromXlsRow(List<string> item)
         {
             if (item.Count < 10)
-                throw new ArgumentException("Не правильна структура файлу.Кількість колонок з даними дорівнює 10");
+                throw new ArgumentException("Неправильна структура файлу! Кількість колонок з даними повинна дорівнювати 10!");
 
-            PubСatalogItem newItem = new PubСatalogItem();
-            newItem.ItemCode = item[0];
-            newItem.Iswc = item[1];
-            newItem.ObjName = item[2];
-            newItem.GenreName = item[3];
-            newItem.Performer = item[4];
-            newItem.AuthorMusic = item[5];
-            newItem.AuthorText = item[6];
-            newItem.RoleName = item[7];
-            newItem.Rate = 0;
-            decimal outBuffer;
-            if (decimal.TryParse(item[9], out outBuffer))
+            var newItem = new PubСatalogItem
+            {
+                ItemCode = item[0],
+                Iswc = item[1],
+                ObjName = item[2],
+                GenreName = item[3],
+                Performer = item[4],
+                AuthorMusic = item[5],
+                AuthorText = item[6],
+                RoleName = item[7],
+                Rate = 0
+            };
+
+            if (decimal.TryParse(item[9], out decimal outBuffer))
                 newItem.Rate = outBuffer*100;
 
             return newItem;

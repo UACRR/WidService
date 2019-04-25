@@ -23,13 +23,37 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
+        /// <summary>
+        /// Отримати CatalogFile по ID правовласника/видавництва та ID файлу
+        /// </summary>
+        /// <param name="custId">ID правовласника/видавництва </param>
+        /// <param name="fileId">ID файлу</param>
+        /// <returns></returns>
+        public CatalogFile GetCatalogFile(int custId, int fileId)
+        {
+            string url = $"{Prefix}/catalogfile/{custId}";
+            var result = _apiConnector.GetItemById<CatalogFile>(url, fileId.ToString());
+            return result;
+        }
+
+        /// <summary>
+        /// Отримати список CatalogFile по ID правовласника/видавництва 
+        /// </summary>
+        /// <param name="custId">ID правовласника/видавництва</param>
+        /// <returns></returns>
         public List<CatalogFile> GetCatalogFileList(int custId)
         {
-            string url = $"{Prefix}/filelist/{custId}";
+            string url = $"{Prefix}/catalogfilelist/{custId}";
             var result = _apiConnector.GetList<CatalogFile>(url);
             return result;
         }
 
+        /// <summary>
+        /// Завантажити CatalogFile на сервер
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="catalogFile"></param>
+        /// <returns></returns>
         public CatalogFile UploadCatalogFile(int custId, CatalogFile catalogFile)
         {
             string url = $"{Prefix}/upload/{custId}";
@@ -37,6 +61,12 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
+        /// <summary>
+        /// Видалити CatalogFile
+        /// </summary>
+        /// <param name="custId">ID правовласника/видавництва </param>
+        /// <param name="fileId">ID файлу</param>
+        /// <returns></returns>
         public bool DeleteCatalogFile(int custId, int fileId)
         {
             string url = $"{Prefix}/delete/{custId}";
