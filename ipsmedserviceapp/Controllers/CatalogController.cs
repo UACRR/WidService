@@ -85,16 +85,19 @@ namespace ipsmedserviceapp.Controllers
                 if (source == null || !source.PubСatalogItem.Any())
                     return BadRequest("Loaded file is empty or not read!");
 
+                var vcustomer = await _dbContext.vCustomer.SingleOrDefaultAsync(rec => rec.CustId == custId);
+
                 var rightholder = _dbContext.RightHolder.SingleOrDefault(rec => rec.CustId == custId);
                 if (rightholder == null)
                     return NotFound($"RightHolder with ID:{custId} not found!");
 
-                string[] excludedFields = {"CustId", "FileId", "UserId"};
+                string[] excludedFields = {"CustId", "FileId", "UserId", "Status" };
 
                 var destination = new CatalogFile
                 {
                     CustId = custId,
                     UserId = User.Identity.Name,
+                    Status = 0,
                     PubСatalogItem = new List<PubСatalogItem>()
                 };
                 destination.SetFields(source, excludedFields);
@@ -103,11 +106,14 @@ namespace ipsmedserviceapp.Controllers
                 {
                     // видавництво
                     case 3:
+                        destination.RhType = 3;
+
                         foreach (var item in source.PubСatalogItem)
                         {
                             var pubСatalogItem = new PubСatalogItem
                             {
                                 CustId = destination.CustId,
+                                Status = 0,
                             };
                             pubСatalogItem.SetFields(item, excludedFields);
                             destination.PubСatalogItem.Add(pubСatalogItem);
@@ -116,12 +122,15 @@ namespace ipsmedserviceapp.Controllers
 
                     // правовласник
                     case 1:
+                        destination.RhType = 1;
                         break;
 
                     // інші RHolderType
                     default:
                         return BadRequest("Unsupported RHolderType!");
                 }
+
+                destination.CustName = vcustomer?.name;
 
                 await _dbContext.CatalogFile.AddAsync(destination);
 
