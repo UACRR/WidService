@@ -43,6 +43,7 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
+            this.PubCatalogItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnControl = new Telerik.WinControls.UI.RadButton();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
             this.btnBack = new Telerik.WinControls.UI.RadButton();
@@ -66,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).BeginInit();
@@ -175,7 +177,12 @@
             gridViewTextBoxColumn30,
             gridViewTextBoxColumn31,
             gridViewTextBoxColumn32,
-            gridViewTextBoxColumn33});
+            gridViewTextBoxColumn33,
+            gridViewTextBoxColumn34,
+            gridViewTextBoxColumn35,
+            gridViewTextBoxColumn36,
+            gridViewTextBoxColumn37,
+            gridViewTextBoxColumn38});
             this.gridDetailInfo.MasterTemplate.DataSource = this.pubСatalogItemBindingSource;
             this.gridDetailInfo.MasterTemplate.EnableCustomFiltering = true;
             this.gridDetailInfo.MasterTemplate.EnableFiltering = true;
@@ -187,6 +194,10 @@
             this.gridDetailInfo.Size = new System.Drawing.Size(802, 356);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
+            // 
+            // pubСatalogItemBindingSource
+            // 
+            this.pubСatalogItemBindingSource.DataSource = typeof(ipsFormsDesign.Model.PubСatalogItem);
             // 
             // btnControl
             // 
@@ -408,6 +419,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnBack)).EndInit();
@@ -438,7 +450,7 @@
         private Telerik.WinControls.UI.RadButton btnControl;
         private Telerik.WinControls.UI.RadButton btnGetExcel;
         private Telerik.WinControls.UI.RadButton btnPerform;
-        private System.Windows.Forms.BindingSource pubСatalogItemBindingSource;
+        private System.Windows.Forms.BindingSource PubCatalogItemBindingSource;
         private System.Windows.Forms.BindingSource catalogFileBindingSource;
         private Telerik.WinControls.UI.RadButton btnBack;
         private Telerik.WinControls.UI.RadLabel radLabel1;

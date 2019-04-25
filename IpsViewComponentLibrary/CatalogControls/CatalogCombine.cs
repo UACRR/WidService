@@ -27,6 +27,16 @@ namespace IpsViewComponentLibrary.CatalogControls
             //_catalogShowDetail.back += BackToFiles;
         }
 
+        public int CustomerId
+        {
+            get => _catalogFiles?.CustomerId ?? 0;
+            set
+            {
+                if (_catalogFiles != null)
+                    _catalogFiles.CustomerId = value;
+            }
+        }
+
         /// <summary>
         /// change active controls
         /// </summary>

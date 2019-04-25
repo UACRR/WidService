@@ -1,12 +1,12 @@
-﻿using System;
+using ipsFormsDesign.Interfaces;
+using System;
 using System.Collections.Generic;
 
-namespace ipsmedserviceapp.Model
+namespace ipsFormsDesign.Model
 {
-    public partial class PubСatalogItem
+    public partial class PubCatalogItem : IPubCatalogItem
     {
         public int ItemId { get; set; }
-        public int? CodeI { get; set; }
         public int? FileId { get; set; }
         public int? CRightId { get; set; }
         public int? CustId { get; set; }
@@ -23,14 +23,13 @@ namespace ipsmedserviceapp.Model
         public int? ObjId { get; set; }
         public int? GenreCode { get; set; }
         public int? RoleCode { get; set; }
-        public string CmName { get; set; }
-        public int? CmCustId { get; set; }
         public int? Status { get; set; }
         public string ErrComment { get; set; }
 
         public virtual CopyRight CRight { get; set; }
-        public virtual CatalogStatus CodeINavigation { get; set; }
         public virtual RightHolder Cust { get; set; }
         public virtual CatalogFile File { get; set; }
+        public virtual CatalogStatus StatusNavigation { get; set; }
     }
 }
+
