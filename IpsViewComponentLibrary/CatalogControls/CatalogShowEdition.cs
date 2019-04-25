@@ -8,6 +8,7 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
+        public EventHandler back;
         private GridViewSpreadExport spreadExporter;
         public CatalogShowEdition()
         {
@@ -63,6 +64,11 @@ namespace IpsViewComponentLibrary.CatalogControls
         private void btnControl_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            back.Invoke(sender, e);
         }
     }
 }

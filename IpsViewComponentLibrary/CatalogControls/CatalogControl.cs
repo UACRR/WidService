@@ -19,7 +19,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         public CatalogControl()
         {
             InitializeComponent();
-
+            Dock = DockStyle.Fill;
             if (!IsDesignMode)
                 _catalogPresenter = new CatalogPresenter();
 
