@@ -19,8 +19,8 @@ namespace IpsViewComponentLibrary.CatalogControls
             InitializeComponent();
 
             //when action file detail
-            _catalogFiles.command += SwapControl;
-            _catalogShowDetail.back += BackToFiles;
+            //_catalogFiles.command += SwapControl;
+            //_catalogShowDetail.back += BackToFiles;
         }
 
         /// <summary>
@@ -30,16 +30,20 @@ namespace IpsViewComponentLibrary.CatalogControls
         /// <param name="e"></param>
         private void SwapControl(object sender, EventArgs e)
         {
-            //clear control - before initialize CatalogShowEdition control 
+            //clear control - before initialize CatalogShowEdition control
+            _catalogShowDetail.back -= BackToFiles;
             Controls.Clear();
             _catalogShowDetail = new CatalogShowEdition();
+            _catalogShowDetail.back += BackToFiles;
             Controls.Add(_catalogShowDetail);
         }
 
         private void BackToFiles(object sender, EventArgs e)
         {
+            _catalogFiles.command -= SwapControl;
             Controls.Clear();
             _catalogFiles = new CatalogControl();
+            _catalogFiles.command += SwapControl;
             Controls.Add(_catalogFiles);
         }
     }
