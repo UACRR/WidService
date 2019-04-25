@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtComm = new Telerik.WinControls.UI.RadLabel();
             this.radTextBox1 = new Telerik.WinControls.UI.RadTextBox();
             this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.btnSave = new Telerik.WinControls.UI.RadButton();
+            this.bsComment = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtComm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsComment)).BeginInit();
             this.SuspendLayout();
             // 
             // txtComm
@@ -53,6 +56,7 @@
             this.radTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.radTextBox1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsComment, "Comment", true));
             this.radTextBox1.Location = new System.Drawing.Point(0, 25);
             this.radTextBox1.MaxLength = 1024;
             this.radTextBox1.Multiline = true;
@@ -85,6 +89,10 @@
             this.btnSave.Text = "Зберегти";
             this.btnSave.ThemeName = "Office2013Light";
             // 
+            // bsComment
+            // 
+            this.bsComment.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
+            // 
             // ctrlComment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -99,6 +107,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radTextBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsComment)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,5 +119,6 @@
         private Telerik.WinControls.UI.RadTextBox radTextBox1;
         private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadButton btnSave;
+        private System.Windows.Forms.BindingSource bsComment;
     }
 }
