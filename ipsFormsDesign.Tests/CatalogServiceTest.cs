@@ -65,7 +65,7 @@ namespace ipsFormsDesign.Tests
             var result = _catalog.UploadCatalogFile(CustID, catalogFile);
             Assert.IsNotNull(result);
 
-            _fileId_temp = result.FileId;
+            //_fileId_temp = result.FileId;
 
             var resultEquals = result.ObjectEquals(catalogFile, new[] {"CustId", "FileId", "UserId"});
             Assert.IsTrue(resultEquals);

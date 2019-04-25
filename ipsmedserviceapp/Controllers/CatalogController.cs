@@ -38,40 +38,11 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("catalogfilelist/{custId}")]
         public async Task<IActionResult> GetCatalogFilesList(int custId)
         {
-            var catalogFile = new List<CatalogFile>
-            {
-                new CatalogFile
-                {
-                    CustId = 100,
-                    FileId = 100,
-                    FileName = "FileName",
-                    PubCatalogItem = new List<PubCatalogItem>
-                    {
-                        new PubCatalogItem
-                        {
-                            CustId = 100,
-                            FileId = 100,
-                            ObjName = "Name1"
-                        },
-                        new PubCatalogItem
-                        {
-                            CustId = 100,
-                            FileId = 100,
-                            ObjName = "Name2"
-                        },
-                        new PubCatalogItem
-                        {
-                            CustId = 100,
-                            FileId = 100,
-                            ObjName = "Name3"
-                        },
-                    }
-                }
-            };
-
             var catalogFiles = await _dbContext.CatalogFile
                 .Where(rec => rec.CustId == custId)
-                .Include(rec => rec.PubCatalogItem).ToListAsync();
+                .Include(rec => rec.PubCatalogItem)
+                .Include(rec => rec.StatusNavigation)
+                .ToListAsync();
             
             return Ok(catalogFiles);
         }
@@ -98,7 +69,7 @@ namespace ipsmedserviceapp.Controllers
                     CustId = custId,
                     UserId = User.Identity.Name,
                     Status = 0,
-                    PubСatalogItem = new List<PubСatalogItem>()
+                    PubCatalogItem = new List<PubCatalogItem>()
                 };
                 destination.SetFields(source, excludedFields);
 
@@ -108,7 +79,7 @@ namespace ipsmedserviceapp.Controllers
                     case 3:
                         destination.RhType = 3;
 
-                        foreach (var item in source.PubСatalogItem)
+                        foreach (var item in source.PubCatalogItem)
                         {
                             var PubCatalogItem = new PubCatalogItem
                             {
@@ -131,6 +102,7 @@ namespace ipsmedserviceapp.Controllers
                 }
 
                 destination.CustName = vcustomer?.name;
+                destination.CreateDate = DateTime.Now;
 
                 await _dbContext.CatalogFile.AddAsync(destination);
 
