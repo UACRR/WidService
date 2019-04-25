@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ipsFormsDesign.Model;
+using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using Telerik.WinControls.Export;
 
@@ -11,6 +13,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         {
             InitializeComponent();
             spreadExporter = new GridViewSpreadExport(gridDetailInfo);
+            gridDetailInfo.DataSource = FillGridDetail();
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -25,6 +28,25 @@ namespace IpsViewComponentLibrary.CatalogControls
                 SpreadExportRenderer renderer = new SpreadExportRenderer();
                 spreadExporter.RunExport(dialog.FileName, renderer);
             }
+        }
+
+        private List<PubСatalogItem> FillGridDetail()
+        {
+            return new List<PubСatalogItem> {
+                new PubСatalogItem {
+                    ItemCode = "itemCode",
+                    Iswc = "iswc",
+                    ObjName = "objName",
+                    GenreName = "genreName",
+                    RoleName = "roleName",
+                    AuthorMusic = "AuthorMusic",
+                    AuthorText = "AuthorText",
+                    Performer = "Performer",
+                    Comment = "comment",
+                    CmName = "cmName",
+                    ErrComment = "ErrComment"
+                }
+            };
         }
     }
 }
