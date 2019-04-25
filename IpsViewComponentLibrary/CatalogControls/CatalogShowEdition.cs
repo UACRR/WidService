@@ -12,6 +12,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         public CatalogShowEdition()
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             spreadExporter = new GridViewSpreadExport(gridDetailInfo);
             catalogFileBindingSource.DataSource = FillFileData();
             pubСatalogItemBindingSource.DataSource = FillGridDetail();

@@ -152,6 +152,7 @@
             this.gridCatalogFiles.Size = new System.Drawing.Size(760, 231);
             this.gridCatalogFiles.TabIndex = 1;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
+            this.gridCatalogFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gridCatalogFiles_CommandCellClick);
             // 
             // bsGridData
             // 

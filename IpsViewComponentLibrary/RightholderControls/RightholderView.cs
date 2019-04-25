@@ -8,6 +8,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.CatalogControls;
 using IpsViewComponentLibrary.RightholderControls.Anketa;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
@@ -109,11 +110,26 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
+
+            //when action file detail
+            fileGrid.command += SwapControl;
         }
 
         ~RightholderView()
         {
             wordEngine = null;
+        }
+
+        /// <summary>
+        /// change active controls
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SwapControl(object sender, EventArgs e)
+        {
+            radPagCatalog.Controls.Clear();
+            CatalogShowEdition control = new CatalogShowEdition();
+            radPagCatalog.Controls.Add(control);
         }
 
         private void setupSaveAs()
