@@ -116,8 +116,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.anketaExternalRightholderControl1 = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaExternalRightholderControl();
             this.rightLimitationsControl1_ExternalAnketa = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
-            this.pvCatalog = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlCatalogCombine = new IpsViewComponentLibrary.CatalogControls.CatalogCombine();
             this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
@@ -656,7 +654,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageCatalog.Controls.Add(this.Contract);
             this.pageCatalog.Controls.Add(this.AnketaExternal);
             this.pageCatalog.Controls.Add(this.pageObjects);
-            this.pageCatalog.Controls.Add(this.pvCatalog);
             this.pageCatalog.DefaultPage = this.Anketa;
             this.pageCatalog.Location = new System.Drawing.Point(0, 1);
             this.pageCatalog.Name = "pageCatalog";
@@ -875,7 +872,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // radPagCatalog
             // 
-            this.radPagCatalog.Controls.Add(this.catalogControl1);
             this.radPagCatalog.ItemSize = new System.Drawing.SizeF(63F, 25F);
             this.radPagCatalog.Location = new System.Drawing.Point(5, 31);
             this.radPagCatalog.Name = "radPagCatalog";
@@ -1109,20 +1105,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // radPagCatalog
             // 
-            this.radPagCatalog.Controls.Add(this.catalogCombine1);
             this.radPagCatalog.ItemSize = new System.Drawing.SizeF(65F, 27F);
             this.radPagCatalog.Location = new System.Drawing.Point(5, 31);
             this.radPagCatalog.Name = "radPagCatalog";
             this.radPagCatalog.Size = new System.Drawing.Size(1009, 445);
             this.radPagCatalog.Text = "Каталоги";
-            // 
-            // catalogCombine1
-            // 
-            this.catalogCombine1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.catalogCombine1.Location = new System.Drawing.Point(0, 0);
-            this.catalogCombine1.Name = "catalogCombine1";
-            this.catalogCombine1.Size = new System.Drawing.Size(1009, 445);
-            this.catalogCombine1.TabIndex = 0;
             // 
             // termsOfServiceWrapperBindingSource
             // 
@@ -1323,6 +1310,5 @@ namespace IpsViewComponentLibrary.RightholderControls
         private System.Windows.Forms.BindingSource termsOfServiceWrapperBindingSource;
         private Anketa.RightLimitationsControl rightLimitationsControl1_ExternalAnketa;
         private Telerik.WinControls.UI.RadPageViewPage radPagCatalog;
-        private CatalogControls.CatalogCombine catalogCombine1;
     }
 }
