@@ -13,7 +13,7 @@ namespace ipsFormsDesign.Model
             Authors = new ObservableListSource<Authors>();
             CatalogFile = new ObservableListSource<CatalogFile>();
             CopyRight = new ObservableListSource<CopyRight>();
-            PubCatalogItem = new ObservableListSource<PubCatalogItem>();
+            PubÑatalogItem = new ObservableListSource<PubÑatalogItem>();
             RegisterCount = new ObservableListSource<RegisterCount>();
             ReqAgreement = new ObservableListSource<ReqAgreement>();
             RhñatalogItem = new ObservableListSource<RhñatalogItem>();
@@ -37,7 +37,7 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<Authors> Authors { get; set; }
         public virtual ObservableListSource<CatalogFile> CatalogFile { get; set; }
         public virtual ObservableListSource<CopyRight> CopyRight { get; set; }
-        public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
+        public virtual ObservableListSource<PubÑatalogItem> PubÑatalogItem { get; set; }
         public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
         public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
         public virtual ObservableListSource<RhñatalogItem> RhñatalogItem { get; set; }

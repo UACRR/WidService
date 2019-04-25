@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
@@ -12,14 +11,12 @@ namespace IpsViewComponentLibrary.CatalogControls
     public partial class CatalogControl : UserControl
     {
         private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
-        private const string UploadFileCatalogSuccessMsg = "";
-        private const string UploadFileCatalogErrorMsg = "";
-
         public EventHandler command;
-        private readonly CatalogPresenter _catalogPresenter;
+        //public int CustomerId { get; set; }
+        public delegate int ShowCustomerId();
+        private CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-        public int CustomerId { get; set; }
-
+        private List<CatalogFile> _files;
         public CatalogControl()
         {
             InitializeComponent();
@@ -28,25 +25,38 @@ namespace IpsViewComponentLibrary.CatalogControls
                 _catalogPresenter = new CatalogPresenter();
 
             Load += CatalogControl_Load;
+
+            //ShowCustomerId id = new ShowCustomerId(com.ShowCustId);
+            //CustomerId = id();
         }
 
         private void CatalogControl_Load(object sender, EventArgs e)
         {
-            UpdateDataGrid();
+            bsGridData.DataSource = FillGridData();
         }
 
 
         /// <summary>
         /// show files into grid
         /// </summary>
-        private void UpdateDataGrid()
+        private List<CatalogFile> FillGridData()
         {
-            if (_catalogPresenter == null)
-                return;
-
-            var list = _catalogPresenter.GetFileList(CustomerId);
-            bsGridData.DataSource = list;
-            bsGridData.ResetBindings(false);
+            //return _catalogPresenter.GetFileList(CustId);
+            _files = new List<CatalogFile> {
+                new CatalogFile {
+                    FileId = 666,
+                    CustName = "CustName",
+                    FileName = "fileName",
+                    CreateDate = DateTime.Now,
+                    UserId = "userId",
+                    Status = 0,
+                    Comment = "comment",
+                    CountZap = 1,
+                    CountOk = 2,
+                    CountErr = 3
+                }
+            };
+            return _files;
         }
 
         /// <summary>
@@ -68,26 +78,31 @@ namespace IpsViewComponentLibrary.CatalogControls
                 {
                     var catalogFile = new CatalogFile
                     {
-                        CustId = CustomerId,
+                        //CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
-                    var result = _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
-                    if (result)
-                        UpdateDataGrid();
-                    MessageShow.ShowInfoByResult(UploadFileCatalogSuccessMsg, UploadFileCatalogErrorMsg, result);
+                    _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
                 }
             }
         }
-
+        
         // some method
 
         private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            command.Invoke(sender, e);
+            //command.Invoke(sender, e);
             //var row = e.Row.DataBoundItem as T;
             switch (e.Column.FieldName)
             {
+                case "infoBtn":
+                    CatalogFile selected = _files[gridCatalogFiles.CurrentRow.Index];
+                    CatalogDetailForm form = new CatalogDetailForm(selected);
+                    form.Show();
+                    break;
                 case "editBtn":
+                    CatalogFile commentedFile = _files[gridCatalogFiles.CurrentRow.Index];
+                    changeComment comment = new changeComment(commentedFile.Comment);
+                    comment.Show();
                     //var catalogFile = _catalogPresenter.DeleteCatalogFile(row.custId, row.fileId);
                     break;
 
@@ -98,6 +113,13 @@ namespace IpsViewComponentLibrary.CatalogControls
                     }
                     break;
             }
+        }
+
+        private void gridCatalogFiles_DoubleClick(object sender, EventArgs e)
+        {
+            CatalogFile selected = _files[gridCatalogFiles.CurrentRow.Index];
+            CatalogDetailForm form = new CatalogDetailForm(selected);
+            form.Show();
         }
     }
 }

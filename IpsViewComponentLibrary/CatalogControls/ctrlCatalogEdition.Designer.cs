@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.CatalogControls
 {
-    partial class CatalogCombine
+    partial class ctrlCatalogEdition
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -28,30 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.catalogFiles = new IpsViewComponentLibrary.CatalogControls.CatalogControl();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            this.gridDetail = new Telerik.WinControls.UI.RadGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetail.MasterTemplate)).BeginInit();
             this.SuspendLayout();
             // 
-            // catalogFiles
+            // gridDetail
             // 
-            this.catalogFiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.catalogFiles.Location = new System.Drawing.Point(0, 0);
-            this.catalogFiles.Name = "catalogFiles";
-            this.catalogFiles.Size = new System.Drawing.Size(1052, 563);
-            this.catalogFiles.TabIndex = 0;
+            this.gridDetail.Location = new System.Drawing.Point(3, 247);
             // 
-            // CatalogCombine
+            // 
+            // 
+            this.gridDetail.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridDetail.Name = "gridDetail";
+            this.gridDetail.Size = new System.Drawing.Size(240, 150);
+            this.gridDetail.TabIndex = 0;
+            this.gridDetail.ThemeName = "Office2013Light";
+            // 
+            // ctrlCatalogEdition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.catalogFiles);
-            this.Name = "CatalogCombine";
-            this.Size = new System.Drawing.Size(1052, 563);
+            this.Controls.Add(this.gridDetail);
+            this.Name = "ctrlCatalogEdition";
+            this.Size = new System.Drawing.Size(865, 400);
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetail.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private CatalogControl catalogFiles;
+        private Telerik.WinControls.UI.RadGridView gridDetail;
     }
 }

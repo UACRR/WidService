@@ -56,7 +56,6 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<BrRegister> BrRegister { get; set; }
         public virtual DbSet<CatalogFile> CatalogFile { get; set; }
         public virtual DbSet<CatalogStatus> CatalogStatus { get; set; }
-        public virtual DbSet<CatalogStatusTr> CatalogStatusTr { get; set; }
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<CategoryStatusType> CategoryStatusType { get; set; }
         public virtual DbSet<CategoryStatusTypeTr> CategoryStatusTypeTr { get; set; }
@@ -217,7 +216,7 @@ namespace ipsmedserviceapp.Model
         public virtual DbSet<PositionTypeTr> PositionTypeTr { get; set; }
         public virtual DbSet<PrePayType> PrePayType { get; set; }
         public virtual DbSet<PrePayTypeTr> PrePayTypeTr { get; set; }
-        public virtual DbSet<PubCatalogItem> PubCatalogItem { get; set; }
+        public virtual DbSet<PubСatalogItem> PubСatalogItem { get; set; }
         public virtual DbSet<Region> Region { get; set; }
         public virtual DbSet<RegionTr> RegionTr { get; set; }
         public virtual DbSet<Register> Register { get; set; }
@@ -2301,30 +2300,6 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("name")
                     .HasMaxLength(100)
                     .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<CatalogStatusTr>(entity =>
-            {
-                entity.HasKey(e => new { e.CodeI, e.Lang })
-                    .HasName("PK_CATALOGSTATUSTR");
-
-                entity.Property(e => e.CodeI).HasColumnName("codeI");
-
-                entity.Property(e => e.Lang)
-                    .HasColumnName("lang")
-                    .HasMaxLength(2)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .HasColumnName("name")
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.HasOne(d => d.CodeINavigation)
-                    .WithMany(p => p.CatalogStatusTr)
-                    .HasForeignKey(d => d.CodeI)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_CATALOGS_REFERENCE_CATALOGS");
             });
 
             modelBuilder.Entity<Category>(entity =>
@@ -7159,10 +7134,10 @@ namespace ipsmedserviceapp.Model
                     .HasConstraintName("FK_PREPAYTY_REFERENCE_PREPAYTY");
             });
 
-            modelBuilder.Entity<PubCatalogItem>(entity =>
+            modelBuilder.Entity<PubСatalogItem>(entity =>
             {
                 entity.HasKey(e => e.ItemId)
-                    .HasName("PK_PUBCATALOGITEM");
+                    .HasName("PK_PUBСATALOGITEM");
 
                 entity.Property(e => e.ItemId).HasColumnName("itemId");
 
@@ -7177,6 +7152,15 @@ namespace ipsmedserviceapp.Model
                     .IsUnicode(false);
 
                 entity.Property(e => e.CRightId).HasColumnName("cRightId");
+
+                entity.Property(e => e.CmCustId).HasColumnName("cmCustId");
+
+                entity.Property(e => e.CmName)
+                    .HasColumnName("cmName")
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.CodeI).HasColumnName("codeI");
 
                 entity.Property(e => e.Comment)
                     .HasColumnName("comment")
@@ -7235,24 +7219,24 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.Status).HasColumnName("status");
 
                 entity.HasOne(d => d.CRight)
-                    .WithMany(p => p.PubCatalogItem)
+                    .WithMany(p => p.PubСatalogItem)
                     .HasForeignKey(d => d.CRightId)
-                    .HasConstraintName("FK_PUBCATAL_REFERENCE_COPYRIGH");
+                    .HasConstraintName("FK_PUBСATAL_REFERENCE_COPYRIGH");
+
+                entity.HasOne(d => d.CodeINavigation)
+                    .WithMany(p => p.PubСatalogItem)
+                    .HasForeignKey(d => d.CodeI)
+                    .HasConstraintName("FK_PUBСATAL_REFERENCE_CATALOGS");
 
                 entity.HasOne(d => d.Cust)
-                    .WithMany(p => p.PubCatalogItem)
+                    .WithMany(p => p.PubСatalogItem)
                     .HasForeignKey(d => d.CustId)
-                    .HasConstraintName("FK_PUBCATAL_REFERENCE_RIGHTHOL");
+                    .HasConstraintName("FK_PUBСATAL_REFERENCE_RIGHTHOL");
 
                 entity.HasOne(d => d.File)
-                    .WithMany(p => p.PubCatalogItem)
+                    .WithMany(p => p.PubСatalogItem)
                     .HasForeignKey(d => d.FileId)
-                    .HasConstraintName("FK_PUBCATAL_REFERENCE_CATALOGF");
-
-                entity.HasOne(d => d.StatusNavigation)
-                    .WithMany(p => p.PubCatalogItem)
-                    .HasForeignKey(d => d.Status)
-                    .HasConstraintName("FK_PUBCATAL_REFERENCE_CATALOGS");
+                    .HasConstraintName("FK_PUBСATAL_REFERENCE_CATALOGF");
             });
 
             modelBuilder.Entity<Region>(entity =>

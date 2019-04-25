@@ -36,28 +36,31 @@ namespace ipsFormsDesign.Tests
                 Comment = "TEST FILE",
                 RhType = 3,
                 Status = 0,
-                PubCatalogItem = new ObservableListSource<PubCatalogItem>
+                PubСatalogItem = new ObservableListSource<PubСatalogItem>
                 {
-                    new PubCatalogItem
+                    new PubСatalogItem
                     {
                         ObjName = "Name1",
                         Status = 0,
                         AuthorMusic = "AuthorMusic1",
                         AuthorText = "AuthorText1",
+                        CmName = "CmName1"
                     },
-                    new PubCatalogItem
+                    new PubСatalogItem
                     {
                         ObjName = "Name2",
                         Status = 0,
                         AuthorMusic = "AuthorMusic2",
                         AuthorText = "AuthorText2",
+                        CmName = "CmName2"
                     },
-                    new PubCatalogItem
+                    new PubСatalogItem
                     {
                         ObjName = "Name3",
                         Status = 0,
                         AuthorMusic = "AuthorMusic3",
                         AuthorText = "AuthorText3",
+                        CmName = "CmName3"
                     },
                 }
             };
@@ -65,7 +68,7 @@ namespace ipsFormsDesign.Tests
             var result = _catalog.UploadCatalogFile(CustID, catalogFile);
             Assert.IsNotNull(result);
 
-            //_fileId_temp = result.FileId;
+            _fileId_temp = result.FileId;
 
             var resultEquals = result.ObjectEquals(catalogFile, new[] {"CustId", "FileId", "UserId"});
             Assert.IsTrue(resultEquals);
