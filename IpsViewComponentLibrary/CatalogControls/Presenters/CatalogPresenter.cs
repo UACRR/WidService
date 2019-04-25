@@ -32,8 +32,8 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
 
-            var pubСatalogItemList = GetPubСatalog(path);
-            catalogFile.PubСatalogItem = new ObservableListSource<PubСatalogItem>(pubСatalogItemList);
+            var PubCatalogItemList = GetPubСatalog(path);
+            catalogFile.PubCatalogItem = new ObservableListSource<PubCatalogItem>(PubCatalogItemList);
 
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
@@ -74,7 +74,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             if (item.Count < 10)
                 throw new ArgumentException("Неправильна структура файлу! Кількість колонок з даними повинна дорівнювати 10!");
 
-            var newItem = new PubСatalogItem
+            var newItem = new PubCatalogItem
             {
                 ItemCode = item[0],
                 Iswc = item[1],
@@ -86,7 +86,8 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
                 RoleName = item[7],
                 Rate = 0
             };
-            
+
+            decimal outBuffer;
             if (decimal.TryParse(item[9], out outBuffer))
                 newItem.Rate = outBuffer*100;
 
