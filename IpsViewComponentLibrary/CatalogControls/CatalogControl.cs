@@ -11,8 +11,9 @@ namespace IpsViewComponentLibrary.CatalogControls
     public partial class CatalogControl : UserControl
     {
         private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
-
         public EventHandler command;
+        //public int CustomerId { get; set; }
+        public delegate int ShowCustomerId();
         private CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
@@ -24,6 +25,9 @@ namespace IpsViewComponentLibrary.CatalogControls
                 _catalogPresenter = new CatalogPresenter();
 
             Load += CatalogControl_Load;
+
+            //ShowCustomerId id = new ShowCustomerId(com.ShowCustId);
+            //CustomerId = id();
         }
 
         private void CatalogControl_Load(object sender, EventArgs e)
@@ -31,14 +35,13 @@ namespace IpsViewComponentLibrary.CatalogControls
             bsGridData.DataSource = FillGridData();
         }
 
-        public int CustomerId { get; set; }
 
         /// <summary>
         /// show files into grid
         /// </summary>
         private List<CatalogFile> FillGridData()
         {
-            //return _catalogPresenter.GetFileList(CustomerId);
+            //return _catalogPresenter.GetFileList(CustId);
 
             return new List<CatalogFile> {
                 new CatalogFile {
@@ -75,7 +78,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                 {
                     var catalogFile = new CatalogFile
                     {
-                        CustId = CustomerId,
+                        //CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
                     _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);

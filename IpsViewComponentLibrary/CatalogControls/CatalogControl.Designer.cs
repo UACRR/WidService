@@ -41,15 +41,16 @@ namespace IpsViewComponentLibrary.CatalogControls
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
-            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
             this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -75,59 +76,66 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             gridViewTextBoxColumn1.Name = "number";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 62;
+            gridViewTextBoxColumn1.Width = 58;
             gridViewTextBoxColumn2.FieldName = "FileName";
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.Name = "fileName";
-            gridViewTextBoxColumn2.Width = 165;
+            gridViewTextBoxColumn2.Width = 154;
             gridViewTextBoxColumn3.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn3.FieldName = "CreateDate";
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
             gridViewTextBoxColumn3.MaxWidth = 100;
             gridViewTextBoxColumn3.Name = "dateDownload";
-            gridViewTextBoxColumn3.Width = 100;
+            gridViewTextBoxColumn3.Width = 93;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn4.FieldName = "CountZap";
             gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
             gridViewTextBoxColumn4.Name = "countFiles";
-            gridViewTextBoxColumn4.Width = 54;
+            gridViewTextBoxColumn4.Width = 51;
             gridViewTextBoxColumn5.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn5.FieldName = "CountErr";
             gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
             gridViewTextBoxColumn5.Name = "countLeaveFiles";
-            gridViewTextBoxColumn5.Width = 54;
+            gridViewTextBoxColumn5.Width = 51;
             gridViewTextBoxColumn6.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn6.FieldName = "Status";
             gridViewTextBoxColumn6.HeaderText = "Статус файлу";
             gridViewTextBoxColumn6.Name = "statusFile";
-            gridViewTextBoxColumn6.Width = 54;
+            gridViewTextBoxColumn6.Width = 51;
             gridViewTextBoxColumn7.FieldName = "Comment";
             gridViewTextBoxColumn7.HeaderText = "Коментар";
             gridViewTextBoxColumn7.Name = "comment";
-            gridViewTextBoxColumn7.Width = 54;
+            gridViewTextBoxColumn7.Width = 51;
             gridViewTextBoxColumn8.FieldName = "UserId";
             gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
             gridViewTextBoxColumn8.Name = "downloadFace";
-            gridViewTextBoxColumn8.Width = 152;
-            gridViewCommandColumn1.FieldName = "editBtn";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
+            gridViewTextBoxColumn8.Width = 151;
+            gridViewCommandColumn1.FieldName = "infoBtn";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.HeaderText = "";
-            gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
-            gridViewCommandColumn1.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
-            gridViewCommandColumn1.Name = "editBtn";
+            gridViewCommandColumn1.Name = "infoBtn";
             gridViewCommandColumn1.Width = 30;
-            gridViewCommandColumn2.FieldName = "deleteBtn";
-            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.FieldName = "editBtn";
+            gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn2.HeaderText = "";
-            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn2.Image = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn2.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn2.MaxWidth = 30;
             gridViewCommandColumn2.MinWidth = 30;
-            gridViewCommandColumn2.Name = "deleteBtn";
+            gridViewCommandColumn2.Name = "editBtn";
             gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn3.FieldName = "deleteBtn";
+            gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn3.HeaderText = "";
+            gridViewCommandColumn3.Image = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
+            gridViewCommandColumn3.ImageAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+            gridViewCommandColumn3.MaxWidth = 30;
+            gridViewCommandColumn3.MinWidth = 30;
+            gridViewCommandColumn3.Name = "deleteBtn";
+            gridViewCommandColumn3.Width = 30;
             this.gridCatalogFiles.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -138,7 +146,8 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewCommandColumn1,
-            gridViewCommandColumn2});
+            gridViewCommandColumn2,
+            gridViewCommandColumn3});
             this.gridCatalogFiles.MasterTemplate.DataSource = this.bsGridData;
             this.gridCatalogFiles.MasterTemplate.EnableCustomFiltering = true;
             this.gridCatalogFiles.MasterTemplate.EnableFiltering = true;
@@ -152,10 +161,6 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             this.gridCatalogFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gridCatalogFiles_CommandCellClick);
             // 
-            // bsGridData
-            // 
-            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
-            // 
             // btnLoadFile
             // 
             this.btnLoadFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -167,6 +172,10 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.btnLoadFile.ThemeName = "Office2013Light";
             this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
+            // bsGridData
+            // 
+            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
+            // 
             // CatalogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,8 +186,8 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.Size = new System.Drawing.Size(778, 331);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
             this.ResumeLayout(false);
 
         }

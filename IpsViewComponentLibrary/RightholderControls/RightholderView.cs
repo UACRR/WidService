@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             set
             {
                 bsCustomer.DataSource = value;
-                //ctrlFileGrid.CustomerId = ((Customer) value).CustId;
+                //ctrlCatalogCombine.CustId = ((Customer) value).CustId;
             }
         }
 
@@ -114,27 +114,12 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
-
-            ////when action file detail
-            //ctrlFileGrid.command += SwapControl;
         }
 
         ~RightholderView()
         {
             wordEngine = null;
         }
-
-        ///// <summary>
-        ///// change active controls
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void SwapControl(object sender, EventArgs e)
-        //{
-        //    radPagCatalog.Controls.Clear();
-        //    CatalogShowEdition control = new CatalogShowEdition();
-        //    radPagCatalog.Controls.Add(control);
-        //}
 
         private void setupSaveAs()
         {
