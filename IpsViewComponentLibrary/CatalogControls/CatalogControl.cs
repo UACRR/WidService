@@ -4,11 +4,14 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
+using IpsViewComponentLibrary.Extensions;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogControl : UserControl
     {
+        private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
+
         public EventHandler command;
         private CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
@@ -70,22 +73,33 @@ namespace IpsViewComponentLibrary.CatalogControls
                 //show file into grid
                 if (fileExel.ShowDialog() == DialogResult.OK)
                 {
-
+                    var catalogFile = new CatalogFile
+                    {
+                        CustId = CustomerId,
+                        FileName = fileExel.SafeFileName,
+                    };
+                    _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
                 }
             }
         }
-
+        
         // some method
 
         private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             command.Invoke(sender, e);
+            //var row = e.Row.DataBoundItem as T;
             switch (e.Column.FieldName)
             {
                 case "editBtn":
+                    //var catalogFile = _catalogPresenter.DeleteCatalogFile(row.custId, row.fileId);
                     break;
 
                 case "deleteBtn":
+                    if (MessageShow.ConfirmAction(ConfirmDeleteCatalogFile) == DialogResult.Yes)
+                    {
+                        //_catalogPresenter.DeleteCatalogFile(row.custId, row.fileId);
+                    }
                     break;
             }
         }
