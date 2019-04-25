@@ -105,6 +105,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderView()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+            StartPosition = FormStartPosition.CenterScreen;
 
             setupSaveAs();
             SetDictionaries();

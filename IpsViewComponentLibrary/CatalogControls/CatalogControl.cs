@@ -41,7 +41,10 @@ namespace IpsViewComponentLibrary.CatalogControls
         /// </summary>
         private void UpdateDataGrid()
         {
-            var list =_catalogPresenter.GetFileList(CustomerId);
+            if (_catalogPresenter == null)
+                return;
+
+            var list = _catalogPresenter.GetFileList(CustomerId);
             bsGridData.DataSource = list;
             bsGridData.ResetBindings(false);
         }
