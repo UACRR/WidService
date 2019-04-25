@@ -13,7 +13,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
 
         public EventHandler command;
-        private CatalogPresenter _catalogPresenter;
+        private readonly CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
         public CatalogControl()
