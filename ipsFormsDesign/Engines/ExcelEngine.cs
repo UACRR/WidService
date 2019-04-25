@@ -100,6 +100,7 @@ namespace ipsFormsDesign.Services
 
 
                 var dim = excelRange.Value;
+                var beginRow = excelRange;
                 int regitemid = 0;
                 TimeSpan curTime;
 
@@ -109,7 +110,8 @@ namespace ipsFormsDesign.Services
                 for (index = 1; index <= maxRow; index++)
                 {
                     if (dim?[index, 1] == null) continue;
-                    if (!(dim?[index, 1] is double)) continue;
+                    int intBuffer;
+                    if ( !int.TryParse(Convert.ToString( dim?[index, 1] ), out intBuffer )) continue;
 
                     // RegisterItem registerItem = newItems[regitemid];
                     RegisterItem registerItem = new RegisterItem
