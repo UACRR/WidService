@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             Dock = DockStyle.Fill;
             spreadExporter = new GridViewSpreadExport(gridDetailInfo);
             catalogFileBindingSource.DataSource = FillFileData();
-            pubСatalogItemBindingSource.DataSource = FillGridDetail();
+            PubCatalogItemBindingSource.DataSource = FillGridDetail();
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -33,10 +33,10 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
-        private List<PubСatalogItem> FillGridDetail()
+        private List<PubCatalogItem> FillGridDetail()
         {
-            return new List<PubСatalogItem> {
-                new PubСatalogItem {
+            return new List<PubCatalogItem> {
+                new PubCatalogItem {
                     ItemCode = "itemCode",
                     Iswc = "iswc",
                     ObjName = "objName",
@@ -46,7 +46,6 @@ namespace IpsViewComponentLibrary.CatalogControls
                     AuthorText = "AuthorText",
                     Performer = "Performer",
                     Comment = "comment",
-                    CmName = "cmName",
                     ErrComment = "ErrComment"
                 }
             };
