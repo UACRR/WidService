@@ -28,25 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.catalogShowEdition1 = new IpsViewComponentLibrary.CatalogControls.CatalogShowEdition();
             this.office2013LightTheme1 = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
-            // 
-            // catalogShowEdition1
-            // 
-            this.catalogShowEdition1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.catalogShowEdition1.Location = new System.Drawing.Point(0, 0);
-            this.catalogShowEdition1.Name = "catalogShowEdition1";
-            this.catalogShowEdition1.Size = new System.Drawing.Size(841, 399);
-            this.catalogShowEdition1.TabIndex = 0;
             // 
             // CatalogDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(841, 399);
-            this.Controls.Add(this.catalogShowEdition1);
             this.Name = "CatalogDetailForm";
             // 
             // 
@@ -60,8 +50,6 @@
         }
 
         #endregion
-
-        private CatalogShowEdition catalogShowEdition1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme1;
     }
 }

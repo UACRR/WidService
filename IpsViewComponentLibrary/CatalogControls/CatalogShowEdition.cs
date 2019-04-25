@@ -9,12 +9,12 @@ namespace IpsViewComponentLibrary.CatalogControls
     public partial class CatalogShowEdition : UserControl
     {
         private GridViewSpreadExport spreadExporter;
-        public CatalogShowEdition()
+        public CatalogShowEdition(CatalogFile file)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             spreadExporter = new GridViewSpreadExport(gridDetailInfo);
-            catalogFileBindingSource.DataSource = FillFileData();
+            catalogFileBindingSource.DataSource = file;
             pubСatalogItemBindingSource.DataSource = FillGridDetail();
         }
 
@@ -61,6 +61,11 @@ namespace IpsViewComponentLibrary.CatalogControls
         }
 
         private void btnControl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CatalogShowEdition_Load(object sender, EventArgs e)
         {
 
         }

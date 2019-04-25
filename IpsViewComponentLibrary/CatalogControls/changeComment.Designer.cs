@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlComment1 = new IpsViewComponentLibrary.CatalogControls.ctrlComment();
+            this.ctrlComment1 = new IpsViewComponentLibrary.CatalogControls.CtrlComment("");
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,6 +61,6 @@
 
         #endregion
 
-        private ctrlComment ctrlComment1;
+        private CtrlComment ctrlComment1;
     }
 }

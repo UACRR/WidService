@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +12,11 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogDetailForm : Telerik.WinControls.UI.RadForm
     {
-        public CatalogDetailForm()
+        public CatalogDetailForm(CatalogFile file)
         {
             InitializeComponent();
+            CatalogShowEdition show = new CatalogShowEdition(file);
+            Controls.Add(show);
         }
     }
 }

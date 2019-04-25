@@ -7,14 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
-    public partial class ctrlComment : UserControl
+    public partial class CtrlComment : UserControl
     {
-        public ctrlComment()
+        public CtrlComment(string selected)
         {
             InitializeComponent();
+            txtComm.Text = selected;
         }
     }
 }

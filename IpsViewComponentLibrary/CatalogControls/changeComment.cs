@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ipsFormsDesign.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,9 +12,11 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class changeComment : Telerik.WinControls.UI.RadForm
     {
-        public changeComment()
+        public changeComment(string comment)
         {
             InitializeComponent();
+            CtrlComment control = new CtrlComment(comment);
+            Controls.Add(control);
         }
     }
 }

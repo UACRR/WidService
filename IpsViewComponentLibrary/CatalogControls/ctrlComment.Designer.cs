@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.CatalogControls
 {
-    partial class ctrlComment
+    partial class CtrlComment
     {
         /// <summary> 
         /// Обязательная переменная конструктора.

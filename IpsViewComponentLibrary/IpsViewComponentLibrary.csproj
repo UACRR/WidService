@@ -173,11 +173,11 @@
     <Compile Include="CatalogControls\changeComment.Designer.cs">
       <DependentUpon>changeComment.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\ctrlComment.cs">
+    <Compile Include="CatalogControls\CtrlComment.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CatalogControls\ctrlComment.Designer.cs">
-      <DependentUpon>ctrlComment.cs</DependentUpon>
+    <Compile Include="CatalogControls\CtrlComment.Designer.cs">
+      <DependentUpon>CtrlComment.cs</DependentUpon>
     </Compile>
     <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
     <Compile Include="Common\Enums\NavigateType.cs" />
@@ -1154,8 +1154,8 @@
     <EmbeddedResource Include="CatalogControls\changeComment.resx">
       <DependentUpon>changeComment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\ctrlComment.resx">
-      <DependentUpon>ctrlComment.cs</DependentUpon>
+    <EmbeddedResource Include="CatalogControls\CtrlComment.resx">
+      <DependentUpon>CtrlComment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\GridRowCountControl.resx">
       <DependentUpon>GridRowCountControl.cs</DependentUpon>

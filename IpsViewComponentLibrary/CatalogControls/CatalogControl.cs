@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         public delegate int ShowCustomerId();
         private CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
-
+        private List<CatalogFile> _files;
         public CatalogControl()
         {
             InitializeComponent();
@@ -42,8 +42,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         private List<CatalogFile> FillGridData()
         {
             //return _catalogPresenter.GetFileList(CustId);
-
-            return new List<CatalogFile> {
+            _files = new List<CatalogFile> {
                 new CatalogFile {
                     FileId = 666,
                     CustName = "CustName",
@@ -57,6 +56,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                     CountErr = 3
                 }
             };
+            return _files;
         }
 
         /// <summary>
@@ -95,11 +95,13 @@ namespace IpsViewComponentLibrary.CatalogControls
             switch (e.Column.FieldName)
             {
                 case "infoBtn":
-                    CatalogDetailForm form = new CatalogDetailForm();
+                    CatalogFile selected = _files[gridCatalogFiles.CurrentRow.Index];
+                    CatalogDetailForm form = new CatalogDetailForm(selected);
                     form.Show();
                     break;
                 case "editBtn":
-                    changeComment comment = new changeComment();
+                    CatalogFile commentedFile = _files[gridCatalogFiles.CurrentRow.Index];
+                    changeComment comment = new changeComment(commentedFile.Comment);
                     comment.Show();
                     //var catalogFile = _catalogPresenter.DeleteCatalogFile(row.custId, row.fileId);
                     break;
@@ -115,7 +117,8 @@ namespace IpsViewComponentLibrary.CatalogControls
 
         private void gridCatalogFiles_DoubleClick(object sender, EventArgs e)
         {
-            CatalogDetailForm form = new CatalogDetailForm();
+            CatalogFile selected = _files[gridCatalogFiles.CurrentRow.Index];
+            CatalogDetailForm form = new CatalogDetailForm(selected);
             form.Show();
         }
     }
