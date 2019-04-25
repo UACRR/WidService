@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
@@ -11,11 +12,13 @@ namespace IpsViewComponentLibrary.CatalogControls
     public partial class CatalogControl : UserControl
     {
         private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
+        private const string UploadFileCatalogSuccessMsg = "";
+        private const string UploadFileCatalogErrorMsg = "";
+
         public EventHandler command;
-        //public int CustomerId { get; set; }
-        public delegate int ShowCustomerId();
         private CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        public int CustomerId { get; set; }
 
         public CatalogControl()
         {
@@ -32,31 +35,20 @@ namespace IpsViewComponentLibrary.CatalogControls
 
         private void CatalogControl_Load(object sender, EventArgs e)
         {
-            bsGridData.DataSource = FillGridData();
+            UpdateDataGrid();
         }
 
 
         /// <summary>
         /// show files into grid
         /// </summary>
-        private List<CatalogFile> FillGridData()
+        private void UpdateDataGrid()
         {
-            //return _catalogPresenter.GetFileList(CustId);
+            //return _catalogPresenter.GetFileList(CustomerId);
 
-            return new List<CatalogFile> {
-                new CatalogFile {
-                    FileId = 666,
-                    CustName = "CustName",
-                    FileName = "fileName",
-                    CreateDate = DateTime.Now,
-                    UserId = "userId",
-                    Status = 0,
-                    Comment = "comment",
-                    CountZap = 1,
-                    CountOk = 2,
-                    CountErr = 3
-                }
-            };
+            var list = _catalogPresenter.GetFileList(CustomerId);
+            bsGridData.DataSource = list;
+            bsGridData.ResetBindings(false);
         }
 
         /// <summary>
@@ -81,11 +73,14 @@ namespace IpsViewComponentLibrary.CatalogControls
                         //CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
-                    _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+                    var result = _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+                    if (result)
+                        UpdateDataGrid();
+                    MessageShow.ShowInfoByResult(UploadFileCatalogSuccessMsg, UploadFileCatalogErrorMsg, result);
                 }
             }
         }
-        
+
         // some method
 
         private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)

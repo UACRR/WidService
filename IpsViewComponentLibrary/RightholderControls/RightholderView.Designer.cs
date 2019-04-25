@@ -116,13 +116,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.anketaExternalRightholderControl1 = new IpsViewComponentLibrary.RightholderControls.Anketa.AnketaExternalRightholderControl();
             this.rightLimitationsControl1_ExternalAnketa = new IpsViewComponentLibrary.RightholderControls.Anketa.RightLimitationsControl();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
-            this.catalogControl1 = new IpsViewComponentLibrary.CatalogControls.CatalogControl();
-            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
-            this.bsCustomer = new System.Windows.Forms.BindingSource(this.components);
-            this.bsRightHolder = new System.Windows.Forms.BindingSource(this.components);
-            this.bsAnketaCompany = new System.Windows.Forms.BindingSource(this.components);
-            this.bsAgreementAddRh = new System.Windows.Forms.BindingSource(this.components);
-            this.bsBankAccount = new System.Windows.Forms.BindingSource(this.components);
+            this.pvCatalog = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlCatalogCombine = new IpsViewComponentLibrary.CatalogControls.CatalogCombine();
             this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
@@ -193,13 +188,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).BeginInit();
             this.radPagCatalog.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCustomer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddRh)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -243,7 +231,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.rightholderCompanyPage.ItemSize = new System.Drawing.SizeF(97F, 25F);
             this.rightholderCompanyPage.Location = new System.Drawing.Point(103, 5);
             this.rightholderCompanyPage.Name = "rightholderCompanyPage";
-            this.rightholderCompanyPage.Size = new System.Drawing.Size(898, 446);
+            this.rightholderCompanyPage.Size = new System.Drawing.Size(898, 452);
             this.rightholderCompanyPage.Text = "Правовласник";
             // 
             // contactsPersonPage
@@ -668,7 +656,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageCatalog.Controls.Add(this.Contract);
             this.pageCatalog.Controls.Add(this.AnketaExternal);
             this.pageCatalog.Controls.Add(this.pageObjects);
-            this.pageCatalog.Controls.Add(this.radPagCatalog);
+            this.pageCatalog.Controls.Add(this.pvCatalog);
             this.pageCatalog.DefaultPage = this.Anketa;
             this.pageCatalog.Location = new System.Drawing.Point(0, 1);
             this.pageCatalog.Name = "pageCatalog";
@@ -1119,38 +1107,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightholdersObjectsRight.Size = new System.Drawing.Size(1009, 415);
             this.ctrlRightholdersObjectsRight.TabIndex = 8;
             // 
-            // catalogControl1
+            // radPagCatalog
             // 
-            this.catalogControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.catalogControl1.Location = new System.Drawing.Point(0, 0);
-            this.catalogControl1.Name = "catalogControl1";
-            this.catalogControl1.Size = new System.Drawing.Size(1009, 445);
-            this.catalogControl1.TabIndex = 0;
+            this.radPagCatalog.Controls.Add(this.catalogCombine1);
+            this.radPagCatalog.ItemSize = new System.Drawing.SizeF(65F, 27F);
+            this.radPagCatalog.Location = new System.Drawing.Point(5, 31);
+            this.radPagCatalog.Name = "radPagCatalog";
+            this.radPagCatalog.Size = new System.Drawing.Size(1009, 445);
+            this.radPagCatalog.Text = "Каталоги";
             // 
-            // bsAnketaPerson
+            // catalogCombine1
             // 
-            this.bsAnketaPerson.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
-            // 
-            // bsCustomer
-            // 
-            this.bsCustomer.DataSource = typeof(ipsFormsDesign.Model.Customer);
-            // 
-            // bsRightHolder
-            // 
-            this.bsRightHolder.DataSource = typeof(ipsFormsDesign.Model.RightHolder);
-            // 
-            // bsAnketaCompany
-            // 
-            this.bsAnketaCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            // 
-            // bsAgreementAddRh
-            // 
-            this.bsAgreementAddRh.DataSource = typeof(ipsFormsDesign.Model.AgreementAddRh);
-            this.bsAgreementAddRh.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bsAgreementAddRh_BindingComplete);
-            // 
-            // bsBankAccount
-            // 
-            this.bsBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
+            this.catalogCombine1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.catalogCombine1.Location = new System.Drawing.Point(0, 0);
+            this.catalogCombine1.Name = "catalogCombine1";
+            this.catalogCombine1.Size = new System.Drawing.Size(1009, 445);
+            this.catalogCombine1.TabIndex = 0;
             // 
             // termsOfServiceWrapperBindingSource
             // 
@@ -1251,13 +1223,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).EndInit();
             this.radPagCatalog.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ddlAgreementStatus)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCustomer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRightHolder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaCompany)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAgreementAddRh)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsBankAccount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -1358,6 +1323,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private System.Windows.Forms.BindingSource termsOfServiceWrapperBindingSource;
         private Anketa.RightLimitationsControl rightLimitationsControl1_ExternalAnketa;
         private Telerik.WinControls.UI.RadPageViewPage radPagCatalog;
-        private CatalogControls.CatalogControl catalogControl1;
+        private CatalogControls.CatalogCombine catalogCombine1;
     }
 }

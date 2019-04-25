@@ -39,6 +39,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
@@ -80,39 +81,43 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn2.FieldName = "FileName";
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.Name = "fileName";
-            gridViewTextBoxColumn2.Width = 154;
+            gridViewTextBoxColumn2.Width = 166;
             gridViewTextBoxColumn3.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn3.FieldName = "CreateDate";
+            gridViewTextBoxColumn3.FormatString = "{0:d}";
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
-            gridViewTextBoxColumn3.MaxWidth = 100;
+            gridViewTextBoxColumn3.MaxWidth = 88;
+            gridViewTextBoxColumn3.MinWidth = 88;
             gridViewTextBoxColumn3.Name = "dateDownload";
-            gridViewTextBoxColumn3.Width = 93;
+            gridViewTextBoxColumn3.Width = 100;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn4.FieldName = "CountZap";
             gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
+            gridViewTextBoxColumn4.MinWidth = 75;
             gridViewTextBoxColumn4.Name = "countFiles";
-            gridViewTextBoxColumn4.Width = 51;
+            gridViewTextBoxColumn4.Width = 54;
             gridViewTextBoxColumn5.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn5.FieldName = "CountErr";
             gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
+            gridViewTextBoxColumn5.MinWidth = 75;
             gridViewTextBoxColumn5.Name = "countLeaveFiles";
-            gridViewTextBoxColumn5.Width = 51;
+            gridViewTextBoxColumn5.Width = 54;
             gridViewTextBoxColumn6.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn6.FieldName = "Status";
             gridViewTextBoxColumn6.HeaderText = "Статус файлу";
             gridViewTextBoxColumn6.Name = "statusFile";
-            gridViewTextBoxColumn6.Width = 51;
+            gridViewTextBoxColumn6.Width = 54;
             gridViewTextBoxColumn7.FieldName = "Comment";
             gridViewTextBoxColumn7.HeaderText = "Коментар";
             gridViewTextBoxColumn7.Name = "comment";
-            gridViewTextBoxColumn7.Width = 51;
+            gridViewTextBoxColumn7.Width = 54;
             gridViewTextBoxColumn8.FieldName = "UserId";
             gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
             gridViewTextBoxColumn8.Name = "downloadFace";
-            gridViewTextBoxColumn8.Width = 151;
-            gridViewCommandColumn1.FieldName = "infoBtn";
-            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewTextBoxColumn8.Width = 152;
+            gridViewCommandColumn1.FieldName = "editBtn";
+            gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
@@ -145,6 +150,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn6,
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
             gridViewCommandColumn1,
             gridViewCommandColumn2,
             gridViewCommandColumn3});

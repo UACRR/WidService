@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             set
             {
                 bsCustomer.DataSource = value;
-                //ctrlCatalogCombine.CustId = ((Customer) value).CustId;
+                ctrlCatalogCombine.CustomerId = ((Customer)value).CustId;
             }
         }
 
@@ -105,6 +105,8 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderView()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+            StartPosition = FormStartPosition.CenterScreen;
 
             setupSaveAs();
             SetDictionaries();
@@ -292,12 +294,15 @@ namespace IpsViewComponentLibrary.RightholderControls
             var agrMaster = customer.AgreementMaster.First();
             if (agrMaster == null) return;
 
-            var templateName = IpsGlobal.AnketaDictionaties.agreementType.FirstOrDefault(item => item.CodeI == agrMaster.AgrType)?.TemplateName;
-            if (string.IsNullOrEmpty(templateName))
-                templateName = "F_ГО УААСП Автор.docx";
+;
+            var agrType = IpsGlobal.AnketaDictionaties.agreementType.FirstOrDefault(item => item.CodeI == agrMaster.AgrType);
+            if (string.IsNullOrEmpty(agrType.TemplateName))
+            {
+                MessageBox.Show($"Немає шаблону договору для типу правовласника '{agrType.Name}'");
+                return;
+            }
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", agrType.TemplateName);
 
-            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", templateName);
-            // var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_ГО УААСП Автор.docx");
 
             btnGenerateRightholderAgreement.Enabled = false;
             waitbarAgreement.StartWaiting();
