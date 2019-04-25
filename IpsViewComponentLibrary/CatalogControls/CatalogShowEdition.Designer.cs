@@ -61,6 +61,7 @@
             this.radLabel28 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel29 = new Telerik.WinControls.UI.RadLabel();
             this.gridDetail = new Telerik.WinControls.UI.RadGridView();
+            this.bsDetailFile = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalog)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radButton2)).BeginInit();
@@ -81,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetail.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDetailFile)).BeginInit();
             this.SuspendLayout();
             // 
             // bsPubCatalog
@@ -175,6 +177,7 @@
             // radLabel22
             // 
             this.radLabel22.AutoSize = false;
+            this.radLabel22.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetailFile, "Status", true));
             this.radLabel22.Location = new System.Drawing.Point(131, 27);
             this.radLabel22.Name = "radLabel22";
             this.radLabel22.Size = new System.Drawing.Size(61, 18);
@@ -193,6 +196,7 @@
             // radLabel24
             // 
             this.radLabel24.AutoSize = false;
+            this.radLabel24.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetailFile, "CreateDate", true));
             this.radLabel24.Location = new System.Drawing.Point(131, 3);
             this.radLabel24.Name = "radLabel24";
             this.radLabel24.Size = new System.Drawing.Size(61, 18);
@@ -202,6 +206,7 @@
             // radLabel25
             // 
             this.radLabel25.AutoSize = false;
+            this.radLabel25.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetailFile, "Comment", true));
             this.radLabel25.Location = new System.Drawing.Point(131, 51);
             this.radLabel25.Name = "radLabel25";
             this.radLabel25.Size = new System.Drawing.Size(61, 18);
@@ -211,6 +216,7 @@
             // radLabel26
             // 
             this.radLabel26.AutoSize = false;
+            this.radLabel26.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetailFile, "CustName", true));
             this.radLabel26.Location = new System.Drawing.Point(131, 75);
             this.radLabel26.Name = "radLabel26";
             this.radLabel26.Size = new System.Drawing.Size(61, 18);
@@ -220,6 +226,7 @@
             // radLabel27
             // 
             this.radLabel27.AutoSize = false;
+            this.radLabel27.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetailFile, "CountZap", true));
             this.radLabel27.Location = new System.Drawing.Point(385, 0);
             this.radLabel27.Name = "radLabel27";
             this.radLabel27.Size = new System.Drawing.Size(61, 18);
@@ -229,6 +236,7 @@
             // radLabel28
             // 
             this.radLabel28.AutoSize = false;
+            this.radLabel28.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetailFile, "CountErr", true));
             this.radLabel28.Location = new System.Drawing.Point(385, 24);
             this.radLabel28.Name = "radLabel28";
             this.radLabel28.Size = new System.Drawing.Size(61, 18);
@@ -238,6 +246,7 @@
             // radLabel29
             // 
             this.radLabel29.AutoSize = false;
+            this.radLabel29.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDetailFile, "CountOk", true));
             this.radLabel29.Location = new System.Drawing.Point(385, 48);
             this.radLabel29.Name = "radLabel29";
             this.radLabel29.Size = new System.Drawing.Size(61, 18);
@@ -334,6 +343,10 @@
             this.gridDetail.TabIndex = 26;
             this.gridDetail.ThemeName = "Office2013Light";
             // 
+            // bsDetailFile
+            // 
+            this.bsDetailFile.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
+            // 
             // CatalogShowEdition
             // 
             this.Controls.Add(this.radLabel29);
@@ -376,6 +389,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetail.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetail)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDetailFile)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -422,5 +436,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel29;
         private System.Windows.Forms.BindingSource bsPubCatalog;
         private Telerik.WinControls.UI.RadGridView gridDetail;
+        private System.Windows.Forms.BindingSource bsDetailFile;
     }
 }
