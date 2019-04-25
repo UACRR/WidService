@@ -149,6 +149,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogControls\CatalogCombine.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CatalogControls\CatalogCombine.Designer.cs">
+      <DependentUpon>CatalogCombine.cs</DependentUpon>
+    </Compile>
     <Compile Include="CatalogControls\CatalogControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1124,6 +1130,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CatalogControls\CatalogCombine.resx">
+      <DependentUpon>CatalogCombine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CatalogControls\CatalogControl.resx">
       <DependentUpon>CatalogControl.cs</DependentUpon>
     </EmbeddedResource>
