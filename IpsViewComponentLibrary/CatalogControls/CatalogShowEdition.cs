@@ -1,42 +1,29 @@
 ﻿using System;
 using System.Windows.Forms;
-using Telerik.WinControls.UI.Export;
+using Telerik.WinControls.Export;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
-        PivotExportToExcelML exporter;
-        //PivotExportToExcelML exporter = new PivotExportToExcelML(gridDetail);
+        private GridViewSpreadExport spreadExporter;
         public CatalogShowEdition()
         {
             InitializeComponent();
+            spreadExporter = new GridViewSpreadExport(gridDetailInfo);
         }
 
-        /// <summary>
-        /// Export to excel
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnGetExcel_Click(object sender, EventArgs e)
         {
-            using (SaveFileDialog excel = new SaveFileDialog())
-            {
-                excel.Filter = "Excel ML|*xls";
-                excel.Title = "Export to File";
-                excel.ShowDialog();
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = "exportFile";
+            spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
+            dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
 
-                if (excel.FileName != "")
-                {
-                    exporter.RunExport(excel.FileName);
-                    MessageBox.Show("Successfully exported to " + excel.FileName, "Information", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    try
-                    {
-                        System.Diagnostics.Process.Start(excel.FileName);
-                    }
-                    finally { }
-                }
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                SpreadExportRenderer renderer = new SpreadExportRenderer();
+                spreadExporter.RunExport(dialog.FileName, renderer);
             }
         }
     }
