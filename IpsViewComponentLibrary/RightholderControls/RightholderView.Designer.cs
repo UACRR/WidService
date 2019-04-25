@@ -121,7 +121,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.radPagCatalog = new Telerik.WinControls.UI.RadPageViewPage();
-            this.catalogCombine1 = new IpsViewComponentLibrary.CatalogControls.CatalogCombine();
+            this.ctrlCatalogCombine = new IpsViewComponentLibrary.CatalogControls.CatalogCombine();
             this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
@@ -843,7 +843,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageCatalog.DefaultPage = this.Anketa;
             this.pageCatalog.Location = new System.Drawing.Point(0, 1);
             this.pageCatalog.Name = "pageCatalog";
-            this.pageCatalog.SelectedPage = this.radPagCatalog;
+            this.pageCatalog.SelectedPage = this.Contract;
             this.pageCatalog.Size = new System.Drawing.Size(1019, 481);
             this.pageCatalog.TabIndex = 20;
             this.pageCatalog.ThemeName = "Office2013Light";
@@ -1125,20 +1125,20 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // radPagCatalog
             // 
-            this.radPagCatalog.Controls.Add(this.catalogCombine1);
+            this.radPagCatalog.Controls.Add(this.ctrlCatalogCombine);
             this.radPagCatalog.ItemSize = new System.Drawing.SizeF(65F, 27F);
             this.radPagCatalog.Location = new System.Drawing.Point(5, 31);
             this.radPagCatalog.Name = "radPagCatalog";
             this.radPagCatalog.Size = new System.Drawing.Size(1009, 445);
             this.radPagCatalog.Text = "Каталоги";
             // 
-            // catalogCombine1
+            // ctrlCatalogCombine
             // 
-            this.catalogCombine1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.catalogCombine1.Location = new System.Drawing.Point(0, 0);
-            this.catalogCombine1.Name = "catalogCombine1";
-            this.catalogCombine1.Size = new System.Drawing.Size(1009, 445);
-            this.catalogCombine1.TabIndex = 0;
+            this.ctrlCatalogCombine.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlCatalogCombine.Location = new System.Drawing.Point(0, 0);
+            this.ctrlCatalogCombine.Name = "ctrlCatalogCombine";
+            this.ctrlCatalogCombine.Size = new System.Drawing.Size(1009, 445);
+            this.ctrlCatalogCombine.TabIndex = 0;
             // 
             // termsOfServiceWrapperBindingSource
             // 
@@ -1346,6 +1346,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private System.Windows.Forms.BindingSource termsOfServiceWrapperBindingSource;
         private Anketa.RightLimitationsControl rightLimitationsControl1_ExternalAnketa;
         private Telerik.WinControls.UI.RadPageViewPage radPagCatalog;
-        private CatalogControls.CatalogCombine catalogCombine1;
+        private CatalogControls.CatalogCombine ctrlCatalogCombine;
     }
 }

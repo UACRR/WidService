@@ -38,22 +38,22 @@ namespace IpsViewComponentLibrary.CatalogControls
         /// </summary>
         private List<CatalogFile> FillGridData()
         {
-            //return _catalogPresenter.GetFileList(CustomerId);
+            return _catalogPresenter.GetFileList(CustomerId);
 
-            return new List<CatalogFile> {
-                new CatalogFile {
-                    FileId = 666,
-                    CustName = "CustName",
-                    FileName = "fileName",
-                    CreateDate = DateTime.Now,
-                    UserId = "userId",
-                    Status = 0,
-                    Comment = "comment",
-                    CountZap = 1,
-                    CountOk = 2,
-                    CountErr = 3
-                }
-            };
+            //return new List<CatalogFile> {
+            //    new CatalogFile {
+            //        FileId = 666,
+            //        CustName = "CustName",
+            //        FileName = "fileName",
+            //        CreateDate = DateTime.Now,
+            //        UserId = "userId",
+            //        Status = 0,
+            //        Comment = "comment",
+            //        CountZap = 1,
+            //        CountOk = 2,
+            //        CountErr = 3
+            //    }
+        //};
         }
 
         /// <summary>

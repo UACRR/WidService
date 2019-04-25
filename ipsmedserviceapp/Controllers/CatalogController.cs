@@ -73,8 +73,7 @@ namespace ipsmedserviceapp.Controllers
                 .Where(rec => rec.CustId == custId)
                 .Include(rec => rec.PubСatalogItem).ToListAsync();
             
-
-            return Ok(catalogFile);
+            return Ok(catalogFiles);
         }
 
         [HttpPost("upload/{custId}")]
