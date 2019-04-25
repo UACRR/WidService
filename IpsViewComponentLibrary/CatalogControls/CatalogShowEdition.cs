@@ -13,7 +13,8 @@ namespace IpsViewComponentLibrary.CatalogControls
         {
             InitializeComponent();
             spreadExporter = new GridViewSpreadExport(gridDetailInfo);
-            gridDetailInfo.DataSource = FillGridDetail();
+            catalogFileBindingSource.DataSource = FillFileData();
+            pubСatalogItemBindingSource.DataSource = FillGridDetail();
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -45,6 +46,15 @@ namespace IpsViewComponentLibrary.CatalogControls
                     Comment = "comment",
                     CmName = "cmName",
                     ErrComment = "ErrComment"
+                }
+            };
+        }
+
+        private List<CatalogFile> FillFileData()
+        {
+            return new List<CatalogFile> {
+                new CatalogFile {
+
                 }
             };
         }

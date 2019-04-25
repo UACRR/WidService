@@ -1610,6 +1610,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BrRegister.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CatalogFile.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CheckParamPays.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />

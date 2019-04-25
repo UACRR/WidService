@@ -56,17 +56,19 @@
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
+            this.pubСatalogItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnControl = new Telerik.WinControls.UI.RadButton();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
-            this.pubСatalogItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.catalogFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.catalogFileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -85,29 +87,42 @@
             this.gridCatalogFiles.MasterTemplate.AllowEditRow = false;
             this.gridCatalogFiles.MasterTemplate.AutoGenerateColumns = false;
             this.gridCatalogFiles.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewTextBoxColumn1.DataType = typeof(int);
+            gridViewTextBoxColumn1.FieldName = "FileId";
             gridViewTextBoxColumn1.HeaderText = "№п/п";
             gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             gridViewTextBoxColumn1.Name = "number";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn1.Width = 62;
+            gridViewTextBoxColumn2.FieldName = "FileName";
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.Name = "fileName";
             gridViewTextBoxColumn2.Width = 165;
+            gridViewTextBoxColumn3.DataType = typeof(System.Nullable<System.DateTime>);
+            gridViewTextBoxColumn3.FieldName = "CreateDate";
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
             gridViewTextBoxColumn3.Name = "dateDownload";
             gridViewTextBoxColumn3.Width = 165;
+            gridViewTextBoxColumn4.DataType = typeof(System.Nullable<int>);
+            gridViewTextBoxColumn4.FieldName = "CountZap";
             gridViewTextBoxColumn4.HeaderText = "К-ть записів всього";
             gridViewTextBoxColumn4.Name = "countFiles";
             gridViewTextBoxColumn4.Width = 54;
+            gridViewTextBoxColumn5.DataType = typeof(System.Nullable<int>);
+            gridViewTextBoxColumn5.FieldName = "CountErr";
             gridViewTextBoxColumn5.HeaderText = "К-ть відкинутих записів";
             gridViewTextBoxColumn5.Name = "countLeaveFiles";
             gridViewTextBoxColumn5.Width = 54;
+            gridViewTextBoxColumn6.DataType = typeof(System.Nullable<int>);
+            gridViewTextBoxColumn6.FieldName = "Status";
             gridViewTextBoxColumn6.HeaderText = "Статус файлу";
             gridViewTextBoxColumn6.Name = "statusFile";
             gridViewTextBoxColumn6.Width = 54;
+            gridViewTextBoxColumn7.FieldName = "Comment";
             gridViewTextBoxColumn7.HeaderText = "Коментар";
             gridViewTextBoxColumn7.Name = "comment";
             gridViewTextBoxColumn7.Width = 54;
+            gridViewTextBoxColumn8.FieldName = "UserId";
             gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
             gridViewTextBoxColumn8.Name = "downloadFace";
             gridViewTextBoxColumn8.Width = 88;
@@ -147,6 +162,7 @@
             gridViewCommandColumn1,
             gridViewCommandColumn2,
             gridViewCommandColumn3});
+            this.gridCatalogFiles.MasterTemplate.DataSource = this.catalogFileBindingSource;
             this.gridCatalogFiles.MasterTemplate.EnableCustomFiltering = true;
             this.gridCatalogFiles.MasterTemplate.EnableFiltering = true;
             this.gridCatalogFiles.MasterTemplate.ShowFilteringRow = false;
@@ -257,6 +273,10 @@
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
             // 
+            // pubСatalogItemBindingSource
+            // 
+            this.pubСatalogItemBindingSource.DataSource = typeof(ipsFormsDesign.Model.PubСatalogItem);
+            // 
             // btnControl
             // 
             this.btnControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -278,9 +298,9 @@
             this.btnPerform.Text = "Виконати";
             this.btnPerform.ThemeName = "Office2013Light";
             // 
-            // pubСatalogItemBindingSource
+            // catalogFileBindingSource
             // 
-            this.pubСatalogItemBindingSource.DataSource = typeof(ipsFormsDesign.Model.PubСatalogItem);
+            this.catalogFileBindingSource.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
             // 
             // CatalogShowEdition
             // 
@@ -298,9 +318,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.catalogFileBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,5 +334,6 @@
         private Telerik.WinControls.UI.RadButton btnGetExcel;
         private Telerik.WinControls.UI.RadButton btnPerform;
         private System.Windows.Forms.BindingSource pubСatalogItemBindingSource;
+        private System.Windows.Forms.BindingSource catalogFileBindingSource;
     }
 }
