@@ -5,7 +5,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 {
     public class CatalogPresenter
     {
-        private CatalogService _service;
+        private readonly CatalogService _service;
 
         public CatalogPresenter()
         {
