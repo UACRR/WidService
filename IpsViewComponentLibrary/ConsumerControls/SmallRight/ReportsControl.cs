@@ -24,7 +24,7 @@ namespace IpsViewComponentLibrary
 {
     public partial class ReportsControl : UserControl
     {
-        private readonly ExcelEngine _excel = new ExcelEngine();
+        private readonly ExcelEngine _excel = ExcelEngine.GetInstance();
 
         public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;

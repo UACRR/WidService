@@ -92,7 +92,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             
 
             //add condition for ignore External anketa
-            //_isCompany = _customer.CustType == 3 && _customer.CustType != 5;
+            _isCompany = _customer.CustType == 3;
 
             if (_customer.CustType == 3)
             {
@@ -199,7 +199,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             using (var view = new ObjectRightSrView())
             {
                 var presenter = new ObjectRightSrPresenter(view);
-                presenter.DefaultRightholder = new RightholderMainView { CustId = _customer.CustId, Name = String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName) };
+                var name = _isCompany ? _anketaCompany.ShortName : String.Format("{0} {1} {2}", _anketaPerson.FirstName, _anketaPerson.SurName, _anketaPerson.LastName);
+                presenter.DefaultRightholder = new RightholderMainView { CustId = _customer.CustId, Name = name };
                 presenter.ShowNew(category);
             }
         }
