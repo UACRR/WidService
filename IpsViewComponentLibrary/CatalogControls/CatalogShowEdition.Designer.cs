@@ -106,6 +106,7 @@
             this.radButton2.TabIndex = 2;
             this.radButton2.Text = "Вивантажити в Exel";
             this.radButton2.ThemeName = "Office2013Light";
+            this.radButton2.Click += new System.EventHandler(this.btnGetExcel_Click);
             // 
             // radButton3
             // 
