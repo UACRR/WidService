@@ -112,5 +112,11 @@ namespace IpsViewComponentLibrary.CatalogControls
                     break;
             }
         }
+
+        private void gridCatalogFiles_DoubleClick(object sender, EventArgs e)
+        {
+            CatalogDetailForm form = new CatalogDetailForm();
+            form.Show();
+        }
     }
 }

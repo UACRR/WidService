@@ -43,7 +43,6 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
-            this.pubСatalogItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnControl = new Telerik.WinControls.UI.RadButton();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -61,11 +60,11 @@
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.pubСatalogItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.catalogFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -84,6 +83,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.catalogFileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,7 +128,7 @@
             gridViewTextBoxColumn3.FieldName = "ObjName";
             gridViewTextBoxColumn3.HeaderText = "Назва товару";
             gridViewTextBoxColumn3.Name = "nameProduct";
-            gridViewTextBoxColumn3.Width = 155;
+            gridViewTextBoxColumn3.Width = 154;
             gridViewTextBoxColumn4.FieldName = "GenreName";
             gridViewTextBoxColumn4.HeaderText = "Жанр твору";
             gridViewTextBoxColumn4.Name = "genre";
@@ -140,15 +140,15 @@
             gridViewTextBoxColumn6.FieldName = "AuthorMusic";
             gridViewTextBoxColumn6.HeaderText = "Композитор(и)";
             gridViewTextBoxColumn6.Name = "composer";
-            gridViewTextBoxColumn6.Width = 66;
+            gridViewTextBoxColumn6.Width = 65;
             gridViewTextBoxColumn7.FieldName = "AuthorText";
             gridViewTextBoxColumn7.HeaderText = "Автор(и) тексту";
             gridViewTextBoxColumn7.Name = "authors";
-            gridViewTextBoxColumn7.Width = 68;
+            gridViewTextBoxColumn7.Width = 67;
             gridViewTextBoxColumn8.FieldName = "Performer";
             gridViewTextBoxColumn8.HeaderText = "Творча роль правовласника";
             gridViewTextBoxColumn8.Name = "role";
-            gridViewTextBoxColumn8.Width = 121;
+            gridViewTextBoxColumn8.Width = 120;
             gridViewTextBoxColumn9.FieldName = "CmName";
             gridViewTextBoxColumn9.HeaderText = "%";
             gridViewTextBoxColumn9.Name = "percent";
@@ -161,7 +161,7 @@
             gridViewTextBoxColumn11.FieldName = "Status";
             gridViewTextBoxColumn11.HeaderText = "Статус";
             gridViewTextBoxColumn11.Name = "status";
-            gridViewTextBoxColumn11.Width = 91;
+            gridViewTextBoxColumn11.Width = 89;
             this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -185,10 +185,6 @@
             this.gridDetailInfo.Size = new System.Drawing.Size(802, 356);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
-            // 
-            // pubСatalogItemBindingSource
-            // 
-            this.pubСatalogItemBindingSource.DataSource = typeof(ipsFormsDesign.Model.PubСatalogItem);
             // 
             // btnControl
             // 
@@ -304,6 +300,7 @@
             // 
             this.radLabel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel9.AutoSize = false;
+            this.radLabel9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.catalogFileBindingSource, "CreateDate", true));
             this.radLabel9.Location = new System.Drawing.Point(123, 3);
             this.radLabel9.Name = "radLabel9";
             this.radLabel9.Size = new System.Drawing.Size(111, 18);
@@ -315,6 +312,7 @@
             // 
             this.radLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel10.AutoSize = false;
+            this.radLabel10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.catalogFileBindingSource, "Status", true));
             this.radLabel10.Location = new System.Drawing.Point(123, 27);
             this.radLabel10.Name = "radLabel10";
             this.radLabel10.Size = new System.Drawing.Size(111, 18);
@@ -326,6 +324,7 @@
             // 
             this.radLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel11.AutoSize = false;
+            this.radLabel11.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.catalogFileBindingSource, "Comment", true));
             this.radLabel11.Location = new System.Drawing.Point(123, 51);
             this.radLabel11.Name = "radLabel11";
             this.radLabel11.Size = new System.Drawing.Size(111, 18);
@@ -337,6 +336,7 @@
             // 
             this.radLabel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel12.AutoSize = false;
+            this.radLabel12.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.catalogFileBindingSource, "CustName", true));
             this.radLabel12.Location = new System.Drawing.Point(123, 75);
             this.radLabel12.Name = "radLabel12";
             this.radLabel12.Size = new System.Drawing.Size(111, 18);
@@ -348,6 +348,7 @@
             // 
             this.radLabel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel13.AutoSize = false;
+            this.radLabel13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.catalogFileBindingSource, "CountZap", true));
             this.radLabel13.Location = new System.Drawing.Point(441, 3);
             this.radLabel13.Name = "radLabel13";
             this.radLabel13.Size = new System.Drawing.Size(111, 18);
@@ -359,6 +360,7 @@
             // 
             this.radLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel14.AutoSize = false;
+            this.radLabel14.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.catalogFileBindingSource, "CountErr", true));
             this.radLabel14.Location = new System.Drawing.Point(441, 27);
             this.radLabel14.Name = "radLabel14";
             this.radLabel14.Size = new System.Drawing.Size(111, 18);
@@ -370,12 +372,17 @@
             // 
             this.radLabel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel15.AutoSize = false;
+            this.radLabel15.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.catalogFileBindingSource, "CountOk", true));
             this.radLabel15.Location = new System.Drawing.Point(441, 51);
             this.radLabel15.Name = "radLabel15";
             this.radLabel15.Size = new System.Drawing.Size(111, 18);
             this.radLabel15.TabIndex = 12;
             this.radLabel15.Text = "К-ть оброблених записів";
             this.radLabel15.ThemeName = "Office2013Light";
+            // 
+            // pubСatalogItemBindingSource
+            // 
+            this.pubСatalogItemBindingSource.DataSource = typeof(ipsFormsDesign.Model.PubСatalogItem);
             // 
             // catalogFileBindingSource
             // 
@@ -408,7 +415,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -427,6 +433,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.catalogFileBindingSource)).EndInit();
             this.ResumeLayout(false);
 

@@ -44,13 +44,13 @@ namespace IpsViewComponentLibrary.CatalogControls
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
+            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
             this.btnLoadFile = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.bsGridData = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -80,13 +80,13 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn2.FieldName = "FileName";
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.Name = "fileName";
-            gridViewTextBoxColumn2.Width = 154;
+            gridViewTextBoxColumn2.Width = 155;
             gridViewTextBoxColumn3.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn3.FieldName = "CreateDate";
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
             gridViewTextBoxColumn3.MaxWidth = 100;
             gridViewTextBoxColumn3.Name = "dateDownload";
-            gridViewTextBoxColumn3.Width = 93;
+            gridViewTextBoxColumn3.Width = 94;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn4.FieldName = "CountZap";
@@ -110,7 +110,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn8.FieldName = "UserId";
             gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
             gridViewTextBoxColumn8.Name = "downloadFace";
-            gridViewTextBoxColumn8.Width = 151;
+            gridViewTextBoxColumn8.Width = 155;
             gridViewCommandColumn1.FieldName = "infoBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.HeaderText = "";
@@ -160,6 +160,11 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.gridCatalogFiles.TabIndex = 1;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
             this.gridCatalogFiles.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gridCatalogFiles_CommandCellClick);
+            this.gridCatalogFiles.DoubleClick += new System.EventHandler(this.gridCatalogFiles_DoubleClick);
+            // 
+            // bsGridData
+            // 
+            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
             // 
             // btnLoadFile
             // 
@@ -172,10 +177,6 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.btnLoadFile.ThemeName = "Office2013Light";
             this.btnLoadFile.Click += new System.EventHandler(this.btnLoadFile_Click);
             // 
-            // bsGridData
-            // 
-            this.bsGridData.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
-            // 
             // CatalogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -186,8 +187,8 @@ namespace IpsViewComponentLibrary.CatalogControls
             this.Size = new System.Drawing.Size(778, 331);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsGridData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             this.ResumeLayout(false);
 
         }
