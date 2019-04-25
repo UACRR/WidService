@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.CatalogControls
 {
-    partial class CatalogFormEdition
+    partial class CatalogDetailForm
     {
         /// <summary>
         /// Required designer variable.
@@ -38,21 +38,21 @@
             this.catalogShowEdition1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.catalogShowEdition1.Location = new System.Drawing.Point(0, 0);
             this.catalogShowEdition1.Name = "catalogShowEdition1";
-            this.catalogShowEdition1.Size = new System.Drawing.Size(951, 463);
+            this.catalogShowEdition1.Size = new System.Drawing.Size(841, 399);
             this.catalogShowEdition1.TabIndex = 0;
             // 
-            // CatalogFormEdition
+            // CatalogDetailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 463);
+            this.ClientSize = new System.Drawing.Size(841, 399);
             this.Controls.Add(this.catalogShowEdition1);
-            this.Name = "CatalogFormEdition";
+            this.Name = "CatalogDetailForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "CatalogFormEdition";
+            this.Text = "CatalogDetailForm";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);

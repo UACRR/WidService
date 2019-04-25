@@ -114,6 +114,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
+
+            //catalogControl1.command += 
         }
 
         ~RightholderView()

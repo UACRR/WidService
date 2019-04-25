@@ -155,11 +155,11 @@
     <Compile Include="CatalogControls\CatalogControl.Designer.cs">
       <DependentUpon>CatalogControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\CatalogFormEdition.cs">
+    <Compile Include="CatalogControls\CatalogDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CatalogControls\CatalogFormEdition.Designer.cs">
-      <DependentUpon>CatalogFormEdition.cs</DependentUpon>
+    <Compile Include="CatalogControls\CatalogDetailForm.Designer.cs">
+      <DependentUpon>CatalogDetailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="CatalogControls\CatalogShowEdition.cs">
       <SubType>UserControl</SubType>
@@ -1145,8 +1145,8 @@
     <EmbeddedResource Include="CatalogControls\CatalogControl.resx">
       <DependentUpon>CatalogControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\CatalogFormEdition.resx">
-      <DependentUpon>CatalogFormEdition.cs</DependentUpon>
+    <EmbeddedResource Include="CatalogControls\CatalogDetailForm.resx">
+      <DependentUpon>CatalogDetailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CatalogControls\CatalogShowEdition.resx">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>

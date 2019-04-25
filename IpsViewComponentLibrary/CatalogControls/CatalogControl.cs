@@ -90,10 +90,13 @@ namespace IpsViewComponentLibrary.CatalogControls
 
         private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
-            command.Invoke(sender, e);
+            //command.Invoke(sender, e);
             //var row = e.Row.DataBoundItem as T;
             switch (e.Column.FieldName)
             {
+                case "infoBtn":
+
+                    break;
                 case "editBtn":
                     //var catalogFile = _catalogPresenter.DeleteCatalogFile(row.custId, row.fileId);
                     break;

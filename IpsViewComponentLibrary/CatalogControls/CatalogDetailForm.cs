@@ -9,9 +9,9 @@ using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
-    public partial class CatalogFormEdition : Telerik.WinControls.UI.RadForm
+    public partial class CatalogDetailForm : Telerik.WinControls.UI.RadForm
     {
-        public CatalogFormEdition()
+        public CatalogDetailForm()
         {
             InitializeComponent();
         }

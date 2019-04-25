@@ -50,6 +50,9 @@
             // 
             // radTextBox1
             // 
+            this.radTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radTextBox1.Location = new System.Drawing.Point(0, 25);
             this.radTextBox1.MaxLength = 1024;
             this.radTextBox1.Multiline = true;
