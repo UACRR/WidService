@@ -8,6 +8,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.CatalogControls;
 using IpsViewComponentLibrary.RightholderControls.Anketa;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
@@ -15,7 +16,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
+    public partial class RightholderView : RadForm, IRightholderView
     {
         private bool _isCompany;
         private string _pdf;
@@ -72,7 +73,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         public object CustomerDataSource
         {
             get => bsCustomer.DataSource;
-            set => bsCustomer.DataSource = value;
+            set
+            {
+                bsCustomer.DataSource = value;
+                ctrlCatalogCombine.CustomerId = ((Customer)value).CustId;
+            }
         }
 
         public object TermsOfServiceDataSource
@@ -109,12 +114,27 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
+
+            ////when action file detail
+            //ctrlFileGrid.command += SwapControl;
         }
 
         ~RightholderView()
         {
             wordEngine = null;
         }
+
+        ///// <summary>
+        ///// change active controls
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void SwapControl(object sender, EventArgs e)
+        //{
+        //    radPagCatalog.Controls.Clear();
+        //    CatalogShowEdition control = new CatalogShowEdition();
+        //    radPagCatalog.Controls.Add(control);
+        //}
 
         private void setupSaveAs()
         {
