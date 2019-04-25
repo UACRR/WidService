@@ -69,13 +69,18 @@ namespace IpsViewComponentLibrary.RightholderControls
             SetViewData();
 
             if (_customer.CustType == 3)
+            {
                 _view.SetHeader(_anketaCompany.Name);
+            }
             else if (_customer.CustType == 5)
             {
                 //set title name for Current Action
                 _view.SetHeader(_anketaExternal.Name);
-            } else
+            }
+            else
+            {
                 _view.SetHeader($"{_anketaPerson.LastName} {_anketaPerson.FirstName} {_anketaPerson.SurName}");
+            }
 
             _view.Run();
         }

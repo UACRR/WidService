@@ -54,21 +54,21 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn19 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gridCatalogFiles = new Telerik.WinControls.UI.RadGridView();
+            this.catalogFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
             this.pubСatalogItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnControl = new Telerik.WinControls.UI.RadButton();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
-            this.catalogFileBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.catalogFileBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.catalogFileBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // gridCatalogFiles
@@ -173,6 +173,10 @@
             this.gridCatalogFiles.Size = new System.Drawing.Size(802, 83);
             this.gridCatalogFiles.TabIndex = 2;
             this.gridCatalogFiles.ThemeName = "Office2013Light";
+            // 
+            // catalogFileBindingSource
+            // 
+            this.catalogFileBindingSource.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
             // 
             // btnGetExcel
             // 
@@ -286,6 +290,7 @@
             this.btnControl.TabIndex = 4;
             this.btnControl.Text = "Контроль";
             this.btnControl.ThemeName = "Office2013Light";
+            this.btnControl.Click += new System.EventHandler(this.btnControl_Click);
             // 
             // btnPerform
             // 
@@ -297,10 +302,6 @@
             this.btnPerform.TabIndex = 3;
             this.btnPerform.Text = "Виконати";
             this.btnPerform.ThemeName = "Office2013Light";
-            // 
-            // catalogFileBindingSource
-            // 
-            this.catalogFileBindingSource.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
             // 
             // CatalogShowEdition
             // 
@@ -315,13 +316,13 @@
             this.Size = new System.Drawing.Size(808, 552);
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.catalogFileBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pubСatalogItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.catalogFileBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

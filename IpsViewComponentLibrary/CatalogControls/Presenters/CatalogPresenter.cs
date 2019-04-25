@@ -17,9 +17,9 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             _exelEngine = ExcelEngine.GetInstance();
         }
 
-        public List<T> GetFileList<T>() where T : class
+        public List<CatalogFile> GetFileList(int custId)
         {
-            return new List<T>();
+            return _service.GetCatalogFileList(custId);
         }
 
         public void UploadCatalogFile(CatalogFile catalogFile, string path, string fileName)

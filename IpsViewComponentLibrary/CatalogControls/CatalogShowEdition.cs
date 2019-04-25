@@ -59,5 +59,10 @@ namespace IpsViewComponentLibrary.CatalogControls
                 }
             };
         }
+
+        private void btnControl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -16,7 +16,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
+    public partial class RightholderView : RadForm, IRightholderView
     {
         private bool _isCompany;
         private string _pdf;
@@ -73,7 +73,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         public object CustomerDataSource
         {
             get => bsCustomer.DataSource;
-            set => bsCustomer.DataSource = value;
+            set
+            {
+                bsCustomer.DataSource = value;
+                ctrlFileGrid.CustomerId = ((Customer) value).CustId;
+            }
         }
 
         public object TermsOfServiceDataSource
@@ -112,7 +116,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             sbSave.Text = miSave.Text;
 
             //when action file detail
-            fileGrid.command += SwapControl;
+            ctrlFileGrid.command += SwapControl;
         }
 
         ~RightholderView()

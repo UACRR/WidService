@@ -20,20 +20,29 @@ namespace IpsViewComponentLibrary.CatalogControls
             if (!IsDesignMode)
                 _catalogPresenter = new CatalogPresenter();
 
-            bsGridData.DataSource = FillGrid();
+            Load += CatalogControl_Load;
         }
+
+        private void CatalogControl_Load(object sender, EventArgs e)
+        {
+            bsGridData.DataSource = FillGridData();
+        }
+
+        public int CustomerId { get; set; }
 
         /// <summary>
         /// show files into grid
         /// </summary>
-        private List<CatalogFile> FillGrid()
+        private List<CatalogFile> FillGridData()
         {
-            //return _catalogPresenter.GetFileList<CatalogFile>();
+            //return _catalogPresenter.GetFileList(CustomerId);
+
             return new List<CatalogFile> {
                 new CatalogFile {
                     FileId = 666,
                     CustName = "CustName",
                     FileName = "fileName",
+                    CreateDate = DateTime.Now,
                     UserId = "userId",
                     Status = 0,
                     Comment = "comment",
@@ -51,7 +60,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         /// <param name="e"></param>
         private void btnLoadFile_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog fileExel = new OpenFileDialog())
+            using (var fileExel = new OpenFileDialog())
             {
                 //open dialog
                 fileExel.InitialDirectory = @"C:\";
@@ -66,9 +75,19 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
+        // some method
+
         private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {
             command.Invoke(sender, e);
+            switch (e.Column.FieldName)
+            {
+                case "editBtn":
+                    break;
+
+                case "deleteBtn":
+                    break;
+            }
         }
     }
 }
