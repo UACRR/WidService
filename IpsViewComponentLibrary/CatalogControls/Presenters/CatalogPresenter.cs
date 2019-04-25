@@ -22,25 +22,29 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.GetCatalogFileList(custId);
         }
 
-        public void UploadCatalogFile(CatalogFile catalogFile, string path, string fileName)
+        public CatalogFile GetCatalogFile(int custId, int fileId)
+        {
+            return _service.GetCatalogFile(custId, fileId);
+        }
+
+        public void UploadCatalogFile(CatalogFile catalogFile, string path)
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
 
-            var pubСatalogItemList = GetPubСatalog(string.Concat(path, fileName));
+            var pubСatalogItemList = GetPubСatalog(path);
             catalogFile.PubСatalogItem = new ObservableListSource<PubСatalogItem>(pubСatalogItemList);
 
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
         }
         
-
         /// <summary>
         /// Конвертація Xls файлу в список PubСatalogItem
         /// </summary>
         /// <param name="fileName">Назва Xls файлу</param>
         /// <returns></returns>
-        public List<PubСatalogItem> GetPubСatalog(string fileName)
+        private List<PubСatalogItem> GetPubСatalog(string fileName)
         {
             try
             {
@@ -88,5 +92,18 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 
             return newItem;
         }
+
+        /// <summary>
+        /// Видалити
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public bool DeleteCatalogFile(int custId, int fileId)
+        {
+            return _service.DeleteCatalogFile(custId, fileId);
+        }
+
+
     }
 }
