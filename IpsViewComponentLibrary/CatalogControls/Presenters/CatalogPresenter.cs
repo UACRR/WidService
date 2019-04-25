@@ -22,20 +22,20 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         }
 
         /// <summary>
-        /// Конвертація Xls файлу в список PubСatalogItem
+        /// Конвертація Xls файлу в список PubCatalogItem
         /// </summary>
         /// <param name="fileName">Назва Xls файлу</param>
         /// <returns></returns>
-        public List<PubСatalogItem> GetPubСatalog(string fileName)
+        public List<PubCatalogItem> GetPubСatalog(string fileName)
         {
             try
             {
                 var data = _exelEngine.ReadData(fileName);
-                List<PubСatalogItem> newItems = new List<PubСatalogItem>();
+                List<PubCatalogItem> newItems = new List<PubCatalogItem>();
 
                 foreach (var item in data)
                 {
-                    PubСatalogItem newItem = PubСatalogItemFromXlsRow(item);
+                    PubCatalogItem newItem = PubCatalogItemFromXlsRow(item);
                     newItems.Add(newItem);
                 }
                 return newItems;
@@ -47,16 +47,16 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         }
 
         /// <summary>
-        /// Перетворення рядка Xls файлу в об'єкт PubСatalogItem
+        /// Перетворення рядка Xls файлу в об'єкт PubCatalogItem
         /// </summary>
         /// <param name="item">рядок XLS файлу</param>
         /// <returns></returns>
-        private PubСatalogItem PubСatalogItemFromXlsRow(List<string> item)
+        private PubCatalogItem PubCatalogItemFromXlsRow(List<string> item)
         {
             if (item.Count < 10)
                 throw new ArgumentException("Не правильна структура файлу.Кількість колонок з даними дорівнює 10");
 
-            PubСatalogItem newItem = new PubСatalogItem();
+            PubCatalogItem newItem = new PubCatalogItem();
             newItem.ItemCode = item[0];
             newItem.Iswc = item[1];
             newItem.ObjName = item[2];
