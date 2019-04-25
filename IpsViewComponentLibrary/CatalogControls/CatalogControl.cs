@@ -95,9 +95,12 @@ namespace IpsViewComponentLibrary.CatalogControls
             switch (e.Column.FieldName)
             {
                 case "infoBtn":
-
+                    CatalogDetailForm form = new CatalogDetailForm();
+                    form.Show();
                     break;
                 case "editBtn":
+                    changeComment comment = new changeComment();
+                    comment.Show();
                     //var catalogFile = _catalogPresenter.DeleteCatalogFile(row.custId, row.fileId);
                     break;
 
