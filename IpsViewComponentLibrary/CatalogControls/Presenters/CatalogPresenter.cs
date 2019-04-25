@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 
@@ -7,13 +8,23 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 {
     public class CatalogPresenter
     {
-        private CatalogService _service;
-        private ExcelEngine _exelEngine;
+        private readonly CatalogService _service;
+        private readonly ExcelEngine _exelEngine;
 
         public CatalogPresenter()
         {
             _service = CatalogService.GetInstance();
             _exelEngine = ExcelEngine.GetInstance();
+        }
+
+        public void UploadCatalogFile(CatalogFile catalogFile, string path, string fileName)
+        {
+            if (catalogFile.CustId == null || catalogFile.CustId == 0)
+                throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
+
+            catalogFile.PubСatalogItem = new ObservableListSource<PubСatalogItem>(GetPubСatalog(string.Concat(path, fileName)));
+            // result can be used
+            var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
         }
 
         public List<T> GetFileList<T>() where T : class
