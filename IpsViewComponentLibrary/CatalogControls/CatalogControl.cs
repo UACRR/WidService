@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
+using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogControl : UserControl
     {
+        public EventHandler command;
         private CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
 
@@ -15,18 +18,30 @@ namespace IpsViewComponentLibrary.CatalogControls
             InitializeComponent();
 
             if (!IsDesignMode)
-                _catalogPresenter =new CatalogPresenter();
+                _catalogPresenter = new CatalogPresenter();
 
-
+            bsGridData.DataSource = FillGrid();
         }
 
         /// <summary>
         /// show files into grid
         /// </summary>
-        private void DataGrid()
+        private List<CatalogFile> FillGrid()
         {
-            //bsGridData.DataSource = _catalogPresenter.GetFileList<string>();
-            //download data
+            //return _catalogPresenter.GetFileList<CatalogFile>();
+            return new List<CatalogFile> {
+                new CatalogFile {
+                    FileId = 666,
+                    CustName = "CustName",
+                    FileName = "fileName",
+                    UserId = "userId",
+                    Status = 0,
+                    Comment = "comment",
+                    CountZap = 1,
+                    CountOk = 2,
+                    CountErr = 3
+                }
+            };
         }
 
         /// <summary>
@@ -49,6 +64,11 @@ namespace IpsViewComponentLibrary.CatalogControls
 
                 }
             }
+        }
+
+        private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        {
+            command.Invoke(sender, e);
         }
     }
 }
