@@ -11,8 +11,8 @@ namespace IpsViewComponentLibrary.CatalogControls
     public partial class CatalogControl : UserControl
     {
         private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
-        private const string EditCommentSuccessMsg = "";
-        private const string EditCommentErrorMsg = "";
+        private const string EditCommentSuccessMsg = "Коментар змінений!";
+        private const string EditCommentErrorMsg = "Неможливо змінити коментар!";
 
         private const string DeleteCatalogFileSuccessMsg = "";
         private const string DeleteCatalogFileErrorMsg = "";
