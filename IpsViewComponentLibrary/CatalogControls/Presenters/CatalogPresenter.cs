@@ -32,28 +32,28 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
 
-            var pubСatalogItemList = GetPubСatalog(path);
-            catalogFile.PubСatalogItem = new ObservableListSource<PubСatalogItem>(pubСatalogItemList);
+            var PubCatalogItemList = GetPubСatalog(path);
+            catalogFile.PubCatalogItem = new ObservableListSource<PubCatalogItem>(PubCatalogItemList);
 
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
         }
         
         /// <summary>
-        /// Конвертація Xls файлу в список PubСatalogItem
+        /// Конвертація Xls файлу в список PubCatalogItem
         /// </summary>
         /// <param name="fileName">Назва Xls файлу</param>
         /// <returns></returns>
-        private List<PubСatalogItem> GetPubСatalog(string fileName)
+        private List<PubCatalogItem> GetPubСatalog(string fileName)
         {
             try
             {
                 var data = _exelEngine.ReadData(fileName);
-                List<PubСatalogItem> newItems = new List<PubСatalogItem>();
+                List<PubCatalogItem> newItems = new List<PubCatalogItem>();
 
                 foreach (var item in data)
                 {
-                    PubСatalogItem newItem = PubСatalogItemFromXlsRow(item);
+                    PubCatalogItem newItem = PubCatalogItemFromXlsRow(item);
                     newItems.Add(newItem);
                 }
                 return newItems;
@@ -65,16 +65,16 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         }
 
         /// <summary>
-        /// Перетворення рядка Xls файлу в об'єкт PubСatalogItem
+        /// Перетворення рядка Xls файлу в об'єкт PubCatalogItem
         /// </summary>
         /// <param name="item">рядок XLS файлу</param>
         /// <returns></returns>
-        private PubСatalogItem PubСatalogItemFromXlsRow(List<string> item)
+        private PubCatalogItem PubCatalogItemFromXlsRow(List<string> item)
         {
             if (item.Count < 10)
                 throw new ArgumentException("Неправильна структура файлу! Кількість колонок з даними повинна дорівнювати 10!");
 
-            var newItem = new PubСatalogItem
+            var newItem = new PubCatalogItem
             {
                 ItemCode = item[0],
                 Iswc = item[1],
