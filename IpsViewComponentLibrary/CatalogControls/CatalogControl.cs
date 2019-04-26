@@ -90,7 +90,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             {
                 case "infoBtn":
                     var form = new CatalogDetailForm(row);
-                    form.ShowDialog();
+                    form.Show();
                     break;
                 case "editBtn":
                     var commentForm = new ChangeCommentForm(row);
@@ -120,7 +120,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         {
             var row = gridCatalogFiles.CurrentRow.DataBoundItem as CatalogFile;
             var form = new CatalogDetailForm(row);
-            form.ShowDialog();
+            form.Show();
         }
     }
 }
