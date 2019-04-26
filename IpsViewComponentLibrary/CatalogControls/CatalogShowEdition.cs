@@ -1,6 +1,7 @@
 ﻿using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
@@ -13,10 +14,12 @@ namespace IpsViewComponentLibrary.CatalogControls
     {
         private CatalogFile _catalogFile = null;
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
+        protected bool IsDesingMode => IsDesingMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         public CatalogShowEdition()
         {
             InitializeComponent();
-            _catalogFileItemsHandler = new CatalogPresenter();
+            if (!IsDesingMode)
+                _catalogFileItemsHandler = new CatalogPresenter();
         }
 
         public object DataSource
