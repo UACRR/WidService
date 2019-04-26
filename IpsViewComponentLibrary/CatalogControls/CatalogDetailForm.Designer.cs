@@ -56,10 +56,8 @@
             this.Text = "CatalogDetailForm";
             this.ThemeName = "Office2013Light";
             this.TopMost = true;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
