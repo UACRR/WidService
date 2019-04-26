@@ -40,6 +40,9 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
+
+        private const string success = "Контроль виконано";
+        private const string fail = "Контроль невиконано";
         // перевірка валідності. . .
         private void btnAuditItems_Click(object sender, EventArgs e)
         {
@@ -48,7 +51,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             if (boolResult)
                 DataSource = result;
             
-            MessageShow.ShowInfoByResult("", "", boolResult);
+            MessageShow.ShowInfoByResult(success, fail, boolResult);
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -68,13 +71,15 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
+        private const string successPerform = "Виконано";
+        private const string failPerform = "Не виконано";
         private void btnPerform_Click(object sender, EventArgs e)
         {
             var result = _catalogFileItemsHandler.AttachCatalogFileItems(_catalogFile);
             var boolResult = result != null;
             if (boolResult)
                 DataSource = result;
-            MessageShow.ShowInfoByResult("", "", boolResult);
+            MessageShow.ShowInfoByResult(successPerform, failPerform, boolResult);
         }
     }
 }
