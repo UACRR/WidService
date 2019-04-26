@@ -97,11 +97,13 @@ namespace IpsViewComponentLibrary.CatalogControls
                 case "infoBtn":
                     CatalogFile selected = _files[gridCatalogFiles.CurrentRow.Index];
                     CatalogDetailForm form = new CatalogDetailForm(selected);
+                    form.Text = selected.FileName;
                     form.Show();
                     break;
                 case "editBtn":
                     CatalogFile commentedFile = _files[gridCatalogFiles.CurrentRow.Index];
                     changeComment comment = new changeComment(commentedFile.Comment);
+                    comment.Text = commentedFile.FileName;
                     comment.Show();
                     //var catalogFile = _catalogPresenter.DeleteCatalogFile(row.custId, row.fileId);
                     break;
