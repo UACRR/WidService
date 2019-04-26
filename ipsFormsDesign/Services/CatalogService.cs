@@ -84,18 +84,14 @@ namespace ipsFormsDesign.Services
         public CatalogFile ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/validate";
-            CatalogFile outCatalogFile;
-            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out outCatalogFile);
-
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out CatalogFile outCatalogFile);
             return outCatalogFile;
         }
 
         public CatalogFile ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/process";
-            CatalogFile outCatalogFile;
-            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out outCatalogFile);
-
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out CatalogFile outCatalogFile);
             return outCatalogFile;
         }
     }
