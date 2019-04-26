@@ -111,7 +111,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 
         public CatalogFile AuditCatalogFileItems(CatalogFile catalogFile)
         {
-            return _service.AuditCatalogFileItems(catalogFile);
+            return _service.ValidateCatalogFileItems(catalogFile);
         }
 
         public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)

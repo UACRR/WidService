@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
@@ -194,16 +195,22 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPut("validate")]
         public async Task<IActionResult> BeginValidationFile([FromBody] CatalogFile catalogFile)
         {
             IDbContextTransaction transaction = null;
             try
             {
-
-                transaction = _dbContext.Database.BeginTransaction();
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+                await _dbContext.Database.ExecuteSqlCommandAsync("exec CatalogControlPub @fileId", new SqlParameter("@fileId", catalogFile.FileId ) );
                 _dbContext.SaveChanges();
                 transaction.Commit();
-                return Ok();
+                var valiCatalog = _dbContext.CatalogFile
+                                    .Include(rec => rec.PubCatalogItem)
+                                        .ThenInclude(pub => pub.StatusNavigation)
+                                    .AsNoTracking()
+                                    .FirstOrDefaultAsync(rec => rec.FileId == catalogFile.FileId);
+                return Ok(valiCatalog);
             }
             catch
             {
