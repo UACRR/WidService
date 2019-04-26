@@ -26,7 +26,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
         public void SetDataInfo(LicenseAgrParam licenseParam)
         {
-            bindingSourceComment.DataSource = licenseParam;
+            bsComment.DataSource = licenseParam ?? new LicenseAgrParam();
             //шапка
             txtAgrNumber.Text = licenseParam?.LicNum ?? string.Empty;
             txtAgrDate.Text = licenseParam?.LicDate?.ToShortDateString() ?? string.Empty;
