@@ -80,7 +80,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                 {
                     var catalogFile = new CatalogFile
                     {
-                        //CustId = CustId,
+                        CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
                     _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
