@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.CatalogControls
 {
-    partial class changeComment
+    partial class ChangeComment
     {
         /// <summary>
         /// Required designer variable.

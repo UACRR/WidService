@@ -10,9 +10,9 @@ using Telerik.WinControls;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
-    public partial class changeComment : Telerik.WinControls.UI.RadForm
+    public partial class ChangeComment : Telerik.WinControls.UI.RadForm
     {
-        public changeComment(string comment)
+        public ChangeComment(string comment)
         {
             InitializeComponent();
             CtrlComment control = new CtrlComment(comment);
