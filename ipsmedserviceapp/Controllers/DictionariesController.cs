@@ -1375,11 +1375,12 @@ namespace ipsmedserviceapp.Controllers
                 sorsRghtKind.ToList().ForEach(sorsRow =>
                 {
                     var destRow = destRghtKind.Where(item => item.CodeI == sorsRow.CodeI).SingleOrDefault();
-                    if (destRow == null) throw new Exception($"Error update CopyrightKind with CodeI = {sorsRow.CodeI}");
+                    if (destRow == null)
+                        throw new Exception($"Error update CopyrightKind with CodeI = {sorsRow.CodeI}");
 
                     var sorsTr = sorsRow.CopyrightKindTr;
                     var destTr = destRow.CopyrightKindTr;
-                    _dbContext.UpdateList(sorsTr, destTr, 
+                    _dbContext.UpdateList(sorsTr, destTr,
                         row => row.CodeI = destRow.CodeI,
                         (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
@@ -1396,13 +1397,13 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                if (transaction != null)
-                    transaction.Rollback();
-                Console.WriteLine(ex.InnerException.Message);
-
+                transaction?.Rollback();
                 return BadRequest(ex.InnerException.Message);
             }
-
+            finally
+            {
+                transaction?.Dispose();
+            }
         }
 
 
@@ -1623,6 +1624,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(dest);
         }
+
         // Delete      ****************************
         [HttpDelete("extra/creativeroletype/{id}")]
         public async Task<IActionResult> DeleteCreativeRoleType(int id)
@@ -1636,18 +1638,23 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.CreativeRoleTypeTr.RemoveRange(delRow.CreativeRoleTypeTr);
             _dbContext.CreativeRoleType.Remove(delRow);
 
-            //await _dbContext.SaveChangesAsync();
-            
+            IDbContextTransaction transaction = null;
             try
             {
+                transaction = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+                return Ok();
             }
-            catch(Exception e)
+            catch
             {
-
+                transaction?.Rollback();
+                throw;
             }
-
-            return Ok();
+            finally
+            {
+                transaction?.Dispose();
+            }
         }
         // CreativeRoleType END **********************
 
@@ -1742,9 +1749,9 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 await _dbContext.SaveChangesAsync();
-            } catch (Exception e)
+            } catch
             {
-
+                throw;
             }
 
             return Ok(dest);
@@ -1767,9 +1774,9 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 await _dbContext.SaveChangesAsync();
-            } catch (Exception e)
+            } catch
             {
-
+                throw;
             }
 
             return Ok(dest);

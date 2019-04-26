@@ -1233,9 +1233,10 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             try
             {
                 await _dbContext.SaveChangesAsync();
-            } catch(Exception e)
+            }
+            catch
             {
-
+                throw;
             }
 
             //await _dbContext.SaveChangesAsync();
