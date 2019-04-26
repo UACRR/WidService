@@ -26,7 +26,7 @@ namespace ipsmedserviceapp.Controllers
         public async Task<IActionResult> GetCatalogFile(int custId, int fileId)
         {
             var catalogFile = await _dbContext.CatalogFile
-                .Include(rec => rec.PubСatalogItem)
+                .Include(rec => rec.PubCatalogItem)
                 .SingleOrDefaultAsync(rec => rec.CustId == custId && rec.FileId == fileId);
 
             if (catalogFile == null)
@@ -40,7 +40,7 @@ namespace ipsmedserviceapp.Controllers
         {
             var catalogFiles = await _dbContext.CatalogFile
                 .Where(rec => rec.CustId == custId)
-                .Include(rec => rec.PubСatalogItem)
+                .Include(rec => rec.PubCatalogItem)
                 .Include(rec => rec.StatusNavigation)
                 .ToListAsync();
             
@@ -54,7 +54,7 @@ namespace ipsmedserviceapp.Controllers
             IDbContextTransaction transaction = null;
             try
             {
-                if (source == null || !source.PubСatalogItem.Any())
+                if (source == null || !source.PubCatalogItem.Any())
                     return BadRequest("Loaded file is empty or not read!");
 
                 var vcustomer = await _dbContext.vCustomer.SingleOrDefaultAsync(rec => rec.CustId == custId);
@@ -70,7 +70,7 @@ namespace ipsmedserviceapp.Controllers
                     CustId = custId,
                     UserId = User.Identity.Name,
                     Status = 0,
-                    PubСatalogItem = new List<PubСatalogItem>()
+                    PubCatalogItem = new List<PubCatalogItem>()
                 };
                 destination.SetFields(source, excludedFields);
 
@@ -79,15 +79,15 @@ namespace ipsmedserviceapp.Controllers
                     // видавництво
                     case 3:
                         destination.RhType = 3;
-                        foreach (var item in source.PubСatalogItem)
+                        foreach (var item in source.PubCatalogItem)
                         {
-                            var pubСatalogItem = new PubСatalogItem
+                            var PubCatalogItem = new PubCatalogItem
                             {
                                 CustId = destination.CustId,
                                 Status = 0,
                             };
-                            pubСatalogItem.SetFields(item, excludedFields);
-                            destination.PubСatalogItem.Add(pubСatalogItem);
+                            PubCatalogItem.SetFields(item, excludedFields);
+                            destination.PubCatalogItem.Add(PubCatalogItem);
                         }
                         break;
 
@@ -129,7 +129,7 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 var catalogFile = await _dbContext.CatalogFile
-                    .Include(rec => rec.PubСatalogItem)
+                    .Include(rec => rec.PubCatalogItem)
                     .SingleOrDefaultAsync(rec => rec.CustId == custId && rec.FileId == fileId);
 
                 if (catalogFile == null)
@@ -138,7 +138,7 @@ namespace ipsmedserviceapp.Controllers
                 if (catalogFile.Status == 3 || catalogFile.Status == 4)
                     return BadRequest("CatalogFile with status 3 or 4 cannot be deleted!");
 
-                _dbContext.PubСatalogItem.RemoveRange(catalogFile.PubСatalogItem);
+                _dbContext.PubCatalogItem.RemoveRange(catalogFile.PubCatalogItem);
                 _dbContext.CatalogFile.Remove(catalogFile);
 
                 transaction = _dbContext.Database.BeginTransaction();
