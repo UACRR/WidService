@@ -73,5 +73,22 @@ namespace ipsFormsDesign.Services
             var result = _apiConnector.DeleteItem(url, fileId.ToString());
             return result;
         }
+
+        public bool SaveCatalogFileComment(CatalogFile catalogFile)
+        {
+            string url = $"{Prefix}/updatecomment";
+            var result = _apiConnector.UpdateItem(url, string.Empty, catalogFile);
+            return result;
+        }
+
+        public CatalogFile AuditCatalogFileItems(CatalogFile catalogFile)
+        {
+            return null;
+        }
+
+        public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)
+        {
+            return null;
+        }
     }
 }

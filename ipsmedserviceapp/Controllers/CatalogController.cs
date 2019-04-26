@@ -159,6 +159,36 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        [HttpPut("updatecomment")]
+        public async Task<IActionResult> UpdateComment([FromBody] CatalogFile catalogFile)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var destination = await _dbContext.CatalogFile
+                    .SingleOrDefaultAsync(rec => rec.CustId == catalogFile.CustId && rec.FileId == catalogFile.FileId);
+
+                if (destination == null)
+                    return NotFound($"CatalogFile with CustID:{catalogFile.CustId} and FileID:{catalogFile.FileId} not found!");
+
+                destination.Comment = catalogFile.Comment;
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                return Ok();
+            }
+            catch
+            {
+                transaction?.Rollback();
+                throw;
+            }
+            finally
+            {
+                transaction?.Dispose();
+            }
+        }
+
         public async Task<IActionResult> BeginValidationFile([FromBody] CatalogFile catalogFile)
         {
             IDbContextTransaction transaction = null;

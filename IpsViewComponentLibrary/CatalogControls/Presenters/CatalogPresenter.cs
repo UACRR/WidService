@@ -106,17 +106,17 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 
         public bool SaveCatalogFileComment(CatalogFile catalogFile)
         {
-            return false;
+            return _service.SaveCatalogFileComment(catalogFile);
         }
 
         public CatalogFile AuditCatalogFileItems(CatalogFile catalogFile)
         {
-            throw new NotImplementedException();
+            return _service.AuditCatalogFileItems(catalogFile);
         }
 
         public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)
         {
-            throw new NotImplementedException();
+            return _service.AttachCatalogFileItems(catalogFile);
         }
     }
 }
