@@ -283,7 +283,6 @@
 "TermUseTr",
 "TerritoryExclude",
 "TerritoryInclude",
-"TmpAuthor",
 "TradeStatus",
 "TypeInternetObject",
 "TypeInternetObjectTr",
