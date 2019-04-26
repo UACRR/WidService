@@ -159,6 +159,11 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Оновити коментар CatalogFile
+        /// </summary>
+        /// <param name="catalogFile"></param>
+        /// <returns></returns>
         [HttpPut("updatecomment")]
         public async Task<IActionResult> UpdateComment([FromBody] CatalogFile catalogFile)
         {
