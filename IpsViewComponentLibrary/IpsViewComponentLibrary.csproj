@@ -167,17 +167,17 @@
     <Compile Include="CatalogControls\CatalogShowEdition.Designer.cs">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\ChangeComment.cs">
+    <Compile Include="CatalogControls\ChangeCommentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CatalogControls\ChangeComment.Designer.cs">
-      <DependentUpon>ChangeComment.cs</DependentUpon>
+    <Compile Include="CatalogControls\ChangeCommentForm.Designer.cs">
+      <DependentUpon>ChangeCommentForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\CtrlComment.cs">
+    <Compile Include="CatalogControls\CommentControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CatalogControls\CtrlComment.Designer.cs">
-      <DependentUpon>CtrlComment.cs</DependentUpon>
+    <Compile Include="CatalogControls\CommentControl.Designer.cs">
+      <DependentUpon>CommentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
     <Compile Include="Common\Enums\NavigateType.cs" />
@@ -1151,11 +1151,11 @@
     <EmbeddedResource Include="CatalogControls\CatalogShowEdition.resx">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\ChangeComment.resx">
-      <DependentUpon>ChangeComment.cs</DependentUpon>
+    <EmbeddedResource Include="CatalogControls\ChangeCommentForm.resx">
+      <DependentUpon>ChangeCommentForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\CtrlComment.resx">
-      <DependentUpon>CtrlComment.cs</DependentUpon>
+    <EmbeddedResource Include="CatalogControls\CommentControl.resx">
+      <DependentUpon>CommentControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\GridRowCountControl.resx">
       <DependentUpon>GridRowCountControl.cs</DependentUpon>

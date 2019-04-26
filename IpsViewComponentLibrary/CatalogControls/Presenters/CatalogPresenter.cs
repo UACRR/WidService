@@ -104,6 +104,10 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.DeleteCatalogFile(custId, fileId);
         }
 
+        public bool SaveCatalogFileComment(CatalogFile catalogFile)
+        {
+            return false;
+        }
 
     }
 }

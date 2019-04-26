@@ -15,8 +15,15 @@ namespace IpsViewComponentLibrary.CatalogControls
         public CatalogDetailForm(CatalogFile file)
         {
             InitializeComponent();
+            Text = file.FileName;
             CatalogShowEdition show = new CatalogShowEdition(file);
             Controls.Add(show);
+        }
+
+        public sealed override string Text
+        {
+            get => base.Text;
+            set => base.Text = value;
         }
     }
 }

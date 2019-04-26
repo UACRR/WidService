@@ -843,7 +843,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageCatalog.DefaultPage = this.Anketa;
             this.pageCatalog.Location = new System.Drawing.Point(0, 1);
             this.pageCatalog.Name = "pageCatalog";
-            this.pageCatalog.SelectedPage = this.radPagCatalog;
+            this.pageCatalog.SelectedPage = this.Anketa;
             this.pageCatalog.Size = new System.Drawing.Size(1019, 481);
             this.pageCatalog.TabIndex = 20;
             this.pageCatalog.ThemeName = "Office2013Light";
@@ -1134,6 +1134,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // ctrlCatalog
             // 
+            this.ctrlCatalog.CustId = 0;
             this.ctrlCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlCatalog.Location = new System.Drawing.Point(0, 0);
             this.ctrlCatalog.Name = "ctrlCatalog";

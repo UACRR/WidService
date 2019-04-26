@@ -11,12 +11,20 @@ using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
-    public partial class CtrlComment : UserControl
+    public partial class CommentControl : UserControl
     {
-        public CtrlComment(string selected)
+        public CommentControl()
         {
             InitializeComponent();
-            txtComm.Text = selected;
+        }
+
+        /// <summary>
+        /// CatalogFile Data Source
+        /// </summary>
+        public object DataSource
+        {
+            get => bsComment.DataSource;
+            set => bsComment.DataSource = value;
         }
     }
 }

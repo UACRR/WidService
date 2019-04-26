@@ -1,6 +1,6 @@
 ﻿namespace IpsViewComponentLibrary.CatalogControls
 {
-    partial class ChangeComment
+    partial class ChangeCommentForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ctrlComment1 = new IpsViewComponentLibrary.CatalogControls.CtrlComment("");
+            this.ctrlComment = new IpsViewComponentLibrary.CatalogControls.CommentControl();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctrlComment1
+            // ctrlComment
             // 
-            this.ctrlComment1.BackColor = System.Drawing.Color.White;
-            this.ctrlComment1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlComment1.Location = new System.Drawing.Point(0, 0);
-            this.ctrlComment1.Name = "ctrlComment1";
-            this.ctrlComment1.Size = new System.Drawing.Size(659, 409);
-            this.ctrlComment1.TabIndex = 0;
+            this.ctrlComment.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
+            this.ctrlComment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlComment.Location = new System.Drawing.Point(0, 0);
+            this.ctrlComment.Name = "ctrlComment";
+            this.ctrlComment.Size = new System.Drawing.Size(566, 251);
+            this.ctrlComment.TabIndex = 0;
             // 
-            // changeComment
+            // ChangeCommentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 409);
-            this.Controls.Add(this.ctrlComment1);
-            this.Name = "changeComment";
+            this.ClientSize = new System.Drawing.Size(566, 251);
+            this.Controls.Add(this.ctrlComment);
+            this.Name = "ChangeCommentForm";
             // 
             // 
             // 
             this.RootElement.ApplyShapeToControl = true;
-            this.Text = "changeComment";
+            this.Text = "Коментар";
             this.ThemeName = "Office2013Light";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
@@ -61,6 +62,7 @@
 
         #endregion
 
-        private CtrlComment ctrlComment1;
+        private CommentControl ctrlComment;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
