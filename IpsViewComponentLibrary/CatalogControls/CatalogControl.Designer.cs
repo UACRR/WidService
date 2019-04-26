@@ -123,9 +123,11 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.HeaderText = "";
             gridViewCommandColumn1.Image = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
+            gridViewCommandColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Center;
             gridViewCommandColumn1.MaxWidth = 30;
             gridViewCommandColumn1.MinWidth = 30;
             gridViewCommandColumn1.Name = "infoBtn";
+            gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.Width = 30;
             gridViewCommandColumn2.FieldName = "editBtn";
             gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.editIcon;
@@ -135,7 +137,9 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewCommandColumn2.MaxWidth = 30;
             gridViewCommandColumn2.MinWidth = 30;
             gridViewCommandColumn2.Name = "editBtn";
+            gridViewCommandColumn2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn2.Width = 30;
+            gridViewCommandColumn2.WrapText = true;
             gridViewCommandColumn3.FieldName = "deleteBtn";
             gridViewCommandColumn3.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn3.HeaderText = "";
@@ -144,6 +148,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewCommandColumn3.MaxWidth = 30;
             gridViewCommandColumn3.MinWidth = 30;
             gridViewCommandColumn3.Name = "deleteBtn";
+            gridViewCommandColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn3.Width = 30;
             this.gridCatalogFiles.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
