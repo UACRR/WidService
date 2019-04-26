@@ -8,7 +8,7 @@ namespace ipsFormsDesign.Model
     {
         public CatalogFile()
         {
-            PubÑatalogItem = new ObservableListSource<PubÑatalogItem>();
+            PubCatalogItem = new ObservableListSource<PubCatalogItem>();
             RhñatalogItem = new ObservableListSource<RhñatalogItem>();
         }
 
@@ -29,7 +29,7 @@ namespace ipsFormsDesign.Model
         public virtual RightHolder Cust { get; set; }
         public virtual RholderType RhTypeNavigation { get; set; }
         public virtual CatalogStatus StatusNavigation { get; set; }
-        public virtual ObservableListSource<PubÑatalogItem> PubÑatalogItem { get; set; }
+        public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
         public virtual ObservableListSource<RhñatalogItem> RhñatalogItem { get; set; }
     }
 }
