@@ -198,13 +198,10 @@ namespace ipsmedserviceapp.Controllers
         [HttpPut("validate/{fileId}")]
         public async Task<IActionResult> BeginValidationFile(int fileId )
         {
-            IDbContextTransaction transaction = null;
             try
             {
-                transaction = await _dbContext.Database.BeginTransactionAsync();
                 await _dbContext.Database.ExecuteSqlCommandAsync("exec CatalogControlPub @fileId", new SqlParameter("@fileId", fileId ) );
-                _dbContext.SaveChanges();
-                transaction.Commit();
+
                 var valiCatalog = await _dbContext.CatalogFile
                                     .Include(rec => rec.PubCatalogItem)
                                         .ThenInclude(pub => pub.StatusNavigation)
@@ -214,15 +211,31 @@ namespace ipsmedserviceapp.Controllers
             }
             catch
             {
-                transaction?.Rollback();
                 throw;
             }
-            //finally
-            //{
-            //    // transaction?.Dispose();
-            //}
+
         }
 
+        [HttpPut("process/{fileId}")]
+        public async Task<IActionResult> BeginProcessFile(int fileId)
+        {
+            try
+            {
+                await _dbContext.Database.ExecuteSqlCommandAsync("exec CatalogInputPub @fileId", new SqlParameter("@fileId", fileId));
+
+                var valiCatalog = await _dbContext.CatalogFile
+                                    .Include(rec => rec.PubCatalogItem)
+                                        .ThenInclude(pub => pub.StatusNavigation)
+                                    .AsNoTracking()
+                                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                return Ok(valiCatalog);
+            }
+            catch
+            {
+                throw;
+            }
+
+        }
 
     }
 }

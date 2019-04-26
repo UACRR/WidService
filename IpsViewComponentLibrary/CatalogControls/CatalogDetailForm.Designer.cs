@@ -55,9 +55,9 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "CatalogDetailForm";
             this.ThemeName = "Office2013Light";
-            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
+
         }
 
         #endregion

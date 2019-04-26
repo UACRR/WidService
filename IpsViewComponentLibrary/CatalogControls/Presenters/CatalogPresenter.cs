@@ -116,7 +116,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 
         public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)
         {
-            return _service.AttachCatalogFileItems(catalogFile);
+            return _service.ProcessCatalogFileItems(catalogFile);
         }
     }
 }

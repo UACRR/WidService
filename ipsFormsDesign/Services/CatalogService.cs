@@ -90,9 +90,13 @@ namespace ipsFormsDesign.Services
             return outCatalogFile;
         }
 
-        public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)
+        public CatalogFile ProcessCatalogFileItems(CatalogFile catalogFile)
         {
-            return null;
+            string url = $"{Prefix}/process";
+            CatalogFile outCatalogFile;
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out outCatalogFile);
+
+            return outCatalogFile;
         }
     }
 }
