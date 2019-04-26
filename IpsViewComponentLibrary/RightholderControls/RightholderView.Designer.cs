@@ -120,10 +120,10 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ddbAddObjectRightForRightholder = new Telerik.WinControls.UI.RadDropDownButton();
             this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
-            this.pvCatalog = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlCatalogCombine = new IpsViewComponentLibrary.CatalogControls.CatalogCombine();
-            this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.radPagCatalog = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlCatalog = new IpsViewComponentLibrary.CatalogControls.CatalogControl();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
@@ -199,7 +199,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).BeginInit();
-            this.pvCatalog.SuspendLayout();
+            this.radPagCatalog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -220,7 +220,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.anketaPageView.Location = new System.Drawing.Point(0, 0);
             this.anketaPageView.Name = "anketaPageView";
             this.anketaPageView.SelectedPage = this.rightholderPersonPage;
-            this.anketaPageView.Size = new System.Drawing.Size(1006, 462);
+            this.anketaPageView.Size = new System.Drawing.Size(1006, 466);
             this.anketaPageView.TabIndex = 2;
             this.anketaPageView.ThemeName = "Office2013Light";
             this.anketaPageView.SelectedPageChanged += new System.EventHandler(this.anketaPageView_SelectedPageChanged);
@@ -234,7 +234,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.rightholderPersonPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
             this.rightholderPersonPage.Location = new System.Drawing.Point(103, 5);
             this.rightholderPersonPage.Name = "rightholderPersonPage";
-            this.rightholderPersonPage.Size = new System.Drawing.Size(898, 452);
+            this.rightholderPersonPage.Size = new System.Drawing.Size(898, 456);
             this.rightholderPersonPage.Text = "Правовласник";
             // 
             // ctrlAnketaPersonRightholderPage
@@ -246,7 +246,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlAnketaPersonRightholderPage.Location = new System.Drawing.Point(0, -2);
             this.ctrlAnketaPersonRightholderPage.Name = "ctrlAnketaPersonRightholderPage";
             this.ctrlAnketaPersonRightholderPage.RightholderDataSource = this.bsRightHolder;
-            this.ctrlAnketaPersonRightholderPage.Size = new System.Drawing.Size(898, 252);
+            this.ctrlAnketaPersonRightholderPage.Size = new System.Drawing.Size(899, 252);
             this.ctrlAnketaPersonRightholderPage.TabIndex = 0;
             // 
             // bsAnketaPerson
@@ -267,7 +267,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.rightholderCompanyPage.ItemSize = new System.Drawing.SizeF(99F, 27F);
             this.rightholderCompanyPage.Location = new System.Drawing.Point(103, 5);
             this.rightholderCompanyPage.Name = "rightholderCompanyPage";
-            this.rightholderCompanyPage.Size = new System.Drawing.Size(898, 452);
+            this.rightholderCompanyPage.Size = new System.Drawing.Size(898, 446);
             this.rightholderCompanyPage.Text = "Правовласник";
             // 
             // ctrlAnketaCompanyRightholderPage
@@ -472,7 +472,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             this.radLabel6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.radLabel6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radLabel6.Location = new System.Drawing.Point(59, 3);
+            this.radLabel6.Location = new System.Drawing.Point(61, 3);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(134, 25);
             this.radLabel6.TabIndex = 9;
@@ -575,9 +575,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             // createRightholderRoyaltyBankPage
             // 
             this.createRightholderRoyaltyBankPage.Controls.Add(this.ctrlBankAccount);
-            this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(29, 5);
+            this.createRightholderRoyaltyBankPage.Location = new System.Drawing.Point(31, 5);
             this.createRightholderRoyaltyBankPage.Name = "createRightholderRoyaltyBankPage";
-            this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(828, 403);
+            this.createRightholderRoyaltyBankPage.Size = new System.Drawing.Size(826, 403);
             this.createRightholderRoyaltyBankPage.Text = "createRightholderRoyaltyBankPage";
             // 
             // ctrlBankAccount
@@ -839,11 +839,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageCatalog.Controls.Add(this.Contract);
             this.pageCatalog.Controls.Add(this.AnketaExternal);
             this.pageCatalog.Controls.Add(this.pageObjects);
-            this.pageCatalog.Controls.Add(this.pvCatalog);
+            this.pageCatalog.Controls.Add(this.radPagCatalog);
             this.pageCatalog.DefaultPage = this.Anketa;
             this.pageCatalog.Location = new System.Drawing.Point(0, 1);
             this.pageCatalog.Name = "pageCatalog";
-            this.pageCatalog.SelectedPage = this.Anketa;
+            this.pageCatalog.SelectedPage = this.radPagCatalog;
             this.pageCatalog.Size = new System.Drawing.Size(1019, 481);
             this.pageCatalog.TabIndex = 20;
             this.pageCatalog.ThemeName = "Office2013Light";
@@ -896,9 +896,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
-            this.agreementPage.Location = new System.Drawing.Point(141, 5);
+            this.agreementPage.Location = new System.Drawing.Point(139, 5);
             this.agreementPage.Name = "agreementPage";
-            this.agreementPage.Size = new System.Drawing.Size(863, 435);
+            this.agreementPage.Size = new System.Drawing.Size(865, 435);
             this.agreementPage.Text = "Договір";
             // 
             // gboxRightholderStatus
@@ -1019,9 +1019,9 @@ namespace IpsViewComponentLibrary.RightholderControls
             // radPageViewPage5
             // 
             this.radPageViewPage5.Controls.Add(this.anketaExternalRightholderControl1);
-            this.radPageViewPage5.Location = new System.Drawing.Point(117, 5);
+            this.radPageViewPage5.Location = new System.Drawing.Point(115, 5);
             this.radPageViewPage5.Name = "radPageViewPage5";
-            this.radPageViewPage5.Size = new System.Drawing.Size(884, 438);
+            this.radPageViewPage5.Size = new System.Drawing.Size(886, 438);
             this.radPageViewPage5.Text = "Правовласник";
             // 
             // anketaExternalRightholderControl1
@@ -1123,24 +1123,22 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightholdersObjectsRight.Size = new System.Drawing.Size(1009, 415);
             this.ctrlRightholdersObjectsRight.TabIndex = 8;
             // 
-            // pvCatalog
+            // radPagCatalog
             // 
-            this.pvCatalog.Controls.Add(this.ctrlCatalogCombine);
-            this.pvCatalog.Enabled = false;
-            this.pvCatalog.ItemSize = new System.Drawing.SizeF(65F, 27F);
-            this.pvCatalog.Location = new System.Drawing.Point(5, 31);
-            this.pvCatalog.Name = "pvCatalog";
-            this.pvCatalog.Size = new System.Drawing.Size(1009, 445);
-            this.pvCatalog.Text = "Каталоги";
+            this.radPagCatalog.Controls.Add(this.ctrlCatalog);
+            this.radPagCatalog.ItemSize = new System.Drawing.SizeF(65F, 27F);
+            this.radPagCatalog.Location = new System.Drawing.Point(5, 31);
+            this.radPagCatalog.Name = "radPagCatalog";
+            this.radPagCatalog.Size = new System.Drawing.Size(1009, 445);
+            this.radPagCatalog.Text = "Каталоги";
             // 
-            // ctrlCatalogCombine
+            // ctrlCatalog
             // 
-            this.ctrlCatalogCombine.CustomerId = 0;
-            this.ctrlCatalogCombine.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlCatalogCombine.Location = new System.Drawing.Point(0, 0);
-            this.ctrlCatalogCombine.Name = "ctrlCatalogCombine";
-            this.ctrlCatalogCombine.Size = new System.Drawing.Size(1009, 445);
-            this.ctrlCatalogCombine.TabIndex = 0;
+            this.ctrlCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlCatalog.Location = new System.Drawing.Point(0, 0);
+            this.ctrlCatalog.Name = "ctrlCatalog";
+            this.ctrlCatalog.Size = new System.Drawing.Size(1009, 445);
+            this.ctrlCatalog.TabIndex = 0;
             // 
             // termsOfServiceWrapperBindingSource
             // 
@@ -1247,7 +1245,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).EndInit();
-            this.pvCatalog.ResumeLayout(false);
+            this.radPagCatalog.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -1347,7 +1345,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage12;
         private System.Windows.Forms.BindingSource termsOfServiceWrapperBindingSource;
         private Anketa.RightLimitationsControl rightLimitationsControl1_ExternalAnketa;
-        private Telerik.WinControls.UI.RadPageViewPage pvCatalog;
-        private CatalogControls.CatalogCombine ctrlCatalogCombine;
+        private Telerik.WinControls.UI.RadPageViewPage radPagCatalog;
+        private CatalogControls.CatalogControl ctrlCatalog;
     }
 }

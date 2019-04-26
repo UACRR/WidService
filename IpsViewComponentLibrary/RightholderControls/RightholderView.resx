@@ -168,11 +168,11 @@
         7ZAjIjfzf4O8ltwgaOjdNwlLoBxaAuXQEiiH/z2w+gNXcnWOrSqTSgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="termsOfServiceWrapperBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>162, 57</value>
-  </metadata>
   <metadata name="saveFileDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1016, 18</value>
+  </metadata>
+  <metadata name="termsOfServiceWrapperBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>162, 57</value>
   </metadata>
   <metadata name="bsAnketaExternal.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 57</value>

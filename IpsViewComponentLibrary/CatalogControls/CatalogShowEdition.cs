@@ -8,15 +8,14 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
-        public EventHandler back;
         private GridViewSpreadExport spreadExporter;
-        public CatalogShowEdition()
+        public CatalogShowEdition(CatalogFile file)
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             spreadExporter = new GridViewSpreadExport(gridDetailInfo);
-            catalogFileBindingSource.DataSource = FillFileData();
-            PubCatalogItemBindingSource.DataSource = FillGridDetail();
+            catalogFileBindingSource.DataSource = file;
+            pubСatalogItemBindingSource.DataSource = FillGridDetail();
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -33,10 +32,10 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
-        private List<PubCatalogItem> FillGridDetail()
+        private List<PubСatalogItem> FillGridDetail()
         {
-            return new List<PubCatalogItem> {
-                new PubCatalogItem {
+            return new List<PubСatalogItem> {
+                new PubСatalogItem {
                     ItemCode = "itemCode",
                     Iswc = "iswc",
                     ObjName = "objName",
@@ -46,6 +45,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                     AuthorText = "AuthorText",
                     Performer = "Performer",
                     Comment = "comment",
+                    CmName = "cmName",
                     ErrComment = "ErrComment"
                 }
             };
@@ -65,9 +65,9 @@ namespace IpsViewComponentLibrary.CatalogControls
 
         }
 
-        private void btnBack_Click(object sender, EventArgs e)
+        private void CatalogShowEdition_Load(object sender, EventArgs e)
         {
-            back.Invoke(sender, e);
+
         }
     }
 }

@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             set
             {
                 bsCustomer.DataSource = value;
-                ctrlCatalogCombine.CustomerId = ((Customer)value).CustId;
+                ctrlCatalog.CustId = ((Customer) value).CustId;
             }
         }
 
@@ -105,8 +105,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderView()
         {
             InitializeComponent();
-            WindowState = FormWindowState.Maximized;
-            StartPosition = FormStartPosition.CenterScreen;
 
             setupSaveAs();
             SetDictionaries();
@@ -117,26 +115,13 @@ namespace IpsViewComponentLibrary.RightholderControls
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
 
-            ////when action file detail
-            //ctrlFileGrid.command += SwapControl;
+            //catalogControl1.command += 
         }
 
         ~RightholderView()
         {
             wordEngine = null;
         }
-
-        ///// <summary>
-        ///// change active controls
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void SwapControl(object sender, EventArgs e)
-        //{
-        //    radPagCatalog.Controls.Clear();
-        //    CatalogShowEdition control = new CatalogShowEdition();
-        //    radPagCatalog.Controls.Add(control);
-        //}
 
         private void setupSaveAs()
         {
@@ -309,15 +294,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             var agrMaster = customer.AgreementMaster.First();
             if (agrMaster == null) return;
 
-;
-            var agrType = IpsGlobal.AnketaDictionaties.agreementType.FirstOrDefault(item => item.CodeI == agrMaster.AgrType);
-            if (string.IsNullOrEmpty(agrType.TemplateName))
-            {
-                MessageBox.Show($"Немає шаблону договору для типу правовласника '{agrType.Name}'");
-                return;
-            }
-            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", agrType.TemplateName);
+            var templateName = IpsGlobal.AnketaDictionaties.agreementType.FirstOrDefault(item => item.CodeI == agrMaster.AgrType)?.TemplateName;
+            if (string.IsNullOrEmpty(templateName))
+                templateName = "F_ГО УААСП Автор.docx";
 
+            var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", templateName);
+            // var template = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "F_ГО УААСП Автор.docx");
 
             btnGenerateRightholderAgreement.Enabled = false;
             waitbarAgreement.StartWaiting();

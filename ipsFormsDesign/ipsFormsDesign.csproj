@@ -194,7 +194,6 @@
     <Compile Include="Model\BrRegItem.cs" />
     <Compile Include="Model\CatalogFile.cs" />
     <Compile Include="Model\CatalogStatus.cs" />
-    <Compile Include="Model\CatalogStatusTr.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\CategoryStatusType.cs" />
     <Compile Include="Model\CategoryStatusTypeTr.cs" />
@@ -355,7 +354,7 @@
     <Compile Include="Model\PositionTypeTr.cs" />
     <Compile Include="Model\PrePayType.cs" />
     <Compile Include="Model\PrePayTypeTr.cs" />
-    <Compile Include="Model\PubCatalogItem.cs" />
+    <Compile Include="Model\PubСatalogItem.cs" />
     <Compile Include="Model\Region.cs" />
     <Compile Include="Model\RegionTr.cs" />
     <Compile Include="Model\Register.cs" />

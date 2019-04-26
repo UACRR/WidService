@@ -437,12 +437,6 @@ public interface ICatalogStatus
     {    int CodeI { get; set; }
          string Name { get; set; }
 }
-public interface ICatalogStatusTr
-    {
-         int CodeI { get; set; }
-         string Lang { get; set; }
-         string Name { get; set; }
-}
 public interface ICategory
     {    int CodeI { get; set; }
          string Name { get; set; }
@@ -1612,9 +1606,10 @@ public interface IPrePayTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
-public interface IPubCatalogItem
+public interface IPub—atalogItem
     {
          int ItemId { get; set; }
+         int? CodeI { get; set; }
          int? FileId { get; set; }
          int? CRightId { get; set; }
          int? CustId { get; set; }
@@ -1631,6 +1626,8 @@ public interface IPubCatalogItem
          int? ObjId { get; set; }
          int? GenreCode { get; set; }
          int? RoleCode { get; set; }
+         string CmName { get; set; }
+         int? CmCustId { get; set; }
          int? Status { get; set; }
          string ErrComment { get; set; }
 }
