@@ -35,6 +35,7 @@
             // 
             // ctrlCatalogShowEdition
             // 
+            this.ctrlCatalogShowEdition.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
             this.ctrlCatalogShowEdition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlCatalogShowEdition.Location = new System.Drawing.Point(0, 0);
             this.ctrlCatalogShowEdition.Name = "ctrlCatalogShowEdition";
@@ -54,6 +55,8 @@
             this.RootElement.ApplyShapeToControl = true;
             this.Text = "CatalogDetailForm";
             this.ThemeName = "Office2013Light";
+            this.TopMost = true;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
