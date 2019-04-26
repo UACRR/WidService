@@ -105,7 +105,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridDetailInfo.EnableCustomFiltering = true;
-            this.gridDetailInfo.Location = new System.Drawing.Point(3, 163);
+            this.gridDetailInfo.Location = new System.Drawing.Point(3, 99);
             // 
             // 
             // 
@@ -191,7 +191,7 @@
             this.gridDetailInfo.Name = "gridDetailInfo";
             this.gridDetailInfo.ReadOnly = true;
             this.gridDetailInfo.ShowGroupPanel = false;
-            this.gridDetailInfo.Size = new System.Drawing.Size(802, 356);
+            this.gridDetailInfo.Size = new System.Drawing.Size(802, 420);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
             // 
@@ -224,7 +224,8 @@
             // 
             // radLabel1
             // 
-            this.radLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel1.AutoSize = false;
             this.radLabel1.Location = new System.Drawing.Point(3, 3);
             this.radLabel1.Name = "radLabel1";
@@ -235,7 +236,8 @@
             // 
             // radLabel2
             // 
-            this.radLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel2.AutoSize = false;
             this.radLabel2.Controls.Add(this.radLabel4);
             this.radLabel2.Location = new System.Drawing.Point(280, 3);
@@ -257,7 +259,8 @@
             // 
             // radLabel3
             // 
-            this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel3.AutoSize = false;
             this.radLabel3.Location = new System.Drawing.Point(280, 27);
             this.radLabel3.Name = "radLabel3";
@@ -268,7 +271,8 @@
             // 
             // radLabel5
             // 
-            this.radLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel5.AutoSize = false;
             this.radLabel5.Location = new System.Drawing.Point(3, 75);
             this.radLabel5.Name = "radLabel5";
@@ -279,7 +283,8 @@
             // 
             // radLabel6
             // 
-            this.radLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel6.AutoSize = false;
             this.radLabel6.Location = new System.Drawing.Point(3, 51);
             this.radLabel6.Name = "radLabel6";
@@ -290,7 +295,8 @@
             // 
             // radLabel7
             // 
-            this.radLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel7.AutoSize = false;
             this.radLabel7.Location = new System.Drawing.Point(3, 27);
             this.radLabel7.Name = "radLabel7";
@@ -301,7 +307,8 @@
             // 
             // radLabel8
             // 
-            this.radLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel8.AutoSize = false;
             this.radLabel8.Location = new System.Drawing.Point(280, 51);
             this.radLabel8.Name = "radLabel8";
@@ -312,7 +319,8 @@
             // 
             // radLabel9
             // 
-            this.radLabel9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel9.AutoSize = false;
             this.radLabel9.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CreateDate", true));
             this.radLabel9.Location = new System.Drawing.Point(123, 3);
@@ -328,7 +336,8 @@
             // 
             // radLabel10
             // 
-            this.radLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel10.AutoSize = false;
             this.radLabel10.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "Status", true));
             this.radLabel10.Location = new System.Drawing.Point(123, 27);
@@ -340,7 +349,8 @@
             // 
             // radLabel11
             // 
-            this.radLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel11.AutoSize = false;
             this.radLabel11.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "Comment", true));
             this.radLabel11.Location = new System.Drawing.Point(123, 51);
@@ -352,7 +362,8 @@
             // 
             // radLabel12
             // 
-            this.radLabel12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel12.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel12.AutoSize = false;
             this.radLabel12.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CustName", true));
             this.radLabel12.Location = new System.Drawing.Point(123, 75);
@@ -364,7 +375,8 @@
             // 
             // radLabel13
             // 
-            this.radLabel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel13.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel13.AutoSize = false;
             this.radLabel13.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountZap", true));
             this.radLabel13.Location = new System.Drawing.Point(441, 3);
@@ -376,7 +388,8 @@
             // 
             // radLabel14
             // 
-            this.radLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel14.AutoSize = false;
             this.radLabel14.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountErr", true));
             this.radLabel14.Location = new System.Drawing.Point(441, 27);
@@ -388,7 +401,8 @@
             // 
             // radLabel15
             // 
-            this.radLabel15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.radLabel15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel15.AutoSize = false;
             this.radLabel15.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCatalogFile, "CountOk", true));
             this.radLabel15.Location = new System.Drawing.Point(441, 51);
