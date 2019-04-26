@@ -14,6 +14,9 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string EditCommentSuccessMsg = "";
         private const string EditCommentErrorMsg = "";
 
+        private const string DeleteCatalogFileSuccessMsg = "";
+        private const string DeleteCatalogFileErrorMsg = "";
+
         private readonly CatalogPresenter _catalogPresenter;
 
         //public int CustomerId { get; set; }
@@ -94,6 +97,8 @@ namespace IpsViewComponentLibrary.CatalogControls
                     {
                         var result = _catalogPresenter.SaveCatalogFileComment(row);
                         MessageShow.ShowInfoByResult(EditCommentSuccessMsg, EditCommentErrorMsg, result);
+                        if (result)
+                            UpdateGridData();
                     }
 
                     break;
@@ -101,7 +106,10 @@ namespace IpsViewComponentLibrary.CatalogControls
                 case "deleteBtn":
                     if (MessageShow.ConfirmAction(ConfirmDeleteCatalogFile) == DialogResult.Yes)
                     {
-                        //var result = _catalogPresenter.DeleteCatalogFile(row.custId, row.fileId);
+                        var result = _catalogPresenter.DeleteCatalogFile((int)row.CustId, row.FileId);
+                        MessageShow.ShowInfoByResult(DeleteCatalogFileSuccessMsg, DeleteCatalogFileErrorMsg, result);
+                        if (result)
+                            UpdateGridData();
                     }
                     break;
             }
