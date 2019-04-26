@@ -76,7 +76,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             set
             {
                 bsCustomer.DataSource = value;
-                //ctrlCatalogCombine.CustId = ((Customer) value).CustId;
+                ctrlCatalog.CustId = ((Customer) value).CustId;
             }
         }
 

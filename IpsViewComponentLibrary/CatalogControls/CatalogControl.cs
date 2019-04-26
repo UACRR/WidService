@@ -13,6 +13,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string ConfirmDeleteCatalogFile = "Ви дійсно хочете видалити файл?";
         public EventHandler command;
         //public int CustomerId { get; set; }
+        public int CustId { get; set; }
         public delegate int ShowCustomerId();
         private CatalogPresenter _catalogPresenter;
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
@@ -41,22 +42,23 @@ namespace IpsViewComponentLibrary.CatalogControls
         /// </summary>
         private List<CatalogFile> FillGridData()
         {
-            //return _catalogPresenter.GetFileList(CustId);
-            _files = new List<CatalogFile> {
-                new CatalogFile {
-                    FileId = 666,
-                    CustName = "CustName",
-                    FileName = "fileName",
-                    CreateDate = DateTime.Now,
-                    UserId = "userId",
-                    Status = 0,
-                    Comment = "comment",
-                    CountZap = 1,
-                    CountOk = 2,
-                    CountErr = 3
-                }
-            };
+            _files = _catalogPresenter.GetFileList(CustId);
             return _files;
+            //_files = new List<CatalogFile> {
+            //    new CatalogFile {
+            //        FileId = 666,
+            //        CustName = "CustName",
+            //        FileName = "fileName",
+            //        CreateDate = DateTime.Now,
+            //        UserId = "userId",
+            //        Status = 0,
+            //        Comment = "comment",
+            //        CountZap = 1,
+            //        CountOk = 2,
+            //        CountErr = 3
+            //    }
+            //};
+            //return _files;
         }
 
         /// <summary>
