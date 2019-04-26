@@ -190,21 +190,21 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        [HttpPut("validate")]
-        public async Task<IActionResult> BeginValidationFile([FromBody] CatalogFile catalogFile)
+        [HttpPut("validate/{fileId}")]
+        public async Task<IActionResult> BeginValidationFile(int fileId )
         {
             IDbContextTransaction transaction = null;
             try
             {
                 transaction = await _dbContext.Database.BeginTransactionAsync();
-                await _dbContext.Database.ExecuteSqlCommandAsync("exec CatalogControlPub @fileId", new SqlParameter("@fileId", catalogFile.FileId ) );
+                await _dbContext.Database.ExecuteSqlCommandAsync("exec CatalogControlPub @fileId", new SqlParameter("@fileId", fileId ) );
                 _dbContext.SaveChanges();
                 transaction.Commit();
-                var valiCatalog = _dbContext.CatalogFile
+                var valiCatalog = await _dbContext.CatalogFile
                                     .Include(rec => rec.PubCatalogItem)
                                         .ThenInclude(pub => pub.StatusNavigation)
                                     .AsNoTracking()
-                                    .FirstOrDefaultAsync(rec => rec.FileId == catalogFile.FileId);
+                                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
                 return Ok(valiCatalog);
             }
             catch
@@ -212,10 +212,10 @@ namespace ipsmedserviceapp.Controllers
                 transaction?.Rollback();
                 throw;
             }
-            finally
-            {
-                transaction?.Dispose();
-            }
+            //finally
+            //{
+            //    // transaction?.Dispose();
+            //}
         }
 
 
