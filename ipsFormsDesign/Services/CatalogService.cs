@@ -85,7 +85,7 @@ namespace ipsFormsDesign.Services
         {
             string url = $"{Prefix}/validate";
             CatalogFile outCatalogFile;
-            var result = _apiConnector.UpdateItemWithResult(url, string.Empty, catalogFile, out outCatalogFile);
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out outCatalogFile);
 
             return outCatalogFile;
         }
