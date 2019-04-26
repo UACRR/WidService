@@ -1,72 +1,74 @@
 ﻿using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using IpsViewComponentLibrary.CatalogControls.Presenters;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
-        private GridViewSpreadExport spreadExporter;
-        public CatalogShowEdition(CatalogFile file)
+        private CatalogFile _catalogFile = null;
+        private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
+        public CatalogShowEdition()
         {
             InitializeComponent();
-            Dock = DockStyle.Fill;
-            spreadExporter = new GridViewSpreadExport(gridDetailInfo);
-            catalogFileBindingSource.DataSource = file;
-            PubCatalogItemBindingSource.DataSource = FillGridDetail();
+            _catalogFileItemsHandler = new CatalogPresenter();
+        }
+
+        public object DataSource
+        {
+            get => bsCatalogFile.DataSource;
+            set
+            {
+                if (!(value is CatalogFile catalogFile))
+                    return;
+
+                bsCatalogFile.DataSource = catalogFile;
+                _catalogFile = catalogFile;
+
+                if (catalogFile.PubCatalogItem.Any())
+                    bsPubCatalogItem.DataSource = catalogFile.PubCatalogItem;
+            }
+        }
+
+        // перевірка валідності. . .
+        private void btnAuditItems_Click(object sender, EventArgs e)
+        {
+            var result = _catalogFileItemsHandler.AuditCatalogFileItems(_catalogFile);
+            var boolResult = result != null;
+            if (boolResult)
+                DataSource = result;
+            MessageShow.ShowInfoByResult("", "", boolResult);
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
         {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.FileName = "exportFile";
-            spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
-            dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-
-            if (dialog.ShowDialog() == DialogResult.OK)
+            using (var dialog = new SaveFileDialog())
             {
-                SpreadExportRenderer renderer = new SpreadExportRenderer();
-                spreadExporter.RunExport(dialog.FileName, renderer);
+                dialog.FileName = "exportFile";
+                var spreadExporter = new GridViewSpreadExport(gridDetailInfo);
+                spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
+                dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    SpreadExportRenderer renderer = new SpreadExportRenderer();
+                    spreadExporter.RunExport(dialog.FileName, renderer);
+                }
             }
         }
 
-        private List<PubCatalogItem> FillGridDetail()
+        private void btnPerform_Click(object sender, EventArgs e)
         {
-            return new List<PubCatalogItem> {
-                new PubCatalogItem {
-                    ItemCode = "itemCode",
-                    Iswc = "iswc",
-                    ObjName = "objName",
-                    GenreName = "genreName",
-                    RoleName = "roleName",
-                    AuthorMusic = "AuthorMusic",
-                    AuthorText = "AuthorText",
-                    Performer = "Performer",
-                    Comment = "comment",
-                    ErrComment = "ErrComment"
-                }
-            };
-        }
-
-        private List<CatalogFile> FillFileData()
-        {
-            return new List<CatalogFile> {
-                new CatalogFile {
-
-                }
-            };
-        }
-
-        private void btnControl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CatalogShowEdition_Load(object sender, EventArgs e)
-        {
-
+            var result = _catalogFileItemsHandler.AttachCatalogFileItems(_catalogFile);
+            var boolResult = result != null;
+            if (boolResult)
+                DataSource = result;
+            MessageShow.ShowInfoByResult("", "", boolResult);
         }
     }
 }

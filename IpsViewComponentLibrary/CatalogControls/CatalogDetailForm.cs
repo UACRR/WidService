@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using IpsViewComponentLibrary.CatalogControls.Presenters;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.CatalogControls
@@ -15,9 +16,9 @@ namespace IpsViewComponentLibrary.CatalogControls
         public CatalogDetailForm(CatalogFile file)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
             Text = file.FileName;
-            CatalogShowEdition show = new CatalogShowEdition(file);
-            Controls.Add(show);
+            ctrlCatalogShowEdition.DataSource = file;
         }
 
         public sealed override string Text

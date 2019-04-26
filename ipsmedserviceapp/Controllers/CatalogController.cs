@@ -41,6 +41,7 @@ namespace ipsmedserviceapp.Controllers
             var catalogFiles = await _dbContext.CatalogFile
                 .Where(rec => rec.CustId == custId)
                 .Include(rec => rec.PubCatalogItem)
+                .ThenInclude(rec => rec.StatusNavigation)
                 .Include(rec => rec.StatusNavigation)
                 .ToListAsync();
             
@@ -103,6 +104,7 @@ namespace ipsmedserviceapp.Controllers
 
                 destination.CustName = vcustomer?.name;
                 destination.CreateDate = DateTime.Now;
+                destination.CountZap = destination.PubCatalogItem.Count;
 
                 await _dbContext.CatalogFile.AddAsync(destination);
 

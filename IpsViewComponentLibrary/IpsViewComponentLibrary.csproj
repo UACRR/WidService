@@ -180,6 +180,7 @@
       <DependentUpon>CommentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
+    <Compile Include="CatalogControls\Presenters\ICatalogFileItemsHandler.cs" />
     <Compile Include="Common\Enums\NavigateType.cs" />
     <Compile Include="Common\GridRowCountControl.cs">
       <SubType>UserControl</SubType>

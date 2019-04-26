@@ -6,7 +6,7 @@ using ipsFormsDesign.Services;
 
 namespace IpsViewComponentLibrary.CatalogControls.Presenters
 {
-    public class CatalogPresenter
+    public class CatalogPresenter: ICatalogFileItemsHandler
     {
         private readonly CatalogService _service;
         private readonly ExcelEngine _exelEngine;
@@ -109,5 +109,14 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return false;
         }
 
+        public CatalogFile AuditCatalogFileItems(CatalogFile catalogFile)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

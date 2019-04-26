@@ -76,6 +76,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                         FileName = fileExel.SafeFileName,
                     };
                     _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+                    UpdateGridData();
                 }
             }
         }

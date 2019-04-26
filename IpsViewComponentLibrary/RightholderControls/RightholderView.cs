@@ -105,7 +105,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderView()
         {
             InitializeComponent();
-
+            WindowState = FormWindowState.Maximized;
             setupSaveAs();
             SetDictionaries();
 
