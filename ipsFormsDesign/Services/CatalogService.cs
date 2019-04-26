@@ -81,9 +81,13 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
-        public CatalogFile AuditCatalogFileItems(CatalogFile catalogFile)
+        public CatalogFile ValidateCatalogFileItems(CatalogFile catalogFile)
         {
-            return null;
+            string url = $"{Prefix}/validate";
+            CatalogFile outCatalogFile;
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out outCatalogFile);
+
+            return outCatalogFile;
         }
 
         public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)
