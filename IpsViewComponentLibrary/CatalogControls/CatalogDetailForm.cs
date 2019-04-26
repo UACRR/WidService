@@ -16,7 +16,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         public CatalogDetailForm(CatalogFile file)
         {
             InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen;
+            WindowState = FormWindowState.Maximized;
             Text = file.FileName;
             ctrlCatalogShowEdition.DataSource = file;
         }
