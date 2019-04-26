@@ -44,7 +44,6 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
-            this.bsPubCatalogItem = new System.Windows.Forms.BindingSource(this.components);
             this.btnAuditItems = new Telerik.WinControls.UI.RadButton();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -56,17 +55,17 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
-            this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
+            this.bsPubCatalogItem = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -79,13 +78,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGetExcel
@@ -129,7 +129,7 @@
             gridViewTextBoxColumn3.FieldName = "ObjName";
             gridViewTextBoxColumn3.HeaderText = "Назва товару";
             gridViewTextBoxColumn3.Name = "nameProduct";
-            gridViewTextBoxColumn3.Width = 164;
+            gridViewTextBoxColumn3.Width = 163;
             gridViewTextBoxColumn4.FieldName = "GenreName";
             gridViewTextBoxColumn4.HeaderText = "Жанр твору";
             gridViewTextBoxColumn4.Name = "genre";
@@ -141,11 +141,11 @@
             gridViewTextBoxColumn6.FieldName = "AuthorMusic";
             gridViewTextBoxColumn6.HeaderText = "Композитор(и)";
             gridViewTextBoxColumn6.Name = "composer";
-            gridViewTextBoxColumn6.Width = 70;
+            gridViewTextBoxColumn6.Width = 69;
             gridViewTextBoxColumn7.FieldName = "AuthorText";
             gridViewTextBoxColumn7.HeaderText = "Автор(и) тексту";
             gridViewTextBoxColumn7.Name = "authors";
-            gridViewTextBoxColumn7.Width = 72;
+            gridViewTextBoxColumn7.Width = 71;
             gridViewTextBoxColumn8.FieldName = "Performer";
             gridViewTextBoxColumn8.HeaderText = "Творча роль правовласника";
             gridViewTextBoxColumn8.Name = "role";
@@ -153,7 +153,7 @@
             gridViewTextBoxColumn9.FieldName = "CmName";
             gridViewTextBoxColumn9.HeaderText = "%";
             gridViewTextBoxColumn9.Name = "percent";
-            gridViewTextBoxColumn9.Width = 33;
+            gridViewTextBoxColumn9.Width = 30;
             gridViewTextBoxColumn10.FieldName = "ErrComment";
             gridViewTextBoxColumn10.HeaderText = "Помилка";
             gridViewTextBoxColumn10.MinWidth = 100;
@@ -194,10 +194,6 @@
             this.gridDetailInfo.Size = new System.Drawing.Size(802, 420);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
-            // 
-            // bsPubCatalogItem
-            // 
-            this.bsPubCatalogItem.DataSource = typeof(ipsFormsDesign.Model.PubCatalogItem);
             // 
             // btnAuditItems
             // 
@@ -314,10 +310,6 @@
             this.radLabel9.Text = "К-ть оброблених записів";
             this.radLabel9.ThemeName = "Office2013Light";
             // 
-            // bsCatalogFile
-            // 
-            this.bsCatalogFile.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
-            // 
             // radLabel10
             // 
             this.radLabel10.AutoSize = false;
@@ -384,6 +376,14 @@
             this.radLabel15.Text = "К-ть оброблених записів";
             this.radLabel15.ThemeName = "Office2013Light";
             // 
+            // bsCatalogFile
+            // 
+            this.bsCatalogFile.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
+            // 
+            // bsPubCatalogItem
+            // 
+            this.bsPubCatalogItem.DataSource = typeof(ipsFormsDesign.Model.PubCatalogItem);
+            // 
             // CatalogShowEdition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -411,7 +411,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -424,13 +423,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).EndInit();
             this.ResumeLayout(false);
 
         }
