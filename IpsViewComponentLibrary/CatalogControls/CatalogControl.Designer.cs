@@ -39,6 +39,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn3 = new Telerik.WinControls.UI.GridViewCommandColumn();
@@ -80,7 +81,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn2.FieldName = "FileName";
             gridViewTextBoxColumn2.HeaderText = "Назва файлу";
             gridViewTextBoxColumn2.Name = "fileName";
-            gridViewTextBoxColumn2.Width = 155;
+            gridViewTextBoxColumn2.Width = 156;
             gridViewTextBoxColumn3.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn3.FieldName = "CreateDate";
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
@@ -100,17 +101,23 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn5.Width = 51;
             gridViewTextBoxColumn6.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn6.FieldName = "Status";
-            gridViewTextBoxColumn6.HeaderText = "Статус файлу";
+            gridViewTextBoxColumn6.HeaderText = "status";
+            gridViewTextBoxColumn6.IsVisible = false;
             gridViewTextBoxColumn6.Name = "statusFile";
-            gridViewTextBoxColumn6.Width = 51;
-            gridViewTextBoxColumn7.FieldName = "Comment";
-            gridViewTextBoxColumn7.HeaderText = "Коментар";
-            gridViewTextBoxColumn7.Name = "comment";
-            gridViewTextBoxColumn7.Width = 51;
-            gridViewTextBoxColumn8.FieldName = "UserId";
-            gridViewTextBoxColumn8.HeaderText = "Хто завантажив";
-            gridViewTextBoxColumn8.Name = "downloadFace";
-            gridViewTextBoxColumn8.Width = 155;
+            gridViewTextBoxColumn6.Width = 48;
+            gridViewTextBoxColumn7.FieldName = "StatusNavigation.Name";
+            gridViewTextBoxColumn7.HeaderText = "Статус файлу";
+            gridViewTextBoxColumn7.MinWidth = 80;
+            gridViewTextBoxColumn7.Name = "StatusNavigation";
+            gridViewTextBoxColumn7.Width = 80;
+            gridViewTextBoxColumn8.FieldName = "Comment";
+            gridViewTextBoxColumn8.HeaderText = "Коментар";
+            gridViewTextBoxColumn8.Name = "comment";
+            gridViewTextBoxColumn8.Width = 51;
+            gridViewTextBoxColumn9.FieldName = "UserId";
+            gridViewTextBoxColumn9.HeaderText = "Хто завантажив";
+            gridViewTextBoxColumn9.Name = "downloadFace";
+            gridViewTextBoxColumn9.Width = 125;
             gridViewCommandColumn1.FieldName = "infoBtn";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.viewAct;
             gridViewCommandColumn1.HeaderText = "";
@@ -145,6 +152,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn6,
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
+            gridViewTextBoxColumn9,
             gridViewCommandColumn1,
             gridViewCommandColumn2,
             gridViewCommandColumn3});

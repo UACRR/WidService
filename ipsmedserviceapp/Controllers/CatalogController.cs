@@ -38,43 +38,14 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("catalogfilelist/{custId}")]
         public async Task<IActionResult> GetCatalogFilesList(int custId)
         {
-            var catalogFile = new List<CatalogFile>
-            {
-                new CatalogFile
-                {
-                    CustId = 100,
-                    FileId = 100,
-                    FileName = "FileName",
-                    PubСatalogItem = new List<PubСatalogItem>
-                    {
-                        new PubСatalogItem
-                        {
-                            CustId = 100,
-                            FileId = 100,
-                            ObjName = "Name1"
-                        },
-                        new PubСatalogItem
-                        {
-                            CustId = 100,
-                            FileId = 100,
-                            ObjName = "Name2"
-                        },
-                        new PubСatalogItem
-                        {
-                            CustId = 100,
-                            FileId = 100,
-                            ObjName = "Name3"
-                        },
-                    }
-                }
-            };
-
             var catalogFiles = await _dbContext.CatalogFile
                 .Where(rec => rec.CustId == custId)
-                .Include(rec => rec.PubСatalogItem).ToListAsync();
+                .Include(rec => rec.PubСatalogItem)
+                .Include(rec => rec.StatusNavigation)
+                .ToListAsync();
             
 
-            return Ok(catalogFile);
+            return Ok(catalogFiles);
         }
 
         [HttpPost("upload/{custId}")]
@@ -86,16 +57,19 @@ namespace ipsmedserviceapp.Controllers
                 if (source == null || !source.PubСatalogItem.Any())
                     return BadRequest("Loaded file is empty or not read!");
 
+                var vcustomer = await _dbContext.vCustomer.SingleOrDefaultAsync(rec => rec.CustId == custId);
+
                 var rightholder = _dbContext.RightHolder.SingleOrDefault(rec => rec.CustId == custId);
                 if (rightholder == null)
                     return NotFound($"RightHolder with ID:{custId} not found!");
 
-                string[] excludedFields = {"CustId", "FileId", "UserId"};
+                string[] excludedFields = {"CustId", "FileId", "UserId", "Status"};
 
                 var destination = new CatalogFile
                 {
                     CustId = custId,
                     UserId = User.Identity.Name,
+                    Status = 0,
                     PubСatalogItem = new List<PubСatalogItem>()
                 };
                 destination.SetFields(source, excludedFields);
@@ -104,11 +78,13 @@ namespace ipsmedserviceapp.Controllers
                 {
                     // видавництво
                     case 3:
+                        destination.RhType = 3;
                         foreach (var item in source.PubСatalogItem)
                         {
                             var pubСatalogItem = new PubСatalogItem
                             {
                                 CustId = destination.CustId,
+                                Status = 0,
                             };
                             pubСatalogItem.SetFields(item, excludedFields);
                             destination.PubСatalogItem.Add(pubСatalogItem);
@@ -117,12 +93,16 @@ namespace ipsmedserviceapp.Controllers
 
                     // правовласник
                     case 1:
+                        destination.RhType = 1;
                         break;
 
                     // інші RHolderType
                     default:
                         return BadRequest("Unsupported RHolderType!");
                 }
+
+                destination.CustName = vcustomer?.name;
+                destination.CreateDate = DateTime.Now;
 
                 await _dbContext.CatalogFile.AddAsync(destination);
 
