@@ -14,7 +14,7 @@ namespace IpsViewComponentLibrary.CatalogControls
     {
         private CatalogFile _catalogFile = null;
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
-        protected bool IsDesingMode => IsDesingMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        protected bool IsDesingMode => LicenseManager.UsageMode == LicenseUsageMode.Designtime;
         public CatalogShowEdition()
         {
             InitializeComponent();
