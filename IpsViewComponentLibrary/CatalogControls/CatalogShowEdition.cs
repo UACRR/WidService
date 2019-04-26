@@ -32,6 +32,8 @@ namespace IpsViewComponentLibrary.CatalogControls
 
                 bsCatalogFile.DataSource = catalogFile;
                 _catalogFile = catalogFile;
+                //settings for btn 'Виконати'
+                btnPerform.Enabled = catalogFile.Status < 3 && catalogFile.CountOk > 1;
 
                 if (catalogFile.PubCatalogItem.Any())
                     bsPubCatalogItem.DataSource = catalogFile.PubCatalogItem;
@@ -45,6 +47,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             var boolResult = result != null;
             if (boolResult)
                 DataSource = result;
+            
             MessageShow.ShowInfoByResult("", "", boolResult);
         }
 
