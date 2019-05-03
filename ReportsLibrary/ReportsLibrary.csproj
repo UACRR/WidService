@@ -301,6 +301,12 @@
     <Compile Include="R_5_35_Start.Designer.cs">
       <DependentUpon>R_5_35_Start.cs</DependentUpon>
     </Compile>
+    <Compile Include="R_5_36.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="R_5_36.Designer.cs">
+      <DependentUpon>R_5_36.cs</DependentUpon>
+    </Compile>
     <Compile Include="R_5_3_Community.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -482,6 +488,9 @@
     <EmbeddedResource Include="R_5_35_Start.resx">
       <DependentUpon>R_5_35_Start.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="R_5_36.resx">
+      <DependentUpon>R_5_36.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="R_5_3_Community.resx">
       <DependentUpon>R_5_3_Community.cs</DependentUpon>
     </EmbeddedResource>
@@ -514,7 +523,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
