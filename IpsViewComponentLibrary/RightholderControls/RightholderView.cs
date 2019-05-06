@@ -8,6 +8,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using ipsFormsDesign.Utilities;
+using IpsViewComponentLibrary.CatalogControls;
 using IpsViewComponentLibrary.RightholderControls.Anketa;
 using IpsViewComponentLibrary.Utilities;
 using Telerik.WinControls;
@@ -15,7 +16,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.RightholderControls
 {
-    public partial class RightholderView : Telerik.WinControls.UI.RadForm, IRightholderView
+    public partial class RightholderView : RadForm, IRightholderView
     {
         private bool _isCompany;
         private string _pdf;
@@ -72,7 +73,11 @@ namespace IpsViewComponentLibrary.RightholderControls
         public object CustomerDataSource
         {
             get => bsCustomer.DataSource;
-            set => bsCustomer.DataSource = value;
+            set
+            {
+                bsCustomer.DataSource = value;
+                ctrlCatalog.CustId = ((Customer) value).CustId;
+            }
         }
 
         public object TermsOfServiceDataSource
@@ -100,7 +105,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         public RightholderView()
         {
             InitializeComponent();
-
+            WindowState = FormWindowState.Maximized;
             setupSaveAs();
             SetDictionaries();
 
@@ -109,6 +114,8 @@ namespace IpsViewComponentLibrary.RightholderControls
 
             sbSave.DefaultItem = miSave;
             sbSave.Text = miSave.Text;
+
+            //catalogControl1.command += 
         }
 
         ~RightholderView()
@@ -160,7 +167,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             //check on exist state field 'CustType'
             if (customer.CustType == null) { return; }
             //get all pages
-            foreach (var external in pageViewMain.Pages)
+            foreach (var external in pageCatalog.Pages)
                 //hide current page if it's: Anketa, Contract
                 if (customer.CustType == 5 && (external.Name == "Anketa" || external.Name == "Contract"))
                     external.Item.Visibility = ElementVisibility.Collapsed;
@@ -301,13 +308,15 @@ namespace IpsViewComponentLibrary.RightholderControls
                 wordEngine = new WordEngine(IpsGlobal.AnketaDictionaties);
             wordEngine.ProcessRightHolder(template, customer, customer.AgreementMaster.First());
 
-            pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
+            if (wordEngine.ValidTemplate)
+            {
+                pdfvRightholderAgreement.LoadDocument(wordEngine.Pdf);
 
-            _pdf = wordEngine.Pdf;
-            _doc = wordEngine.Docx;
-            _custName = CustomerUtility.CustomerName(customer);
-            radPdfViewerNavigator1.Enabled = true;
-
+                _pdf = wordEngine.Pdf;
+                _doc = wordEngine.Docx;
+                _custName = CustomerUtility.CustomerName(customer);
+                radPdfViewerNavigator1.Enabled = true;
+            }
             waitbarAgreement.StopWaiting();
 
             btnGenerateRightholderAgreement.Enabled = true;
@@ -429,7 +438,7 @@ namespace IpsViewComponentLibrary.RightholderControls
 
         private void pageViewMain_SelectedPageChanged(object sender, EventArgs e)
         {
-            if (pageViewMain.SelectedPage == pageObjects && ctrlRightholdersObjectsRight.SelectedRightholder == null)
+            if (pageCatalog.SelectedPage == pageObjects && ctrlRightholdersObjectsRight.SelectedRightholder == null)
             {
                 ctrlRightholdersObjectsRight.SelectedRightholder = new RightholderMainView { CustId = ((RightHolder)bsRightHolder.Current).CustId };
             }
@@ -563,7 +572,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             public void ShowPages()
             {
                 //get all pages
-                foreach (var page in _rightholderView.pageViewMain.Pages)
+                foreach (var page in _rightholderView.pageCatalog.Pages)
                     //hide current page if it's: ExternalAnketa
                     if (_customer.CustType != 5 && page.Name == "AnketaExternal")
                         page.Item.Visibility = ElementVisibility.Collapsed;
@@ -589,7 +598,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             public void RunSetings()
             {
                 //set default active page for External Anketa
-                _rightholderView.pageViewMain.SelectedPage = _rightholderView.AnketaExternal;
+                _rightholderView.pageCatalog.SelectedPage = _rightholderView.AnketaExternal;
                 //set data of the External Anketa
                 _rightholderView.anketaExternalRightholderControl1.DataSourceAnketaExternal = _rightholderView.bsAnketaExternal;
                 _rightholderView.anketaExternalRightholderControl1.DataSourceRightHolder = _rightholderView.bsRightHolder;
@@ -605,7 +614,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             //show necessary pages
             public void ShowPages()
             {
-                foreach (var page in _rightholderView.pageViewMain.Pages)
+                foreach (var page in _rightholderView.pageCatalog.Pages)
                 {
                     if (page.Name == "Anketa" || page.Name == "Contract")
                         page.Item.Visibility = ElementVisibility.Collapsed;
@@ -653,7 +662,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             public void ShowPages()
             {
                 //get all pages
-                foreach (var page in _rightholderView.pageViewMain.Pages)
+                foreach (var page in _rightholderView.pageCatalog.Pages)
                     //hide current page if it's: ExternalAnketa
                     if (_customer.CustType != 5 && page.Name == "AnketaExternal")
                         page.Item.Visibility = ElementVisibility.Collapsed;

@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
             this.totalCountry = new Telerik.WinControls.UI.RadLabel();
             this.lbTotalCountry = new Telerik.WinControls.UI.RadLabel();
             this.ddlFilterCountry = new Telerik.WinControls.UI.RadDropDownList();
@@ -46,11 +46,8 @@
             this.ddlEditKeyCountry = new Telerik.WinControls.UI.RadDropDownList();
             this.bsCountry = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameRuCountry = new Telerik.WinControls.UI.RadTextBox();
-            this.bsRuLangCountry = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameEnCountry = new Telerik.WinControls.UI.RadTextBox();
-            this.bsEnLangCountry = new System.Windows.Forms.BindingSource(this.components);
             this.txtNameUaCountry = new Telerik.WinControls.UI.RadTextBox();
-            this.bsUkLangCountry = new System.Windows.Forms.BindingSource(this.components);
             this.txtCodeCountry = new Telerik.WinControls.UI.RadTextBox();
             this.lblRuLangCountry = new Telerik.WinControls.UI.RadLabel();
             this.lblEnLangCountry = new Telerik.WinControls.UI.RadLabel();
@@ -58,6 +55,9 @@
             this.lblCodeCountry = new Telerik.WinControls.UI.RadLabel();
             this.btnCancelCountry = new Telerik.WinControls.UI.RadButton();
             this.btnSaveCountry = new Telerik.WinControls.UI.RadButton();
+            this.bsRuLangCountry = new System.Windows.Forms.BindingSource(this.components);
+            this.bsEnLangCountry = new System.Windows.Forms.BindingSource(this.components);
+            this.bsUkLangCountry = new System.Windows.Forms.BindingSource(this.components);
             this.btnDeleteCountry = new Telerik.WinControls.UI.RadButton();
             this.btnAddCountry = new Telerik.WinControls.UI.RadButton();
             this.gridCountryList = new Telerik.WinControls.UI.RadGridView();
@@ -73,11 +73,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameUaCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangCountry)).BeginInit();
@@ -85,6 +82,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblCodeCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancelCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCountry)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCountry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCountryList)).BeginInit();
@@ -215,11 +215,10 @@
             // bsCountry
             // 
             this.bsCountry.DataSource = typeof(ipsFormsDesign.Model.Country);
-            this.bsCountry.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.dsCopyrightKind_BindingComplete);
             // 
             // txtNameRuCountry
             // 
-            this.txtNameRuCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangCountry, "Name", true));
+            this.txtNameRuCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRuLangCountry, "CountryName", true));
             this.txtNameRuCountry.Location = new System.Drawing.Point(162, 81);
             this.txtNameRuCountry.MaxLength = 500;
             this.txtNameRuCountry.Name = "txtNameRuCountry";
@@ -228,14 +227,9 @@
             this.txtNameRuCountry.ThemeName = "Office2013Light";
             this.txtNameRuCountry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNameRuCountry_KeyPress);
             // 
-            // bsRuLangCountry
-            // 
-            this.bsRuLangCountry.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsRuLangCountry.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceRu_BindingComplete);
-            // 
             // txtNameEnCountry
             // 
-            this.txtNameEnCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCountry, "Name", true));
+            this.txtNameEnCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsEnLangCountry, "CountryName", true));
             this.txtNameEnCountry.Location = new System.Drawing.Point(162, 108);
             this.txtNameEnCountry.MaxLength = 500;
             this.txtNameEnCountry.Name = "txtNameEnCountry";
@@ -244,14 +238,9 @@
             this.txtNameEnCountry.ThemeName = "Office2013Light";
             this.txtNameEnCountry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNameEnCountry_KeyPress);
             // 
-            // bsEnLangCountry
-            // 
-            this.bsEnLangCountry.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsEnLangCountry.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceEn_BindingComplete);
-            // 
             // txtNameUaCountry
             // 
-            this.txtNameUaCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCountry, "Name", true));
+            this.txtNameUaCountry.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsUkLangCountry, "CountryName", true));
             this.txtNameUaCountry.Location = new System.Drawing.Point(162, 55);
             this.txtNameUaCountry.MaxLength = 500;
             this.txtNameUaCountry.Name = "txtNameUaCountry";
@@ -259,11 +248,6 @@
             this.txtNameUaCountry.TabIndex = 7;
             this.txtNameUaCountry.ThemeName = "Office2013Light";
             this.txtNameUaCountry.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNameUaCountry_KeyPress);
-            // 
-            // bsUkLangCountry
-            // 
-            this.bsUkLangCountry.DataSource = typeof(ipsFormsDesign.Model.CopyrightKindTr);
-            this.bsUkLangCountry.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceUk_BindingComplete);
             // 
             // txtCodeCountry
             // 
@@ -340,6 +324,18 @@
             this.btnSaveCountry.ThemeName = "Office2013Light";
             this.btnSaveCountry.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // bsRuLangCountry
+            // 
+            this.bsRuLangCountry.DataSource = typeof(ipsFormsDesign.Model.CountryTr);
+            // 
+            // bsEnLangCountry
+            // 
+            this.bsEnLangCountry.DataSource = typeof(ipsFormsDesign.Model.CountryTr);
+            // 
+            // bsUkLangCountry
+            // 
+            this.bsUkLangCountry.DataSource = typeof(ipsFormsDesign.Model.CountryTr);
+            // 
             // btnDeleteCountry
             // 
             this.btnDeleteCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -380,37 +376,37 @@
             this.gridCountryList.MasterTemplate.AllowEditRow = false;
             this.gridCountryList.MasterTemplate.AutoGenerateColumns = false;
             this.gridCountryList.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            gridViewTextBoxColumn1.FieldName = "Code";
-            gridViewTextBoxColumn1.HeaderText = "Код";
-            gridViewTextBoxColumn1.Name = "Code";
-            gridViewTextBoxColumn1.Width = 105;
-            gridViewTextBoxColumn2.FieldName = "NameUk";
-            gridViewTextBoxColumn2.HeaderText = "Назва";
-            gridViewTextBoxColumn2.Name = "NameUk";
-            gridViewTextBoxColumn2.Width = 286;
-            gridViewTextBoxColumn3.FieldName = "NameRu";
-            gridViewTextBoxColumn3.HeaderText = "Название";
-            gridViewTextBoxColumn3.Name = "NameRu";
-            gridViewTextBoxColumn3.Width = 290;
-            gridViewTextBoxColumn4.FieldName = "NameEn";
-            gridViewTextBoxColumn4.HeaderText = "Name";
-            gridViewTextBoxColumn4.Name = "NameEn";
-            gridViewTextBoxColumn4.Width = 266;
-            gridViewTextBoxColumn5.FieldName = "Continent";
-            gridViewTextBoxColumn5.HeaderText = "Континент";
-            gridViewTextBoxColumn5.MinWidth = 200;
-            gridViewTextBoxColumn5.Name = "Continent";
-            gridViewTextBoxColumn5.Width = 223;
+            gridViewTextBoxColumn11.FieldName = "Code";
+            gridViewTextBoxColumn11.HeaderText = "Код";
+            gridViewTextBoxColumn11.Name = "Code";
+            gridViewTextBoxColumn11.Width = 105;
+            gridViewTextBoxColumn12.FieldName = "NameUk";
+            gridViewTextBoxColumn12.HeaderText = "Назва";
+            gridViewTextBoxColumn12.Name = "NameUk";
+            gridViewTextBoxColumn12.Width = 286;
+            gridViewTextBoxColumn13.FieldName = "NameRu";
+            gridViewTextBoxColumn13.HeaderText = "Название";
+            gridViewTextBoxColumn13.Name = "NameRu";
+            gridViewTextBoxColumn13.Width = 290;
+            gridViewTextBoxColumn14.FieldName = "NameEn";
+            gridViewTextBoxColumn14.HeaderText = "Name";
+            gridViewTextBoxColumn14.Name = "NameEn";
+            gridViewTextBoxColumn14.Width = 266;
+            gridViewTextBoxColumn15.FieldName = "Continent";
+            gridViewTextBoxColumn15.HeaderText = "Континент";
+            gridViewTextBoxColumn15.MinWidth = 200;
+            gridViewTextBoxColumn15.Name = "Continent";
+            gridViewTextBoxColumn15.Width = 223;
             this.gridCountryList.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
-            gridViewTextBoxColumn1,
-            gridViewTextBoxColumn2,
-            gridViewTextBoxColumn3,
-            gridViewTextBoxColumn4,
-            gridViewTextBoxColumn5});
+            gridViewTextBoxColumn11,
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13,
+            gridViewTextBoxColumn14,
+            gridViewTextBoxColumn15});
             this.gridCountryList.MasterTemplate.EnableCustomFiltering = true;
             this.gridCountryList.MasterTemplate.EnableFiltering = true;
             this.gridCountryList.MasterTemplate.ShowFilteringRow = false;
-            this.gridCountryList.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.gridCountryList.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.gridCountryList.Name = "gridCountryList";
             this.gridCountryList.ReadOnly = true;
             this.gridCountryList.ShowGroupPanel = false;
@@ -458,11 +454,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ddlEditKeyCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameRuCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameEnCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNameUaCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCodeCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblRuLangCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblEnLangCountry)).EndInit();
@@ -470,6 +463,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.lblCodeCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCancelCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRuLangCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsEnLangCountry)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsUkLangCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDeleteCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddCountry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCountryList.MasterTemplate)).EndInit();

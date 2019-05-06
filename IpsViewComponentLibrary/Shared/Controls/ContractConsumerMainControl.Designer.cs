@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             this.lblContrFrom = new Telerik.WinControls.UI.RadLabel();
             this.rtxtBoxContrNumber = new Telerik.WinControls.UI.RadTextBox();
             this.lblContrNumb = new Telerik.WinControls.UI.RadLabel();
-            this.rdtPickerDateBegin = new Telerik.WinControls.UI.RadDateTimePicker();
+            this.dtDateBegin = new Telerik.WinControls.UI.RadDateTimePicker();
             this.rdtPickerDateEnd = new Telerik.WinControls.UI.RadDateTimePicker();
             this.lblContrDoFrom = new Telerik.WinControls.UI.RadLabel();
             this.lblContrDoTo = new Telerik.WinControls.UI.RadLabel();
@@ -50,7 +50,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateBegin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDateBegin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateEnd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).BeginInit();
@@ -108,22 +108,22 @@ namespace IpsViewComponentLibrary.Shared.Controls
             this.lblContrNumb.Text = "ЛІЦЕНЗІЙНИЙ ДОГОВІР №";
             this.lblContrNumb.ThemeName = "Office2013Light";
             // 
-            // rdtPickerDateBegin
+            // dtDateBegin
             // 
-            this.rdtPickerDateBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdtPickerDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.rdtPickerDateBegin.Location = new System.Drawing.Point(169, 26);
-            this.rdtPickerDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
-            this.rdtPickerDateBegin.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.rdtPickerDateBegin.Name = "rdtPickerDateBegin";
-            this.rdtPickerDateBegin.NullText = "Оберіть дату";
-            this.rdtPickerDateBegin.Size = new System.Drawing.Size(107, 21);
-            this.rdtPickerDateBegin.TabIndex = 2;
-            this.rdtPickerDateBegin.TabStop = false;
-            this.rdtPickerDateBegin.ThemeName = "Office2013Light";
-            this.rdtPickerDateBegin.Value = new System.DateTime(((long)(0)));
-            this.rdtPickerDateBegin.ValueChanged += new System.EventHandler(this.rdtPickerDateBegin_ValueChanged);
-            ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.rdtPickerDateBegin.GetChildAt(0))).Text = "";
+            this.dtDateBegin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtDateBegin.Location = new System.Drawing.Point(169, 26);
+            this.dtDateBegin.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
+            this.dtDateBegin.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtDateBegin.Name = "dtDateBegin";
+            this.dtDateBegin.NullText = "Оберіть дату";
+            this.dtDateBegin.Size = new System.Drawing.Size(107, 21);
+            this.dtDateBegin.TabIndex = 2;
+            this.dtDateBegin.TabStop = false;
+            this.dtDateBegin.ThemeName = "Office2013Light";
+            this.dtDateBegin.Value = new System.DateTime(((long)(0)));
+            this.dtDateBegin.Leave += new System.EventHandler(this.dtDateBegin_ValueChanged);
+            ((Telerik.WinControls.UI.RadDateTimePickerElement)(this.dtDateBegin.GetChildAt(0))).Text = "";
             // 
             // rdtPickerDateEnd
             // 
@@ -188,7 +188,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             this.Controls.Add(this.lblContrDo);
             this.Controls.Add(this.rdtPickerDateEnd);
             this.Controls.Add(this.lblContrDoTo);
-            this.Controls.Add(this.rdtPickerDateBegin);
+            this.Controls.Add(this.dtDateBegin);
             this.Controls.Add(this.lblContrDoFrom);
             this.Controls.Add(this.rdtPickerAgrDate);
             this.Controls.Add(this.lblContrFrom);
@@ -202,7 +202,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             ((System.ComponentModel.ISupportInitialize)(this.lblContrFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rtxtBoxContrNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrNumb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateBegin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtDateBegin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rdtPickerDateEnd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblContrDoTo)).EndInit();
@@ -221,7 +221,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         private Telerik.WinControls.UI.RadLabel lblContrFrom;
         private Telerik.WinControls.UI.RadTextBox rtxtBoxContrNumber;
         private Telerik.WinControls.UI.RadLabel lblContrNumb;
-        private Telerik.WinControls.UI.RadDateTimePicker rdtPickerDateBegin;
+        private Telerik.WinControls.UI.RadDateTimePicker dtDateBegin;
         private Telerik.WinControls.UI.RadLabel lblContrDoFrom;
         private Telerik.WinControls.UI.RadDateTimePicker rdtPickerDateEnd;
         private Telerik.WinControls.UI.RadLabel lblContrDoTo;

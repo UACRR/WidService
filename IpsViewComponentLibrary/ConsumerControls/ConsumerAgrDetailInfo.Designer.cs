@@ -33,7 +33,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.components = new System.ComponentModel.Container();
             this.btnSaveComment = new Telerik.WinControls.UI.RadButton();
             this.txtNotation = new Telerik.WinControls.UI.RadTextBoxControl();
-            this.bindingSourceComment = new System.Windows.Forms.BindingSource(this.components);
+            this.bsComment = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel3 = new Telerik.WinControls.UI.RadPanel();
             this.txtIsPaid = new Telerik.WinControls.UI.RadLabel();
@@ -72,7 +72,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotation)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceComment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsComment)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).BeginInit();
             this.radPanel3.SuspendLayout();
@@ -132,7 +132,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNotation.AutoScroll = true;
-            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceComment, "Comment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
+            this.txtNotation.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsComment, "Comment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
             this.txtNotation.Location = new System.Drawing.Point(75, 157);
             this.txtNotation.Multiline = true;
             this.txtNotation.Name = "txtNotation";
@@ -141,9 +141,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.txtNotation.ThemeName = "Office2013Light";
             this.txtNotation.VerticalScrollBarState = Telerik.WinControls.UI.ScrollState.AlwaysShow;
             // 
-            // bindingSourceComment
+            // bsComment
             // 
-            this.bindingSourceComment.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
+            this.bsComment.DataSource = typeof(ipsFormsDesign.Model.LicenseAgrParam);
             // 
             // radLabel1
             // 
@@ -789,7 +789,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.Size = new System.Drawing.Size(785, 220);
             ((System.ComponentModel.ISupportInitialize)(this.btnSaveComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotation)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceComment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsComment)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel3)).EndInit();
             this.radPanel3.ResumeLayout(false);
@@ -841,7 +841,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         #endregion
 
         private Telerik.WinControls.UI.RadButton btnSaveComment;
-        private System.Windows.Forms.BindingSource bindingSourceComment;
+        private System.Windows.Forms.BindingSource bsComment;
         private Telerik.WinControls.UI.RadTextBoxControl txtNotation;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadPanel radPanel3;

@@ -1,0 +1,85 @@
+﻿using ipsFormsDesign.Model;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Windows.Forms;
+using IpsViewComponentLibrary.CatalogControls.Presenters;
+using IpsViewComponentLibrary.Extensions;
+using Telerik.WinControls.Export;
+
+namespace IpsViewComponentLibrary.CatalogControls
+{
+    public partial class CatalogShowEdition : UserControl
+    {
+        private CatalogFile _catalogFile = null;
+        private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
+        protected bool IsDesingMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
+        public CatalogShowEdition()
+        {
+            InitializeComponent();
+            if (!IsDesingMode)
+                _catalogFileItemsHandler = new CatalogPresenter();
+        }
+
+        public object DataSource
+        {
+            get => bsCatalogFile.DataSource;
+            set
+            {
+                if (!(value is CatalogFile catalogFile))
+                    return;
+
+                bsCatalogFile.DataSource = catalogFile;
+                _catalogFile = catalogFile;
+                //settings for btn 'Виконати'
+                btnPerform.Enabled = catalogFile.Status < 3 && catalogFile.CountOk > 1;
+
+                if (catalogFile.PubCatalogItem.Any())
+                    bsPubCatalogItem.DataSource = catalogFile.PubCatalogItem;
+            }
+        }
+
+
+        private const string success = "Контроль виконано";
+        private const string fail = "Контроль невиконано";
+        // перевірка валідності. . .
+        private void btnAuditItems_Click(object sender, EventArgs e)
+        {
+            var result = _catalogFileItemsHandler.AuditCatalogFileItems(_catalogFile);
+            var boolResult = result != null;
+            if (boolResult)
+                DataSource = result;
+            
+            MessageShow.ShowInfoByResult(success, fail, boolResult);
+        }
+
+        private void btnGetExcel_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new SaveFileDialog())
+            {
+                dialog.FileName = "exportFile";
+                var spreadExporter = new GridViewSpreadExport(gridDetailInfo);
+                spreadExporter.ExportFormat = SpreadExportFormat.Xlsx;
+                dialog.Filter = "xlsx files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    SpreadExportRenderer renderer = new SpreadExportRenderer();
+                    spreadExporter.RunExport(dialog.FileName, renderer);
+                }
+            }
+        }
+
+        private const string successPerform = "Виконано";
+        private const string failPerform = "Не виконано";
+        private void btnPerform_Click(object sender, EventArgs e)
+        {
+            var result = _catalogFileItemsHandler.AttachCatalogFileItems(_catalogFile);
+            var boolResult = result != null;
+            if (boolResult)
+                DataSource = result;
+            MessageShow.ShowInfoByResult(successPerform, failPerform, boolResult);
+        }
+    }
+}

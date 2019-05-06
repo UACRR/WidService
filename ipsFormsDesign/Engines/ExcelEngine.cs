@@ -13,10 +13,18 @@ namespace ipsFormsDesign.Services
     public class ExcelEngine
     {
         private Excel.Application excelApp = null;
-
-        public ExcelEngine()
+        private static ExcelEngine _instance;
+        protected ExcelEngine()
         {
             // GetApp().GetAwaiter();
+        }
+
+        public static ExcelEngine GetInstance()
+        {
+            if (_instance == null)
+                _instance = new ExcelEngine();
+
+            return _instance;
         }
 
         ~ExcelEngine()

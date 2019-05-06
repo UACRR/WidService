@@ -53,6 +53,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Jonas-Rask-Pry-System-Aluport-server.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="netstandard" />
     <Reference Include="PresentationCore" />
@@ -264,6 +267,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\deleteIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Jonas-Rask-Pry-System-Aluport-server.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

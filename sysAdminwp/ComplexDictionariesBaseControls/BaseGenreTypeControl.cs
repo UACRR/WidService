@@ -9,11 +9,17 @@ using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseGenreTypeControl : UserControl
     {
+        GenreTypeLayer _layer = new GenreTypeLayer();
+        public delegate GenreType GetDictionaryLayer(int id);
+        public delegate GenreType CreateLayer(GenreType sors);
+        public delegate GenreType UpdateLayer(GenreType sors);
+        public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
@@ -81,6 +87,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseGenreTypeControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists
@@ -182,7 +189,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
 
         private GenreType CheckAfterGetQuery(int codeI)
         {
-            GenreType result = _dictService.GetGenreType(codeI);
+            GetDictionaryLayer dictDelegate = new GetDictionaryLayer(_layer.GetDictionary);
+            GenreType result = dictDelegate(codeI);
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
@@ -283,7 +291,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            bool result = _dictService.DeleteGenreType(codeI);
+            DeleteLayer dictDelegat = new DeleteLayer(_layer.Delete);
+            bool result = dictDelegat(codeI);
             if (!result)
             {
                 MessageShow.ShowError(DelMess);
@@ -334,7 +343,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private GenreType CheckAfterCreate(GenreType createItem)
         {
-            GenreType result = _dictService.CreateGenreType(createItem);
+            CreateLayer dictDelegat = new CreateLayer(_layer.Create);
+            GenreType result = dictDelegat(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
@@ -351,7 +361,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private GenreType CheckAfterUpdate(GenreType updateItem)
         {
-            GenreType result = _dictService.UpdateGenreType(genreTypeData);
+            UpdateLayer dictDelegat = new UpdateLayer(_layer.Update);
+            GenreType result = dictDelegat(genreTypeData);
             if (result == null)
             {
                 MessageShow.ShowError(UpdateMess);

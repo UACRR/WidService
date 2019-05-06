@@ -88,7 +88,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 _wordEngine.ProcessConsumerBR(templateName, customer, licenseAgreement.Agr, licenseAgreement);
             }
 
-            SetResult(_wordEngine.Pdf, _wordEngine.Docx);
+            if(_wordEngine.ValidTemplate)
+                SetResult(_wordEngine.Pdf, _wordEngine.Docx);
             radWaitingBar1.StopWaiting();
         }
 

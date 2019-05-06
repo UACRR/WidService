@@ -17,7 +17,7 @@ namespace ipsFormsDesign.Services
     public class CommunityService
     {
         private readonly ApiConnector _webApi;
-        private readonly string _prefix = "community/";
+        private const string Prefix = "community/";
 
         private static CommunityService _service;
 
@@ -45,7 +45,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public List<T> GetView<T>(Type typeResult, string viewName, int? paramId = null, string columnName = null) where T : class
         {
-            string url = _prefix + "list/view";
+            string url = Prefix + "list/view";
             List<KeyValuePair<string, string>> param = new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("viewName", viewName),
@@ -71,7 +71,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public T GetCommunityAuthorsView<T>(string viewName, RightholdersQuery query) where T : class
         {
-            string url = string.Concat(_prefix, $"list/rhview/{viewName}");
+            string url = string.Concat(Prefix, $"list/rhview/{viewName}");
 
             var result = _webApi.GetItemByIdWithParam<T>(url, null, query.ToKeyValuePair());
             return result;
@@ -83,7 +83,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public Customer GetTemplateComunity()
         {
-            var templateComunity = _webApi.GetItemById<Customer>(_prefix + "template", null);
+            var templateComunity = _webApi.GetItemById<Customer>(Prefix + "template", null);
             return templateComunity;
         }
 
@@ -95,8 +95,8 @@ namespace ipsFormsDesign.Services
         public bool SaveCommunity(Customer customer)
         {
             return customer.CustId == 0 ? 
-                _webApi.NewItem<Customer>(_prefix + "createcommunity", customer) : 
-                _webApi.UpdateItem<Customer>(_prefix + "updatecommunity", customer.CustId.ToString(), customer);
+                _webApi.NewItem<Customer>(Prefix + "createcommunity", customer) : 
+                _webApi.UpdateItem<Customer>(Prefix + "updatecommunity", customer.CustId.ToString(), customer);
         }
 
         /// <summary>
@@ -106,33 +106,33 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public bool SaveAgreement(AgreementAddCommunity agreement)
         {
-            return _webApi.UpdateItem($"{_prefix}updateagreement", agreement.AgrId.ToString(), agreement);
+            return _webApi.UpdateItem($"{Prefix}updateagreement", agreement.AgrId.ToString(), agreement);
         }
 
         public bool SaveLimitRights(int cmCustId, int custId, List<CustCmRight> listObj)
         {
             var url = $"lrightsupd/{cmCustId}/{custId}";
 
-            var result = _webApi.UpdateItem(string.Concat(_prefix, url), null, listObj);
+            var result = _webApi.UpdateItem(string.Concat(Prefix, url), null, listObj);
             return result;
         }
 
         public Customer GetComunity(int custId)
         {
-            var comunity = _webApi.GetItemById<Customer>(_prefix + "list", custId.ToString());
+            var comunity = _webApi.GetItemById<Customer>(Prefix + "list", custId.ToString());
             return comunity;
         }
 
         public List<CustCmRight> GetCommunityRightList(int custId)
         {
-            string url = _prefix + "cmautors/" + custId;
+            string url = Prefix + "cmautors/" + custId;
             var rightlist = _webApi.GetList<CustCmRight>(url);
             return rightlist;
         }
 
         public bool ChangeStatusAgr(int communityId, CPartnerObjectStatus status)
         {
-            string url = _prefix + "agrstatuschange/" + $"{communityId}/{(int)status}";
+            string url = Prefix + "agrstatuschange/" + $"{communityId}/{(int)status}";
             var result = _webApi.UpdateItem<object>(url, null, null);
             return result;
         }

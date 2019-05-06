@@ -139,6 +139,8 @@ namespace sysAdminwp
             // прості словники
             {
                 var baseDicts = _connector.GetList<DictBaseTypeI>(Url);
+                if (baseDicts == null)
+                    baseDicts = new List<DictBaseTypeI> { };
                 _list = baseDicts;
                 foreach (var item in baseDicts)
                 {
@@ -178,12 +180,22 @@ namespace sysAdminwp
                 txtCode.Text = gvDictionariesList.CurrentRow.Cells["Code"].Value.ToString();
 
             DictBaseTypeI dataI = PackDataI();
+            //catch crkindGroup for recall
+            var catchedUrl = UrlCrKindGroup(Url);
             // TODO: use result
-            bool result = _connector.UpdateItem<DictBaseTypeI>(Url,dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
+            bool result = _connector.UpdateItem<DictBaseTypeI>(catchedUrl, dataI.CodeI.ToString(),(DictBaseTypeI)dataI);
             //update current data and select for grid
             ControlCurrentPosition(result, dataI);
             //update bottom panel
             UpdateEditPanel();
+        }
+        
+        //
+        private string UrlCrKindGroup(string url)
+        {
+            if (url.Contains("crkindgroup"))
+                url = url.Replace("base", "extra");
+            return url;
         }
 
         //method for control current position into grid
@@ -397,6 +409,7 @@ namespace sysAdminwp
             radPanelChange.Enabled = returnedList != null;
             txtSearchData.Enabled = returnedList != null;
             btnRemove.Enabled = returnedList != null;
+            gvDictionariesList.Enabled = returnedList != null;
             
             if (returnedList != null)
             {

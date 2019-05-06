@@ -7,11 +7,17 @@ using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseSystemConstantControl : UserControl
     {
+        SystemConstantLayer _layer = new SystemConstantLayer();
+        public delegate SystemConstant GetDictionaryLayer(int id);
+        public delegate SystemConstant CreateLayer(SystemConstant sors);
+        public delegate SystemConstant UpdateLayer(SystemConstant sors);
+        public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
@@ -75,6 +81,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseSystemConstantControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for grid
@@ -83,9 +90,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             txtSearchSystemConstant.SetUsageGrid(gridSystemConstantList);
             //set default data for bottom panel
             if (SystemConstantList.Count != 0)
-                DataUpdateForBottomPanel(
-                    SystemConstantList[0].CodeI
-                    );
+                DataUpdateForBottomPanel(SystemConstantList[0].CodeI);
             ControlEnabledActiveElements = true;
         }
         
@@ -169,7 +174,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterGetQuery(int codeI)
         {
-            SystemConstant result = _dictService.GetSystemConstant(codeI);
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
+            SystemConstant result = dictDelegat(codeI);
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
@@ -233,7 +239,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            bool result = _dictService.DeleteCreativeRoleType(codeI);
+            DeleteLayer dictDelegat = new DeleteLayer(_layer.Delete);
+            bool result = dictDelegat(codeI);
             if (!result)
             {
                 MessageShow.ShowError(DelMess);
@@ -283,7 +290,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterCreate(SystemConstant createItem)
         {
-            SystemConstant result = _dictService.CreateSystemConstant(createItem);
+            CreateLayer dictDelegat = new CreateLayer(_layer.Create);
+            SystemConstant result = dictDelegat(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
@@ -300,7 +308,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private SystemConstant CheckAfterUpdate(SystemConstant updateItem)
         {
-            SystemConstant result = _dictService.UpdateSystemConstant(systemConstantData);
+            UpdateLayer dictDelegat = new UpdateLayer(_layer.Update);
+            SystemConstant result = dictDelegat(systemConstantData);
             if (result == null)
             {
                 MessageBox.Show(UpdateMess);

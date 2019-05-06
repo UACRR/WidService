@@ -136,7 +136,7 @@ namespace ipsmedserviceapp.Controllers
             "country",
             "creativeroletype",
             "genretype",
-            "klr030",
+            "kl_r030",
             "systemconstant",
             "typeplace"
         };
@@ -252,14 +252,14 @@ namespace ipsmedserviceapp.Controllers
                             (sors, dest) => ((CustomerTypeTr)sors).CodeI == ((CustomerTypeTr)dest).CodeI && ((CustomerTypeTr)sors).Lang == ((CustomerTypeTr)dest).Lang,
                             rec => rec.CustomerTypeTr)
                         );
-            baseEng.Add("documentkind".ToLower(),
-                            new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
-                            sors => (DictBaseTypeI)sors,
-                            sors => (DocumentKind)sors,
-                            sors => sors.DocumentKindTr.ToList(),
-                            (sors, dest) => ((DocumentKindTr)sors).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)sors).Lang == ((DocumentKindTr)dest).Lang,
-                            rec => rec.DocumentKindTr)
-                        );
+            //baseEng.Add("documentkind".ToLower(),
+            //                new BaseDictionaryEng<DocumentKind, DocumentKindTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.CodeI == int.Parse(id),
+            //                sors => (DictBaseTypeI)sors,
+            //                sors => (DocumentKind)sors,
+            //                sors => sors.DocumentKindTr.ToList(),
+            //                (sors, dest) => ((DocumentKindTr)sors).CodeI == ((DocumentKindTr)dest).CodeI && ((DocumentKindTr)sors).Lang == ((DocumentKindTr)dest).Lang,
+            //                rec => rec.DocumentKindTr)
+            //            );
             baseEng.Add("popgenre".ToLower(),
                             new BaseDictionaryEng<PopGenre, PopGenreTr, DictBaseTypeI>(_dbContext, (sors, id) => sors.Id == int.Parse(id),
                             sors => sors,
@@ -570,7 +570,7 @@ namespace ipsmedserviceapp.Controllers
                         .Include(item => item.GenreTypeTr)
                         .ToListAsync();
                     return Json(genretype);
-                case "klr030":
+                case "kl_r030":
                     var klr030 = await _dbContext.KlR030
                         .Include(item => item.KlR030tr)
                         .ToListAsync();
@@ -1375,11 +1375,12 @@ namespace ipsmedserviceapp.Controllers
                 sorsRghtKind.ToList().ForEach(sorsRow =>
                 {
                     var destRow = destRghtKind.Where(item => item.CodeI == sorsRow.CodeI).SingleOrDefault();
-                    if (destRow == null) throw new Exception($"Error update CopyrightKind with CodeI = {sorsRow.CodeI}");
+                    if (destRow == null)
+                        throw new Exception($"Error update CopyrightKind with CodeI = {sorsRow.CodeI}");
 
                     var sorsTr = sorsRow.CopyrightKindTr;
                     var destTr = destRow.CopyrightKindTr;
-                    _dbContext.UpdateList(sorsTr, destTr, 
+                    _dbContext.UpdateList(sorsTr, destTr,
                         row => row.CodeI = destRow.CodeI,
                         (sorsI, destI) => sorsI.CodeI == destI.CodeI && sorsI.Lang == destI.Lang);
 
@@ -1396,13 +1397,13 @@ namespace ipsmedserviceapp.Controllers
             }
             catch (Exception ex)
             {
-                if (transaction != null)
-                    transaction.Rollback();
-                Console.WriteLine(ex.InnerException.Message);
-
+                transaction?.Rollback();
                 return BadRequest(ex.InnerException.Message);
             }
-
+            finally
+            {
+                transaction?.Dispose();
+            }
         }
 
 
@@ -1512,6 +1513,73 @@ namespace ipsmedserviceapp.Controllers
         }
         // CopyRightKind END **********************
 
+        // Country BEGIN ********************
+        // Get By Id   ****************************
+        [HttpGet("extra/country/{countryCode}")]
+        public async Task<IActionResult> GetCountry(int countryCode)
+        {
+            Country dest = await _dbContext.Country.Where(item => Convert.ToInt32(item.CountryCode) == countryCode)
+                                    .Include(rec => rec.CountryTr)
+                                    .AsNoTracking()
+                                    .FirstOrDefaultAsync();
+            if (dest == null)
+                return NotFound();
+
+            return Ok(dest);
+        }
+
+        // Create New  ****************************
+        [HttpPost("extra/country")]
+        public async Task<IActionResult> CreateCountry([FromBody] Country sors)
+        {
+            Country dest = new Country();
+
+            dest.SetFields(sors);
+            _dbContext.AppendList(sors.CountryTr, dest.CountryTr, i => { }, (l, r) => l.CountryCode == r.CountryCode && l.Lang == r.Lang);
+            _dbContext.Country.Add(dest);
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Update      ****************************
+        [HttpPut("extra/country/{countryCode}")]
+        public async Task<IActionResult> UpdateCountry(string countryCode, [FromBody] Country sors)
+        {
+            Country dest = await _dbContext.Country.Where(rec => rec.CountryCode == countryCode)
+                                    .Include(rec => rec.CountryTr)
+                                    .FirstOrDefaultAsync();
+
+            if (dest == null)
+                return NotFound();
+
+            _dbContext.UpdateList(sors.CountryTr, dest.CountryTr, i => { }, (l, r) => l.CountryCode == r.CountryCode && l.Lang == r.Lang);
+            dest.SetFields(sors);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok(dest);
+        }
+        // Delete      ****************************
+        [HttpDelete("extra/country/{countryCode}")]
+        public async Task<IActionResult> DeleteCountry(int countryCode)
+        {
+            Country delRow = await _dbContext.Country.Where(rec => Convert.ToInt32(rec.CountryCode) == countryCode)
+                                        .Include(rec => rec.CountryTr)
+                                        .FirstOrDefaultAsync();
+
+            if (delRow == null)
+                return NotFound();
+
+            _dbContext.CountryTr.RemoveRange(delRow.CountryTr);
+            _dbContext.Country.Remove(delRow);
+
+            await _dbContext.SaveChangesAsync();
+
+            return Ok();
+        }
+        // Country END **********************
+
+
         // CreativeRoleType BEGIN ********************
         // Get By Id   ****************************
         [HttpGet("extra/creativeroletype/{id}")]
@@ -1556,6 +1624,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(dest);
         }
+
         // Delete      ****************************
         [HttpDelete("extra/creativeroletype/{id}")]
         public async Task<IActionResult> DeleteCreativeRoleType(int id)
@@ -1569,18 +1638,23 @@ namespace ipsmedserviceapp.Controllers
             _dbContext.CreativeRoleTypeTr.RemoveRange(delRow.CreativeRoleTypeTr);
             _dbContext.CreativeRoleType.Remove(delRow);
 
-            //await _dbContext.SaveChangesAsync();
-            
+            IDbContextTransaction transaction = null;
             try
             {
+                transaction = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
+                transaction.Commit();
+                return Ok();
             }
-            catch(Exception e)
+            catch
             {
-
+                transaction?.Rollback();
+                throw;
             }
-
-            return Ok();
+            finally
+            {
+                transaction?.Dispose();
+            }
         }
         // CreativeRoleType END **********************
 
@@ -1652,7 +1726,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("extra/klr030/{id}")]
         public async Task<IActionResult> GetKlR030(int id)
         {
-            var dest = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+            var dest = await _dbContext.KlR030.Where(rec => Convert.ToInt32(rec.R030) == id)
                                 .Include(rec => rec.KlR030tr)
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync();
@@ -1670,15 +1744,23 @@ namespace ipsmedserviceapp.Controllers
             dest.SetFields(sors);
             _dbContext.AppendList(sors.KlR030tr, dest.KlR030tr, i => { }, (l, r) => l.R030 == r.R030 && l.Lang == r.Lang);
             _dbContext.KlR030.Add(dest);
-            await _dbContext.SaveChangesAsync();
+            //await _dbContext.SaveChangesAsync();
             
+            try
+            {
+                await _dbContext.SaveChangesAsync();
+            } catch
+            {
+                throw;
+            }
+
             return Ok(dest);
         }
         // Update      ****************************
         [HttpPut("extra/klr030/{id}")]
         public async Task<IActionResult> UpdateKlR030(int id, [FromBody] KlR030 sors)
         {
-            var dest = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+            var dest = await _dbContext.KlR030.Where(rec => Convert.ToInt32(rec.R030) == id)
                                 .Include(rec => rec.KlR030tr)
                                 .FirstOrDefaultAsync();
             if (dest == null)
@@ -1692,9 +1774,9 @@ namespace ipsmedserviceapp.Controllers
             try
             {
                 await _dbContext.SaveChangesAsync();
-            } catch (Exception e)
+            } catch
             {
-
+                throw;
             }
 
             return Ok(dest);
@@ -1703,7 +1785,7 @@ namespace ipsmedserviceapp.Controllers
         [HttpDelete("extra/klr030/{id}")]
         public async Task<IActionResult> DeleteKlR030(int id)
         {
-            var delRow = await _dbContext.KlR030.Where(rec => rec.R031 == id)
+            var delRow = await _dbContext.KlR030.Where(rec => Convert.ToInt32(rec.R030) == id)
                                 .Include(rec => rec.KlR030tr)
                                 .FirstOrDefaultAsync();
             if (delRow == null)

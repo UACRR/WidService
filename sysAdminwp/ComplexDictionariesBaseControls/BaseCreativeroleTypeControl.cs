@@ -9,11 +9,19 @@ using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
 using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
+using sysAdminwp.PresenterComplexDictionaries;
+using System.Threading;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCreativeroleTypeControl : UserControl
     {
+        CreativeroleTypeLayer _layer = new CreativeroleTypeLayer();
+        public delegate CreativeRoleType GetDictionaryLayer(int id);
+        public delegate CreativeRoleType CreateLayer(CreativeRoleType sors);
+        public delegate CreativeRoleType UpdateLayer(CreativeRoleType sors);
+        public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
@@ -85,6 +93,7 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseCreativeroleTypeControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             _connector = connector;
             urlDataGrid = urlForComplexDict;
             //initialize data for drop down lists
@@ -155,26 +164,26 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             //use data for binding source
             bsCreativeRoleType.DataSource = creativeroleTypeData;
             //define binding for source of the 'Uk'
-            ukCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
             if (ukCreativeroleType == null)
             {
-                ukCreativeroleType = new CreativeRoleTypeTr { Lang = "Uk" };
+                ukCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[0] };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(ukCreativeroleType);
             }
             bsUkLangCreativeRoleType.DataSource = ukCreativeroleType;
             //defined binding for source of the 'Ru'
-            ruCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
             if (ruCreativeroleType == null)
             {
-                ruCreativeroleType = new CreativeRoleTypeTr { Lang = "Ru" };
+                ruCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[1] };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(ruCreativeroleType);
             }
             bsRuLangCreativeRoleType.DataSource = ruCreativeroleType;
             //define binding for source of the 'En'
-            enCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == "En");
+            enCreativeroleType = creativeroleTypeData.CreativeRoleTypeTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
             if (enCreativeroleType == null)
             {
-                enCreativeroleType = new CreativeRoleTypeTr { Lang = "En" };
+                enCreativeroleType = new CreativeRoleTypeTr { Lang = Langs[2] };
                 creativeroleTypeData.CreativeRoleTypeTr.Add(enCreativeroleType);
             }
             bsEnLangCreativeRoleType.DataSource = enCreativeroleType;
@@ -187,7 +196,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterGetQuery(int codeI)
         {
-            CreativeRoleType result = _dictService.GetCreativeRoleType(codeI);
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
+            CreativeRoleType result = dictDelegat(codeI);
             if (result == null)
             {
                 MessageShow.ShowError(GetMess);
@@ -294,7 +304,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private bool CheckAfterDelete(int codeI)
         {
-            bool result = _dictService.DeleteCreativeRoleType(codeI);
+            DeleteLayer delLayer = new DeleteLayer(_layer.Delete);
+            bool result = delLayer(codeI);
             if (!result)
             {
                 MessageShow.ShowError(DelMess);
@@ -345,7 +356,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// <returns></returns>
         private CreativeRoleType CheckAfterCreate(CreativeRoleType createItem)
         {
-            CreativeRoleType result = _dictService.CreateCreativeRoleType(createItem);
+            CreateLayer createLayer = new CreateLayer(_layer.Create);
+            CreativeRoleType result = createLayer(createItem);
             if (result == null)
             {
                 MessageShow.ShowError(CreateMess);
@@ -363,7 +375,8 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         private CreativeRoleType CheckAfterUpdate(CreativeRoleType updateItem)
         {
             //DictionaryService dictService = new DictionaryService();
-            CreativeRoleType result = _dictService.UpdateCreativeRoleType(creativeroleTypeData);
+            UpdateLayer updateLayer = new UpdateLayer(_layer.Update);
+            CreativeRoleType result = updateLayer(creativeroleTypeData);
             if (result == null)
             {
                 MessageShow.ShowError(UpdateMess);

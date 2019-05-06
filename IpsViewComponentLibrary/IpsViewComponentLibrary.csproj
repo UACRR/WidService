@@ -112,6 +112,7 @@
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.PdfViewer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Telerik.WinControls.PivotGrid, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <HintPath>..\lib\RCWF\2019.1.219.40\Telerik.WinControls.Themes.Office2007Silver.dll</HintPath>
       <Private>True</Private>
@@ -140,12 +141,46 @@
       <HintPath>..\lib\RCWF\2019.1.219.40\TelerikCommon.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="TelerikData, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="TelerikExport, Version=2019.1.219.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="WindowsBase" />
     <Reference Include="Telerik.Reporting, Version=13.0.19.222, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
       <SpecificVersion>True</SpecificVersion>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CatalogControls\CatalogControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CatalogControls\CatalogControl.Designer.cs">
+      <DependentUpon>CatalogControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogControls\CatalogDetailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CatalogControls\CatalogDetailForm.Designer.cs">
+      <DependentUpon>CatalogDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogControls\CatalogShowEdition.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CatalogControls\CatalogShowEdition.Designer.cs">
+      <DependentUpon>CatalogShowEdition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogControls\ChangeCommentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CatalogControls\ChangeCommentForm.Designer.cs">
+      <DependentUpon>ChangeCommentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogControls\CommentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CatalogControls\CommentControl.Designer.cs">
+      <DependentUpon>CommentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
+    <Compile Include="CatalogControls\Presenters\ICatalogFileItemsHandler.cs" />
     <Compile Include="Common\Enums\NavigateType.cs" />
     <Compile Include="Common\GridRowCountControl.cs">
       <SubType>UserControl</SubType>
@@ -1108,6 +1143,21 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CatalogControls\CatalogControl.resx">
+      <DependentUpon>CatalogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CatalogControls\CatalogDetailForm.resx">
+      <DependentUpon>CatalogDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CatalogControls\CatalogShowEdition.resx">
+      <DependentUpon>CatalogShowEdition.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CatalogControls\ChangeCommentForm.resx">
+      <DependentUpon>ChangeCommentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CatalogControls\CommentControl.resx">
+      <DependentUpon>CommentControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Common\GridRowCountControl.resx">
       <DependentUpon>GridRowCountControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -1588,6 +1638,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AnketaPerson.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BankAccount.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.BrRegister.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.CatalogFile.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.CheckParamPays.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Client.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.ClnBusinessPlace.datasource" />
@@ -1616,6 +1667,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Partner.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.PerformType.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Period.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.PubСatalogItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Region.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.Register.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterCount.datasource" />

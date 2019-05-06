@@ -1,27 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using WebAPIConnector;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Dictionary;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.Extensions;
+using sysAdminwp.PresenterComplexDictionaries.DefineComplexLayers;
 
 namespace sysAdminwp.ComplexDictionariesBaseControls
 {
     public partial class BaseCountryControl : UserControl
     {
+        CountryLayer _layer = new CountryLayer();
+        public delegate Country GetDictionaryLayer(int id);
+        public delegate Country CreateLayer(Country sors);
+        public delegate Country UpdateLayer(Country sors);
+        public delegate bool DeleteLayer(int id);
         private readonly List<string> Langs = new List<string>
         {
             "Uk", "Ru", "En"
         };
+
+        private const string DelMess = "Об'єкт не видалений!";
+        private const string GetMess = "об'єкт не знайдено";
+        private const string CreateMess = "Помилка формату";
+        private const string UpdateMess = "Помилка формату";
+        private const string UrlBaseDict = "dictionary/base/Continent";
+
         private readonly DictionaryService _dictionaryService = DictionaryService.GetInstance();
+        private readonly ApiConnector _connector;
+
         //define data for different languages
         private CountryTr ukCountry;
         private CountryTr ruCountry;
@@ -31,16 +43,24 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public List<Country> CountryList
         {
             get => _countryList;
-            set { }
+            set
+            {
+                if (value != null)
+                {
+                    _countryList = value;
+                    totalCountry.Text = _countryList.Count.ToString();
+                }
+            }
         }
+
         //item data
         private Country countryData;
-        //define connector
-        private readonly ApiConnector _connector;
+
         //url for get data to grid
         private readonly string urlDataGrid;
-        //value 'code' for refresh data when 'Cancel' action
-        private int codeForRefresh;
+
+        private int indexSelectedElem;
+
         //control 'Enabled' state for elements
         private bool controlEnabledActiveElements = false;
         public bool ControlEnabledActiveElements
@@ -68,113 +88,118 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         public BaseCountryControl(ApiConnector connector, string urlForComplexDict)
         {
             InitializeComponent();
-            //initialize connector
+            Dock = DockStyle.Fill;
             _connector = connector;
-            //setup search posibility for textBox element
-            txtSearchCountry.SetUsageGrid(gridCountryList);
-            //initialize data for drop down list - 'Спосіб використання'
-            ddlFilterCountry.DataSource = InitializeDataForFilter();
-            //initialize data for binding source of the Dictionaries 'dropDownList'
-            bsSimpleDictCountry.DataSource = ddlFilterCountry.DataSource;
-            //save url for filter data into grid
             urlDataGrid = urlForComplexDict;
+            //initialize data for drop down lists
+            ddlFilterCountry.DataSource = bsSimpleDictCountry.DataSource = InitializeDataForFilter();
             //initialize data for grid
             gridCountryList.DataSource = HandleDataForGrid(urlForComplexDict);
+            //setup search posibility for textBox element
+            txtSearchCountry.SetUsageGrid(gridCountryList);
+
             //set default data for bottom panel
-            DataUpdateForBottomPanel();
-            //set 'Enabled' state by default
+            if (CountryList.Count != 0)
+                DataUpdateForBottomPanel(
+                    CountryList[0].CountryCode
+                    );
             ControlEnabledActiveElements = true;
-            
         }
         
         //handle data for grid
         private List<ViewTable> HandleDataForGrid(string urlForGetDataDictionaries)
         {
+            //check on valid state parameter
+            if (urlForGetDataDictionaries == null) return new List<ViewTable>();
+            //get data dictionaries -> for grid
+            CountryList = _connector.GetList<Country>(urlForGetDataDictionaries);
             //result data for initialize to grid
             List<ViewTable> dataGrid = new List<ViewTable>();
-            //check on valid state parameter
-            if (urlForGetDataDictionaries == null) return dataGrid;
-            //get data dictionaries -> for grid
-            _countryList = _connector.GetList<Country>(urlForGetDataDictionaries);
             //initialize grid data
-            foreach (var item in _countryList)
+            foreach (var item in CountryList)
             {
                 dataGrid.Add(new ViewTable
                 {
                     Code = item.CountryCode,
-                    NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
-                    NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
-                    NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
-                    Continent = ddlFilterCountry.Items.First(el => (int)el.Value == item.ContinentCode).Text,
+                    NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.CountryName ?? item.CountryName,
+                    NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.CountryName,
+                    NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.CountryName,
+                    Continent = item.ContinentCode != null ? ddlFilterCountry.Items.First(el => (int)el.Value == item.ContinentCode).Text : "",
                 });
             }
-            //show current count elements into grid
-            totalCountry.Text = _countryList.Count.ToString();
             return dataGrid;
         }
 
         //handle data for drop down list - 'Спосіб використання'
         private List<DictBaseTypeI> InitializeDataForFilter()
         {
-            //define for result data
-            List<DictBaseTypeI> dataDropDownList = new List<DictBaseTypeI>();
-            //get data for drop down list
-            dataDropDownList = _connector.GetList<DictBaseTypeI>("dictionary/base/Continent");
-            //check data
-            return dataDropDownList != null ? dataDropDownList : new List<DictBaseTypeI>();
+            return _connector.GetList<DictBaseTypeI>(UrlBaseDict) ?? new List<DictBaseTypeI>();
         }
 
         //show data for bottom panel
         private void gvCopyrightKindList_CellClick(object sender, GridViewCellEventArgs e)
         {
-            //get id dictionary
-            GridViewRowInfo rowDetail = gridCountryList.CurrentRow;
-            //get data of the current row
-            var @curRow = rowDetail.DataBoundItem as ViewTable;
-            //stop perform if data is not exist
-            if (@curRow == null) return;
+            if (!(gridCountryList.CurrentRow?.DataBoundItem is ViewTable currentRow))
+                return;
             //check field 'Code' on correct type 'int'
-            if (!int.TryParse(@curRow.Code, out int code)) return;
-            //save value 'code' -> fr refresh data when 'Cancel' action
-            var strCode = code.ToString();
-            codeForRefresh = _countryList.FindIndex(el => el.CountryCode == strCode);
-            //update data for bottom panel
-            DataUpdateForBottomPanel();
+            //if (!int.TryParse(currentRow.Code, out int code))
+            //    return;
+            indexSelectedElem = CountryList.FindIndex(item => item.CountryCode == currentRow.Code);
+            DataUpdateForBottomPanel(currentRow.Code);
         }
 
         //refresh changed data for bottom panel
-        private void DataUpdateForBottomPanel()
+        private void DataUpdateForBottomPanel(string code)
         {
-            //set default first item of the grid
-            if (codeForRefresh == 0) codeForRefresh = _countryList[0].ContinentCode ?? 1;
             //get object by parameter 'code' from service
-            countryData = _dictionaryService.GetCountry(codeForRefresh);
+            countryData = CheckAfterGetQuery(code);
             //use data for binding source
             bsCountry.DataSource = countryData;
             //define binding for source of the 'Uk'
-            ukCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == "Uk");
+            ukCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == Langs[0]);
             if (ukCountry == null)
             {
-                ukCountry = new CountryTr { Lang = "Uk" };
+                ukCountry = new CountryTr { Lang = Langs[0] };
                 countryData.CountryTr.Add(ukCountry);
             }
             bsUkLangCountry.DataSource = ukCountry;
             //defined binding for source of the 'Ru'
-            ruCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == "Ru");
+            ruCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == Langs[1]);
             if (ruCountry == null)
             {
-                ruCountry = new CountryTr { Lang = "Ru" };
+                ruCountry = new CountryTr { Lang = Langs[1] };
                 countryData.CountryTr.Add(ruCountry);
             }
             bsRuLangCountry.DataSource = ruCountry;
             //define binding for source of the 'En'
-            enCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == "En");
+            enCountry = countryData.CountryTr.FirstOrDefault(rec => rec.Lang == Langs[2]);
             if (enCountry == null)
             {
-                enCountry = new CountryTr { Lang = "En" };
+                enCountry = new CountryTr { Lang = Langs[2] };
                 countryData.CountryTr.Add(enCountry);
             }
             bsEnLangCountry.DataSource = enCountry;
+        }
+
+        /// <summary>
+        /// check after 'Get' query
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private Country CheckAfterGetQuery(string code)
+        {
+            Country result = new Country();
+            GetDictionaryLayer dictDelegat = new GetDictionaryLayer(_layer.GetDictionary);
+            if (int.TryParse(code, out int codeInt))
+                result = dictDelegat(codeInt);
+            else
+                result = null;
+            if (result == null)
+            {
+                MessageShow.ShowError(GetMess);
+                result = CountryList[0];
+            }
+            return result;
         }
 
         //select item into drop down list for filtered data into grid
@@ -182,37 +207,37 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //stop perform if position is not exist
             if (e.Position == -1) return;
-            //get field 'value' of the current selected item
-            int selectedItemData = (int)ddlFilterCountry.Items[e.Position].Value;
-            //set filtered data to grid
-            gridCountryList.DataSource = FilterDataIntoGrid(selectedItemData);
+            //get index current data
+            string valueDropList = ddlFilterCountry.Items[e.Position].Value.ToString();
+            gridCountryList.DataSource = FilterDataIntoGrid(valueDropList);
         }
 
         //filter data for grid
-        private List<ViewTable> FilterDataIntoGrid(int code)
+        private List<ViewTable> FilterDataIntoGrid(string code)
         {
-            //initialzie empty data for result
-            List<ViewTable> filteredData = new List<ViewTable>();
             //get all data of the 'CopyrightKind'
-            _countryList = _connector.GetList<Country>(urlDataGrid);
+            CountryList = _connector.GetList<Country>(urlDataGrid);
             //stop perform if data is not exist
-            if (_countryList == null) return new List<ViewTable>();
+            if (CountryList == null)
+            {
+                CountryList = new List<Country>();
+                return new List<ViewTable>();
+            }
             //filter data by parameter 'code'
-            _countryList = _countryList.Where(item => item.ContinentCode == code).ToList();
+            CountryList = CountryList.Where(item => item.ContinentCode == Convert.ToInt32(code)).ToList();
+            List<ViewTable> filteredData = new List<ViewTable>();
             //initialize data for grid
-            foreach (var item in _countryList)
+            foreach (var item in CountryList)
             {
                 filteredData.Add(new ViewTable
                 {
                     Code = item.CountryCode,
-                    NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Uk")?.CountryName ?? item.CountryName,
-                    NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == "Ru")?.CountryName,
-                    NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == "En")?.CountryName,
+                    NameUk = item.CountryTr?.SingleOrDefault(i => i?.Lang == Langs[0])?.CountryName ?? item.CountryName,
+                    NameRu = item.CountryTr?.SingleOrDefault(i => i?.Lang == Langs[1])?.CountryName,
+                    NameEn = item.CountryTr?.SingleOrDefault(i => i?.Lang == Langs[2])?.CountryName,
                     Continent = ddlFilterCountry.SelectedItem.Text,
                 });
             }
-            //show current count elements into grid
-            totalCountry.Text = _countryList.Count.ToString();
             return filteredData;
         }
 
@@ -221,20 +246,19 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         {
             //change property 'Text' of the btnSave for 'Add' action
             btnSaveCountry.Text = "Додати";
-            //clear data into bottom panel
             //refresh data for field 'Code'
             countryData = new Country { ContinentCode = 1 };
             bsCountry.DataSource = countryData;
             //refresh data for field 'Uk'
-            ukCountry = new CountryTr { Lang = "Uk" };
+            ukCountry = new CountryTr { Lang = Langs[0] };
             countryData.CountryTr.Add(ukCountry);
             bsUkLangCountry.DataSource = ukCountry;
             //refresh data for field 'Ru'
-            ruCountry = new CountryTr { Lang = "Ru" };
+            ruCountry = new CountryTr { Lang = Langs[1] };
             countryData.CountryTr.Add(ruCountry);
             bsRuLangCountry.DataSource = ruCountry;
             //refresh data for field 'Ru'
-            enCountry = new CountryTr { Lang = "En" };
+            enCountry = new CountryTr { Lang = Langs[2] };
             countryData.CountryTr.Add(enCountry);
             bsEnLangCountry.DataSource = enCountry;
             //stop perform if elements have 'Enabled' -> false
@@ -246,81 +270,128 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         //action 'Delete' exist object from grid
         private void btnDeleteComplex_Click(object sender, EventArgs e)
         {
-            //DictionaryService dictService = new DictionaryService();
+            //return if element by index is not exist
+            if (!(CountryList.Count > indexSelectedElem))
+                return;
+
             //delete selected item of grid by field 'Code'
-            Country item = _countryList[codeForRefresh];
-            //bool result = dictService.DeleteCountry();
+            Country item = CountryList[indexSelectedElem];
+            bool result = CheckAfterDelete(item.CountryCode);
             //update data for grid
             gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
-            DataUpdateForBottomPanel();
+            //step up in grid position
+            if (result) --indexSelectedElem;
+            if (indexSelectedElem < 0) indexSelectedElem = 0;
+            gridCountryList.CurrentRow = gridCountryList.Rows[indexSelectedElem];
+            //define new currentRow
+            DataUpdateForBottomPanel(
+                CountryList[indexSelectedElem].CountryCode
+                );
+        }
+
+        /// <summary>
+        /// control delete state
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        private bool CheckAfterDelete(string code)
+        {
+            bool result = false;
+            DeleteLayer dictDelegat = new DeleteLayer(_layer.Delete);
+            if (int.TryParse(code, out int codeInt))
+                result = dictDelegat(codeInt);
+            else
+                result = false;
+            if (!result)
+                MessageShow.ShowError(DelMess);
+            return result;
         }
 
         //action 'Save' object to grid
         private void btnSave_Click(object sender, EventArgs e)
         {
-            //for save last index selected item
-            int current = 0;
-
-            //DictionaryService dictService = new DictionaryService();
+            string codeIAfter = "";
             if (btnSaveCountry.Text == "Додати")
             {
                 //send created object
-                var result = _dictionaryService.CreateCountry(countryData);
+                Country result = CheckAfterCreate(countryData);
+                codeIAfter = result.CountryCode;
+                //update data for grid
+                gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
+                indexSelectedElem = CountryList.FindIndex(elem => elem.CountryCode == result.CountryCode);
+                //select certain item into grid
+                gridCountryList.CurrentRow = gridCountryList.Rows[indexSelectedElem];
                 //set default state for 'Text' of the btnSave
                 btnSaveCountry.Text = "Зберегти";
-                //save last selected item
-                current = gridCountryList.CurrentRow.Index;
-                //update data for grid
-                gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
-                //select certain item into grid
-                gridCountryList.CurrentRow = result != null ? gridCountryList.Rows[gridCountryList.RowCount - 1]
-                                                                  : gridCountryList.Rows[current];
             } else if (btnSaveCountry.Text == "Зберегти")
             {
-                //save changes
-                var result = _dictionaryService.UpdateCountry(countryData);
+                Country result = CheckAfterUpdate(countryData);
+                codeIAfter = result.CountryCode;
                 //save last selected item
-                current = gridCountryList.CurrentRow.Index;
+                indexSelectedElem = gridCountryList.CurrentRow.Index;
                 //update data for grid
                 gridCountryList.DataSource = HandleDataForGrid(urlDataGrid);
                 //select certain item into grid
-                gridCountryList.CurrentRow = gridCountryList.Rows[current];
+                gridCountryList.CurrentRow = gridCountryList.Rows[indexSelectedElem];
             }
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(codeIAfter);
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
             ControlEnabledActiveElements = true;
+        }
+
+        /// <summary>
+        /// check result data after 'Create'
+        /// </summary>
+        /// <param name="createItem"></param>
+        /// <returns></returns>
+        private Country CheckAfterCreate(Country createItem)
+        {
+            CreateLayer dictDelegate = new CreateLayer(_layer.Create);
+            Country result = dictDelegate(createItem);
+            if (result == null)
+            {
+                MessageShow.ShowError(CreateMess);
+                result = CountryList[0];
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// check result data after 'Update'
+        /// </summary>
+        /// <param name="updateItem"></param>
+        /// <returns></returns>
+        private Country CheckAfterUpdate(Country updateItem)
+        {
+            UpdateLayer dictDelegat = new UpdateLayer(_layer.Update);
+            Country result = dictDelegat(updateItem);
+            if (result == null)
+            {
+                MessageShow.ShowError(UpdateMess);
+                result = CountryList[0];
+            }
+            return result;
         }
 
         //action 'Cancel' reset changed data for selected item
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            string codeICurrent = CountryList[indexSelectedElem].CountryCode;
             //reset changed data
-            DataUpdateForBottomPanel();
+            DataUpdateForBottomPanel(codeICurrent);
             //stop perform if elements have 'Enabled' -> true
             if (ControlEnabledActiveElements) return;
             //change 'Enabled' state for elements
             ControlEnabledActiveElements = true;
         }
-
-        //changed data of the field 'Uk'
-        private void bindingSourceUk_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
-            //{
-            //    if (btnSaveCountry.Text != "Додати")
-            //    {
-            //        //change property 'Text' of the btnSave for 'Save' action
-            //        btnSaveCountry.Text = "Зберегти";
-            //    }
-            //    //stop perform if elements have 'Enabled' -> false
-            //    if (!ControlEnabledActiveElements) return;
-            //    //change 'Enabled' state for elements
-            //    ControlEnabledActiveElements = false;
-            //}
-        }
-
+        
+        /// <summary>
+        /// changed data of the field 'Uk'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtNameUaCountry_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (btnSaveCountry.Text != "Додати")
@@ -334,23 +405,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ControlEnabledActiveElements = false;
         }
 
-        //changed data of the field 'Ru'
-        private void bindingSourceRu_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
-            //{
-            //    if (btnSaveCountry.Text != "Додати")
-            //    {
-            //        //change property 'Text' of the btnSave for 'Save' action
-            //        btnSaveCountry.Text = "Зберегти";
-            //    }
-            //    //stop perform if elements have 'Enabled' -> false
-            //    if (!ControlEnabledActiveElements) return;
-            //    //change 'Enabled' state for elements
-            //    ControlEnabledActiveElements = false;
-            //}
-        }
-
+        /// <summary>
+        /// changed data of the field 'Ru'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtNameRuCountry_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (btnSaveCountry.Text != "Додати")
@@ -364,23 +423,11 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
             ControlEnabledActiveElements = false;
         }
 
-        //changed data of the field 'En'
-        private void bindingSourceEn_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
-            //{
-            //    if (btnSaveCountry.Text != "Додати")
-            //    {
-            //        //change property 'Text' of the btnSave for 'Save' action
-            //        btnSaveCountry.Text = "Зберегти";
-            //    }
-            //    //stop perform if elements have 'Enabled' -> false
-            //    if (!ControlEnabledActiveElements) return;
-            //    //change 'Enabled' state for elements
-            //    ControlEnabledActiveElements = false;
-            //}
-        }
-
+        /// <summary>
+        /// changed data of the field 'En'
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtNameEnCountry_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (btnSaveCountry.Text != "Додати")
@@ -399,22 +446,6 @@ namespace sysAdminwp.ComplexDictionariesBaseControls
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dsCopyrightKind_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-            //if (e.BindingCompleteContext == BindingCompleteContext.DataSourceUpdate)
-            //{
-            //    if (btnSaveCountry.Text != "Додати")
-            //    {
-            //        //change property 'Text' of the btnSave for 'Save' action
-            //        btnSaveCountry.Text = "Зберегти";
-            //    }
-            //    //stop perform if elements have 'Enabled' -> false
-            //    if (!ControlEnabledActiveElements) return;
-            //    //change 'Enabled' state for elements
-            //    ControlEnabledActiveElements = false;
-            //}
-        }
-
         private void ddlEditKeyCountry_Click(object sender, EventArgs e)
         {
             if (btnSaveCountry.Text != "Додати")

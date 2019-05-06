@@ -36,6 +36,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         public CabinetPartnerForm(Customer customer)
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
             Load += CabinetPartnerForm_Load;
             DialogResult = DialogResult.None;
             _customer = customer;
