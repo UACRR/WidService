@@ -1482,34 +1482,59 @@ namespace ipsFormsDesign.Services
                           { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
             }
 
-
-            var TbAL = new List<TbAuthorL>();
-                       if (authors != null)
-                            {
-                                TbAL = (from aut in authors
-                                        join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
-                                        join cpr in copyright on aut.CustId equals cpr.CustId 
-                                        join lab in licauthorbr on cpr.CRightId equals lab?.CRightId into tempp
-                                        from lab in tempp.DefaultIfEmpty()                  
-                                       where lab?.PrepayType == 1
-                                        select new TbAuthorL
+            /*
+                        var TbAL = new List<TbAuthorL>();
+                                   if (authors != null)
                                         {
-                                            RoleName = crt.Name,
-                                            AuthorName = aut.AuthorName,
-                                            CountryName = null,
-                                            PrepaySum = lab?.PrepaySum ?? 0,
-                                            Currency = lab.R030 ?? "980"
-                                            ,
-                                            PrepayDateDo = lab?.PrepayDateDo 
-                                        }).ToList();
-                            }
+                                            TbAL = (from aut in authors
+                                                    join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
+                                                    join cpr in copyright on aut.CustId equals cpr.CustId 
+                                                    join lab in licauthorbr on cpr.CRightId equals lab?.CRightId into tempp
+                                                    from lab in tempp.DefaultIfEmpty()                  
+                                                   where lab?.PrepayType == 1
+                                                    select new TbAuthorL
+                                                    {
+                                                        RoleName = crt.Name,
+                                                        AuthorName = aut.AuthorName,
+                                                        CountryName = null,
+                                                        PrepaySum = lab?.PrepaySum ?? 0,
+                                                        Currency = lab.R030 ?? "980"
+                                                        ,
+                                                        PrepayDateDo = lab?.PrepayDateDo 
+                                                    }).ToList();
+                                        }
+
+            */
+            var TbAL = new List<TbAuthorL>();
+            if (authors != null)
+            {
+                TbAL = (from aut in authors
+                        join cpr in copyright on (aut.CustId, aut.RoleCode) equals (cpr?.CustId, cpr?.RoleCode)
+//                        join cpr in copyright on aut.CustId equals cpr.CustId
+                        join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
+                        join lab in licauthorbr on cpr.CRightId equals lab?.CRightId into tempp
+                        from lab in tempp.DefaultIfEmpty()
+                        where lab?.PrepayType == 1
+                        select new TbAuthorL
+                        {
+                            RoleName = crt.Name,
+                            AuthorName = aut.AuthorName,
+                            CountryName = null,
+                            PrepaySum = lab?.PrepaySum ?? 0,
+                            Currency = lab.R030 ?? "980"
+                            ,
+                            PrepayDateDo = lab?.PrepayDateDo
+                        }).ToList();
+            }
+
 
             var TbAvAdv = new List<TbAuthorL>();
             if (authors != null)
             {
                 TbAvAdv = (from aut in authors
+                           join cpr in copyright on (aut.CustId, aut.RoleCode) equals (cpr?.CustId, cpr?.RoleCode)
                            join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
-                           join cpr in copyright on aut.CustId equals cpr.CustId
+//                           join cpr in copyright on aut.CustId equals cpr.CustId
                            join lab in licauthorbr on cpr.CRightId equals lab?.CRightId into temp1
                            from lab in temp1.DefaultIfEmpty()
                            where lab?.PrepayType == 2
