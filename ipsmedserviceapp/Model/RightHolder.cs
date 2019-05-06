@@ -16,7 +16,7 @@ namespace ipsmedserviceapp.Model
             PubCatalogItem = new HashSet<PubCatalogItem>();
             RegisterCount = new HashSet<RegisterCount>();
             ReqAgreement = new HashSet<ReqAgreement>();
-            RhñatalogItem = new HashSet<RhñatalogItem>();
+            RhcatalogItem = new HashSet<RhcatalogItem>();
             TermsOfService = new HashSet<TermsOfService>();
             TerritoryExclude = new HashSet<TerritoryExclude>();
             TerritoryInclude = new HashSet<TerritoryInclude>();
@@ -47,7 +47,7 @@ namespace ipsmedserviceapp.Model
         [JsonIgnore]
         public virtual ICollection<ReqAgreement> ReqAgreement { get; set; }
         [JsonIgnore]
-        public virtual ICollection<RhñatalogItem> RhñatalogItem { get; set; }
+        public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
         public virtual ICollection<TermsOfService> TermsOfService { get; set; }
         public virtual ICollection<TerritoryExclude> TerritoryExclude { get; set; }
         public virtual ICollection<TerritoryInclude> TerritoryInclude { get; set; }

@@ -267,6 +267,7 @@
     <Compile Include="Model\FolkTypeTr.cs" />
     <Compile Include="Model\GenreType.cs" />
     <Compile Include="Model\GenreTypeTr.cs" />
+    <Compile Include="Model\HandDocPay.cs" />
     <Compile Include="Model\InputFile.cs" />
     <Compile Include="Model\Invoice.cs" />
     <Compile Include="Model\ItemStatus.cs" />
@@ -412,9 +413,9 @@
     <Compile Include="Model\RequestTypeTr.cs" />
     <Compile Include="Model\ResidentType.cs" />
     <Compile Include="Model\ResidentTypeTr.cs" />
+    <Compile Include="Model\RhcatalogItem.cs" />
     <Compile Include="Model\RholderType.cs" />
     <Compile Include="Model\RholderTypeTr.cs" />
-    <Compile Include="Model\RhсatalogItem.cs" />
     <Compile Include="Model\RightHolder.cs" />
     <Compile Include="Model\SaldoDay.cs" />
     <Compile Include="Model\SeekObject.cs" />

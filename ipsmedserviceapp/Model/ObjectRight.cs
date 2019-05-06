@@ -38,6 +38,7 @@ namespace ipsmedserviceapp.Model
         public int? SpecType { get; set; }
         public int? ActCode { get; set; }
         public string InnerCode { get; set; }
+        public string SourceName { get; set; }
 
         public virtual ObjAct ActCodeNavigation { get; set; }
         public virtual Category CategoryCodeNavigation { get; set; }

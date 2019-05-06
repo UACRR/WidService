@@ -12,7 +12,7 @@ namespace ipsFormsDesign.Model
             CopyRightHistoryParent = new ObservableListSource<CopyRightHistory>();
             Distribution = new ObservableListSource<Distribution>();
             PubCatalogItem = new ObservableListSource<PubCatalogItem>();
-            RhñatalogItem = new ObservableListSource<RhñatalogItem>();
+            RhcatalogItem = new ObservableListSource<RhcatalogItem>();
         }
 
         public int CRightId { get; set; }
@@ -43,7 +43,7 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<CopyRightHistory> CopyRightHistoryParent { get; set; }
         public virtual ObservableListSource<Distribution> Distribution { get; set; }
         public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
-        public virtual ObservableListSource<RhñatalogItem> RhñatalogItem { get; set; }
+        public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }
 

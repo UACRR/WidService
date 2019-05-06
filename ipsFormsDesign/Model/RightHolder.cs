@@ -16,7 +16,7 @@ namespace ipsFormsDesign.Model
             PubCatalogItem = new ObservableListSource<PubCatalogItem>();
             RegisterCount = new ObservableListSource<RegisterCount>();
             ReqAgreement = new ObservableListSource<ReqAgreement>();
-            RhñatalogItem = new ObservableListSource<RhñatalogItem>();
+            RhcatalogItem = new ObservableListSource<RhcatalogItem>();
             TermsOfService = new ObservableListSource<TermsOfService>();
             TerritoryExclude = new ObservableListSource<TerritoryExclude>();
             TerritoryInclude = new ObservableListSource<TerritoryInclude>();
@@ -40,7 +40,7 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
         public virtual ObservableListSource<RegisterCount> RegisterCount { get; set; }
         public virtual ObservableListSource<ReqAgreement> ReqAgreement { get; set; }
-        public virtual ObservableListSource<RhñatalogItem> RhñatalogItem { get; set; }
+        public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
         public virtual ObservableListSource<TermsOfService> TermsOfService { get; set; }
         public virtual ObservableListSource<TerritoryExclude> TerritoryExclude { get; set; }
         public virtual ObservableListSource<TerritoryInclude> TerritoryInclude { get; set; }

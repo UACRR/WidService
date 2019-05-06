@@ -980,6 +980,29 @@ public interface IGenreTypeTr
          string Lang { get; set; }
          string Name { get; set; }
 }
+public interface IHandDocPay
+    {
+         int Id { get; set; }
+         int? TurnId { get; set; }
+         DateTime DateWork { get; set; }
+         string ND { get; set; }
+         DateTime? NDdate { get; set; }
+         int? AccIdDebet { get; set; }
+         int? AccIdCredit { get; set; }
+         string AccDebet { get; set; }
+         string AccCredit { get; set; }
+         decimal? Amount { get; set; }
+         decimal? AmountCur { get; set; }
+         string PayNote { get; set; }
+         string R030 { get; set; }
+         DateTime? DateOper { get; set; }
+         int? PayStatus { get; set; }
+         int? RegId { get; set; }
+         int? DistId { get; set; }
+         int? CustIdRh { get; set; }
+         int? RegIitemId { get; set; }
+         int? PayTurnType { get; set; }
+    }
 public interface IInputFile
     {    int FileId { get; set; }
          string AspId { get; set; }
@@ -1370,6 +1393,7 @@ public interface IObjectRight
          int? SpecType { get; set; }
          int? ActCode { get; set; }
          string InnerCode { get; set; }
+         string SourceName { get; set; }
 }
 public interface IObjectStatus
     {    int CodeI { get; set; }
@@ -1477,6 +1501,8 @@ public interface IPayTurn
          int? CustIdRh { get; set; }
          int? RegIitemId { get; set; }
          int? PayTurnType { get; set; }
+         short? DocType { get; set; }
+         int? HandId { get; set; }
 }
 public interface IPayTurnCm
     {
@@ -2056,6 +2082,28 @@ public interface IResidentTypeTr
          int CodeI { get; set; }
          string Lang { get; set; }
          string Name { get; set; }
+}
+public interface IRhcatalogItem
+    {
+         int ItemId { get; set; }
+         int? FileId { get; set; }
+         string ItemCode { get; set; }
+         string Iswc { get; set; }
+         string ObjName { get; set; }
+         string GenreName { get; set; }
+         string RoleName { get; set; }
+         string AuthorName { get; set; }
+         decimal? Rate { get; set; }
+         string CmName { get; set; }
+         string Comment { get; set; }
+         int? ObjId { get; set; }
+         int? CustId { get; set; }
+         int? GenreCode { get; set; }
+         int? RoleCode { get; set; }
+         int? CmCustId { get; set; }
+         int? Status { get; set; }
+         int? CRightId { get; set; }
+         string ErrComment { get; set; }
 }
 public interface IRholderType
     {    int CodeI { get; set; }
