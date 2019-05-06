@@ -113,7 +113,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             _register = register;
             NormalizeData(_register);
             _registerItemCreation = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
-            RegisterItemDataSource = _registerItemCreation;
+
+            RegisterItemDataSource = (object)_registerItemCreation ?? (object)typeof(RegisterItem);
 
             RegisterDataSource = _register;
             CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);

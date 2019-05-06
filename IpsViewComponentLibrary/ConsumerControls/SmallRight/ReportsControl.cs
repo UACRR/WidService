@@ -238,6 +238,9 @@ namespace IpsViewComponentLibrary
             var agrType = IpsGlobal.AnketaDictionaties.agrLicenseType.Single(rec => rec.CodeI == lic.Lic.LicCode);
             // Цирк,Філармонія,Концертна діяльність
             bool isCollapsed = agrType.SchemaId == 2;
+            // AddReport Xls disable for Цирк,Філармонія,Концертна діяльність
+            btnAddReport.Enabled = !isCollapsed;
+
             //bool isCollapsed = (new int[] { 1, 2, 3, 4, 5, 6, 7, 21 }).Contains((int)agrType.CodeI);
             splitPanelRatedList.Collapsed = !isCollapsed;
             btnAcceptType1.Visible = splitPanelRatedList.Collapsed;
@@ -259,7 +262,7 @@ namespace IpsViewComponentLibrary
                 return;
             }
 
-            var period = (PaidPeriod) gvPeriods.CurrentRow.DataBoundItem;
+            var period = (PaidPeriod)gvPeriods.CurrentRow.DataBoundItem;
             var reports = new List<Register>();
             int maxRgStatus = -1;
             if (period.RegisterRatedList.Any())
@@ -340,7 +343,7 @@ namespace IpsViewComponentLibrary
                         Rm = RatedList,
                         LicId = period.LicId,
                         SchemaId = licenseAgreement?.LicCodeNavigation?.SchemaId ?? 1,
-                        AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ??  1
+                        AlgorithmId = licenseAgreement?.LicCodeNavigation?.AlgorithmId ?? 1
                     };
 
                     foreach (var item in list)
@@ -411,7 +414,7 @@ namespace IpsViewComponentLibrary
                     {
                         StartPosition = FormStartPosition.CenterParent,
                         HeaderInfoCustomerName = customerName,
-                        HeaderInfoLicenseNumberString = ((IAgreementData) gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
+                        HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
                         HeaderInfoPeriodName = period.PeriodName,
                         HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
                     };
@@ -547,13 +550,19 @@ namespace IpsViewComponentLibrary
         {
             if (bindingReports.DataSource is List<Register> list)
             {
-                var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
-                var regStatus = dicRegStatus[1];
-                foreach (var item in paramList)
+                // MED-682 *** begin Патлякевич 
+                //var paramList = list.Where(rec => rec.RgStatus == 0).ToList();
+                var paramList = new List<Register>();
+                if (bindingReports.Current is Register @curRow)
                 {
-                    item.RgStatus = 1;
-                    item.RgStatusNavigation = regStatus;
-
+                    paramList.Add(@curRow);
+                // MED-682 *** end 
+                    var regStatus = dicRegStatus[1];
+                    foreach (var item in paramList)
+                    {
+                        item.RgStatus = 1;
+                        item.RgStatusNavigation = regStatus;
+                    }
                 }
                 SetRegisterStateExecuted?.Invoke(this, paramList);
 
