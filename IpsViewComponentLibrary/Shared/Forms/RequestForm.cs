@@ -568,7 +568,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
 
             if (decimal.TryParse(txtVinagoroda.Text, out decimal minReward))
             {
-                var tolalRate = _objectRight.CopyRight.GetTotalRoleRate();
+                var tolalRate = ctrlAuthorRightholderList.GetAuthorRates();
 
 
                 if (tolalRate > minReward)
