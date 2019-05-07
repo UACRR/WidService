@@ -14,8 +14,8 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string EditCommentSuccessMsg = "Коментар змінений!";
         private const string EditCommentErrorMsg = "Неможливо змінити коментар!";
 
-        private const string DeleteCatalogFileSuccessMsg = "";
-        private const string DeleteCatalogFileErrorMsg = "";
+        private const string DeleteCatalogFileSuccessMsg = "Файл видалено!";
+        private const string DeleteCatalogFileErrorMsg = "Неможливо видалити файл!";
 
         private readonly CatalogPresenter _catalogPresenter;
 
