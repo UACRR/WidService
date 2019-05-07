@@ -31,7 +31,7 @@ namespace ipsFormsDesign.Services
         {
             lock (this)
             {
-                if(excelApp != null)
+                if (excelApp != null)
                 {
                     excelApp.Quit();
                     Marshal.ReleaseComObject(excelApp);
@@ -44,16 +44,16 @@ namespace ipsFormsDesign.Services
 
         private Excel.Application GetApp()
         {
-                lock (this)
-                {
-                    if (excelApp != null)
-                        return excelApp;
-                    excelApp = new Excel.Application();
+            lock (this)
+            {
+                if (excelApp != null)
                     return excelApp;
-                }
+                excelApp = new Excel.Application();
+                return excelApp;
+            }
         }
 
-        private string GetFirst( object sors, int length = 0)
+        private string GetFirst(object sors, int length = 0)
         {
             if (sors == null)
                 return string.Empty;
@@ -66,7 +66,7 @@ namespace ipsFormsDesign.Services
             return sorsStr;
         }
 
-        private TimeSpan GetDuration( object source)
+        private TimeSpan GetDuration(object source)
         {
             if (source is string)
                 return TimeSpan.Parse((string)source);
@@ -118,20 +118,20 @@ namespace ipsFormsDesign.Services
                         CategoryCode = 5, //parse
                         ModifyLogin = null, //parse
                                             //                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
-                        ItemName = GetFirst(dim[index, 2], 100 ),
+                        ItemName = GetFirst(dim[index, 2], 100),
                         Performer = GetFirst(dim[index, 3], 100),
                         AuthorMusic = GetFirst(dim[index, 4], 100),
                         AuthorText = GetFirst(dim[index, 5], 100),
                         CountUse = Convert.ToInt32(dim[index, 7]),
                         CodeItem = 1 // 1   Звичайний розподіл 
-                };
+                    };
                     try
                     {
                         //curTime = TimeSpan.FromDays(Convert.ToDouble(dim[index, 6]));
                         curTime = GetDuration(dim[index, 6]);
                         registerItem.DurationItem = curTime;
                         // curTime = TimeSpan.FromDays(Convert.ToDouble(dim[index, 8]));
-                        registerItem.DurationUse = TimeSpan.FromTicks( curTime.Ticks  * registerItem.CountUse ?? 1 );
+                        registerItem.DurationUse = TimeSpan.FromTicks(curTime.Ticks * registerItem.CountUse ?? 1);
                         registerItem.Ticks = (int)(curTime.Ticks / 10000);
                     }
                     catch
@@ -149,7 +149,7 @@ namespace ipsFormsDesign.Services
             catch (Exception excp)
             {
                 MessageBox.Show(excp.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw new ApplicationException( $"{excp.Message} on row = {index}");    
+                throw new ApplicationException($"{excp.Message} on row = {index}");
             }
             finally
             {
@@ -206,8 +206,11 @@ namespace ipsFormsDesign.Services
             }
             finally
             {
-                excelAppWorkbook?.Close(false);
-                Marshal.ReleaseComObject(excelAppWorkbook);
+                if ( excelAppWorkbook != null )
+                {
+                    excelAppWorkbook.Close(false);
+                    Marshal.ReleaseComObject(excelAppWorkbook);
+                }
             }
             return list;
         }

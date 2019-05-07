@@ -44,6 +44,7 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
+            this.bsPubCatalogItem = new System.Windows.Forms.BindingSource(this.components);
             this.btnAuditItems = new Telerik.WinControls.UI.RadButton();
             this.btnPerform = new Telerik.WinControls.UI.RadButton();
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
@@ -55,17 +56,17 @@
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel8 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel9 = new Telerik.WinControls.UI.RadLabel();
+            this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel10 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel11 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel12 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
-            this.bsCatalogFile = new System.Windows.Forms.BindingSource(this.components);
-            this.bsPubCatalogItem = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -78,20 +79,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGetExcel
             // 
             this.btnGetExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGetExcel.Location = new System.Drawing.Point(123, 525);
+            this.btnGetExcel.Location = new System.Drawing.Point(123, 400);
             this.btnGetExcel.Name = "btnGetExcel";
             this.btnGetExcel.Size = new System.Drawing.Size(151, 24);
             this.btnGetExcel.TabIndex = 3;
@@ -117,43 +117,56 @@
             this.gridDetailInfo.MasterTemplate.AutoGenerateColumns = false;
             this.gridDetailInfo.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.FieldName = "ItemCode";
-            gridViewTextBoxColumn1.HeaderText = "Шифр товару";
+            gridViewTextBoxColumn1.HeaderText = "Шифр твору";
             gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            gridViewTextBoxColumn1.Name = "code";
+            gridViewTextBoxColumn1.MinWidth = 70;
+            gridViewTextBoxColumn1.Name = "ItemCode";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 65;
+            gridViewTextBoxColumn1.Width = 70;
+            gridViewTextBoxColumn1.WrapText = true;
             gridViewTextBoxColumn2.FieldName = "Iswc";
             gridViewTextBoxColumn2.HeaderText = "ISWC";
+            gridViewTextBoxColumn2.MinWidth = 75;
             gridViewTextBoxColumn2.Name = "iswc";
-            gridViewTextBoxColumn2.Width = 33;
+            gridViewTextBoxColumn2.Width = 75;
             gridViewTextBoxColumn3.FieldName = "ObjName";
             gridViewTextBoxColumn3.HeaderText = "Назва товару";
-            gridViewTextBoxColumn3.Name = "nameProduct";
-            gridViewTextBoxColumn3.Width = 163;
+            gridViewTextBoxColumn3.MinWidth = 150;
+            gridViewTextBoxColumn3.Name = "ObjName";
+            gridViewTextBoxColumn3.Width = 150;
             gridViewTextBoxColumn4.FieldName = "GenreName";
             gridViewTextBoxColumn4.HeaderText = "Жанр твору";
-            gridViewTextBoxColumn4.Name = "genre";
-            gridViewTextBoxColumn4.Width = 57;
-            gridViewTextBoxColumn5.FieldName = "RoleName";
+            gridViewTextBoxColumn4.MinWidth = 100;
+            gridViewTextBoxColumn4.Name = "GenreName";
+            gridViewTextBoxColumn4.Width = 100;
+            gridViewTextBoxColumn5.FieldName = "Performer";
             gridViewTextBoxColumn5.HeaderText = "Виконавець";
+            gridViewTextBoxColumn5.MinWidth = 100;
             gridViewTextBoxColumn5.Name = "executor";
-            gridViewTextBoxColumn5.Width = 57;
+            gridViewTextBoxColumn5.Width = 100;
             gridViewTextBoxColumn6.FieldName = "AuthorMusic";
             gridViewTextBoxColumn6.HeaderText = "Композитор(и)";
+            gridViewTextBoxColumn6.MinWidth = 100;
             gridViewTextBoxColumn6.Name = "composer";
-            gridViewTextBoxColumn6.Width = 69;
+            gridViewTextBoxColumn6.Width = 100;
             gridViewTextBoxColumn7.FieldName = "AuthorText";
             gridViewTextBoxColumn7.HeaderText = "Автор(и) тексту";
+            gridViewTextBoxColumn7.MinWidth = 100;
             gridViewTextBoxColumn7.Name = "authors";
-            gridViewTextBoxColumn7.Width = 71;
-            gridViewTextBoxColumn8.FieldName = "Performer";
+            gridViewTextBoxColumn7.Width = 100;
+            gridViewTextBoxColumn8.FieldName = "RoleName";
             gridViewTextBoxColumn8.HeaderText = "Творча роль правовласника";
+            gridViewTextBoxColumn8.MinWidth = 105;
             gridViewTextBoxColumn8.Name = "role";
-            gridViewTextBoxColumn8.Width = 45;
-            gridViewTextBoxColumn9.FieldName = "CmName";
+            gridViewTextBoxColumn8.Width = 105;
+            gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.DataType = typeof(System.Nullable<decimal>);
+            gridViewTextBoxColumn9.FieldName = "Rate";
+            gridViewTextBoxColumn9.FormatString = "{0:###.00}";
             gridViewTextBoxColumn9.HeaderText = "%";
+            gridViewTextBoxColumn9.MinWidth = 40;
             gridViewTextBoxColumn9.Name = "percent";
-            gridViewTextBoxColumn9.Width = 30;
+            gridViewTextBoxColumn9.Width = 40;
             gridViewTextBoxColumn10.FieldName = "ErrComment";
             gridViewTextBoxColumn10.HeaderText = "Помилка";
             gridViewTextBoxColumn10.MinWidth = 100;
@@ -167,9 +180,9 @@
             gridViewTextBoxColumn11.Width = 86;
             gridViewTextBoxColumn12.FieldName = "StatusNavigation.Name";
             gridViewTextBoxColumn12.HeaderText = "Статус";
-            gridViewTextBoxColumn12.MinWidth = 90;
+            gridViewTextBoxColumn12.MinWidth = 150;
             gridViewTextBoxColumn12.Name = "StatusNavigation";
-            gridViewTextBoxColumn12.Width = 90;
+            gridViewTextBoxColumn12.Width = 150;
             this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -191,14 +204,18 @@
             this.gridDetailInfo.Name = "gridDetailInfo";
             this.gridDetailInfo.ReadOnly = true;
             this.gridDetailInfo.ShowGroupPanel = false;
-            this.gridDetailInfo.Size = new System.Drawing.Size(802, 420);
+            this.gridDetailInfo.Size = new System.Drawing.Size(788, 295);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
+            // 
+            // bsPubCatalogItem
+            // 
+            this.bsPubCatalogItem.DataSource = typeof(ipsFormsDesign.Model.PubCatalogItem);
             // 
             // btnAuditItems
             // 
             this.btnAuditItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAuditItems.Location = new System.Drawing.Point(3, 525);
+            this.btnAuditItems.Location = new System.Drawing.Point(3, 400);
             this.btnAuditItems.Name = "btnAuditItems";
             this.btnAuditItems.Size = new System.Drawing.Size(114, 24);
             this.btnAuditItems.TabIndex = 4;
@@ -210,7 +227,7 @@
             // 
             this.btnPerform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPerform.Enabled = false;
-            this.btnPerform.Location = new System.Drawing.Point(280, 525);
+            this.btnPerform.Location = new System.Drawing.Point(280, 400);
             this.btnPerform.Name = "btnPerform";
             this.btnPerform.Size = new System.Drawing.Size(131, 24);
             this.btnPerform.TabIndex = 3;
@@ -310,6 +327,10 @@
             this.radLabel9.Text = "К-ть оброблених записів";
             this.radLabel9.ThemeName = "Office2013Light";
             // 
+            // bsCatalogFile
+            // 
+            this.bsCatalogFile.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
+            // 
             // radLabel10
             // 
             this.radLabel10.AutoSize = false;
@@ -376,14 +397,6 @@
             this.radLabel15.Text = "К-ть оброблених записів";
             this.radLabel15.ThemeName = "Office2013Light";
             // 
-            // bsCatalogFile
-            // 
-            this.bsCatalogFile.DataSource = typeof(ipsFormsDesign.Model.CatalogFile);
-            // 
-            // bsPubCatalogItem
-            // 
-            this.bsPubCatalogItem.DataSource = typeof(ipsFormsDesign.Model.PubCatalogItem);
-            // 
             // CatalogShowEdition
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -407,10 +420,11 @@
             this.Controls.Add(this.btnAuditItems);
             this.Controls.Add(this.gridDetailInfo);
             this.Name = "CatalogShowEdition";
-            this.Size = new System.Drawing.Size(808, 552);
+            this.Size = new System.Drawing.Size(794, 427);
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAuditItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnPerform)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
@@ -423,14 +437,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel15)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCatalogFile)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsPubCatalogItem)).EndInit();
             this.ResumeLayout(false);
 
         }
