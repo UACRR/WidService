@@ -113,14 +113,9 @@ namespace ipsmedserviceapp.Controllers
 
         [Authorize]
         [HttpGet("toch")]
-        public async Task<IActionResult> Toch()
+        public IActionResult Toch()
         {
-
-            bool inGroup = true;
-            await syncFixingGroupByAD();
-
-
-            return Ok(inGroup);
+            return Ok(User.Identity.Name);
         }
 
     }

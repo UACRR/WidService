@@ -275,10 +275,15 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             else
                 return BadRequest();
 
+
+            var sysConst = await _dbContext.SystemConstant.Where(rec => (new[] { 4, 5 }).Contains(rec.CodeI)).ToDictionaryAsync(rec => rec.CodeI);
+
             var copyrightList = await _dbContext.CopyrightKind
                 .Include(rec => rec.CrGroupCodeNavigation)
                 // .Include(rec => rec.)
                 .AsNoTracking().ToListAsync();
+
+
 
             copyrightList.ForEach(rec => newCust.RightHolder.TermsOfService.Add(new TermsOfService { CrkindCode = rec.CodeI, OurService = true, CrkindCodeNavigation = rec }));
             var agrMaster = new AgreementMaster {
@@ -286,7 +291,17 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
                 AgrStatus = 0,
                 AgrType = custType == 3 ? 5 : 1 // Якщо юридична особа то тип правовласника - Видавництво
             };
-            agrMaster.AgreementAddRh.Add(new AgreementAddRh { Version = 1, AgrStatus = 0, AgrDate = DateTime.Now, DateBegin = DateTime.Now, DateEnd = new DateTime(3000,1,1) });
+
+            agrMaster.AgreementAddRh.Add(new AgreementAddRh {
+                Version = 1,
+                AgrStatus = 0,
+                AgrDate = DateTime.Now,
+                DateBegin = DateTime.Now,
+                DateEnd = new DateTime(3000, 1, 1),
+                RateCommiss = sysConst.GetValueOrDefault(4)?.Rate ?? 20,
+                RateCourt = sysConst.GetValueOrDefault(5)?.Rate ?? 15
+
+            });
 
             newCust.AgreementMaster.Add(agrMaster);
 
