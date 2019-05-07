@@ -10,6 +10,7 @@ using IpsViewComponentLibrary.RightholderControls;
 using System.Linq;
 using Telerik.WinControls.Enumerations;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace IpsViewComponentLibrary.ObjectRightControls
 {
@@ -282,6 +283,13 @@ namespace IpsViewComponentLibrary.ObjectRightControls
         {
             var count = gvAuthorRightholderList.Rows.Count(rec => (rec.DataBoundItem as ObjectAuthorRightholderBrViewModel).WorkRh.WorkTypeRh != 4);
             return count;
+        }
+
+        public decimal GetAuthorRates()
+        {
+            var list = (gvAuthorRightholderList.DataSource as BindingSource).List as IEnumerable<ObjectAuthorRightholderBrViewModel>;
+            decimal retRate = list?.Sum(rec => rec.CopyRight?.RoleRate ?? 0) ?? 0;
+            return retRate;
         }
     }
 }

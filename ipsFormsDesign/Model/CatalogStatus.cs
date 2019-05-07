@@ -11,7 +11,7 @@ namespace ipsFormsDesign.Model
             CatalogFile = new ObservableListSource<CatalogFile>();
             CatalogStatusTr = new ObservableListSource<CatalogStatusTr>();
             PubCatalogItem = new ObservableListSource<PubCatalogItem>();
-            RhñatalogItem = new ObservableListSource<RhñatalogItem>();
+            RhcatalogItem = new ObservableListSource<RhcatalogItem>();
         }
 
         public int CodeI { get; set; }
@@ -20,7 +20,7 @@ namespace ipsFormsDesign.Model
         public virtual ObservableListSource<CatalogFile> CatalogFile { get; set; }
         public virtual ObservableListSource<CatalogStatusTr> CatalogStatusTr { get; set; }
         public virtual ObservableListSource<PubCatalogItem> PubCatalogItem { get; set; }
-        public virtual ObservableListSource<RhñatalogItem> RhñatalogItem { get; set; }
+        public virtual ObservableListSource<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }
 

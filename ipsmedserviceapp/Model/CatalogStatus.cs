@@ -10,7 +10,7 @@ namespace ipsmedserviceapp.Model
             CatalogFile = new HashSet<CatalogFile>();
             CatalogStatusTr = new HashSet<CatalogStatusTr>();
             PubCatalogItem = new HashSet<PubCatalogItem>();
-            RhсatalogItem = new HashSet<RhсatalogItem>();
+            RhcatalogItem = new HashSet<RhcatalogItem>();
         }
 
         public int CodeI { get; set; }
@@ -19,6 +19,6 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<CatalogFile> CatalogFile { get; set; }
         public virtual ICollection<CatalogStatusTr> CatalogStatusTr { get; set; }
         public virtual ICollection<PubCatalogItem> PubCatalogItem { get; set; }
-        public virtual ICollection<RhсatalogItem> RhсatalogItem { get; set; }
+        public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }

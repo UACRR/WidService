@@ -1569,12 +1569,25 @@ namespace ipsFormsDesign.Services
             docDateEndC = $"{licagr?.DateEnd:dd.MM.yyyy}";
             var TbAPrc = new List<TbAuthorPrc>();
             if (authors != null)
+            /*
+                        {
+                            TbAPrc = (from aut in authors
+                                      join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
+                                      join cpr in copyright on aut.CustId equals cpr?.CustId into tempp
+                                      from cpr in tempp.DefaultIfEmpty()
+                                      where datedoc >= cpr?.BeginDate &
+                                            datedoc <= cpr?.EndDate
+
+                                      select new TbAuthorPrc
+                                      { RoleName = crt.Name ?? " ", AuthorName = aut.AuthorName ?? " ", RoleRate = cpr.RoleRate ?? 0 })?.ToList();
+                        }
+            */
 
             {
                 TbAPrc = (from aut in authors
-                          join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
-                          join cpr in copyright on aut.CustId equals cpr?.CustId into tempp
-                          from cpr in tempp.DefaultIfEmpty()
+                          join cpr in copyright on (aut.CustId,aut.RoleCode ) equals (cpr?.CustId,cpr.RoleCode) 
+                          join crt in creativeRoleType on aut.RoleCode equals crt.CodeI into tempp
+                          from crt in tempp.DefaultIfEmpty()
                           where datedoc >= cpr?.BeginDate &
                                 datedoc <= cpr?.EndDate
 
@@ -1586,8 +1599,8 @@ namespace ipsFormsDesign.Services
             if (authors != null)
             {
                 TbAL = (from aut in authors
+                        join cpr in copyright on (aut.CustId, aut.RoleCode) equals (cpr?.CustId, cpr.RoleCode) 
                         join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
-                        join cpr in copyright on aut.CustId equals cpr.CustId
                         join lab in licauthorbr on cpr.CRightId equals lab?.CRightId into tempp
                         from lab in tempp.DefaultIfEmpty()
                         where lab?.PrepayType == 1
@@ -1607,8 +1620,8 @@ namespace ipsFormsDesign.Services
             if (authors != null)
             {
                 TbAvAdv = (from aut in authors
-                           join crt in creativeRoleType on aut.RoleCode equals crt.CodeI
-                           join cpr in copyright on aut.CustId equals cpr.CustId
+                           join cpr in copyright on (aut.CustId, aut.RoleCode) equals (cpr?.CustId, cpr.RoleCode)
+                           join crt in creativeRoleType on aut.RoleCode equals crt.CodeI                         
                            join lab in licauthorbr on cpr.CRightId equals lab?.CRightId into temp1
                            from lab in temp1.DefaultIfEmpty()
                            where lab?.PrepayType == 2

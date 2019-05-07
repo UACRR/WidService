@@ -1,10 +1,9 @@
-using ipsFormsDesign.Interfaces;
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 
-namespace ipsFormsDesign.Model
+namespace ipsmedserviceapp.Model
 {
-    public partial class RhñatalogItem : IRhñatalogItem
+    public partial class RhcatalogItem
     {
         public int ItemId { get; set; }
         public int? FileId { get; set; }
@@ -32,4 +31,3 @@ namespace ipsFormsDesign.Model
         public virtual CatalogStatus StatusNavigation { get; set; }
     }
 }
-
