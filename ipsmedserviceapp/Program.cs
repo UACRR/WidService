@@ -19,7 +19,7 @@ namespace ipsmedserviceapp
                     options.Authentication.Schemes = Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes.NTLM | Microsoft.AspNetCore.Server.HttpSys.AuthenticationSchemes.Negotiate;
                     options.Authentication.AllowAnonymous = false;
                 })
-#endif 
+#endif
                 .Build();
     }
 }

@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using ipsmedserviceapp.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +51,7 @@ namespace ipsmedserviceapp.Controllers
             return Ok(catalogFiles);
         }
 
+        [Authorize]
         [HttpPost("upload/{custId}")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile source)
         {
