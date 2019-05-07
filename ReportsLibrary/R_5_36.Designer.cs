@@ -150,7 +150,6 @@ namespace ReportsLibrary
             // 
             // textBox11
             // 
-            this.textBox11.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.18D), Telerik.Reporting.Drawing.Unit.Cm(1.347D));
             this.textBox11.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(8D);
@@ -383,7 +382,7 @@ namespace ReportsLibrary
             tableGroup13.Groupings.Add(new Telerik.Reporting.Grouping(null));
             tableGroup13.Name = "detail";
             this.table1.RowGroups.Add(tableGroup13);
-            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.562D), Telerik.Reporting.Drawing.Unit.Cm(1.847D));
+            this.table1.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(25.563D), Telerik.Reporting.Drawing.Unit.Cm(1.847D));
             this.table1.StyleName = "BlueOpal.TableNormal";
             // 
             // textBox16
@@ -443,7 +442,6 @@ namespace ReportsLibrary
             // 
             // textBox22
             // 
-            this.textBox22.Location = new Telerik.Reporting.Drawing.PointU(Telerik.Reporting.Drawing.Unit.Cm(0D), Telerik.Reporting.Drawing.Unit.Cm(0D));
             this.textBox22.Name = "textBox22";
             this.textBox22.Size = new Telerik.Reporting.Drawing.SizeU(Telerik.Reporting.Drawing.Unit.Cm(1.418D), Telerik.Reporting.Drawing.Unit.Cm(0.5D));
             this.textBox22.Style.Font.Size = Telerik.Reporting.Drawing.Unit.Point(7D);
@@ -523,7 +521,7 @@ namespace ReportsLibrary
             this.detailSection1,
             this.pageFooterSection1});
             this.Name = "R_5_36";
-            this.PageNumberingStyle = Telerik.Reporting.PageNumberingStyle.ResetNumberingAndCount;
+            this.PageNumberingStyle = Telerik.Reporting.PageNumberingStyle.Continue;
             this.PageSettings.ContinuousPaper = false;
             this.PageSettings.Landscape = true;
             this.PageSettings.Margins = new Telerik.Reporting.Drawing.MarginsU(Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D), Telerik.Reporting.Drawing.Unit.Cm(2D));
