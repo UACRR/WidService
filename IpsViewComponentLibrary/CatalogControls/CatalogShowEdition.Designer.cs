@@ -91,7 +91,7 @@
             // btnGetExcel
             // 
             this.btnGetExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnGetExcel.Location = new System.Drawing.Point(123, 525);
+            this.btnGetExcel.Location = new System.Drawing.Point(123, 400);
             this.btnGetExcel.Name = "btnGetExcel";
             this.btnGetExcel.Size = new System.Drawing.Size(151, 24);
             this.btnGetExcel.TabIndex = 3;
@@ -117,49 +117,60 @@
             this.gridDetailInfo.MasterTemplate.AutoGenerateColumns = false;
             this.gridDetailInfo.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.FieldName = "ItemCode";
-            gridViewTextBoxColumn1.HeaderText = "Шифр товару";
+            gridViewTextBoxColumn1.HeaderText = "Шифр твору";
             gridViewTextBoxColumn1.ImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            gridViewTextBoxColumn1.MinWidth = 70;
             gridViewTextBoxColumn1.Name = "ItemCode";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 66;
+            gridViewTextBoxColumn1.Width = 70;
+            gridViewTextBoxColumn1.WrapText = true;
             gridViewTextBoxColumn2.FieldName = "Iswc";
             gridViewTextBoxColumn2.HeaderText = "ISWC";
+            gridViewTextBoxColumn2.MinWidth = 75;
             gridViewTextBoxColumn2.Name = "iswc";
-            gridViewTextBoxColumn2.Width = 33;
+            gridViewTextBoxColumn2.Width = 75;
             gridViewTextBoxColumn3.FieldName = "ObjName";
             gridViewTextBoxColumn3.HeaderText = "Назва товару";
+            gridViewTextBoxColumn3.MinWidth = 150;
             gridViewTextBoxColumn3.Name = "ObjName";
-            gridViewTextBoxColumn3.Width = 164;
+            gridViewTextBoxColumn3.Width = 150;
             gridViewTextBoxColumn4.FieldName = "GenreName";
             gridViewTextBoxColumn4.HeaderText = "Жанр твору";
+            gridViewTextBoxColumn4.MinWidth = 100;
             gridViewTextBoxColumn4.Name = "GenreName";
-            gridViewTextBoxColumn4.Width = 57;
+            gridViewTextBoxColumn4.Width = 100;
             gridViewTextBoxColumn5.FieldName = "Performer";
             gridViewTextBoxColumn5.HeaderText = "Виконавець";
+            gridViewTextBoxColumn5.MinWidth = 100;
             gridViewTextBoxColumn5.Name = "executor";
-            gridViewTextBoxColumn5.Width = 57;
+            gridViewTextBoxColumn5.Width = 100;
             gridViewTextBoxColumn6.FieldName = "AuthorMusic";
             gridViewTextBoxColumn6.HeaderText = "Композитор(и)";
+            gridViewTextBoxColumn6.MinWidth = 100;
             gridViewTextBoxColumn6.Name = "composer";
-            gridViewTextBoxColumn6.Width = 70;
+            gridViewTextBoxColumn6.Width = 100;
             gridViewTextBoxColumn7.FieldName = "AuthorText";
             gridViewTextBoxColumn7.HeaderText = "Автор(и) тексту";
+            gridViewTextBoxColumn7.MinWidth = 100;
             gridViewTextBoxColumn7.Name = "authors";
-            gridViewTextBoxColumn7.Width = 72;
+            gridViewTextBoxColumn7.Width = 100;
             gridViewTextBoxColumn8.FieldName = "RoleName";
             gridViewTextBoxColumn8.HeaderText = "Творча роль правовласника";
+            gridViewTextBoxColumn8.MinWidth = 105;
             gridViewTextBoxColumn8.Name = "role";
-            gridViewTextBoxColumn8.Width = 45;
+            gridViewTextBoxColumn8.Width = 105;
+            gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn9.FieldName = "Rate";
             gridViewTextBoxColumn9.HeaderText = "%";
+            gridViewTextBoxColumn9.MinWidth = 40;
             gridViewTextBoxColumn9.Name = "percent";
-            gridViewTextBoxColumn9.Width = 30;
+            gridViewTextBoxColumn9.Width = 40;
             gridViewTextBoxColumn10.FieldName = "ErrComment";
             gridViewTextBoxColumn10.HeaderText = "Помилка";
             gridViewTextBoxColumn10.MinWidth = 100;
             gridViewTextBoxColumn10.Name = "error";
-            gridViewTextBoxColumn10.Width = 101;
+            gridViewTextBoxColumn10.Width = 100;
             gridViewTextBoxColumn11.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn11.FieldName = "Status";
             gridViewTextBoxColumn11.HeaderText = "status";
@@ -168,9 +179,9 @@
             gridViewTextBoxColumn11.Width = 86;
             gridViewTextBoxColumn12.FieldName = "StatusNavigation.Name";
             gridViewTextBoxColumn12.HeaderText = "Статус";
-            gridViewTextBoxColumn12.MinWidth = 90;
+            gridViewTextBoxColumn12.MinWidth = 150;
             gridViewTextBoxColumn12.Name = "StatusNavigation";
-            gridViewTextBoxColumn12.Width = 91;
+            gridViewTextBoxColumn12.Width = 150;
             this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -192,7 +203,7 @@
             this.gridDetailInfo.Name = "gridDetailInfo";
             this.gridDetailInfo.ReadOnly = true;
             this.gridDetailInfo.ShowGroupPanel = false;
-            this.gridDetailInfo.Size = new System.Drawing.Size(802, 420);
+            this.gridDetailInfo.Size = new System.Drawing.Size(788, 295);
             this.gridDetailInfo.TabIndex = 3;
             this.gridDetailInfo.ThemeName = "Office2013Light";
             // 
@@ -203,7 +214,7 @@
             // btnAuditItems
             // 
             this.btnAuditItems.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAuditItems.Location = new System.Drawing.Point(3, 525);
+            this.btnAuditItems.Location = new System.Drawing.Point(3, 400);
             this.btnAuditItems.Name = "btnAuditItems";
             this.btnAuditItems.Size = new System.Drawing.Size(114, 24);
             this.btnAuditItems.TabIndex = 4;
@@ -215,7 +226,7 @@
             // 
             this.btnPerform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPerform.Enabled = false;
-            this.btnPerform.Location = new System.Drawing.Point(280, 525);
+            this.btnPerform.Location = new System.Drawing.Point(280, 400);
             this.btnPerform.Name = "btnPerform";
             this.btnPerform.Size = new System.Drawing.Size(131, 24);
             this.btnPerform.TabIndex = 3;
@@ -408,7 +419,7 @@
             this.Controls.Add(this.btnAuditItems);
             this.Controls.Add(this.gridDetailInfo);
             this.Name = "CatalogShowEdition";
-            this.Size = new System.Drawing.Size(808, 552);
+            this.Size = new System.Drawing.Size(794, 427);
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).EndInit();
