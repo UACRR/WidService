@@ -243,6 +243,8 @@ namespace ipsmedserviceapp.Controllers
                 var data = await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
                 var responce = new ExecSqlResponce<CatalogFile>();
+                responce.Message = message.Value.ToString();
+
                 // Процедура виконала дії без помилок
                 if (Convert.ToInt32(returnCode.Value) == 0)
                 {
@@ -258,7 +260,6 @@ namespace ipsmedserviceapp.Controllers
                 else
                 {
                     responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
-                    responce.Message = message.Value.ToString();
                 }
 
                 return Ok(responce);

@@ -13,7 +13,6 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
-        private const string PerformSuccessMsg = "Виконано";
         private const string ValidateSuccessMsg = "Контроль виконано";
         private const string ValidateErrorMsg = "Контроль невиконано";
 
@@ -91,7 +90,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                 UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result.Data);
             }
 
-            MessageShow.ShowInfoByResult(PerformSuccessMsg, result.Message, boolResult);
+            MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);
         }
     }
 }
