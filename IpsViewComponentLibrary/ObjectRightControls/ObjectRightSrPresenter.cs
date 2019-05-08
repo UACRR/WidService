@@ -167,21 +167,39 @@ namespace IpsViewComponentLibrary.ObjectRightControls
             // map Authors and Copyright table into single table
             _view.ObjectAuthorRightholderList.Clear();
             int[] RightHolderOnlyCode = { 8, 9 };
-            var listOfCopyRight = objectRight.CopyRight.ToList();
+            var today = DateTime.Today;
+            // Права дійсні на поточну дату
+            var listOfCopyRight = objectRight.CopyRight
+                            .Where(rec => rec.BeginDate <= today && rec.EndDate >= today )
+                            .ToList();
+
+            // створюємо пошук по списку прав по ключу custid & RoleCode
+            var copyRightLookup = listOfCopyRight.ToLookup(rec => new { rec.CustId, RoleCode = (rec.RoleCode ?? 0) }, rec => rec.CRightId);
 
             foreach (var a in objectRight.Authors)
             {
-                // Тільки автор
-                if ( (a.CustId ?? 0) == 0 )
+                // Список ід прав для автора
+                var findCRArray = copyRightLookup[new { CustId = (a.CustId ?? 0), a.RoleCode }].ToArray();
+                // Тільки автор які на поточний момент немають правоволодіння
+                //if ( (a.CustId ?? 0) == 0 )
+                if (findCRArray.Count() == 0 ) // Прав немає
                 {
+                    // Підрахунок існуючих записів авторів
+                    var cntPresent = _view.ObjectAuthorRightholderList
+                                            .Count( rec => rec.RoleCode == a.RoleCode 
+                                                    && rec.FolkType == a.FolkType
+                                                    && string.Compare( rec.AuthorName, a.AuthorName.Trim(), StringComparison.InvariantCulture ) == 0 ) ;
+                    
+                    // Окрім правовласників і нові записи
+                    if (!RightHolderOnlyCode.Contains(a.RoleCode) && cntPresent == 0)
                     _view.ObjectAuthorRightholderList.Add(new ObjectAuthorRightholder
                     {
-                        IsRightholder = a.CustId != null,
+                        IsRightholder = false,
                         AuthId = a.AuthId,
                         ObjId = a.ObjId,
                         RoleCode = a.RoleCode,
                         FolkType = a.FolkType,
-                        AuthorName = a.AuthorName
+                        AuthorName = a.AuthorName.Trim()
                     });
 
                     continue;
@@ -209,7 +227,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                         ObjId = a.ObjId,
                         RoleCode = a.RoleCode,
                         FolkType = a.FolkType,
-                        AuthorName = a.AuthorName,
+                        AuthorName = a.AuthorName.Trim(),
                         CustId = a.CustId,
                         CRightId = foundedCopyright?.CRightId,
                         CopyrightStatus = foundedCopyright?.Status,

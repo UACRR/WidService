@@ -509,6 +509,10 @@
     <Compile Include="ViewModels\Users\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{b17076a8-b8f9-4f60-aac0-3845773a4d43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebAPIConnector\WebAPIConnector.csproj">
       <Project>{fa6caa86-7f51-4eb9-948f-ee81d384ed56}</Project>
       <Name>WebAPIConnector</Name>
