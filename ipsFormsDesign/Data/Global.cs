@@ -9,6 +9,18 @@ using System.Windows.Forms;
 
 namespace ipsFormsDesign.Data
 {
+    public class IpsEventWrap
+    {
+        //            IpsGlobal.Events.Add(typeof(ObjectRight), new IpsEventWrap());
+        //            IpsGlobal.Events[typeof(ObjectRight)].UpdateEventHandler += RightholderWorkplace_eventHandler;
+        //            ExtensionMethods1.GetValueOrNull(IpsGlobal.Events, typeof(ObjectRight))?.Raise(null);
+
+        public event EventHandler<object> UpdateEventHandler;
+        public void Raise(object value)
+        {
+            UpdateEventHandler.Invoke(null, value);
+        }
+    }
     public class BindingField
     {
         public string SorsField { get; set; }
@@ -23,7 +35,8 @@ namespace ipsFormsDesign.Data
         public static ObjectRightDictionaries ObjectRightDictionaries { get; private set; }
         public static Dictionary<Type, object> Instances { get; private set; } = new Dictionary<Type, object>();
         public static Dictionary<string, object> Properties { get; private set; } = new Dictionary<string, object>();
-
+        // Події системи
+        public static Dictionary<Type, IpsEventWrap> Events = new Dictionary<Type, IpsEventWrap>();
         
         public static object GetProperty( string name )
         {

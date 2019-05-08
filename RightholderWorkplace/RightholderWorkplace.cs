@@ -1,6 +1,5 @@
 ﻿using ipsFormsDesign.Data;
 using ipsFormsDesign.Dictionary;
-using ipsFormsDesign.EventAggregator;
 using ipsFormsDesign.Events;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
@@ -15,7 +14,9 @@ using IpsViewComponentLibrary.Utilities;
 using RightholderWorkplace.Localisation;
 using RightholderWorkplace.Presenters;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -34,6 +35,11 @@ namespace RightholderWorkplace
         AmountDistributor _persentDistributor = new AmountDistributor();
         private CommunityPresenter _communityPresenter;  // main presenter for community
 
+        internal void InitEvents()
+        {
+
+        }
+
 
         public RightholderWorkplace()
         {
@@ -43,7 +49,7 @@ namespace RightholderWorkplace
             var rightholderService = new RightholderService();
             IpsGlobal.SetAnketaDictionaties(rightholderService.GetDictionary());
 
-            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name );
+            IpsGlobal.Properties.Add("OwnerName", _rightholderService.GetOwnerName()?.Name);
 
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
@@ -51,6 +57,7 @@ namespace RightholderWorkplace
             ThemeResolutionService.ApplicationThemeName = "Office2013Light";
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
+
             var _communityService = CommunityService.GetInstance();
             _communityPresenter = new CommunityPresenter(_communityService, ctrlCommunity);
 
