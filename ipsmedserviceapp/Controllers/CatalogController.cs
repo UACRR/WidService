@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.Types;
+//using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -46,7 +48,7 @@ namespace ipsmedserviceapp.Controllers
                 .ThenInclude(rec => rec.StatusNavigation)
                 .Include(rec => rec.StatusNavigation)
                 .ToListAsync();
-            
+
 
             return Ok(catalogFiles);
         }
@@ -67,7 +69,7 @@ namespace ipsmedserviceapp.Controllers
                 if (rightholder == null)
                     return NotFound($"RightHolder with ID:{custId} not found!");
 
-                string[] excludedFields = {"CustId", "FileId", "UserId", "Status"};
+                string[] excludedFields = { "CustId", "FileId", "UserId", "Status" };
 
                 var destination = new CatalogFile
                 {
@@ -198,11 +200,11 @@ namespace ipsmedserviceapp.Controllers
         }
 
         [HttpPut("validate/{fileId}")]
-        public async Task<IActionResult> BeginValidationFile(int fileId )
+        public async Task<IActionResult> BeginValidationFile(int fileId)
         {
             try
             {
-                await _dbContext.Database.ExecuteSqlCommandAsync("exec CatalogControlPub @fileId", new SqlParameter("@fileId", fileId ) );
+                await _dbContext.Database.ExecuteSqlCommandAsync("exec CatalogControlPub @fileId", new SqlParameter("@fileId", fileId));
 
                 var valiCatalog = await _dbContext.CatalogFile
                                     .Include(rec => rec.PubCatalogItem)
@@ -223,14 +225,37 @@ namespace ipsmedserviceapp.Controllers
         {
             try
             {
-                await _dbContext.Database.ExecuteSqlCommandAsync("exec CatalogInputPub @fileId", new SqlParameter("@fileId", fileId));
+                SqlParameter retCode = new SqlParameter("@retCode", System.Data.SqlDbType.Int);
+                retCode.Direction = System.Data.ParameterDirection.Output;
 
-                var valiCatalog = await _dbContext.CatalogFile
-                                    .Include(rec => rec.PubCatalogItem)
-                                        .ThenInclude(pub => pub.StatusNavigation)
-                                    .AsNoTracking()
-                                    .FirstOrDefaultAsync(rec => rec.FileId == fileId);
-                return Ok(valiCatalog);
+                SqlParameter message = new SqlParameter("@msg", System.Data.SqlDbType.VarChar, 100);
+                message.Direction = System.Data.ParameterDirection.Output;
+
+                var paramFileId = new SqlParameter("@fileId", fileId);
+
+                var data = await _dbContext.Database.ExecuteSqlCommandAsync("exec @retCode = CatalogInputPub @fileId, @msg OUT",
+                            retCode, paramFileId, message);
+
+                var responce = new ExecSqlResponce<CatalogFile>();
+                // Процедура виконала дії без помилок
+                if (Convert.ToInt32(retCode.Value) == 0)
+                {
+                    var valiCatalog = await _dbContext.CatalogFile
+                                        .Include(rec => rec.PubCatalogItem)
+                                            .ThenInclude(pub => pub.StatusNavigation)
+                                        .AsNoTracking()
+                                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+
+                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
+                    responce.Data = valiCatalog;
+                }
+                else
+                {
+                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
+                    responce.Message = message.Value.ToString();
+                }
+
+                return Ok(responce);
             }
             catch
             {

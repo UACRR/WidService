@@ -12,6 +12,11 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
+        private const string PerformSuccessMsg = "Виконано";
+        private const string PerformErrorMsg = "Не виконано";
+        private const string success = "Контроль виконано";
+        private const string fail = "Контроль невиконано";
+
         private CatalogFile _catalogFile = null;
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
         protected bool IsDesingMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
@@ -30,19 +35,21 @@ namespace IpsViewComponentLibrary.CatalogControls
                 if (!(value is CatalogFile catalogFile))
                     return;
 
-                bsCatalogFile.DataSource = catalogFile;
                 _catalogFile = catalogFile;
-                //settings for btn 'Виконати'
-                btnPerform.Enabled = catalogFile.Status < 3 && catalogFile.CountOk > 1;
 
-                if (catalogFile.PubCatalogItem.Any())
-                    bsPubCatalogItem.DataSource = catalogFile.PubCatalogItem;
+                bsCatalogFile.DataSource = _catalogFile;
+                bsCatalogFile.ResetBindings(false);
+
+                btnPerform.Enabled = _catalogFile.Status == 1 || catalogFile.CountOk == 2;
+
+                if (_catalogFile.PubCatalogItem.Any())
+                {
+                    bsPubCatalogItem.DataSource = _catalogFile.PubCatalogItem;
+                    bsPubCatalogItem.ResetBindings(false);
+                }
             }
         }
 
-
-        private const string success = "Контроль виконано";
-        private const string fail = "Контроль невиконано";
         // перевірка валідності. . .
         private void btnAuditItems_Click(object sender, EventArgs e)
         {
@@ -71,15 +78,13 @@ namespace IpsViewComponentLibrary.CatalogControls
             }
         }
 
-        private const string successPerform = "Виконано";
-        private const string failPerform = "Не виконано";
         private void btnPerform_Click(object sender, EventArgs e)
         {
             var result = _catalogFileItemsHandler.AttachCatalogFileItems(_catalogFile);
             var boolResult = result != null;
             if (boolResult)
                 DataSource = result;
-            MessageShow.ShowInfoByResult(successPerform, failPerform, boolResult);
+            MessageShow.ShowInfoByResult(PerformSuccessMsg, PerformErrorMsg, boolResult);
         }
     }
 }
