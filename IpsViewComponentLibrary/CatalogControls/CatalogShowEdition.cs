@@ -1,17 +1,13 @@
 ﻿using ipsFormsDesign.Model;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Utilities;
 using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
-using CatalogFile = ipsFormsDesign.Model.CatalogFile;
-using IpsEventWrap = ipsFormsDesign.Data.IpsEventWrap;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {

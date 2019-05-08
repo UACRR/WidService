@@ -17,9 +17,9 @@ namespace RightholderWorkplace.Presenters
     {
         private readonly CommunityService _service;
         private readonly CommunityControl _community;
-        public CommunityPresenter(CommunityService service, CommunityControl community)
+        public CommunityPresenter(CommunityControl community)
         {
-            _service = service;
+            _service = CommunityService.GetInstance();
             _community = community;
             SubscribeEvents();
         }

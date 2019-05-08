@@ -58,8 +58,7 @@ namespace RightholderWorkplace
             RadGridLocalizationProvider.CurrentProvider = new IpsUARadGridLocalizationProvider();
             RadMessageLocalizationProvider.CurrentProvider = new RadMessageUkraineLocalizationProvider();
 
-            var _communityService = CommunityService.GetInstance();
-            _communityPresenter = new CommunityPresenter(_communityService, ctrlCommunity);
+            _communityPresenter = new CommunityPresenter(ctrlCommunity);
 
             var copyrightRequestPresenter = new CopyrightRequestPresenter(ctrlCopyrightRequests, _rightholderService);
         }
