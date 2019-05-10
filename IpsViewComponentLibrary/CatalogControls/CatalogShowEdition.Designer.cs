@@ -163,7 +163,7 @@
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn9.FieldName = "Rate";
-            gridViewTextBoxColumn9.FormatString = "{0:###.00}";
+            gridViewTextBoxColumn9.FormatString = "{0:##0.00}";
             gridViewTextBoxColumn9.HeaderText = "%";
             gridViewTextBoxColumn9.MinWidth = 40;
             gridViewTextBoxColumn9.Name = "percent";

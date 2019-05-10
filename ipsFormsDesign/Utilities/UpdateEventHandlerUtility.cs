@@ -11,13 +11,19 @@ namespace ipsFormsDesign.Utilities
         public event EventHandler<T> UpdateEventHandler;
         public void Raise(T value)
         {
-            UpdateEventHandler?.Invoke(null, value);
+            UpdateEventHandler?.Invoke(new object(), value);
         }
     }
 
     public static class UpdateEventHandlerUtility<T> where T : class
     {
         private static Dictionary<Type, IpsEventWrap<T>> Events { get; } = new Dictionary<Type, IpsEventWrap<T>>();
+
+        public static void InvokeEvent()
+        {
+            if (Events.ContainsKey(typeof(T)))
+                Events[typeof(T)].Raise(null);
+        }
 
         public static void InvokeEvent(T value)
         {
