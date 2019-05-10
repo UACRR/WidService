@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ipsFormsDesign.Model;
+using IpsCommonTypes.Types;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -88,10 +89,10 @@ namespace ipsFormsDesign.Services
             return outCatalogFile;
         }
 
-        public CatalogFile ProcessCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/process";
-            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out CatalogFile outCatalogFile);
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out ExecSqlResponce<CatalogFile> outCatalogFile);
             return outCatalogFile;
         }
     }

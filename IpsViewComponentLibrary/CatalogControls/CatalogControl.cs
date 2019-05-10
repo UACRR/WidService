@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 
@@ -34,9 +35,15 @@ namespace IpsViewComponentLibrary.CatalogControls
             Load += CatalogControl_Load;
         }
 
+        private void CatalogFileUpdateNeed_EventHandler(object sender, CatalogFile e)
+        {
+            UpdateGridData();
+        }
+
         private void CatalogControl_Load(object sender, EventArgs e)
         {
             UpdateGridData();
+            UpdateEventHandlerUtility<CatalogFile>.GetEventWrap().UpdateEventHandler += CatalogFileUpdateNeed_EventHandler;
         }
 
 

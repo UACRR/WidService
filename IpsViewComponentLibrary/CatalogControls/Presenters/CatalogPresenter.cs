@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsCommonTypes.Types;
 
 namespace IpsViewComponentLibrary.CatalogControls.Presenters
 {
@@ -112,12 +113,12 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.SaveCatalogFileComment(catalogFile);
         }
 
-        public CatalogFile AuditCatalogFileItems(CatalogFile catalogFile)
+        public CatalogFile ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.ValidateCatalogFileItems(catalogFile);
         }
 
-        public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.ProcessCatalogFileItems(catalogFile);
         }

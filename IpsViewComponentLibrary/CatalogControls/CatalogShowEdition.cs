@@ -1,9 +1,10 @@
 ﻿using ipsFormsDesign.Model;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Utilities;
+using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
@@ -12,10 +13,8 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
-        private const string PerformSuccessMsg = "Виконано";
-        private const string PerformErrorMsg = "Не виконано";
-        private const string success = "Контроль виконано";
-        private const string fail = "Контроль невиконано";
+        private const string ValidateSuccessMsg = "Контроль виконано";
+        private const string ValidateErrorMsg = "Контроль невиконано";
 
         private CatalogFile _catalogFile = null;
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
@@ -53,12 +52,15 @@ namespace IpsViewComponentLibrary.CatalogControls
         // перевірка валідності. . .
         private void btnAuditItems_Click(object sender, EventArgs e)
         {
-            var result = _catalogFileItemsHandler.AuditCatalogFileItems(_catalogFile);
+            var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
             var boolResult = result != null;
             if (boolResult)
+            {
                 DataSource = result;
-            
-            MessageShow.ShowInfoByResult(success, fail, boolResult);
+                UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result);
+            }
+
+            MessageShow.ShowInfoByResult(ValidateSuccessMsg, ValidateErrorMsg, boolResult);
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -80,11 +82,15 @@ namespace IpsViewComponentLibrary.CatalogControls
 
         private void btnPerform_Click(object sender, EventArgs e)
         {
-            var result = _catalogFileItemsHandler.AttachCatalogFileItems(_catalogFile);
-            var boolResult = result != null;
+            var result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
+            var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
             if (boolResult)
-                DataSource = result;
-            MessageShow.ShowInfoByResult(PerformSuccessMsg, PerformErrorMsg, boolResult);
+            {
+                DataSource = result.Data;
+                UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result.Data);
+            }
+
+            MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);
         }
     }
 }

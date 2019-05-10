@@ -92,6 +92,10 @@ namespace IpsViewComponentLibrary.CommunityControls
             var customer = GetCommunity?.Invoke(item.CustId);
             var autors = GetCommunityAutorsList?.Invoke(item.CustId);
             var cabinetForm = new CommunityCabinetForm(customer, autors);
+            //using (var cabinet = new CommunityCabinetForm(customer, autors))
+            //{
+            //    cabinet.Show();
+            //}
             cabinetForm.SaveCustomer += CabinetForm_SaveCustomer;
             cabinetForm.SaveAgreementChanges += CabinetForm_SaveAgreementChanges;
             cabinetForm.UpdateCustomer += CabinetForm_UpdateCustomer;

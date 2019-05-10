@@ -225,26 +225,34 @@ namespace ipsmedserviceapp.Controllers
         {
             try
             {
-                SqlParameter retCode = new SqlParameter("@retCode", System.Data.SqlDbType.Int);
-                retCode.Direction = System.Data.ParameterDirection.Output;
-
-                SqlParameter message = new SqlParameter("@msg", System.Data.SqlDbType.VarChar, 100);
-                message.Direction = System.Data.ParameterDirection.Output;
-
                 var paramFileId = new SqlParameter("@fileId", fileId);
 
-                var data = await _dbContext.Database.ExecuteSqlCommandAsync("exec @retCode = CatalogInputPub @fileId, @msg OUT",
-                            retCode, paramFileId, message);
+                var message = new SqlParameter("@result", System.Data.SqlDbType.VarChar, 100)
+                {
+                    Direction = System.Data.ParameterDirection.Output
+                };
+
+                var returnCode = new SqlParameter("@RetCode", System.Data.SqlDbType.Int)
+                {
+                    Direction = System.Data.ParameterDirection.Output
+                };
+
+                // DECLARE @result VARCHAR(100), @RetCode integer; 
+                string command = @"exec CatalogInputPub @fileId, @result OUTPUT, @RetCode OUTPUT";
+
+                var data = await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
 
                 var responce = new ExecSqlResponce<CatalogFile>();
+                responce.Message = message.Value.ToString();
+
                 // Процедура виконала дії без помилок
-                if (Convert.ToInt32(retCode.Value) == 0)
+                if (Convert.ToInt32(returnCode.Value) == 0)
                 {
                     var valiCatalog = await _dbContext.CatalogFile
-                                        .Include(rec => rec.PubCatalogItem)
-                                            .ThenInclude(pub => pub.StatusNavigation)
-                                        .AsNoTracking()
-                                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+                        .Include(rec => rec.PubCatalogItem)
+                        .ThenInclude(pub => pub.StatusNavigation)
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
 
                     responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
                     responce.Data = valiCatalog;
@@ -252,7 +260,6 @@ namespace ipsmedserviceapp.Controllers
                 else
                 {
                     responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
-                    responce.Message = message.Value.ToString();
                 }
 
                 return Ok(responce);
