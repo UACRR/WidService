@@ -31,7 +31,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         private void InitializeComponent()
         {
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.cabinet = new CabinetSmallRight();
+            this.cabinet = new IpsViewComponentLibrary.ConsumerControls.SmallRight.CabinetSmallRight();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +39,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             this.cabinet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cabinet.Location = new System.Drawing.Point(0, 0);
-            this.cabinet.MinimumSize = new System.Drawing.Size(962, 665);
             this.cabinet.Name = "cabinet";
             this.cabinet.Rights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             this.cabinet.Size = new System.Drawing.Size(1070, 774);

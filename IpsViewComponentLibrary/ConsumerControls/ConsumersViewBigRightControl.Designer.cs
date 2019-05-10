@@ -45,14 +45,14 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvConsumers = new Telerik.WinControls.UI.RadGridView();
+            this.bsConsumerBigRightView = new System.Windows.Forms.BindingSource(this.components);
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.bsConsumerBigRightView = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumers.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
             this.SuspendLayout();
             // 
             // gvConsumers
@@ -214,6 +214,10 @@
             this.gvConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
             this.gvConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewConsumers_CommandCellClick);
             // 
+            // bsConsumerBigRightView
+            // 
+            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
+            // 
             // btnNewConsumer
             // 
             this.btnNewConsumer.Location = new System.Drawing.Point(488, 3);
@@ -233,14 +237,10 @@
             this.ctrlSearch.Size = new System.Drawing.Size(479, 20);
             this.ctrlSearch.TabIndex = 11;
             // 
-            // bsConsumerBigRightView
-            // 
-            this.bsConsumerBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerBigRightView);
-            // 
             // ConsumersViewBigRightControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.btnNewConsumer);
             this.Controls.Add(this.gvConsumers);
@@ -248,8 +248,8 @@
             this.Size = new System.Drawing.Size(1154, 588);
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
             this.ResumeLayout(false);
 
         }
