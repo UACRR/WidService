@@ -186,8 +186,12 @@ namespace ipsFormsDesign.Services
 
                 for (i = 1; i <= maxRow; i++)
                 {
-                    if (dim?[i, 1] == null) continue;
-                    if (!(dim?[i, 1] is double)) continue;
+                    if (dim?[i, 1] == null)
+                        continue;
+                    
+                    // Патлякевич 10-05-19
+                    if (!(double.TryParse(dim[i, 1].ToString(), out double tmp))) 
+                        continue;
 
                     var rowList = new List<string>();
 

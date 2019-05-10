@@ -161,6 +161,7 @@
             gridViewTextBoxColumn8.Width = 105;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.DataType = typeof(System.Nullable<decimal>);
+            gridViewTextBoxColumn9.ExcelExportType = Telerik.WinControls.UI.Export.DisplayFormatType.Standard;
             gridViewTextBoxColumn9.FieldName = "Rate";
             gridViewTextBoxColumn9.FormatString = "{0:###.00}";
             gridViewTextBoxColumn9.HeaderText = "%";
