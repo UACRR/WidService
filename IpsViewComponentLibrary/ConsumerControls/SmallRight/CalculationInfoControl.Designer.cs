@@ -506,7 +506,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.radSplitContainer1);
-            this.MinimumSize = new System.Drawing.Size(400, 562);
             this.Name = "CalculationInfoControl";
             this.Size = new System.Drawing.Size(955, 562);
             ((System.ComponentModel.ISupportInitialize)(this.gvPeriodsPayment.MasterTemplate)).EndInit();

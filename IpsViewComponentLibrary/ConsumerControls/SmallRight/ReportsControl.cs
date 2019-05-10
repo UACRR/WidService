@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using System.Windows.Forms;
 using ipsFormsDesign.Services;
-using ipsFormsDesign.Data;
-using IpsViewComponentLibrary.Utilities;
-using Telerik.WinControls.UI;
-using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerDialogForms;
-using ipsFormsDesign.Dictionary;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public partial class ReportsControl : UserControl
     {

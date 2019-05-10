@@ -40,21 +40,24 @@
             this.btnAddJurConsumer = new Telerik.WinControls.UI.RadMenuItem();
             this.btnAddPhisConsumer = new Telerik.WinControls.UI.RadMenuItem();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.lblTextConsumers = new System.Windows.Forms.Label();
-            this.lblCountConsumers = new System.Windows.Forms.Label();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
+            this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnAddConsumer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
+            this.ipsPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
+            this.ipsPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gvViewConsumers
             // 
-            this.gvViewConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gvViewConsumers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvViewConsumers.EnableCustomFiltering = true;
-            this.gvViewConsumers.Location = new System.Drawing.Point(3, 30);
+            this.gvViewConsumers.Location = new System.Drawing.Point(0, 26);
             // 
             // 
             // 
@@ -68,26 +71,26 @@
             gridViewTextBoxColumn1.HeaderText = "ЄДРПОУ";
             gridViewTextBoxColumn1.Name = "Innokpo";
             gridViewTextBoxColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn1.Width = 153;
+            gridViewTextBoxColumn1.Width = 154;
             gridViewTextBoxColumn2.FieldName = "name";
             gridViewTextBoxColumn2.HeaderText = "Назва";
             gridViewTextBoxColumn2.Multiline = true;
             gridViewTextBoxColumn2.Name = "Name";
-            gridViewTextBoxColumn2.Width = 625;
+            gridViewTextBoxColumn2.Width = 628;
             gridViewTextBoxColumn2.WrapText = true;
             gridViewTextBoxColumn3.DataType = typeof(int);
             gridViewTextBoxColumn3.FieldName = "countAgree";
             gridViewTextBoxColumn3.HeaderText = "К-сть діючих договорів";
             gridViewTextBoxColumn3.Name = "CountAgree";
             gridViewTextBoxColumn3.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn3.Width = 153;
+            gridViewTextBoxColumn3.Width = 154;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(double);
             gridViewTextBoxColumn4.FieldName = "undistribamount";
             gridViewTextBoxColumn4.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn4.Name = "Undistribamount";
             gridViewTextBoxColumn4.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn4.Width = 170;
+            gridViewTextBoxColumn4.Width = 171;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "custId";
@@ -121,7 +124,7 @@
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
             this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvViewConsumers.Size = new System.Drawing.Size(1148, 536);
+            this.gvViewConsumers.Size = new System.Drawing.Size(1154, 537);
             this.gvViewConsumers.TabIndex = 3;
             this.gvViewConsumers.ThemeName = "Office2013Light";
             this.gvViewConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
@@ -151,25 +154,6 @@
             this.btnAddPhisConsumer.Text = "Фізична особа";
             this.btnAddPhisConsumer.Click += new System.EventHandler(this.btnAddPhisConsumer_Click);
             // 
-            // lblTextConsumers
-            // 
-            this.lblTextConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTextConsumers.Location = new System.Drawing.Point(1013, 569);
-            this.lblTextConsumers.Name = "lblTextConsumers";
-            this.lblTextConsumers.Size = new System.Drawing.Size(68, 13);
-            this.lblTextConsumers.TabIndex = 8;
-            this.lblTextConsumers.Text = "К-ть рядків";
-            // 
-            // lblCountConsumers
-            // 
-            this.lblCountConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountConsumers.Location = new System.Drawing.Point(1087, 569);
-            this.lblCountConsumers.Name = "lblCountConsumers";
-            this.lblCountConsumers.Size = new System.Drawing.Size(64, 16);
-            this.lblCountConsumers.TabIndex = 9;
-            this.lblCountConsumers.Text = "0";
-            this.lblCountConsumers.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // ctrlSearch
             // 
             this.ctrlSearch.Location = new System.Drawing.Point(3, 3);
@@ -179,20 +163,56 @@
             this.ctrlSearch.Size = new System.Drawing.Size(479, 20);
             this.ctrlSearch.TabIndex = 6;
             // 
+            // ipsPanel1
+            // 
+            this.ipsPanel1.BorderVisible = false;
+            this.ipsPanel1.Controls.Add(this.ctrlSearch);
+            this.ipsPanel1.Controls.Add(this.ddbtnAddConsumer);
+            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ipsPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ipsPanel1.Name = "ipsPanel1";
+            this.ipsPanel1.Size = new System.Drawing.Size(1154, 26);
+            this.ipsPanel1.TabIndex = 10;
+            this.ipsPanel1.ThemeName = "Office2013Light";
+            // 
+            // ctrlGridRowCount
+            // 
+            this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(1001, 0);
+            this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
+            this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.Name = "ctrlGridRowCount";
+            this.ctrlGridRowCount.RadGridViewDataSource = null;
+            this.ctrlGridRowCount.Size = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.TabIndex = 11;
+            // 
+            // ipsPanel2
+            // 
+            this.ipsPanel2.BorderVisible = false;
+            this.ipsPanel2.Controls.Add(this.ctrlGridRowCount);
+            this.ipsPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ipsPanel2.Location = new System.Drawing.Point(0, 563);
+            this.ipsPanel2.Name = "ipsPanel2";
+            this.ipsPanel2.Size = new System.Drawing.Size(1154, 25);
+            this.ipsPanel2.TabIndex = 12;
+            this.ipsPanel2.ThemeName = "Office2013Light";
+            // 
             // ConsumersViewSmallRightControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this.lblCountConsumers);
-            this.Controls.Add(this.lblTextConsumers);
-            this.Controls.Add(this.ddbtnAddConsumer);
-            this.Controls.Add(this.ctrlSearch);
             this.Controls.Add(this.gvViewConsumers);
+            this.Controls.Add(this.ipsPanel2);
+            this.Controls.Add(this.ipsPanel1);
             this.Name = "ConsumersViewSmallRightControl";
             this.Size = new System.Drawing.Size(1154, 588);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnAddConsumer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
+            this.ipsPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).EndInit();
+            this.ipsPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -205,7 +225,8 @@
         private Telerik.WinControls.UI.RadMenuItem btnAddJurConsumer;
         private Telerik.WinControls.UI.RadMenuItem btnAddPhisConsumer;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private System.Windows.Forms.Label lblTextConsumers;
-        private System.Windows.Forms.Label lblCountConsumers;
+        private Common.Editors.IpsPanel ipsPanel1;
+        private Common.GridRowCountControl ctrlGridRowCount;
+        private Common.Editors.IpsPanel ipsPanel2;
     }
 }
