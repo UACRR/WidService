@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.GetCatalogFile(custId, fileId);
         }
 
-        public void UploadCatalogFile(CatalogFile catalogFile, string path)
+        public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
@@ -38,6 +38,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
+            return result;
         }
         
         /// <summary>

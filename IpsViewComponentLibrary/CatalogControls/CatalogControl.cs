@@ -15,6 +15,8 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string EditCommentSuccessMsg = "Коментар змінений!";
         private const string EditCommentErrorMsg = "Неможливо змінити коментар!";
 
+        private const string LoadCatalogFileSuccessMsg = "Файл завантажено!";
+        private const string LoadCatalogFileErrorMsg = "Неможливо завантажити файл!";
         private const string DeleteCatalogFileSuccessMsg = "Файл видалено!";
         private const string DeleteCatalogFileErrorMsg = "Неможливо видалити файл!";
 
@@ -82,12 +84,15 @@ namespace IpsViewComponentLibrary.CatalogControls
                         CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
-                    _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
-                    UpdateGridData();
+                    var result = _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+                    var boolResult = result != null;
+                    MessageShow.ShowInfoByResult(LoadCatalogFileSuccessMsg, LoadCatalogFileErrorMsg, boolResult);
+                    if (boolResult)
+                        UpdateGridData();
                 }
             }
         }
-        
+
         // some method
 
         private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
