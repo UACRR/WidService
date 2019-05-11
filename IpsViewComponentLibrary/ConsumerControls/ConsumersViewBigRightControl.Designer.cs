@@ -49,21 +49,22 @@
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.btnNewConsumer = new Telerik.WinControls.UI.RadButton();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
+            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumers.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
+            this.ipsPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gvConsumers
             // 
-            this.gvConsumers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.gvConsumers.AutoScroll = true;
             this.gvConsumers.AutoSizeRows = true;
+            this.gvConsumers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvConsumers.EnableCustomFiltering = true;
-            this.gvConsumers.Location = new System.Drawing.Point(3, 29);
+            this.gvConsumers.Location = new System.Drawing.Point(0, 27);
             // 
             // 
             // 
@@ -99,7 +100,7 @@
             gridViewTextBoxColumn4.MinWidth = 150;
             gridViewTextBoxColumn4.Multiline = true;
             gridViewTextBoxColumn4.Name = "Name";
-            gridViewTextBoxColumn4.Width = 183;
+            gridViewTextBoxColumn4.Width = 184;
             gridViewTextBoxColumn4.WrapText = true;
             gridViewTextBoxColumn5.FieldName = "JaCity";
             gridViewTextBoxColumn5.HeaderText = "Місто";
@@ -149,7 +150,7 @@
             gridViewTextBoxColumn10.Multiline = true;
             gridViewTextBoxColumn10.Name = "UndistribAmount";
             gridViewTextBoxColumn10.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn10.Width = 105;
+            gridViewTextBoxColumn10.Width = 106;
             gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn11.FieldName = "UnattachAmount";
@@ -157,7 +158,7 @@
             gridViewTextBoxColumn11.MinWidth = 100;
             gridViewTextBoxColumn11.Multiline = true;
             gridViewTextBoxColumn11.Name = "UnattachAmount";
-            gridViewTextBoxColumn11.Width = 105;
+            gridViewTextBoxColumn11.Width = 106;
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn12.FieldName = "Borg";
@@ -170,7 +171,7 @@
             gridViewTextBoxColumn13.HeaderText = "Представник";
             gridViewTextBoxColumn13.MinWidth = 80;
             gridViewTextBoxColumn13.Name = "PartnerName";
-            gridViewTextBoxColumn13.Width = 96;
+            gridViewTextBoxColumn13.Width = 99;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
             gridViewCommandColumn1.DefaultText = "Відкрити";
@@ -208,7 +209,7 @@
             this.gvConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvConsumers.Name = "gvConsumers";
             this.gvConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
-            this.gvConsumers.Size = new System.Drawing.Size(1148, 556);
+            this.gvConsumers.Size = new System.Drawing.Size(1154, 561);
             this.gvConsumers.TabIndex = 6;
             this.gvConsumers.ThemeName = "Office2013Light";
             this.gvConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
@@ -237,19 +238,32 @@
             this.ctrlSearch.Size = new System.Drawing.Size(479, 20);
             this.ctrlSearch.TabIndex = 11;
             // 
+            // ipsPanel1
+            // 
+            this.ipsPanel1.BorderVisible = false;
+            this.ipsPanel1.Controls.Add(this.ctrlSearch);
+            this.ipsPanel1.Controls.Add(this.btnNewConsumer);
+            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ipsPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ipsPanel1.Name = "ipsPanel1";
+            this.ipsPanel1.Size = new System.Drawing.Size(1154, 27);
+            this.ipsPanel1.TabIndex = 12;
+            this.ipsPanel1.ThemeName = "Office2013Light";
+            // 
             // ConsumersViewBigRightControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.Controls.Add(this.ctrlSearch);
-            this.Controls.Add(this.btnNewConsumer);
             this.Controls.Add(this.gvConsumers);
+            this.Controls.Add(this.ipsPanel1);
             this.Name = "ConsumersViewBigRightControl";
             this.Size = new System.Drawing.Size(1154, 588);
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConsumers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsConsumerBigRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnNewConsumer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
+            this.ipsPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -260,5 +274,6 @@
         private Telerik.WinControls.UI.RadButton btnNewConsumer;
         private Common.SearchTextBoxControl ctrlSearch;
         private System.Windows.Forms.BindingSource bsConsumerBigRightView;
+        private Common.Editors.IpsPanel ipsPanel1;
     }
 }

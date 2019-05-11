@@ -162,7 +162,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnAddFile);
             this.Controls.Add(this.gvListFiles);
-            this.MinimumSize = new System.Drawing.Size(913, 436);
             this.Name = "MiddleControlCabinetFiles";
             this.Size = new System.Drawing.Size(913, 436);
             ((System.ComponentModel.ISupportInitialize)(this.gvListFiles.MasterTemplate)).EndInit();
