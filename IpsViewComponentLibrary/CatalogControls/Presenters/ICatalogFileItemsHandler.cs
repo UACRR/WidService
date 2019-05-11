@@ -10,7 +10,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         /// </summary>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        CatalogFile ValidateCatalogFileItems(CatalogFile catalogFile);
+        ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile);
 
         /// <summary>
         /// Виконати прив'язку

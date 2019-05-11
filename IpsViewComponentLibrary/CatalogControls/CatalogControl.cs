@@ -40,6 +40,7 @@ namespace IpsViewComponentLibrary.CatalogControls
         private void CatalogFileUpdateNeed_EventHandler(object sender, CatalogFile e)
         {
             UpdateGridData();
+            bsGridData.ResetBindings(false);
         }
 
         private void CatalogControl_Load(object sender, EventArgs e)
@@ -59,7 +60,6 @@ namespace IpsViewComponentLibrary.CatalogControls
 
             var list = _catalogPresenter.GetFileList(CustId);
             bsGridData.DataSource = list;
-            bsGridData.ResetBindings(false);
         }
 
         /// <summary>
@@ -92,8 +92,6 @@ namespace IpsViewComponentLibrary.CatalogControls
                 }
             }
         }
-
-        // some method
 
         private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {

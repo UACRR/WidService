@@ -25,19 +25,6 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
-        /// Отримати CatalogFile по ID правовласника/видавництва та ID файлу
-        /// </summary>
-        /// <param name="custId">ID правовласника/видавництва </param>
-        /// <param name="fileId">ID файлу</param>
-        /// <returns></returns>
-        public CatalogFile GetCatalogFile(int custId, int fileId)
-        {
-            string url = $"{Prefix}/catalogfile/{custId}";
-            var result = _apiConnector.GetItemById<CatalogFile>(url, fileId.ToString());
-            return result;
-        }
-
-        /// <summary>
         /// Отримати список CatalogFile по ID правовласника/видавництва 
         /// </summary>
         /// <param name="custId">ID правовласника/видавництва</param>
@@ -82,10 +69,10 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
-        public CatalogFile ValidateCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/validate";
-            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out CatalogFile outCatalogFile);
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out ExecSqlResponce<CatalogFile> outCatalogFile);
             return outCatalogFile;
         }
 

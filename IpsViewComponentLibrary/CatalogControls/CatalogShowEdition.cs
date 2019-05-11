@@ -14,8 +14,8 @@ namespace IpsViewComponentLibrary.CatalogControls
 {
     public partial class CatalogShowEdition : UserControl
     {
-        private const string ValidateSuccessMsg = "Контроль виконано";
-        private const string ValidateErrorMsg = "Контроль невиконано";
+        private const string ValidateSuccessMsg = "Контроль виконано!";
+        private const string ValidateErrorMsg = "Контроль не виконано!";
 
         private CatalogFile _catalogFile = null;
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
@@ -54,14 +54,14 @@ namespace IpsViewComponentLibrary.CatalogControls
         private void btnAuditItems_Click(object sender, EventArgs e)
         {
             var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
-            var boolResult = result != null;
+            var boolResult = result?.StatusCode == ExecSqlResponceStatus.Successed;
             if (boolResult)
             {
                 DataSource = result;
-                UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result);
+                UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result.Data);
             }
 
-            MessageShow.ShowInfoByResult(ValidateSuccessMsg, ValidateErrorMsg, boolResult);
+            MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result?.Message}", ValidateErrorMsg, boolResult);
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
