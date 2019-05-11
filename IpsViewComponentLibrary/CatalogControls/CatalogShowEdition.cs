@@ -8,6 +8,7 @@ using IpsCommonTypes.Enums;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
+using System.IO;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {
@@ -74,6 +75,9 @@ namespace IpsViewComponentLibrary.CatalogControls
 
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
+                    if (File.Exists(dialog.FileName))
+                        File.Delete(dialog.FileName);
+
                     SpreadExportRenderer renderer = new SpreadExportRenderer();
                     spreadExporter.RunExport(dialog.FileName, renderer);
                 }
