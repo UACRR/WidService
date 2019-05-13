@@ -61,7 +61,7 @@ namespace IpsViewComponentLibrary.CatalogControls
                 UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result.Data);
             }
 
-            MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result?.Message}", ValidateErrorMsg, boolResult);
+            MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result?.Message}", result?.Message, boolResult);
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)

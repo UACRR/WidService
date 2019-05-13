@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using ipsFormsDesign.Dictionary;
@@ -243,10 +244,22 @@ namespace ipsFormsDesign.Services
         /// <param name="typeDocument">Тип файлу</param>
         /// <param name="fileName">Найменування файлу</param>
         /// <returns>File-stream</returns>
-        public Stream downloadDocument(int custId, int typeDocument, string fileName)
+        public Stream DownloadDocument(int custId, int typeDocument, string fileName)
         {
-            string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";
-            return Task.Run(() => _webApi.downloadFile(url)).GetAwaiter().GetResult();
+            try
+            {
+                string checkExistUrl = $"consumer/existdocument/{custId}/{typeDocument}/{fileName}";
+                var isExistFile = _webApi.GetItemById<FileNotFoundException>(checkExistUrl, null);
+                if (isExistFile != null)
+                    throw new FileNotFoundException(isExistFile.Message, isExistFile.FileName);
+
+                string url = $"consumer/Document/{custId}/{typeDocument}/{fileName}";
+                return Task.Run(() => _webApi.downloadFile(url)).GetAwaiter().GetResult();
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         /// <summary>

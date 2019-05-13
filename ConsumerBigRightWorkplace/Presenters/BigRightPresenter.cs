@@ -14,6 +14,8 @@ using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
+using WordApplication = Microsoft.Office.Interop.Word.Application;
+using ExcelApplication = Microsoft.Office.Interop.Excel.Application;
 
 namespace ConsumerBigRightWorkplace.Presenters
 {
@@ -197,7 +199,7 @@ namespace ConsumerBigRightWorkplace.Presenters
                     Directory.CreateDirectory("DocumentFiles");
                 using (var fileStream = File.Create(fullpath))
                 {
-                    _service.downloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
+                    _service.DownloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
                 }
 
                 string extn = Path.GetExtension(fullpath);
@@ -205,27 +207,20 @@ namespace ConsumerBigRightWorkplace.Presenters
                 {
                     if (extn == ".doc" || extn == ".docx")
                     {
-                        Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
-                        Microsoft.Office.Interop.Word.Document doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
+                        WordApplication app = new WordApplication();
+                        var doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
                         app.Visible = true;
                         System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
                     }
                     else if (extn == ".xls" || extn == ".xlsx")
                     {
-                        Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-                        var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows);
+                        var app = new ExcelApplication();
+                        var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false,
+                            Microsoft.Office.Interop.Excel.XlPlatform.xlWindows);
                         app.Visible = true;
                         System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
                     }
                 }
-            }
-            catch (FileNotFoundException flnfexcpt)
-            {
-                MessageShow.ShowError($"Файл \"{flnfexcpt.FileName}\" не знайдено!");
-            }
-            catch (FileLoadException flexcpt)
-            {
-                MessageShow.ShowError($"Неможливо відкрити файл \"{flexcpt.FileName}\"! {flexcpt.Message}");
             }
             catch (Exception excpt)
             {

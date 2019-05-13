@@ -535,14 +535,19 @@ namespace WebAPIConnector
         /// <returns></returns>
         public async Task<Stream> downloadFile(string url)
         {
+            Stream stream = null;
             try
             {
-                var stream = await client.GetStreamAsync(url);
+                stream = await client.GetStreamAsync(url);
                 return stream;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                throw;
+            }
+            finally
+            {
+                stream?.Dispose();
             }
         }
 

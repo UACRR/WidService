@@ -2040,28 +2040,53 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
         /// </summary>
         /// <param name="custId"></param>
         /// <param name="typeDocument"></param>
+        /// <param name="fileName"></param>
         /// <returns></returns>
         [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
-        public IActionResult DownloadDocument(int custId, int typeDocument, string fileName, CancellationToken token)
+        public IActionResult DownloadDocument(int custId, int typeDocument, string fileName)
+        {
+            FileStream file = null;
+            try
+            {
+                string documentsFolder = _config.GetValue<string>("DocumentsFolder");
+                string consumerPath = Path.Combine(documentsFolder, custId.ToString());
+                consumerPath = Path.Combine(consumerPath, "Consumer", typeDocument.ToString());
+                consumerPath = Path.Combine(consumerPath, fileName);
+
+                if (!System.IO.File.Exists(consumerPath))
+                    return NotFound($"File or file path \"{consumerPath}\" not found!");
+
+                file = System.IO.File.OpenRead(consumerPath);
+
+                var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
+
+                return retStream;
+            }
+            catch
+            {
+                throw;
+            }
+            finally
+            {
+                file?.Dispose();
+            }
+        }
+
+        [HttpGet("existdocument/{custId}/{typeDocument}/{fileName}")]
+        public IActionResult CheckExistDocument(int custId, int typeDocument, string fileName)
         {
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");
             string consumerPath = Path.Combine(documentsFolder, custId.ToString());
-            if (!Directory.Exists(consumerPath))
-                return BadRequest();
-
             consumerPath = Path.Combine(consumerPath, "Consumer", typeDocument.ToString());
-            if (!Directory.Exists(consumerPath))
-                return BadRequest();
-
             consumerPath = Path.Combine(consumerPath, fileName);
 
             if (!System.IO.File.Exists(consumerPath))
-                return null;
+            {
+                var e = new FileNotFoundException($"Неможливо відкрити файл \"{fileName}\" або шлях до файлу \"{consumerPath}\" не існує!", fileName);
+                return Ok(e);
+            }
 
-            var file = System.IO.File.OpenRead(consumerPath);
-            var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
-
-            return retStream;
+            return Ok(null);
         }
 
         /// <summary>

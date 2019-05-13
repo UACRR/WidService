@@ -15,6 +15,8 @@ using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using WordApplication = Microsoft.Office.Interop.Word.Application;
+using ExcelApplication = Microsoft.Office.Interop.Excel.Application;
 
 namespace ConsumerSmallRightWorkplace.Presenters
 {
@@ -70,7 +72,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
                     Directory.CreateDirectory("DocumentFiles");
                 using (var fileStream = File.Create(fullpath))
                 {
-                    _service.downloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
+                    _service.DownloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
                 }
 
                 string extn = Path.GetExtension(fullpath);
@@ -78,36 +80,23 @@ namespace ConsumerSmallRightWorkplace.Presenters
                 {
                     if (extn == ".doc" || extn == ".docx")
                     {
-                        Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
-                        Microsoft.Office.Interop.Word.Document doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
+                        var app = new WordApplication();
+                        var doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
                         app.Visible = true;
                         System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
                     }
                     else if (extn == ".xls" || extn == ".xlsx")
                     {
-                        Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+                        var app = new ExcelApplication();
                         var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows);
                         app.Visible = true;
                         System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
                     }
                 }
             }
-            catch (FileNotFoundException flnfexcpt)
-            {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Файл не знайдено: " + flnfexcpt.FileName + "\nПовідомлення: " + flnfexcpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error);
-            }
-            catch (FileLoadException flexcpt)
-            {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Не можливо відкрити файл: " + flexcpt.FileName + "\nПовідомлення: " + flexcpt.Message, "Помилка відкривання файла", MessageBoxButtons.OK, RadMessageIcon.Error);
-            }
             catch (Exception excpt)
             {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Повідомлення: " + excpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error,
-                    MessageBoxDefaultButton.Button1,
-                    " Data: " + excpt.Data + Environment.NewLine + " StackTrace: " + excpt.StackTrace);
+                MessageShow.ShowError(excpt.Message);
             }
         }
 
