@@ -130,7 +130,6 @@ namespace ConsumerBigRightWorkplace.Presenters
             }
             // _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            //_mainGrid?.SetGridDataSource(_service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue), false);
             _mainGrid.DataSource = _service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue);
         }
 
@@ -139,20 +138,13 @@ namespace ConsumerBigRightWorkplace.Presenters
         {
             int custType = 3; // Юридична особа
             var customer = _service.NewCustomer(custType);
-
-            var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights);
-
-            if (form.ShowDialog() == DialogResult.OK)
+            using (var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights))
             {
-                customer = form.Customer;
-                var relust = _service.Save(customer);
-                MessageShow.ShowInfoByResult(AddNewConsumerSuccess, AddNewConsumerError, relust);
-            }
-            if (!form.Disposing)
-            {
-                form.Dispose();
-                form = null;
-                GC.Collect();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var relust = _service.Save(customer);
+                    MessageShow.ShowInfoByResult(AddNewConsumerSuccess, AddNewConsumerError, relust);
+                }
             }
             UpdateDataGrid();
         }

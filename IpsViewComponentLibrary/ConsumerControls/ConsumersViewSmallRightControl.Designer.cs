@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn1 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn2 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn3 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -36,6 +37,7 @@
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.gvViewConsumers = new Telerik.WinControls.UI.RadGridView();
+            this.bsConsumerSmallRightView = new System.Windows.Forms.BindingSource(this.components);
             this.ddbtnAddConsumer = new Telerik.WinControls.UI.RadDropDownButton();
             this.btnAddJurConsumer = new Telerik.WinControls.UI.RadMenuItem();
             this.btnAddPhisConsumer = new Telerik.WinControls.UI.RadMenuItem();
@@ -46,6 +48,7 @@
             this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnAddConsumer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
             this.ipsPanel1.SuspendLayout();
@@ -55,6 +58,8 @@
             // 
             // gvViewConsumers
             // 
+            this.gvViewConsumers.AutoScroll = true;
+            this.gvViewConsumers.AutoSizeRows = true;
             this.gvViewConsumers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvViewConsumers.EnableCustomFiltering = true;
             this.gvViewConsumers.Location = new System.Drawing.Point(0, 26);
@@ -65,6 +70,7 @@
             this.gvViewConsumers.MasterTemplate.AllowDeleteRow = false;
             this.gvViewConsumers.MasterTemplate.AllowDragToGroup = false;
             this.gvViewConsumers.MasterTemplate.AllowEditRow = false;
+            this.gvViewConsumers.MasterTemplate.AutoGenerateColumns = false;
             this.gvViewConsumers.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             gridViewTextBoxColumn1.DataType = typeof(int);
             gridViewTextBoxColumn1.FieldName = "innokpo";
@@ -117,6 +123,7 @@
             gridViewTextBoxColumn4,
             gridViewTextBoxColumn5,
             gridViewCommandColumn1});
+            this.gvViewConsumers.MasterTemplate.DataSource = this.bsConsumerSmallRightView;
             this.gvViewConsumers.MasterTemplate.EnableCustomFiltering = true;
             this.gvViewConsumers.MasterTemplate.EnableFiltering = true;
             this.gvViewConsumers.MasterTemplate.EnableGrouping = false;
@@ -124,11 +131,16 @@
             this.gvViewConsumers.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.gvViewConsumers.Name = "gvViewConsumers";
             this.gvViewConsumers.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
+            this.gvViewConsumers.ReadOnly = true;
             this.gvViewConsumers.Size = new System.Drawing.Size(1154, 537);
             this.gvViewConsumers.TabIndex = 3;
             this.gvViewConsumers.ThemeName = "Office2013Light";
             this.gvViewConsumers.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvViewConsumers_CellDoubleClick);
-            this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.rGridViewConsumers_CommandCellClick);
+            this.gvViewConsumers.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvConsumers_CommandCellClick);
+            // 
+            // bsConsumerSmallRightView
+            // 
+            this.bsConsumerSmallRightView.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
             // 
             // ddbtnAddConsumer
             // 
@@ -208,6 +220,7 @@
             this.Size = new System.Drawing.Size(1154, 588);
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewConsumers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsConsumerSmallRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbtnAddConsumer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
             this.ipsPanel1.ResumeLayout(false);
@@ -228,5 +241,6 @@
         private Common.Editors.IpsPanel ipsPanel1;
         private Common.GridRowCountControl ctrlGridRowCount;
         private Common.Editors.IpsPanel ipsPanel2;
+        private System.Windows.Forms.BindingSource bsConsumerSmallRightView;
     }
 }

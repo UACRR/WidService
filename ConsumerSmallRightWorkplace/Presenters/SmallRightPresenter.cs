@@ -148,7 +148,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
         {
             _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue), false);
+            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
         }
         
         //відкрити кабінет користувача
@@ -173,10 +173,11 @@ namespace ConsumerSmallRightWorkplace.Presenters
 
             CloneRegisterRL(mainCust, regCust);
 
+            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
+
             _cabinetSmallRightForm.SetCustomer(mainCust);
             _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
-            _cabinetSmallRightForm.Title = _mainGrid?.ViewRow?.Name;
+            _cabinetSmallRightForm.Title = _mainGrid.ViewRow?.Name;
 
             WindowsFormsVisible.ShowHiddenWindow(_cabinetSmallRightForm);
         }
@@ -213,40 +214,31 @@ namespace ConsumerSmallRightWorkplace.Presenters
             var customer = _service.NewCustomer(custType);
             switch (custType)
             {
+                // фізична особа
                 case 1:
-                    var formPhis = new AnketaConsumerPhisForm(customer)
+                    using (var formPhis = new AnketaConsumerPhisForm(customer))
                     {
-                        StartPosition = FormStartPosition.CenterParent
-                    };
-                    if (formPhis.ShowDialog() == DialogResult.OK)
-                    {
-                        var relust = _service.Save(customer);
-                        MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
-                    }
-                    if (!formPhis.Disposing)
-                    {
-                        formPhis.Dispose();
-                        formPhis = null;
+                        if (formPhis.ShowDialog() == DialogResult.OK)
+                        {
+                            var relust = _service.Save(customer);
+                            MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
+                        }
                     }
                     break;
-                case 3: // Юридична особа
-                    var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData);
-                    if (form.ShowDialog() == DialogResult.OK)
+                // юридична особа
+                case 3:
+                    using (var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData))
                     {
-                        customer = form.Customer;
-                        var relust = _service.Save(customer);
-                        MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
-                    }
-                    if (!form.Disposing)
-                    {
-                        form.Dispose();
-                        form = null;
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            var relust = _service.Save(customer);
+                            MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
+                        }
                     }
                     break;
             }
             GC.Collect();
-            //оновлення даних
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
+            UpdateDataGrid();
         }
 
         // збереження customer
@@ -263,9 +255,12 @@ namespace ConsumerSmallRightWorkplace.Presenters
             return relust;
         }
 
+        /// <summary>
+        /// Оновлення даних основного гріда
+        /// </summary>
         public void UpdateDataGrid()
         {
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
+            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
         }
     }
 }

@@ -25,6 +25,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         public AnketaConsumerPhisForm(Customer customer)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
 
             ctrlConsumerName.TextNameChanged += CtrlConsumerName_TextNameChanged;
 
