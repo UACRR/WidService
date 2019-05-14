@@ -320,6 +320,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 radWaitingBar1.StartWaiting();
                 EnableButtons(false);
 
+                Register addRegister = null;
                 Task.Run(() =>
                 {
                     var list = _excel.GetReportItems(dialog.FileName);
@@ -330,7 +331,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    var addRegister = new Register
+                    addRegister = new Register
                     {
                         RgStatus = 0,
                         FileName = Path.GetFileName(dialog.FileName),
@@ -349,16 +350,20 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     RatedList.Register.Add(addRegister);
 
                     SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
+                })
+                .ContinueWith( tsk => {
 
-                    BeginInvoke((Action)(() =>
-                    {
-                        if (!bindingReports.Contains(addRegister))
-                            bindingReports.Add(addRegister);
-                        radWaitingBar1.StopWaiting();
-                        EnableButtons(true);
-                        btnToAcception.Enabled = true;
-                    }));
-                });
+                    if (tsk.Status == TaskStatus.RanToCompletion && 
+                        addRegister != null && 
+                        !bindingReports.Contains(addRegister))
+                        bindingReports.Add(addRegister);
+
+                    EnableButtons(true);
+                    btnToAcception.Enabled = true;
+
+                    radWaitingBar1.StopWaiting();
+
+                }, TaskScheduler.FromCurrentSynchronizationContext());
             }
 
         }

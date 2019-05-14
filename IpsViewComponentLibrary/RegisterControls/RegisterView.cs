@@ -7,6 +7,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
+using System.Threading.Tasks;
 
 namespace IpsViewComponentLibrary.RegisterControls
 {
@@ -182,7 +183,11 @@ namespace IpsViewComponentLibrary.RegisterControls
 
         private void btnSearchAuto_Click(object sender, EventArgs e)
         {
-            _presenter.SearchObjectsAuto();
+            radWaitingBar1.StartWaiting();
+            Task.Run(() => _presenter.SearchObjectsAuto())
+                    .ContinueWith(ct => radWaitingBar1.StopWaiting(), TaskScheduler.FromCurrentSynchronizationContext());
+            
+            //_presenter.SearchObjectsAuto();
         }
 
         private void btnSearchAll_Click(object sender, EventArgs e)
