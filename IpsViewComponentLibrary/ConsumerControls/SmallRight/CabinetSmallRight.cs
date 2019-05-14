@@ -245,10 +245,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                         IsAutoprolog = licenseParam?.IsAutoprolog ?? false,
                     });
                 }
-            //
-            gvLicenseAgr.DataSource = source;
-            gvLicenseAgr.MasterTemplate.Refresh();
-            gvLicenseAgr.Update();
+
+            bsGridLicenseAgreementView.DataSource = source;
+            bsGridLicenseAgreementView.ResetBindings(false);
         }
 
         bool _inCurrentRowChanged = false;
@@ -463,10 +462,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 }
             }
 
-            gvMoreLicenseAgr.DataSource = source;
-            gvMoreLicenseAgr.MasterTemplate.Refresh();
-            gvMoreLicenseAgr.Update();
+            bsGridLicenseAgreementViewNoAccept.DataSource = source;
+            bsGridLicenseAgreementViewNoAccept.ResetBindings(false);
         }
+
         // при зміні рядка грід
         private void gvMoreLicenseAgr_CurrentRowChanged(object sender, Telerik.WinControls.UI.CurrentRowChangedEventArgs e)
         {
