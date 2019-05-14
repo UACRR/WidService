@@ -109,9 +109,16 @@ namespace IpsViewComponentLibrary.ImportDBF
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     lblFileName.Text = fileDialog.SafeFileName;
-                    _inputFile = _dbfEngine.ReadDbfFile(fileDialog.FileName);
-                    ShowFileResult();
-                    //MessageBox.Show($"Файл {fileName} завантажено", "Завантаження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        _inputFile = _dbfEngine.ReadDbfFile(fileDialog.FileName);
+                        ShowFileResult();
+                    }
+                    catch( Exception ex )
+                    {
+
+                        MessageBox.Show(ex.Message, "Помилка завантаження", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    }
                 }
             }
         }
