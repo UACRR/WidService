@@ -182,11 +182,21 @@ namespace ipsmedserviceapp.Controllers
         [HttpGet("{regId}/autolinkedobjects")]
         public async Task<IActionResult> GetAutoLinkedObjects(int regId)
         {
-            var list = await _dbContext.getViewData($"select * from ft_Tsk_3_AutoLink( @regId )", new[] {
+            var currentTimeOut = _dbContext.Database.GetCommandTimeout();
+            try
+            {
+                _dbContext.Database.SetCommandTimeout(600);
+                var list = await _dbContext.getViewData($"select * from ft_Tsk_3_AutoLink( @regId )", new[] {
                 new SqlParameter("regId", regId),
-            });
+                });
 
-            return Ok(list);
+                return Ok(list);
+            }
+            finally
+            {
+                if (currentTimeOut.HasValue)
+                    _dbContext.Database.SetCommandTimeout(currentTimeOut);
+            }
         }
     }
 }
