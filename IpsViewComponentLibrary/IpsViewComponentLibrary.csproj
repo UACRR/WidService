@@ -1691,6 +1691,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.CommunityControls.InternalModel.RightLimitationsView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.SmallRight.GridLicenseAgreementView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.PlacesForAgreement.datasource" />
