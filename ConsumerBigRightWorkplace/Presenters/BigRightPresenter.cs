@@ -197,29 +197,19 @@ namespace ConsumerBigRightWorkplace.Presenters
                 string fullpath = @"DocumentFiles\" + fileName;
                 if (!Directory.Exists("DocumentFiles"))
                     Directory.CreateDirectory("DocumentFiles");
+
                 using (var fileStream = File.Create(fullpath))
                 {
-                    _service.DownloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
+                    using (var stream = _service.DownloadDocument(custId, typeDocument, fileName))
+                    {
+                        stream.CopyTo(fileStream);
+                        stream.Close();
+                    }
                 }
 
-                string extn = Path.GetExtension(fullpath);
                 if (File.Exists(fullpath))
                 {
-                    if (extn == ".doc" || extn == ".docx")
-                    {
-                        WordApplication app = new WordApplication();
-                        var doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
-                        app.Visible = true;
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
-                    }
-                    else if (extn == ".xls" || extn == ".xlsx")
-                    {
-                        var app = new ExcelApplication();
-                        var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false,
-                            Microsoft.Office.Interop.Excel.XlPlatform.xlWindows);
-                        app.Visible = true;
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
-                    }
+                    System.Diagnostics.Process.Start(fullpath);
                 }
             }
             catch (Exception excpt)
