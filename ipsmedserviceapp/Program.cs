@@ -13,6 +13,7 @@ namespace ipsmedserviceapp
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+
 #if DEBUG
                 .UseHttpSys(options =>
                 {

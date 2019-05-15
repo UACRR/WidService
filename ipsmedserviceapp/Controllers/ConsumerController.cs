@@ -7,6 +7,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Castle.Core.Logging;
+using ipsmedserviceapp.DATA;
 using ipsmedserviceapp.Model;
 using ipsmedserviceapp.Utilities;
 using Microsoft.AspNetCore.Authorization;
@@ -16,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols;
 // ReSharper disable All
 
@@ -29,11 +32,14 @@ namespace ipsmedserviceapp.Controllers
         private readonly AmountDistributor _rateDistributor;
         private MediaServiceContext _dbContext;
         private IConfiguration _config;
+        private ILogger<ConsumerController> _logger;
 
-        public ConsumerController(MediaServiceContext dbContext, IConfiguration config)
+        public ConsumerController(MediaServiceContext dbContext, IConfiguration config, ILogger<ConsumerController> logger)
         {
             _dbContext = dbContext;
             _config = config;
+            _logger = logger;
+
             _rateDistributor = new AmountDistributor
             {
                 Amount = 100
@@ -2045,7 +2051,7 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
         [HttpGet("Document/{custId}/{typeDocument}/{fileName}")]
         public IActionResult DownloadDocument(int custId, int typeDocument, string fileName)
         {
-            FileStream file = null;
+            // FileStream file = null;
             try
             {
                 string documentsFolder = _config.GetValue<string>("DocumentsFolder");
@@ -2055,12 +2061,21 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
 
                 if (!System.IO.File.Exists(consumerPath))
                     return NotFound($"File or file path \"{consumerPath}\" not found!");
+                //_logger.LogDebug("Begin Open File");
 
-                file = System.IO.File.OpenRead(consumerPath);
+                // file = System.IO.File.OpenRead(consumerPath);
 
-                var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
+                //_logger.LogDebug("Begin Read File");
+                //var retStream = File(file, "application/vnd.ms-word", Path.GetFileName(consumerPath));
 
-                return retStream;
+                //return retStream;
+
+                var mime = MimeTypeMap.GetMimeType(Path.GetExtension(consumerPath));
+
+                var file = new FileStream(consumerPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite );
+
+                return File(file, mime, fileName );
+
             }
             catch
             {
@@ -2068,11 +2083,11 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
             }
             finally
             {
-                file?.Dispose();
+                // file?.Dispose();
             }
         }
 
-        [HttpGet("existdocument/{custId}/{typeDocument}/{fileName}")]
+        [HttpGet("  /{custId}/{typeDocument}/{fileName}")]
         public IActionResult CheckExistDocument(int custId, int typeDocument, string fileName)
         {
             string documentsFolder = _config.GetValue<string>("DocumentsFolder");

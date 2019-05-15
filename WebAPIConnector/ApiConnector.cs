@@ -543,11 +543,12 @@ namespace WebAPIConnector
             }
             catch
             {
+                stream?.Dispose();
                 throw;
             }
             finally
             {
-                stream?.Dispose();
+                // stream?.Dispose();
             }
         }
 
