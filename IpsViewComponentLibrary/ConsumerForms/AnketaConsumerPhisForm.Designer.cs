@@ -103,10 +103,10 @@ namespace IpsViewComponentLibrary.ConsumerForms
             // 
             this.pageAnketaConsumer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pageAnketaConsumer.Controls.Add(this.pvClientName);
-            this.pageAnketaConsumer.Controls.Add(this.pvContacts);
-            this.pageAnketaConsumer.Controls.Add(this.pvPasport);
             this.pageAnketaConsumer.Controls.Add(this.pvPlaces);
+            this.pageAnketaConsumer.Controls.Add(this.pvPasport);
             this.pageAnketaConsumer.Controls.Add(this.pvBankRequisites);
+            this.pageAnketaConsumer.Controls.Add(this.pvContacts);
             this.pageAnketaConsumer.Controls.Add(this.pvAgreement);
             this.pageAnketaConsumer.Controls.Add(this.pvPrint);
             this.pageAnketaConsumer.DefaultPage = this.pvClientName;
@@ -501,7 +501,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.pvPrint.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPrint.Location = new System.Drawing.Point(134, 5);
             this.pvPrint.Name = "pvPrint";
-            this.pvPrint.Size = new System.Drawing.Size(963, 536);
+            this.pvPrint.Size = new System.Drawing.Size(1053, 661);
             this.pvPrint.Text = "Друк";
             // 
             // btnLoadPdf
@@ -521,7 +521,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(957, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1047, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -549,7 +549,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             this.radPdfViewer.EnableThumbnails = false;
             this.radPdfViewer.Location = new System.Drawing.Point(3, 82);
             this.radPdfViewer.Name = "radPdfViewer";
-            this.radPdfViewer.Size = new System.Drawing.Size(957, 409);
+            this.radPdfViewer.Size = new System.Drawing.Size(1047, 534);
             this.radPdfViewer.TabIndex = 3;
             this.radPdfViewer.ThemeName = "Office2013Light";
             this.radPdfViewer.ThumbnailsScaleFactor = 0.15F;

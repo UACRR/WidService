@@ -54,14 +54,14 @@ namespace IpsViewComponentLibrary.CatalogControls
         private void btnAuditItems_Click(object sender, EventArgs e)
         {
             var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
-            var boolResult = result?.StatusCode == ExecSqlResponceStatus.Successed;
+            var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
             if (boolResult)
             {
                 DataSource = result.Data;
                 UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result.Data);
             }
 
-            MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result?.Message}", result?.Message, boolResult);
+            MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)

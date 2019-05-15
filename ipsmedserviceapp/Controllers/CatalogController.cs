@@ -253,6 +253,11 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
+        /// <summary>
+        /// Заупстити процес обробки записів
+        /// </summary>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
         [HttpPut("process/{fileId}")]
         public async Task<IActionResult> BeginProcessFile(int fileId)
         {

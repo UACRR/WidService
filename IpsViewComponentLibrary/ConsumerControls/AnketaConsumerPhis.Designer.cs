@@ -100,10 +100,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.pageAnketaConsumer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pageAnketaConsumer.Controls.Add(this.pvClientName);
-            this.pageAnketaConsumer.Controls.Add(this.pvContacts);
-            this.pageAnketaConsumer.Controls.Add(this.pvPasport);
             this.pageAnketaConsumer.Controls.Add(this.pvPlaces);
+            this.pageAnketaConsumer.Controls.Add(this.pvPasport);
             this.pageAnketaConsumer.Controls.Add(this.pvBankRequisites);
+            this.pageAnketaConsumer.Controls.Add(this.pvContacts);
             this.pageAnketaConsumer.Controls.Add(this.pvAgreement);
             this.pageAnketaConsumer.Controls.Add(this.pvPrint);
             this.pageAnketaConsumer.DefaultPage = this.pvClientName;
@@ -440,7 +440,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvPlaces.Location = new System.Drawing.Point(134, 5);
             this.pvPlaces.Name = "pvPlaces";
             this.pvPlaces.Size = new System.Drawing.Size(848, 466);
-            this.pvPlaces.Text = "Майданчики";
+            this.pvPlaces.Text = "Бізнес-точки";
             // 
             // ctrlPlaces
             // 
