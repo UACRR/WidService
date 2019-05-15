@@ -57,7 +57,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             var boolResult = result?.StatusCode == ExecSqlResponceStatus.Successed;
             if (boolResult)
             {
-                DataSource = result;
+                DataSource = result.Data;
                 UpdateEventHandlerUtility<CatalogFile>.InvokeEvent(result.Data);
             }
 
