@@ -72,7 +72,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             using (var fileExel = new OpenFileDialog())
             {
                 //open dialog
-                fileExel.InitialDirectory = @"C:\";
+                // fileExel.InitialDirectory = @"C:\";
                 fileExel.Filter = "Excel files (.xlsx)|*.xlsx";
                 fileExel.RestoreDirectory = true;
 

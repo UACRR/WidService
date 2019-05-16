@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Microsoft.Office.Interop.Excel;
 
 namespace ipsFormsDesign.Services
 {
@@ -159,7 +160,13 @@ namespace ipsFormsDesign.Services
             return list;
         }
 
-        public List<List<string>> ReadData(string FileName)
+        /// <summary>
+        /// Завантаження  Excel в список List<List<string>>
+        /// </summary>
+        /// <param name="FileName">Повній шлях до файлу</param>
+        /// <param name="countCols">Кількість колонок данних будуть імпортуватися</param>
+        /// <returns></returns>
+        public List<List<string>> ReadData(string FileName, int countCols = 10 )
         {
             // TODO: extract OpenWorkbook(), CloseWorkbook() methods
 
@@ -179,10 +186,11 @@ namespace ipsFormsDesign.Services
                 int maxCol;
                 int maxRow;
 
-                maxCol = excelRange.Columns.Count;
+                maxCol = Math.Min( excelRange.Columns.Count, countCols );
                 maxRow = excelRange.Rows.Count;
-
-                var dim = excelRange.Value;
+                
+                //var dim = excelRange.Value;
+                var dim = ((Range)excelRange.Range[excelRange.Cells[1,1], excelRange.Cells[maxRow, countCols]]).Value;
 
                 for (i = 1; i <= maxRow; i++)
                 {
