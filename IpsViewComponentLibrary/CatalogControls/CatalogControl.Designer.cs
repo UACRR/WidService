@@ -85,12 +85,12 @@ namespace IpsViewComponentLibrary.CatalogControls
             gridViewTextBoxColumn2.Width = 175;
             gridViewTextBoxColumn3.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn3.FieldName = "CreateDate";
-            gridViewTextBoxColumn3.FormatString = "{0:d}";
+            gridViewTextBoxColumn3.FormatString = "{0:dd.MM.yyyy HH:mm:ss}";
             gridViewTextBoxColumn3.HeaderText = "Дата завантаження";
-            gridViewTextBoxColumn3.MaxWidth = 90;
-            gridViewTextBoxColumn3.MinWidth = 90;
+            gridViewTextBoxColumn3.MaxWidth = 125;
+            gridViewTextBoxColumn3.MinWidth = 125;
             gridViewTextBoxColumn3.Name = "dateDownload";
-            gridViewTextBoxColumn3.Width = 90;
+            gridViewTextBoxColumn3.Width = 125;
             gridViewTextBoxColumn3.WrapText = true;
             gridViewTextBoxColumn4.DataType = typeof(System.Nullable<int>);
             gridViewTextBoxColumn4.FieldName = "CountZap";

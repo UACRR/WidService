@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 
@@ -14,6 +15,8 @@ namespace IpsViewComponentLibrary.CatalogControls
         private const string EditCommentSuccessMsg = "Коментар змінений!";
         private const string EditCommentErrorMsg = "Неможливо змінити коментар!";
 
+        private const string LoadCatalogFileSuccessMsg = "Файл завантажено!";
+        private const string LoadCatalogFileErrorMsg = "Неможливо завантажити файл!";
         private const string DeleteCatalogFileSuccessMsg = "Файл видалено!";
         private const string DeleteCatalogFileErrorMsg = "Неможливо видалити файл!";
 
@@ -34,9 +37,16 @@ namespace IpsViewComponentLibrary.CatalogControls
             Load += CatalogControl_Load;
         }
 
+        private void CatalogFileUpdateNeed_EventHandler(object sender, CatalogFile e)
+        {
+            UpdateGridData();
+            bsGridData.ResetBindings(false);
+        }
+
         private void CatalogControl_Load(object sender, EventArgs e)
         {
             UpdateGridData();
+            UpdateEventHandlerUtility<CatalogFile>.GetEventWrap().UpdateEventHandler += CatalogFileUpdateNeed_EventHandler;
         }
 
 
@@ -50,7 +60,6 @@ namespace IpsViewComponentLibrary.CatalogControls
 
             var list = _catalogPresenter.GetFileList(CustId);
             bsGridData.DataSource = list;
-            bsGridData.ResetBindings(false);
         }
 
         /// <summary>
@@ -63,7 +72,7 @@ namespace IpsViewComponentLibrary.CatalogControls
             using (var fileExel = new OpenFileDialog())
             {
                 //open dialog
-                fileExel.InitialDirectory = @"C:\";
+                // fileExel.InitialDirectory = @"C:\";
                 fileExel.Filter = "Excel files (.xlsx)|*.xlsx";
                 fileExel.RestoreDirectory = true;
 
@@ -75,13 +84,14 @@ namespace IpsViewComponentLibrary.CatalogControls
                         CustId = CustId,
                         FileName = fileExel.SafeFileName,
                     };
-                    _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
-                    UpdateGridData();
+                    var result = _catalogPresenter.UploadCatalogFile(catalogFile, fileExel.FileName);
+                    var boolResult = result != null;
+                    MessageShow.ShowInfoByResult(LoadCatalogFileSuccessMsg, LoadCatalogFileErrorMsg, boolResult);
+                    if (boolResult)
+                        UpdateGridData();
                 }
             }
         }
-        
-        // some method
 
         private void gridCatalogFiles_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
         {

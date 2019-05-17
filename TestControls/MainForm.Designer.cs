@@ -77,7 +77,7 @@ namespace TestControls
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.bindPayPeriod1 = new CalculationInfoControl();
-            this.reportsControl1 = new IpsViewComponentLibrary.ReportsControl();
+            this.reportsControl1 = new ReportsControl();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView1.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridView2)).BeginInit();
@@ -583,7 +583,7 @@ namespace TestControls
         private System.Windows.Forms.CheckBox checkBox1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme1;
         private CalculationInfoControl bindPayPeriod1;
-        private IpsViewComponentLibrary.ReportsControl reportsControl1;
+        private ReportsControl reportsControl1;
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPagePay;
     }
 }

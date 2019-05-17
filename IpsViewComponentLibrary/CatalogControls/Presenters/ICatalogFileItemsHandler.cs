@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Model;
+﻿using IpsCommonTypes.Types;
+using ipsFormsDesign.Model;
 
 namespace IpsViewComponentLibrary.CatalogControls.Presenters
 {
@@ -9,13 +10,13 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
         /// </summary>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        CatalogFile AuditCatalogFileItems(CatalogFile catalogFile);
+        ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile);
 
         /// <summary>
         /// Виконати прив'язку
         /// </summary>
         /// <param name="catalogFile"></param>
         /// <returns></returns>
-        CatalogFile AttachCatalogFileItems(CatalogFile catalogFile);
+        ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile);
     }
 }

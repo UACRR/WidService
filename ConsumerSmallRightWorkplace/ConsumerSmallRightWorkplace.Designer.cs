@@ -32,12 +32,14 @@
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pvConsumers = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConsumersViewSmallRight = new IpsViewComponentLibrary.ConsumerControls.ConsumersViewSmallRightControl();
+            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.treeViewSmallRight = new Telerik.WinControls.UI.RadTreeView();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlImportDBF = new IpsViewComponentLibrary.ImportDBF.ImportDBFControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pvConsumers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewSmallRight)).BeginInit();
             this.pvPays.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -67,6 +69,7 @@
             // pvConsumers
             // 
             this.pvConsumers.Controls.Add(this.ctrlConsumersViewSmallRight);
+            this.pvConsumers.Controls.Add(this.ipsPanel1);
             this.pvConsumers.Controls.Add(this.treeViewSmallRight);
             this.pvConsumers.ItemSize = new System.Drawing.SizeF(129F, 27F);
             this.pvConsumers.Location = new System.Drawing.Point(10, 32);
@@ -76,11 +79,22 @@
             // 
             // ctrlConsumersViewSmallRight
             // 
+            this.ctrlConsumersViewSmallRight.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
             this.ctrlConsumersViewSmallRight.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlConsumersViewSmallRight.Location = new System.Drawing.Point(199, 0);
+            this.ctrlConsumersViewSmallRight.Location = new System.Drawing.Point(205, 0);
             this.ctrlConsumersViewSmallRight.Name = "ctrlConsumersViewSmallRight";
-            this.ctrlConsumersViewSmallRight.Size = new System.Drawing.Size(1032, 463);
+            this.ctrlConsumersViewSmallRight.Size = new System.Drawing.Size(1026, 463);
             this.ctrlConsumersViewSmallRight.TabIndex = 1;
+            // 
+            // ipsPanel1
+            // 
+            this.ipsPanel1.BorderVisible = false;
+            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ipsPanel1.Location = new System.Drawing.Point(199, 0);
+            this.ipsPanel1.Name = "ipsPanel1";
+            this.ipsPanel1.Size = new System.Drawing.Size(6, 463);
+            this.ipsPanel1.TabIndex = 2;
+            this.ipsPanel1.ThemeName = "Office2013Light";
             // 
             // treeViewSmallRight
             // 
@@ -89,6 +103,7 @@
             this.treeViewSmallRight.HotTracking = false;
             this.treeViewSmallRight.Location = new System.Drawing.Point(0, 0);
             this.treeViewSmallRight.Name = "treeViewSmallRight";
+            this.treeViewSmallRight.Padding = new System.Windows.Forms.Padding(8);
             this.treeViewSmallRight.Size = new System.Drawing.Size(199, 463);
             this.treeViewSmallRight.SpacingBetweenNodes = -1;
             this.treeViewSmallRight.TabIndex = 0;
@@ -128,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).EndInit();
             this.pageParentConsumers.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewSmallRight)).EndInit();
             this.pvPays.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -144,5 +160,6 @@
         private Telerik.WinControls.UI.RadTreeView treeViewSmallRight;
         private IpsViewComponentLibrary.ConsumerControls.ConsumersViewSmallRightControl ctrlConsumersViewSmallRight;
         private IpsViewComponentLibrary.ImportDBF.ImportDBFControl ctrlImportDBF;
+        private IpsViewComponentLibrary.Common.Editors.IpsPanel ipsPanel1;
     }
 }

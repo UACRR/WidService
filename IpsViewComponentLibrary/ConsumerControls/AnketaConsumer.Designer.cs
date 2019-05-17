@@ -42,9 +42,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlPlacesTitle = new Telerik.WinControls.UI.RadLabel();
             this.anketaCompanyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pvAddress = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlAddress = new JuridicalAddressControl();
+            this.ctrlAddress = new IpsViewComponentLibrary.Shared.Controls.JuridicalAddressControl();
             this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankRequisites = new IpsBankAccountControl();
+            this.ctrlBankRequisites = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
             this.pvManagers = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlManagers = new IpsViewComponentLibrary.ConsumerControls.ManagersControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
@@ -93,7 +93,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pageAnketaConsumer.RootElement.FocusBorderColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.pageAnketaConsumer.SelectedPage = this.pvClientName;
             this.pageAnketaConsumer.SelectionWrap = false;
-            this.pageAnketaConsumer.Size = new System.Drawing.Size(1149, 664);
+            this.pageAnketaConsumer.Size = new System.Drawing.Size(922, 502);
             this.pageAnketaConsumer.TabIndex = 1;
             this.pageAnketaConsumer.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.pageAnketaConsumer.GetChildAt(0))).StripButtons = Telerik.WinControls.UI.StripViewButtons.None;
@@ -113,22 +113,23 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // pvClientName
             // 
+            this.pvClientName.AutoScroll = true;
             this.pvClientName.Controls.Add(this.ctrlClientName);
             this.pvClientName.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvClientName.Location = new System.Drawing.Point(134, 5);
             this.pvClientName.Name = "pvClientName";
             this.pvClientName.Padding = new System.Windows.Forms.Padding(0, 0, 0, 20);
-            this.pvClientName.Size = new System.Drawing.Size(1010, 654);
+            this.pvClientName.Size = new System.Drawing.Size(783, 492);
             this.pvClientName.TabStop = true;
             this.pvClientName.Text = "Користувач";
             // 
             // ctrlClientName
             // 
             this.ctrlClientName.Location = new System.Drawing.Point(19, 5);
-            this.ctrlClientName.MaximumSize = new System.Drawing.Size(800, 194);
-            this.ctrlClientName.MinimumSize = new System.Drawing.Size(607, 194);
+            this.ctrlClientName.MaximumSize = new System.Drawing.Size(700, 194);
+            this.ctrlClientName.MinimumSize = new System.Drawing.Size(700, 194);
             this.ctrlClientName.Name = "ctrlClientName";
-            this.ctrlClientName.Size = new System.Drawing.Size(666, 194);
+            this.ctrlClientName.Size = new System.Drawing.Size(700, 194);
             this.ctrlClientName.TabIndex = 0;
             // 
             // pvPlaces
@@ -139,7 +140,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvPlaces.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPlaces.Location = new System.Drawing.Point(134, 5);
             this.pvPlaces.Name = "pvPlaces";
-            this.pvPlaces.Size = new System.Drawing.Size(1010, 654);
+            this.pvPlaces.Size = new System.Drawing.Size(808, 492);
             this.pvPlaces.Text = "Бізнес-точки";
             // 
             // ctrlPlaces
@@ -149,7 +150,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlPlaces.Location = new System.Drawing.Point(0, 0);
             this.ctrlPlaces.Name = "ctrlPlaces";
             this.ctrlPlaces.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.ctrlPlaces.Size = new System.Drawing.Size(1010, 654);
+            this.ctrlPlaces.Size = new System.Drawing.Size(808, 492);
             this.ctrlPlaces.TabIndex = 11;
             // 
             // ctrlPlacesTitle
@@ -161,7 +162,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlPlacesTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ctrlPlacesTitle.Location = new System.Drawing.Point(4, 35);
             this.ctrlPlacesTitle.Name = "ctrlPlacesTitle";
-            this.ctrlPlacesTitle.Size = new System.Drawing.Size(1004, 22);
+            this.ctrlPlacesTitle.Size = new System.Drawing.Size(802, 22);
             this.ctrlPlacesTitle.TabIndex = 10;
             this.ctrlPlacesTitle.Text = "Назва «Клієнта»";
             this.ctrlPlacesTitle.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -172,49 +173,51 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             // pvAddress
             // 
+            this.pvAddress.AutoScroll = true;
             this.pvAddress.Controls.Add(this.ctrlAddress);
             this.pvAddress.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvAddress.Location = new System.Drawing.Point(134, 5);
             this.pvAddress.Name = "pvAddress";
-            this.pvAddress.Size = new System.Drawing.Size(1010, 654);
+            this.pvAddress.Size = new System.Drawing.Size(783, 492);
             this.pvAddress.Text = "Адреса";
             // 
             // ctrlAddress
             // 
-            this.ctrlAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlAddress.Location = new System.Drawing.Point(19, 5);
-            this.ctrlAddress.MaximumSize = new System.Drawing.Size(1000, 313);
-            this.ctrlAddress.MinimumSize = new System.Drawing.Size(727, 313);
+            this.ctrlAddress.MaximumSize = new System.Drawing.Size(738, 313);
+            this.ctrlAddress.MinimumSize = new System.Drawing.Size(738, 313);
             this.ctrlAddress.Name = "ctrlAddress";
-            this.ctrlAddress.Size = new System.Drawing.Size(1000, 313);
+            this.ctrlAddress.Size = new System.Drawing.Size(738, 313);
             this.ctrlAddress.TabIndex = 0;
             // 
             // pvBankRequisites
             // 
-            this.pvBankRequisites.AutoScroll = true;
             this.pvBankRequisites.Controls.Add(this.ctrlBankRequisites);
             this.pvBankRequisites.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvBankRequisites.Location = new System.Drawing.Point(134, 5);
             this.pvBankRequisites.Name = "pvBankRequisites";
-            this.pvBankRequisites.Size = new System.Drawing.Size(1010, 654);
+            this.pvBankRequisites.Size = new System.Drawing.Size(783, 492);
             this.pvBankRequisites.Text = "Банківські реквізити";
             // 
             // ctrlBankRequisites
             // 
+            this.ctrlBankRequisites.AutoScroll = true;
             this.ctrlBankRequisites.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
             this.ctrlBankRequisites.Location = new System.Drawing.Point(19, 5);
+            this.ctrlBankRequisites.MaximumSize = new System.Drawing.Size(434, 127);
+            this.ctrlBankRequisites.MinimumSize = new System.Drawing.Size(434, 127);
             this.ctrlBankRequisites.Name = "ctrlBankRequisites";
             this.ctrlBankRequisites.Size = new System.Drawing.Size(434, 127);
             this.ctrlBankRequisites.TabIndex = 0;
             // 
             // pvManagers
             // 
+            this.pvManagers.AutoScroll = true;
             this.pvManagers.Controls.Add(this.ctrlManagers);
             this.pvManagers.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvManagers.Location = new System.Drawing.Point(134, 5);
             this.pvManagers.Name = "pvManagers";
-            this.pvManagers.Size = new System.Drawing.Size(1010, 654);
+            this.pvManagers.Size = new System.Drawing.Size(783, 492);
             this.pvManagers.Text = "Контакти";
             // 
             // ctrlManagers
@@ -229,7 +232,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvAgreement.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvAgreement.Location = new System.Drawing.Point(134, 5);
             this.pvAgreement.Name = "pvAgreement";
-            this.pvAgreement.Size = new System.Drawing.Size(1010, 654);
+            this.pvAgreement.Size = new System.Drawing.Size(783, 492);
             this.pvAgreement.Text = "Договір";
             // 
             // pvPrint
@@ -240,7 +243,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvPrint.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPrint.Location = new System.Drawing.Point(134, 5);
             this.pvPrint.Name = "pvPrint";
-            this.pvPrint.Size = new System.Drawing.Size(1010, 654);
+            this.pvPrint.Size = new System.Drawing.Size(783, 492);
             this.pvPrint.Text = "Друк";
             // 
             // btnLoadPdf
@@ -260,7 +263,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(1004, 39);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(777, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -271,12 +274,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Text = "Open";
             ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).ToolTipText = "Open";
             ((Telerik.WinControls.UI.CommandBarButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(0))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
-            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).MinSize = new System.Drawing.Size(34, 34);
-            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).Image = ((System.Drawing.Image)(resources.GetObject("resource.Image1")));
-            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).Text = "Signature Panel";
-            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).ToolTipText = "Signature Panel";
-            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).Enabled = true;
-            ((Telerik.WinControls.UI.CommandBarToggleButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(1).GetChildAt(27))).Visibility = Telerik.WinControls.ElementVisibility.Collapsed;
             ((Telerik.WinControls.UI.RadCommandBarOverflowButton)(this.radPdfViewerNavigator.GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(0).GetChildAt(2))).Visibility = Telerik.WinControls.ElementVisibility.Hidden;
             // 
             // radPdfViewer
@@ -288,7 +285,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewer.EnableThumbnails = false;
             this.radPdfViewer.Location = new System.Drawing.Point(3, 82);
             this.radPdfViewer.Name = "radPdfViewer";
-            this.radPdfViewer.Size = new System.Drawing.Size(1004, 527);
+            this.radPdfViewer.Size = new System.Drawing.Size(777, 365);
             this.radPdfViewer.TabIndex = 3;
             this.radPdfViewer.ThemeName = "Office2013Light";
             this.radPdfViewer.ThumbnailsScaleFactor = 0.15F;
@@ -326,7 +323,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pageAnketaConsumer);
             this.Name = "AnketaConsumer";
-            this.Size = new System.Drawing.Size(1149, 664);
+            this.Size = new System.Drawing.Size(922, 502);
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).EndInit();
             this.pageAnketaConsumer.ResumeLayout(false);
             this.pvClientName.ResumeLayout(false);

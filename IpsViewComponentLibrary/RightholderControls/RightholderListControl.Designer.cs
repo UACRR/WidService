@@ -31,13 +31,13 @@
             this.tvFilters = new Telerik.WinControls.UI.RadTreeView();
             this.splitPanel2 = new Telerik.WinControls.UI.SplitPanel();
             this.buttonSearch = new Telerik.WinControls.UI.RadButton();
-            this.navigatorPanelControl1 = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
-            this.lblCountRows = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtSearch = new Telerik.WinControls.UI.RadTextBoxControl();
             this.btnRefresh = new Telerik.WinControls.UI.RadButton();
             this.gvRightholdersList = new Telerik.WinControls.UI.RadGridView();
             this.rightholderMainViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.navigatorPanelControl1 = new IpsViewComponentLibrary.Common.NavigatorPanelControl();
+            this.lblCountRows = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.waitingBar = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
@@ -138,39 +138,6 @@
             this.buttonSearch.Text = "Пошук";
             this.buttonSearch.ThemeName = "Office2013Light";
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
-            // 
-            // navigatorPanelControl1
-            // 
-            this.navigatorPanelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.navigatorPanelControl1.CurrentPage = 1;
-            this.navigatorPanelControl1.Location = new System.Drawing.Point(220, 0);
-            this.navigatorPanelControl1.Name = "navigatorPanelControl1";
-            this.navigatorPanelControl1.PageSize = 20;
-            this.navigatorPanelControl1.ReadOnlyPageSize = false;
-            this.navigatorPanelControl1.Size = new System.Drawing.Size(350, 28);
-            this.navigatorPanelControl1.TabIndex = 4;
-            this.navigatorPanelControl1.TotalPages = 0;
-            this.navigatorPanelControl1.CurrentPageChanged += new System.EventHandler(this.navigatorPanelControl1_CurrentPageChanged);
-            this.navigatorPanelControl1.PageSizeChanged += new System.EventHandler(this.navigatorPanelControl1_PageSizeChanged);
-            // 
-            // lblCountRows
-            // 
-            this.lblCountRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountRows.Location = new System.Drawing.Point(681, 8);
-            this.lblCountRows.Name = "lblCountRows";
-            this.lblCountRows.Size = new System.Drawing.Size(55, 13);
-            this.lblCountRows.TabIndex = 6;
-            this.lblCountRows.Text = "0";
-            this.lblCountRows.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.Location = new System.Drawing.Point(606, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "К-ть рядків";
             // 
             // txtSearch
             // 
@@ -303,6 +270,39 @@
             // rightholderMainViewBindingSource
             // 
             this.rightholderMainViewBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.RightholderMainView);
+            // 
+            // navigatorPanelControl1
+            // 
+            this.navigatorPanelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.navigatorPanelControl1.CurrentPage = 1;
+            this.navigatorPanelControl1.Location = new System.Drawing.Point(220, 0);
+            this.navigatorPanelControl1.Name = "navigatorPanelControl1";
+            this.navigatorPanelControl1.PageSize = 40;
+            this.navigatorPanelControl1.ReadOnlyPageSize = false;
+            this.navigatorPanelControl1.Size = new System.Drawing.Size(350, 28);
+            this.navigatorPanelControl1.TabIndex = 4;
+            this.navigatorPanelControl1.TotalPages = 0;
+            this.navigatorPanelControl1.CurrentPageChanged += new System.EventHandler(this.navigatorPanelControl1_CurrentPageChanged);
+            this.navigatorPanelControl1.PageSizeChanged += new System.EventHandler(this.navigatorPanelControl1_PageSizeChanged);
+            // 
+            // lblCountRows
+            // 
+            this.lblCountRows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCountRows.Location = new System.Drawing.Point(681, 8);
+            this.lblCountRows.Name = "lblCountRows";
+            this.lblCountRows.Size = new System.Drawing.Size(55, 13);
+            this.lblCountRows.TabIndex = 6;
+            this.lblCountRows.Text = "0";
+            this.lblCountRows.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.Location = new System.Drawing.Point(606, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "К-ть рядків";
             // 
             // waitingBar
             // 

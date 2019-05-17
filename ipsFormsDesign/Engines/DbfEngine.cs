@@ -89,38 +89,49 @@ namespace ipsFormsDesign.Services
             for( int i = 0, cnt=data.Rows.Count; i < cnt; i++  )
             {
                 var item = data.Rows[i];
-                dest.CheckParamPays.Add(
-                    new CheckParamPays {
-                        CheckId = index++,
-                        AccountCorr = item["ACCCOR"].ToString(), 
-                        OkpoCorr = item["OKPOCOR"].ToString(), 
+                if (item.RowState == DataRowState.Deleted)
+                    continue;
+                try
+                {
+                    dest.CheckParamPays.Add(
+                        new CheckParamPays
+                        {
+                            CheckId = index++,
+                            AccountCorr = item["ACCCOR"].ToString(),
+                            OkpoCorr = item["OKPOCOR"].ToString(),
+                            MfoCorr = item["MFOCOR"].ToString(),
+                            DocNum = item["NDOC"].ToString(),
+                            DocDate = item.Field<DateTime>("DT"),
+                            SCredit = Convert.ToDecimal(item["SUMMA"]),
+                            Nplat = item.Field<string>("NAZN")
+                        });
+                    dest.ExternalPay.Add(new ExternalPay
+                    {
+                        InputDate = DateTime.Today,
+                        Mfo = item["OKPOCLI"].ToString(),
+                        Okpol = item["OKPOCLI"].ToString(),
+                        Account = item["ACCCLI"].ToString(),
+                        DateOper = item.Field<DateTime>("DT"),
+                        R030 = "980",
+                        CodeOper = "1",
                         MfoCorr = item["MFOCOR"].ToString(),
-                        DocNum = item["NDOC"].ToString(), 
+                        NameMfoCorr = item["BANKCOR"].ToString(),
+                        AccountCorr = item["ACCCOR"].ToString(),
+                        OkpoCorr = item["OKPOCOR"].ToString(),
+                        NameCorr = item["NAMECOR"].ToString(),
+                        DocNum = item["NDOC"].ToString(),
                         DocDate = item.Field<DateTime>("DT"),
-                        SCredit = Convert.ToDecimal( item["SUMMA"] ), 
-                        Nplat = item.Field<string>("NAZN")
+                        SDebet = 0,
+                        SCredit = Convert.ToDecimal(item["SUMMA"]) / 100,
+                        SNcCur = Convert.ToDecimal(item["SUMMA"]) / 100,
+                        Nplat = item.Field<string>("NAZN"),
+                        Status = 1
                     });
-                dest.ExternalPay.Add(new ExternalPay {
-                    InputDate = DateTime.Today,
-                    Mfo = item["OKPOCLI"].ToString(),
-                    Okpol = item["OKPOCLI"].ToString(),
-                    Account = item["ACCCLI"].ToString(),
-                    DateOper = item.Field<DateTime>("DT"),
-                    R030 = "980",
-                    CodeOper = "1",
-                    MfoCorr = item["MFOCOR"].ToString(),
-                    NameMfoCorr = item["BANKCOR"].ToString(),
-                    AccountCorr = item["ACCCOR"].ToString(),
-                    OkpoCorr = item["OKPOCOR"].ToString(),
-                    NameCorr = item["NAMECOR"].ToString(),
-                    DocNum = item["NDOC"].ToString(),
-                    DocDate = item.Field<DateTime>("DT"),
-                    SDebet = 0,
-                    SCredit = Convert.ToDecimal( item["SUMMA"] ) / 100,
-                    SNcCur = Convert.ToDecimal(item["SUMMA"]) / 100,
-                    Nplat = item.Field<string>("NAZN"),
-                    Status = 1
-                });
+                }
+                catch(Exception)
+                {
+                    throw;
+                }
             }
 
         }

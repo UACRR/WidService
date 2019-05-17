@@ -14,7 +14,6 @@ using IpsViewComponentLibrary.ImportDBF.Presenters;
 
 namespace IpsViewComponentLibrary.ImportDBF
 {
-    // ReSharper disable once InconsistentNaming
     public partial class ImportDBFControl : UserControl
     {
         private const string DefaultFileName = "Файл не вибраний";
@@ -33,6 +32,7 @@ namespace IpsViewComponentLibrary.ImportDBF
             if (!IsDesignMode)
                 _presenter = new DBFPresenter();
             Leave += Control_Leave;
+            ctrlGridRowCount.RadGridViewDataSource = gvUndistribPays;
             lblFileName.Text = DefaultFileName;
         }
 
@@ -45,8 +45,6 @@ namespace IpsViewComponentLibrary.ImportDBF
                 return;
 
             bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
-            //show count Pays
-            lblCountPays.Text = bindingExtrnPay.Count.ToString();
             if (_clientsList == null)
                 _clientsList = _presenter.GetConsumers();
         }
@@ -69,8 +67,6 @@ namespace IpsViewComponentLibrary.ImportDBF
                 // збереження таблиці в базі
                 _presenter.SaveInputFile(_inputFile);
                 bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
-                //show count Pays
-                lblCountPays.Text = bindingExtrnPay.Count.ToString();
             }
             else
             {
@@ -91,8 +87,6 @@ namespace IpsViewComponentLibrary.ImportDBF
             {
                 var result = _presenter.SaveLinkedPay(row);
                 bindingExtrnPay.DataSource = _presenter.GetListUnlinkPays();
-                //show count Pays
-                lblCountPays.Text = bindingExtrnPay.Count.ToString();
                 _updateProviderSmallRight?.UpdateDataGrid();
                 _updateProviderBigRight?.UpdateDataGrid();
             }
@@ -109,9 +103,16 @@ namespace IpsViewComponentLibrary.ImportDBF
                 if (fileDialog.ShowDialog() == DialogResult.OK)
                 {
                     lblFileName.Text = fileDialog.SafeFileName;
-                    _inputFile = _dbfEngine.ReadDbfFile(fileDialog.FileName);
-                    ShowFileResult();
-                    //MessageBox.Show($"Файл {fileName} завантажено", "Завантаження", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    try
+                    {
+                        _inputFile = _dbfEngine.ReadDbfFile(fileDialog.FileName);
+                        ShowFileResult();
+                    }
+                    catch( Exception ex )
+                    {
+
+                        MessageBox.Show(ex.Message, "Помилка завантаження", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                    }
                 }
             }
         }

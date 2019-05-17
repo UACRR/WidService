@@ -181,6 +181,9 @@
     </Compile>
     <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
     <Compile Include="CatalogControls\Presenters\ICatalogFileItemsHandler.cs" />
+    <Compile Include="Common\Editors\IpsPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Common\Enums\NavigateType.cs" />
     <Compile Include="Common\GridRowCountControl.cs">
       <SubType>UserControl</SubType>
@@ -1624,6 +1627,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.CommunityListView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerMainView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ConsumerSmallRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
@@ -1687,6 +1691,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.ViewModels.Users.UserViewModel.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.CommunityControls.InternalModel.RightLimitationsView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.IPeriodView.datasource" />
+    <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerControls.SmallRight.GridLicenseAgreementView.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.ConsumerDialogForms.RegisterExtraGridSource.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.MusicDesignHeaderInfo.datasource" />
     <None Include="Properties\DataSources\IpsViewComponentLibrary.InternalControlsModel.PlacesForAgreement.datasource" />
@@ -1720,6 +1725,10 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightholderMainView.datasource" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\IpsCommonTypes\IpsCommonTypes.csproj">
+      <Project>{B17076A8-B8F9-4F60-AAC0-3845773A4D43}</Project>
+      <Name>IpsCommonTypes</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ipsFormsDesign\ipsFormsDesign.csproj">
       <Project>{64d0405a-fdc7-46c8-b9fd-10cc0fd19e42}</Project>
       <Name>ipsFormsDesign</Name>

@@ -353,7 +353,7 @@ namespace RightholderWorkplace
             this.radDropDownButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.radDropDownButton1.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.radMenuItem3});
-            this.radDropDownButton1.Location = new System.Drawing.Point(0, 605);
+            this.radDropDownButton1.Location = new System.Drawing.Point(3, 605);
             this.radDropDownButton1.Name = "radDropDownButton1";
             this.radDropDownButton1.Size = new System.Drawing.Size(140, 24);
             this.radDropDownButton1.TabIndex = 1;
@@ -424,7 +424,7 @@ namespace RightholderWorkplace
             this.ddbNewRightholder.Items.AddRange(new Telerik.WinControls.RadItem[] {
             this.miNewRightholderPerson,
             this.miNewRigthholderCompany});
-            this.ddbNewRightholder.Location = new System.Drawing.Point(3, 573);
+            this.ddbNewRightholder.Location = new System.Drawing.Point(3, 569);
             this.ddbNewRightholder.Name = "ddbNewRightholder";
             this.ddbNewRightholder.Size = new System.Drawing.Size(129, 24);
             this.ddbNewRightholder.TabIndex = 4;
@@ -448,15 +448,13 @@ namespace RightholderWorkplace
             // 
             // ctrlRightholderList
             // 
-            this.ctrlRightholderList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlRightholderList.Location = new System.Drawing.Point(1, 4);
+            this.ctrlRightholderList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlRightholderList.Location = new System.Drawing.Point(0, 0);
             this.ctrlRightholderList.Name = "ctrlRightholderList";
             this.ctrlRightholderList.SearchText = "";
             this.ctrlRightholderList.SelectedRightholder = null;
             this.ctrlRightholderList.ShowCommandColumns = true;
-            this.ctrlRightholderList.Size = new System.Drawing.Size(1173, 596);
+            this.ctrlRightholderList.Size = new System.Drawing.Size(1172, 596);
             this.ctrlRightholderList.TabIndex = 5;
             this.ctrlRightholderList.RightholderSelected += new System.EventHandler<ipsFormsDesign.Interfaces.RightholderMainView>(this.ctrlRightholderList_RightholderSelected);
             // 
@@ -506,7 +504,6 @@ namespace RightholderWorkplace
             this.splitPanel5.TabIndex = 0;
             this.splitPanel5.TabStop = false;
             this.splitPanel5.Text = "splitPanel5";
-            this.splitPanel5.ThemeName = "Office2013Light";
             // 
             // btnTransferSelected
             // 
@@ -625,7 +622,6 @@ namespace RightholderWorkplace
             this.splitPanel6.TabIndex = 1;
             this.splitPanel6.TabStop = false;
             this.splitPanel6.Text = "splitPanel6";
-            this.splitPanel6.ThemeName = "Office2013Light";
             // 
             // lblTextCount
             // 
@@ -693,7 +689,6 @@ namespace RightholderWorkplace
             // dtChangeCopyrightDateTill
             // 
             this.dtChangeCopyrightDateTill.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtChangeCopyrightDateTill.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtChangeCopyrightDateTill.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateTill.Location = new System.Drawing.Point(235, 3);
             this.dtChangeCopyrightDateTill.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);
@@ -719,7 +714,6 @@ namespace RightholderWorkplace
             // dtChangeCopyrightDateFrom
             // 
             this.dtChangeCopyrightDateFrom.CalendarSize = new System.Drawing.Size(220, 180);
-            this.dtChangeCopyrightDateFrom.Culture = new System.Globalization.CultureInfo("uk-UA");
             this.dtChangeCopyrightDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtChangeCopyrightDateFrom.Location = new System.Drawing.Point(80, 3);
             this.dtChangeCopyrightDateFrom.MaxDate = new System.DateTime(3000, 1, 1, 0, 0, 0, 0);

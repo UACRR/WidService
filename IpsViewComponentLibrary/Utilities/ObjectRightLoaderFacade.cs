@@ -29,7 +29,8 @@ namespace IpsViewComponentLibrary.Utilities
 
         public void UploadFromExcel(string fileName)
         {
-            var data = _excelEngine.ReadData(fileName);
+            // Імпортуємо 20 колонок из Excel 
+            var data = _excelEngine.ReadData(fileName, 20);
 
             var objectList = _parser.Parse(data);
 

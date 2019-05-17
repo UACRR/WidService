@@ -14,6 +14,8 @@ using IpsViewComponentLibrary.ConsumerControls.SmallRight;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
+using WordApplication = Microsoft.Office.Interop.Word.Application;
+using ExcelApplication = Microsoft.Office.Interop.Excel.Application;
 
 namespace ConsumerBigRightWorkplace.Presenters
 {
@@ -130,7 +132,6 @@ namespace ConsumerBigRightWorkplace.Presenters
             }
             // _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            //_mainGrid?.SetGridDataSource(_service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue), false);
             _mainGrid.DataSource = _service.GetMainBigRightView(_currentNodeDocType, _currentNodeValue);
         }
 
@@ -139,20 +140,13 @@ namespace ConsumerBigRightWorkplace.Presenters
         {
             int custType = 3; // Юридична особа
             var customer = _service.NewCustomer(custType);
-
-            var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights);
-
-            if (form.ShowDialog() == DialogResult.OK)
+            using (var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData, TypeRights.BigRights))
             {
-                customer = form.Customer;
-                var relust = _service.Save(customer);
-                MessageShow.ShowInfoByResult(AddNewConsumerSuccess, AddNewConsumerError, relust);
-            }
-            if (!form.Disposing)
-            {
-                form.Dispose();
-                form = null;
-                GC.Collect();
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    var relust = _service.Save(customer);
+                    MessageShow.ShowInfoByResult(AddNewConsumerSuccess, AddNewConsumerError, relust);
+                }
             }
             UpdateDataGrid();
         }
@@ -203,37 +197,20 @@ namespace ConsumerBigRightWorkplace.Presenters
                 string fullpath = @"DocumentFiles\" + fileName;
                 if (!Directory.Exists("DocumentFiles"))
                     Directory.CreateDirectory("DocumentFiles");
+
                 using (var fileStream = File.Create(fullpath))
                 {
-                    _service.downloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
+                    using (var stream = _service.DownloadDocument(custId, typeDocument, fileName))
+                    {
+                        stream.CopyTo(fileStream);
+                        stream.Close();
+                    }
                 }
 
-                string extn = Path.GetExtension(fullpath);
                 if (File.Exists(fullpath))
                 {
-                    if (extn == ".doc" || extn == ".docx")
-                    {
-                        Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
-                        Microsoft.Office.Interop.Word.Document doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
-                        app.Visible = true;
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
-                    }
-                    else if (extn == ".xls" || extn == ".xlsx")
-                    {
-                        Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-                        var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows);
-                        app.Visible = true;
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
-                    }
+                    System.Diagnostics.Process.Start(fullpath);
                 }
-            }
-            catch (FileNotFoundException flnfexcpt)
-            {
-                MessageShow.ShowError($"Файл \"{flnfexcpt.FileName}\" не знайдено!");
-            }
-            catch (FileLoadException flexcpt)
-            {
-                MessageShow.ShowError($"Неможливо відкрити файл \"{flexcpt.FileName}\"! {flexcpt.Message}");
             }
             catch (Exception excpt)
             {

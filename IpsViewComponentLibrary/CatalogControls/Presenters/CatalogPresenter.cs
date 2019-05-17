@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsCommonTypes.Types;
 
 namespace IpsViewComponentLibrary.CatalogControls.Presenters
 {
@@ -22,12 +23,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.GetCatalogFileList(custId);
         }
 
-        public CatalogFile GetCatalogFile(int custId, int fileId)
-        {
-            return _service.GetCatalogFile(custId, fileId);
-        }
-
-        public void UploadCatalogFile(CatalogFile catalogFile, string path)
+        public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
                 throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
@@ -37,6 +33,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
 
             // result can be used
             var result = _service.UploadCatalogFile((int)catalogFile.CustId, catalogFile);
+            return result;
         }
         
         /// <summary>
@@ -112,12 +109,12 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.SaveCatalogFileComment(catalogFile);
         }
 
-        public CatalogFile AuditCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.ValidateCatalogFileItems(catalogFile);
         }
 
-        public CatalogFile AttachCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             return _service.ProcessCatalogFileItems(catalogFile);
         }

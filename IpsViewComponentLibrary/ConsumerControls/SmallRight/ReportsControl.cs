@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using ipsFormsDesign.Data;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using System.Windows.Forms;
 using ipsFormsDesign.Services;
-using ipsFormsDesign.Data;
-using IpsViewComponentLibrary.Utilities;
-using Telerik.WinControls.UI;
-using IpsViewComponentLibrary.ConsumerControls;
 using IpsViewComponentLibrary.ConsumerDialogForms;
-using ipsFormsDesign.Dictionary;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Utilities;
+using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public partial class ReportsControl : UserControl
     {
@@ -323,6 +320,7 @@ namespace IpsViewComponentLibrary
                 radWaitingBar1.StartWaiting();
                 EnableButtons(false);
 
+                Register addRegister = null;
                 Task.Run(() =>
                 {
                     var list = _excel.GetReportItems(dialog.FileName);
@@ -333,7 +331,7 @@ namespace IpsViewComponentLibrary
 
                     var RatedList = period.RegisterRatedList.First();
                     // Створення Звіту
-                    var addRegister = new Register
+                    addRegister = new Register
                     {
                         RgStatus = 0,
                         FileName = Path.GetFileName(dialog.FileName),
@@ -352,16 +350,20 @@ namespace IpsViewComponentLibrary
                     RatedList.Register.Add(addRegister);
 
                     SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
+                })
+                .ContinueWith( tsk => {
 
-                    BeginInvoke((Action)(() =>
-                    {
-                        if (!bindingReports.Contains(addRegister))
-                            bindingReports.Add(addRegister);
-                        radWaitingBar1.StopWaiting();
-                        EnableButtons(true);
-                        btnToAcception.Enabled = true;
-                    }));
-                });
+                    if (tsk.Status == TaskStatus.RanToCompletion && 
+                        addRegister != null && 
+                        !bindingReports.Contains(addRegister))
+                        bindingReports.Add(addRegister);
+
+                    EnableButtons(true);
+                    btnToAcception.Enabled = true;
+
+                    radWaitingBar1.StopWaiting();
+
+                }, TaskScheduler.FromCurrentSynchronizationContext());
             }
 
         }

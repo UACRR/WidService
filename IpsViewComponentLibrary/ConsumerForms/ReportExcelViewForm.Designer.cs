@@ -115,8 +115,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTimeSpanColumn1.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewTimeSpanColumn1.FieldName = "DurationItem";
-            gridViewTimeSpanColumn1.Format = "dd:hh:mm:ss";
-            gridViewTimeSpanColumn1.FormatString = "dd:hh:mm:ss";
+            gridViewTimeSpanColumn1.Format = "hh:mm:ss";
+            gridViewTimeSpanColumn1.FormatString = "hh:mm:ss";
             gridViewTimeSpanColumn1.HeaderText = "Тривалість звучання твору";
             gridViewTimeSpanColumn1.MaxWidth = 95;
             gridViewTimeSpanColumn1.Minimum = System.TimeSpan.Parse("00:00:01");
@@ -140,8 +140,8 @@ namespace IpsViewComponentLibrary.ConsumerForms
             gridViewDecimalColumn1.WrapText = true;
             gridViewTimeSpanColumn2.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewTimeSpanColumn2.FieldName = "DurationUse";
-            gridViewTimeSpanColumn2.Format = "dd:hh:mm:ss";
-            gridViewTimeSpanColumn2.FormatString = "dd:hh:mm:ss";
+            gridViewTimeSpanColumn2.Format = "hh:mm:ss";
+            gridViewTimeSpanColumn2.FormatString = "hh:mm:ss";
             gridViewTimeSpanColumn2.HeaderText = "Загальна тривалість звучання твору";
             gridViewTimeSpanColumn2.MaxWidth = 120;
             gridViewTimeSpanColumn2.Minimum = System.TimeSpan.Parse("00:00:01");

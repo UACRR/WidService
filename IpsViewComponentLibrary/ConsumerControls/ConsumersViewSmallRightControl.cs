@@ -13,35 +13,25 @@ namespace IpsViewComponentLibrary.ConsumerControls
         public event LoadCustomerCabinetSREventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
         public ConsumerSmallRightView ViewRow => gvViewConsumers.CurrentRow?.DataBoundItem as ConsumerSmallRightView;
-        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
 
         public ConsumersViewSmallRightControl()
         {
             InitializeComponent();
-            _gridStateRecorder.AddGrid(gvViewConsumers);
+            ctrlGridRowCount.RadGridViewDataSource = gvViewConsumers;
             ctrlSearch.SetUsageGrid(gvViewConsumers);
         }
 
-        public void SetGridDataSource(IList<ConsumerSmallRightView> source, bool withSaveRow = true)
+        public object DataSource
         {
-            if (withSaveRow)
+            get => bsConsumerSmallRightView.DataSource;
+            set
             {
-                _gridStateRecorder.RecordState();
-                gvViewConsumers.DataSource = source;
-                // show count consumers from grid
-                lblCountConsumers.Text = source.Count.ToString();
-                _gridStateRecorder.RestoreState();
-            }
-            else
-            {
-                _gridStateRecorder.ClearGridStates();
-                gvViewConsumers.DataSource = source;
-                // show count consumers from grid
-                lblCountConsumers.Text = (source?.Count)?.ToString();
+                bsConsumerSmallRightView.DataSource = value;
+                bsConsumerSmallRightView.ResetBindings(false);
             }
         }
 
-        private void rGridViewConsumers_CommandCellClick(object sender, GridViewCellEventArgs e)
+        private void gvConsumers_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             OnLoadCustomerCabinetNeed?.Invoke(e.Row.DataBoundItem as ConsumerSmallRightView);
         }

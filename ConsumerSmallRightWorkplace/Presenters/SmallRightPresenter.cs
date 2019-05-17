@@ -15,6 +15,8 @@ using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using WordApplication = Microsoft.Office.Interop.Word.Application;
+using ExcelApplication = Microsoft.Office.Interop.Excel.Application;
 
 namespace ConsumerSmallRightWorkplace.Presenters
 {
@@ -68,46 +70,24 @@ namespace ConsumerSmallRightWorkplace.Presenters
                 string fullpath = @"DocumentFiles\" + fileName;
                 if (!Directory.Exists("DocumentFiles"))
                     Directory.CreateDirectory("DocumentFiles");
+
                 using (var fileStream = File.Create(fullpath))
                 {
-                    _service.downloadDocument(custId, typeDocument, fileName).CopyTo(fileStream);
+                    using (var stream = _service.DownloadDocument(custId, typeDocument, fileName))
+                    {
+                        stream.CopyTo(fileStream);
+                        stream.Close();
+                    }
                 }
 
-                string extn = Path.GetExtension(fullpath);
                 if (File.Exists(fullpath))
                 {
-                    if (extn == ".doc" || extn == ".docx")
-                    {
-                        Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
-                        Microsoft.Office.Interop.Word.Document doc = app.Documents.Open(Path.GetFullPath(fullpath), Type.Missing, true);
-                        app.Visible = true;
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
-                    }
-                    else if (extn == ".xls" || extn == ".xlsx")
-                    {
-                        Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
-                        var workbook = app.Workbooks.Open(Path.GetFullPath(fullpath), 0, true, 5, null, null, false, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows);
-                        app.Visible = true;
-                        System.Runtime.InteropServices.Marshal.ReleaseComObject(app);
-                    }
+                    System.Diagnostics.Process.Start(fullpath);
                 }
-            }
-            catch (FileNotFoundException flnfexcpt)
-            {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Файл не знайдено: " + flnfexcpt.FileName + "\nПовідомлення: " + flnfexcpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error);
-            }
-            catch (FileLoadException flexcpt)
-            {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Не можливо відкрити файл: " + flexcpt.FileName + "\nПовідомлення: " + flexcpt.Message, "Помилка відкривання файла", MessageBoxButtons.OK, RadMessageIcon.Error);
             }
             catch (Exception excpt)
             {
-                RadMessageBox.ThemeName = "Office2013Light";
-                RadMessageBox.Show("Повідомлення: " + excpt.Message, "Помилка", MessageBoxButtons.OK, RadMessageIcon.Error,
-                    MessageBoxDefaultButton.Button1,
-                    " Data: " + excpt.Data + Environment.NewLine + " StackTrace: " + excpt.StackTrace);
+                MessageShow.ShowError(excpt.Message);
             }
         }
 
@@ -148,7 +128,7 @@ namespace ConsumerSmallRightWorkplace.Presenters
         {
             _currentNodeValue = (e.Node.Value is ConsumerFilterEnum @enum ? @enum : ConsumerFilterEnum.None);
             // Передати в поточний контрол зміну фільтра ???
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue), false);
+            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
         }
         
         //відкрити кабінет користувача
@@ -173,10 +153,11 @@ namespace ConsumerSmallRightWorkplace.Presenters
 
             CloneRegisterRL(mainCust, regCust);
 
+            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
+
             _cabinetSmallRightForm.SetCustomer(mainCust);
             _cabinetSmallRightForm.cabinet.reportsControl.Customer = regCust;
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
-            _cabinetSmallRightForm.Title = _mainGrid?.ViewRow?.Name;
+            _cabinetSmallRightForm.Title = _mainGrid.ViewRow?.Name;
 
             WindowsFormsVisible.ShowHiddenWindow(_cabinetSmallRightForm);
         }
@@ -213,40 +194,31 @@ namespace ConsumerSmallRightWorkplace.Presenters
             var customer = _service.NewCustomer(custType);
             switch (custType)
             {
+                // фізична особа
                 case 1:
-                    var formPhis = new AnketaConsumerPhisForm(customer)
+                    using (var formPhis = new AnketaConsumerPhisForm(customer))
                     {
-                        StartPosition = FormStartPosition.CenterParent
-                    };
-                    if (formPhis.ShowDialog() == DialogResult.OK)
-                    {
-                        var relust = _service.Save(customer);
-                        MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
-                    }
-                    if (!formPhis.Disposing)
-                    {
-                        formPhis.Dispose();
-                        formPhis = null;
+                        if (formPhis.ShowDialog() == DialogResult.OK)
+                        {
+                            var relust = _service.Save(customer);
+                            MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
+                        }
                     }
                     break;
-                case 3: // Юридична особа
-                    var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData);
-                    if (form.ShowDialog() == DialogResult.OK)
+                // юридична особа
+                case 3:
+                    using (var form = new AnketaConsumerJurForm(customer, _service.GetAutoCompleteList, _service.GetData))
                     {
-                        customer = form.Customer;
-                        var relust = _service.Save(customer);
-                        MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
-                    }
-                    if (!form.Disposing)
-                    {
-                        form.Dispose();
-                        form = null;
+                        if (form.ShowDialog() == DialogResult.OK)
+                        {
+                            var relust = _service.Save(customer);
+                            MessageShow.ShowInfoByResult(ConsumerAdded, ConsumerNotAdded, relust);
+                        }
                     }
                     break;
             }
             GC.Collect();
-            //оновлення даних
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
+            UpdateDataGrid();
         }
 
         // збереження customer
@@ -263,9 +235,12 @@ namespace ConsumerSmallRightWorkplace.Presenters
             return relust;
         }
 
+        /// <summary>
+        /// Оновлення даних основного гріда
+        /// </summary>
         public void UpdateDataGrid()
         {
-            _mainGrid?.SetGridDataSource(_service.getMainView(_currentNodeValue));
+            _mainGrid.DataSource = _service.getMainView(_currentNodeValue);
         }
     }
 }

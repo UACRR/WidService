@@ -496,6 +496,7 @@
     <Compile Include="Utilities\FixationExtensions.cs" />
     <Compile Include="Utilities\ObjectRightExtensions.cs" />
     <Compile Include="Utilities\RegisterExtensions.cs" />
+    <Compile Include="Utilities\UpdateEventHandlerUtility.cs" />
     <Compile Include="ViewModels\Fixations\AmountDistributionViewModel.cs" />
     <Compile Include="ViewModels\Fixations\FixationListViewModel.cs" />
     <Compile Include="ViewModels\Fixations\FixationQuery.cs" />

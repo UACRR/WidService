@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ipsFormsDesign.Model;
+using IpsCommonTypes.Types;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -21,19 +22,6 @@ namespace ipsFormsDesign.Services
                 _service = new CatalogService();
 
             return _service;
-        }
-
-        /// <summary>
-        /// Отримати CatalogFile по ID правовласника/видавництва та ID файлу
-        /// </summary>
-        /// <param name="custId">ID правовласника/видавництва </param>
-        /// <param name="fileId">ID файлу</param>
-        /// <returns></returns>
-        public CatalogFile GetCatalogFile(int custId, int fileId)
-        {
-            string url = $"{Prefix}/catalogfile/{custId}";
-            var result = _apiConnector.GetItemById<CatalogFile>(url, fileId.ToString());
-            return result;
         }
 
         /// <summary>
@@ -81,17 +69,17 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
-        public CatalogFile ValidateCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/validate";
-            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out CatalogFile outCatalogFile);
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out ExecSqlResponce<CatalogFile> outCatalogFile);
             return outCatalogFile;
         }
 
-        public CatalogFile ProcessCatalogFileItems(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
             string url = $"{Prefix}/process";
-            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out CatalogFile outCatalogFile);
+            var result = _apiConnector.UpdateItemWithResult(url, catalogFile.FileId.ToString(), null, out ExecSqlResponce<CatalogFile> outCatalogFile);
             return outCatalogFile;
         }
     }

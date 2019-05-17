@@ -33,7 +33,7 @@ namespace WebAPIConnector
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-
+            client.Timeout = TimeSpan.FromMinutes(10);
         }
 
         private string configUrl()
@@ -535,14 +535,20 @@ namespace WebAPIConnector
         /// <returns></returns>
         public async Task<Stream> downloadFile(string url)
         {
+            Stream stream = null;
             try
             {
-                var stream = await client.GetStreamAsync(url);
+                stream = await client.GetStreamAsync(url);
                 return stream;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                stream?.Dispose();
+                throw;
+            }
+            finally
+            {
+                // stream?.Dispose();
             }
         }
 

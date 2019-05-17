@@ -507,7 +507,7 @@ namespace ipsFormsDesign.Tests
         //    //default fileName
         //    string fileName = "Жанры произведений МП.xlsx";
         //    //get document from server
-        //    var result = _consumerService.downloadDocument(custId, typeDocument, fileName);
+        //    var result = _consumerService.DownloadDocument(custId, typeDocument, fileName);
         //    //check on null state
         //    Assert.IsNotNull(result, "result is null");
         //}

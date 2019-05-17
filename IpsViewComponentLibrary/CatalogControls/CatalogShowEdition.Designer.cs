@@ -41,6 +41,7 @@
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn12 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
+            Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn13 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             this.btnGetExcel = new Telerik.WinControls.UI.RadButton();
             this.gridDetailInfo = new Telerik.WinControls.UI.RadGridView();
@@ -63,6 +64,7 @@
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel14 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             ((System.ComponentModel.ISupportInitialize)(this.btnGetExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridDetailInfo.MasterTemplate)).BeginInit();
@@ -160,29 +162,34 @@
             gridViewTextBoxColumn8.Name = "role";
             gridViewTextBoxColumn8.Width = 105;
             gridViewTextBoxColumn8.WrapText = true;
-            gridViewTextBoxColumn9.DataType = typeof(System.Nullable<decimal>);
-            gridViewTextBoxColumn9.FieldName = "Rate";
-            gridViewTextBoxColumn9.FormatString = "{0:###.00}";
-            gridViewTextBoxColumn9.HeaderText = "%";
-            gridViewTextBoxColumn9.MinWidth = 40;
-            gridViewTextBoxColumn9.Name = "percent";
-            gridViewTextBoxColumn9.Width = 40;
-            gridViewTextBoxColumn10.FieldName = "ErrComment";
-            gridViewTextBoxColumn10.HeaderText = "Помилка";
-            gridViewTextBoxColumn10.MinWidth = 100;
-            gridViewTextBoxColumn10.Name = "error";
-            gridViewTextBoxColumn10.Width = 100;
-            gridViewTextBoxColumn11.DataType = typeof(System.Nullable<int>);
-            gridViewTextBoxColumn11.FieldName = "Status";
-            gridViewTextBoxColumn11.HeaderText = "status";
-            gridViewTextBoxColumn11.IsVisible = false;
-            gridViewTextBoxColumn11.Name = "status";
-            gridViewTextBoxColumn11.Width = 86;
-            gridViewTextBoxColumn12.FieldName = "StatusNavigation.Name";
-            gridViewTextBoxColumn12.HeaderText = "Статус";
-            gridViewTextBoxColumn12.MinWidth = 150;
-            gridViewTextBoxColumn12.Name = "StatusNavigation";
-            gridViewTextBoxColumn12.Width = 150;
+            gridViewTextBoxColumn9.HeaderText = "Назва Правовласника";
+            gridViewTextBoxColumn9.IsVisible = false;
+            gridViewTextBoxColumn9.Name = "rhName";
+            gridViewTextBoxColumn9.Width = 16;
+            gridViewTextBoxColumn10.DataType = typeof(System.Nullable<decimal>);
+            gridViewTextBoxColumn10.ExcelExportType = Telerik.WinControls.UI.Export.DisplayFormatType.Standard;
+            gridViewTextBoxColumn10.FieldName = "Rate";
+            gridViewTextBoxColumn10.FormatString = "{0:##0.00}";
+            gridViewTextBoxColumn10.HeaderText = "%";
+            gridViewTextBoxColumn10.MinWidth = 40;
+            gridViewTextBoxColumn10.Name = "percent";
+            gridViewTextBoxColumn10.Width = 40;
+            gridViewTextBoxColumn11.FieldName = "ErrComment";
+            gridViewTextBoxColumn11.HeaderText = "Помилка";
+            gridViewTextBoxColumn11.MinWidth = 100;
+            gridViewTextBoxColumn11.Name = "error";
+            gridViewTextBoxColumn11.Width = 100;
+            gridViewTextBoxColumn12.DataType = typeof(System.Nullable<int>);
+            gridViewTextBoxColumn12.FieldName = "Status";
+            gridViewTextBoxColumn12.HeaderText = "status";
+            gridViewTextBoxColumn12.IsVisible = false;
+            gridViewTextBoxColumn12.Name = "status";
+            gridViewTextBoxColumn12.Width = 86;
+            gridViewTextBoxColumn13.FieldName = "StatusNavigation.Name";
+            gridViewTextBoxColumn13.HeaderText = "Статус";
+            gridViewTextBoxColumn13.MinWidth = 150;
+            gridViewTextBoxColumn13.Name = "StatusNavigation";
+            gridViewTextBoxColumn13.Width = 150;
             this.gridDetailInfo.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn1,
             gridViewTextBoxColumn2,
@@ -195,7 +202,8 @@
             gridViewTextBoxColumn9,
             gridViewTextBoxColumn10,
             gridViewTextBoxColumn11,
-            gridViewTextBoxColumn12});
+            gridViewTextBoxColumn12,
+            gridViewTextBoxColumn13});
             this.gridDetailInfo.MasterTemplate.DataSource = this.bsPubCatalogItem;
             this.gridDetailInfo.MasterTemplate.EnableCustomFiltering = true;
             this.gridDetailInfo.MasterTemplate.EnableFiltering = true;
@@ -470,5 +478,6 @@
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadLabel radLabel14;
         private Telerik.WinControls.UI.RadLabel radLabel15;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
     }
 }
