@@ -47,10 +47,11 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.radPanel2 = new Telerik.WinControls.UI.RadPanel();
-            this.lblTextCountPays = new System.Windows.Forms.Label();
-            this.lblCountPays = new System.Windows.Forms.Label();
             this.gvUndistribPays = new Telerik.WinControls.UI.RadGridView();
             this.bindingExtrnPay = new System.Windows.Forms.BindingSource(this.components);
+            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.ipsPanel2 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
+            this.ctrlGridRowCount = new IpsViewComponentLibrary.Common.GridRowCountControl();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblFileName)).BeginInit();
@@ -62,6 +63,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvUndistribPays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUndistribPays.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingExtrnPay)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
+            this.ipsPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).BeginInit();
+            this.ipsPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // radPanel1
@@ -72,7 +77,7 @@
             this.radPanel1.Controls.Add(this.btnChooseFile);
             this.radPanel1.Location = new System.Drawing.Point(3, 12);
             this.radPanel1.Name = "radPanel1";
-            this.radPanel1.Size = new System.Drawing.Size(894, 50);
+            this.radPanel1.Size = new System.Drawing.Size(976, 50);
             this.radPanel1.TabIndex = 0;
             this.radPanel1.ThemeName = "Office2013Light";
             // 
@@ -114,7 +119,7 @@
             // 
             // radLabel2
             // 
-            this.radLabel2.Location = new System.Drawing.Point(23, 68);
+            this.radLabel2.Location = new System.Drawing.Point(23, 6);
             this.radLabel2.Name = "radLabel2";
             this.radLabel2.Size = new System.Drawing.Size(187, 19);
             this.radLabel2.TabIndex = 3;
@@ -126,33 +131,13 @@
             this.radPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.radPanel2.Controls.Add(this.lblTextCountPays);
-            this.radPanel2.Controls.Add(this.lblCountPays);
+            this.radPanel2.Controls.Add(this.ctrlGridRowCount);
             this.radPanel2.Controls.Add(this.gvUndistribPays);
-            this.radPanel2.Location = new System.Drawing.Point(3, 77);
+            this.radPanel2.Location = new System.Drawing.Point(3, 15);
             this.radPanel2.Name = "radPanel2";
-            this.radPanel2.Size = new System.Drawing.Size(894, 396);
+            this.radPanel2.Size = new System.Drawing.Size(976, 441);
             this.radPanel2.TabIndex = 2;
             this.radPanel2.ThemeName = "Office2013Light";
-            // 
-            // lblTextCountPays
-            // 
-            this.lblTextCountPays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTextCountPays.Location = new System.Drawing.Point(759, 376);
-            this.lblTextCountPays.Name = "lblTextCountPays";
-            this.lblTextCountPays.Size = new System.Drawing.Size(76, 13);
-            this.lblTextCountPays.TabIndex = 9;
-            this.lblTextCountPays.Text = "К-ть рядків";
-            // 
-            // lblCountPays
-            // 
-            this.lblCountPays.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCountPays.Location = new System.Drawing.Point(841, 376);
-            this.lblCountPays.Name = "lblCountPays";
-            this.lblCountPays.Size = new System.Drawing.Size(50, 13);
-            this.lblCountPays.TabIndex = 8;
-            this.lblCountPays.Text = "0";
-            this.lblCountPays.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // gvUndistribPays
             // 
@@ -206,14 +191,14 @@
             gridViewTextBoxColumn5.HeaderText = "Назва користувача";
             gridViewTextBoxColumn5.MinWidth = 110;
             gridViewTextBoxColumn5.Name = "NameCorr";
-            gridViewTextBoxColumn5.Width = 121;
+            gridViewTextBoxColumn5.Width = 131;
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.FieldName = "DocNum";
             gridViewTextBoxColumn6.HeaderText = "Номер платежу";
             gridViewTextBoxColumn6.MinWidth = 70;
             gridViewTextBoxColumn6.Multiline = true;
             gridViewTextBoxColumn6.Name = "DocNum";
-            gridViewTextBoxColumn6.Width = 77;
+            gridViewTextBoxColumn6.Width = 85;
             gridViewTextBoxColumn6.WrapText = true;
             gridViewTextBoxColumn7.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn7.FieldName = "SCredit";
@@ -223,14 +208,14 @@
             gridViewTextBoxColumn7.Multiline = true;
             gridViewTextBoxColumn7.Name = "SCredit";
             gridViewTextBoxColumn7.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-            gridViewTextBoxColumn7.Width = 77;
+            gridViewTextBoxColumn7.Width = 85;
             gridViewTextBoxColumn7.WrapText = true;
             gridViewTextBoxColumn8.FieldName = "Nplat";
             gridViewTextBoxColumn8.HeaderText = "Призначення платежу";
             gridViewTextBoxColumn8.MinWidth = 180;
             gridViewTextBoxColumn8.Multiline = true;
             gridViewTextBoxColumn8.Name = "Nplat";
-            gridViewTextBoxColumn8.Width = 230;
+            gridViewTextBoxColumn8.Width = 282;
             gridViewTextBoxColumn8.WrapText = true;
             gridViewTextBoxColumn9.DataType = typeof(System.DateTime);
             gridViewTextBoxColumn9.FieldName = "DocDate";
@@ -278,7 +263,7 @@
             this.gvUndistribPays.Name = "gvUndistribPays";
             this.gvUndistribPays.Padding = new System.Windows.Forms.Padding(0, 0, 0, 1);
             this.gvUndistribPays.ReadOnly = true;
-            this.gvUndistribPays.Size = new System.Drawing.Size(888, 357);
+            this.gvUndistribPays.Size = new System.Drawing.Size(970, 394);
             this.gvUndistribPays.TabIndex = 7;
             this.gvUndistribPays.ThemeName = "Office2013Light";
             this.gvUndistribPays.CellDoubleClick += new Telerik.WinControls.UI.GridViewCellEventHandler(this.gvUndistribPays_CellDoubleClick);
@@ -288,16 +273,49 @@
             // 
             this.bindingExtrnPay.DataSource = typeof(ipsFormsDesign.Model.ExternalPay);
             // 
+            // ipsPanel1
+            // 
+            this.ipsPanel1.BorderVisible = false;
+            this.ipsPanel1.Controls.Add(this.radLabel1);
+            this.ipsPanel1.Controls.Add(this.radPanel1);
+            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ipsPanel1.Location = new System.Drawing.Point(0, 0);
+            this.ipsPanel1.Name = "ipsPanel1";
+            this.ipsPanel1.Size = new System.Drawing.Size(982, 64);
+            this.ipsPanel1.TabIndex = 4;
+            this.ipsPanel1.ThemeName = "Office2013Light";
+            // 
+            // ipsPanel2
+            // 
+            this.ipsPanel2.BorderVisible = false;
+            this.ipsPanel2.Controls.Add(this.radLabel2);
+            this.ipsPanel2.Controls.Add(this.radPanel2);
+            this.ipsPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ipsPanel2.Location = new System.Drawing.Point(0, 64);
+            this.ipsPanel2.Name = "ipsPanel2";
+            this.ipsPanel2.Size = new System.Drawing.Size(982, 459);
+            this.ipsPanel2.TabIndex = 5;
+            this.ipsPanel2.ThemeName = "Office2013Light";
+            // 
+            // ctrlGridRowCount
+            // 
+            this.ctrlGridRowCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlGridRowCount.Location = new System.Drawing.Point(818, 413);
+            this.ctrlGridRowCount.MaximumSize = new System.Drawing.Size(200, 25);
+            this.ctrlGridRowCount.MinimumSize = new System.Drawing.Size(150, 25);
+            this.ctrlGridRowCount.Name = "ctrlGridRowCount";
+            this.ctrlGridRowCount.RadGridViewDataSource = null;
+            this.ctrlGridRowCount.Size = new System.Drawing.Size(155, 25);
+            this.ctrlGridRowCount.TabIndex = 10;
+            // 
             // ImportDBFControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.radLabel2);
-            this.Controls.Add(this.radPanel2);
-            this.Controls.Add(this.radLabel1);
-            this.Controls.Add(this.radPanel1);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.Controls.Add(this.ipsPanel2);
+            this.Controls.Add(this.ipsPanel1);
             this.Name = "ImportDBFControl";
-            this.Size = new System.Drawing.Size(900, 476);
+            this.Size = new System.Drawing.Size(982, 523);
             this.Load += new System.EventHandler(this.ImportDBFControl_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Control_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
@@ -311,8 +329,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvUndistribPays.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvUndistribPays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingExtrnPay)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
+            this.ipsPanel1.ResumeLayout(false);
+            this.ipsPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel2)).EndInit();
+            this.ipsPanel2.ResumeLayout(false);
+            this.ipsPanel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -327,7 +350,8 @@
         private Telerik.WinControls.UI.RadPanel radPanel2;
         private Telerik.WinControls.UI.RadGridView gvUndistribPays;
         private System.Windows.Forms.BindingSource bindingExtrnPay;
-        private System.Windows.Forms.Label lblTextCountPays;
-        private System.Windows.Forms.Label lblCountPays;
+        private Common.GridRowCountControl ctrlGridRowCount;
+        private Common.Editors.IpsPanel ipsPanel1;
+        private Common.Editors.IpsPanel ipsPanel2;
     }
 }
