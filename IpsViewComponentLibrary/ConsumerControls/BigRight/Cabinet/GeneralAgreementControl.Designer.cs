@@ -199,7 +199,7 @@
             this.btnStatusClosedGenAgr.UseCompatibleTextRendering = false;
             this.btnStatusClosedGenAgr.Click += new System.EventHandler(this.btnStatusClosedGenAgr_Click);
             // 
-            // MiddleControlCabinetGenAgreement
+            // GeneralAgreementControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -207,8 +207,7 @@
             this.Controls.Add(this.ddlActionOfGenAgr);
             this.Controls.Add(this.ctrlGeneralAgrDetailInfoBr);
             this.Controls.Add(this.gvGenAgrLicences);
-            this.MinimumSize = new System.Drawing.Size(912, 300);
-            this.Name = "MiddleControlCabinetGenAgreement";
+            this.Name = "GeneralAgreementControl";
             this.Size = new System.Drawing.Size(915, 459);
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGenAgrLicences)).EndInit();

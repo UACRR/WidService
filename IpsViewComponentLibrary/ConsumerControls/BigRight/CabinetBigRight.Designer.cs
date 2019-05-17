@@ -95,7 +95,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pageView.Location = new System.Drawing.Point(0, 0);
             this.pageView.Name = "pageView";
             this.pageView.SelectedPage = this.pvGeneralAgreement;
-            this.pageView.Size = new System.Drawing.Size(1146, 620);
+            this.pageView.Size = new System.Drawing.Size(916, 557);
             this.pageView.TabIndex = 0;
             this.pageView.ThemeName = "Office2013Light";
             this.pageView.SelectedPageChanged += new System.EventHandler(this.PageView_SelectedPageChanged);
@@ -111,7 +111,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvAnketa.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvAnketa.Location = new System.Drawing.Point(5, 31);
             this.pvAnketa.Name = "pvAnketa";
-            this.pvAnketa.Size = new System.Drawing.Size(1136, 584);
+            this.pvAnketa.Size = new System.Drawing.Size(906, 521);
             this.pvAnketa.Text = "Анкета";
             // 
             // ctrlAnketaConsumer
@@ -119,18 +119,18 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlAnketaConsumer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlAnketaConsumer.Location = new System.Drawing.Point(0, 0);
             this.ctrlAnketaConsumer.Name = "ctrlAnketaConsumer";
-            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(1136, 553);
+            this.ctrlAnketaConsumer.Size = new System.Drawing.Size(906, 490);
             this.ctrlAnketaConsumer.TabIndex = 0;
             this.ctrlAnketaConsumer.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             // 
             // ctrlTabNavigation
             // 
             this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 553);
+            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 490);
             this.ctrlTabNavigation.MaximumSize = new System.Drawing.Size(2000, 31);
             this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlTabNavigation.Name = "ctrlTabNavigation";
-            this.ctrlTabNavigation.Size = new System.Drawing.Size(1136, 31);
+            this.ctrlTabNavigation.Size = new System.Drawing.Size(906, 31);
             this.ctrlTabNavigation.TabIndex = 15;
             // 
             // pvGeneralAgreement
@@ -139,34 +139,32 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvGeneralAgreement.ItemSize = new System.Drawing.SizeF(59F, 27F);
             this.pvGeneralAgreement.Location = new System.Drawing.Point(5, 31);
             this.pvGeneralAgreement.Name = "pvGeneralAgreement";
-            this.pvGeneralAgreement.Size = new System.Drawing.Size(1136, 584);
+            this.pvGeneralAgreement.Size = new System.Drawing.Size(906, 521);
             this.pvGeneralAgreement.Text = "Договір";
             // 
             // ctrlGeneralAgreement
             // 
             this.ctrlGeneralAgreement.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlGeneralAgreement.Location = new System.Drawing.Point(0, 0);
-            this.ctrlGeneralAgreement.MinimumSize = new System.Drawing.Size(912, 300);
             this.ctrlGeneralAgreement.Name = "ctrlGeneralAgreement";
-            this.ctrlGeneralAgreement.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlGeneralAgreement.Size = new System.Drawing.Size(906, 521);
             this.ctrlGeneralAgreement.TabIndex = 0;
             // 
             // pvLicence
             // 
             this.pvLicence.Controls.Add(this.ctrlLicense);
             this.pvLicence.ItemSize = new System.Drawing.SizeF(58F, 27F);
-            this.pvLicence.Location = new System.Drawing.Point(5, 29);
+            this.pvLicence.Location = new System.Drawing.Point(5, 31);
             this.pvLicence.Name = "pvLicence";
-            this.pvLicence.Size = new System.Drawing.Size(1136, 586);
+            this.pvLicence.Size = new System.Drawing.Size(906, 521);
             this.pvLicence.Text = "Ліцензії";
             // 
             // ctrlLicense
             // 
             this.ctrlLicense.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlLicense.Location = new System.Drawing.Point(0, 0);
-            this.ctrlLicense.MinimumSize = new System.Drawing.Size(822, 538);
             this.ctrlLicense.Name = "ctrlLicense";
-            this.ctrlLicense.Size = new System.Drawing.Size(1136, 586);
+            this.ctrlLicense.Size = new System.Drawing.Size(906, 521);
             this.ctrlLicense.TabIndex = 0;
             // 
             // pvRequest
@@ -175,7 +173,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvRequest.ItemSize = new System.Drawing.SizeF(54F, 27F);
             this.pvRequest.Location = new System.Drawing.Point(5, 31);
             this.pvRequest.Name = "pvRequest";
-            this.pvRequest.Size = new System.Drawing.Size(1136, 584);
+            this.pvRequest.Size = new System.Drawing.Size(906, 521);
             this.pvRequest.Text = "Заявки";
             // 
             // ctrlRequest
@@ -183,7 +181,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlRequest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlRequest.Location = new System.Drawing.Point(0, 0);
             this.ctrlRequest.Name = "ctrlRequest";
-            this.ctrlRequest.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlRequest.Size = new System.Drawing.Size(906, 521);
             this.ctrlRequest.TabIndex = 0;
             this.ctrlRequest.TypeControl = IpsViewComponentLibrary.Extensions.ControlRequestOrReferenceType.None;
             // 
@@ -193,7 +191,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvReference.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvReference.Location = new System.Drawing.Point(5, 31);
             this.pvReference.Name = "pvReference";
-            this.pvReference.Size = new System.Drawing.Size(1136, 584);
+            this.pvReference.Size = new System.Drawing.Size(906, 521);
             this.pvReference.Text = "Довідки";
             // 
             // ctrlReference
@@ -201,7 +199,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlReference.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlReference.Location = new System.Drawing.Point(0, 0);
             this.ctrlReference.Name = "ctrlReference";
-            this.ctrlReference.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlReference.Size = new System.Drawing.Size(906, 521);
             this.ctrlReference.TabIndex = 0;
             this.ctrlReference.TypeControl = IpsViewComponentLibrary.Extensions.ControlRequestOrReferenceType.None;
             // 
@@ -211,7 +209,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvPayslips.ItemSize = new System.Drawing.SizeF(35F, 27F);
             this.pvPayslips.Location = new System.Drawing.Point(5, 31);
             this.pvPayslips.Name = "pvPayslips";
-            this.pvPayslips.Size = new System.Drawing.Size(1136, 584);
+            this.pvPayslips.Size = new System.Drawing.Size(906, 521);
             this.pvPayslips.Text = "Р/Л";
             // 
             // ctrlPayslips
@@ -219,7 +217,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlPayslips.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlPayslips.Location = new System.Drawing.Point(0, 0);
             this.ctrlPayslips.Name = "ctrlPayslips";
-            this.ctrlPayslips.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlPayslips.Size = new System.Drawing.Size(906, 521);
             this.ctrlPayslips.TabIndex = 0;
             // 
             // pvCalculation
@@ -229,7 +227,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvCalculation.ItemSize = new System.Drawing.SizeF(80F, 27F);
             this.pvCalculation.Location = new System.Drawing.Point(5, 31);
             this.pvCalculation.Name = "pvCalculation";
-            this.pvCalculation.Size = new System.Drawing.Size(1136, 584);
+            this.pvCalculation.Size = new System.Drawing.Size(906, 521);
             this.pvCalculation.Text = "Розрахунки";
             // 
             // ctrlCalculation
@@ -238,10 +236,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlCalculation.Customer = null;
             this.ctrlCalculation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlCalculation.Location = new System.Drawing.Point(0, 0);
-            this.ctrlCalculation.MaximumSize = new System.Drawing.Size(3000, 1000);
-            this.ctrlCalculation.MinimumSize = new System.Drawing.Size(400, 562);
             this.ctrlCalculation.Name = "ctrlCalculation";
-            this.ctrlCalculation.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlCalculation.Size = new System.Drawing.Size(906, 521);
             this.ctrlCalculation.TabIndex = 0;
             this.ctrlCalculation.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             // 
@@ -251,7 +247,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvPays.ItemSize = new System.Drawing.SizeF(60F, 27F);
             this.pvPays.Location = new System.Drawing.Point(5, 31);
             this.pvPays.Name = "pvPays";
-            this.pvPays.Size = new System.Drawing.Size(1136, 584);
+            this.pvPays.Size = new System.Drawing.Size(906, 521);
             this.pvPays.Text = "Платежі";
             // 
             // ctrlPaysInfo
@@ -261,7 +257,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlPaysInfo.Location = new System.Drawing.Point(0, 0);
             this.ctrlPaysInfo.Margin = new System.Windows.Forms.Padding(2);
             this.ctrlPaysInfo.Name = "ctrlPaysInfo";
-            this.ctrlPaysInfo.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlPaysInfo.Size = new System.Drawing.Size(906, 521);
             this.ctrlPaysInfo.TabIndex = 0;
             // 
             // pvAvances
@@ -270,7 +266,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvAvances.ItemSize = new System.Drawing.SizeF(55F, 27F);
             this.pvAvances.Location = new System.Drawing.Point(5, 31);
             this.pvAvances.Name = "pvAvances";
-            this.pvAvances.Size = new System.Drawing.Size(1136, 584);
+            this.pvAvances.Size = new System.Drawing.Size(906, 521);
             this.pvAvances.Text = "Аванси";
             // 
             // middleControlCabinetAvances1
@@ -278,7 +274,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.middleControlCabinetAvances1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.middleControlCabinetAvances1.Location = new System.Drawing.Point(0, 0);
             this.middleControlCabinetAvances1.Name = "middleControlCabinetAvances1";
-            this.middleControlCabinetAvances1.Size = new System.Drawing.Size(1136, 584);
+            this.middleControlCabinetAvances1.Size = new System.Drawing.Size(906, 521);
             this.middleControlCabinetAvances1.TabIndex = 0;
             // 
             // pvContacts
@@ -287,7 +283,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvContacts.ItemSize = new System.Drawing.SizeF(66F, 27F);
             this.pvContacts.Location = new System.Drawing.Point(5, 31);
             this.pvContacts.Name = "pvContacts";
-            this.pvContacts.Size = new System.Drawing.Size(1136, 584);
+            this.pvContacts.Size = new System.Drawing.Size(906, 521);
             this.pvContacts.Text = "Контакти";
             // 
             // ctrlContactHeader
@@ -306,7 +302,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvFiles.ItemSize = new System.Drawing.SizeF(51F, 27F);
             this.pvFiles.Location = new System.Drawing.Point(5, 31);
             this.pvFiles.Name = "pvFiles";
-            this.pvFiles.Size = new System.Drawing.Size(1136, 584);
+            this.pvFiles.Size = new System.Drawing.Size(906, 521);
             this.pvFiles.Text = "Файли";
             // 
             // ctrlFiles
@@ -315,7 +311,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.ctrlFiles.Location = new System.Drawing.Point(0, 0);
             this.ctrlFiles.MinimumSize = new System.Drawing.Size(913, 436);
             this.ctrlFiles.Name = "ctrlFiles";
-            this.ctrlFiles.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlFiles.Size = new System.Drawing.Size(913, 521);
             this.ctrlFiles.TabIndex = 0;
             // 
             // pvAgent
@@ -324,26 +320,28 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight
             this.pvAgent.ItemSize = new System.Drawing.SizeF(88F, 27F);
             this.pvAgent.Location = new System.Drawing.Point(5, 31);
             this.pvAgent.Name = "pvAgent";
-            this.pvAgent.Size = new System.Drawing.Size(1136, 584);
+            this.pvAgent.Size = new System.Drawing.Size(906, 521);
             this.pvAgent.Text = "Представник";
             // 
             // ctrlPartner
             // 
             this.ctrlPartner.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlPartner.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPartner.MinimumSize = new System.Drawing.Size(913, 527);
+            this.ctrlPartner.MaximumSize = new System.Drawing.Size(659, 138);
+            this.ctrlPartner.MinimumSize = new System.Drawing.Size(659, 138);
             this.ctrlPartner.Name = "ctrlPartner";
-            this.ctrlPartner.Size = new System.Drawing.Size(1136, 584);
+            this.ctrlPartner.Size = new System.Drawing.Size(659, 138);
             this.ctrlPartner.TabIndex = 0;
             // 
             // CabinetBigRight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(916, 557);
             this.Controls.Add(this.pageView);
             this.Name = "CabinetBigRight";
-            this.Size = new System.Drawing.Size(1146, 620);
+            this.Size = new System.Drawing.Size(916, 557);
             ((System.ComponentModel.ISupportInitialize)(this.pageView)).EndInit();
             this.pageView.ResumeLayout(false);
             this.pvAnketa.ResumeLayout(false);

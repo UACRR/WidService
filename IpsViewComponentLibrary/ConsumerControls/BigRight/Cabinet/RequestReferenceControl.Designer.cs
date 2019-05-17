@@ -69,7 +69,7 @@
             this.spHeader = new Telerik.WinControls.UI.SplitPanel();
             this.btnUpdate = new Telerik.WinControls.UI.RadButton();
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
-            this.ctrlAgrInfo = new GeneralAgreementInfo();
+            this.ctrlAgrInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.GeneralAgreementInfo();
             this.spFooter = new Telerik.WinControls.UI.SplitPanel();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionaryWorkType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
