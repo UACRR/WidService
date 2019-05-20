@@ -46,7 +46,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.pageViewMain = new Telerik.WinControls.UI.RadPageView();
             this.pvAnketaData = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationControl();
             this.pageViewAnketa = new Telerik.WinControls.UI.RadPageView();
             this.pvCommunityName = new Telerik.WinControls.UI.RadPageViewPage();
             this.radSeparator5 = new Telerik.WinControls.UI.RadSeparator();
@@ -77,7 +76,9 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlAddressJu = new IpsViewComponentLibrary.CommunityControls.CommunityAddressControl();
             this.pvBank = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
+            this.ctrlTabNavigation = new IpsViewComponentLibrary.Common.TabNavigationControl();
             this.pvAgrData = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             this.lblCommunityName = new Telerik.WinControls.UI.RadLabel();
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -98,7 +99,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.btnLimitationRight = new Telerik.WinControls.UI.RadButton();
             this.pvReportsData = new Telerik.WinControls.UI.RadPageViewPage();
             this.pvFilesData = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this.pageViewMain)).BeginInit();
             this.pageViewMain.SuspendLayout();
             this.pvAnketaData.SuspendLayout();
@@ -174,16 +174,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvAnketaData.Size = new System.Drawing.Size(966, 500);
             this.pvAnketaData.Text = "Анкета";
             // 
-            // ctrlTabNavigation
-            // 
-            this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 469);
-            this.ctrlTabNavigation.MaximumSize = new System.Drawing.Size(2000, 31);
-            this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
-            this.ctrlTabNavigation.Name = "ctrlTabNavigation";
-            this.ctrlTabNavigation.Size = new System.Drawing.Size(966, 31);
-            this.ctrlTabNavigation.TabIndex = 1;
-            // 
             // pageViewAnketa
             // 
             this.pageViewAnketa.Controls.Add(this.pvCommunityName);
@@ -222,7 +212,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radSeparator5
             // 
-            this.radSeparator5.Location = new System.Drawing.Point(92, 84);
+            this.radSeparator5.Location = new System.Drawing.Point(92, 127);
             this.radSeparator5.Name = "radSeparator5";
             this.radSeparator5.Size = new System.Drawing.Size(527, 19);
             this.radSeparator5.TabIndex = 0;
@@ -230,7 +220,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radLabel10
             // 
-            this.radLabel10.Location = new System.Drawing.Point(22, 84);
+            this.radLabel10.Location = new System.Drawing.Point(22, 127);
             this.radLabel10.Name = "radLabel10";
             this.radLabel10.Size = new System.Drawing.Size(64, 19);
             this.radLabel10.TabIndex = 0;
@@ -241,7 +231,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             this.txtOnBasicsIfHeadBoss.AutoSize = false;
             this.txtOnBasicsIfHeadBoss.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRelEmployee, "RelDocument", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
-            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(121, 109);
+            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(121, 152);
             this.txtOnBasicsIfHeadBoss.Multiline = true;
             this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
             this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР)";
@@ -256,7 +246,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // radLabel4
             // 
             this.radLabel4.AutoSize = false;
-            this.radLabel4.Location = new System.Drawing.Point(22, 109);
+            this.radLabel4.Location = new System.Drawing.Point(22, 152);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(93, 20);
             this.radLabel4.TabIndex = 0;
@@ -265,7 +255,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radSeparator4
             // 
-            this.radSeparator4.Location = new System.Drawing.Point(132, 199);
+            this.radSeparator4.Location = new System.Drawing.Point(132, 242);
             this.radSeparator4.Name = "radSeparator4";
             this.radSeparator4.Size = new System.Drawing.Size(487, 19);
             this.radSeparator4.TabIndex = 0;
@@ -274,7 +264,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // txtIpi
             // 
             this.txtIpi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCommunity, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
-            this.txtIpi.Location = new System.Drawing.Point(231, 57);
+            this.txtIpi.Location = new System.Drawing.Point(231, 100);
             this.txtIpi.Name = "txtIpi";
             this.txtIpi.Size = new System.Drawing.Size(243, 21);
             this.txtIpi.TabIndex = 2;
@@ -286,7 +276,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radLabel3
             // 
-            this.radLabel3.Location = new System.Drawing.Point(22, 59);
+            this.radLabel3.Location = new System.Drawing.Point(22, 102);
             this.radLabel3.Name = "radLabel3";
             this.radLabel3.Size = new System.Drawing.Size(203, 19);
             this.radLabel3.TabIndex = 0;
@@ -295,7 +285,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(22, 199);
+            this.radLabel6.Location = new System.Drawing.Point(22, 242);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(104, 19);
             this.radLabel6.TabIndex = 0;
@@ -305,7 +295,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // ctrlContactPerson
             // 
             this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlContactPerson.Location = new System.Drawing.Point(22, 224);
+            this.ctrlContactPerson.Location = new System.Drawing.Point(22, 267);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
             this.ctrlContactPerson.OutsidePhone = false;
             this.ctrlContactPerson.PhoneNullText = "+380## ### ## ##";
@@ -316,16 +306,16 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             this.ctrlClientName.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             this.ctrlClientName.Location = new System.Drawing.Point(22, 6);
-            this.ctrlClientName.MaximumSize = new System.Drawing.Size(900, 47);
-            this.ctrlClientName.MinimumSize = new System.Drawing.Size(400, 47);
+            this.ctrlClientName.MaximumSize = new System.Drawing.Size(900, 90);
+            this.ctrlClientName.MinimumSize = new System.Drawing.Size(400, 90);
             this.ctrlClientName.Name = "ctrlClientName";
-            this.ctrlClientName.Size = new System.Drawing.Size(452, 47);
+            this.ctrlClientName.Size = new System.Drawing.Size(597, 90);
             this.ctrlClientName.TabIndex = 1;
             // 
             // ctrlHeadBoss
             // 
             this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlHeadBoss.Location = new System.Drawing.Point(22, 135);
+            this.ctrlHeadBoss.Location = new System.Drawing.Point(22, 178);
             this.ctrlHeadBoss.Name = "ctrlHeadBoss";
             this.ctrlHeadBoss.OutsidePhone = false;
             this.ctrlHeadBoss.PhoneNullText = "+380## ### ## ##";
@@ -484,6 +474,16 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.ctrlBankAccount.Size = new System.Drawing.Size(409, 127);
             this.ctrlBankAccount.TabIndex = 0;
             // 
+            // ctrlTabNavigation
+            // 
+            this.ctrlTabNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlTabNavigation.Location = new System.Drawing.Point(0, 469);
+            this.ctrlTabNavigation.MaximumSize = new System.Drawing.Size(2000, 31);
+            this.ctrlTabNavigation.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlTabNavigation.Name = "ctrlTabNavigation";
+            this.ctrlTabNavigation.Size = new System.Drawing.Size(966, 31);
+            this.ctrlTabNavigation.TabIndex = 1;
+            // 
             // pvAgrData
             // 
             this.pvAgrData.Controls.Add(this.ctrlSaveCancelButtons);
@@ -496,6 +496,17 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvAgrData.Name = "pvAgrData";
             this.pvAgrData.Size = new System.Drawing.Size(966, 500);
             this.pvAgrData.Text = "Договір";
+            // 
+            // ctrlSaveCancelButtons
+            // 
+            this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 469);
+            this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
+            this.ctrlSaveCancelButtons.SaveButtonEnabled = true;
+            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(966, 31);
+            this.ctrlSaveCancelButtons.TabIndex = 3;
             // 
             // lblCommunityName
             // 
@@ -597,6 +608,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // ctrlAgreement
             // 
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddCommunity);
+            this.ctrlAgreement.IsReadOnly = false;
             this.ctrlAgreement.Location = new System.Drawing.Point(7, 54);
             this.ctrlAgreement.Name = "ctrlAgreement";
             this.ctrlAgreement.Size = new System.Drawing.Size(641, 260);
@@ -809,17 +821,6 @@ namespace IpsViewComponentLibrary.CommunityControls
             this.pvFilesData.Name = "pvFilesData";
             this.pvFilesData.Size = new System.Drawing.Size(966, 500);
             this.pvFilesData.Text = "Файли";
-            // 
-            // ctrlSaveCancelButtons
-            // 
-            this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 469);
-            this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
-            this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
-            this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
-            this.ctrlSaveCancelButtons.SaveButtonEnabled = true;
-            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(966, 31);
-            this.ctrlSaveCancelButtons.TabIndex = 3;
             // 
             // CommunityCabinetForm
             // 

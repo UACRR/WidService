@@ -853,8 +853,8 @@ namespace RightholderWorkplace
             this.MainPageView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPageView.Location = new System.Drawing.Point(0, 0);
             this.MainPageView.Name = "MainPageView";
-            this.MainPageView.SelectedPage = this.mainPageRightholders;
-            this.MainPageView.Size = new System.Drawing.Size(1192, 668);
+            this.MainPageView.SelectedPage = this.radPageViewPage1;
+            this.MainPageView.Size = new System.Drawing.Size(1216, 668);
             this.MainPageView.TabIndex = 0;
             this.MainPageView.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadPageViewStripElement)(this.MainPageView.GetChildAt(0))).ShowItemPinButton = false;
@@ -865,9 +865,9 @@ namespace RightholderWorkplace
             // 
             this.radPageViewPage1.Controls.Add(this.ctrlCommunity);
             this.radPageViewPage1.ItemSize = new System.Drawing.SizeF(79F, 27F);
-            this.radPageViewPage1.Location = new System.Drawing.Point(5, 29);
+            this.radPageViewPage1.Location = new System.Drawing.Point(5, 31);
             this.radPageViewPage1.Name = "radPageViewPage1";
-            this.radPageViewPage1.Size = new System.Drawing.Size(1182, 634);
+            this.radPageViewPage1.Size = new System.Drawing.Size(1206, 632);
             this.radPageViewPage1.Text = "Товариства";
             // 
             // ctrlCommunity
@@ -875,7 +875,7 @@ namespace RightholderWorkplace
             this.ctrlCommunity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlCommunity.Location = new System.Drawing.Point(0, 0);
             this.ctrlCommunity.Name = "ctrlCommunity";
-            this.ctrlCommunity.Size = new System.Drawing.Size(1182, 634);
+            this.ctrlCommunity.Size = new System.Drawing.Size(1206, 632);
             this.ctrlCommunity.TabIndex = 0;
             // 
             // rightHolderMainViewBindingSource
@@ -930,7 +930,7 @@ namespace RightholderWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1192, 668);
+            this.ClientSize = new System.Drawing.Size(1216, 668);
             this.Controls.Add(this.MainPageView);
             this.MinimumSize = new System.Drawing.Size(1150, 570);
             this.Name = "RightholderWorkplace";

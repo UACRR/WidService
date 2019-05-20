@@ -1,33 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Dictionary;
-using IpsViewComponentLibrary.Extensions;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class JurPersonName : UserControl
     {
         public JurPersonName()
         {
             InitializeComponent();
-            ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
+            ctrlRegistrationsCompany.MaxDate = DateTime.Now;
         }
 
-        public void SetDataSources(Customer customer)
+        /// <summary>
+        /// AnketaCompany Data Source
+        /// </summary>
+        public object DataSource
         {
-            var anketa = customer?.Company?.AnketaCompany?.SingleOrDefault(rec => rec.Version == customer.AnkVersion);
-            
-            ctrlAnketaCompany.DataSource = anketa;
-            ctrlRegistrationsCompany.DataSource = anketa;   
+            get => bsAnketaCompany.DataSource;
+            set
+            {
+                if (value is AnketaCompany)
+                    bsAnketaCompany.DataSource = value;
+            }
         }
 
         public bool Validator()

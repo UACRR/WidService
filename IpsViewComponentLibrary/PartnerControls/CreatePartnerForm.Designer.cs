@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerForms
+﻿namespace IpsViewComponentLibrary.PartnerControls
 {
     partial class CreatePartnerForm
     {

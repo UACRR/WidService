@@ -21,7 +21,7 @@ namespace IpsViewComponentLibrary
         {
             InitializeComponent();
             ctrlAnketaCompany.TextNameChanged += CtrlAnketaCompany_TextNameChanged;
-            ctrlRegistrationsCompany.DtRegisterDate.MaxDate = DateTime.Now;
+            ctrlRegistrationsCompany.MaxDate = DateTime.Now;
         }
 
         private void CtrlAnketaCompany_TextNameChanged(object sender, string e)

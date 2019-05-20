@@ -126,10 +126,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // ctrlClientName
             // 
             this.ctrlClientName.Location = new System.Drawing.Point(19, 5);
-            this.ctrlClientName.MaximumSize = new System.Drawing.Size(700, 194);
-            this.ctrlClientName.MinimumSize = new System.Drawing.Size(700, 194);
+            this.ctrlClientName.MaximumSize = new System.Drawing.Size(700, 217);
+            this.ctrlClientName.MinimumSize = new System.Drawing.Size(700, 217);
             this.ctrlClientName.Name = "ctrlClientName";
-            this.ctrlClientName.Size = new System.Drawing.Size(700, 194);
+            this.ctrlClientName.Size = new System.Drawing.Size(700, 217);
             this.ctrlClientName.TabIndex = 0;
             // 
             // pvPlaces
@@ -263,7 +263,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(777, 39);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(777, 0);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
