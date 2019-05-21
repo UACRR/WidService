@@ -94,7 +94,7 @@ namespace IpsViewComponentLibrary.ObjectRightControls
                 query.SearchText = txtSearch.Text;
 
             var result = await _objectRightService.GetObjectRightsAsync(query);
-            objectRightMainViewBindingSource.DataSource = result.List;
+            bsObjectRightMainView.DataSource = result.List;
 
             navigatorPanel.TotalPages = (int) Math.Ceiling((double)result.TotalItems / (int)query.PageSize);
             //show count RightList into grid
