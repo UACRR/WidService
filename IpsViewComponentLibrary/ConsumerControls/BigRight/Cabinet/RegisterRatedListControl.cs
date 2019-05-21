@@ -23,7 +23,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         private const string DeleteRegisterRatedListSuccess = "Розрахунковий лист видалено!";
         private const string DeleteRegisterRatedListError = "Неможливо видалити розрахунковий лист!";
 
-        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
         private Customer _customer;
         private IList<RatedListSpectacleBigRightView> _payslipsSpectacleViews;
         public delegate IList<BigRightSpectacleView> GetSpectacleView(int custId);
@@ -44,7 +43,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             splitContainer.Splitters.First().NextNavigationButton.Visibility = ElementVisibility.Collapsed;
             splitContainer.Splitters.First().PrevNavigationButton.PropertyChanged += ExtensionUtils.NavigationButtonPropertyChanged;
             splitContainer.Splitters.First().PrevNavigationButton.Visibility = ElementVisibility.Visible;
-            _gridStateRecorder.AddGrid(gvRegisterRatedListView);
         }
 
         private void SplitContainer_PanelCollapsing(object sender, RadSplitContainer.PanelCollapsingEventArgs e)
@@ -58,7 +56,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             _customer = customer;
             _payslipsSpectacleViews = ViewsSingleton.RatedListSpectacleBigRightView;
             ctrlHeaderInfo.DataSource = ViewsSingleton.ConsumerBigRightView;
-            gvRegisterRatedListView.DataSource = ViewsSingleton.RatedListBigRightView;
+            bsRatedListBigRightView.DataSource = ViewsSingleton.RatedListBigRightView;
+            bsRatedListBigRightView.ResetBindings(false);
             btnAcceptSpectacles.Enabled = ViewsSingleton.RatedListBigRightView.Any();
         }
 
@@ -135,7 +134,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             // edit
             if (item.Status == 0)
             {
-                _gridStateRecorder.RecordState();
                 var addform = new RegisterRatedListForm(ScopeOfUseForm.Edit, _customer, spectacles, ratedList);
                 addform.SavePariodCommandExecuted += SavePariod_Need;
                 if (addform.ShowDialog() == DialogResult.OK)
@@ -146,7 +144,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
                     MessageShow.ShowInfoAfterChanges(result);
                 }
-                _gridStateRecorder.RestoreState();
             }
             // view
             else if (item.Status == 1)
@@ -162,7 +159,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         /// <param name="item">Результат обробки видалення</param>
         private void DeleteButtonAction(RatedListBigRightView item)
         {
-            _gridStateRecorder.RecordState();
             // Status = 0 - дозвіл на видалення
             if (item.Status == 0 && MessageShow.ConfirmAction(DeleteRegisterRatedListQuestion) == DialogResult.Yes)
             {
@@ -171,7 +167,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                     UpdateData?.Invoke();
                 MessageShow.ShowInfoByResult(DeleteRegisterRatedListSuccess, DeleteRegisterRatedListError, result);
             }
-            _gridStateRecorder.RestoreState();
         }
 
         private RegisterRatedList GetRatedList(RatedListBigRightView reg)
@@ -273,8 +268,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             gvViewSpectacles.DataSource = parentList;
             bsChildTemplate.DataSource = childList;
         }
-
-
 
         private void pageView_SelectedPageChanged(object sender, EventArgs e)
         {

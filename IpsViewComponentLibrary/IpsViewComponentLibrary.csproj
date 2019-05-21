@@ -1640,6 +1640,8 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.IAgreementData.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.ParentTemplate.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.PartnerView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RatedListBigRightView.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RequestsOrReferenceBigRightView.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.RightolderWithNotAcceptedCopyrightViewModel.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Interfaces.VbrLicense.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.AgreementAddBr.datasource" />
