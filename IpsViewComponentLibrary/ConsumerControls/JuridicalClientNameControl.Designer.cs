@@ -1,8 +1,8 @@
 ﻿using IpsViewComponentLibrary.Shared.Controls;
 
-namespace IpsViewComponentLibrary
+namespace IpsViewComponentLibrary.ConsumerControls
 {
-    partial class MiddleControlClientName
+    partial class JuridicalClientNameControl
     {
         /// <summary> 
         /// Обязательная переменная конструктора.
@@ -33,6 +33,7 @@ namespace IpsViewComponentLibrary
             this.ctrlRegistrationsCompany = new IpsViewComponentLibrary.Shared.Controls.IpsRegistrationsCompanyControl();
             this.ctrlAnketaCompany = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.ctrlAnketaCompanyAdd = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyAddControl();
             this.SuspendLayout();
             // 
             // ctrlRegistrationsCompany
@@ -40,7 +41,7 @@ namespace IpsViewComponentLibrary
             this.ctrlRegistrationsCompany.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlRegistrationsCompany.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
-            this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(3, 101);
+            this.ctrlRegistrationsCompany.Location = new System.Drawing.Point(3, 161);
             this.ctrlRegistrationsCompany.MaxDate = new System.DateTime(2018, 7, 2, 0, 0, 0, 0);
             this.ctrlRegistrationsCompany.Name = "ctrlRegistrationsCompany";
             this.ctrlRegistrationsCompany.Size = new System.Drawing.Size(705, 109);
@@ -58,16 +59,29 @@ namespace IpsViewComponentLibrary
             this.ctrlAnketaCompany.Size = new System.Drawing.Size(705, 91);
             this.ctrlAnketaCompany.TabIndex = 0;
             // 
-            // MiddleControlClientName
+            // ctrlAnketaCompanyAdd
+            // 
+            this.ctrlAnketaCompanyAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ctrlAnketaCompanyAdd.DataSource = typeof(ipsFormsDesign.Model.Client);
+            this.ctrlAnketaCompanyAdd.Location = new System.Drawing.Point(3, 101);
+            this.ctrlAnketaCompanyAdd.MaximumSize = new System.Drawing.Size(1000, 54);
+            this.ctrlAnketaCompanyAdd.MinimumSize = new System.Drawing.Size(100, 54);
+            this.ctrlAnketaCompanyAdd.Name = "ctrlAnketaCompanyAdd";
+            this.ctrlAnketaCompanyAdd.Size = new System.Drawing.Size(704, 54);
+            this.ctrlAnketaCompanyAdd.TabIndex = 4;
+            // 
+            // JuridicalClientNameControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ctrlAnketaCompanyAdd);
             this.Controls.Add(this.ctrlRegistrationsCompany);
             this.Controls.Add(this.ctrlAnketaCompany);
-            this.MaximumSize = new System.Drawing.Size(800, 217);
-            this.MinimumSize = new System.Drawing.Size(607, 217);
-            this.Name = "MiddleControlClientName";
-            this.Size = new System.Drawing.Size(711, 217);
+            this.MaximumSize = new System.Drawing.Size(800, 273);
+            this.MinimumSize = new System.Drawing.Size(607, 273);
+            this.Name = "JuridicalClientNameControl";
+            this.Size = new System.Drawing.Size(711, 273);
             this.ResumeLayout(false);
 
         }
@@ -77,5 +91,6 @@ namespace IpsViewComponentLibrary
         private IpsAnketaCompanyControl ctrlAnketaCompany;
         private IpsRegistrationsCompanyControl ctrlRegistrationsCompany;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private IpsAnketaCompanyAddControl ctrlAnketaCompanyAdd;
     }
 }

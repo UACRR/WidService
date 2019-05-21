@@ -36,7 +36,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnketaConsumer));
             this.pageAnketaConsumer = new Telerik.WinControls.UI.RadPageView();
             this.pvClientName = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlClientName = new IpsViewComponentLibrary.MiddleControlClientName();
+            this.ctrlClientName = new IpsViewComponentLibrary.ConsumerControls.JuridicalClientNameControl();
             this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
             this.ctrlPlacesTitle = new Telerik.WinControls.UI.RadLabel();
@@ -126,10 +126,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // ctrlClientName
             // 
             this.ctrlClientName.Location = new System.Drawing.Point(19, 5);
-            this.ctrlClientName.MaximumSize = new System.Drawing.Size(700, 217);
-            this.ctrlClientName.MinimumSize = new System.Drawing.Size(700, 217);
+            this.ctrlClientName.MaximumSize = new System.Drawing.Size(700, 274);
+            this.ctrlClientName.MinimumSize = new System.Drawing.Size(700, 274);
             this.ctrlClientName.Name = "ctrlClientName";
-            this.ctrlClientName.Size = new System.Drawing.Size(700, 217);
+            this.ctrlClientName.Size = new System.Drawing.Size(700, 274);
             this.ctrlClientName.TabIndex = 0;
             // 
             // pvPlaces
@@ -140,7 +140,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.pvPlaces.ItemSize = new System.Drawing.SizeF(130F, 27F);
             this.pvPlaces.Location = new System.Drawing.Point(134, 5);
             this.pvPlaces.Name = "pvPlaces";
-            this.pvPlaces.Size = new System.Drawing.Size(808, 492);
+            this.pvPlaces.Size = new System.Drawing.Size(783, 492);
             this.pvPlaces.Text = "Бізнес-точки";
             // 
             // ctrlPlaces
@@ -150,7 +150,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlPlaces.Location = new System.Drawing.Point(0, 0);
             this.ctrlPlaces.Name = "ctrlPlaces";
             this.ctrlPlaces.Padding = new System.Windows.Forms.Padding(0, 5, 0, 0);
-            this.ctrlPlaces.Size = new System.Drawing.Size(808, 492);
+            this.ctrlPlaces.Size = new System.Drawing.Size(783, 492);
             this.ctrlPlaces.TabIndex = 11;
             // 
             // ctrlPlacesTitle
@@ -162,7 +162,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlPlacesTitle.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ctrlPlacesTitle.Location = new System.Drawing.Point(4, 35);
             this.ctrlPlacesTitle.Name = "ctrlPlacesTitle";
-            this.ctrlPlacesTitle.Size = new System.Drawing.Size(802, 22);
+            this.ctrlPlacesTitle.Size = new System.Drawing.Size(777, 22);
             this.ctrlPlacesTitle.TabIndex = 10;
             this.ctrlPlacesTitle.Text = "Назва «Клієнта»";
             this.ctrlPlacesTitle.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -263,7 +263,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radPdfViewerNavigator.AssociatedViewer = this.radPdfViewer;
             this.radPdfViewerNavigator.Location = new System.Drawing.Point(3, 38);
             this.radPdfViewerNavigator.Name = "radPdfViewerNavigator";
-            this.radPdfViewerNavigator.Size = new System.Drawing.Size(777, 0);
+            this.radPdfViewerNavigator.Size = new System.Drawing.Size(777, 39);
             this.radPdfViewerNavigator.TabIndex = 2;
             this.radPdfViewerNavigator.ThemeName = "Office2013Light";
             ((Telerik.WinControls.UI.RadCommandBarElement)(this.radPdfViewerNavigator.GetChildAt(0))).Enabled = true;
@@ -366,7 +366,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private System.Windows.Forms.BindingSource anketaCompanyBindingSource;
         private ManagersControl ctrlManagers;
-        public MiddleControlClientName ctrlClientName;
+        public JuridicalClientNameControl ctrlClientName;
         private IpsBankAccountControl ctrlBankRequisites;
     }
 }

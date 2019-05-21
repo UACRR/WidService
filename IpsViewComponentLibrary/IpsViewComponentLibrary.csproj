@@ -260,6 +260,12 @@
     <Compile Include="RightholderControls\Anketa\AnketaExternalRightholderControl.Designer.cs">
       <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shared\Controls\IpsAnketaCompanyAddControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\IpsAnketaCompanyAddControl.Designer.cs">
+      <DependentUpon>IpsAnketaCompanyAddControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\IpsUARadGridLocalizationProvider.cs" />
     <Compile Include="_UnusedControls\AddCompositionForm.cs">
       <SubType>Form</SubType>
@@ -971,11 +977,11 @@
     <Compile Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.Designer.cs">
       <DependentUpon>RequestReferenceControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MiddleControlClientName.cs">
+    <Compile Include="ConsumerControls\JuridicalClientNameControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MiddleControlClientName.Designer.cs">
-      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    <Compile Include="ConsumerControls\JuridicalClientNameControl.Designer.cs">
+      <DependentUpon>JuridicalClientNameControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\CabinetSmallRight.cs">
       <SubType>UserControl</SubType>
@@ -1193,6 +1199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaExternalRightholderControl.resx">
       <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\IpsAnketaCompanyAddControl.resx">
+      <DependentUpon>IpsAnketaCompanyAddControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
@@ -1522,8 +1531,8 @@
     <EmbeddedResource Include="ConsumerControls\BigRight\Cabinet\RequestReferenceControl.resx">
       <DependentUpon>RequestReferenceControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MiddleControlClientName.resx">
-      <DependentUpon>MiddleControlClientName.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\JuridicalClientNameControl.resx">
+      <DependentUpon>JuridicalClientNameControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\CabinetSmallRight.resx">
       <DependentUpon>CabinetSmallRight.cs</DependentUpon>
