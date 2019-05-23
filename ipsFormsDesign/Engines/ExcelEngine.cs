@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Excel;
+using System.Collections;
 
 namespace ipsFormsDesign.Services
 {
@@ -38,7 +39,6 @@ namespace ipsFormsDesign.Services
                     Marshal.ReleaseComObject(excelApp);
                     excelApp = null;
                 }
-
             }
             excelApp = null;
         }
@@ -69,10 +69,10 @@ namespace ipsFormsDesign.Services
 
         private TimeSpan GetDuration(object source)
         {
-            if (source is string)
-                return TimeSpan.Parse((string)source);
-            if (source is double)
-                return TimeSpan.FromDays((double)source);
+            if (source is string @str_source)
+                return TimeSpan.Parse(@str_source);
+            if (source is double @dbl_source )
+                return TimeSpan.FromDays(@dbl_source);
 
             return TimeSpan.Zero;
         }
@@ -91,7 +91,6 @@ namespace ipsFormsDesign.Services
 
 
                 Excel.Range excelRange = excelSheet.UsedRange;
-                // excelRange.EntireColumn.NumberFormat = "@";
 
                 int maxCol;
                 int maxRow;
@@ -118,7 +117,7 @@ namespace ipsFormsDesign.Services
                         RegIitemId = 1 + regitemid++,
                         CategoryCode = 5, //parse
                         ModifyLogin = null, //parse
-                                            //                     registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
+                                            // registerItem.RegIitemId = Convert.ToInt32(dim[1, 1]);
                         ItemName = GetFirst(dim[index, 2], 100),
                         Performer = GetFirst(dim[index, 3], 100),
                         AuthorMusic = GetFirst(dim[index, 4], 100),
@@ -161,17 +160,38 @@ namespace ipsFormsDesign.Services
         }
 
         /// <summary>
+        /// Обработка excel range по блокам
+        /// </summary>
+        /// <param name="range"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="countColumns"></param>
+        /// <returns></returns>
+        internal IEnumerable GetBlockData( Range range, int pageSize, int countColumns )
+        {
+            int maxRow = range.Rows.Count;
+            int maxCols = Math.Min(range.Columns.Count, countColumns);
+            int countBlock = maxRow / pageSize;
+
+            for ( int i = 0; i <= countBlock; i++ )
+            {
+                int beginRow = i * pageSize;
+                int size = Math.Min(maxRow - beginRow, pageSize);
+                var dim = range.Range[range.Cells[beginRow + 1, 1], range.Cells[beginRow + size, maxCols]];
+                yield return new { dim, size };
+            }
+        }
+        /// <summary>
         /// Завантаження  Excel в список List<List<string>>
         /// </summary>
         /// <param name="FileName">Повній шлях до файлу</param>
-        /// <param name="countCols">Кількість колонок данних будуть імпортуватися</param>
+        /// <param name="countCols">Кількість колонок данних які будуть імпортуватися</param>
         /// <returns></returns>
         public List<List<string>> ReadData(string FileName, int countCols = 10 )
         {
             // TODO: extract OpenWorkbook(), CloseWorkbook() methods
 
             var list = new List<List<string>>();
-            var i = 0;
+            int i = 0, iter=1;
 
             Excel.Workbook excelAppWorkbook = null;
             try
@@ -188,33 +208,39 @@ namespace ipsFormsDesign.Services
 
                 maxCol = Math.Min( excelRange.Columns.Count, countCols );
                 maxRow = excelRange.Rows.Count;
-                
-                //var dim = excelRange.Value;
-                var dim = ((Range)excelRange.Range[excelRange.Cells[1,1], excelRange.Cells[maxRow, countCols]]).Value;
 
-                for (i = 1; i <= maxRow; i++)
+                // 17-05-2019 блочна обробка excel
+
+                // var dim = ((Range)excelRange.Range[excelRange.Cells[1,1], excelRange.Cells[maxRow, countCols]]).Value;
+                foreach (dynamic item in GetBlockData(excelRange, 1000, countCols))
                 {
-                    if (dim?[i, 1] == null)
-                        continue;
-                    
-                    // Патлякевич 10-05-19
-                    if (!(double.TryParse(dim[i, 1].ToString(), out double tmp))) 
-                        continue;
-
-                    var rowList = new List<string>();
-
-                    for (var j = 1; j <= maxCol; j++)
+                    dynamic dim = item.dim.Value;
+                    int rows = item.size;
+                    //for (i = 1; i <= maxRow; i++)
+                    for (i = 1; i <= rows; i++, iter++)
                     {
-                        rowList.Add(GetFirst(dim[i, j]));
-                    }
+                        if (dim?[i, 1] == null)
+                            continue;
 
-                    list.Add(rowList);
+                        // Патлякевич 10-05-19
+                        if (!(double.TryParse(dim[i, 1].ToString(), out double tmp)))
+                            continue;
+
+                        var rowList = new List<string>();
+
+                        for (var j = 1; j <= maxCol; j++)
+                        {
+                            rowList.Add(GetFirst(dim[i, j]));
+                        }
+
+                        list.Add(rowList);
+                    }
                 }
             }
             catch (Exception excp)
             {
                 MessageBox.Show(excp.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw new ApplicationException($"{excp.Message} on row = {i}");
+                throw new ApplicationException($"{excp.Message} on row = {iter}");
             }
             finally
             {
