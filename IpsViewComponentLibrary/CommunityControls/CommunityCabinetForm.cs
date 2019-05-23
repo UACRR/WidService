@@ -212,7 +212,7 @@ namespace IpsViewComponentLibrary.CommunityControls
         //додати автора
         private async void btnAddCommunity_Click(object sender, EventArgs e)
         {
-            var query = new RightholdersQuery
+            var query = new PaginateAndSearchQuery
             {
                 SearchText = string.Empty,
                 Page = 1,

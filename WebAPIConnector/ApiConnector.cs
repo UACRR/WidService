@@ -72,12 +72,14 @@ namespace WebAPIConnector
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
+        /// <param name="listParam"></param>
         /// <returns></returns>
         public List<T> GetList<T>(string url, params KeyValuePair<string, string>[] listParam)
         {
             string runUrl = url;
-            if (listParam.Count() > 0)
+            if (listParam.Any())
                 runUrl = string.Concat(runUrl, AsQueryString(listParam));
+
             string retApiString;
 
             try
@@ -97,7 +99,6 @@ namespace WebAPIConnector
             }).ToList();
 
             return list;
-
         }
 
         /// <summary>

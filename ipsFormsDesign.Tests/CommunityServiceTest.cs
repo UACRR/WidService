@@ -18,7 +18,7 @@ namespace ipsFormsDesign.Tests
         [TestMethod]
         public void GetCommunityAuthorsView_Test()
         {
-            var query = new RightholdersQuery
+            var query = new PaginateAndSearchQuery
             {
                 SearchText = string.Empty,
                 Page = 1,

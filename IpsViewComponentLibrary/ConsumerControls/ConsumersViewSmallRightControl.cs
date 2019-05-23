@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
@@ -12,13 +11,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
     {
         public event LoadCustomerCabinetSREventHandler OnLoadCustomerCabinetNeed;
         public event EventHandler OnAddNewCustomer;
+        public event Action SearchOrPageChanged;
+
         public ConsumerSmallRightView ViewRow => gvViewConsumers.CurrentRow?.DataBoundItem as ConsumerSmallRightView;
 
         public ConsumersViewSmallRightControl()
         {
             InitializeComponent();
-            ctrlGridRowCount.RadGridViewDataSource = gvViewConsumers;
-            ctrlSearch.SetUsageGrid(gvViewConsumers);
         }
 
         public object DataSource
@@ -29,6 +28,28 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 bsConsumerSmallRightView.DataSource = value;
                 bsConsumerSmallRightView.ResetBindings(false);
             }
+        }
+
+        public int TotalItems
+        {
+            set => navigatorPanel.TotalPages = (int)Math.Ceiling((double)value / navigatorPanel.PageSize);
+        }
+
+        public PaginateAndSearchQuery PaginateAndSearchQuery => new PaginateAndSearchQuery
+        {
+            PageSize = navigatorPanel.PageSize,
+            Page = navigatorPanel.CurrentPage,
+            SearchText = txtSearch.Text,
+        };
+
+        public void StartWait()
+        {
+            waitingBar.StartWaiting();
+        }
+
+        public void StopWait()
+        {
+            waitingBar.StopWaiting();
         }
 
         private void gvConsumers_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -54,6 +75,28 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 return;
 
             OnLoadCustomerCabinetNeed?.Invoke(e.Row.DataBoundItem as ConsumerSmallRightView);
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            timerSearch.Stop();
+            timerSearch.Start();
+        }
+
+        private void timerSearch_Tick(object sender, EventArgs e)
+        {
+            timerSearch.Stop();
+            navigatorPanel.CurrentPage = 1;
+        }
+
+        private void navigatorPanel_CurrentPageChanged(object sender, EventArgs e)
+        {
+            SearchOrPageChanged?.Invoke();
+        }
+
+        private void navigatorPanel_PageSizeChanged(object sender, EventArgs e)
+        {
+            SearchOrPageChanged?.Invoke();
         }
     }
 }

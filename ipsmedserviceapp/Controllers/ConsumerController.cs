@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Castle.Core.Logging;
+using ipsmedserviceapp.Controllers.Resources;
 using ipsmedserviceapp.DATA;
 using ipsmedserviceapp.Model;
 using ipsmedserviceapp.Utilities;
@@ -695,31 +697,56 @@ namespace ipsmedserviceapp.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("listSR/{whatId}")]
-        public async Task<IActionResult> GetListSR(int whatId)
+        public async Task<IActionResult> GetListSR(int whatId, [FromQuery] ConsumerSmallRightResource queryResource)
         {
             ConsumerFilterEnum what = Enum.Parse<ConsumerFilterEnum>(whatId.ToString());
 
-            string queue = "select * from vTsk_1_ListConsumer01";
+            string function = "select * from ft_tsk_1_LicenseAgreementList (@strSeek)";
+
             switch (what)
             {
                 case ConsumerFilterEnum.All:
                 case ConsumerFilterEnum.None:
                     break;
                 case ConsumerFilterEnum.Working:
-                    queue = string.Concat(queue, " ", "where cntActive > 0");
+                    function = string.Concat(function, " where cntActive > 0");
                     break;
                 case ConsumerFilterEnum.NotAccepted:
-                    queue = string.Concat(queue, " ", "where cntOnAccepting > 0");
+                    function = string.Concat(function, " where cntOnAccepting > 0");
                     break;
                 case ConsumerFilterEnum.ForProlongation:
-                    queue = string.Concat(queue, " ", "where cntExtraAgr > 0");
+                    function = string.Concat(function, " where cntExtraAgr > 0");
                     break;
                 case ConsumerFilterEnum.ForDistribution:
-                    queue = string.Concat(queue, " ", "where undistribamount > 0");
+                    function = string.Concat(function, " where undistribamount > 0");
                     break;
             }
-            var List = await _dbContext.getViewData(queue, null);
-            return Json(List);
+
+            string strSeek = !string.IsNullOrEmpty(queryResource?.SearchText) ? queryResource.SearchText.Replace('\'', '_') : string.Empty;
+
+            var totalItems = (await _dbContext.getViewData(function.Replace("*", "count(*)"), new[] { new SqlParameter("@strSeek", strSeek) }))
+                .FirstOrDefault()?.Values.FirstOrDefault();
+
+            int page = 1;
+            int pageSize = 200;
+
+            if (queryResource.Page.HasValue)
+                page = (int)queryResource.Page;
+
+            if (queryResource.PageSize.HasValue)
+                pageSize = (int)queryResource.PageSize;
+
+            // paging conditions
+            string orderBy = $" ORDER BY custId OFFSET {(page - 1) * pageSize} ROWS FETCH NEXT {pageSize} ROWS ONLY";
+            function = string.Concat(function, orderBy);
+
+            var list = await _dbContext.getViewData(function, new[] { new SqlParameter("@strSeek", strSeek) });
+
+            return Ok(new
+            {
+                List = list,
+                TotalItems = totalItems
+            });
         }
 
         [HttpGet("listall")]
