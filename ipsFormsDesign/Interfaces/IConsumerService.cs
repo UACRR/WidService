@@ -1,7 +1,6 @@
-﻿using ipsFormsDesign.Dictionary;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Model;
 
 namespace ipsFormsDesign.Interfaces
@@ -11,6 +10,7 @@ namespace ipsFormsDesign.Interfaces
         public int CustId { get; set; }
         public string Innokpo { get; set; }
         public string Name { get; set; }
+        public string ClientBrand { get; set; }
         public int CountAgree { get; set; }
         public decimal Undistribamount { get; set; }
         public bool IsAnkExtrn { get; set; }

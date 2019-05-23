@@ -709,16 +709,16 @@ namespace ipsmedserviceapp.Controllers
                 case ConsumerFilterEnum.None:
                     break;
                 case ConsumerFilterEnum.Working:
-                    function = string.Concat(function, " where cntActive > 0");
+                    function = string.Concat(function, " where statusActive = 1");
                     break;
                 case ConsumerFilterEnum.NotAccepted:
-                    function = string.Concat(function, " where cntOnAccepting > 0");
+                    function = string.Concat(function, " where statusNoAccept = 1");
                     break;
                 case ConsumerFilterEnum.ForProlongation:
-                    function = string.Concat(function, " where cntExtraAgr > 0");
+                    function = string.Concat(function, " where statusProlong = 1");
                     break;
                 case ConsumerFilterEnum.ForDistribution:
-                    function = string.Concat(function, " where undistribamount > 0");
+                    function = string.Concat(function, " where statusUndistribute = 1");
                     break;
             }
 
