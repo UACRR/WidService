@@ -69,7 +69,7 @@ namespace ipsFormsDesign.Services
         /// <param name="viewName"></param>
         /// <param name="query"></param>
         /// <returns></returns>
-        public T GetCommunityAuthorsView<T>(string viewName, RightholdersQuery query) where T : class
+        public T GetCommunityAuthorsView<T>(string viewName, PaginateAndSearchQuery query) where T : class
         {
             string url = string.Concat(Prefix, $"list/rhview/{viewName}");
 

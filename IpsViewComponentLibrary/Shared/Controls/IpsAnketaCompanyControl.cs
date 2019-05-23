@@ -10,7 +10,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
+    [ComplexBindingProperties("DataSource")]
     public partial class IpsAnketaCompanyControl : UserControl
     {
         private Func<string, IList<AutoCompleteData>> getAutoCompList;
@@ -73,7 +73,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
         }
 
         bool inProcess = false;
-        private void TxtName_ListItemSelected(object sender, Telerik.WinControls.UI.RadListDataItem e)
+        private void TxtName_ListItemSelected(object sender, RadListDataItem e)
         {
             inProcess = true;
             RadListDataItem curItem = e;

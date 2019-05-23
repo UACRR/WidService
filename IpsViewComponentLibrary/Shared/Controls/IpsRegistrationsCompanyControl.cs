@@ -12,7 +12,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
-    [ComplexBindingProperties("DataSource", "DataMember")]
+    [ComplexBindingProperties("DataSource")]
     public partial class IpsRegistrationsCompanyControl : UserControl
     {
         protected bool IsDesignMode => DesignMode || LicenseManager.UsageMode == LicenseUsageMode.Designtime;
@@ -37,24 +37,11 @@ namespace IpsViewComponentLibrary.Shared.Controls
             set => bsAnketaCompany.DataSource = value;
         }
 
-        #region Edit controls
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtOkpo => txtOkpo;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtRegisterNumber => txtRegisterNumber;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadDateTimePicker DtRegisterDate => dtRegisterDate;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtRegisterWho => txtRegisterWho;
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public RadTextBox TxtNumberVat => txtNumberVat;
-
-        #endregion
+        public DateTime MaxDate
+        {
+            get => dtRegisterDate.MaxDate;
+            set => dtRegisterDate.MaxDate = value;
+        }
 
         public bool Validator()
         {

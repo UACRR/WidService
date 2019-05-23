@@ -1,26 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
+﻿using System.Linq;
 using System.Windows.Forms;
-using System.Linq;
-using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using IpsViewComponentLibrary.Extensions;
-using IpsViewComponentLibrary.PartnerControls;
-using Telerik.WinControls;
 
-namespace IpsViewComponentLibrary.ConsumerForms
+namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class CreatePartnerForm : Telerik.WinControls.UI.RadForm
     {
         private const string TitleJur = "Додавання нового представника (юридична особа)";
         private const string TitlePhis = "Додавання нового представника (фізична особа)";
+
+        private readonly IAnketaControls _anketaControl;
+
         private PartnerAnketaPhisControl _phisControl = null;
         private PartnerAnketaJurControl _jurControl = null;
-        private IAnketaControls _anketaControl;
         private Customer _customer;
 
         public CreatePartnerForm(Customer customer)

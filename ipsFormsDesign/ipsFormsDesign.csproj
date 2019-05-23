@@ -100,6 +100,7 @@
     <Compile Include="Dictionary\AutoCompleteData.cs" />
     <Compile Include="Dictionary\CommunityInfo.cs" />
     <Compile Include="Dictionary\ConsumerFilterEnum.cs" />
+    <Compile Include="Dictionary\ItemListResponse.cs" />
     <Compile Include="Dictionary\DictBaseTypeI.cs" />
     <Compile Include="Dictionary\DictionaryBaseControl.cs" />
     <Compile Include="Dictionary\DictTr.cs" />
@@ -120,7 +121,7 @@
     <Compile Include="Dictionary\RegisterSearchObject.cs" />
     <Compile Include="Dictionary\RegisterStatusType.cs" />
     <Compile Include="Dictionary\RightholderListQuery.cs" />
-    <Compile Include="Dictionary\RightholdersQuery.cs" />
+    <Compile Include="Dictionary\PaginateAndSearchQuery.cs" />
     <Compile Include="Dictionary\RightholdersResponse.cs" />
     <Compile Include="Dictionary\RightholderStates.cs" />
     <Compile Include="Dictionary\RightholderStatusType.cs" />

@@ -231,7 +231,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlAnketaCompanyRightholderPage.Location = new System.Drawing.Point(3, 3);
             this.ctrlAnketaCompanyRightholderPage.Name = "ctrlAnketaCompanyRightholderPage";
             this.ctrlAnketaCompanyRightholderPage.RightholderDataSource = this.bsRightHolder;
-            this.ctrlAnketaCompanyRightholderPage.Size = new System.Drawing.Size(670, 271);
+            this.ctrlAnketaCompanyRightholderPage.Size = new System.Drawing.Size(670, 300);
             this.ctrlAnketaCompanyRightholderPage.TabIndex = 0;
             // 
             // bsAnketaCompany

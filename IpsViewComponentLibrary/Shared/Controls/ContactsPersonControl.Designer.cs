@@ -103,9 +103,9 @@
             // 
             this.lblEmail.Location = new System.Drawing.Point(287, 29);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(107, 19);
+            this.lblEmail.Size = new System.Drawing.Size(114, 19);
             this.lblEmail.TabIndex = 3;
-            this.lblEmail.Text = "Елктронна пошта:";
+            this.lblEmail.Text = "Електронна пошта:";
             this.lblEmail.ThemeName = "Office2013Light";
             // 
             // rtxtBoxHomePhone

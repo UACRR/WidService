@@ -32,16 +32,16 @@
             this.pageParentConsumers = new Telerik.WinControls.UI.RadPageView();
             this.pvConsumers = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConsumersViewSmallRight = new IpsViewComponentLibrary.ConsumerControls.ConsumersViewSmallRightControl();
+            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             this.treeViewSmallRight = new Telerik.WinControls.UI.RadTreeView();
             this.pvPays = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlImportDBF = new IpsViewComponentLibrary.ImportDBF.ImportDBFControl();
-            this.ipsPanel1 = new IpsViewComponentLibrary.Common.Editors.IpsPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).BeginInit();
             this.pageParentConsumers.SuspendLayout();
             this.pvConsumers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewSmallRight)).BeginInit();
             this.pvPays.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,11 +79,22 @@
             // 
             // ctrlConsumersViewSmallRight
             // 
+            this.ctrlConsumersViewSmallRight.DataSource = typeof(ipsFormsDesign.Interfaces.ConsumerSmallRightView);
             this.ctrlConsumersViewSmallRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ctrlConsumersViewSmallRight.Location = new System.Drawing.Point(205, 0);
             this.ctrlConsumersViewSmallRight.Name = "ctrlConsumersViewSmallRight";
             this.ctrlConsumersViewSmallRight.Size = new System.Drawing.Size(1026, 463);
             this.ctrlConsumersViewSmallRight.TabIndex = 1;
+            // 
+            // ipsPanel1
+            // 
+            this.ipsPanel1.BorderVisible = false;
+            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ipsPanel1.Location = new System.Drawing.Point(199, 0);
+            this.ipsPanel1.Name = "ipsPanel1";
+            this.ipsPanel1.Size = new System.Drawing.Size(6, 463);
+            this.ipsPanel1.TabIndex = 2;
+            this.ipsPanel1.ThemeName = "Office2013Light";
             // 
             // treeViewSmallRight
             // 
@@ -116,16 +127,6 @@
             this.ctrlImportDBF.TabIndex = 0;
             this.ctrlImportDBF.TypeRights = ipsFormsDesign.Dictionary.TypeRights.BigRights;
             // 
-            // ipsPanel1
-            // 
-            this.ipsPanel1.BorderVisible = false;
-            this.ipsPanel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ipsPanel1.Location = new System.Drawing.Point(199, 0);
-            this.ipsPanel1.Name = "ipsPanel1";
-            this.ipsPanel1.Size = new System.Drawing.Size(6, 463);
-            this.ipsPanel1.TabIndex = 2;
-            this.ipsPanel1.ThemeName = "Office2013Light";
-            // 
             // ConsumerSmallRightWorkplace
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,9 +143,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pageParentConsumers)).EndInit();
             this.pageParentConsumers.ResumeLayout(false);
             this.pvConsumers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.treeViewSmallRight)).EndInit();
             this.pvPays.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ipsPanel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 

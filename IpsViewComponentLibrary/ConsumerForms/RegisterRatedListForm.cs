@@ -40,6 +40,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             StartPosition = FormStartPosition.CenterParent;
             DialogResult = DialogResult.None;
             Load += RegisterRatedListForm_Load;
+            ctrlSaveCancelButtons.SaveClck += btnSave_Click;
 
             _scopeOfUseForm = scopeOfUseForm;
             _customer = customer;
@@ -92,8 +93,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
 
                 case ScopeOfUseForm.View:
                     Text = TitleTextViewRL;
-                    btnCancel.Text = CancelButtonAltText;
-                    btnSave.Visible = false;
+                    ctrlSaveCancelButtons.SaveButtonEnabled = false;
                     btnAddPeriod.Enabled = false;
                     btnAddCheckedSpectacle.Enabled = false;
                     gvRegisterView.ReadOnly = true;
@@ -244,7 +244,6 @@ namespace IpsViewComponentLibrary.ConsumerForms
                 }
 
             DialogResult = DialogResult.OK;
-            Close();
         }
 
         // натискання кнопки [видалення] на гріду

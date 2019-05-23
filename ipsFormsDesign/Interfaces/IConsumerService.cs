@@ -374,8 +374,8 @@ namespace ipsFormsDesign.Interfaces
 
     public class PartnerView
     {
-        public DateTime? AgrDate { get; set; }
         public int? CustId { get; set; }
+        public DateTime? AgrDate { get; set; }
         public int AgrId { get; set; }
         public int? AgrStatus { get; set; }
         public int? ClnCount { get; set; }

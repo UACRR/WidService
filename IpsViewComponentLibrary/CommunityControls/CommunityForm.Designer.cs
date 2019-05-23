@@ -134,7 +134,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radSeparator4
             // 
-            this.radSeparator4.Location = new System.Drawing.Point(132, 197);
+            this.radSeparator4.Location = new System.Drawing.Point(132, 240);
             this.radSeparator4.Name = "radSeparator4";
             this.radSeparator4.Size = new System.Drawing.Size(487, 19);
             this.radSeparator4.TabIndex = 0;
@@ -142,7 +142,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radSeparator5
             // 
-            this.radSeparator5.Location = new System.Drawing.Point(92, 84);
+            this.radSeparator5.Location = new System.Drawing.Point(92, 127);
             this.radSeparator5.Name = "radSeparator5";
             this.radSeparator5.Size = new System.Drawing.Size(527, 19);
             this.radSeparator5.TabIndex = 0;
@@ -150,7 +150,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radLabel10
             // 
-            this.radLabel10.Location = new System.Drawing.Point(22, 84);
+            this.radLabel10.Location = new System.Drawing.Point(22, 127);
             this.radLabel10.Name = "radLabel10";
             this.radLabel10.Size = new System.Drawing.Size(64, 19);
             this.radLabel10.TabIndex = 0;
@@ -161,7 +161,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             this.txtOnBasicsIfHeadBoss.AutoSize = false;
             this.txtOnBasicsIfHeadBoss.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRelEmployee, "RelDocument", true));
-            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(121, 109);
+            this.txtOnBasicsIfHeadBoss.Location = new System.Drawing.Point(121, 152);
             this.txtOnBasicsIfHeadBoss.Multiline = true;
             this.txtOnBasicsIfHeadBoss.Name = "txtOnBasicsIfHeadBoss";
             this.txtOnBasicsIfHeadBoss.NullText = "(статуту, положення, довіреності, свідоцтва про реєстрацію, виписки з ЄДР)";
@@ -176,7 +176,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // radLabel4
             // 
             this.radLabel4.AutoSize = false;
-            this.radLabel4.Location = new System.Drawing.Point(22, 109);
+            this.radLabel4.Location = new System.Drawing.Point(22, 152);
             this.radLabel4.Name = "radLabel4";
             this.radLabel4.Size = new System.Drawing.Size(93, 20);
             this.radLabel4.TabIndex = 9;
@@ -186,7 +186,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // ctrlHeadBoss
             // 
             this.ctrlHeadBoss.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlHeadBoss.Location = new System.Drawing.Point(22, 135);
+            this.ctrlHeadBoss.Location = new System.Drawing.Point(22, 178);
             this.ctrlHeadBoss.Name = "ctrlHeadBoss";
             this.ctrlHeadBoss.OutsidePhone = false;
             this.ctrlHeadBoss.PhoneNullText = "+380## ### ## ##";
@@ -196,7 +196,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // txtIpi
             // 
             this.txtIpi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCommunity, "InterCode", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
-            this.txtIpi.Location = new System.Drawing.Point(231, 57);
+            this.txtIpi.Location = new System.Drawing.Point(231, 100);
             this.txtIpi.Name = "txtIpi";
             this.txtIpi.Size = new System.Drawing.Size(243, 21);
             this.txtIpi.TabIndex = 1;
@@ -208,7 +208,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radLabel1
             // 
-            this.radLabel1.Location = new System.Drawing.Point(22, 59);
+            this.radLabel1.Location = new System.Drawing.Point(22, 102);
             this.radLabel1.Name = "radLabel1";
             this.radLabel1.Size = new System.Drawing.Size(203, 19);
             this.radLabel1.TabIndex = 0;
@@ -217,7 +217,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             // radLabel6
             // 
-            this.radLabel6.Location = new System.Drawing.Point(22, 197);
+            this.radLabel6.Location = new System.Drawing.Point(22, 240);
             this.radLabel6.Name = "radLabel6";
             this.radLabel6.Size = new System.Drawing.Size(104, 19);
             this.radLabel6.TabIndex = 0;
@@ -227,7 +227,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // ctrlContactPerson
             // 
             this.ctrlContactPerson.DataSource = typeof(ipsFormsDesign.Model.Employee);
-            this.ctrlContactPerson.Location = new System.Drawing.Point(19, 222);
+            this.ctrlContactPerson.Location = new System.Drawing.Point(19, 265);
             this.ctrlContactPerson.Name = "ctrlContactPerson";
             this.ctrlContactPerson.OutsidePhone = false;
             this.ctrlContactPerson.PhoneNullText = "+380## ### ## ##";
@@ -238,10 +238,10 @@ namespace IpsViewComponentLibrary.CommunityControls
             // 
             this.ctrlClientName.DataSource = typeof(ipsFormsDesign.Interfaces.IAnketaCompany);
             this.ctrlClientName.Location = new System.Drawing.Point(22, 6);
-            this.ctrlClientName.MaximumSize = new System.Drawing.Size(900, 47);
-            this.ctrlClientName.MinimumSize = new System.Drawing.Size(400, 47);
+            this.ctrlClientName.MaximumSize = new System.Drawing.Size(900, 90);
+            this.ctrlClientName.MinimumSize = new System.Drawing.Size(400, 90);
             this.ctrlClientName.Name = "ctrlClientName";
-            this.ctrlClientName.Size = new System.Drawing.Size(452, 47);
+            this.ctrlClientName.Size = new System.Drawing.Size(597, 90);
             this.ctrlClientName.TabIndex = 0;
             // 
             // pvAddress
@@ -408,6 +408,7 @@ namespace IpsViewComponentLibrary.CommunityControls
             // ctrlAgreement
             // 
             this.ctrlAgreement.AgreementDataSource = typeof(ipsFormsDesign.Model.AgreementAddCommunity);
+            this.ctrlAgreement.IsReadOnly = false;
             this.ctrlAgreement.Location = new System.Drawing.Point(22, 6);
             this.ctrlAgreement.Name = "ctrlAgreement";
             this.ctrlAgreement.Size = new System.Drawing.Size(641, 260);

@@ -32,7 +32,7 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             this.pageView = new Telerik.WinControls.UI.RadPageView();
             this.pvPartnerName = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlClientName = new IpsViewComponentLibrary.JurPersonName();
+            this.ctrlClientName = new IpsViewComponentLibrary.PartnerControls.JurPersonName();
             this.pvContact = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAddress = new IpsViewComponentLibrary.Shared.Controls.JuridicalAddressControl();
             this.pvManager = new Telerik.WinControls.UI.RadPageViewPage();
@@ -76,11 +76,12 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             // ctrlClientName
             // 
+            this.ctrlClientName.DataSource = typeof(ipsFormsDesign.Model.AnketaCompany);
             this.ctrlClientName.Location = new System.Drawing.Point(3, 26);
-            this.ctrlClientName.MaximumSize = new System.Drawing.Size(711, 172);
-            this.ctrlClientName.MinimumSize = new System.Drawing.Size(711, 172);
+            this.ctrlClientName.MaximumSize = new System.Drawing.Size(711, 217);
+            this.ctrlClientName.MinimumSize = new System.Drawing.Size(711, 217);
             this.ctrlClientName.Name = "ctrlClientName";
-            this.ctrlClientName.Size = new System.Drawing.Size(711, 172);
+            this.ctrlClientName.Size = new System.Drawing.Size(711, 217);
             this.ctrlClientName.TabIndex = 0;
             // 
             // pvContact
@@ -145,6 +146,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ctrlSaveCancel.MaximumSize = new System.Drawing.Size(3000, 31);
             this.ctrlSaveCancel.MinimumSize = new System.Drawing.Size(300, 31);
             this.ctrlSaveCancel.Name = "ctrlSaveCancel";
+            this.ctrlSaveCancel.SaveButtonEnabled = true;
             this.ctrlSaveCancel.Size = new System.Drawing.Size(990, 31);
             this.ctrlSaveCancel.TabIndex = 25;
             // 

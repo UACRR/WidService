@@ -73,6 +73,7 @@
             this.bsChildTemplate = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewSpectacles = new Telerik.WinControls.UI.RadGridView();
             this.gvRegisterRatedListView = new Telerik.WinControls.UI.RadGridView();
+            this.bsRatedListBigRightView = new System.Windows.Forms.BindingSource(this.components);
             this.btnAddNewRl = new Telerik.WinControls.UI.RadButton();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
             this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
@@ -94,6 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterRatedListView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterRatedListView.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRatedListBigRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.SuspendLayout();
@@ -296,12 +298,13 @@
             gridViewTextBoxColumn5.DataType = typeof(int);
             gridViewTextBoxColumn5.FieldName = "PeriodName";
             gridViewTextBoxColumn5.HeaderText = "Назва періоду";
-            gridViewTextBoxColumn5.MaxWidth = 100;
-            gridViewTextBoxColumn5.MinWidth = 80;
+            gridViewTextBoxColumn5.MaxWidth = 110;
+            gridViewTextBoxColumn5.MinWidth = 110;
             gridViewTextBoxColumn5.Name = "PeriodName";
             gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn5.Width = 81;
+            gridViewTextBoxColumn5.Width = 110;
             gridViewTextBoxColumn5.WrapText = true;
+            gridViewTextBoxColumn6.DataType = typeof(System.Nullable<System.DateTime>);
             gridViewTextBoxColumn6.FieldName = "CreateDate";
             gridViewTextBoxColumn6.FormatString = "{0:d}";
             gridViewTextBoxColumn6.HeaderText = "Дата Р/Л";
@@ -311,6 +314,7 @@
             gridViewTextBoxColumn6.Name = "CreateDate";
             gridViewTextBoxColumn6.Width = 95;
             gridViewTextBoxColumn6.WrapText = true;
+            gridViewTextBoxColumn7.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn7.FieldName = "FullAmount";
             gridViewTextBoxColumn7.HeaderText = "Сума збору";
             gridViewTextBoxColumn7.MinWidth = 100;
@@ -318,12 +322,14 @@
             gridViewTextBoxColumn7.Name = "FullAmount";
             gridViewTextBoxColumn7.Width = 101;
             gridViewTextBoxColumn7.WrapText = true;
+            gridViewTextBoxColumn8.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn8.FieldName = "RAmount";
             gridViewTextBoxColumn8.HeaderText = "Всього сума авторської винагороди";
             gridViewTextBoxColumn8.MinWidth = 100;
             gridViewTextBoxColumn8.Name = "RAmount";
             gridViewTextBoxColumn8.Width = 101;
             gridViewTextBoxColumn8.WrapText = true;
+            gridViewTextBoxColumn9.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn9.FieldName = "PaidAmount";
             gridViewTextBoxColumn9.HeaderText = "Сума закріплених платежів";
             gridViewTextBoxColumn9.MinWidth = 100;
@@ -331,6 +337,7 @@
             gridViewTextBoxColumn9.Name = "PaidAmount";
             gridViewTextBoxColumn9.Width = 101;
             gridViewTextBoxColumn9.WrapText = true;
+            gridViewTextBoxColumn10.DataType = typeof(decimal);
             gridViewTextBoxColumn10.FieldName = "DistribAmount";
             gridViewTextBoxColumn10.HeaderText = "Розподілено коштів на об\'єкти права";
             gridViewTextBoxColumn10.MinWidth = 100;
@@ -338,6 +345,7 @@
             gridViewTextBoxColumn10.Name = "DistribAmount";
             gridViewTextBoxColumn10.Width = 101;
             gridViewTextBoxColumn10.WrapText = true;
+            gridViewTextBoxColumn11.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn11.FieldName = "Borg";
             gridViewTextBoxColumn11.HeaderText = "Борг";
             gridViewTextBoxColumn11.MinWidth = 100;
@@ -345,6 +353,7 @@
             gridViewTextBoxColumn11.Name = "Borg";
             gridViewTextBoxColumn11.Width = 101;
             gridViewTextBoxColumn11.WrapText = true;
+            gridViewTextBoxColumn12.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn12.FieldName = "PrepaySum";
             gridViewTextBoxColumn12.HeaderText = "За рахунок авансу";
             gridViewTextBoxColumn12.MinWidth = 100;
@@ -359,7 +368,7 @@
             gridViewTextBoxColumn13.Multiline = true;
             gridViewTextBoxColumn13.Name = "StatusName";
             gridViewTextBoxColumn13.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
-            gridViewTextBoxColumn13.Width = 132;
+            gridViewTextBoxColumn13.Width = 103;
             gridViewTextBoxColumn13.WrapText = true;
             gridViewCommandColumn1.AllowResize = false;
             gridViewCommandColumn1.AllowSort = false;
@@ -401,6 +410,7 @@
             gridViewTextBoxColumn13,
             gridViewCommandColumn1,
             gridViewCommandColumn2});
+            this.gvRegisterRatedListView.MasterTemplate.DataSource = this.bsRatedListBigRightView;
             this.gvRegisterRatedListView.MasterTemplate.EnableCustomFiltering = true;
             this.gvRegisterRatedListView.MasterTemplate.EnableFiltering = true;
             this.gvRegisterRatedListView.MasterTemplate.EnableGrouping = false;
@@ -413,6 +423,10 @@
             this.gvRegisterRatedListView.ThemeName = "Office2013Light";
             this.gvRegisterRatedListView.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvRegisterRatedListView_CurrentRowChanged);
             this.gvRegisterRatedListView.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvRegisterRatedListView_CommandCellClick);
+            // 
+            // bsRatedListBigRightView
+            // 
+            this.bsRatedListBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.RatedListBigRightView);
             // 
             // btnAddNewRl
             // 
@@ -707,6 +721,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvViewSpectacles)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterRatedListView.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvRegisterRatedListView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRatedListBigRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddNewRl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
@@ -748,5 +763,6 @@
         private MusicDesignHeaderInfoControl ctrlMusicDesignHeaderInfo;
         private Telerik.WinControls.UI.RadGridView gvMusicDesignView;
         private Telerik.WinControls.UI.RadSeparator separator;
+        private System.Windows.Forms.BindingSource bsRatedListBigRightView;
     }
 }

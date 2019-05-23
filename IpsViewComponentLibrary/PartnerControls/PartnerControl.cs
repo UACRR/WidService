@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Enums;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using ipsFormsDesign.Services;
-using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
@@ -20,7 +12,6 @@ namespace IpsViewComponentLibrary.PartnerControls
 {
     public partial class PartnerControl : UserControl
     {
-        private GridStateRecorder _gridStateRecorder = new GridStateRecorder();
         public delegate Customer CreateNewCustomerEventHandler(int customerType);
         public event CreateNewCustomerEventHandler OnCreateNewCustomerNeed;
         public event SaveCustomerEventHandler OnSaveCustomer;
@@ -39,8 +30,7 @@ namespace IpsViewComponentLibrary.PartnerControls
             InitializeComponent();
             InitTemplate();
             ctrlSearch.SetUsageGrid(gvViewPartners);
-            _gridStateRecorder.AddGrid(gvViewPartners);
-            //btnNewPartnerJur.Enabled = false; // заблокувати кнопку
+            ctrlGridRowCount.RadGridViewDataSource = gvViewPartners;
         }
 
         public void LoadData()
@@ -49,31 +39,34 @@ namespace IpsViewComponentLibrary.PartnerControls
             treeView.SelectedNode = treeView.Nodes[0];
         }
 
-        // оновлення даних
-        private void SetDataOfFilter(RadTreeNode node)
+        /// <summary>
+        /// Оновлення даних
+        /// </summary>
+        /// <param name="node"></param>
+        private void UpdateGridData(RadTreeNode node)
         {
             var partnerList = GetPartnersView?.Invoke();
-            if (partnerList == null) return;
-
+            if (partnerList == null)
+                return;
+            
             switch (node.Value is PartnerFilter @enum ? @enum : PartnerFilter.None)
             {
                 case PartnerFilter.None:
                     break;
                 case PartnerFilter.All:
-                    gvViewPartners.DataSource = partnerList;
+                    bsPartnerView.DataSource = partnerList;
                     break;
                 case PartnerFilter.Active:
-                    gvViewPartners.DataSource = partnerList.Where(rec => rec.AgrStatus == 2);
+                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 2);
                     break;
                 case PartnerFilter.OnAccept:
-                    gvViewPartners.DataSource = partnerList.Where(rec => rec.AgrStatus == 1);
+                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 1);
                     break;
                 case PartnerFilter.NotAccept:
-                    gvViewPartners.DataSource = partnerList.Where(rec => rec.AgrStatus == 0);
+                    bsPartnerView.DataSource = partnerList.Where(rec => rec.AgrStatus == 0);
                     break;
             }
-            //show count Partners
-            lblCountPartners.Text = gvViewPartners.RowCount.ToString();
+            bsPartnerView.ResetBindings(false);
         }
 
         private void InitTemplate()
@@ -92,7 +85,7 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void TreeView_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
-            SetDataOfFilter(e.Node);
+            UpdateGridData(e.Node);
         }
 
         #region * * * СТВОРЕННЯ НОВОГО ПРЕДСТАВНИКА * * *
@@ -162,13 +155,13 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             var result = OnSaveAgreement?.Invoke(saveObj) ?? false;
             if (result)
-                UpdateGridData();
+                UpdateGridData(treeView.SelectedNode);
             return result;
         }
 
         private Customer CabinetPartner_UpdateCustomer(int custId)
         {
-            UpdateGridData();
+            UpdateGridData(treeView.SelectedNode);
             return GetPartnerById?.Invoke(custId);
         }
 
@@ -202,16 +195,8 @@ namespace IpsViewComponentLibrary.PartnerControls
         {
             var result = OnSaveCustomer?.Invoke(customer) ?? false;
             if (result)
-                UpdateGridData();
+                UpdateGridData(treeView.SelectedNode);
             return result;
-        }
-
-        // оновлення даних гріда
-        private void UpdateGridData()
-        {
-            _gridStateRecorder.RecordState();
-            SetDataOfFilter(treeView.SelectedNode);
-            _gridStateRecorder.RestoreState();
         }
     }
 }

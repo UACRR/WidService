@@ -45,8 +45,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
         public event LicenseStatusChangeEventHandler OnLicenseStatusChange;
         public event EmptyEventHandler UpdateData;
 
-        private readonly GridStateRecorder _gridStateRecorder = new GridStateRecorder();
-
         private Customer _customer;
         private IList<AuthorsForLicenseBigRightView> _authors;
         private ControlRequestOrReferenceType _typeControl = ControlRequestOrReferenceType.None;
@@ -67,7 +65,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
 
             splitContainer.PanelCollapsing += SplitContainer_PanelCollapsing;
             ctrlSearch.SetUsageGrid(gvViewRequests);
-            _gridStateRecorder.AddGrid(gvViewRequests);
         }
 
         /// <summary>
@@ -79,10 +76,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             _customer = customer;
             _authors = ViewsSingleton.AuthorsForLicenseBigRightView;
             ctrlAgrInfo.DataSource = ViewsSingleton.ConsumerBigRightView;
+
             if (_typeControl == ControlRequestOrReferenceType.Request)
-                gvViewRequests.DataSource = ViewsSingleton.RequestsBigRightView;
+                bsRequestsOrReferenceBigRightView.DataSource = ViewsSingleton.RequestsBigRightView;
             else if (_typeControl == ControlRequestOrReferenceType.Reference)
-                gvViewRequests.DataSource = ViewsSingleton.ReferenceBigRightView;
+                bsRequestsOrReferenceBigRightView.DataSource = ViewsSingleton.ReferenceBigRightView;
+
+            bsRequestsOrReferenceBigRightView.ResetBindings(false);
+            bsAuthorsForLicenseBigRightView.ResetBindings(false);
         }
 
         #region * * * PROPERTIES * * *
@@ -247,7 +248,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 if (result)
                 {
                     OnLicenseStatusChange?.Invoke(_customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId), item.LicVersion, 0, false);
-                    RefreshData();
+                    UpdateData?.Invoke();
                 }
                 MessageShow.ShowInfoAfterChanges(result);
             }
@@ -259,7 +260,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             //нема в наявності записів заявоч чи довідок (залежно від типу ctrl)
             if(e?.CurrentRow == null || gvViewRequests.RowCount == 0)
             {
-                bindingSource1.DataSource = typeof(AuthorsForLicenseBigRightView);
+                bsAuthorsForLicenseBigRightView.DataSource = typeof(AuthorsForLicenseBigRightView);
                 btnChangeToReference.Enabled = false;
                 btnChangeToLicense.Enabled = false;
             }
@@ -289,7 +290,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             //створити заявку
             btnCreate.Visible = _typeControl == ControlRequestOrReferenceType.Request;
 
-            bindingSource1.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
+            bsAuthorsForLicenseBigRightView.DataSource = _authors.Where(rec => rec.LicId == item?.LicId).ToList();
+            bsAuthorsForLicenseBigRightView.ResetBindings(false);
         }
 
         /// <summary>
@@ -338,7 +340,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                     break;
             }
             if(result)
-                RefreshData();
+                UpdateData?.Invoke();
         }
 
         /// <summary>
@@ -356,7 +358,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 var result = OnLicenseStatusChange?.Invoke(license, item.LicVersion, 10, false) ?? false;
 
                 if (result)
-                    RefreshData();
+                    UpdateData?.Invoke();
 
                 MessageShow.ShowInfoByResult(ResultSuccessMsg, ResultErrorMsg, result);
             }
@@ -393,24 +395,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
             var license = _customer.Client.LicenseAgreement.SingleOrDefault(rec => rec.LicId == item.LicId);
             var success = OnLicenseTypeChange?.Invoke(license, licenseType) ?? false;
             if (success)
-                RefreshData();
+                UpdateData?.Invoke();
             return success;
         }
 
         // кнопка оновлення даних
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            RefreshData();
-        }
-
-        /// <summary>
-        /// Оновити дані зі збереженням обраного рядка гріда
-        /// </summary>
-        private void RefreshData()
-        {
-            _gridStateRecorder.RecordState();
             UpdateData?.Invoke();
-            _gridStateRecorder.RestoreState();
         }
     }
 }
