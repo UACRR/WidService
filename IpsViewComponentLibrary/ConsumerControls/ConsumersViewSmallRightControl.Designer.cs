@@ -109,11 +109,11 @@
             gridViewTextBoxColumn4.Name = "ClientBrand";
             gridViewTextBoxColumn4.Width = 140;
             gridViewTextBoxColumn5.DataType = typeof(int);
-            gridViewTextBoxColumn5.FieldName = "CountAgree";
+            gridViewTextBoxColumn5.FieldName = "CountActive";
             gridViewTextBoxColumn5.HeaderText = "К-сть діючих договорів";
             gridViewTextBoxColumn5.MaxWidth = 80;
             gridViewTextBoxColumn5.MinWidth = 80;
-            gridViewTextBoxColumn5.Name = "CountAgree";
+            gridViewTextBoxColumn5.Name = "CountActive";
             gridViewTextBoxColumn5.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewTextBoxColumn5.Width = 80;
             gridViewTextBoxColumn5.WrapText = true;
