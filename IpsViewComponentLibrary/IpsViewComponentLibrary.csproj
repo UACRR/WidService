@@ -489,17 +489,17 @@
     <Compile Include="Common\TabNavigationControl.Designer.cs">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerDialogForms\CompositionOfReport.cs">
+    <Compile Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerDialogForms\CompositionOfReport.Designer.cs">
+    <Compile Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.Designer.cs">
       <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerDialogForms\CreateProgReportBigRight.cs">
+    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerDialogForms\CreateProgReportBigRight.Designer.cs">
-      <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.Designer.cs">
+      <DependentUpon>ReportExtendedForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\PaysInfo.cs">
       <SubType>UserControl</SubType>
@@ -1077,11 +1077,11 @@
     <Compile Include="RightholderControls\RegistrationPersonsControl.Designer.cs">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerForms\ReportExcelViewForm.cs">
+    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerForms\ReportExcelViewForm.Designer.cs">
-      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    <Compile Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.Designer.cs">
+      <DependentUpon>ReportExcelForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerControls\SmallRight\ReportsControl.cs">
       <SubType>UserControl</SubType>
@@ -1305,11 +1305,11 @@
     <EmbeddedResource Include="Common\TabNavigationControl.resx">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerDialogForms\CompositionOfReport.resx">
+    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\CompositionOfReport.resx">
       <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerDialogForms\CreateProgReportBigRight.resx">
-      <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\ReportExtendedForm.resx">
+      <DependentUpon>ReportExtendedForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\PaysInfo.resx">
@@ -1580,8 +1580,8 @@
     <EmbeddedResource Include="RightholderControls\RegistrationPersonsControl.resx">
       <DependentUpon>RegistrationPersonsControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerForms\ReportExcelViewForm.resx">
-      <DependentUpon>ReportExcelViewForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerControls\SmallRight\Reports\ReportExcelForm.resx">
+      <DependentUpon>ReportExcelForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerControls\SmallRight\ReportsControl.resx">
       <DependentUpon>ReportsControl.cs</DependentUpon>

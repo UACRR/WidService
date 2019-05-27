@@ -1,4 +1,4 @@
-﻿namespace IpsViewComponentLibrary.ConsumerDialogForms
+﻿namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
     partial class CompositionOfReport
     {

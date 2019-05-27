@@ -6,7 +6,7 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerDialogForms
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
     public partial class CompositionOfReport : RadForm
     {

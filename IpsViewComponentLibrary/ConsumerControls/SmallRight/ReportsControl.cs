@@ -11,6 +11,7 @@ using ipsFormsDesign.Dictionary;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
+using IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports;
 using IpsViewComponentLibrary.ConsumerDialogForms;
 using IpsViewComponentLibrary.ConsumerForms;
 using IpsViewComponentLibrary.Extensions;
@@ -401,7 +402,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 if (schemaId == 2) // рапортичка
                 {
                     registerTemp.SchemaId = 2;
-                    var progReportBigRight = new CreateProgReportBigRight(registerTemp)
+                    var progReportBigRight = new ReportExtendedForm(registerTemp)
                     {
                         StartPosition = FormStartPosition.CenterParent,
                         HeaderInfoCustomerName = GetCustomerName(),
@@ -420,7 +421,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 else // не рапотричка
                 {
                     registerTemp.SchemaId = 1;
-                    var viewForm = new ReportExcelViewForm(registerTemp, true);
+                    var viewForm = new ReportExcelForm(registerTemp, true);
                     if (viewForm.ShowDialog() == DialogResult.OK)
                     {
                         period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
@@ -453,7 +454,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
             if (reg != null && (schemaId == 2 || schemaId == 3)) // рапортичка
             {
-                var progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
+                var progReportBigRight = new ReportExtendedForm(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
                     HeaderInfoCustomerName = GetCustomerName(),
                     HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
@@ -468,7 +469,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 return;
             }
 
-            var viewForm = new ReportExcelViewForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
+            var viewForm = new ReportExcelForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
             if (viewForm.ShowDialog() == DialogResult.OK)
             {
                 SaveRegisterExecuted?.Invoke(this, register);

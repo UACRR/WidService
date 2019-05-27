@@ -1,9 +1,8 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace IpsViewComponentLibrary.ConsumerForms
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
-    partial class ReportExcelViewForm
+    partial class ReportExcelForm
     {
         /// <summary>
         /// Required designer variable.
@@ -42,7 +41,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
             Telerik.WinControls.UI.GridViewTimeSpanColumn gridViewTimeSpanColumn2 = new Telerik.WinControls.UI.GridViewTimeSpanColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportExcelViewForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportExcelForm));
             this.btn = new Telerik.WinControls.UI.RadButton();
             this.gvReportContentView = new Telerik.WinControls.UI.RadGridView();
             this.bindingRegItems = new System.Windows.Forms.BindingSource(this.components);

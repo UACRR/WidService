@@ -7,9 +7,9 @@ using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
 using Telerik.WinControls.UI;
 
-namespace IpsViewComponentLibrary.ConsumerDialogForms
+namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
-    public partial class CreateProgReportBigRight : RadForm
+    public partial class ReportExtendedForm : RadForm
     {
         private Register _register = null;
         private RegisterItem _registerItemCreation = null, _registerItemMusDesign = null;
@@ -83,7 +83,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         /// Конструктор для створення рапортички
         /// </summary>
         /// <param name="register"></param>
-        public CreateProgReportBigRight(Register register)
+        public ReportExtendedForm(Register register)
         {
             InitializeComponent();
             _register = register;
@@ -103,7 +103,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         /// </summary>
         /// <param name="register">Звіт</param>
         /// <param name="isEdit">true - якщо редагування, false - якщо перегляд</param>
-        public CreateProgReportBigRight(Register register, bool isEdit)
+        public ReportExtendedForm(Register register, bool isEdit)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;

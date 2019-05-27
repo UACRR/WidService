@@ -1,8 +1,6 @@
-﻿using System.Drawing;
-
-namespace IpsViewComponentLibrary.ConsumerDialogForms
+﻿namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
-    partial class CreateProgReportBigRight
+    partial class ReportExtendedForm
     {
         /// <summary>
         /// Required designer variable.
@@ -63,7 +61,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn14 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewRelation gridViewRelation1 = new Telerik.WinControls.UI.GridViewRelation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateProgReportBigRight));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportExtendedForm));
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn15 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn16 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn2 = new Telerik.WinControls.UI.GridViewCommandColumn();
@@ -1207,7 +1205,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(1089, 31);
             this.ctrlSaveCancelButtons.TabIndex = 49;
             // 
-            // CreateProgReportBigRight
+            // ReportExtendedForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -1226,7 +1224,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.Controls.Add(this.radLabel9);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.headerPanel);
-            this.Name = "CreateProgReportBigRight";
+            this.Name = "ReportExtendedForm";
             // 
             // 
             // 
