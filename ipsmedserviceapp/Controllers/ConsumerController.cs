@@ -1354,34 +1354,35 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
 
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = false;
 
-                _dbContext.UpdateListExtra(sorsItem.RegisterItem, destItem.RegisterItem,
-                    (isNew, sorsRec, destRec) =>
-                    {
-                        destRec.SetFields(sorsRec);
+                if (sorsItem.RegisterItem.Count > 0)
+                    _dbContext.UpdateListExtra(sorsItem.RegisterItem, destItem.RegisterItem,
+                        (isNew, sorsRec, destRec) =>
+                        {
+                            destRec.SetFields(sorsRec);
                         // TICKS *********************************
                         // Виправлення даних для вирахування пропорціність використання твору
                         if (destRec.DurationItem == null)
-                        {
-                            destRec.DurationItem = TimeSpan.FromTicks(10000);
-                            destRec.Ticks = 1;
-                        }
+                            {
+                                destRec.DurationItem = TimeSpan.FromTicks(10000);
+                                destRec.Ticks = 1;
+                            }
 
-                        if (destRec.Ticks == 0)
-                        {
-                            if (destItem.AlgorithmId == 1)  // Duration
+                            if (destRec.Ticks == 0)
+                            {
+                                if (destItem.AlgorithmId == 1)  // Duration
                                 destRec.Ticks = Math.Max(1,
-                                                         (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / 10000));
-                            else
-                                destRec.Ticks = 1;          // Count
+                                                             (int)(((TimeSpan)destRec.DurationItem).Ticks * Math.Max((destRec.CountUse ?? 0), 1) / 10000));
+                                else
+                                    destRec.Ticks = 1;          // Count
                         }
                         // TICKS *********************************
 
                         if (isNew)
-                            destRec.RegIitemId = regItemId++;
+                                destRec.RegIitemId = regItemId++;
 
-                        _dbContext.UpdateList(sorsRec.RegisterExtra, destRec.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
-                    }
-                    , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+                            _dbContext.UpdateList(sorsRec.RegisterExtra, destRec.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
+                        }
+                        , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
 
                 _dbContext.ChangeTracker.AutoDetectChangesEnabled = true;
 
@@ -2099,9 +2100,9 @@ where t2.rmId = @rmId", new SqlParameter("@rmId", RmId));
 
                 var mime = MimeTypeMap.GetMimeType(Path.GetExtension(consumerPath));
 
-                var file = new FileStream(consumerPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite );
+                var file = new FileStream(consumerPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
-                return File(file, mime, fileName );
+                return File(file, mime, fileName);
 
             }
             catch

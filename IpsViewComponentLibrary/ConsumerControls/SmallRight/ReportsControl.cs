@@ -550,8 +550,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     e.CellElement.Enabled = false;
                 else
                     e.CellElement.Enabled = true;
-
-
             }
         }
 
