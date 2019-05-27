@@ -8,7 +8,7 @@ using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
-    public partial class AddAuthRoleForMusDesingBr : RadForm
+    public partial class CompositionOfReport : RadForm
     {
         private readonly Dictionary<int, CreativeRoleType> creativeDic;
 
@@ -18,11 +18,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             set => bsDictCreativeRole.DataSource = value;
         }
 
-        public AddAuthRoleForMusDesingBr(RegisterItem registerItem)
+        public CompositionOfReport(RegisterItem registerItem)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-
+            ctrlSaveCancelButtons.ButtonSaveDialogResult = DialogResult.None;
+            ctrlSaveCancelButtons.SaveClck += btnSave_Click;
             creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
             bsRegisterItem.DataSource = registerItem;
         }

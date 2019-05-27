@@ -489,11 +489,11 @@
     <Compile Include="Common\TabNavigationControl.Designer.cs">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.cs">
+    <Compile Include="ConsumerDialogForms\CompositionOfReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.Designer.cs">
-      <DependentUpon>AddAuthRoleForMusDesingBr.cs</DependentUpon>
+    <Compile Include="ConsumerDialogForms\CompositionOfReport.Designer.cs">
+      <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </Compile>
     <Compile Include="ConsumerDialogForms\CreateProgReportBigRight.cs">
       <SubType>Form</SubType>
@@ -1305,8 +1305,8 @@
     <EmbeddedResource Include="Common\TabNavigationControl.resx">
       <DependentUpon>TabNavigationControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ConsumerDialogForms\AddAuthRoleForMusDesingBr.resx">
-      <DependentUpon>AddAuthRoleForMusDesingBr.cs</DependentUpon>
+    <EmbeddedResource Include="ConsumerDialogForms\CompositionOfReport.resx">
+      <DependentUpon>CompositionOfReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ConsumerDialogForms\CreateProgReportBigRight.resx">
       <DependentUpon>CreateProgReportBigRight.cs</DependentUpon>

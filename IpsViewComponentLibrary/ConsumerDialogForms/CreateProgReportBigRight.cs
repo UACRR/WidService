@@ -198,7 +198,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
                 CountUse = 1,
             };
 
-            var addAuthRole = new AddAuthRoleForMusDesingBr(_registerItemMusDesign)
+            var addAuthRole = new CompositionOfReport(_registerItemMusDesign)
             {
                 CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1),
             };
