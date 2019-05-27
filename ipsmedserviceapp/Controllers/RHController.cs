@@ -275,7 +275,7 @@ and agrStatus != 4", new SqlParameter("@custId", cust.CustId))
             else
                 return BadRequest();
 
-
+            // Для % по замовчуванню
             var sysConst = await _dbContext.SystemConstant.Where(rec => (new[] { 4, 5 }).Contains(rec.CodeI)).ToDictionaryAsync(rec => rec.CodeI);
 
             var copyrightList = await _dbContext.CopyrightKind

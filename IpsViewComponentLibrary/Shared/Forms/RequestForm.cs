@@ -395,12 +395,12 @@ namespace IpsViewComponentLibrary.Shared.Forms
                 if (error == "Сума долей не може перевищувати мінімальну ставку винагороди.")
                 {
                     _dialogService.ShowError(this, error);
-                    return;
+                    // return; // MED-742 Патлякевич
                 }
                 else
                 {
                     _dialogService.ShowMessage(this, error);
-                    return;
+                    // return; // return; MED-742 Патлякевич
                 }
 
             }
