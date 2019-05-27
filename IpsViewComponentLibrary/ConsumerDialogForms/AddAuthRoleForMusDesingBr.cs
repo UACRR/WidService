@@ -1,22 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
-    public partial class AddAuthRoleForMusDesingBr : Telerik.WinControls.UI.RadForm
+    public partial class AddAuthRoleForMusDesingBr : RadForm
     {
-        private RegisterItem _registerItem = null;
-        private Dictionary<int, CreativeRoleType> creativeDic;
+        private readonly Dictionary<int, CreativeRoleType> creativeDic;
 
         public object CreativeRoleDataSource
         {
@@ -24,54 +18,49 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             set => bsDictCreativeRole.DataSource = value;
         }
 
-        public AddAuthRoleForMusDesingBr()
-        {
-            InitializeComponent();
-            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
-        }
         public AddAuthRoleForMusDesingBr(RegisterItem registerItem)
         {
             InitializeComponent();
-            _registerItem = registerItem;
+            StartPosition = FormStartPosition.CenterScreen;
+
             creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
-            bsRegisterItem.DataSource = _registerItem;
+            bsRegisterItem.DataSource = registerItem;
         }
 
-        private void gvAuthRole_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvAuthRole_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             if (e.Row.DataBoundItem is RegisterExtra item)
-            {
-                registerExtraBindingSource.Remove(item);
-            }
-
+                registerExtraBindingSource.Remove(item);   
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (txtAuthName.Text != string.Empty)
+            if (string.IsNullOrEmpty(txtAuthName.Text))
             {
-                int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
-                var addRow = new RegisterExtra
-                {
-                    Name = txtAuthName.Text,
-                    RoleCode = roleCode,
-                    RoleCodeNavigation = creativeDic[roleCode]
-                };
-
-                registerExtraBindingSource.Add(addRow);
-            }
-            else
                 MessageBox.Show("ПІБ автора не може бути пустим!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
+            var addRow = new RegisterExtra
+            {
+                Name = txtAuthName.Text,
+                RoleCode = roleCode,
+                RoleCodeNavigation = creativeDic[roleCode]
+            };
+
+            registerExtraBindingSource.Add(addRow);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if(txtCrName.Text != string.Empty)
+            if(string.IsNullOrEmpty(txtCrName.Text))
             {
-                DialogResult = DialogResult.OK;
-            }
-            else
                 MessageBox.Show("Назва твору не може бути пустою!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+
+            DialogResult = DialogResult.OK;
         }
     }
 }

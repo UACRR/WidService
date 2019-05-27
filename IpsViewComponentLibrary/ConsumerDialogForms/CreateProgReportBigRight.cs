@@ -1,19 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
-using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
-using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerDialogForms
 {
-    public partial class CreateProgReportBigRight : Telerik.WinControls.UI.RadForm
+    public partial class CreateProgReportBigRight : RadForm
     {
         private Register _register = null;
         private RegisterItem _registerItemCreation = null, _registerItemMusDesign = null;
@@ -53,6 +49,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             get => lblConsumer.Text;
             set => lblConsumer.Text = value;
         }
+
         /// <summary>
         /// Номер ліц. договору
         /// </summary>
@@ -61,6 +58,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             get => lblLicenseAgrNumber.Text;
             set => lblLicenseAgrNumber.Text = value;
         }
+
         /// <summary>
         /// Найменування періоду
         /// </summary>
@@ -69,6 +67,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             get => lblPeriod.Text;
             set => lblPeriod.Text = value;
         }
+
         /// <summary>
         /// Номер розрахункового листа
         /// </summary>
@@ -77,8 +76,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             get => lblRlNumber.Text;
             set => lblRlNumber.Text = value;
         }
-
-
 
         #endregion
 
@@ -109,6 +106,8 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         public CreateProgReportBigRight(Register register, bool isEdit)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+
             creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
             _register = register;
             NormalizeData(_register);
@@ -121,7 +120,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
 
             btnAddRegItem.Enabled = isEdit;
             btnAddCreativeRole.Enabled = isEdit;
-            btnSave.Enabled = isEdit;
+            ctrlSaveCancelButtons.SaveButtonEnabled = isEdit;
             txtName.ReadOnly = !isEdit;
             txtAuthName.Enabled = isEdit;
             txtAmount.ReadOnly = !isEdit;
@@ -196,12 +195,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             _registerItemMusDesign = new RegisterItem
             {
                 CodeItem = 3,
+                CountUse = 1,
             };
 
-            AddAuthRoleForMusDesingBr addAuthRole = new AddAuthRoleForMusDesingBr(_registerItemMusDesign)
+            var addAuthRole = new AddAuthRoleForMusDesingBr(_registerItemMusDesign)
             {
                 CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1),
-                StartPosition = FormStartPosition.CenterParent
             };
             if (addAuthRole.ShowDialog() == DialogResult.OK)
             {
@@ -210,14 +209,14 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             }
         }
 
-        private void gvMusicalDesing_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvMusicalDesing_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             var rec = e.Row.DataBoundItem as RegisterItem;
             registerItemBindingSource.Remove(rec);
             _register.RegisterItem.Remove(rec);
         }
 
-        private void gvStaging_CommandCellClick(object sender, Telerik.WinControls.UI.GridViewCellEventArgs e)
+        private void gvStaging_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
             if (e.Row.DataBoundItem is RegisterExtra item)
             {
@@ -239,11 +238,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             {
                 e.Handled = true;
             }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
         }
     }
 }

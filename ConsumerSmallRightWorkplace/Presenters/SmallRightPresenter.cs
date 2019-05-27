@@ -183,6 +183,10 @@ namespace ConsumerSmallRightWorkplace.Presenters
                     }
                 }
             }
+
+            // sync anketa
+            regCust.Company = mainCust.Company;
+            regCust.Person = mainCust.Person;
         }
 
         // Додавання нового споживача юридична особа (діалогова форма)

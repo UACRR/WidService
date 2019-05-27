@@ -41,17 +41,17 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn4 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn5 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn5 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewCommandColumn gridViewCommandColumn1 = new Telerik.WinControls.UI.GridViewCommandColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn6 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn7 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn8 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn9 = new Telerik.WinControls.UI.GridViewDecimalColumn();
+            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn10 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn6 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn7 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn8 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn9 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
-            Telerik.WinControls.UI.GridViewDecimalColumn gridViewDecimalColumn10 = new Telerik.WinControls.UI.GridViewDecimalColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn10 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
             Telerik.WinControls.UI.GridViewDateTimeColumn gridViewDateTimeColumn1 = new Telerik.WinControls.UI.GridViewDateTimeColumn();
             Telerik.WinControls.UI.GridViewTextBoxColumn gridViewTextBoxColumn11 = new Telerik.WinControls.UI.GridViewTextBoxColumn();
@@ -82,14 +82,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.lblName = new Telerik.WinControls.UI.RadLabel();
             this.txtName = new Telerik.WinControls.UI.RadTextBox();
             this.bsRegister = new System.Windows.Forms.BindingSource(this.components);
-            this.btnSave = new Telerik.WinControls.UI.RadButton();
             this.txtAmount = new Telerik.WinControls.UI.RadTextBox();
             this.lblAmount = new Telerik.WinControls.UI.RadLabel();
             this.txtAuthRate = new Telerik.WinControls.UI.RadTextBox();
             this.lblAuthRate = new Telerik.WinControls.UI.RadLabel();
             this.txtAuthAmount = new Telerik.WinControls.UI.RadTextBox();
             this.lblAuthAmount = new Telerik.WinControls.UI.RadLabel();
-            this.btnCancel = new Telerik.WinControls.UI.RadButton();
             this.headerPanel = new Telerik.WinControls.UI.RadPanel();
             this.lblValidAuthAmount = new Telerik.WinControls.UI.RadLabel();
             this.splitContainer = new Telerik.WinControls.UI.RadSplitContainer();
@@ -128,6 +126,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.radLabel13 = new Telerik.WinControls.UI.RadLabel();
             this.lblRlNumber = new Telerik.WinControls.UI.RadLabel();
             this.radLabel15 = new Telerik.WinControls.UI.RadLabel();
+            this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             ((System.ComponentModel.ISupportInitialize)(this.childrTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerExtraBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.registerItemBindingSource)).BeginInit();
@@ -136,14 +135,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             ((System.ComponentModel.ISupportInitialize)(this.lblName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegister)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAuthRate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAuthAmount)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.headerPanel)).BeginInit();
             this.headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lblValidAuthAmount)).BeginInit();
@@ -286,7 +283,16 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             gridViewTextBoxColumn5.HeaderText = "Назва твору";
             gridViewTextBoxColumn5.IsAutoGenerated = true;
             gridViewTextBoxColumn5.Name = "ItemName";
-            gridViewTextBoxColumn5.Width = 921;
+            gridViewTextBoxColumn5.Width = 924;
+            gridViewDecimalColumn5.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn5.FieldName = "CountUse";
+            gridViewDecimalColumn5.HeaderText = "К-сть використань";
+            gridViewDecimalColumn5.IsAutoGenerated = true;
+            gridViewDecimalColumn5.MaxWidth = 80;
+            gridViewDecimalColumn5.MinWidth = 80;
+            gridViewDecimalColumn5.Name = "CountUse";
+            gridViewDecimalColumn5.Width = 80;
+            gridViewDecimalColumn5.WrapText = true;
             gridViewCommandColumn1.FieldName = "btnsDelete";
             gridViewCommandColumn1.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn1.HeaderText = "";
@@ -299,41 +305,41 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             gridViewCommandColumn1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
             gridViewCommandColumn1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             gridViewCommandColumn1.Width = 30;
-            gridViewDecimalColumn5.DataType = typeof(int);
-            gridViewDecimalColumn5.FieldName = "RegId";
-            gridViewDecimalColumn5.HeaderText = "RegId";
-            gridViewDecimalColumn5.IsAutoGenerated = true;
-            gridViewDecimalColumn5.IsVisible = false;
-            gridViewDecimalColumn5.Name = "RegId";
-            gridViewDecimalColumn5.Width = 24;
             gridViewDecimalColumn6.DataType = typeof(int);
-            gridViewDecimalColumn6.FieldName = "RegIitemId";
-            gridViewDecimalColumn6.HeaderText = "RegIitemId";
+            gridViewDecimalColumn6.FieldName = "RegId";
+            gridViewDecimalColumn6.HeaderText = "RegId";
             gridViewDecimalColumn6.IsAutoGenerated = true;
             gridViewDecimalColumn6.IsVisible = false;
-            gridViewDecimalColumn6.Name = "RegIitemId";
-            gridViewDecimalColumn6.Width = 25;
-            gridViewDecimalColumn7.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn7.FieldName = "ObjId";
-            gridViewDecimalColumn7.HeaderText = "ObjId";
+            gridViewDecimalColumn6.Name = "RegId";
+            gridViewDecimalColumn6.Width = 24;
+            gridViewDecimalColumn7.DataType = typeof(int);
+            gridViewDecimalColumn7.FieldName = "RegIitemId";
+            gridViewDecimalColumn7.HeaderText = "RegIitemId";
             gridViewDecimalColumn7.IsAutoGenerated = true;
             gridViewDecimalColumn7.IsVisible = false;
-            gridViewDecimalColumn7.Name = "ObjId";
-            gridViewDecimalColumn7.Width = 26;
-            gridViewDecimalColumn8.DataType = typeof(int);
-            gridViewDecimalColumn8.FieldName = "CodeItem";
-            gridViewDecimalColumn8.HeaderText = "CodeItem";
+            gridViewDecimalColumn7.Name = "RegIitemId";
+            gridViewDecimalColumn7.Width = 25;
+            gridViewDecimalColumn8.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn8.FieldName = "ObjId";
+            gridViewDecimalColumn8.HeaderText = "ObjId";
             gridViewDecimalColumn8.IsAutoGenerated = true;
             gridViewDecimalColumn8.IsVisible = false;
-            gridViewDecimalColumn8.Name = "CodeItem";
-            gridViewDecimalColumn8.Width = 27;
-            gridViewDecimalColumn9.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn9.FieldName = "CategoryCode";
-            gridViewDecimalColumn9.HeaderText = "CategoryCode";
+            gridViewDecimalColumn8.Name = "ObjId";
+            gridViewDecimalColumn8.Width = 26;
+            gridViewDecimalColumn9.DataType = typeof(int);
+            gridViewDecimalColumn9.FieldName = "CodeItem";
+            gridViewDecimalColumn9.HeaderText = "CodeItem";
             gridViewDecimalColumn9.IsAutoGenerated = true;
             gridViewDecimalColumn9.IsVisible = false;
-            gridViewDecimalColumn9.Name = "CategoryCode";
-            gridViewDecimalColumn9.Width = 28;
+            gridViewDecimalColumn9.Name = "CodeItem";
+            gridViewDecimalColumn9.Width = 27;
+            gridViewDecimalColumn10.DataType = typeof(System.Nullable<int>);
+            gridViewDecimalColumn10.FieldName = "CategoryCode";
+            gridViewDecimalColumn10.HeaderText = "CategoryCode";
+            gridViewDecimalColumn10.IsAutoGenerated = true;
+            gridViewDecimalColumn10.IsVisible = false;
+            gridViewDecimalColumn10.Name = "CategoryCode";
+            gridViewDecimalColumn10.Width = 28;
             gridViewTextBoxColumn6.FieldName = "Performer";
             gridViewTextBoxColumn6.HeaderText = "Performer";
             gridViewTextBoxColumn6.IsAutoGenerated = true;
@@ -359,13 +365,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             gridViewTextBoxColumn9.IsVisible = false;
             gridViewTextBoxColumn9.Name = "DurationUse";
             gridViewTextBoxColumn9.Width = 32;
-            gridViewDecimalColumn10.DataType = typeof(System.Nullable<int>);
-            gridViewDecimalColumn10.FieldName = "CountUse";
-            gridViewDecimalColumn10.HeaderText = "CountUse";
-            gridViewDecimalColumn10.IsAutoGenerated = true;
-            gridViewDecimalColumn10.IsVisible = false;
-            gridViewDecimalColumn10.Name = "CountUse";
-            gridViewDecimalColumn10.Width = 33;
             gridViewTextBoxColumn10.DataType = typeof(System.Nullable<System.TimeSpan>);
             gridViewTextBoxColumn10.FieldName = "DurationItem";
             gridViewTextBoxColumn10.HeaderText = "DurationItem";
@@ -429,17 +428,17 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             gridViewTextBoxColumn14.Width = 32;
             this.gvMusicalDesing.MasterTemplate.Columns.AddRange(new Telerik.WinControls.UI.GridViewDataColumn[] {
             gridViewTextBoxColumn5,
-            gridViewCommandColumn1,
             gridViewDecimalColumn5,
+            gridViewCommandColumn1,
             gridViewDecimalColumn6,
             gridViewDecimalColumn7,
             gridViewDecimalColumn8,
             gridViewDecimalColumn9,
+            gridViewDecimalColumn10,
             gridViewTextBoxColumn6,
             gridViewTextBoxColumn7,
             gridViewTextBoxColumn8,
             gridViewTextBoxColumn9,
-            gridViewDecimalColumn10,
             gridViewTextBoxColumn10,
             gridViewDateTimeColumn1,
             gridViewTextBoxColumn11,
@@ -464,7 +463,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.gvMusicalDesing.Relations.AddRange(new Telerik.WinControls.UI.GridViewRelation[] {
             gridViewRelation1});
             this.gvMusicalDesing.ShowGroupPanel = false;
-            this.gvMusicalDesing.Size = new System.Drawing.Size(1000, 141);
+            this.gvMusicalDesing.Size = new System.Drawing.Size(1082, 173);
             this.gvMusicalDesing.TabIndex = 3;
             this.gvMusicalDesing.ThemeName = "Office2013Light";
             this.gvMusicalDesing.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvMusicalDesing_CommandCellClick);
@@ -484,7 +483,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "FileName", true));
             this.txtName.Location = new System.Drawing.Point(309, 3);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(450, 21);
+            this.txtName.Size = new System.Drawing.Size(475, 21);
             this.txtName.TabIndex = 1;
             this.txtName.ThemeName = "Office2013Light";
             // 
@@ -492,21 +491,10 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             this.bsRegister.DataSource = typeof(ipsFormsDesign.Model.Register);
             // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(12, 626);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 24);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Зберегти";
-            this.btnSave.ThemeName = "Office2013Light";
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
             // txtAmount
             // 
             this.txtAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegister, "RegAmount", true));
-            this.txtAmount.Location = new System.Drawing.Point(898, 3);
+            this.txtAmount.Location = new System.Drawing.Point(923, 3);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(104, 21);
             this.txtAmount.TabIndex = 2;
@@ -516,7 +504,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // lblAmount
             // 
-            this.lblAmount.Location = new System.Drawing.Point(765, 4);
+            this.lblAmount.Location = new System.Drawing.Point(790, 4);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(127, 19);
             this.lblAmount.TabIndex = 6;
@@ -562,17 +550,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.lblAuthAmount.Text = "Сума авторської винагороди";
             this.lblAuthAmount.ThemeName = "Office2013Light";
             // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(909, 626);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 24);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "Скасувати";
-            this.btnCancel.ThemeName = "Office2013Light";
-            // 
             // headerPanel
             // 
             this.headerPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -586,9 +563,9 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.headerPanel.Controls.Add(this.txtAuthAmount);
             this.headerPanel.Controls.Add(this.txtAuthRate);
             this.headerPanel.Controls.Add(this.lblAuthAmount);
-            this.headerPanel.Location = new System.Drawing.Point(12, 37);
+            this.headerPanel.Location = new System.Drawing.Point(0, 37);
             this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1007, 53);
+            this.headerPanel.Size = new System.Drawing.Size(1089, 53);
             this.headerPanel.TabIndex = 15;
             this.headerPanel.ThemeName = "Office2013Light";
             // 
@@ -629,14 +606,14 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.splitContainer.Controls.Add(this.splitPanelStaging);
             this.splitContainer.Controls.Add(this.splitPanelMusicalDesign);
             this.splitContainer.EnableCollapsing = true;
-            this.splitContainer.Location = new System.Drawing.Point(12, 93);
+            this.splitContainer.Location = new System.Drawing.Point(0, 93);
             this.splitContainer.Name = "splitContainer";
             this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // 
             // 
             this.splitContainer.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitContainer.Size = new System.Drawing.Size(1007, 530);
+            this.splitContainer.Size = new System.Drawing.Size(1089, 598);
             this.splitContainer.SplitterWidth = 5;
             this.splitContainer.TabIndex = 16;
             this.splitContainer.TabStop = false;
@@ -664,7 +641,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // 
             this.splitPanelStaging.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelStaging.Size = new System.Drawing.Size(1007, 281);
+            this.splitPanelStaging.Size = new System.Drawing.Size(1089, 317);
             this.splitPanelStaging.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, 0.03483146F);
             this.splitPanelStaging.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, -42);
             this.splitPanelStaging.TabIndex = 0;
@@ -717,7 +694,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator1.Location = new System.Drawing.Point(27, 80);
             this.radSeparator1.Name = "radSeparator1";
-            this.radSeparator1.Size = new System.Drawing.Size(950, 12);
+            this.radSeparator1.Size = new System.Drawing.Size(1032, 12);
             this.radSeparator1.TabIndex = 19;
             this.radSeparator1.ThemeName = "Office2013Light";
             // 
@@ -753,7 +730,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // btnAddCreativeRole
             // 
             this.btnAddCreativeRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddCreativeRole.Location = new System.Drawing.Point(877, 97);
+            this.btnAddCreativeRole.Location = new System.Drawing.Point(959, 97);
             this.btnAddCreativeRole.Name = "btnAddCreativeRole";
             this.btnAddCreativeRole.Size = new System.Drawing.Size(124, 21);
             this.btnAddCreativeRole.TabIndex = 9;
@@ -802,7 +779,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             // 
             this.txtAuthName.RootElement.MaxSize = new System.Drawing.Size(648, 21);
-            this.txtAuthName.Size = new System.Drawing.Size(648, 21);
+            this.txtAuthName.Size = new System.Drawing.Size(570, 21);
             this.txtAuthName.TabIndex = 8;
             this.txtAuthName.ThemeName = "Office2013Light";
             // 
@@ -825,12 +802,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             gridViewTextBoxColumn15.FieldName = "RoleCodeNavigation.Name";
             gridViewTextBoxColumn15.HeaderText = "Творча роль";
             gridViewTextBoxColumn15.Name = "RoleName";
-            gridViewTextBoxColumn15.Width = 502;
+            gridViewTextBoxColumn15.Width = 544;
             gridViewTextBoxColumn16.FieldName = "Name";
             gridViewTextBoxColumn16.HeaderText = "ПІБ автора";
             gridViewTextBoxColumn16.IsAutoGenerated = true;
             gridViewTextBoxColumn16.Name = "Name";
-            gridViewTextBoxColumn16.Width = 444;
+            gridViewTextBoxColumn16.Width = 484;
             gridViewCommandColumn2.FieldName = "btnsDelete";
             gridViewCommandColumn2.HeaderImage = global::IpsViewComponentLibrary.Properties.Resources.deleteIcon;
             gridViewCommandColumn2.HeaderText = "";
@@ -900,7 +877,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.gvStaging.Name = "gvStaging";
             this.gvStaging.ReadOnly = true;
             this.gvStaging.ShowGroupPanel = false;
-            this.gvStaging.Size = new System.Drawing.Size(1000, 153);
+            this.gvStaging.Size = new System.Drawing.Size(1082, 189);
             this.gvStaging.TabIndex = 3;
             this.gvStaging.ThemeName = "Office2013Light";
             this.gvStaging.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvStaging_CommandCellClick);
@@ -954,13 +931,13 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.splitPanelMusicalDesign.Controls.Add(this.btnAddRegItem);
             this.splitPanelMusicalDesign.Controls.Add(this.txtMusicalDesignRate);
             this.splitPanelMusicalDesign.Controls.Add(this.gvMusicalDesing);
-            this.splitPanelMusicalDesign.Location = new System.Drawing.Point(0, 286);
+            this.splitPanelMusicalDesign.Location = new System.Drawing.Point(0, 322);
             this.splitPanelMusicalDesign.Name = "splitPanelMusicalDesign";
             // 
             // 
             // 
             this.splitPanelMusicalDesign.RootElement.MinSize = new System.Drawing.Size(25, 25);
-            this.splitPanelMusicalDesign.Size = new System.Drawing.Size(1007, 244);
+            this.splitPanelMusicalDesign.Size = new System.Drawing.Size(1089, 276);
             this.splitPanelMusicalDesign.SizeInfo.AutoSizeScale = new System.Drawing.SizeF(0F, -0.03483146F);
             this.splitPanelMusicalDesign.SizeInfo.SplitterCorrection = new System.Drawing.Size(0, 42);
             this.splitPanelMusicalDesign.TabIndex = 1;
@@ -1014,7 +991,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radSeparator2.Location = new System.Drawing.Point(27, 55);
             this.radSeparator2.Name = "radSeparator2";
-            this.radSeparator2.Size = new System.Drawing.Size(950, 12);
+            this.radSeparator2.Size = new System.Drawing.Size(1032, 12);
             this.radSeparator2.TabIndex = 22;
             this.radSeparator2.ThemeName = "Office2013Light";
             // 
@@ -1039,7 +1016,7 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // btnAddRegItem
             // 
             this.btnAddRegItem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddRegItem.Location = new System.Drawing.Point(802, 73);
+            this.btnAddRegItem.Location = new System.Drawing.Point(884, 73);
             this.btnAddRegItem.Name = "btnAddRegItem";
             this.btnAddRegItem.Size = new System.Drawing.Size(199, 21);
             this.btnAddRegItem.TabIndex = 11;
@@ -1062,25 +1039,26 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // btnCopyExistRl
             // 
             this.btnCopyExistRl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCopyExistRl.Location = new System.Drawing.Point(871, 12);
+            this.btnCopyExistRl.Location = new System.Drawing.Point(935, 12);
             this.btnCopyExistRl.Name = "btnCopyExistRl";
             this.btnCopyExistRl.Size = new System.Drawing.Size(148, 19);
             this.btnCopyExistRl.TabIndex = 12;
             this.btnCopyExistRl.Text = "Скопіювати з існуючого";
             this.btnCopyExistRl.TextWrap = true;
             this.btnCopyExistRl.ThemeName = "Office2013Light";
+            this.btnCopyExistRl.Visible = false;
             // 
             // lblConsumer
             // 
             this.lblConsumer.BorderVisible = true;
-            this.lblConsumer.Location = new System.Drawing.Point(83, 12);
-            this.lblConsumer.MinimumSize = new System.Drawing.Size(264, 18);
+            this.lblConsumer.Location = new System.Drawing.Point(90, 13);
+            this.lblConsumer.MinimumSize = new System.Drawing.Size(255, 18);
             this.lblConsumer.Name = "lblConsumer";
             // 
             // 
             // 
-            this.lblConsumer.RootElement.MinSize = new System.Drawing.Size(264, 18);
-            this.lblConsumer.Size = new System.Drawing.Size(264, 18);
+            this.lblConsumer.RootElement.MinSize = new System.Drawing.Size(255, 18);
+            this.lblConsumer.Size = new System.Drawing.Size(255, 18);
             this.lblConsumer.TabIndex = 42;
             this.lblConsumer.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.lblConsumer.ThemeName = "Office2013Light";
@@ -1102,9 +1080,9 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             // 
             this.radLabel9.Location = new System.Drawing.Point(12, 12);
             this.radLabel9.Name = "radLabel9";
-            this.radLabel9.Size = new System.Drawing.Size(65, 19);
+            this.radLabel9.Size = new System.Drawing.Size(72, 19);
             this.radLabel9.TabIndex = 41;
-            this.radLabel9.Text = "Споживач";
+            this.radLabel9.Text = "Користувач";
             this.radLabel9.ThemeName = "Office2013Light";
             // 
             // lblLicenseAgrNumber
@@ -1218,12 +1196,25 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.radLabel15.Text = "Роз. лист";
             this.radLabel15.ThemeName = "Office2013Light";
             // 
+            // ctrlSaveCancelButtons
+            // 
+            this.ctrlSaveCancelButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ctrlSaveCancelButtons.Location = new System.Drawing.Point(0, 694);
+            this.ctrlSaveCancelButtons.MaximumSize = new System.Drawing.Size(3000, 31);
+            this.ctrlSaveCancelButtons.MinimumSize = new System.Drawing.Size(300, 31);
+            this.ctrlSaveCancelButtons.Name = "ctrlSaveCancelButtons";
+            this.ctrlSaveCancelButtons.SaveButtonEnabled = true;
+            this.ctrlSaveCancelButtons.Size = new System.Drawing.Size(1089, 31);
+            this.ctrlSaveCancelButtons.TabIndex = 49;
+            // 
             // CreateProgReportBigRight
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1031, 662);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(1035, 500);
+            this.ClientSize = new System.Drawing.Size(1089, 725);
+            this.Controls.Add(this.ctrlSaveCancelButtons);
             this.Controls.Add(this.btnCopyExistRl);
             this.Controls.Add(this.lblRlNumber);
             this.Controls.Add(this.radLabel15);
@@ -1235,8 +1226,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             this.Controls.Add(this.radLabel9);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.headerPanel);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnSave);
             this.Name = "CreateProgReportBigRight";
             // 
             // 
@@ -1253,14 +1242,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
             ((System.ComponentModel.ISupportInitialize)(this.lblName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegister)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnSave)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAuthRate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAuthAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lblAuthAmount)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnCancel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.headerPanel)).EndInit();
             this.headerPanel.ResumeLayout(false);
             this.headerPanel.PerformLayout();
@@ -1318,14 +1305,12 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadLabel lblName;
         private Telerik.WinControls.UI.RadTextBox txtName;
-        private Telerik.WinControls.UI.RadButton btnSave;
         private Telerik.WinControls.UI.RadTextBox txtAmount;
         private Telerik.WinControls.UI.RadLabel lblAmount;
         private Telerik.WinControls.UI.RadTextBox txtAuthRate;
         private Telerik.WinControls.UI.RadLabel lblAuthRate;
         private Telerik.WinControls.UI.RadTextBox txtAuthAmount;
         private Telerik.WinControls.UI.RadLabel lblAuthAmount;
-        private Telerik.WinControls.UI.RadButton btnCancel;
         private Telerik.WinControls.UI.RadPanel headerPanel;
         private Telerik.WinControls.UI.RadSplitContainer splitContainer;
         private Telerik.WinControls.UI.SplitPanel splitPanelStaging;
@@ -1369,5 +1354,6 @@ namespace IpsViewComponentLibrary.ConsumerDialogForms
         private Telerik.WinControls.UI.RadLabel radLabel13;
         private Telerik.WinControls.UI.RadLabel lblRlNumber;
         private Telerik.WinControls.UI.RadLabel radLabel15;
+        private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
     }
 }

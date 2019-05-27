@@ -400,22 +400,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
                 if (schemaId == 2) // рапортичка
                 {
-                    string customerName;
-                    if (_customer.CustType == 3)
-                    {
-                        customerName = _customer.Company?.AnketaCompany?.SingleOrDefault()?.ShortName;
-                    }
-                    else
-                    {
-                        var anketaPerson = _customer.Person?.AnketaPerson?.SingleOrDefault();
-                        customerName = anketaPerson?.LastName + " " + anketaPerson?.FirstName + " " + anketaPerson?.SurName;
-                    }
-
                     registerTemp.SchemaId = 2;
                     var progReportBigRight = new CreateProgReportBigRight(registerTemp)
                     {
                         StartPosition = FormStartPosition.CenterParent,
-                        HeaderInfoCustomerName = customerName,
+                        HeaderInfoCustomerName = GetCustomerName(),
                         HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
                         HeaderInfoPeriodName = period.PeriodName,
                         HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
@@ -466,8 +455,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             {
                 var progReportBigRight = new CreateProgReportBigRight(register, (register.RgStatus == 0 || register.RgStatus == 5))
                 {
-                    StartPosition = FormStartPosition.CenterParent,
-                    HeaderInfoCustomerName = _customer?.Company?.AnketaCompany?.SingleOrDefault()?.ShortName,
+                    HeaderInfoCustomerName = GetCustomerName(),
                     HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
                     HeaderInfoPeriodName = period.PeriodName,
                     HeaderInfoRatedListNumber = period.RegisterRatedList.SingleOrDefault()?.RmId.ToString()
@@ -487,6 +475,26 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             }
         }
 
+        /// <summary>
+        ///  Найменування користувача
+        /// </summary>
+        /// <returns></returns>
+        private string GetCustomerName()
+        {
+            string customerName;
+            if (_customer.CustType == 3)
+            {
+                customerName = _customer.Company?.AnketaCompany?.SingleOrDefault()?.ShortName;
+            }
+            else
+            {
+                var anketaPerson = _customer.Person?.AnketaPerson?.SingleOrDefault();
+                customerName = $"{anketaPerson?.LastName} {anketaPerson?.FirstName} {anketaPerson?.SurName}";
+            }
+
+            return customerName;
+        }
+
         #endregion
 
         private void DeleteRegister()
@@ -495,7 +503,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 return;
             if (!(gvPeriodReports.CurrentRow.DataBoundItem is Register register))
                 return;
-            if (MessageBox.Show($"Видалити звіт {register.FileName}", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show($"Видалити звіт {register.FileName}?", "Видалення", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 DeleteRegisterExecuted(this, register);
                 var period = gvPeriods.CurrentRow.DataBoundItem as PaidPeriod;
@@ -506,8 +514,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                         item.Register.Remove(register);
                         break;
                     }
-
-
                 }
                 bindingReports.Remove(register);
                 gvPeriodReports.MasterTemplate.Refresh();
