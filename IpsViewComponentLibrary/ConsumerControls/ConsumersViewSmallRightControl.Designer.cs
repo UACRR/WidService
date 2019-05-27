@@ -119,6 +119,7 @@
             gridViewTextBoxColumn5.WrapText = true;
             gridViewTextBoxColumn6.DataType = typeof(double);
             gridViewTextBoxColumn6.FieldName = "Undistribamount";
+            gridViewTextBoxColumn6.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn6.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn6.MaxWidth = 150;
             gridViewTextBoxColumn6.MinWidth = 100;

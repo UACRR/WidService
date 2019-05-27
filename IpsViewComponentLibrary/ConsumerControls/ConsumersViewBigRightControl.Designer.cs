@@ -145,6 +145,7 @@
             gridViewTextBoxColumn9.WrapText = true;
             gridViewTextBoxColumn10.DataType = typeof(double);
             gridViewTextBoxColumn10.FieldName = "UndistribAmount";
+            gridViewTextBoxColumn10.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn10.HeaderText = "Нерозподілені кошти";
             gridViewTextBoxColumn10.MinWidth = 100;
             gridViewTextBoxColumn10.Multiline = true;
@@ -154,6 +155,7 @@
             gridViewTextBoxColumn10.WrapText = true;
             gridViewTextBoxColumn11.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn11.FieldName = "UnattachAmount";
+            gridViewTextBoxColumn11.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn11.HeaderText = "Незакріплені кошти";
             gridViewTextBoxColumn11.MinWidth = 100;
             gridViewTextBoxColumn11.Multiline = true;
@@ -162,6 +164,7 @@
             gridViewTextBoxColumn11.WrapText = true;
             gridViewTextBoxColumn12.DataType = typeof(System.Nullable<decimal>);
             gridViewTextBoxColumn12.FieldName = "Borg";
+            gridViewTextBoxColumn12.FormatString = "{0:### ### ##0.00}";
             gridViewTextBoxColumn12.HeaderText = "Борг";
             gridViewTextBoxColumn12.MaxWidth = 100;
             gridViewTextBoxColumn12.MinWidth = 100;

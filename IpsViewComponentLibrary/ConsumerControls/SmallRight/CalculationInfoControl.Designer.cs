@@ -127,11 +127,13 @@
             gridViewTextBoxColumn2.Name = "Status";
             gridViewTextBoxColumn2.Width = 175;
             gridViewDecimalColumn1.FieldName = "Amount";
+            gridViewDecimalColumn1.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn1.HeaderText = "Вимога";
             gridViewDecimalColumn1.Name = "Amount";
             gridViewDecimalColumn1.Width = 175;
             gridViewDecimalColumn2.EnableExpressionEditor = true;
             gridViewDecimalColumn2.Expression = "Distribamount+Undistribamount";
+            gridViewDecimalColumn2.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn2.HeaderText = "Прив\'язано";
             gridViewDecimalColumn2.Name = "AmountBound";
             gridViewDecimalColumn2.Width = 175;
@@ -139,15 +141,18 @@
             gridViewDecimalColumn3.Expression = "iif(EndDate <= TODAY() AND Amount - Undistribamount-Distribamount > 0, Amount - U" +
     "ndistribamount-Distribamount, 0 )";
             gridViewDecimalColumn3.FieldName = "Arrears";
+            gridViewDecimalColumn3.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn3.HeaderText = "Борг";
             gridViewDecimalColumn3.Name = "Arrears";
             gridViewDecimalColumn3.Width = 150;
             gridViewDecimalColumn4.FieldName = "Distribamount";
+            gridViewDecimalColumn4.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn4.HeaderText = "Distribamount";
             gridViewDecimalColumn4.IsVisible = false;
             gridViewDecimalColumn4.Name = "Distribamount";
             gridViewDecimalColumn4.Width = 64;
             gridViewDecimalColumn5.FieldName = "Undistribamount";
+            gridViewDecimalColumn5.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn5.HeaderText = "Undistribamount";
             gridViewDecimalColumn5.IsVisible = false;
             gridViewDecimalColumn5.Name = "Undistribamount";
@@ -208,10 +213,12 @@
             gridViewTextBoxColumn4.Name = "DateInvoice";
             gridViewTextBoxColumn4.Width = 89;
             gridViewDecimalColumn6.FieldName = "Amount";
+            gridViewDecimalColumn6.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn6.HeaderText = "Сума платежу";
             gridViewDecimalColumn6.Name = "Amount";
             gridViewDecimalColumn6.Width = 106;
             gridViewDecimalColumn7.FieldName = "DestribAmount";
+            gridViewDecimalColumn7.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn7.HeaderText = "Прив\'язана сума";
             gridViewDecimalColumn7.Name = "DestribAmount";
             gridViewDecimalColumn7.Width = 106;
@@ -222,6 +229,7 @@
             gridViewTextBoxColumn5.Width = 488;
             gridViewDecimalColumn8.EnableExpressionEditor = true;
             gridViewDecimalColumn8.Expression = "Amount -DestribAmount ";
+            gridViewDecimalColumn8.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn8.HeaderText = "Залишок";
             gridViewDecimalColumn8.Name = "Rest";
             gridViewDecimalColumn8.Width = 45;
@@ -301,6 +309,7 @@
             gridViewTextBoxColumn10.Width = 97;
             gridViewDecimalColumn9.DataType = typeof(System.Nullable<decimal>);
             gridViewDecimalColumn9.FieldName = "Amount";
+            gridViewDecimalColumn9.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn9.HeaderText = "Сума";
             gridViewDecimalColumn9.Name = "Amount";
             gridViewDecimalColumn9.Width = 97;
@@ -314,7 +323,7 @@
             gridViewTextBoxColumn12.Width = 132;
             gridViewDecimalColumn10.EnableExpressionEditor = false;
             gridViewDecimalColumn10.FieldName = "Arrears";
-            gridViewDecimalColumn10.FormatString = "{0:# ##0.00}";
+            gridViewDecimalColumn10.FormatString = "{0:### ### ##0.00}";
             gridViewDecimalColumn10.HeaderText = "Борг";
             gridViewDecimalColumn10.Name = "Debt";
             gridViewDecimalColumn10.ReadOnly = true;
