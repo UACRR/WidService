@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using Microsoft.Extensions.Logging;
 
 namespace ipsmedserviceapp.Controllers
 {
@@ -21,10 +22,12 @@ namespace ipsmedserviceapp.Controllers
     public class CatalogController : ControllerBase
     {
         private readonly MediaServiceContext _dbContext;
+        private readonly ILogger<CatalogController> _logger;
 
-        public CatalogController(MediaServiceContext dbContext)
+        public CatalogController(MediaServiceContext dbContext, ILogger<CatalogController> logger)
         {
             _dbContext = dbContext;
+            _logger = logger;
         }
 
         [HttpGet("catalogfile/{custId}/{fileId}")]
@@ -104,7 +107,10 @@ namespace ipsmedserviceapp.Controllers
 
                     // інші RHolderType
                     default:
-                        return BadRequest("Unsupported RHolderType!");
+                        {
+                            _logger.LogInformation("Unsupported RHolderType!");
+                            return BadRequest("Unsupported RHolderType!");
+                        }
                 }
 
                 destination.CustName = vcustomer?.name;
@@ -118,8 +124,9 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok(destination);
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogError(ex.InnerException.Message);
                 transaction?.Rollback();
                 throw;
             }
@@ -153,9 +160,10 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok();
             }
-            catch
+            catch(Exception ex)
             {
                 transaction?.Rollback();
+                _logger.LogError(ex.InnerException.Message);
                 throw;
             }
             finally
@@ -188,9 +196,10 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok();
             }
-            catch
+            catch(Exception ex)
             {
                 transaction?.Rollback();
+                _logger.LogError(ex.InnerException.Message);
                 throw;
             }
             finally
@@ -247,8 +256,9 @@ namespace ipsmedserviceapp.Controllers
 
                 return Ok(responce);
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogError(ex.InnerException.Message);
                 throw;
             }
         }
@@ -301,8 +311,9 @@ namespace ipsmedserviceapp.Controllers
 
                 return Ok(responce);
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogError(ex.InnerException.Message);
                 throw;
             }
         }
