@@ -140,6 +140,19 @@ namespace IpsViewComponentLibrary.Extensions
                     yield return item;
         }
 
+        /// <summary>
+        /// Отримати дату кінця року
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static DateTime EndYearDate(this DateTime? dateTime)
+        {
+            if (dateTime != null)
+                return (DateTime)dateTime;
+
+            return new DateTime(DateTime.Today.Year, 12, 31);
+        }
+
         public static void ShowMessage(bool result, MessageType messageType)
         {
             string msgText = string.Empty;

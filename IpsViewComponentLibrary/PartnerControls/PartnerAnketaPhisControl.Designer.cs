@@ -71,11 +71,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromRegToLett)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToLett)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtPostIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
@@ -207,110 +202,13 @@ namespace IpsViewComponentLibrary.PartnerControls
             // 
             this.ctrlAddressLetter.AddressDataMember = null;
             this.ctrlAddressLetter.CityDataMember = null;
-            this.ctrlAddressLetter.CountriesDataMember = "";
-            this.ctrlAddressLetter.CountriesDataSource = null;
-            this.ctrlAddressLetter.CountriesDisplayMember = "";
-            this.ctrlAddressLetter.CountriesValueMember = "";
             this.ctrlAddressLetter.CountryDataMember = null;
-            this.ctrlAddressLetter.DataMember = "";
             this.ctrlAddressLetter.DataSource = null;
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAddressLetter.DdlCountry.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.ctrlAddressLetter.DdlCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ctrlAddressLetter.DdlCountry.Location = new System.Drawing.Point(0, 0);
-            this.ctrlAddressLetter.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.DdlCountry.Name = "ddlCountry";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 234, 20);
-            this.ctrlAddressLetter.DdlCountry.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.DdlCountry.Size = new System.Drawing.Size(190, 20);
-            this.ctrlAddressLetter.DdlCountry.TabIndex = 0;
-            this.ctrlAddressLetter.DdlCountry.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAddressLetter.DdlRegion.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.ctrlAddressLetter.DdlRegion.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ctrlAddressLetter.DdlRegion.Location = new System.Drawing.Point(210, 0);
-            this.ctrlAddressLetter.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.DdlRegion.Name = "ddlRegion";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(254, 0, 234, 20);
-            this.ctrlAddressLetter.DdlRegion.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.DdlRegion.Size = new System.Drawing.Size(190, 20);
-            this.ctrlAddressLetter.DdlRegion.TabIndex = 1;
-            this.ctrlAddressLetter.DdlRegion.ThemeName = "Office2013Light";
             this.ctrlAddressLetter.Location = new System.Drawing.Point(154, 240);
             this.ctrlAddressLetter.Name = "ctrlAddressLetter";
-            this.ctrlAddressLetter.PostIndexDataMember = null;
             this.ctrlAddressLetter.RegionDataMember = null;
-            this.ctrlAddressLetter.RegionsDataMember = "";
-            this.ctrlAddressLetter.RegionsDataSource = null;
-            this.ctrlAddressLetter.RegionsDisplayMember = "";
-            this.ctrlAddressLetter.RegionsValueMember = "";
             this.ctrlAddressLetter.Size = new System.Drawing.Size(612, 48);
             this.ctrlAddressLetter.TabIndex = 53;
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtAddress.Location = new System.Drawing.Point(0, 25);
-            this.ctrlAddressLetter.TxtAddress.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.TxtAddress.Name = "txtAddress";
-            this.ctrlAddressLetter.TxtAddress.NullText = "Адреса";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 100, 14);
-            this.ctrlAddressLetter.TxtAddress.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.TxtAddress.Size = new System.Drawing.Size(400, 20);
-            this.ctrlAddressLetter.TxtAddress.TabIndex = 5;
-            this.ctrlAddressLetter.TxtAddress.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlAddressLetter.TxtCity.Location = new System.Drawing.Point(420, 0);
-            this.ctrlAddressLetter.TxtCity.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.TxtCity.Name = "txtCity";
-            this.ctrlAddressLetter.TxtCity.NullText = "Місто";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(420, 0, 192, 20);
-            this.ctrlAddressLetter.TxtCity.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.TxtCity.Size = new System.Drawing.Size(192, 20);
-            this.ctrlAddressLetter.TxtCity.TabIndex = 2;
-            this.ctrlAddressLetter.TxtCity.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtPostIndex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAddressLetter.TxtPostIndex.Location = new System.Drawing.Point(420, 25);
-            this.ctrlAddressLetter.TxtPostIndex.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.TxtPostIndex.Name = "txtPostIndex";
-            this.ctrlAddressLetter.TxtPostIndex.NullText = "Поштовий індекс";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtPostIndex.RootElement.ControlBounds = new System.Drawing.Rectangle(420, 25, 192, 20);
-            this.ctrlAddressLetter.TxtPostIndex.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.TxtPostIndex.Size = new System.Drawing.Size(192, 20);
-            this.ctrlAddressLetter.TxtPostIndex.TabIndex = 4;
-            this.ctrlAddressLetter.TxtPostIndex.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
@@ -344,7 +242,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ctrlAddressRegister.AddressDataMember = null;
             this.ctrlAddressRegister.CityDataMember = null;
             this.ctrlAddressRegister.CountryDataMember = null;
-            this.ctrlAddressRegister.DataMember = "";
             this.ctrlAddressRegister.DataSource = null;
             this.ctrlAddressRegister.Location = new System.Drawing.Point(154, 136);
             this.ctrlAddressRegister.Name = "ctrlAddressRegister";
@@ -357,7 +254,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             this.ctrlAddressLive.AddressDataMember = null;
             this.ctrlAddressLive.CityDataMember = null;
             this.ctrlAddressLive.CountryDataMember = null;
-            this.ctrlAddressLive.DataMember = "";
             this.ctrlAddressLive.DataSource = null;
             this.ctrlAddressLive.Location = new System.Drawing.Point(154, 32);
             this.ctrlAddressLive.Name = "ctrlAddressLive";
@@ -502,11 +398,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromRegToLett)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToLett)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtPostIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();

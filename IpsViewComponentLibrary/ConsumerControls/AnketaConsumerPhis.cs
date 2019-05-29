@@ -46,7 +46,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
             // anketaPerson
             var anketaPerson = customer.Person.AnketaPerson.SingleOrDefault();
+            bsAnketaPerson.DataSource = anketaPerson;
+
             ctrlConsumerName.DataSourceAnketa = anketaPerson;
+
             // контакти
             ctrlContacts.DataSource = anketaPerson;
             // - проживання
@@ -68,13 +71,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlAddressLetter.AddressDataMember = "LeAddress";
             ctrlAddressLetter.CityDataMember = "LeCity";
             ctrlAddressLetter.CountryDataMember = "LeCountry";
-            ctrlAddressLetter.CountriesDataSource = IpsGlobal.AnketaDictionaties.country;
-            ctrlAddressLetter.CountriesValueMember = "countryCode";
-            ctrlAddressLetter.CountriesDisplayMember = "countryName";
+            //ctrlAddressLetter.CountriesDataSource = IpsGlobal.AnketaDictionaties.country;
+            //ctrlAddressLetter.CountriesValueMember = "countryCode";
+            //ctrlAddressLetter.CountriesDisplayMember = "countryName";
             ctrlAddressLetter.RegionDataMember = "LeRegion";
-            ctrlAddressLetter.RegionsDataSource = IpsGlobal.AnketaDictionaties.region;
-            ctrlAddressLetter.RegionsValueMember = "codeI";
-            ctrlAddressLetter.RegionsDisplayMember = "name";
+            //ctrlAddressLetter.RegionsDataSource = IpsGlobal.AnketaDictionaties.region;
+            //ctrlAddressLetter.RegionsValueMember = "codeI";
+            //ctrlAddressLetter.RegionsDisplayMember = "name";
             ctrlAddressLetter.PostIndexDataMember = "LePostIndex";
 
             // паспортні дані
@@ -91,36 +94,38 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ctrlPlaces.SetData(customer);
         }
 
+        // TODO: CHANGE CONTROL!
+
         private void BtnCopyFromLiveToReg_Click(object sender, EventArgs e)
         {
-            ctrlAddressRegister.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
-            ctrlAddressRegister.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
-            ctrlAddressRegister.TxtCity.Select();
-            ctrlAddressRegister.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
-            ctrlAddressRegister.TxtAddress.Select();
-            ctrlAddressRegister.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
+            //ctrlAddressRegister.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
+            //ctrlAddressRegister.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
+            //ctrlAddressRegister.TxtCity.Select();
+            //ctrlAddressRegister.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
+            //ctrlAddressRegister.TxtAddress.Select();
+            //ctrlAddressRegister.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
         }
 
         private void BtnCopyFromLiveToLett_Click(object sender, EventArgs e)
         {
-            ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
-            ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
-            ctrlAddressLetter.TxtCity.Select();
-            ctrlAddressLetter.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
-            ctrlAddressLetter.TxtAddress.Select();
-            ctrlAddressLetter.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
-            ctrlAddressLetter.TxtPostIndex.Select();
+            //ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
+            //ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
+            //ctrlAddressLetter.TxtCity.Select();
+            //ctrlAddressLetter.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
+            //ctrlAddressLetter.TxtAddress.Select();
+            //ctrlAddressLetter.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
+            //ctrlAddressLetter.TxtPostIndex.Select();
         }
 
         private void BtnCopyFromRegToLett_Click(object sender, EventArgs e)
         {
-            ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressRegister.DdlCountry.SelectedValue;
-            ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressRegister.DdlRegion.SelectedIndex;
-            ctrlAddressLetter.TxtCity.Select();
-            ctrlAddressLetter.TxtCity.Text = ctrlAddressRegister.TxtCity.Text;
-            ctrlAddressLetter.TxtAddress.Select();
-            ctrlAddressLetter.TxtAddress.Text = ctrlAddressRegister.TxtAddress.Text;
-            ctrlAddressLetter.TxtPostIndex.Select();
+            //ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressRegister.DdlCountry.SelectedValue;
+            //ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressRegister.DdlRegion.SelectedIndex;
+            //ctrlAddressLetter.TxtCity.Select();
+            //ctrlAddressLetter.TxtCity.Text = ctrlAddressRegister.TxtCity.Text;
+            //ctrlAddressLetter.TxtAddress.Select();
+            //ctrlAddressLetter.TxtAddress.Text = ctrlAddressRegister.TxtAddress.Text;
+            //ctrlAddressLetter.TxtPostIndex.Select();
         }
     }
 }

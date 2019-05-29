@@ -60,13 +60,13 @@ namespace IpsViewComponentLibrary.ConsumerForms
             ctrlAddressLetter.AddressDataMember = "LeAddress";
             ctrlAddressLetter.CityDataMember = "LeCity";
             ctrlAddressLetter.CountryDataMember = "LeCountry";
-            ctrlAddressLetter.CountriesDataSource = IpsGlobal.AnketaDictionaties.country;
-            ctrlAddressLetter.CountriesValueMember = "countryCode";
-            ctrlAddressLetter.CountriesDisplayMember = "countryName";
+            //ctrlAddressLetter.CountriesDataSource = IpsGlobal.AnketaDictionaties.country;
+            //ctrlAddressLetter.CountriesValueMember = "countryCode";
+            //ctrlAddressLetter.CountriesDisplayMember = "countryName";
             ctrlAddressLetter.RegionDataMember = "LeRegion";
-            ctrlAddressLetter.RegionsDataSource = IpsGlobal.AnketaDictionaties.region;
-            ctrlAddressLetter.RegionsValueMember = "codeI";
-            ctrlAddressLetter.RegionsDisplayMember = "name";
+            //ctrlAddressLetter.RegionsDataSource = IpsGlobal.AnketaDictionaties.region;
+            //ctrlAddressLetter.RegionsValueMember = "codeI";
+            //ctrlAddressLetter.RegionsDisplayMember = "name";
             ctrlAddressLetter.PostIndexDataMember = "LePostIndex";
 
             // паспортні дані
@@ -119,36 +119,38 @@ namespace IpsViewComponentLibrary.ConsumerForms
             DialogResult = DialogResult.OK;
         }
 
+        // TODO: CHANGE CONTROL!
+
         private void btnCopyFromLiveToReg_Click(object sender, EventArgs e)
         {
-            ctrlAddressRegister.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
-            ctrlAddressRegister.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
-            ctrlAddressRegister.TxtCity.Select();
-            ctrlAddressRegister.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
-            ctrlAddressRegister.TxtAddress.Select();
-            ctrlAddressRegister.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
+            //ctrlAddressRegister.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
+            //ctrlAddressRegister.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
+            //ctrlAddressRegister.TxtCity.Select();
+            //ctrlAddressRegister.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
+            //ctrlAddressRegister.TxtAddress.Select();
+            //ctrlAddressRegister.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
         }
 
         private void btnCopyFromLiveToLett_Click(object sender, EventArgs e)
         {
-            ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
-            ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
-            ctrlAddressLetter.TxtCity.Select();
-            ctrlAddressLetter.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
-            ctrlAddressLetter.TxtAddress.Select();
-            ctrlAddressLetter.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
-            ctrlAddressLetter.TxtPostIndex.Select();
+            //ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressLive.DdlCountry.SelectedValue;
+            //ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressLive.DdlRegion.SelectedIndex;
+            //ctrlAddressLetter.TxtCity.Select();
+            //ctrlAddressLetter.TxtCity.Text = ctrlAddressLive.TxtCity.Text;
+            //ctrlAddressLetter.TxtAddress.Select();
+            //ctrlAddressLetter.TxtAddress.Text = ctrlAddressLive.TxtAddress.Text;
+            //ctrlAddressLetter.TxtPostIndex.Select();
         }
 
         private void btnCopyFromRegToLett_Click(object sender, EventArgs e)
         {
-            ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressRegister.DdlCountry.SelectedValue;
-            ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressRegister.DdlRegion.SelectedIndex;
-            ctrlAddressLetter.TxtCity.Select();
-            ctrlAddressLetter.TxtCity.Text = ctrlAddressRegister.TxtCity.Text;
-            ctrlAddressLetter.TxtAddress.Select();
-            ctrlAddressLetter.TxtAddress.Text = ctrlAddressRegister.TxtAddress.Text;
-            ctrlAddressLetter.TxtPostIndex.Select();
+            //ctrlAddressLetter.DdlCountry.SelectedValue = ctrlAddressRegister.DdlCountry.SelectedValue;
+            //ctrlAddressLetter.DdlRegion.SelectedIndex = ctrlAddressRegister.DdlRegion.SelectedIndex;
+            //ctrlAddressLetter.TxtCity.Select();
+            //ctrlAddressLetter.TxtCity.Text = ctrlAddressRegister.TxtCity.Text;
+            //ctrlAddressLetter.TxtAddress.Select();
+            //ctrlAddressLetter.TxtAddress.Text = ctrlAddressRegister.TxtAddress.Text;
+            //ctrlAddressLetter.TxtPostIndex.Select();
         }
 
         private void btnLoadPdf_Click(object sender, EventArgs e)

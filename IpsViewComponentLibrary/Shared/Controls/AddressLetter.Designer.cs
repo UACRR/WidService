@@ -28,150 +28,123 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.ddlRegion = new Telerik.WinControls.UI.RadDropDownList();
-            this.txtCity = new Telerik.WinControls.UI.RadTextBox();
-            this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
+            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.txtPostIndex = new Telerik.WinControls.UI.RadTextBox();
             this.txtAddress = new Telerik.WinControls.UI.RadTextBox();
-            this.anketaDictionatiesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCity)).BeginInit();
-            this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).BeginInit();
+            this.txtCity = new Telerik.WinControls.UI.RadTextBox();
+            this.ddlRegion = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlCountry = new Telerik.WinControls.UI.RadDropDownList();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPostIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaDictionatiesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).BeginInit();
             this.SuspendLayout();
             // 
-            // ddlRegion
+            // tableLayoutPanel3
             // 
-            this.ddlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlRegion.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.ddlRegion.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlRegion.Location = new System.Drawing.Point(240, 0);
-            this.ddlRegion.Margin = new System.Windows.Forms.Padding(0);
-            this.ddlRegion.Name = "ddlRegion";
-            this.ddlRegion.Size = new System.Drawing.Size(220, 21);
-            this.ddlRegion.TabIndex = 1;
-            this.ddlRegion.ThemeName = "Office2013Light";
-            // 
-            // txtCity
-            // 
-            this.txtCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCity.Location = new System.Drawing.Point(480, 0);
-            this.txtCity.Margin = new System.Windows.Forms.Padding(0);
-            this.txtCity.Name = "txtCity";
-            this.txtCity.NullText = "Місто";
-            this.txtCity.Size = new System.Drawing.Size(220, 21);
-            this.txtCity.TabIndex = 2;
-            this.txtCity.ThemeName = "Office2013Light";
-            // 
-            // tableLayoutPanel
-            // 
-            this.tableLayoutPanel.ColumnCount = 5;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33457F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33345F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33197F));
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Controls.Add(this.ddlCountry, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.ddlRegion, 2, 0);
-            this.tableLayoutPanel.Controls.Add(this.txtCity, 4, 0);
-            this.tableLayoutPanel.Controls.Add(this.txtPostIndex, 4, 2);
-            this.tableLayoutPanel.Controls.Add(this.txtAddress, 0, 2);
-            this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 3;
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(700, 45);
-            this.tableLayoutPanel.TabIndex = 7;
-            // 
-            // ddlCountry
-            // 
-            this.ddlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ddlCountry.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.ddlCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlCountry.Location = new System.Drawing.Point(0, 0);
-            this.ddlCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.ddlCountry.Name = "ddlCountry";
-            this.ddlCountry.Size = new System.Drawing.Size(220, 21);
-            this.ddlCountry.TabIndex = 0;
-            this.ddlCountry.ThemeName = "Office2013Light";
+            this.tableLayoutPanel3.ColumnCount = 5;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
+            this.tableLayoutPanel3.Controls.Add(this.txtPostIndex, 4, 2);
+            this.tableLayoutPanel3.Controls.Add(this.txtAddress, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.txtCity, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.ddlRegion, 2, 0);
+            this.tableLayoutPanel3.Controls.Add(this.ddlCountry, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(718, 54);
+            this.tableLayoutPanel3.TabIndex = 11;
             // 
             // txtPostIndex
             // 
-            this.txtPostIndex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPostIndex.Location = new System.Drawing.Point(480, 25);
-            this.txtPostIndex.Margin = new System.Windows.Forms.Padding(0);
+            this.txtPostIndex.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtPostIndex.Location = new System.Drawing.Point(494, 30);
             this.txtPostIndex.Name = "txtPostIndex";
             this.txtPostIndex.NullText = "Поштовий індекс";
-            this.txtPostIndex.Size = new System.Drawing.Size(220, 21);
-            this.txtPostIndex.TabIndex = 4;
+            this.txtPostIndex.Size = new System.Drawing.Size(221, 21);
+            this.txtPostIndex.TabIndex = 12;
             this.txtPostIndex.ThemeName = "Office2013Light";
             // 
             // txtAddress
             // 
-            this.tableLayoutPanel.SetColumnSpan(this.txtAddress, 3);
-            this.txtAddress.Location = new System.Drawing.Point(0, 25);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel3.SetColumnSpan(this.txtAddress, 3);
+            this.txtAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtAddress.Location = new System.Drawing.Point(3, 30);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.NullText = "Адреса";
-            // 
-            // 
-            // 
-            this.txtAddress.RootElement.MinSize = new System.Drawing.Size(0, 0);
-            this.txtAddress.Size = new System.Drawing.Size(460, 21);
-            this.txtAddress.TabIndex = 5;
+            this.txtAddress.Size = new System.Drawing.Size(465, 21);
+            this.txtAddress.TabIndex = 12;
             this.txtAddress.ThemeName = "Office2013Light";
             // 
-            // anketaDictionatiesBindingSource
+            // txtCity
             // 
-            this.anketaDictionatiesBindingSource.DataSource = typeof(ipsFormsDesign.Interfaces.AnketaDictionaties);
+            this.txtCity.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtCity.Location = new System.Drawing.Point(494, 3);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.NullText = "Місто";
+            this.txtCity.Size = new System.Drawing.Size(221, 16);
+            this.txtCity.TabIndex = 12;
+            this.txtCity.ThemeName = "Office2013Light";
+            // 
+            // ddlRegion
+            // 
+            this.ddlRegion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddlRegion.DropDownMaxSize = new System.Drawing.Size(200, 300);
+            this.ddlRegion.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlRegion.Location = new System.Drawing.Point(248, 3);
+            this.ddlRegion.Name = "ddlRegion";
+            this.ddlRegion.Size = new System.Drawing.Size(220, 16);
+            this.ddlRegion.TabIndex = 12;
+            this.ddlRegion.ThemeName = "Office2013Light";
+            // 
+            // ddlCountry
+            // 
+            this.ddlCountry.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ddlCountry.DropDownMaxSize = new System.Drawing.Size(200, 300);
+            this.ddlCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlCountry.Location = new System.Drawing.Point(3, 3);
+            this.ddlCountry.Name = "ddlCountry";
+            this.ddlCountry.Size = new System.Drawing.Size(219, 16);
+            this.ddlCountry.TabIndex = 12;
+            this.ddlCountry.ThemeName = "Office2013Light";
             // 
             // AddressLetter
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tableLayoutPanel);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.tableLayoutPanel3);
             this.Name = "AddressLetter";
-            this.Size = new System.Drawing.Size(700, 48);
-            ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCity)).EndInit();
-            this.tableLayoutPanel.ResumeLayout(false);
-            this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
+            this.Size = new System.Drawing.Size(718, 54);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtPostIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.anketaDictionatiesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlRegion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlCountry)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Telerik.WinControls.UI.RadDropDownList ddlRegion;
-        private Telerik.WinControls.UI.RadTextBox txtCity;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private Telerik.WinControls.UI.RadDropDownList ddlCountry;
-        private System.Windows.Forms.BindingSource anketaDictionatiesBindingSource;
+        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private Telerik.WinControls.UI.RadTextBox txtPostIndex;
         private Telerik.WinControls.UI.RadTextBox txtAddress;
-        private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
+        private Telerik.WinControls.UI.RadTextBox txtCity;
+        private Telerik.WinControls.UI.RadDropDownList ddlRegion;
+        private Telerik.WinControls.UI.RadDropDownList ddlCountry;
     }
 }

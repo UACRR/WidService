@@ -89,6 +89,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             return isValid;
         }
 
+        /// <summary>
+        /// Початковий вибір чекбокс майданчиків ліцензії
+        /// </summary>
         private void CheckPlaces()
         {
             if (_tempPlaces?.Any() ?? false)
@@ -96,7 +99,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
                 bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_tempPlaces);
 
                 //gvPlaces.DataSource = _tempPlaces;
-                //початковий вибір чекбокс майданчиків що в ліцензії
+                //
                 foreach (var item in _licenseAgr.License)
                 {
                     var gvPlacesRow = gvPlaces.Rows.SingleOrDefault(row => PlaceChooserPredicate(row, item));
@@ -207,11 +210,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
 
             _licenseAgr.RateAmount = newAgrLicType.AuthRate;
             ctrlAgrSecond.RefreshDataSourceBinding();
-        }
-
-        private void bindingSourceDictionary_BindingComplete(object sender, BindingCompleteEventArgs e)
-        {
-
         }
     }
 }

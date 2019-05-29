@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
@@ -12,6 +13,7 @@ using IpsViewComponentLibrary.InternalControlsModel;
 using IpsViewComponentLibrary.Properties;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
+using License = ipsFormsDesign.Model.License;
 
 namespace IpsViewComponentLibrary.ConsumerControls.Places
 {
@@ -20,7 +22,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         private const string AddFromFile = "Додати з файлу";
         private const string DeletePlaceQuestion = "Ви дійсно хочете видалити обрану бізнес-точку?";
 
+        private const string WarningDeletePlace = "Неможливо видалити бізнес-точку! Бізнес-точка закріплена в ліцензійному договорі!";
+
         private readonly AnketaDictionaties _dictionaties;
+        private readonly List<int> _licensePlacesId;
 
         private ObservableListSource<ClnBusinessPlace> _clnBusinessPlaces;
         private int _placeIdNegativeCounter = default(int);
@@ -36,6 +41,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (!IsDesignMode)
                 _dictionaties = IpsGlobal.AnketaDictionaties;
 
+            _licensePlacesId = new List<int>();
             InitializeDropDownButtons();
         }
 
@@ -65,6 +71,26 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
         /// <param name="customer"></param>
         public void SetData(Customer customer)
         {
+            // всі ліцензії включаючи закриті
+            var licAgrParam = new List<LicenseAgrParam>();
+            foreach (var licenseAgreement in customer.Client.LicenseAgreement)
+            {
+                licAgrParam.AddRange(licenseAgreement.LicenseAgrParam);
+            }
+            // ліцензії майданчиків
+            var placeLicenses = new List<License>();
+            foreach (var agrParam in licAgrParam)
+            {
+                if (agrParam.License.Any())
+                    placeLicenses.AddRange(agrParam.License);
+            }
+            // ідентифікатори майданчиків в яких наявна ліцензія та яку заборонено видаляти
+            foreach (var placeLicense in placeLicenses)
+            {
+                if (placeLicense?.PlaceId is int id && !_licensePlacesId.Contains(id))
+                    _licensePlacesId.Add(id);
+            }
+
             _clnBusinessPlaces = customer.Client.ClnBusinessPlace;
             bsPlacesForAgreement.DataSource = PlacesForAgreement.Convert(_clnBusinessPlaces);
             bsPlacesForAgreement.ResetBindings(false);
@@ -184,6 +210,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
             if (!(gvPlaces.CurrentRow?.DataBoundItem is ClnBusinessPlace row))
                 return;
 
+            if (_licensePlacesId.Contains(row.PlaceId))
+            {
+                MessageShow.ShowWarning(WarningDeletePlace);
+                return;
+            }
+
             if (MessageShow.ConfirmAction(DeletePlaceQuestion) == DialogResult.Yes)
             {
                 var removePlace = _clnBusinessPlaces.SingleOrDefault(rec => rec.PlaceId == row.PlaceId);
@@ -192,6 +224,5 @@ namespace IpsViewComponentLibrary.ConsumerControls.Places
                 bsPlacesForAgreement.ResetBindings(false);
             }
         }
-
     }
 }

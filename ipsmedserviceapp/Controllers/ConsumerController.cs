@@ -1123,6 +1123,19 @@ namespace ipsmedserviceapp.Controllers
             var licenseAgrParam = await _dbContext.LicenseAgrParam
                 .SingleOrDefaultAsync(rec => rec.LicId == licId && rec.LicVersion == licVersion);
             licenseAgrParam.LicStatus = 10;
+
+            // договір що був створений для пролонгації
+            var license = await _dbContext.LicenseAgreement
+                .SingleOrDefaultAsync(rec => rec.LicId == licId && rec.ProlongVersion == licVersion);
+            if (license != null)
+                license.ProlongVersion = null;
+
+            // видалити ліцензії бізнес-точок
+            var placeLicenses = await _dbContext.License
+                .Where(rec => rec.LicId == licId && rec.LicVersion == licVersion).ToListAsync();
+            if (placeLicenses.Any())
+                _dbContext.License.RemoveRange(placeLicenses);
+
             return licenseAgrParam;
         }
 

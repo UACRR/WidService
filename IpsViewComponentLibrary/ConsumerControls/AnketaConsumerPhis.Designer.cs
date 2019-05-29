@@ -30,10 +30,18 @@ namespace IpsViewComponentLibrary.ConsumerControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnketaConsumerPhis));
             this.pageAnketaConsumer = new Telerik.WinControls.UI.RadPageView();
             this.pvClientName = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlConsumerName = new IpsViewComponentLibrary.PartnerControls.PartnerNameControl();
+            this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
+            this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
+            this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
+            this.ctrlConsumerPassport = new IpsViewComponentLibrary.Shared.Controls.PassportControl();
+            this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
+            this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
             this.pvContacts = new Telerik.WinControls.UI.RadPageViewPage();
             this.radSeparator2 = new Telerik.WinControls.UI.RadSeparator();
             this.radSeparator3 = new Telerik.WinControls.UI.RadSeparator();
@@ -48,13 +56,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlAddressRegister = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
             this.ctrlAddressLive = new IpsViewComponentLibrary.Shared.Controls.IpsAddressControl();
             this.ctrlContacts = new IpsViewComponentLibrary.Shared.Controls.ContactsPersonControl();
-            this.pvPasport = new Telerik.WinControls.UI.RadPageViewPage();
-            this.radGroupBox3 = new Telerik.WinControls.UI.RadGroupBox();
-            this.ctrlConsumerPassport = new IpsViewComponentLibrary.Shared.Controls.PassportControl();
-            this.pvPlaces = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlPlaces = new IpsViewComponentLibrary.ConsumerControls.Places.ConsumerPlacesControl();
-            this.pvBankRequisites = new Telerik.WinControls.UI.RadPageViewPage();
-            this.ctrlBankAccount = new IpsViewComponentLibrary.Shared.Controls.IpsBankAccountControl();
             this.pvAgreement = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlAgreementPhis = new IpsViewComponentLibrary.ConsumerControls.AgreementWithPlacesControl();
             this.pvPrint = new Telerik.WinControls.UI.RadPageViewPage();
@@ -64,9 +65,15 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.radWaitingBar1 = new Telerik.WinControls.UI.RadWaitingBar();
             this.lineRingWaitingBarIndicatorElement1 = new Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
+            this.bsAnketaPerson = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).BeginInit();
             this.pageAnketaConsumer.SuspendLayout();
             this.pvClientName.SuspendLayout();
+            this.pvPlaces.SuspendLayout();
+            this.pvPasport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
+            this.radGroupBox3.SuspendLayout();
+            this.pvBankRequisites.SuspendLayout();
             this.pvContacts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator3)).BeginInit();
@@ -74,19 +81,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromRegToLett)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToLett)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlCountry)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtAddress)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtCity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtPostIndex)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
-            this.pvPasport.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).BeginInit();
-            this.radGroupBox3.SuspendLayout();
-            this.pvPlaces.SuspendLayout();
-            this.pvBankRequisites.SuspendLayout();
             this.pvAgreement.SuspendLayout();
             this.pvPrint.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadPdf)).BeginInit();
@@ -94,6 +91,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).BeginInit();
             this.radPdfViewer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).BeginInit();
             this.SuspendLayout();
             // 
             // pageAnketaConsumer
@@ -156,6 +154,75 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlConsumerName.Name = "ctrlConsumerName";
             this.ctrlConsumerName.Size = new System.Drawing.Size(586, 157);
             this.ctrlConsumerName.TabIndex = 34;
+            // 
+            // pvPlaces
+            // 
+            this.pvPlaces.AutoScroll = true;
+            this.pvPlaces.Controls.Add(this.ctrlPlaces);
+            this.pvPlaces.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvPlaces.Location = new System.Drawing.Point(134, 5);
+            this.pvPlaces.Name = "pvPlaces";
+            this.pvPlaces.Size = new System.Drawing.Size(832, 466);
+            this.pvPlaces.Text = "Бізнес-точки";
+            // 
+            // ctrlPlaces
+            // 
+            this.ctrlPlaces.AutoSize = true;
+            this.ctrlPlaces.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ctrlPlaces.Location = new System.Drawing.Point(0, 0);
+            this.ctrlPlaces.Name = "ctrlPlaces";
+            this.ctrlPlaces.Size = new System.Drawing.Size(832, 466);
+            this.ctrlPlaces.TabIndex = 11;
+            // 
+            // pvPasport
+            // 
+            this.pvPasport.Controls.Add(this.radGroupBox3);
+            this.pvPasport.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvPasport.Location = new System.Drawing.Point(134, 5);
+            this.pvPasport.Name = "pvPasport";
+            this.pvPasport.Size = new System.Drawing.Size(832, 466);
+            this.pvPasport.Text = "Паспортні дані";
+            // 
+            // radGroupBox3
+            // 
+            this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
+            this.radGroupBox3.Controls.Add(this.ctrlConsumerPassport);
+            this.radGroupBox3.HeaderText = "Паспорт";
+            this.radGroupBox3.Location = new System.Drawing.Point(26, 7);
+            this.radGroupBox3.Name = "radGroupBox3";
+            this.radGroupBox3.Size = new System.Drawing.Size(420, 120);
+            this.radGroupBox3.TabIndex = 38;
+            this.radGroupBox3.Text = "Паспорт";
+            this.radGroupBox3.ThemeName = "Office2013Light";
+            // 
+            // ctrlConsumerPassport
+            // 
+            this.ctrlConsumerPassport.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
+            this.ctrlConsumerPassport.Location = new System.Drawing.Point(5, 21);
+            this.ctrlConsumerPassport.MaximumSize = new System.Drawing.Size(410, 94);
+            this.ctrlConsumerPassport.MinimumSize = new System.Drawing.Size(410, 94);
+            this.ctrlConsumerPassport.Name = "ctrlConsumerPassport";
+            this.ctrlConsumerPassport.Size = new System.Drawing.Size(410, 94);
+            this.ctrlConsumerPassport.TabIndex = 24;
+            // 
+            // pvBankRequisites
+            // 
+            this.pvBankRequisites.Controls.Add(this.ctrlBankAccount);
+            this.pvBankRequisites.ItemSize = new System.Drawing.SizeF(130F, 27F);
+            this.pvBankRequisites.Location = new System.Drawing.Point(134, 5);
+            this.pvBankRequisites.Name = "pvBankRequisites";
+            this.pvBankRequisites.Size = new System.Drawing.Size(832, 466);
+            this.pvBankRequisites.Text = "Банківські реквізити";
+            // 
+            // ctrlBankAccount
+            // 
+            this.ctrlBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
+            this.ctrlBankAccount.Location = new System.Drawing.Point(30, 3);
+            this.ctrlBankAccount.MaximumSize = new System.Drawing.Size(434, 127);
+            this.ctrlBankAccount.MinimumSize = new System.Drawing.Size(434, 127);
+            this.ctrlBankAccount.Name = "ctrlBankAccount";
+            this.ctrlBankAccount.Size = new System.Drawing.Size(434, 127);
+            this.ctrlBankAccount.TabIndex = 1;
             // 
             // pvContacts
             // 
@@ -234,110 +301,14 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.ctrlAddressLetter.AddressDataMember = null;
             this.ctrlAddressLetter.CityDataMember = null;
-            this.ctrlAddressLetter.CountriesDataMember = "";
-            this.ctrlAddressLetter.CountriesDataSource = null;
-            this.ctrlAddressLetter.CountriesDisplayMember = "";
-            this.ctrlAddressLetter.CountriesValueMember = "";
             this.ctrlAddressLetter.CountryDataMember = null;
-            this.ctrlAddressLetter.DataMember = "";
             this.ctrlAddressLetter.DataSource = null;
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.DdlCountry.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAddressLetter.DdlCountry.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.ctrlAddressLetter.DdlCountry.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ctrlAddressLetter.DdlCountry.Location = new System.Drawing.Point(0, 0);
-            this.ctrlAddressLetter.DdlCountry.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.DdlCountry.Name = "ddlCountry";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.DdlCountry.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 234, 20);
-            this.ctrlAddressLetter.DdlCountry.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.DdlCountry.Size = new System.Drawing.Size(190, 20);
-            this.ctrlAddressLetter.DdlCountry.TabIndex = 0;
-            this.ctrlAddressLetter.DdlCountry.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.DdlRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAddressLetter.DdlRegion.DropDownMaxSize = new System.Drawing.Size(200, 300);
-            this.ctrlAddressLetter.DdlRegion.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ctrlAddressLetter.DdlRegion.Location = new System.Drawing.Point(210, 0);
-            this.ctrlAddressLetter.DdlRegion.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.DdlRegion.Name = "ddlRegion";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.DdlRegion.RootElement.ControlBounds = new System.Drawing.Rectangle(254, 0, 234, 20);
-            this.ctrlAddressLetter.DdlRegion.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.DdlRegion.Size = new System.Drawing.Size(190, 20);
-            this.ctrlAddressLetter.DdlRegion.TabIndex = 1;
-            this.ctrlAddressLetter.DdlRegion.ThemeName = "Office2013Light";
             this.ctrlAddressLetter.Location = new System.Drawing.Point(153, 239);
             this.ctrlAddressLetter.Name = "ctrlAddressLetter";
             this.ctrlAddressLetter.PostIndexDataMember = null;
             this.ctrlAddressLetter.RegionDataMember = null;
-            this.ctrlAddressLetter.RegionsDataMember = "";
-            this.ctrlAddressLetter.RegionsDataSource = null;
-            this.ctrlAddressLetter.RegionsDisplayMember = "";
-            this.ctrlAddressLetter.RegionsValueMember = "";
             this.ctrlAddressLetter.Size = new System.Drawing.Size(612, 48);
             this.ctrlAddressLetter.TabIndex = 66;
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtAddress.Location = new System.Drawing.Point(0, 25);
-            this.ctrlAddressLetter.TxtAddress.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.TxtAddress.Name = "txtAddress";
-            this.ctrlAddressLetter.TxtAddress.NullText = "Адреса";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtAddress.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 25, 100, 14);
-            this.ctrlAddressLetter.TxtAddress.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.TxtAddress.Size = new System.Drawing.Size(400, 20);
-            this.ctrlAddressLetter.TxtAddress.TabIndex = 5;
-            this.ctrlAddressLetter.TxtAddress.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtCity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlAddressLetter.TxtCity.Location = new System.Drawing.Point(420, 0);
-            this.ctrlAddressLetter.TxtCity.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.TxtCity.Name = "txtCity";
-            this.ctrlAddressLetter.TxtCity.NullText = "Місто";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtCity.RootElement.ControlBounds = new System.Drawing.Rectangle(420, 0, 192, 20);
-            this.ctrlAddressLetter.TxtCity.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.TxtCity.Size = new System.Drawing.Size(192, 20);
-            this.ctrlAddressLetter.TxtCity.TabIndex = 2;
-            this.ctrlAddressLetter.TxtCity.ThemeName = "Office2013Light";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtPostIndex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAddressLetter.TxtPostIndex.Location = new System.Drawing.Point(420, 25);
-            this.ctrlAddressLetter.TxtPostIndex.Margin = new System.Windows.Forms.Padding(0);
-            this.ctrlAddressLetter.TxtPostIndex.Name = "txtPostIndex";
-            this.ctrlAddressLetter.TxtPostIndex.NullText = "Поштовий індекс";
-            // 
-            // 
-            // 
-            this.ctrlAddressLetter.TxtPostIndex.RootElement.ControlBounds = new System.Drawing.Rectangle(420, 25, 192, 20);
-            this.ctrlAddressLetter.TxtPostIndex.RootElement.StretchVertically = true;
-            this.ctrlAddressLetter.TxtPostIndex.Size = new System.Drawing.Size(192, 20);
-            this.ctrlAddressLetter.TxtPostIndex.TabIndex = 4;
-            this.ctrlAddressLetter.TxtPostIndex.ThemeName = "Office2013Light";
             // 
             // radLabel3
             // 
@@ -371,7 +342,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlAddressRegister.AddressDataMember = null;
             this.ctrlAddressRegister.CityDataMember = null;
             this.ctrlAddressRegister.CountryDataMember = null;
-            this.ctrlAddressRegister.DataMember = "";
             this.ctrlAddressRegister.DataSource = null;
             this.ctrlAddressRegister.Location = new System.Drawing.Point(153, 135);
             this.ctrlAddressRegister.Name = "ctrlAddressRegister";
@@ -384,7 +354,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlAddressLive.AddressDataMember = null;
             this.ctrlAddressLive.CityDataMember = null;
             this.ctrlAddressLive.CountryDataMember = null;
-            this.ctrlAddressLive.DataMember = "";
             this.ctrlAddressLive.DataSource = null;
             this.ctrlAddressLive.Location = new System.Drawing.Point(153, 31);
             this.ctrlAddressLive.Name = "ctrlAddressLive";
@@ -400,75 +369,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.ctrlContacts.Name = "ctrlContacts";
             this.ctrlContacts.Size = new System.Drawing.Size(625, 50);
             this.ctrlContacts.TabIndex = 62;
-            // 
-            // pvPasport
-            // 
-            this.pvPasport.Controls.Add(this.radGroupBox3);
-            this.pvPasport.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvPasport.Location = new System.Drawing.Point(134, 5);
-            this.pvPasport.Name = "pvPasport";
-            this.pvPasport.Size = new System.Drawing.Size(832, 466);
-            this.pvPasport.Text = "Паспортні дані";
-            // 
-            // radGroupBox3
-            // 
-            this.radGroupBox3.AccessibleRole = System.Windows.Forms.AccessibleRole.Grouping;
-            this.radGroupBox3.Controls.Add(this.ctrlConsumerPassport);
-            this.radGroupBox3.HeaderText = "Паспорт";
-            this.radGroupBox3.Location = new System.Drawing.Point(26, 7);
-            this.radGroupBox3.Name = "radGroupBox3";
-            this.radGroupBox3.Size = new System.Drawing.Size(420, 120);
-            this.radGroupBox3.TabIndex = 38;
-            this.radGroupBox3.Text = "Паспорт";
-            this.radGroupBox3.ThemeName = "Office2013Light";
-            // 
-            // ctrlConsumerPassport
-            // 
-            this.ctrlConsumerPassport.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
-            this.ctrlConsumerPassport.Location = new System.Drawing.Point(5, 21);
-            this.ctrlConsumerPassport.MaximumSize = new System.Drawing.Size(410, 94);
-            this.ctrlConsumerPassport.MinimumSize = new System.Drawing.Size(410, 94);
-            this.ctrlConsumerPassport.Name = "ctrlConsumerPassport";
-            this.ctrlConsumerPassport.Size = new System.Drawing.Size(410, 94);
-            this.ctrlConsumerPassport.TabIndex = 24;
-            // 
-            // pvPlaces
-            // 
-            this.pvPlaces.AutoScroll = true;
-            this.pvPlaces.Controls.Add(this.ctrlPlaces);
-            this.pvPlaces.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvPlaces.Location = new System.Drawing.Point(134, 5);
-            this.pvPlaces.Name = "pvPlaces";
-            this.pvPlaces.Size = new System.Drawing.Size(848, 466);
-            this.pvPlaces.Text = "Бізнес-точки";
-            // 
-            // ctrlPlaces
-            // 
-            this.ctrlPlaces.AutoSize = true;
-            this.ctrlPlaces.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ctrlPlaces.Location = new System.Drawing.Point(0, 0);
-            this.ctrlPlaces.Name = "ctrlPlaces";
-            this.ctrlPlaces.Size = new System.Drawing.Size(848, 466);
-            this.ctrlPlaces.TabIndex = 11;
-            // 
-            // pvBankRequisites
-            // 
-            this.pvBankRequisites.Controls.Add(this.ctrlBankAccount);
-            this.pvBankRequisites.ItemSize = new System.Drawing.SizeF(130F, 27F);
-            this.pvBankRequisites.Location = new System.Drawing.Point(134, 5);
-            this.pvBankRequisites.Name = "pvBankRequisites";
-            this.pvBankRequisites.Size = new System.Drawing.Size(848, 466);
-            this.pvBankRequisites.Text = "Банківські реквізити";
-            // 
-            // ctrlBankAccount
-            // 
-            this.ctrlBankAccount.DataSource = typeof(ipsFormsDesign.Model.BankAccount);
-            this.ctrlBankAccount.Location = new System.Drawing.Point(30, 3);
-            this.ctrlBankAccount.MaximumSize = new System.Drawing.Size(434, 127);
-            this.ctrlBankAccount.MinimumSize = new System.Drawing.Size(434, 127);
-            this.ctrlBankAccount.Name = "ctrlBankAccount";
-            this.ctrlBankAccount.Size = new System.Drawing.Size(434, 127);
-            this.ctrlBankAccount.TabIndex = 1;
             // 
             // pvAgreement
             // 
@@ -579,6 +479,10 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.lineRingWaitingBarIndicatorElement1.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             this.lineRingWaitingBarIndicatorElement1.UseCompatibleTextRendering = false;
             // 
+            // bsAnketaPerson
+            // 
+            this.bsAnketaPerson.DataSource = typeof(ipsFormsDesign.Model.AnketaPerson);
+            // 
             // AnketaConsumerPhis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -589,6 +493,12 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.pageAnketaConsumer)).EndInit();
             this.pageAnketaConsumer.ResumeLayout(false);
             this.pvClientName.ResumeLayout(false);
+            this.pvPlaces.ResumeLayout(false);
+            this.pvPlaces.PerformLayout();
+            this.pvPasport.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
+            this.radGroupBox3.ResumeLayout(false);
+            this.pvBankRequisites.ResumeLayout(false);
             this.pvContacts.ResumeLayout(false);
             this.pvContacts.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radSeparator2)).EndInit();
@@ -597,20 +507,9 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromRegToLett)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToLett)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCopyFromLiveToReg)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlCountry)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.DdlRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtAddress)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtCity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ctrlAddressLetter.TxtPostIndex)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
-            this.pvPasport.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGroupBox3)).EndInit();
-            this.radGroupBox3.ResumeLayout(false);
-            this.pvPlaces.ResumeLayout(false);
-            this.pvPlaces.PerformLayout();
-            this.pvBankRequisites.ResumeLayout(false);
             this.pvAgreement.ResumeLayout(false);
             this.pvPrint.ResumeLayout(false);
             this.pvPrint.PerformLayout();
@@ -619,6 +518,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             ((System.ComponentModel.ISupportInitialize)(this.radPdfViewer)).EndInit();
             this.radPdfViewer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.radWaitingBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAnketaPerson)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -658,5 +558,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private Telerik.WinControls.UI.LineRingWaitingBarIndicatorElement lineRingWaitingBarIndicatorElement1;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private AgreementWithPlacesControl ctrlAgreementPhis;
+        private System.Windows.Forms.BindingSource bsAnketaPerson;
     }
 }

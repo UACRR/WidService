@@ -266,6 +266,12 @@
     <Compile Include="Shared\Controls\IpsAnketaCompanyAddControl.Designer.cs">
       <DependentUpon>IpsAnketaCompanyAddControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shared\Controls\PersonalAddressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Shared\Controls\PersonalAddressControl.Designer.cs">
+      <DependentUpon>PersonalAddressControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\IpsUARadGridLocalizationProvider.cs" />
     <Compile Include="_UnusedControls\AddCompositionForm.cs">
       <SubType>Form</SubType>
@@ -1203,6 +1209,9 @@
     <EmbeddedResource Include="Shared\Controls\IpsAnketaCompanyAddControl.resx">
       <DependentUpon>IpsAnketaCompanyAddControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Shared\Controls\PersonalAddressControl.resx">
+      <DependentUpon>PersonalAddressControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="_UnusedControls\AddCompositionForm.resx">
       <DependentUpon>AddCompositionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -1785,6 +1794,8 @@
     <Content Include="Resources\unlink-solid.ico" />
     <Content Include="Resources\unlink-solid1.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ConsumerControls\Presenters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

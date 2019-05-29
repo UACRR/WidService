@@ -269,7 +269,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlFaAddress.CityDataMember = "FaCity";
             this.ctrlFaAddress.CountryDataMember = "FaCountry";
-            this.ctrlFaAddress.DataMember = "";
             this.ctrlFaAddress.DataSource = this.bsAnketaPerson;
             this.ctrlFaAddress.Location = new System.Drawing.Point(140, 21);
             this.ctrlFaAddress.Name = "ctrlFaAddress";
@@ -318,7 +317,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlLeAddress.CityDataMember = "LeCity";
             this.ctrlLeAddress.CountryDataMember = "LeCountry";
-            this.ctrlLeAddress.DataMember = "";
             this.ctrlLeAddress.DataSource = this.bsAnketaPerson;
             this.ctrlLeAddress.Location = new System.Drawing.Point(140, 52);
             this.ctrlLeAddress.Name = "ctrlLeAddress";
@@ -356,7 +354,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlReAddress.CityDataMember = "ReCity";
             this.ctrlReAddress.CountryDataMember = "ReCountry";
-            this.ctrlReAddress.DataMember = "";
             this.ctrlReAddress.DataSource = this.bsAnketaPerson;
             this.ctrlReAddress.Location = new System.Drawing.Point(140, 52);
             this.ctrlReAddress.Name = "ctrlReAddress";
@@ -610,7 +607,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctrlBaAddress.CityDataMember = "PCity";
             this.ctrlBaAddress.CountryDataMember = "PCountry";
-            this.ctrlBaAddress.DataMember = "";
             this.ctrlBaAddress.DataSource = this.bsBankAccount;
             this.ctrlBaAddress.Location = new System.Drawing.Point(121, 37);
             this.ctrlBaAddress.Name = "ctrlBaAddress";

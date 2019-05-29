@@ -216,7 +216,6 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // bindingSourceDictionary
             // 
             this.bindingSourceDictionary.DataSource = typeof(ipsFormsDesign.Model.AgrLicenseType);
-            this.bindingSourceDictionary.BindingComplete += new System.Windows.Forms.BindingCompleteEventHandler(this.bindingSourceDictionary_BindingComplete);
             // 
             // licenseAgreementBindingSource
             // 
