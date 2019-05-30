@@ -260,11 +260,11 @@
     <Compile Include="RightholderControls\Anketa\AnketaExternalRightholderControl.Designer.cs">
       <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shared\Controls\IpsAnketaCompanyAddControl.cs">
+    <Compile Include="Shared\Controls\IpsClientGroupBrandControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Shared\Controls\IpsAnketaCompanyAddControl.Designer.cs">
-      <DependentUpon>IpsAnketaCompanyAddControl.cs</DependentUpon>
+    <Compile Include="Shared\Controls\IpsClientGroupBrandControl.Designer.cs">
+      <DependentUpon>IpsClientGroupBrandControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Shared\Controls\PersonalAddressControl.cs">
       <SubType>UserControl</SubType>
@@ -677,11 +677,11 @@
     <Compile Include="PartnerControls\PartnerControl.Designer.cs">
       <DependentUpon>PartnerControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="PartnerControls\PartnerNameControl.cs">
+    <Compile Include="Shared\Controls\IpsAnketaPersonControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PartnerControls\PartnerNameControl.Designer.cs">
-      <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    <Compile Include="Shared\Controls\IpsAnketaPersonControl.Designer.cs">
+      <DependentUpon>IpsAnketaPersonControl.cs</DependentUpon>
     </Compile>
     <Compile Include="PartnerControls\PartnerClientsControl.cs">
       <SubType>UserControl</SubType>
@@ -1206,8 +1206,8 @@
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaExternalRightholderControl.resx">
       <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Shared\Controls\IpsAnketaCompanyAddControl.resx">
-      <DependentUpon>IpsAnketaCompanyAddControl.cs</DependentUpon>
+    <EmbeddedResource Include="Shared\Controls\IpsClientGroupBrandControl.resx">
+      <DependentUpon>IpsClientGroupBrandControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\Controls\PersonalAddressControl.resx">
       <DependentUpon>PersonalAddressControl.cs</DependentUpon>
@@ -1417,8 +1417,8 @@
     <EmbeddedResource Include="PartnerControls\PartnerControl.resx">
       <DependentUpon>PartnerControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PartnerControls\PartnerNameControl.resx">
-      <DependentUpon>PartnerNameControl.cs</DependentUpon>
+    <EmbeddedResource Include="Shared\Controls\IpsAnketaPersonControl.resx">
+      <DependentUpon>IpsAnketaPersonControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\TabNavigationExpandedControl.resx">
       <DependentUpon>TabNavigationExpandedControl.cs</DependentUpon>

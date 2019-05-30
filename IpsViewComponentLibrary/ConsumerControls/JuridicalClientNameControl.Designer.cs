@@ -30,10 +30,13 @@ namespace IpsViewComponentLibrary.ConsumerControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ctrlRegistrationsCompany = new IpsViewComponentLibrary.Shared.Controls.IpsRegistrationsCompanyControl();
             this.ctrlAnketaCompany = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyControl();
             this.office2013LightTheme = new Telerik.WinControls.Themes.Office2013LightTheme();
-            this.ctrlAnketaCompanyAdd = new IpsViewComponentLibrary.Shared.Controls.IpsAnketaCompanyAddControl();
+            this.ctrlAnketaCompanyAdd = new IpsViewComponentLibrary.Shared.Controls.IpsClientGroupBrandControl();
+            this.bsClient = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.bsClient)).BeginInit();
             this.SuspendLayout();
             // 
             // ctrlRegistrationsCompany
@@ -63,13 +66,17 @@ namespace IpsViewComponentLibrary.ConsumerControls
             // 
             this.ctrlAnketaCompanyAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ctrlAnketaCompanyAdd.DataSource = typeof(ipsFormsDesign.Model.Client);
+            this.ctrlAnketaCompanyAdd.DataSource = this.bsClient;
             this.ctrlAnketaCompanyAdd.Location = new System.Drawing.Point(3, 101);
             this.ctrlAnketaCompanyAdd.MaximumSize = new System.Drawing.Size(1000, 54);
             this.ctrlAnketaCompanyAdd.MinimumSize = new System.Drawing.Size(100, 54);
             this.ctrlAnketaCompanyAdd.Name = "ctrlAnketaCompanyAdd";
             this.ctrlAnketaCompanyAdd.Size = new System.Drawing.Size(704, 54);
             this.ctrlAnketaCompanyAdd.TabIndex = 4;
+            // 
+            // bsClient
+            // 
+            this.bsClient.DataSource = typeof(ipsFormsDesign.Model.Client);
             // 
             // JuridicalClientNameControl
             // 
@@ -82,6 +89,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             this.MinimumSize = new System.Drawing.Size(607, 273);
             this.Name = "JuridicalClientNameControl";
             this.Size = new System.Drawing.Size(711, 273);
+            ((System.ComponentModel.ISupportInitialize)(this.bsClient)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -91,6 +99,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         private IpsAnketaCompanyControl ctrlAnketaCompany;
         private IpsRegistrationsCompanyControl ctrlRegistrationsCompany;
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
-        private IpsAnketaCompanyAddControl ctrlAnketaCompanyAdd;
+        private IpsClientGroupBrandControl ctrlAnketaCompanyAdd;
+        private System.Windows.Forms.BindingSource bsClient;
     }
 }

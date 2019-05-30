@@ -143,7 +143,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
         /// <summary>
         /// Оновити обрані майданчики в ліцензійному договорі
         /// </summary>
-        public void UpdateLicenses()
+        public void UpdatePlaceLicenses()
         {
             if (gvPlaces.RowCount == 0)
                 return;

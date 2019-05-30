@@ -184,7 +184,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.BigRight.Cabinet
                 if (register?.RegId is int item)
                 {
                     var registerItem =
-                        OnRegisterItemListNeed?.Invoke(item); //TODO: виклик списку по rmID (оптимізація)
+                        OnRegisterItemListNeed?.Invoke(item);
                     if (registerItem != null)
                         register.RegisterItem.Add(registerItem.FirstOrDefault());
                 }

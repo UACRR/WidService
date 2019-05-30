@@ -48,7 +48,7 @@ namespace IpsViewComponentLibrary.ConsumerForms
         {
             if (DialogResult == DialogResult.OK)
             {
-                ctrlProlongation.UpdateLicenses();
+                ctrlProlongation.UpdatePlaceLicenses();
                 return;
             }
 

@@ -29,8 +29,7 @@ namespace IpsViewComponentLibrary.ConsumerControls
             
             ctrlAnketaCompany.DataSource = anketa;
             ctrlRegistrationsCompany.DataSource = anketa;
-
-            ctrlAnketaCompanyAdd.DataSource = customer.Client;
+            bsClient.DataSource = customer.Client;
         }
 
         public bool Validator()

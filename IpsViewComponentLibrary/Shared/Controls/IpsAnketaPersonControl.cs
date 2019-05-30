@@ -1,24 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using IpsViewComponentLibrary.Extensions;
 
-namespace IpsViewComponentLibrary.PartnerControls
+namespace IpsViewComponentLibrary.Shared.Controls
 {
-    public partial class PartnerNameControl : UserControl
+    public partial class IpsAnketaPersonControl : UserControl
     {
-        public delegate void NameChangeEventHandler(string lastName, string firstName, string surName);
-        public event NameChangeEventHandler TextNameChanged;
+        public event Action<string> CustomerNameChanged;
+
         private bool _birthDateSelected;
 
-        public PartnerNameControl()
+        public IpsAnketaPersonControl()
         {
             InitializeComponent();
             if (IpsGlobal.AnketaDictionaties != null)
@@ -34,7 +28,6 @@ namespace IpsViewComponentLibrary.PartnerControls
             set => bsAnketaPerson.DataSource = value;
         }
         
-
         /// <summary>
         /// Перевірка на правильність введених даних
         /// </summary>
@@ -85,7 +78,14 @@ namespace IpsViewComponentLibrary.PartnerControls
 
         private void Name_Leave(object sender, EventArgs e)
         {
-            TextNameChanged?.Invoke(txtLastName.Text, txtFirstName.Text, txtSurName.Text);
+            string customerName;
+
+            if (string.IsNullOrEmpty(txtLastName.Text) && string.IsNullOrEmpty(txtFirstName.Text) && string.IsNullOrEmpty(txtSurName.Text))
+                customerName = string.Empty;
+            else
+                customerName = $"{txtLastName.Text} {txtFirstName.Text} {txtSurName.Text}";
+
+            CustomerNameChanged?.Invoke(customerName);
         }
     }
 }

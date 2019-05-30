@@ -2,7 +2,7 @@
 
 namespace IpsViewComponentLibrary.Shared.Controls
 {
-    partial class IpsAnketaCompanyAddControl
+    partial class IpsClientGroupBrandControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -90,7 +90,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             // 
             this.bsClient.DataSource = typeof(ipsFormsDesign.Model.Client);
             // 
-            // IpsAnketaCompanyAddControl
+            // IpsClientGroupBrandControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -100,7 +100,7 @@ namespace IpsViewComponentLibrary.Shared.Controls
             this.Controls.Add(this.radLabel1);
             this.MaximumSize = new System.Drawing.Size(1000, 54);
             this.MinimumSize = new System.Drawing.Size(100, 54);
-            this.Name = "IpsAnketaCompanyAddControl";
+            this.Name = "IpsClientGroupBrandControl";
             this.Size = new System.Drawing.Size(406, 54);
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
@@ -119,6 +119,6 @@ namespace IpsViewComponentLibrary.Shared.Controls
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadTextBox txtBrand;
         private Telerik.WinControls.UI.RadTextBox txtGroup;
-        private System.Windows.Forms.BindingSource bsClient;
+        private BindingSource bsClient;
     }
 }
