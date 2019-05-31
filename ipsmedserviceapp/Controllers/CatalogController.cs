@@ -30,11 +30,30 @@ namespace ipsmedserviceapp.Controllers
             _logger = logger;
         }
 
+
+        [HttpGet("catalogfilelist/{custId}")]
+        public async Task<IActionResult> GetCatalogFilesList(int custId)
+        {
+            var catalogFiles = await _dbContext.CatalogFile
+                .Where(rec => rec.CustId == custId && rec.PubCatalogItem.Any()  )
+                .Include(rec => rec.StatusNavigation)
+                // .Include(rec => rec.PubCatalogItem)
+                // .ThenInclude(rec => rec.StatusNavigation)
+                .ToListAsync();
+
+//            var delList = catalogFiles.Where(rec => rec.PubCatalogItem.Count == 0).ToArray();
+
+
+
+            return Ok(catalogFiles);
+        }
+
         [HttpGet("catalogfile/{custId}/{fileId}")]
         public async Task<IActionResult> GetCatalogFile(int custId, int fileId)
         {
             var catalogFile = await _dbContext.CatalogFile
                 .Include(rec => rec.PubCatalogItem)
+                    .ThenInclude(rec => rec.StatusNavigation)
                 .SingleOrDefaultAsync(rec => rec.CustId == custId && rec.FileId == fileId);
 
             if (catalogFile == null)
@@ -43,18 +62,7 @@ namespace ipsmedserviceapp.Controllers
             return Ok(catalogFile);
         }
 
-        [HttpGet("catalogfilelist/{custId}")]
-        public async Task<IActionResult> GetCatalogFilesList(int custId)
-        {
-            var catalogFiles = await _dbContext.CatalogFile
-                .Where(rec => rec.CustId == custId)
-                .Include(rec => rec.StatusNavigation)
-                .Include(rec => rec.PubCatalogItem)
-                .ThenInclude(rec => rec.StatusNavigation)
-                .ToListAsync();
 
-            return Ok(catalogFiles);
-        }
 
         [Authorize]
         [HttpPost("upload/{custId}")]
@@ -160,7 +168,7 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 transaction?.Rollback();
                 _logger.LogError(ex.InnerException.Message);
@@ -196,7 +204,7 @@ namespace ipsmedserviceapp.Controllers
                 transaction.Commit();
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 transaction?.Rollback();
                 _logger.LogError(ex.InnerException.Message);
@@ -256,7 +264,7 @@ namespace ipsmedserviceapp.Controllers
 
                 return Ok(responce);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex.InnerException.Message);
                 throw;
@@ -311,7 +319,7 @@ namespace ipsmedserviceapp.Controllers
 
                 return Ok(responce);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError(ex.InnerException.Message);
                 throw;
