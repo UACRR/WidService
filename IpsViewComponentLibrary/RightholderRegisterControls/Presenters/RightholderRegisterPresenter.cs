@@ -18,7 +18,17 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
 
         public List<CatalogFile> GetFileList(int custId)
         {
-            return new List<CatalogFile>();
+            return new List<CatalogFile>
+            {
+                new CatalogFile{FileName = "File_01", CustId = 1},
+                new CatalogFile{FileName = "File_02.04", CustId = 1},
+                new CatalogFile{FileName = "File_qwertrty", CustId = 1}
+            };
+        }
+
+        public List<RhcatalogItem> GetRHCatalogItems(int custId, int fileId)
+        {
+            return new List<RhcatalogItem>();
         }
 
         public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)

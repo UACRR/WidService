@@ -198,7 +198,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
-            SetCatalogsTabVisible((int)customer.RightHolder.RHolderType);
+            SetCatalogsTabVisible(customer.RightHolder.RHolderType);
             //set active pages on depends field 'CustType'
             //ShowActivePages(customer);
 

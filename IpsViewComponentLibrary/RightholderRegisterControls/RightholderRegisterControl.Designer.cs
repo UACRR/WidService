@@ -209,6 +209,7 @@
             this.Controls.Add(this.gridCatalogFiles);
             this.Name = "RightholderRegisterControl";
             this.Size = new System.Drawing.Size(814, 458);
+            this.Load += new System.EventHandler(this.RightholderRegisterControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.btnLoadFile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCatalogFiles)).EndInit();

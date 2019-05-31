@@ -126,10 +126,11 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
             this.pvCatalog = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCatalog = new IpsViewComponentLibrary.CatalogControls.CatalogControl();
+            this.pvRegisters = new Telerik.WinControls.UI.RadPageViewPage();
+            this.rightholderRegisterControl1 = new IpsViewComponentLibrary.RightholderRegisterControls.RightholderRegisterControl();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
-            this.pvRegisters = new Telerik.WinControls.UI.RadPageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -209,6 +210,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).BeginInit();
             this.pvCatalog.SuspendLayout();
+            this.pvRegisters.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -1070,7 +1072,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // radPageViewPage5
             // 
             this.radPageViewPage5.Controls.Add(this.anketaExternalRightholderControl1);
-            this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage5.Location = new System.Drawing.Point(117, 5);
             this.radPageViewPage5.Name = "radPageViewPage5";
             this.radPageViewPage5.Size = new System.Drawing.Size(887, 435);
@@ -1090,7 +1091,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // radPageViewPage12
             // 
             this.radPageViewPage12.Controls.Add(this.rightLimitationsControl1_ExternalAnketa);
-            this.radPageViewPage12.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage12.Location = new System.Drawing.Point(117, 5);
             this.radPageViewPage12.Name = "radPageViewPage12";
             this.radPageViewPage12.Size = new System.Drawing.Size(884, 438);
@@ -1194,6 +1194,24 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlCatalog.Size = new System.Drawing.Size(1009, 445);
             this.ctrlCatalog.TabIndex = 0;
             // 
+            // pvRegisters
+            // 
+            this.pvRegisters.Controls.Add(this.rightholderRegisterControl1);
+            this.pvRegisters.ItemSize = new System.Drawing.SizeF(91F, 27F);
+            this.pvRegisters.Location = new System.Drawing.Point(5, 31);
+            this.pvRegisters.Name = "pvRegisters";
+            this.pvRegisters.Size = new System.Drawing.Size(1009, 445);
+            this.pvRegisters.Text = "Реєстр творів";
+            // 
+            // rightholderRegisterControl1
+            // 
+            this.rightholderRegisterControl1.CustId = 0;
+            this.rightholderRegisterControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightholderRegisterControl1.Location = new System.Drawing.Point(0, 0);
+            this.rightholderRegisterControl1.Name = "rightholderRegisterControl1";
+            this.rightholderRegisterControl1.Size = new System.Drawing.Size(1009, 445);
+            this.rightholderRegisterControl1.TabIndex = 0;
+            // 
             // termsOfServiceWrapperBindingSource
             // 
             this.termsOfServiceWrapperBindingSource.DataSource = typeof(ipsFormsDesign.Dictionary.TermsOfServiceWrapper);
@@ -1201,14 +1219,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             // bsAnketaExternal
             // 
             this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.AnketaExternal);
-            // 
-            // pvRegisters
-            // 
-            this.pvRegisters.ItemSize = new System.Drawing.SizeF(91F, 27F);
-            this.pvRegisters.Location = new System.Drawing.Point(5, 31);
-            this.pvRegisters.Name = "pvRegisters";
-            this.pvRegisters.Size = new System.Drawing.Size(1009, 445);
-            this.pvRegisters.Text = "Реєстр творів";
             // 
             // RightholderView
             // 
@@ -1314,6 +1324,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).EndInit();
             this.pvCatalog.ResumeLayout(false);
+            this.pvRegisters.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -1420,5 +1431,6 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadTextBoxControl txtCommentPhis;
         private Telerik.WinControls.UI.RadTextBoxControl txtCommentJur;
         private Telerik.WinControls.UI.RadPageViewPage pvRegisters;
+        private RightholderRegisterControls.RightholderRegisterControl rightholderRegisterControl1;
     }
 }

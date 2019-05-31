@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Forms;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
+using IpsViewComponentLibrary.Shared.Forms;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {

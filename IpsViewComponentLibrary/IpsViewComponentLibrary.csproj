@@ -167,17 +167,17 @@
     <Compile Include="CatalogControls\CatalogShowEdition.Designer.cs">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </Compile>
-    <Compile Include="CatalogControls\ChangeCommentForm.cs">
+    <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CatalogControls\ChangeCommentForm.Designer.cs">
+    <Compile Include="RightholderRegisterControls\RightholderRegisterDetailForm.Designer.cs">
+      <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\Forms\ChangeCommentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shared\Forms\ChangeCommentForm.Designer.cs">
       <DependentUpon>ChangeCommentForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CatalogControls\CommentControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CatalogControls\CommentControl.Designer.cs">
-      <DependentUpon>CommentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="CatalogControls\Presenters\CatalogPresenter.cs" />
     <Compile Include="CatalogControls\Presenters\ICatalogFileItemsHandler.cs" />
@@ -1174,11 +1174,11 @@
     <EmbeddedResource Include="CatalogControls\CatalogShowEdition.resx">
       <DependentUpon>CatalogShowEdition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\ChangeCommentForm.resx">
-      <DependentUpon>ChangeCommentForm.cs</DependentUpon>
+    <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterDetailForm.resx">
+      <DependentUpon>RightholderRegisterDetailForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CatalogControls\CommentControl.resx">
-      <DependentUpon>CommentControl.cs</DependentUpon>
+    <EmbeddedResource Include="Shared\Forms\ChangeCommentForm.resx">
+      <DependentUpon>ChangeCommentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Common\GridRowCountControl.resx">
       <DependentUpon>GridRowCountControl.cs</DependentUpon>
@@ -1709,6 +1709,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RhcatalogItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.SexType.datasource" />

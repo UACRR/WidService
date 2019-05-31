@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
-using IpsViewComponentLibrary.CatalogControls;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.RightholderRegisterControls.Presenters;
+using IpsViewComponentLibrary.Shared.Forms;
 
 namespace IpsViewComponentLibrary.RightholderRegisterControls
 {
@@ -55,8 +55,6 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
         {
             using (var fileExel = new OpenFileDialog())
             {
-                //open dialog
-                // fileExel.InitialDirectory = @"C:\";
                 fileExel.Filter = "Excel files (.xlsx)|*.xlsx";
                 fileExel.RestoreDirectory = true;
 
@@ -83,11 +81,11 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             switch (e.Column.FieldName)
             {
                 case "infoBtn":
-                    var form = new CatalogDetailForm(row);
-                    form.ShowDialog();
+                    LoadDetailForm(row);
                     break;
                 case "editBtn":
                     var commentForm = new ChangeCommentForm(row);
+
                     if (commentForm.ShowDialog() == DialogResult.OK)
                     {
                         var result = _presenter.SaveRightholderRegister(row);
@@ -95,7 +93,6 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
                         if (result)
                             UpdateGridData();
                     }
-
                     break;
 
                 case "deleteBtn":
@@ -113,8 +110,24 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
         private void gridCatalogFiles_DoubleClick(object sender, EventArgs e)
         {
             var row = gridCatalogFiles.CurrentRow.DataBoundItem as CatalogFile;
-            var form = new CatalogDetailForm(row);
+            LoadDetailForm(row);
+        }
+
+        /// <summary>
+        /// Завантажити та показати список елементів файлу
+        /// </summary>
+        /// <param name="file"></param>
+        private void LoadDetailForm(CatalogFile file)
+        {
+            // todo: waibar for load
+            var items = _presenter.GetRHCatalogItems((int)file.CustId, file.FileId);
+            var form = new RightholderRegisterDetailForm(file, items);
             form.ShowDialog();
+        }
+
+        private void RightholderRegisterControl_Load(object sender, EventArgs e)
+        {
+            UpdateGridData();
         }
     }
 }
