@@ -260,6 +260,13 @@
     <Compile Include="RightholderControls\Anketa\AnketaExternalRightholderControl.Designer.cs">
       <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="RightholderRegisterControls\Presenters\RightholderRegisterPresenter.cs" />
+    <Compile Include="RightholderRegisterControls\RightholderRegisterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="RightholderRegisterControls\RightholderRegisterControl.Designer.cs">
+      <DependentUpon>RightholderRegisterControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Shared\Controls\IpsClientGroupBrandControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1205,6 +1212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RightholderControls\Anketa\AnketaExternalRightholderControl.resx">
       <DependentUpon>AnketaExternalRightholderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RightholderRegisterControls\RightholderRegisterControl.resx">
+      <DependentUpon>RightholderRegisterControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Shared\Controls\IpsClientGroupBrandControl.resx">
       <DependentUpon>IpsClientGroupBrandControl.cs</DependentUpon>
