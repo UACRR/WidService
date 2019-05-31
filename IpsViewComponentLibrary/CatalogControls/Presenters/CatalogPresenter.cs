@@ -81,6 +81,7 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
                 AuthorMusic = item[5],
                 AuthorText = item[6],
                 RoleName = item[7],
+                RhName = item[8],
                 Rate = 0
             };
 

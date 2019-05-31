@@ -25,7 +25,6 @@ namespace ipsFormsDesign.Model
         public virtual Client Cust { get; set; }
         public virtual PaidPeriod Period { get; set; }
         public virtual RegisterStatus StatusNavigation { get; set; }
-        public virtual AspNetUsers User { get; set; }
         public virtual ObservableListSource<BrRegItem> BrRegItem { get; set; }
         public virtual ObservableListSource<Distribution> Distribution { get; set; }
     }

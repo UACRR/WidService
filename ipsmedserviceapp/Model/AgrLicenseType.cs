@@ -23,6 +23,7 @@ namespace ipsmedserviceapp.Model
         public int? AlgorithmId { get; set; }
         public string Series { get; set; }
         public decimal? AuthRate { get; set; }
+        public short? IsPortal { get; set; }
 
         public virtual AlgorithmType Algorithm { get; set; }
         public virtual CopyrightKind KindCodeNavigation { get; set; }
