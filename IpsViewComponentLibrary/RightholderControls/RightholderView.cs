@@ -55,7 +55,6 @@ namespace IpsViewComponentLibrary.RightholderControls
             set => bsAnketaCompany.DataSource = value;
         }
 
-        //define Anketa External data source
         public object AnketaExternalDataSource
         {
             get => bsAnketaExternal.DataSource;
@@ -98,6 +97,29 @@ namespace IpsViewComponentLibrary.RightholderControls
         }
 
         #endregion
+
+        /// <summary>
+        /// Активність вкладок реєстру/каталога залежно від типу правовласника
+        /// </summary>
+        /// <param name="rhType"></param>
+        public void SetCatalogsTabVisible(int? rhType)
+        {
+            if (rhType == null)
+            {
+                pvCatalog.Enabled = false;
+                pvRegisters.Enabled = false;
+            }
+            else if (rhType == 1)
+            {
+                pvCatalog.Enabled = false;
+                pvRegisters.Enabled = true;
+            }
+            else
+            {
+                pvCatalog.Enabled = true;
+                pvRegisters.Enabled = false;
+            }
+        }
 
         
         public RightholderView()
@@ -176,7 +198,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         public void Run()
         {
             var customer = (Customer)bsCustomer.Current;
-
+            SetCatalogsTabVisible((int)customer.RightHolder.RHolderType);
             //set active pages on depends field 'CustType'
             //ShowActivePages(customer);
 

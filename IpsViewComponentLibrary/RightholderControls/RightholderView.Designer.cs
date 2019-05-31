@@ -124,11 +124,12 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ddbAddObjectRightForRightholder = new Telerik.WinControls.UI.RadDropDownButton();
             this.miAddMusicalCompositionForRightholder = new Telerik.WinControls.UI.RadMenuItem();
             this.ctrlRightholdersObjectsRight = new IpsViewComponentLibrary.RightholderControls.RightholdersObjectsRightsControl();
-            this.radPagCatalog = new Telerik.WinControls.UI.RadPageViewPage();
+            this.pvCatalog = new Telerik.WinControls.UI.RadPageViewPage();
             this.ctrlCatalog = new IpsViewComponentLibrary.CatalogControls.CatalogControl();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.termsOfServiceWrapperBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bsAnketaExternal = new System.Windows.Forms.BindingSource(this.components);
+            this.pvRegisters = new Telerik.WinControls.UI.RadPageViewPage();
             ((System.ComponentModel.ISupportInitialize)(this.anketaPageView)).BeginInit();
             this.anketaPageView.SuspendLayout();
             this.rightholderPersonPage.SuspendLayout();
@@ -207,7 +208,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).BeginInit();
-            this.radPagCatalog.SuspendLayout();
+            this.pvCatalog.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -247,7 +248,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // txtCommentPhis
             // 
-            this.txtCommentPhis.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "Comment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtCommentPhis.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "Comment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtCommentPhis.Location = new System.Drawing.Point(78, 256);
             this.txtCommentPhis.MaxLength = 1024;
             this.txtCommentPhis.Multiline = true;
@@ -303,7 +304,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // 
             // txtCommentJur
             // 
-            this.txtCommentJur.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "Comment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, string.Empty));
+            this.txtCommentJur.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRightHolder, "Comment", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, ""));
             this.txtCommentJur.Location = new System.Drawing.Point(87, 305);
             this.txtCommentJur.MaxLength = 1024;
             this.txtCommentJur.Multiline = true;
@@ -590,6 +591,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.royaltyPage.Controls.Add(this.radLabel8);
             this.royaltyPage.Controls.Add(this.createRightholderRoyaltyPageView);
             this.royaltyPage.Controls.Add(this.ddlTypeMethodGet);
+            this.royaltyPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.royaltyPage.Location = new System.Drawing.Point(139, 5);
             this.royaltyPage.Name = "royaltyPage";
             this.royaltyPage.Size = new System.Drawing.Size(865, 437);
@@ -718,6 +720,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // rigthLimitationsPage
             // 
             this.rigthLimitationsPage.Controls.Add(this.ctrlRightLimitations);
+            this.rigthLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.rigthLimitationsPage.Location = new System.Drawing.Point(139, 5);
             this.rigthLimitationsPage.Name = "rigthLimitationsPage";
             this.rigthLimitationsPage.Size = new System.Drawing.Size(865, 437);
@@ -738,6 +741,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // territoryLimitationsPage
             // 
             this.territoryLimitationsPage.Controls.Add(this.ctrlTerritoryIncludeExclude);
+            this.territoryLimitationsPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.territoryLimitationsPage.Location = new System.Drawing.Point(139, 5);
             this.territoryLimitationsPage.Name = "territoryLimitationsPage";
             this.territoryLimitationsPage.Size = new System.Drawing.Size(865, 437);
@@ -756,6 +760,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPrintPage.Controls.Add(this.radPdfViewerNavigator1);
             this.agreementPrintPage.Controls.Add(this.btnGenerateRightholderAgreement);
             this.agreementPrintPage.Controls.Add(this.pdfvRightholderAgreement);
+            this.agreementPrintPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPrintPage.Location = new System.Drawing.Point(139, 5);
             this.agreementPrintPage.Name = "agreementPrintPage";
             this.agreementPrintPage.Size = new System.Drawing.Size(865, 437);
@@ -887,7 +892,8 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.pageCatalog.Controls.Add(this.Contract);
             this.pageCatalog.Controls.Add(this.AnketaExternal);
             this.pageCatalog.Controls.Add(this.pageObjects);
-            this.pageCatalog.Controls.Add(this.radPagCatalog);
+            this.pageCatalog.Controls.Add(this.pvCatalog);
+            this.pageCatalog.Controls.Add(this.pvRegisters);
             this.pageCatalog.DefaultPage = this.Anketa;
             this.pageCatalog.Location = new System.Drawing.Point(0, 1);
             this.pageCatalog.Name = "pageCatalog";
@@ -942,6 +948,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.agreementPage.Controls.Add(this.ddlAgreementStatus);
             this.agreementPage.Controls.Add(this.ctrlServiceComissionControl);
             this.agreementPage.Controls.Add(this.ctrlAgreementNumberDate);
+            this.agreementPage.ItemSize = new System.Drawing.SizeF(137F, 27F);
             this.agreementPage.Location = new System.Drawing.Point(141, 5);
             this.agreementPage.Name = "agreementPage";
             this.agreementPage.Size = new System.Drawing.Size(863, 435);
@@ -1063,6 +1070,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // radPageViewPage5
             // 
             this.radPageViewPage5.Controls.Add(this.anketaExternalRightholderControl1);
+            this.radPageViewPage5.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage5.Location = new System.Drawing.Point(117, 5);
             this.radPageViewPage5.Name = "radPageViewPage5";
             this.radPageViewPage5.Size = new System.Drawing.Size(887, 435);
@@ -1082,6 +1090,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             // radPageViewPage12
             // 
             this.radPageViewPage12.Controls.Add(this.rightLimitationsControl1_ExternalAnketa);
+            this.radPageViewPage12.ItemSize = new System.Drawing.SizeF(113F, 27F);
             this.radPageViewPage12.Location = new System.Drawing.Point(117, 5);
             this.radPageViewPage12.Name = "radPageViewPage12";
             this.radPageViewPage12.Size = new System.Drawing.Size(884, 438);
@@ -1167,14 +1176,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             this.ctrlRightholdersObjectsRight.Size = new System.Drawing.Size(1009, 415);
             this.ctrlRightholdersObjectsRight.TabIndex = 8;
             // 
-            // radPagCatalog
+            // pvCatalog
             // 
-            this.radPagCatalog.Controls.Add(this.ctrlCatalog);
-            this.radPagCatalog.ItemSize = new System.Drawing.SizeF(65F, 27F);
-            this.radPagCatalog.Location = new System.Drawing.Point(5, 31);
-            this.radPagCatalog.Name = "radPagCatalog";
-            this.radPagCatalog.Size = new System.Drawing.Size(1009, 445);
-            this.radPagCatalog.Text = "Каталоги";
+            this.pvCatalog.Controls.Add(this.ctrlCatalog);
+            this.pvCatalog.ItemSize = new System.Drawing.SizeF(65F, 27F);
+            this.pvCatalog.Location = new System.Drawing.Point(5, 31);
+            this.pvCatalog.Name = "pvCatalog";
+            this.pvCatalog.Size = new System.Drawing.Size(1009, 445);
+            this.pvCatalog.Text = "Каталоги";
             // 
             // ctrlCatalog
             // 
@@ -1192,6 +1201,14 @@ namespace IpsViewComponentLibrary.RightholderControls
             // bsAnketaExternal
             // 
             this.bsAnketaExternal.DataSource = typeof(ipsFormsDesign.Model.AnketaExternal);
+            // 
+            // pvRegisters
+            // 
+            this.pvRegisters.ItemSize = new System.Drawing.SizeF(91F, 27F);
+            this.pvRegisters.Location = new System.Drawing.Point(5, 31);
+            this.pvRegisters.Name = "pvRegisters";
+            this.pvRegisters.Size = new System.Drawing.Size(1009, 445);
+            this.pvRegisters.Text = "Реєстр творів";
             // 
             // RightholderView
             // 
@@ -1296,7 +1313,7 @@ namespace IpsViewComponentLibrary.RightholderControls
             ((System.ComponentModel.ISupportInitialize)(this.btnUploadFromExcel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAddExistingObjectRightForRightholder)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ddbAddObjectRightForRightholder)).EndInit();
-            this.radPagCatalog.ResumeLayout(false);
+            this.pvCatalog.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.termsOfServiceWrapperBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsAnketaExternal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -1396,11 +1413,12 @@ namespace IpsViewComponentLibrary.RightholderControls
         private Telerik.WinControls.UI.RadPageViewPage radPageViewPage12;
         private System.Windows.Forms.BindingSource termsOfServiceWrapperBindingSource;
         private Anketa.RightLimitationsControl rightLimitationsControl1_ExternalAnketa;
-        private Telerik.WinControls.UI.RadPageViewPage radPagCatalog;
+        private Telerik.WinControls.UI.RadPageViewPage pvCatalog;
         private CatalogControls.CatalogControl ctrlCatalog;
         private Telerik.WinControls.UI.RadLabel radLabel1;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadTextBoxControl txtCommentPhis;
         private Telerik.WinControls.UI.RadTextBoxControl txtCommentJur;
+        private Telerik.WinControls.UI.RadPageViewPage pvRegisters;
     }
 }
