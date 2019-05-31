@@ -486,6 +486,7 @@
     <Compile Include="Services\PartnerService.cs" />
     <Compile Include="Services\RegisterService.cs" />
     <Compile Include="Services\ObjectUploading\RightholderData.cs" />
+    <Compile Include="Services\RightholderRegister.cs" />
     <Compile Include="Services\RightHolderService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\Utils.cs" />

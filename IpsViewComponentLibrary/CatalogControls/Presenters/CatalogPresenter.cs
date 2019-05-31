@@ -23,6 +23,11 @@ namespace IpsViewComponentLibrary.CatalogControls.Presenters
             return _service.GetCatalogFileList(custId);
         }
 
+        public CatalogFile GetCatalogFile( int custId, int fileId )
+        {
+            return _service.GetCatalogFile(custId, fileId);
+        }
+
         public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)
         {
             if (catalogFile.CustId == null || catalogFile.CustId == 0)
