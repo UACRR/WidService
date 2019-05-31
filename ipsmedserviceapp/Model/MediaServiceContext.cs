@@ -553,6 +553,8 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("authRate")
                     .HasColumnType("numeric(10, 5)");
 
+                entity.Property(e => e.IsPortal).HasColumnName("isPortal");
+
                 entity.Property(e => e.KindCode).HasColumnName("kindCode");
 
                 entity.Property(e => e.Name)
@@ -944,11 +946,6 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.AgreementAddRh)
                     .HasForeignKey(d => d.PeriodCode)
                     .HasConstraintName("FK_AGREEMEN_REF_PERIOD");
-
-                entity.HasOne(d => d.ResponsUserNavigation)
-                    .WithMany(p => p.AgreementAddRh)
-                    .HasForeignKey(d => d.ResponsUser)
-                    .HasConstraintName("FK_AGREEMEN_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<AgreementMaster>(entity =>
@@ -2219,11 +2216,6 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.BrRegister)
                     .HasForeignKey(d => d.Status)
                     .HasConstraintName("FK_BRREGIST_REFERENCE_REGISTER");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.BrRegister)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_BRREGIST_REF_ASPNETUS");
             });
 
             modelBuilder.Entity<CatalogFile>(entity =>
@@ -2822,6 +2814,8 @@ namespace ipsmedserviceapp.Model
                     .HasMaxLength(254)
                     .IsUnicode(false);
 
+                entity.Property(e => e.LoadId).HasColumnName("loadId");
+
                 entity.Property(e => e.ModifyDate)
                     .HasColumnName("modifyDate")
                     .HasColumnType("datetime");
@@ -2850,6 +2844,11 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.RoleRate)
                     .HasColumnName("roleRate")
                     .HasColumnType("decimal(5, 2)");
+
+                entity.Property(e => e.SourceName)
+                    .HasColumnName("sourceName")
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
@@ -3386,6 +3385,8 @@ namespace ipsmedserviceapp.Model
                 entity.Property(e => e.AnkVersion).HasColumnName("ankVersion");
 
                 entity.Property(e => e.CustType).HasColumnName("custType");
+
+                entity.Property(e => e.LoadId).HasColumnName("loadId");
 
                 entity.Property(e => e.Status).HasColumnName("status");
 
@@ -3983,11 +3984,6 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.Employee)
                     .HasForeignKey(d => d.CustId)
                     .HasConstraintName("FK_EMPLOYEE_REFERENCE_CUSTOMER");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Employee)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_EMPLOYEE_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<EpisodeType>(entity =>
@@ -4468,11 +4464,6 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.StageStatus)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_FIXATION_REFERENCE_FIXSTAGE");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Fixation)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_FIXATION_REF_ASPNETUSER");
 
                 entity.HasOne(d => d.UsesTypeNavigation)
                     .WithMany(p => p.Fixation)
@@ -7298,6 +7289,11 @@ namespace ipsmedserviceapp.Model
                     .HasColumnName("rate")
                     .HasColumnType("numeric(10, 5)");
 
+                entity.Property(e => e.RhName)
+                    .HasColumnName("rhName")
+                    .HasMaxLength(254)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.RoleCode).HasColumnName("roleCode");
 
                 entity.Property(e => e.RoleName)
@@ -7463,11 +7459,6 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.Register)
                     .HasForeignKey(d => d.RmId)
                     .HasConstraintName("FK_REG_REF_REGRATELIST");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Register)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_REGISTER_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<RegisterAuthors>(entity =>
@@ -8727,11 +8718,6 @@ namespace ipsmedserviceapp.Model
                     .WithMany(p => p.Request)
                     .HasForeignKey(d => d.TermUseCode)
                     .HasConstraintName("FK_REQUEST_REFERENCE_TERMUSE");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.Request)
-                    .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_REQUEST_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<RequestAdapt>(entity =>
@@ -10249,12 +10235,6 @@ namespace ipsmedserviceapp.Model
                     .HasForeignKey(d => d.RoleType)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_USERROLE_REFERENCE_USERROLE");
-
-                entity.HasOne(d => d.User)
-                    .WithMany(p => p.UserRole)
-                    .HasForeignKey(d => d.UserId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_USERROLE_REFERENCE_ASPNETUS");
             });
 
             modelBuilder.Entity<UserRoleType>(entity =>
