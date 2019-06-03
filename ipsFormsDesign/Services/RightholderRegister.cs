@@ -1,4 +1,5 @@
-﻿using ipsFormsDesign.Model;
+﻿using IpsCommonTypes.Types;
+using ipsFormsDesign.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,6 +57,24 @@ namespace ipsFormsDesign.Services
         {
             string url = $"{_prefix}/{custId}/upload";
             return _apiConnector.NewItemWithReturn(url, sors);
+        }
+
+        public ExecSqlResponce<CatalogFile> Validate( CatalogFile file )
+        {
+            int custId = file.CustId ?? 0, fileId = file.FileId;
+            string url = $"{_prefix}/{custId}/validate";
+            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
+            return outResult;
+
+        }
+
+        public ExecSqlResponce<CatalogFile> Process(CatalogFile file)
+        {
+            int custId = file.CustId ?? 0, fileId = file.FileId;
+            string url = $"{_prefix}/{custId}/process";
+            _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
+            return outResult;
+
         }
     }
 }

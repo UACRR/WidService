@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -100,6 +103,133 @@ namespace ipsmedserviceapp.Controllers
 
 
         }
+        //
+
+        // *** Validate
+        [HttpPut("{custId}/file/{fileId}/validate")]
+        public async Task<IActionResult> ValidateFile(int custId, int fileId)
+        {
+
+            var file = await _dbContext.CatalogFile
+            .Where(rec => rec.CustId == custId && rec.FileId == fileId)
+            .FirstOrDefaultAsync();
+
+            if (file == null)
+            {
+                string msg = $"VALIDATE *** File with fileId = {fileId} not found";
+                _logger.LogWarning(msg);
+                return NotFound(msg);
+            }
+
+            try
+            {
+                var paramFileId = new SqlParameter("@fileId", fileId);
+
+                var message = new SqlParameter("@result", SqlDbType.VarChar, 100)
+                {
+                    Direction = ParameterDirection.Output
+                };
+
+                var returnCode = new SqlParameter("@RetCode", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+
+                string command = "exec CatalogControlRH @fileId, @result OUTPUT, @RetCode OUTPUT";
+
+                await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
+
+                var responce = new ExecSqlResponce<CatalogFile>();
+                responce.Message = message.Value.ToString();
+
+                // Процедура виконала дії без помилок
+                if (Convert.ToInt32(returnCode.Value) == 0)
+                {
+                    var validCatalog = await _dbContext.CatalogFile
+                        .Include(rec => rec.RhcatalogItem)
+                        .ThenInclude(pub => pub.StatusNavigation)
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+
+                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
+                    responce.Data = validCatalog;
+                }
+                else
+                {
+                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
+                }
+
+                return Ok(responce);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.InnerException.Message);
+                throw;
+            }
+        }
+
+        // *** Process
+        [HttpPut("{custId}/file/{fileId}/process")]
+        public async Task<IActionResult> ProcessFile(int custId, int fileId)
+        {
+            var file = await _dbContext.CatalogFile
+            .Where(rec => rec.CustId == custId && rec.FileId == fileId)
+            .FirstOrDefaultAsync();
+
+            if (file == null)
+            {
+                string msg = $"PROCESS *** File with fileId = {fileId} not found";
+                _logger.LogWarning(msg);
+                return NotFound(msg);
+            }
+
+            try
+            {
+                var paramFileId = new SqlParameter("@fileId", fileId);
+
+                var message = new SqlParameter("@result", SqlDbType.VarChar, 100)
+                {
+                    Direction = ParameterDirection.Output
+                };
+
+                var returnCode = new SqlParameter("@RetCode", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+
+                string command = "exec CatalogInputRH @fileId, @result OUTPUT, @RetCode OUTPUT";
+
+                await _dbContext.Database.ExecuteSqlCommandAsync(command, paramFileId, message, returnCode);
+
+                var responce = new ExecSqlResponce<CatalogFile>();
+                responce.Message = message.Value.ToString();
+
+                // Процедура виконала дії без помилок
+                if (Convert.ToInt32(returnCode.Value) == 0)
+                {
+                    var validCatalog = await _dbContext.CatalogFile
+                        .Include(rec => rec.RhcatalogItem)
+                        .ThenInclude(pub => pub.StatusNavigation)
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(rec => rec.FileId == fileId);
+
+                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Successed;
+                    responce.Data = validCatalog;
+                }
+                else
+                {
+                    responce.StatusCode = IpsCommonTypes.Enums.ExecSqlResponceStatus.Failed;
+                }
+
+                return Ok(responce);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.InnerException.Message);
+                throw;
+            }
+        }
+
         // upload
         [HttpPut("{custId}/upload")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile sors)

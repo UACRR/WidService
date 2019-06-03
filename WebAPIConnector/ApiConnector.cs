@@ -21,6 +21,8 @@ namespace WebAPIConnector
     public class ApiConnector
     {
         private readonly HttpClient client;
+        public string ErrorCode { get; private set; }
+        public string ErrorMessage { get; private set; }
 
         public ApiConnector()
         {
@@ -77,28 +79,27 @@ namespace WebAPIConnector
         public List<T> GetList<T>(string url, params KeyValuePair<string, string>[] listParam)
         {
             string runUrl = url;
-            if (listParam.Any())
-                runUrl = string.Concat(runUrl, AsQueryString(listParam));
-
-            string retApiString;
-
             try
             {
+                if (listParam.Any())
+                    runUrl = string.Concat(runUrl, AsQueryString(listParam));
+
+                string retApiString;
                 retApiString = client.GetStringAsync(runUrl).GetAwaiter().GetResult();
+
+                JArray array = JArray.Parse(retApiString);
+                List<T> list = array.Select(rec =>
+                {
+                    var item = rec.ToObject<T>();
+                    return item;
+                }).ToList();
+
+                return list;
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
-
-            JArray array = JArray.Parse(retApiString);
-            List<T> list = array.Select(rec =>
-            {
-                var item = rec.ToObject<T>();
-                return item;
-            }).ToList();
-
-            return list;
         }
 
         /// <summary>
@@ -210,7 +211,7 @@ namespace WebAPIConnector
                 }
                 else if (response.StatusCode == HttpStatusCode.NotFound)
                     return default(T);
-                else 
+                else
                     return default(T);
             }
             catch
