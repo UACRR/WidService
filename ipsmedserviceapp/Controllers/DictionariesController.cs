@@ -2015,6 +2015,7 @@ namespace ipsmedserviceapp.Controllers
             retDictionary.Add("specType", await _dbContext.SpecType.AsNoTracking().ToListAsync());
             retDictionary.Add("folkType", await _dbContext.FolkType.AsNoTracking().ToListAsync());
             retDictionary.Add("registerStatuses", await _dbContext.RegisterStatus.AsNoTracking().ToListAsync());
+            retDictionary.Add("catalogStatus", await _dbContext.CatalogStatus.AsNoTracking().ToListAsync());
 
             return Json(retDictionary);
         }

@@ -39,6 +39,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(list);
         }
+
         // file
         // *** Get
         [HttpGet("{custId}/file/{fileId}")]
@@ -59,6 +60,7 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(file);
         }
+
         // *** Delete
         [HttpDelete("{custId}/file/{fileId}")]
         public async Task<IActionResult> DeleteFile(int custId, int fileId)
@@ -80,6 +82,7 @@ namespace ipsmedserviceapp.Controllers
             await _dbContext.SaveChangesAsync();
             return Ok(file);
         }
+
         // *** Update
         [HttpPut("{custId}/file/{fileId}")]
         public async Task<IActionResult> UpdateFile(int custId, int fileId, [FromBody] CatalogFile sors)

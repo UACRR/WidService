@@ -9,16 +9,18 @@ using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
 {
-    class RightholderRegisterService
+    public class RightholderRegisterService
     {
         private const string _prefix = "rightholderregister";
         private readonly ApiConnector _apiConnector;
         private static RightholderRegisterService _service;
 
-        private RightholderRegisterService() {
+        private RightholderRegisterService()
+        {
             _apiConnector = new ApiConnector();
         }
-        public RightholderRegisterService GetInstance()
+
+        public static RightholderRegisterService GetInstance()
         {
             if (_service == null)
                 _service = new RightholderRegisterService();
@@ -26,19 +28,29 @@ namespace ipsFormsDesign.Services
             return _service;
         }
 
-        // *** GET --- List CatalogFile
-        public List<CatalogFile> GetFileList( int custId )
+        /// <summary>
+        /// Список файлів за ID правовласника
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
+        public List<CatalogFile> GetFileList(int custId)
         {
             string url = $"{_prefix}/{custId}";
             return _apiConnector.GetList<CatalogFile>(url);
         }
-        // file
-        // *** Get
-        public CatalogFile GetFile( int custId, int fileId )
+
+        /// <summary>
+        /// Файл повністю за ID користувача та ID файла
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        public CatalogFile GetFile(int custId, int fileId)
         {
             string url = $"{_prefix}/{custId}/file";
             return _apiConnector.GetItemById<CatalogFile>(url, fileId.ToString());
         }
+
         // *** Delete
         public bool DeleteFile(int custId, int fileId)
         {
