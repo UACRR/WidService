@@ -1,29 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Services;
 using IpsCommonTypes.Types;
 
 namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
 {
     public class RightholderRegisterPresenter
     {
+        private readonly RightholderRegisterService _service;
+        private readonly ExcelEngine _exelEngine;
+
         public RightholderRegisterPresenter()
         {
-
+            _service = RightholderRegisterService.GetInstance();
+            _exelEngine = ExcelEngine.GetInstance();
         }
 
         public List<CatalogFile> GetFileList(int custId)
         {
-            return new List<CatalogFile>
-            {
-                new CatalogFile{FileName = "File_01", CustId = 1},
-                new CatalogFile{FileName = "File_02.04", CustId = 1},
-                new CatalogFile{FileName = "File_qwertrty", CustId = 1}
-            };
+            return _service.GetFileList(custId);
         }
 
         public List<RhcatalogItem> GetRHCatalogItems(int custId, int fileId)
@@ -33,7 +34,15 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
 
         public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)
         {
-            return new CatalogFile();
+            if (catalogFile.CustId == null || catalogFile.CustId == 0)
+                throw new ArgumentOutOfRangeException($"CustId must be not null/0!");
+
+            var PubCatalogItemList = GetRightholderRegister(path);
+            catalogFile.RhcatalogItem = new ObservableListSource<RhcatalogItem>(PubCatalogItemList);
+
+            // result can be used
+            var result = _service.UploadFile((int)catalogFile.CustId, catalogFile);
+            return result;
         }
 
         /// <summary>
