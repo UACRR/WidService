@@ -35,10 +35,12 @@ namespace ipsFormsDesign.Services
             var result = _apiConnector.GetList<CatalogFile>(url);
             return result;
         }
+
         /// <summary>
         /// Отримати CatalogFile по ID правовласника/видавництва та по FileId
         /// </summary>
         /// <param name="custId">ID правовласника/видавництва</param>
+        /// <param name="fileId"></param>
         /// <returns></returns>
         public CatalogFile GetCatalogFile(int custId, int fileId )
         {

@@ -5,7 +5,6 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using IpsCommonTypes.Types;
-//using IpsCommonTypes.Types;
 using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -61,8 +60,6 @@ namespace ipsmedserviceapp.Controllers
 
             return Ok(catalogFile);
         }
-
-
 
         [Authorize]
         [HttpPost("upload/{custId}")]

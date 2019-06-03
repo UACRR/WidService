@@ -28,7 +28,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
         {
             InitializeComponent();
 
-            if (!DesignMode)
+            if (!IsDesignMode)
                 _presenter = new RightholderRegisterPresenter();
         }
 
@@ -120,8 +120,8 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
         private void LoadDetailForm(CatalogFile file)
         {
             // todo: waibar for load
-            var items = _presenter.GetRHCatalogItems((int)file.CustId, file.FileId);
-            var form = new RightholderRegisterDetailForm(file, items);
+            var item = _presenter.GetFileWithRHCatalogItems((int)file.CustId, file.FileId);
+            var form = new RightholderRegisterDetailForm(item);
             form.ShowDialog();
         }
 
