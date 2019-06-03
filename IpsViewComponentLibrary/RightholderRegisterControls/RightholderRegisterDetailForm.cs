@@ -12,7 +12,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
     {
         private CatalogFile _catalogFile;
 
-        public RightholderRegisterDetailForm(CatalogFile file, List<RhcatalogItem> list)
+        public RightholderRegisterDetailForm(CatalogFile file)
         {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
@@ -25,7 +25,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             lblStatus.Text = IpsGlobal.ObjectRightDictionaries.catalogStatus
                 .SingleOrDefault(rec => rec.CodeI == _catalogFile.Status)?.Name;
 
-            bsRHCatalogItem.DataSource = list;
+            bsRHCatalogItem.DataSource = file.RhcatalogItem;
         }
 
         public sealed override string Text

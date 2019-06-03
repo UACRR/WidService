@@ -10,7 +10,7 @@ namespace ipsFormsDesign.Services
 {
     public class RightholderRegisterService
     {
-        private const string _prefix = "rightholderregister";
+        private const string Prefix = "RightholderRegister";
         private readonly ApiConnector _apiConnector;
         private static RightholderRegisterService _service;
 
@@ -34,7 +34,7 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public List<CatalogFile> GetFileList(int custId)
         {
-            string url = $"{_prefix}/{custId}";
+            string url = $"{Prefix}/{custId}";
             return _apiConnector.GetList<CatalogFile>(url);
         }
 
@@ -46,28 +46,39 @@ namespace ipsFormsDesign.Services
         /// <returns></returns>
         public CatalogFile GetFile(int custId, int fileId)
         {
-            string url = $"{_prefix}/{custId}/file";
+            string url = $"{Prefix}/{custId}/file";
             return _apiConnector.GetItemById<CatalogFile>(url, fileId.ToString());
         }
 
-        // *** Delete
+        /// <summary>
+        /// Видалити файл правовласника
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
         public bool DeleteFile(int custId, int fileId)
         {
-            string url = $"{_prefix}/{custId}/file";
+            string url = $"{Prefix}/{custId}/file";
             return _apiConnector.DeleteItem(url, fileId.ToString());
-        }
-        // *** Update
-        public CatalogFile UpdateFile(int custId, int fileId, CatalogFile sors )
-        {
-            string url = $"{_prefix}/{custId}/file";
-            return _apiConnector.UpdateItemWithResult(url, fileId.ToString(), sors);
         }
 
         // upload
         public CatalogFile UploadFile(int custId, CatalogFile sors)
         {
-            string url = $"{_prefix}/{custId}/upload";
-            return _apiConnector.NewItemWithReturn(url, sors);
+            string url = $"{Prefix}/{custId}/upload";
+            return _apiConnector.NewItemWithResult(url, sors);
+        }
+
+        /// <summary>
+        /// Зберегти коментар до файлу
+        /// </summary>
+        /// <param name="catalogFile"></param>
+        /// <returns></returns>
+        public bool SaveFileComment(CatalogFile catalogFile)
+        {
+            string url = $"{Prefix}/updatecomment";
+            var result = _apiConnector.UpdateItem(url, string.Empty, catalogFile);
+            return result;
         }
     }
 }

@@ -6,6 +6,7 @@ using ipsmedserviceapp.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Logging;
 
 namespace ipsmedserviceapp.Controllers
@@ -23,8 +24,11 @@ namespace ipsmedserviceapp.Controllers
             _logger = logger;
         }
 
-
-        // *** GET --- List CatalogFile
+        /// <summary>
+        /// Отримати список файлів правовласника
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <returns></returns>
         [HttpGet("{custId}")]
         public async Task<IActionResult> GetRightholderRegisterFileList(int custId)
         {
@@ -37,16 +41,21 @@ namespace ipsmedserviceapp.Controllers
             return Ok(list);
         }
 
-        // file
-        // *** Get
+        /// <summary>
+        /// Отримати файл з елементами
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
         [HttpGet("{custId}/file/{fileId}")]
         public async Task<IActionResult> GetFile(int custId, int fileId)
         {
             var file = await _dbContext.CatalogFile
-                        .Where(rec => rec.CustId == custId && rec.FileId == fileId)
-                        .Include(rec => rec.RhcatalogItem)
-                            .ThenInclude(item => item.StatusNavigation)
-                        .FirstOrDefaultAsync();
+                .Where(rec => rec.CustId == custId && rec.FileId == fileId)
+                .Include(item => item.StatusNavigation)
+                .Include(rec => rec.RhcatalogItem)
+                .ThenInclude(item => item.StatusNavigation)
+                .FirstOrDefaultAsync();
 
             if (file == null)
             {
@@ -104,33 +113,100 @@ namespace ipsmedserviceapp.Controllers
 
         }
 
-        // upload
-        [HttpPut("{custId}/upload")]
+        /// <summary>
+        /// Upload new file
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="sors"></param>
+        /// <returns></returns>
+        [HttpPost("{custId}/upload")]
         public async Task<IActionResult> UploadFile(int custId, [FromBody] CatalogFile sors)
         {
-            if (sors == null)
+            IDbContextTransaction transaction = null;
+            try
             {
-                string msg = $"Upload *** Catalog File is empty";
-                _logger.LogWarning(msg);
-                return BadRequest(msg);
+                if (sors == null)
+                {
+                    string msg = $"Upload *** Catalog File is empty";
+                    _logger.LogWarning(msg);
+                    return BadRequest(msg);
 
+                }
+
+                var rightholder = _dbContext.RightHolder.SingleOrDefault(rec => rec.CustId == custId);
+                if (rightholder == null)
+                    return NotFound($"RightHolder with ID:{custId} not found!");
+
+                CatalogFile dest = new CatalogFile
+                {
+                    CustId = custId,
+                    Status = 0,
+                    UserId = User.Identity.Name,
+                    RhType = rightholder.RHolderType,
+                    CreateDate = DateTime.Today,
+                };
+                dest.SetFields(sors, new[] { "CustId", "FileId", "Status", "UserId", "RhType", "CreateDate" });
+
+                var items = sors.RhcatalogItem.ToArray();
+                foreach (var item in items)
+                {
+                    sors.RhcatalogItem.Remove(item);
+                    item.Status = 0;
+                    item.CustId = custId;
+                    dest.RhcatalogItem.Add(item);
+                }
+
+                transaction = _dbContext.Database.BeginTransaction();
+
+                await _dbContext.CatalogFile.AddAsync(dest);
+                await _dbContext.RhcatalogItem.AddRangeAsync(dest.RhcatalogItem);
+                await _dbContext.SaveChangesAsync();
+
+                transaction.Commit();
+
+                return Ok(dest);
             }
-
-            CatalogFile dest = new CatalogFile { CustId = custId };
-            dest.SetFields(sors, new[] { "CustId", "FileId" });
-
-            var items = sors.RhcatalogItem.ToArray();
-            foreach (var item in items)
+            catch
             {
-                sors.RhcatalogItem.Remove(item);
-                dest.RhcatalogItem.Add(item);
+                transaction?.Rollback();
+                throw;
             }
+        }
 
-            await _dbContext.CatalogFile.AddAsync(dest);
-            await _dbContext.RhcatalogItem.AddRangeAsync(dest.RhcatalogItem);
-            await _dbContext.SaveChangesAsync();
+        /// <summary>
+        /// Оновити коментар CatalogFile
+        /// </summary>
+        /// <param name="catalogFile"></param>
+        /// <returns></returns>
+        [HttpPut("updatecomment")]
+        public async Task<IActionResult> UpdateComment([FromBody] CatalogFile catalogFile)
+        {
+            IDbContextTransaction transaction = null;
+            try
+            {
+                var destination = await _dbContext.CatalogFile
+                    .SingleOrDefaultAsync(rec => rec.CustId == catalogFile.CustId && rec.FileId == catalogFile.FileId);
 
-            return Ok(dest);
+                if (destination == null)
+                    return NotFound($"CatalogFile with CustID:{catalogFile.CustId} and FileID:{catalogFile.FileId} not found!");
+
+                destination.Comment = catalogFile.Comment;
+
+                transaction = _dbContext.Database.BeginTransaction();
+                _dbContext.SaveChanges();
+                transaction.Commit();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                transaction?.Rollback();
+                _logger.LogError(ex.InnerException.Message);
+                throw;
+            }
+            finally
+            {
+                transaction?.Dispose();
+            }
         }
     }
 }

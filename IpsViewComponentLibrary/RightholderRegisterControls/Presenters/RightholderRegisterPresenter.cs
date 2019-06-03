@@ -27,9 +27,9 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             return _service.GetFileList(custId);
         }
 
-        public List<RhcatalogItem> GetRHCatalogItems(int custId, int fileId)
+        public CatalogFile GetFileWithRHCatalogItems(int custId, int fileId)
         {
-            return new List<RhcatalogItem>();
+            return _service.GetFile(custId, fileId);
         }
 
         public CatalogFile UploadCatalogFile(CatalogFile catalogFile, string path)
@@ -52,7 +52,49 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
         /// <returns></returns>
         private List<RhcatalogItem> GetRightholderRegister(string fileName)
         {
-            return new List<RhcatalogItem>();
+            try
+            {
+                var data = _exelEngine.ReadData(fileName);
+                List<RhcatalogItem> newItems = new List<RhcatalogItem>();
+
+                foreach (var item in data)
+                {
+                    RhcatalogItem newItem = CreateItemFromXlsRow(item);
+                    newItems.Add(newItem);
+                }
+                return newItems;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Перетворення рядка Xls файлу в об'єкт RhcatalogItem
+        /// </summary>
+        /// <param name="item">рядок XLS файлу</param>
+        /// <returns></returns>
+        private RhcatalogItem CreateItemFromXlsRow(List<string> item)
+        {
+            if (item.Count < 8)
+                throw new ArgumentException("Неправильна структура файлу! Кількість колонок з даними повинна дорівнювати 8!");
+
+            var newItem = new RhcatalogItem
+            {
+                ItemCode = item[0],
+                Iswc = item[1],
+                ObjName = item[2],
+                GenreName = item[3],
+                RoleName = item[4],
+                AuthorName = item[5],
+                Rate = 0
+            };
+
+            if (decimal.TryParse(item[6], out decimal outBuffer))
+                newItem.Rate = outBuffer;
+
+            return newItem;
         }
 
         /// <summary>
@@ -63,12 +105,12 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
         /// <returns></returns>
         public bool DeleteCatalogFile(int custId, int fileId)
         {
-            return false;
+            return _service.DeleteFile(custId, fileId);
         }
 
         public bool SaveRightholderRegister(CatalogFile catalogFile)
         {
-            return false;
+            return _service.SaveFileComment(catalogFile);
         }
 
         public ExecSqlResponce<CatalogFile> ValidateRightholderRegister(CatalogFile catalogFile)
