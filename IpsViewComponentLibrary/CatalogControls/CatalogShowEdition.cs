@@ -9,6 +9,7 @@ using IpsViewComponentLibrary.CatalogControls.Presenters;
 using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.Export;
 using System.IO;
+using IpsViewComponentLibrary.Shared.Interfaces;
 
 namespace IpsViewComponentLibrary.CatalogControls
 {

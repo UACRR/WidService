@@ -8,10 +8,11 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsCommonTypes.Types;
+using IpsViewComponentLibrary.Shared.Interfaces;
 
 namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
 {
-    public class RightholderRegisterPresenter
+    public class RightholderRegisterPresenter: ICatalogFileItemsHandler
     {
         private readonly RightholderRegisterService _service;
         private readonly ExcelEngine _exelEngine;
@@ -113,14 +114,14 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             return _service.SaveFileComment(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ValidateRightholderRegister(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
-            return new ExecSqlResponce<CatalogFile>();
+            return _service.Validate(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ProcessRightholderRegister(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
-            return new ExecSqlResponce<CatalogFile>();
+            return _service.Process(catalogFile);
         }
     }
 }
