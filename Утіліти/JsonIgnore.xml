@@ -94,4 +94,7 @@
     <item Name="Distribution">
         <noignore>DistributionItem</noignore>
     </item>
+	<item Name="CatalogStatus">
+        <noignore>CatalogStatusTr</noignore>
+    </item>
 </tables>

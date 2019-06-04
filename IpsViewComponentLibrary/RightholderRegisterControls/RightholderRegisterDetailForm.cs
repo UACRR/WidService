@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Utilities;
+using IpsCommonTypes.Enums;
+using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.RightholderRegisterControls.Presenters;
 using IpsViewComponentLibrary.Shared.Interfaces;
 using Telerik.WinControls.Export;
@@ -15,6 +17,8 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
 {
     public partial class RightholderRegisterDetailForm : RadForm
     {
+        private const string ValidateSuccessMsg = "Контроль виконано!";
+
         private CatalogFile _catalogFile;
         private readonly ICatalogFileItemsHandler _catalogFileItemsHandler;
 
@@ -25,19 +29,16 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
-            _catalogFile = file;
-
             if (!IsDesignMode)
                 _catalogFileItemsHandler = new RightholderRegisterPresenter();
+
+            UpdateDataSources(file);
 
             btnPerform.Enabled = _catalogFile.Status == 1 || _catalogFile.CountOk == 2;
             Text = _catalogFile.FileName;
 
-            bsCatalogFile.DataSource = _catalogFile;
             lblStatus.Text = IpsGlobal.ObjectRightDictionaries.catalogStatus
                 .SingleOrDefault(rec => rec.CodeI == _catalogFile.Status)?.Name;
-
-            bsRHCatalogItem.DataSource = file.RhcatalogItem;
         }
 
         public sealed override string Text
@@ -46,9 +47,27 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
             set => base.Text = value;
         }
 
+        private void UpdateDataSources(CatalogFile catalogFile)
+        {
+            _catalogFile = catalogFile;
+            bsCatalogFile.DataSource = catalogFile;
+            bsCatalogFile.ResetBindings(false);
+            bsRHCatalogItem.DataSource = catalogFile?.RhcatalogItem;
+            bsRHCatalogItem.ResetBindings(false);
+        }
+
         private void btnAuditItems_Click(object sender, EventArgs e)
         {
             var result = _catalogFileItemsHandler.ValidateCatalogFileItems(_catalogFile);
+
+            var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
+            if (boolResult)
+            {
+                UpdateDataSources(result.Data);
+                UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
+            }
+
+            MessageShow.ShowInfoByResult($"{ValidateSuccessMsg} {result.Message}", result.Message, boolResult);
         }
 
         private void btnGetExcel_Click(object sender, EventArgs e)
@@ -74,6 +93,15 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
         private void btnPerform_Click(object sender, EventArgs e)
         {
             var result = _catalogFileItemsHandler.ProcessCatalogFileItems(_catalogFile);
+
+            var boolResult = result.StatusCode == ExecSqlResponceStatus.Successed;
+            if (boolResult)
+            {
+                UpdateDataSources(result.Data);
+                UpdateEventHandlerUtility<RhcatalogItem>.InvokeEvent();
+            }
+
+            MessageShow.ShowInfoByResult(result.Message, result.Message, boolResult);
         }
     }
 }

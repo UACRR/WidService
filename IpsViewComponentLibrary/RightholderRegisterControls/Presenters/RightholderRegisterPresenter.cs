@@ -56,6 +56,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             try
             {
                 var data = _exelEngine.ReadData(fileName);
+                
                 List<RhcatalogItem> newItems = new List<RhcatalogItem>();
 
                 foreach (var item in data)
@@ -89,6 +90,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
                 GenreName = item[3],
                 RoleName = item[4],
                 AuthorName = item[5],
+                CmName = item[7],
                 Rate = 0
             };
 
