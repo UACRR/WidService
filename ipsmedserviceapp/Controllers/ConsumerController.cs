@@ -1506,16 +1506,18 @@ where t1.licid = @licid", new SqlParameter("@licid", licid))
             int index = modifyItem.RegisterItem.Max(rec => rec.RegIitemId);
             index++;
 
-            _dbContext.UpdateListExtra(body.RegisterItem, modifyItem.RegisterItem, (isNew, sorsItem, destItem) =>
-            {
+            _dbContext.UpdateListExtra(
+                body.RegisterItem, 
+                modifyItem.RegisterItem,
+                (isNew, sorsItem, destItem) =>
+                {
+                    if (isNew)
+                        destItem.RegIitemId = index++;
 
-                if (isNew)
-                    destItem.RegIitemId = index++;
-
-                _dbContext.UpdateList(sorsItem.RegisterExtra, destItem.RegisterExtra, i => { }, (l, r) => l.RegExtraId == r.RegExtraId);
-            }
-
-            , (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
+                    _dbContext.UpdateList(sorsItem.RegisterExtra, destItem.RegisterExtra, i => { },
+                        (l, r) => l.RegExtraId == r.RegExtraId);
+                },
+                (l, r) => l.RegId == r.RegId && l.RegIitemId == r.RegIitemId);
         }
 
         /// <summary>
@@ -1922,14 +1924,13 @@ and isnull(licType,1) between 1 and 3
             try
             {
                 RegisterRatedList dest = null;
-                dest = _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
+                dest = await _dbContext.RegisterRatedList.Where(rec => rec.RmId == body.RmId)
                     .Include(rec => rec.Register)
-                    .Include(rec => rec.Period) // MED-197
-                            .ThenInclude(p => p.Lic)
-                                .ThenInclude(lic => lic.LicCodeNavigation)
-                                    .ThenInclude(code => code.UsesKindNavigation)
-
-                    .Single();
+                    .Include(rec => rec.Period)
+                    .ThenInclude(p => p.Lic)
+                    .ThenInclude(lic => lic.LicCodeNavigation)
+                    .ThenInclude(code => code.UsesKindNavigation)
+                    .SingleOrDefaultAsync();
 
                 foreach (var item in dest.Register)
                 {
@@ -1943,13 +1944,11 @@ and isnull(licType,1) between 1 and 3
                 tran = _dbContext.Database.BeginTransaction();
                 await _dbContext.SaveChangesAsync();
                 tran.Commit();
-                tran = null;
                 return Json(dest);
             }
             catch (Exception e)
             {
-                if (tran != null)
-                    tran.Rollback();
+                tran?.Rollback();
                 return BadRequest(e.Message);
             }
 

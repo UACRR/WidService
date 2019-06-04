@@ -193,7 +193,7 @@ namespace ipsFormsDesign.Services
             // TODO: extract OpenWorkbook(), CloseWorkbook() methods
 
             var list = new List<List<string>>();
-            int i = 0, iter=1;
+            int i = 0, iter = 1;
 
             Excel.Workbook excelAppWorkbook = null;
             try

@@ -122,7 +122,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="custId"></param>
         /// <param name="fileId"></param>
         /// <returns></returns>
-        [HttpPut("{custId}/file/{fileId}/validate")]
+        [HttpPost("{custId}/file/{fileId}/validate")]
         public async Task<IActionResult> ValidateFile(int custId, int fileId)
         {
 
@@ -190,7 +190,7 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="custId"></param>
         /// <param name="fileId"></param>
         /// <returns></returns>
-        [HttpPut("{custId}/file/{fileId}/process")]
+        [HttpPost("{custId}/file/{fileId}/process")]
         public async Task<IActionResult> ProcessFile(int custId, int fileId)
         {
             var file = await _dbContext.CatalogFile

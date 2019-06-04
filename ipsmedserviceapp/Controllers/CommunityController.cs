@@ -47,7 +47,6 @@ namespace ipsmedserviceapp.Controllers
         /// <param name="viewName"></param>
         /// <param name="paramId"></param>
         /// <param name="columnName"></param>
-        /// <param name="queryResource"></param>
         /// <returns></returns>
         [HttpGet("list/view")]
         public async Task<IActionResult> GetCommunityList([FromQuery] string viewName, [FromQuery] int? paramId, [FromQuery] string columnName)
