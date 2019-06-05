@@ -97,5 +97,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 
             return removeList.Any() ? removeList : null;
         }
+
+        private void ddlGenreType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (bsRegisterItem.DataSource is RegisterItem item && (item.GenreType ?? 0) != 0)
+                bsDictRelGenrePercent.DataSource = IpsGlobal.AnketaDictionaties.relGenrePercent.SingleOrDefault(rec => rec.GenreType == item.GenreType);
+        }
     }
 }

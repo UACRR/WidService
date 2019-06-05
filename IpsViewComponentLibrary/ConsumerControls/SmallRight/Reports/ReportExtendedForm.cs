@@ -73,12 +73,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             bsDictRelGenrePercent.DataSource = IpsGlobal.AnketaDictionaties.relGenrePercent;
             
             _register = register;
-
+            // постановка
             if (!(_register.RegisterItem.Any(rec => rec.CodeItem == 2)))
             {
                 _register.RegisterItem.Add(new RegisterItem
                 {
                     CodeItem = 2,
+                    CountUse = 1,
+                    Ticks = 1,
                 });
             }
 
