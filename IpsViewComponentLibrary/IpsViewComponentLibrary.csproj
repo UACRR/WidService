@@ -1709,6 +1709,7 @@
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterExtra.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RelEmployee.datasource" />
+    <None Include="Properties\DataSources\ipsFormsDesign.Model.RelGenrePercent.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RhcatalogItem.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RightHolder.datasource" />
     <None Include="Properties\DataSources\ipsFormsDesign.Model.RegisterRatedList.datasource" />

@@ -43,7 +43,7 @@
             this.txtCrName = new Telerik.WinControls.UI.RadTextBox();
             this.bsRegisterItem = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlCreativeRole = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlGenreType = new Telerik.WinControls.UI.RadDropDownList();
             this.bsDictGenreType = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
@@ -53,11 +53,14 @@
             this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
             this.ctrlSaveCancelButtons = new IpsViewComponentLibrary.Common.SaveCancelButtonsControl();
             this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
+            this.lblStagingAmount = new Telerik.WinControls.UI.RadLabel();
+            this.radLabel5 = new Telerik.WinControls.UI.RadLabel();
+            this.bsDictRelGenrePercent = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictCreativeRole)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -68,6 +71,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
             this.radPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStagingAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictRelGenrePercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             this.SuspendLayout();
             // 
@@ -79,7 +85,7 @@
             // 
             this.txtCrName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCrName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItem, "ItemName", true));
+            this.txtCrName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItem, "ItemName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtCrName.Location = new System.Drawing.Point(84, 3);
             this.txtCrName.Name = "txtCrName";
             this.txtCrName.Size = new System.Drawing.Size(339, 21);
@@ -99,17 +105,19 @@
             this.radLabel7.Text = "Назва твору";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
-            // ddlCreativeRole
+            // ddlGenreType
             // 
-            this.ddlCreativeRole.DataSource = this.bsDictGenreType;
-            this.ddlCreativeRole.DisplayMember = "Name";
-            this.ddlCreativeRole.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlCreativeRole.Location = new System.Drawing.Point(84, 29);
-            this.ddlCreativeRole.Name = "ddlCreativeRole";
-            this.ddlCreativeRole.Size = new System.Drawing.Size(395, 21);
-            this.ddlCreativeRole.TabIndex = 22;
-            this.ddlCreativeRole.ThemeName = "Office2013Light";
-            this.ddlCreativeRole.ValueMember = "CodeI";
+            this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRegisterItem, "GenreType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ddlGenreType.DataSource = this.bsDictGenreType;
+            this.ddlGenreType.DisplayMember = "Name";
+            this.ddlGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlGenreType.Location = new System.Drawing.Point(84, 29);
+            this.ddlGenreType.Name = "ddlGenreType";
+            this.ddlGenreType.Size = new System.Drawing.Size(339, 21);
+            this.ddlGenreType.TabIndex = 22;
+            this.ddlGenreType.ThemeName = "Office2013Light";
+            this.ddlGenreType.ValueMember = "CodeI";
+            this.ddlGenreType.SelectedValueChanged += new System.EventHandler(this.ddlGenreType_SelectedValueChanged);
             // 
             // bsDictGenreType
             // 
@@ -150,6 +158,7 @@
             this.gvAuthRole.MasterTemplate.AllowDragToGroup = false;
             this.gvAuthRole.MasterTemplate.AutoGenerateColumns = false;
             this.gvAuthRole.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewComboBoxColumn1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             gridViewComboBoxColumn1.DataSource = this.bsDictCreativeRole;
             gridViewComboBoxColumn1.DataType = typeof(int);
             gridViewComboBoxColumn1.DisplayMember = "Name";
@@ -240,7 +249,7 @@
             // 
             this.nudCountUse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.nudCountUse.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsRegisterItem, "CountUse", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged, "1"));
-            this.nudCountUse.Location = new System.Drawing.Point(549, 3);
+            this.nudCountUse.Location = new System.Drawing.Point(546, 3);
             this.nudCountUse.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -252,7 +261,7 @@
             0,
             0});
             this.nudCountUse.Name = "nudCountUse";
-            this.nudCountUse.Size = new System.Drawing.Size(68, 20);
+            this.nudCountUse.Size = new System.Drawing.Size(71, 20);
             this.nudCountUse.TabIndex = 33;
             this.nudCountUse.Value = new decimal(new int[] {
             1,
@@ -265,9 +274,9 @@
             this.radLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radLabel1.Location = new System.Drawing.Point(429, 3);
             this.radLabel1.Name = "radLabel1";
-            this.radLabel1.Size = new System.Drawing.Size(114, 19);
+            this.radLabel1.Size = new System.Drawing.Size(111, 19);
             this.radLabel1.TabIndex = 34;
-            this.radLabel1.Text = "К-сть використань:";
+            this.radLabel1.Text = "К-сть використань";
             this.radLabel1.ThemeName = "Office2013Light";
             // 
             // ctrlSaveCancelButtons
@@ -284,10 +293,12 @@
             // 
             // radPanel1
             // 
+            this.radPanel1.Controls.Add(this.lblStagingAmount);
+            this.radPanel1.Controls.Add(this.radLabel5);
             this.radPanel1.Controls.Add(this.radLabel7);
             this.radPanel1.Controls.Add(this.radLabel2);
             this.radPanel1.Controls.Add(this.radLabel1);
-            this.radPanel1.Controls.Add(this.ddlCreativeRole);
+            this.radPanel1.Controls.Add(this.ddlGenreType);
             this.radPanel1.Controls.Add(this.nudCountUse);
             this.radPanel1.Controls.Add(this.txtCrName);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -296,6 +307,49 @@
             this.radPanel1.Size = new System.Drawing.Size(620, 56);
             this.radPanel1.TabIndex = 36;
             this.radPanel1.ThemeName = "Office2013Light";
+            // 
+            // lblStagingAmount
+            // 
+            this.lblStagingAmount.AutoSize = false;
+            this.lblStagingAmount.BorderVisible = true;
+            this.lblStagingAmount.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDictRelGenrePercent, "Rate", true));
+            this.lblStagingAmount.Location = new System.Drawing.Point(460, 29);
+            this.lblStagingAmount.MinimumSize = new System.Drawing.Size(50, 18);
+            this.lblStagingAmount.Name = "lblStagingAmount";
+            // 
+            // 
+            // 
+            this.lblStagingAmount.RootElement.MinSize = new System.Drawing.Size(50, 18);
+            this.lblStagingAmount.Size = new System.Drawing.Size(50, 21);
+            this.lblStagingAmount.TabIndex = 48;
+            this.lblStagingAmount.TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            this.lblStagingAmount.ThemeName = "Office2013Light";
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStagingAmount.GetChildAt(0))).BorderVisible = true;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStagingAmount.GetChildAt(0))).TextAlignment = System.Drawing.ContentAlignment.TopCenter;
+            ((Telerik.WinControls.UI.RadLabelElement)(this.lblStagingAmount.GetChildAt(0))).Text = "";
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).FitToSizeMode = Telerik.WinControls.RadFitToSizeMode.FitToParentContent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).BoxStyle = Telerik.WinControls.BorderBoxStyle.FourBorders;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).LeftWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).TopWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).RightWidth = 0F;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).LeftColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).TopColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).RightColor = System.Drawing.Color.Transparent;
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).BottomColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            ((Telerik.WinControls.Primitives.BorderPrimitive)(this.lblStagingAmount.GetChildAt(0).GetChildAt(1))).SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
+            // 
+            // radLabel5
+            // 
+            this.radLabel5.Location = new System.Drawing.Point(429, 29);
+            this.radLabel5.Name = "radLabel5";
+            this.radLabel5.Size = new System.Drawing.Size(25, 19);
+            this.radLabel5.TabIndex = 47;
+            this.radLabel5.Text = "Паї";
+            this.radLabel5.ThemeName = "Office2013Light";
+            // 
+            // bsDictRelGenrePercent
+            // 
+            this.bsDictRelGenrePercent.DataSource = typeof(ipsFormsDesign.Model.RelGenrePercent);
             // 
             // CompositionOfReport
             // 
@@ -319,7 +373,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
@@ -331,6 +385,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
             this.radPanel1.ResumeLayout(false);
             this.radPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lblStagingAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radLabel5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDictRelGenrePercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
             this.ResumeLayout(false);
 
@@ -341,7 +398,7 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadTextBox txtCrName;
         private Telerik.WinControls.UI.RadLabel radLabel7;
-        private Telerik.WinControls.UI.RadDropDownList ddlCreativeRole;
+        private Telerik.WinControls.UI.RadDropDownList ddlGenreType;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadButton btnAdd;
         private Telerik.WinControls.UI.RadGridView gvAuthRole;
@@ -353,5 +410,8 @@
         private Common.SaveCancelButtonsControl ctrlSaveCancelButtons;
         private System.Windows.Forms.BindingSource bsDictGenreType;
         private Telerik.WinControls.UI.RadPanel radPanel1;
+        private Telerik.WinControls.UI.RadLabel lblStagingAmount;
+        private Telerik.WinControls.UI.RadLabel radLabel5;
+        private System.Windows.Forms.BindingSource bsDictRelGenrePercent;
     }
 }

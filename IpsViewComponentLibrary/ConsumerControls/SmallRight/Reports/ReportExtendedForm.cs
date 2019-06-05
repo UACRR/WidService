@@ -4,46 +4,21 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using ipsFormsDesign.Data;
+using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
+using IpsViewComponentLibrary.Extensions;
 using Telerik.WinControls.UI;
 
 namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
     public partial class ReportExtendedForm : RadForm
     {
-        private Register _register = null;
-        private RegisterItem _registerItemCreation = null, _registerItemMusDesign = null;
-        private Dictionary<int, CreativeRoleType> creativeDic;
+        private const string EmptyNameWarningMsg = "Введіть назву постановки!";
+        private const string NotSelectedGenreWarningMsg = "Оберіть жанр постановки!";
+
+        private readonly Register _register;
 
         #region PROPERTIES
-
-        public object RegisterDataSource
-        {
-            get => bsRegister.DataSource;
-            private set => bsRegister.DataSource = value;
-        }
-
-        public object CreativeRoleDataSource
-        {
-            get => bsDictCreativeRole.DataSource;
-            private set => bsDictCreativeRole.DataSource = value;
-        }
-
-        public object RegisterItemDataSource
-        {
-            get => bsRegisterItem.DataSource;
-            private set => bsRegisterItem.DataSource = value;
-        }
-
-        public object ParentRegisterItemDataSource
-        {
-            get => registerItemBindingSource.DataSource;
-            private set
-            {
-                registerItemBindingSource.DataSource = value;
-                registerItemBindingSource.ResetBindings(false);
-            }
-        }
 
         /// <summary>
         /// Назва споживача
@@ -90,60 +65,153 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         public ReportExtendedForm(Register register)
         {
             InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+            WindowState = FormWindowState.Maximized;
+
+            bsDictCreativeRole.DataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
+            bsDictGenreType.DataSource = IpsGlobal.AnketaDictionaties.genreType.Where(rec => rec.CategoryCode == 5);
+            bsDictRelGenrePercent.DataSource = IpsGlobal.AnketaDictionaties.relGenrePercent;
+            
             _register = register;
-            _registerItemCreation = new RegisterItem
+            // постановка
+            if (!(_register.RegisterItem.Any(rec => rec.CodeItem == 2)))
             {
-                CodeItem = 2,
-            };
-            _register.RegisterItem.Add(_registerItemCreation);
-            RegisterItemDataSource = _registerItemCreation;
-            RegisterDataSource = _register;
-            CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
-            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
+                _register.RegisterItem.Add(new RegisterItem
+                {
+                    CodeItem = 2,
+                    CountUse = 1,
+                    Ticks = 1,
+                });
+            }
+
+            bsRegister.DataSource = _register;
+            // CodeItem == 2 - постановка
+            bsRegisterItem.DataSource = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
+
+            ddlGenreType.SelectedValueChanged += ddlGenreType_SelectedValueChanged;
         }
+
 
         /// <summary>
         /// Конструктор для перегляду або редагування
         /// </summary>
         /// <param name="register">Звіт</param>
         /// <param name="isEdit">true - якщо редагування, false - якщо перегляд</param>
-        public ReportExtendedForm(Register register, bool isEdit)
+        public ReportExtendedForm(Register register, bool isEdit) : this(register)
         {
-            InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen;
-
-            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
-            _register = register;
-            NormalizeData(_register);
-            _registerItemCreation = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
-
-            RegisterItemDataSource = (object)_registerItemCreation ?? (object)typeof(RegisterItem);
-
-            RegisterDataSource = _register;
-            CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
+            MusicDesingDataSource = _register;
 
             btnAddRegItem.Enabled = isEdit;
             btnAddCreativeRole.Enabled = isEdit;
             ctrlSaveCancelButtons.SaveButtonEnabled = isEdit;
             txtName.ReadOnly = !isEdit;
-            txtAuthName.Enabled = isEdit;
             txtAmount.ReadOnly = !isEdit;
             txtAuthRate.ReadOnly = !isEdit;
             txtAuthAmount.ReadOnly = !isEdit;
-            ddlCreativeRole.Enabled = isEdit;
+            ddlGenreType.Enabled = isEdit;
             txtMusicalDesignRate.ReadOnly = !isEdit;
-
-            CreateDataForHierarchyView();
         }
 
-        private void NormalizeData(Register register)
+        public Register MusicDesingDataSource
         {
-            foreach (var item in register.RegisterItem)
-                foreach (var extra in item.RegisterExtra)
-                    extra.RoleCodeNavigation = creativeDic[extra.RoleCode];
+            get => bsRegisterItemMusic.DataSource as Register;
+            set
+            {
+                var list = value.RegisterItem.Where(rec => rec.CodeItem == 3).ToList();
+                bsRegisterItemMusic.DataSource = list;
+                bsRegisterItemMusic.ResetBindings(false);
+                bsChildRegisterExtraMusic.ResetBindings(false);
+            }
         }
 
-        private void CalculateAmounts()
+        // додати автора
+        private void btnAddCreativeRole_Click(object sender, EventArgs e)
+        {
+            var item = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
+            if (string.IsNullOrEmpty(item?.ItemName))
+            {
+                MessageShow.ShowWarning(EmptyNameWarningMsg);
+                return;
+            }
+
+            if ((item.GenreType ?? 0) == 0)
+            {
+                MessageShow.ShowWarning(NotSelectedGenreWarningMsg);
+                return;
+            }
+
+            gvAuthorsOfStaging.Rows.AddNew();
+            gvAuthorsOfStaging.CurrentRow.Cells[0].BeginEdit();
+        }
+
+        //додати музичний твір 
+        private void btnAddRegisterItem_Click(object sender, EventArgs e)
+        {
+            var registerItemMusicDesign = new RegisterItem
+            {
+                RegId = _register.RegId,
+                CodeItem = 3,
+                CountUse = 1,
+                RegisterExtra = new ObservableListSource<RegisterExtra>()
+            };
+
+            var addAuthRole = new CompositionOfReport(registerItemMusicDesign);
+            if (addAuthRole.ShowDialog() == DialogResult.OK)
+            {
+                _register.RegisterItem.Add(registerItemMusicDesign);
+                MusicDesingDataSource = _register;
+            }
+        }
+
+        private void gvMusicalDesing_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            if (!(e.Row.DataBoundItem is RegisterItem item))
+                return;
+
+            var btnName = e.Column.FieldName;
+            switch (btnName)
+            {
+                case "btnEdit":
+                    EditMusicDesignItem(item);
+                    break;
+                case "btnDelete":
+                    _register.RegisterItem.Remove(item);
+                    MusicDesingDataSource = _register;
+                    break;
+            }
+        }
+
+        private void gvMusicalDesing_CellDoubleClick(object sender, GridViewCellEventArgs e)
+        {
+            if (!(e.Row.DataBoundItem is RegisterItem item))
+                return;
+
+            EditMusicDesignItem(item);
+        }
+
+        private void EditMusicDesignItem(RegisterItem item)
+        {
+            // todo: add sync method
+            var addAuthRole = new CompositionOfReport(item);
+            if (addAuthRole.ShowDialog() == DialogResult.OK)
+            {
+                MusicDesingDataSource = _register;
+            }
+        }
+
+        private void gvStaging_CommandCellClick(object sender, GridViewCellEventArgs e)
+        {
+            if (!(e.Row.DataBoundItem is RegisterExtra item))
+                return;
+
+            var registerExtraList = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2)?.RegisterExtra;
+            registerExtraList?.Remove(item);
+
+            bsRegisterItem.ResetBindings(false);
+            bsRegisterExtra.ResetBindings(false);
+        }
+
+        private void StartCalculateNeed(object sender, EventArgs e)
         {
             decimal.TryParse(txtAmount.Text, out decimal amount);
             decimal.TryParse(txtStagingRate.Text, out decimal authRate);
@@ -151,103 +219,12 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 
             _register.AuthAmount = amount / 100 * authRate;
             _register.MusicAmount = amount / 100 * musicRate;
-            
+
             lblValidAuthAmount.Text = (_register.AuthAmount + _register.MusicAmount).ToString();
 
             decimal.TryParse(lblValidAuthAmount.Text, out decimal rightResult);
             decimal.TryParse(txtAuthAmount.Text, out decimal leftResult);
             lblValidAuthAmount.ForeColor = decimal.Round(leftResult, 2) != decimal.Round(rightResult, 2) ? Color.Red : DefaultForeColor;
-        }
-
-        private void CreateDataForHierarchyView()
-        {
-            var items = _register.RegisterItem.Where(rec => rec.CodeItem == 3).ToList();
-            if (!items.Any()) return;
-            foreach (var registerItem in items)
-            {
-                foreach (var registerExtra in registerItem.RegisterExtra)
-                {
-                    registerExtra.RoleCodeNavigation = creativeDic[registerExtra.RoleCode];
-                }
-            }
-
-            ParentRegisterItemDataSource = items;
-        }
-
-        //додати творчу роль
-        private void btnAddCreativeRole_Click(object sender, EventArgs e)
-        {
-            if (txtAuthName.Text != string.Empty)
-            {
-                int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
-                var addItem = new RegisterExtra
-                {
-                    Name = txtAuthName.Text,
-                    RoleCode = roleCode,
-                    RoleCodeNavigation = creativeDic[roleCode],
-                };
-                _registerItemCreation.RegisterExtra.Add(addItem);
-                bindingRegExtraCode2.ResetBindings(false);
-            }
-            else
-                MessageBox.Show("ПІБ автора не може бути пустим!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        }
-
-        //додати музичний твір 
-        private void btnAddRegItem_Click(object sender, EventArgs e)
-        {
-            _registerItemMusDesign = new RegisterItem
-            {
-                CodeItem = 3,
-                CountUse = 1,
-            };
-
-            var addAuthRole = new CompositionOfReport(_registerItemMusDesign);
-            if (addAuthRole.ShowDialog() == DialogResult.OK)
-            {
-                //registerItemBindingSource.Add(_registerItemMusDesign);
-                _register.RegisterItem.Add(_registerItemMusDesign);
-                registerItemBindingSource.ResetBindings(false);
-            }
-        }
-
-        private void OpenMusicalDesingDialog(RegisterItem item)
-        {
-            var addAuthRole = new CompositionOfReport(item);
-            if (addAuthRole.ShowDialog() == DialogResult.OK)
-            {
-                registerItemBindingSource.ResetBindings(false);
-            }
-        }
-
-        private void gvMusicalDesing_CommandCellClick(object sender, GridViewCellEventArgs e)
-        {
-            var btnName = e.Column.FieldName;
-            switch (btnName)
-            {
-                case "btnEdit":
-                    break;
-                case "btnDelete":
-                    var rec = e.Row.DataBoundItem as RegisterItem;
-                    registerItemBindingSource.Remove(rec);
-                    _register.RegisterItem.Remove(rec);
-                    break;
-            }
-        }
-
-        private void gvStaging_CommandCellClick(object sender, GridViewCellEventArgs e)
-        {
-            if (e.Row.DataBoundItem is RegisterExtra item)
-            {
-
-                bindingRegExtraCode2.Remove(item);
-                _registerItemCreation.RegisterExtra.Remove(item);
-            }
-        }
-
-        private void StartCalculateNeed(object sender, EventArgs e)
-        {
-            CalculateAmounts();
         }
 
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
@@ -257,6 +234,21 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             {
                 e.Handled = true;
             }
+        }
+
+        private void ddlGenreType_SelectedValueChanged(object sender, EventArgs e)
+        {
+            // todo: пропонований %
+            //var item = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
+            //var rate = IpsGlobal.AnketaDictionaties.relGenrePercent.SingleOrDefault(rec => rec.GenreType == item?.GenreType);
+            //_register.AuthRate = rate?.Rate ?? 0;
+            //bsRegister.ResetBindings(false);
+        }
+
+        private void gvMusicalDesing_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
+        {
+            if (e.CurrentRow.DataBoundItem is RegisterItem)
+                gvMusicalDesing.MasterTemplate.CollapseAll();
         }
     }
 }
