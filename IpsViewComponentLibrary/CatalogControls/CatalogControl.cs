@@ -39,16 +39,16 @@ namespace IpsViewComponentLibrary.CatalogControls
             Load += CatalogControl_Load;
         }
 
-        private void CatalogFileUpdateNeed_EventHandler(object sender, CatalogFile e)
-        {
-            UpdateGridData();
-            bsGridData.ResetBindings(false);
-        }
-
         private void CatalogControl_Load(object sender, EventArgs e)
         {
             UpdateGridData();
-            UpdateEventHandlerUtility<CatalogFile>.GetEventWrap().UpdateEventHandler += CatalogFileUpdateNeed_EventHandler;
+            UpdateEventHandlerUtility<PubCatalogItem>.GetEventWrap().UpdateEventHandler += CatalogFileUpdateNeed_EventHandler;
+        }
+
+        private void CatalogFileUpdateNeed_EventHandler(object sender, PubCatalogItem e)
+        {
+            UpdateGridData();
+            bsGridData.ResetBindings(false);
         }
 
 

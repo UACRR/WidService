@@ -62,12 +62,15 @@ namespace IpsViewComponentLibrary.Shared.Forms
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
             SetDictionaries();
+            Load += Form_Load;
 
             txtMusicRate.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             txtVinagoroda.KeyPress += ExtensionUtils.TextBoxPercentRate_KeyPressEvent;
             txtActCode.KeyPress += ExtensionUtils.TextBoxNumeric_KeyPressEvent;
+
             if(IpsGlobal.AnketaDictionaties != null)
                 _dictionaties = IpsGlobal.AnketaDictionaties;
+
             _licId = licId;
             _customer = customer;
             DialogResult = DialogResult.None;
@@ -77,6 +80,7 @@ namespace IpsViewComponentLibrary.Shared.Forms
             lblTour.Enabled = checkIsTour.Checked;
             _deleteLicense = scopeOfUseForm == ScopeOfUseForm.Create;
             dtDate.SetUserCalendarSettingsm();
+
             switch (_scopeOfUseForm)
             {
                 case ScopeOfUseForm.Create:
@@ -151,6 +155,19 @@ namespace IpsViewComponentLibrary.Shared.Forms
             SetControlsVisibility();
 
             isInit = true;
+        }
+
+        private void Form_Load(object sender, EventArgs e)
+        {
+            if (_licenseAgreement?.LicenseBigR == null || _licenseAgreement.LicenseBigR.Rate != 0)
+                return;
+
+            var rate = _dictionaties.relGenrePercent
+                .Where(rec => rec.ActCode == _objectRight.ActCode)
+                .SingleOrDefault(rec => rec.GenreType == _objectRight.GenreType)?.Rate;
+
+            _licenseAgreement.LicenseBigR.Rate = rate;
+            bsLicenseBigR.ResetBindings(false);
         }
 
         private void SetDictionaries()

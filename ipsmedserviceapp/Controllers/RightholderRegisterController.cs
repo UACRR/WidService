@@ -115,10 +115,14 @@ namespace ipsmedserviceapp.Controllers
 
 
         }
-        //
 
-        // *** Validate
-        [HttpPut("{custId}/file/{fileId}/validate")]
+        /// <summary>
+        /// Перевірити файл
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        [HttpPost("{custId}/file/{fileId}/validate")]
         public async Task<IActionResult> ValidateFile(int custId, int fileId)
         {
 
@@ -180,8 +184,13 @@ namespace ipsmedserviceapp.Controllers
             }
         }
 
-        // *** Process
-        [HttpPut("{custId}/file/{fileId}/process")]
+        /// <summary>
+        /// Запустити процес завантаження
+        /// </summary>
+        /// <param name="custId"></param>
+        /// <param name="fileId"></param>
+        /// <returns></returns>
+        [HttpPost("{custId}/file/{fileId}/process")]
         public async Task<IActionResult> ProcessFile(int custId, int fileId)
         {
             var file = await _dbContext.CatalogFile
@@ -259,9 +268,9 @@ namespace ipsmedserviceapp.Controllers
                     string msg = $"Upload *** Catalog File is empty";
                     _logger.LogWarning(msg);
                     return BadRequest(msg);
-
                 }
 
+                var vcustomer = await _dbContext.vCustomer.SingleOrDefaultAsync(rec => rec.CustId == custId);
                 var rightholder = _dbContext.RightHolder.SingleOrDefault(rec => rec.CustId == custId);
                 if (rightholder == null)
                     return NotFound($"RightHolder with ID:{custId} not found!");
@@ -272,9 +281,13 @@ namespace ipsmedserviceapp.Controllers
                     Status = 0,
                     UserId = User.Identity.Name,
                     RhType = rightholder.RHolderType,
-                    CreateDate = DateTime.Today,
+                    CreateDate = DateTime.Now,
+                    CountZap = sors.RhcatalogItem.Count,
+                    FileName = sors.FileName,
+                    CustName = vcustomer?.name,
                 };
-                dest.SetFields(sors, new[] { "CustId", "FileId", "Status", "UserId", "RhType", "CreateDate" });
+
+                //dest.SetFields(sors, new[] { "CustId", "FileId", "Status", "UserId", "RhType", "CreateDate", "CountZap" });
 
                 var items = sors.RhcatalogItem.ToArray();
                 foreach (var item in items)

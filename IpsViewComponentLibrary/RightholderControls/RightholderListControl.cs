@@ -228,7 +228,7 @@ namespace IpsViewComponentLibrary.RightholderControls
         private void tvFilters_SelectedNodeChanged(object sender, RadTreeViewEventArgs e)
         {
             navigatorPanelControl1.CurrentPage = 1;
-            UpdateList();
+            //UpdateList();
         }
 
         private void tvFilters_NodeFormatting(object sender, TreeNodeFormattingEventArgs e)

@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using Telerik.WinControls.UI;
 using ipsFormsDesign.Model;
+using ipsFormsDesign.Utilities;
 using IpsViewComponentLibrary.Extensions;
 using IpsViewComponentLibrary.RightholderRegisterControls.Presenters;
 using IpsViewComponentLibrary.Shared.Forms;
@@ -30,6 +31,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
 
             if (!IsDesignMode)
                 _presenter = new RightholderRegisterPresenter();
+
         }
 
         public int CustId { get; set; }
@@ -127,7 +129,14 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls
 
         private void RightholderRegisterControl_Load(object sender, EventArgs e)
         {
+            UpdateEventHandlerUtility<RhcatalogItem>.GetEventWrap().UpdateEventHandler += CatalogFileUpdateNeed_EventHandler;
             UpdateGridData();
+        }
+
+        private void CatalogFileUpdateNeed_EventHandler(object sender, RhcatalogItem e)
+        {
+            UpdateGridData();
+            bsGridData.ResetBindings(false);
         }
     }
 }

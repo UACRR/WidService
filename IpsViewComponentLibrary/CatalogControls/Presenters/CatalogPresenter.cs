@@ -4,6 +4,7 @@ using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsCommonTypes.Types;
+using IpsViewComponentLibrary.Shared.Interfaces;
 
 namespace IpsViewComponentLibrary.CatalogControls.Presenters
 {

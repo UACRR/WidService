@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ipsFormsDesign.Interfaces;
 using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsCommonTypes.Types;
+using IpsViewComponentLibrary.Shared.Interfaces;
+using TimeSpan = System.TimeSpan;
 
 namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
 {
-    public class RightholderRegisterPresenter
+    public class RightholderRegisterPresenter: ICatalogFileItemsHandler
     {
         private readonly RightholderRegisterService _service;
         private readonly ExcelEngine _exelEngine;
@@ -55,6 +58,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             try
             {
                 var data = _exelEngine.ReadData(fileName);
+                
                 List<RhcatalogItem> newItems = new List<RhcatalogItem>();
 
                 foreach (var item in data)
@@ -77,15 +81,15 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
         /// <returns></returns>
         private RhcatalogItem CreateItemFromXlsRow(List<string> item)
         {
-            if (item.Count < 8)
-                throw new ArgumentException("Неправильна структура файлу! Кількість колонок з даними повинна дорівнювати 8!");
+            if (item.Count < 7)
+                throw new ArgumentException("Неправильна структура файлу! Кількість колонок з даними повинна дорівнювати 7!");
 
             var newItem = new RhcatalogItem
             {
                 ItemCode = item[0],
-                Iswc = item[1],
-                ObjName = item[2],
-                GenreName = item[3],
+                ObjName = item[1],
+                GenreName = item[2],
+                //Duration = GetTimeFromString(item[3]),
                 RoleName = item[4],
                 AuthorName = item[5],
                 Rate = 0
@@ -96,6 +100,20 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
 
             return newItem;
         }
+
+        private static TimeSpan GetTimeFromString(string secondString)
+        {
+            var timeSpanConverter = new TimeSpanConverter();
+
+            var regex = new Regex("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$");
+            if (regex.IsMatch(secondString))
+            {
+                var timeObject = timeSpanConverter.ConvertFrom(secondString);
+                return (TimeSpan?)timeObject ?? TimeSpan.Zero;
+            }
+            return TimeSpan.Zero;
+        }
+
 
         /// <summary>
         /// Видалити файл
@@ -113,14 +131,14 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             return _service.SaveFileComment(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ValidateRightholderRegister(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ValidateCatalogFileItems(CatalogFile catalogFile)
         {
-            return new ExecSqlResponce<CatalogFile>();
+            return _service.Validate(catalogFile);
         }
 
-        public ExecSqlResponce<CatalogFile> ProcessRightholderRegister(CatalogFile catalogFile)
+        public ExecSqlResponce<CatalogFile> ProcessCatalogFileItems(CatalogFile catalogFile)
         {
-            return new ExecSqlResponce<CatalogFile>();
+            return _service.Process(catalogFile);
         }
     }
 }

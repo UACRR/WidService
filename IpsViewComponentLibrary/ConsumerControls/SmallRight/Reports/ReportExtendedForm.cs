@@ -38,7 +38,11 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         public object ParentRegisterItemDataSource
         {
             get => registerItemBindingSource.DataSource;
-            private set => registerItemBindingSource.DataSource = value;
+            private set
+            {
+                registerItemBindingSource.DataSource = value;
+                registerItemBindingSource.ResetBindings(false);
+            }
         }
 
         /// <summary>
@@ -198,22 +202,37 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
                 CountUse = 1,
             };
 
-            var addAuthRole = new CompositionOfReport(_registerItemMusDesign)
-            {
-                CreativeRoleDataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1),
-            };
+            var addAuthRole = new CompositionOfReport(_registerItemMusDesign);
             if (addAuthRole.ShowDialog() == DialogResult.OK)
             {
-                registerItemBindingSource.Add(_registerItemMusDesign);
+                //registerItemBindingSource.Add(_registerItemMusDesign);
                 _register.RegisterItem.Add(_registerItemMusDesign);
+                registerItemBindingSource.ResetBindings(false);
+            }
+        }
+
+        private void OpenMusicalDesingDialog(RegisterItem item)
+        {
+            var addAuthRole = new CompositionOfReport(item);
+            if (addAuthRole.ShowDialog() == DialogResult.OK)
+            {
+                registerItemBindingSource.ResetBindings(false);
             }
         }
 
         private void gvMusicalDesing_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            var rec = e.Row.DataBoundItem as RegisterItem;
-            registerItemBindingSource.Remove(rec);
-            _register.RegisterItem.Remove(rec);
+            var btnName = e.Column.FieldName;
+            switch (btnName)
+            {
+                case "btnEdit":
+                    break;
+                case "btnDelete":
+                    var rec = e.Row.DataBoundItem as RegisterItem;
+                    registerItemBindingSource.Remove(rec);
+                    _register.RegisterItem.Remove(rec);
+                    break;
+            }
         }
 
         private void gvStaging_CommandCellClick(object sender, GridViewCellEventArgs e)

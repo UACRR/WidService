@@ -29,6 +29,7 @@ namespace ipsmedserviceapp.Model
         public int? Durationticks { get; set; }
         public int Ticks { get; set; }
         public bool IsAuto { get; set; }
+        public int? GenreType { get; set; }
 
         [JsonIgnore]
         public virtual RegisterItemType CodeItemNavigation { get; set; }

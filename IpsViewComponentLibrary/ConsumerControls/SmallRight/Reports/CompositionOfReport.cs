@@ -10,13 +10,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 {
     public partial class CompositionOfReport : RadForm
     {
-        private readonly Dictionary<int, CreativeRoleType> creativeDic;
-
-        public object CreativeRoleDataSource
-        {
-            get => bsDictCreativeRole.DataSource;
-            set => bsDictCreativeRole.DataSource = value;
-        }
 
         public CompositionOfReport(RegisterItem registerItem)
         {
@@ -24,33 +17,41 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             StartPosition = FormStartPosition.CenterScreen;
             ctrlSaveCancelButtons.ButtonSaveDialogResult = DialogResult.None;
             ctrlSaveCancelButtons.SaveClck += btnSave_Click;
-            creativeDic = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1).ToDictionary(rec => rec.CodeI);
+            bsDictCreativeRole.DataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
+            bsDictGenreType.DataSource = IpsGlobal.AnketaDictionaties.genreType.Where(rec => rec.CategoryCode == 5);
             bsRegisterItem.DataSource = registerItem;
         }
 
         private void gvAuthRole_CommandCellClick(object sender, GridViewCellEventArgs e)
         {
-            if (e.Row.DataBoundItem is RegisterExtra item)
-                registerExtraBindingSource.Remove(item);   
+            if (!(e.Row.DataBoundItem is RegisterExtra item))
+                return;
+
+            bsRegisterExtra.Remove(item);
+            bsRegisterExtra.ResetBindings(false);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtAuthName.Text))
-            {
-                MessageBox.Show("ПІБ автора не може бути пустим!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                return;
-            }
+            gvAuthRole.Rows.AddNew();
+            gvAuthRole.CurrentRow.Cells[0].BeginEdit();
+            
 
-            int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
-            var addRow = new RegisterExtra
-            {
-                Name = txtAuthName.Text,
-                RoleCode = roleCode,
-                RoleCodeNavigation = creativeDic[roleCode]
-            };
+            //if (string.IsNullOrEmpty(txtAuthName.Text))
+            //{
+            //    MessageBox.Show("ПІБ автора не може бути пустим!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //    return;
+            //}
 
-            registerExtraBindingSource.Add(addRow);
+            //int roleCode = Convert.ToInt32(ddlCreativeRole.SelectedItem.Value ?? "0");
+            //var addRow = new RegisterExtra
+            //{
+            //    Name = txtAuthName.Text,
+            //    RoleCode = roleCode,
+            //    RoleCodeNavigation = (bsDictCreativeRole.DataSource as IEnumerable<CreativeRoleType>)?.ToDictionary(rec => rec.CodeI)[roleCode],
+            //};
+
+            //bsRegisterExtra.Add(addRow);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -60,8 +61,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
                 MessageBox.Show("Назва твору не може бути пустою!", "Пусте поле", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
-
+            ClearEmptyRowData();
             DialogResult = DialogResult.OK;
+        }
+
+        private void ClearEmptyRowData()
+        {
+
         }
     }
 }

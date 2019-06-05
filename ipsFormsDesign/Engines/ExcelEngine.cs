@@ -180,6 +180,8 @@ namespace ipsFormsDesign.Services
                 yield return new { dim, size };
             }
         }
+
+        private const string PercentFormat = "0.00%";
         /// <summary>
         /// Завантаження  Excel в список List<List<string>>
         /// </summary>
@@ -191,7 +193,7 @@ namespace ipsFormsDesign.Services
             // TODO: extract OpenWorkbook(), CloseWorkbook() methods
 
             var list = new List<List<string>>();
-            int i = 0, iter=1;
+            int i = 0, iter = 1;
 
             Excel.Workbook excelAppWorkbook = null;
             try
@@ -206,9 +208,8 @@ namespace ipsFormsDesign.Services
                 int maxCol;
                 int maxRow;
 
-                maxCol = Math.Min( excelRange.Columns.Count, countCols );
+                maxCol = Math.Min(excelRange.Columns.Count, countCols);
                 maxRow = excelRange.Rows.Count;
-
                 // 17-05-2019 блочна обробка excel
 
                 // var dim = ((Range)excelRange.Range[excelRange.Cells[1,1], excelRange.Cells[maxRow, countCols]]).Value;
@@ -219,17 +220,28 @@ namespace ipsFormsDesign.Services
                     //for (i = 1; i <= maxRow; i++)
                     for (i = 1; i <= rows; i++, iter++)
                     {
-                        if (dim?[i, 1] == null)
+                        //if (dim?[i, 1] == null)
+                        //    continue;
+
+                        if (!(dim?[i, 1] is double))
                             continue;
 
+                        // changed
                         // Патлякевич 10-05-19
-                        if (!(double.TryParse(dim[i, 1].ToString(), out double tmp)))
-                            continue;
+                        //if (!(double.TryParse(dim[i, 1].ToString(), out double tmp)))
+                        //    continue;
 
                         var rowList = new List<string>();
 
                         for (var j = 1; j <= maxCol; j++)
                         {
+                            var format = ((Range)item.dim.Cells[i, j]).NumberFormat;
+                            if (string.Equals(format, PercentFormat))
+                            {
+                                rowList.Add(GetFirst(dim[i, j] * 100));
+                                continue;
+                            }
+
                             rowList.Add(GetFirst(dim[i, j]));
                         }
 

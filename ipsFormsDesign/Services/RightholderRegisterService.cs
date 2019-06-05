@@ -1,10 +1,6 @@
 ﻿using IpsCommonTypes.Types;
 using ipsFormsDesign.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WebAPIConnector;
 
 namespace ipsFormsDesign.Services
@@ -82,22 +78,20 @@ namespace ipsFormsDesign.Services
             return result;
         }
 
-        public ExecSqlResponce<CatalogFile> Validate( CatalogFile file )
+        public ExecSqlResponce<CatalogFile> Validate(CatalogFile file)
         {
             int custId = file.CustId ?? 0, fileId = file.FileId;
-            string url = $"{Prefix}/{custId}/validate";
+            string url = $"{Prefix}/{custId}/file/{fileId}/validate";
             _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
             return outResult;
-
         }
 
         public ExecSqlResponce<CatalogFile> Process(CatalogFile file)
         {
             int custId = file.CustId ?? 0, fileId = file.FileId;
-            string url = $"{Prefix}/{custId}/process";
+            string url = $"{Prefix}/{custId}/file/{fileId}/process";
             _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
             return outResult;
-
         }
     }
 }

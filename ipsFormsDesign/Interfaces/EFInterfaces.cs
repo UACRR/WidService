@@ -1751,6 +1751,7 @@ public interface IRegisterItem
          int? Durationticks { get; set; }
          int Ticks { get; set; }
          bool IsAuto { get; set; }
+         int? GenreType { get; set; }
 }
 public interface IRegisterItemFix
     {
@@ -2109,6 +2110,7 @@ public interface IRhcatalogItem
          int? Status { get; set; }
          int? CRightId { get; set; }
          string ErrComment { get; set; }
+         TimeSpan? Duration { get; set; }
 }
 public interface IRholderType
     {    int CodeI { get; set; }
