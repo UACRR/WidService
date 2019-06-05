@@ -43,7 +43,7 @@
             this.txtCrName = new Telerik.WinControls.UI.RadTextBox();
             this.bsRegisterItem = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel7 = new Telerik.WinControls.UI.RadLabel();
-            this.ddlCreativeRole = new Telerik.WinControls.UI.RadDropDownList();
+            this.ddlGenreType = new Telerik.WinControls.UI.RadDropDownList();
             this.bsDictGenreType = new System.Windows.Forms.BindingSource(this.components);
             this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
             this.btnAdd = new Telerik.WinControls.UI.RadButton();
@@ -57,7 +57,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -79,7 +79,7 @@
             // 
             this.txtCrName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCrName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItem, "ItemName", true));
+            this.txtCrName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegisterItem, "ItemName", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtCrName.Location = new System.Drawing.Point(84, 3);
             this.txtCrName.Name = "txtCrName";
             this.txtCrName.Size = new System.Drawing.Size(339, 21);
@@ -99,17 +99,18 @@
             this.radLabel7.Text = "Назва твору";
             this.radLabel7.ThemeName = "Office2013Light";
             // 
-            // ddlCreativeRole
+            // ddlGenreType
             // 
-            this.ddlCreativeRole.DataSource = this.bsDictGenreType;
-            this.ddlCreativeRole.DisplayMember = "Name";
-            this.ddlCreativeRole.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
-            this.ddlCreativeRole.Location = new System.Drawing.Point(84, 29);
-            this.ddlCreativeRole.Name = "ddlCreativeRole";
-            this.ddlCreativeRole.Size = new System.Drawing.Size(395, 21);
-            this.ddlCreativeRole.TabIndex = 22;
-            this.ddlCreativeRole.ThemeName = "Office2013Light";
-            this.ddlCreativeRole.ValueMember = "CodeI";
+            this.ddlGenreType.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsRegisterItem, "GenreType", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ddlGenreType.DataSource = this.bsDictGenreType;
+            this.ddlGenreType.DisplayMember = "Name";
+            this.ddlGenreType.DropDownStyle = Telerik.WinControls.RadDropDownStyle.DropDownList;
+            this.ddlGenreType.Location = new System.Drawing.Point(84, 29);
+            this.ddlGenreType.Name = "ddlGenreType";
+            this.ddlGenreType.Size = new System.Drawing.Size(395, 21);
+            this.ddlGenreType.TabIndex = 22;
+            this.ddlGenreType.ThemeName = "Office2013Light";
+            this.ddlGenreType.ValueMember = "CodeI";
             // 
             // bsDictGenreType
             // 
@@ -150,6 +151,7 @@
             this.gvAuthRole.MasterTemplate.AllowDragToGroup = false;
             this.gvAuthRole.MasterTemplate.AutoGenerateColumns = false;
             this.gvAuthRole.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            gridViewComboBoxColumn1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             gridViewComboBoxColumn1.DataSource = this.bsDictCreativeRole;
             gridViewComboBoxColumn1.DataType = typeof(int);
             gridViewComboBoxColumn1.DisplayMember = "Name";
@@ -287,7 +289,7 @@
             this.radPanel1.Controls.Add(this.radLabel7);
             this.radPanel1.Controls.Add(this.radLabel2);
             this.radPanel1.Controls.Add(this.radLabel1);
-            this.radPanel1.Controls.Add(this.ddlCreativeRole);
+            this.radPanel1.Controls.Add(this.ddlGenreType);
             this.radPanel1.Controls.Add(this.nudCountUse);
             this.radPanel1.Controls.Add(this.txtCrName);
             this.radPanel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -319,7 +321,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCrName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegisterItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ddlCreativeRole)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ddlGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsDictGenreType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
@@ -341,7 +343,7 @@
         private Telerik.WinControls.Themes.Office2013LightTheme office2013LightTheme;
         private Telerik.WinControls.UI.RadTextBox txtCrName;
         private Telerik.WinControls.UI.RadLabel radLabel7;
-        private Telerik.WinControls.UI.RadDropDownList ddlCreativeRole;
+        private Telerik.WinControls.UI.RadDropDownList ddlGenreType;
         private Telerik.WinControls.UI.RadLabel radLabel2;
         private Telerik.WinControls.UI.RadButton btnAdd;
         private Telerik.WinControls.UI.RadGridView gvAuthRole;

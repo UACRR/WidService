@@ -101,4 +101,5 @@
         <noignore>UsesKindNavigation</noignore>
     </item>
 	<item Name="UsesKind"></item>
+	<item Name="CreativeRoleType"></item>
 </tables>

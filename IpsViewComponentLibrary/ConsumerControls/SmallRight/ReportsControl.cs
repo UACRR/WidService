@@ -404,7 +404,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     registerTemp.SchemaId = 2;
                     var progReportBigRight = new ReportExtendedForm(registerTemp)
                     {
-                        StartPosition = FormStartPosition.CenterParent,
                         HeaderInfoCustomerName = GetCustomerName(),
                         HeaderInfoLicenseNumberString = ((IAgreementData)gvLicenseAgr.CurrentRow.DataBoundItem).AgrNumber,
                         HeaderInfoPeriodName = period.PeriodName,
