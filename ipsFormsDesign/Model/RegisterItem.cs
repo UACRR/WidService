@@ -29,6 +29,7 @@ namespace ipsFormsDesign.Model
         public int? Durationticks { get; set; }
         public int Ticks { get; set; }
         public bool IsAuto { get; set; }
+        public int? GenreType { get; set; }
 
         public virtual RegisterItemType CodeItemNavigation { get; set; }
         public virtual ObjectRight Obj { get; set; }

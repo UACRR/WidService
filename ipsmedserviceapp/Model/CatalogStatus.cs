@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace ipsmedserviceapp.Model
 {
@@ -26,3 +26,4 @@ namespace ipsmedserviceapp.Model
         public virtual ICollection<RhcatalogItem> RhcatalogItem { get; set; }
     }
 }
+

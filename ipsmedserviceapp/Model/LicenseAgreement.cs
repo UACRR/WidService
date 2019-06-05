@@ -30,6 +30,7 @@ namespace ipsmedserviceapp.Model
         public virtual AgreementMaster Agr { get; set; }
         [JsonIgnore]
         public virtual Client Cust { get; set; }
+        [JsonIgnore]
         public virtual AgrLicenseType LicCodeNavigation { get; set; }
         [JsonIgnore]
         public virtual AgreementStatus LicStatusNavigation { get; set; }
