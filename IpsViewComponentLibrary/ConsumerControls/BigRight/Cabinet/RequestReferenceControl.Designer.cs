@@ -55,6 +55,7 @@
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.bsDictionaryWorkType = new System.Windows.Forms.BindingSource(this.components);
             this.gvViewRequests = new Telerik.WinControls.UI.RadGridView();
+            this.bsRequestsOrReferenceBigRightView = new System.Windows.Forms.BindingSource(this.components);
             this.separator = new Telerik.WinControls.UI.RadSeparator();
             this.btnCreate = new Telerik.WinControls.UI.RadButton();
             this.gvCreativeRole = new Telerik.WinControls.UI.RadGridView();
@@ -71,10 +72,10 @@
             this.ctrlSearch = new IpsViewComponentLibrary.Common.SearchTextBoxControl();
             this.ctrlAgrInfo = new IpsViewComponentLibrary.ConsumerControls.BigRight.GeneralAgreementInfo();
             this.spFooter = new Telerik.WinControls.UI.SplitPanel();
-            this.bsRequestsOrReferenceBigRightView = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionaryWorkType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRequestsOrReferenceBigRightView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole)).BeginInit();
@@ -89,7 +90,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spFooter)).BeginInit();
             this.spFooter.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsRequestsOrReferenceBigRightView)).BeginInit();
             this.SuspendLayout();
             // 
             // bsDictionaryWorkType
@@ -237,6 +237,10 @@
             this.gvViewRequests.ThemeName = "Office2013Light";
             this.gvViewRequests.CurrentRowChanged += new Telerik.WinControls.UI.CurrentRowChangedEventHandler(this.gvViewRequests_CurrentRowChanged);
             this.gvViewRequests.CommandCellClick += new Telerik.WinControls.UI.CommandCellClickEventHandler(this.gvViewRequests_CommandCellClick);
+            // 
+            // bsRequestsOrReferenceBigRightView
+            // 
+            this.bsRequestsOrReferenceBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.RequestsOrReferenceBigRightView);
             // 
             // separator
             // 
@@ -559,10 +563,6 @@
             this.spFooter.Text = "splitPanel2";
             this.spFooter.ThemeName = "Office2013Light";
             // 
-            // bsRequestsOrReferenceBigRightView
-            // 
-            this.bsRequestsOrReferenceBigRightView.DataSource = typeof(ipsFormsDesign.Interfaces.RequestsOrReferenceBigRightView);
-            // 
             // RequestReferenceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -574,6 +574,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsDictionaryWorkType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvViewRequests)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRequestsOrReferenceBigRightView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnCreate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvCreativeRole.MasterTemplate)).EndInit();
@@ -588,7 +589,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.btnUpdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spFooter)).EndInit();
             this.spFooter.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bsRequestsOrReferenceBigRightView)).EndInit();
             this.ResumeLayout(false);
 
         }
