@@ -85,7 +85,7 @@ namespace ipsFormsDesign.Services
         public ExecSqlResponce<CatalogFile> Validate( CatalogFile file )
         {
             int custId = file.CustId ?? 0, fileId = file.FileId;
-            string url = $"{_prefix}/{custId}/validate";
+            string url = $"{Prefix}/{custId}/validate";
             _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
             return outResult;
 
@@ -94,7 +94,7 @@ namespace ipsFormsDesign.Services
         public ExecSqlResponce<CatalogFile> Process(CatalogFile file)
         {
             int custId = file.CustId ?? 0, fileId = file.FileId;
-            string url = $"{_prefix}/{custId}/process";
+            string url = $"{Prefix}/{custId}/process";
             _apiConnector.UpdateItemWithResult(url, null, null, out ExecSqlResponce<CatalogFile> outResult);
             return outResult;
 
