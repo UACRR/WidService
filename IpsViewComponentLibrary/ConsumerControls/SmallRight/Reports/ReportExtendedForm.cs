@@ -15,8 +15,62 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
     {
         private const string EmptyNameWarningMsg = "Введіть назву постановки!";
         private const string NotSelectedGenreWarningMsg = "Оберіть жанр постановки!";
+        private const string DeleteItemConfirmMsg = "Видалити автора?";
 
         private readonly Register _register;
+
+        /// <summary>
+        /// Конструктор для створення рапортички
+        /// </summary>
+        /// <param name="register"></param>
+        public ReportExtendedForm(Register register)
+        {
+            InitializeComponent();
+            StartPosition = FormStartPosition.CenterScreen;
+            WindowState = FormWindowState.Maximized;
+
+            bsDictCreativeRole.DataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
+            bsDictGenreType.DataSource = IpsGlobal.AnketaDictionaties.genreType.Where(rec => rec.CategoryCode == 5);
+            bsDictRelGenrePercent.DataSource = IpsGlobal.AnketaDictionaties.relGenrePercent;
+            
+            _register = register;
+            // постановка
+            if (!(_register.RegisterItem.Any(rec => rec.CodeItem == 2)))
+            {
+                _register.RegisterItem.Add(new RegisterItem
+                {
+                    CodeItem = 2,
+                    CountUse = 1,
+                    Ticks = 1,
+                });
+            }
+
+            bsRegister.DataSource = _register;
+            // CodeItem == 2 - постановка
+            bsRegisterItem.DataSource = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
+
+            ddlGenreType.SelectedValueChanged += ddlGenreType_SelectedValueChanged;
+        }
+
+        /// <summary>
+        /// Конструктор для перегляду або редагування
+        /// </summary>
+        /// <param name="register">Звіт</param>
+        /// <param name="isEdit">true - якщо редагування, false - якщо перегляд</param>
+        public ReportExtendedForm(Register register, bool isEdit) : this(register)
+        {
+            MusicDesingDataSource = _register;
+
+            btnAddRegItem.Enabled = isEdit;
+            btnAddCreativeRole.Enabled = isEdit;
+            ctrlSaveCancelButtons.SaveButtonEnabled = isEdit;
+            txtName.ReadOnly = !isEdit;
+            txtAmount.ReadOnly = !isEdit;
+            txtAuthRate.ReadOnly = !isEdit;
+            txtAuthAmount.ReadOnly = !isEdit;
+            ddlGenreType.Enabled = isEdit;
+            txtMusicalDesignRate.ReadOnly = !isEdit;
+        }
 
         #region PROPERTIES
 
@@ -56,62 +110,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             set => lblRlNumber.Text = value;
         }
 
-        #endregion
-
-        /// <summary>
-        /// Конструктор для створення рапортички
-        /// </summary>
-        /// <param name="register"></param>
-        public ReportExtendedForm(Register register)
-        {
-            InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen;
-            WindowState = FormWindowState.Maximized;
-
-            bsDictCreativeRole.DataSource = IpsGlobal.AnketaDictionaties.creativeRoleType.Where(rec => rec.CategoryCode == 5 && rec.Crtype == 1);
-            bsDictGenreType.DataSource = IpsGlobal.AnketaDictionaties.genreType.Where(rec => rec.CategoryCode == 5);
-            bsDictRelGenrePercent.DataSource = IpsGlobal.AnketaDictionaties.relGenrePercent;
-            
-            _register = register;
-            // постановка
-            if (!(_register.RegisterItem.Any(rec => rec.CodeItem == 2)))
-            {
-                _register.RegisterItem.Add(new RegisterItem
-                {
-                    CodeItem = 2,
-                    CountUse = 1,
-                    Ticks = 1,
-                });
-            }
-
-            bsRegister.DataSource = _register;
-            // CodeItem == 2 - постановка
-            bsRegisterItem.DataSource = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2);
-
-            ddlGenreType.SelectedValueChanged += ddlGenreType_SelectedValueChanged;
-        }
-
-
-        /// <summary>
-        /// Конструктор для перегляду або редагування
-        /// </summary>
-        /// <param name="register">Звіт</param>
-        /// <param name="isEdit">true - якщо редагування, false - якщо перегляд</param>
-        public ReportExtendedForm(Register register, bool isEdit) : this(register)
-        {
-            MusicDesingDataSource = _register;
-
-            btnAddRegItem.Enabled = isEdit;
-            btnAddCreativeRole.Enabled = isEdit;
-            ctrlSaveCancelButtons.SaveButtonEnabled = isEdit;
-            txtName.ReadOnly = !isEdit;
-            txtAmount.ReadOnly = !isEdit;
-            txtAuthRate.ReadOnly = !isEdit;
-            txtAuthAmount.ReadOnly = !isEdit;
-            ddlGenreType.Enabled = isEdit;
-            txtMusicalDesignRate.ReadOnly = !isEdit;
-        }
-
         public Register MusicDesingDataSource
         {
             get => bsRegisterItemMusic.DataSource as Register;
@@ -123,6 +121,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
                 bsChildRegisterExtraMusic.ResetBindings(false);
             }
         }
+
+        #endregion
 
         // додати автора
         private void btnAddCreativeRole_Click(object sender, EventArgs e)
@@ -142,6 +142,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 
             gvAuthorsOfStaging.Rows.AddNew();
             gvAuthorsOfStaging.CurrentRow.Cells[0].BeginEdit();
+
+            if (gvAuthorsOfStaging.CurrentRow.DataBoundItem is RegisterExtra row)
+                row.RegId = _register.RegId;
         }
 
         //додати музичний твір 
@@ -204,11 +207,14 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
             if (!(e.Row.DataBoundItem is RegisterExtra item))
                 return;
 
-            var registerExtraList = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2)?.RegisterExtra;
-            registerExtraList?.Remove(item);
+            if (MessageShow.ConfirmAction(DeleteItemConfirmMsg) == DialogResult.Yes)
+            {
+                var registerExtraList = _register.RegisterItem.SingleOrDefault(rec => rec.CodeItem == 2)?.RegisterExtra;
+                registerExtraList?.Remove(item);
 
-            bsRegisterItem.ResetBindings(false);
-            bsRegisterExtra.ResetBindings(false);
+                bsRegisterItem.ResetBindings(false);
+                bsRegisterExtra.ResetBindings(false);
+            }
         }
 
         private void StartCalculateNeed(object sender, EventArgs e)
@@ -247,7 +253,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
 
         private void gvMusicalDesing_CurrentRowChanged(object sender, CurrentRowChangedEventArgs e)
         {
-            if (e.CurrentRow.DataBoundItem is RegisterItem)
+            if (e.CurrentRow?.DataBoundItem is RegisterItem)
                 gvMusicalDesing.MasterTemplate.CollapseAll();
         }
     }

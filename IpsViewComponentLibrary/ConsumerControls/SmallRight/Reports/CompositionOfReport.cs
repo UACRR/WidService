@@ -44,6 +44,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight.Reports
         {
             gvAuthRole.Rows.AddNew();
             gvAuthRole.CurrentRow.Cells[0].BeginEdit();
+
+            if (gvAuthRole.CurrentRow.DataBoundItem is RegisterExtra row)
+                row.RegId = (bsRegisterItem.DataSource as RegisterItem)?.RegId ?? 0;
         }
 
         private void btnSave_Click(object sender, EventArgs e)

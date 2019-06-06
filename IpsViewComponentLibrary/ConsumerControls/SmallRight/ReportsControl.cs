@@ -22,11 +22,16 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 {
     public partial class ReportsControl : UserControl
     {
+        private const string SaveReportSuccessMsg = "Звіт збережено!";
+        private const string SaveReportErrorMsg = "Неможливо зберегти звіт!";
+
         private readonly ExcelEngine _excel = ExcelEngine.GetInstance();
 
-        public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
+        public event Func<RegisterRatedList, bool> SaveRegisterRatedListExecuted;
+        //public event EventHandler<RegisterRatedList> SaveRegisterRatedListExecuted;
         public event EventHandler<Register> DeleteRegisterExecuted;
-        public event EventHandler<Register> SaveRegisterExecuted;
+        public event Func<Register, bool> SaveRegisterExecuted;
+        //public event EventHandler<Register> SaveRegisterExecuted;
         public event EventHandler<List<Register>> SetRegisterStateExecuted;
         public event EventHandler<PaidPeriod> SetPeriodStateExecuted;
         public event EventHandler<List<PaidPeriod>> SavePariodCommandExecuted;
@@ -40,6 +45,9 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
         private TypeRights _typeRights = TypeRights.All;
         private List<int> validClass;
         private Customer _customer;
+
+        // керування зміною поточного активного договору
+        private CurrentAgreementController _currentAgreementController = null;
 
         public ReportsControl()
         {
@@ -58,6 +66,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             else
                 IpsGlobal.AnketaDictionatiesChanged += SubscribeDictionary;
         }
+
         public Customer Customer
         {
             get => _customer;
@@ -68,10 +77,6 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             }
         }
 
-        /// <summary>
-        /// Керування зміною поточного активного договору
-        /// </summary>
-        private CurrentAgreementController _currentAgreementController = null;
         [EditorBrowsable]
         public CurrentAgreementController CurrentAgreementController
         {
@@ -349,8 +354,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                         addRegister.RegisterItem.Add(item);
 
                     RatedList.Register.Add(addRegister);
-
-                    SaveRegisterRatedListExecuted?.Invoke(this, RatedList);
+                    var result = SaveRegisterRatedListExecuted?.Invoke(RatedList);
                 })
                 .ContinueWith( tsk => {
 
@@ -399,7 +403,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                 // для визначення рапортички
                 var schemaId = (gvLicenseAgr.CurrentRow.DataBoundItem as IAgreementData)?.Lic?.LicCodeNavigation?.SchemaId;
 
-                if (schemaId == 2) // рапортичка
+                // рапортичка
+                if (schemaId == 2)
                 {
                     registerTemp.SchemaId = 2;
                     var progReportBigRight = new ReportExtendedForm(registerTemp)
@@ -414,10 +419,13 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     {
                         period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
                         bindingReports.Add(registerTemp);
-                        SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+
+                        var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault()) ?? false;
+                        MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
                     }
                 }
-                else // не рапотричка
+                // не рапотричка
+                else
                 {
                     registerTemp.SchemaId = 1;
                     var viewForm = new ReportExcelForm(registerTemp, true);
@@ -425,7 +433,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
                     {
                         period.RegisterRatedList.SingleOrDefault()?.Register.Add(registerTemp);
                         bindingReports.Add(registerTemp);
-                        SaveRegisterRatedListExecuted?.Invoke(sender, period.RegisterRatedList.SingleOrDefault());
+                        var result = SaveRegisterRatedListExecuted?.Invoke(period.RegisterRatedList.SingleOrDefault());
                     }
                 }
 
@@ -463,7 +471,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
                 if (progReportBigRight.ShowDialog() == DialogResult.OK)
                 {
-                    SaveRegisterExecuted?.Invoke(this, register);
+                    var result = SaveRegisterExecuted?.Invoke(register) ?? false;
+                    MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
                 }
                 return;
             }
@@ -471,7 +480,8 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             var viewForm = new ReportExcelForm(register, (register.RgStatus == 0 || register.RgStatus == 5));
             if (viewForm.ShowDialog() == DialogResult.OK)
             {
-                SaveRegisterExecuted?.Invoke(this, register);
+                var result = SaveRegisterExecuted?.Invoke(register) ?? false;
+                MessageShow.ShowInfoByResult(SaveReportSuccessMsg, SaveReportErrorMsg, result);
             }
         }
 
@@ -616,7 +626,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
             if (form.ShowDialog() == DialogResult.OK)
             {
                 period.RegisterRatedList.Add(addRatedList);
-                SaveRegisterRatedListExecuted?.Invoke(this, addRatedList);
+                var result = SaveRegisterRatedListExecuted?.Invoke(addRatedList);
                 bindingRatedList.Add(addRatedList);
                 btnAddRatedList.Enabled = false;
             }
@@ -624,14 +634,10 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
         private void GvRatedList_RowFormatting(object sender, RowFormattingEventArgs e)
         {
-            var row = e.RowElement.RowInfo;
-            if (row == null || row.DataBoundItem == null || !(row.DataBoundItem is RegisterRatedList))
+            if (!(e.RowElement?.RowInfo?.DataBoundItem is RegisterRatedList ratedList))
                 return;
-
-            var ratedList = row.DataBoundItem as RegisterRatedList;
-            int cnt = ratedList.Register.Count();
-            row.Cells["RegisterCount"].Value = cnt;
-
+            
+            e.RowElement.RowInfo.Cells["RegisterCount"].Value = ratedList.Register.Count;
         }
 
         private void GvRatedList_CommandCellClick(object sender, GridViewCellEventArgs e)
@@ -647,7 +653,7 @@ namespace IpsViewComponentLibrary.ConsumerControls.SmallRight
 
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    SaveRegisterRatedListExecuted(this, modifyRatedList);
+                    var result = SaveRegisterRatedListExecuted?.Invoke(modifyRatedList);
                     bindingRatedList.CurrencyManager.Refresh();
                     btnAddRatedList.Enabled = false;
                 }
