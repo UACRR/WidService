@@ -14,6 +14,8 @@ namespace ipsFormsDesign.Services
 {
     public class ExcelEngine
     {
+        private const string PercentFormat = "0.00%";
+
         private Excel.Application excelApp = null;
         private static ExcelEngine _instance;
         protected ExcelEngine()
@@ -181,7 +183,6 @@ namespace ipsFormsDesign.Services
             }
         }
 
-        private const string PercentFormat = "0.00%";
         /// <summary>
         /// Завантаження  Excel в список List<List<string>>
         /// </summary>

@@ -10,6 +10,7 @@ using ipsFormsDesign.Model;
 using ipsFormsDesign.Services;
 using IpsCommonTypes.Types;
 using IpsViewComponentLibrary.Shared.Interfaces;
+using Telerik.WinControls.UI;
 using TimeSpan = System.TimeSpan;
 
 namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
@@ -89,7 +90,7 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
                 ItemCode = item[0],
                 ObjName = item[1],
                 GenreName = item[2],
-                //Duration = GetTimeFromString(item[3]),
+                Duration = GetTimeFromString(item[3]),
                 RoleName = item[4],
                 AuthorName = item[5],
                 Rate = 0
@@ -101,19 +102,38 @@ namespace IpsViewComponentLibrary.RightholderRegisterControls.Presenters
             return newItem;
         }
 
-        private static TimeSpan GetTimeFromString(string secondString)
+        /// <summary>
+        /// Конвертувати рядкове значення часу в тип TimeSpan
+        /// </summary>
+        /// <param name="secondsString"></param>
+        /// <returns></returns>
+        private static TimeSpan GetTimeFromString(string secondsString)
         {
             var timeSpanConverter = new TimeSpanConverter();
 
+            if (double.TryParse(secondsString, out double result))
+                return GetTimeFromExcelDoubleValue(result);
+
             var regex = new Regex("^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$");
-            if (regex.IsMatch(secondString))
+            if (regex.IsMatch(secondsString))
             {
-                var timeObject = timeSpanConverter.ConvertFrom(secondString);
+                var timeObject = timeSpanConverter.ConvertFrom(secondsString);
                 return (TimeSpan?)timeObject ?? TimeSpan.Zero;
             }
             return TimeSpan.Zero;
         }
 
+        /// <summary>
+        /// Конвертувати Excel представлення Date/Time у вигляді double числа в TimeSpan
+        /// </summary>
+        /// <param name="doubleValue"></param>
+        /// <returns></returns>
+        private static TimeSpan GetTimeFromExcelDoubleValue(double doubleValue)
+        {
+            var dateTime = DateTime.FromOADate(doubleValue);
+            var ts = dateTime.TimeOfDay;
+            return ts;
+        }
 
         /// <summary>
         /// Видалити файл
